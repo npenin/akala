@@ -1,0 +1,10 @@
+export * from './injector';
+export * from './factory';
+export * from './web';
+export * from './service';
+export * from './binder';
+export * from './parser';
+import { Module } from './module';
+export declare type Module = Module;
+export * from './promiseHelpers';
+export declare function module(name: string, ...dependencies: string[]): Module;

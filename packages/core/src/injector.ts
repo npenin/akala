@@ -1,14 +1,37 @@
 import { getParamNames } from './reflect';
 
+function ctorToFunction(this: new () => any)
+{
+    var args = [null];
+    for (var i = 0; i < arguments.length; i++)
+        args[i + 1] = arguments[i];
+    return new (Function.prototype.bind.apply(this, args));
+}
+
+export type Injected = (instance?: any) => any;
+export type Injectable<T> = () => T;
+
+
 export class Injector
 {
     constructor(private parent?: Injector)
     {
         if (this.parent == null)
             this.parent = defaultInjector;
+        this.register('$injector', this);
     }
 
-    public inject<T extends Function>(a: T)
+    public merge(i: Injector)
+    {
+        var self = this;
+        Object.getOwnPropertyNames(i.injectables).forEach(function (property)
+        {
+            if (property != '$injector')
+                self.registerDescriptor(property, Object.getOwnPropertyDescriptor(i.injectables, property));
+        })
+    }
+
+    public inject<T>(a: Injectable<T> | Function)
     {
         return this.injectWithName(a['$inject'] || getParamNames(a), a);
     }
@@ -27,12 +50,21 @@ export class Injector
         console.log(this.injectables);
     }
 
-    public injectWithName(toInject: string[], a: Function)
+    public injectNewWithName(toInject: string[], ctor: Function)
+    {
+        return injectWithName(toInject, ctorToFunction.bind(ctor));
+    }
+
+    public injectWithName<T>(toInject: string[], a: Injectable<T>): Injectable<T>
+    public injectWithName(toInject: string[], a: Function): Injected
+    public injectWithName<T>(toInject: string[], a: Function | Injectable<T>): Injected 
     {
         var paramNames = <string[]>getParamNames(a);
         var self = this;
-        if (paramNames.length == toInject.length)
+        if (paramNames.length == toInject.length || paramNames.length == 0)
         {
+            if (toInject.length == paramNames.length && paramNames.length == 0)
+                return <Injectable<T>>a;
             return function (instance?: any)
             {
                 var args = [];
@@ -64,38 +96,61 @@ export class Injector
 
     private injectables = {};
 
-    public register(name: string, value: any, override?: boolean)
+    public unregister(name: string)
     {
-        this.registerDescriptor(name, { value: value, writable: false }, override);
+        var registration = Object.getOwnPropertyDescriptor(this.injectables, name);
+        if (registration)
+            delete this.injectables[name];
+    }
+
+    public register<T>(name: string, value: T, override?: boolean)
+    {
+        if (typeof (value) != 'undefined' && value !== null)
+            this.registerDescriptor(name, { value: value, enumerable: true, configurable: true }, override);
         return value;
     }
-    public registerFactory(name: string, value: () => any, override?: boolean)
+    public registerFactory<T>(name: string, value: () => T, override?: boolean)
     {
+        this.register(name + 'Factory', value, override);
         this.registerDescriptor(name, {
             get: function ()
             {
                 return value();
-            }
+            }, enumerable: true, configurable: true
         }, override);
         return value;
     }
     public registerDescriptor(name: string, value: PropertyDescriptor, override?: boolean)
     {
-        if (override || typeof (this.injectables[name]) == 'undefined')
-            Object.defineProperty(this.injectables, name, value);
-        else
+        if (!override && typeof (this.injectables[name]) != 'undefined')
             throw new Error('There is already a registered item for ' + name);
+        if (typeof (this.injectables[name]) !== 'undefined')
+            this.unregister(name);
+        Object.defineProperty(this.injectables, name, value);
     }
 }
+
+declare var $$defaultInjector;
 
 if (!global['$$defaultInjector'])
     global['$$defaultInjector'] = new Injector();
 
 var defaultInjector: Injector = global['$$defaultInjector'];
 
+
 export function resolve(name: string)
 {
     return defaultInjector.resolve(name);
+}
+
+export function unregister(name: string)
+{
+    return defaultInjector.unregister(name);
+}
+
+export function merge(i: Injector)
+{
+    return defaultInjector.merge(i);
 }
 
 export function inspect()
@@ -103,14 +158,19 @@ export function inspect()
     return defaultInjector.inspect();
 }
 
-export function inject(a: Function)
+export function inject<T>(a: Function | Injectable<T>)
 {
     return defaultInjector.inject(a);
 }
 
-export function injectWithName(toInject: string[], a: Function)
+export function injectWithName<T>(toInject: string[], a: Function | Injectable<T>)
 {
     return defaultInjector.injectWithName(toInject, a);
+}
+
+export function injectNewWithName(toInject: string[], a: Function)
+{
+    return defaultInjector.injectNewWithName(toInject, a);
 }
 
 export function register(name: string, value: any, override?: boolean)

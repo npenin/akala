@@ -1,1 +1,1 @@
-export declare function service(name: string, ...toInject: string[]): (target: Function) => any;
+export declare function service(name: string, ...toInject: string[]): (target: any) => void;

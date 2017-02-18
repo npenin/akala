@@ -1,17 +1,17 @@
 "use strict";
-var injector_1 = require('./injector');
-function factory(name) {
-    var toInject = [];
-    for (var _i = 1; _i < arguments.length; _i++) {
-        toInject[_i - 1] = arguments[_i];
-    }
+Object.defineProperty(exports, "__esModule", { value: true });
+const injector_1 = require("./injector");
+function factory(name, ...toInject) {
     return function (target) {
         var instance = null;
         var factory = function () {
-            if (!instance)
-                instance = new (target.bind.apply(target, [null].concat(arguments)))();
-            instance.build.bind(instance);
-            return instance.build;
+            if (!instance) {
+                var args = [null];
+                for (var arg in arguments)
+                    args.push(arguments[arg]);
+                instance = new (target.bind.apply(target, args))();
+            }
+            return instance.build();
         };
         if (toInject == null || toInject.length == 0)
             injector_1.registerFactory(name, injector_1.inject(factory));

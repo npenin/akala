@@ -1,33 +1,52 @@
 "use strict";
-var reflect_1 = require('./reflect');
-var Injector = (function () {
-    function Injector(parent) {
+Object.defineProperty(exports, "__esModule", { value: true });
+const reflect_1 = require("./reflect");
+function ctorToFunction() {
+    var args = [null];
+    for (var i = 0; i < arguments.length; i++)
+        args[i + 1] = arguments[i];
+    return new (Function.prototype.bind.apply(this, args));
+}
+class Injector {
+    constructor(parent) {
         this.parent = parent;
         this.injectables = {};
         if (this.parent == null)
             this.parent = defaultInjector;
+        this.register('$injector', this);
     }
-    Injector.prototype.inject = function (a) {
+    merge(i) {
+        var self = this;
+        Object.getOwnPropertyNames(i.injectables).forEach(function (property) {
+            if (property != '$injector')
+                self.registerDescriptor(property, Object.getOwnPropertyDescriptor(i.injectables, property));
+        });
+    }
+    inject(a) {
         return this.injectWithName(a['$inject'] || reflect_1.getParamNames(a), a);
-    };
-    Injector.prototype.resolve = function (param) {
+    }
+    resolve(param) {
         if (typeof (this.injectables[param]) != 'undefined')
             return this.injectables[param];
         if (this.parent)
             return this.parent.resolve(param);
         return null;
-    };
-    Injector.prototype.inspect = function () {
+    }
+    inspect() {
         console.log(this.injectables);
-    };
-    Injector.prototype.injectWithName = function (toInject, a) {
+    }
+    injectNewWithName(toInject, ctor) {
+        return injectWithName(toInject, ctorToFunction.bind(ctor));
+    }
+    injectWithName(toInject, a) {
         var paramNames = reflect_1.getParamNames(a);
         var self = this;
-        if (paramNames.length == toInject.length) {
+        if (paramNames.length == toInject.length || paramNames.length == 0) {
+            if (toInject.length == paramNames.length && paramNames.length == 0)
+                return a;
             return function (instance) {
                 var args = [];
-                for (var _i = 0, toInject_1 = toInject; _i < toInject_1.length; _i++) {
-                    var param = toInject_1[_i];
+                for (var param of toInject) {
                     args[args.length] = self.resolve(param);
                 }
                 return a.apply(instance, args);
@@ -37,8 +56,7 @@ var Injector = (function () {
             return function (instance) {
                 var args = [];
                 var unknownArgIndex = 0;
-                for (var _i = 0, paramNames_1 = paramNames; _i < paramNames_1.length; _i++) {
-                    var param = paramNames_1[_i];
+                for (var param of paramNames) {
                     if (param in toInject)
                         args[args.length] = self.resolve(param);
                     else if (typeof (arguments[unknownArgIndex]) != 'undefined')
@@ -48,27 +66,34 @@ var Injector = (function () {
                 }
                 return a.apply(instance, args);
             };
-    };
-    Injector.prototype.register = function (name, value, override) {
-        this.registerDescriptor(name, { value: value, writable: false }, override);
+    }
+    unregister(name) {
+        var registration = Object.getOwnPropertyDescriptor(this.injectables, name);
+        if (registration)
+            delete this.injectables[name];
+    }
+    register(name, value, override) {
+        if (typeof (value) != 'undefined' && value !== null)
+            this.registerDescriptor(name, { value: value, enumerable: true, configurable: true }, override);
         return value;
-    };
-    Injector.prototype.registerFactory = function (name, value, override) {
+    }
+    registerFactory(name, value, override) {
+        this.register(name + 'Factory', value, override);
         this.registerDescriptor(name, {
             get: function () {
                 return value();
-            }
+            }, enumerable: true, configurable: true
         }, override);
         return value;
-    };
-    Injector.prototype.registerDescriptor = function (name, value, override) {
-        if (override || typeof (this.injectables[name]) == 'undefined')
-            Object.defineProperty(this.injectables, name, value);
-        else
+    }
+    registerDescriptor(name, value, override) {
+        if (!override && typeof (this.injectables[name]) != 'undefined')
             throw new Error('There is already a registered item for ' + name);
-    };
-    return Injector;
-}());
+        if (typeof (this.injectables[name]) !== 'undefined')
+            this.unregister(name);
+        Object.defineProperty(this.injectables, name, value);
+    }
+}
 exports.Injector = Injector;
 if (!global['$$defaultInjector'])
     global['$$defaultInjector'] = new Injector();
@@ -77,6 +102,14 @@ function resolve(name) {
     return defaultInjector.resolve(name);
 }
 exports.resolve = resolve;
+function unregister(name) {
+    return defaultInjector.unregister(name);
+}
+exports.unregister = unregister;
+function merge(i) {
+    return defaultInjector.merge(i);
+}
+exports.merge = merge;
 function inspect() {
     return defaultInjector.inspect();
 }
@@ -89,6 +122,10 @@ function injectWithName(toInject, a) {
     return defaultInjector.injectWithName(toInject, a);
 }
 exports.injectWithName = injectWithName;
+function injectNewWithName(toInject, a) {
+    return defaultInjector.injectNewWithName(toInject, a);
+}
+exports.injectNewWithName = injectNewWithName;
 function register(name, value, override) {
     return defaultInjector.register(name, value, override);
 }

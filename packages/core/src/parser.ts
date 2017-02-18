@@ -1,26 +1,56 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const promiseHelpers_1 = require("./promiseHelpers");
-const binder_1 = require("./binder");
-const formatters = require("./formatters");
+import { Deferred, isPromiseLike, PromiseStatus } from './promiseHelpers';
+import { Binding, PromiseBinding } from './binder';
+import * as formatters from './formatters';
+
+
 var jsonKeyRegex = /^ *"([^"]+)"|([^\: ]+) *: */;
-class ParsedString {
-    constructor(value) {
-        this.value = value;
+
+export interface ParsedAny
+{
+    $$length?: number;
+}
+
+export interface ParsedObject extends ParsedAny
+{
+    [name: string]: any;
+}
+
+export interface ParsedArray extends ParsedAny, Array<ParsedAny>
+{
+}
+
+export interface ParsedFunction extends ParsedAny
+{
+    (value: any, asBinding?: false): any;
+    (value: any, asBinding: true): Binding;
+}
+
+export class ParsedString implements ParsedAny
+{
+    constructor(public value: string)
+    {
         this.$$length = value.length + 2;
     }
+
+    public $$length: number;
 }
-exports.ParsedString = ParsedString;
-class Parser {
-    static parse(expression, excludeFirstLevelFunction) {
+
+export class Parser
+{
+    public static parse(expression: string, excludeFirstLevelFunction: boolean): ParsedFunction | ParsedAny
+    {
         expression = expression.trim();
-        if (['{', '[', '"', "'"].indexOf(expression[0]) != -1 && ['{', '[', '"', "'"].lastIndexOf(expression[expression.length - 1])) {
+        if (['{', '[', '"', "'"].indexOf(expression[0]) != -1 && ['{', '[', '"', "'"].lastIndexOf(expression[expression.length - 1]))
+        {
             return Parser.parseAny(expression, excludeFirstLevelFunction);
         }
         return Parser.parseEval(expression);
     }
-    static parseAny(expression, excludeFirstLevelFunction) {
-        switch (expression[0]) {
+
+    public static parseAny(expression: string, excludeFirstLevelFunction: boolean): ParsedAny
+    {
+        switch (expression[0])
+        {
             case '{':
                 return Parser.parseObject(expression, excludeFirstLevelFunction);
             case '[':
@@ -32,35 +62,48 @@ class Parser {
                 return Parser.parseEval(expression);
         }
     }
-    static parseEval(expression) {
+
+    public static parseEval(expression: string): ParsedFunction
+    {
         var formatter = formatters.identity;
-        if (expression[0] == '!') {
+        if (expression[0] == '!')
+        {
             formatter = formatters.negate;
             expression = expression.substring(1);
         }
+
         expression = /^[\w0-9\.]+/.exec(expression)[0];
         var parts = Parser.parseBindable(expression);
-        var f = function (value, asBinding) {
-            if (asBinding) {
-                if (promiseHelpers_1.isPromiseLike(value)) {
-                    var binding = new binder_1.PromiseBinding(expression, value);
+
+        var f: ParsedFunction = function (value, asBinding?: boolean)
+        {
+            if (asBinding)
+            {
+                if (isPromiseLike(value))
+                {
+                    var binding = new PromiseBinding(expression, value);
                     binding['$$length'] = expression.length;
                     binding.formatter = formatter;
                     return binding;
                 }
-                var binding = new binder_1.Binding(expression, value);
+                var binding = new Binding(expression, value);
                 binding['$$length'] = expression.length;
                 binding.formatter = formatter;
                 return binding;
             }
-            for (var i = 0; i < parts.length && value; i++) {
+
+            for (var i = 0; i < parts.length && value; i++)
+            {
                 value = value[parts[i]];
-                if (promiseHelpers_1.isPromiseLike(value)) {
-                    if (value instanceof promiseHelpers_1.Deferred && value.$$status == promiseHelpers_1.PromiseStatus.Resolved) {
+                if (isPromiseLike(value))
+                {
+                    if (value instanceof Deferred && value.$$status == PromiseStatus.Resolved)
+                    {
                         value = value.$$value;
                     }
-                    else {
-                        var promise;
+                    else
+                    {
+                        var promise: PromiseLike<any>;
                         if (i == parts.length - 1)
                             promise = value;
                         else
@@ -71,35 +114,45 @@ class Parser {
                 }
             }
             return value;
-        };
+        }
         f.$$length = expression.length;
         return f;
     }
-    static parseArray(expression, excludeFirstLevelFunction) {
-        var results = [];
+
+    public static parseArray(expression: string, excludeFirstLevelFunction?: boolean): ParsedArray | ParsedFunction
+    {
+        var results: ParsedArray = [];
         Object.defineProperty(results, '$$length', { value: 0, enumerable: false, configurable: true, writable: true });
         var isFunction = false;
-        return Parser.parseCSV(expression, function (result) {
-            var item = Parser.parseAny(result, false);
+        return Parser.parseCSV(expression, function (result)
+        {
+            var item: ParsedAny = Parser.parseAny(result, false);
+
             if (item instanceof ParsedString)
                 results.push(item.value);
             else
+
                 results.push(item);
             // results.$$length += item.$$length;
             return item;
         }, ']', results, excludeFirstLevelFunction);
     }
-    static parseString(expression, start) {
+
+    public static parseString(expression: string, start: string): ParsedString
+    {
         var evaluatedRegex = new RegExp("^" + start + "((?:[^\\" + start + "]|\\.)+)" + start).exec(expression);
         // console.log(arguments);
         var result = evaluatedRegex[1];
         return new ParsedString(result);
     }
-    static parseCSV(expression, onItem, end, output, excludeFirstLevelFunction) {
+
+    private static parseCSV<T extends ParsedAny>(expression: string, onItem: (expression: string) => ParsedAny, end: string, output: T, excludeFirstLevelFunction: boolean): ParsedFunction | T
+    {
         expression = expression.substring(1);
         output.$$length++;
         var isFunction = false;
-        do {
+        do
+        {
             var item = onItem(expression);
             output.$$length += item.$$length;
             if (item instanceof Function)
@@ -112,35 +165,42 @@ class Parser {
             expression = expression.substring(next[0].length);
             // console.log(expression);
             output.$$length += next[0].length;
-        } while (expression[0] != end);
+        }
+        while (expression[0] != end);
         output.$$length += end.length;
         // console.log(output.$$length);
-        var result;
+        var result: any;
         if (output instanceof Array)
             result = [];
         else
             result = {};
-        if (isFunction && !excludeFirstLevelFunction) {
-            var f = function (value, asBinding) {
-                for (var i in output) {
+        if (isFunction && !excludeFirstLevelFunction)
+        {
+            var f: ParsedFunction = function (value, asBinding: boolean)
+            {
+                for (var i in output)
+                {
                     if (output[i] instanceof Function)
-                        result[i] = output[i](value, asBinding);
+                        result[i] = (<Function><any>output[i])(value, asBinding);
                     else
                         result[i] = output[i];
                 }
                 return result;
-            };
+            }
             f.$$length = output.$$length;
             return f;
         }
         else
             return output;
     }
-    static parseObject(expression, excludeFirstLevelFunction) {
-        var keyMatch;
-        var result = {};
+
+    public static parseObject(expression: string, excludeFirstLevelFunction?: boolean)
+    {
+        var keyMatch: RegExpExecArray;
+        var result: ParsedObject = {};
         Object.defineProperty(result, '$$length', { value: 0, enumerable: false, writable: true, configurable: true });
-        return Parser.parseCSV(expression, function (expression) {
+        return Parser.parseCSV(expression, function (expression)
+        {
             // var length = 0;
             var keyMatch = jsonKeyRegex.exec(expression);
             var key = keyMatch[1] || keyMatch[2];
@@ -161,29 +221,39 @@ class Parser {
             return item;
         }, '}', result, excludeFirstLevelFunction);
     }
-    static parseBindable(expression) {
+
+    public static parseBindable(expression: string)
+    {
         return expression.split('.');
     }
-    static getSetter(expression, root) {
+
+    public static getSetter(expression: string, root: any)
+    {
         var target = root;
         var parts = Parser.parseBindable(expression);
-        while (parts.length > 1 && typeof (target) != 'undefined') {
+
+        while (parts.length > 1 && typeof (target) != 'undefined')
+        {
             target = Parser.eval(parts[0], target);
             parts.shift();
         }
         if (typeof (target) == 'undefined')
             return null;
-        return { expression: parts[0], target: target, set: function (value) { target[parts[0]] = value; } };
+
+        return { expression: parts[0], target: target, set: function (value) { target[parts[0]] = value } };
     }
-    static evalAsFunction(expression, excludeFirstLevelFunction) {
+
+    public static evalAsFunction(expression: string, excludeFirstLevelFunction?: boolean)
+    {
         var parts = Parser.parse(expression, excludeFirstLevelFunction);
         if (parts instanceof Array)
             return Parser.parseEval(expression);
-        return parts;
+
+        return <ParsedFunction>parts;
     }
-    static eval(expression, value) {
+
+    public static eval(expression: string, value: any)
+    {
         return Parser.evalAsFunction(expression, false)(value, false);
     }
 }
-exports.Parser = Parser;
-//# sourceMappingURL=parser.js.map
