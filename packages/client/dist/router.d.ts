@@ -1,3 +1,5 @@
+/// <reference types="express" />
+/// <reference types="node" />
 import * as url from 'url';
 import { Readable } from 'stream';
 import * as http from 'http';
@@ -18,8 +20,11 @@ export interface IRouterHandler<T> extends express.IRouterHandler<T> {
     (...handlers: RequestHandler[]): T;
     (...handlers: RequestHandlerParams[]): T;
 }
-export interface Router extends express.IRouter {
+export interface akalaRouter {
     (req: Location): void;
+    router: IRouterHandler<this> & IRouterMatcher<this>;
+}
+export interface Router extends express.IRouter<Router>, akalaRouter {
     all: undefined;
     post: undefined;
     put: undefined;
@@ -35,6 +40,9 @@ export declare class Request extends Readable implements http.IncomingMessage {
     url: string;
     uri: url.Url;
     method: string;
+    params: {
+        [key: string]: any;
+    };
     headers: undefined;
     httpVersion: undefined;
     httpVersionMajor: undefined;

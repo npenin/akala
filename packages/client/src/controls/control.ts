@@ -55,7 +55,7 @@ export abstract class Control<T> implements IControl
         element.find('[data-bind]').each(function ()
         {
             if ($(this).parent().closest('[data-bind]')[0] == element[0])
-                $(this).applyTemplate(scope);
+                $(this).applyTemplate(scope, element);
         });
         return element;
     }

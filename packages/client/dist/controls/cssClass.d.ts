@@ -1,3 +1,4 @@
+/// <reference types="jquery" />
 import { BaseControl } from './control';
 export declare class CssClass extends BaseControl<any> {
     constructor();

@@ -19,31 +19,34 @@ let Part = class Part extends events_1.EventEmitter {
     register(partName, control) {
         this.parts.register(partName, control);
     }
-    use(url, partName = 'body', part) {
+    apply(partInstance, part, params, next) {
         var parts = this.parts;
         var template = this.template;
-        this.router.use(url, function (req, res, next) {
-            if (part.template)
-                template.get(part.template).then(function (template) {
-                    var p = parts.resolve(partName);
-                    if (!p)
-                        return;
-                    if (part.controller)
-                        part.controller(p.scope, p.element, req.params);
-                    if (template)
-                        di.Promisify(template(p.scope)).then(function (tmpl) {
-                            tmpl.appendTo(p.element.empty());
-                        });
-                });
-            else {
-                debugger;
-                var p = parts.resolve(partName);
+        if (part.template)
+            template.get(part.template).then(function (template) {
+                var p = partInstance();
                 if (!p)
                     return;
                 if (part.controller)
-                    part.controller(p.scope, p.element, req.params);
+                    part.controller(p.scope, p.element, params, next);
+                if (template)
+                    template(p.scope, p.element.empty());
+            });
+        else {
+            debugger;
+            var p = partInstance();
+            if (!p)
+                return;
+            if (part.controller)
+                part.controller(p.scope, p.element, params, next);
+            else
                 next();
-            }
+        }
+    }
+    use(url, partName = 'body', part) {
+        var self = this;
+        this.router.use(url, function (req, res, next) {
+            self.apply(() => self.parts.resolve(partName), part, req.params, next);
         });
     }
 };

@@ -1,10 +1,11 @@
 import * as di from 'akala-core'
-import { Router } from './router'
+import { Router, Request } from './router'
 import { EventEmitter } from 'events'
 import { Part as PartControl } from './controls/part'
 import { Template } from './template'
 import { IScope } from './scope'
 import { service } from './common'
+import * as express from 'express'
 
 export type PartInstance = { scope: any, element: JQuery };
 
@@ -23,36 +24,40 @@ export class Part extends EventEmitter
         this.parts.register(partName, control);
     }
 
-    public use(url: string, partName: string = 'body', part: PartDefinition)
+    public apply(partInstance: () => PartInstance, part: PartDefinition, params: any, next: express.NextFunction)
     {
         var parts = this.parts;
         var template = this.template;
-        this.router.use(url, function (req, res, next)
-        {
-            if (part.template)
-                template.get(part.template).then(function (template)
-                {
-                    var p = <PartInstance>parts.resolve(partName);
-                    if (!p)
-                        return;
-                    if (part.controller)
-                        part.controller(p.scope, p.element, req.params);
-                    if (template)
-                        di.Promisify(template(p.scope)).then(function (tmpl)
-                        {
-                            tmpl.appendTo(p.element.empty());
-                        });
-                });
-            else
+        if (part.template)
+            template.get(part.template).then(function (template)
             {
-                debugger;
-                var p = <PartInstance>parts.resolve(partName);
+                var p = partInstance();
                 if (!p)
                     return;
                 if (part.controller)
-                    part.controller(p.scope, p.element, req.params);
+                    part.controller(p.scope, p.element, params, next);
+                if (template)
+                    template(p.scope, p.element.empty());
+            });
+        else
+        {
+            debugger;
+            var p = partInstance();
+            if (!p)
+                return;
+            if (part.controller)
+                part.controller(p.scope, p.element, params, next);
+            else
                 next();
-            }
+        }
+    }
+
+    public use(url: string, partName: string = 'body', part: PartDefinition)
+    {
+        var self = this;
+        this.router.use(url, function (req: Request, res, next)
+        {
+            self.apply(() => self.parts.resolve(partName), part, req.params, next);
         });
     }
 }
@@ -60,5 +65,5 @@ export class Part extends EventEmitter
 export interface PartDefinition
 {
     template?: string;
-    controller?<TScope extends IScope>(scope: TScope, element: JQuery, params: any): void;
+    controller?<TScope extends IScope>(scope: TScope, element: JQuery, params: any, next: () => void): void;
 }

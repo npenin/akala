@@ -1,5 +1,6 @@
 import * as di from 'akala-core';
 
+
 export interface IScope extends di.IWatched
 {
     $new(): IScope
@@ -9,6 +10,12 @@ export interface IScope extends di.IWatched
 
 export class Scope implements IScope
 {
+    constructor()
+    {
+    }
+
+    private $watchers: { [key: string]: di.Binding } = {};
+
     public $new(): Scope
     {
         var newScope = function () { };
@@ -23,7 +30,17 @@ export class Scope implements IScope
 
     public $watch(expression: string, handler: (value: any) => void)
     {
-        var binding = new di.Binding(expression, this);
+        var binding = this.$watchers[expression];
+        if (!binding)
+        {
+            binding = new di.Binding(expression, this);
+            this.$watchers[expression] = binding;
+        }
+        if (!binding['handlers'])
+            binding['handlers'] = [];
+        if (binding['handlers'].indexOf(handler) > -1)
+            return;
+        binding['handlers'].push(handler);
         binding.onChanged(function (ev)
         {
             handler(ev.eventArgs.value);
