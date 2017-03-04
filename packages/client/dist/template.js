@@ -111,7 +111,7 @@ let Template = Template_1 = class Template {
         var self = this;
         var p = new di.Deferred();
         if (!t)
-            p.resolve(t);
+            setImmediate(p.resolve, t);
         else {
             var template = cache.resolve(t);
             if (template) {
@@ -120,11 +120,11 @@ let Template = Template_1 = class Template {
                         p.resolve(data);
                     });
                 else
-                    p.resolve(template);
+                    setImmediate(p.resolve.bind(p), template);
             }
             else if (/</.test(t)) {
                 var template = Template_1.build(t);
-                p.resolve(template);
+                setImmediate(p.resolve.bind(p), template);
             }
             else {
                 cache.register(t, p);
@@ -140,9 +140,11 @@ let Template = Template_1 = class Template {
     }
     static build(markup) {
         var template = Interpolate.build(markup);
-        return function (data) {
-            var templateInstance = template(data);
-            return $(templateInstance).applyTemplate(data);
+        return function (data, parent) {
+            var templateInstance = $(template(data));
+            if (parent)
+                templateInstance.appendTo(parent);
+            return templateInstance.applyTemplate(data, parent);
         };
     }
 };
@@ -152,12 +154,16 @@ Template = Template_1 = __decorate([
 exports.Template = Template;
 var databindRegex = /(\w+):([^;]+);?/g;
 $.extend($.fn, {
-    applyTemplate: function applyTemplate(data) {
+    applyTemplate: function applyTemplate(data, root) {
         data.$new = scope_1.Scope.prototype.$new;
         if (this.filter('[data-bind]').length == 0) {
             this.find('[data-bind]').each(function () {
-                if ($(this).parent().closest('[data-bind]').length == 0)
-                    $(this).applyTemplate(data);
+                var closest = $(this).parent().closest('[data-bind]');
+                var applyInnerTemplate = closest.length == 0;
+                if (!applyInnerTemplate && root)
+                    root.each(function (i, it) { applyInnerTemplate = applyInnerTemplate || it == closest[0]; });
+                if (applyInnerTemplate)
+                    $(this).applyTemplate(data, this);
             });
             return this;
         }

@@ -1,3 +1,4 @@
+/// <reference types="jquery" />
 import * as di from 'akala-core';
 import { Scope } from '../scope';
 export declare function control(...toInject: string[]): (ctrl: new (...args: any[]) => any) => void;

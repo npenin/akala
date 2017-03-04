@@ -22,7 +22,7 @@ class Response {
 exports.Response = Response;
 if (!window.setImmediate)
     window['setImmediate'] = function (fn) {
-        var args = Array.prototype.slice.call(arguments, 1);
+        var args = arguments.length && Array.prototype.slice.call(arguments, 1) || [];
         return setTimeout(function () {
             fn.apply(this, args);
         }, 0);
@@ -37,6 +37,11 @@ function router() {
             if (err)
                 console.error(err);
         });
+    };
+    proto['router'] = function (path, handler) {
+        var router = exRouter();
+        this.use(path, handler, exRouter);
+        return router;
     };
     result['__proto__'] = proto;
     return result;

@@ -3,7 +3,7 @@ import { Readable, Writable } from 'stream';
 import * as http from 'http';
 import * as express from 'express';
 var debug = require('debug')('akala:router');
-var exRouter = require('express/lib/router/index.js');
+var exRouter: () => express.Router = require('express/lib/router/index.js');
 
 export type PathParams = string | RegExp | (string | RegExp)[];
 
@@ -32,11 +32,15 @@ export interface IRouterHandler<T> extends express.IRouterHandler<T>
     (...handlers: RequestHandlerParams[]): T;
 }
 
-
-export interface Router extends express.IRouter
+export interface akalaRouter 
 {
     (req: Location): void;
+    router: IRouterHandler<this> & IRouterMatcher<this>;
+}
 
+
+export interface Router extends express.IRouter<Router>, akalaRouter
+{
     all: undefined;
     post: undefined;
     put: undefined;
@@ -65,6 +69,7 @@ export class Request extends Readable implements http.IncomingMessage
     public url: string;
     public uri: url.Url;
     public method = 'get';
+    public params: { [key: string]: any };
     headers: undefined;
     httpVersion: undefined;
     httpVersionMajor: undefined;
@@ -86,7 +91,7 @@ export class Response
 if (!window.setImmediate)
     window['setImmediate'] = function (fn)
     {
-        var args = Array.prototype.slice.call(arguments, 1);
+        var args = arguments.length && Array.prototype.slice.call(arguments, 1) || [];
         return <number><any>setTimeout(function ()
         {
             fn.apply(this, args)
@@ -96,7 +101,8 @@ if (!window.setImmediate)
 export function router(): Router
 {
 
-    var proto: express.Router = exRouter();
+    var proto = exRouter();
+
     var result = function (url: Location)
     {
         var req = new Request(url);
@@ -108,6 +114,12 @@ export function router(): Router
                 console.error(err);
         });
     };
+    proto['router'] = function (this: Router, path: PathParams, handler: RequestHandler)
+    {
+        var router = exRouter();
+        this.use(path, handler, exRouter);
+        return router;
+    }
 
     result['__proto__'] = proto;
 

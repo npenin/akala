@@ -1,3 +1,4 @@
+/// <reference types="jquery" />
 import 'akala-core';
 import * as di from 'akala-core';
 export declare class Interpolate {
@@ -11,7 +12,7 @@ export declare class Interpolate {
     private static escapedEndRegexp;
     static build(text: string, mustHaveExpression?: boolean, trustedContext?: boolean, allOrNothing?: boolean): any;
 }
-export declare type templateFunction = (target: any) => JQuery;
+export declare type templateFunction = (target: any, parent: JQuery) => JQuery;
 export declare class Template {
     private interpolator;
     private http;

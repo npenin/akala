@@ -15,10 +15,11 @@ let Value = class Value extends control_1.BaseControl {
     link(target, element, parameter) {
         if (parameter instanceof di.Binding) {
             element.change(function () {
-                parameter.setValue($(this).val(), parameter);
+                parameter.setValue(element.val(), parameter);
             });
-            parameter.onChanged(function (target) {
-                element.val(target.eventArgs.value);
+            parameter.onChanged(function (ev) {
+                if (parameter !== ev.source)
+                    element.val(ev.eventArgs.value);
             });
         }
         else

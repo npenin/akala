@@ -15,11 +15,12 @@ export class Value extends BaseControl<string>
         {
             element.change(function ()
             {
-                parameter.setValue($(this).val(), parameter);
+                parameter.setValue(element.val(), parameter);
             });
-            parameter.onChanged(function (target)
+            parameter.onChanged(function (ev)
             {
-                element.val(target.eventArgs.value);
+                if (parameter !== ev.source)
+                    element.val(ev.eventArgs.value);
             });
         }
         else
