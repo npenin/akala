@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import { EventEmitter } from 'events';
 export declare function Promisify<T>(o: T): PromiseLike<T>;
 export declare type ResolveHandler<T, TResult> = (value: T) => TResult | PromiseLike<TResult>;

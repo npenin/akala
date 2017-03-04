@@ -16,9 +16,9 @@ function eachAsync(array, body, complete) {
     })(0);
 }
 class Binding extends events_1.EventEmitter {
-    constructor(expression, _target, register = true) {
+    constructor(_expression, _target, register = true) {
         super();
-        this.expression = expression;
+        this._expression = _expression;
         this._target = _target;
         this.evaluator = parser_1.Parser.evalAsFunction(this.expression);
         this.registeredBindings = [];
@@ -28,6 +28,7 @@ class Binding extends events_1.EventEmitter {
         else
             this.setMaxListeners(0);
     }
+    get expression() { return this._expression; }
     get target() { return this._target; }
     set target(value) { this._target = value; this.register(); }
     onChanging(handler) {

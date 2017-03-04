@@ -10,6 +10,8 @@ export interface ParsedAny
     $$length?: number;
 }
 
+export type ParsedOneOf = ParsedObject | ParsedArray | ParsedFunction | ParsedString | ParsedBoolean | ParsedNumber;
+
 export interface ParsedObject extends ParsedAny
 {
     [name: string]: any;
@@ -35,6 +37,33 @@ export class ParsedString implements ParsedAny
     public $$length: number;
 }
 
+export class ParsedNumber implements ParsedAny
+{
+    constructor(value: string)
+    {
+        this.value = Number(value);
+        this.$$length = value.length;
+    }
+
+    public value: number;
+
+    public $$length: number;
+}
+
+export class ParsedBoolean implements ParsedAny
+{
+    constructor(value: string)
+    {
+        this.value = Boolean(value);
+        if (typeof value != 'undefined')
+            this.$$length = value.toString().length;
+    }
+
+    public value: boolean;
+
+    public $$length: number;
+}
+
 export class Parser
 {
     public static parse(expression: string, excludeFirstLevelFunction: boolean): ParsedFunction | ParsedAny
@@ -47,7 +76,7 @@ export class Parser
         return Parser.parseEval(expression);
     }
 
-    public static parseAny(expression: string, excludeFirstLevelFunction: boolean): ParsedAny
+    public static parseAny(expression: string, excludeFirstLevelFunction: boolean): ParsedOneOf
     {
         switch (expression[0])
         {
@@ -58,12 +87,29 @@ export class Parser
             case '"':
             case "'":
                 return Parser.parseString(expression, expression[0]);
+            case '0':
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+            case '8':
+            case '9':
+            case '.':
+                return Parser.parseNumber(expression);
             default:
                 return Parser.parseEval(expression);
         }
     }
 
-    public static parseEval(expression: string): ParsedFunction
+    public static parseNumber(expression): ParsedNumber
+    {
+        return new ParsedNumber(/^[0-9.]/.exec(expression)[0]);
+    }
+
+    public static parseBoolean(expression): ParsedBoolean
     {
         var formatter = formatters.identity;
         if (expression[0] == '!')
@@ -72,7 +118,30 @@ export class Parser
             expression = expression.substring(1);
         }
 
-        expression = /^[\w0-9\.]+/.exec(expression)[0];
+        var result = new ParsedBoolean(/^true|false|undefined/.exec(expression)[0]);
+        if (formatter !== formatters.identity)
+            result.value = formatter(result.value);
+        return result;
+    }
+
+    public static parseEval(expression: string): ParsedBoolean | ParsedFunction
+    {
+        var b = Parser.parseBoolean(expression);
+        if (b.$$length > 0)
+            return b;
+
+        return Parser.parseFunction(expression);
+    }
+
+    private static parseFunction(expression: string): ParsedFunction
+    {
+        var formatter = formatters.identity;
+        if (expression[0] == '!')
+        {
+            formatter = formatters.negate;
+            expression = expression.substring(1);
+        }
+        var item = /^[\w0-9\.]+/.exec(expression)[0];
         var parts = Parser.parseBindable(expression);
 
         var f: ParsedFunction = function (value, asBinding?: boolean)
@@ -81,13 +150,13 @@ export class Parser
             {
                 if (isPromiseLike(value))
                 {
-                    var binding = new PromiseBinding(expression, value);
-                    binding['$$length'] = expression.length;
+                    var binding = new PromiseBinding(item, value);
+                    binding['$$length'] = item.length;
                     binding.formatter = formatter;
                     return binding;
                 }
-                var binding = new Binding(expression, value);
-                binding['$$length'] = expression.length;
+                var binding = new Binding(item, value);
+                binding['$$length'] = item.length;
                 binding.formatter = formatter;
                 return binding;
             }
@@ -107,16 +176,108 @@ export class Parser
                         if (i == parts.length - 1)
                             promise = value;
                         else
-                            promise = value.then(Parser.parseEval(parts.slice(i + 1).join('.'))).then(formatter);
-                        promise['$$length'] = expression.length;
+                            promise = value.then(Parser.parseFunction(parts.slice(i + 1).join('.'))).then(formatter);
+                        promise['$$length'] = item.length;
                         return promise;
                     }
                 }
             }
             return value;
         }
-        f.$$length = expression.length;
+        f.$$length = item.length;
+
         return f;
+    }
+
+    public static tryParseOperator(expression: string, lhs: ParsedOneOf)
+    {
+        var operator = /^ *[<>=!]+ */.exec(expression)[0];
+        if (operator)
+        {
+            expression = expression.substring(operator.length);
+            var rhs = Parser.parseAny(expression, false);
+            if (lhs instanceof Function || rhs instanceof Function)
+            {
+                var item: ParsedFunction = function (value: any, asBinding: boolean)
+                {
+                    if (asBinding)
+                    {
+                        var left, right;
+                        if (lhs instanceof Function)
+                            left = lhs(value, asBinding);
+                        else if (lhs instanceof ParsedString)
+                            left = lhs.value;
+                        else if (lhs instanceof ParsedNumber)
+                            left = lhs.value;
+                        else if (lhs instanceof Array)
+                            left = lhs;
+                        else if (lhs instanceof Object)
+                            left = lhs;
+
+                        if (rhs instanceof Function)
+                            right = rhs(value, asBinding);
+                        else if (rhs instanceof ParsedString)
+                            right = rhs.value;
+                        else if (rhs instanceof ParsedNumber)
+                            right = rhs.value;
+                        else if (rhs instanceof Array)
+                            right = rhs;
+                        else if (rhs instanceof Object)
+                            right = rhs
+
+                        var binding = new Binding(null, null, false);
+                        if (left instanceof Binding)
+                            left.pipe(binding);
+                        if (right instanceof Binding)
+                            right.pipe(binding);
+                        binding['$$length'] = left['$$length'] + right['$$length'] + operator.length;
+                        binding.formatter = function ()
+                        {
+                            var fleft, fright;
+                            if (left instanceof Binding)
+                                fleft = left.getValue();
+                            else
+                                fleft = left;
+                            if (right instanceof Binding)
+                                fright = right.getValue();
+                            else
+                                fright = right;
+                            return Parser.operate(operator.trim(), fleft, fright);
+                        }
+                        return binding;
+                    }
+                    else
+                        return <any>Parser.operate(operator.trim(), left, right);
+                }
+                item.$$length = lhs.$$length + operator.length + rhs.$$length;
+                return item;
+            }
+            else
+            {
+                var left, right;
+                if (lhs instanceof ParsedString)
+                    left = lhs.value;
+                else if (lhs instanceof ParsedNumber)
+                    left = lhs.value;
+                else if (lhs instanceof Array)
+                    left = lhs;
+                else if (lhs instanceof Object)
+                    left = lhs;
+
+                if (rhs instanceof ParsedString)
+                    right = rhs.value;
+                else if (rhs instanceof ParsedNumber)
+                    right = rhs.value;
+                else if (rhs instanceof Array)
+                    right = rhs;
+                else if (rhs instanceof Object)
+                    right = rhs
+
+                return Parser.operate(operator.trim(), left, right);
+            }
+        }
+        else
+            return lhs;
     }
 
     public static parseArray(expression: string, excludeFirstLevelFunction?: boolean): ParsedArray | ParsedFunction
@@ -127,7 +288,7 @@ export class Parser
         return Parser.parseCSV(expression, function (result)
         {
             var item: ParsedAny = Parser.parseAny(result, false);
-
+            item = Parser.tryParseOperator(result.substring(item.$$length), item)
             if (item instanceof ParsedString)
                 results.push(item.value);
             else
@@ -146,15 +307,45 @@ export class Parser
         return new ParsedString(result);
     }
 
-    private static parseCSV<T extends ParsedAny>(expression: string, onItem: (expression: string) => ParsedAny, end: string, output: T, excludeFirstLevelFunction: boolean): ParsedFunction | T
+    public static operate(operator: string, left?: any, right?: any)
+    {
+        // if (arguments.length == 1)
+        //     return function (left: any, right: any)
+        //     {
+        //         return Parser.operate(operator, left, right);
+        //     }
+        switch (operator)
+        {
+            case '==':
+                return left == right;
+            case '===':
+                return left === right;
+            case '<':
+                return left < right;
+            case '<=':
+                return left <= right;
+            case '>':
+                return left > right;
+            case '>=':
+                return left >= right;
+            case '!=':
+                return left != right;
+            case '!==':
+                return left !== right;
+            default:
+                throw new Error('invalid operator' + operator);
+        }
+    }
+
+    private static parseCSV<T extends ParsedAny>(expression: string, parseItem: (expression: string) => ParsedAny, end: string, output: T, excludeFirstLevelFunction: boolean): ParsedFunction | T
     {
         expression = expression.substring(1);
         output.$$length++;
         var isFunction = false;
         do
         {
-            var item = onItem(expression);
-            output.$$length += item.$$length;
+            var item = parseItem(expression);
+
             if (item instanceof Function)
                 isFunction = true;
             expression = expression.substring(item.$$length);
@@ -247,7 +438,7 @@ export class Parser
     {
         var parts = Parser.parse(expression, excludeFirstLevelFunction);
         if (parts instanceof Array)
-            return Parser.parseEval(expression);
+            return Parser.parseFunction(expression);
 
         return <ParsedFunction>parts;
     }

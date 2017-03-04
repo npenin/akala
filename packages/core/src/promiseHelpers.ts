@@ -5,6 +5,7 @@ export function Promisify<T>(o: T)
         return o;
     if (o && o['then'])
         return <PromiseLike<T>><any>o;
+
     var deferred = new Deferred<T>();
     var e = new Error();
     setTimeout(function ()
@@ -66,11 +67,17 @@ export class Deferred<T> extends EventEmitter implements PromiseLike<T>
         {
             case PromiseStatus.Resolved:
                 var deferred = new Deferred();
-                setImmediate(deferred.resolve.bind(deferred), Promisify(onfulfilled(<T>this.$$value)));
+                var result = onfulfilled(<T>this.$$value);
+                if (typeof (result) == 'undefined')
+                    result = this.$$value;
+                setImmediate(deferred.resolve.bind(deferred), Promisify(result));
                 return deferred;
             case PromiseStatus.Rejected:
                 var deferred = new Deferred();
-                setImmediate(deferred.reject.bind(deferred), Promisify(onrejected(this.$$value)));
+                var rejection = onrejected(this.$$value);
+                if (typeof (rejection) == 'undefined')
+                    rejection = this.$$value;
+                setImmediate(deferred.reject.bind(deferred), Promisify(rejection));
                 return deferred;
             case PromiseStatus.Pending:
                 var next = new Deferred<TResult>();

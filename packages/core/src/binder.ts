@@ -37,7 +37,7 @@ export class Binding extends EventEmitter
     public static readonly ChangedFieldEventName = "fieldChanged";
     public static readonly ErrorEventName = "bindingError";
 
-    constructor(protected expression: string, private _target: any, register: boolean = true)
+    constructor(protected _expression: string, private _target: any, register: boolean = true)
     {
         super();
         this.formatter = formatters.identity;
@@ -49,6 +49,7 @@ export class Binding extends EventEmitter
 
     public formatter: Function;
 
+    public get expression() { return this._expression; }
     public get target() { return this._target; }
     public set target(value) { this._target = value; this.register() }
 

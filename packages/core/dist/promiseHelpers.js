@@ -48,11 +48,17 @@ class Deferred extends events_1.EventEmitter {
         switch (this.$$status) {
             case PromiseStatus.Resolved:
                 var deferred = new Deferred();
-                setImmediate(deferred.resolve.bind(deferred), Promisify(onfulfilled(this.$$value)));
+                var result = onfulfilled(this.$$value);
+                if (typeof (result) == 'undefined')
+                    result = this.$$value;
+                setImmediate(deferred.resolve.bind(deferred), Promisify(result));
                 return deferred;
             case PromiseStatus.Rejected:
                 var deferred = new Deferred();
-                setImmediate(deferred.reject.bind(deferred), Promisify(onrejected(this.$$value)));
+                var rejection = onrejected(this.$$value);
+                if (typeof (rejection) == 'undefined')
+                    rejection = this.$$value;
+                setImmediate(deferred.reject.bind(deferred), Promisify(rejection));
                 return deferred;
             case PromiseStatus.Pending:
                 var next = new Deferred();
