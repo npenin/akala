@@ -2,7 +2,7 @@
 
 # Context
 
-Akala is aimed to be dependency injection framework (and more) available both on client side and server side.
+Akala is aimed to be dependency injection framework (and more) available both on [client](//github.com/npenin/akala-client) side and [server](//github.com/npenin/akala-server) side.
 
 # Features
 
