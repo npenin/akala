@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import { WatchBinding } from 'akala-core';
+import { WatchBinding } from '@akala/core';
 
 
 /**
@@ -194,6 +194,7 @@ export class LocationService extends EventEmitter
 
     public dispatch(path: string)
     {
+        this.emit('changing', path)
         this.emit('change', path)
     }
 }

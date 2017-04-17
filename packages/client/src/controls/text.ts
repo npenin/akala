@@ -1,6 +1,6 @@
-import * as di from 'akala-core'
+import * as di from '@akala/core'
 import { control, BaseControl } from './control'
-import { Promisify, Binding } from 'akala-core'
+import { Promisify, Binding } from '@akala/core'
 
 @control()
 export class Text extends BaseControl<string>

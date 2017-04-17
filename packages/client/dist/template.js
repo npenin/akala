@@ -6,8 +6,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("akala-core");
-const di = require("akala-core");
+require("@akala/core");
+const di = require("@akala/core");
 const controls_1 = require("./controls/controls");
 const scope_1 = require("./scope");
 const common_1 = require("./common");
@@ -118,6 +118,7 @@ let Template = Template_1 = class Template {
                 if (di.isPromiseLike(template))
                     return template.then(function (data) {
                         p.resolve(data);
+                        return data;
                     });
                 else
                     setImmediate(p.resolve.bind(p), template);
@@ -133,7 +134,7 @@ let Template = Template_1 = class Template {
                     if (registerTemplate)
                         cache.register(t, template, true);
                     p.resolve(template);
-                }, p.reject);
+                }, p.reject.bind(p));
             }
         }
         return p;

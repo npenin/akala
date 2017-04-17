@@ -1,5 +1,5 @@
-import { Promisify, Deferred, Binding, module, Module, ObservableArray } from 'akala-core';
-import 'akala-core'
+import { Promisify, Deferred, Binding, module, Module, ObservableArray } from '@akala/core';
+import '@akala/core'
 
 export var $$injector: Module = window['akala'] = module('akala', 'akala-services', 'controls');
 $$injector['promisify'] = Promisify;

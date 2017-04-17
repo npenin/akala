@@ -1,25 +1,25 @@
-import * as di from 'akala-core'
+import * as di from '@akala/core'
 import { control, BaseControl } from './control'
 import { IScope } from '../scope'
-import { Promisify, Binding } from 'akala-core'
+import { Promisify, Binding } from '@akala/core'
 import { Part as PartService } from '../part'
 
 @control("$part")
-export class Part extends BaseControl<string>
+export class Part extends BaseControl<string | { [property: string]: Binding }>
 {
     constructor(private partService: PartService)
     {
         super('part', 100)
     }
 
-    public link(target: IScope, element: JQuery, parameter: string | Binding)
+    public link(target: IScope, element: JQuery, parameter: string | { [property: string]: Binding })
     {
         var partService = this.partService;
-        if (parameter instanceof Binding)
+        if (typeof parameter != 'string')
         {
-            new Binding('template', parameter.target).onChanged(function (ev)
+            parameter['template'].onChanged(function (ev)
             {
-                partService.apply(function () { return { scope: target, element: element } }, parameter.target, {}, $.noop);
+                partService.apply(function () { return { scope: parameter, element: element } }, { controller: <any>parameter.controller, template: ev.eventArgs.value }, {}, $.noop);
             });
         }
         else

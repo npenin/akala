@@ -7,13 +7,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const control_1 = require("./control");
-const akala_core_1 = require("akala-core");
+const core_1 = require("@akala/core");
 let Text = class Text extends control_1.BaseControl {
     constructor() {
         super('text', 400);
     }
     link(target, element, parameter) {
-        if (parameter instanceof akala_core_1.Binding) {
+        if (parameter instanceof core_1.Binding) {
             parameter.onChanged(function (ev) {
                 element.text(ev.eventArgs.value);
             });

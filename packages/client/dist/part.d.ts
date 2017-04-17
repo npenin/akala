@@ -1,11 +1,11 @@
 /// <reference types="jquery" />
 /// <reference types="node" />
-/// <reference types="express" />
+import * as akala from '@akala/core';
 import { Router } from './router';
 import { EventEmitter } from 'events';
 import { Template } from './template';
 import { IScope } from './scope';
-import * as express from 'express';
+import { LocationService as Location } from './locationService';
 export declare type PartInstance = {
     scope: any;
     element: JQuery;
@@ -13,10 +13,10 @@ export declare type PartInstance = {
 export declare class Part extends EventEmitter {
     private template;
     private router;
-    constructor(template: Template, router: Router);
+    constructor(template: Template, router: Router, location: Location);
     private parts;
     register(partName: string, control: PartInstance): void;
-    apply(partInstance: () => PartInstance, part: PartDefinition, params: any, next: express.NextFunction): void;
+    apply(partInstance: () => PartInstance, part: PartDefinition, params: any, next: akala.NextFunction): void;
     use(url: string, partName: string, part: PartDefinition): void;
 }
 export interface PartDefinition {

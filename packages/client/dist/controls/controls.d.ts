@@ -5,3 +5,5 @@ export * from './value';
 export * from './cssClass';
 export * from './part';
 export * from './click';
+export * from './options';
+export * from './hide';

@@ -1,5 +1,5 @@
-import 'akala-core'
-import * as di from 'akala-core';
+import '@akala/core'
+import * as di from '@akala/core';
 import { Control } from './controls/controls'
 import { Scope } from './scope'
 import { service } from './common'
@@ -163,6 +163,7 @@ export class Template
                     return template.then(function (data)
                     {
                         p.resolve(data);
+                        return data;
                     })
                 else
                     setImmediate(p.resolve.bind(p), template);
@@ -182,7 +183,7 @@ export class Template
                         cache.register(t, template, true);
                     p.resolve(template);
                 },
-                    p.reject
+                    p.reject.bind(p)
                 );
             }
         }

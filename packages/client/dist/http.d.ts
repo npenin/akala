@@ -1,4 +1,4 @@
-import * as di from 'akala-core';
+import * as di from '@akala/core';
 export declare class Http implements di.Http {
     constructor();
     get(url: string, params?: any): PromiseLike<string>;

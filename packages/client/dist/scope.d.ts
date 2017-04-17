@@ -1,4 +1,4 @@
-import * as di from 'akala-core';
+import * as di from '@akala/core';
 export interface IScope extends di.IWatched {
     $new(): IScope;
     $set(expression: string, value: any): any;

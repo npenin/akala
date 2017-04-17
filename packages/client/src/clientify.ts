@@ -1,8 +1,7 @@
 import { serviceModule, $$injector } from './common'
-import { router, Router } from './router'
-var exRouter = require('express/lib/router/index.js');
+import { router, Router, Request } from './router'
 import { LocationService, StartOption } from './locationService'
-import { Promisify, Deferred, ObservableArray, Http as IHttp } from 'akala-core';
+import { Promisify, Deferred, ObservableArray, Http as IHttp } from '@akala/core';
 import { Http } from './http';
 import { Interpolate, Template } from './template';
 import { Part } from './part';
@@ -15,8 +14,8 @@ $$injector['BaseControl'] = BaseControl;
 $$injector['Control'] = Control;
 $$injector['control'] = control;
 var mainRouter = router();
-mainRouter.use(serviceModule.register('$preRouter', exRouter()));
-mainRouter.use(serviceModule.register('$router', exRouter()));
+mainRouter.use(serviceModule.register('$preRouter', router()).router);
+mainRouter.use(serviceModule.register('$router', router()).router);
 mainRouter.use(function (error)
 {
     console.error(error);
@@ -51,9 +50,15 @@ $$injector.start(['$location'], function ($location: LocationService)
     $location.on('change', function ()
     {
         if (started)
-            mainRouter(location);
+            mainRouter.handle(new Request(location), function (err)
+            {
+                if (err)
+                    console.error(err);
+                else
+                    console.warn('deadend');
+            });
     });
-    // mainRouter(location);
+
     $location.start({ hashbang: true })
     started = true;
 });

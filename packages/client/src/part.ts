@@ -1,30 +1,40 @@
-import * as di from 'akala-core'
+import * as akala from '@akala/core'
 import { Router, Request } from './router'
 import { EventEmitter } from 'events'
 import { Part as PartControl } from './controls/part'
 import { Template } from './template'
 import { IScope } from './scope'
 import { service } from './common'
-import * as express from 'express'
+import { LocationService as Location } from './locationService'
 
 export type PartInstance = { scope: any, element: JQuery };
 
-@service('$part', '$template', '$router')
+@service('$part', '$template', '$router', '$location')
 export class Part extends EventEmitter
 {
-    constructor(private template: Template, private router: Router)
+    constructor(private template: Template, private router: Router, location: Location)
     {
         super();
+        location.on('changing', () =>
+        {
+            var parts = this.parts;
+            parts.keys().forEach(function (partName)
+            {
+                if (partName == '$injector')
+                    return;
+                (<PartInstance>parts.resolve(partName)).element.empty();
+            })
+        })
     }
 
-    private parts = new di.Injector();
+    private parts = new akala.Injector();
 
     public register(partName: string, control: PartInstance)
     {
         this.parts.register(partName, control);
     }
 
-    public apply(partInstance: () => PartInstance, part: PartDefinition, params: any, next: express.NextFunction)
+    public apply(partInstance: () => PartInstance, part: PartDefinition, params: any, next: akala.NextFunction)
     {
         var parts = this.parts;
         var template = this.template;
@@ -55,8 +65,9 @@ export class Part extends EventEmitter
     public use(url: string, partName: string = 'body', part: PartDefinition)
     {
         var self = this;
-        this.router.use(url, function (req: Request, res, next)
+        this.router.use(url, function (req: Request, next: akala.NextFunction)
         {
+
             self.apply(() => self.parts.resolve(partName), part, req.params, next);
         });
     }

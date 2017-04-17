@@ -6,7 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const di = require("akala-core");
+const di = require("@akala/core");
 const control_1 = require("./control");
 let ForEach = ForEach_1 = class ForEach extends control_1.Control {
     constructor() {

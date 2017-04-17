@@ -1,5 +1,5 @@
 /// <reference types="jquery" />
-import * as di from 'akala-core';
+import * as di from '@akala/core';
 import { Scope } from '../scope';
 export declare function control(...toInject: string[]): (ctrl: new (...args: any[]) => any) => void;
 export declare abstract class Control<T> implements IControl {
@@ -9,7 +9,7 @@ export declare abstract class Control<T> implements IControl {
     constructor($$name: string, priority?: number);
     static apply(controls: any, element: JQuery, scope?: any): JQuery | PromiseLike<JQuery>;
     protected clone(element: JQuery, scope: Scope, newControls?: any): JQuery;
-    abstract instanciate(target: any, element: JQuery, parameter: di.Binding | T): void | JQuery | PromiseLike<JQuery>;
+    abstract instanciate(target: any, element: JQuery, parameter: di.Binding | T, controls?: any): void | JQuery | PromiseLike<JQuery>;
     scope?: any | boolean;
 }
 export declare abstract class BaseControl<T> extends Control<T> {

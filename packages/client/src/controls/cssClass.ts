@@ -1,6 +1,6 @@
-import * as di from 'akala-core'
+import * as di from '@akala/core'
 import { control, BaseControl } from './control'
-import { Promisify, ObservableArray, ObservableArrayEventArgs, Binding } from 'akala-core'
+import { Promisify, ObservableArray, ObservableArrayEventArgs, Binding } from '@akala/core'
 
 @control()
 export class CssClass extends BaseControl<any>

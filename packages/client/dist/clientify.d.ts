@@ -1,7 +1,7 @@
 import { serviceModule } from './common';
 import { Router } from './router';
 import { LocationService, StartOption } from './locationService';
-import { ObservableArray, Http as IHttp } from 'akala-core';
+import { ObservableArray, Http as IHttp } from '@akala/core';
 import { Template } from './template';
 import { Part } from './part';
 import { IScope } from './scope';

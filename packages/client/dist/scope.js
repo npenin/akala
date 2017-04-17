@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const di = require("akala-core");
+const di = require("@akala/core");
 class Scope {
     constructor() {
         this.$watchers = {};

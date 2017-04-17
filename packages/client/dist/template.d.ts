@@ -1,6 +1,6 @@
 /// <reference types="jquery" />
-import 'akala-core';
-import * as di from 'akala-core';
+import '@akala/core';
+import * as di from '@akala/core';
 export declare class Interpolate {
     private static _startSymbol;
     private static _endSymbol;
