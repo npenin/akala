@@ -1,16 +1,28 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var express = require("express");
-var di = require("akala-core");
-var io = require("socket.io-client");
-var debug = require("debug");
-var path = require("path");
-var path_1 = require("path");
+const di = require("@akala/core");
+const router_1 = require("./router");
+const io = require("socket.io-client");
+const debug = require("debug");
+const path = require("path");
+const path_1 = require("path");
+process.on('uncaughtException', function (error) {
+    console.error(error);
+    process.exit(500);
+});
 var log = debug('akala:worker:' + process.argv[2]);
 //log.enabled = process.argv[2]=='devices';
 if (!debug.enabled('akala:worker:' + process.argv[2]))
-    console.warn("logging disabled for " + process.argv[2]);
-var app = express.Router();
+    console.warn(`logging disabled for ${process.argv[2]}`);
+var app = new router_1.WorkerRouter(function (error, ...args) {
+    var req = args[0];
+    if (error) {
+        console.error(error);
+        req.injector.resolve('$callback')(500, error);
+    }
+    else
+        req.injector.resolve('$callback')(404);
+});
 di.register('$router', app);
 di.register('$io', function (namespace) {
     return io('http://localhost:' + process.argv[3] + namespace);
@@ -33,12 +45,7 @@ socket.on('api', function (request, callback) {
         for (var i in request.query)
             requestInjector.register('query.' + i, request.query[i]);
     log(request.url);
-    app(request, { send: callback }, function (err) {
-        if (err)
-            callback(500, err);
-        else
-            callback(404);
-    });
+    app.handle(request, callback);
 });
 log('module ' + process.argv[2]);
 socket.emit('module', process.argv[2], function (config, workers) {
@@ -50,20 +57,14 @@ socket.emit('module', process.argv[2], function (config, workers) {
         masterCalled = true;
         socket.emit('master', masterPath && path_1.resolve(path_1.dirname(from), masterPath) || null, workerPath && path_1.resolve(path_1.dirname(from), workerPath) || null);
     });
-    for (var _i = 0, workers_1 = workers; _i < workers_1.length; _i++) {
-        var worker = workers_1[_i];
+    for (var worker of workers) {
         if (!worker)
             continue;
         log('%s for %s', worker, process.argv[2]);
         require(worker);
     }
-    require(path.join(process.cwd(), 'modules/' + process.argv[2]));
+    require(path.join(process.cwd(), 'node_modules', process.argv[2]));
     if (!masterCalled)
         socket.emit('master', null, null);
-    app.use(function (err, req, res, next) {
-        log(arguments);
-        console.error(err.stack);
-        res.send(500, 'Something broke!');
-    });
 });
 //# sourceMappingURL=worker.js.map

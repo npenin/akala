@@ -1,4 +1,5 @@
-import * as di from 'akala-core';
+/// <reference types="socket.io" />
+import * as di from '@akala/core';
 export declare class SharedComponent<T extends Component> {
     private eventName;
     constructor(eventName: string);

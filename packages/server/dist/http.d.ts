@@ -1,4 +1,4 @@
-import * as di from 'akala-core';
+import * as di from '@akala/core';
 import * as ajax from 'request';
 export declare class Http implements di.Http {
     constructor();

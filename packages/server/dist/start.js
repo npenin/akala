@@ -1,9 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var cluster = require("cluster");
-var express = require("express");
-process.on('warning', function (e) { return console.warn(e.stack); });
-var app = express();
+const cluster = require("cluster");
+process.on('warning', e => console.warn(e.stack));
 if (cluster.isMaster) {
     require('./master');
 }

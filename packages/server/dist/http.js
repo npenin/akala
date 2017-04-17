@@ -1,19 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var di = require("akala-core");
-var $ = require("underscore");
-var ajax = require("request");
-var url_1 = require("url");
-var Http = (function () {
-    function Http() {
+const di = require("@akala/core");
+const $ = require("underscore");
+const ajax = require("request");
+const url_1 = require("url");
+class Http {
+    constructor() {
     }
-    Http.prototype.get = function (url, params) {
+    get(url, params) {
         return this.call('GET', url, params);
-    };
-    Http.prototype.getJSON = function (url, params) {
+    }
+    getJSON(url, params) {
         return this.call('GET', url, params, { json: true });
-    };
-    Http.prototype.call = function (method, url, params, options) {
+    }
+    call(method, url, params, options) {
         var uri = url_1.parse(url);
         uri.query = $.extend({}, uri.query, params);
         var defer = new di.Deferred();
@@ -45,8 +45,7 @@ var Http = (function () {
                 break;
         }
         return defer;
-    };
-    return Http;
-}());
+    }
+}
 exports.Http = Http;
 //# sourceMappingURL=http.js.map

@@ -1,6 +1,7 @@
-import * as di from 'akala-core';
+import * as di from '@akala/core';
 import * as debug from 'debug';
-import * as express from 'express';
+// import * as express from 'express';
+import * as router from './router'
 var log = debug('akala:shared-component');
 import * as io from 'socket.io';
 import * as $ from 'underscore';
@@ -17,7 +18,7 @@ export class SharedComponent<T extends Component>
 
     public receive(onAdd: (it: T) => void)
     {
-        di.injectNewWithName(['$bus'], (bus: SocketIO.Socket) =>
+        di.injectWithName(['$bus'], (bus: SocketIO.Socket) =>
         {
             log(this.eventName);
             bus.on(this.eventName, onAdd);
@@ -28,7 +29,7 @@ export class SharedComponent<T extends Component>
     public registerMaster()
     {
         var eventName = this.eventName;
-        di.injectWithName(['$router', '$$modules', '$$socketModules', '$$sockets', '$module'], function (router: express.Router, modules: string[], socketModules: { [key: string]: SocketIO.Socket }, sockets: SocketIO.Server, moduleName: string)
+        di.injectWithName(['$router', '$$modules', '$$socketModules', '$$sockets', '$module'], function (router: router.HttpRouter, modules: string[], socketModules: { [key: string]: SocketIO.Socket }, sockets: SocketIO.Server, moduleName: string)
         {
             $.each(Object.keys(socketModules), function (socket)
             {

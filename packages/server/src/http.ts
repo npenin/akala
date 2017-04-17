@@ -1,4 +1,4 @@
-import * as di from 'akala-core';
+import * as di from '@akala/core';
 import * as $ from 'underscore';
 import * as ajax from 'request';
 import { parse, format } from 'url';
