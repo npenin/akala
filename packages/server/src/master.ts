@@ -3,13 +3,15 @@ import * as http from 'http';
 import * as https from 'https';
 import * as url from 'url';
 import * as fs from 'fs';
-import * as express from 'express';
+import * as st from 'serve-static';
 import * as io from 'socket.io';
-import * as di from 'akala-core';
+import * as di from '@akala/core';
 import { relative, sep as pathSeparator, dirname, join as pathJoin } from 'path';
 import * as debug from 'debug';
 import * as $ from 'underscore';
 import { EventEmitter } from 'events';
+import { router, Request, Response, CallbackResponse } from './router';
+import * as pac from './package';
 var log = debug('akala:master');
 var orchestratorLog = debug('akala:master:orchestrator');
 import * as Orchestrator from 'orchestrator';
@@ -17,10 +19,12 @@ import * as sequencify from 'sequencify';
 
 var port = process.argv[2] || '5678';
 
-var app = express.Router();
+debugger;
+var app = router();
 di.register('$router', app);
 app.use(function (req, res, next)
 {
+    debugger;
     if (!res.status)
         res.status = function (status: number)
         {
@@ -35,7 +39,7 @@ app.use(function (req, res, next)
             return res;
         }
 
-    if (!res.sendStatus)
+    if (!res.json)
         res.json = function (content: any)
         {
             if (typeof (content) != 'undefined')
@@ -51,26 +55,30 @@ app.use(function (req, res, next)
     next();
 });
 
-var configFile = fs.realpathSync('./domojs.json');
+var configFile = fs.realpathSync('./config.json');
+var sourcesFile = fs.realpathSync('./sources.list');
 var orchestrator = new Orchestrator();
 orchestrator.onAll(function (e)
 {
+    if (e.src == 'task_not_found')
+        console.error(e.message);
+
     orchestratorLog(e);
 })
 var socketModules = {};
 var modulesEvent = {};
 var globalWorkers = {};
 var modulesDefinitions: { [name: string]: sequencify.definition } = {};
-
-fs.readdir('modules', function (err, modules)
+fs.exists(configFile, function (exists)
 {
-    if (err)
-        throw err;
-    fs.exists(configFile, function (exists)
+    var config = null;
+    if (exists)
+        config = require(configFile);
+
+    fs.readFile(sourcesFile, 'utf8', function (error, sourcesFileContent)
     {
-        var config = null;
-        if (exists)
-            config = require(configFile);
+        var sources: string[] = JSON.parse(sourcesFileContent);
+        var tmpModules = [];
 
         sockets.on('connection', function (socket)
         {
@@ -95,213 +103,279 @@ fs.readdir('modules', function (err, modules)
 
                     moduleEvents.emit('master', masterPath);
                 });
-
+                // console.log(submodule);
                 modulesEvent[submodule].emit('connected', cb);
             });
-        })
+        });
 
-        var tmpModules = [];
-        modules.forEach(function (folder)
+        di.eachAsync(sources, function (source, i, next)
         {
-            if (!config || config[folder] !== false && (!config[folder] || !config[folder].disabled))
+            fs.readdir('node_modules/' + source, function (err, modules)
             {
-                tmpModules.push(folder);
-                modulesEvent[folder] = new EventEmitter();
-                var getDependencies = function ()
-                {
-                    var localWorkers = [];
-                    sequencify(modulesDefinitions, modulesDefinitions[folder].dep, localWorkers)
-                    return localWorkers;
-                }
+                if (err)
+                    throw err;
 
-                var moduleDefinition = require(pathJoin(process.cwd(), 'modules/' + folder + '/package.json'));
-                modulesDefinitions[folder] = {
-                    name: folder,
-                    dep: moduleDefinition.runDependencies || []
-                };
-                var masterDependencies = $.map(moduleDefinition.runDependencies || [], function (dep)
+                modules.forEach(function (folder)
                 {
-                    return dep + '#master';
-                });
-
-                orchestrator.add(folder, masterDependencies, function (next)
-                {
-                    var finished = false;
-                    modulesEvent[folder].on('connected', function (callback)
+                    var plugin = source + '/' + folder;
+                    switch (source)
                     {
-                        if (!finished)
-                            next();
-                        finished = true;
+                        case '@akala':
+                            if (folder == 'server' || folder == 'client')
+                                return;
+                            break;
+                    }
 
-                        if (folder != 'assets')
-                            app.use('/assets/' + (folder == 'core' ? '' : folder), express.static('modules/' + folder + '/assets'));
-                        app.use('/bower_components/' + (folder == 'core' ? '' : folder), express.static('modules/' + folder + '/bower_components'));
+                    var moduleDefinition: pac.CoreProperties = require.main.require(plugin + '/package.json');
+                    var dependencies: string[] = [];
+                    if (moduleDefinition.dependencies)
+                        Object.keys(moduleDefinition.dependencies).forEach(function (dep)
+                        {
+                            sources.forEach(function (src)
+                            {
+                                if (dep.substr(0, src.length) == src)
+                                    dependencies.push(dep);
+                            })
+                        });
+                    if (moduleDefinition.optionalDependencies)
+                        Object.keys(moduleDefinition.optionalDependencies).forEach(function (dep)
+                        {
+                            sources.forEach(function (src)
+                            {
+                                if (dep.substr(0, src.length) == src)
+                                    dependencies.push(dep + '?');
+                            })
+                        });
 
-                        app.use('/' + folder, express.static('modules/' + folder + '/views'));
+                    if (config && dependencies.length)
+                    {
+                        debugger;
+                        var activeDependencies = [];
+                        dependencies.forEach(function (dep, i)
+                        {
+                            var isOptional = dep[dep.length - 1] == '?';
+                            if (isOptional)
+                                dep = dep.substring(0, dep.length - 1);
+                            if (config[dep] === false || (config[dep] && config[dep].disabled))
+                            {
+                                if (!isOptional)
+                                    config[plugin] = false;
+                            }
+                            else
+                                activeDependencies.push(dep);
+                        });
+                        dependencies = activeDependencies;
+                    }
 
-                        var localWorkers = getDependencies();
-                        log('localWorkers for %s: %s', folder, localWorkers);
-                        callback(config && config[folder], $.map(localWorkers, function (dep) { return globalWorkers[dep] }));
+                    if (config && config[plugin] === false)
+                        return;
+
+
+                    modulesDefinitions[plugin] = {
+                        name: plugin,
+                        dep: dependencies || []
+                    };
+
+                    tmpModules.push(plugin);
+                    modulesEvent[plugin] = new EventEmitter();
+                    var getDependencies = function ()
+                    {
+                        var localWorkers = [];
+                        sequencify(modulesDefinitions, dependencies, localWorkers)
+                        return localWorkers;
+                    }
+
+                    var masterDependencies = $.map(dependencies || [], function (dep)
+                    {
+                        return dep + '#master';
                     });
 
-                    app.use('/api/' + folder, function (req: express.Request, res: express.Response, next: express.NextFunction)
+                    orchestrator.add(plugin, masterDependencies, function (next)
                     {
-                        log(folder);
-                        log(req.originalUrl);
+                        var finished = false;
+                        modulesEvent[plugin].on('connected', function (callback)
+                        {
+                            if (!finished)
+                                next();
+                            finished = true;
 
+                            if (folder != 'assets')
+                                app.use('/assets/' + (folder == 'core' ? '' : folder + '/'), st('node_modules/' + plugin + '/assets'));
+                            app.use('/bower_components/' + (folder == 'core' ? '' : folder + '/'), st('node_modules/' + plugin + '/bower_components'));
 
+                            app.use('/' + folder, st('node_modules/' + plugin + '/views'));
 
-                        socketModules[folder].emit('api', {
-                            url: req.url,
-                            fresh: req.fresh,
-                            headers: req.headers,
-                            hostname: req.hostname,
-                            httpVersion: req.httpVersion,
-                            ip: req.ip,
-                            ips: req.ips,
-                            method: req.method,
-                            originalUrl: req.originalUrl,
-                            params: req.params,
-                            path: req.path,
-                            protocol: req.protocol,
-                            query: url.parse(req.url, true).query,
-                            rawHeaders: req.rawHeaders,
-                            rawTrailers: req.rawTrailers,
-                            route: req.route,
-                            secure: req.secure,
-                            stale: req.stale,
-                            statusCode: req.statusCode,
-                            statusMessage: req.statusMessage,
-                            subdomains: req.subdomains,
-                            trailers: req.trailers,
-                            xhr: req.xhr,
-                            user: req['user']
-                        }, function (status: number, data: any)
-                            {
-                                if (isNaN(status))
+                            var localWorkers = getDependencies();
+                            log('localWorkers for %s: %s', folder, localWorkers);
+                            callback(config && config[plugin], $.map(localWorkers, function (dep) { return globalWorkers[dep] }));
+                        });
+
+                        app.all('/api/' + folder, function (req, res, next)
+                        {
+                            log(folder);
+                            // log(req.originalUrl);
+
+                            socketModules[plugin].emit('api', {
+                                url: req.url,
+                                headers: req.headers,
+                                httpVersion: req.httpVersion,
+                                ip: req.ip,
+                                method: req.method,
+                                params: req.params,
+                                path: req.path,
+                                protocol: req.protocol,
+                                query: url.parse(req.url, true).query,
+                                rawHeaders: req.rawHeaders,
+                                rawTrailers: req.rawTrailers,
+                                statusCode: req.statusCode,
+                                statusMessage: req.statusMessage,
+                                trailers: req.trailers,
+                                user: req['user']
+                            }, function (status: number | CallbackResponse, data: any)
                                 {
-                                    data = status;
-                                    status = null;
-                                }
-                                log(arguments);
-                                if (status != null)
-                                    res.statusCode = status;
-                                if (typeof (data) == 'object')
-                                    data = JSON.stringify(data);
-                                if (typeof (data) != 'undefined')
-                                    res.write(data);
-                                res.end();
+                                    if (isNaN(Number(status)))
+                                    {
+                                        var socketRes: CallbackResponse = status;
+                                        if (typeof (data) == 'undefined')
+                                        {
+                                            data = status;
+                                            status = null;
+                                        }
+                                        else
+                                        {
+                                            status = socketRes.status || 200;
+                                            if (socketRes.headers)
+                                                Object.keys(socketRes.headers).forEach(function (header)
+                                                {
+                                                    res.setHeader(header, socketRes.headers[header]);
+                                                });
+                                        }
+                                    }
+                                    log(arguments);
+                                    if (status != null)
+                                        res.statusCode = <number>status;
+                                    if (typeof (data) == 'object')
+                                        data = JSON.stringify(data);
+                                    if (typeof (data) != 'undefined')
+                                        res.write(data);
+                                    res.end();
+                                });
+                            // }
+                            // , function (err: Error, req: express.Request, res: express.Response, next: express.NextFunction)
+                            //     {
+                            //         if (err)
+                            //         {
+                            //             console.error('error occurred in ' + module);
+                            //             console.error(err.stack);
+                            //         }
+                        });
+
+                        cluster.setupMaster({
+                            args: [plugin, port],
+                        });
+                        var worker = cluster.fork();
+                        app.use('/api/manage/restart/' + folder, function ()
+                        {
+                            worker.kill();
+                        });
+
+                        var handleCrash = function ()
+                        {
+                            cluster.setupMaster({
+                                args: [plugin, port]
                             });
-                    }, function (err: Error, req: express.Request, res: express.Response, next: express.NextFunction)
+                            worker = cluster.fork();
+                            worker.on('exit', handleCrash);
+                        };
+                        worker.on('exit', handleCrash);
+                    });
+
+                    orchestrator.add(plugin + '#master', [plugin], function (next)
+                    {
+                        modulesEvent[plugin].once('master', function (masterPath)
+                        {
+                            log('moduleReady %s', masterPath);
+                            if (!masterPath)
+                                return next();
+                            masterPath = relative(dirname(module.filename), masterPath);
+                            if (pathSeparator == '\\')
+                                masterPath = masterPath.replace(/\\/g, '/');
+                            log('path being required: ' + masterPath);
+                            di.register('$module', plugin, true);
+                            di.register('$config', config[plugin], true);
+                            require(masterPath);
+                            di.unregister('$config');
+                            di.unregister('$module');
+                            // orchestratorLog(globalWorkers);
+
+
+                            next();
+                        });
+                    });
+                });
+
+                next();
+            });
+        }, function (error?)
+            {
+                if (error)
+                {
+                    debugger;
+                    console.error(error);
+                }
+
+                var modules = tmpModules;
+                di.register('$$modules', modules);
+                di.register('$$socketModules', socketModules);
+                di.register('$$sockets', sockets);
+                log(modules);
+
+                var masterDependencies = [];
+                $.each(modules, function (e)
+                {
+                    masterDependencies.push(e + '#master');
+                })
+
+                orchestrator.add('@akala/server#master', function () { });
+
+                orchestrator.add('default', masterDependencies, function ()
+                {
+                    sockets.emit('ready');
+                    log('registering error handler');
+
+                    app.use(function (err, req: Request, res: Response, next)
+                    {
+                        log('pwic');
+                        debugger;
+                        try
                         {
                             if (err)
                             {
-                                console.error('error occurred in ' + module);
+                                console.error('error occurred');
                                 console.error(err.stack);
+                                res.statusCode = 500;
+                                res.write(JSON.stringify(err));
+                                res.end();
                             }
-                        });
-
-                    cluster.setupMaster({
-                        args: [folder, port],
-                    });
-                    var worker = cluster.fork();
-                    app.use('/api/manage/restart/' + folder, function ()
-                    {
-                        worker.kill();
-                    });
-
-                    var handleCrash = function ()
-                    {
-                        cluster.setupMaster({
-                            args: [folder, port]
-                        });
-                        worker = cluster.fork();
-                        worker.on('exit', handleCrash);
-                    };
-                    worker.on('exit', handleCrash);
+                            else
+                                res.sendStatus(404);
+                        }
+                        catch (e)
+                        {
+                            console.error(e.stack)
+                            res.statusCode = 500;
+                            res.end();
+                        }
+                    })
                 });
 
-                orchestrator.add(folder + '#master', [folder], function (next)
-                {
-                    modulesEvent[folder].once('master', function (masterPath)
-                    {
-                        log('moduleReady %s', masterPath);
-                        if (!masterPath)
-                            return next();
-                        masterPath = relative(dirname(module.filename), masterPath);
-                        if (pathSeparator == '\\')
-                            masterPath = masterPath.replace(/\\/g, '/');
-                        log('path being required: ' + masterPath);
-                        di.register('$module', folder, true);
-                        di.register('$config', config[folder], true);
-                        require(masterPath);
-                        di.unregister('$config');
-                        di.unregister('$module');
-                        // orchestratorLog(globalWorkers);
-
-
-                        next();
-                    });
-                });
-            }
-        });
-
-        modules = tmpModules;
-        di.register('$$modules', modules);
-        di.register('$$socketModules', socketModules);
-        di.register('$$sockets', sockets);
-        log(modules);
-
-        var masterDependencies = [];
-        $.each(modules, function (e)
-        {
-            masterDependencies.push(e + '#master');
-        })
-
-        orchestrator.add('default', masterDependencies, function ()
-        {
-            sockets.emit('ready');
-            log('registering error handler');
-
-            modules.forEach(module =>
-            {
+                orchestrator.start('default');
             });
-
-            app.use(function deadend(req: express.Request, res: express.Response, next: express.NextFunction)
-            {
-                res.sendStatus(404);
-            });
-
-            app.use(function (err, req: express.Request, res: express.Response, next: express.NextFunction)
-            {
-                log('pwic');
-                try
-                {
-                    if (err)
-                    {
-                        console.error('error occurred');
-                        console.error(err.stack);
-                        res.status(500);
-                        res.write(JSON.stringify(err));
-                        res.end();
-                    }
-                    else
-                        res.sendStatus(404);
-                }
-                catch (e)
-                {
-                    console.error(e.stack)
-                    res.statusCode = 500;
-                    res.end();
-                }
-            });
-        });
-
-        orchestrator.start('default');
     });
 });
 // https.createServer({}, app).listen(443);
-var server = http.createServer(<any>app);
+var server = http.createServer();
+app.attachTo(server);
 var sockets = io(server);
 
 server.listen(port);
