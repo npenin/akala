@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const url_1 = require("url");
-const di = require("akala-core");
+const di = require("@akala/core");
 // @service('$http')
 class Http {
     constructor() { }

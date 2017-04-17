@@ -7,24 +7,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const control_1 = require("./control");
-let Part = class Part extends control_1.BaseControl {
-    constructor(partService) {
-        super('part', 100);
-        this.partService = partService;
+let Hide = class Hide extends control_1.BaseControl {
+    constructor() {
+        super('hide', 400);
     }
     link(target, element, parameter) {
-        var partService = this.partService;
-        if (typeof parameter != 'string') {
-            parameter['template'].onChanged(function (ev) {
-                partService.apply(function () { return { scope: parameter, element: element }; }, { controller: parameter.controller, template: ev.eventArgs.value }, {}, $.noop);
-            });
-        }
-        else
-            partService.register(parameter, { scope: target, element: element });
+        parameter.onChanged(function (ev) {
+            element.toggle(ev.eventArgs.value);
+        });
     }
 };
-Part = __decorate([
-    control_1.control("$part")
-], Part);
-exports.Part = Part;
-//# sourceMappingURL=part.js.map
+Hide = __decorate([
+    control_1.control()
+], Hide);
+exports.Hide = Hide;
+//# sourceMappingURL=hide.js.map

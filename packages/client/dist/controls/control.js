@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const di = require("akala-core");
+const di = require("@akala/core");
 function control(...toInject) {
     return function (ctrl) {
         Control.injector.init([], di.injectNewWithName(toInject, ctrl));
@@ -33,7 +33,7 @@ class Control {
             var controlSettings = controls[control.$$name];
             if (controlSettings instanceof Function)
                 controlSettings = controlSettings(scope, true);
-            var newElem = control.instanciate(scope, element, controlSettings);
+            var newElem = control.instanciate(scope, element, controlSettings, controls);
             if (newElem) {
                 return newElem;
             }

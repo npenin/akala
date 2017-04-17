@@ -6,15 +6,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const di = require("akala-core");
+const akala = require("@akala/core");
 const events_1 = require("events");
 const common_1 = require("./common");
 let Part = class Part extends events_1.EventEmitter {
-    constructor(template, router) {
+    constructor(template, router, location) {
         super();
         this.template = template;
         this.router = router;
-        this.parts = new di.Injector();
+        this.parts = new akala.Injector();
+        location.on('changing', () => {
+            var parts = this.parts;
+            parts.keys().forEach(function (partName) {
+                if (partName == '$injector')
+                    return;
+                parts.resolve(partName).element.empty();
+            });
+        });
     }
     register(partName, control) {
         this.parts.register(partName, control);
@@ -45,13 +53,13 @@ let Part = class Part extends events_1.EventEmitter {
     }
     use(url, partName = 'body', part) {
         var self = this;
-        this.router.use(url, function (req, res, next) {
+        this.router.use(url, function (req, next) {
             self.apply(() => self.parts.resolve(partName), part, req.params, next);
         });
     }
 };
 Part = __decorate([
-    common_1.service('$part', '$template', '$router')
+    common_1.service('$part', '$template', '$router', '$location')
 ], Part);
 exports.Part = Part;
 //# sourceMappingURL=part.js.map

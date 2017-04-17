@@ -1,5 +1,5 @@
 import { parse, format } from 'url';
-import * as di from 'akala-core';
+import * as di from '@akala/core';
 import { service } from './common'
 
 // @service('$http')

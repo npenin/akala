@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const akala_core_1 = require("akala-core");
-require("akala-core");
-exports.$$injector = window['akala'] = akala_core_1.module('akala', 'akala-services', 'controls');
-exports.$$injector['promisify'] = akala_core_1.Promisify;
-exports.$$injector['defer'] = akala_core_1.Deferred;
-exports.$$injector['Binding'] = akala_core_1.Binding;
-exports.$$injector['ObservableArray'] = akala_core_1.ObservableArray;
-exports.serviceModule = akala_core_1.module('akala-services');
+const core_1 = require("@akala/core");
+require("@akala/core");
+exports.$$injector = window['akala'] = core_1.module('akala', 'akala-services', 'controls');
+exports.$$injector['promisify'] = core_1.Promisify;
+exports.$$injector['defer'] = core_1.Deferred;
+exports.$$injector['Binding'] = core_1.Binding;
+exports.$$injector['ObservableArray'] = core_1.ObservableArray;
+exports.serviceModule = core_1.module('akala-services');
 function service(name, ...toInject) {
     return function (target) {
         var instance = null;

@@ -1,5 +1,5 @@
-// import * from 'akala-core';
-export { Injector, Binding, Deferred as defer, ObservableArray } from 'akala-core'
+// import * from '@akala/core';
+export { Injector, Binding, Deferred as defer, ObservableArray } from '@akala/core'
 import * as api from './dist/clientify'
 
 export as namespace akala;

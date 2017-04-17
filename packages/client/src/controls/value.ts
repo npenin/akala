@@ -1,4 +1,4 @@
-import * as di from 'akala-core'
+import * as di from '@akala/core'
 import { control, BaseControl } from './control'
 
 @control()
@@ -11,6 +11,8 @@ export class Value extends BaseControl<string>
 
     public link(target: any, element: JQuery, parameter: di.Binding | string)
     {
+        if (typeof (parameter) == 'undefined')
+            return;
         if (parameter instanceof di.Binding)
         {
             element.change(function ()

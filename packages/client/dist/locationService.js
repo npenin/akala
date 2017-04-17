@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const events_1 = require("events");
-const akala_core_1 = require("akala-core");
+const core_1 = require("@akala/core");
 /**
  * Previous context, for capturing
  * page exit events.
@@ -70,7 +70,7 @@ class LocationService extends events_1.EventEmitter {
             return;
         var url = (hashbang && ~location.hash.indexOf('#/')) ? location.hash.substr(2) + location.search : location.pathname + location.search + location.hash;
         this.replace(url, null, true, dispatch);
-        new akala_core_1.WatchBinding('href', location, 100).onChanged(this.show.bind(this));
+        new core_1.WatchBinding('href', location, 100).onChanged(this.show.bind(this));
     }
     ;
     /**
@@ -160,6 +160,7 @@ class LocationService extends events_1.EventEmitter {
     }
     ;
     dispatch(path) {
+        this.emit('changing', path);
         this.emit('change', path);
     }
 }

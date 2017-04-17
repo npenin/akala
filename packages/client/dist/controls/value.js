@@ -6,13 +6,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const di = require("akala-core");
+const di = require("@akala/core");
 const control_1 = require("./control");
 let Value = class Value extends control_1.BaseControl {
     constructor() {
         super('value', 400);
     }
     link(target, element, parameter) {
+        if (typeof (parameter) == 'undefined')
+            return;
         if (parameter instanceof di.Binding) {
             element.change(function () {
                 parameter.setValue(element.val(), parameter);

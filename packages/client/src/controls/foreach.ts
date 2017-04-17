@@ -1,4 +1,4 @@
-import * as di from 'akala-core'
+import * as di from '@akala/core'
 import { control, Control } from './control'
 import { Scope } from '../scope'
 

@@ -10,4 +10,6 @@ __export(require("./value"));
 __export(require("./cssClass"));
 __export(require("./part"));
 __export(require("./click"));
+__export(require("./options"));
+__export(require("./hide"));
 //# sourceMappingURL=controls.js.map

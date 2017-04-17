@@ -1,4 +1,4 @@
-import * as di from 'akala-core';
+import * as di from '@akala/core';
 import { Scope } from '../scope';
 
 
@@ -46,7 +46,7 @@ export abstract class Control<T> implements IControl
             var controlSettings = controls[control.$$name];
             if (controlSettings instanceof Function)
                 controlSettings = controlSettings(scope, true);
-            var newElem = control.instanciate(scope, element, controlSettings);
+            var newElem = control.instanciate(scope, element, controlSettings, controls);
             if (newElem)
             {
                 return newElem;
@@ -91,7 +91,7 @@ export abstract class Control<T> implements IControl
         return clone;
     }
 
-    public abstract instanciate(target: any, element: JQuery, parameter: di.Binding | T): void | JQuery | PromiseLike<JQuery>;
+    public abstract instanciate(target: any, element: JQuery, parameter: di.Binding | T, controls?: any): void | JQuery | PromiseLike<JQuery>;
 
     public scope?: any | boolean;
 }

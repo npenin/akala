@@ -6,16 +6,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const di = require("akala-core");
+const di = require("@akala/core");
 const control_1 = require("./control");
-const akala_core_1 = require("akala-core");
+const core_1 = require("@akala/core");
 let Click = class Click extends control_1.BaseControl {
     constructor() {
         super('click', 400);
     }
     link(target, element, parameter) {
         element.click(function () {
-            if (parameter instanceof akala_core_1.Binding) {
+            if (parameter instanceof core_1.Binding) {
                 return di.inject(parameter.getValue())();
             }
             else
