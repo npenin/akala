@@ -1,10 +1,13 @@
+import { Http } from './web';
 export declare type Injected = (instance?: any) => any;
 export declare type Injectable<T> = () => T;
 export declare class Injector {
     private parent;
     constructor(parent?: Injector);
+    keys(): string[];
     merge(i: Injector): void;
     inject<T>(a: Injectable<T> | Function): Injected;
+    resolve(param: '$http'): Http;
     resolve(param: string): any;
     inspect(): void;
     injectNewWithName(toInject: string[], ctor: Function): Injected;

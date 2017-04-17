@@ -1,4 +1,5 @@
 import { getParamNames } from './reflect';
+import { Http } from './web';
 
 function ctorToFunction(this: new () => any)
 {
@@ -21,6 +22,11 @@ export class Injector
         this.register('$injector', this);
     }
 
+    public keys()
+    {
+        return Object.keys(this.injectables);
+    }
+
     public merge(i: Injector)
     {
         var self = this;
@@ -36,6 +42,8 @@ export class Injector
         return this.injectWithName(a['$inject'] || getParamNames(a), a);
     }
 
+    public resolve(param: '$http'): Http
+    public resolve(param: string): any;
     public resolve(param: string)
     {
         if (typeof (this.injectables[param]) != 'undefined')

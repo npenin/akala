@@ -98,7 +98,7 @@ export class Binding extends EventEmitter
         {
             if (a.source == binding || a.source === null)
                 return;
-            var args = (<any[]>[Binding.ChangedFieldEventName, { source: a.source, target: a.target, eventArgs: { fieldName: a.eventArgs.fieldName, value: a.eventArgs.value } }]);
+            var args = (<any[]>[Binding.ChangedFieldEventName, { source: a.source, target: a.target, eventArgs: { fieldName: a.eventArgs.fieldName, value: binding.getValue() } }]);
             binding.emit.apply(binding, args);
         });
         watcher.onError(function (a)
@@ -128,9 +128,18 @@ export class Binding extends EventEmitter
             if (target !== null && target !== undefined && typeof (target) == 'object')
             {
                 if (typeof (target.$$watchers) == 'undefined')
-                    Object.defineProperty(target, '$$watchers', { enumerable: false, writable: false, value: {}, configurable: true });
+                {
+                    try
+                    {
+                        Object.defineProperty(target, '$$watchers', { enumerable: false, writable: false, value: {}, configurable: true });
+                    }
+                    catch (e)
+                    {
+                        console.error('could not register watcher on ', target, 'this could lead to performance issues');
+                    }
+                }
 
-                var watcher: Binding = target.$$watchers[part];
+                var watcher: Binding = target.$$watchers && target.$$watchers[part];
 
                 if (!watcher)
                 {
@@ -171,7 +180,8 @@ export class Binding extends EventEmitter
                     else
                         watcher = new Binding(part, target, false);
 
-                    target.$$watchers[part] = watcher;
+                    if (target.$$watchers)
+                        target.$$watchers[part] = watcher;
                 }
 
                 watcher.pipe(this);

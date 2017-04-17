@@ -15,6 +15,9 @@ class Injector {
             this.parent = defaultInjector;
         this.register('$injector', this);
     }
+    keys() {
+        return Object.keys(this.injectables);
+    }
     merge(i) {
         var self = this;
         Object.getOwnPropertyNames(i.injectables).forEach(function (property) {

@@ -12,6 +12,133 @@ export interface ParsedAny
 
 export type ParsedOneOf = ParsedObject | ParsedArray | ParsedFunction | ParsedString | ParsedBoolean | ParsedNumber;
 
+export class ParsedBinary implements ParsedAny
+{
+    constructor(public operator: '+' | '-' | '*' | '/' | '&&' | '||' | '<' | '<=' | '>' | '>=', public left: ParsedOneOf, public right: ParsedOneOf)
+    {
+        this.$$length = this.left.$$length + this.operator.length + this.right.$$length;
+    }
+
+    public evaluate(value: any, asBinding?: boolean)
+    {
+        var operation = this;
+        if (asBinding)
+        {
+            var left, right;
+            if (operation.left instanceof Function)
+                left = operation.left(value, asBinding);
+            else if (operation.left instanceof ParsedBinary)
+                left = operation.left.evaluate(value, asBinding);
+            else if (operation.left instanceof ParsedString)
+                left = operation.left.value;
+            else if (operation.left instanceof ParsedNumber)
+                left = operation.left.value;
+            else if (operation.left instanceof Array)
+                left = operation.left;
+            else if (operation.left instanceof Object)
+                left = operation.left;
+
+            if (operation.right instanceof Function)
+                right = operation.right(value, asBinding);
+            else if (operation.right instanceof ParsedBinary)
+                right = operation.right.evaluate(value, asBinding);
+            else if (operation.right instanceof ParsedString)
+                right = operation.right.value;
+            else if (operation.right instanceof ParsedNumber)
+                right = operation.right.value;
+            else if (operation.right instanceof Array)
+                right = operation.right;
+            else if (operation.right instanceof Object)
+                right = operation.right
+
+            var binding = new Binding(null, null, false);
+            if (left instanceof Binding)
+                left.pipe(binding);
+            if (right instanceof Binding)
+                right.pipe(binding);
+            binding['$$length'] = operation.$$length;
+            binding.getValue = function ()
+            {
+                var fleft, fright;
+                if (left instanceof Binding)
+                    fleft = left.getValue();
+                else
+                    fleft = left;
+                if (right instanceof Binding)
+                    fright = right.getValue();
+                else
+                    fright = right;
+                return Parser.operate(operation.operator, fleft, fright);
+            }
+            return binding;
+        }
+        else
+        {
+            var left, right;
+            if (operation.left instanceof Function)
+                left = operation.left(value, false);
+            else if (operation.left instanceof ParsedBinary)
+                left = operation.left.evaluate(value, asBinding);
+            else if (operation.left instanceof ParsedString)
+                left = operation.left.value;
+            else if (operation.left instanceof ParsedNumber)
+                left = operation.left.value;
+            else if (operation.left instanceof Array)
+                left = operation.left;
+            else if (operation.left instanceof Object)
+                left = operation.left;
+
+            if (operation.right instanceof Function)
+                right = operation.right(value, false);
+            else if (operation.right instanceof ParsedBinary)
+                right = operation.right.evaluate(value, asBinding);
+            else if (operation.right instanceof ParsedString)
+                right = operation.right.value;
+            else if (operation.right instanceof ParsedNumber)
+                right = operation.right.value;
+            else if (operation.right instanceof Array)
+                right = operation.right;
+            else if (operation.right instanceof Object)
+                right = operation.right;
+            return <any>Parser.operate(operation.operator, left, right);
+        }
+    }
+
+    public $$length: number;
+
+    public static applyPrecedence(operation: ParsedBinary)
+    {
+        if (operation.operator != '+' && operation.operator != '-')
+        {
+            if (operation.right instanceof Function)
+            {
+                var right = ParsedBinary.applyPrecedence(operation.right.$$ast);
+                switch (right.operator)
+                {
+                    case '+':
+                    case '-':
+                        break;
+                    case '*': // b*(c+d) ==> (b*c)+d
+                    case '/':
+                    case '&&':
+                    case '||':
+                        var left = operation.left;
+                        operation.right = right.right;
+                        operation.left = new ParsedBinary(operation.operator, left, right.left);
+                        operation.operator = right.operator;
+                        break;
+                }
+            }
+        }
+        return operation;
+    }
+
+    public toString()
+    {
+        return '(' + this.left.toString() + this.operator + this.right.toString() + ')';
+    }
+}
+
 export interface ParsedObject extends ParsedAny
 {
     [name: string]: any;
@@ -23,6 +150,7 @@ export interface ParsedArray extends ParsedAny, Array<ParsedAny>
 
 export interface ParsedFunction extends ParsedAny
 {
+    $$ast?: ParsedBinary;
     (value: any, asBinding?: false): any;
     (value: any, asBinding: true): Binding;
 }
@@ -35,6 +163,11 @@ export class ParsedString implements ParsedAny
     }
 
     public $$length: number;
+
+    public toString()
+    {
+        return this.value;
+    }
 }
 
 export class ParsedNumber implements ParsedAny
@@ -66,14 +199,16 @@ export class ParsedBoolean implements ParsedAny
 
 export class Parser
 {
-    public static parse(expression: string, excludeFirstLevelFunction: boolean): ParsedFunction | ParsedAny
+    public static parse(expression: string, excludeFirstLevelFunction: false | undefined): ParsedFunction
+    public static parse(expression: string, excludeFirstLevelFunction: true): ParsedOneOf
+    public static parse(expression: string, excludeFirstLevelFunction?: boolean): ParsedFunction | ParsedOneOf
+    public static parse(expression: string, excludeFirstLevelFunction?: boolean): ParsedFunction | ParsedOneOf
     {
         expression = expression.trim();
-        if (['{', '[', '"', "'"].indexOf(expression[0]) != -1 && ['{', '[', '"', "'"].lastIndexOf(expression[expression.length - 1]))
-        {
-            return Parser.parseAny(expression, excludeFirstLevelFunction);
-        }
-        return Parser.parseEval(expression);
+        var result = Parser.parseAny(expression, excludeFirstLevelFunction);
+        if (!excludeFirstLevelFunction && result instanceof ParsedBinary)
+            return result.evaluate.bind(result);
+        return result;
     }
 
     public static parseAny(expression: string, excludeFirstLevelFunction: boolean): ParsedOneOf
@@ -104,9 +239,11 @@ export class Parser
         }
     }
 
-    public static parseNumber(expression): ParsedNumber
+    public static parseNumber(expression): ParsedOneOf
     {
-        return new ParsedNumber(/^[0-9.]/.exec(expression)[0]);
+        var result = new ParsedNumber(/^[0-9.]/.exec(expression)[0]);
+
+        return Parser.tryParseOperator(expression.substring(result.$$length), result);
     }
 
     public static parseBoolean(expression): ParsedBoolean
@@ -118,22 +255,26 @@ export class Parser
             expression = expression.substring(1);
         }
 
-        var result = new ParsedBoolean(/^true|false|undefined/.exec(expression)[0]);
-        if (formatter !== formatters.identity)
-            result.value = formatter(result.value);
-        return result;
+        if (/^true|false|undefined/.exec(expression))
+        {
+            var result = new ParsedBoolean(/^true|false|undefined/.exec(expression)[0]);
+            if (formatter !== formatters.identity)
+                result.value = formatter(result.value);
+            return result;
+        }
+        return null;
     }
 
-    public static parseEval(expression: string): ParsedBoolean | ParsedFunction
+    public static parseEval(expression: string): ParsedBoolean | ParsedFunction | ParsedBinary
     {
         var b = Parser.parseBoolean(expression);
-        if (b.$$length > 0)
+        if (b)
             return b;
 
         return Parser.parseFunction(expression);
     }
 
-    private static parseFunction(expression: string): ParsedFunction
+    public static parseFunction(expression: string): ParsedFunction
     {
         var formatter = formatters.identity;
         if (expression[0] == '!')
@@ -141,8 +282,8 @@ export class Parser
             formatter = formatters.negate;
             expression = expression.substring(1);
         }
-        var item = /^[\w0-9\.]+/.exec(expression)[0];
-        var parts = Parser.parseBindable(expression);
+        var item = /^[\w0-9\.\$]+/.exec(expression)[0];
+        var parts = Parser.parseBindable(item);
 
         var f: ParsedFunction = function (value, asBinding?: boolean)
         {
@@ -185,96 +326,21 @@ export class Parser
             return value;
         }
         f.$$length = item.length;
+        f = Parser.tryParseOperator(expression.substr(item.length), f);
 
         return f;
     }
 
+    public static tryParseOperator(expression: string, lhs: ParsedFunction): ParsedFunction
+    public static tryParseOperator(expression: string, lhs: ParsedOneOf): ParsedOneOf
     public static tryParseOperator(expression: string, lhs: ParsedOneOf)
     {
-        var operator = /^ *[<>=!]+ */.exec(expression)[0];
+        var operator = /^ *([<>=!\+\-\/\*&\|]+) */.exec(expression);
         if (operator)
         {
-            expression = expression.substring(operator.length);
+            expression = expression.substring(operator[0].length);
             var rhs = Parser.parseAny(expression, false);
-            if (lhs instanceof Function || rhs instanceof Function)
-            {
-                var item: ParsedFunction = function (value: any, asBinding: boolean)
-                {
-                    if (asBinding)
-                    {
-                        var left, right;
-                        if (lhs instanceof Function)
-                            left = lhs(value, asBinding);
-                        else if (lhs instanceof ParsedString)
-                            left = lhs.value;
-                        else if (lhs instanceof ParsedNumber)
-                            left = lhs.value;
-                        else if (lhs instanceof Array)
-                            left = lhs;
-                        else if (lhs instanceof Object)
-                            left = lhs;
-
-                        if (rhs instanceof Function)
-                            right = rhs(value, asBinding);
-                        else if (rhs instanceof ParsedString)
-                            right = rhs.value;
-                        else if (rhs instanceof ParsedNumber)
-                            right = rhs.value;
-                        else if (rhs instanceof Array)
-                            right = rhs;
-                        else if (rhs instanceof Object)
-                            right = rhs
-
-                        var binding = new Binding(null, null, false);
-                        if (left instanceof Binding)
-                            left.pipe(binding);
-                        if (right instanceof Binding)
-                            right.pipe(binding);
-                        binding['$$length'] = left['$$length'] + right['$$length'] + operator.length;
-                        binding.formatter = function ()
-                        {
-                            var fleft, fright;
-                            if (left instanceof Binding)
-                                fleft = left.getValue();
-                            else
-                                fleft = left;
-                            if (right instanceof Binding)
-                                fright = right.getValue();
-                            else
-                                fright = right;
-                            return Parser.operate(operator.trim(), fleft, fright);
-                        }
-                        return binding;
-                    }
-                    else
-                        return <any>Parser.operate(operator.trim(), left, right);
-                }
-                item.$$length = lhs.$$length + operator.length + rhs.$$length;
-                return item;
-            }
-            else
-            {
-                var left, right;
-                if (lhs instanceof ParsedString)
-                    left = lhs.value;
-                else if (lhs instanceof ParsedNumber)
-                    left = lhs.value;
-                else if (lhs instanceof Array)
-                    left = lhs;
-                else if (lhs instanceof Object)
-                    left = lhs;
-
-                if (rhs instanceof ParsedString)
-                    right = rhs.value;
-                else if (rhs instanceof ParsedNumber)
-                    right = rhs.value;
-                else if (rhs instanceof Array)
-                    right = rhs;
-                else if (rhs instanceof Object)
-                    right = rhs
-
-                return Parser.operate(operator.trim(), left, right);
-            }
+            return ParsedBinary.applyPrecedence(new ParsedBinary(<any>operator[1], lhs, rhs));
         }
         else
             return lhs;
@@ -287,24 +353,28 @@ export class Parser
         var isFunction = false;
         return Parser.parseCSV(expression, function (result)
         {
-            var item: ParsedAny = Parser.parseAny(result, false);
-            item = Parser.tryParseOperator(result.substring(item.$$length), item)
-            if (item instanceof ParsedString)
-                results.push(item.value);
-            else
+            var item = Parser.parseAny(result, false);
+            item = Parser.tryParseOperator(result.substring(item.$$length), item);
 
+
+            if (item instanceof ParsedBoolean || item instanceof ParsedString || item instanceof ParsedNumber)
+                results.push(item.value);
+            else if (item instanceof ParsedBinary)
+                results.push(item.evaluate.bind(item));
+            else
                 results.push(item);
             // results.$$length += item.$$length;
             return item;
         }, ']', results, excludeFirstLevelFunction);
     }
 
-    public static parseString(expression: string, start: string): ParsedString
+    public static parseString(expression: string, start: string): ParsedOneOf
     {
         var evaluatedRegex = new RegExp("^" + start + "((?:[^\\" + start + "]|\\.)+)" + start).exec(expression);
         // console.log(arguments);
         var result = evaluatedRegex[1];
-        return new ParsedString(result);
+        var parsedString = new ParsedString(result);
+        return Parser.tryParseOperator(expression.substring(evaluatedRegex[0].length), parsedString);
     }
 
     public static operate(operator: string, left?: any, right?: any)
@@ -332,12 +402,24 @@ export class Parser
                 return left != right;
             case '!==':
                 return left !== right;
+            case '+':
+                return left + right;
+            case '-':
+                return left - right;
+            case '/':
+                return left / right;
+            case '*':
+                return left * right;
+            case '||':
+                return left || right;
+            case '&&':
+                return left && right;
             default:
                 throw new Error('invalid operator' + operator);
         }
     }
 
-    private static parseCSV<T extends ParsedAny>(expression: string, parseItem: (expression: string) => ParsedAny, end: string, output: T, excludeFirstLevelFunction: boolean): ParsedFunction | T
+    private static parseCSV<T extends ParsedArray | ParsedObject>(expression: string, parseItem: (expression: string) => ParsedAny, end: string, output: T, excludeFirstLevelFunction: boolean): ParsedFunction | T
     {
         expression = expression.substring(1);
         output.$$length++;
@@ -346,8 +428,9 @@ export class Parser
         {
             var item = parseItem(expression);
 
-            if (item instanceof Function)
+            if (item instanceof Function || item instanceof ParsedBinary)
                 isFunction = true;
+
             expression = expression.substring(item.$$length);
             var next = /^ *, */.exec(expression);
             // console.log(expression)
@@ -400,13 +483,15 @@ export class Parser
             expression = expression.substring(length);
             var item = Parser.parseAny(expression, false);
             length += item.$$length;
-            if (item instanceof ParsedString)
+            if (item instanceof ParsedBoolean || item instanceof ParsedString || item instanceof ParsedNumber)
                 result[key] = item.value;
+            else if (item instanceof ParsedBinary)
+                result[key] = item.evaluate.bind(item);
             else
                 result[key] = item;
             // expression = expression.substring(result[key].$$length);
             item.$$length = length;
-            // result.$$length += length;
+            result.$$length += length;
             // console.log(expression);
             //console.log(length);
             return item;
@@ -436,6 +521,8 @@ export class Parser
 
     public static evalAsFunction(expression: string, excludeFirstLevelFunction?: boolean)
     {
+        if (!expression)
+            return null;
         var parts = Parser.parse(expression, excludeFirstLevelFunction);
         if (parts instanceof Array)
             return Parser.parseFunction(expression);

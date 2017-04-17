@@ -62,7 +62,7 @@ class Binding extends events_1.EventEmitter {
         watcher.onChanged(function (a) {
             if (a.source == binding || a.source === null)
                 return;
-            var args = [Binding.ChangedFieldEventName, { source: a.source, target: a.target, eventArgs: { fieldName: a.eventArgs.fieldName, value: a.eventArgs.value } }];
+            var args = [Binding.ChangedFieldEventName, { source: a.source, target: a.target, eventArgs: { fieldName: a.eventArgs.fieldName, value: binding.getValue() } }];
             binding.emit.apply(binding, args);
         });
         watcher.onError(function (a) {
@@ -83,9 +83,15 @@ class Binding extends events_1.EventEmitter {
         while (parts.length > 0) {
             var part = parts.shift();
             if (target !== null && target !== undefined && typeof (target) == 'object') {
-                if (typeof (target.$$watchers) == 'undefined')
-                    Object.defineProperty(target, '$$watchers', { enumerable: false, writable: false, value: {}, configurable: true });
-                var watcher = target.$$watchers[part];
+                if (typeof (target.$$watchers) == 'undefined') {
+                    try {
+                        Object.defineProperty(target, '$$watchers', { enumerable: false, writable: false, value: {}, configurable: true });
+                    }
+                    catch (e) {
+                        console.error('could not register watcher on ', target, 'this could lead to performance issues');
+                    }
+                }
+                var watcher = target.$$watchers && target.$$watchers[part];
                 if (!watcher) {
                     if (promiseHelpers_1.isPromiseLike(target)) {
                         var subParts = part;
@@ -113,7 +119,8 @@ class Binding extends events_1.EventEmitter {
                     }
                     else
                         watcher = new Binding(part, target, false);
-                    target.$$watchers[part] = watcher;
+                    if (target.$$watchers)
+                        target.$$watchers[part] = watcher;
                 }
                 watcher.pipe(this);
                 if (watcher instanceof PromiseBinding)

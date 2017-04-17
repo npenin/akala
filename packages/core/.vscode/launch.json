@@ -5,7 +5,7 @@
             "name": "Lancer",
             "type": "node",
             "request": "launch",
-            "program": "${workspaceRoot}/dist/index.js",
+            "program": "${workspaceRoot}/dist/test/router.js",
             "stopOnEntry": false,
             "args": [],
             "cwd": "${workspaceRoot}",
@@ -17,9 +17,8 @@
             "env": {
                 "NODE_ENV": "development"
             },
-            "externalConsole": false,
-            "sourceMaps": false,
-            "outDir": null
+            "console": "internalConsole",
+            "sourceMaps": true
         },
         {
             "name": "Attacher",
@@ -28,8 +27,7 @@
             "port": 5862,
             "address": "localhost",
             "restart": false,
-            "sourceMaps": false,
-            "outDir": null,
+            "sourceMaps": true,
             "localRoot": "${workspaceRoot}",
             "remoteRoot": null
         }
