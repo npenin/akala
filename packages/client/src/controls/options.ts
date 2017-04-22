@@ -1,6 +1,6 @@
 import * as di from '@akala/core'
 import { control, Control } from './control'
-import { Scope } from '../scope'
+import { IScope } from '../scope'
 
 export interface parameter
 {
@@ -17,7 +17,7 @@ export class Options extends Control<parameter>
         super('options', 350)
     }
 
-    public instanciate(target: Scope, element: JQuery, parameter: parameter, controls: any)
+    public instanciate(target: IScope<any>, element: JQuery, parameter: parameter, controls: any)
     {
         var self = this;
         var value: di.Binding = controls.value;

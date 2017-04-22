@@ -12,4 +12,7 @@ __export(require("./part"));
 __export(require("./click"));
 __export(require("./options"));
 __export(require("./hide"));
+__export(require("./spinner"));
+__export(require("./translate"));
+__export(require("./json"));
 //# sourceMappingURL=controls.js.map

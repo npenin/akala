@@ -1,7 +1,7 @@
 /// <reference types="jquery" />
 import * as di from '@akala/core';
 import { Control } from './control';
-import { Scope } from '../scope';
+import { IScope } from '../scope';
 export interface parameter {
     in: di.Binding | di.ObservableArray<any>;
     text: di.Binding | string;
@@ -9,5 +9,5 @@ export interface parameter {
 }
 export declare class Options extends Control<parameter> {
     constructor();
-    instanciate(target: Scope, element: JQuery, parameter: parameter, controls: any): void;
+    instanciate(target: IScope<any>, element: JQuery, parameter: parameter, controls: any): void;
 }

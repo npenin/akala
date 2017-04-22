@@ -212,21 +212,23 @@ $.extend($.fn, {
         data.$new = Scope.prototype.$new;
         if (this.filter('[data-bind]').length == 0)
         {
-            this.find('[data-bind]').each(function ()
+            this.find('[data-bind]').each(function (this: HTMLElement)
             {
                 var closest = $(this).parent().closest('[data-bind]');
                 var applyInnerTemplate = closest.length == 0;
                 if (!applyInnerTemplate && root)
                     root.each(function (i, it) { applyInnerTemplate = applyInnerTemplate || it == closest[0]; });
                 if (applyInnerTemplate)
+                {
                     $(this).applyTemplate(data, this);
+                }
             });
             return this;
         }
         else
         {
             var element = $();
-            var promises = [];
+            var promises: PromiseLike<void>[] = [];
             this.filter('[data-bind]').each(function (index, item)
             {
                 var $item = $(item);
@@ -242,7 +244,7 @@ $.extend($.fn, {
                     element = element.add(subElem);
             });
             if (promises.length)
-                return $.when(promises).then(function ()
+                return di.when(promises).then(function ()
                 {
                     return element;
                 });

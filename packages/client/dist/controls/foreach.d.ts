@@ -1,9 +1,9 @@
 /// <reference types="jquery" />
 import { Control } from './control';
-import { Scope } from '../scope';
+import { IScope } from '../scope';
 export declare class ForEach extends Control<any> {
     constructor();
-    instanciate(target: Scope, element: JQuery, parameter: any): PromiseLike<JQuery>;
+    instanciate(target: IScope<any>, element: JQuery, parameter: any): PromiseLike<JQuery>;
     private static expRegex;
     private parse(exp);
 }

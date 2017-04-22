@@ -1,13 +1,18 @@
 import * as di from '@akala/core';
-export interface IScope extends di.IWatched {
-    $new(): IScope;
-    $set(expression: string, value: any): any;
+export interface IScope<T> extends di.IWatched {
+    $new<U>(): IScope<U>;
+    $set<U extends keyof T>(expression: U, value: T[U]): any;
     $watch(expression: string, handler: (value: any) => void): any;
+    $inject(f: Function): any;
 }
-export declare class Scope implements IScope {
+export declare class Scope<T> implements IScope<T> {
     constructor();
-    private $watchers;
-    $new(): Scope;
+    private resolver;
+    $$watchers: {
+        [key: string]: di.Binding;
+    };
+    $new<U>(): Scope<U>;
+    $inject(f: Function): any;
     $set(expression: string, value: any): void;
     $watch(expression: string, handler: (value: any) => void): void;
 }

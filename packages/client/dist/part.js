@@ -41,7 +41,6 @@ let Part = class Part extends events_1.EventEmitter {
                     template(p.scope, p.element.empty());
             });
         else {
-            debugger;
             var p = partInstance();
             if (!p)
                 return;

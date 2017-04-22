@@ -1,9 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const di = require("@akala/core");
+var registeredControls = [];
 function control(...toInject) {
     return function (ctrl) {
-        Control.injector.init([], di.injectNewWithName(toInject, ctrl));
+        if (registeredControls.length == 0)
+            Control.injector.init([], function () {
+                registeredControls.forEach(function (ctrl) {
+                    di.injectNewWithName(ctrl[0], ctrl[1])();
+                });
+            });
+        registeredControls.push([toInject, ctrl]);
     };
 }
 exports.control = control;
@@ -45,11 +52,9 @@ class Control {
         });
         return element;
     }
-    clone(element, scope, newControls) {
-        var clone = element.clone();
-        clone.data('$scope', scope);
+    wrap(element, scope, newControls) {
         if (newControls) {
-            var controls = di.Parser.parse(clone.attr('data-bind'), true);
+            var controls = di.Parser.parse(element.attr('data-bind'), true);
             var applicableControls = [];
             Object.keys(controls).forEach(function (key) {
                 applicableControls.push(Control.injector.resolve(key));
@@ -61,7 +66,12 @@ class Control {
                 newControls[control.$$name] = controls[control.$$name];
             });
         }
-        Control.apply(newControls, clone, scope);
+        return Control.apply(newControls, element, scope);
+    }
+    clone(element, scope, newControls) {
+        var clone = element.clone();
+        clone.data('$scope', scope);
+        this.wrap(clone, scope, newControls);
         return clone;
     }
 }
@@ -71,11 +81,11 @@ class BaseControl extends Control {
     constructor(name, priority) {
         super(name, priority);
     }
-    instanciate(target, element, parameter) {
+    instanciate(scope, element, parameter) {
         var self = this;
-        di.Promisify(target).then(function (target) {
+        di.Promisify(scope).then(function (scope) {
             di.Promisify(parameter).then(function (parameter) {
-                self.link(target, element, parameter);
+                self.link(scope, element, parameter);
             });
         });
     }

@@ -1,6 +1,6 @@
 import * as di from '@akala/core'
 import { control, Control } from './control'
-import { Scope } from '../scope'
+import { IScope } from '../scope'
 
 @control()
 export class ForEach extends Control<any>
@@ -10,7 +10,7 @@ export class ForEach extends Control<any>
         super('each', 100)
     }
 
-    public instanciate(target: Scope, element: JQuery, parameter: any)
+    public instanciate(target: IScope<any>, element: JQuery, parameter: any)
     {
         if (typeof (parameter) == 'string')
         {
@@ -18,6 +18,7 @@ export class ForEach extends Control<any>
         }
 
         var source = di.Parser.eval(parameter.in, target);
+
         var self = this;
         var parent = element.parent();
         element.detach();

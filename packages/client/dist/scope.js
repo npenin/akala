@@ -3,21 +3,29 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const di = require("@akala/core");
 class Scope {
     constructor() {
-        this.$watchers = {};
+        this.$$watchers = {};
     }
     $new() {
         var newScope = function () { };
         newScope.prototype = this;
         return new newScope();
     }
+    $inject(f) {
+        var scope = this;
+        if (!this.resolver) {
+            this.resolver = new di.Injector();
+            this.resolver.setInjectables(this);
+        }
+        return this.resolver.inject(f)(this);
+    }
     $set(expression, value) {
         di.Binding.getSetter(this, expression)(value, 'scope');
     }
     $watch(expression, handler) {
-        var binding = this.$watchers[expression];
+        var binding = this.$$watchers[expression];
         if (!binding) {
             binding = new di.Binding(expression, this);
-            this.$watchers[expression] = binding;
+            this.$$watchers[expression] = binding;
         }
         if (!binding['handlers'])
             binding['handlers'] = [];

@@ -163,8 +163,9 @@ $.extend($.fn, {
                 var applyInnerTemplate = closest.length == 0;
                 if (!applyInnerTemplate && root)
                     root.each(function (i, it) { applyInnerTemplate = applyInnerTemplate || it == closest[0]; });
-                if (applyInnerTemplate)
+                if (applyInnerTemplate) {
                     $(this).applyTemplate(data, this);
+                }
             });
             return this;
         }
@@ -183,7 +184,7 @@ $.extend($.fn, {
                     element = element.add(subElem);
             });
             if (promises.length)
-                return $.when(promises).then(function () {
+                return di.when(promises).then(function () {
                     return element;
                 });
             return element;
