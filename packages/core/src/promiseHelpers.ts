@@ -10,7 +10,7 @@ export function Promisify<T>(o: T)
     var e = new Error();
     setTimeout(function ()
     {
-        console.debug(e.stack);
+        // console.debug(e.stack);
         deferred.resolve(o);
     });
     return deferred;
@@ -19,9 +19,32 @@ export function Promisify<T>(o: T)
 export type ResolveHandler<T, TResult> = (value: T) => TResult | PromiseLike<TResult>
 export type RejectHandler<TResult> = (reason: any) => void | TResult | PromiseLike<TResult>;
 
-export function isPromiseLike(o: any): o is PromiseLike<any>
+export function isPromiseLike<T>(o: T | PromiseLike<T>): o is PromiseLike<T>
 {
-    return o && o.then && typeof (o.then) == 'function';
+    return o && o['then'] && typeof (o['then']) == 'function';
+}
+
+export function when(promises: PromiseLike<any>[])
+{
+    if (promises && !promises.length)
+        return Promisify(null);
+    if (promises && promises.length == 1)
+        return promises[0];
+    var results = new Array(promises.length);
+    var deferred = new Deferred<any[]>();
+    var completed = 0;
+    promises.forEach(function (promise, idx)
+    {
+        promise.then(function (result)
+        {
+            results[idx] = result;
+            if (++completed == promises.length)
+                deferred.resolve(results);
+        }, function (rejection)
+            {
+                deferred.reject(rejection);
+            });
+    })
 }
 
 export enum PromiseStatus

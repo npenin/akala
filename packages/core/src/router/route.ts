@@ -107,7 +107,7 @@ export class Route<T extends Function, TLayer extends Layer<T>>
     public addHandler(postBuildLayer: (layer: TLayer) => TLayer, ...handlers: (T | T[])[])
     public addHandler(postBuildLayer: (layer: TLayer) => TLayer, ...handlers: (T | T[])[])
     {
-        var callbacks: T[] = flatten(slice.call(arguments))
+        var callbacks: T[] = flatten(handlers)
 
         if (callbacks.length === 0)
         {

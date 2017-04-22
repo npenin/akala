@@ -71,7 +71,7 @@ class Route {
         return true;
     }
     addHandler(postBuildLayer, ...handlers) {
-        var callbacks = flatten(slice.call(arguments));
+        var callbacks = flatten(handlers);
         if (callbacks.length === 0) {
             throw new TypeError('argument handler is required');
         }

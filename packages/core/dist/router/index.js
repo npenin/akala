@@ -111,7 +111,6 @@ class Router {
         // manage inter-router variables
         var parentParams = req.params;
         var parentUrl = req.baseUrl || '';
-        debugger;
         var done = Router.restore(callback, req, 'baseUrl', 'next', 'params');
         // setup next layer
         req.next = next;
@@ -202,6 +201,7 @@ class Router {
             var layerPath = layer.path;
             var args = [req];
             args = args.concat(rest.slice(0, rest.length - 1));
+            ;
             // this should be done for the layer
             self.process_params.apply(self, [layer, paramcalled].concat(args).concat(function (err) {
                 if (err) {
@@ -310,7 +310,7 @@ class Router {
             if (!fn)
                 return param();
             try {
-                fn([req].concat(rest.slice(0, rest.length - 1)), paramCallback, paramVal, key.name);
+                fn(req, paramCallback, paramVal, key.name, rest.slice(0, rest.length - 1));
             }
             catch (e) {
                 paramCallback(e);

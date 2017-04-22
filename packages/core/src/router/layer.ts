@@ -45,13 +45,14 @@ export interface LayerOptions
  */
 export class Layer<T extends Function>
 {
-    private handle: T;
+    private handler: T;
     public name: string;
     public params: any;
     public path: string;
     private regexp: LayerRegExp;
     public keys: any[];
-    private length: number;
+    private isErrorHandler: boolean;
+    private isRequestHandler: boolean;
     constructor(path: string, options: LayerOptions, fn: T)
     {
         if (!(this instanceof Layer))
@@ -62,7 +63,7 @@ export class Layer<T extends Function>
         debug('new %o', path)
         var opts: LayerOptions = options || { length: 2 }
 
-        this.handle = fn
+        this.handler = fn
         this.name = fn.name || '<anonymous>'
         this.params = undefined
         this.path = undefined
@@ -71,7 +72,8 @@ export class Layer<T extends Function>
         // set fast path flags
         this.regexp.fast_star = path === '*'
         this.regexp.fast_slash = path === '/' && opts.end === false
-        this.length = opts.length || 2;
+        this.isErrorHandler = fn.length == 0 || fn.length >= (opts.length || 2) + 2;
+        this.isRequestHandler = fn.length == 0 || fn.length < (opts.length || 2) + 2;
     }
 
     public isApplicable<TRoute extends Route<T, this>>(req, route: TRoute)
@@ -81,11 +83,12 @@ export class Layer<T extends Function>
 
     public handle_error(error, ...args)
     {
-        var fn = this.handle;
+        var fn = this.handler;
         var next: NextFunction = args[args.length - 1];
 
-        if (fn.length !== this.length + 1)
+        if (!this.isErrorHandler)
         {
+            debug('skipping non error handler')
             // not a standard error handler
             return next(error);
         }
@@ -102,11 +105,12 @@ export class Layer<T extends Function>
 
     public handle_request(...args)
     {
-        var fn = this.handle;
+        var fn = this.handler;
         var next: NextFunction = args[args.length - 1];
 
-        if (fn.length > this.length + 1)
+        if (!this.isRequestHandler)
         {
+            debug('skipping non request handler')
             // not a standard request handler
             return next()
         }
@@ -117,8 +121,6 @@ export class Layer<T extends Function>
         }
         catch (err)
         {
-            console.error('error occurred');
-            console.error(err);
             next(err)
         }
     }
@@ -134,7 +136,8 @@ export class Layer<T extends Function>
 
     public match(path: string)
     {
-        var match
+        var match: RegExpExecArray;
+        log(this.regexp);
         if (path != null)
         {
             // fast path non-ending match for / (any path matches)
@@ -159,6 +162,7 @@ export class Layer<T extends Function>
 
         if (!match)
         {
+            log(this.regexp);
             this.params = undefined
             this.path = undefined
             return false

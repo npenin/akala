@@ -45,7 +45,7 @@ export interface NextParamCallback
     (): void | any;
 }
 
-export type ParamCallback = (req, res, paramCallback: NextParamCallback, paramVal: any, name: string) => void;
+export type ParamCallback = (req, paramCallback: NextParamCallback, paramVal: any, name: string, ...rest) => void;
 
 export interface Request
 {
@@ -196,8 +196,7 @@ export abstract class Router<T extends (Middleware1Extended<any> | Middleware2Ex
 
         // manage inter-router variables
         var parentParams = req.params
-        var parentUrl: string = req.baseUrl || ''
-        debugger;
+        var parentUrl: string = req.baseUrl || '';
         var done = Router.restore(callback, req, 'baseUrl', 'next', 'params')
 
         // setup next layer
@@ -328,6 +327,7 @@ export abstract class Router<T extends (Middleware1Extended<any> | Middleware2Ex
 
             var args: any[] = [req];
             args = args.concat(rest.slice(0, rest.length - 1));
+            ;
 
             // this should be done for the layer
             self.process_params.apply(self, [layer, paramcalled].concat(args).concat(function (err)
@@ -343,7 +343,7 @@ export abstract class Router<T extends (Middleware1Extended<any> | Middleware2Ex
                 }
 
                 trim_prefix(layer, layerError, layerPath, path)
-            }))
+            }));
         }
 
 
@@ -396,7 +396,6 @@ export abstract class Router<T extends (Middleware1Extended<any> | Middleware2Ex
     {
         var done = rest[rest.length - 1];
         var params = this.params
-
         // captured parameters from the layer, keys and values
         var keys = layer.keys
 
@@ -411,8 +410,12 @@ export abstract class Router<T extends (Middleware1Extended<any> | Middleware2Ex
         var paramIndex = 0
         var key
         var paramVal
-        var paramCallbacks
-        var paramCalled
+        var paramCallbacks: ParamCallback[];
+        var paramCalled: {
+            error: any,
+            match: any,
+            value: any
+        };
 
         // process params in order
         // param callbacks can be async
@@ -481,7 +484,7 @@ export abstract class Router<T extends (Middleware1Extended<any> | Middleware2Ex
 
             try
             {
-                fn([req].concat(rest.slice(0, rest.length - 1)), paramCallback, paramVal, key.name)
+                fn(req, paramCallback, paramVal, key.name, rest.slice(0, rest.length - 1));
             } catch (e)
             {
                 paramCallback(e)

@@ -20,13 +20,14 @@ export interface LayerOptions {
  * Expose `Layer`.
  */
 export declare class Layer<T extends Function> {
-    private handle;
+    private handler;
     name: string;
     params: any;
     path: string;
     private regexp;
     keys: any[];
-    private length;
+    private isErrorHandler;
+    private isRequestHandler;
     constructor(path: string, options: LayerOptions, fn: T);
     isApplicable<TRoute extends Route<T, this>>(req: any, route: TRoute): boolean;
     handle_error(error: any, ...args: any[]): void;

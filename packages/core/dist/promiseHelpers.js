@@ -9,16 +9,35 @@ function Promisify(o) {
     var deferred = new Deferred();
     var e = new Error();
     setTimeout(function () {
-        console.debug(e.stack);
+        // console.debug(e.stack);
         deferred.resolve(o);
     });
     return deferred;
 }
 exports.Promisify = Promisify;
 function isPromiseLike(o) {
-    return o && o.then && typeof (o.then) == 'function';
+    return o && o['then'] && typeof (o['then']) == 'function';
 }
 exports.isPromiseLike = isPromiseLike;
+function when(promises) {
+    if (promises && !promises.length)
+        return Promisify(null);
+    if (promises && promises.length == 1)
+        return promises[0];
+    var results = new Array(promises.length);
+    var deferred = new Deferred();
+    var completed = 0;
+    promises.forEach(function (promise, idx) {
+        promise.then(function (result) {
+            results[idx] = result;
+            if (++completed == promises.length)
+                deferred.resolve(results);
+        }, function (rejection) {
+            deferred.reject(rejection);
+        });
+    });
+}
+exports.when = when;
 var PromiseStatus;
 (function (PromiseStatus) {
     PromiseStatus[PromiseStatus["Pending"] = 0] = "Pending";

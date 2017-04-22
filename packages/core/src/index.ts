@@ -14,3 +14,9 @@ export function module(name: string, ...dependencies: string[])
 {
     return new Module(name, dependencies);
 }
+
+export interface Translator
+{
+    (key: string): string;
+    (format: string, ...parameters: any[]): string;
+}

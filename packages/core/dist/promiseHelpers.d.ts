@@ -3,7 +3,8 @@ import { EventEmitter } from 'events';
 export declare function Promisify<T>(o: T): PromiseLike<T>;
 export declare type ResolveHandler<T, TResult> = (value: T) => TResult | PromiseLike<TResult>;
 export declare type RejectHandler<TResult> = (reason: any) => void | TResult | PromiseLike<TResult>;
-export declare function isPromiseLike(o: any): o is PromiseLike<any>;
+export declare function isPromiseLike<T>(o: T | PromiseLike<T>): o is PromiseLike<T>;
+export declare function when(promises: PromiseLike<any>[]): PromiseLike<any>;
 export declare enum PromiseStatus {
     Pending = 0,
     Resolved = 1,

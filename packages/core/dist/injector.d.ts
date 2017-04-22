@@ -4,6 +4,9 @@ export declare type Injectable<T> = () => T;
 export declare class Injector {
     private parent;
     constructor(parent?: Injector);
+    setInjectables(value: {
+        [key: string]: any;
+    }): void;
     keys(): string[];
     merge(i: Injector): void;
     inject<T>(a: Injectable<T> | Function): Injected;

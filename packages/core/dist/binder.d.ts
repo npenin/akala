@@ -42,7 +42,7 @@ export declare class ObservableArray<T> extends EventEmitter {
     array: Array<T>;
     constructor(array: Array<T>);
     readonly length: number;
-    push(item: any): void;
+    push(...items: T[]): void;
     shift(): void;
     pop(): void;
     unshift: (item: any) => void;

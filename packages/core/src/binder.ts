@@ -231,7 +231,7 @@ export class Binding extends EventEmitter
                 promise.then(function resolve(value)
                 {
                     setter.set(value);
-                    if (!doNotTriggerEvents)
+                    if (watcher && !doNotTriggerEvents)
                         watcher.emit(Binding.ChangedFieldEventName, {
                             target: target,
                             eventArgs: {
@@ -242,33 +242,39 @@ export class Binding extends EventEmitter
                         });
                 }, function (ex)
                     {
-                        watcher.emit(Binding.ErrorEventName, {
-                            target: target,
-                            field: setter.expression,
-                            Exception: ex,
-                            source: source
-                        });
+                        if (watcher)
+                            watcher.emit(Binding.ErrorEventName, {
+                                target: target,
+                                field: setter.expression,
+                                Exception: ex,
+                                source: source
+                            });
                     });
 
                 if (doNotTriggerEvents)
                     return promise.resolve(value);
 
-                var listeners = watcher.listeners(Binding.ChangingFieldEventName);
-
-                eachAsync(listeners, function (i, listener, next)
+                if (watcher)
                 {
-                    promisify(listener({
-                        target: target,
-                        fieldName: setter.expression,
-                        source: source,
-                    })).then(function ()
+                    var listeners = watcher.listeners(Binding.ChangingFieldEventName);
+
+                    eachAsync(listeners, function (i, listener, next)
                     {
-                        next();
-                    }, promise.reject);
-                }, function ()
-                    {
-                        promise.resolve(value);
-                    });
+                        promisify(listener({
+                            target: target,
+                            fieldName: setter.expression,
+                            source: source,
+                        })).then(function ()
+                        {
+                            next();
+                        }, promise.reject);
+                    }, function ()
+                        {
+                            promise.resolve(value);
+                        });
+                }
+                else
+                    promise.resolve(value);
             }
             catch (ex)
             {
@@ -280,6 +286,7 @@ export class Binding extends EventEmitter
                 });
                 promise.reject(ex);
             }
+
         };
     }
 
@@ -342,14 +349,16 @@ export class ObservableArray<T> extends EventEmitter
 
     public get length() { return this.array.length; }
 
-    public push(item)
+    public push(...items: T[])
     {
-        this.array.push(item);
+        this.array.push.apply(this.array, items);
         this.emit('collectionChanged', {
             action: 'push',
-            newItems: [item]
+            newItems: items
         });
     };
+
+
     public shift()
     {
         var item = this.array.shift();

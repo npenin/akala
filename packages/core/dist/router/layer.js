@@ -28,7 +28,7 @@ class Layer {
         }
         debug('new %o', path);
         var opts = options || { length: 2 };
-        this.handle = fn;
+        this.handler = fn;
         this.name = fn.name || '<anonymous>';
         this.params = undefined;
         this.path = undefined;
@@ -36,15 +36,17 @@ class Layer {
         // set fast path flags
         this.regexp.fast_star = path === '*';
         this.regexp.fast_slash = path === '/' && opts.end === false;
-        this.length = opts.length || 2;
+        this.isErrorHandler = fn.length == 0 || fn.length >= (opts.length || 2) + 2;
+        this.isRequestHandler = fn.length == 0 || fn.length < (opts.length || 2) + 2;
     }
     isApplicable(req, route) {
         return true;
     }
     handle_error(error, ...args) {
-        var fn = this.handle;
+        var fn = this.handler;
         var next = args[args.length - 1];
-        if (fn.length !== this.length + 1) {
+        if (!this.isErrorHandler) {
+            debug('skipping non error handler');
             // not a standard error handler
             return next(error);
         }
@@ -56,9 +58,10 @@ class Layer {
         }
     }
     handle_request(...args) {
-        var fn = this.handle;
+        var fn = this.handler;
         var next = args[args.length - 1];
-        if (fn.length > this.length + 1) {
+        if (!this.isRequestHandler) {
+            debug('skipping non request handler');
             // not a standard request handler
             return next();
         }
@@ -66,8 +69,6 @@ class Layer {
             fn.apply(null, args);
         }
         catch (err) {
-            console.error('error occurred');
-            console.error(err);
             next(err);
         }
     }
@@ -81,6 +82,7 @@ class Layer {
      */
     match(path) {
         var match;
+        log(this.regexp);
         if (path != null) {
             // fast path non-ending match for / (any path matches)
             if (this.regexp.fast_slash) {
@@ -98,6 +100,7 @@ class Layer {
             match = this.regexp.exec(path);
         }
         if (!match) {
+            log(this.regexp);
             this.params = undefined;
             this.path = undefined;
             return false;

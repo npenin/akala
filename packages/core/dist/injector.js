@@ -15,6 +15,9 @@ class Injector {
             this.parent = defaultInjector;
         this.register('$injector', this);
     }
+    setInjectables(value) {
+        this.injectables = value;
+    }
     keys() {
         return Object.keys(this.injectables);
     }

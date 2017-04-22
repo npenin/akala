@@ -18,7 +18,7 @@ export interface NextParamCallback {
     (error: any): void;
     (): void | any;
 }
-export declare type ParamCallback = (req, res, paramCallback: NextParamCallback, paramVal: any, name: string) => void;
+export declare type ParamCallback = (req, paramCallback: NextParamCallback, paramVal: any, name: string, ...rest) => void;
 export interface Request {
     next?: NextFunction;
     baseUrl?: string;

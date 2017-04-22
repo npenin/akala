@@ -22,6 +22,11 @@ export class Injector
         this.register('$injector', this);
     }
 
+    public setInjectables(value: { [key: string]: any })
+    {
+        this.injectables = value;
+    }
+
     public keys()
     {
         return Object.keys(this.injectables);
