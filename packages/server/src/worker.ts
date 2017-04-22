@@ -6,6 +6,7 @@ import * as debug from 'debug';
 import * as path from 'path';
 import { resolve, dirname } from 'path';
 import { Request, MasterRegistration, Callback, WorkerInjector } from './worker-meta';
+import { Http } from './http';
 process.on('uncaughtException', function (error)
 {
     console.error(error);
@@ -17,23 +18,15 @@ if (!debug.enabled('akala:worker:' + process.argv[2]))
     console.warn(`logging disabled for ${process.argv[2]}`);
 
 
-var app = new WorkerRouter(function (error, ...args)
-{
-    var req: Request = args[0];
-    if (error)
-    {
-        console.error(error);
-        req.injector.resolve('$callback')(500, error);
-    }
-    else
-        req.injector.resolve('$callback')(404);
-});
+var app = new WorkerRouter();
+
 
 di.register('$router', app);
 di.register('$io', function (namespace: string)
 {
     return io('http://localhost:' + process.argv[3] + namespace);
 });
+di.register('$http', new Http());
 var socket = io('http://localhost:' + process.argv[3]);
 
 di.register('$bus', socket);
@@ -56,7 +49,10 @@ socket.on('api', function (request: Request, callback: Callback)
 
     log(request.url);
 
-    app.handle(request, callback);
+    app.handle(request, function ()
+    {
+        callback.apply(this, arguments);
+    });
 });
 
 log('module ' + process.argv[2]);
@@ -79,6 +75,7 @@ socket.emit('module', process.argv[2], function (config, workers)
         require(worker);
     }
     require(path.join(process.cwd(), 'node_modules', process.argv[2]));
+
     if (!masterCalled)
         socket.emit('master', null, null);
 });

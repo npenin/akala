@@ -117,16 +117,19 @@ class HttpRouter extends Router {
 exports.HttpRouter = HttpRouter;
 class WorkerRouter extends Router {
     constructor(options) {
+        var opts = options || {};
+        opts.length = opts.length || 1;
         super(options);
     }
-    handle(req, callback, ...rest) {
+    handle(req, callback) {
         var methods;
-        return this.internalHandle.apply(this, [{
+        var args = [{
                 preHandle: function (done) {
                     if (req.method === 'OPTIONS') {
                         methods = [];
                         done = Router.wrap(done, WorkerRouter.generateOptionsResponder(callback, methods));
                     }
+                    return done;
                 },
                 notApplicableRoute: function (route) {
                     var method = req.method;
@@ -139,7 +142,8 @@ class WorkerRouter extends Router {
                         return false;
                     }
                 }
-            }, req].concat(rest));
+            }, req];
+        return this.internalHandle.apply(this, args.concat(callback));
     }
     /**
      * Generate a callback that will make an OPTIONS response.

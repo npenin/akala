@@ -1,14 +1,20 @@
 import * as url from 'url';
 import * as http from 'http';
-import { Router as BaseRouter, NextFunction, RouterOptions, LayerOptions, Middleware1Extended as Middleware1, Middleware2Extended as Middleware2 } from '@akala/core';
+import { Router as BaseRouter, NextFunction, RouterOptions, LayerOptions, Middleware1Extended as Middleware1, Middleware2Extended as Middleware2, Injector } from '@akala/core';
+import * as worker from '../worker-meta'
 import { HttpRoute } from './route';
 import { HttpLayer } from './layer';
 var debug = require('debug')('akala:router');
 var routing = require('routington');
 
 export type httpHandler = (req: Response, res: Response) => void;
-export type httpHandlerWithNext = (req: Request, res: Response, next: NextFunction) => void;
-export type errorHttpHandlerWithNext = (error: any, req: Request, res: Response, next: NextFunction) => void;
+
+
+export type requestHandlerWithNext = (req: Request, res: Response, next: NextFunction) => void;
+
+export type errorHandlerWithNext = (error: any, req: Request, res: Response, next: NextFunction) => void;
+
+export type httpHandlerWithNext = requestHandlerWithNext | errorHandlerWithNext;
 
 export interface Methods<T>
 {
@@ -49,6 +55,7 @@ export interface Request extends http.IncomingMessage
     query: { [key: string]: any };
     path: string;
     protocol: string;
+    injector: Injector;
 }
 export interface Response extends http.ServerResponse
 {
@@ -105,7 +112,7 @@ export class Router<T extends (Middleware1<any> | Middleware2<any, any>)> extend
     'unsubscribe': (path: string, ...handlers: T[]) => this;
 }
 
-export class HttpRouter extends Router<httpHandlerWithNext | errorHttpHandlerWithNext>
+export class HttpRouter extends Router<httpHandlerWithNext>
 {
 
     constructor(options: RouterOptions)
@@ -255,18 +262,24 @@ export interface CallbackResponse
     status?: number;
 }
 
-export class WorkerRouter extends Router<(req: Request, callback: Callback) => void>
+export type workerRequestHandler = (req: worker.Request, callback: worker.Callback) => void;
+export type workerErrorHandler = (error: any, req: worker.Request, callback: worker.Callback) => void;
+export type workerHandler = workerRequestHandler | workerErrorHandler;
+
+export class WorkerRouter extends Router<workerHandler>
 {
-    constructor(options: RouterOptions)
+    constructor(options?: RouterOptions)
     {
+        var opts = options || {};
+        opts.length = opts.length || 1;
         super(options);
     }
 
-    public handle(req, callback: Callback, ...rest)
+    public handle(req: worker.Request, callback: Callback)
     {
         var methods: string[];
 
-        return this.internalHandle.apply(this, [{
+        var args: any[] = [{
             preHandle: function (done)
             {
                 if (req.method === 'OPTIONS')
@@ -274,6 +287,7 @@ export class WorkerRouter extends Router<(req: Request, callback: Callback) => v
                     methods = []
                     done = Router.wrap(done, WorkerRouter.generateOptionsResponder(callback, methods))
                 }
+                return done;
             },
             notApplicableRoute: function (route: HttpRoute<httpHandlerWithNext>)
             {
@@ -291,7 +305,9 @@ export class WorkerRouter extends Router<(req: Request, callback: Callback) => v
                     return false;
                 }
             }
-        }, req].concat(rest));
+        }, req];
+
+        return this.internalHandle.apply(this, args.concat(callback));
     }
 
 

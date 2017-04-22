@@ -2,7 +2,7 @@ import * as di from '@akala/core';
 import * as path from 'path';
 import * as fs from 'fs';
 
-di.registerFactory('$translator', function (): Translator
+di.registerFactory('$translator', function (): di.Translator
 {
     var translations = require(path.join(__dirname, 'i18n.' + di.resolve('$language') + '.json'));
 
@@ -10,14 +10,9 @@ di.registerFactory('$translator', function (): Translator
     {
         if (!parameters)
             return translations[key] || key;
-        (translations[key] || key).replace(/\{\d+\}/g, function (m)
+        return (translations[key] || key).replace(/\{\d+\}/g, function (m)
         {
             return parameters[m];
         })
     }
 });
-export interface Translator
-{
-    (key: string): string;
-    (format: string, ...parameters: any[]): string;
-}

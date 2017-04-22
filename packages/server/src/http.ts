@@ -10,7 +10,6 @@ export class Http implements di.Http
     {
     }
 
-
     public get(url: string, params?: any)
     {
         return this.call('GET', url, params);
