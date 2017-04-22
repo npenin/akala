@@ -8,7 +8,7 @@ export declare class Part extends BaseControl<string | {
 }> {
     private partService;
     constructor(partService: PartService);
-    link(target: IScope, element: JQuery, parameter: string | {
+    link(target: IScope<any>, element: JQuery, parameter: string | {
         [property: string]: Binding;
     }): void;
 }

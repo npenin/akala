@@ -12,7 +12,7 @@ export class Part extends BaseControl<string | { [property: string]: Binding }>
         super('part', 100)
     }
 
-    public link(target: IScope, element: JQuery, parameter: string | { [property: string]: Binding })
+    public link(target: IScope<any>, element: JQuery, parameter: string | { [property: string]: Binding })
     {
         var partService = this.partService;
         if (typeof parameter != 'string')

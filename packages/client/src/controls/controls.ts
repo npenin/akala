@@ -7,4 +7,7 @@ export * from './part'
 export * from './click'
 export * from './options'
 export * from './hide'
+export * from './spinner'
+export * from './translate'
+export * from './json'
 

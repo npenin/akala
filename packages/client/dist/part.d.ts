@@ -21,5 +21,5 @@ export declare class Part extends EventEmitter {
 }
 export interface PartDefinition {
     template?: string;
-    controller?<TScope extends IScope>(scope: TScope, element: JQuery, params: any, next: () => void): void;
+    controller?<TScope extends IScope<any>>(scope: TScope, element: JQuery, params: any, next: () => void): void;
 }

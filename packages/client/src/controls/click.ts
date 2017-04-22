@@ -1,6 +1,7 @@
 import * as di from '@akala/core'
 import { control, BaseControl } from './control'
 import { Promisify, Binding } from '@akala/core'
+import { IScope } from '../scope';
 
 @control()
 export class Click extends BaseControl<Function>
@@ -10,16 +11,16 @@ export class Click extends BaseControl<Function>
         super('click', 400)
     }
 
-    public link(target: any, element: JQuery, parameter: Binding | Function)
+    public link(scope: IScope<any>, element: JQuery, parameter: Binding | Function)
     {
         element.click(function ()
         {
             if (parameter instanceof Binding)
             {
-                return di.inject(parameter.getValue())();
+                return scope.$inject(parameter.getValue());
             }
             else
-                return di.inject(<Function>parameter)();
+                return scope.$inject(<Function>parameter);
         });
 
     }

@@ -1,12 +1,21 @@
 import * as di from '@akala/core';
-import { Scope } from '../scope';
+import { IScope } from '../scope';
 
+var registeredControls: { 0: string[], 1: new (...args: any[]) => any }[] = [];
 
 export function control(...toInject: string[])
 {
     return function (ctrl: new (...args: any[]) => any)
     {
-        Control.injector.init([], di.injectNewWithName(toInject, ctrl));
+        if (registeredControls.length == 0)
+            Control.injector.init([], function ()
+            {
+                registeredControls.forEach(function (ctrl)
+                {
+                    di.injectNewWithName(ctrl[0], ctrl[1])();
+                });
+            });
+        registeredControls.push([toInject, ctrl]);
     }
 }
 
@@ -60,13 +69,11 @@ export abstract class Control<T> implements IControl
         return element;
     }
 
-    protected clone(element: JQuery, scope: Scope, newControls?: any)
+    protected wrap(element: JQuery, scope: IScope<any>, newControls?: any)
     {
-        var clone = element.clone();
-        clone.data('$scope', scope);
         if (newControls)
         {
-            var controls: any = di.Parser.parse(clone.attr('data-bind'), true);
+            var controls: any = di.Parser.parse(element.attr('data-bind'), true);
 
             var applicableControls: Control<any>[] = [];
 
@@ -86,8 +93,15 @@ export abstract class Control<T> implements IControl
                 newControls[control.$$name] = controls[control.$$name];
             });
         }
-        Control.apply(newControls, clone, scope);
 
+        return Control.apply(newControls, element, scope);
+    }
+
+    protected clone(element: JQuery, scope: IScope<any>, newControls?: any)
+    {
+        var clone = element.clone();
+        clone.data('$scope', scope);
+        this.wrap(clone, scope, newControls);
         return clone;
     }
 
@@ -103,16 +117,16 @@ export abstract class BaseControl<T> extends Control<T>
         super(name, priority);
     }
 
-    public abstract link(target: any, element: JQuery, parameter: di.Binding | T);
+    public abstract link(scope: IScope<any>, element: JQuery, parameter: di.Binding | T);
 
-    public instanciate(target: any, element: JQuery, parameter: di.Binding | T): void | JQuery
+    public instanciate(scope: IScope<any>, element: JQuery, parameter: di.Binding | T): void | JQuery
     {
         var self = this;
-        di.Promisify(target).then(function (target)
+        di.Promisify(scope).then(function (scope)
         {
             di.Promisify(parameter).then(function (parameter)
             {
-                self.link(target, element, parameter);
+                self.link(scope, element, parameter);
             });
         });
     }
@@ -122,5 +136,5 @@ export interface IControl
 {
     priority: number;
 
-    instanciate(scope: Scope, element: JQuery, parameter: any);
+    instanciate(scope: IScope<any>, element: JQuery, parameter: any);
 }
