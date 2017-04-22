@@ -81,11 +81,11 @@ exports.HttpRoute = HttpRoute;
 http_1.METHODS.forEach(function (method) {
     method = method.toLowerCase();
     HttpRoute.prototype[method] = function (...handlers) {
-        return this.addHandler.apply(this, [(layer) => {
-                layer.method = method;
-                this.methods[method] = true;
-                return layer;
-            }].concat(handlers));
+        return this.addHandler((layer) => {
+            layer.method = method;
+            this.methods[method] = true;
+            return layer;
+        }, handlers);
     };
 });
 //# sourceMappingURL=route.js.map

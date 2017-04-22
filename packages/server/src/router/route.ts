@@ -138,11 +138,11 @@ methods.forEach(function <T extends Function>(method: string)
     method = method.toLowerCase();
     HttpRoute.prototype[method] = function (this: HttpRoute<T>, ...handlers: (T | T[])[])
     {
-        return this.addHandler.apply(this, [(layer: HttpLayer<T>) =>
+        return this.addHandler((layer: HttpLayer<T>) =>
         {
             layer.method = method;
             this.methods[method] = true;
             return layer;
-        }].concat(<any>handlers));
+        }, <any>handlers);
     }
 })

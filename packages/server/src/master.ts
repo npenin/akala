@@ -78,7 +78,7 @@ fs.exists(configFile, function (exists)
     fs.readFile(sourcesFile, 'utf8', function (error, sourcesFileContent)
     {
         var sources: string[] = JSON.parse(sourcesFileContent);
-        var tmpModules = [];
+        var tmpModules: string[] = [];
 
         sockets.on('connection', function (socket)
         {
@@ -94,6 +94,8 @@ fs.exists(configFile, function (exists)
                 socket.join(submodule);
 
                 var moduleEvents = modulesEvent[submodule];
+                if (!moduleEvents) //slave
+                    moduleEvents = modulesEvent[submodule] = new EventEmitter();
 
                 socket.on('master', function (masterPath?: string, workerPath?: string)
                 {
@@ -200,21 +202,18 @@ fs.exists(configFile, function (exists)
                             finished = true;
 
                             if (folder != 'assets')
-                                app.use('/assets/' + (folder == 'core' ? '' : folder + '/'), st('node_modules/' + plugin + '/assets'));
-                            app.use('/bower_components/' + (folder == 'core' ? '' : folder + '/'), st('node_modules/' + plugin + '/bower_components'));
+                                app.use('/assets/' + (folder == 'core' ? '' : folder + '/'), <any>st('node_modules/' + plugin + '/assets'));
+                            app.use('/bower_components/' + (folder == 'core' ? '' : folder + '/'), <any>st('node_modules/' + plugin + '/bower_components'));
 
-                            app.use('/' + folder, st('node_modules/' + plugin + '/views'));
+                            app.use('/' + folder, <any>st('node_modules/' + plugin + '/views'));
 
                             var localWorkers = getDependencies();
                             log('localWorkers for %s: %s', folder, localWorkers);
                             callback(config && config[plugin], $.map(localWorkers, function (dep) { return globalWorkers[dep] }));
                         });
 
-                        app.all('/api/' + folder, function (req, res, next)
+                        app.use('/api/' + folder, function (req, res, next)
                         {
-                            log(folder);
-                            // log(req.originalUrl);
-
                             socketModules[plugin].emit('api', {
                                 url: req.url,
                                 headers: req.headers,
@@ -279,12 +278,34 @@ fs.exists(configFile, function (exists)
                             worker.kill();
                         });
 
+                        var restart = 0;
+                        setInterval(function ()
+                        {
+                            restart = 0;
+                        }, 60000);
+
                         var handleCrash = function ()
                         {
+                            restart++;
+                            if (restart == 5) //5 restart in 1 min
+                            {
+                                console.warn(plugin + ' has crashed 5 times in 1 minute. Disabling it');
+                                if (config[plugin])
+                                    config[plugin].disabled = true;
+                                else
+                                    config[plugin] = false;
+                                fs.writeFile(configFile, JSON.stringify(config, null, 4), function (err?)
+                                {
+                                    if (err)
+                                        console.error(err);
+                                });
+                                return;
+                            }
                             cluster.setupMaster({
                                 args: [plugin, port]
                             });
                             worker = cluster.fork();
+
                             worker.on('exit', handleCrash);
                         };
                         worker.on('exit', handleCrash);
@@ -345,7 +366,6 @@ fs.exists(configFile, function (exists)
 
                     app.use(function (err, req: Request, res: Response, next)
                     {
-                        log('pwic');
                         debugger;
                         try
                         {

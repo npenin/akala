@@ -6,6 +6,7 @@ const io = require("socket.io-client");
 const debug = require("debug");
 const path = require("path");
 const path_1 = require("path");
+const http_1 = require("./http");
 process.on('uncaughtException', function (error) {
     console.error(error);
     process.exit(500);
@@ -14,19 +15,12 @@ var log = debug('akala:worker:' + process.argv[2]);
 //log.enabled = process.argv[2]=='devices';
 if (!debug.enabled('akala:worker:' + process.argv[2]))
     console.warn(`logging disabled for ${process.argv[2]}`);
-var app = new router_1.WorkerRouter(function (error, ...args) {
-    var req = args[0];
-    if (error) {
-        console.error(error);
-        req.injector.resolve('$callback')(500, error);
-    }
-    else
-        req.injector.resolve('$callback')(404);
-});
+var app = new router_1.WorkerRouter();
 di.register('$router', app);
 di.register('$io', function (namespace) {
     return io('http://localhost:' + process.argv[3] + namespace);
 });
+di.register('$http', new http_1.Http());
 var socket = io('http://localhost:' + process.argv[3]);
 di.register('$bus', socket);
 socket.on('api', function (request, callback) {
@@ -45,7 +39,9 @@ socket.on('api', function (request, callback) {
         for (var i in request.query)
             requestInjector.register('query.' + i, request.query[i]);
     log(request.url);
-    app.handle(request, callback);
+    app.handle(request, function () {
+        callback.apply(this, arguments);
+    });
 });
 log('module ' + process.argv[2]);
 socket.emit('module', process.argv[2], function (config, workers) {

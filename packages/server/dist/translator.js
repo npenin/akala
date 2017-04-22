@@ -7,7 +7,7 @@ di.registerFactory('$translator', function () {
     return function (key, ...parameters) {
         if (!parameters)
             return translations[key] || key;
-        (translations[key] || key).replace(/\{\d+\}/g, function (m) {
+        return (translations[key] || key).replace(/\{\d+\}/g, function (m) {
             return parameters[m];
         });
     };

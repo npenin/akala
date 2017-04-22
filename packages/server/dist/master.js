@@ -74,6 +74,8 @@ fs.exists(configFile, function (exists) {
                 });
                 socket.join(submodule);
                 var moduleEvents = modulesEvent[submodule];
+                if (!moduleEvents)
+                    moduleEvents = modulesEvent[submodule] = new events_1.EventEmitter();
                 socket.on('master', function (masterPath, workerPath) {
                     log(submodule + ' emitted master event with ' + masterPath);
                     if (workerPath && workerPath.length > 0)
@@ -158,9 +160,7 @@ fs.exists(configFile, function (exists) {
                             log('localWorkers for %s: %s', folder, localWorkers);
                             callback(config && config[plugin], $.map(localWorkers, function (dep) { return globalWorkers[dep]; }));
                         });
-                        app.all('/api/' + folder, function (req, res, next) {
-                            log(folder);
-                            // log(req.originalUrl);
+                        app.use('/api/' + folder, function (req, res, next) {
                             socketModules[plugin].emit('api', {
                                 url: req.url,
                                 headers: req.headers,
@@ -217,7 +217,24 @@ fs.exists(configFile, function (exists) {
                         app.use('/api/manage/restart/' + folder, function () {
                             worker.kill();
                         });
+                        var restart = 0;
+                        setInterval(function () {
+                            restart = 0;
+                        }, 60000);
                         var handleCrash = function () {
+                            restart++;
+                            if (restart == 5) {
+                                console.warn(plugin + ' has crashed 5 times in 1 minute. Disabling it');
+                                if (config[plugin])
+                                    config[plugin].disabled = true;
+                                else
+                                    config[plugin] = false;
+                                fs.writeFile(configFile, JSON.stringify(config, null, 4), function (err) {
+                                    if (err)
+                                        console.error(err);
+                                });
+                                return;
+                            }
                             cluster.setupMaster({
                                 args: [plugin, port]
                             });
@@ -266,7 +283,6 @@ fs.exists(configFile, function (exists) {
                 sockets.emit('ready');
                 log('registering error handler');
                 app.use(function (err, req, res, next) {
-                    log('pwic');
                     debugger;
                     try {
                         if (err) {

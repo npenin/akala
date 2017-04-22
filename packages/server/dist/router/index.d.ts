@@ -1,11 +1,13 @@
 /// <reference types="node" />
 import * as http from 'http';
-import { Router as BaseRouter, NextFunction, RouterOptions, LayerOptions, Middleware1Extended as Middleware1, Middleware2Extended as Middleware2 } from '@akala/core';
+import { Router as BaseRouter, NextFunction, RouterOptions, LayerOptions, Middleware1Extended as Middleware1, Middleware2Extended as Middleware2, Injector } from '@akala/core';
+import * as worker from '../worker-meta';
 import { HttpRoute } from './route';
 import { HttpLayer } from './layer';
 export declare type httpHandler = (req: Response, res: Response) => void;
-export declare type httpHandlerWithNext = (req: Request, res: Response, next: NextFunction) => void;
-export declare type errorHttpHandlerWithNext = (error: any, req: Request, res: Response, next: NextFunction) => void;
+export declare type requestHandlerWithNext = (req: Request, res: Response, next: NextFunction) => void;
+export declare type errorHandlerWithNext = (error: any, req: Request, res: Response, next: NextFunction) => void;
+export declare type httpHandlerWithNext = requestHandlerWithNext | errorHandlerWithNext;
 export interface Methods<T> {
     'checkout': T;
     'connect': T;
@@ -46,6 +48,7 @@ export interface Request extends http.IncomingMessage {
     };
     path: string;
     protocol: string;
+    injector: Injector;
 }
 export interface Response extends http.ServerResponse {
     status(statusCode: number): Response;
@@ -86,7 +89,7 @@ export declare class Router<T extends (Middleware1<any> | Middleware2<any, any>)
     'unlock': (path: string, ...handlers: T[]) => this;
     'unsubscribe': (path: string, ...handlers: T[]) => this;
 }
-export declare class HttpRouter extends Router<httpHandlerWithNext | errorHttpHandlerWithNext> {
+export declare class HttpRouter extends Router<httpHandlerWithNext> {
     constructor(options: RouterOptions);
     attachTo(server: http.Server): void;
     handle(req: any, res: any, ...rest: any[]): any;
@@ -113,9 +116,12 @@ export interface CallbackResponse {
     };
     status?: number;
 }
-export declare class WorkerRouter extends Router<(req: Request, callback: Callback) => void> {
-    constructor(options: RouterOptions);
-    handle(req: any, callback: Callback, ...rest: any[]): any;
+export declare type workerRequestHandler = (req: worker.Request, callback: worker.Callback) => void;
+export declare type workerErrorHandler = (error: any, req: worker.Request, callback: worker.Callback) => void;
+export declare type workerHandler = workerRequestHandler | workerErrorHandler;
+export declare class WorkerRouter extends Router<workerHandler> {
+    constructor(options?: RouterOptions);
+    handle(req: worker.Request, callback: Callback): any;
     /**
      * Generate a callback that will make an OPTIONS response.
      *
