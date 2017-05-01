@@ -1,13 +1,17 @@
-import { Promisify, Deferred, Binding, module, Module, ObservableArray } from '@akala/core';
+import { Promisify, Deferred, Binding, module, Module, ObservableArray, Translator, isPromiseLike, PromiseStatus } from '@akala/core';
 import '@akala/core'
 
 export var $$injector: Module = window['akala'] = module('akala', 'akala-services', 'controls');
 $$injector['promisify'] = Promisify;
+$$injector['isPromiseLike'] = isPromiseLike;
+$$injector['PromiseStatus'] = PromiseStatus;
 $$injector['defer'] = Deferred;
 $$injector['Binding'] = Binding;
 $$injector['ObservableArray'] = ObservableArray;
 
 export var serviceModule: Module = module('akala-services')
+
+export { Translator, isPromiseLike, PromiseStatus }
 
 export function service(name, ...toInject: string[])
 {

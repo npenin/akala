@@ -6,34 +6,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const di = require("@akala/core");
 const control_1 = require("./control");
 const core_1 = require("@akala/core");
-let Text = class Text extends control_1.BaseControl {
-    constructor(name) {
-        super(name || 'text', 400);
+const showdown = require("showdown");
+const text_1 = require("./text");
+let Markdown = class Markdown extends text_1.Text {
+    constructor() {
+        super('markdown');
+        this.markdown = new showdown.Converter();
     }
     link(target, element, parameter) {
-        var self = this;
         if (parameter instanceof core_1.Binding) {
-            parameter.onChanged(function (ev) {
-                if (di.isPromiseLike(ev.eventArgs.value))
-                    ev.eventArgs.value.then(function (value) {
-                        self.setValue(element, value);
-                    });
-                else
-                    self.setValue(element, ev.eventArgs.value);
-            });
+            parameter.formatter = this.markdown.makeHtml.bind(this.markdown);
         }
-        else
-            self.setValue(element, parameter);
+        super.link(target, element, parameter);
     }
     setValue(element, value) {
-        element.text(value);
+        element.html(this.markdown.makeHtml(value));
     }
 };
-Text = __decorate([
+Markdown = __decorate([
     control_1.control()
-], Text);
-exports.Text = Text;
-//# sourceMappingURL=text.js.map
+], Markdown);
+exports.Markdown = Markdown;
+//# sourceMappingURL=markdown.js.map

@@ -6,29 +6,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const di = require("@akala/core");
 const control_1 = require("./control");
 const text_1 = require("./text");
-di.registerFactory('$translator', di.injectWithName(['$translations'], function (translations) {
-    return function (key, ...parameters) {
-        if (!parameters)
-            return translations && translations[key] || key;
-        return (translations && translations[key] || key).replace(/\{\d+\}/g, function (m) {
-            return parameters[m];
-        });
-    };
-}));
-let Translate = class Translate extends text_1.Text {
-    constructor(translator) {
-        super('translate');
-        this.translator = translator;
+let Href = class Href extends text_1.Text {
+    constructor() {
+        super('href');
     }
     setValue(element, value) {
-        element.text(this.translator(value));
+        element.attr('href', value);
     }
 };
-Translate = __decorate([
-    control_1.control('$translator')
-], Translate);
-exports.Translate = Translate;
-//# sourceMappingURL=translate.js.map
+Href = __decorate([
+    control_1.control()
+], Href);
+exports.Href = Href;
+//# sourceMappingURL=href.js.map

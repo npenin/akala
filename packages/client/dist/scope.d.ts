@@ -1,7 +1,7 @@
 import * as di from '@akala/core';
 export interface IScope<T> extends di.IWatched {
     $new<U>(): IScope<U>;
-    $set<U extends keyof T>(expression: U, value: T[U]): any;
+    $set<U extends keyof T>(expression: U | string, value: T[U] | any): any;
     $watch(expression: string, handler: (value: any) => void): any;
     $inject(f: Function): any;
 }

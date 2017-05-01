@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const control_1 = require("./control");
+const core_1 = require("@akala/core");
 let Part = class Part extends control_1.BaseControl {
     constructor(partService) {
         super('part', 100);
@@ -15,9 +16,17 @@ let Part = class Part extends control_1.BaseControl {
     link(target, element, parameter) {
         var partService = this.partService;
         if (typeof parameter != 'string') {
-            parameter['template'].onChanged(function (ev) {
-                partService.apply(function () { return { scope: parameter, element: element }; }, { controller: parameter.controller, template: ev.eventArgs.value }, {}, $.noop);
-            });
+            if (parameter.template instanceof core_1.Binding)
+                parameter.template.onChanged(function (ev) {
+                    if (parameter.controller instanceof core_1.Binding)
+                        partService.apply(function () { return { scope: target, element: element }; }, { controller: parameter.controller.getValue(), template: ev.eventArgs.value }, {}, $.noop);
+                    else
+                        partService.apply(function () { return { scope: target, element: element }; }, { controller: parameter.controller, template: ev.eventArgs.value }, {}, $.noop);
+                });
+            else if (parameter.controller instanceof core_1.Binding)
+                partService.apply(function () { return { scope: target, element: element }; }, { controller: parameter.controller.getValue(), template: parameter.template }, {}, $.noop);
+            else
+                partService.apply(function () { return { scope: target, element: element }; }, { controller: parameter.controller, template: parameter.template }, {}, $.noop);
         }
         else
             partService.register(parameter, { scope: target, element: element });

@@ -1,7 +1,7 @@
 import { serviceModule } from './common';
 import { Router } from './router';
 import { LocationService, StartOption } from './locationService';
-import { ObservableArray, Http as IHttp } from '@akala/core';
+import { Deferred, ObservableArray, Http as IHttp } from '@akala/core';
 import { Template } from './template';
 import { Part } from './part';
 import { IScope } from './scope';
@@ -16,3 +16,4 @@ export { Part };
 export { IScope };
 export { BaseControl, Control, control };
 export declare var run: (toInject: string[], f: Function) => void;
+export declare function load(...scripts: string[]): Deferred<{}>;

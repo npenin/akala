@@ -14,39 +14,60 @@ export class CssClass extends BaseControl<any>
     {
         if (parameter instanceof Array)
         {
-            new ObservableArray(parameter).on('collectionChanged', function (arg: ObservableArrayEventArgs<any>)
+            parameter = new ObservableArray(parameter);
+        }
+        if (parameter instanceof ObservableArray)
+            parameter.on('collectionChanged', function (arg: ObservableArrayEventArgs<any>)
             {
-                for (var i in arg.newItems)
+                arg.newItems.forEach(function (item)
                 {
-                    if (typeof (arg.newItems[i]) == 'string')
-                        element.addClass(arg.newItems[i]);
+                    if (typeof (item) == 'string')
+                        element.addClass(item);
                     else
                     {
-                        if (arg.newItems[i] instanceof Binding)
+                        if (item instanceof Binding)
                         {
-                            arg.newItems[i].onChanged(function (target, eventArgs)
+                            var oldValue = null;
+                            item.onChanged(function (ev)
                             {
-                                element.addClass(arg.newItems[i].getValue());
+                                if (oldValue)
+                                    element.removeClass(oldValue);
+                                element.addClass(ev.eventArgs.value);
+                                oldValue = ev.eventArgs.value;
                             });
-                            // element.text(parameter.getValue());
                         }
                         else
-                            element.addClass(arg.newItems[i]);
+                            Object.keys(item).forEach(function (key)
+                            {
+                                if (item[key] instanceof Binding)
+                                {
+                                    item[key].onChanged(function (ev)
+                                    {
+                                        element.toggleClass(key, ev.eventArgs.value);
+                                    });
+                                }
+                                else
+                                    element.toggleClass(key, item[key]);
+                            })
                     }
-                }
+
+                })
             }).init();
-        }
+
         else
         {
 
             Object.keys(parameter).forEach(function (key)
             {
-                (<Binding>parameter[key]).onChanged(function (ev)
+                if (parameter[key] instanceof Binding)
                 {
-                    element.toggleClass(key, ev.eventArgs.value);
-                });
-
-                element.toggleClass(key, (<Binding>parameter[key]).getValue());
+                    parameter[key].onChanged(function (ev)
+                    {
+                        element.toggleClass(key, ev.eventArgs.value);
+                    });
+                }
+                else
+                    element.toggleClass(key, parameter[key]);
             })
         }
 

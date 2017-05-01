@@ -14,29 +14,45 @@ let CssClass = class CssClass extends control_1.BaseControl {
     }
     link(target, element, parameter) {
         if (parameter instanceof Array) {
-            new core_1.ObservableArray(parameter).on('collectionChanged', function (arg) {
-                for (var i in arg.newItems) {
-                    if (typeof (arg.newItems[i]) == 'string')
-                        element.addClass(arg.newItems[i]);
+            parameter = new core_1.ObservableArray(parameter);
+        }
+        if (parameter instanceof core_1.ObservableArray)
+            parameter.on('collectionChanged', function (arg) {
+                arg.newItems.forEach(function (item) {
+                    if (typeof (item) == 'string')
+                        element.addClass(item);
                     else {
-                        if (arg.newItems[i] instanceof core_1.Binding) {
-                            arg.newItems[i].onChanged(function (target, eventArgs) {
-                                element.addClass(arg.newItems[i].getValue());
+                        if (item instanceof core_1.Binding) {
+                            var oldValue = null;
+                            item.onChanged(function (ev) {
+                                if (oldValue)
+                                    element.removeClass(oldValue);
+                                element.addClass(ev.eventArgs.value);
+                                oldValue = ev.eventArgs.value;
                             });
-                            // element.text(parameter.getValue());
                         }
                         else
-                            element.addClass(arg.newItems[i]);
+                            Object.keys(item).forEach(function (key) {
+                                if (item[key] instanceof core_1.Binding) {
+                                    item[key].onChanged(function (ev) {
+                                        element.toggleClass(key, ev.eventArgs.value);
+                                    });
+                                }
+                                else
+                                    element.toggleClass(key, item[key]);
+                            });
                     }
-                }
+                });
             }).init();
-        }
         else {
             Object.keys(parameter).forEach(function (key) {
-                parameter[key].onChanged(function (ev) {
-                    element.toggleClass(key, ev.eventArgs.value);
-                });
-                element.toggleClass(key, parameter[key].getValue());
+                if (parameter[key] instanceof core_1.Binding) {
+                    parameter[key].onChanged(function (ev) {
+                        element.toggleClass(key, ev.eventArgs.value);
+                    });
+                }
+                else
+                    element.toggleClass(key, parameter[key]);
             });
         }
     }

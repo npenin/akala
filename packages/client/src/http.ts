@@ -27,10 +27,19 @@ export class Http implements di.Http
         var req = new XMLHttpRequest();
         req.open(method, format(uri), true);
         var deferred = new di.Deferred<string>();
+        var self = this;
         req.onreadystatechange = function (aEvt)
         {
             if (req.readyState == 4)
             {
+                if (req.status == 301)
+                    return self.call(method, req.getResponseHeader('location')).then(function (data)
+                    {
+                        deferred.resolve(data);
+                    }, function (data)
+                        {
+                            deferred.reject(data);
+                        })
                 if (req.status == 200)
                     deferred.resolve(req.responseText);
                 else

@@ -5,21 +5,33 @@ import { Promisify, Binding } from '@akala/core'
 @control()
 export class Text extends BaseControl<string>
 {
-    constructor()
+    constructor(name: string)
     {
-        super('text', 400)
+        super(name || 'text', 400)
     }
 
     public link(target: any, element: JQuery, parameter: Binding | string)
     {
+        var self = this;
         if (parameter instanceof Binding)
         {
             parameter.onChanged(function (ev)
             {
-                element.text(ev.eventArgs.value);
+                if (di.isPromiseLike(ev.eventArgs.value))
+                    ev.eventArgs.value.then(function (value)
+                    {
+                        self.setValue(element, value);
+                    });
+                else
+                    self.setValue(element, ev.eventArgs.value);
             });
         }
         else
-            element.text(parameter);
+            self.setValue(element, parameter);
+    }
+
+    protected setValue(element: JQuery, value)
+    {
+        element.text(value);
     }
 }

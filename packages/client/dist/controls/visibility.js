@@ -7,17 +7,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const control_1 = require("./control");
-const text_1 = require("./text");
-let Json = class Json extends text_1.Text {
+let Hide = class Hide extends control_1.BaseControl {
     constructor() {
-        super('json');
+        super('hide', 400);
     }
-    setValue(element, value) {
-        element.text(JSON.stringify(value));
+    link(target, element, parameter) {
+        parameter.onChanged(function (ev) {
+            element.toggle(!ev.eventArgs.value);
+        });
     }
 };
-Json = __decorate([
+Hide = __decorate([
     control_1.control()
-], Json);
-exports.Json = Json;
-//# sourceMappingURL=json.js.map
+], Hide);
+exports.Hide = Hide;
+let Show = class Show extends control_1.BaseControl {
+    constructor() {
+        super('show', 400);
+    }
+    link(target, element, parameter) {
+        parameter.onChanged(function (ev) {
+            element.toggle(ev.eventArgs.value);
+        });
+    }
+};
+Show = __decorate([
+    control_1.control()
+], Show);
+exports.Show = Show;
+//# sourceMappingURL=visibility.js.map

@@ -7,18 +7,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const control_1 = require("./control");
-let Hide = class Hide extends control_1.BaseControl {
+const text_1 = require("./text");
+let Title = class Title extends text_1.Text {
     constructor() {
-        super('hide', 400);
+        super('title');
     }
-    link(target, element, parameter) {
-        parameter.onChanged(function (ev) {
-            element.toggle(ev.eventArgs.value);
-        });
+    setValue(element, value) {
+        element.attr('title', value);
     }
 };
-Hide = __decorate([
+Title = __decorate([
     control_1.control()
-], Hide);
-exports.Hide = Hide;
-//# sourceMappingURL=hide.js.map
+], Title);
+exports.Title = Title;
+//# sourceMappingURL=title.js.map
