@@ -114,7 +114,8 @@ export interface CallbackResponse {
     headers?: {
         [header: string]: any;
     };
-    status?: number;
+    statusCode?: number;
+    statusMessage?: string;
 }
 export declare type workerRequestHandler = (req: worker.Request, callback: worker.Callback) => void;
 export declare type workerErrorHandler = (error: any, req: worker.Request, callback: worker.Callback) => void;

@@ -22,38 +22,6 @@ var port = process.argv[2] || '5678';
 debugger;
 var app = router();
 di.register('$router', app);
-app.use(function (req, res, next)
-{
-    debugger;
-    if (!res.status)
-        res.status = function (status: number)
-        {
-            res.statusCode = status;
-            return res;
-        }
-
-    if (!res.sendStatus)
-        res.sendStatus = function (status: number)
-        {
-            res.status(status).end();
-            return res;
-        }
-
-    if (!res.json)
-        res.json = function (content: any)
-        {
-            if (typeof (content) != 'undefined')
-                switch (typeof (content))
-                {
-                    case 'object':
-                        content = JSON.stringify(content);
-                }
-            res.write(content);
-            res.end();
-            return res;
-        }
-    next();
-});
 
 var configFile = fs.realpathSync('./config.json');
 var sourcesFile = fs.realpathSync('./sources.list');
@@ -212,7 +180,7 @@ fs.exists(configFile, function (exists)
                             callback(config && config[plugin], $.map(localWorkers, function (dep) { return globalWorkers[dep] }));
                         });
 
-                        app.use('/api/' + folder, function (req, res, next)
+                        app.use('/api/' + folder, function (req: Request, res: Response, next: di.NextFunction)
                         {
                             socketModules[plugin].emit('api', {
                                 url: req.url,
@@ -223,7 +191,7 @@ fs.exists(configFile, function (exists)
                                 params: req.params,
                                 path: req.path,
                                 protocol: req.protocol,
-                                query: url.parse(req.url, true).query,
+                                query: req.query,
                                 rawHeaders: req.rawHeaders,
                                 rawTrailers: req.rawTrailers,
                                 statusCode: req.statusCode,
@@ -242,21 +210,33 @@ fs.exists(configFile, function (exists)
                                         }
                                         else
                                         {
-                                            status = socketRes.status || 200;
                                             if (socketRes.headers)
                                                 Object.keys(socketRes.headers).forEach(function (header)
                                                 {
+                                                    if (header.toLowerCase() == 'location')
+                                                        socketRes.headers[header] = socketRes.headers[header].replace('/api', '/api/' + folder)
                                                     res.setHeader(header, socketRes.headers[header]);
                                                 });
+                                            res.writeHead(status = socketRes.statusCode || 200);
+                                            if (Array.isArray(data))
+                                            {
+                                                data.forEach(function (chunk)
+                                                {
+                                                    res.write(chunk);
+                                                });
+                                                res.end();
+                                                return;
+                                            }
                                         }
                                     }
                                     log(arguments);
-                                    if (status != null)
-                                        res.statusCode = <number>status;
-                                    if (typeof (data) == 'object')
+                                    res.statusCode = <number>status || 200;
+                                    if (typeof (data) !== 'string' && typeof data != 'number')
                                         data = JSON.stringify(data);
                                     if (typeof (data) != 'undefined')
                                         res.write(data);
+                                    console.log(status);
+                                    console.log(data);
                                     res.end();
                                 });
                             // }
@@ -386,7 +366,8 @@ fs.exists(configFile, function (exists)
                             res.statusCode = 500;
                             res.end();
                         }
-                    })
+                    });
+                    console.log('server ready...');
                 });
 
                 orchestrator.start('default');

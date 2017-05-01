@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const cluster = require("cluster");
 const http = require("http");
-const url = require("url");
 const fs = require("fs");
 const st = require("serve-static");
 const io = require("socket.io");
@@ -20,31 +19,6 @@ var port = process.argv[2] || '5678';
 debugger;
 var app = router_1.router();
 di.register('$router', app);
-app.use(function (req, res, next) {
-    debugger;
-    if (!res.status)
-        res.status = function (status) {
-            res.statusCode = status;
-            return res;
-        };
-    if (!res.sendStatus)
-        res.sendStatus = function (status) {
-            res.status(status).end();
-            return res;
-        };
-    if (!res.json)
-        res.json = function (content) {
-            if (typeof (content) != 'undefined')
-                switch (typeof (content)) {
-                    case 'object':
-                        content = JSON.stringify(content);
-                }
-            res.write(content);
-            res.end();
-            return res;
-        };
-    next();
-});
 var configFile = fs.realpathSync('./config.json');
 var sourcesFile = fs.realpathSync('./sources.list');
 var orchestrator = new Orchestrator();
@@ -170,7 +144,7 @@ fs.exists(configFile, function (exists) {
                                 params: req.params,
                                 path: req.path,
                                 protocol: req.protocol,
-                                query: url.parse(req.url, true).query,
+                                query: req.query,
                                 rawHeaders: req.rawHeaders,
                                 rawTrailers: req.rawTrailers,
                                 statusCode: req.statusCode,
@@ -185,20 +159,30 @@ fs.exists(configFile, function (exists) {
                                         status = null;
                                     }
                                     else {
-                                        status = socketRes.status || 200;
                                         if (socketRes.headers)
                                             Object.keys(socketRes.headers).forEach(function (header) {
+                                                if (header.toLowerCase() == 'location')
+                                                    socketRes.headers[header] = socketRes.headers[header].replace('/api', '/api/' + folder);
                                                 res.setHeader(header, socketRes.headers[header]);
                                             });
+                                        res.writeHead(status = socketRes.statusCode || 200);
+                                        if (Array.isArray(data)) {
+                                            data.forEach(function (chunk) {
+                                                res.write(chunk);
+                                            });
+                                            res.end();
+                                            return;
+                                        }
                                     }
                                 }
                                 log(arguments);
-                                if (status != null)
-                                    res.statusCode = status;
-                                if (typeof (data) == 'object')
+                                res.statusCode = status || 200;
+                                if (typeof (data) !== 'string' && typeof data != 'number')
                                     data = JSON.stringify(data);
                                 if (typeof (data) != 'undefined')
                                     res.write(data);
+                                console.log(status);
+                                console.log(data);
                                 res.end();
                             });
                             // }
@@ -301,6 +285,7 @@ fs.exists(configFile, function (exists) {
                         res.end();
                     }
                 });
+                console.log('server ready...');
             });
             orchestrator.start('default');
         });
