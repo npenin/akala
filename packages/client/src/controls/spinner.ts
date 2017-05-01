@@ -13,21 +13,38 @@ export class Spinner extends Control<any>
 
     public instanciate(target: IScope<any>, element: JQuery, parameter: Binding | any)
     {
-        var parent = element.parent();
+        var parent = element;
         var wrapped = this.wrap(element, target, true);
         var settings: any = {};
+        if (parameter instanceof Binding)
+        {
+            parameter = parameter.getValue();
+            if (di.isPromiseLike(parameter))
+                wrapped = parameter;
+        }
+        if (parameter && parameter.promise instanceof Binding)
+        {
+            var promise = parameter.promise.getValue();
+            if (di.isPromiseLike(promise))
+                wrapped = promise;
+        }
         if (Array.isArray(parameter))
             settings.classes = parameter;
         else
-            settings.classes = parameter.classes || 'fa fa-spin fa-3x fa-circle-o-notch';
+            settings.classes = parameter && parameter.classes || 'fa fa-spin fa-3x fa-circle-o-notch';
         if (wrapped != element && di.isPromiseLike(wrapped))
         {
             var spinner: JQuery;
 
             if (element[0].tagName.toLowerCase() == 'tr')
             {
-                spinner = $('<tr class="spinner"><td colspan="99"></td></tr>').appendTo(parent);
+                spinner = $('<tr class="spinner"><td colspan="99"></td></tr>').appendTo(element.parent());
                 parent = spinner.find('td');
+            }
+            if (element[0].tagName.toLowerCase() == 'li')
+            {
+                spinner = $('<li class="spinner"></li>').appendTo(element.parent());
+                parent = spinner;
             }
             spinner = $('<span class="spinner"></span>');
 

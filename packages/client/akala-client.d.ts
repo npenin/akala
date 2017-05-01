@@ -1,10 +1,10 @@
 // import * from '@akala/core';
-export { Injector, Binding, Deferred as defer, ObservableArray } from '@akala/core'
+export { Injector, Binding, Deferred as defer, ObservableArray, Translator, eachAsync, isPromiseLike, PromiseStatus } from '@akala/core'
 import * as api from './dist/clientify'
 
 export as namespace akala;
 
-export { Router, BaseControl, LocationService, IScope, Template, Part, Control, Http } from './dist/clientify'
+export { Router, BaseControl, LocationService, IScope, Template, Part, Control, Http, load } from './dist/clientify'
 
 export function promisify<T>(o: T): PromiseLike<T>;
 // export type Router = api.Router;

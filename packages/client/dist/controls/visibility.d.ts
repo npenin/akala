@@ -5,3 +5,7 @@ export declare class Hide extends BaseControl<di.Binding> {
     constructor();
     link(target: any, element: JQuery, parameter: di.Binding): void;
 }
+export declare class Show extends BaseControl<di.Binding> {
+    constructor();
+    link(target: any, element: JQuery, parameter: di.Binding): void;
+}

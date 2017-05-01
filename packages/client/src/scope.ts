@@ -4,7 +4,7 @@ import * as di from '@akala/core';
 export interface IScope<T> extends di.IWatched
 {
     $new<U>(): IScope<U>;
-    $set<U extends keyof T>(expression: U, value: T[U]);
+    $set<U extends keyof T>(expression: U | string, value: T[U] | any);
     $watch(expression: string, handler: (value: any) => void);
     $inject(f: Function);
 }

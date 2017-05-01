@@ -1,6 +1,6 @@
 import * as di from '@akala/core'
 import { control, BaseControl } from './control'
-import { Promisify, Binding } from '@akala/core'
+import { Text } from './text'
 
 
 di.registerFactory('$translator', di.injectWithName(['$translations'], function (translations): di.Translator
@@ -17,25 +17,15 @@ di.registerFactory('$translator', di.injectWithName(['$translations'], function 
 }));
 
 @control('$translator')
-export class Translate extends BaseControl<string>
+export class Translate extends Text
 {
     constructor(private translator: di.Translator)
     {
-        super('translate', 400)
+        super('translate')
     }
 
-    public link(target: any, element: JQuery, parameter: Binding | string)
+    protected setValue(element: JQuery, value)
     {
-        var translator = this.translator;
-        if (parameter instanceof Binding)
-        {
-            parameter.onChanged(function (ev)
-            {
-                element.text(translator(ev.eventArgs.value));
-            });
-        }
-        else
-            element.text(translator(parameter));
-
+        element.text(this.translator(value));
     }
 }

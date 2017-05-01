@@ -9,19 +9,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const di = require("@akala/core");
 const control_1 = require("./control");
 let ForEach = ForEach_1 = class ForEach extends control_1.Control {
-    constructor() {
-        super('each', 100);
+    constructor(name) {
+        super(name || 'each', 100);
     }
     instanciate(target, element, parameter) {
-        if (typeof (parameter) == 'string') {
+        if (typeof (parameter) == 'string')
             parameter = this.parse(parameter);
-        }
-        var source = di.Parser.eval(parameter.in, target);
+        var parsedParam = parameter;
+        if (parameter.in instanceof Function)
+            var sourceBinding = parameter.in(target, true);
         var self = this;
         var parent = element.parent();
         element.detach();
         // var newControls;
-        return di.Promisify(source).then(function (source) {
+        function build(source) {
             var result = $();
             if (source instanceof di.ObservableArray) {
                 source.on('collectionChanged', function (args) {
@@ -38,26 +39,26 @@ let ForEach = ForEach_1 = class ForEach extends control_1.Control {
                             break;
                         case 'push':
                             var scope = target.$new();
-                            if (parameter.key)
-                                scope[parameter.key] = source.length - 1;
-                            if (parameter.value)
-                                scope[parameter.value] = args.newItems[0];
+                            if (parsedParam.key)
+                                scope[parsedParam.key] = source.length - 1;
+                            if (parsedParam.value)
+                                scope[parsedParam.value] = args.newItems[0];
                             parent.append(self.clone(element, scope, true));
                             break;
                         case 'unshift':
                             var scope = target.$new();
-                            if (parameter.key)
-                                scope[parameter.key] = 0;
-                            if (parameter.value)
-                                scope[parameter.value] = args.newItems[0];
+                            if (parsedParam.key)
+                                scope[parsedParam.key] = 0;
+                            if (parsedParam.value)
+                                scope[parsedParam.value] = args.newItems[0];
                             parent.prepend(self.clone(element, scope, true));
                             break;
                         case 'replace':
                             var scope = target.$new();
-                            if (parameter.key)
-                                scope[parameter.key] = source.indexOf(args.newItems[0]);
-                            if (parameter.value)
-                                scope[parameter.value] = args.newItems[0];
+                            if (parsedParam.key)
+                                scope[parsedParam.key] = source.indexOf(args.newItems[0]);
+                            if (parsedParam.value)
+                                scope[parsedParam.value] = args.newItems[0];
                             parent.eq(source.indexOf(args.newItems[0])).replaceWith(self.clone(element, scope, true));
                             break;
                     }
@@ -66,21 +67,25 @@ let ForEach = ForEach_1 = class ForEach extends control_1.Control {
             }
             $.each(source, function (key, value) {
                 var scope = target.$new();
-                if (parameter.key)
-                    scope[parameter.key] = key;
-                if (parameter.value)
-                    scope[parameter.value] = value;
+                if (parsedParam.key)
+                    scope[parsedParam.key] = key;
+                if (parsedParam.value)
+                    scope[parsedParam.value] = value;
                 parent.append(self.clone(element, scope, true));
             });
             return result;
-        });
+        }
+        sourceBinding.onChanged(function (ev) {
+            di.Promisify(ev.eventArgs.value).then(build);
+        }, true);
+        return di.Promisify(sourceBinding.getValue()).then(build);
     }
     parse(exp) {
-        var result = ForEach_1.expRegex.exec(exp).slice(1);
-        return { in: result[2], key: result[1] && result[0], value: result[1] || result[0] };
+        var result = ForEach_1.expRegex.exec(exp);
+        return { in: di.Parser.evalAsFunction(exp.substring(result[0].length)), key: result[2] && result[1], value: result[2] || result[1] };
     }
 };
-ForEach.expRegex = /^\s*\(?(\w+)(?:, (\w+))?\)?\s+in\s+(\w+)\s*/;
+ForEach.expRegex = /^\s*\(?(\w+)(?:,\s*(\w+))?\)?\s+in\s+/;
 ForEach = ForEach_1 = __decorate([
     control_1.control()
 ], ForEach);
