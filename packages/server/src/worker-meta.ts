@@ -1,6 +1,7 @@
-import { Request as BaseRequest, WorkerRouter as Router, Callback } from './router';
+import { Request as BaseRequest, WorkerRouter as Router, Callback, CallbackResponse } from './router';
 import * as di from '@akala/core';
 import * as express from '@types/express';
+import * as stream from 'stream';
 export { Router, Callback };
 
 export type MasterRegistration = (from?: string, masterPath?: string, workerPath?: string) => void;
@@ -32,10 +33,207 @@ export function expressWrap(handler: express.RequestHandler)
     return function (req: Request, next: di.NextFunction)
     {
         var callback = req.injector.resolve('$callback');
-        handler(<any>req, <any>{
-            sendStatus: callback,
-            status: callback,
+        var headers: any = {};
+        var response = buildResponse(callback, next);
+        handler(<any>req, response, next);
+    }
+}
 
-        }, next);
+function buildResponse(callback: Callback, next: di.NextFunction): express.Response
+{
+    return new MyResponse(callback, next);
+}
+
+class MyResponse extends stream.Writable implements CallbackResponse
+{
+    constructor(callback: Callback, next: di.NextFunction)
+    {
+        super({ decodeStrings: true });
+        this.headers = {};
+        this.sendStatus = callback
+        this.status = callback
+        this.send = callback
+        this.json = callback
+    }
+    headers = {};
+    sendStatus: Callback
+    status: Callback
+    links = undefined
+    send: Callback
+    json: Callback
+    jsonp = undefined
+    sendFile = undefined
+    sendfile = undefined
+    download = undefined
+    contentType(type: string) { this.setHeader('contentType', type); return this; }
+    type = undefined
+    format = undefined
+    attachment = undefined
+    set(field: any): this
+    set(field: string, value?: string): this
+    set(field: string | any, value?: string): this
+    {
+        return this.header(field, value);
+    }
+
+    header(field: any): this
+    header(field: string, value?: string): this
+    header(field: string | any, value?: string): this
+    {
+        if (typeof field == 'string')
+        {
+            if (typeof (value) == 'undefined')
+                return this.headers[field];
+            this.setHeader(field, value);
+            return this;
+        }
+        else
+            Object.keys(field).forEach(function (key)
+            {
+                this.setHeader(key, field[key]);
+            })
+    }
+    headersSent = false
+    get = undefined
+    clearCookie = undefined
+    cookie = undefined
+    location(location: string) { this.setHeader('location', location); return this; }
+    setHeader(field: string, value: string)
+    {
+        this.headers[field] = value;
+    }
+    /**
+        * Redirect to the given `url` with optional response `status`
+        * defaulting to 302.
+        *
+        * The resulting `url` is determined by `res.location()`, so
+        * it will play nicely with mounted apps, relative paths,
+        * `"back"` etc.
+        *
+        * Examples:
+        *
+        *    res.redirect('/foo/bar');
+        *    res.redirect('http://example.com');
+        *    res.redirect(301, 'http://example.com');
+        *    res.redirect('http://example.com', 301);
+        *    res.redirect('../login'); // /blog/post/1 -> /blog/login
+        */
+    redirect(url: string): void
+    redirect(status: number, url: string): void
+    redirect(url: string, status: number): void
+    redirect(url: string | number, status?: number | string): void
+    {
+        if (typeof (status) == 'undefined')
+            status = 302
+        if (typeof (url) == 'number' && typeof (status) == 'string')
+        {
+            var swap = url;
+            url = status;
+            status = swap;
+        }
+        this.setHeader('location', <string>url);
+        this.send(status);
+    }
+
+    /**
+        * Render `view` with the given `options` and optional callback `fn`.
+        * When a callback function is given a response will _not_ be made
+        * automatically, otherwise a response of _200_ and _text/html_ is given.
+        *
+        * Options:
+        *
+        *  - `cache`     boolean hinting to the engine it should cache
+        *  - `filename`  filename of the view being rendered
+        */
+    render = undefined;
+
+    locals: any;
+
+    charset: string;
+
+    /**
+     * Adds the field to the Vary response header, if it is not there already.
+     * Examples:
+     *
+     *     res.vary('User-Agent').render('docs');
+     *
+     */
+    vary = undefined;
+
+    app = undefined;
+    setTimeout = undefined;
+    addTrailers = undefined;
+    chunks: (string | Buffer)[] = [];
+
+    // Extended base methods
+    write(buffer: Buffer): boolean
+    write(buffer: Buffer, cb?: Function): boolean
+    write(str: string, cb?: Function): boolean
+    write(str: string, encoding?: string, cb?: Function): boolean
+    write(str: string, encoding?: string, fd?: string): boolean
+    write(chunk: any, encoding?: string): any;
+    write(str: string | Buffer, encoding?: string | Function, fd?: string | Function): boolean
+    write(str: string | Buffer, encoding?: string | Function, fd?: string | Function): boolean
+    {
+        if (typeof str != 'string')
+        {
+            if (typeof (encoding) == 'string')
+                str = str.toString(encoding);
+        }
+        this.chunks.push(str);
+        return true;
+    }
+
+    writeContinue = undefined;
+    writable = true;
+    writeHead(statusCode: number, reasonPhrase?: string, headers?: any)
+    writeHead(statusCode: number, headers?: any): void
+    writeHead(statusCode: number, reasonPhrase?: string | any, headers?: any): void
+    {
+        this.statusCode = statusCode;
+        if (typeof reasonPhrase != 'string')
+        {
+            headers = reasonPhrase;
+            reasonPhrase = null;
+        }
+        if (reasonPhrase)
+            this.statusMessage = reasonPhrase;
+        this.header(headers);
+    }
+    statusCode: number;
+    statusMessage: string;
+    sendDate: boolean;
+    getHeader(name: string)
+    {
+        return this.headers[name];
+    };
+    removeHeader(name: string): void
+    {
+        delete this.headers[name];
+    }
+
+    protected _write(chunk: any, encoding?: string, callback?: Function): void
+    {
+        if (encoding)
+            this.chunks.push(chunk.toString(encoding));
+        else
+            this.chunks.push(chunk);
+        if (callback)
+            callback();
+    }
+
+
+    finished: boolean;
+
+    // Extended base methods
+    end(): void;
+    end(buffer: Buffer, cb?: Function): void;
+    end(str: string, cb?: Function): void;
+    end(str: string, encoding?: string, cb?: Function): void;
+    end(data?: any, encoding?: string): void;
+    end(data?: any, encoding?: string | Function, cb?: Function): void
+    {
+        this.write(data, encoding, cb);
+        this.send(this, this.chunks);
     }
 }

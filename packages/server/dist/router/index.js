@@ -27,7 +27,9 @@ class HttpRouter extends Router {
         var self = this;
         server.on('request', (req, res) => {
             req.ip = req.socket.remoteAddress;
-            req.url = url.parse(req.url).pathname;
+            var uri = url.parse(req.url, true);
+            req.url = uri.pathname;
+            req.query = uri.query;
             if (!res.status)
                 res.status = function (status) {
                     res.statusCode = status;

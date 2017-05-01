@@ -4,6 +4,7 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./SharedComponent"));
+require("./translator");
 var router_1 = require("./router");
 exports.router = router_1.router;
 exports.wrouter = router_1.wrouter;
@@ -21,6 +22,8 @@ exports.isPromiseLike = core_1.isPromiseLike;
 exports.service = core_1.service;
 exports.resolve = core_1.resolve;
 exports.Deferred = core_1.Deferred;
+exports.log = core_1.log;
+exports.extend = core_1.extend;
 __export(require("./api"));
 const worker = require("./worker-meta");
 exports.worker = worker;

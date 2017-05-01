@@ -126,7 +126,9 @@ export class HttpRouter extends Router<httpHandlerWithNext>
         server.on('request', (req: Request, res: Response) =>
         {
             req.ip = req.socket.remoteAddress;
-            req.url = url.parse(req.url).pathname;
+            var uri = url.parse(req.url, true);
+            req.url = uri.pathname;
+            req.query = uri.query;
 
             if (!res.status)
                 res.status = function (status: number)
@@ -259,7 +261,8 @@ export interface Callback
 export interface CallbackResponse
 {
     headers?: { [header: string]: any };
-    status?: number;
+    statusCode?: number;
+    statusMessage?: string;
 }
 
 export type workerRequestHandler = (req: worker.Request, callback: worker.Callback) => void;
