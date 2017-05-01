@@ -9,6 +9,9 @@ export declare type Module = Module;
 export * from './promiseHelpers';
 export { any as eachAsync, NextFunction } from './eachAsync';
 export * from './router';
+import * as log from 'debug';
+export declare function extend(target: any, ...args: any[]): any;
+export { log };
 export declare function module(name: string, ...dependencies: string[]): Module;
 export interface Translator {
     (key: string): string;

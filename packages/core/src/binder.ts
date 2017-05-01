@@ -2,24 +2,8 @@ import { Parser } from './parser';
 import { EventEmitter } from 'events';
 import { Deferred, Promisify as promisify, isPromiseLike } from './promiseHelpers';
 import * as formatters from './formatters';
-
-function eachAsync<T>(array: T[], body: (key: number, value: T, next: () => void) => void, complete: () => void)
-{
-    (function loop(i: number)
-    {
-        function next()
-        {
-            if (array.length - 1 == i)
-                complete();
-            else
-                setTimeout(loop, 0, i + 1);
-        }
-
-        body(i, array[i], next);
-    })(0);
-}
-
-export interface IWatched
+import { array as eachAsync } from './eachAsync'
+export interface IWatched extends Object
 {
     $$watchers?: { [key: string]: Binding };
 }
@@ -37,7 +21,7 @@ export class Binding extends EventEmitter
     public static readonly ChangedFieldEventName = "fieldChanged";
     public static readonly ErrorEventName = "bindingError";
 
-    constructor(protected _expression: string, private _target: any, register: boolean = true)
+    constructor(protected _expression: string, private _target: IWatched, register: boolean = true)
     {
         super();
         this.formatter = formatters.identity;
@@ -60,17 +44,18 @@ export class Binding extends EventEmitter
         this.on(Binding.ChangingFieldEventName, handler);
     }
 
-    public onChanged(handler: (ev: EventArgs) => void)
+    public onChanged(handler: (ev: EventArgs) => void, doNotTriggerHandler?: boolean)
     {
         this.on(Binding.ChangedFieldEventName, handler);
-        handler({
-            target: this.target,
-            eventArgs: {
-                fieldName: this.expression,
-                value: this.formatter(this.getValue())
-            },
-            source: null
-        });
+        if (!doNotTriggerHandler)
+            handler({
+                target: this.target,
+                eventArgs: {
+                    fieldName: this.expression,
+                    value: this.getValue()
+                },
+                source: null
+            });
     }
 
     public onError(handler: (ev: EventArgs) => void)
@@ -127,7 +112,7 @@ export class Binding extends EventEmitter
             var part = parts.shift();
             if (target !== null && target !== undefined && typeof (target) == 'object')
             {
-                if (typeof (target.$$watchers) == 'undefined')
+                if (!target.hasOwnProperty('$$watchers'))
                 {
                     try
                     {
@@ -227,7 +212,6 @@ export class Binding extends EventEmitter
             try
             {
                 var promise = new Deferred();
-
                 promise.then(function resolve(value)
                 {
                     setter.set(value);
@@ -258,7 +242,7 @@ export class Binding extends EventEmitter
                 {
                     var listeners = watcher.listeners(Binding.ChangingFieldEventName);
 
-                    eachAsync(listeners, function (i, listener, next)
+                    eachAsync(listeners, function (listener, i, next)
                     {
                         promisify(listener({
                             target: target,

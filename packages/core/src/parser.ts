@@ -3,7 +3,8 @@ import { Binding, PromiseBinding } from './binder';
 import * as formatters from './formatters';
 
 
-var jsonKeyRegex = /^ *"([^"]+)"|([^\: ]+) *: */;
+var jsonKeyRegex = /^ *(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([^\: ]+)) *): */;
+// var jsonSingleQuoteKeyRegex = /^ *'([^']+)'|([^\: ]+) *: */;
 
 export interface ParsedAny
 {
@@ -110,7 +111,7 @@ export class ParsedBinary implements ParsedAny
     {
         if (operation.operator != '+' && operation.operator != '-')
         {
-            if (operation.right instanceof Function)
+            if (operation.right instanceof Function && operation.right.$$ast)
             {
                 var right = ParsedBinary.applyPrecedence(operation.right.$$ast);
                 switch (right.operator)
@@ -254,6 +255,11 @@ export class Parser
             formatter = formatters.negate;
             expression = expression.substring(1);
         }
+        if (expression[0] == '!')
+        {
+            formatter = formatters.booleanize;
+            expression = expression.substring(1);
+        }
 
         if (/^true|false|undefined/.exec(expression))
         {
@@ -276,13 +282,22 @@ export class Parser
 
     public static parseFunction(expression: string): ParsedFunction
     {
+        var length = 0;
         var formatter = formatters.identity;
         if (expression[0] == '!')
         {
             formatter = formatters.negate;
             expression = expression.substring(1);
+            length++;
+        }
+        if (expression[0] == '!')
+        {
+            formatter = formatters.booleanize;
+            expression = expression.substring(1);
+            length++;
         }
         var item = /^[\w0-9\.\$]+/.exec(expression)[0];
+        length += item.length;
         var parts = Parser.parseBindable(item);
 
         var f: ParsedFunction = function (value, asBinding?: boolean)
@@ -325,7 +340,7 @@ export class Parser
             }
             return value;
         }
-        f.$$length = item.length;
+        f.$$length = length;
         f = Parser.tryParseOperator(expression.substr(item.length), f);
 
         return f;
@@ -340,7 +355,9 @@ export class Parser
         {
             expression = expression.substring(operator[0].length);
             var rhs = Parser.parseAny(expression, false);
-            return ParsedBinary.applyPrecedence(new ParsedBinary(<any>operator[1], lhs, rhs));
+            var binary = new ParsedBinary(<any>operator[1], lhs, rhs)
+            binary.$$length = lhs.$$length + operator[0].length + rhs.$$length;
+            return ParsedBinary.applyPrecedence(binary);
         }
         else
             return lhs;
@@ -363,7 +380,7 @@ export class Parser
                 results.push(item.evaluate.bind(item));
             else
                 results.push(item);
-            // results.$$length += item.$$length;
+            results.$$length += item.$$length;
             return item;
         }, ']', results, excludeFirstLevelFunction);
     }
@@ -477,7 +494,8 @@ export class Parser
         {
             // var length = 0;
             var keyMatch = jsonKeyRegex.exec(expression);
-            var key = keyMatch[1] || keyMatch[2];
+
+            var key = keyMatch[1] || keyMatch[2] || keyMatch[3];
             //console.log(keyMatch);
             var length = keyMatch[0].length + keyMatch.index;
             expression = expression.substring(length);

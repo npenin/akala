@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import { EventEmitter } from 'events';
-export interface IWatched {
+export interface IWatched extends Object {
     $$watchers?: {
         [key: string]: Binding;
     };
@@ -19,13 +19,13 @@ export declare class Binding extends EventEmitter {
     static readonly ChangingFieldEventName: string;
     static readonly ChangedFieldEventName: string;
     static readonly ErrorEventName: string;
-    constructor(_expression: string, _target: any, register?: boolean);
+    constructor(_expression: string, _target: IWatched, register?: boolean);
     formatter: Function;
     readonly expression: string;
-    target: any;
+    target: IWatched;
     private evaluator;
     onChanging(handler: (ev: EventArgs) => void): void;
-    onChanged(handler: (ev: EventArgs) => void): void;
+    onChanged(handler: (ev: EventArgs) => void, doNotTriggerHandler?: boolean): void;
     onError(handler: (ev: EventArgs) => void): void;
     private registeredBindings;
     pipe(binding: Binding): void;

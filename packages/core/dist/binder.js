@@ -4,17 +4,7 @@ const parser_1 = require("./parser");
 const events_1 = require("events");
 const promiseHelpers_1 = require("./promiseHelpers");
 const formatters = require("./formatters");
-function eachAsync(array, body, complete) {
-    (function loop(i) {
-        function next() {
-            if (array.length - 1 == i)
-                complete();
-            else
-                setTimeout(loop, 0, i + 1);
-        }
-        body(i, array[i], next);
-    })(0);
-}
+const eachAsync_1 = require("./eachAsync");
 class Binding extends events_1.EventEmitter {
     constructor(_expression, _target, register = true) {
         super();
@@ -34,16 +24,17 @@ class Binding extends events_1.EventEmitter {
     onChanging(handler) {
         this.on(Binding.ChangingFieldEventName, handler);
     }
-    onChanged(handler) {
+    onChanged(handler, doNotTriggerHandler) {
         this.on(Binding.ChangedFieldEventName, handler);
-        handler({
-            target: this.target,
-            eventArgs: {
-                fieldName: this.expression,
-                value: this.formatter(this.getValue())
-            },
-            source: null
-        });
+        if (!doNotTriggerHandler)
+            handler({
+                target: this.target,
+                eventArgs: {
+                    fieldName: this.expression,
+                    value: this.getValue()
+                },
+                source: null
+            });
     }
     onError(handler) {
         this.on(Binding.ErrorEventName, handler);
@@ -83,7 +74,7 @@ class Binding extends events_1.EventEmitter {
         while (parts.length > 0) {
             var part = parts.shift();
             if (target !== null && target !== undefined && typeof (target) == 'object') {
-                if (typeof (target.$$watchers) == 'undefined') {
+                if (!target.hasOwnProperty('$$watchers')) {
                     try {
                         Object.defineProperty(target, '$$watchers', { enumerable: false, writable: false, value: {}, configurable: true });
                     }
@@ -180,7 +171,7 @@ class Binding extends events_1.EventEmitter {
                     return promise.resolve(value);
                 if (watcher) {
                     var listeners = watcher.listeners(Binding.ChangingFieldEventName);
-                    eachAsync(listeners, function (i, listener, next) {
+                    eachAsync_1.array(listeners, function (listener, i, next) {
                         promiseHelpers_1.Promisify(listener({
                             target: target,
                             fieldName: setter.expression,

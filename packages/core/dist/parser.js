@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const promiseHelpers_1 = require("./promiseHelpers");
 const binder_1 = require("./binder");
 const formatters = require("./formatters");
-var jsonKeyRegex = /^ *"([^"]+)"|([^\: ]+) *: */;
+var jsonKeyRegex = /^ *(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([^\: ]+)) *): */;
 class ParsedBinary {
     constructor(operator, left, right) {
         this.operator = operator;
@@ -90,7 +90,7 @@ class ParsedBinary {
     }
     static applyPrecedence(operation) {
         if (operation.operator != '+' && operation.operator != '-') {
-            if (operation.right instanceof Function) {
+            if (operation.right instanceof Function && operation.right.$$ast) {
                 var right = ParsedBinary.applyPrecedence(operation.right.$$ast);
                 switch (right.operator) {
                     case '+':
@@ -183,6 +183,10 @@ class Parser {
             formatter = formatters.negate;
             expression = expression.substring(1);
         }
+        if (expression[0] == '!') {
+            formatter = formatters.booleanize;
+            expression = expression.substring(1);
+        }
         if (/^true|false|undefined/.exec(expression)) {
             var result = new ParsedBoolean(/^true|false|undefined/.exec(expression)[0]);
             if (formatter !== formatters.identity)
@@ -198,12 +202,20 @@ class Parser {
         return Parser.parseFunction(expression);
     }
     static parseFunction(expression) {
+        var length = 0;
         var formatter = formatters.identity;
         if (expression[0] == '!') {
             formatter = formatters.negate;
             expression = expression.substring(1);
+            length++;
+        }
+        if (expression[0] == '!') {
+            formatter = formatters.booleanize;
+            expression = expression.substring(1);
+            length++;
         }
         var item = /^[\w0-9\.\$]+/.exec(expression)[0];
+        length += item.length;
         var parts = Parser.parseBindable(item);
         var f = function (value, asBinding) {
             if (asBinding) {
@@ -237,7 +249,7 @@ class Parser {
             }
             return value;
         };
-        f.$$length = item.length;
+        f.$$length = length;
         f = Parser.tryParseOperator(expression.substr(item.length), f);
         return f;
     }
@@ -246,7 +258,9 @@ class Parser {
         if (operator) {
             expression = expression.substring(operator[0].length);
             var rhs = Parser.parseAny(expression, false);
-            return ParsedBinary.applyPrecedence(new ParsedBinary(operator[1], lhs, rhs));
+            var binary = new ParsedBinary(operator[1], lhs, rhs);
+            binary.$$length = lhs.$$length + operator[0].length + rhs.$$length;
+            return ParsedBinary.applyPrecedence(binary);
         }
         else
             return lhs;
@@ -264,7 +278,7 @@ class Parser {
                 results.push(item.evaluate.bind(item));
             else
                 results.push(item);
-            // results.$$length += item.$$length;
+            results.$$length += item.$$length;
             return item;
         }, ']', results, excludeFirstLevelFunction);
     }
@@ -361,7 +375,7 @@ class Parser {
         return Parser.parseCSV(expression, function (expression) {
             // var length = 0;
             var keyMatch = jsonKeyRegex.exec(expression);
-            var key = keyMatch[1] || keyMatch[2];
+            var key = keyMatch[1] || keyMatch[2] || keyMatch[3];
             //console.log(keyMatch);
             var length = keyMatch[0].length + keyMatch.index;
             expression = expression.substring(length);
