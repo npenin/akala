@@ -1,7 +1,7 @@
-import * as di from '@akala/core';
+import * as akala from '@akala/core';
 
 
-export interface IScope<T> extends di.IWatched
+export interface IScope<T> extends akala.IWatched
 {
     $new<U>(): IScope<U>;
     $set<U extends keyof T>(expression: U | string, value: T[U] | any);
@@ -15,8 +15,8 @@ export class Scope<T> implements IScope<T>
     {
     }
 
-    private resolver: di.Injector;
-    public $$watchers: { [key: string]: di.Binding } = {};
+    private resolver: akala.Injector;
+    public $$watchers: { [key: string]: akala.Binding } = {};
 
     public $new<U>(): Scope<U>
     {
@@ -25,12 +25,12 @@ export class Scope<T> implements IScope<T>
         return new newScope();
     }
 
-    public $inject(f: Function)
+    public $inject<T>(f: akala.Injectable<T>)
     {
         var scope = this;
         if (!this.resolver)
         {
-            this.resolver = new di.Injector();
+            this.resolver = new akala.Injector();
             this.resolver.setInjectables(this);
         }
         return this.resolver.inject(f)(this);
@@ -39,7 +39,7 @@ export class Scope<T> implements IScope<T>
 
     public $set(expression: string, value: any)
     {
-        di.Binding.getSetter(this, expression)(value, 'scope');
+        akala.Binding.getSetter(this, expression)(value, 'scope');
     }
 
     public $watch(expression: string, handler: (value: any) => void)
@@ -47,7 +47,7 @@ export class Scope<T> implements IScope<T>
         var binding = this.$$watchers[expression];
         if (!binding)
         {
-            binding = new di.Binding(expression, this);
+            binding = new akala.Binding(expression, this);
             this.$$watchers[expression] = binding;
         }
         if (!binding['handlers'])

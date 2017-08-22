@@ -11,6 +11,10 @@ export class Http implements di.Http
     {
         return this.call('GET', url, params);
     }
+    public post(url: string, body?: any)
+    {
+        return this.call('POST', url, body);
+    }
 
     public getJSON(url: string, params?: any)
     {
@@ -23,7 +27,8 @@ export class Http implements di.Http
     public call(method: string, url: string, params?: any): PromiseLike<string>
     {
         var uri = parse(url);
-        uri.query = $.extend({}, uri.query, params);
+        if (method != 'GET')
+            uri.query = $.extend({}, uri.query, params);
         var req = new XMLHttpRequest();
         req.open(method, format(uri), true);
         var deferred = new di.Deferred<string>();
@@ -46,7 +51,10 @@ export class Http implements di.Http
                     deferred.reject(req.responseText);
             }
         };
-        req.send(null);
+        if (method != 'GET')
+            req.send(params);
+        else
+            req.send(null);
         return deferred;
     }
 }

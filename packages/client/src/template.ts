@@ -151,7 +151,7 @@ export class Template
     {
         var http = this.http;
         var self = this;
-        var p = new di.Deferred();
+        var p = new di.Deferred<templateFunction>();
         if (!t)
             setImmediate(p.resolve, t);
         else

@@ -6,13 +6,9 @@ var debug = require('debug')('akala:router');
 
 export class Request implements akala.Request
 {
-    constructor(loc: Location)
+    constructor(loc: string)
     {
-        if (loc.hash)
-            this.url = loc.hash.substr(1);
-        else
-            this.url = '/';
-
+        this.url = loc || '/';
         this.uri = url.parse(this.url, true);
 
     }
@@ -33,6 +29,7 @@ if (!window.setImmediate)
     }
 
 export type browserHandler = (req: Request, next: akala.NextFunction) => void;
+export type browserErrorHandler = (err: any, req: Request, next: akala.NextFunction) => void;
 
 export class BrowserLayer extends akala.Layer<browserHandler> implements akala.IRoutable<browserHandler>
 {
@@ -55,7 +52,7 @@ export class BrowserRoute extends akala.Route<browserHandler, BrowserLayer>
     }
 }
 
-export class Router extends akala.Router<browserHandler, BrowserLayer, BrowserRoute>
+export class Router extends akala.Router<browserHandler, browserErrorHandler, BrowserLayer, BrowserRoute>
 {
     constructor(options?: akala.RouterOptions)
     {

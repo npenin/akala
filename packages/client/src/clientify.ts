@@ -68,21 +68,18 @@ export function load(...scripts: string[])
 
 $$injector.start(['$location'], function ($location: LocationService)
 {
-    var started = false;
-    $location.on('change', function ()
+    $location.on('change', function (path: string)
     {
-        if (started)
-            mainRouter.handle(new Request(location), function (err)
-            {
-                if (err)
-                    console.error(err);
-                else
-                    console.warn('deadend');
-            });
+        mainRouter.handle(new Request(path), function (err)
+        {
+            if (err)
+                console.error(err);
+            else
+                console.warn('deadend');
+        });
     });
 
-    $location.start({ hashbang: true })
-    started = true;
+    $location.start({ hashbang: false })
 });
 
 $(function ()

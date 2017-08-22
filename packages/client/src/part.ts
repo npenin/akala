@@ -34,7 +34,7 @@ export class Part extends EventEmitter
         this.parts.register(partName, control);
     }
 
-    public apply(partInstance: () => PartInstance, part: PartDefinition, params: any, next: akala.NextFunction)
+    public apply<TScope extends IScope<any>>(partInstance: () => PartInstance, part: PartDefinition<TScope>, params: any, next: akala.NextFunction)
     {
         var parts = this.parts;
         var template = this.template;
@@ -61,7 +61,7 @@ export class Part extends EventEmitter
         }
     }
 
-    public use(url: string, partName: string = 'body', part: PartDefinition)
+    public use<TScope extends IScope<any>>(url: string, partName: string = 'body', part: PartDefinition<TScope>)
     {
         var self = this;
         this.router.use(url, function (req: Request, next: akala.NextFunction)
@@ -72,8 +72,8 @@ export class Part extends EventEmitter
     }
 }
 
-export interface PartDefinition
+export interface PartDefinition<TScope extends IScope<any>>
 {
     template?: string;
-    controller?<TScope extends IScope<any>>(scope: TScope, element: JQuery, params: any, next: () => void): void;
+    controller?(scope: TScope, element: JQuery, params: any, next: () => void): void;
 }
