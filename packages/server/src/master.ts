@@ -4,11 +4,13 @@ import * as https from 'https';
 import * as url from 'url';
 import * as fs from 'fs';
 import * as st from 'serve-static';
-import * as io from 'socket.io';
-import * as di from '@akala/core';
+import * as jsonrpc from 'json-rpc-ws';
+import * as akala from '@akala/core';
 import { relative, sep as pathSeparator, dirname, join as pathJoin } from 'path';
+import { serveRouter } from './master-meta';
+import { meta } from './sharedComponent/metadata';
 import * as debug from 'debug';
-import * as $ from 'underscore';
+// import * as $ from 'underscore';
 import { EventEmitter } from 'events';
 import { router, Request, Response, CallbackResponse } from './router';
 import * as pac from './package';
@@ -17,11 +19,28 @@ var orchestratorLog = debug('akala:master:orchestrator');
 import * as Orchestrator from 'orchestrator';
 import * as sequencify from 'sequencify';
 
+var master = new EventEmitter();
+master.setMaxListeners(Infinity);
+
 var port = process.argv[2] || '5678';
 
 debugger;
+
+if (process.execArgv && process.execArgv.length >= 1)
+    process.execArgv[0] = process.execArgv[0].replace('-brk', '');
+
+var lateBoundRoutes = router();
+var preAuthenticatedRouter = router();
+var authenticationRouter = router();
 var app = router();
-di.register('$router', app);
+akala.register('$preAuthenticationRouter', preAuthenticatedRouter);
+akala.register('$authenticationRouter', authenticationRouter);
+akala.register('$router', lateBoundRoutes);
+var masterRouter = router();
+masterRouter.use(preAuthenticatedRouter.router);
+masterRouter.use(authenticationRouter.router);
+masterRouter.use(lateBoundRoutes.router);
+masterRouter.use(app.router);
 
 var configFile = fs.realpathSync('./config.json');
 var sourcesFile = fs.realpathSync('./sources.list');
@@ -30,13 +49,23 @@ orchestrator.onAll(function (e)
 {
     if (e.src == 'task_not_found')
         console.error(e.message);
+    if (e.src == 'task_err')
+        console.error(e.err);
 
     orchestratorLog(e);
-})
-var socketModules = {};
+});
+
+interface Connection extends jsonrpc.Connection
+{
+    submodule?: string;
+}
+
+var socketModules: { [module: string]: Connection } = {};
 var modulesEvent = {};
 var globalWorkers = {};
 var modulesDefinitions: { [name: string]: sequencify.definition } = {};
+var root: string;
+
 fs.exists(configFile, function (exists)
 {
     var config = null;
@@ -48,37 +77,7 @@ fs.exists(configFile, function (exists)
         var sources: string[] = JSON.parse(sourcesFileContent);
         var tmpModules: string[] = [];
 
-        sockets.on('connection', function (socket)
-        {
-            log('received connection');
-            socket.on('module', function (submodule: string, cb: Function)
-            {
-                log('received module event %s', submodule);
-                Object.defineProperty(socketModules, submodule, { configurable: false, writable: true, value: socket });
-                socket.on('disconnect', function ()
-                {
-                    socketModules[submodule] = null;
-                })
-                socket.join(submodule);
-
-                var moduleEvents = modulesEvent[submodule];
-                if (!moduleEvents) //slave
-                    moduleEvents = modulesEvent[submodule] = new EventEmitter();
-
-                socket.on('master', function (masterPath?: string, workerPath?: string)
-                {
-                    log(submodule + ' emitted master event with ' + masterPath);
-                    if (workerPath && workerPath.length > 0)
-                        globalWorkers[submodule] = workerPath;
-
-                    moduleEvents.emit('master', masterPath);
-                });
-                // console.log(submodule);
-                modulesEvent[submodule].emit('connected', cb);
-            });
-        });
-
-        di.eachAsync(sources, function (source, i, next)
+        akala.eachAsync(sources, function (source, i, next)
         {
             fs.readdir('node_modules/' + source, function (err, modules)
             {
@@ -119,7 +118,6 @@ fs.exists(configFile, function (exists)
 
                     if (config && dependencies.length)
                     {
-                        debugger;
                         var activeDependencies = [];
                         dependencies.forEach(function (dep, i)
                         {
@@ -146,6 +144,8 @@ fs.exists(configFile, function (exists)
                         dep: dependencies || []
                     };
 
+                    // log(modulesDefinitions);
+
                     tmpModules.push(plugin);
                     modulesEvent[plugin] = new EventEmitter();
                     var getDependencies = function ()
@@ -155,7 +155,7 @@ fs.exists(configFile, function (exists)
                         return localWorkers;
                     }
 
-                    var masterDependencies = $.map(dependencies || [], function (dep)
+                    var masterDependencies = akala.map(dependencies || [], function (dep)
                     {
                         return dep + '#master';
                     });
@@ -177,76 +177,62 @@ fs.exists(configFile, function (exists)
 
                             var localWorkers = getDependencies();
                             log('localWorkers for %s: %s', folder, localWorkers);
-                            callback(config && config[plugin], $.map(localWorkers, function (dep) { return globalWorkers[dep] }));
+                            if (plugin == '@akala-modules/core' && config[plugin])
+                                root = config[plugin].root;
+                            callback({
+                                config: config && config[plugin], workers: akala.map(localWorkers, function (dep)
+                                {
+                                    log('resolving ' + dep + ' to ' + globalWorkers[dep]);
+                                    return globalWorkers[dep];
+                                })
+                            });
                         });
 
-                        app.use('/api/' + folder, function (req: Request, res: Response, next: di.NextFunction)
-                        {
-                            socketModules[plugin].emit('api', {
-                                url: req.url,
-                                headers: req.headers,
-                                httpVersion: req.httpVersion,
-                                ip: req.ip,
-                                method: req.method,
-                                params: req.params,
-                                path: req.path,
-                                protocol: req.protocol,
-                                query: req.query,
-                                rawHeaders: req.rawHeaders,
-                                rawTrailers: req.rawTrailers,
-                                statusCode: req.statusCode,
-                                statusMessage: req.statusMessage,
-                                trailers: req.trailers,
-                                user: req['user']
-                            }, function (status: number | CallbackResponse, data: any)
+                        var sockets = serveRouter(app, '/api/' + plugin, meta, {
+                            master: function (param: { masterPath?: string, workerPath?: string }, socket: Connection)
+                            {
+                                // log(arguments);
+                                log(socket.submodule + ' emitted master event with ' + (param && param.masterPath));
+                                if (param && param.workerPath && param.workerPath.length > 0)
                                 {
-                                    if (isNaN(Number(status)))
-                                    {
-                                        var socketRes: CallbackResponse = status;
-                                        if (typeof (data) == 'undefined')
-                                        {
-                                            data = status;
-                                            status = null;
-                                        }
-                                        else
-                                        {
-                                            if (socketRes.headers)
-                                                Object.keys(socketRes.headers).forEach(function (header)
-                                                {
-                                                    if (header.toLowerCase() == 'location')
-                                                        socketRes.headers[header] = socketRes.headers[header].replace('/api', '/api/' + folder)
-                                                    res.setHeader(header, socketRes.headers[header]);
-                                                });
-                                            res.writeHead(status = socketRes.statusCode || 200);
-                                            if (Array.isArray(data))
-                                            {
-                                                data.forEach(function (chunk)
-                                                {
-                                                    res.write(chunk);
-                                                });
-                                                res.end();
-                                                return;
-                                            }
-                                        }
-                                    }
-                                    log(arguments);
-                                    res.statusCode = <number>status || 200;
-                                    if (typeof (data) !== 'string' && typeof data != 'number')
-                                        data = JSON.stringify(data);
-                                    if (typeof (data) != 'undefined')
-                                        res.write(data);
-                                    console.log(status);
-                                    console.log(data);
-                                    res.end();
+                                    log('registering worker ' + param.workerPath);
+                                    globalWorkers[socket.submodule] = param.workerPath;
+                                }
+
+                                modulesEvent[socket.submodule].emit('master', param && param.masterPath);
+                            }, module: function (param: { module: string }, socket: Connection)
+                            {
+                                log('received module event %s', param.module);
+                                socket.submodule = param.module;
+                                Object.defineProperty(socketModules, param.module, { configurable: false, writable: true, value: this });
+
+                                var proxy = this.$proxy(socket);
+
+                                socket.socket.on('close', function ()
+                                {
+                                    socketModules[param.module] = null;
                                 });
-                            // }
-                            // , function (err: Error, req: express.Request, res: express.Response, next: express.NextFunction)
-                            //     {
-                            //         if (err)
-                            //         {
-                            //             console.error('error occurred in ' + module);
-                            //             console.error(err.stack);
-                            //         }
+                                // socket.join(submodule);
+
+                                var moduleEvents = modulesEvent[param.module] = modulesEvent[param.module] || new EventEmitter();
+
+                                modulesEvent[param.module].on('after-master', function ()
+                                {
+                                    // console.log('emitting after-master for ' + submodule);
+                                    proxy['after-master']();
+                                });
+
+                                var deferred = new akala.Deferred<any>();
+                                // console.log(submodule);
+                                modulesEvent[param.module].emit('connected', deferred.resolve.bind(deferred));
+
+                                return deferred;
+                            }
+                        });
+
+                        master.on('ready', function ()
+                        {
+                            sockets.ready(null);
                         });
 
                         cluster.setupMaster({
@@ -302,17 +288,19 @@ fs.exists(configFile, function (exists)
                             if (pathSeparator == '\\')
                                 masterPath = masterPath.replace(/\\/g, '/');
                             log('path being required: ' + masterPath);
-                            di.register('$module', plugin, true);
-                            di.register('$config', config[plugin], true);
+                            akala.register('$module', plugin, true);
+                            akala.register('$config', config[plugin], true);
                             require(masterPath);
-                            di.unregister('$config');
-                            di.unregister('$module');
+                            akala.unregister('$config');
+                            akala.unregister('$module');
                             // orchestratorLog(globalWorkers);
-
+                            // console.log('emitting after-master for ' + plugin);
+                            modulesEvent[plugin].emit('after-master');
 
                             next();
                         });
                     });
+
                 });
 
                 next();
@@ -326,25 +314,30 @@ fs.exists(configFile, function (exists)
                 }
 
                 var modules = tmpModules;
-                di.register('$$modules', modules);
-                di.register('$$socketModules', socketModules);
-                di.register('$$sockets', sockets);
+                akala.register('$$modules', modules);
+                akala.register('$$socketModules', socketModules);
+                // akala.register('$$sockets', sockets);
                 log(modules);
 
                 var masterDependencies = [];
-                $.each(modules, function (e)
+                akala.each(modules, function (e)
                 {
                     masterDependencies.push(e + '#master');
-                })
+                });
 
                 orchestrator.add('@akala/server#master', function () { });
 
                 orchestrator.add('default', masterDependencies, function ()
                 {
-                    sockets.emit('ready');
+                    master.emit('ready');
                     log('registering error handler');
 
-                    app.use(function (err, req: Request, res: Response, next)
+                    app.get('*', function (request, response)
+                    {
+                        fs.createReadStream(root + '/index.html').pipe(response);
+                    });
+
+                    masterRouter.use(function (err, req: Request, res: Response, next)
                     {
                         debugger;
                         try
@@ -376,7 +369,6 @@ fs.exists(configFile, function (exists)
 });
 // https.createServer({}, app).listen(443);
 var server = http.createServer();
-app.attachTo(server);
-var sockets = io(server);
+masterRouter.attachTo(server);
 
 server.listen(port);

@@ -1,82 +1,73 @@
 import * as fs from 'fs';
-import * as di from '@akala/core';
+import * as akala from '@akala/core';
 import { WorkerRouter } from './router';
-import * as io from 'socket.io-client';
+import * as jsonrpc from 'json-rpc-ws';
 import * as debug from 'debug';
 import * as path from 'path';
 import { resolve, dirname } from 'path';
-import { Request, MasterRegistration, Callback, WorkerInjector } from './worker-meta';
+import { createClient, Request, MasterRegistration, Callback, WorkerInjector, handle } from './worker-meta';
+import { meta, DualMetadata } from './sharedComponent/metadata'
 import { Http } from './http';
+import { metaRouter } from './master-meta'
+
 process.on('uncaughtException', function (error)
 {
     console.error(error);
     process.exit(500);
 })
 var log = debug('akala:worker:' + process.argv[2]);
-//log.enabled = process.argv[2]=='devices';
-if (!debug.enabled('akala:worker:' + process.argv[2]))
-    console.warn(`logging disabled for ${process.argv[2]}`);
 
+//log.enabled = process.argv[2]=='devices';
+// if (!debug.enabled('akala:worker:' + process.argv[2]))
+//     console.warn(`logging disabled for ${process.argv[2]}`);
 
 var app = new WorkerRouter();
 
-
-di.register('$router', app);
-di.register('$io', function (namespace: string)
+function resolveUrl(namespace: string)
 {
-    return io('http://localhost:' + process.argv[3] + namespace);
-});
-di.register('$http', new Http());
-var socket = io('http://localhost:' + process.argv[3]);
+    return 'http://localhost:' + process.argv[3] + '/' + namespace + '/';
+}
 
-di.register('$bus', socket);
-socket.on('api', function (request: Request, callback: Callback)
+akala.register('$resolveUrl', resolveUrl);
+
+akala.register('$router', app);
+
+akala.register('$io', createClient);
+
+akala.register('$http', new Http());
+createClient('api/' + process.argv[2]).then(function (socket: jsonrpc.Client<jsonrpc.Connection>)
 {
-    var requestInjector: WorkerInjector = new di.Injector();
-    requestInjector.register('$request', request);
-    // requestInjector.register('$response', response);
-    requestInjector.register('$callback', callback);
-    Object.defineProperty(request, 'injector', { value: requestInjector, enumerable: false, configurable: false, writable: false });
-    if (request.url == '/')
-        request.url = '';
-    request.url = '/api' + request.url;
-    if (request.params)
-        for (var i in request.params)
-            requestInjector.register('param.' + i, request.params[i]);
-    if (request.query)
-        for (var i in request.query)
-            requestInjector.register('query.' + i, request.query[i]);
+    log('worker connected')
+    akala.register('$bus', socket);
 
-    log(request.url);
-
-    app.handle(request, function ()
+    var client = new DualMetadata(metaRouter, meta).createClient(socket, { getContent: handle(app, '/api') }, { 'after-master': function (param) { }, ready: function (param) { } });
+    // socket.expose('request', handle(app, '/api'));
+    var server = client.$proxy();
+    server.module({ module: process.argv[2] }).then(function (param)
     {
-        callback.apply(this, arguments);
+        log('emitted module event')
+        akala.register('$config', param.config);
+        var masterCalled = false;
+        akala.register('$master', function (from?: string, masterPath?: string, workerPath?: string)
+        {
+            masterCalled = true;
+            server.master({ masterPath: masterPath && resolve(dirname(from), masterPath) || null, workerPath: workerPath && resolve(dirname(from), workerPath) || null });
+        });
+        log(param);
+        for (var worker of param.workers)
+        {
+            if (!worker)
+                continue;
+            log('requiring %s for %s', worker, process.argv[2]);
+            require(worker);
+        }
+        process.chdir(path.join(process.cwd(), 'node_modules', process.argv[2]));
+        log('new cwd: ' + process.cwd());
+
+        require(process.cwd());
+
+        if (!masterCalled)
+            server.master(null);
     });
-});
-
-log('module ' + process.argv[2]);
-socket.emit('module', process.argv[2], function (config, workers)
-{
-    log('emitted module event')
-    log(workers);
-    di.register('$config', config);
-    var masterCalled = false;
-    di.register('$master', function (from?: string, masterPath?: string, workerPath?: string)
-    {
-        masterCalled = true;
-        socket.emit('master', masterPath && resolve(dirname(from), masterPath) || null, workerPath && resolve(dirname(from), workerPath) || null);
-    });
-    for (var worker of workers)
-    {
-        if (!worker)
-            continue;
-        log('%s for %s', worker, process.argv[2]);
-        require(worker);
-    }
-    require(path.join(process.cwd(), 'node_modules', process.argv[2]));
-
-    if (!masterCalled)
-        socket.emit('master', null, null);
 });
 

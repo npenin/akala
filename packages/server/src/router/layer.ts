@@ -16,13 +16,14 @@ export class HttpLayer<T extends Function> extends Layer<T> implements IRoutable
 
     }
 
-    public isApplicable(req, route: HttpRoute<T>)
+    public isApplicable<TRoute extends Route<T, Layer<T>>>(req: any, route: TRoute): boolean
     {
         var method = req.method.toLowerCase();
-        if (method === 'head' && !route.methods['head'])
-        {
-            method = 'get'
-        }
+        if (route instanceof HttpRoute)
+            if (method === 'head' && !route.methods['head'])
+            {
+                method = 'get'
+            }
 
         return !this.method || this.method === method
     }
