@@ -17,7 +17,9 @@ export class Click extends BaseControl<Function>
         {
             if (parameter instanceof Binding)
             {
-                return scope.$inject(parameter.getValue());
+                var value = parameter.getValue();
+                if (value instanceof Function)
+                    return scope.$inject(value);
             }
             else
                 return scope.$inject(<Function>parameter);

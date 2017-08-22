@@ -54,28 +54,156 @@ export interface StartOption
 
 export class LocationService extends EventEmitter
 {
+    private loaded = false;
+    private onpopstateBound = this.onpopstate.bind(this);
+    private onclickBound = this.onclick.bind(this);
+
     constructor()
     {
         super();
+        if ('undefined' === typeof window)
+        {
+            return;
+        }
+
+        if (document.readyState === 'complete')
+        {
+            this.loaded = true;
+        }
+        else
+        {
+            var self = this;
+            window.addEventListener('load', function ()
+            {
+                setImmediate(function ()
+                {
+                    self.loaded = true;
+                });
+            });
+        }
     }
+
+    private onclick(e)
+    {
+
+        if (1 !== this.which(e)) return;
+
+        if (e.metaKey || e.ctrlKey || e.shiftKey) return;
+        if (e.defaultPrevented) return;
+
+
+
+        // ensure link
+        // use shadow dom when available
+        var el = e.path ? e.path[0] : e.target;
+        while (el && 'A' !== el.nodeName) el = el.parentNode;
+        if (!el || 'A' !== el.nodeName) return;
+
+
+
+        // Ignore if tag has
+        // 1. "download" attribute
+        // 2. rel="external" attribute
+        if (el.hasAttribute('download') || el.getAttribute('rel') === 'external') return;
+
+        // ensure non-hash for the same path
+        var link = el.getAttribute('href');
+        if (!hashbang && el.pathname === location.pathname && (el.hash || '#' === link)) return;
+
+
+
+        // Check for mailto: in the href
+        if (link && link.indexOf('mailto:') > -1) return;
+
+        // check target
+        if (el.target) return;
+
+        // x-origin
+        if (!this.sameOrigin(el.href)) return;
+
+
+
+        // rebuild path
+        var path = el.pathname + el.search + (el.hash || '');
+
+        // strip leading "/[drive letter]:" on NW.js on Windows
+        if (typeof process !== 'undefined' && path.match(/^\/[a-zA-Z]:\//))
+        {
+            path = path.replace(/^\/[a-zA-Z]:\//, '/');
+        }
+
+        // same page
+        var orig = path;
+
+        if (path.indexOf(base) === 0)
+        {
+            path = path.substr(base.length);
+        }
+
+        if (hashbang) path = path.replace('#!', '');
+
+        if (base && orig === path) return;
+
+        e.preventDefault();
+        this.show(orig);
+    }
+
+    /**
+     * Event button.
+     */
+
+    private which(e)
+    {
+        e = e || window.event;
+        return null === e.which ? e.button : e.which;
+    }
+
+    /**
+     * Check if `href` is the same origin.
+     */
+
+    private sameOrigin(href)
+    {
+        var origin = location.protocol + '//' + location.hostname;
+        if (location.port) origin += ':' + location.port;
+        return (href && (0 === href.indexOf(origin)));
+    }
+
+
+
+    private onpopstate(e)
+    {
+        if (!this.loaded) return;
+        if (e.state)
+        {
+            var path = e.state.path;
+            this.replace(path, e.state);
+        } else
+        {
+            this.show(location.pathname + location.hash, undefined, undefined, false);
+        }
+    };
 
     public start(options: StartOption)
     {
         options = options || {};
-        if (running) return;
+        if (running)
+            return;
         running = true;
-        if (false === options.dispatch) dispatch = false;
-        if (false === options.decodeURLComponents) decodeURLComponents = false;
-        if (false !== options.popstate) window.addEventListener('popstate', onpopstate, false);
+        if (false === options.dispatch)
+            dispatch = false;
+        if (false === options.decodeURLComponents)
+            decodeURLComponents = false;
+        if (false !== options.popstate)
+            window.addEventListener('popstate', this.onpopstateBound, false);
         if (false !== options.click)
-        {
-            document.addEventListener(clickEvent, onclick, false);
-        }
-        if (true === options.hashbang) hashbang = true;
-        if (!dispatch) return;
+            document.addEventListener(clickEvent, this.onclickBound, false);
+        if (true === options.hashbang)
+            hashbang = true;
+        if (!dispatch)
+            return;
         var url = (hashbang && ~location.hash.indexOf('#/')) ? location.hash.substr(2) + location.search : location.pathname + location.search + location.hash;
         this.replace(url, null, true, dispatch);
-        new WatchBinding('href', location, 100).onChanged(this.show.bind(this));
     };
 
     /**
@@ -103,7 +231,7 @@ export class LocationService extends EventEmitter
         // ctx.init = init;
         // ctx.save(); // save before dispatching, which may redirect
         if (false !== dispatch)
-            this.dispatch(path);
+            this.dispatch(path, false);
         return path;
     };
 
@@ -136,8 +264,8 @@ export class LocationService extends EventEmitter
         this.current = '';
         this.len = 0;
         running = false;
-        document.removeEventListener(clickEvent, onclick, false);
-        window.removeEventListener('popstate', onpopstate, false);
+        document.removeEventListener(clickEvent, this.onclickBound, false);
+        window.removeEventListener('popstate', this.onpopstateBound, false);
     };
 
     /**
@@ -151,11 +279,11 @@ export class LocationService extends EventEmitter
      * @api public
      */
 
-    public show(path: string, state?: any, dispatch?: boolean)
+    public show(path: string, state?: any, dispatch?: boolean, push: boolean = true)
     {
         this.current = path;
         if (!dispatch)
-            this.dispatch(path);
+            this.dispatch(path, push);
         // if (false !== ctx.handled && false !== push) ctx.pushState();
         return state;
     };
@@ -192,9 +320,11 @@ export class LocationService extends EventEmitter
         }
     };
 
-    public dispatch(path: string)
+    public dispatch(path: string, push?: boolean)
     {
         this.emit('changing', path)
+        if (push)
+            history.pushState(null, '', path);
         this.emit('change', path)
     }
 }
