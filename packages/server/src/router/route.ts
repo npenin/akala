@@ -131,18 +131,3 @@ export class HttpRoute<T extends Function> extends Route<T, HttpLayer<T>>
     public unlock: (...handlers: T[]) => this;
     public unsubscribe: (...handlers: T[]) => this;
 }
-
-
-methods.forEach(function <T extends Function>(method: string)
-{
-    method = method.toLowerCase();
-    HttpRoute.prototype[method] = function (this: HttpRoute<T>, ...handlers: (T | T[])[])
-    {
-        return this.addHandler((layer: HttpLayer<T>) =>
-        {
-            layer.method = method;
-            this.methods[method] = true;
-            return layer;
-        }, <any>handlers);
-    }
-})

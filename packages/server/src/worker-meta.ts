@@ -1,14 +1,34 @@
 import { Request as BaseRequest, WorkerRouter as Router, Callback, CallbackResponse } from './router';
-import * as di from '@akala/core';
-import * as express from '@types/express';
+import * as akala from '@akala/core';
+import { Http } from './http';
+import * as express from 'express';
 import * as stream from 'stream';
 export { Router, Callback };
+import * as jsonrpc from 'json-rpc-ws'
+var log = akala.log('akala:worker');
+
+export { CallbackResponse }
+
+export function createClient<TConnection extends jsonrpc.Connection>(namespace: string): PromiseLike<jsonrpc.Client<TConnection>>
+{
+    var client = jsonrpc.createClient<TConnection>();
+    var resolveUrl: (url: string) => string = akala.resolve('$resolveUrl');
+    if (!resolveUrl)
+        throw new Error('no url resolver could be found');
+    var deferred = new akala.Deferred<jsonrpc.Client<TConnection>>();
+    client.connect(resolveUrl(namespace), function ()
+    {
+        deferred.resolve(client);
+    });
+    return deferred;
+}
+
 
 export type MasterRegistration = (from?: string, masterPath?: string, workerPath?: string) => void;
 
 export interface resolve
 {
-    (param: '$http'): di.Http
+    (param: '$http'): Http
     (param: '$request'): Request
     (param: '$callback'): Callback
     (param: '$router'): Router
@@ -18,19 +38,20 @@ export interface resolve
     (param: string): any
 }
 
-export interface WorkerInjector extends di.Injector
+export interface WorkerInjector extends akala.Injector
 {
     resolve: resolve;
 }
 
 export interface Request extends BaseRequest   
 {
-    injector: WorkerInjector;
+    injector?: WorkerInjector;
+    [key: string]: any;
 }
 
 export function expressWrap(handler: express.RequestHandler)
 {
-    return function (req: Request, next: di.NextFunction)
+    return function (req: Request, next: akala.NextFunction)
     {
         var callback = req.injector.resolve('$callback');
         var headers: any = {};
@@ -39,14 +60,14 @@ export function expressWrap(handler: express.RequestHandler)
     }
 }
 
-function buildResponse(callback: Callback, next: di.NextFunction): express.Response
+function buildResponse(callback: Callback, next: akala.NextFunction): express.Response
 {
     return new MyResponse(callback, next);
 }
 
 class MyResponse extends stream.Writable implements CallbackResponse
 {
-    constructor(callback: Callback, next: di.NextFunction)
+    constructor(callback: Callback, next: akala.NextFunction)
     {
         super({ decodeStrings: true });
         this.headers = {};
@@ -55,6 +76,8 @@ class MyResponse extends stream.Writable implements CallbackResponse
         this.send = callback
         this.json = callback
     }
+
+    data: any;
     headers = {};
     sendStatus: Callback
     status: Callback
@@ -88,10 +111,13 @@ class MyResponse extends stream.Writable implements CallbackResponse
             return this;
         }
         else
+        {
+            var self = this;
             Object.keys(field).forEach(function (key)
             {
-                this.setHeader(key, field[key]);
+                self.setHeader(key, field[key]);
             })
+        }
     }
     headersSent = false
     get = undefined
@@ -234,6 +260,49 @@ class MyResponse extends stream.Writable implements CallbackResponse
     end(data?: any, encoding?: string | Function, cb?: Function): void
     {
         this.write(data, encoding, cb);
-        this.send(this, this.chunks);
+        this.send(akala.extend(this, { data: this.chunks }));
+    }
+}
+
+export function handle(app: Router, root: string)
+{
+    return function handle(request: Request): PromiseLike<CallbackResponse>
+    {
+        function callback(status, data?)
+        {
+            if (isNaN(Number(status)))
+            {
+                var socketRes: CallbackResponse = status;
+                if (typeof (data) == 'undefined')
+                {
+                    data = status;
+                    status = null;
+                }
+            }
+            else
+                socketRes = { statusCode: status, data: undefined };
+            socketRes.statusCode = socketRes.statusCode || 200;
+            if (typeof (data) !== 'string' && typeof data != 'number')
+                data = JSON.stringify(data);
+            if (typeof (data) != 'undefined')
+                socketRes.data = data;
+
+            deferred.resolve(socketRes);
+        }
+
+        var requestInjector: WorkerInjector = new akala.Injector();
+        requestInjector.register('$request', request);
+        requestInjector.register('$callback', callback);
+        // log(request);
+        Object.defineProperty(request, 'injector', { value: requestInjector, enumerable: false, configurable: false, writable: false });
+        if (request.url == '/')
+            request.url = '';
+        request.url = root + request.url;
+
+        log(request.url);
+        var deferred = new akala.Deferred<CallbackResponse>();
+        app.handle(request, callback);
+
+        return deferred;
     }
 }

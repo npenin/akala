@@ -1,13 +1,13 @@
 import * as url from 'url';
 import * as http from 'http';
-import { Router as BaseRouter, NextFunction, RouterOptions, LayerOptions, Middleware1Extended as Middleware1, Middleware2Extended as Middleware2, Injector } from '@akala/core';
+import { Router as BaseRouter, NextFunction, RouterOptions, LayerOptions, Middleware1, Middleware2, ErrorMiddleware1, ErrorMiddleware2, Injector, Layer, Route } from '@akala/core';
 import * as worker from '../worker-meta'
 import { HttpRoute } from './route';
 import { HttpLayer } from './layer';
 var debug = require('debug')('akala:router');
 var routing = require('routington');
 
-export type httpHandler = (req: Response, res: Response) => void;
+export type httpHandler = (req: Request, res: Response) => void;
 
 
 export type requestHandlerWithNext = (req: Request, res: Response, next: NextFunction) => void;
@@ -55,7 +55,7 @@ export interface Request extends http.IncomingMessage
     query: { [key: string]: any };
     path: string;
     protocol: string;
-    injector: Injector;
+    injector?: Injector;
 }
 export interface Response extends http.ServerResponse
 {
@@ -64,9 +64,9 @@ export interface Response extends http.ServerResponse
     json(content: any): Response;
 }
 
-export class Router<T extends (Middleware1<any> | Middleware2<any, any>)> extends BaseRouter<T, HttpLayer<T>, HttpRoute<T>> implements Methods<(path: string, ...handlers: T[]) => Router<T>>
+export class Router<T extends (Middleware1<any> | Middleware2<any, any>), U extends ErrorMiddleware1<any> | ErrorMiddleware2<any, any>> extends BaseRouter<T, U, HttpLayer<T>, HttpRoute<T>> implements Methods<(path: string, ...handlers: T[]) => Router<T, U>>
 {
-    constructor(options: RouterOptions)
+    constructor(options?: RouterOptions)
     {
         super(options);
     }
@@ -112,10 +112,10 @@ export class Router<T extends (Middleware1<any> | Middleware2<any, any>)> extend
     'unsubscribe': (path: string, ...handlers: T[]) => this;
 }
 
-export class HttpRouter extends Router<httpHandlerWithNext>
+export class HttpRouter extends Router<requestHandlerWithNext, errorHandlerWithNext>
 {
 
-    constructor(options: RouterOptions)
+    constructor(options?: RouterOptions)
     {
         super(options);
     }
@@ -123,6 +123,19 @@ export class HttpRouter extends Router<httpHandlerWithNext>
     public attachTo(server: http.Server)
     {
         var self = this;
+        server.on('upgrade', (req: Request, socket, head) =>
+        {
+            req.ip = req.socket.remoteAddress;
+            var uri = url.parse(req.url, true);
+            req.url = uri.pathname;
+            req.query = uri.query;
+            debugger;
+            self.handle(req, socket, head, function ()
+            {
+                console.error('ws deadend');
+                console.error(arguments)
+            });
+        })
         server.on('request', (req: Request, res: Response) =>
         {
             req.ip = req.socket.remoteAddress;
@@ -159,6 +172,32 @@ export class HttpRouter extends Router<httpHandlerWithNext>
                 }
             self.handle(req, res, function () { console.error('deadend') });
         });
+    }
+
+    public upgrade(path: string, upgradeSupport: string, ...rest: ((request: Request, socket, head) => void)[])
+    {
+        var route = this.route(path);
+        route.addHandler((layer: HttpLayer<any>) =>
+        {
+            // console.log('building upgrade layer for ' + path);
+            route.methods['get'] = true;
+            layer.isApplicable = <TRoute extends Route<any, Layer<any>>>(req, route: TRoute) =>
+            {
+                var method = req.method.toLowerCase();
+                // console.log('upgrade layer received ' + method);
+                if (method == 'get')
+                {
+                    if (req.headers['connection'].toLowerCase() == 'upgrade' && req.headers['upgrade'].toLowerCase() == 'websocket')
+                    {
+                        // log('layer received upgrade request');
+                        return true;
+                    }
+                }
+                return false;
+            }
+            return layer;
+        }, rest);
+        return this;
     }
 
     public handle(req, res, ...rest)
@@ -263,13 +302,14 @@ export interface CallbackResponse
     headers?: { [header: string]: any };
     statusCode?: number;
     statusMessage?: string;
+    data: any;
 }
 
 export type workerRequestHandler = (req: worker.Request, callback: worker.Callback) => void;
 export type workerErrorHandler = (error: any, req: worker.Request, callback: worker.Callback) => void;
 export type workerHandler = workerRequestHandler | workerErrorHandler;
 
-export class WorkerRouter extends Router<workerHandler>
+export class WorkerRouter extends Router<workerRequestHandler, workerErrorHandler>
 {
     constructor(options?: RouterOptions)
     {
@@ -366,8 +406,8 @@ export class WorkerRouter extends Router<workerHandler>
                 'Content-Length': Buffer.byteLength(allow),
                 'Content-Type': 'text/plain',
                 'X-Content-Type-Options': 'nosniff'
-            }
-        }, allow);
+            }, data: allow
+        });
     }
 }
 
@@ -385,10 +425,15 @@ export function wrouter(options?: RouterOptions): WorkerRouter
 http.METHODS.concat('ALL').forEach(function (method)
 {
     method = method.toLowerCase();
-    Router.prototype[method] = function (this: Router<any>, path: string, ...rest)
+    Router.prototype[method] = function (this: Router<any, any>, path: string, ...rest)
     {
-        var route = this.route(path)
-        route[method].apply(route, rest)
-        return this
+        var route = this.route(path);
+        route.addHandler((layer: HttpLayer<any>) =>
+        {
+            layer.method = method;
+            route.methods[method] = true;
+            return layer;
+        }, rest);
+        return this;
     }
 })
