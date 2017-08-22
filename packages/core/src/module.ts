@@ -30,12 +30,12 @@ export class Module extends di.Injector
 
     private starting: boolean;
 
-    public run(toInject: string[], f: Function)
+    public run(toInject: string[], f: di.Injectable<any>)
     {
         this.emitter.on('run', di.injectWithName(toInject, f));
     }
 
-    public init(toInject: string[], f: Function)
+    public init(toInject: string[], f: di.Injectable<any>)
     {
         if (!toInject || toInject.length == 0)
             this.emitter.on('init', f);
@@ -43,7 +43,7 @@ export class Module extends di.Injector
             this.emitter.on('init', di.injectWithName(toInject, f));
     }
 
-    public start(toInject?: string[], f?: Function)
+    public start(toInject?: string[], f?: di.Injectable<any>)
     {
         if (arguments.length == 0)
             Module.o.start(this.name);

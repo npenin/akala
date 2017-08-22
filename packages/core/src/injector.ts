@@ -9,8 +9,8 @@ function ctorToFunction(this: new () => any)
     return new (Function.prototype.bind.apply(this, args));
 }
 
-export type Injected = (instance?: any) => any;
-export type Injectable<T> = () => T;
+export type Injected<T> = (instance?: any) => T;
+export type Injectable<T> = (...args: any[]) => T;
 
 
 export class Injector
@@ -42,9 +42,14 @@ export class Injector
         })
     }
 
-    public inject<T>(a: Injectable<T> | Function)
+    public inject<T>(a: Injectable<T>)
     {
         return this.injectWithName(a['$inject'] || getParamNames(a), a);
+    }
+
+    public injectNew<T>(ctor: Injectable<T>)
+    {
+        return this.inject(ctorToFunction.bind(ctor));
     }
 
     public resolve(param: '$http'): Http
@@ -68,9 +73,7 @@ export class Injector
         return injectWithName(toInject, ctorToFunction.bind(ctor));
     }
 
-    public injectWithName<T>(toInject: string[], a: Injectable<T>): Injectable<T>
-    public injectWithName(toInject: string[], a: Function): Injected
-    public injectWithName<T>(toInject: string[], a: Function | Injectable<T>): Injected 
+    public injectWithName<T>(toInject: string[], a: Injectable<T>): Injected<T>
     {
         var paramNames = <string[]>getParamNames(a);
         var self = this;
@@ -93,14 +96,15 @@ export class Injector
             {
                 var args = [];
                 var unknownArgIndex = 0;
-                for (var param of paramNames)
+                for (var param of toInject)
                 {
-                    if (param in toInject)
-                        args[args.length] = self.resolve(param)
+                    var resolved = self.resolve(param);
+                    if (resolved && paramNames.indexOf(param) == args.length)
+                        args[args.length] = resolved;
                     else if (typeof (arguments[unknownArgIndex]) != 'undefined')
                         args[args.length] = arguments[unknownArgIndex++];
                     else
-                        args[args.length] = null;
+                        args[args.length] = resolved;
                 }
                 return a.apply(instance, args);
             }
@@ -171,12 +175,17 @@ export function inspect()
     return defaultInjector.inspect();
 }
 
-export function inject<T>(a: Function | Injectable<T>)
+export function inject<T>(a: Injectable<T>)
 {
     return defaultInjector.inject(a);
 }
 
-export function injectWithName<T>(toInject: string[], a: Function | Injectable<T>)
+export function injectNew<T>(a: Injectable<T>)
+{
+    return defaultInjector.injectNew(a);
+}
+
+export function injectWithName<T>(toInject: string[], a: Injectable<T>)
 {
     return defaultInjector.injectWithName(toInject, a);
 }

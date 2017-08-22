@@ -249,7 +249,7 @@ export class Parser
 
     public static parseBoolean(expression): ParsedBoolean
     {
-        var formatter = formatters.identity;
+        var formatter: (o: any) => any = formatters.identity;
         if (expression[0] == '!')
         {
             formatter = formatters.negate;
@@ -283,7 +283,7 @@ export class Parser
     public static parseFunction(expression: string): ParsedFunction
     {
         var length = 0;
-        var formatter = formatters.identity;
+        var formatter: (o: any) => any = formatters.identity;
         if (expression[0] == '!')
         {
             formatter = formatters.negate;
@@ -375,7 +375,7 @@ export class Parser
 
 
             if (item instanceof ParsedBoolean || item instanceof ParsedString || item instanceof ParsedNumber)
-                results.push(item.value);
+                results.push(item);
             else if (item instanceof ParsedBinary)
                 results.push(item.evaluate.bind(item));
             else

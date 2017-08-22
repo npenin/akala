@@ -2,10 +2,11 @@ import * as r from '../router'
 import { NextFunction as Next } from '../eachAsync'
 
 type handlerType = ({ url: string, params: any }, next: Next) => void;
+type errorhandlerType = (error: any, { url: string, params: any }, next: Next) => void;
 
 type Layer = r.Layer<handlerType> & r.IRoutable<handlerType>;
 
-class Router extends r.Router<handlerType, Layer, r.Route<handlerType, Layer>>
+class Router extends r.Router<handlerType, errorhandlerType, Layer, r.Route<handlerType, Layer>>
 {
     constructor(options?: r.RouterOptions)
     {
@@ -24,7 +25,7 @@ class Router extends r.Router<handlerType, Layer, r.Route<handlerType, Layer>>
 var router = new Router();
 
 debugger;
-router.use('/api/', function (req, next)
+router.use('/api/', function (req, next: Next)
 {
     console.log('api');
     next();

@@ -33,9 +33,9 @@ export function object(o: any, body: (element: any, i: string, next: NextFunctio
     }, complete);
 }
 
-export function any<T>(array: T[], body: (element: T, i: number, next: NextFunction) => void, complete: NextFunction)
-export function any(o: any, body: (element: any, i: string, next: NextFunction) => void, complete: NextFunction)
-export function any(it: any, body: (element: any, i: string | number, next: NextFunction) => void, complete: NextFunction)
+export function each<T>(array: T[], body: (element: T, i: number, next: NextFunction) => void, complete: NextFunction)
+export function each(o: any, body: (element: any, i: string, next: NextFunction) => void, complete: NextFunction)
+export function each(it: any, body: (element: any, i: any, next: NextFunction) => void, complete: NextFunction)
 {
     if (Array.isArray(it) || typeof (it['length']) != 'undefined')
         return array(it, body, complete);

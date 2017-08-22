@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events'
-export function Promisify<T>(o: T)
+export function Promisify<T>(o: T): PromiseLike<T>
 {
     if (o && o instanceof Promise)
         return o;
@@ -8,7 +8,7 @@ export function Promisify<T>(o: T)
 
     var deferred = new Deferred<T>();
     var e = new Error();
-    setTimeout(function ()
+    setImmediate(function ()
     {
         // console.debug(e.stack);
         deferred.resolve(o);
@@ -24,14 +24,12 @@ export function isPromiseLike<T>(o: T | PromiseLike<T>): o is PromiseLike<T>
     return o && o['then'] && typeof (o['then']) == 'function';
 }
 
-export function when(promises: PromiseLike<any>[])
+export function when<T>(promises: PromiseLike<T>[]): PromiseLike<T[]>
 {
-    if (promises && !promises.length)
-        return Promisify(null);
-    if (promises && promises.length == 1)
-        return promises[0];
+    if (!promises || !promises.length)
+        return Promisify([]);
     var results = new Array(promises.length);
-    var deferred = new Deferred<any[]>();
+    var deferred = new Deferred<T[]>();
     var completed = 0;
     promises.forEach(function (promise, idx)
     {
@@ -89,36 +87,38 @@ export class Deferred<T> extends EventEmitter implements PromiseLike<T>
         switch (this.$$status)
         {
             case PromiseStatus.Resolved:
-                var deferred = new Deferred();
+                var deferred = new Deferred<TResult>();
                 var result = onfulfilled(<T>this.$$value);
                 if (typeof (result) == 'undefined')
                     result = this.$$value;
-                setImmediate(deferred.resolve.bind(deferred), Promisify(result));
+                deferred.resolve(result);
                 return deferred;
             case PromiseStatus.Rejected:
-                var deferred = new Deferred();
+                var deferred = new Deferred<TResult>();
                 var rejection = onrejected(this.$$value);
                 if (typeof (rejection) == 'undefined')
                     rejection = this.$$value;
-                setImmediate(deferred.reject.bind(deferred), Promisify(rejection));
+                deferred.reject(rejection);
                 return deferred;
             case PromiseStatus.Pending:
                 var next = new Deferred<TResult>();
-                this.once('resolve', function (value)
+                this.on('resolve', function (value)
                 {
-                    var result = onfulfilled(value)
+                    var result = onfulfilled(value);
                     if (typeof (result) == 'undefined')
                         next.resolve(value);
                     else
                         next.resolve(result);
 
                 });
-                this.once('reject', function (value)
+                this.on('reject', function (value)
                 {
                     if (onrejected)
                         next.reject(onrejected(value));
                 });
                 return next;
+            default:
+                throw new Error('promise is in an invalid status ' + this.$$status);
         }
     }
 }

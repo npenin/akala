@@ -5,7 +5,6 @@
  * MIT Licensed
  */
 
-'use strict'
 
 /**
  * Module dependencies.
@@ -16,10 +15,10 @@ var debug = require('debug')('router')
 import * as flatten from 'array-flatten';
 import { Layer, LayerOptions } from './layer';
 // import * as methods from 'methods';
-import * as mixin from 'utils-merge';
-import * as parseUrl from 'parseurl';
+import { extend } from '../helpers';
+import { parse as parseUrl } from 'url';
 import { Route, IRoutable } from './route';
-
+import * as http from 'http'
 export { Layer, Route, LayerOptions, IRoutable };
 
 export type RoutableLayer<T extends Function> = Layer<T> & IRoutable<T>;
@@ -73,10 +72,10 @@ export type ErrorMiddleware2<T extends Request, U> = (error: any, req: T, res: U
 export type Middleware1Extended<T extends Request> = Middleware1<T> | ErrorMiddleware1<T>;
 export type Middleware2Extended<T extends Request, U> = Middleware2<T, U> | ErrorMiddleware2<T, U>;
 
-export type Router1<T extends Request, TLayer extends RoutableLayer<Middleware1Extended<T>>, TRoute extends Route<Middleware1Extended<T>, TLayer>> = Router<Middleware1Extended<T>, TLayer, TRoute>;
-export type Router2<T extends Request, U, TLayer extends RoutableLayer<Middleware2Extended<T, U>>, TRoute extends Route<Middleware2Extended<T, U>, TLayer>> = Router<Middleware2Extended<T, U>, TLayer, TRoute>;
+export type Router1<T extends Request, TLayer extends RoutableLayer<Middleware1<T>>, TRoute extends Route<Middleware1<T>, TLayer>> = Router<Middleware1<T>, ErrorMiddleware1<T>, TLayer, TRoute>;
+export type Router2<T extends Request, U, TLayer extends RoutableLayer<Middleware2<T, U>>, TRoute extends Route<Middleware2<T, U>, TLayer>> = Router<Middleware2<T, U>, ErrorMiddleware2<T, U>, TLayer, TRoute>;
 
-export abstract class Router<T extends (Middleware1Extended<any> | Middleware2Extended<any, any>), TLayer extends (Layer<T> & IRoutable<T>), TRoute extends Route<T, TLayer>>
+export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>), U extends (ErrorMiddleware1<any> | ErrorMiddleware2<any, any>), TLayer extends (Layer<T> & IRoutable<T>), TRoute extends Route<T, TLayer>>
 {
     constructor(options: RouterOptions)
     {
@@ -509,30 +508,27 @@ export abstract class Router<T extends (Middleware1Extended<any> | Middleware2Ex
      * @public
      */
     public use(...handlers: T[])
+    public use(...handlers: U[])
+    public use(path: string, ...handlers: U[])
     public use(path: string, ...handlers: T[])
-    public use(arg: string | T, ...handlers: T[])
+    public use(...handlers: (string | T | U)[])
     {
         var offset = 0
         var path = '/'
 
         // default path to '/'
         // disambiguate router.use([handler])
-        if (typeof arg !== 'function')
+        if (typeof handlers[0] !== 'function')
         {
-            while (Array.isArray(arg) && arg.length !== 0)
-            {
-                arg = arg[0]
-            }
-
             // first arg is the path
-            if (typeof arg !== 'function')
+            if (typeof handlers[0] == 'string')
             {
                 offset = 1
-                path = arg
+                path = <string>handlers.shift();
             }
         }
 
-        var callbacks: T[] = flatten(slice.call(arguments, offset))
+        var callbacks = flatten(<(T | U)[]>handlers)
 
         if (callbacks.length === 0)
         {
@@ -566,7 +562,7 @@ export abstract class Router<T extends (Middleware1Extended<any> | Middleware2Ex
         return this
     }
 
-    protected abstract buildLayer(path: string, options: LayerOptions, handler: T): TLayer;
+    protected abstract buildLayer(path: string, options: LayerOptions, handler: T | U): TLayer;
     protected abstract buildRoute(path: string): TRoute;
 
     /**
@@ -606,11 +602,11 @@ export abstract class Router<T extends (Middleware1Extended<any> | Middleware2Ex
      * @param {IncomingMessage} req
      * @private
      */
-    public static getPathname(req)
+    public static getPathname(req: http.IncomingMessage)
     {
         try
         {
-            return parseUrl(req).pathname;
+            return parseUrl(req.url).pathname;
         } catch (err)
         {
             return undefined;
@@ -649,12 +645,12 @@ export abstract class Router<T extends (Middleware1Extended<any> | Middleware2Ex
         }
 
         // make copy of parent for base
-        var obj = mixin({}, parent)
+        var obj = extend({}, parent)
 
         // simple non-numeric merging
         if (!(0 in params) || !(0 in parent))
         {
-            return mixin(obj, params)
+            return extend(obj, params)
         }
 
         var i = 0
@@ -684,7 +680,7 @@ export abstract class Router<T extends (Middleware1Extended<any> | Middleware2Ex
             }
         }
 
-        return mixin(obj, params)
+        return extend(obj, params)
     }
 
     protected static restore(fn, obj, ...props: string[])
