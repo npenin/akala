@@ -63,9 +63,15 @@ export class Injector
         return null;
     }
 
+    private inspecting: boolean = false;
+
     public inspect()
     {
+        if (this.inspecting)
+            return;
+        this.inspecting = true;
         console.log(this.injectables);
+        this.inspecting = false;
     }
 
     public injectNewWithName(toInject: string[], ctor: Function)
