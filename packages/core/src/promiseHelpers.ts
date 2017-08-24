@@ -42,7 +42,9 @@ export function when<T>(promises: PromiseLike<T>[]): PromiseLike<T[]>
             {
                 deferred.reject(rejection);
             });
-    })
+    });
+
+    return deferred;
 }
 
 export enum PromiseStatus
