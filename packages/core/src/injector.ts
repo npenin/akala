@@ -1,5 +1,9 @@
 import { getParamNames } from './reflect';
 import { Http } from './web';
+import * as debug from 'debug';
+
+var log = debug('akala:core:injector');
+
 
 function ctorToFunction(this: new () => any)
 {
@@ -56,10 +60,17 @@ export class Injector
     public resolve(param: string): any;
     public resolve(param: string)
     {
+        log('resolving ' + param);
         if (typeof (this.injectables[param]) != 'undefined')
+        {
+            log('resolved ' + param + ' to %o', this.injectables[param]);
             return this.injectables[param];
+        }
         if (this.parent)
+        {
+            log('trying parent injector');
             return this.parent.resolve(param);
+        }
         return null;
     }
 
