@@ -59,13 +59,20 @@ export function handleResponse(res: router.Response, locationReplacer: (key: str
         res.writeHead(response.statusCode, response.statusMessage);
         if (Array.isArray(response.data))
         {
+            log('sending array');
             response.data.forEach(function (chunk)
             {
                 res.write(chunk);
             });
         }
+        else if (Buffer.isBuffer(response.data))
+        {
+            log('sending buffer');
+            res.write(response.data);
+        }
         else 
         {
+            log('sending object');
             if (typeof (response.data) !== 'string' && typeof response.data != 'number')
                 response.data = JSON.stringify(response.data);
             if (typeof (response.data) != 'undefined')
