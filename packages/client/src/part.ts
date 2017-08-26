@@ -31,7 +31,14 @@ export class Part extends EventEmitter
 
     public register(partName: string, control: PartInstance)
     {
-        this.parts.register(partName, control);
+        var parts = this.parts;
+        parts.register(partName, control);
+        parts.keys().forEach(function (partName)
+        {
+            if (partName == '$injector')
+                return;
+            (<PartInstance>parts.resolve(partName)).element.empty();
+        })
     }
 
     public apply<TScope extends IScope<any>>(partInstance: () => PartInstance, part: PartDefinition<TScope>, params: any, next: akala.NextFunction)
@@ -66,6 +73,7 @@ export class Part extends EventEmitter
         var self = this;
         this.router.use(url, function (req: Request, next: akala.NextFunction)
         {
+            console.log('apply part for url' + url);
 
             self.apply(() => self.parts.resolve(partName), part, req.params, next);
         });
