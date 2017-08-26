@@ -78,8 +78,6 @@ export function handleResponse(res: router.Response, locationReplacer: (key: str
             if (typeof (response.data) != 'undefined')
                 res.write(response.data);
         }
-        console.log(response.statusCode);
-        console.log(response.data);
         res.end();
     }
 }
