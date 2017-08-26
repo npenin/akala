@@ -10,7 +10,6 @@ export class Request implements akala.Request
     {
         this.url = loc || '/';
         this.uri = url.parse(this.url, true);
-
     }
 
     public url: string;
