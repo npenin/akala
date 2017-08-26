@@ -130,11 +130,11 @@ export class HttpRouter extends Router<requestHandlerWithNext, errorHandlerWithN
             req.url = uri.pathname;
             req.query = uri.query;
             debugger;
-            self.handle(req, socket, head, function ()
+            self.handle(req, socket, function ()
             {
                 console.error('ws deadend');
                 console.error(arguments)
-            });
+            }, head);
         })
         server.on('request', (req: Request, res: Response) =>
         {

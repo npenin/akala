@@ -266,7 +266,7 @@ class MyResponse extends stream.Writable implements CallbackResponse
 
 export function handle(app: Router, root: string)
 {
-    return function handle(request: Request): PromiseLike<CallbackResponse>
+    return function handle(request: Request, next: akala.NextFunction): PromiseLike<CallbackResponse>
     {
         function callback(status, data?)
         {
@@ -275,14 +275,17 @@ export function handle(app: Router, root: string)
                 var socketRes: CallbackResponse = status;
                 if (typeof (data) == 'undefined')
                 {
-                    data = status;
+                    if (typeof (status) == 'undefined')
+                        socketRes = { statusCode: 404, data: undefined };
+                    else
+                        data = socketRes.data;
                     status = null;
                 }
             }
             else
                 socketRes = { statusCode: status, data: undefined };
             socketRes.statusCode = socketRes.statusCode || 200;
-            if (typeof (data) !== 'string' && typeof data != 'number')
+            if (!Buffer.isBuffer(data) && typeof (data) !== 'string' && typeof data != 'number')
                 data = JSON.stringify(data);
             if (typeof (data) != 'undefined')
                 socketRes.data = data;

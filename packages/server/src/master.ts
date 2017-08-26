@@ -170,10 +170,10 @@ fs.exists(configFile, function (exists)
                             finished = true;
 
                             if (folder != 'assets')
-                                app.use('/assets/' + (folder == 'core' ? '' : folder + '/'), <any>st('node_modules/' + plugin + '/assets'));
-                            app.use('/bower_components/' + (folder == 'core' ? '' : folder + '/'), <any>st('node_modules/' + plugin + '/bower_components'));
+                                app.use('/assets/' + (folder == 'core' ? '' : folder + '/'), st('node_modules/' + plugin + '/assets'));
+                            app.use('/bower_components/' + (folder == 'core' ? '' : folder + '/'), st('node_modules/' + plugin + '/bower_components'));
 
-                            app.use('/' + folder, <any>st('node_modules/' + plugin + '/views'));
+                            app.use('/' + folder, st('node_modules/' + plugin + '/views'));
 
                             var localWorkers = getDependencies();
                             log('localWorkers for %s: %s', folder, localWorkers);
