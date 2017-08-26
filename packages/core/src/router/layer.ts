@@ -13,10 +13,10 @@
  */
 
 import * as pathRegexp from 'path-to-regexp';
-import * as log from 'debug';
+import * as debug from 'debug';
 import { NextFunction } from '../eachasync';
 import { Route } from './route';
-var debug = log('router:layer');
+var log = debug('router:layer');
 
 /**
  * Module variables.
@@ -60,7 +60,7 @@ export class Layer<T extends Function>
             return new Layer<T>(path, options, fn)
         }
 
-        debug('new %o', path)
+        log('new %o', path)
         var opts: LayerOptions = options || { length: 2 }
 
         this.handler = fn
@@ -88,7 +88,7 @@ export class Layer<T extends Function>
 
         if (!this.isErrorHandler)
         {
-            debug('skipping non error handler')
+            log('skipping non error handler')
             // not a standard error handler
             return next(error);
         }
@@ -110,7 +110,7 @@ export class Layer<T extends Function>
 
         if (!this.isRequestHandler)
         {
-            debug('skipping non request handler')
+            log('skipping non request handler')
             // not a standard request handler
             return next()
         }
@@ -137,7 +137,7 @@ export class Layer<T extends Function>
     public match(path: string)
     {
         var match: RegExpExecArray;
-        debug(this.regexp);
+        log(this.regexp);
         if (path != null)
         {
             // fast path non-ending match for / (any path matches)
@@ -162,7 +162,7 @@ export class Layer<T extends Function>
 
         if (!match)
         {
-            debug(this.regexp);
+            log(this.regexp);
             this.params = undefined
             this.path = undefined
             return false

@@ -10,7 +10,6 @@ export function Promisify<T>(o: T): PromiseLike<T>
     var e = new Error();
     setImmediate(function ()
     {
-        // console.debug(e.stack);
         deferred.resolve(o);
     });
     return deferred;
