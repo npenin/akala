@@ -34,10 +34,15 @@ export abstract class Control<T> implements IControl
         var requiresNewScope = false;
         Object.keys(controls).forEach(function (key)
         {
-            var control: Control<any>;
-            applicableControls.push(control = Control.injector.resolve(key));
-            if (control.scope)
-                requiresNewScope = true;
+            var control: Control<any> = Control.injector.resolve(key);
+            if (control)
+            {
+                applicableControls.push(control);
+                if (control.scope)
+                    requiresNewScope = true;
+            }
+            else
+                console.error('missing control ' + key);
         });
 
         applicableControls.sort(function (a, b) { return a.priority - b.priority });
