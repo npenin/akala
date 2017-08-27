@@ -12,7 +12,7 @@ export type PartInstance = { scope: any, element: JQuery };
 @service('$part', '$template', '$router', '$location')
 export class Part extends EventEmitter
 {
-    constructor(private template: Template, private router: Router, location: Location)
+    constructor(private template: Template, private router: Router, private location: Location)
     {
         super();
         location.on('changing', () =>
@@ -33,12 +33,7 @@ export class Part extends EventEmitter
     {
         var parts = this.parts;
         parts.register(partName, control);
-        parts.keys().forEach(function (partName)
-        {
-            if (partName == '$injector')
-                return;
-            (<PartInstance>parts.resolve(partName)).element.empty();
-        })
+        this.location.refresh();
     }
 
     public apply<TScope extends IScope<any>>(partInstance: () => PartInstance, part: PartDefinition<TScope>, params: any, next: akala.NextFunction)

@@ -224,6 +224,11 @@ export class LocationService extends EventEmitter
             location.assign(path);
     }
 
+    public refresh()
+    {
+        this.dispatch(this.current, false);
+    }
+
     public replace(path: string, state?: any, init?: boolean, dispatch?: boolean)
     {
         // var ctx = new Context(path, state);
