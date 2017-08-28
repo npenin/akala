@@ -32,8 +32,8 @@ export interface resolve
     (param: '$request'): Request
     (param: '$callback'): Callback
     (param: '$router'): Router
-    (param: '$io'): (namespace: string) => SocketIOClient.Socket
-    (param: '$bus'): SocketIOClient.Socket
+    (param: '$io'): <TConnection extends jsonrpc.Connection>(namespace: string) => PromiseLike<jsonrpc.Client<TConnection>>
+    (param: '$bus'): jsonrpc.Client<jsonrpc.Connection>
     (param: '$master'): MasterRegistration
     (param: string): any
 }
