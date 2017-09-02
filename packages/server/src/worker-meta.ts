@@ -266,7 +266,7 @@ class MyResponse extends stream.Writable implements CallbackResponse
 
 export function handle(app: Router, root: string)
 {
-    return function handle(request: Request, next: akala.NextFunction): PromiseLike<CallbackResponse>
+    return function handle(request: Request, next?: akala.NextFunction): PromiseLike<CallbackResponse>
     {
         function callback(status, data?)
         {
