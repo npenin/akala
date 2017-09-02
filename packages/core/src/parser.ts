@@ -471,7 +471,7 @@ export class Parser
             {
                 for (var i in output)
                 {
-                    if (output[i] instanceof Function)
+                    if ((<any>output[i]) instanceof Function)
                         result[i] = (<Function><any>output[i])(value, asBinding);
                     else
                         result[i] = output[i];
