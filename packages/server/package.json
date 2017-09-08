@@ -1,47 +1,48 @@
 {
   "name": "@akala/server",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "tsc -p ."
+    "prepare": "tsc -p ."
   },
+  "files": [
+    "dist"
+  ],
   "typings": "dist/index.d.ts",
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/express": "^4.0.37",
     "browserify": "^13.1.0",
     "gulp": "^3.9.1",
-    "gulp-typescript": "^3.2.0",
+    "gulp-typescript": "^3.2.2",
     "longjohn": "^0.2.12",
     "merge2": "^1.1.0",
     "tsd": "^0.6.5",
-    "@types/express": "^4.0.36",
-    "typescript": "^2.4.1"
+    "typescript": "^2.5.2"
   },
   "dependencies": {
-    "@akala/core": "^1.0.3",
+    "@akala/core": "^1.0.8",
     "@types/debug": "0.0.29",
     "@types/form-data": "^2.2.0",
     "@types/json-rpc-ws": "^4.0.0",
     "@types/orchestrator": "0.0.31",
     "@types/request": "0.0.42",
-    "@types/serve-static": "^1.7.31",
+    "@types/serve-static": "^1.7.32",
     "@types/ws": "^3.0.2",
     "@types/xml2js": "0.0.33",
     "ajax-request-wrapper": "^1.0.2",
     "debug": "^2.6.8",
     "express": "^4.15.4",
-    "json-rpc-ws": "^4.0.0",
+    "json-rpc-ws": "^4.0.1",
     "orchestrator": "^0.3.8",
     "request": "^2.81.0",
     "routington": "^1.0.3",
     "sequencify": "0.0.7",
     "server-static": "^2.0.5",
-    "socket.io": "^1.7.4",
-    "socket.io-client": "^1.7.4",
-    "source-map-support": "^0.4.15",
+    "source-map-support": "^0.4.17",
     "underscore": "^1.8.3",
     "ws": "^3.1.0"
   }
