@@ -68,9 +68,9 @@ var root: string;
 
 fs.exists(configFile, function (exists)
 {
-    var config = null;
-    if (exists)
-        config = require(configFile);
+    var config = exists && require(configFile) || {};
+
+    root = config && config['@akala/server'] && config['@akala/server'].root;
 
     fs.readFile(sourcesFile, 'utf8', function (error, sourcesFileContent)
     {
@@ -169,16 +169,13 @@ fs.exists(configFile, function (exists)
                                 next();
                             finished = true;
 
-                            if (folder != 'assets')
-                                app.use('/assets/' + (folder == 'core' ? '' : folder + '/'), st('node_modules/' + plugin + '/assets'));
+                            app.use('/assets/' + folder + '/', st('node_modules/' + plugin + '/assets'));
                             app.use('/bower_components/' + (folder == 'core' ? '' : folder + '/'), st('node_modules/' + plugin + '/bower_components'));
 
                             app.use('/' + folder, st('node_modules/' + plugin + '/views'));
 
                             var localWorkers = getDependencies();
                             log('localWorkers for %s: %s', folder, localWorkers);
-                            if (plugin == '@akala-modules/core' && config[plugin])
-                                root = config[plugin].root;
                             callback({
                                 config: config && config[plugin], workers: akala.map(localWorkers, function (dep)
                                 {
