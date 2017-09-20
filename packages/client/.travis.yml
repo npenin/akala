@@ -1,16 +1,18 @@
 language: node_js
 before_install:
-  - npm install typescript -g
-  - npm install browserify -g
+- npm install typescript -g
+- npm install browserify -g
 node_js:
 - node
 deploy:
-  provider: releases
+- provider: releases
   api_key:
     secure: jjvKoy0+3RNq2DpJ4mABdLcP4osypz6/5p6Lj6MmElBd8HKXmSPlvjVVaQxfSc1WSZcjsbg3VQvgnARedLVT9Iix9vRI6PJAD/0SDCvpxpfmXDZaKhW9gfUWZdVkUgRju1El5ZyHmavFFP0Hp3ofd8zoZwoMKNUrFCOXMtZ0tuIbiMq4sbgNFeFRUpr3dWLTEqCZDGC5x9091elbK++aP/HZokuxqvknwlA+s15jOmIcvxFdPKyEpbtXkRxxJKuuOTa0VvQ11x6MI1etbHNeOY8NB/EvS5/jgKhlRqrOhH82PAViGGAWq2BK1Qk70h8zwCQWz+E15xQRo9USdy1n6af7P/nXcGe02dj3cAH5IGD3PdAla10m8ar713QqTmMo5oQrBVMZ4GSm0NYOKHpdLP2oL1cwpbGN6FxcOQ+Me4QetRAeil7qiarkGB7CrSOIto53A4vyWQm66p2drHhSkSNvVmsPpwFjd9mb2GUH2QMjsdzBwMEb47vRp+7h/ixT+7MDKMtHjGHhzilZFUEEjhKwTjx5dPr57kAt/5vyeYoIUE3KFaCvhovZ6bUT8uOcuc6Z3jzdeq6NMAF6ZeAZvT25YaHIMw6IANgA8sz94pbay/7fmVA9HJbBW4Zs0dKDNQXDnHPBacNP+/T5c4SHg8H+/KZy8FxPj/bHYnzqGXQ=
   file: akala.js
   skip_cleanup: true
   on:
-    tags: true
-  on:
     repo: npenin/akala-client
+- provider: npm
+  api_key:
+    secure: Br3IFmHvWhlLeV51PbD9vh5L/2Jpkm3/oibmJv7R4J/q2SG5gzTXjDNa3bsF7E6Ch/bkqdCBWjd5D2V1wmJF/4GWeRyXu/AOzuy29zUWqx48Fs4tPKM6Wx8iZNI1COLUe+NrdjB+MTET9yKjKY6eozZAB5N4FBwCuoFnT+GhqncrUA3rjzwVy3uPGc4oqhEqE0DKckgo94nngL+DutCRLx2gjPpAjB9WP7kN8XHZfp/qsD9z5pgo04jITAYGX5raRLRriUIkkz9ZzWHmeITLebFpX8Z1vUzg3OJWnAjUjo5mRbngCnsMbEcFkHmj6VskuPHCFe1EAdjn5ACcowd6bxorsi8uRIC01Epty4ZsIliWUSpYhhHiFBOGzyKHrbZLV61srVzsjjDZfHVYt/8vsxjmhwOChSLI+omqDN8T2AoX3lJsI/UdCMEFvis6TgxLVPnaKFjBHg9XwgEyvp33AglBQMKrqEF+Tvw2NhOKDRv7FYlPu+ZXoWrss0L9J5ZINKoNq7/gxhZ4GjjWSWV+ccfJyPQEqIGQVYbmuUDOrs2pdYbqsLSAQA9QfjftMoImvjHN3DUSUXKGt/V4LCqiDU7A3wWuuM79CS+zKOUEzVHnhgT2VkGGnCMttSEKCeB6neW8t/C7YqckjKBBGVAMN5zrc44Cg1VMSVA7KK1KMYg=
+  email: "nicolas.penin@dragon-angel.fr"
