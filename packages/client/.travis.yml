@@ -8,7 +8,8 @@ deploy:
 - provider: releases
   api_key:
     secure: jjvKoy0+3RNq2DpJ4mABdLcP4osypz6/5p6Lj6MmElBd8HKXmSPlvjVVaQxfSc1WSZcjsbg3VQvgnARedLVT9Iix9vRI6PJAD/0SDCvpxpfmXDZaKhW9gfUWZdVkUgRju1El5ZyHmavFFP0Hp3ofd8zoZwoMKNUrFCOXMtZ0tuIbiMq4sbgNFeFRUpr3dWLTEqCZDGC5x9091elbK++aP/HZokuxqvknwlA+s15jOmIcvxFdPKyEpbtXkRxxJKuuOTa0VvQ11x6MI1etbHNeOY8NB/EvS5/jgKhlRqrOhH82PAViGGAWq2BK1Qk70h8zwCQWz+E15xQRo9USdy1n6af7P/nXcGe02dj3cAH5IGD3PdAla10m8ar713QqTmMo5oQrBVMZ4GSm0NYOKHpdLP2oL1cwpbGN6FxcOQ+Me4QetRAeil7qiarkGB7CrSOIto53A4vyWQm66p2drHhSkSNvVmsPpwFjd9mb2GUH2QMjsdzBwMEb47vRp+7h/ixT+7MDKMtHjGHhzilZFUEEjhKwTjx5dPr57kAt/5vyeYoIUE3KFaCvhovZ6bUT8uOcuc6Z3jzdeq6NMAF6ZeAZvT25YaHIMw6IANgA8sz94pbay/7fmVA9HJbBW4Zs0dKDNQXDnHPBacNP+/T5c4SHg8H+/KZy8FxPj/bHYnzqGXQ=
-  file: akala.js
+  file_glob: true
+  file: *
   skip_cleanup: true
   on:
     repo: npenin/akala-client
