@@ -84,7 +84,11 @@ export abstract class Control<T> implements IControl
 
             Object.keys(controls).forEach(function (key)
             {
-                applicableControls.push(Control.injector.resolve(key));
+                var control: Control<any> = Control.injector.resolve(key);
+                if (control)
+                    applicableControls.push(control);
+                else
+                    console.error('missing control ' + key);
             });
 
             applicableControls.sort(function (a, b) { return a.priority - b.priority });
