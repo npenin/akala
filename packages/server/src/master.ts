@@ -82,7 +82,10 @@ fs.exists(configFile, function (exists)
             fs.readdir('node_modules/' + source, function (err, modules)
             {
                 if (err)
-                    throw err;
+                {
+                    console.error(err);
+                    return;
+                }
 
                 modules.forEach(function (folder)
                 {
