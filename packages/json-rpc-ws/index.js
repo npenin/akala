@@ -1,7 +1,7 @@
 'use strict';
-var Client = require('./lib/client');
-var Server = require('./lib/server');
-var Errors = require('./lib/errors');
+var Client = require('./lib/client').default;
+var Server = require('./lib/server').Server;
+var Errors = require('./lib/errors').default;
 var logger = require('debug')('json-rpc-ws');
 
 /**
@@ -22,7 +22,8 @@ var JsonRpcWs = {
  * @returns {Object} JsonRpcWs Server instance
  * @public
  */
-JsonRpcWs.createServer = function createServer() {
+JsonRpcWs.createServer = function createServer()
+{
 
   logger('createServer');
   return new JsonRpcWs.Server();
@@ -35,7 +36,8 @@ JsonRpcWs.createServer = function createServer() {
  * @returns {Object}JsonRpcWs Client instance
  * @public
  */
-JsonRpcWs.createClient = function createClient() {
+JsonRpcWs.createClient = function createClient()
+{
 
   logger('createClient');
   return new JsonRpcWs.Client();

@@ -9,7 +9,6 @@
   "main": "index.js",
   "scripts": {
     "test": "lab",
-    "lint": "eslint .",
     "validate": "npm ls",
     "jsdoc": "jsdoc",
     "docs": "jsdoc index.js lib -d docs",
@@ -30,7 +29,6 @@
     "ws": "^3.0.0"
   },
   "pre-commit": [
-    "lint",
     "validate",
     "test"
   ],
@@ -40,6 +38,11 @@
     "lib/*"
   ],
   "devDependencies": {
+    "@types/assert": "0.0.31",
+    "@types/uuid": "^3.4.2",
+    "@types/ws": "^3.2.0",
+    "@types/debug": "0.0.30",
+    "@types/node": "^8.0.32",
     "browserify": "^14.0.0",
     "code": "^5.0.0",
     "eslint": "^4.1.0",

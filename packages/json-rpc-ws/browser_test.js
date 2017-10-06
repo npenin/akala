@@ -6,11 +6,13 @@
  * as part of the test suite, it is not part of the
  * library itself
  */
+require('debug').enable('json-rpc-ws');
 
 var JsonRpcWs = require('./browser');
 var browserClient = JsonRpcWs.createClient();
 
-browserClient.expose('info', function info(params, reply) {
+browserClient.expose('info', function info(params, reply)
+{
 
   reply(null, 'browser');
 });
