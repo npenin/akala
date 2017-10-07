@@ -4,6 +4,7 @@ var uuid_1 = require("uuid");
 var debug = require("debug");
 var assert_1 = require("assert");
 var errors_1 = require("./errors");
+var stream = require("stream");
 var logger = debug('json-rpc-ws');
 /**
  * Quarantined JSON.parse try/catch block in its own function
@@ -99,6 +100,7 @@ var Connection = /** @class */ (function () {
      * @returns {void}
      */
     Connection.prototype.processPayload = function (payload) {
+        var _this = this;
         var version = payload.jsonrpc;
         var id = payload.id;
         var method = payload.method;
@@ -141,6 +143,25 @@ var Connection = /** @class */ (function () {
                 return this.sendError('invalidRequest', id, { info: 'no response handler for id ' + id });
             }
             delete this.responseHandlers[id];
+            if (payload.stream) {
+                if (!error) {
+                    var s = new stream.Readable(result);
+                    var f = this.responseHandlers[id] = function (error, result) {
+                        if (error)
+                            s.emit('error', error);
+                        else
+                            switch (result.event) {
+                                case 'data':
+                                    s.push(result);
+                                    _this.responseHandlers[id] = f;
+                                    break;
+                                case 'end':
+                                    s.emit('end');
+                                    break;
+                            }
+                    };
+                }
+            }
             return responseHandler.call(this, error, result);
         }
     };
@@ -192,6 +213,19 @@ var Connection = /** @class */ (function () {
             method: method
         };
         if (params) {
+            if (params instanceof stream.Readable) {
+                var self = this;
+                request.stream = true;
+                params.on('data', function (chunk) {
+                    if (typeof (chunk) == 'string')
+                        request.params = { event: 'data', data: chunk };
+                    self.sendRaw(request);
+                });
+                params.on('end', function () {
+                    request.params = { event: 'end' };
+                    self.sendRaw(request);
+                });
+            }
             request.params = params;
         }
         this.sendRaw(request);

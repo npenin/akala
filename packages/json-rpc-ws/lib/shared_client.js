@@ -71,7 +71,7 @@ var Client = /** @class */ (function (_super) {
                 }
             };
         }
-        else if (!connection_1.isBrowserSocket(this, socket)) {
+        else {
             socket.once('open', function clientConnected() {
                 // The client connected handler runs scoped as the socket so we can pass
                 // it into our connected method like thisk

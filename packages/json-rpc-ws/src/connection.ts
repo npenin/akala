@@ -4,6 +4,7 @@ import * as debug from 'debug';
 import { ok as Assert } from 'assert';
 import { default as Errors, Error as ConnectionError, ErrorTypes } from './errors';
 import * as ws from 'ws';
+import * as stream from 'stream';
 const logger = debug('json-rpc-ws');
 
 export interface Payload
@@ -14,6 +15,7 @@ export interface Payload
   params?: any;
   result?: string | object | Array<any> | number;
   error?: ConnectionError;
+  stream?: boolean;
 }
 
 /**
@@ -171,7 +173,6 @@ export class Connection
       }
       var handlerCallback = function handlerCallback(this: Connection, err: any, reply: ReplyCallback<any>)
       {
-
         logger('handler got callback %j, %j', err, reply);
         return this.sendResult(id, err, reply);
       };
@@ -190,7 +191,31 @@ export class Connection
       {
         return this.sendError('invalidRequest', id, { info: 'no response handler for id ' + id });
       }
+
       delete this.responseHandlers[id];
+      if (payload.stream)
+      {
+        if (!error)
+        {
+          var s = new stream.Readable(result as object);
+          var f = this.responseHandlers[id] = (error, result) =>
+          {
+            if (error)
+              s.emit('error', error);
+            else
+              switch (result.event)
+              {
+                case 'data':
+                  s.push(result);
+                  this.responseHandlers[id as string] = f;
+                  break;
+                case 'end':
+                  s.emit('end');
+                  break;
+              }
+          }
+        }
+      }
       return responseHandler.call(this, error, result);
     }
   }
@@ -234,9 +259,8 @@ export class Connection
    * @param {function} callback - optional callback for a reply from the message
    * @public
    */
-  public sendMethod(method: string, params: Array<any> | object | null, callback?: ReplyCallback<any>)
+  public sendMethod(method: string, params: Array<any> | object | null | stream.Readable, callback?: ReplyCallback<any>)
   {
-
     var id = uuid();
     Assert((typeof method === 'string') && (method.length > 0), 'method must be a non-empty string');
     Assert(params === null || params === undefined || params instanceof Object, 'params, if provided,  must be an array, object or null');
@@ -256,6 +280,24 @@ export class Connection
 
     if (params)
     {
+
+      if (params instanceof stream.Readable)
+      {
+        var self = this;
+        request.stream = true;
+        params.on('data', function (chunk)
+        {
+          if (typeof (chunk) == 'string')
+            request.params = { event: 'data', data: chunk };
+          self.sendRaw(request);
+        });
+        params.on('end', function ()
+        {
+          request.params = { event: 'end' };
+          self.sendRaw(request)
+        });
+      }
+
       request.params = params;
     }
 
