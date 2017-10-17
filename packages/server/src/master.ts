@@ -4,7 +4,8 @@ import * as https from 'https';
 import * as url from 'url';
 import * as fs from 'fs';
 import * as st from 'serve-static';
-import * as jsonrpc from 'json-rpc-ws';
+import * as jsonrpc from '@akala/json-rpc-ws';
+import * as ws from 'ws';
 import * as akala from '@akala/core';
 import { relative, sep as pathSeparator, dirname, join as pathJoin } from 'path';
 import { serveRouter } from './master-meta';
@@ -23,8 +24,6 @@ var master = new EventEmitter();
 master.setMaxListeners(Infinity);
 
 var port = process.argv[2] || '5678';
-
-debugger;
 
 if (process.execArgv && process.execArgv.length >= 1)
     process.execArgv[0] = process.execArgv[0].replace('-brk', '');
@@ -61,7 +60,7 @@ interface Connection extends jsonrpc.Connection
 }
 
 var socketModules: { [module: string]: Connection } = {};
-var modulesEvent = {};
+var modulesEvent: { [module: string]: EventEmitter } = {};
 var globalWorkers = {};
 var modulesDefinitions: { [name: string]: sequencify.definition } = {};
 var root: string;
@@ -172,20 +171,24 @@ fs.exists(configFile, function (exists)
                                 next();
                             finished = true;
 
-                            app.use('/assets/' + folder + '/', st('node_modules/' + plugin + '/assets'));
-                            app.use('/bower_components/' + (folder == 'core' ? '' : folder + '/'), st('node_modules/' + plugin + '/bower_components'));
+                            app.useGet('/assets/' + folder, st('node_modules/' + plugin + '/assets'));
+                            app.useGet('/bower_components/' + folder, st('node_modules/' + plugin + '/bower_components'));
 
-                            app.use('/' + folder, st('node_modules/' + plugin + '/views'));
+                            app.useGet('/' + folder, st('node_modules/' + plugin + '/views'));
 
                             var localWorkers = getDependencies();
                             log('localWorkers for %s: %s', folder, localWorkers);
                             callback({
-                                config: config && config[plugin], workers: akala.map(localWorkers, function (dep)
+                                config: config && config[plugin], workers: akala.grep(akala.map(localWorkers, function (dep)
                                 {
                                     log('resolving ' + dep + ' to ' + globalWorkers[dep]);
                                     return globalWorkers[dep];
-                                })
+                                }), function (dep)
+                                    {
+                                        return !dep;
+                                    })
                             });
+                            log('callback called')
                         });
 
                         var sockets = serveRouter(app, '/api/' + plugin, meta, {
@@ -208,25 +211,30 @@ fs.exists(configFile, function (exists)
 
                                 var proxy = this.$proxy(socket);
 
-                                socket.socket.on('close', function ()
-                                {
-                                    socketModules[param.module] = null;
-                                });
+                                if (socket.socket instanceof ws)
+                                    socket.socket.on('close', function ()
+                                    {
+                                        socketModules[param.module] = null;
+                                    });
                                 // socket.join(submodule);
 
                                 var moduleEvents = modulesEvent[param.module] = modulesEvent[param.module] || new EventEmitter();
 
                                 modulesEvent[param.module].on('after-master', function ()
                                 {
+                                    log('after-master');
                                     // console.log('emitting after-master for ' + submodule);
-                                    proxy['after-master']();
+                                    proxy['after-master'](null);
                                 });
 
-                                var deferred = new akala.Deferred<any>();
-                                // console.log(submodule);
-                                modulesEvent[param.module].emit('connected', deferred.resolve.bind(deferred));
+                                return new Promise<{ config: any, workers: string[] }>((resolve, reject) =>
+                                {
+                                    // console.log(submodule);
+                                    modulesEvent[param.module].emit('connected', resolve);
+                                });
 
-                                return deferred;
+                                // var deferred = new akala.Deferred<any>();
+                                // return deferred;
                             }
                         });
 
@@ -235,8 +243,9 @@ fs.exists(configFile, function (exists)
                             sockets.ready(null);
                         });
 
-                        cluster.setupMaster({
+                        cluster.setupMaster(<any>{
                             args: [plugin, port],
+                            execArgv: []
                         });
                         var worker = cluster.fork();
                         app.use('/api/manage/restart/' + folder, function ()
@@ -309,7 +318,6 @@ fs.exists(configFile, function (exists)
             {
                 if (error)
                 {
-                    debugger;
                     console.error(error);
                 }
 
@@ -339,7 +347,6 @@ fs.exists(configFile, function (exists)
 
                     masterRouter.use(function (err, req: Request, res: Response, next)
                     {
-                        debugger;
                         try
                         {
                             if (err)

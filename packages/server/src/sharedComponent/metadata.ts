@@ -1,11 +1,11 @@
 import * as akala from '@akala/core'
-import * as jsonrpc from 'json-rpc-ws'
+import * as jsonrpc from '@akala/json-rpc-ws'
 import * as master from '../master-meta'
 import * as router from '../router'
 import { createServer } from './jsonrpc'
 import { Proxy } from '@akala/core'
 import { Metadata as Meta } from '@akala/core'
-
+import { Connection } from '@akala/json-rpc-ws'
 var log = akala.log('akala:metadata');
 
 export function createServerFromMeta<
@@ -26,10 +26,16 @@ export function createServerFromMeta<
 
         meta.serverOneWayKeys.forEach(function (serverKey)
         {
-            server.expose(serverKey, function (params)
+            server.expose(serverKey, function (params, reply)
             {
                 log('receiving ' + serverKey + ' with %o', params);
-                (<any>serverImpl[serverKey])(params, this);
+                var result = (<any>serverImpl[serverKey])(params, this);
+                if (akala.isPromiseLike(result))
+                    result.then(function (value)
+                    {
+                        log('replying with %o', value);
+                        reply(null, value);
+                    });
             })
         });
 
@@ -51,22 +57,23 @@ export function createServerFromMeta<
         meta.clientOneWayKeys.forEach(function (clientKey: any)
         {
             if (!serverImpl[clientKey])
-                serverImpl[clientKey] = <any>function (params)
+                serverImpl[clientKey] = function (params)
                 {
                     log('sending ' + clientKey + ' with %o', params);
-                    server.send(clientKey, params);
+                    server.broadcast(clientKey, params);
                 }
         });
 
         meta.clientTwoWayKeys.forEach(function (clientKey: any)
         {
             if (!serverImpl[clientKey])
-                serverImpl[clientKey] = <any>function (params, callback)
+                serverImpl[clientKey] = function (params, callback)
                 {
-                    var deferred = new akala.Deferred();
-                    log('sending ' + clientKey + ' with %o', params);
-                    server.send(clientKey, params, callback);
-                    return deferred;
+                    return new Promise((resolve, reject) =>
+                    {
+                        log('sending ' + clientKey + ' with %o', params);
+                        server.broadcast(clientKey, params, callback);
+                    });
                 }
         });
 
@@ -177,20 +184,23 @@ export class DualMetadata<
         return createServerFromMeta(this)(router, path, akala.extend(serverImpl, serverImpl2));
     }
 
-    public createClient(client: jsonrpc.Client<TConnection & TOConnection>, clientImpl: TClientOneWay & TClientTwoWay & TOClientOneWay & TOClientTwoWay):
-        TClientOneWay & TClientTwoWay & TOClientOneWay & TOClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy & TOServerOneWayProxy & TOServerTwoWayProxy> }
-    public createClient(client: jsonrpc.Client<TConnection & TOConnection>, clientImpl: TClientOneWay & TClientTwoWay, clientImpl2: TOClientOneWay & TOClientTwoWay):
-        TClientOneWay & TClientTwoWay & TOClientOneWay & TOClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy & TOServerOneWayProxy & TOServerTwoWayProxy> }
-    public createClient(client: jsonrpc.Client<TConnection & TOConnection>, clientImpl: TClientOneWay & TClientTwoWay, clientImpl2?: TOClientOneWay & TOClientTwoWay):
-        TClientOneWay & TClientTwoWay & TOClientOneWay & TOClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy & TOServerOneWayProxy & TOServerTwoWayProxy> }
+    public createClient(client: jsonrpc.Client<TConnection & TOConnection>): (clientImpl: TClientOneWay & TClientTwoWay | TClientOneWay & TClientTwoWay & TOClientOneWay & TOClientTwoWay, clientImpl2?: TOClientOneWay & TOClientTwoWay) =>
+        (TClientOneWay & TClientTwoWay & TOClientOneWay & TOClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy & TOServerOneWayProxy & TOServerTwoWayProxy> })
     {
-        return super.createClient(client, akala.extend(clientImpl, clientImpl2));
+        // public createClient(client: jsonrpc.Client<TConnection & TOConnection>): (clientImpl: TClientOneWay & TClientTwoWay & TOClientOneWay & TOClientTwoWay) =>
+        //     (TClientOneWay & TClientTwoWay & TOClientOneWay & TOClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy & TOServerOneWayProxy & TOServerTwoWayProxy> })
+        // public createClient(client: jsonrpc.Client<TConnection & TOConnection>): (clientImpl: TClientOneWay & TClientTwoWay, clientImpl2: TOClientOneWay & TOClientTwoWay) =>
+        //     (TClientOneWay & TClientTwoWay & TOClientOneWay & TOClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy & TOServerOneWayProxy & TOServerTwoWayProxy> })
+        // public createClient(client: jsonrpc.Client<TConnection & TOConnection>): (clientImpl: TClientOneWay & TClientTwoWay, clientImpl2?: TOClientOneWay & TOClientTwoWay) =>
+        //     (TClientOneWay & TClientTwoWay & TOClientOneWay & TOClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy & TOServerOneWayProxy & TOServerTwoWayProxy> })
+
+        return super.createClient(client);
     }
 }
 
 export var meta = new Meta()
     .connection<jsonrpc.Connection & { submodule?: string }>()
+    .serverToClientOneWay<void>()({ 'after-master': true, ready: true })
     .clientToServer<{ module: string }, { config: any, workers: any[] }>()({ module: true })
     .clientToServerOneWay<{ masterPath?: string, workerPath?: string }>()({ master: true })
-    .serverToClientOneWay<void>()({ 'after-master': true, ready: true })
     ;

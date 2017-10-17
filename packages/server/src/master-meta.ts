@@ -1,14 +1,15 @@
 import * as akala from '@akala/core'
 import * as router from './router';
 import * as debug from 'debug';
-import * as jsonrpc from 'json-rpc-ws'
+import * as jsonrpc from '@akala/json-rpc-ws'
 import * as ws from 'ws'
 import { DualMetadata, createServerFromDualMeta } from './sharedComponent/metadata'
 import * as worker from './worker-meta'
 export { CoreProperties as Package } from '../src/package';
 import { createServer } from './sharedComponent/jsonrpc';
 import { Proxy, Metadata } from '@akala/core';
-import { Connection } from 'json-rpc-ws'
+import { Connection } from '@akala/json-rpc-ws'
+import * as stream from 'stream'
 
 var log = debug('akala:master');
 
@@ -57,28 +58,33 @@ export function handleResponse(res: router.Response, locationReplacer: (key: str
                 res.setHeader(header, response.headers[header]);
             });
         res.writeHead(response.statusCode, response.statusMessage);
-        if (Array.isArray(response.data))
-        {
-            log('sending array');
-            response.data.forEach(function (chunk)
-            {
-                res.write(chunk);
-            });
-        }
-        else if (Buffer.isBuffer(response.data))
-        {
-            log('sending buffer');
-            res.write(response.data);
-        }
+        if (response instanceof stream.Readable)
+            response.pipe(res);
         else 
         {
-            log('sending object');
-            if (typeof (response.data) !== 'string' && typeof response.data != 'number')
-                response.data = JSON.stringify(response.data);
-            if (typeof (response.data) != 'undefined')
+            if (Buffer.isBuffer(response.data))
+            {
+                log('sending buffer');
                 res.write(response.data);
+            }
+            else if (Array.isArray(response.data))
+            {
+                log('sending array');
+                response.data.forEach(function (chunk)
+                {
+                    res.write(chunk);
+                });
+            }
+            else 
+            {
+                log('sending object');
+                if (typeof (response.data) !== 'string' && typeof response.data != 'number')
+                    res.write(JSON.stringify(response.data));
+                else if (typeof (response.data) != 'undefined')
+                    res.write(response.data);
+            }
+            res.end();
         }
-        res.end();
     }
 }
 
@@ -116,7 +122,7 @@ export function serveRouter<TOConnection extends jsonrpc.Connection,
 
             subRouter.use(params.path, function (req: router.Request, res: router.Response, next: akala.NextFunction)
             {
-                if ((<ws>socket.socket).readyState == ws.CLOSED || socket.socket.readyState == ws.CLOSING)
+                if (socket.socket.readyState == ws.CLOSED || socket.socket.readyState == ws.CLOSING)
                 {
                     next();
                     return;
