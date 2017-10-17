@@ -4,7 +4,9 @@ import { Http } from './http';
 import * as express from 'express';
 import * as stream from 'stream';
 export { Router, Callback };
-import * as jsonrpc from 'json-rpc-ws'
+import * as jsonrpc from '@akala/json-rpc-ws'
+import * as send from 'send';
+import * as onFinished from 'on-finished';
 var log = akala.log('akala:worker');
 
 export { CallbackResponse }
@@ -15,6 +17,7 @@ export function createClient<TConnection extends jsonrpc.Connection>(namespace: 
     var resolveUrl: (url: string) => string = akala.resolve('$resolveUrl');
     if (!resolveUrl)
         throw new Error('no url resolver could be found');
+    log('creating client to ' + resolveUrl(namespace));
     var deferred = new akala.Deferred<jsonrpc.Client<TConnection>>();
     client.connect(resolveUrl(namespace), function ()
     {
@@ -49,34 +52,45 @@ export interface Request extends BaseRequest
     [key: string]: any;
 }
 
-export function expressWrap(handler: express.RequestHandler)
+export function expressWrap(handler: express.Handler)
 {
     return function (req: Request, next: akala.NextFunction)
     {
         var callback = req.injector.resolve('$callback');
         var headers: any = {};
-        var response = buildResponse(callback, next);
+        var response = buildResponse(req, callback, next);
         handler(<any>req, response, next);
     }
 }
 
-function buildResponse(callback: Callback, next: akala.NextFunction): express.Response
+function buildResponse(req: Request, callback: Callback, next: akala.NextFunction): express.Response
 {
-    return new MyResponse(callback, next);
+    return <any>new MyResponse(req, callback, next);
 }
 
-class MyResponse extends stream.Writable implements CallbackResponse
+class MyResponse extends stream.Transform implements CallbackResponse
 {
-    constructor(callback: Callback, next: akala.NextFunction)
+    constructor(private req: Request, callback: Callback, next: akala.NextFunction)
     {
-        super({ decodeStrings: true });
+        super({
+            transform: (chunk, _encoding, callback) =>
+            {
+                callback(null, chunk);
+            }, decodeStrings: true
+        });
         this.headers = {};
         this.sendStatus = callback
         this.status = callback
         this.send = callback
         this.json = callback
+        this.on('pipe', () =>
+        {
+            this.isStream = true;
+        });
+        this.on('end', () => { this.send(this); });
     }
 
+    public isStream = false;
     data: any;
     headers = {};
     sendStatus: Callback
@@ -85,7 +99,50 @@ class MyResponse extends stream.Writable implements CallbackResponse
     send: Callback
     json: Callback
     jsonp = undefined
-    sendFile = undefined
+    sendFile(path: string, options?: any, callback?: akala.NextFunction)
+    {
+        var encodedPath = encodeURI(path);
+        var done = callback;
+        var req = this.req;
+        var res = this;
+        var next = function (err?)
+        {
+            if (err)
+                res.send(500, err);
+            else
+                res.send(200);
+        };
+        var opts = options || {};
+
+        if (!path)
+        {
+            throw new TypeError('path argument is required to res.sendFile');
+        }
+
+        // support function as second arg
+        if (typeof options === 'function')
+        {
+            done = options;
+            opts = {};
+        }
+
+        // create file stream
+        var pathname = encodeURI(path);
+        var file = send(req, pathname, opts);
+
+        // transfer
+        sendfile(res, file, opts, function (err)
+        {
+            if (done) return done(err);
+            if (err && err.code === 'EISDIR') return next();
+
+            // next() all but write errors
+            if (err && err.code !== 'ECONNABORTED' && err.syscall !== 'write')
+            {
+                next(err);
+            }
+        });
+    }
     sendfile = undefined
     download = undefined
     contentType(type: string) { this.setHeader('contentType', type); return this; }
@@ -113,10 +170,11 @@ class MyResponse extends stream.Writable implements CallbackResponse
         else
         {
             var self = this;
-            Object.keys(field).forEach(function (key)
-            {
-                self.setHeader(key, field[key]);
-            })
+            if (field)
+                akala.each(field, function (value, key)
+                {
+                    self.setHeader(key, value);
+                });
         }
     }
     headersSent = false
@@ -189,33 +247,15 @@ class MyResponse extends stream.Writable implements CallbackResponse
     app = undefined;
     setTimeout = undefined;
     addTrailers = undefined;
-    chunks: (string | Buffer)[] = [];
-
-    // Extended base methods
-    write(buffer: Buffer): boolean
-    write(buffer: Buffer, cb?: Function): boolean
-    write(str: string, cb?: Function): boolean
-    write(str: string, encoding?: string, cb?: Function): boolean
-    write(str: string, encoding?: string, fd?: string): boolean
-    write(chunk: any, encoding?: string): any;
-    write(str: string | Buffer, encoding?: string | Function, fd?: string | Function): boolean
-    write(str: string | Buffer, encoding?: string | Function, fd?: string | Function): boolean
-    {
-        if (typeof str != 'string')
-        {
-            if (typeof (encoding) == 'string')
-                str = str.toString(encoding);
-        }
-        this.chunks.push(str);
-        return true;
-    }
 
     writeContinue = undefined;
+    finished = false;
     writable = true;
     writeHead(statusCode: number, reasonPhrase?: string, headers?: any)
     writeHead(statusCode: number, headers?: any): void
     writeHead(statusCode: number, reasonPhrase?: string | any, headers?: any): void
     {
+        log('writeHead');
         this.statusCode = statusCode;
         if (typeof reasonPhrase != 'string')
         {
@@ -225,6 +265,8 @@ class MyResponse extends stream.Writable implements CallbackResponse
         if (reasonPhrase)
             this.statusMessage = reasonPhrase;
         this.header(headers);
+        this.send(this);
+        this.headersSent = true;
     }
     statusCode: number;
     statusMessage: string;
@@ -240,27 +282,10 @@ class MyResponse extends stream.Writable implements CallbackResponse
 
     protected _write(chunk: any, encoding?: string, callback?: Function): void
     {
-        if (encoding)
-            this.chunks.push(chunk.toString(encoding));
-        else
-            this.chunks.push(chunk);
-        if (callback)
-            callback();
-    }
+        if (!this.headersSent)
+            this.writeHead(this.statusCode);
 
-
-    finished: boolean;
-
-    // Extended base methods
-    end(): void;
-    end(buffer: Buffer, cb?: Function): void;
-    end(str: string, cb?: Function): void;
-    end(str: string, encoding?: string, cb?: Function): void;
-    end(data?: any, encoding?: string): void;
-    end(data?: any, encoding?: string | Function, cb?: Function): void
-    {
-        this.write(data, encoding, cb);
-        this.send(akala.extend(this, { data: this.chunks }));
+        super['_write'](chunk, encoding, callback);
     }
 }
 
@@ -268,6 +293,7 @@ export function handle(app: Router, root: string)
 {
     return function handle(request: Request, next?: akala.NextFunction): PromiseLike<CallbackResponse>
     {
+        var response: CallbackResponse;
         function callback(status, data?)
         {
             if (isNaN(Number(status)))
@@ -285,7 +311,8 @@ export function handle(app: Router, root: string)
             else
                 socketRes = { statusCode: status, data: undefined };
             socketRes.statusCode = socketRes.statusCode || 200;
-            if (!Buffer.isBuffer(data) && typeof (data) !== 'string' && typeof data != 'number')
+
+            if (!(data instanceof stream.Readable) && !Buffer.isBuffer(data) && typeof (data) !== 'string' && typeof data != 'number')
                 data = JSON.stringify(data);
             if (typeof (data) != 'undefined')
                 socketRes.data = data;
@@ -308,4 +335,108 @@ export function handle(app: Router, root: string)
 
         return deferred;
     }
+}
+
+
+function sendfile(res, file, options, callback)
+{
+    var done = false;
+    var streaming;
+
+    // request aborted
+    function onaborted()
+    {
+        if (done) return;
+        done = true;
+
+        var err = new Error('Request aborted');
+        err['code'] = 'ECONNABORTED';
+        callback(err);
+    }
+
+    // directory
+    function ondirectory()
+    {
+        if (done) return;
+        done = true;
+
+        var err = new Error('EISDIR, read');
+        err['code'] = 'EISDIR';
+        callback(err);
+    }
+
+    // errors
+    function onerror(err)
+    {
+        if (done) return;
+        done = true;
+        callback(err);
+    }
+
+    // ended
+    function onend()
+    {
+        if (done) return;
+        done = true;
+        callback();
+    }
+
+    // file
+    function onfile()
+    {
+        streaming = false;
+    }
+
+    // finished
+    function onfinish(err)
+    {
+        if (err && err.code === 'ECONNRESET') return onaborted();
+        if (err) return onerror(err);
+        if (done) return;
+
+        setImmediate(function ()
+        {
+            if (streaming !== false && !done)
+            {
+                onaborted();
+                return;
+            }
+
+            if (done) return;
+            done = true;
+            callback();
+        });
+    }
+
+    // streaming
+    function onstream()
+    {
+        streaming = true;
+    }
+
+    file.on('directory', ondirectory);
+    file.on('end', onend);
+    file.on('error', onerror);
+    file.on('file', onfile);
+    file.on('stream', onstream);
+    onFinished(res, onfinish);
+
+    if (options.headers)
+    {
+        // set headers on successful transfer
+        file.on('headers', function headers(res)
+        {
+            var obj = options.headers;
+            var keys = Object.keys(obj);
+
+            for (var i = 0; i < keys.length; i++)
+            {
+                var k = keys[i];
+                res.setHeader(k, obj[k]);
+            }
+        });
+    }
+
+    // pipe
+    file.pipe(res);
 }

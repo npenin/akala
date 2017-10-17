@@ -54,6 +54,7 @@ export function command<T extends Function>($inject: string[], f: T)
             for (var i in request.query)
                 injector.register('query.' + i, request.query[i]);
 
+        injector.register('$next', next);
         var injectable = injector.injectWithName($inject, <any>f);
         injectable(this);
     }

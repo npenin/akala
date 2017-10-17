@@ -1,9 +1,11 @@
 import * as url from 'url';
 import * as http from 'http';
 import { Router as BaseRouter, NextFunction, RouterOptions, LayerOptions, Middleware1, Middleware2, ErrorMiddleware1, ErrorMiddleware2, Injector, Layer, Route } from '@akala/core';
+import * as jsonrpc from '@akala/json-rpc-ws'
 import * as worker from '../worker-meta'
 import { HttpRoute } from './route';
 import { HttpLayer } from './layer';
+import { Readable } from 'stream';
 var debug = require('debug')('akala:router');
 var routing = require('routington');
 
@@ -120,6 +122,13 @@ export class HttpRouter extends Router<requestHandlerWithNext, errorHandlerWithN
         super(options);
     }
 
+    public useGet(path: string, handler: requestHandlerWithNext)
+    {
+        var layer = this.layer(path, handler);
+        layer.method = 'GET';
+        return this;
+    }
+
     public attachTo(server: http.Server)
     {
         var self = this;
@@ -129,12 +138,12 @@ export class HttpRouter extends Router<requestHandlerWithNext, errorHandlerWithN
             var uri = url.parse(req.url, true);
             req.url = uri.pathname;
             req.query = uri.query;
-            debugger;
-            self.handle(req, socket, function ()
+            req.method = 'upgrade';
+            self.handle(req, socket, head, function ()
             {
                 console.error('ws deadend');
-                console.error(arguments)
-            }, head);
+                console.error(req.url)
+            });
         })
         server.on('request', (req: Request, res: Response) =>
         {
@@ -180,12 +189,12 @@ export class HttpRouter extends Router<requestHandlerWithNext, errorHandlerWithN
         route.addHandler((layer: HttpLayer<any>) =>
         {
             // console.log('building upgrade layer for ' + path);
-            route.methods['get'] = true;
+            route.methods['upgrade'] = true;
             layer.isApplicable = <TRoute extends Route<any, Layer<any>>>(req, route: TRoute) =>
             {
                 var method = req.method.toLowerCase();
                 // console.log('upgrade layer received ' + method);
-                if (method == 'get')
+                if (method == 'upgrade')
                 {
                     if (req.headers['connection'].toLowerCase() == 'upgrade' && req.headers['upgrade'].toLowerCase() == 'websocket')
                     {
@@ -291,10 +300,10 @@ export class HttpRouter extends Router<requestHandlerWithNext, errorHandlerWithN
 
 export interface Callback
 {
-    (status: number);
-    (data: any);
-    (status: number, data: any);
-    (meta: CallbackResponse, data: any);
+    (status: number): void;
+    (data: any): void;
+    (status: number, data: any): void;
+    (meta: CallbackResponse, data: any): void;
 }
 
 export interface CallbackResponse
@@ -302,7 +311,7 @@ export interface CallbackResponse
     headers?: { [header: string]: any };
     statusCode?: number;
     statusMessage?: string;
-    data: any;
+    data?: jsonrpc.PayloadDataType;
 }
 
 export type workerRequestHandler = (req: worker.Request, callback: worker.Callback) => void;
@@ -318,7 +327,7 @@ export class WorkerRouter extends Router<workerRequestHandler, workerErrorHandle
         super(options);
     }
 
-    public handle(req: worker.Request, callback: Callback)
+    public handle(req: worker.Request, callback: Callback): void
     {
         var methods: string[];
 
