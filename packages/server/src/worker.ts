@@ -57,7 +57,7 @@ createClient('api/' + process.argv[2]).then(function (socket: jsonrpc.Client<jso
             log(from + ' is not the current module path. Ignoring...');
             return;
         });
-        akala.register('$isModule', false);
+        akala.register('$isModule', () => { return false });
 
         for (var worker of param.workers)
         {
@@ -73,7 +73,7 @@ createClient('api/' + process.argv[2]).then(function (socket: jsonrpc.Client<jso
             server.master({ masterPath: masterPath && resolve(dirname(from), masterPath) || null, workerPath: workerPath && resolve(dirname(from), workerPath) || null });
         }, true);
 
-        akala.register('$isModule', true, true);
+        akala.register('$isModule', (m: string) => { return m == process.argv[2]; }, true);
         log('new cwd: ' + process.cwd());
 
         require(process.cwd());

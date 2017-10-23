@@ -342,6 +342,10 @@ fs.exists(configFile, function (exists)
 
                     app.get('*', function (request, response)
                     {
+                        if (request.url.endsWith('.map'))
+                        {
+                            response.sendStatus(404);
+                        }
                         fs.createReadStream(root + '/index.html').pipe(response);
                     });
 
