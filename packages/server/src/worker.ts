@@ -9,6 +9,7 @@ import { createClient, Request, MasterRegistration, Callback, WorkerInjector, ha
 import { meta, DualMetadata } from './sharedComponent/metadata'
 import { Http } from './http';
 import { metaRouter } from './master-meta'
+import { EventEmitter } from 'events'
 
 process.on('uncaughtException', function (error)
 {
@@ -38,13 +39,20 @@ akala.register('$http', new Http());
 createClient('api/' + process.argv[2]).then(function (socket: jsonrpc.Client<jsonrpc.Connection>)
 {
     log('worker connected')
-    akala.register('$bus', socket);
+    var worker = akala.register('$worker', new EventEmitter());
+    var client = new DualMetadata(meta, metaRouter).createClient(socket)({
+        'after-master': () =>
+        {
+            worker.emit('after-master');
+        }, ready: () =>
+        {
+            worker.emit('ready');
+        },
+        getContent: handle(app, '/api')
+    })
+    akala.register('$bus', client);
 
-    var client = metaRouter.createClient(socket)({
-        getContent: handle(app, '/api'),
-    });
-
-    var server = meta.createServerProxy(socket);
+    var server = client.$proxy();
 
     server.module({ module: process.argv[2] }).then(function (param)
     {

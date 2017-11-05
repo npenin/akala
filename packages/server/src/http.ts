@@ -1,5 +1,5 @@
 import * as akala from '@akala/core';
-import * as ajax from 'request';
+import * as request from 'request';
 import { parse, format } from 'url';
 import * as stream from 'stream';
 import * as xml from 'xml2js';
@@ -34,9 +34,9 @@ export class Http implements akala.Http
         });
     }
 
-    public download(url: string, target: stream.Writable, options?: ajax.CoreOptions)
+    public download(url: string, target: stream.Writable, options?: request.CoreOptions)
     {
-        return ajax.get(akala.extend({ uri: parse(url) }, options)).pipe(target);
+        return request.get(akala.extend({ uri: parse(url) }, options)).pipe(target);
     }
 
     public getJSON(url: string, params?: any)
@@ -47,34 +47,36 @@ export class Http implements akala.Http
     {
         return this.call('GET', url, params).then(function (result)
         {
-            var deferred = new akala.Deferred<T>();
-            xml.parseString(result.body, function (err, result)
+            return new Promise<T>((resolve, reject) =>
             {
-                if (err)
-                    deferred.reject(err);
-                else
-                    deferred.resolve(result);
-            });
-            return <PromiseLike<T>>deferred;
+                xml.parseString(result.body, function (err, result)
+                {
+                    if (err)
+                        reject(err);
+                    else
+                        resolve(result);
+                });
+            }) as PromiseLike<T>;
         });
     }
 
-    public call(method: string, url: string, params?: any, options?: ajax.CoreOptions): PromiseLike<any>
+    public call(method: string, url: string, params?: any, options?: request.CoreOptions): PromiseLike<any>
     {
         var uri = parse(url, true);
         uri.query = akala.extend({}, uri.query, params);
-        var defer = new akala.Deferred<any>();
         var optionsMerged = akala.extend({ uri: uri, method: method }, options);
-        var resultHandler = function (error, response, body)
+        return new Promise((resolve, reject) =>
         {
-            if (error)
-                defer.reject(error);
-            else
-                defer.resolve({ response: response, body: body });
-        };
+            var resultHandler = function (error, response, body)
+            {
+                if (error)
+                    reject(error);
+                else
+                    resolve({ response: response, body: body });
+            };
 
-        ajax(optionsMerged, resultHandler)
-        return defer;
+            request(optionsMerged, resultHandler)
+        });
     }
 
 }
