@@ -1,11 +1,12 @@
-import * as jsonrpc from 'json-rpc-ws'
+import * as jsonrpc from '@akala/json-rpc-ws'
 import { Proxy } from './each'
-import { Deferred, Promisify } from './promiseHelpers'
+import { Promisify } from './promiseHelpers'
 import { extend } from './helpers'
 
 import * as debug from 'debug'
 
 var log = debug('akala:metadata')
+var clientLog = debug('akala:metadata:client');
 
 export class Metadata<
     TConnection extends jsonrpc.Connection,
@@ -107,7 +108,6 @@ export class Metadata<
     public createServerProxy(client: jsonrpc.Client<TConnection>): Partial<TServerOneWayProxy & TServerTwoWayProxy>
     {
         var proxy: Partial<TServerOneWayProxy & TServerTwoWayProxy> = {};
-        var deferred = new Deferred<Partial<TServerOneWayProxy & TServerTwoWayProxy>>();
         this.serverOneWayKeys.forEach(function (serverKey)
         {
             proxy[serverKey] = <any>function (params)
@@ -122,15 +122,17 @@ export class Metadata<
             proxy[serverKey] = <any>function (params)
             {
                 log('calling ' + serverKey + ' with %o', params);
-                var deferred = new Deferred();
-                client.send(serverKey, params, function (error, result)
+                return new Promise((resolve, reject) =>
                 {
-                    if (error)
-                        deferred.reject(error);
-                    else
-                        deferred.resolve(result);
+
+                    client.send(serverKey, params, function (error, result)
+                    {
+                        if (error)
+                            reject(error);
+                        else
+                            resolve(result);
+                    });
                 });
-                return deferred;
             }
         });
 
@@ -155,15 +157,17 @@ export class Metadata<
             proxy[clientKey] = <any>function (params)
             {
                 log('calling ' + clientKey + ' with %o', params);
-                var deferred = new Deferred();
-                client.sendMethod(clientKey, params, function (error, result)
+                return new Promise((resolve, reject) =>
                 {
-                    if (error)
-                        deferred.reject(error);
-                    else
-                        deferred.resolve(result);
+
+                    client.sendMethod(clientKey, params, function (error, result)
+                    {
+                        if (error)
+                            reject(error);
+                        else
+                            resolve(result);
+                    });
                 });
-                return deferred;
             }
         });
 
@@ -173,13 +177,14 @@ export class Metadata<
     public createClientFromAbsoluteUrl(url: string, clientImpl: TClientOneWay & TClientTwoWay, ...rest: any[]): PromiseLike<TClientOneWay & TClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy> }>
     {
         var client = jsonrpc.createClient<TConnection>();
-        var result = this.createClient(client, clientImpl);
-        var deferred = new Deferred<any>();
-        client.connect(url, function ()
+        var result = this.createClient(client)(clientImpl);
+        return new Promise((resolve, reject) =>
         {
-            deferred.resolve(result);
-        })
-        return deferred;
+            client.connect(url, function ()
+            {
+                resolve(result);
+            })
+        });
     }
 
     public createLateBoundClient(clientImpl: TClientOneWay & TClientTwoWay): TClientOneWay & TClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy>, $connect(url: string, connected: () => void): void }
@@ -190,43 +195,46 @@ export class Metadata<
             {
                 client.connect(url, connected);
             }
-        }, this.createClient(client, clientImpl));
+        }, this.createClient(client)(clientImpl));
     }
 
-    public createClient(client: jsonrpc.Client<TConnection>, clientImpl: TClientOneWay & TClientTwoWay, ...dummy: any[]): TClientOneWay & TClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy> }
+    public createClient(client: jsonrpc.Client<TConnection>): (clientImpl: TClientOneWay & TClientTwoWay, ...dummy: any[]) => TClientOneWay & TClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy> }
     {
-        dummy.unshift(clientImpl);
-        dummy.push({
-            $proxy: () =>
-            {
-                return this.createServerProxy(client);
-            }
-        });
-        var result = extend.apply(this, dummy);
-
-        this.clientOneWayKeys.forEach(function (serverKey)
+        return (clientImpl: TClientOneWay & TClientTwoWay, ...dummy: any[]) =>
         {
-            client.expose(serverKey, function (params)
-            {
-                (<any>result[serverKey])(params);
-            })
-        });
-
-        this.clientTwoWayKeys.forEach(function (serverKey)
-        {
-            client.expose(serverKey, function (params, reply)
-            {
-                Promisify<any>((<any>result[serverKey])(params)).then(function (result)
+            dummy.unshift(clientImpl);
+            dummy.push({
+                $proxy: () =>
                 {
-                    reply(null, result);
-                }, function (reason)
-                    {
-                        reply(reason);
-                    });
+                    return this.createServerProxy(client);
+                }
             });
-        });
+            var result = extend.apply(this, dummy);
 
-        return result;
+            this.clientOneWayKeys.forEach(function (serverKey)
+            {
+                client.expose(serverKey, function (params)
+                {
+                    (<any>result[serverKey])(params);
+                })
+            });
+
+            this.clientTwoWayKeys.forEach(function (serverKey)
+            {
+                client.expose(serverKey, function (params, reply)
+                {
+                    Promisify<any>((<any>result[serverKey])(params)).then(function (result)
+                    {
+                        reply(null, result);
+                    }, function (reason)
+                        {
+                            reply(reason);
+                        });
+                });
+            });
+
+            return result;
+        }
     }
 }
 
@@ -291,13 +299,13 @@ export class DualMetadata<
 
     }
 
-    public createClient(client: jsonrpc.Client<TConnection & TOConnection>, clientImpl: TClientOneWay & TClientTwoWay & TOClientOneWay & TOClientTwoWay):
+    public createClient(client: jsonrpc.Client<TConnection & TOConnection>): (clientImpl: TClientOneWay & TClientTwoWay & TOClientOneWay & TOClientTwoWay) =>
         TClientOneWay & TClientTwoWay & TOClientOneWay & TOClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy & TOServerOneWayProxy & TOServerTwoWayProxy> }
-    public createClient(client: jsonrpc.Client<TConnection & TOConnection>, clientImpl: TClientOneWay & TClientTwoWay, clientImpl2: TOClientOneWay & TOClientTwoWay):
+    public createClient(client: jsonrpc.Client<TConnection & TOConnection>): (clientImpl: TClientOneWay & TClientTwoWay, clientImpl2: TOClientOneWay & TOClientTwoWay) =>
         TClientOneWay & TClientTwoWay & TOClientOneWay & TOClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy & TOServerOneWayProxy & TOServerTwoWayProxy> }
-    public createClient(client: jsonrpc.Client<TConnection & TOConnection>, clientImpl: TClientOneWay & TClientTwoWay, clientImpl2?: TOClientOneWay & TOClientTwoWay):
+    public createClient(client: jsonrpc.Client<TConnection & TOConnection>): (clientImpl: TClientOneWay & TClientTwoWay | TClientOneWay & TClientTwoWay & TOClientOneWay & TOClientTwoWay, clientImpl2?: TOClientOneWay & TOClientTwoWay) =>
         TClientOneWay & TClientTwoWay & TOClientOneWay & TOClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy & TOServerOneWayProxy & TOServerTwoWayProxy> }
     {
-        return super.createClient(client, extend(clientImpl, clientImpl2));
+        return super.createClient(client);
     }
 }

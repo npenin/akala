@@ -1,4 +1,4 @@
-import { Deferred, isPromiseLike, PromiseStatus } from './promiseHelpers';
+import { isPromiseLike, PromiseStatus } from './promiseHelpers';
 import { Binding, PromiseBinding } from './binder';
 import * as formatters from './formatters';
 
@@ -322,20 +322,13 @@ export class Parser
                 value = value[parts[i]];
                 if (isPromiseLike(value))
                 {
-                    if (value instanceof Deferred && value.$$status == PromiseStatus.Resolved)
-                    {
-                        value = value.$$value;
-                    }
+                    var promise: PromiseLike<any>;
+                    if (i == parts.length - 1)
+                        promise = value;
                     else
-                    {
-                        var promise: PromiseLike<any>;
-                        if (i == parts.length - 1)
-                            promise = value;
-                        else
-                            promise = value.then(Parser.parseFunction(parts.slice(i + 1).join('.'))).then(formatter);
-                        promise['$$length'] = item.length;
-                        return promise;
-                    }
+                        promise = value.then(Parser.parseFunction(parts.slice(i + 1).join('.'))).then(formatter);
+                    promise['$$length'] = item.length;
+                    return promise;
                 }
             }
             return value;

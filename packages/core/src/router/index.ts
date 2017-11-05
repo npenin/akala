@@ -528,7 +528,7 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
             }
         }
 
-        var callbacks = flatten(<(T | U)[]>handlers)
+        var callbacks = flatten(handlers as flatten.NestedArray<T | U>)
 
         if (callbacks.length === 0)
         {
@@ -537,29 +537,34 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
 
         for (var i = 0; i < callbacks.length; i++)
         {
-            var fn = callbacks[i]
-
-            if (typeof fn !== 'function')
-            {
-                throw new TypeError('argument handler must be a function')
-            }
-
-            // add the middleware
-            debug('use %o %s', path, fn.name || '<anonymous>')
-
-            var layer = this.buildLayer(path, {
-                sensitive: this.caseSensitive,
-                strict: false,
-                end: false,
-                length: this.length
-            }, fn)
-
-            layer.route = undefined
-
-            this.stack.push(layer)
+            this.layer(path, callbacks[i]);
         }
 
         return this
+    }
+
+    protected layer(path: string, fn: T | U)
+    {
+        if (typeof fn !== 'function')
+        {
+            throw new TypeError('argument handler must be a function')
+        }
+
+        // add the middleware
+        debug('use %o %s', path, fn.name || '<anonymous>')
+
+        var layer = this.buildLayer(path, {
+            sensitive: this.caseSensitive,
+            strict: false,
+            end: false,
+            length: this.length
+        }, fn)
+
+        layer.route = undefined
+
+        this.stack.push(layer)
+
+        return layer;
     }
 
     protected abstract buildLayer(path: string, options: LayerOptions, handler: T | U): TLayer;

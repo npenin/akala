@@ -1,6 +1,6 @@
 import { Parser } from './parser';
 import { EventEmitter } from 'events';
-import { Deferred, Promisify as promisify, isPromiseLike } from './promiseHelpers';
+import { Promisify as promisify, isPromiseLike } from './promiseHelpers';
 import * as formatters from './formatters';
 import { array as eachAsync } from './eachAsync'
 export interface IWatched extends Object
@@ -209,68 +209,72 @@ export class Binding extends EventEmitter
             var setter = Parser.getSetter(parts[0], target);
             if (setter === null)
                 return;
-            try
+
+            var promise = new Promise((resolve, reject) =>
             {
-                var promise = new Deferred();
-                promise.then(function resolve(value)
+                try
                 {
-                    setter.set(value);
-                    if (watcher && !doNotTriggerEvents)
-                        watcher.emit(Binding.ChangedFieldEventName, {
-                            target: target,
-                            eventArgs: {
+                    if (doNotTriggerEvents)
+                        return resolve(value);
+
+                    if (watcher)
+                    {
+                        var listeners = watcher.listeners(Binding.ChangingFieldEventName);
+
+                        eachAsync(listeners, function (listener, i, next)
+                        {
+                            promisify(listener({
+                                target: target,
                                 fieldName: setter.expression,
-                                value: value
-                            },
+                                source: source,
+                            })).then(function ()
+                            {
+                                next();
+                            }, reject);
+                        }, function ()
+                            {
+                                resolve(value);
+                            });
+                    }
+                    else
+                        resolve(value);
+                }
+                catch (ex)
+                {
+                    watcher.emit(Binding.ErrorEventName, {
+                        target: target,
+                        field: setter.expression,
+                        Exception: ex,
+                        source: source
+                    });
+                    reject(ex);
+                }
+            });
+
+            promise.then(function resolve(value)
+            {
+                setter.set(value);
+                if (watcher && !doNotTriggerEvents)
+                    watcher.emit(Binding.ChangedFieldEventName, {
+                        target: target,
+                        eventArgs: {
+                            fieldName: setter.expression,
+                            value: value
+                        },
+                        source: source
+                    });
+            }, function (ex)
+                {
+                    if (watcher)
+                        watcher.emit(Binding.ErrorEventName, {
+                            target: target,
+                            field: setter.expression,
+                            Exception: ex,
                             source: source
                         });
-                }, function (ex)
-                    {
-                        if (watcher)
-                            watcher.emit(Binding.ErrorEventName, {
-                                target: target,
-                                field: setter.expression,
-                                Exception: ex,
-                                source: source
-                            });
-                    });
-
-                if (doNotTriggerEvents)
-                    return promise.resolve(value);
-
-                if (watcher)
-                {
-                    var listeners = watcher.listeners(Binding.ChangingFieldEventName);
-
-                    eachAsync(listeners, function (listener, i, next)
-                    {
-                        promisify(listener({
-                            target: target,
-                            fieldName: setter.expression,
-                            source: source,
-                        })).then(function ()
-                        {
-                            next();
-                        }, promise.reject);
-                    }, function ()
-                        {
-                            promise.resolve(value);
-                        });
-                }
-                else
-                    promise.resolve(value);
-            }
-            catch (ex)
-            {
-                watcher.emit(Binding.ErrorEventName, {
-                    target: target,
-                    field: setter.expression,
-                    Exception: ex,
-                    source: source
                 });
-                promise.reject(ex);
-            }
 
+            return promise;
         };
     }
 
