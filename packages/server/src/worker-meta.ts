@@ -18,12 +18,13 @@ export function createClient<TConnection extends jsonrpc.Connection>(namespace: 
     if (!resolveUrl)
         throw new Error('no url resolver could be found');
     log('creating client to ' + resolveUrl(namespace));
-    var deferred = new akala.Deferred<jsonrpc.Client<TConnection>>();
-    client.connect(resolveUrl(namespace), function ()
+    return new Promise<jsonrpc.Client<TConnection>>((resolve, reject) =>
     {
-        deferred.resolve(client);
+        client.connect(resolveUrl(namespace), function ()
+        {
+            resolve(client);
+        });
     });
-    return deferred;
 }
 
 
@@ -293,47 +294,47 @@ export function handle(app: Router, root: string)
 {
     return function handle(request: Request, next?: akala.NextFunction): PromiseLike<CallbackResponse>
     {
-        var response: CallbackResponse;
-        function callback(status, data?)
+        return new Promise((resolve, reject) =>
         {
-            if (isNaN(Number(status)))
+            var response: CallbackResponse;
+            function callback(status, data?)
             {
-                var socketRes: CallbackResponse = status;
-                if (typeof (data) == 'undefined')
+                if (isNaN(Number(status)))
                 {
-                    if (typeof (status) == 'undefined')
-                        socketRes = { statusCode: 404, data: undefined };
-                    else
-                        data = socketRes.data;
-                    status = null;
+                    var socketRes: CallbackResponse = status;
+                    if (typeof (data) == 'undefined')
+                    {
+                        if (typeof (status) == 'undefined')
+                            socketRes = { statusCode: 404, data: undefined };
+                        else
+                            data = socketRes.data;
+                        status = null;
+                    }
                 }
+                else
+                    socketRes = { statusCode: status, data: undefined };
+                socketRes.statusCode = socketRes.statusCode || 200;
+
+                if (!(data instanceof stream.Readable) && !Buffer.isBuffer(data) && typeof (data) !== 'string' && typeof data != 'number')
+                    data = JSON.stringify(data);
+                if (typeof (data) != 'undefined')
+                    socketRes.data = data;
+
+                resolve(socketRes);
             }
-            else
-                socketRes = { statusCode: status, data: undefined };
-            socketRes.statusCode = socketRes.statusCode || 200;
 
-            if (!(data instanceof stream.Readable) && !Buffer.isBuffer(data) && typeof (data) !== 'string' && typeof data != 'number')
-                data = JSON.stringify(data);
-            if (typeof (data) != 'undefined')
-                socketRes.data = data;
+            var requestInjector: WorkerInjector = new akala.Injector();
+            requestInjector.register('$request', request);
+            requestInjector.register('$callback', callback);
+            // log(request);
+            Object.defineProperty(request, 'injector', { value: requestInjector, enumerable: false, configurable: false, writable: false });
+            if (request.url == '/')
+                request.url = '';
+            request.url = root + request.url;
 
-            deferred.resolve(socketRes);
-        }
-
-        var requestInjector: WorkerInjector = new akala.Injector();
-        requestInjector.register('$request', request);
-        requestInjector.register('$callback', callback);
-        // log(request);
-        Object.defineProperty(request, 'injector', { value: requestInjector, enumerable: false, configurable: false, writable: false });
-        if (request.url == '/')
-            request.url = '';
-        request.url = root + request.url;
-
-        log(request.url);
-        var deferred = new akala.Deferred<CallbackResponse>();
-        app.handle(request, callback);
-
-        return deferred;
+            log(request.url);
+            app.handle(request, callback);
+        })
     }
 }
 

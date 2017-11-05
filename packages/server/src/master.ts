@@ -202,12 +202,15 @@ fs.exists(configFile, function (exists)
                                     globalWorkers[socket.submodule] = param.workerPath;
                                 }
 
+                                if (modulesEvent[socket.submodule].listenerCount('master') == 0)
+                                    modulesEvent[socket.submodule]['master'] = param && param.masterPath;
+
                                 modulesEvent[socket.submodule].emit('master', param && param.masterPath);
                             }, module: function (param: { module: string }, socket: Connection)
                             {
                                 log('received module event %s', param.module);
                                 socket.submodule = param.module;
-                                Object.defineProperty(socketModules, param.module, { configurable: false, writable: true, value: this });
+                                Object.defineProperty(socketModules, param.module, { configurable: false, writable: true, value: socket });
 
                                 var proxy = this.$proxy(socket);
 
@@ -248,7 +251,7 @@ fs.exists(configFile, function (exists)
                             execArgv: []
                         });
                         var worker = cluster.fork();
-                        app.use('/api/manage/restart/' + folder, function ()
+                        app.get('/api/manage/restart/' + folder, function ()
                         {
                             worker.kill();
                         });
@@ -308,6 +311,10 @@ fs.exists(configFile, function (exists)
 
                             next();
                         });
+
+
+                        if (typeof (modulesEvent[plugin]['master']) != 'undefined')
+                            modulesEvent[plugin].emit('master', modulesEvent[plugin]['master']);
                     });
 
                 });
