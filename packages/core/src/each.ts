@@ -50,10 +50,12 @@ export function grepObject<T, U extends keyof T>(o: T, body: (element: T[U], i?:
                 result[i] = el;
 
     });
+    if (asArray)
+        return resultArray;
     return result;
 }
 
-export function grep<T>(array: T[], body: (element: T, i?: number) => boolean): T[]
+export function grep<T>(array: T[], body: (element: T, i?: number) => boolean, asArray?: boolean): T[]
 export function grep<T>(o: T, body: <U extends keyof T>(element: T[U], i?: U) => boolean, asArray?: false): Partial<T>
 export function grep<T, U extends keyof T>(o: T, body: (element: T[U], i?: U) => boolean, asArray: true): T[U][]
 export function grep(it: any, body: (element: any, i?: any) => boolean, asArray?: boolean)
