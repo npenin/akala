@@ -113,7 +113,16 @@ export class Metadata<
             proxy[serverKey] = <any>function (params)
             {
                 log('calling ' + serverKey + ' with %o', params);
-                client.send(serverKey, params);
+                return new Promise<void>((resolve, reject) =>
+                {
+                    client.send(serverKey, params, function (error)
+                    {
+                        if (error)
+                            reject(error);
+                        else
+                            resolve();
+                    });
+                });
             }
         });
 

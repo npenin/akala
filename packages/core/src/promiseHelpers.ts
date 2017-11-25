@@ -1,4 +1,6 @@
 import { EventEmitter } from 'events'
+import { setTimeout, clearTimeout } from 'timers';
+import { timeout } from 'q';
 export function Promisify<T>(o: T): PromiseLike<T>
 {
     if (o && o instanceof Promise)
@@ -20,6 +22,28 @@ export function isPromiseLike<T>(o: T | PromiseLike<T>): o is PromiseLike<T>
 export function when<T>(promises: PromiseLike<T>[]): PromiseLike<T[]>
 {
     return Promise.all(promises);
+}
+
+export function whenOrTimeout<T>(promise: PromiseLike<T>, timeoutInMs: number): PromiseLike<T>
+{
+    return new Promise<T>((resolve, reject) =>
+    {
+        var timedOut = false;
+        var timeOut = setTimeout(function ()
+        {
+            timedOut = true;
+            reject('timeout');
+        }, timeoutInMs);
+        promise.then(function (data)
+        {
+            clearTimeout(timeOut);
+            resolve(data);
+        }, function (rejection)
+            {
+                clearTimeout(timeOut);
+                reject(rejection);
+            });
+    })
 }
 
 export enum PromiseStatus

@@ -1,6 +1,9 @@
 import { getParamNames } from './reflect';
 import { Http } from './web';
 import * as debug from 'debug';
+import { whenOrTimeout, isPromiseLike } from './promiseHelpers';
+import { EventEmitter } from 'events';
+import { Promisify } from './index';
 
 var log = debug('akala:core:injector');
 
@@ -26,6 +29,8 @@ export class Injector
         this.register('$injector', this);
     }
 
+    private notifier = new EventEmitter();
+
     public setInjectables(value: { [key: string]: any })
     {
         this.injectables = value;
@@ -46,6 +51,34 @@ export class Injector
         })
     }
 
+    protected notify<T>(name: string, value?: T)
+    {
+        if (typeof value == 'undefined')
+            value = this.resolve(name);
+        if (this.notifier.listenerCount(name) > 0)
+            this.notifier.emit(name, value);
+        if (this.parent)
+            this.parent.notify(name, value);
+    }
+
+    public onResolve<T>(name: string): PromiseLike<T>
+    public onResolve<T>(name: string, handler: (value: T) => void): void
+    public onResolve<T>(name: string, handler?: (value: T) => void)
+    {
+        if (!handler)
+            return new Promise<T>((resolve, reject) =>
+            {
+                this.onResolve(name, resolve);
+            })
+
+        this.notifier.once(name, (value: T) =>
+        {
+            handler(value);
+        });
+        if (this.parent)
+            this.parent.onResolve(name, handler);
+    }
+
     public inject<T>(a: Injectable<T>)
     {
         return this.injectWithName(a['$inject'] || getParamNames(a), a);
@@ -57,8 +90,8 @@ export class Injector
     }
 
     public resolve(param: '$http'): Http
-    public resolve(param: string): any;
-    public resolve(param: string)
+    public resolve<T=any>(param: string): T;
+    public resolve<T=any>(param: string): T
     {
         log('resolving ' + param);
         if (typeof (this.injectables[param]) != 'undefined')
@@ -69,10 +102,28 @@ export class Injector
         if (this.parent)
         {
             log('trying parent injector');
-            return this.parent.resolve(param);
+            return this.parent.resolve<T>(param);
         }
         return null;
     }
+
+    public resolveAsync<T=any>(param: string): T | PromiseLike<T>
+    {
+        log('resolving ' + param);
+        if (typeof (this.injectables[param]) != 'undefined')
+        {
+            log('resolved ' + param + ' to %o', this.injectables[param]);
+            return this.injectables[param];
+        }
+        if (this.parent)
+        {
+            log('trying parent injector');
+            return this.parent.resolveAsync(param);
+        }
+        return this.onResolve<T>(name);
+    }
+
+
 
     private inspecting: boolean = false;
 
@@ -89,6 +140,44 @@ export class Injector
     {
         return injectWithName(toInject, ctorToFunction.bind(ctor));
     }
+
+    public injectWithNameAsync<T>(toInject: string[], a: Injectable<T>): PromiseLike<T>
+    {
+        var paramNames = <string[]>getParamNames(a);
+        var self = this;
+        var wait = false;
+
+        return new Promise<T>((resolve, reject) =>
+        {
+            if (paramNames.length == toInject.length || paramNames.length == 0)
+            {
+                if (toInject.length == paramNames.length && paramNames.length == 0)
+                    resolve(a.call(null));
+                else
+                {
+                    var args = [];
+                    for (var param of toInject)
+                    {
+                        args[args.length] = self.resolveAsync(param);
+                        if (isPromiseLike(args[args.length - 1]))
+                            wait = true;
+                    }
+                    if (wait)
+                        return Promise.all(args.map(function (v)
+                        {
+                            if (isPromiseLike(v))
+                                return v;
+                            return Promisify(v);
+                        })).then(a);
+                    else
+                        resolve(a.apply(null, args));
+                }
+            }
+            else
+                reject('the number of arguments does not match the number of injected parameters');
+        });
+    }
+
 
     public injectWithName<T>(toInject: string[], a: Injectable<T>): Injected<T>
     {
@@ -161,6 +250,7 @@ export class Injector
         if (typeof (this.injectables[name]) !== 'undefined')
             this.unregister(name);
         Object.defineProperty(this.injectables, name, value);
+        this.notify(name);
     }
 }
 

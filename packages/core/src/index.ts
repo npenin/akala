@@ -5,6 +5,7 @@ export * from './service';
 export * from './binder';
 export * from './parser';
 export * from './helpers'
+export * from './queue'
 import { Module } from './module';
 export { Metadata, DualMetadata } from './metadata';
 export type Module = Module;
