@@ -1,30 +1,38 @@
 {
   "name": "@akala/client",
-  "version": "1.0.8",
+  "version": "1.0.38",
   "description": "",
   "main": "akala.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
-    "prepare": "tsc -p src && browserify dist/clientify.js -o akala.js"
+    "prepublishOnly": "tsc -p src && browserify dist/clientify.js -o akala.js"
   },
+  "files": [
+    "dist",
+    "akala.js",
+    "akala-client.d.ts"
+  ],
   "author": "",
   "typings": "akala-client.d.ts",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
+    "@types/jquery": "^2.0.48",
+    "@types/orchestrator": "0.0.30",
+    "@types/ws": "^3.2.0",
     "browserify": "^13.3.0",
     "gulp": "^3.9.1",
     "gulp-sourcemaps": "^1.12.0",
-    "gulp-typescript": "^3.2.2",
-    "merge2": "^1.1.0",
-    "typescript": "^2.5.1"
+    "gulp-typescript": "^3.2.3",
+    "merge2": "^1.2.0",
+    "typescript": "^2.6.1"
   },
   "dependencies": {
-    "@akala/core": "latest",
-    "@types/debug": "0.0.29",
-    "@types/express": "^4.0.37",
-    "@types/jquery": "^2.0.48",
-    "@types/orchestrator": "0.0.30",
-    "debug": "^2.6.8",
+    "@akala/core": "^1.0.27",
+    "@akala/json-rpc-ws": "^4.1.21",
+    "@types/content-type": "^1.1.2",
+    "@types/mime": "^2.0.0",
+    "content-type": "^1.0.4",
+    "mime": "^2.0.3",
     "orchestrator": "^0.3.8"
   },
   "optionalDependencies": {
