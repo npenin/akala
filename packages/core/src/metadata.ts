@@ -133,7 +133,6 @@ export class Metadata<
                 log('calling ' + serverKey + ' with %o', params);
                 return new Promise((resolve, reject) =>
                 {
-
                     client.send(serverKey, params, function (error, result)
                     {
                         if (error)
@@ -157,7 +156,16 @@ export class Metadata<
             proxy[clientKey] = <any>function (params)
             {
                 log('calling ' + clientKey + ' with %o', params);
-                client.sendMethod(clientKey, params);
+                return new Promise((resolve, reject) =>
+                {
+                    client.sendMethod(clientKey, params, function (error, result)
+                    {
+                        if (error)
+                            reject(error);
+                        else
+                            resolve(result);
+                    });
+                });
             }
         });
 
@@ -168,7 +176,6 @@ export class Metadata<
                 log('calling ' + clientKey + ' with %o', params);
                 return new Promise((resolve, reject) =>
                 {
-
                     client.sendMethod(clientKey, params, function (error, result)
                     {
                         if (error)
@@ -222,9 +229,19 @@ export class Metadata<
 
             this.clientOneWayKeys.forEach(function (serverKey)
             {
-                client.expose(serverKey, function (params)
+                client.expose(serverKey, function (params, reply)
                 {
-                    (<any>result[serverKey])(params);
+                    try
+                    {
+                        Promisify<any>((<any>result[serverKey])(params)).then(function (result)
+                        {
+                            reply(null, result);
+                        });
+                    }
+                    catch (e)
+                    {
+                        reply(e);
+                    }
                 })
             });
 
@@ -232,13 +249,20 @@ export class Metadata<
             {
                 client.expose(serverKey, function (params, reply)
                 {
-                    Promisify<any>((<any>result[serverKey])(params)).then(function (result)
+                    try
                     {
-                        reply(null, result);
-                    }, function (reason)
+                        Promisify<any>((<any>result[serverKey])(params)).then(function (result)
                         {
-                            reply(reason);
-                        });
+                            reply(null, result);
+                        }, function (reason)
+                            {
+                                reply(reason);
+                            });
+                    }
+                    catch (e)
+                    {
+                        reply(e);
+                    }
                 });
             });
 

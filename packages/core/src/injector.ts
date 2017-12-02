@@ -51,19 +51,19 @@ export class Injector
         })
     }
 
-    protected notify<T>(name: string, value?: T)
+    protected notify<T>(name: string, value?: PropertyDescriptor)
     {
         if (typeof value == 'undefined')
-            value = this.resolve(name);
+            value = Object.getOwnPropertyDescriptor(this, name);
         if (this.notifier.listenerCount(name) > 0)
             this.notifier.emit(name, value);
         if (this.parent)
             this.parent.notify(name, value);
     }
 
-    public onResolve<T>(name: string): PromiseLike<T>
-    public onResolve<T>(name: string, handler: (value: T) => void): void
-    public onResolve<T>(name: string, handler?: (value: T) => void)
+    public onResolve<T=any>(name: string): PromiseLike<T>
+    public onResolve<T=any>(name: string, handler: (value: T) => void): void
+    public onResolve<T=any>(name: string, handler?: (value: T) => void)
     {
         if (!handler)
             return new Promise<T>((resolve, reject) =>
@@ -71,9 +71,12 @@ export class Injector
                 this.onResolve(name, resolve);
             })
 
-        this.notifier.once(name, (value: T) =>
+        this.notifier.once(name, (prop: PropertyDescriptor) =>
         {
-            handler(value);
+            if (prop.get)
+                handler(prop.get());
+            else
+                handler(prop.value);
         });
         if (this.parent)
             this.parent.onResolve(name, handler);
@@ -250,7 +253,7 @@ export class Injector
         if (typeof (this.injectables[name]) !== 'undefined')
             this.unregister(name);
         Object.defineProperty(this.injectables, name, value);
-        this.notify(name);
+        this.notify(name, value);
     }
 }
 
@@ -300,6 +303,21 @@ export function injectWithName<T>(toInject: string[], a: Injectable<T>)
 export function injectNewWithName(toInject: string[], a: Function)
 {
     return defaultInjector.injectNewWithName(toInject, a);
+}
+
+export function resolveAsync<T=any>(name: string)
+{
+    return defaultInjector.resolveAsync<T>(name)
+}
+
+export function onResolve<T=any>(name: string)
+{
+    return defaultInjector.onResolve<T>(name)
+}
+
+export function injectWithNameAsync<T>(toInject: string[], a: Injectable<T>)
+{
+    return defaultInjector.injectWithNameAsync(toInject, a);
 }
 
 export function register(name: string, value: any, override?: boolean)
