@@ -70,6 +70,13 @@ export class Injector
             {
                 this.onResolve(name, resolve);
             })
+            
+        var value = this.resolve(name);
+        if (value !== 'undefined')
+        {
+             handler(value);
+             return;
+        }
 
         this.notifier.once(name, (prop: PropertyDescriptor) =>
         {

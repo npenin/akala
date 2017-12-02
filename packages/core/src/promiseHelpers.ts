@@ -3,10 +3,8 @@ import { setTimeout, clearTimeout } from 'timers';
 import { timeout } from 'q';
 export function Promisify<T>(o: T): PromiseLike<T>
 {
-    if (o && o instanceof Promise)
+    if(isPromiseLike(o))
         return o;
-    if (o && o['then'])
-        return <PromiseLike<T>><any>o;
 
     return Promise.resolve(o);
 }
