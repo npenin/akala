@@ -35,7 +35,7 @@ export class Metadata<
 
     clientToServerOneWay<TIn>(): <TImpl>(impl: TImpl) => Metadata<
         TConnection,
-        TServerOneWay & Proxy<TImpl, (this: TServerOneWay & TServerTwoWay & { $proxy(socket: TConnection): Partial<TClientOneWayProxy & TClientTwoWayProxy> }, p: TIn, connection?: TConnection) => void>,
+        TServerOneWay & Proxy<TImpl, (this: TServerOneWay & TServerTwoWay & { $proxy(socket: TConnection): Partial<TClientOneWayProxy & TClientTwoWayProxy> }, p: TIn, connection?: TConnection) => PromiseLike<void>>,
         TServerTwoWay,
         TClientOneWay,
         TClientTwoWay,
@@ -73,7 +73,7 @@ export class Metadata<
         TConnection,
         TServerOneWay,
         TServerTwoWay,
-        TClientOneWay & Proxy<TImpl, (p: TIn) => void>,
+        TClientOneWay & Proxy<TImpl, (p: TIn) => PromiseLike<void> | void>,
         TClientTwoWay,
         TServerOneWayProxy,
         TServerTwoWayProxy,
