@@ -5,7 +5,7 @@ const logger = debug('json-rpc-ws');
 import * as ws from 'ws';
 
 
-import { Connection, Handler } from './connection';
+import { Connection, Handler, PayloadDataType } from './connection';
 
 
 
@@ -39,7 +39,7 @@ export class Base<TConnection extends Connection>
    * @todo enforce handler w/ two-param callback
    * @public
    */
-  public expose<TParamType, TReplyType>(method: string, handler: Handler<TConnection, TParamType, TReplyType>)
+  public expose<TParamType extends PayloadDataType, TReplyType extends PayloadDataType>(method: string, handler: Handler<TConnection, TParamType, TReplyType>)
   {
 
     logger('registering handler for %s', method);
@@ -56,7 +56,7 @@ export class Base<TConnection extends Connection>
    * @param {Object} socket - new socket connection
    * @private
    */
-  protected connected(socket: ws | WebSocket)
+  public connected(socket: ws | WebSocket)
   {
     logger('%s connected', this.type);
     var connection = new Connection(socket, this);

@@ -75,7 +75,13 @@ var Server = /** @class */ (function (_super) {
         }
     };
     ;
+    Server.prototype.broadcast = function (method, params, callback) {
+        var _this = this;
+        Object.keys(this.connections).forEach(function (id) {
+            _this.send(id, method, params, callback);
+        });
+    };
     return Server;
 }(base_1.Base));
-exports.Server = Server;
+exports.default = Server;
 //# sourceMappingURL=server.js.map

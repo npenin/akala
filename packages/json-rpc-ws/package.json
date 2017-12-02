@@ -1,12 +1,13 @@
 {
-  "name": "json-rpc-ws",
-  "version": "4.1.0",
+  "name": "@akala/json-rpc-ws",
+  "version": "4.1.22",
   "repository": {
     "type": "git",
     "url": "git@github.com:andyet/json-rpc-ws.git"
   },
   "description": "json-rpc websocket transport",
-  "main": "index.js",
+  "main": "./lib/index.js",
+  "typings": "./lib/index.d.ts",
   "scripts": {
     "test": "lab",
     "validate": "npm ls",
@@ -15,7 +16,8 @@
     "preversion": "git checkout master && git pull origin master && npm ls",
     "publish-patch": "npm run preversion && npm version patch && git push origin master --tags && npm publish",
     "publish-minor": "npm run preversion && npm version minor && git push origin master --tags && npm publish",
-    "publish-major": "npm run preversion && npm version major && git push origin master --tags && npm publish"
+    "publish-major": "npm run preversion && npm version major && git push origin master --tags && npm publish",
+    "prepublishOnly": "tsc -p src"
   },
   "keywords": [
     "json-rpc",
@@ -33,7 +35,6 @@
     "test"
   ],
   "files": [
-    "index.js",
     "browser.js",
     "lib/*",
     "src/*"

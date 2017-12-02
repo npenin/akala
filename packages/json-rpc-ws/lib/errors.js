@@ -21,6 +21,7 @@ var Errors = /** @class */ (function () {
     }
     return Errors;
 }());
+exports.Errors = Errors;
 var errors = new Errors();
 /**
  * Returns a valid jsonrpc2.0 error reply

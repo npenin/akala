@@ -1,4 +1,14 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 var uuid_1 = require("uuid");
 var debug = require("debug");
@@ -91,6 +101,64 @@ var Connection = /** @class */ (function () {
         this.socket.send(JSON.stringify(payload));
     };
     ;
+    Connection.prototype.buildStream = function (id, result) {
+        var _this = this;
+        var data = [];
+        var canPush = true;
+        var temp = /** @class */ (function (_super) {
+            __extends(temp, _super);
+            function temp() {
+                var _this = _super.call(this, {
+                    read: function () {
+                        if (data.length) {
+                            while (canPush)
+                                canPush = s.push(data.shift());
+                        }
+                        canPush = true;
+                    }
+                }) || this;
+                var o = _this;
+                var src = result;
+                Object.getOwnPropertyNames(src).forEach(function (p) {
+                    if (Object.getOwnPropertyDescriptor(o, p) == null) {
+                        if (src && src[p])
+                            o[p] = src[p];
+                    }
+                });
+                return _this;
+            }
+            return temp;
+        }(stream.Readable));
+        var s = result = new temp();
+        var f = this.responseHandlers[id] = function (error, result) {
+            if (!!error)
+                s.emit('error', error);
+            else
+                switch (result.event) {
+                    case 'data':
+                        var d = undefined;
+                        if (result.data) {
+                            if (typeof (result.data) == 'string')
+                                d = result.data;
+                            else
+                                d = Buffer.from(result.data.data);
+                            if (canPush)
+                                s.push(d);
+                            else
+                                data.push(d);
+                        }
+                        _this.responseHandlers[id] = f;
+                        break;
+                    case 'end':
+                        if (canPush)
+                            s.push(null);
+                        else
+                            data.push(null);
+                        break;
+                }
+        };
+        return result;
+    };
     /**
      * Validate payload as valid jsonrpc 2.0
      * http://www.jsonrpc.org/specification
@@ -100,7 +168,6 @@ var Connection = /** @class */ (function () {
      * @returns {void}
      */
     Connection.prototype.processPayload = function (payload) {
-        var _this = this;
         var version = payload.jsonrpc;
         var id = payload.id;
         var method = payload.method;
@@ -130,6 +197,8 @@ var Connection = /** @class */ (function () {
                 logger('handler got callback %j, %j', err, reply);
                 return this.sendResult(id, err, reply);
             };
+            if (payload.stream)
+                params = this.buildStream(id, params);
             return handler.call(this, params, handlerCallback.bind(this));
         }
         // needs a result or error at this point
@@ -144,23 +213,7 @@ var Connection = /** @class */ (function () {
             }
             delete this.responseHandlers[id];
             if (payload.stream) {
-                if (!error) {
-                    var s = new stream.Readable(result);
-                    var f = this.responseHandlers[id] = function (error, result) {
-                        if (error)
-                            s.emit('error', error);
-                        else
-                            switch (result.event) {
-                                case 'data':
-                                    s.push(result);
-                                    _this.responseHandlers[id] = f;
-                                    break;
-                                case 'end':
-                                    s.emit('end');
-                                    break;
-                            }
-                    };
-                }
+                result = this.buildStream(id, result);
             }
             return responseHandler.call(this, error, result);
         }
@@ -174,14 +227,29 @@ var Connection = /** @class */ (function () {
      * @public
      *
      */
-    Connection.prototype.sendResult = function (id, error, result) {
-        logger('sendResult %s %j %j', id, error, result);
+    Connection.prototype.sendResult = function (id, error, result, isStream) {
+        logger('sendResult %s %s %j %j', id, isStream, error, result);
         // Assert(id, 'Must have an id.');
-        assert_1.ok(error || result, 'Must have an error or a result.');
+        // Assert(error || result, 'Must have an error or a result.');
         assert_1.ok(!(error && result), 'Cannot have both an error and a result');
-        var response = { id: id };
+        var response = { id: id, stream: !!isStream || result instanceof stream.Readable };
         if (result) {
             response.result = result;
+            if (response.stream && result instanceof stream.Readable) {
+                logger('result is stream');
+                var self = this;
+                var pt = new stream.PassThrough({ highWaterMark: 128 });
+                result.pipe(pt);
+                pt.on('data', function (chunk) {
+                    if (Buffer.isBuffer(chunk))
+                        self.sendResult(id, undefined, { event: 'data', isBuffer: true, data: chunk.toJSON() });
+                    else
+                        self.sendResult(id, undefined, { event: 'data', isBuffer: false, data: chunk });
+                });
+                pt.on('end', function () {
+                    self.sendResult(id, undefined, { event: 'end' });
+                });
+            }
         }
         else {
             response.error = error;
@@ -216,14 +284,16 @@ var Connection = /** @class */ (function () {
             if (params instanceof stream.Readable) {
                 var self = this;
                 request.stream = true;
-                params.on('data', function (chunk) {
-                    if (typeof (chunk) == 'string')
-                        request.params = { event: 'data', data: chunk };
-                    self.sendRaw(request);
+                var pt = new stream.PassThrough({ highWaterMark: 128 });
+                params.pipe(pt);
+                pt.on('data', function (chunk) {
+                    if (Buffer.isBuffer(chunk))
+                        self.sendRaw({ id: id, result: { event: 'data', isBuffer: true, data: chunk.toJSON() } });
+                    else
+                        self.sendRaw({ id: id, result: { event: 'data', isBuffer: false, data: chunk } });
                 });
-                params.on('end', function () {
-                    request.params = { event: 'end' };
-                    self.sendRaw(request);
+                pt.on('end', function () {
+                    self.sendRaw({ id: id, result: { event: 'end' }, stream: false });
                 });
             }
             request.params = params;

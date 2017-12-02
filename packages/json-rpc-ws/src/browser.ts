@@ -1,7 +1,12 @@
 'use strict';
 
-import { JsonRpcWs } from './shared_client';
+import { default as ClientBase } from './shared_client';
+import { Connection } from './connection';
 
-var Client = JsonRpcWs(WebSocket, true);
-export default Client;
-export { Client }
+export default class Client<TConnection extends Connection> extends ClientBase<TConnection>
+{
+    constructor()
+    {
+        super(WebSocket, true);
+    }
+}

@@ -9,7 +9,7 @@ const logger = debug('json-rpc-ws');
 /*
  * http://www.jsonrpc.org/specification#error_object
  */
-class Errors
+export class Errors
 {
   /**
    *

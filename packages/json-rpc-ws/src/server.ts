@@ -2,7 +2,7 @@
 
 import { Base } from './base';
 import { default as Errors } from './errors';
-import { Connection, ReplyCallback } from './connection';
+import { Connection, ReplyCallback, PayloadDataType } from './connection';
 import * as WebSocket from 'ws';
 import * as debug from 'debug';
 const logger = debug('json-rpc-ws');
@@ -13,7 +13,7 @@ const logger = debug('json-rpc-ws');
  * json-rpc-ws server
  *
  */
-export class Server<TConnection extends Connection> extends Base<TConnection>
+export default class Server<TConnection extends Connection> extends Base<TConnection>
 {
   constructor()
   {
@@ -21,7 +21,7 @@ export class Server<TConnection extends Connection> extends Base<TConnection>
     logger('new Server');
   }
 
-  private server: WebSocket.Server;
+  public server: WebSocket.Server;
 
   /**
  * Start the server
@@ -67,9 +67,8 @@ export class Server<TConnection extends Connection> extends Base<TConnection>
    * @param {replyCallback} callback - optional reply handler
    * @public
    */
-  public send<TParam extends any[] | object | null, TReplyParam>(id: string, method: string, params: TParam, callback: ReplyCallback<TReplyParam>)
+  public send<TParam extends PayloadDataType, TReplyParam extends PayloadDataType>(id: string, method: string, params?: TParam, callback?: ReplyCallback<TReplyParam>)
   {
-
     logger('Server send %s %s', id, method);
     var connection = this.getConnection(id);
     if (connection)
@@ -81,4 +80,12 @@ export class Server<TConnection extends Connection> extends Base<TConnection>
       callback(Errors('serverError').error);
     }
   };
+
+  public broadcast<TParam extends PayloadDataType, TReplyParam extends PayloadDataType>(method: string, params: TParam, callback?: ReplyCallback<TReplyParam>)
+  {
+    Object.keys(this.connections).forEach((id) =>
+    {
+      this.send(id, method, params, callback);
+    })
+  }
 }

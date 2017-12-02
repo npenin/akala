@@ -15,23 +15,6 @@ var connection_1 = require("./connection");
 var debug = require("debug");
 var logger = debug('json-rpc-ws');
 var assert_1 = require("assert");
-/**
- * json-rpc-ws module
- *
- * @param {Object} WebSocket object to use
- * @param {Boolean} browser - true if WebSocket is from the browser
- * @returns {Object} Client - json-rpc-ws client
- */
-function JsonRpcWs(socketConstructor, browser) {
-    return /** @class */ (function (_super) {
-        __extends(ClientImpl, _super);
-        function ClientImpl() {
-            return _super.call(this, socketConstructor, browser) || this;
-        }
-        return ClientImpl;
-    }(Client));
-}
-exports.JsonRpcWs = JsonRpcWs;
 var Client = /** @class */ (function (_super) {
     __extends(Client, _super);
     function Client(socketConstructor, browser) {
@@ -145,4 +128,5 @@ var Client = /** @class */ (function (_super) {
     ;
     return Client;
 }(base_1.Base));
+exports.default = Client;
 //# sourceMappingURL=shared_client.js.map

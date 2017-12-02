@@ -1,32 +1,15 @@
 'use strict';
 
 import { Base } from './base';
-import { Connection, isBrowserSocket } from './connection';
+import { Connection, isBrowserSocket, PayloadDataType } from './connection';
 import * as ws from 'ws';
 import * as debug from 'debug';
 const logger = debug('json-rpc-ws');
 import { ok as assert } from 'assert';
 
-/**
- * json-rpc-ws module
- *
- * @param {Object} WebSocket object to use
- * @param {Boolean} browser - true if WebSocket is from the browser
- * @returns {Object} Client - json-rpc-ws client
- */
-export function JsonRpcWs<TConnection extends Connection>(socketConstructor: new (address: string) => WebSocket | ws, browser: boolean)
-{
-  return class ClientImpl extends Client<TConnection>{
-    constructor()
-    {
-      super(socketConstructor, browser);
-    }
-  };
-}
+export type SocketType = ws | WebSocket;
 
-type SocketType = ws | WebSocket;
-
-class Client<TClientConnection extends Connection> extends Base<TClientConnection>
+export default class Client<TClientConnection extends Connection> extends Base<TClientConnection>
 {
   constructor(private socketConstructor: new (address: string) => SocketType, browser: boolean)
   {
@@ -153,9 +136,8 @@ class Client<TClientConnection extends Connection> extends Base<TClientConnectio
    * @public
    * @todo allow for empty params aka arguments.length === 2
    */
-  public send(method: string, params: Array<any> | object | null, callback?: () => void)
+  public send<TParamType extends PayloadDataType, TReplyType extends PayloadDataType>(method: string, params: TParamType, callback?: (error?: any, result?: TReplyType) => void)
   {
-
     logger('send %s', method);
     assert(this.isConnected(), 'Not connected');
     var connection = this.getConnection();

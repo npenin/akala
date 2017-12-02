@@ -7,13 +7,17 @@ import * as ws from 'ws';
 import * as stream from 'stream';
 const logger = debug('json-rpc-ws');
 
+export type SerializableObject = { [key: string]: string | number | SerializableObject | SerializableObject[] };
+export type PayloadDataType = number | SerializableObject | SerializableObject[] | stream.Readable | null | undefined | void | { event: string, isBuffer: boolean, data: string | SerializedBuffer };
+export type SerializedBuffer = { type: 'Buffer', data: number[] };
+
 export interface Payload
 {
   jsonrpc?: '2.0';
   id?: string | number;
   method?: string;
   params?: any;
-  result?: string | object | Array<any> | number;
+  result?: PayloadDataType;
   error?: ConnectionError;
   stream?: boolean;
 }
@@ -41,7 +45,7 @@ var jsonParse = function jsonParse(data: string): any
 };
 
 
-export type Handler<TConnection extends Connection, ParamType, ParamCallbackType> = (this: TConnection, params: ParamType, reply: ReplyCallback<ParamCallbackType>) => void;
+export type Handler<TConnection extends Connection, ParamType extends PayloadDataType, ParamCallbackType extends PayloadDataType> = (this: TConnection, params: ParamType, reply: ReplyCallback<ParamCallbackType>) => void;
 export type ReplyCallback<ParamType> = (error: any, params?: ParamType) => void;
 
 /**
@@ -130,6 +134,74 @@ export class Connection
     this.socket.send(JSON.stringify(payload));
   };
 
+  private buildStream(id:string|number, result:PayloadDataType)
+  {
+      var data: (string | Buffer | null)[] = [];
+      var canPush = true;
+  
+      class temp extends stream.Readable
+      {
+        constructor()
+        {
+          super({
+            read: () =>
+            {
+              if (data.length)
+              {
+                while (canPush)
+                  canPush = s.push(data.shift());
+              }
+              canPush = true;
+            }
+          });
+  
+          var o:any=this ;
+          var src=result as SerializableObject;
+          Object.getOwnPropertyNames(src).forEach(function(p){
+            if(Object.getOwnPropertyDescriptor(o, p)==null)
+            {
+              if(src && src[p])
+              o[p]=src[p];
+            }
+          })
+        }
+      }
+  
+      var s = result = <SerializableObject & stream.Readable>new temp();
+      var f = this.responseHandlers[id] = (error, result: { event: string, isBuffer?: boolean, data?: SerializedBuffer | string }) =>
+      {
+        if (!!error)
+          s.emit('error', error);
+        else
+          switch (result.event)
+          {
+            case 'data':
+              var d: Buffer | string | undefined = undefined;
+              if (result.data)
+              {
+                if (typeof (result.data) == 'string')
+                  d = result.data;
+                else
+                  d = Buffer.from(result.data.data);
+                if (canPush)
+                  s.push(d);
+                else
+                  data.push(d);
+              }
+              this.responseHandlers[id as string] = f;
+              break;
+            case 'end':
+              if (canPush)
+                s.push(null);
+              else
+                data.push(null);
+              break;
+          }
+      }
+      return result;
+  }
+  
+
   /**
    * Validate payload as valid jsonrpc 2.0
    * http://www.jsonrpc.org/specification
@@ -171,11 +243,14 @@ export class Connection
       {
         return handler.call(this, params, emptyCallback);
       }
-      var handlerCallback = function handlerCallback(this: Connection, err: any, reply: ReplyCallback<any>)
+      var handlerCallback = function handlerCallback(this: Connection, err: any, reply: PayloadDataType)
       {
         logger('handler got callback %j, %j', err, reply);
         return this.sendResult(id, err, reply);
       };
+      if(payload.stream)
+      params = this.buildStream(id, params);
+
       return handler.call(this, params, handlerCallback.bind(this));
     }
     // needs a result or error at this point
@@ -195,26 +270,7 @@ export class Connection
       delete this.responseHandlers[id];
       if (payload.stream)
       {
-        if (!error)
-        {
-          var s = new stream.Readable(result as object);
-          var f = this.responseHandlers[id] = (error, result) =>
-          {
-            if (error)
-              s.emit('error', error);
-            else
-              switch (result.event)
-              {
-                case 'data':
-                  s.push(result);
-                  this.responseHandlers[id as string] = f;
-                  break;
-                case 'end':
-                  s.emit('end');
-                  break;
-              }
-          }
-        }
+        result=this.buildStream(id, result);
       }
       return responseHandler.call(this, error, result);
     }
@@ -229,19 +285,37 @@ export class Connection
    * @public
    *
    */
-  public sendResult(id: string | number | undefined, error: ConnectionError | undefined, result: string | object | Array<any> | number | undefined)
+  public sendResult(id: string | number | undefined, error: ConnectionError | undefined, result?: PayloadDataType, isStream?: boolean)
   {
 
-    logger('sendResult %s %j %j', id, error, result);
+    logger('sendResult %s %s %j %j', id, isStream, error, result);
     // Assert(id, 'Must have an id.');
-    Assert(error || result, 'Must have an error or a result.');
+    // Assert(error || result, 'Must have an error or a result.');
     Assert(!(error && result), 'Cannot have both an error and a result');
 
-    var response: Payload = { id: id };
+    var response: Payload = { id: id, stream: !!isStream || result instanceof stream.Readable };
 
     if (result)
     {
       response.result = result;
+      if (response.stream && result instanceof stream.Readable)
+      {
+        logger('result is stream');
+        var self = this;
+        var pt = new stream.PassThrough({ highWaterMark: 128 });
+        result.pipe(pt);
+        pt.on('data', function (chunk)
+        {
+          if (Buffer.isBuffer(chunk))
+            self.sendResult(id, undefined, { event: 'data', isBuffer: true, data: chunk.toJSON() });
+          else
+            self.sendResult(id, undefined, { event: 'data', isBuffer: false, data: chunk });
+        });
+        pt.on('end', function ()
+        {
+          self.sendResult(id, undefined, { event: 'end' });
+        });
+      }
     }
     else
     {
@@ -259,7 +333,7 @@ export class Connection
    * @param {function} callback - optional callback for a reply from the message
    * @public
    */
-  public sendMethod(method: string, params: Array<any> | object | null | stream.Readable, callback?: ReplyCallback<any>)
+  public sendMethod<TParamType extends PayloadDataType, TReplyType extends PayloadDataType>(method: string, params?: TParamType, callback?: ReplyCallback<TReplyType>)
   {
     var id = uuid();
     Assert((typeof method === 'string') && (method.length > 0), 'method must be a non-empty string');
@@ -280,21 +354,22 @@ export class Connection
 
     if (params)
     {
-
       if (params instanceof stream.Readable)
       {
         var self = this;
         request.stream = true;
-        params.on('data', function (chunk)
+        var pt = new stream.PassThrough({ highWaterMark: 128 });
+        params.pipe(pt);
+        pt.on('data', function (chunk)
         {
-          if (typeof (chunk) == 'string')
-            request.params = { event: 'data', data: chunk };
-          self.sendRaw(request);
+          if (Buffer.isBuffer(chunk))
+            self.sendRaw({id:id, result: { event: 'data', isBuffer: true, data: chunk.toJSON() }});
+          else
+            self.sendRaw({id:id, result: { event: 'data', isBuffer: false, data: chunk } });
         });
-        params.on('end', function ()
+        pt.on('end', function ()
         {
-          request.params = { event: 'end' };
-          self.sendRaw(request)
+            self.sendRaw({id:id, result: { event: 'end' }, stream:false});
         });
       }
 
@@ -394,6 +469,7 @@ export class Connection
     }
     else if (typeof (data) == 'string')
     {
+
       payload = jsonParse(data);
     }
 

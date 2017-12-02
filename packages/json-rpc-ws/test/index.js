@@ -8,6 +8,7 @@ var debug = require('debug');
 var JsonRpcWs = require('../');
 var Browserify = require('browserify');
 var selenium = require('selenium-webdriver');
+var fs = require('fs');
 
 debug.enable('json-rpc-ws');
 
@@ -204,6 +205,29 @@ lab.experiment('json-rpc ws', function ()
       Code.expect(err).to.include(['code', 'message']);
       Code.expect(err.code).to.equal(-32000);
       done();
+    });
+  });
+  lab.test('stream', function (done)
+  {
+    fs.stat(__filename, function (err, stats)
+    {
+      debugger;
+      client.send('reflect', fs.createReadStream(__filename, { highWaterMark: 128 }), function (err, result)
+      {
+        Code.expect(err).to.be.undefined();
+        var receivedStats = 0;
+        result.on('data', function (chunk)
+        {
+          receivedStats += chunk.length;
+          // console.log(chunk);
+        })
+        result.on('end', function ()
+        {
+          Code.expect(receivedStats).equals(stats.size);
+          console.log('end');
+          done();
+        })
+      })
     });
   });
   lab.test('invalid payloads do not throw exceptions', function (done)
