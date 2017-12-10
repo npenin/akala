@@ -1,11 +1,8 @@
 import { EventEmitter } from 'events'
 import { setTimeout, clearTimeout } from 'timers';
 import { timeout } from 'q';
-export function Promisify<T>(o: T): PromiseLike<T>
+export function Promisify<T>(o: T | PromiseLike<T>): PromiseLike<T>
 {
-    if(isPromiseLike(o))
-        return o;
-
     return Promise.resolve(o);
 }
 

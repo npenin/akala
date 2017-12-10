@@ -35,11 +35,11 @@ export class Metadata<
 
     clientToServerOneWay<TIn>(): <TImpl>(impl: TImpl) => Metadata<
         TConnection,
-        TServerOneWay & Proxy<TImpl, (this: TServerOneWay & TServerTwoWay & { $proxy(socket: TConnection): Partial<TClientOneWayProxy & TClientTwoWayProxy> }, p: TIn, connection?: TConnection) => PromiseLike<void>>,
+        TServerOneWay & Proxy<TImpl, (this: TServerOneWay & TServerTwoWay & { $proxy(socket: TConnection): Partial<TClientOneWayProxy & TClientTwoWayProxy> }, p: TIn, connection?: TConnection) => PromiseLike<void> | void>,
         TServerTwoWay,
         TClientOneWay,
         TClientTwoWay,
-        TServerOneWayProxy & Proxy<TImpl, (p: TIn) => PromiseLike<void>>,
+        TServerOneWayProxy & Proxy<TImpl, (p: TIn) => void | PromiseLike<void>>,
         TServerTwoWayProxy,
         TClientOneWayProxy,
         TClientTwoWayProxy>
@@ -77,7 +77,7 @@ export class Metadata<
         TClientTwoWay,
         TServerOneWayProxy,
         TServerTwoWayProxy,
-        TClientOneWayProxy & Proxy<TImpl, (p: TIn) => PromiseLike<void>>,
+        TClientOneWayProxy & Proxy<TImpl, (p: TIn) => PromiseLike<void> | void>,
         TClientTwoWayProxy>
     {
         return (impl) =>
@@ -225,7 +225,7 @@ export class Metadata<
                     return this.createServerProxy(client);
                 }
             });
-            var result = extend.apply(this, dummy);
+            var clientImplWithProxy = <TClientOneWay & TClientTwoWay & {$proxy():Partial<TServerOneWayProxy & TServerTwoWayProxy>}>extend.apply(this, dummy);
 
             this.clientOneWayKeys.forEach(function (serverKey)
             {
@@ -233,10 +233,10 @@ export class Metadata<
                 {
                     try
                     {
-                        Promisify<any>((<any>result[serverKey])(params)).then(function (result)
+                        Promisify<any>((<any>clientImplWithProxy[serverKey])(params)).then(function (result)
                         {
                             reply(null, result);
-                        });
+                        }, reply);
                     }
                     catch (e)
                     {
@@ -251,13 +251,10 @@ export class Metadata<
                 {
                     try
                     {
-                        Promisify<any>((<any>result[serverKey])(params)).then(function (result)
+                        Promisify<any>((<any>clientImplWithProxy[serverKey])(params)).then(function (result)
                         {
                             reply(null, result);
-                        }, function (reason)
-                            {
-                                reply(reason);
-                            });
+                        }, reply);
                     }
                     catch (e)
                     {
@@ -266,7 +263,7 @@ export class Metadata<
                 });
             });
 
-            return result;
+            return clientImplWithProxy;
         }
     }
 }
