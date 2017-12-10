@@ -1,12 +1,12 @@
 import * as url from 'url';
 import * as http from 'http';
-import { Router as BaseRouter, NextFunction, RouterOptions, LayerOptions, Middleware1, Middleware2, ErrorMiddleware1, ErrorMiddleware2, Injector, Layer, Route } from '@akala/core';
+import { Router as BaseRouter, NextFunction, RouterOptions, LayerOptions, Middleware1, Middleware2, ErrorMiddleware1, ErrorMiddleware2, Injector, Layer, Route, log } from '@akala/core';
 import * as jsonrpc from '@akala/json-rpc-ws'
 import * as worker from '../worker-meta'
 import { HttpRoute } from './route';
 import { HttpLayer } from './layer';
 import { Readable } from 'stream';
-var debug = require('debug')('akala:router');
+var debug = log('akala:router');
 var routing = require('routington');
 
 export type httpHandler = (req: Request, res: Response) => void;
@@ -311,7 +311,7 @@ export interface CallbackResponse
     headers?: { [header: string]: any };
     statusCode?: number;
     statusMessage?: string;
-    data?: jsonrpc.PayloadDataType;
+    data?: jsonrpc.PayloadDataType | string;
 }
 
 export type workerRequestHandler = (req: worker.Request, callback: worker.Callback) => void;

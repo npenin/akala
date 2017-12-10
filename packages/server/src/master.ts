@@ -174,7 +174,7 @@ fs.exists(configFile, function (exists)
                             app.useGet('/assets/' + folder, st('node_modules/' + plugin + '/assets'));
                             app.useGet('/bower_components/' + folder, st('node_modules/' + plugin + '/bower_components'));
 
-                            app.useGet('/' + folder, st('node_modules/' + plugin + '/views'));
+                            app.useGet('/' + plugin, st('node_modules/' + plugin + '/views'));
 
                             var localWorkers = getDependencies();
                             log('localWorkers for %s: %s', folder, localWorkers);

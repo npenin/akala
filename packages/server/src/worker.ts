@@ -49,7 +49,8 @@ createClient('api/' + process.argv[2]).then(function (socket: jsonrpc.Client<jso
             worker.emit('ready');
         },
         getContent: handle(app, '/api')
-    })
+    });
+    client.$proxy().register({ path: '/' });
     akala.register('$bus', client);
 
     var server = client.$proxy();

@@ -7,6 +7,8 @@ export { Router, Callback };
 import * as jsonrpc from '@akala/json-rpc-ws'
 import * as send from 'send';
 import * as onFinished from 'on-finished';
+import { PayloadDataType } from '@akala/json-rpc-ws';
+import { lchmod } from 'fs';
 var log = akala.log('akala:worker');
 
 export { CallbackResponse }
@@ -51,6 +53,7 @@ export interface Request extends BaseRequest
 {
     injector?: WorkerInjector;
     [key: string]: any;
+    body: any;
 }
 
 export function expressWrap(handler: express.Handler)
@@ -281,7 +284,7 @@ class MyResponse extends stream.Transform implements CallbackResponse
         delete this.headers[name];
     }
 
-    protected _write(chunk: any, encoding?: string, callback?: Function): void
+    public _write(chunk: any, encoding?: string, callback?: (err: Error) => void): void
     {
         if (!this.headersSent)
             this.writeHead(this.statusCode);
@@ -296,31 +299,47 @@ export function handle(app: Router, root: string)
     {
         return new Promise((resolve, reject) =>
         {
-            var response: CallbackResponse;
-            function callback(status, data?)
+            function callback(status, data?: PayloadDataType | string)
             {
-                if (isNaN(Number(status)))
+                var response: CallbackResponse;
+                if (arguments.length == 0)
+                    return resolve();
+
+                if (isNaN(Number(status)) || Array.isArray(status))
                 {
-                    var socketRes: CallbackResponse = status;
+                    response = status;
                     if (typeof (data) == 'undefined')
                     {
                         if (typeof (status) == 'undefined')
-                            socketRes = { statusCode: 404, data: undefined };
+                            response = { statusCode: 404, data: 'Not found' };
+                        else if (isNaN(Number(response.statusCode)) && !(response instanceof stream.Readable))
+                        {
+                            data = response as any;
+                            response = { statusCode: 200, data: data };
+                            status = null;
+                        }
                         else
-                            data = socketRes.data;
+                            data = undefined;
                         status = null;
                     }
                 }
                 else
-                    socketRes = { statusCode: status, data: undefined };
-                socketRes.statusCode = socketRes.statusCode || 200;
+                    response = { statusCode: status, data: 'No data' };
 
-                if (!(data instanceof stream.Readable) && !Buffer.isBuffer(data) && typeof (data) !== 'string' && typeof data != 'number')
+                response.statusCode = response.statusCode || 200;
+
+                if (!(data instanceof stream.Readable) && !Buffer.isBuffer(data) && typeof (data) !== 'string' && typeof data != 'number' && typeof (data) != 'undefined')
+                {
+                    if (!response.headers)
+                        response.headers = {};
+                    if (!response.headers['Content-Type'])
+                        response.headers['Content-Type'] = 'application/json';
                     data = JSON.stringify(data);
+                }
                 if (typeof (data) != 'undefined')
-                    socketRes.data = data;
+                    response.data = data;
 
-                resolve(socketRes);
+                resolve(response);
             }
 
             var requestInjector: WorkerInjector = new akala.Injector();
