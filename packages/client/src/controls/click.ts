@@ -1,6 +1,6 @@
 import * as di from '@akala/core'
 import { control, BaseControl } from './control'
-import { Promisify, Binding } from '@akala/core'
+import { Promisify, Binding, isPromiseLike } from '@akala/core'
 import { IScope } from '../scope';
 
 @control()
@@ -18,6 +18,14 @@ export class Click extends BaseControl<Function>
             if (parameter instanceof Binding)
             {
                 var value = parameter.getValue();
+                if (isPromiseLike(value))
+                {
+                    value.then(function (value)
+                    {
+                        if (value instanceof Function)
+                            return scope.$inject(value);
+                    })
+                }
                 if (value instanceof Function)
                     return scope.$inject(value);
             }

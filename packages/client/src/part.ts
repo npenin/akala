@@ -66,7 +66,7 @@ export class Part extends EventEmitter
     public use<TScope extends IScope<any>>(url: string, partName: string = 'body', part: PartDefinition<TScope>)
     {
         var self = this;
-        this.router.use(url, function (req: Request, next: akala.NextFunction)
+        this.router.on(url, function (req: Request, next: akala.NextFunction)
         {
             console.log('apply part for url' + url);
 

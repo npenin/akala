@@ -1,12 +1,13 @@
-import * as di from '@akala/core'
+import * as akala from '@akala/core'
 import { control, Control } from './control'
 import { IScope } from '../scope'
 
 export interface parameter
 {
-    in: di.Binding | di.ObservableArray<any>;
-    text: di.Binding | string;
-    value: di.Binding | string;
+    in: akala.Binding | akala.ObservableArray<any>;
+    text: akala.Binding | string;
+    textvalue: akala.Binding | string;
+    value: akala.Binding | string;
 }
 
 @control()
@@ -20,30 +21,35 @@ export class Options extends Control<parameter>
     public instanciate(target: IScope<any>, element: JQuery, parameter: parameter, controls: any)
     {
         var self = this;
-        var value: di.Binding = controls.value;
+        var value: akala.Binding = controls.value;
         if (controls.value instanceof Function)
             value = controls.value(target, true);
 
         delete controls.value;
         // var newControls;
-        di.Promisify(parameter.in).then(function (source)
+        var source: any[] | akala.ObservableArray<any>;
+        if (parameter.in instanceof akala.Binding)
+            source = parameter.in.getValue();
+        else
+            source = parameter.in;
+        akala.Promisify(source).then(function (source)
         {
             var array: any[];
-            if (source instanceof di.Binding)
-                array = source = source.getValue();
 
-            if (parameter.text instanceof di.Binding)
+            if (parameter.text instanceof akala.Binding)
                 parameter.text = parameter.text.expression;
-            if (parameter.value instanceof di.Binding)
+            if (parameter.textvalue instanceof akala.Binding)
+                parameter.textvalue = parameter.textvalue.expression;
+            if (parameter.value instanceof akala.Binding)
                 parameter.value = parameter.value.expression;
             if (parameter.text[0] != '$')
                 parameter.text = '$item.' + parameter.text;
             if (parameter.value[0] != '$')
                 parameter.value = '$item.' + parameter.value;
-            if (source instanceof di.ObservableArray)
+            if (source instanceof akala.ObservableArray)
             {
                 var offset = element.children().length;
-                source.on('collectionChanged', function (this: di.ObservableArray<any>, args: di.ObservableArrayEventArgs<any>)
+                source.on('collectionChanged', function (this: akala.ObservableArray<any>, args: akala.ObservableArrayEventArgs<any>)
                 {
                     var key = -1;
                     var isAdded = false;
@@ -79,24 +85,26 @@ export class Options extends Control<parameter>
                 });
                 array = source.array;
             }
+            else
+                array = source;
             if (typeof (array) == 'undefined')
                 throw new Error('invalid array type');
 
-            $.each(array, function (key, value)
+            akala.each(array, function (value, key)
             {
                 var scope = target.$new();
                 scope['$key'] = key;
                 scope['$item'] = value;
-                element.append(self.clone($('<option data-bind="{value: ' + parameter.value + ', text:' + parameter.text + '}" />'), scope, true));
-            });
+                element.append(self.clone($('<option data-bind="{value: ' + (parameter.textvalue || parameter.value) + ', text:' + parameter.text + '}" />'), scope, true));
+            })
 
             element.change(function ()
             {
                 var val = element.val();
-                var model = $.grep(array, function (it, i)
+                var model = akala.grep(array, function (it, i)
                 {
-                    return val == di.Parser.eval(<string>parameter.value, { $item: it, $key: i });
-                });
+                    return val == akala.Parser.eval(<string>(parameter.textvalue || parameter.value), { $item: it, $key: i });
+                }, true);
                 if (model.length == 0)
                     value.setValue(val, value);
                 else
@@ -105,7 +113,7 @@ export class Options extends Control<parameter>
             value.onChanged(function (ev)
             {
                 if (value !== ev.source)
-                    element.val(di.Parser.eval(<string>parameter.value, ev.eventArgs.value));
+                    element.val(akala.Parser.eval(<string>parameter.value, ev.eventArgs.value));
             });
         });
     }
