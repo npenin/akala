@@ -14,6 +14,20 @@ export { worker };
 import * as master from './master-meta';
 export { master };
 export type resolve = worker.resolve;
-export { eachAsync, each, grep, map, Translator, noop, Injector, injectWithName, injectNewWithName, inject, injectNew, register, factory, Promisify, module, isPromiseLike, service, IFactory, resolve, NextFunction, log, extend, Interpolate, Proxy, Metadata, DualMetadata, when, registerFactory, inspect } from '@akala/core';
+export
+{
+    eachAsync, each, grep, map, extend,
+    Translator, Queue, noop,
+    Injector, injectWithName, injectNewWithName, inject, injectNew, register, factory, registerFactory, inspect, resolve, service, injectWithNameAsync, resolveAsync, onResolve,
+    Promisify, isPromiseLike, when, whenOrTimeout,
+    module,
+    log,
+    IFactory,
+    Interpolate,
+    NextFunction,
+    Proxy,
+    Metadata,
+    DualMetadata,
+} from '@akala/core';
 import * as st from 'serve-static';
 export { st as static };

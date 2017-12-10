@@ -1,6 +1,6 @@
-import { Injector, injectWithName, NextFunction, log } from '@akala/core';
-import { Request, Response, Methods, requestHandlerWithNext, errorHandlerWithNext, Router } from './router';
-import { WorkerInjector } from './worker-meta'
+import { Injector, injectWithName, NextFunction, log, isPromiseLike } from '@akala/core';
+import { Response, Methods, requestHandlerWithNext, errorHandlerWithNext, Router } from './router';
+import { WorkerInjector, Request, Callback } from './worker-meta'
 
 import * as fs from 'fs';
 import * as http from 'http';
@@ -14,7 +14,7 @@ var debug = log('akala:api');
     method = <keyof Methods<apiHandler<Function>>>method.toLowerCase();
     api[method] = function <T extends Function>(path: string, $inject: string[], ...handlers: T[])
     {
-        return injectWithName(['$router'], function (router: Router<requestHandlerWithNext, errorHandlerWithNext>)
+        return injectWithName(['$router', '$callback'], function (router: Router<requestHandlerWithNext, errorHandlerWithNext>, callback: Callback)
         {
             var args: any[] = [path];
             args.concat(handlers);
@@ -30,7 +30,17 @@ var debug = log('akala:api');
                         for (var i in request.query)
                             requestInjector.register('query.' + i, request.query[i], true);
 
-                    requestInjector.injectWithName($inject, <any>handler)();
+                    var result = requestInjector.injectWithName($inject, <any>handler)();
+                    if (isPromiseLike(result))
+                    {
+                        result.then(function (r)
+                        {
+                            callback(200, r);
+                        }, function (err)
+                        {
+                            callback(500, err);
+                        });
+                    }
                 });
             })
             return api;
@@ -53,6 +63,9 @@ export function command<T extends Function>($inject: string[], f: T)
         if (request.query)
             for (var i in request.query)
                 injector.register('query.' + i, request.query[i]);
+
+        if (request.body)
+            injector.register('$body', request.body);
 
         injector.register('$next', next);
         var injectable = injector.injectWithName($inject, <any>f);

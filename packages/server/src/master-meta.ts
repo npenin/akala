@@ -10,6 +10,7 @@ import { createServer } from './sharedComponent/jsonrpc';
 import { Proxy, Metadata } from '@akala/core';
 import { Connection } from '@akala/json-rpc-ws'
 import * as stream from 'stream'
+import * as bodyparser from 'body-parser'
 
 var log = debug('akala:master');
 
@@ -41,6 +42,7 @@ export function translateRequest(req: router.Request): Partial<worker.Request>
         statusCode: req.statusCode,
         statusMessage: req.statusMessage,
         trailers: req.trailers,
+        body: req['body'],
         user: req['user']
     }
 }
@@ -57,7 +59,7 @@ export function handleResponse(res: router.Response, locationReplacer: (key: str
                     response.headers[header] = locationReplacer(response.headers[header]);
                 res.setHeader(header, response.headers[header]);
             });
-        res.writeHead(response.statusCode, response.statusMessage);
+        res.writeHead(status, response.statusMessage, response.headers);
         if (response instanceof stream.Readable)
             response.pipe(res);
         else 
@@ -78,7 +80,7 @@ export function handleResponse(res: router.Response, locationReplacer: (key: str
             else 
             {
                 log('sending object');
-                if (typeof (response.data) !== 'string' && typeof response.data != 'number')
+                if (typeof (response.data) !== 'string' && typeof response.data != 'number' && typeof (response.data) !== 'undefined')
                     res.write(JSON.stringify(response.data));
                 else if (typeof (response.data) != 'undefined')
                     res.write(response.data);
@@ -127,7 +129,13 @@ export function serveRouter<TOConnection extends jsonrpc.Connection,
                     next();
                     return;
                 }
-                client.getContent(translateRequest(req)).then(handleResponse(res, locationReplacer, 200), handleResponse(res, locationReplacer, 500));
+                bodyparser.json()(req as any, res as any, function (err)
+                {
+                    bodyparser.urlencoded({ extended: true })(req as any, res as any, function (err)
+                    {
+                        client.getContent(translateRequest(req)).then(handleResponse(res, locationReplacer, 200), handleResponse(res, locationReplacer, 500));
+                    })
+                })
             });
         }
     }, impl);

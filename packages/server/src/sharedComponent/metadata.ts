@@ -35,7 +35,9 @@ export function createServerFromMeta<
                     {
                         log('replying with %o', value);
                         reply(null, value);
-                    });
+                    }, reply);
+                else
+                    reply(null, result);
             })
         });
 
@@ -44,13 +46,15 @@ export function createServerFromMeta<
             server.expose(serverKey, function (params, reply)
             {
                 log('receiving ' + serverKey + ' with %o', params);
-                akala.Promisify<any>((<any>serverImpl[serverKey])(params, this)).then(function (result)
-                {
-                    reply(null, result);
-                }, function (reason)
+                var result = (<any>serverImpl[serverKey])(params, this);
+                if (akala.isPromiseLike(result))
+                    result.then(function (value)
                     {
-                        reply(reason);
-                    });
+                        log('replying with %o', value);
+                        reply(null, value);
+                    }, reply);
+                else
+                    reply(null, result)
             });
         });
 
