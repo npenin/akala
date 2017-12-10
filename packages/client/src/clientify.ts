@@ -1,7 +1,7 @@
 import { serviceModule, $$injector } from './common'
 import { router, Router, Request } from './router'
 import { LocationService, StartOption } from './locationService'
-import { Promisify, Deferred, ObservableArray, Http as IHttp, eachAsync } from '@akala/core';
+import { Promisify, ObservableArray, Http as IHttp, eachAsync, map, extend, each } from '@akala/core';
 import { Http } from './http';
 import { Interpolate, Template } from './template';
 import { Part } from './part';
@@ -24,7 +24,6 @@ mainRouter.use(function (error)
 serviceModule.register('$http', new Http());
 serviceModule.register('$location', new LocationService());
 serviceModule.register('promisify', Promisify);
-serviceModule.register('$defer', Deferred);
 
 
 export { serviceModule };
@@ -36,6 +35,7 @@ export { Template };
 export { Part };
 export { IScope };
 export { BaseControl, Control, control };
+export { map, extend, each, eachAsync };
 // export { Promisify, Deferred };
 export var run: (toInject: string[], f: Function) => void = $$injector.run.bind($$injector);
 
@@ -48,22 +48,24 @@ $$injector.init([], function ()
 
 export function load(...scripts: string[])
 {
-    var defer = new Deferred();
-    var firstScriptTag = document.getElementsByTagName('script')[0]; // find the first script tag in the document
-    eachAsync(scripts, function (script, i, next)
+    return new Promise((resolve, reject) =>
     {
-        var scriptTag = document.createElement('script'); // create a script tag
-        firstScriptTag.parentNode.insertBefore(scriptTag, firstScriptTag); // append the script to the DOM
-        scriptTag.addEventListener('load', function (ev)
+
+        var firstScriptTag = document.getElementsByTagName('script')[0]; // find the first script tag in the document
+        eachAsync(scripts, function (script, i, next)
         {
-            next()
-        });
-        scriptTag.src = script; // set the source of the script to your script
-    }, function ()
-        {
-            defer.resolve(null);
-        });
-    return defer;
+            var scriptTag = document.createElement('script'); // create a script tag
+            firstScriptTag.parentNode.insertBefore(scriptTag, firstScriptTag); // append the script to the DOM
+            scriptTag.addEventListener('load', function (ev)
+            {
+                next()
+            });
+            scriptTag.src = script; // set the source of the script to your script
+        }, function ()
+            {
+                resolve(null);
+            });
+    });
 }
 
 $$injector.start(['$location'], function ($location: LocationService)

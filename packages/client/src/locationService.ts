@@ -221,7 +221,7 @@ export class LocationService extends EventEmitter
         if (hashbang && path[0] != '#')
             location.assign('#' + path);
         else
-            location.assign(path);
+            history.pushState(null, document.title, path);
     }
 
     public refresh()

@@ -1,60 +1,172 @@
 import { parse, format } from 'url';
-import * as di from '@akala/core';
+import * as akala from '@akala/core';
 import { service } from './common'
+import * as contentType from 'content-type';
+import * as mime from 'mime';
 
 // @service('$http')
-export class Http implements di.Http
+export class Http implements akala.Http<XMLHttpRequest>
 {
     constructor() { }
 
-    public get(url: string, params?: any)
+    public get<T=string>(url: string, params?: any): PromiseLike<T>
     {
-        return this.call('GET', url, params);
+        return this.unwrap(this.call({ method: 'GET', url: url, params: params }));
     }
-    public post(url: string, body?: any)
+    public post<T=string>(url: string, body?: any): PromiseLike<T>
     {
-        return this.call('POST', url, body);
+        return this.unwrap(this.call({ method: 'POST', url: url, body: body }));
     }
 
-    public getJSON(url: string, params?: any)
+    public getJSON<T=any>(url: string, params?: any): PromiseLike<T>
     {
-        return this.get(url, params).then(function (data)
+        return this.unwrap(this.call({ url: url, params: params, method: 'GET', type: 'json' }));
+    }
+
+    private unwrap<T>(request: PromiseLike<{ response: XMLHttpRequest, body: T }>): PromiseLike<T>
+    {
+        return request.then(function (response)
         {
-            return JSON.parse(data);
+            return response.body;
+        }, function (rejection)
+            {
+                return rejection;
+            });
+    }
+
+    public call<T=string>(options: akala.HttpOptions): PromiseLike<{ response: XMLHttpRequest, body: T }>
+    public call<T=string>(method: string, url: string, query?: any, body?: any): PromiseLike<{ response: XMLHttpRequest, body: T }>
+    public call<T=string>(method: string | akala.HttpOptions, url?: string, query?: any, body?: any): PromiseLike<{ response: XMLHttpRequest, body: T }>
+    {
+        var req = new XMLHttpRequest();
+        var options: akala.HttpOptions;
+        if (typeof (method) == 'string')
+            options = { method: method, url: url, params: query, body: body };
+        else
+            options = method;
+        var uri = parse(options.url);
+        if (method != 'GET')
+            uri.query = akala.extend({}, uri.query, query);
+        req.open(options.method, format(uri), true);
+        return new Promise<{ response: XMLHttpRequest, body: T }>((resolve, reject) =>
+        {
+            var self = this;
+            req.onreadystatechange = function (aEvt)
+            {
+                if (req.readyState == 4)
+                {
+                    if (req.status == 301)
+                        return self.call<T>(options.method, req.getResponseHeader('location')).then(function (data)
+                        {
+                            resolve(data);
+                        }, function (data)
+                            {
+                                reject(data);
+                            });
+
+                    if (req.status == 200)
+                        switch (req.getResponseHeader('Content-Type') && mime.getExtension(contentType.parse(req.getResponseHeader('Content-Type')).type))
+                        {
+                            default:
+                                resolve({ response: req, body: req.response });
+                                break;
+                            case "html":
+                            case "xml":
+                                resolve({ response: req, body: req.responseXML as any || req.responseText });
+                                break;
+                            case "json":
+                                if (typeof (req.response) == 'string')
+                                    resolve({ response: req, body: JSON.parse(req.response) });
+                                else
+                                    resolve({ response: req, body: req.response });
+                                break;
+                            case "txt":
+                                resolve({ response: req, body: req.responseText as any });
+                                break;
+                        }
+                    else
+                        reject(req.responseText);
+                }
+            };
+
+            if (options.headers)
+            {
+                akala.each(options.headers, function (value, key)
+                {
+                    if (value instanceof Date)
+                        req.setRequestHeader(key, value.toISOString());
+                    else
+                        req.setRequestHeader(key, value && value.toString());
+                });
+            }
+            switch (options.contentType)
+            {
+                case 'json':
+                    req.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+                    break;
+                case 'form':
+                    req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+                    break;
+                }
+
+            switch (options.type)
+            {
+                case 'json':
+                    req.setRequestHeader('Accept', 'application/json, text/json');
+                    break;
+                    case 'xml':
+                    req.setRequestHeader('Accept', 'text/xml');
+                    break;
+                }
+
+            if (options.method != 'GET')
+            {
+                if (options.body instanceof FormData)
+                    req.send(options.body);
+                else if (typeof (options.body) == 'object')
+                {
+                    switch (options.contentType)
+                    {
+                        case 'form':
+                            req.send(serialize(options.body));
+                            break;
+                        case 'json':
+                        default:
+                            req.send(JSON.stringify(options.body));
+                            break;
+                    }
+                }
+                else
+                    req.send(options.body);
+            }
+            else
+                req.send(null);
         });
     }
+}
 
-    public call(method: string, url: string, params?: any): PromiseLike<string>
+function serialize(obj, prefix?: string)
+{
+
+    return akala.map(obj, function (value, key)
     {
-        var uri = parse(url);
-        if (method != 'GET')
-            uri.query = $.extend({}, uri.query, params);
-        var req = new XMLHttpRequest();
-        req.open(method, format(uri), true);
-        var deferred = new di.Deferred<string>();
-        var self = this;
-        req.onreadystatechange = function (aEvt)
+
+        if (typeof (value) == 'object')
         {
-            if (req.readyState == 4)
+
+            var keyPrefix = prefix;
+            if (prefix)
             {
-                if (req.status == 301)
-                    return self.call(method, req.getResponseHeader('location')).then(function (data)
-                    {
-                        deferred.resolve(data);
-                    }, function (data)
-                        {
-                            deferred.reject(data);
-                        })
-                if (req.status == 200)
-                    deferred.resolve(req.responseText);
+                if (typeof (key) == 'number')
+                    keyPrefix = prefix.substring(0, prefix.length - 1) + '[' + key + '].';
                 else
-                    deferred.reject(req.responseText);
+                    keyPrefix = prefix + encodeURIComponent(key) + '.';
             }
-        };
-        if (method != 'GET')
-            req.send(params);
+            return serialize(value, keyPrefix);
+        }
         else
-            req.send(null);
-        return deferred;
-    }
+        {
+            return (prefix || '') + encodeURIComponent(key) + '=' + encodeURIComponent(value);
+        }
+    }, true)
 }

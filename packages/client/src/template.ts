@@ -147,47 +147,43 @@ export class Template
 {
     constructor(private interpolator: Interpolate, private http: di.Http) { }
 
-    public get(t: string, registerTemplate: boolean = true): PromiseLike<templateFunction>
+    public get(t: string | PromiseLike<string>, registerTemplate: boolean = true): PromiseLike<templateFunction>
     {
         var http = this.http;
         var self = this;
-        var p = new di.Deferred<templateFunction>();
-        if (!t)
-            setImmediate(p.resolve, t);
-        else
+        return di.Promisify(t).then<templateFunction>(function (t: string)
         {
-            var template = <templateFunction>cache.resolve(t);
-            if (template)
+            var p = new Promise<templateFunction>((resolve, reject) =>
             {
-                if (di.isPromiseLike(template))
-                    return template.then(function (data)
-                    {
-                        p.resolve(data);
-                        return data;
-                    })
+                if (!t)
+                    resolve(null);
                 else
-                    setImmediate(p.resolve.bind(p), template);
-            }
-            else if (/</.test(t))
-            {
-                var template = Template.build(t);
-                setImmediate(p.resolve.bind(p), template);
-            }
-            else
-            {
-                cache.register(t, p);
-                http.get(t).then(function (data)
                 {
-                    var template = Template.build(data);
-                    if (registerTemplate)
-                        cache.register(t, template, true);
-                    p.resolve(template);
-                },
-                    p.reject.bind(p)
-                );
-            }
-        }
-        return p;
+                    var template = <templateFunction | PromiseLike<templateFunction>>cache.resolve(t);
+                    if (template)
+                        resolve(template);
+                    else if (/</.test(t))
+                    {
+                        template = Template.build(t);
+                        resolve(template);
+                    }
+                    else
+                    {
+                        cache.register(t, p);
+                        http.get(t).then(function (data)
+                        {
+                            var template = Template.build(data);
+                            if (registerTemplate)
+                                cache.register(t, template, true);
+                            resolve(template);
+                        },
+                            reject
+                        );
+                    }
+                }
+            });
+            return p;
+        });
     }
 
     public static build(markup: string): templateFunction

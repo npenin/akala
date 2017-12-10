@@ -1,6 +1,6 @@
 import * as di from '@akala/core'
 import { control, BaseControl } from './control'
-import { Promisify, ObservableArray, ObservableArrayEventArgs, Binding } from '@akala/core'
+import { Promisify, ObservableArray, ObservableArrayEventArgs, Binding, ParsedString, isPromiseLike } from '@akala/core'
 
 @control()
 export class CssClass extends BaseControl<any>
@@ -23,33 +23,41 @@ export class CssClass extends BaseControl<any>
                 {
                     if (typeof (item) == 'string')
                         element.addClass(item);
-                    else
+                    else if (item instanceof ParsedString)
+                        element.addClass(item.value);
+                    else if (item instanceof Binding)
                     {
-                        if (item instanceof Binding)
+                        var oldValue = null;
+                        item.onChanged(function (ev)
                         {
-                            var oldValue = null;
-                            item.onChanged(function (ev)
+                            if (oldValue)
+                                element.removeClass(oldValue);
+                            if (isPromiseLike(ev.eventArgs.value))
+                                ev.eventArgs.value.then(function (value)
+                                {
+                                    oldValue = value;
+                                    element.addClass(value)
+                                });
+                            else
                             {
-                                if (oldValue)
-                                    element.removeClass(oldValue);
                                 element.addClass(ev.eventArgs.value);
                                 oldValue = ev.eventArgs.value;
-                            });
-                        }
-                        else
-                            Object.keys(item).forEach(function (key)
-                            {
-                                if (item[key] instanceof Binding)
-                                {
-                                    item[key].onChanged(function (ev)
-                                    {
-                                        element.toggleClass(key, ev.eventArgs.value);
-                                    });
-                                }
-                                else
-                                    element.toggleClass(key, item[key]);
-                            })
+                            }
+                        });
                     }
+                    else
+                        Object.keys(item).forEach(function (key)
+                        {
+                            if (item[key] instanceof Binding)
+                            {
+                                item[key].onChanged(function (ev)
+                                {
+                                    element.toggleClass(key, ev.eventArgs.value);
+                                });
+                            }
+                            else
+                                element.toggleClass(key, item[key]);
+                        })
 
                 })
             }).init();
