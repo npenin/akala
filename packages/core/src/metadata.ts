@@ -1,6 +1,5 @@
 import * as jsonrpc from '@akala/json-rpc-ws'
 import { Proxy } from './each'
-import { Promisify } from './promiseHelpers'
 import { extend } from './helpers'
 
 import * as debug from 'debug'
@@ -39,7 +38,7 @@ export class Metadata<
         TServerTwoWay,
         TClientOneWay,
         TClientTwoWay,
-        TServerOneWayProxy & Proxy<TImpl, (p: TIn) => void | PromiseLike<void>>,
+        TServerOneWayProxy & Proxy<TImpl, (p: TIn) =>  PromiseLike<void>>,
         TServerTwoWayProxy,
         TClientOneWayProxy,
         TClientTwoWayProxy>
@@ -77,7 +76,7 @@ export class Metadata<
         TClientTwoWay,
         TServerOneWayProxy,
         TServerTwoWayProxy,
-        TClientOneWayProxy & Proxy<TImpl, (p: TIn) => PromiseLike<void> | void>,
+        TClientOneWayProxy & Proxy<TImpl, (p: TIn) => PromiseLike<void>>,
         TClientTwoWayProxy>
     {
         return (impl) =>
@@ -225,7 +224,7 @@ export class Metadata<
                     return this.createServerProxy(client);
                 }
             });
-            var clientImplWithProxy = <TClientOneWay & TClientTwoWay & {$proxy():Partial<TServerOneWayProxy & TServerTwoWayProxy>}>extend.apply(this, dummy);
+            var clientImplWithProxy = <TClientOneWay & TClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy> }>extend.apply(this, dummy);
 
             this.clientOneWayKeys.forEach(function (serverKey)
             {
@@ -233,7 +232,7 @@ export class Metadata<
                 {
                     try
                     {
-                        Promisify<any>((<any>clientImplWithProxy[serverKey])(params)).then(function (result)
+                        Promise.resolve(clientImplWithProxy[serverKey](params)).then(function (result)
                         {
                             reply(null, result);
                         }, reply);
@@ -251,7 +250,7 @@ export class Metadata<
                 {
                     try
                     {
-                        Promisify<any>((<any>clientImplWithProxy[serverKey])(params)).then(function (result)
+                        Promise.resolve(clientImplWithProxy[serverKey](params)).then(function (result)
                         {
                             reply(null, result);
                         }, reply);
