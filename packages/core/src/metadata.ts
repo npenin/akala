@@ -38,7 +38,7 @@ export class Metadata<
         TServerTwoWay,
         TClientOneWay,
         TClientTwoWay,
-        TServerOneWayProxy & Proxy<TImpl, (p: TIn) =>  PromiseLike<void>>,
+        TServerOneWayProxy & Proxy<TImpl, (p: TIn) => PromiseLike<void>>,
         TServerTwoWayProxy,
         TClientOneWayProxy,
         TClientTwoWayProxy>
@@ -235,11 +235,14 @@ export class Metadata<
                         Promise.resolve(clientImplWithProxy[serverKey](params)).then(function (result)
                         {
                             reply(null, result);
-                        }, reply);
+                        }, function (reason)
+                            {
+                                reply(reason);
+                            });
                     }
                     catch (e)
                     {
-                        reply(e);
+                        reply({ message: e.message, stack: e.stack, argv: process.argv });
                     }
                 })
             });
@@ -253,11 +256,14 @@ export class Metadata<
                         Promise.resolve(clientImplWithProxy[serverKey](params)).then(function (result)
                         {
                             reply(null, result);
-                        }, reply);
+                        }, function (reason)
+                            {
+                                reply(reason);
+                            });
                     }
                     catch (e)
                     {
-                        reply(e);
+                        reply({ message: e.message, stack: e.stack, argv: process.argv });
                     }
                 });
             });

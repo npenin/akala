@@ -8,7 +8,7 @@ export * from './helpers'
 export * from './queue'
 import { Module } from './module';
 export { Metadata, DualMetadata } from './metadata';
-export type Module = Module;
+export { Module };
 export * from './promiseHelpers';
 export { each as eachAsync, NextFunction } from './eachAsync';
 export { each, grep, map, Proxy } from './each';
