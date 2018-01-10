@@ -13,19 +13,19 @@ export class Metadata<
     TServerTwoWay,
     TClientOneWay,
     TClientTwoWay,
-    TServerOneWayProxy extends TServerOneWay,
-    TServerTwoWayProxy extends TServerTwoWay,
-    TClientOneWayProxy extends TClientOneWay,
-    TClientTwoWayProxy extends TClientTwoWay>
+    TServerOneWayProxy,
+    TServerTwoWayProxy,
+    TClientOneWayProxy,
+    TClientTwoWayProxy>
 {
     constructor()
     {
     }
 
-    public serverOneWayKeys: (keyof TServerOneWay)[] = [];
-    public serverTwoWayKeys: (keyof TServerTwoWay)[] = [];
-    public clientOneWayKeys: (keyof TClientOneWay)[] = [];
-    public clientTwoWayKeys: (keyof TClientTwoWay)[] = [];
+    public serverOneWayKeys: (keyof (TServerOneWay | TServerOneWayProxy))[] = [];
+    public serverTwoWayKeys: (keyof (TServerTwoWay | TServerTwoWayProxy))[] = [];
+    public clientOneWayKeys: (keyof (TClientOneWay | TClientOneWayProxy))[] = [];
+    public clientTwoWayKeys: (keyof (TClientTwoWay | TClientTwoWayProxy))[] = [];
 
     connection<TConnectionNew extends TConnection>(): Metadata<TConnectionNew, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>
     {
@@ -226,13 +226,13 @@ export class Metadata<
             });
             var clientImplWithProxy = <TClientOneWay & TClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy> }>extend.apply(this, dummy);
 
-            this.clientOneWayKeys.forEach(function (serverKey)
+            this.clientOneWayKeys.forEach(function (clientKey)
             {
-                client.expose(serverKey, function (params, reply)
+                client.expose(clientKey, function (params, reply)
                 {
                     try
                     {
-                        Promise.resolve(clientImplWithProxy[serverKey](params)).then(function (result)
+                        Promise.resolve(clientImplWithProxy[clientKey](params)).then(function (result)
                         {
                             reply(null, result);
                         }, function (reason)
@@ -247,13 +247,13 @@ export class Metadata<
                 })
             });
 
-            this.clientTwoWayKeys.forEach(function (serverKey)
+            this.clientTwoWayKeys.forEach(function (clientKey)
             {
-                client.expose(serverKey, function (params, reply)
+                client.expose(clientKey, function (params, reply)
                 {
                     try
                     {
-                        Promise.resolve(clientImplWithProxy[serverKey](params)).then(function (result)
+                        Promise.resolve(clientImplWithProxy[clientKey](params)).then(function (result)
                         {
                             reply(null, result);
                         }, function (reason)
