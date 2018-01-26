@@ -70,12 +70,12 @@ export class Injector
             {
                 this.onResolve(name, resolve);
             })
-            
+
         var value = this.resolve(name);
         if (value !== null)
         {
-             handler(value);
-             return;
+            handler(value);
+            return;
         }
 
         this.notifier.once(name, (prop: PropertyDescriptor) =>
@@ -272,9 +272,9 @@ if (!global['$$defaultInjector'])
 var defaultInjector: Injector = global['$$defaultInjector'];
 
 
-export function resolve(name: string)
+export function resolve<T=any>(name: string): T
 {
-    return defaultInjector.resolve(name);
+    return defaultInjector.resolve<T>(name);
 }
 
 export function unregister(name: string)
