@@ -1,20 +1,41 @@
-import { Promisify, Binding, module, Module, ObservableArray, Translator, isPromiseLike, PromiseStatus, map, extend, each, eachAsync } from '@akala/core';
-import '@akala/core'
+import * as core from '@akala/core';
+import { promisify } from 'util';
 
-export var $$injector: Module = window['akala'] = module('akala', 'akala-services', 'controls');
-$$injector['promisify'] = Promisify;
-$$injector['isPromiseLike'] = isPromiseLike;
-$$injector['PromiseStatus'] = PromiseStatus;
-$$injector['Binding'] = Binding;
-$$injector['ObservableArray'] = ObservableArray;
-$$injector['map']=map;
-$$injector['each']=each;
-$$injector['eachAsync']=eachAsync;
-$$injector['extend']=extend;
 
-export var serviceModule: Module = module('akala-services')
+export var $$injector: core.Module = window['akala'] = core.extend(core.module('akala', 'akala-services', 'controls'),
+    {
+        promisify: core.Promisify,
+        isPromiseLike: core.isPromiseLike,
+        Binding: core.Binding,
+        ObservableArray: core.ObservableArray,
+        map: core.map,
+        each: core.each,
+        eachAsync: core.eachAsync,
+        extend: core.extend
+    });
 
-export { Translator, isPromiseLike, PromiseStatus }
+declare global
+{
+    namespace akala
+    {
+        export var promisify: typeof core.Promisify;
+        export var isPromiseLike: typeof core.isPromiseLike;
+        export var map: typeof core.map;
+        export var each: typeof core.each;
+        export var eachAsync: typeof core.eachAsync;
+        export var extend: typeof core.extend;
+        export type Binding = core.Binding;
+        export type ObservableArray<T> = core.ObservableArray<T>;
+        export type Translator = core.Translator;
+        export var inject: typeof core.inject;
+        export var injectNew: typeof core.injectNew;
+        export var injectNewWithName: typeof core.injectNewWithName;
+        export var injectWithName: typeof core.injectWithName;
+        export var injectWithNameAsync: typeof core.injectWithNameAsync;
+    }
+}
+
+export var serviceModule: core.Module = core.module('akala-services')
 
 export function service(name, ...toInject: string[])
 {

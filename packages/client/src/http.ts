@@ -45,8 +45,8 @@ export class Http implements akala.Http<XMLHttpRequest>
         else
             options = method;
         var uri = parse(options.url);
-        if (method != 'GET')
-            uri.query = akala.extend({}, uri.query, query);
+        if (options.method == 'GET')
+            uri.query = akala.extend({}, uri.query, options.params);
         req.open(options.method, format(uri), true);
         return new Promise<{ response: XMLHttpRequest, body: T }>((resolve, reject) =>
         {
@@ -107,17 +107,17 @@ export class Http implements akala.Http<XMLHttpRequest>
                 case 'form':
                     req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
                     break;
-                }
+            }
 
             switch (options.type)
             {
                 case 'json':
                     req.setRequestHeader('Accept', 'application/json, text/json');
                     break;
-                    case 'xml':
+                case 'xml':
                     req.setRequestHeader('Accept', 'text/xml');
                     break;
-                }
+            }
 
             if (options.method != 'GET')
             {
