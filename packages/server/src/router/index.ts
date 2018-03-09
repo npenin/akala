@@ -304,6 +304,7 @@ export interface Callback
     (data: any): void;
     (status: number, data: any): void;
     (meta: CallbackResponse, data: any): void;
+    redirect(url: string);
 }
 
 export interface CallbackResponse

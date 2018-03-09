@@ -35,7 +35,10 @@ export function createServerFromMeta<
                     {
                         log('replying with %o', value);
                         reply(null, value);
-                    }, reply);
+                    }, function (reason)
+                    {
+                        reply(reason);
+                    });
                 else
                     reply(null, result);
             })
@@ -52,7 +55,10 @@ export function createServerFromMeta<
                     {
                         log('replying with %o', value);
                         reply(null, value);
-                    }, reply);
+                    }, function (reason)
+                    {
+                        reply(reason);
+                    });
                 else
                     reply(null, result)
             });

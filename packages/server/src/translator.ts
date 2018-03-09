@@ -4,7 +4,11 @@ import * as fs from 'fs';
 
 di.registerFactory('$translator', function (): di.Translator
 {
-    var translations = require(path.join(__dirname, 'i18n.' + di.resolve('$language') + '.json'));
+    var language = di.resolve('$language');
+    if (language)
+        var translations = require(path.join(__dirname, 'i18n.' + di.resolve('$language') + '.json'));
+    else
+        translations = {};
 
     return function (key: string, ...parameters: any[])
     {
@@ -15,4 +19,4 @@ di.registerFactory('$translator', function (): di.Translator
             return parameters[m];
         })
     }
-});
+}, true);
