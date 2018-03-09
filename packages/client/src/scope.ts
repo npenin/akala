@@ -7,6 +7,7 @@ export interface IScope<T> extends akala.IWatched
     $set<U extends keyof T>(expression: U | string, value: T[U] | any);
     $watch(expression: string, handler: (value: any) => void);
     $inject(f: Function);
+    $bind(expression: string): akala.Binding;
 }
 
 export class Scope<T> implements IScope<T>
@@ -34,7 +35,6 @@ export class Scope<T> implements IScope<T>
             this.resolver.setInjectables(this);
         }
         return this.resolver.inject(f)(this);
-
     }
 
     public $set(expression: string, value: any)
@@ -42,7 +42,7 @@ export class Scope<T> implements IScope<T>
         akala.Binding.getSetter(this, expression)(value, 'scope');
     }
 
-    public $watch(expression: string, handler: (value: any) => void)
+    public $bind(expression: string): akala.Binding
     {
         var binding = this.$$watchers[expression];
         if (!binding)
@@ -50,6 +50,12 @@ export class Scope<T> implements IScope<T>
             binding = new akala.Binding(expression, this);
             this.$$watchers[expression] = binding;
         }
+        return binding;
+    }
+
+    public $watch(expression: string, handler: (value: any) => void)
+    {
+        var binding = this.$bind(expression);
         if (!binding['handlers'])
             binding['handlers'] = [];
         if (binding['handlers'].indexOf(handler) > -1)

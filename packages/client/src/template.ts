@@ -1,5 +1,5 @@
 import '@akala/core'
-import * as di from '@akala/core';
+import * as akala from '@akala/core';
 import { Control } from './controls/controls'
 import { Scope } from './scope'
 import { service } from './common'
@@ -79,7 +79,7 @@ export class Interpolate
             endIndex,
             index = 0,
             expressions = [],
-            parseFns: ((target: any) => di.Binding)[] = [],
+            parseFns: ((target: any) => akala.Binding)[] = [],
             textLength = text.length,
             exp,
             concat = [],
@@ -98,7 +98,7 @@ export class Interpolate
                 expressions.push(exp);
                 parseFns.push(function (target)
                 {
-                    return new di.Binding(exp, target);
+                    return new akala.Binding(exp, target);
                 });
                 index = endIndex + endSymbolLength;
                 expressionPositions.push(concat.length);
@@ -114,7 +114,7 @@ export class Interpolate
             }
         }
 
-        var compute = function (values: di.Binding[])
+        var compute = function (values: akala.Binding[])
         {
             for (var i = 0, ii = expressions.length; i < ii; i++)
             {
@@ -127,7 +127,7 @@ export class Interpolate
 
         return function interpolationFn(target)
         {
-            var bindings: di.Binding[] = [];
+            var bindings: akala.Binding[] = [];
 
             for (var i = 0; i < expressions.length; i++)
             {
@@ -141,17 +141,17 @@ export class Interpolate
 
 }
 export type templateFunction = (target: any, parent: JQuery) => JQuery;
-var cache = new di.Injector();
+var cache = new akala.Injector();
 @service('$template', '$interpolate', '$http')
 export class Template
 {
-    constructor(private interpolator: Interpolate, private http: di.Http) { }
+    constructor(private interpolator: Interpolate, private http: akala.Http) { }
 
     public get(t: string | PromiseLike<string>, registerTemplate: boolean = true): PromiseLike<templateFunction>
     {
         var http = this.http;
         var self = this;
-        return di.Promisify(t).then<templateFunction>(function (t: string)
+        return akala.Promisify(t).then<templateFunction>(function (t: string)
         {
             var p = new Promise<templateFunction>((resolve, reject) =>
             {
@@ -202,7 +202,7 @@ export class Template
 
 var databindRegex = /(\w+):([^;]+);?/g;
 
-$.extend($.fn, {
+akala.extend($.fn, {
     applyTemplate: function applyTemplate(data, root?: JQuery)
     {
         data.$new = Scope.prototype.$new;
@@ -228,8 +228,8 @@ $.extend($.fn, {
             this.filter('[data-bind]').each(function (index, item)
             {
                 var $item = $(item);
-                var subElem = Control.apply(di.Parser.evalAsFunction($item.attr("data-bind"), true), $item, data);
-                if (di.isPromiseLike(subElem))
+                var subElem = Control.apply(akala.Parser.evalAsFunction($item.attr("data-bind"), true), $item, data);
+                if (akala.isPromiseLike(subElem))
                 {
                     promises.push(subElem.then(function (subElem)
                     {
@@ -240,7 +240,7 @@ $.extend($.fn, {
                     element = element.add(subElem);
             });
             if (promises.length)
-                return di.when(promises).then(function ()
+                return akala.when(promises).then(function ()
                 {
                     return element;
                 });

@@ -1,47 +1,62 @@
-import { serviceModule, $$injector } from './common'
-import { router, Router, Request } from './router'
-import { LocationService, StartOption } from './locationService'
-import { Promisify, ObservableArray, Http as IHttp, eachAsync, map, extend, each } from '@akala/core';
-import { Http } from './http';
-import { Interpolate, Template } from './template';
-import { Part } from './part';
-import { Scope, IScope } from './scope';
-import { BaseControl, Control, control } from './controls/controls';
+import * as common from './common'
+import * as routing from './router'
+import * as location from './locationService'
+import * as core from '@akala/core';
+import * as http from './http';
+import './template';
+import * as part from './part';
+import './part';
+import * as scope from './scope';
+import * as controls from './controls/controls';
+
+export var loadScript = load;
+
+declare global
+{
+    namespace akala
+    {
+        export type IScope<T> = scope.IScope<T>;
+        export type PartDefinition<T extends scope.IScope<T>> = part.PartDefinition<T>;
+        export type Http = http.Http;
+        export type Part = part.Part;
+        export var router: typeof routing.router
+        export var control: typeof controls.control
+        export var load: typeof loadScript
+        export type Control<T> = controls.Control<T>
+        export type BaseControl<T> = controls.BaseControl<T>
+        export type LocationService = location.LocationService;
+        export type Injector = core.Injector;
+        export var run: typeof core.Module.prototype.run;
+        export var init: typeof core.Module.prototype.init;
+    }
+}
 
 
-$$injector['router'] = router;
-$$injector['BaseControl'] = BaseControl;
-$$injector['Control'] = Control;
-$$injector['control'] = control;
-$$injector['load'] = load;
-var mainRouter = router();
-mainRouter.use(serviceModule.register('$preRouter', router()).router);
-mainRouter.use(serviceModule.register('$router', router()).router);
+
+common.$$injector['router'] = routing.router
+common.$$injector['BaseControl'] = controls.BaseControl
+common.$$injector['Control'] = controls.Control
+common.$$injector['control'] = controls.control
+common.$$injector['load'] = loadScript
+
+var mainRouter = routing.router();
+mainRouter.use(common.serviceModule.register('$preRouter', routing.router()).router);
+mainRouter.use(common.serviceModule.register('$router', routing.router()).router);
 mainRouter.use(function (error)
 {
     console.error(error);
 });
-serviceModule.register('$http', new Http());
-serviceModule.register('$location', new LocationService());
-serviceModule.register('promisify', Promisify);
+common.serviceModule.register('$http', new http.Http());
+common.serviceModule.register('$location', new location.LocationService());
+common.serviceModule.register('promisify', core.Promisify);
 
 
-export { serviceModule };
-export { Router };
-export { LocationService, StartOption as LocationServiceStartOption };
-export { ObservableArray };
-export { IHttp as Http };
-export { Template };
-export { Part };
-export { IScope };
-export { BaseControl, Control, control };
-export { map, extend, each, eachAsync };
 // export { Promisify, Deferred };
-export var run: (toInject: string[], f: Function) => void = $$injector.run.bind($$injector);
+export var run: (toInject: string[], f: Function) => void = common.$$injector.run.bind(common.$$injector);
 
-$$injector.init([], function ()
+common.$$injector.init([], function ()
 {
-    var rootScope = $$injector.register('$rootScope', new Scope());
+    var rootScope = common.$$injector.register('$rootScope', new scope.Scope());
 
     $(document).applyTemplate(rootScope);
 });
@@ -50,9 +65,8 @@ export function load(...scripts: string[])
 {
     return new Promise((resolve, reject) =>
     {
-
         var firstScriptTag = document.getElementsByTagName('script')[0]; // find the first script tag in the document
-        eachAsync(scripts, function (script, i, next)
+        core.eachAsync(scripts, function (script, i, next)
         {
             var scriptTag = document.createElement('script'); // create a script tag
             firstScriptTag.parentNode.insertBefore(scriptTag, firstScriptTag); // append the script to the DOM
@@ -68,7 +82,7 @@ export function load(...scripts: string[])
     });
 }
 
-$$injector.start(['$location'], function ($location: LocationService)
+common.$$injector.start(['$location'], function ($location: location.LocationService)
 {
     $location.on('change', function (path: string)
     {
@@ -86,13 +100,5 @@ $$injector.start(['$location'], function ($location: LocationService)
 
 $(function ()
 {
-    $$injector.start();
+    common.$$injector.start();
 });
-
-$(document).on('click', '.tabs > ul > li', function ()
-{
-
-    $(this).siblings('.active').add($(this).closest('.tabs').find('.tab')).removeClass('active');
-    $(this).add($(this).closest('.tabs').find($(this).find('a').attr('href'))).addClass('active');
-    return false;
-})
