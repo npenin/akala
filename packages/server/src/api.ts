@@ -37,10 +37,12 @@ var debug = log('akala:api');
                         {
                             callback(200, r);
                         }, function (err)
-                        {
-                            callback(500, err);
-                        });
+                            {
+                                callback(500, err);
+                            });
                     }
+                    else if (typeof result != 'undefined')
+                        callback(200, result);
                 });
             })
             return api;
@@ -55,7 +57,7 @@ export function command<T extends Function>($inject: string[], f: T)
     return function (request: Request, next: NextFunction)
     {
         var injector = request.injector;
-
+        var callback = request.injector.resolve('$callback');
         if (request.params)
             for (var i in request.params)
                 injector.register('param.' + i, request.params[i]);
@@ -68,8 +70,19 @@ export function command<T extends Function>($inject: string[], f: T)
             injector.register('$body', request.body);
 
         injector.register('$next', next);
-        var injectable = injector.injectWithName($inject, <any>f);
-        injectable(this);
+        var result = request.injector.injectWithName($inject, <any>f)();
+        if (isPromiseLike(result))
+        {
+            result.then(function (r)
+            {
+                callback(200, r);
+            }, function (err)
+                {
+                    callback(500, err);
+                });
+        }
+        else if (typeof result != 'undefined')
+            callback(200, result);
     }
 }
 

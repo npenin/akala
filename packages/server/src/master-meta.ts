@@ -11,6 +11,7 @@ import { Proxy, Metadata } from '@akala/core';
 import { Connection } from '@akala/json-rpc-ws'
 import * as stream from 'stream'
 import * as bodyparser from 'body-parser'
+import * as express from 'express';
 
 var log = debug('akala:master');
 
@@ -22,6 +23,15 @@ export var metaRouter = new akala.Metadata()
     .connection<Connection>()
     .serverToClient<Partial<worker.Request>, router.CallbackResponse>()({ getContent: true })
     .clientToServerOneWay<{ path: string }>()({ register: true })
+
+
+export function expressWrap(handler: express.Handler)
+{
+    return function (req: router.Request, response: router.Response, ...rest)
+    {
+        handler(req as any, response as express.Response, rest[rest.length - 1]);
+    }
+}
 
 export function translateRequest(req: router.Request): Partial<worker.Request>
 {

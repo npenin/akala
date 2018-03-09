@@ -117,6 +117,15 @@ fs.exists(configFile, function (exists)
                                     dependencies.push(dep + '?');
                             })
                         });
+                    if (moduleDefinition.peerDependencies)
+                        Object.keys(moduleDefinition.peerDependencies).forEach(function (dep)
+                        {
+                            sources.forEach(function (src)
+                            {
+                                if (dep.substr(0, src.length) == src)
+                                    dependencies.push(dep + '?');
+                            })
+                        });
 
                     if (config && dependencies.length)
                     {

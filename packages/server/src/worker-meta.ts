@@ -31,6 +31,7 @@ export function createClient<TConnection extends jsonrpc.Connection>(namespace: 
 
 
 export type MasterRegistration = (from?: string, masterPath?: string, workerPath?: string) => void;
+export type IsModule = (moduleName: string) => boolean;
 
 export interface resolve
 {
@@ -41,6 +42,7 @@ export interface resolve
     (param: '$io'): <TConnection extends jsonrpc.Connection>(namespace: string) => PromiseLike<jsonrpc.Client<TConnection>>
     (param: '$bus'): jsonrpc.Client<jsonrpc.Connection>
     (param: '$master'): MasterRegistration
+    (param: '$isModule'): IsModule
     (param: string): any
 }
 
@@ -299,7 +301,7 @@ export function handle(app: Router, root: string)
     {
         return new Promise((resolve, reject) =>
         {
-            function callback(status, data?: PayloadDataType | string)
+            var callback: Callback = <any>function callback(status, data?: PayloadDataType | string)
             {
                 var response: CallbackResponse;
                 if (arguments.length == 0)
@@ -340,6 +342,11 @@ export function handle(app: Router, root: string)
                     response.data = data;
 
                 resolve(response);
+            }
+
+            callback.redirect = function (url: string)
+            {
+                return callback({ status: 302, headers: { location: url } })
             }
 
             var requestInjector: WorkerInjector = new akala.Injector();
