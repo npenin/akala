@@ -3,6 +3,7 @@ import { Proxy } from './each'
 import { extend } from './helpers'
 
 import * as debug from 'debug'
+import { PayloadDataType, Payload } from '@akala/json-rpc-ws/lib/connection';
 
 var log = debug('akala:metadata')
 var clientLog = debug('akala:metadata:client');
@@ -130,7 +131,7 @@ export class Metadata<
             proxy[serverKey] = <any>function (params)
             {
                 log('calling ' + serverKey + ' with %o', params);
-                return new Promise((resolve, reject) =>
+                return new Promise<PayloadDataType>((resolve, reject) =>
                 {
                     client.send(serverKey, params, function (error, result)
                     {
@@ -155,7 +156,7 @@ export class Metadata<
             proxy[clientKey] = <any>function (params)
             {
                 log('calling ' + clientKey + ' with %o', params);
-                return new Promise((resolve, reject) =>
+                return new Promise<PayloadDataType>((resolve, reject) =>
                 {
                     client.sendMethod(clientKey, params, function (error, result)
                     {
@@ -173,7 +174,7 @@ export class Metadata<
             proxy[clientKey] = <any>function (params)
             {
                 log('calling ' + clientKey + ' with %o', params);
-                return new Promise((resolve, reject) =>
+                return new Promise<PayloadDataType>((resolve, reject) =>
                 {
                     client.sendMethod(clientKey, params, function (error, result)
                     {
@@ -232,7 +233,7 @@ export class Metadata<
                 {
                     try
                     {
-                        Promise.resolve(clientImplWithProxy[clientKey](params)).then(function (result)
+                        Promise.resolve((<any>clientImplWithProxy[clientKey])(params)).then(function (result)
                         {
                             reply(null, result);
                         }, function (reason)
@@ -253,7 +254,7 @@ export class Metadata<
                 {
                     try
                     {
-                        Promise.resolve(clientImplWithProxy[clientKey](params)).then(function (result)
+                        Promise.resolve((<any>clientImplWithProxy[clientKey])(params)).then(function (result)
                         {
                             reply(null, result);
                         }, function (reason)

@@ -3,7 +3,7 @@ export function array<T>(array: T[], body: (element: T, i?: number) => void)
     Array.prototype.forEach.call(array, body);
 }
 
-export function object<TIn>(o: TIn, body: <TKey extends keyof TIn>(element: TIn[TKey], i?: TKey) => void)
+export function object<TIn>(o: TIn, body: (element: TIn[keyof TIn], i?: keyof TIn) => void)
 {
     array(Object.keys(o), function <TKey extends keyof TIn>(key: TKey)
     {
@@ -34,13 +34,13 @@ export function grepArray<T>(it: T[], body: (element: T, i?: number) => boolean)
 // export type Partial<T> = {[P in keyof T]?: T[P]}
 export type Proxy<T, U> = {[P in keyof T]: U}
 
-export function grepObject<T, U extends keyof T>(o: T, body: (element: T[U], i?: U) => boolean, asArray?: true): T[U][]
-export function grepObject<T, U extends keyof T>(o: T, body: (element: T[U], i?: U) => boolean, asArray: false): Partial<T>
-export function grepObject<T, U extends keyof T>(o: T, body: (element: T[U], i?: U) => boolean, asArray: boolean)
-export function grepObject<T, U extends keyof T>(o: T, body: (element: T[U], i?: U) => boolean, asArray: boolean)
+export function grepObject<T>(o: T, body: (element: T[keyof T], i?: keyof T) => boolean, asArray?: true): T[keyof T][]
+export function grepObject<T>(o: T, body: (element: T[keyof T], i?: keyof T) => boolean, asArray: false): Partial<T>
+export function grepObject<T>(o: T, body: (element: T[keyof T], i?: keyof T) => boolean, asArray: boolean): Partial<T> | T[keyof T][]
+export function grepObject<T>(o: T, body: (element: T[keyof T], i?: keyof T) => boolean, asArray: boolean)
 {
     var result: Partial<T> = {};
-    var resultArray: T[U][] = [];
+    var resultArray: T[keyof T][] = [];
     object(o, function (el, i)
     {
         if (body(el, <any>i))
@@ -75,10 +75,10 @@ export function mapArray<T, U>(it: T[], body: (element: T, i?: number) => U): U[
     return result;
 }
 
-export function mapObject<TIn, TKey extends keyof TIn, TResultValue>(o: TIn, body: (element: TIn[TKey], i?: keyof TIn) => TResultValue, asArray: true): TResultValue[]
-export function mapObject<TIn, TKey extends keyof TIn, TResultValue>(o: TIn, body: (element: TIn[TKey], i?: keyof TIn) => TResultValue, asArray?: false): {[P in keyof TIn]?: TResultValue }
-export function mapObject<TIn, TKey extends keyof TIn, TResultValue>(o: TIn, body: (element: TIn[TKey], i?: keyof TIn) => TResultValue, asArray?: boolean)
-export function mapObject<TIn, TKey extends keyof TIn, TResultValue>(o: TIn, body: (element: TIn[TKey], i?: keyof TIn) => TResultValue, asArray?: boolean)
+export function mapObject<TIn, TResultValue>(o: TIn, body: (element: TIn[keyof TIn], i?: keyof TIn) => TResultValue, asArray: true): TResultValue[]
+export function mapObject<TIn, TResultValue>(o: TIn, body: (element: TIn[keyof TIn], i?: keyof TIn) => TResultValue, asArray?: false): {[P in keyof TIn]?: TResultValue }
+export function mapObject<TIn, TResultValue>(o: TIn, body: (element: TIn[keyof TIn], i?: keyof TIn) => TResultValue, asArray?: boolean)
+export function mapObject<TIn, TResultValue>(o: TIn, body: (element: TIn[keyof TIn], i?: keyof TIn) => TResultValue, asArray?: boolean)
 {
     var result: Partial<Proxy<TIn, TResultValue>> = {};
     var resultArray: TResultValue[] = [];

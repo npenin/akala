@@ -3,6 +3,7 @@ import { EventEmitter } from 'events';
 import { Promisify as promisify, isPromiseLike } from './promiseHelpers';
 import * as formatters from './formatters';
 import { array as eachAsync } from './eachAsync'
+import { Formatter } from './formatters/common';
 export interface IWatched extends Object
 {
     $$watchers?: { [key: string]: Binding };
@@ -31,7 +32,7 @@ export class Binding extends EventEmitter
             this.setMaxListeners(0);
     }
 
-    public formatter: Function;
+    public formatter: Formatter<any>;
 
     public get expression() { return this._expression; }
     public get target() { return this._target; }

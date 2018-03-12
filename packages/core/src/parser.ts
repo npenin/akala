@@ -1,6 +1,8 @@
 import { isPromiseLike, PromiseStatus } from './promiseHelpers';
 import { Binding, PromiseBinding } from './binder';
 import * as formatters from './formatters';
+import { resolve } from '.';
+import { FormatterFactory } from './formatters/common';
 
 
 var jsonKeyRegex = /^ *(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([^\: ]+)) *): */;
@@ -15,7 +17,7 @@ export type ParsedOneOf = ParsedObject | ParsedArray | ParsedFunction | ParsedSt
 
 export class ParsedBinary implements ParsedAny
 {
-    constructor(public operator: '+' | '-' | '*' | '/' | '&&' | '||' | '<' | '<=' | '>' | '>=', public left: ParsedOneOf, public right: ParsedOneOf)
+    constructor(public operator: '+' | '-' | '*' | '/' | '&&' | '||' | '<' | '<=' | '>' | '>=' | '.', public left: ParsedOneOf, public right: ParsedOneOf)
     {
         this.$$length = this.left.$$length + this.operator.length + this.right.$$length;
     }
@@ -123,6 +125,7 @@ export class ParsedBinary implements ParsedAny
                     case '/':
                     case '&&':
                     case '||':
+                    case '.':
                         var left = operation.left;
                         operation.right = right.right;
                         operation.left = new ParsedBinary(operation.operator, left, right.left);
@@ -154,6 +157,7 @@ export interface ParsedFunction extends ParsedAny
     $$ast?: ParsedBinary;
     (value: any, asBinding?: false): any;
     (value: any, asBinding: true): Binding;
+    (value: any, asBinding?: boolean): any;
 }
 
 export class ParsedString implements ParsedAny
@@ -280,7 +284,7 @@ export class Parser
         return Parser.parseFunction(expression);
     }
 
-    public static parseFunction(expression: string): ParsedFunction
+    public static parseFunction(expression: string): ParsedFunction | ParsedBinary
     {
         var length = 0;
         var formatter: (o: any) => any = formatters.identity;
@@ -326,7 +330,7 @@ export class Parser
                     if (i == parts.length - 1)
                         promise = value;
                     else
-                        promise = value.then(Parser.parseFunction(parts.slice(i + 1).join('.'))).then(formatter);
+                        promise = value.then(<ParsedFunction>Parser.parseFunction(parts.slice(i + 1).join('.'))).then(formatter);
                     promise['$$length'] = item.length;
                     return promise;
                 }
@@ -339,18 +343,85 @@ export class Parser
         return f;
     }
 
+    public static parseFormatter(expression: string, lhs: ParsedOneOf): ParsedOneOf
+    {
+        var item = /^([\w0-9\.\$]+) */.exec(expression);
+        expression = expression.substring(item[0].length);
+        var formatter: FormatterFactory<any, any> = resolve('#' + item[0]);
+        if (!formatter)
+            throw new Error(`filter not found: ${item[0]}`)
+        var settings: ParsedObject;
+        if (expression[0] == ':')
+        {
+            settings = formatter.parse(expression.substring(1));
+        }
+
+        var result: ParsedFunction = function (value, asBinding?: boolean)
+        {
+            var left;
+            if (lhs instanceof Function)
+                left = lhs(value, asBinding);
+            else if (lhs instanceof ParsedBinary)
+                left = lhs.evaluate(value, asBinding);
+            else if (lhs instanceof ParsedString)
+                left = lhs.value;
+            else if (lhs instanceof ParsedNumber)
+                left = lhs.value;
+            else if (lhs instanceof Array)
+                left = lhs;
+            else if (lhs instanceof Object)
+                left = lhs;
+
+            if (asBinding)
+            {
+                if (left instanceof Binding)
+                {
+                    left.formatter = formatter.build(left.formatter, settings);
+                    return left;
+                }
+                else
+                {
+                    var b = new Binding(null, left);
+                    b.formatter = formatter.build(formatters.identity, settings);
+                    return b;
+                }
+            }
+            else
+            {
+                if (left instanceof Binding)
+                {
+                    left.formatter = formatter.build(left.formatter, settings);
+                    return left.getValue();
+                }
+                else
+                {
+                    return formatter.build(formatters.identity, settings)(left);
+                }
+            }
+        }
+        result.$$length = item.input.length + ((settings && settings.$$length + 1) || 0);
+        return result;
+    }
+
     public static tryParseOperator(expression: string, lhs: ParsedFunction): ParsedFunction
     public static tryParseOperator(expression: string, lhs: ParsedOneOf): ParsedOneOf
     public static tryParseOperator(expression: string, lhs: ParsedOneOf)
     {
-        var operator = /^ *([<>=!\+\-\/\*&\|]+) */.exec(expression);
+        var operator = /^ *([<>=!\+\-\/\*&\|\.#]+) */.exec(expression);
         if (operator)
         {
             expression = expression.substring(operator[0].length);
-            var rhs = Parser.parseAny(expression, false);
-            var binary = new ParsedBinary(<any>operator[1], lhs, rhs)
-            binary.$$length = lhs.$$length + operator[0].length + rhs.$$length;
-            return ParsedBinary.applyPrecedence(binary);
+            switch (operator[1])
+            {
+                case '#':
+                    return Parser.parseFormatter(expression, lhs);
+                case '.':
+                default:
+                    var rhs = Parser.parseAny(expression, false);
+                    var binary = new ParsedBinary(<any>operator[1], lhs, rhs)
+                    binary.$$length = lhs.$$length + operator[0].length + rhs.$$length;
+                    return ParsedBinary.applyPrecedence(binary);
+            }
         }
         else
             return lhs;
@@ -424,6 +495,10 @@ export class Parser
                 return left || right;
             case '&&':
                 return left && right;
+            case '.':
+                if (right instanceof Function)
+                    return right(left);
+                return left[right];
             default:
                 throw new Error('invalid operator' + operator);
         }
@@ -530,19 +605,19 @@ export class Parser
         return { expression: parts[0], target: target, set: function (value) { target[parts[0]] = value } };
     }
 
-    public static evalAsFunction(expression: string, excludeFirstLevelFunction?: boolean)
+    public static evalAsFunction(expression: string, excludeFirstLevelFunction?: boolean): ParsedFunction
     {
         if (!expression)
             return null;
         var parts = Parser.parse(expression, excludeFirstLevelFunction);
         if (parts instanceof Array)
-            return Parser.parseFunction(expression);
+            return Parser.parseFunction(expression) as ParsedFunction;
 
         return <ParsedFunction>parts;
     }
 
     public static eval(expression: string, value: any)
     {
-        return Parser.evalAsFunction(expression, false)(value, false);
+        return (Parser.evalAsFunction(expression, false) as ParsedFunction)(value, false);
     }
 }
