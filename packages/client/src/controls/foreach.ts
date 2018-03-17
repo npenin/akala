@@ -79,7 +79,7 @@ export class ForEach extends Control<ForeachParameter | string>
                 });
                 source = source.array;
             }
-            $.each(source, function (key, value)
+            akala.each(source, function (key, value)
             {
                 var scope = target.$new();
                 if (parsedParam.key)
