@@ -11,27 +11,17 @@ import * as controls from './controls/controls';
 
 export var loadScript = load;
 
-declare global
-{
-    namespace akala
-    {
-        export type IScope<T> = scope.IScope<T>;
-        export type PartDefinition<T extends scope.IScope<T>> = part.PartDefinition<T>;
-        export type Http = http.Http;
-        export type Part = part.Part;
-        export var router: typeof routing.router
-        export var control: typeof controls.control
-        export var load: typeof loadScript
-        export type Control<T> = controls.Control<T>
-        export type BaseControl<T> = controls.BaseControl<T>
-        export type LocationService = location.LocationService;
-        export type Injector = core.Injector;
-        export var run: typeof core.Module.prototype.run;
-        export var init: typeof core.Module.prototype.init;
-    }
-}
-
-
+export type IScope<T> = scope.IScope<T>;
+export type PartDefinition<T extends scope.IScope<T>> = part.PartDefinition<T>;
+export type Http = http.Http;
+export type Part = part.Part;
+export var router: typeof routing.router
+export var control: typeof controls.control
+export type Control<T> = controls.Control<T>
+export type BaseControl<T> = controls.BaseControl<T>
+export type LocationService = location.LocationService;
+export type Injector = core.Injector;
+export var init: typeof core.Module.prototype.init;
 
 common.$$injector['router'] = routing.router
 common.$$injector['BaseControl'] = controls.BaseControl

@@ -1,10 +1,10 @@
-import * as di from '@akala/core'
+import * as akala from '@akala/core'
 import { control, Control } from './control'
 import { IScope } from '../scope'
 
 export interface ForeachParameter
 {
-    in: di.ParsedFunction;
+    in: akala.ParsedFunction;
     key: string;
     value: string;
 }
@@ -31,11 +31,11 @@ export class ForEach extends Control<ForeachParameter | string>
         var parent = element.parent();
         element.detach();
         // var newControls;
-        function build(source: di.ObservableArray<any> | any[])
+        function build(source: akala.ObservableArray<any> | any[])
         {
             var result = $();
 
-            if (source instanceof di.ObservableArray)
+            if (source instanceof akala.ObservableArray)
             {
                 source.on('collectionChanged', function (args)
                 {
@@ -93,9 +93,9 @@ export class ForEach extends Control<ForeachParameter | string>
 
         sourceBinding.onChanged(function (ev)
         {
-            di.Promisify(ev.eventArgs.value).then(build);
+            akala.Promisify(ev.eventArgs.value).then(build);
         }, true);
-        return di.Promisify(sourceBinding.getValue()).then(build);
+        return akala.Promisify(sourceBinding.getValue()).then(build);
     }
 
     private static expRegex = /^\s*\(?(\w+)(?:,\s*(\w+))?\)?\s+in\s+/;
@@ -103,6 +103,6 @@ export class ForEach extends Control<ForeachParameter | string>
     protected parse(exp: string): ForeachParameter
     {
         var result = ForEach.expRegex.exec(exp);
-        return { in: di.Parser.evalAsFunction(exp.substring(result[0].length)), key: result[2] && result[1], value: result[2] || result[1] }
+        return { in: akala.Parser.evalAsFunction(exp.substring(result[0].length)), key: result[2] && result[1], value: result[2] || result[1] }
     }
 }
