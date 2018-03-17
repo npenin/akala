@@ -300,7 +300,8 @@ export class Parser
             expression = expression.substring(1);
             length++;
         }
-        var item = /^[\w0-9\.\$]+/.exec(expression)[0];
+
+        var item = /^[\w0-9\.\$]*/.exec(expression)[0];
         length += item.length;
         var parts = Parser.parseBindable(item);
 
@@ -321,20 +322,21 @@ export class Parser
                 return binding;
             }
 
-            for (var i = 0; i < parts.length && value; i++)
-            {
-                value = value[parts[i]];
-                if (isPromiseLike(value))
+            if (parts.length >= 1 && parts[0] != '')
+                for (var i = 0; i < parts.length && value; i++)
                 {
-                    var promise: PromiseLike<any>;
-                    if (i == parts.length - 1)
-                        promise = value;
-                    else
-                        promise = value.then(<ParsedFunction>Parser.parseFunction(parts.slice(i + 1).join('.'))).then(formatter);
-                    promise['$$length'] = item.length;
-                    return promise;
+                    value = value[parts[i]];
+                    if (isPromiseLike(value))
+                    {
+                        var promise: PromiseLike<any>;
+                        if (i == parts.length - 1)
+                            promise = value;
+                        else
+                            promise = value.then(<ParsedFunction>Parser.parseFunction(parts.slice(i + 1).join('.'))).then(formatter);
+                        promise['$$length'] = item.length;
+                        return promise;
+                    }
                 }
-            }
             return value;
         }
         f.$$length = length;
@@ -345,11 +347,11 @@ export class Parser
 
     public static parseFormatter(expression: string, lhs: ParsedOneOf): ParsedOneOf
     {
-        var item = /^([\w0-9\.\$]+) */.exec(expression);
+        var item = /^ *# *([\w0-9\.\$]+) */.exec(expression);
         expression = expression.substring(item[0].length);
-        var formatter: FormatterFactory<any, any> = resolve('#' + item[0]);
+        var formatter: FormatterFactory<any, any> = resolve('#' + item[1]);
         if (!formatter)
-            throw new Error(`filter not found: ${item[0]}`)
+            throw new Error(`filter not found: ${item[1]}`)
         var settings: ParsedObject;
         if (expression[0] == ':')
         {
@@ -381,7 +383,7 @@ export class Parser
                 }
                 else
                 {
-                    var b = new Binding(null, left);
+                    var b = new Binding('', left);
                     b.formatter = formatter.build(formatters.identity, settings);
                     return b;
                 }
@@ -399,7 +401,9 @@ export class Parser
                 }
             }
         }
-        result.$$length = item.input.length + ((settings && settings.$$length + 1) || 0);
+        // console.log({ lhs: lhs.$$length, item0: item[0].length, settings: settings && settings.$$length })
+        result.$$length = lhs.$$length + item[0].length + ((settings && settings.$$length + 1) || 0);
+        // console.log(result.$$length);
         return result;
     }
 
@@ -410,13 +414,13 @@ export class Parser
         var operator = /^ *([<>=!\+\-\/\*&\|\.#]+) */.exec(expression);
         if (operator)
         {
-            expression = expression.substring(operator[0].length);
             switch (operator[1])
             {
                 case '#':
                     return Parser.parseFormatter(expression, lhs);
                 case '.':
                 default:
+                    expression = expression.substring(operator[0].length);
                     var rhs = Parser.parseAny(expression, false);
                     var binary = new ParsedBinary(<any>operator[1], lhs, rhs)
                     binary.$$length = lhs.$$length + operator[0].length + rhs.$$length;
@@ -607,7 +611,7 @@ export class Parser
 
     public static evalAsFunction(expression: string, excludeFirstLevelFunction?: boolean): ParsedFunction
     {
-        if (!expression)
+        if (!expression && typeof (expression) != 'string')
             return null;
         var parts = Parser.parse(expression, excludeFirstLevelFunction);
         if (parts instanceof Array)

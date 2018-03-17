@@ -1,4 +1,4 @@
-import { register, injectWithName } from ".";
+import { register, injectWithName, ParsedAny } from ".";
 import { FormatterFactory } from "./formatters/common";
 import { resolve } from "q";
 
@@ -22,22 +22,29 @@ export interface Http<TResponse=any>
     call<T=string>(options: HttpOptions): PromiseLike<{ response: TResponse, body: T }>;
 }
 
-register('#http', {
-    parse: function (expression: string)
+export class HttpFormatterFactory implements FormatterFactory<Promise<any>, { method: keyof Http }>
+{
+    constructor() { }
+    public parse(expression: string): { method: keyof Http } & ParsedAny
     {
         var method = /\w+/.exec(expression);
         if (method)
-            return { method: method[0] };
-        return { method: 'getJSON', $$length: method[0].length };
-    },
-    build: function (formatter, settings)
+            return { method: <keyof Http>method[0], $$length: method[0].length };
+        return { method: 'getJSON', $$length: 0 };
+    }
+    public build(formatter, settings: { method: keyof Http })
     {
+        if (!settings)
+            settings = { method: 'getJSON' };
+            
         return function (value)
         {
             return injectWithName(['$http'], function (http: Http)
             {
-                return http[value](value);
+                return (http[settings.method] as Function)(formatter(value));
             })();
         }
     }
-} as FormatterFactory<Promise<any>, { method: 'get' | 'post' | 'getJSON' }>);
+}
+
+register('#http', new HttpFormatterFactory());

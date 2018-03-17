@@ -76,7 +76,7 @@ export function formatParser(format: string)
         },
         parse: function (value: string)
         {
-            var result = new Date(0,0,0,0,0,0,0);
+            var result = new Date(0, 0, 0, 0, 0, 0, 0);
             var formatOffset = 0;
             var valueOffset = 0;
             var currentFormat: string;
@@ -97,7 +97,7 @@ export function formatParser(format: string)
                         else
                         {
                             tmp = Number(value.substring(valueOffset, value.indexOf(format[i], valueOffset)));
-                            valueOffset = value.indexOf(format[i], valueOffset)+1;
+                            valueOffset = value.indexOf(format[i], valueOffset) + 1;
                         }
                         if (isNaN(tmp))
                             throw new Error(`${value} (${value.substring(valueOffset, i)}) does not match ${format}`);
@@ -152,8 +152,11 @@ export function formatParser(format: string)
 
 export class DateFormatter implements FormatterFactory<Date, DateFormatterSettings>
 {
+    constructor() { }
+
     public parse(expression: string): DateFormatterSettings
     {
+        // console.log(expression);
         var settings = Parser.parse(expression);
         if (settings instanceof ParsedString)
             return { format: settings.value };

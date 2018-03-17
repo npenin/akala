@@ -27,7 +27,7 @@ register('#http', {
     {
         return false;
     }
-});
+}, true);
 
 console.log(parser.Parser.parse("'/my/url' # http", false)({}));
 
@@ -37,3 +37,4 @@ console.log(parser.Parser.parse("'12/03/18' # date:'dd/MM/yy'", false)({}));
 console.log(parser.Parser.parse("'03/12/18' # date:'MM/dd/yy'", false)({}));
 console.log(parser.Parser.parse("'3/12/18' # date:'MM/dd/yy'", false)({}));
 
+console.log(parser.Parser.parse("{options:{in:'/api/@domojs/zigate/pending' # http, text:internalName, value:address}}", true)['options']({}));
