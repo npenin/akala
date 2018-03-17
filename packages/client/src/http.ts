@@ -28,10 +28,7 @@ export class Http implements akala.Http<XMLHttpRequest>
         return request.then(function (response)
         {
             return response.body;
-        }, function (rejection)
-            {
-                return rejection;
-            });
+        });
     }
 
     public call<T=string>(options: akala.HttpOptions): PromiseLike<{ response: XMLHttpRequest, body: T }>
