@@ -24,8 +24,8 @@ declare global
         export var each: typeof core.each;
         export var eachAsync: typeof core.eachAsync;
         export var extend: typeof core.extend;
-        export type Binding = core.Binding;
-        export type ObservableArray<T> = core.ObservableArray<T>;
+        export var Binding = core.Binding;
+        export var ObservableArray<T> = core.ObservableArray<T>;
         export type Translator = core.Translator;
         export var inject: typeof core.inject;
         export var injectNew: typeof core.injectNew;
