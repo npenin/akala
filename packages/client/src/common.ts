@@ -1,6 +1,4 @@
 import * as core from '@akala/core';
-import { promisify } from 'util';
-
 
 export var $$injector: core.Module = window['akala'] = core.extend(core.module('akala', 'akala-services', 'controls'),
     {
@@ -14,26 +12,23 @@ export var $$injector: core.Module = window['akala'] = core.extend(core.module('
         extend: core.extend
     });
 
-declare global
+export
 {
-    namespace akala
-    {
-        export var promisify: typeof core.Promisify;
-        export var isPromiseLike: typeof core.isPromiseLike;
-        export var map: typeof core.map;
-        export var each: typeof core.each;
-        export var eachAsync: typeof core.eachAsync;
-        export var extend: typeof core.extend;
-        export var Binding :typeof core.Binding;
-        export var ObservableArray: typeof core.ObservableArray;
-        export type Translator = core.Translator;
-        export var inject: typeof core.inject;
-        export var injectNew: typeof core.injectNew;
-        export var injectNewWithName: typeof core.injectNewWithName;
-        export var injectWithName: typeof core.injectWithName;
-        export var injectWithNameAsync: typeof core.injectWithNameAsync;
-    }
-}
+    Promisify as promisify,
+    isPromiseLike,
+    map,
+    each,
+    eachAsync,
+    extend,
+    Binding,
+    ObservableArray,
+    Translator,
+    inject,
+    injectNew,
+    injectNewWithName,
+    injectWithName,
+    injectWithNameAsync
+} from '@akala/core';
 
 export var serviceModule: core.Module = core.module('akala-services')
 
