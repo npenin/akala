@@ -26,7 +26,7 @@ var app = new WorkerRouter();
 
 function resolveUrl(namespace: string)
 {
-    return 'http://localhost:' + process.argv[3] + '/' + namespace + '/';
+    return 'http://' + process.argv[3] + '/' + namespace + '/';
 }
 
 akala.register('$resolveUrl', resolveUrl);
@@ -34,6 +34,18 @@ akala.register('$resolveUrl', resolveUrl);
 akala.register('$router', app);
 
 akala.register('$io', createClient);
+
+akala.register('$updateConfig', function (newConfig)
+{
+    var config = require('./config.json');
+    config[process.argv[2]] = newConfig;
+    fs.writeFile('./config.json', JSON.stringify(config, null, 4), function (err)
+    {
+        if (err)
+            console.error(err);
+    });
+})
+
 
 akala.register('$http', new Http());
 createClient('api/' + process.argv[2]).then(function (socket: jsonrpc.Client<jsonrpc.Connection>)

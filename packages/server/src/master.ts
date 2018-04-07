@@ -180,11 +180,12 @@ fs.exists(configFile, function (exists)
                                 next();
                             finished = true;
 
-                            app.useGet('/assets/' + folder, st('node_modules/' + plugin + '/assets'));
-                            app.useGet('/bower_components/' + folder, st('node_modules/' + plugin + '/bower_components'));
+                            if (socketModules[plugin].socket.url.indexOf('localhost') > -1)
+                            {
+                                app.useGet('/assets/' + folder, st('node_modules/' + plugin + '/assets'));
 
-                            app.useGet('/' + plugin, st('node_modules/' + plugin + '/views'));
-
+                                app.useGet('/' + plugin, st('node_modules/' + plugin + '/views'));
+                            }
                             var localWorkers = getDependencies();
                             log('localWorkers for %s: %s', folder, localWorkers);
                             callback({
@@ -244,9 +245,6 @@ fs.exists(configFile, function (exists)
                                     // console.log(submodule);
                                     modulesEvent[param.module].emit('connected', resolve);
                                 });
-
-                                // var deferred = new akala.Deferred<any>();
-                                // return deferred;
                             }
                         });
 
@@ -256,7 +254,7 @@ fs.exists(configFile, function (exists)
                         });
 
                         cluster.setupMaster(<any>{
-                            args: [plugin, port],
+                            args: [plugin, 'localhost:' + port],
                             execArgv: []
                         });
                         var worker = cluster.fork();
@@ -335,6 +333,7 @@ fs.exists(configFile, function (exists)
                 if (error)
                 {
                     console.error(error);
+                    return;
                 }
 
                 var modules = tmpModules;
@@ -394,6 +393,7 @@ fs.exists(configFile, function (exists)
             });
     });
 });
+
 // https.createServer({}, app).listen(443);
 var server = http.createServer();
 masterRouter.attachTo(server);
