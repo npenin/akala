@@ -69,11 +69,13 @@ export class Http implements akala.Http<request.RequestResponse>
         var uri = parse(options.url, true);
         uri.query = akala.extend({}, uri.query, options.params, params);
 
+
         var optionsMerged: request.OptionsWithUri = akala.extend({ uri: uri, method: options.method }, {
             json: options.type == 'json',
             formData: options.contentType == 'form' && options.body,
             body: options.contentType != 'form' && options.body,
-            headers: options.headers
+            headers: options.headers,
+            qs: uri.query
         });
 
         return new Promise((resolve, reject) =>
