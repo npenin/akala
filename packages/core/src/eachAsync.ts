@@ -33,11 +33,38 @@ export function object(o: any, body: (element: any, i: string, next: NextFunctio
     }, complete);
 }
 
-export function each<T>(array: T[], body: (element: T, i: number, next: NextFunction) => void, complete: NextFunction)
-export function each(o: any, body: (element: any, i: string, next: NextFunction) => void, complete: NextFunction)
-export function each(it: any, body: (element: any, i: any, next: NextFunction) => void, complete: NextFunction)
+export function each<T>(array: T[], body: (element: T, i: number, next: NextFunction) => void, complete: NextFunction): void
+export function each(o: any, body: (element: any, i: string, next: NextFunction) => void, complete: NextFunction): void
+export function each<T>(array: T[], body: (element: T, i: number, next: NextFunction) => void): PromiseLike<void>
+export function each(o: any, body: (element: any, i: string, next: NextFunction) => void): PromiseLike<void>
+export function each(it: any, body: (element: any, i: any, next: NextFunction) => void, complete?: NextFunction): void | PromiseLike<void>
 {
-    if (Array.isArray(it) || typeof (it['length']) != 'undefined')
-        return array(it, body, complete);
-    return object(it, body, complete);
+    if (complete)
+    {
+        if (Array.isArray(it) || typeof (it['length']) != 'undefined')
+            return array(it, body, complete);
+        return object(it, body, complete);
+
+    }
+    else
+    {
+        return new Promise((resolve, reject) =>
+        {
+            if (Array.isArray(it) || typeof (it['length']) != 'undefined')
+                return array(it, body, function (err)
+                {
+                    if (err)
+                        reject(err);
+                    else
+                        resolve();
+                });
+            return object(it, body, function (err)
+            {
+                if (err)
+                    reject(err);
+                else
+                    resolve();
+            });
+        })
+    }
 }
