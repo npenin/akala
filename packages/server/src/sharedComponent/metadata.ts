@@ -1,12 +1,12 @@
-import * as akala from '@akala/core'
-import * as jsonrpc from '@akala/json-rpc-ws'
-import * as master from '../master-meta'
-import * as router from '../router'
-import { createServer } from './jsonrpc'
-import { Proxy } from '@akala/core'
-import { Metadata as Meta } from '@akala/core'
-import { Connection } from '@akala/json-rpc-ws'
-var log = akala.log('akala:metadata');
+import * as akala from '@akala/core';
+import * as jsonrpc from '@akala/json-rpc-ws';
+import * as master from '../master-meta';
+import * as router from '../router';
+import { createServer } from './jsonrpc';
+import { Proxy, Metadata as Meta } from '@akala/core';
+import { Connection } from '@akala/json-rpc-ws';
+
+const log = akala.log('akala:metadata');
 
 export function createServerFromMeta<
     TConnection extends jsonrpc.Connection,

@@ -180,12 +180,10 @@ fs.exists(configFile, function (exists)
                                 next();
                             finished = true;
 
-                            if (socketModules[plugin].socket.url.indexOf('localhost') > -1)
-                            {
-                                app.useGet('/assets/' + folder, st('node_modules/' + plugin + '/assets'));
+                            app.useGet('/assets/' + folder, st('node_modules/' + plugin + '/assets'));
 
-                                app.useGet('/' + plugin, st('node_modules/' + plugin + '/views'));
-                            }
+                            app.useGet('/' + plugin, st('node_modules/' + plugin + '/views'));
+
                             var localWorkers = getDependencies();
                             log('localWorkers for %s: %s', folder, localWorkers);
                             callback({
@@ -204,7 +202,7 @@ fs.exists(configFile, function (exists)
                         var sockets = serveRouter(app, '/api/' + plugin, meta, {
                             master: function (param: { masterPath?: string, workerPath?: string }, socket: Connection)
                             {
-                                // log(arguments);
+                                log(arguments);
                                 log(socket.submodule + ' emitted master event with ' + (param && param.masterPath));
                                 if (param && param.workerPath && param.workerPath.length > 0)
                                 {
@@ -287,7 +285,7 @@ fs.exists(configFile, function (exists)
                                 return;
                             }
                             cluster.setupMaster({
-                                args: [plugin, port]
+                                args: [plugin, 'localhost:' + port]
                             });
                             worker = cluster.fork();
 

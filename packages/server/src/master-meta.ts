@@ -100,7 +100,7 @@ export function handleResponse(res: router.Response, locationReplacer: (key: str
     }
 }
 
-export function serveRouter<TOConnection extends jsonrpc.Connection,
+export function serveRouter<TOConnection extends Connection,
     TOServerOneWay,
     TOServerTwoWay,
     TOClientOneWay,
