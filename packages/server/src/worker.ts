@@ -18,15 +18,12 @@ process.on('uncaughtException', function (error)
 })
 var log = debug('akala:worker:' + process.argv[2]);
 
-//log.enabled = process.argv[2]=='devices';
-// if (!debug.enabled('akala:worker:' + process.argv[2]))
-//     console.warn(`logging disabled for ${process.argv[2]}`);
-
 var app = new WorkerRouter();
 
 function resolveUrl(namespace: string)
 {
-    return 'http://' + process.argv[3] + '/' + namespace + '/';
+    var url = 'http://' + process.argv[3] + '/' + namespace + '/';
+    return url;
 }
 
 akala.register('$resolveUrl', resolveUrl);
@@ -37,12 +34,13 @@ akala.register('$io', createClient);
 
 akala.register('$updateConfig', function (newConfig)
 {
-    var config = require('./config.json');
+    var config = require(path.resolve('./config.json'));
     config[process.argv[2]] = newConfig;
     fs.writeFile('./config.json', JSON.stringify(config, null, 4), function (err)
     {
         if (err)
             console.error(err);
+        delete require.cache[path.resolve('./config.json')];
     });
 })
 
