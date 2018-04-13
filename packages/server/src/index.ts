@@ -29,5 +29,5 @@ export
     Metadata,
     DualMetadata,
 } from '@akala/core';
-import * as st from 'serve-static';
-export { st as static };
+
+export { serveStatic as static } from 'serve-static';
