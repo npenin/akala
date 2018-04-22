@@ -3,6 +3,7 @@ import { EventEmitter } from 'events';
 import { Promisify as promisify, isPromiseLike } from './promiseHelpers';
 import * as formatters from './formatters';
 import { array as eachAsync } from './eachAsync'
+import { object as each } from './each'
 import { Formatter } from './formatters/common';
 export interface IWatched extends Object
 {
@@ -21,6 +22,24 @@ export class Binding extends EventEmitter
     public static readonly ChangingFieldEventName = "fieldChanging";
     public static readonly ChangedFieldEventName = "fieldChanged";
     public static readonly ErrorEventName = "bindingError";
+
+    public static unbindify<T>(element: T): Partial<T>
+    {
+        var result: Partial<T> = {};
+        each(element, function (value, key)
+        {
+            if (typeof (value) == 'object')
+            {
+                if (value instanceof Binding)
+                    result[key] = value.getValue();
+                else
+                    result[key] = Binding.unbindify(value) as any;
+            }
+            else
+                result[key] = value;
+        })
+        return result;
+    }
 
     constructor(protected _expression: string, private _target: IWatched, register: boolean = true)
     {
