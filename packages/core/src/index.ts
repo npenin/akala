@@ -7,7 +7,8 @@ export * from './parser';
 export * from './helpers'
 export * from './queue'
 import { Module } from './module';
-export { Builder } from './api/json-rpc-ws';
+export { JsonRpcWs } from './api/json-rpc-ws';
+export { Rest } from './api/rest';
 export { Api, DualApi } from './api/base';
 export { Module };
 export * from './promiseHelpers';

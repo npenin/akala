@@ -1,15 +1,15 @@
 import * as jsonrpc from '@akala/json-rpc-ws'
-import { Proxy } from '../each'
-import { extend } from '../helpers'
+import { Proxy, each } from '../each'
+import { extend, module } from '../helpers'
 
 import * as debug from 'debug'
 import { PayloadDataType, Payload } from '@akala/json-rpc-ws/lib/connection';
-import { Api } from './base';
+import { Api, IClientBuilder, IServerProxyBuilder, IClientProxyBuilder } from './base';
 
 var log = debug('akala:metadata')
 var clientLog = debug('akala:metadata:client');
 
-export class Builder<TConnection extends jsonrpc.Connection,
+export class JsonRpcWs<TConnection extends jsonrpc.Connection,
     TServerOneWay,
     TServerTwoWay,
     TClientOneWay,
@@ -18,10 +18,11 @@ export class Builder<TConnection extends jsonrpc.Connection,
     TServerTwoWayProxy extends TServerTwoWay,
     TClientOneWayProxy extends TClientOneWay,
     TClientTwoWayProxy extends TClientTwoWay>
+
+    implements IServerProxyBuilder<jsonrpc.Client<TConnection>, TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>,
+    IClientProxyBuilder<TConnection, TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>
 {
-    constructor(private api: Api<{
-        [key: string]: any
-    }, TConnection, TServerOneWay, TServerTwoWay,
+    constructor(public api: Api<TConnection, TServerOneWay, TServerTwoWay,
         TClientOneWay,
         TClientTwoWay,
         TServerOneWayProxy,
@@ -35,7 +36,7 @@ export class Builder<TConnection extends jsonrpc.Connection,
     public createServerProxy(client: jsonrpc.Client<TConnection>): Partial<TServerOneWayProxy & TServerTwoWayProxy>
     {
         var proxy: Partial<TServerOneWayProxy & TServerTwoWayProxy> = {};
-        this.api.serverOneWayKeys.forEach(function (serverKey)
+        each(this.api.serverOneWayConfig, function (config, serverKey)
         {
             proxy[serverKey] = <any>function (params)
             {
@@ -53,7 +54,7 @@ export class Builder<TConnection extends jsonrpc.Connection,
             }
         });
 
-        this.api.serverTwoWayKeys.forEach(function (serverKey)
+        each(this.api.serverTwoWayConfig, function (config, serverKey)
         {
             proxy[serverKey] = <any>function (params)
             {
@@ -78,7 +79,7 @@ export class Builder<TConnection extends jsonrpc.Connection,
     public createClientProxy(client: TConnection): Partial<TClientOneWayProxy & TClientTwoWayProxy>
     {
         var proxy: Partial<TClientOneWayProxy & TClientTwoWayProxy> = {};
-        this.api.clientOneWayKeys.forEach(function (clientKey)
+        each(this.api.clientOneWayConfig, function (config, clientKey)
         {
             proxy[clientKey] = <any>function (params)
             {
@@ -96,7 +97,7 @@ export class Builder<TConnection extends jsonrpc.Connection,
             }
         });
 
-        this.api.clientTwoWayKeys.forEach(function (clientKey)
+        each(this.api.clientTwoWayConfig, function (config, clientKey)
         {
             proxy[clientKey] = <any>function (params)
             {
@@ -154,7 +155,7 @@ export class Builder<TConnection extends jsonrpc.Connection,
             });
             var clientImplWithProxy = <TClientOneWay & TClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy> }>extend.apply(this, dummy);
 
-            this.api.clientOneWayKeys.forEach(function (clientKey)
+            each(this.api.clientOneWayConfig, function (config, clientKey)
             {
                 client.expose(clientKey, function (params, reply)
                 {
@@ -175,7 +176,7 @@ export class Builder<TConnection extends jsonrpc.Connection,
                 })
             });
 
-            this.api.clientTwoWayKeys.forEach(function (clientKey)
+            each(this.api.clientTwoWayConfig, function (config, clientKey)
             {
                 client.expose(clientKey, function (params, reply)
                 {
@@ -200,3 +201,5 @@ export class Builder<TConnection extends jsonrpc.Connection,
         }
     }
 }
+
+module('$api').register('jsonrpcws', JsonRpcWs);

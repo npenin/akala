@@ -7,8 +7,94 @@ import { PayloadDataType, Payload } from '@akala/json-rpc-ws/lib/connection';
 var log = debug('akala:metadata')
 var clientLog = debug('akala:metadata:client');
 
+export type TConfig = { [key: string]: any };
+
+export interface IBuilder<TConnection,
+    TServerOneWay,
+    TServerTwoWay,
+    TClientOneWay,
+    TClientTwoWay,
+    TServerOneWayProxy extends TServerOneWay,
+    TServerTwoWayProxy extends TServerTwoWay,
+    TClientOneWayProxy extends TClientOneWay,
+    TClientTwoWayProxy extends TClientTwoWay>
+{
+    api: Api<TConnection,
+    TServerOneWay,
+    TServerTwoWay,
+    TClientOneWay,
+    TClientTwoWay,
+    TServerOneWayProxy,
+    TServerTwoWayProxy,
+    TClientOneWayProxy,
+    TClientTwoWayProxy>;
+}
+
+export interface IServerProxyBuilder<T, TConnection,
+    TServerOneWay,
+    TServerTwoWay,
+    TClientOneWay,
+    TClientTwoWay,
+    TServerOneWayProxy extends TServerOneWay,
+    TServerTwoWayProxy extends TServerTwoWay,
+    TClientOneWayProxy extends TClientOneWay,
+    TClientTwoWayProxy extends TClientTwoWay> extends IBuilder<TConnection,
+    TServerOneWay,
+    TServerTwoWay,
+    TClientOneWay,
+    TClientTwoWay,
+    TServerOneWayProxy,
+    TServerTwoWayProxy,
+    TClientOneWayProxy,
+    TClientTwoWayProxy>
+{
+    createServerProxy(client: T): Partial<TServerOneWayProxy & TServerTwoWayProxy>;
+}
+
+export interface IClientProxyBuilder<T, TConnection,
+    TServerOneWay,
+    TServerTwoWay,
+    TClientOneWay,
+    TClientTwoWay,
+    TServerOneWayProxy extends TServerOneWay,
+    TServerTwoWayProxy extends TServerTwoWay,
+    TClientOneWayProxy extends TClientOneWay,
+    TClientTwoWayProxy extends TClientTwoWay> extends IBuilder<TConnection,
+    TServerOneWay,
+    TServerTwoWay,
+    TClientOneWay,
+    TClientTwoWay,
+    TServerOneWayProxy,
+    TServerTwoWayProxy,
+    TClientOneWayProxy,
+    TClientTwoWayProxy>
+{
+    createClientProxy(client: T): Partial<TClientOneWayProxy & TClientTwoWayProxy>;
+}
+
+export interface IClientBuilder<T, TConnection,
+    TServerOneWay,
+    TServerTwoWay,
+    TClientOneWay,
+    TClientTwoWay,
+    TServerOneWayProxy extends TServerOneWay,
+    TServerTwoWayProxy extends TServerTwoWay,
+    TClientOneWayProxy extends TClientOneWay,
+    TClientTwoWayProxy extends TClientTwoWay> extends IBuilder<TConnection,
+    TServerOneWay,
+    TServerTwoWay,
+    TClientOneWay,
+    TClientTwoWay,
+    TServerOneWayProxy,
+    TServerTwoWayProxy,
+    TClientOneWayProxy,
+    TClientTwoWayProxy>
+{
+    createClientProxy(client: T): Partial<TClientOneWayProxy & TClientTwoWayProxy>;
+    createClient(client: T): (clientImpl: TClientOneWay & TClientTwoWay, ...dummy: any[]) => TClientOneWay & TClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy> };
+}
+
 export class Api<
-    TConfig,
     TConnection,
     TServerOneWay,
     TServerTwoWay,
@@ -23,18 +109,17 @@ export class Api<
     {
     }
 
-    public serverOneWayKeys: (keyof (TServerOneWay | TServerOneWayProxy))[] = [];
-    public serverTwoWayKeys: (keyof (TServerTwoWay | TServerTwoWayProxy))[] = [];
-    public clientOneWayKeys: (keyof (TClientOneWay | TClientOneWayProxy))[] = [];
-    public clientTwoWayKeys: (keyof (TClientTwoWay | TClientTwoWayProxy))[] = [];
+    public serverOneWayConfig: Partial<{ [k in keyof (TServerOneWay | TServerOneWayProxy)]: TConfig }> = {};
+    public serverTwoWayConfig: Partial<{ [k in keyof (TServerTwoWay | TServerTwoWayProxy)]: TConfig }> = {};
+    public clientOneWayConfig: Partial<{ [k in keyof (TClientOneWay | TClientOneWayProxy)]: TConfig }> = {};
+    public clientTwoWayConfig: Partial<{ [k in keyof (TClientTwoWay | TClientTwoWayProxy)]: TConfig }> = {};
 
-    connection<TConnectionNew extends TConnection>(): Api<TConfig, TConnectionNew, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>
+    connection<TConnectionNew extends TConnection>(): Api<TConnectionNew, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>
     {
         return <any>this;
     }
 
     clientToServerOneWay<TIn>(): <TImpl extends TConfig>(impl: TImpl) => Api<
-        TConfig,
         TConnection,
         TServerOneWay & Proxy<TImpl, (this: TServerOneWay & TServerTwoWay & { $proxy(socket: TConnection): Partial<TClientOneWayProxy & TClientTwoWayProxy> }, p: TIn, connection?: TConnection) => PromiseLike<void> | void>,
         TServerTwoWay,
@@ -47,13 +132,12 @@ export class Api<
     {
         return (impl) =>
         {
-            this.serverOneWayKeys = this.serverOneWayKeys.concat(<any>Object.keys(impl));
+            this.serverOneWayConfig = Object.assign(this.serverOneWayConfig, impl);
             return <any>this;
         }
     }
 
     clientToServer<TIn, TOut>(): <TImpl extends TConfig>(impl: TImpl) => Api<
-        TConfig,
         TConnection,
         TServerOneWay,
         TServerTwoWay & Proxy<TImpl, (this: TServerOneWay & TServerTwoWay & { $proxy(socket: TConnection): Partial<TClientOneWayProxy & TClientTwoWayProxy> }, p: TIn, connection?: TConnection) => TOut | PromiseLike<TOut>>,
@@ -66,13 +150,12 @@ export class Api<
     {
         return (impl) =>
         {
-            this.serverTwoWayKeys = this.serverTwoWayKeys.concat(<any>Object.keys(impl));
+            this.serverTwoWayConfig = Object.assign(this.serverTwoWayConfig, impl);
             return <any>this;
         }
     }
 
     serverToClientOneWay<TIn>(): <TImpl extends TConfig>(impl: TImpl) => Api<
-        TConfig,
         TConnection,
         TServerOneWay,
         TServerTwoWay,
@@ -85,13 +168,12 @@ export class Api<
     {
         return (impl) =>
         {
-            this.clientOneWayKeys = this.clientOneWayKeys.concat(<any>Object.keys(impl));
+            this.clientOneWayConfig = Object.assign(this.clientOneWayConfig, impl);
             return <any>this;
         }
     }
 
     serverToClient<TIn, TOut>(): <TImpl>(impl: TImpl) => Api<
-        TConfig,
         TConnection,
         TServerOneWay,
         TServerTwoWay,
@@ -104,14 +186,13 @@ export class Api<
     {
         return (impl) =>
         {
-            this.clientTwoWayKeys = this.clientTwoWayKeys.concat(<any>Object.keys(impl));
+            this.clientTwoWayConfig = Object.assign(this.clientTwoWayConfig, impl);
             return <any>this;
         }
     }
 }
 
 export class DualApi<
-    TConfig,
     TConnection,
     TServerOneWay,
     TServerTwoWay,
@@ -121,7 +202,6 @@ export class DualApi<
     TServerTwoWayProxy extends TServerTwoWay,
     TClientOneWayProxy extends TClientOneWay,
     TClientTwoWayProxy extends TClientTwoWay,
-    TOConfig,
     TOConnection,
     TOServerOneWay,
     TOServerTwoWay,
@@ -132,7 +212,6 @@ export class DualApi<
     TOClientOneWayProxy extends TOClientOneWay,
     TOClientTwoWayProxy extends TOClientTwoWay>
     extends Api<
-    TConfig & TOConfig,
     TConnection & TOConnection,
     TServerOneWay & TOServerOneWay,
     TServerTwoWay & TOServerTwoWay,
@@ -144,7 +223,6 @@ export class DualApi<
     TClientTwoWayProxy & TOClientTwoWayProxy>
 {
     constructor(meta1: Api<
-        TConfig,
         TConnection,
         TServerOneWay,
         TServerTwoWay,
@@ -155,7 +233,6 @@ export class DualApi<
         TClientOneWayProxy,
         TClientTwoWayProxy>,
         meta2: Api<
-            TOConfig,
             TOConnection,
             TOServerOneWay,
             TOServerTwoWay,
@@ -167,10 +244,10 @@ export class DualApi<
             TOClientTwoWayProxy>)
     {
         super();
-        this.clientOneWayKeys = (<(keyof (TClientOneWay & TOClientOneWay))[]>(<any>meta1).clientOneWayKeys).concat((<any>meta2).clientOneWayKeys);
-        this.clientTwoWayKeys = (<(keyof (TClientTwoWay & TOClientTwoWay))[]>(<any>meta1).clientTwoWayKeys).concat((<any>meta2).clientTwoWayKeys);
-        this.serverOneWayKeys = (<(keyof (TServerOneWay & TOServerOneWay))[]>(<any>meta1).serverOneWayKeys).concat((<any>meta2).serverOneWayKeys);
-        this.serverTwoWayKeys = (<(keyof (TServerTwoWay & TOServerTwoWay))[]>(<any>meta1).serverTwoWayKeys).concat((<any>meta2).serverTwoWayKeys);
+        this.clientOneWayConfig = Object.assign(meta1.clientOneWayConfig, meta2.clientOneWayConfig);
+        this.clientTwoWayConfig = Object.assign(meta1.clientTwoWayConfig, meta2.clientTwoWayConfig);
+        this.serverOneWayConfig = Object.assign(meta1.serverOneWayConfig, meta2.serverOneWayConfig);
+        this.serverTwoWayConfig = Object.assign(meta1.serverTwoWayConfig, meta2.serverTwoWayConfig);
 
     }
 }

@@ -4,11 +4,18 @@ import { EventEmitter } from 'events'
 
 process.hrtime = process.hrtime || require('browser-process-hrtime');
 
+var moduleInjector = new di.Injector();
+
 export class Module extends di.Injector
 {
-    constructor(public name: string, public dep: string[])
+    constructor(public name: string, public dep?: string[])
     {
         super();
+        var existingModule = moduleInjector.resolve(name);
+        if (existingModule && dep)
+            throw new Error('the module can be registered only once with dependencies');
+        if (existingModule)
+            return existingModule;
         Module.registerModule(this);
     }
 
