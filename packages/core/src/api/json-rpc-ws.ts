@@ -20,7 +20,8 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection,
     TClientTwoWayProxy extends TClientTwoWay>
 
     implements IServerProxyBuilder<jsonrpc.Client<TConnection>, TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>,
-    IClientProxyBuilder<TConnection, TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>
+    IClientProxyBuilder<TConnection, TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>,
+    IClientBuilder<jsonrpc.Client<TConnection>, TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>
 {
     constructor(public api: Api<TConnection, TServerOneWay, TServerTwoWay,
         TClientOneWay,

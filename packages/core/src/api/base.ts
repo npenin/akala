@@ -50,6 +50,26 @@ export interface IServerProxyBuilder<T, TConnection,
 {
     createServerProxy(client: T): Partial<TServerOneWayProxy & TServerTwoWayProxy>;
 }
+export interface IServerBuilder<T, TConnection,
+    TServerOneWay,
+    TServerTwoWay,
+    TClientOneWay,
+    TClientTwoWay,
+    TServerOneWayProxy extends TServerOneWay,
+    TServerTwoWayProxy extends TServerTwoWay,
+    TClientOneWayProxy extends TClientOneWay,
+    TClientTwoWayProxy extends TClientTwoWay> extends IBuilder<TConnection,
+    TServerOneWay,
+    TServerTwoWay,
+    TClientOneWay,
+    TClientTwoWay,
+    TServerOneWayProxy,
+    TServerTwoWayProxy,
+    TClientOneWayProxy,
+    TClientTwoWayProxy>
+{
+    createServer(client: T, impl: TServerOneWay & TServerTwoWay): Partial<TServerOneWay & TServerTwoWay & { proxy: (TConnection) => TClientOneWayProxy & TClientTwoWayProxy }>;
+}
 
 export interface IClientProxyBuilder<T, TConnection,
     TServerOneWay,
@@ -90,7 +110,6 @@ export interface IClientBuilder<T, TConnection,
     TClientOneWayProxy,
     TClientTwoWayProxy>
 {
-    createClientProxy(client: T): Partial<TClientOneWayProxy & TClientTwoWayProxy>;
     createClient(client: T): (clientImpl: TClientOneWay & TClientTwoWay, ...dummy: any[]) => TClientOneWay & TClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy> };
 }
 

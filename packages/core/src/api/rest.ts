@@ -1,5 +1,5 @@
 import { Http, HttpFormatterFactory, HttpOptions } from '../web'
-import { Api, IServerProxyBuilder } from './base';
+import { Api, IServerProxyBuilder, IClientBuilder, IServerBuilder } from './base';
 import { each } from '../each';
 import { createServer } from 'https';
 import { resolve } from '../injector';
@@ -89,7 +89,6 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
                         options.url = new URL(url, baseURL).toString();
                 })
                 return options;
-
         }
     }
 
@@ -103,7 +102,7 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
             {
                 proxy[key] = function (param)
                 {
-                    return client.call({ url: new URL(config['rest'].url, baseUrl).toString(), method: config['rest'].method, params: param });
+                    return client.call(Rest.buildCall(config['rest'], baseUrl, param));
                 } as any;
             }
         });
@@ -113,11 +112,18 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
             {
                 proxy[key] = function (param)
                 {
-                    return client.call(config['rest'].method, config['rest'].url, param);
+                    return client.call(Rest.buildCall(config['rest'], baseUrl, param));
                 } as any;
             }
         });
         return proxy;
+    }
+
+    public createClient(baseUrl: string): (impl: TClientOneWay & TClientTwoWay) => Partial<TClientOneWay & TClientTwoWay> & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy> }
+    {
+        var client: Http = resolve('$http');
+        var proxy: Partial<TClientOneWay & TClientTwoWay> = {};
+        return (impl) => Object.assign(impl, { $proxy: () => { return this.createServerProxy(baseUrl); } });
     }
 }
 
