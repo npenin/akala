@@ -9,7 +9,7 @@ export * from './queue'
 import { Module } from './module';
 export { JsonRpcWs } from './api/json-rpc-ws';
 export { Rest } from './api/rest';
-export { Api, DualApi } from './api/base';
+export * from './api';
 export { Module };
 export * from './promiseHelpers';
 export { each as eachAsync, NextFunction } from './eachAsync';
