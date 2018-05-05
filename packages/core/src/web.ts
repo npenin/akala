@@ -1,4 +1,4 @@
-import { register, injectWithName, ParsedAny, extend, service, each } from ".";
+import { register, injectWithName, ParsedAny, extend, service, each, map } from ".";
 import { FormatterFactory } from "./formatters/common";
 import * as uri from 'url';
 import * as qs from 'querystring'
@@ -62,7 +62,7 @@ export class FetchHttp implements Http<Response>
     {
         var body = '<?xml version="1.0" encoding="utf-8"?><s:Envelope s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body>' +
             '<u:' + action + ' xmlns:u="' + namespace + '">';
-        akala.each(params, function (paramValue, paramName)
+        each(params, function (paramValue, paramName)
         {
             body += '<' + paramName + '><![CDATA[' + paramValue + ']]></' + paramName + '>';
         });
@@ -104,13 +104,44 @@ export class FetchHttp implements Http<Response>
                     break;
                 case 'form':
                     init.headers['Content-Type'] = 'multipart/form-data';
+                    if (!(init.body instanceof FormData) && typeof init.body == 'undefined')
+                        init.body = FetchHttp.serialize(init.body);
                     break;
             }
         }
 
         return fetch(uri.format(options.url), init);
     }
+
+
+    public static serialize(obj, prefix?: string)
+    {
+        return map(obj, function (value, key)
+        {
+
+            if (typeof (value) == 'object')
+            {
+
+                var keyPrefix = prefix;
+                if (prefix)
+                {
+                    if (typeof (key) == 'number')
+                        keyPrefix = prefix.substring(0, prefix.length - 1) + '[' + key + '].';
+                    else
+                        keyPrefix = prefix + encodeURIComponent(key) + '.';
+                }
+                return FetchHttp.serialize(value, keyPrefix);
+            }
+            else
+            {
+                return (prefix || '') + encodeURIComponent(key) + '=' + encodeURIComponent(value);
+            }
+        }, true)
+    }
+
 }
+
+
 
 export class HttpFormatterFactory implements FormatterFactory<Promise<any>, { method: keyof Http }>
 {
