@@ -20,6 +20,7 @@ export interface Http<TResponse=any>
     post(url: string, body?: any): PromiseLike<FormData>;
     postJSON<T=string>(url: string, body?: any): PromiseLike<T>;
     getJSON<T>(url: string, params?: any): PromiseLike<T>;
+    invokeSOAP(namespace: string, action: string, url: string, params?: { [key: string]: string | number | boolean }): PromiseLike<TResponse>;
     call(options: HttpOptions): PromiseLike<TResponse>;
 }
 
@@ -54,6 +55,19 @@ export class FetchHttp implements Http<Response>
         {
             return r.json();
         });
+    }
+
+
+    public invokeSOAP(namespace: string, action: string, url: string, params?: { [key: string]: string | number | boolean })
+    {
+        var body = '<?xml version="1.0" encoding="utf-8"?><s:Envelope s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body>' +
+            '<u:' + action + ' xmlns:u="' + namespace + '">';
+        akala.each(params, function (paramValue, paramName)
+        {
+            body += '<' + paramName + '><![CDATA[' + paramValue + ']]></' + paramName + '>';
+        });
+        body += '</u:' + action + '></s:Body></s:Envelope>';
+        return this.call({ method: 'POST', url: url, headers: { SOAPAction: namespace + '#' + action }, body: body });
     }
 
     public call(options: HttpOptions): Promise<Response>
