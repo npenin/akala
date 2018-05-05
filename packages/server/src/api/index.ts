@@ -1,18 +1,21 @@
-import { Injector, injectWithName, NextFunction, log, isPromiseLike } from '@akala/core';
-import { Response, Methods, requestHandlerWithNext, errorHandlerWithNext, Router } from './router';
-import { WorkerInjector, Request, Callback } from './worker-meta'
+import { Injector, injectWithName, NextFunction, log, isPromiseLike, module, Api } from '@akala/core';
+import { Response, Methods, requestHandlerWithNext, errorHandlerWithNext, Router } from '../router';
+import { WorkerInjector, Request, Callback } from '../worker-meta'
+import * as jsonrpc from '@akala/json-rpc-ws'
 
 import * as fs from 'fs';
 import * as http from 'http';
+import { JsonRpcWs } from './jsonrpc';
+import { Rest } from './rest';
 
 
-export var api = <Methods<apiHandler<Function>>>{};
+export var restapi = <Methods<apiHandler<Function>>>{};
 var debug = log('akala:api');
 
 ['all'].concat(http.METHODS).forEach(function (method: keyof Methods<apiHandler<Function>>)
 {
     method = <keyof Methods<apiHandler<Function>>>method.toLowerCase();
-    api[method] = function <T extends Function>(path: string, $inject: string[], ...handlers: T[])
+    restapi[method as any] = function <T extends Function>(path: string, $inject: string[], ...handlers: T[])
     {
         return injectWithName(['$router', '$callback'], function (router: Router<requestHandlerWithNext, errorHandlerWithNext>, callback: Callback)
         {
@@ -83,6 +86,20 @@ export function command<T extends Function>($inject: string[], f: T)
         }
         else if (typeof result != 'undefined')
             callback(200, result);
+    }
+}
+
+
+export var api = {
+    jsonrpcws<TConnection extends jsonrpc.Connection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy extends TServerOneWay, TServerTwoWayProxy extends TServerTwoWay, TClientOneWayProxy extends TClientOneWay, TClientTwoWayProxy extends TClientTwoWay>(api: Api<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>)
+        : JsonRpcWs<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>
+    {
+        return new (module('$api').resolve('jsonrpcws'))(api);
+    },
+    rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy extends TServerOneWay, TServerTwoWayProxy extends TServerTwoWay, TClientOneWayProxy extends TClientOneWay, TClientTwoWayProxy extends TClientTwoWay>(api: Api<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>)
+        : Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>
+    {
+        return new (module('$api').resolve('rest'))(api);
     }
 }
 

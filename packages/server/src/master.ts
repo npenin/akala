@@ -1,15 +1,13 @@
 import * as cluster from 'cluster';
-import * as http from 'http';
-import * as https from 'https';
 import * as url from 'url';
 import * as fs from 'fs';
 import * as st from 'serve-static';
 import * as jsonrpc from '@akala/json-rpc-ws';
 import * as ws from 'ws';
+import * as http2 from 'http2';
 import * as akala from '@akala/core';
 import { relative, sep as pathSeparator, dirname, join as pathJoin } from 'path';
 import { serveRouter } from './master-meta';
-import { meta } from './sharedComponent/metadata';
 import * as debug from 'debug';
 // import * as $ from 'underscore';
 import { EventEmitter } from 'events';
@@ -19,6 +17,7 @@ var log = debug('akala:master');
 var orchestratorLog = debug('akala:master:orchestrator');
 import * as Orchestrator from 'orchestrator';
 import * as sequencify from 'sequencify';
+import { meta } from './api/jsonrpc';
 
 var master = new EventEmitter();
 master.setMaxListeners(Infinity);
@@ -393,7 +392,7 @@ fs.exists(configFile, function (exists)
 });
 
 // https.createServer({}, app).listen(443);
-var server = http.createServer();
+var server = http2.createSecureServer({allowHTTP1:true, });
 masterRouter.attachTo(server);
 
 server.listen(port);

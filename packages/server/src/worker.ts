@@ -6,10 +6,10 @@ import * as debug from 'debug';
 import * as path from 'path';
 import { resolve, dirname } from 'path';
 import { createClient, Request, MasterRegistration, Callback, WorkerInjector, handle } from './worker-meta';
-import { meta, DualMetadata } from './sharedComponent/metadata'
-import { Http } from './http';
 import { metaRouter } from './master-meta'
 import { EventEmitter } from 'events'
+import { api } from './api';
+import { meta } from './api/jsonrpc';
 
 process.on('uncaughtException', function (error)
 {
@@ -45,12 +45,11 @@ akala.register('$updateConfig', function (newConfig)
 })
 
 
-akala.register('$http', new Http());
 createClient('api/' + process.argv[2]).then(function (socket: jsonrpc.Client<jsonrpc.Connection>)
 {
     log('worker connected')
     var worker = akala.register('$worker', new EventEmitter());
-    var client = new DualMetadata(meta, metaRouter).createClient(socket)({
+    var client = api.jsonrpcws(new akala.DualApi(meta, metaRouter)).createClient(socket)({
         'after-master': () =>
         {
             worker.emit('after-master');
