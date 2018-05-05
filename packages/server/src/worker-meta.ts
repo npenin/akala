@@ -1,6 +1,5 @@
 import { Request as BaseRequest, WorkerRouter as Router, Callback, CallbackResponse } from './router';
 import * as akala from '@akala/core';
-import { Http } from './http';
 import * as express from 'express';
 import * as stream from 'stream';
 export { Router, Callback };
@@ -35,7 +34,7 @@ export type IsModule = (moduleName: string) => boolean;
 
 export interface resolve
 {
-    (param: '$http'): Http
+    (param: '$http'): akala.Http
     (param: '$request'): Request
     (param: '$callback'): Callback
     (param: '$router'): Router

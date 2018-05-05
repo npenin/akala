@@ -1,20 +1,20 @@
 import * as url from 'url';
 import * as http from 'http';
-import * as http2 from 'http2';
-import * as akala from '@akala/core';
+import { Router as BaseRouter, NextFunction, RouterOptions, LayerOptions, Middleware1, Middleware2, ErrorMiddleware1, ErrorMiddleware2, Injector, Layer, Route, log } from '@akala/core';
 import * as jsonrpc from '@akala/json-rpc-ws'
 import * as worker from '../worker-meta'
 import { HttpRoute } from './route';
 import { HttpLayer } from './layer';
 import { Readable } from 'stream';
-var debug = akala.log('akala:router');
+var debug = log('akala:router');
 var routing = require('routington');
 
 export type httpHandler = (req: Request, res: Response) => void;
 
-export type requestHandlerWithNext = (req: Request, res: Response, next: akala.NextFunction) => void;
 
-export type errorHandlerWithNext = (error: any, req: Request, res: Response, next: akala.NextFunction) => void;
+export type requestHandlerWithNext = (req: Request, res: Response, next: NextFunction) => void;
+
+export type errorHandlerWithNext = (error: any, req: Request, res: Response, next: NextFunction) => void;
 
 export type httpHandlerWithNext = requestHandlerWithNext | errorHandlerWithNext;
 
@@ -57,7 +57,7 @@ export interface Request extends http.IncomingMessage
     query: { [key: string]: any };
     path: string;
     protocol: string;
-    injector?: akala.Injector;
+    injector?: Injector;
 }
 export interface Response extends http.ServerResponse
 {
@@ -66,14 +66,14 @@ export interface Response extends http.ServerResponse
     json(content: any): Response;
 }
 
-export class Router<T extends (akala.Middleware1<any> | akala.Middleware2<any, any>), U extends akala.ErrorMiddleware1<any> | akala.ErrorMiddleware2<any, any>> extends akala.Router<T, U, HttpLayer<T>, HttpRoute<T>> implements Methods<(path: string, ...handlers: T[]) => Router<T, U>>
+export class Router<T extends (Middleware1<any> | Middleware2<any, any>), U extends ErrorMiddleware1<any> | ErrorMiddleware2<any, any>> extends BaseRouter<T, U, HttpLayer<T>, HttpRoute<T>> implements Methods<(path: string, ...handlers: T[]) => Router<T, U>>
 {
-    constructor(options?: akala.RouterOptions)
+    constructor(options?: RouterOptions)
     {
         super(options);
     }
 
-    protected buildLayer(path: string, options: akala.LayerOptions, handler: T)
+    protected buildLayer(path: string, options: LayerOptions, handler: T)
     {
         return new HttpLayer<T>(path, options, handler);
     }
@@ -117,7 +117,7 @@ export class Router<T extends (akala.Middleware1<any> | akala.Middleware2<any, a
 export class HttpRouter extends Router<requestHandlerWithNext, errorHandlerWithNext>
 {
 
-    constructor(options?: akala.RouterOptions)
+    constructor(options?: RouterOptions)
     {
         super(options);
     }
@@ -129,7 +129,7 @@ export class HttpRouter extends Router<requestHandlerWithNext, errorHandlerWithN
         return this;
     }
 
-    public attachTo(server: http.Server | http2.Http2SecureServer)
+    public attachTo(server: http.Server)
     {
         var self = this;
         server.on('upgrade', (req: Request, socket, head) =>
@@ -190,7 +190,7 @@ export class HttpRouter extends Router<requestHandlerWithNext, errorHandlerWithN
         {
             // console.log('building upgrade layer for ' + path);
             route.methods['upgrade'] = true;
-            layer.isApplicable = <TRoute extends akala.Route<any, akala.Layer<any>>>(req, route: TRoute) =>
+            layer.isApplicable = <TRoute extends Route<any, Layer<any>>>(req, route: TRoute) =>
             {
                 var method = req.method.toLowerCase();
                 // console.log('upgrade layer received ' + method);
@@ -321,7 +321,7 @@ export type workerHandler = workerRequestHandler | workerErrorHandler;
 
 export class WorkerRouter extends Router<workerRequestHandler, workerErrorHandler>
 {
-    constructor(options?: akala.RouterOptions)
+    constructor(options?: RouterOptions)
     {
         var opts = options || {};
         opts.length = opts.length || 1;
@@ -385,7 +385,7 @@ export class WorkerRouter extends Router<workerRequestHandler, workerErrorHandle
     }
 
 
-    private static trySendOptionsResponse(res: Callback, methods: string[], next: akala.NextFunction)
+    private static trySendOptionsResponse(res: Callback, methods: string[], next: NextFunction)
     {
         try
         {
@@ -421,12 +421,12 @@ export class WorkerRouter extends Router<workerRequestHandler, workerErrorHandle
     }
 }
 
-export function router(options?: akala.RouterOptions): HttpRouter
+export function router(options?: RouterOptions): HttpRouter
 {
     return new HttpRouter(options);
 }
 
-export function wrouter(options?: akala.RouterOptions): WorkerRouter
+export function wrouter(options?: RouterOptions): WorkerRouter
 {
     return new WorkerRouter(options);
 }

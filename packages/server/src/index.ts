@@ -2,13 +2,12 @@
 // export * from './sharedComponent/component';
 // export * from './sharedComponent/jsonrpc';
 // export * from './sharedComponent/service';
-export { createServerFromMeta, meta as MetaModule, createServerFromDualMeta } from './sharedComponent/metadata'
+export * from './api'
 import './translator';
 export { router, wrouter, Request, Response, HttpRouter, CallbackResponse } from './router';
-export * from './api';
 export * from './helpers/mkdirp';
 
-export { Http } from './http';
+export { Http } from '@akala/core';
 import * as worker from './worker-meta'
 export { worker };
 import * as master from './master-meta';
@@ -26,8 +25,10 @@ export
     Interpolate,
     NextFunction,
     Proxy,
-    Metadata,
-    DualMetadata,
+    Api,
+    DualApi,
+    JsonRpcWs,
+    Rest
 } from '@akala/core';
 import * as st from 'serve-static';
 export { st as static };

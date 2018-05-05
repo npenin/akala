@@ -3,15 +3,15 @@ import * as router from './router';
 import * as debug from 'debug';
 import * as jsonrpc from '@akala/json-rpc-ws'
 import * as ws from 'ws'
-import { DualMetadata, createServerFromDualMeta } from './sharedComponent/metadata'
 import * as worker from './worker-meta'
 export { CoreProperties as Package } from '../src/package';
-import { createServer } from './sharedComponent/jsonrpc';
-import { Proxy, Metadata } from '@akala/core';
+import { createServer } from './api/jsonrpc';
+import { Proxy, Api, DualApi } from '@akala/core';
 import { Connection } from '@akala/json-rpc-ws'
 import * as stream from 'stream'
 import * as bodyparser from 'body-parser'
 import * as express from 'express';
+import { api } from '.';
 
 var log = debug('akala:master');
 
@@ -19,7 +19,7 @@ var httpRouter = router.HttpRouter;
 
 export { httpRouter as Router };
 
-export var metaRouter = new akala.Metadata()
+export var metaRouter = new akala.Api()
     .connection<Connection>()
     .serverToClient<Partial<worker.Request>, router.CallbackResponse>()({ getContent: true })
     .clientToServerOneWay<{ path: string }>()({ register: true })
@@ -108,7 +108,7 @@ export function serveRouter<TOConnection extends Connection,
     TOServerOneWayProxy extends TOServerOneWay,
     TOServerTwoWayProxy extends TOServerTwoWay,
     TOClientOneWayProxy extends TOClientOneWay,
-    TOClientTwoWayProxy extends TOClientTwoWay>(router: router.HttpRouter, path: string, other?: Metadata<TOConnection,
+    TOClientTwoWayProxy extends TOClientTwoWay>(router: router.HttpRouter, path: string, other?: Api<TOConnection,
         TOServerOneWay,
         TOServerTwoWay,
         TOClientOneWay,
@@ -122,7 +122,7 @@ export function serveRouter<TOConnection extends Connection,
     log('creating server on ' + path);
     router.use(path, subRouter.router);
 
-    return createServerFromDualMeta(metaRouter, other)(subRouter, '/', {
+    return api.jsonrpcws(new DualApi(metaRouter, other)).createServer(path, akala.extend({
         register: function (params: { path: string }, socket: TOConnection)
         {
             var locationReplacer = function (header)
@@ -148,5 +148,5 @@ export function serveRouter<TOConnection extends Connection,
                 })
             });
         }
-    }, impl);
+    }, impl));
 }
