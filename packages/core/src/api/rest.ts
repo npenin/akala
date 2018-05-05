@@ -30,7 +30,7 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
             case 'body':
                 return { method: config.method, url: new URL(config.url, baseURL).toString(), body: param };
             case 'query':
-                return { method: config.method, url: new URL(config.url, baseURL).toString(), params: param };
+                return { method: config.method, url: new URL(config.url, baseURL).toString(), queryString: param };
             case 'route':
                 return { method: config.method, url: new URL(pathRegexp.compile(config.url)(param), baseURL).toString() };
             default:
@@ -63,12 +63,12 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
                             break;
                         case 'query':
                             if (typeof (param[key]) == 'object')
-                                options.params = Object.assign(options.params || {}, param[key]);
+                                options.queryString = Object.assign(options.queryString || {}, param[key]);
                             else
                             {
-                                if (!options.params)
-                                    options.params = {};
-                                options.params[key] = param[key];
+                                if (!options.queryString)
+                                    options.queryString = {};
+                                options.queryString[key] = param[key];
                             }
                             break;
                         case 'route':

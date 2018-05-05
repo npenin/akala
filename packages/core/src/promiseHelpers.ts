@@ -1,6 +1,11 @@
 import { EventEmitter } from 'events'
 import { setTimeout, clearTimeout } from 'timers';
-import { timeout } from 'q';
+import { polyfill } from 'es6-promise'
+
+polyfill();
+
+
+
 export function Promisify<T>(o: T | PromiseLike<T>): PromiseLike<T>
 {
     return Promise.resolve(o);
