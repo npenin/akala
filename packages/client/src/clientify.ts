@@ -2,19 +2,19 @@ import * as common from './common'
 import * as routing from './router'
 import * as location from './locationService'
 import * as core from '@akala/core';
-import * as http from './http';
 import './template';
 import * as part from './part';
 import './part';
 import * as scope from './scope';
 import * as controls from './controls/controls';
+import { Template, applyTemplate } from './template';
 export { Control, BaseControl, control } from './controls/controls';
 
 export var loadScript = load;
 
 export type IScope<T> = scope.IScope<T>;
 export type PartDefinition<T extends scope.IScope<T>> = part.PartDefinition<T>;
-export type Http = http.Http;
+export type Http = core.Http;
 export type Part = part.Part;
 export var router: typeof routing.router
 export type LocationService = location.LocationService;
@@ -34,7 +34,6 @@ mainRouter.use(function (error)
 {
     console.error(error);
 });
-common.serviceModule.register('$http', new http.Http());
 common.serviceModule.register('$location', new location.LocationService());
 common.serviceModule.register('promisify', core.Promisify);
 
@@ -46,7 +45,7 @@ common.$$injector.init([], function ()
 {
     var rootScope = common.$$injector.register('$rootScope', new scope.Scope());
 
-    $(document).applyTemplate(rootScope);
+    applyTemplate([document.body], rootScope);
 });
 
 export function load(...scripts: string[])
@@ -86,7 +85,7 @@ common.$$injector.start(['$location'], function ($location: location.LocationSer
     $location.start({ hashbang: false })
 });
 
-$(function ()
+document.addEventListener('ready', function ()
 {
     common.$$injector.start();
 });

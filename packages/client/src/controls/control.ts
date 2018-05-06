@@ -1,5 +1,6 @@
 import * as di from '@akala/core';
 import { IScope } from '../scope';
+import { each, applyTemplate } from '../template';
 
 var registeredControls: { 0: string[], 1: new (...args: any[]) => any }[] = [];
 
@@ -28,7 +29,7 @@ export abstract class Control<T> implements IControl
         Control.injector.register($$name, this);
     }
 
-    public static apply(controls: any, element: JQuery, scope?: any)
+    public static apply(controls: any, element: Element, scope?: any)
     {
         var applicableControls: Control<any>[] = [];
         var requiresNewScope = false;
@@ -48,11 +49,11 @@ export abstract class Control<T> implements IControl
         applicableControls.sort(function (a, b) { return a.priority - b.priority });
 
         if (!scope)
-            scope = element.data('$scope');
+            scope = element['$scope'];
         if (requiresNewScope)
         {
             scope = scope.$new();
-            element.data('$scope', scope);
+            element['$scope'] = scope;
         }
 
         for (var control of applicableControls)
@@ -66,19 +67,19 @@ export abstract class Control<T> implements IControl
                 return newElem;
             }
         };
-        element.find('[data-bind]').each(function ()
+        each(element.querySelectorAll('[data-bind]'), function (el)
         {
-            if ($(this).parent().closest('[data-bind]')[0] == element[0])
-                $(this).applyTemplate(scope, element);
+            if (el.parentElement.closest('[data-bind]') == element)
+                applyTemplate([el], scope, element);
         });
         return element;
     }
 
-    protected wrap(element: JQuery, scope: IScope<any>, newControls?: any)
+    protected wrap(element: HTMLElement, scope: IScope<any>, newControls?: any)
     {
         if (newControls)
         {
-            var controls: any = di.Parser.parse(element.attr('data-bind'), true);
+            var controls: any = di.Parser.parse(element.dataset['data-bind'], true);
 
             var applicableControls: Control<any>[] = [];
 
@@ -106,15 +107,15 @@ export abstract class Control<T> implements IControl
         return Control.apply(newControls, element, scope);
     }
 
-    protected clone(element: JQuery, scope: IScope<any>, newControls?: any)
+    protected clone(element: HTMLElement, scope: IScope<any>, newControls?: any)
     {
-        var clone = element.clone();
-        clone.data('$scope', scope);
+        var clone = element.cloneNode() as HTMLElement;
+        clone['$scope'] = scope;
         this.wrap(clone, scope, newControls);
         return clone;
     }
 
-    public abstract instanciate(target: any, element: JQuery, parameter: di.Binding | T, controls?: any): void | JQuery | PromiseLike<JQuery>;
+    public abstract instanciate(target: any, element: Element, parameter: di.Binding | T, controls?: any): void | Element | PromiseLike<Element | ArrayLike<Element>>;
 
     public scope?: any | boolean;
 }
@@ -126,9 +127,9 @@ export abstract class BaseControl<T> extends Control<T>
         super(name, priority);
     }
 
-    public abstract link(scope: IScope<any>, element: JQuery, parameter: di.Binding | T);
+    public abstract link(scope: IScope<any>, element: Element, parameter: di.Binding | T);
 
-    public instanciate(scope: IScope<any>, element: JQuery, parameter: di.Binding | T): void | JQuery
+    public instanciate(scope: IScope<any>, element: Element, parameter: di.Binding | T): void | Element
     {
         var self = this;
         di.Promisify(scope).then(function (scope)
@@ -145,5 +146,5 @@ export interface IControl
 {
     priority: number;
 
-    instanciate(scope: IScope<any>, element: JQuery, parameter: any);
+    instanciate(scope: IScope<any>, element: Element, parameter: any): void | Element | PromiseLike<Element | ArrayLike<Element>> | ArrayLike<Element>;
 }

@@ -2,6 +2,7 @@ import * as di from '@akala/core'
 import { control, Control } from './control'
 import { Promisify, Binding } from '@akala/core'
 import { IScope } from '../scope'
+import { Template } from '../template';
 
 @control()
 export class Spinner extends Control<any>
@@ -11,9 +12,9 @@ export class Spinner extends Control<any>
         super('spinner', 50)
     }
 
-    public instanciate(target: IScope<any>, element: JQuery, parameter: Binding | any)
+    public instanciate(target: IScope<any>, element: HTMLElement, parameter: Binding | any)
     {
-        var parent = element;
+        var parent: Element = element;
         var wrapped = this.wrap(element, target, true);
         var settings: any = {};
         if (parameter instanceof Binding)
@@ -34,23 +35,23 @@ export class Spinner extends Control<any>
             settings.classes = parameter && parameter.classes || 'fa fa-spin fa-3x fa-circle-o-notch';
         if (wrapped != element && di.isPromiseLike(wrapped))
         {
-            var spinner: JQuery;
+            var spinner: Element;
 
             if (element[0].tagName.toLowerCase() == 'tr')
             {
-                spinner = $('<tr class="spinner"><td colspan="99"></td></tr>').appendTo(element.parent());
-                parent = spinner.find('td');
+                spinner = element.parentElement.appendChild(Template.buildElements('<tr class="spinner"><td colspan="99"></td></tr>')[0]);
+                parent = spinner.getElementsByTagName('td')[0];
             }
             if (element[0].tagName.toLowerCase() == 'li')
             {
-                spinner = $('<li class="spinner"></li>').appendTo(element.parent());
+                spinner = element.parentElement.appendChild(Template.buildElements('<li class="spinner"></li>')[0]);
                 parent = spinner;
             }
-            spinner = $('<span class="spinner"></span>');
+            spinner = Template.buildElements('<span class="spinner"></span>')[0];
 
-            spinner.addClass(settings.classes);
-            spinner.appendTo(parent);
-            wrapped.then(function ()
+            spinner.classList.add(settings.classes);
+            parent.appendChild(spinner);
+            Promise.resolve(wrapped).then(function ()
             {
                 spinner.remove();
             })

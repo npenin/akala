@@ -11,8 +11,8 @@ export class Json extends Text
         super('json');
     }
 
-    protected setValue(element: JQuery, value)
+    protected setValue(element: Element, value)
     {
-        element.text(JSON.stringify(value));
+        element.textContent = JSON.stringify(value);
     }
 }

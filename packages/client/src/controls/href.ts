@@ -12,8 +12,8 @@ export class Href extends Text
     }
 
 
-    protected setValue(element: JQuery, value)
+    protected setValue(element: Element, value)
     {
-        element.attr('href', value);
+        element.attributes['href'] = value;
     }
 }

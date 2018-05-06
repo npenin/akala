@@ -1,6 +1,23 @@
 import * as di from '@akala/core'
 import { control, BaseControl } from './control'
 import { Promisify, ObservableArray, ObservableArrayEventArgs, Binding } from '@akala/core'
+import { Template } from '../template';
+
+function toggleBuilder(element)
+{
+    var currentDisplay = element.style.display;
+    if (currentDisplay == 'none')
+    {
+        currentDisplay = document.createElement(element.tagName).style.display;
+    }
+    return function (show?: boolean)
+    {
+        if (!show)
+            element.style.display = 'none';
+        else
+            element.style.display = currentDisplay;
+    }
+}
 
 @control()
 export class Hide extends BaseControl<di.Binding>
@@ -10,11 +27,12 @@ export class Hide extends BaseControl<di.Binding>
         super('hide', 400)
     }
 
-    public link(target: any, element: JQuery, parameter: di.Binding)
+    public link(target: any, element: HTMLElement, parameter: di.Binding)
     {
+        var toggle = toggleBuilder(element);
         parameter.onChanged(function (ev)
         {
-            element.toggle(!ev.eventArgs.value);
+            toggle(!ev.eventArgs.value);
         });
     }
 }
@@ -27,11 +45,12 @@ export class Show extends BaseControl<di.Binding>
         super('show', 400)
     }
 
-    public link(target: any, element: JQuery, parameter: di.Binding)
+    public link(target: any, element: HTMLElement, parameter: di.Binding)
     {
+        var toggle = toggleBuilder(element);
         parameter.onChanged(function (ev)
         {
-            element.toggle(ev.eventArgs.value);
+            toggle(ev.eventArgs.value);
         });
     }
 }
