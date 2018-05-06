@@ -1,5 +1,5 @@
 import { getParamNames } from './reflect';
-import { Http } from './web';
+import { Http } from './http';
 import * as debug from 'debug';
 import { whenOrTimeout, isPromiseLike } from './promiseHelpers';
 import { EventEmitter } from 'events';

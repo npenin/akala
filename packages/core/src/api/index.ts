@@ -5,8 +5,10 @@ export * from './base';
 import { JsonRpcWs } from './json-rpc-ws'
 import * as jsonrpc from '@akala/json-rpc-ws'
 import { Rest } from './rest'
+import './rest';
+import './json-rpc-ws';
 import { module } from '../helpers';
-import { Http } from '../web';
+import { Http } from '../http';
 
 export var api = {
     jsonrpcws<TConnection extends jsonrpc.Connection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy extends TServerOneWay, TServerTwoWayProxy extends TServerTwoWay, TClientOneWayProxy extends TClientOneWay, TClientTwoWayProxy extends TClientTwoWay>(api: Api<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>)

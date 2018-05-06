@@ -12,10 +12,10 @@ export interface HttpOptions
     body?: any;
     headers?: { [key: string]: string | number | Date };
     contentType?: 'json' | 'form';
-    type: 'json' | 'xml';
+    type?: 'json' | 'xml';
 }
 
-export interface Http<TResponse=any>
+export interface Http<TResponse=Response>
 {
     get(url: string, params?: any): PromiseLike<TResponse>;
     post(url: string, body?: any): PromiseLike<FormData>;

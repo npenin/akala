@@ -1,6 +1,6 @@
 import { Binding } from './binder'
 import { Injector } from './injector'
-import { Http } from './web'
+import { Http } from './http'
 import * as di from './promiseHelpers'
 import * as helpers from './helpers'
 

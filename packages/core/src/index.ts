@@ -1,6 +1,6 @@
 export * from './injector';
 export * from './factory';
-export * from './web';
+export * from './http';
 export * from './service';
 export * from './binder';
 export * from './parser';
