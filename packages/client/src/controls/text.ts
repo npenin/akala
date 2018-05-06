@@ -10,7 +10,7 @@ export class Text extends BaseControl<string>
         super(name || 'text', 400)
     }
 
-    public link(target: any, element: JQuery, parameter: Binding | string)
+    public link(target: any, element: HTMLElement, parameter: Binding | string)
     {
         var self = this;
         if (parameter instanceof Binding)
@@ -30,8 +30,8 @@ export class Text extends BaseControl<string>
             self.setValue(element, parameter);
     }
 
-    protected setValue(element: JQuery, value)
+    protected setValue(element: Element, value: string)
     {
-        element.text(value);
+        element.textContent = value;
     }
 }

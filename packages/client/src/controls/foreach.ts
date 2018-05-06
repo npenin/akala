@@ -17,7 +17,7 @@ export class ForEach extends Control<ForeachParameter | string>
         super(name || 'each', 100)
     }
 
-    public instanciate(target: IScope<any>, element: JQuery, parameter: ForeachParameter | string)
+    public instanciate(target: IScope<any>, element: HTMLElement, parameter: ForeachParameter | string)
     {
         if (typeof (parameter) == 'string')
             parameter = this.parse(parameter);
@@ -28,12 +28,12 @@ export class ForEach extends Control<ForeachParameter | string>
             var sourceBinding = parameter.in(target, true);
 
         var self = this;
-        var parent = element.parent();
-        element.detach();
+        var parent = element.parentElement;
+        element.parentNode.removeChild(element);
         // var newControls;
         function build(source: akala.ObservableArray<any> | any[])
         {
-            var result = $();
+            var result: ArrayLike<Element> = [];
 
             if (source instanceof akala.ObservableArray)
             {
@@ -46,10 +46,10 @@ export class ForEach extends Control<ForeachParameter | string>
                         case 'init':
                             break;
                         case 'shift':
-                            parent.eq(0).remove();
+                            parent.removeChild(parent.firstElementChild);
                             break;
                         case 'pop':
-                            parent.eq(source.length).remove();
+                            parent.removeChild(parent.lastElementChild);
                             break;
                         case 'push':
                             var scope = target.$new();
@@ -57,7 +57,7 @@ export class ForEach extends Control<ForeachParameter | string>
                                 scope[parsedParam.key] = source.length - 1;
                             if (parsedParam.value)
                                 scope[parsedParam.value] = args.newItems[0];
-                            parent.append(self.clone(element, scope, true));
+                            parent.appendChild(self.clone(element, scope, true));
                             break;
                         case 'unshift':
                             var scope = target.$new();
@@ -65,7 +65,7 @@ export class ForEach extends Control<ForeachParameter | string>
                                 scope[parsedParam.key] = 0;
                             if (parsedParam.value)
                                 scope[parsedParam.value] = args.newItems[0];
-                            parent.prepend(self.clone(element, scope, true));
+                            parent.insertBefore(self.clone(element, scope, true), parent.firstElementChild);
                             break;
                         case 'replace':
                             var scope = target.$new();
@@ -73,7 +73,7 @@ export class ForEach extends Control<ForeachParameter | string>
                                 scope[parsedParam.key] = source.indexOf(args.newItems[0]);
                             if (parsedParam.value)
                                 scope[parsedParam.value] = args.newItems[0];
-                            parent.eq(source.indexOf(args.newItems[0])).replaceWith(self.clone(element, scope, true));
+                            parent.replaceChild(self.clone(element, scope, true), parent.children[source.indexOf(args.newItems[0])]);
                             break;
                     }
                 });
@@ -86,16 +86,16 @@ export class ForEach extends Control<ForeachParameter | string>
                     scope[parsedParam.key] = key;
                 if (parsedParam.value)
                     scope[parsedParam.value] = value;
-                parent.append(self.clone(element, scope, true));
+                parent.appendChild(self.clone(element, scope, true));
             });
             return result;
         }
 
         sourceBinding.onChanged(function (ev)
         {
-            akala.Promisify(ev.eventArgs.value).then(build);
+            Promise.resolve(ev.eventArgs.value).then(build);
         }, true);
-        return akala.Promisify(sourceBinding.getValue()).then(build);
+        return Promise.resolve(sourceBinding.getValue()).then(build);
     }
 
     private static expRegex = /^\s*\(?(\w+)(?:,\s*(\w+))?\)?\s+in\s+/;

@@ -11,9 +11,9 @@ export class Click extends BaseControl<Function>
         super('click', 400)
     }
 
-    public link(scope: IScope<any>, element: JQuery, parameter: Binding | Function)
+    public link(scope: IScope<any>, element: Element, parameter: Binding | Function)
     {
-        element.click(function ()
+        element.addEventListener('click', function ()
         {
             if (parameter instanceof Binding)
             {

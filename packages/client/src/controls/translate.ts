@@ -24,8 +24,8 @@ export class Translate extends Text
         super('translate')
     }
 
-    protected setValue(element: JQuery, value)
+    protected setValue(element: Element, value)
     {
-        element.text(this.translator(value));
+        element.textContent = this.translator(value);
     }
 }

@@ -2,7 +2,7 @@ import * as url from 'url';
 import { Readable, Writable } from 'stream';
 import * as http from 'http';
 import * as akala from '@akala/core'
-var debug = require('debug')('akala:router');
+const debug = require('debug')('akala:router');
 
 export class Request implements akala.Request
 {

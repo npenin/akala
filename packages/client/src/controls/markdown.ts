@@ -13,7 +13,7 @@ export class Markdown extends Text
     }
     private markdown = new showdown.Converter();
 
-    public link(target: any, element: JQuery, parameter: Binding | string)
+    public link(target: any, element: HTMLElement, parameter: Binding | string)
     {
         if (parameter instanceof Binding)
         {
@@ -22,8 +22,8 @@ export class Markdown extends Text
         super.link(target, element, parameter);
     }
 
-    protected setValue(element: JQuery, value)
+    protected setValue(element: Element, value)
     {
-        element.html(this.markdown.makeHtml(value));
+        element.innerHTML = this.markdown.makeHtml(value);
     }
 }

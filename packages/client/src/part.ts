@@ -7,7 +7,7 @@ import { IScope } from './scope'
 import { service } from './common'
 import { LocationService as Location } from './locationService'
 
-export type PartInstance = { scope: any, element: JQuery };
+export type PartInstance = { scope: any, element: HTMLElement };
 
 @service('$part', '$template', '$router', '$location')
 export class Part extends EventEmitter
@@ -22,7 +22,7 @@ export class Part extends EventEmitter
             {
                 if (partName == '$injector')
                     return;
-                (<PartInstance>parts.resolve(partName)).element.empty();
+                (<PartInstance>parts.resolve(partName)).element.textContent = '';
             })
         })
     }
@@ -49,7 +49,10 @@ export class Part extends EventEmitter
                 if (part.controller)
                     part.controller(p.scope, p.element, params, next);
                 if (template)
-                    template(p.scope, p.element.empty());
+                {
+                    p.element.textContent = '';
+                    template(p.scope, p.element);
+                }
             });
         else
         {
@@ -78,5 +81,5 @@ export class Part extends EventEmitter
 export interface PartDefinition<TScope extends IScope<any>>
 {
     template?: string;
-    controller?(scope: TScope, element: JQuery, params: any, next: () => void): void;
+    controller?(scope: TScope, element: Element, params: any, next: () => void): void;
 }

@@ -9,23 +9,67 @@ export class Value extends BaseControl<string>
         super('value', 400)
     }
 
-    public link(target: any, element: JQuery, parameter: di.Binding | string)
+    public link(target: any, element: HTMLElement, parameter: di.Binding | string)
     {
         if (typeof (parameter) == 'undefined')
             return;
         if (parameter instanceof di.Binding)
         {
-            element.change(function ()
+            element.addEventListener('change', function ()
             {
-                parameter.setValue(element.val(), parameter);
+                switch (element.tagName)
+                {
+                    case 'INPUT':
+                        switch ((element as HTMLInputElement).type)
+                        {
+                            case 'checkbox':
+                            case 'radio':
+                                parameter.setValue((element as HTMLInputElement).checked, parameter);
+                                break;
+                            default:
+                                parameter.setValue((element as HTMLInputElement).value, parameter);
+                                break;
+                        }
+                        break;
+                }
             });
             parameter.onChanged(function (ev)
             {
                 if (parameter !== ev.source)
-                    element.val(ev.eventArgs.value);
+                {
+                    switch (element.tagName)
+                    {
+                        case 'INPUT':
+                            switch ((element as HTMLInputElement).type)
+                            {
+                                case 'checkbox':
+                                case 'radio':
+                                    (element as HTMLInputElement).checked = ev.eventArgs.value;
+                                    break;
+                                default:
+                                    (element as HTMLInputElement).value = ev.eventArgs.value;
+                                    break;
+                            }
+                            break;
+                    }
+                }
             });
         }
         else
-            element.val(parameter);
+            switch (element.tagName)
+            {
+                case 'INPUT':
+                    switch ((element as HTMLInputElement).type)
+                    {
+                        case 'checkbox':
+                        case 'radio':
+                            (element as HTMLInputElement).checked = !!parameter;
+                            break;
+                        default:
+                            (element as HTMLInputElement).value = parameter;
+                            break;
+                    }
+                    break;
+            }
     }
 }

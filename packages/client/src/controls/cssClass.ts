@@ -10,7 +10,7 @@ export class CssClass extends BaseControl<any>
         super('class', 400)
     }
 
-    public link(target: any, element: JQuery, parameter: any)
+    public link(target: any, element: Element, parameter: any)
     {
         if (parameter instanceof Array)
         {
@@ -22,25 +22,25 @@ export class CssClass extends BaseControl<any>
                 arg.newItems.forEach(function (item)
                 {
                     if (typeof (item) == 'string')
-                        element.addClass(item);
+                        element.classList.add(item);
                     else if (item instanceof ParsedString)
-                        element.addClass(item.value);
+                        element.classList.add(item.value);
                     else if (item instanceof Binding)
                     {
                         var oldValue = null;
                         item.onChanged(function (ev)
                         {
                             if (oldValue)
-                                element.removeClass(oldValue);
+                                element.classList.remove(oldValue);
                             if (isPromiseLike(ev.eventArgs.value))
                                 ev.eventArgs.value.then(function (value)
                                 {
                                     oldValue = value;
-                                    element.addClass(value)
+                                    element.classList.add(value)
                                 });
                             else
                             {
-                                element.addClass(ev.eventArgs.value);
+                                element.classList.add(ev.eventArgs.value);
                                 oldValue = ev.eventArgs.value;
                             }
                         });
@@ -52,11 +52,11 @@ export class CssClass extends BaseControl<any>
                             {
                                 item[key].onChanged(function (ev)
                                 {
-                                    element.toggleClass(key, ev.eventArgs.value);
+                                    element.classList.toggle(key, ev.eventArgs.value);
                                 });
                             }
                             else
-                                element.toggleClass(key, item[key]);
+                                element.classList.toggle(key, item[key]);
                         })
 
                 })
@@ -71,11 +71,11 @@ export class CssClass extends BaseControl<any>
                 {
                     parameter[key].onChanged(function (ev)
                     {
-                        element.toggleClass(key, ev.eventArgs.value);
+                        element.classList.toggle(key, ev.eventArgs.value);
                     });
                 }
                 else
-                    element.toggleClass(key, parameter[key]);
+                    element.classList.toggle(key, parameter[key]);
             })
         }
 

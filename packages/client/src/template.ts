@@ -4,13 +4,6 @@ import { Control } from './controls/controls'
 import { Scope } from './scope'
 import { service } from './common'
 
-interface JQueryStatic
-{
-    tmpl: Function;
-    tmplItem: Function;
-    template: Function;
-}
-
 if (MutationObserver)
 {
     var domObserver = new MutationObserver(function (mutations: MutationRecord[])
@@ -56,7 +49,7 @@ export class Interpolate
     private static escapedEndRegexp = new RegExp(Interpolate._endSymbol.replace(/./g, Interpolate.escape), 'g');
 
 
-    public static build(text: string, mustHaveExpression?: boolean, trustedContext?: boolean, allOrNothing?: boolean)
+    public static build(text: string, mustHaveExpression?: boolean, trustedContext?: boolean, allOrNothing?: boolean): (obj: any) => string
     {
         var startSymbolLength = Interpolate._startSymbol.length,
             endSymbolLength = Interpolate._endSymbol.length;
@@ -140,7 +133,7 @@ export class Interpolate
     }
 
 }
-export type templateFunction = (target: any, parent: JQuery) => JQuery;
+export type templateFunction = (target: any, parent: HTMLElement) => HTMLElement[];
 var cache = new akala.Injector();
 @service('$template', '$interpolate', '$http')
 export class Template
@@ -186,73 +179,107 @@ export class Template
         });
     }
 
+    public static buildElements(string)
+    {
+        var root = document.createElement('div');
+        root.innerHTML = string;
+        return root.children;
+    }
+
     public static build(markup: string): templateFunction
     {
         var template = Interpolate.build(markup)
         return function (data, parent?)
         {
-            var templateInstance = $(template(data));
+            var templateInstance = Template.buildElements(template(data));
             if (parent)
-                templateInstance.appendTo(parent);
-            return templateInstance.applyTemplate(data, parent);
+            {
+                for (let i = 0; i < templateInstance.length; i++)
+                {
+                    parent.appendChild(templateInstance[i]);
+                }
+            }
+            return applyTemplate.call(templateInstance, data, parent);
         }
     }
 }
 
+export function filter<T extends Element=Element>(items: ArrayLike<T>, filter: string)
+{
+    var result: T[] = [];
+    each<T>(items, function (element)
+    {
+        if (element.matches(filter))
+            result.push(element);
+    })
+    return result;
+}
+
+export function each<T extends Node=Node>(items: ArrayLike<T>, callback: (it: T, i?: number) => void)
+{
+    for (let i = 0; i < this.length; i++)
+    {
+        callback(this[i], i);
+    }
+}
 
 var databindRegex = /(\w+):([^;]+);?/g;
 
-akala.extend($.fn, {
-    applyTemplate: function applyTemplate(data, root?: JQuery)
+export function applyTemplate(items: ArrayLike<Element>, data, root?: Element)
+{
+    data.$new = Scope.prototype.$new;
+    if (filter.call(items, '[data-bind]').length == 0)
     {
-        data.$new = Scope.prototype.$new;
-        if (this.filter('[data-bind]').length == 0)
+        each(items, function (el)
         {
-            this.find('[data-bind]').each(function (this: HTMLElement)
+            each(el.querySelectorAll('[data-bind]'), function (el: Element)
             {
-                var closest = $(this).parent().closest('[data-bind]');
-                var applyInnerTemplate = closest.length == 0;
+                var closest = el.parentElement.closest('[data-bind]');
+                var applyInnerTemplate = !!closest;
                 if (!applyInnerTemplate && root)
-                    root.each(function (i, it) { applyInnerTemplate = applyInnerTemplate || it == closest[0]; });
+                    applyInnerTemplate = applyInnerTemplate || root == closest;
                 if (applyInnerTemplate)
                 {
-                    $(this).applyTemplate(data, this);
+                    applyTemplate([el], data, el);
                 }
             });
-            return this;
-        }
-        else
-        {
-            var element = $();
-            var promises: PromiseLike<void>[] = [];
-            this.filter('[data-bind]').each(function (index, item)
-            {
-                var $item = $(item);
-                var subElem = Control.apply(akala.Parser.evalAsFunction($item.attr("data-bind"), true), $item, data);
-                if (akala.isPromiseLike(subElem))
-                {
-                    promises.push(subElem.then(function (subElem)
-                    {
-                        element = element.add(subElem);
-                    }));
-                }
-                else
-                    element = element.add(subElem);
-            });
-            if (promises.length)
-                return akala.when(promises).then(function ()
-                {
-                    return element;
-                });
-            return element;
-        }
-    },
-    tmpl: function (data, options)
-    {
-        if (this.length > 1)
-            throw 'A template can only be a single item';
-        if (this.length == 0)
-            return null;
-        return Template.build(this[0]);
+        });
+        return items;
     }
-});
+    else
+    {
+        var element: Element[] = [];
+        var promises: PromiseLike<void>[] = [];
+        each(filter(items, '[data-bind]'), function (item)
+        {
+            var subElem = Control.apply(akala.Parser.evalAsFunction(item.attributes["data-bind"], true), item, data);
+            if (akala.isPromiseLike(subElem))
+            {
+                promises.push(Promise.resolve(subElem).then(function (subElem)
+                {
+                    if (Array.isArray(subElem))
+                        for (let i = 0; i < subElem.length; i++)
+                            element.push(subElem[i]);
+                    else
+                        element.push(subElem as Element);
+                }));
+            }
+            else
+                element.push(subElem as Element);
+        });
+        if (promises.length)
+            return akala.when(promises).then(function ()
+            {
+                return element;
+            });
+        return element;
+    }
+};
+function tmpl(data, options)
+{
+    if (this.length > 1)
+        throw 'A template can only be a single item';
+    if (this.length == 0)
+        return null;
+    return Template.build(this[0]);
+}
