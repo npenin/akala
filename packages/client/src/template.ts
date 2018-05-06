@@ -165,10 +165,13 @@ export class Template
                         cache.register(t, p);
                         http.get(t).then(function (data)
                         {
-                            var template = Template.build(data);
-                            if (registerTemplate)
-                                cache.register(t, template, true);
-                            resolve(template);
+                            data.text().then(function (data)
+                            {
+                                var template = Template.build(data);
+                                if (registerTemplate)
+                                    cache.register(t, template, true);
+                                resolve(template);
+                            })
                         },
                             reject
                         );
