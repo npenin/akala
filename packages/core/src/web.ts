@@ -12,6 +12,7 @@ export interface HttpOptions
     body?: any;
     headers?: { [key: string]: string | number | Date };
     contentType?: 'json' | 'form';
+    type: 'json' | 'xml';
 }
 
 export interface Http<TResponse=any>
@@ -44,14 +45,14 @@ export class FetchHttp implements Http<Response>
     }
     public postJSON<T=string>(url: string, body?: any): PromiseLike<T>
     {
-        return this.call({ method: 'post', url: url, body: body, contentType: 'json' }).then((r) =>
+        return this.call({ method: 'post', url: url, body: body, contentType: 'json', type: 'json' }).then((r) =>
         {
             return r.json();
         });
     }
     public getJSON<T>(url: string, params?: any): PromiseLike<T>
     {
-        return this.call({ method: 'get', url: url, queryString: params }).then((r) =>
+        return this.call({ method: 'get', url: url, queryString: params, type: 'json' }).then((r) =>
         {
             return r.json();
         });
@@ -67,7 +68,7 @@ export class FetchHttp implements Http<Response>
             body += '<' + paramName + '><![CDATA[' + paramValue + ']]></' + paramName + '>';
         });
         body += '</u:' + action + '></s:Body></s:Envelope>';
-        return this.call({ method: 'POST', url: url, headers: { SOAPAction: namespace + '#' + action }, body: body });
+        return this.call({ method: 'POST', url: url, type: 'xml', headers: { SOAPAction: namespace + '#' + action }, body: body });
     }
 
     public call(options: HttpOptions): Promise<Response>
@@ -92,6 +93,20 @@ export class FetchHttp implements Http<Response>
                 else
                     init.headers[key] = value && value.toString();
             });
+        }
+
+        if (options.type)
+        {
+            init.headers = init.headers || {};
+            switch (options.type)
+            {
+                case 'json':
+                    init.headers['Accept'] = 'application/json, text/json';
+                    break;
+                case 'xml':
+                    init.headers['Accept'] = 'text/xml';
+                    break;
+            }
         }
 
         if (options.contentType)
