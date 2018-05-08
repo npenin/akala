@@ -1,4 +1,8 @@
-import { register, injectWithName, ParsedAny, extend, service, each, map } from ".";
+import { register, injectWithName } from "./injector";
+import { ParsedAny } from "./parser";
+import { each, map } from "./each";
+import { extend } from "./helpers";
+import { service } from "./service";
 import { FormatterFactory } from "./formatters/common";
 import * as uri from 'url';
 import * as qs from 'querystring'
