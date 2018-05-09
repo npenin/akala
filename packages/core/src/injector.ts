@@ -1,5 +1,4 @@
 import { getParamNames } from './reflect';
-import { Http } from './http';
 import * as debug from 'debug';
 import { whenOrTimeout, isPromiseLike } from './promiseHelpers';
 import { EventEmitter } from 'events';
@@ -99,8 +98,6 @@ export class Injector
         return this.inject(ctorToFunction.bind(ctor));
     }
 
-    public resolve(param: '$http'): Http
-    public resolve<T=any>(param: string): T;
     public resolve<T=any>(param: string): T
     {
         log('resolving ' + param);
