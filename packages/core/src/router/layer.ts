@@ -49,7 +49,7 @@ export class Layer<T extends Function>
     public name: string;
     public params: any;
     public path: string;
-    private regexp: LayerRegExp;
+    protected regexp: LayerRegExp;
     public keys: any[];
     private isErrorHandler: boolean;
     private isRequestHandler: boolean;
@@ -67,7 +67,7 @@ export class Layer<T extends Function>
         this.name = fn.name || '<anonymous>'
         this.params = undefined
         this.path = undefined
-        this.regexp = pathRegexp(path, this.keys = [], opts)
+        this.regexp = pathRegexp(path, this.keys = [], opts);
 
         // set fast path flags
         this.regexp.fast_star = path === '*'

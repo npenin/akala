@@ -38,25 +38,25 @@ export class FetchHttp implements Http<Response>
 
     public get(url: string, params?: any)
     {
-        return this.call({ url: url, method: 'get', queryString: params });
+        return this.call({ url: url, method: 'GET', queryString: params });
     }
     public post(url: string, body?: any): PromiseLike<FormData>
     {
-        return this.call({ method: 'post', url: url, body: body }).then((r) =>
+        return this.call({ method: 'POST', url: url, body: body }).then((r) =>
         {
             return r.formData();
         });
     }
     public postJSON<T=string>(url: string, body?: any): PromiseLike<T>
     {
-        return this.call({ method: 'post', url: url, body: body, contentType: 'json', type: 'json' }).then((r) =>
+        return this.call({ method: 'POST', url: url, body: body, contentType: 'json', type: 'json' }).then((r) =>
         {
             return r.json();
         });
     }
     public getJSON<T>(url: string, params?: any): PromiseLike<T>
     {
-        return this.call({ method: 'get', url: url, queryString: params, type: 'json' }).then((r) =>
+        return this.call({ method: 'GET', url: url, queryString: params, type: 'json' }).then((r) =>
         {
             return r.json();
         });
@@ -77,7 +77,7 @@ export class FetchHttp implements Http<Response>
 
     public call(options: HttpOptions): Promise<Response>
     {
-        var init: RequestInit = { method: options.method, body: options.body };
+        var init: RequestInit = { method: options.method || 'GET', body: options.body };
         if (typeof (options.url) == 'string')
             options.url = uri.parse(options.url, true);
         if (options.queryString)
