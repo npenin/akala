@@ -17,7 +17,7 @@ var debug = log('akala:api');
     method = <keyof Methods<apiHandler<Function>>>method.toLowerCase();
     restapi[method as any] = function <T extends Function>(path: string, $inject: string[], ...handlers: T[])
     {
-        return injectWithName(['$router', '$callback'], function (router: Router<requestHandlerWithNext, errorHandlerWithNext>, callback: Callback)
+        return injectWithName(['$router'], function (router: Router<requestHandlerWithNext, errorHandlerWithNext>)
         {
             var args: any[] = [path];
             args.concat(handlers);
@@ -26,26 +26,19 @@ var debug = log('akala:api');
                 router[method](path, function (request: Request)
                 {
                     var requestInjector = request.injector;
-                    if (request.params)
-                        for (var i in request.params)
-                            requestInjector.register('param.' + i, request.params[i], true);
-                    if (request.query)
-                        for (var i in request.query)
-                            requestInjector.register('query.' + i, request.query[i], true);
-
                     var result = requestInjector.injectWithName($inject, <any>handler)();
                     if (isPromiseLike(result))
                     {
                         result.then(function (r)
                         {
-                            callback(200, r);
+                            requestInjector.resolve('$callback')(200, r);
                         }, function (err)
                             {
-                                callback(500, err);
+                                requestInjector.resolve('$callback')(500, err);
                             });
                     }
                     else if (typeof result != 'undefined')
-                        callback(200, result);
+                        requestInjector.resolve('$callback')(200, result);
                 });
             })
             return api;

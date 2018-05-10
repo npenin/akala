@@ -49,6 +49,40 @@ export interface WorkerInjector extends akala.Injector
 {
     resolve: resolve;
 }
+const masterPrefixes = ['header', 'route', 'query', 'body'];
+
+class WorkerInjectorImpl extends akala.Injector
+{
+    constructor(private request: Request)
+    {
+        super();
+    }
+
+    public resolve<T=any>(name: string): T
+    {
+        let indexOfDot = name.indexOf('.');
+
+        if (indexOfDot > -1)
+        {
+            let master = name.substr(0, indexOfDot);
+            if (master in masterPrefixes)
+            {
+                switch (master)
+                {
+                    case 'header':
+                        return this.request.headers[name.substr(indexOfDot + 1)] as any;
+                    case 'query':
+                        return this.request.query && this.request.query[name.substr(indexOfDot + 1)] as any;
+                    case 'route':
+                        return this.request.params && this.request.params[name.substr(indexOfDot + 1)] as any;
+                    case 'body':
+                        return this.request.body && this.request.body[name.substr(indexOfDot + 1)];
+                }
+            }
+        }
+        return super.resolve<T>(name);
+    }
+}
 
 export interface Request extends BaseRequest   
 {
@@ -348,7 +382,7 @@ export function handle(app: Router, root: string)
                 return callback({ status: 302, headers: { location: url } })
             }
 
-            var requestInjector: WorkerInjector = new akala.Injector();
+            var requestInjector: WorkerInjector = new WorkerInjectorImpl(request);
             requestInjector.register('$request', request);
             requestInjector.register('$callback', callback);
             // log(request);
