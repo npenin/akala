@@ -9,7 +9,12 @@ export var $$injector: core.Module = window['akala'] = core.extend(core.module('
         map: core.map,
         each: core.each,
         eachAsync: core.eachAsync,
-        extend: core.extend
+        extend: core.extend,
+        api:core.api,
+        Api:core.Api,
+        DualApi:core.DualApi,
+        module:core.module,
+        Module:core.Module,
     });
 
 export
@@ -27,7 +32,12 @@ export
     injectNew,
     injectNewWithName,
     injectWithName,
-    injectWithNameAsync
+    injectWithNameAsync,
+    Api,
+    DualApi,
+    api,
+    module,
+    Module,
 } from '@akala/core';
 
 export var serviceModule: core.Module = core.module('akala-services')
