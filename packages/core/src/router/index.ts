@@ -72,12 +72,9 @@ export type ErrorMiddleware2<T extends Request, U> = (error: any, req: T, res: U
 export type Middleware1Extended<T extends Request> = Middleware1<T> | ErrorMiddleware1<T>;
 export type Middleware2Extended<T extends Request, U> = Middleware2<T, U> | ErrorMiddleware2<T, U>;
 
-export type Router1<T extends Request, TLayer extends RoutableLayer<Middleware1<T>>, TRoute extends Route<Middleware1<T>, TLayer>> = Router<Middleware1<T>, ErrorMiddleware1<T>, TLayer, TRoute>;
-export type Router2<T extends Request, U, TLayer extends RoutableLayer<Middleware2<T, U>>, TRoute extends Route<Middleware2<T, U>, TLayer>> = Router<Middleware2<T, U>, ErrorMiddleware2<T, U>, TLayer, TRoute>;
-
 export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>), U extends (ErrorMiddleware1<any> | ErrorMiddleware2<any, any>), TLayer extends (Layer<T> & IRoutable<T>), TRoute extends Route<T, TLayer>>
 {
-    constructor(options: RouterOptions)
+    constructor(options?: RouterOptions)
     {
         var opts = options || {}
 
@@ -248,7 +245,7 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
             }
 
             // get pathname of request
-            var path = Router.getPathname(req)
+            var path = this.getPathname(req)
 
             if (path == null)
             {
@@ -607,12 +604,13 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
      * @param {IncomingMessage} req
      * @private
      */
-    public static getPathname(req: http.IncomingMessage)
+    public getPathname(req: any)
     {
         try
         {
             return parseUrl(req.url).pathname;
-        } catch (err)
+        }
+        catch (err)
         {
             return undefined;
         }
@@ -722,6 +720,21 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
 
             fn.apply(this, args)
         }
+    }
+}
+
+export abstract class Router1<T extends Request, TLayer extends RoutableLayer<Middleware1<T>>, TRoute extends Route<Middleware1<T>, TLayer>> extends Router<Middleware1<T>, ErrorMiddleware1<T>, TLayer, TRoute>
+{
+    constructor(options?: RouterOptions)
+    {
+        super(options);
+    }
+}
+export abstract class Router2<T extends Request, U, TLayer extends RoutableLayer<Middleware2<T, U>>, TRoute extends Route<Middleware2<T, U>, TLayer>> extends Router<Middleware2<T, U>, ErrorMiddleware2<T, U>, TLayer, TRoute>
+{
+    constructor(options?: RouterOptions)
+    {
+        super(options);
     }
 }
 

@@ -50,7 +50,7 @@ export class Layer<T extends Function>
     public params: any;
     public path: string;
     protected regexp: LayerRegExp;
-    public keys: any[];
+    public keys: pathRegexp.Key[];
     private isErrorHandler: boolean;
     private isRequestHandler: boolean;
     constructor(path: string, options: LayerOptions, fn: T)
@@ -134,7 +134,7 @@ export class Layer<T extends Function>
      * @api private
      */
 
-    public match(path: string)
+    public match(path: string):boolean
     {
         var match: RegExpExecArray;
         log(this.regexp);
