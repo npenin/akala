@@ -177,6 +177,17 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
     protected internalHandle(options, req, ...rest)
     {
         var callback = rest[rest.length - 1];
+        if (options && !options.ensureCleanStart)
+        {
+            options.ensureCleanStart = function ()
+            {
+                if (req.url[0] !== separator)
+                {
+                    req.url = separator + req.url
+                    slashAdded = true
+                }
+            };
+        }
         if (!callback)
         {
             throw new TypeError('argument callback is required')
@@ -220,7 +231,7 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
                 : err
 
             // remove added slash
-            if (slashAdded)
+            if (slashAdded && req.url)
             {
                 req.url = req.url.substr(1)
                 slashAdded = false
@@ -229,9 +240,8 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
             // restore altered req.url
             if (removed.length !== 0)
             {
-                req.baseUrl = parentUrl
-                req.url = removed + req.url
-                removed = ''
+                self.unshift(req, removed, parentUrl);
+                removed = '';
             }
 
             // signal to exit router
@@ -363,14 +373,10 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
                 // middleware (.use stuff) needs to have the path stripped
                 debug('trim prefix (%s) from url %s', layerPath, req.url)
                 removed = layerPath
-                req.url = req.url.substr(removed.length)
+                self.shift(req, removed);
 
                 // Ensure leading slash
-                if (req.url[0] !== separator)
-                {
-                    req.url = separator + req.url
-                    slashAdded = true
-                }
+                options.ensureCleanStart(req);
 
                 // Setup base URL (no trailing slash)
                 req.baseUrl = parentUrl + (removed[removed.length - 1] === separator
@@ -390,6 +396,17 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
                 layer.handle_request.apply(layer, args);
             }
         }
+    }
+
+    protected shift(req, removed)
+    {
+        req.url = req.url.substring(removed.length);
+    }
+
+    protected unshift(req, removed, parentUrl)
+    {
+        req.baseUrl = parentUrl;
+        req.url = removed + req.url;
     }
 
     public process_params(layer: TLayer, called, req, ...rest)
