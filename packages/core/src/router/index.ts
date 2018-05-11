@@ -36,6 +36,7 @@ export interface RouterOptions
     mergeParams?: boolean;
     strict?: boolean;
     length?: number;
+    separator?: string;
 }
 
 export interface NextParamCallback
@@ -79,11 +80,13 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
         var opts = options || {}
 
         this.caseSensitive = opts.caseSensitive
-        this.mergeParams = opts.mergeParams
+        this.mergeParams = opts.mergeParams;
+        this.separator = opts.separator || '/';
         this.strict = opts.strict
         this.length = opts.length || 2;
     }
 
+    private separator: string;
     private length: number;
     private caseSensitive: boolean;
     private mergeParams: boolean;
@@ -185,7 +188,8 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
         var removed = ''
         var self = this
         var slashAdded = false
-        var paramcalled = {}
+        var paramcalled = {};
+        var separator = this.separator;
 
         // middleware and routes
         var stack = this.stack
@@ -245,7 +249,7 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
             }
 
             // get pathname of request
-            var path = this.getPathname(req)
+            var path = self.getPathname(req)
 
             if (path == null)
             {
@@ -349,7 +353,7 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
             {
                 // Validate path breaks on a path separator
                 var c = path[layerPath.length]
-                if (c && c !== '/')
+                if (c && c !== separator)
                 {
                     next(layerError)
                     return
@@ -362,14 +366,14 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
                 req.url = req.url.substr(removed.length)
 
                 // Ensure leading slash
-                if (req.url[0] !== '/')
+                if (req.url[0] !== separator)
                 {
-                    req.url = '/' + req.url
+                    req.url = separator + req.url
                     slashAdded = true
                 }
 
                 // Setup base URL (no trailing slash)
-                req.baseUrl = parentUrl + (removed[removed.length - 1] === '/'
+                req.baseUrl = parentUrl + (removed[removed.length - 1] === separator
                     ? removed.substring(0, removed.length - 1)
                     : removed)
             }
@@ -511,9 +515,9 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
     public use(...handlers: (string | T | U)[])
     {
         var offset = 0
-        var path = '/'
+        var path = this.separator;
 
-        // default path to '/'
+        // default path to *separator*
         // disambiguate router.use([handler])
         if (typeof handlers[0] !== 'function')
         {
@@ -579,7 +583,7 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
      * @return {Route}
      * @public
      */
-    public route(path: string)
+    public route(path: string): TRoute
     {
         var route = this.buildRoute(path)
 
