@@ -38,7 +38,9 @@ export { log }
 
 export function module(name: string, ...dependencies: string[])
 {
-    return new Module(name, dependencies);
+    if (dependencies && dependencies.length)
+        return new Module(name, dependencies);
+    return new Module(name);
 }
 
 export interface Translator
