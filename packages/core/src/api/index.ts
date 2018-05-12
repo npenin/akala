@@ -33,7 +33,8 @@ export function server<TConnection extends jsonrpc.Connection, TServerOneWay, TS
             if (builderCtor)
             {
                 var builder = new builderCtor(api) as IServerBuilder<any, TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>;
-                builder.createServer(cfg, new impl());
+                if (builder.createServer)
+                    builder.createServer(cfg, new impl());
             }
         })
     }
@@ -49,7 +50,8 @@ export function client<TConnection extends jsonrpc.Connection, TServerOneWay, TS
             if (builderCtor)
             {
                 var builder = new builderCtor(api) as IClientBuilder<any, TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>;
-                builder.createClient(cfg)(new impl());
+                if (builder.createClient)
+                    builder.createClient(cfg)(new impl());
             }
         })
     }

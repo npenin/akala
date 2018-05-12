@@ -33,6 +33,7 @@ export class Module extends di.Injector
 
             emitter.emit('run');
         });
+        moduleInjector.register(m.name, m);
     }
 
     private starting: boolean;
