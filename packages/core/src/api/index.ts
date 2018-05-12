@@ -1,4 +1,4 @@
-import { Api, DualApi, IServerProxyBuilder, IClientBuilder } from './base'
+import { Api, DualApi, IServerProxyBuilder, IClientBuilder, IServerBuilder } from './base'
 
 export * from './base';
 
@@ -7,7 +7,7 @@ import * as jsonrpc from '@akala/json-rpc-ws'
 import { Rest } from './rest'
 import './rest';
 import './json-rpc-ws';
-import { module } from '../helpers';
+import { module, each } from '../helpers';
 import { Http } from '../http';
 
 export var api = {
@@ -20,6 +20,30 @@ export var api = {
         : Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>
     {
         return new (module('$api').resolve('rest'))(api);
+    }
+}
+
+export function server<TConnection extends jsonrpc.Connection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy extends TServerOneWay, TServerTwoWayProxy extends TServerTwoWay, TClientOneWayProxy extends TClientOneWay, TClientTwoWayProxy extends TClientTwoWay>(api: Api<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>, config)
+{
+    return function (impl: new () => TServerOneWay & TServerTwoWay)
+    {
+        each(config, function (cfg, key)
+        {
+            var builder = new (module('$api').resolve(key))(api) as IServerBuilder<any, TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>;
+            builder.createServer(cfg, new impl());
+        })
+    }
+}
+
+export function client<TConnection extends jsonrpc.Connection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy extends TServerOneWay, TServerTwoWayProxy extends TServerTwoWay, TClientOneWayProxy extends TClientOneWay, TClientTwoWayProxy extends TClientTwoWay>(api: Api<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>, config)
+{
+    return function (impl: new () => TClientOneWay & TClientTwoWay)
+    {
+        each(config, function (cfg, key)
+        {
+            var builder = new (module('$api').resolve(key))(api) as IClientBuilder<any, TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>;
+            builder.createClient(cfg)(new impl());
+        })
     }
 }
 
