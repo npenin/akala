@@ -21,7 +21,7 @@ export type Injectable<T> = (...args: any[]) => T;
 
 export class Injector
 {
-    constructor(private parent?: Injector)
+    constructor(protected parent?: Injector)
     {
         if (this.parent == null)
             this.parent = defaultInjector;
