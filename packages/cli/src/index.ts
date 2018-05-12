@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import * as debug from 'debug';
 // debug.enable('*');
-import program, { CliContext, CliRouter, ICommandBuilder } from './router';
+import program, { CliContext, ICommandBuilder } from './router';
 import './sdk';
 import './config';
 import './client';
