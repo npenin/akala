@@ -392,7 +392,7 @@ fs.exists(configFile, function (exists)
 });
 
 // https.createServer({}, app).listen(443);
-var server = http2.createSecureServer({allowHTTP1:true, });
+var server = http2.createSecureServer({ allowHTTP1: true, key: fs.readFileSync('priv.pem'), cert: fs.readFileSync('fullchain.pem') });
 masterRouter.attachTo(server);
 
 server.listen(port);
