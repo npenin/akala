@@ -22,7 +22,7 @@ var app = new WorkerRouter();
 
 function resolveUrl(namespace: string)
 {
-    var url = 'http://' + process.argv[3] + '/' + namespace + '/';
+    var url = 'https://' + process.argv[3] + '/' + namespace + '/';
     return url;
 }
 
