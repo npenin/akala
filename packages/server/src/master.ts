@@ -391,7 +391,7 @@ fs.exists(configFile, function (exists)
     });
 });
 
-var server = https.createServer({ key: fs.readFileSync('privkey.pem'), cert: fs.readFileSync('fullchain.pem') }).listen(443);
+var server = https.createServer({ key: fs.readFileSync('privkey.pem'), cert: fs.readFileSync('fullchain.pem') }).listen(port);
 // var server = http2.createSecureServer({ allowHTTP1: true, key: fs.readFileSync('priv.pem'), cert: fs.readFileSync('fullchain.pem') });
 masterRouter.attachTo(server);
 
