@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import * as st from 'serve-static';
 import * as jsonrpc from '@akala/json-rpc-ws';
 import * as ws from 'ws';
-import * as http2 from 'http2';
+import * as https from 'https';
 import * as akala from '@akala/core';
 import { relative, sep as pathSeparator, dirname, join as pathJoin } from 'path';
 import { serveRouter } from './master-meta';
@@ -391,8 +391,8 @@ fs.exists(configFile, function (exists)
     });
 });
 
-// https.createServer({}, app).listen(443);
-var server = http2.createSecureServer({ allowHTTP1: true, key: fs.readFileSync('priv.pem'), cert: fs.readFileSync('fullchain.pem') });
+var server = https.createServer({ key: fs.readFileSync('privkey.pem'), cert: fs.readFileSync('fullchain.pem') }).listen(443);
+// var server = http2.createSecureServer({ allowHTTP1: true, key: fs.readFileSync('priv.pem'), cert: fs.readFileSync('fullchain.pem') });
 masterRouter.attachTo(server);
 
 server.listen(port);
