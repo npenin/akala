@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+require('source-map-support').install();
 import * as debug from 'debug';
 // debug.enable('*');
 import program, { CliContext, ICommandBuilder } from './router';
@@ -11,6 +12,7 @@ import { promisify } from 'util'
 import * as akala from '@akala/core'
 import * as mock from 'mock-require'
 export default program;
+require.cache[module.filename] = module;
 
 mock('@akala/core', akala);
 
