@@ -8,7 +8,7 @@ import * as send from 'send';
 import * as onFinished from 'on-finished';
 import { PayloadDataType } from '@akala/json-rpc-ws';
 import { lchmod } from 'fs';
-var log = akala.log('akala:worker');
+const log = akala.log('akala:worker');
 
 export { CallbackResponse }
 
