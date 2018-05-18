@@ -70,6 +70,7 @@ fs.exists(configFile, function (exists)
 
     root = config && config['@akala/server'] && config['@akala/server'].root;
     port = config && config['@akala/server'] && config['@akala/server'].port || port;
+    var dn = config && config['@akala/server'] && config['@akala/server'].dn || 'localhost';
 
     fs.readFile(sourcesFile, 'utf8', function (error, sourcesFileContent)
     {
@@ -252,7 +253,7 @@ fs.exists(configFile, function (exists)
                         });
 
                         cluster.setupMaster(<any>{
-                            args: [plugin, 'localhost:' + port],
+                            args: [plugin, dn + ':' + port],
                             execArgv: []
                         });
                         var worker = cluster.fork();
@@ -285,7 +286,7 @@ fs.exists(configFile, function (exists)
                                 return;
                             }
                             cluster.setupMaster({
-                                args: [plugin, 'localhost:' + port]
+                                args: [plugin, dn + ':' + port]
                             });
                             worker = cluster.fork();
 
