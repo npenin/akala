@@ -22,7 +22,7 @@ import { meta } from './api/jsonrpc';
 var master = new EventEmitter();
 master.setMaxListeners(Infinity);
 
-var port = process.argv[2] || '5678';
+var port = process.env.PORT || '5678';
 
 if (process.execArgv && process.execArgv.length >= 1)
     process.execArgv[0] = process.execArgv[0].replace('-brk', '');
@@ -391,10 +391,10 @@ fs.exists(configFile, function (exists)
                 orchestrator.start('default');
             });
     });
+
+    var server = https.createServer({ key: fs.readFileSync('privkey.pem'), cert: fs.readFileSync('fullchain.pem') });
+    // var server = http2.createSecureServer({ allowHTTP1: true, key: fs.readFileSync('priv.pem'), cert: fs.readFileSync('fullchain.pem') });
+    server.listen(port, dn);
+    masterRouter.attachTo(server);
 });
 
-var server = https.createServer({ key: fs.readFileSync('privkey.pem'), cert: fs.readFileSync('fullchain.pem') });
-// var server = http2.createSecureServer({ allowHTTP1: true, key: fs.readFileSync('priv.pem'), cert: fs.readFileSync('fullchain.pem') });
-masterRouter.attachTo(server);
-
-server.listen(port);
