@@ -1,4 +1,6 @@
 
+import * as mock from 'mock-require';
+mock('@akala/server', module.exports);
 // export * from './sharedComponent/component';
 // export * from './sharedComponent/jsonrpc';
 // export * from './sharedComponent/service';
