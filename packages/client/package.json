@@ -5,7 +5,7 @@
   "main": "akala.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
-    "prepublishOnly": "tsc -p src && browserify dist/clientify.js -o akala.js -r @akala/core"
+    "prepublishOnly": "tsc -p src && browserify dist/clientify.js -o akala.js -r @akala/core -s akala"
   },
   "files": [
     "dist",
@@ -33,7 +33,7 @@
     "orchestrator": "^0.3.8",
     "popper.js": "^1.14.3"
   },
-  "peerDependencies": {
+  "optionalDependencies": {
     "showdown": "^1.8.6"
   }
 }
