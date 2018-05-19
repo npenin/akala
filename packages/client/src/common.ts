@@ -15,6 +15,7 @@ export var $$injector: core.Module = window['akala'] = core.extend(core.module('
         DualApi:core.DualApi,
         module:core.module,
         Module:core.Module,
+        service:core.service
     });
 
 export
@@ -37,7 +38,7 @@ export
     DualApi,
     api,
     module,
-    Module,
+    Module
 } from '@akala/core';
 
 export var serviceModule: core.Module = core.module('akala-services')
