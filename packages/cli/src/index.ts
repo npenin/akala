@@ -16,6 +16,15 @@ require.cache[module.filename] = module;
 
 mock('@akala/core', akala);
 
+program.command('run [cwd]').action(function (param)
+{
+    if (param.cwd)
+    {
+        process.chdir(param);
+    }
+    require('@akala/server/dist/start');
+})
+
 export interface CliConfig<T>
 {
     command: string;
