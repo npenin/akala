@@ -5,7 +5,7 @@
   "main": "akala.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
-    "prepublishOnly": "tsc -p src && browserify dist/clientify.js -o akala.js"
+    "prepublishOnly": "tsc -p src && browserify dist/clientify.js -o akala.js -r @akala/core"
   },
   "files": [
     "dist",
@@ -23,7 +23,7 @@
     "typescript": "^2.6.1"
   },
   "dependencies": {
-    "@akala/core": "^2.0.0-5",
+    "@akala/core": "^2.0.0",
     "@akala/json-rpc-ws": "^4.1.21",
     "@types/content-type": "^1.1.2",
     "@types/mime": "^2.0.0",
@@ -33,7 +33,7 @@
     "orchestrator": "^0.3.8",
     "popper.js": "^1.14.3"
   },
-  "optionalDependencies": {
+  "peerDependencies": {
     "showdown": "^1.8.6"
   }
 }
