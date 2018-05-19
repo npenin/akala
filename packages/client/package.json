@@ -1,8 +1,9 @@
 {
   "name": "@akala/client",
-  "version": "2.0.1",
+  "version": "2.0.0",
   "description": "",
-  "main": "akala.js",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
     "prepublishOnly": "tsc -p src && browserify dist/clientify.js -o akala.js -r @akala/core -s akala"
@@ -13,7 +14,6 @@
     "akala-client.d.ts"
   ],
   "author": "npenin",
-  "typings": "akala-client.d.ts",
   "license": "MIT",
   "devDependencies": {
     "@types/orchestrator": "0.0.30",
