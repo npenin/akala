@@ -1,4 +1,3 @@
-export * from './dist/common'
-export * from './dist/clientify'
+export * from './dist'
 
 export as namespace akala;
