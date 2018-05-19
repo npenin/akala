@@ -6,8 +6,6 @@ import * as jsonrpc from '@akala/json-rpc-ws';
 import * as ws from 'ws';
 import * as https from 'https';
 import * as akala from '@akala/core';
-import * as mock from 'mock-require';
-mock('@akala/core', akala);
 import { relative, sep as pathSeparator, dirname, join as pathJoin } from 'path';
 import { serveRouter } from './master-meta';
 import * as debug from 'debug';
