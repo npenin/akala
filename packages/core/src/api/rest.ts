@@ -4,7 +4,6 @@ import { each } from '../each';
 import { createServer } from 'https';
 import { resolve } from '../injector';
 import { module } from '../helpers';
-import { URL } from 'url';
 import * as pathRegexp from 'path-to-regexp';
 
 
