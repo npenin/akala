@@ -209,21 +209,10 @@ export class Template
 
 export function filter<T extends Element=Element>(items: ArrayLike<T>, filter: string)
 {
-    var result: T[] = [];
-    each<T>(items, function (element)
+    return akala.grep(items, function (element)
     {
-        if (element.matches(filter))
-            result.push(element);
+        return element.matches(filter);
     })
-    return result;
-}
-
-export function each<T extends Node=Node>(items: ArrayLike<T>, callback: (it: T, i?: number) => void)
-{
-    for (let i = 0; i < this.length; i++)
-    {
-        callback(this[i], i);
-    }
 }
 
 var databindRegex = /(\w+):([^;]+);?/g;
@@ -233,9 +222,9 @@ export function applyTemplate(items: ArrayLike<Element>, data, root?: Element)
     data.$new = Scope.prototype.$new;
     if (filter(items, '[data-bind]').length == 0)
     {
-        each(items, function (el)
+        akala.each(items, function (el)
         {
-            each(el.querySelectorAll('[data-bind]'), function (el: Element)
+            akala.each(el.querySelectorAll('[data-bind]'), function (el: Element)
             {
                 var closest = el.parentElement.closest('[data-bind]');
                 var applyInnerTemplate = !!closest;
@@ -253,7 +242,7 @@ export function applyTemplate(items: ArrayLike<Element>, data, root?: Element)
     {
         var element: Element[] = [];
         var promises: PromiseLike<void>[] = [];
-        each(filter(items, '[data-bind]'), function (item)
+        akala.each(filter(items, '[data-bind]'), function (item)
         {
             var subElem = Control.apply(akala.Parser.evalAsFunction(item.attributes["data-bind"], true), item, data);
             if (akala.isPromiseLike(subElem))
