@@ -102,7 +102,7 @@ export function mapObject<TIn, TResultValue>(o: TIn, body: (element: TIn[keyof T
     return result;
 }
 
-export function map<T, U>(array: T[], body: (element: T, i?: number) => U): U[]
+export function map<T, U>(array: T[] | ArrayLike<T>, body: (element: T, i?: number) => U): U[]
 export function map<TIn, TKey extends keyof TIn, TResultValue>(o: TIn, body: (element: TIn[TKey], i?: TKey) => TResultValue): Proxy<TIn, TResultValue>
 export function map<TIn, TKey extends keyof TIn, TResultValue>(o: TIn, body: (element: TIn[TKey], i?: TKey) => TResultValue, asArray: true): TResultValue[]
 export function map(it: any, body: (element: any, i?: any) => any, asArray?: boolean)
