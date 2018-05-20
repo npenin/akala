@@ -67,7 +67,7 @@ export abstract class Control<T> implements IControl
                 return newElem;
             }
         };
-        akala.each(element.querySelectorAll('[data-bind]'), function (el:HTMLElement)
+        akala.each(element.querySelectorAll('[data-bind]'), function (el: HTMLElement)
         {
             if (el.parentElement.closest('[data-bind]') == element)
                 applyTemplate([el], scope, element);
@@ -109,7 +109,7 @@ export abstract class Control<T> implements IControl
 
     protected clone(element: HTMLElement, scope: IScope<any>, newControls?: any)
     {
-        var clone = element.cloneNode() as HTMLElement;
+        var clone = element.cloneNode(true) as HTMLElement;
         clone['$scope'] = scope;
         this.wrap(clone, scope, newControls);
         return clone;
