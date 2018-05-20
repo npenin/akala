@@ -69,10 +69,10 @@ export class CssClass extends BaseControl<any>
                 parameter.onChanged(function (ev)
                 {
 
-                    if (Array.isArray(parameter))
-                        parameter = new ObservableArray(parameter);
-                    if (parameter instanceof ObservableArray)
-                        parameter.on('collectionChanged', function (arg: ObservableArrayEventArgs<any>)
+                    if (Array.isArray(ev.eventArgs.value))
+                        ev.eventArgs.value = new ObservableArray(ev.eventArgs.value);
+                    if (ev.eventArgs.value instanceof ObservableArray)
+                        ev.eventArgs.value.on('collectionChanged', function (arg: ObservableArrayEventArgs<any>)
                         {
                             arg.newItems.forEach(function (item)
                             {
@@ -117,14 +117,13 @@ export class CssClass extends BaseControl<any>
                             })
                         }).init();
                     else
-
-                        akala.each(parameter, function (cl, key)
+                        akala.each(ev.eventArgs.value, function (cl, key)
                         {
                             if (cl instanceof Binding)
                             {
                                 cl.onChanged(function (ev)
                                 {
-                                    element.classList.toggle(key, ev.eventArgs.value);
+                                    element.classList.toggle(key, ev.eventArgs.value[key]);
                                 });
                             }
                             else
