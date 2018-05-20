@@ -231,7 +231,7 @@ var databindRegex = /(\w+):([^;]+);?/g;
 export function applyTemplate(items: ArrayLike<Element>, data, root?: Element)
 {
     data.$new = Scope.prototype.$new;
-    if (filter.call(items, '[data-bind]').length == 0)
+    if (filter(items, '[data-bind]').length == 0)
     {
         each(items, function (el)
         {
