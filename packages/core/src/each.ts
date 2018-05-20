@@ -63,8 +63,8 @@ function isArrayLike<T>(it: any): it is ArrayLike<T>
     return Array.isArray(it) || typeof (it['length']) != 'undefined'
 }
 
-export function grep<T>(array: T[] | ArrayLike<T>, body: (element: T, i?: number) => boolean, asArray?: boolean): T[]
-export function grep<T>(o: T, body: <U extends keyof T>(element: T[U], i?: U) => boolean, asArray?: false): Partial<T>
+export function grep<T>(array: T[] | ArrayLike<T>, body: (element: T, i?: number) => boolean): T[]
+export function grep<T>(o: T, body: <U extends keyof T>(element: T[U], i?: U) => boolean): Partial<T>
 export function grep<T, U extends keyof T>(o: T, body: (element: T[U], i?: U) => boolean, asArray: true): T[U][]
 export function grep(it: any, body: (element: any, i?: any) => boolean, asArray?: boolean)
 {
@@ -103,7 +103,7 @@ export function mapObject<TIn, TResultValue>(o: TIn, body: (element: TIn[keyof T
 }
 
 export function map<T, U>(array: T[], body: (element: T, i?: number) => U): U[]
-export function map<TIn, TKey extends keyof TIn, TResultValue>(o: TIn, body: (element: TIn[TKey], i?: TKey) => TResultValue, asArray: false): Proxy<TIn, TResultValue>
+export function map<TIn, TKey extends keyof TIn, TResultValue>(o: TIn, body: (element: TIn[TKey], i?: TKey) => TResultValue): Proxy<TIn, TResultValue>
 export function map<TIn, TKey extends keyof TIn, TResultValue>(o: TIn, body: (element: TIn[TKey], i?: TKey) => TResultValue, asArray: true): TResultValue[]
 export function map(it: any, body: (element: any, i?: any) => any, asArray?: boolean)
 {
