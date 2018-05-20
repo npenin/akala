@@ -216,7 +216,7 @@ export function filter<T extends Element=Element>(items: ArrayLike<T>, filter: s
 
 var databindRegex = /(\w+):([^;]+);?/g;
 
-export function applyTemplate(items: ArrayLike<Element>, data, root?: Element)
+export function applyTemplate(items: ArrayLike<HTMLElement>, data, root?: Element)
 {
     data.$new = Scope.prototype.$new;
     if (filter(items, '[data-bind]').length == 0)

@@ -67,7 +67,7 @@ export abstract class Control<T> implements IControl
                 return newElem;
             }
         };
-        akala.each(element.querySelectorAll('[data-bind]'), function (el)
+        akala.each(element.querySelectorAll('[data-bind]'), function (el:HTMLElement)
         {
             if (el.parentElement.closest('[data-bind]') == element)
                 applyTemplate([el], scope, element);
