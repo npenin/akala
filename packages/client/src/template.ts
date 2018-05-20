@@ -1,4 +1,3 @@
-import '@akala/core'
 import * as akala from '@akala/core';
 import { Control } from './controls/controls'
 import { Scope } from './scope'
@@ -244,7 +243,7 @@ export function applyTemplate(items: ArrayLike<Element>, data, root?: Element)
         var promises: PromiseLike<void>[] = [];
         akala.each(filter(items, '[data-bind]'), function (item)
         {
-            var subElem = Control.apply(akala.Parser.evalAsFunction(item.attributes["data-bind"], true), item, data);
+            var subElem = Control.apply(akala.Parser.evalAsFunction(item.attributes["data-bind"].value, true), item, data);
             if (akala.isPromiseLike(subElem))
             {
                 promises.push(Promise.resolve(subElem).then(function (subElem)
