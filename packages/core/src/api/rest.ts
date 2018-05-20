@@ -25,16 +25,18 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
 
     public static buildCall<T>(config: RestConfig<T>, baseURL: string | URL, param: T): HttpOptions
     {
+        var url = config.url;
+        if (url[0] == '/')
+            url = url.substr(1);
         switch (config.param)
         {
             case 'body':
-                return { method: config.method, url: new URL(config.url, baseURL).toString(), body: param, type: config.type || 'json' };
+                return { method: config.method, url: new URL(url, baseURL).toString(), body: param, type: config.type || 'json' };
             case 'query':
-                return { method: config.method, url: new URL(config.url, baseURL).toString(), queryString: param, type: config.type || 'json' };
+                return { method: config.method, url: new URL(url, baseURL).toString(), queryString: param, type: config.type || 'json' };
             case 'route':
-                return { method: config.method, url: new URL(pathRegexp.compile(config.url)(param), baseURL).toString(), type: config.type || 'json' };
+                return { method: config.method, url: new URL(pathRegexp.compile(url)(param), baseURL).toString(), type: config.type || 'json' };
             default:
-                var url = config.url;
                 var route = null;
                 var options: HttpOptions = { method: config.method, url: baseURL.toString(), type: config.type || 'json' };
                 each(config.param, function (value, key)
