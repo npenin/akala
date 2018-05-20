@@ -79,7 +79,7 @@ export abstract class Control<T> implements IControl
     {
         if (newControls)
         {
-            var controls: any = akala.Parser.parse(element.dataset['data-bind'], true);
+            var controls: any = akala.Parser.parse(element.dataset['bind'], true);
 
             var applicableControls: Control<any>[] = [];
 
