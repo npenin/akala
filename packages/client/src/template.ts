@@ -227,7 +227,7 @@ export function applyTemplate(items: ArrayLike<Element>, data, root?: Element)
             akala.each(el.querySelectorAll('[data-bind]'), function (el: Element)
             {
                 var closest = el.parentElement.closest('[data-bind]');
-                var applyInnerTemplate = !!closest;
+                var applyInnerTemplate = !!closest || !root;
                 if (!applyInnerTemplate && root)
                     applyInnerTemplate = applyInnerTemplate || root == closest;
                 if (applyInnerTemplate)
