@@ -2,6 +2,72 @@ import * as akala from '@akala/core'
 import { control, BaseControl } from './control'
 import { Promisify, ObservableArray, ObservableArrayEventArgs, Binding, ParsedString, isPromiseLike } from '@akala/core'
 
+function removeClass(element: HTMLElement, item: ParsedString | Array<string> | string | { [key: string]: boolean })
+{
+    if (typeof (item) == 'string')
+        if (~item.indexOf(' '))
+            removeClass(element, item.split(' '));
+        else
+            element.classList.remove(item);
+    else if (item instanceof ParsedString)
+        return removeClass(element, item.value);
+    else if (item instanceof Binding)
+    {
+
+    }
+}
+
+type classParamType = Binding | ParsedString | Array<string> | string | { [key: string]: boolean };
+
+function addClass(element: HTMLElement, item: classParamType | PromiseLike<classParamType>)
+{
+    if (typeof (item) == 'string')
+    {
+        if (~item.indexOf(' '))
+            return addClass(element, item.split(' '));
+        element.classList.add(item);
+    }
+    else if (item instanceof ParsedString)
+        return addClass(element, item.value);
+    else if (item instanceof Binding)
+    {
+        var oldValue = null;
+        item.onChanged(function (ev)
+        {
+            if (oldValue)
+                removeClass(element, oldValue);
+            if (isPromiseLike(ev.eventArgs.value))
+                ev.eventArgs.value.then(function (value)
+                {
+                    oldValue = value;
+                    addClass(element, value);
+                });
+            else
+            {
+                addClass(element, ev.eventArgs.value);
+                oldValue = ev.eventArgs.value;
+            }
+        });
+    }
+    else
+        akala.each(item, function (toggle, key)
+        {
+            if (toggle instanceof Binding)
+                toggle.onChanged(function (ev)
+                {
+                    if (ev.eventArgs.value)
+                        addClass(element, key);
+                    else
+                        removeClass(element, key);
+                });
+            else
+                if (toggle)
+                    addClass(element, key);
+                else
+                    removeClass(element, key);
+        })
+}
+
 @control()
 export class CssClass extends BaseControl<any>
 {
@@ -10,7 +76,7 @@ export class CssClass extends BaseControl<any>
         super('class', 400)
     }
 
-    public link(target: any, element: Element, parameter: any)
+    public link(target: any, element: HTMLElement, parameter: any)
     {
         if (parameter instanceof Array)
         {
@@ -21,136 +87,14 @@ export class CssClass extends BaseControl<any>
             {
                 arg.newItems.forEach(function (item)
                 {
-                    if (typeof (item) == 'string')
-                        element.classList.add(item);
-                    else if (item instanceof ParsedString)
-                        element.classList.add(item.value);
-                    else if (item instanceof Binding)
-                    {
-                        var oldValue = null;
-                        item.onChanged(function (ev)
-                        {
-                            if (oldValue)
-                                element.classList.remove(oldValue);
-                            if (isPromiseLike(ev.eventArgs.value))
-                                ev.eventArgs.value.then(function (value)
-                                {
-                                    oldValue = value;
-                                    element.classList.add(value)
-                                });
-                            else
-                            {
-                                element.classList.add(ev.eventArgs.value);
-                                oldValue = ev.eventArgs.value;
-                            }
-                        });
-                    }
-                    else
-                        Object.keys(item).forEach(function (key)
-                        {
-                            if (item[key] instanceof Binding)
-                            {
-                                item[key].onChanged(function (ev)
-                                {
-                                    element.classList.toggle(key, ev.eventArgs.value);
-                                });
-                            }
-                            else
-                                element.classList.toggle(key, item[key]);
-                        })
-
+                    addClass(element, item);
+                })
+                arg.oldItems.forEach(function (item)
+                {
+                    removeClass(element, item);
                 })
             }).init();
-
         else
-        {
-            if (parameter instanceof Binding)
-            {
-                var oldValue: any = undefined;
-                parameter.onChanged(function (ev)
-                {
-                    if (Array.isArray(ev.eventArgs.value))
-                        ev.eventArgs.value = new ObservableArray(ev.eventArgs.value);
-                    if (ev.eventArgs.value instanceof ObservableArray)
-                        ev.eventArgs.value.on('collectionChanged', function (arg: ObservableArrayEventArgs<any>)
-                        {
-                            arg.newItems.forEach(function (item)
-                            {
-                                if (typeof (item) == 'string')
-                                    element.classList.add(item);
-                                else if (item instanceof ParsedString)
-                                    element.classList.add(item.value);
-                                else if (item instanceof Binding)
-                                {
-                                    var oldValue = null;
-                                    item.onChanged(function (ev)
-                                    {
-                                        if (oldValue)
-                                            element.classList.remove(oldValue);
-                                        if (isPromiseLike(ev.eventArgs.value))
-                                            ev.eventArgs.value.then(function (value)
-                                            {
-                                                oldValue = value;
-                                                element.classList.add(value)
-                                            });
-                                        else
-                                        {
-                                            element.classList.add(ev.eventArgs.value);
-                                            oldValue = ev.eventArgs.value;
-                                        }
-                                    });
-                                }
-                                else
-                                    Object.keys(item).forEach(function (key)
-                                    {
-                                        if (item[key] instanceof Binding)
-                                        {
-                                            item[key].onChanged(function (ev)
-                                            {
-                                                element.classList.toggle(key, ev.eventArgs.value);
-                                            });
-                                        }
-                                        else
-                                            element.classList.toggle(key, item[key]);
-                                    })
-
-                            })
-                        }).init();
-                    else if (typeof (ev.eventArgs.value) == 'string')
-                    {
-                        element.classList.remove(oldValue);
-                        element.classList.add(ev.eventArgs.value);
-                    }
-                    else
-                        akala.each(ev.eventArgs.value, function (cl, key)
-                        {
-                            if (cl instanceof Binding)
-                            {
-                                cl.onChanged(function (ev)
-                                {
-                                    element.classList.toggle(key, ev.eventArgs.value[key]);
-                                });
-                            }
-                            else
-                                element.classList.toggle(key, cl);
-                        })
-                    oldValue = ev.eventArgs.value;
-                });
-            }
-            else
-                akala.each(parameter, function (cl, key)
-                {
-                    if (cl instanceof Binding)
-                    {
-                        cl.onChanged(function (ev)
-                        {
-                            element.classList.toggle(key, ev.eventArgs.value);
-                        });
-                    }
-                    else
-                        element.classList.toggle(key, cl);
-                })
-        }
-
+            addClass(element, parameter);
     }
 }
