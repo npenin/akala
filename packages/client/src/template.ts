@@ -132,7 +132,7 @@ export class Interpolate
     }
 
 }
-export type templateFunction = (target: any, parent: HTMLElement) => HTMLElement[];
+export type templateFunction = (target: any, parent: HTMLElement) => ArrayLike<HTMLElement>;
 var cache = new akala.Injector();
 @service('$template', '$interpolate', '$http')
 export class Template
@@ -181,11 +181,11 @@ export class Template
         });
     }
 
-    public static buildElements(string)
+    public static buildElements(string): ArrayLike<HTMLElement>
     {
         var root = document.createElement('div');
         root.innerHTML = string;
-        return root.children;
+        return root.children as any;
     }
 
     public static build(markup: string): templateFunction
@@ -196,12 +196,12 @@ export class Template
             var templateInstance = Template.buildElements(template(data));
             if (parent)
             {
-                for (let i = 0; i < templateInstance.length; i++)
+                akala.each(templateInstance, function (inst)
                 {
-                    parent.appendChild(templateInstance[i]);
-                }
+                    parent.appendChild(inst);
+                })
             }
-            return applyTemplate(templateInstance, data, parent);
+            return applyTemplate(templateInstance, data, parent) as ArrayLike<HTMLElement>;
         }
     }
 }
@@ -216,14 +216,14 @@ export function filter<T extends Element=Element>(items: ArrayLike<T>, filter: s
 
 var databindRegex = /(\w+):([^;]+);?/g;
 
-export function applyTemplate(items: ArrayLike<Element>, data, root?: Element)
+export function applyTemplate(items: ArrayLike<HTMLElement>, data, root?: Element)
 {
     data.$new = Scope.prototype.$new;
     if (filter(items, '[data-bind]').length == 0)
     {
         akala.each(items, function (el)
         {
-            akala.each(el.querySelectorAll('[data-bind]'), function (el: Element)
+            akala.each(el.querySelectorAll('[data-bind]'), function (el: HTMLElement)
             {
                 var closest = el.parentElement.closest('[data-bind]');
                 var applyInnerTemplate = !!closest || !root;
