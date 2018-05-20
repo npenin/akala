@@ -60,6 +60,10 @@ function addClass(element: HTMLElement, item: classParamType | PromiseLike<class
                     else
                         removeClass(element, key);
                 });
+            else if (typeof (toggle) == 'string' && !isNaN(Number(key)))
+            {
+                addClass(element, toggle);
+            }
             else
                 if (toggle)
                     addClass(element, key);
