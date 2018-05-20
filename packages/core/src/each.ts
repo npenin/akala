@@ -1,4 +1,4 @@
-export function array<T>(array: T[], body: (element: T, i?: number) => void)
+export function array<T>(array: T[] | ArrayLike<T>, body: (element: T, i?: number) => void)
 {
     Array.prototype.forEach.call(array, body);
 }
@@ -11,7 +11,7 @@ export function object<TIn>(o: TIn, body: (element: TIn[keyof TIn], i?: keyof TI
     });
 }
 
-export function each<T>(array: T[], body: (element: T, i?: number) => void)
+export function each<T>(array: T[] | ArrayLike<T>, body: (element: T, i?: number) => void)
 export function each<T>(o: T, body: <U extends keyof T>(element: T[U], i?: U) => void)
 export function each(it: any, body: (element: any, i: any) => void)
 {
@@ -20,7 +20,7 @@ export function each(it: any, body: (element: any, i: any) => void)
     return object(it, body);
 }
 
-export function grepArray<T>(it: T[], body: (element: T, i?: number) => boolean): T[]
+export function grepArray<T>(it: T[] | ArrayLike<T>, body: (element: T, i?: number) => boolean): T[]
 {
     var result = [];
     array(it, function (el, i)
@@ -32,7 +32,7 @@ export function grepArray<T>(it: T[], body: (element: T, i?: number) => boolean)
 }
 
 // export type Partial<T> = {[P in keyof T]?: T[P]}
-export type Proxy<T, U> = {[P in keyof T]: U}
+export type Proxy<T, U> = { [P in keyof T]: U }
 
 export function grepObject<T>(o: T, body: (element: T[keyof T], i?: keyof T) => boolean, asArray?: true): T[keyof T][]
 export function grepObject<T>(o: T, body: (element: T[keyof T], i?: keyof T) => boolean, asArray: false): Partial<T>
@@ -76,7 +76,7 @@ export function mapArray<T, U>(it: T[], body: (element: T, i?: number) => U): U[
 }
 
 export function mapObject<TIn, TResultValue>(o: TIn, body: (element: TIn[keyof TIn], i?: keyof TIn) => TResultValue, asArray: true): TResultValue[]
-export function mapObject<TIn, TResultValue>(o: TIn, body: (element: TIn[keyof TIn], i?: keyof TIn) => TResultValue, asArray?: false): {[P in keyof TIn]?: TResultValue }
+export function mapObject<TIn, TResultValue>(o: TIn, body: (element: TIn[keyof TIn], i?: keyof TIn) => TResultValue, asArray?: false): { [P in keyof TIn]?: TResultValue }
 export function mapObject<TIn, TResultValue>(o: TIn, body: (element: TIn[keyof TIn], i?: keyof TIn) => TResultValue, asArray?: boolean)
 export function mapObject<TIn, TResultValue>(o: TIn, body: (element: TIn[keyof TIn], i?: keyof TIn) => TResultValue, asArray?: boolean)
 {

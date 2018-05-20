@@ -1,6 +1,6 @@
 export type NextFunction = (error?, ...args: any[]) => void;
 
-export function array<T>(array: T[], body: (element: T, i: number, next: NextFunction) => void, complete: NextFunction)
+export function array<T>(array: T[] | ArrayLike<T>, body: (element: T, i: number, next: NextFunction) => void, complete: NextFunction)
 {
     var loop = function (i)
     {
@@ -33,9 +33,9 @@ export function object(o: any, body: (element: any, i: string, next: NextFunctio
     }, complete);
 }
 
-export function each<T>(array: T[], body: (element: T, i: number, next: NextFunction) => void, complete: NextFunction): void
+export function each<T>(array: T[] | ArrayLike<T>, body: (element: T, i: number, next: NextFunction) => void, complete: NextFunction): void
 export function each(o: any, body: (element: any, i: string, next: NextFunction) => void, complete: NextFunction): void
-export function each<T>(array: T[], body: (element: T, i: number, next: NextFunction) => void): PromiseLike<void>
+export function each<T>(array: T[] | ArrayLike<T>, body: (element: T, i: number, next: NextFunction) => void): PromiseLike<void>
 export function each(o: any, body: (element: any, i: string, next: NextFunction) => void): PromiseLike<void>
 export function each(it: any, body: (element: any, i: any, next: NextFunction) => void, complete?: NextFunction): void | PromiseLike<void>
 {
