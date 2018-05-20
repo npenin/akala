@@ -85,7 +85,7 @@ common.$$injector.start(['$location'], function ($location: location.LocationSer
     $location.start({ hashbang: false })
 });
 
-document.body.addEventListener('ready', function ()
+window.addEventListener('load', function ()
 {
     common.$$injector.start();
 });
