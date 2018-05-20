@@ -201,7 +201,7 @@ export class Template
                     parent.appendChild(templateInstance[i]);
                 }
             }
-            return applyTemplate.call(templateInstance, data, parent);
+            return applyTemplate(templateInstance, data, parent);
         }
     }
 }
