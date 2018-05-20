@@ -1,11 +1,12 @@
 {
   "name": "@akala/client",
-  "version": "2.0.15",
+  "version": "2.0.16",
   "description": "",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
+    "build": "tsc -p src && browserify -r ./dist/index.js:@akala/client -o akala.js -r @akala/core",
     "prepublishOnly": "tsc -p src && browserify -r ./dist/index.js:@akala/client -o akala.js -r @akala/core"
   },
   "files": [
