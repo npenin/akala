@@ -1,6 +1,6 @@
-import * as di from '@akala/core';
+import * as akala from '@akala/core';
 import { IScope } from '../scope';
-import { each, applyTemplate } from '../template';
+import { applyTemplate } from '../template';
 
 var registeredControls: { 0: string[], 1: new (...args: any[]) => any }[] = [];
 
@@ -13,7 +13,7 @@ export function control(...toInject: string[])
             {
                 registeredControls.forEach(function (ctrl)
                 {
-                    di.injectNewWithName(ctrl[0], ctrl[1])();
+                    akala.injectNewWithName(ctrl[0], ctrl[1])();
                 });
             });
         registeredControls.push([toInject, ctrl]);
@@ -22,7 +22,7 @@ export function control(...toInject: string[])
 
 export abstract class Control<T> implements IControl
 {
-    public static injector: di.Module = di.module('controls', 'akala-services');
+    public static injector: akala.Module = akala.module('controls', 'akala-services');
 
     constructor(private $$name: string, public priority: number = 500)
     {
@@ -67,7 +67,7 @@ export abstract class Control<T> implements IControl
                 return newElem;
             }
         };
-        each(element.querySelectorAll('[data-bind]'), function (el)
+        akala.each(element.querySelectorAll('[data-bind]'), function (el)
         {
             if (el.parentElement.closest('[data-bind]') == element)
                 applyTemplate([el], scope, element);
@@ -79,7 +79,7 @@ export abstract class Control<T> implements IControl
     {
         if (newControls)
         {
-            var controls: any = di.Parser.parse(element.dataset['data-bind'], true);
+            var controls: any = akala.Parser.parse(element.dataset['data-bind'], true);
 
             var applicableControls: Control<any>[] = [];
 
@@ -115,7 +115,7 @@ export abstract class Control<T> implements IControl
         return clone;
     }
 
-    public abstract instanciate(target: any, element: Element, parameter: di.Binding | T, controls?: any): void | Element | PromiseLike<Element | ArrayLike<Element>>;
+    public abstract instanciate(target: any, element: Element, parameter: akala.Binding | T, controls?: any): void | Element | PromiseLike<Element | ArrayLike<Element>>;
 
     public scope?: any | boolean;
 }
@@ -127,14 +127,14 @@ export abstract class BaseControl<T> extends Control<T>
         super(name, priority);
     }
 
-    public abstract link(scope: IScope<any>, element: Element, parameter: di.Binding | T);
+    public abstract link(scope: IScope<any>, element: Element, parameter: akala.Binding | T);
 
-    public instanciate(scope: IScope<any>, element: Element, parameter: di.Binding | T): void | Element
+    public instanciate(scope: IScope<any>, element: Element, parameter: akala.Binding | T): void | Element
     {
         var self = this;
-        di.Promisify(scope).then(function (scope)
+        akala.Promisify(scope).then(function (scope)
         {
-            di.Promisify(parameter).then(function (parameter)
+            akala.Promisify(parameter).then(function (parameter)
             {
                 self.link(scope, element, parameter);
             });
