@@ -1,4 +1,4 @@
-import * as di from '@akala/core'
+import * as akala from '@akala/core'
 import { control, BaseControl } from './control'
 import { Promisify, ObservableArray, ObservableArrayEventArgs, Binding, ParsedString, isPromiseLike } from '@akala/core'
 
