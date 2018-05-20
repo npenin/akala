@@ -29,6 +29,8 @@ export function server<TConnection extends jsonrpc.Connection, TServerOneWay, TS
     {
         each(config, function (cfg, key)
         {
+            if (cfg === false)
+                return;
             var builderCtor = module('$api').resolve(key);
             if (builderCtor)
             {
