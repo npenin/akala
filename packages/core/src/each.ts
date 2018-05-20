@@ -15,7 +15,7 @@ export function each<T>(array: T[] | ArrayLike<T>, body: (element: T, i?: number
 export function each<T>(o: T, body: <U extends keyof T>(element: T[U], i?: U) => void)
 export function each(it: any, body: (element: any, i: any) => void)
 {
-    if (Array.isArray(it))
+    if (isArrayLike(it))
         return array(it, body);
     return object(it, body);
 }
@@ -55,17 +55,25 @@ export function grepObject<T>(o: T, body: (element: T[keyof T], i?: keyof T) => 
     return result;
 }
 
-export function grep<T>(array: T[], body: (element: T, i?: number) => boolean, asArray?: boolean): T[]
+function isArrayLike<T>(t: T[]): true
+function isArrayLike<T>(t: ArrayLike<T>): true
+function isArrayLike<T>(t: any): t is ArrayLike<T>
+function isArrayLike<T>(it: any): it is ArrayLike<T>
+{
+    return Array.isArray(it) || typeof (it['length']) != 'undefined'
+}
+
+export function grep<T>(array: T[] | ArrayLike<T>, body: (element: T, i?: number) => boolean, asArray?: boolean): T[]
 export function grep<T>(o: T, body: <U extends keyof T>(element: T[U], i?: U) => boolean, asArray?: false): Partial<T>
 export function grep<T, U extends keyof T>(o: T, body: (element: T[U], i?: U) => boolean, asArray: true): T[U][]
 export function grep(it: any, body: (element: any, i?: any) => boolean, asArray?: boolean)
 {
-    if (Array.isArray(it))
+    if (isArrayLike(it))
         return grepArray(it, body);
     return grepObject(it, body, asArray);
 }
 
-export function mapArray<T, U>(it: T[], body: (element: T, i?: number) => U): U[]
+export function mapArray<T, U>(it: T[] | ArrayLike<T>, body: (element: T, i?: number) => U): U[]
 {
     var result = [];
     array(it, function (el, i)
@@ -99,7 +107,7 @@ export function map<TIn, TKey extends keyof TIn, TResultValue>(o: TIn, body: (el
 export function map<TIn, TKey extends keyof TIn, TResultValue>(o: TIn, body: (element: TIn[TKey], i?: TKey) => TResultValue, asArray: true): TResultValue[]
 export function map(it: any, body: (element: any, i?: any) => any, asArray?: boolean)
 {
-    if (Array.isArray(it))
+    if (isArrayLike(it))
         return mapArray(it, body);
     return mapObject(it, body, asArray);
 }
