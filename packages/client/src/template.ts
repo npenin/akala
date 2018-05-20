@@ -185,7 +185,7 @@ export class Template
     {
         var root = document.createElement('div');
         root.innerHTML = string;
-        return root.children as any;
+        return akala.map(root.children, function (el) { return el as HTMLElement });
     }
 
     public static build(markup: string): templateFunction
