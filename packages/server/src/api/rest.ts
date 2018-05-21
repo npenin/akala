@@ -1,12 +1,9 @@
-import * as jsonrpc from '@akala/json-rpc-ws'
-import * as ws from 'ws'
 import * as router from '../router'
 import * as akala from '@akala/core';
-import { Server } from '@akala/json-rpc-ws'
 import * as worker from '../worker-meta'
 import { RestConfig } from '@akala/core/dist/api/rest';
 import { parse } from 'url';
-var log = akala.log('akala:jsonrpc');
+var log = akala.log('akala:rest');
 
 function buildParam(req: worker.Request, config: RestConfig<any>)
 {
@@ -62,12 +59,14 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
             router = router.use(path);
 
             log('creating server on ' + path);
-            akala.each(api.serverOneWayConfig, function (config, serverKey)
+            akala.each(api.serverOneWayConfig, function (config: { rest?: RestConfig<any> }, serverKey)
             {
-                router[config.rest && config.rest.method || 'get'](serverKey, function (req: worker.Request, res: Response)
+                if (!config.rest)
+                    return;
+                router[config.rest && config.rest.method || 'get'](config.rest.url, function (req: worker.Request, res: Response)
                 {
                     log('receiving ' + serverKey + ' with %o', req);
-                    if (config.rest.inject)
+                    if (config.rest.param)
                         var result = (<any>serverImpl[serverKey])(buildParam(req, config.rest));
                     else
                         result = (<any>serverImpl[serverKey])(req);
@@ -87,13 +86,15 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
 
             akala.each(api.serverTwoWayConfig, function (config, serverKey)
             {
-                router[config.rest && config.rest.method || 'get'](serverKey, function (req: worker.Request, res: worker.Callback)
+                if (!config.rest)
+                    return;
+                router[config.rest && config.rest.method || 'get'](config.rest.url, function (req: worker.Request, res: worker.Callback)
                 {
                     log('receiving ' + serverKey + ' with %o', req);
-                    if (config.rest.inject)
-                        var result = req.injector.injectWithName(config.rest.inject, serverImpl[serverKey] as any)
+                    if (config.rest.param)
+                        var result = (<any>serverImpl[serverKey])(buildParam(req, config.rest));
                     else
-                        result = (<any>serverImpl[serverKey])(req, res);
+                        result = (<any>serverImpl[serverKey])(req);
                     if (akala.isPromiseLike(result))
                         result.then(function (value)
                         {
