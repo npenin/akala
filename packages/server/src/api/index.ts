@@ -5,6 +5,8 @@ import * as jsonrpc from '@akala/json-rpc-ws'
 
 import * as fs from 'fs';
 import * as http from 'http';
+import './jsonrpc';
+import './rest';
 import { JsonRpcWs } from './jsonrpc';
 import { Rest } from './rest';
 
