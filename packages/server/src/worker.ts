@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as akala from '@akala/core';
+import { api } from './api';
 import { WorkerRouter } from './router';
 import * as jsonrpc from '@akala/json-rpc-ws';
 import * as debug from 'debug';
@@ -8,7 +9,6 @@ import { resolve, dirname } from 'path';
 import { createClient, Request, MasterRegistration, Callback, WorkerInjector, handle } from './worker-meta';
 import { metaRouter } from './master-meta'
 import { EventEmitter } from 'events'
-import { api } from './api';
 import { meta } from './api/jsonrpc';
 
 process.on('uncaughtException', function (error)
