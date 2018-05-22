@@ -1,4 +1,4 @@
-import * as router from '../router'
+import { WorkerRouter, HttpRouter } from '../router'
 import * as akala from '@akala/core';
 import * as worker from '../worker-meta'
 import { RestConfig } from '@akala/core/dist/api/rest';
@@ -54,9 +54,19 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
     public createServer(path: string, serverImpl: TServerOneWay & TServerTwoWay)
     {
         var api = this.api;
-        return akala.injectWithName(['$router'], function (router: router.HttpRouter)
+        return akala.injectWithName(['$router'], function (mainRouter: HttpRouter | WorkerRouter)
         {
-            router = router.use(path);
+            var router: HttpRouter | WorkerRouter;
+            if (mainRouter instanceof WorkerRouter)
+            {
+                router = new WorkerRouter();
+                mainRouter = mainRouter.use(path, router.router);
+            }
+            else
+            {
+                router = new HttpRouter();
+                mainRouter = mainRouter.use(path, router.router);
+            }
 
             log('creating server on ' + path);
             akala.each(api.serverOneWayConfig, function (config: { rest?: RestConfig<any> }, serverKey)
