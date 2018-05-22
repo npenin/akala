@@ -35,7 +35,7 @@ function buildParam(req: worker.Request, config: RestConfig<any>)
                         result[key] = req.params[key];
                         break;
                     default:
-                        result[key] = req.injector.resolve(key);
+                        result[key] = req.injector.resolve(value);
                 }
             })
             return result;
