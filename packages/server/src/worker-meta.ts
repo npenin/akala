@@ -367,9 +367,18 @@ export function handle(app: Router, root: string)
                 {
                     if (!response.headers)
                         response.headers = {};
-                    if (!response.headers['Content-Type'])
-                        response.headers['Content-Type'] = 'application/json';
-                    data = JSON.stringify(data);
+                    if (data instanceof Error)
+                    {
+                        if (!response.headers['Content-Type'])
+                            response.headers['Content-Type'] = 'text/text';
+                        data = data.toString();
+                    }
+                    else
+                    {
+                        if (!response.headers['Content-Type'])
+                            response.headers['Content-Type'] = 'application/json';
+                        data = JSON.stringify(data);
+                    }
                 }
                 if (typeof (data) != 'undefined')
                     response.data = data;
