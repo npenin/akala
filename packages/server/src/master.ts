@@ -18,6 +18,7 @@ var orchestratorLog = debug('akala:master:orchestrator');
 import * as Orchestrator from 'orchestrator';
 import * as sequencify from 'sequencify';
 import { meta } from './api/jsonrpc';
+import { promisify } from 'util'
 
 var master = new EventEmitter();
 master.setMaxListeners(Infinity);
@@ -26,6 +27,52 @@ var port = process.env.PORT || '5678';
 
 if (process.execArgv && process.execArgv.length >= 1)
     process.execArgv[0] = process.execArgv[0].replace('-brk', '');
+
+
+async function updateConfig(newConfig, key)
+{
+    var config = await getConfig();
+    var keys = key.split('.');
+    keys.reduce(function (config, key, i)
+    {
+        if (keys.length == i + 1)
+        {
+            config[key] = newConfig;
+            console.log(config);
+        }
+        else if (typeof (config[key]) == 'undefined')
+            config[key] = {};
+
+        return config[key];
+    }, config);
+    writeConfig(config);
+}
+
+akala.register('$updateConfig', updateConfig);
+akala.registerFactory('$config', getConfig);
+
+function writeConfig(config)
+{
+    return promisify(fs.writeFile)('./config.json', JSON.stringify(config, null, 4), 'utf8').catch(function (err)
+    {
+        if (err)
+            console.error(err);
+    });
+}
+
+function getConfig()
+{
+    return promisify(fs.readFile)('./config.json', 'utf8').then(function (content)
+    {
+        return JSON.parse(content);
+    }, function (err)
+        {
+            writeConfig({}).then(function (config)
+            {
+                return {};
+            })
+        });
+}
 
 var lateBoundRoutes = router();
 var preAuthenticatedRouter = router();
@@ -215,7 +262,39 @@ fs.exists(configFile, function (exists)
                                     modulesEvent[socket.submodule]['master'] = param && param.masterPath;
 
                                 modulesEvent[socket.submodule].emit('master', param && param.masterPath);
-                            }, module: function (param: { module: string }, socket: Connection)
+                            },
+                            updateConfig: function (param)
+                            {
+                                return new Promise<any>((resolve, reject) =>
+                                {
+                                    akala.eachAsync(param, function (config, key, next)
+                                    {
+                                        updateConfig(config, key).then(function ()
+                                        {
+                                            next();
+                                        }, next);
+                                    }, function (err?)
+                                        {
+                                            if (err)
+                                                reject(err);
+                                            resolve();
+                                        });
+                                });
+                            },
+                            getConfig: async function (key: string)
+                            {
+                                var config = await getConfig()
+                                if (key)
+                                {
+                                    return key.split('.').reduce(function (config, key)
+                                    {
+                                        return config[key];
+                                    }, config);
+                                }
+                                else
+                                    return config;
+                            },
+                            module: function (param: { module: string }, socket: Connection)
                             {
                                 log('received module event %s', param.module);
                                 socket.submodule = param.module;

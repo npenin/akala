@@ -32,19 +32,6 @@ akala.register('$router', app);
 
 akala.register('$io', createClient);
 
-akala.register('$updateConfig', function (newConfig)
-{
-    var config = require(path.resolve('./config.json'));
-    config[process.argv[2]] = newConfig;
-    fs.writeFile('./config.json', JSON.stringify(config, null, 4), function (err)
-    {
-        if (err)
-            console.error(err);
-        delete require.cache[path.resolve('./config.json')];
-    });
-})
-
-
 createClient('api/' + process.argv[2]).then(function (socket: jsonrpc.Client<jsonrpc.Connection>)
 {
     log('worker connected')
@@ -59,15 +46,30 @@ createClient('api/' + process.argv[2]).then(function (socket: jsonrpc.Client<jso
         },
         getContent: handle(app, '/api')
     });
-    client.$proxy().register({ path: '/' });
+    var server = client.$proxy();
+    server.register({ path: '/' });
     akala.register('$bus', client);
+    akala.register('$updateConfig', function (config, key)
+    {
+        var configToSave = {};
+        configToSave[key] = config;
+        return server.updateConfig(configToSave);
+    });
+    akala.register('$getConfig', function (key)
+    {
+        return server.getConfig(key);
+    });
+    akala.registerFactory('$config', function ()
+    {
+        return server.getConfig(null)
+    });
+
 
     var server = client.$proxy();
 
     server.module({ module: process.argv[2] }).then(function (param)
     {
         log('emitted module event')
-        akala.register('$config', param.config);
         var masterCalled = false;
         log(param);
         akala.register('$master', function (from?: string, masterPath?: string, workerPath?: string)
