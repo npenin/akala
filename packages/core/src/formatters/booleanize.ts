@@ -1,8 +1,8 @@
-import { register } from "..";
+import { module } from "../helpers";
 
 export function booleanize(a: any)
 {
     return !!a;
 }
 
-register('#bool', booleanize);
+module('$formatters').register('#bool', booleanize);

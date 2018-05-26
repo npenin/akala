@@ -101,6 +101,20 @@ export class Injector
     public resolve<T=any>(param: string): T
     {
         log('resolving ' + param);
+        var indexOfDot = param.indexOf('.');
+        if (~indexOfDot)
+        {
+            var keys = param.split('.')
+            return keys.reduce(function (result, key, i)
+            {
+                if (result instanceof Injector)
+                    return result.resolve(key);
+                if (isPromiseLike(result))
+                    return result.then((result) => { return result[key] });
+                return result && result[key];
+            }, this.injectables);
+
+        }
         if (typeof (this.injectables[param]) != 'undefined')
         {
             log('resolved ' + param + ' to %o', this.injectables[param]);
@@ -141,6 +155,19 @@ export class Injector
         this.inspecting = true;
         console.log(this.injectables);
         this.inspecting = false;
+    }
+
+    private browsingForJSON = false;
+
+    public toJSON()
+    {
+        console.log(arguments);
+        var wasBrowsingForJSON = this.browsingForJSON;
+        this.browsingForJSON = true;
+        if (!wasBrowsingForJSON)
+            return this.injectables;
+        this.browsingForJSON = wasBrowsingForJSON;
+        return undefined;
     }
 
     public injectNewWithName(toInject: string[], ctor: Function)

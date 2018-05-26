@@ -1,7 +1,7 @@
 import { register, injectWithName } from "./injector";
 import { ParsedAny } from "./parser";
 import { each, map } from "./each";
-import { extend } from "./helpers";
+import { extend, module } from "./helpers";
 import { service } from "./service";
 import { FormatterFactory } from "./formatters/common";
 import * as uri from 'url';
@@ -187,4 +187,4 @@ export class HttpFormatterFactory implements FormatterFactory<Promise<any>, { me
     }
 }
 
-register('#http', new HttpFormatterFactory());
+module('$formatters').register('#http', new HttpFormatterFactory());

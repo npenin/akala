@@ -1,8 +1,8 @@
-import { register } from "..";
+import {  module } from "../helpers";
 
 export function negate(a: any)
 {
     return !a;
 }
 
-register('#not', negate);
+module('$formatters').register('#not', negate);

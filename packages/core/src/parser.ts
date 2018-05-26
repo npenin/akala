@@ -1,7 +1,7 @@
 import { isPromiseLike, PromiseStatus } from './promiseHelpers';
 import { Binding, PromiseBinding } from './binder';
 import * as formatters from './formatters';
-import { resolve } from '.';
+import { module } from './helpers';
 import { FormatterFactory } from './formatters/common';
 
 
@@ -349,7 +349,7 @@ export class Parser
     {
         var item = /^ *# *([\w0-9\.\$]+) */.exec(expression);
         expression = expression.substring(item[0].length);
-        var formatter: FormatterFactory<any, any> = resolve('#' + item[1]);
+        var formatter: FormatterFactory<any, any> = module('$formatters').resolve('#' + item[1]);
         if (!formatter)
             throw new Error(`filter not found: ${item[1]}`)
         var settings: ParsedObject;

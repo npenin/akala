@@ -1,6 +1,6 @@
 import { Parser, ParsedString } from "../parser";
-import { register } from "../injector";
 import { Formatter, FormatterFactory } from "./common";
+import { module } from "../helpers";
 
 export interface DateFormatterSettings
 {
@@ -178,4 +178,4 @@ export class DateFormatter implements FormatterFactory<Date, DateFormatterSettin
 }
 
 
-register('#date', new DateFormatter());
+module('$formatters').register('#date', new DateFormatter());

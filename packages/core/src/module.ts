@@ -5,6 +5,8 @@ import { EventEmitter } from 'events'
 process.hrtime = process.hrtime || require('browser-process-hrtime');
 
 var moduleInjector = new di.Injector();
+di.register('$modules', moduleInjector);
+
 
 export class Module extends di.Injector
 {
