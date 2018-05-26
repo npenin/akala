@@ -371,7 +371,7 @@ export function handle(app: Router, root: string)
                     {
                         if (!response.headers['Content-Type'])
                             response.headers['Content-Type'] = 'text/text';
-                        data = data.toString();
+                        data = data.stack;
                     }
                     else
                     {

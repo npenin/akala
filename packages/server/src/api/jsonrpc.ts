@@ -133,8 +133,10 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection, TServerOneWay, TS
 akala.module('$api').register('jsonrpcws', JsonRpcWs, true);
 
 export var meta = new Api()
-    .connection<jsonrpc.Connection & { submodule?: string }>()
+    .connection<{ submodule?: string }>()
     .serverToClientOneWay<void>()({ 'after-master': true, ready: true })
     .clientToServer<{ module: string }, { config: any, workers: any[] }>()({ module: true })
+    .clientToServerOneWay<any>()({ updateConfig: true })
+    .clientToServer<string, any>()({ getConfig: true })
     .clientToServerOneWay<{ masterPath?: string, workerPath?: string }>()({ master: true })
     ;
