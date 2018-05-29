@@ -128,18 +128,18 @@ export class Injector
         return null;
     }
 
-    public resolveAsync<T=any>(param: string): T | PromiseLike<T>
+    public resolveAsync<T=any>(name: string): T | PromiseLike<T>
     {
-        log('resolving ' + param);
-        if (typeof (this.injectables[param]) != 'undefined')
+        log('resolving ' + name);
+        if (typeof (this.injectables[name]) != 'undefined')
         {
-            log('resolved ' + param + ' to %o', this.injectables[param]);
-            return this.injectables[param];
+            log('resolved ' + name + ' to %o', this.injectables[name]);
+            return this.injectables[name];
         }
         if (this.parent)
         {
             log('trying parent injector');
-            return this.parent.resolveAsync(param);
+            return this.parent.resolveAsync(name);
         }
         return this.onResolve<T>(name);
     }
