@@ -386,9 +386,7 @@ fs.exists(configFile, function (exists)
                                 masterPath = masterPath.replace(/\\/g, '/');
                             log('path being required: ' + masterPath);
                             akala.register('$module', plugin, true);
-                            akala.register('$config', config[plugin], true);
                             require(masterPath);
-                            akala.unregister('$config');
                             akala.unregister('$module');
                             // orchestratorLog(globalWorkers);
                             // console.log('emitting after-master for ' + plugin);
