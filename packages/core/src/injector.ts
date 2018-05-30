@@ -201,7 +201,7 @@ export class Injector
                         {
                             if (isPromiseLike(v))
                                 return v;
-                            return Promisify(v);
+                            return Promise.resolve(v);
                         })).then(a);
                     else
                         resolve(a.apply(null, args));
