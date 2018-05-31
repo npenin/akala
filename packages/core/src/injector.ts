@@ -202,7 +202,7 @@ export class Injector
                             if (isPromiseLike(v))
                                 return v;
                             return Promise.resolve(v);
-                        })).then(a);
+                        })).then((args) => { return a.apply(null, args) });
                     else
                         resolve(a.apply(null, args));
                 }
