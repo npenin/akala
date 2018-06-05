@@ -4,7 +4,7 @@ import { IScope } from '../scope'
 
 export interface ForeachParameter
 {
-    in: akala.ParsedFunction;
+    in: akala.ParsedFunction | akala.Binding;
     key: string;
     value: string;
 }
@@ -24,8 +24,11 @@ export class ForEach extends Control<ForeachParameter | string>
 
         var parsedParam: ForeachParameter = parameter;
 
+        var sourceBinding: akala.Binding;
         if (parameter.in instanceof Function)
-            var sourceBinding = parameter.in(target, true);
+            sourceBinding = parameter.in(target, true);
+        else
+            sourceBinding = parameter.in;
 
         var self = this;
         var parent = element.parentElement;
