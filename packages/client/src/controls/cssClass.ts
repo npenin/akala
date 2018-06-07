@@ -19,7 +19,7 @@ function removeClass(element: HTMLElement, item: ParsedString | Array<string> | 
 
 type classParamType = Binding | ParsedString | Array<string> | string | { [key: string]: boolean };
 
-function addClass(element: HTMLElement, item: classParamType | PromiseLike<classParamType>)
+function addClass(element: HTMLElement, item: classParamType)
 {
     if (typeof (item) == 'string')
     {
@@ -50,25 +50,24 @@ function addClass(element: HTMLElement, item: classParamType | PromiseLike<class
         });
     }
     else
-        akala.each(item as any, function (toggle: classParamType, key: string)
+        akala.each(item, function (toggle, key)
         {
-            if (toggle instanceof Binding)
-                toggle.onChanged(function (ev)
-                {
-                    if (ev.eventArgs.value)
-                        addClass(element, key);
-                    else
-                        removeClass(element, key);
-                });
-            else if (typeof (toggle) == 'string' && !isNaN(Number(key)))
+            if (typeof (toggle) == 'string' && !isNaN(Number(key)))
             {
                 addClass(element, toggle);
             }
+            else if (toggle instanceof Binding)
+                toggle.onChanged(function (ev)
+                {
+                    if (ev.eventArgs.value)
+                        addClass(element, key as string);
+                    else
+                        removeClass(element, key as string);
+                });
+            else if (toggle)
+                addClass(element, key as string);
             else
-                if (toggle)
-                    addClass(element, key);
-                else
-                    removeClass(element, key);
+                removeClass(element, key as string);
         })
 }
 
