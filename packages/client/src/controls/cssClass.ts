@@ -50,7 +50,7 @@ function addClass(element: HTMLElement, item: classParamType | PromiseLike<class
         });
     }
     else
-        akala.each(item as any, function (toggle, key)
+        akala.each(item as any, function (toggle: classParamType, key: string)
         {
             if (toggle instanceof Binding)
                 toggle.onChanged(function (ev)
