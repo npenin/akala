@@ -1,5 +1,5 @@
 import { register, injectWithName } from "./injector";
-import { ParsedAny } from "./parser";
+import { ParsedAny, Parser } from "./parser";
 import { each, map } from "./each";
 import { extend, module } from "./helpers";
 import { service } from "./service";
@@ -162,15 +162,15 @@ export class FetchHttp implements Http<Response>
 
 
 
-export class HttpFormatterFactory implements FormatterFactory<Promise<any>, { method: keyof Http }>
+export class HttpFormatterFactory implements FormatterFactory<Promise<any>, { method?: keyof Http }>
 {
     constructor() { }
-    public parse(expression: string): { method: keyof Http } & ParsedAny
+    public parse(expression: string): { method?: keyof Http } & ParsedAny
     {
-        var method = /\w+/.exec(expression);
+        var method = /^ *\w+/.exec(expression);
         if (method)
             return { method: <keyof Http>method[0], $$length: method[0].length };
-        return { method: 'getJSON', $$length: 0 };
+        return Parser.parseAny(expression, false);
     }
     public build(formatter, settings: { method: keyof Http })
     {
@@ -181,7 +181,7 @@ export class HttpFormatterFactory implements FormatterFactory<Promise<any>, { me
         {
             return injectWithName(['$http'], function (http: Http)
             {
-                return (http[settings.method] as Function)(formatter(value));
+                return (http[settings.method || 'getJSON'] as Function)(formatter(value));
             })();
         }
     }
