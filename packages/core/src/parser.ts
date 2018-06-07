@@ -560,9 +560,9 @@ export class Parser
     public static parseObject(expression: string, excludeFirstLevelFunction?: boolean)
     {
         var keyMatch: RegExpExecArray;
-        var result: ParsedObject = {};
-        Object.defineProperty(result, '$$length', { value: 0, enumerable: false, writable: true, configurable: true });
-        return Parser.parseCSV(expression, function (expression)
+        var parsedObject: ParsedObject = {};
+        Object.defineProperty(parsedObject, '$$length', { value: 0, enumerable: false, writable: true, configurable: true });
+        var result = Parser.parseCSV(expression, function (expression)
         {
             // var length = 0;
             var keyMatch = jsonKeyRegex.exec(expression);
@@ -574,18 +574,20 @@ export class Parser
             var item = Parser.parseAny(expression, false);
             length += item.$$length;
             if (item instanceof ParsedBoolean || item instanceof ParsedString || item instanceof ParsedNumber)
-                result[key] = item.value;
+                parsedObject[key] = item.value;
             else if (item instanceof ParsedBinary)
-                result[key] = item.evaluate.bind(item);
+                parsedObject[key] = item.evaluate.bind(item);
             else
-                result[key] = item;
+                parsedObject[key] = item;
             // expression = expression.substring(result[key].$$length);
             item.$$length = length;
-            result.$$length += length;
+            parsedObject.$$length += length;
             // console.log(expression);
             //console.log(length);
             return item;
-        }, '}', result, excludeFirstLevelFunction);
+        }, '}', parsedObject, excludeFirstLevelFunction);
+
+        return this.tryParseOperator(expression.substring(result.$$length), result)
     }
 
     public static parseBindable(expression: string)
