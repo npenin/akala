@@ -13,7 +13,7 @@ export class CallFormatterFactory implements FormatterFactory<any, ParsedString>
     public build(formatter, settings: ParsedString)
     {
         if (settings.value.startsWith('$formatters.'))
-            return module('$formatters.').injectWithName([settings.value.substring('$formatters.'.length)], function (x)
+            return module('$formatters').injectWithName([settings.value.substring('$formatters.'.length)], function (x)
             {
                 if (this.args && x && x[this.method])
                     x[this.method].apply(null, this.args);
