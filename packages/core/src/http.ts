@@ -1,6 +1,6 @@
 import { register, injectWithName } from "./injector";
 import { ParsedAny, Parser } from "./parser";
-import { each, map } from "./each";
+import { each, map, grep } from "./each";
 import { extend, module } from "./helpers";
 import { service } from "./service";
 import { FormatterFactory } from "./formatters/common";
@@ -167,9 +167,9 @@ export class HttpFormatterFactory implements FormatterFactory<Promise<any>, { me
     constructor() { }
     public parse(expression: string): { method?: keyof Http } & ParsedAny
     {
-        var method = /^ *\w+/.exec(expression);
+        var method = /^ *(\w+)/.exec(expression);
         if (method)
-            return { method: <keyof Http>method[0], $$length: method[0].length };
+            return { method: <keyof Http>method[1], $$length: method[0].length };
         return Parser.parseAny(expression, false);
     }
     public build(formatter, settings: { method: keyof Http })
@@ -179,9 +179,25 @@ export class HttpFormatterFactory implements FormatterFactory<Promise<any>, { me
 
         return function (value)
         {
+            var settingsValue = settings as HttpOptions & { method?: keyof Http };
+            if (settings instanceof Function)
+                settingsValue = settings(value);
+
             return injectWithName(['$http'], function (http: Http)
             {
-                return (http[settings.method || 'getJSON'] as Function)(formatter(value));
+                var formattedValue = formatter(value);
+                if (typeof (formattedValue) == 'string')
+                    return (http[settingsValue.method || 'getJSON'] as Function)(formattedValue, grep(settingsValue, function (value, key)
+                    {
+                        return key != 'method';
+                    }));
+
+                if (Array.isArray(formattedValue))
+                {
+                    return (http[settingsValue.method || 'getJSON'] as Function).apply(http, formattedValue);
+                }
+
+                return (http[settingsValue.method || 'getJSON'] as Function)(formattedValue);
             })();
         }
     }
