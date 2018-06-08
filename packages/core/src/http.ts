@@ -90,12 +90,12 @@ export class FetchHttp implements Http<Response>
         if (options.headers)
         {
             init.headers = {};
-            each(options.headers, function (value, key: string)
+            each(options.headers, function (value, key)
             {
                 if (value instanceof Date)
-                    init.headers[key] = value.toJSON();
+                    init.headers[key as string] = value.toJSON();
                 else
-                    init.headers[key] = value && value.toString();
+                    init.headers[key as string] = value && value.toString();
             });
         }
 
@@ -135,7 +135,7 @@ export class FetchHttp implements Http<Response>
 
     public static serialize(obj, prefix?: string)
     {
-        return map(obj, function (value, key)
+        return map(obj, function (value, key: string)
         {
 
             if (typeof (value) == 'object')
