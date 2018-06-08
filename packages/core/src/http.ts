@@ -162,7 +162,7 @@ export class FetchHttp implements Http<Response>
 
 
 
-export class HttpFormatterFactory implements FormatterFactory<Promise<any>, { method?: keyof Http }>
+export class HttpCallFormatterFactory implements FormatterFactory<() => Promise<any>, { method?: keyof Http }>
 {
     constructor() { }
     public parse(expression: string): { method?: keyof Http } & ParsedAny
@@ -177,15 +177,15 @@ export class HttpFormatterFactory implements FormatterFactory<Promise<any>, { me
         if (!settings)
             settings = { method: 'getJSON' };
 
-        return function (value)
+        return function (scope)
         {
             var settingsValue = settings as HttpOptions & { method?: keyof Http };
             if (settings instanceof Function)
-                settingsValue = settings(value);
+                settingsValue = settings(scope);
 
             return injectWithName(['$http'], function (http: Http)
             {
-                var formattedValue = formatter(value);
+                var formattedValue = formatter(scope);
                 if (typeof (formattedValue) == 'string')
                     return (http[settingsValue.method || 'getJSON'] as Function)(formattedValue, grep(settingsValue, function (value, key)
                     {
@@ -198,9 +198,26 @@ export class HttpFormatterFactory implements FormatterFactory<Promise<any>, { me
                 }
 
                 return (http[settingsValue.method || 'getJSON'] as Function)(formattedValue);
-            })();
+            });
         }
     }
 }
 
+export class HttpFormatterFactory extends HttpCallFormatterFactory implements FormatterFactory<Promise<any>, { method?: keyof Http }>
+{
+    constructor()
+    {
+        super();
+    }
+
+    public build(formatter, settings: { method: keyof Http })
+    {
+        return (value) =>
+        {
+            return super.build(formatter, settings)(value)();
+        };
+    }
+}
+
 module('$formatters').register('#http', new HttpFormatterFactory());
+module('$formatters').register('#httpCall', new HttpCallFormatterFactory());
