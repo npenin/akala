@@ -78,7 +78,7 @@ createClient('api/' + process.argv[2]).then(function (socket: jsonrpc.Client<jso
                     return server.getConfig(key + '.' + subKey);
                 }
             }
-        });
+        }));
 
 
     var server = client.$proxy();
