@@ -31,7 +31,7 @@ export function server<TConnection extends jsonrpc.Connection, TServerOneWay, TS
         {
             if (cfg === false)
                 return;
-            var builderCtor = module('$api').resolve(key);
+            var builderCtor = module('$api').resolve(key as string);
             if (builderCtor)
             {
                 var builder = new builderCtor(api) as IServerBuilder<any, TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>;
@@ -48,7 +48,7 @@ export function client<TConnection extends jsonrpc.Connection, TServerOneWay, TS
     {
         each(config, function (cfg, key)
         {
-            var builderCtor = module('$api').resolve(key);
+            var builderCtor = module('$api').resolve(key as string);
             if (builderCtor)
             {
                 var builder = new builderCtor(api) as IClientBuilder<any, TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>;

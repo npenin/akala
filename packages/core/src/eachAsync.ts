@@ -25,11 +25,11 @@ export function array<T>(array: T[] | ArrayLike<T>, body: (element: T, i: number
     loop(0);
 }
 
-export function object(o: any, body: (element: any, i: string, next: NextFunction) => void, complete: NextFunction)
+export function object<T>(o: T, body: (element: T[keyof T], i: keyof T, next: NextFunction) => void, complete: NextFunction)
 {
     array(Object.keys(o), function (key, i, next)
     {
-        body(o[key], key, next);
+        body(o[key], key as keyof T, next);
     }, complete);
 }
 

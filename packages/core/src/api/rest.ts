@@ -60,7 +60,7 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
                             {
                                 if (!options.headers)
                                     options.headers = {};
-                                options.headers[key] = param[key] as any;
+                                options.headers[key as string] = param[key] as any;
                             }
                             break;
                         case 'query':

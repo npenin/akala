@@ -39,38 +39,40 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection,
         var proxy: Partial<TServerOneWayProxy & TServerTwoWayProxy> = {};
         each(this.api.serverOneWayConfig, function (config, serverKey)
         {
-            proxy[serverKey] = <any>function (params)
-            {
-                log('calling ' + serverKey + ' with %o', params);
-                return new Promise<void>((resolve, reject) =>
+            if (config['jsonrpcws'] !== false)
+                proxy[serverKey] = <any>function (params)
                 {
-                    client.send(serverKey, params, function (error)
+                    log('calling ' + serverKey + ' with %o', params);
+                    return new Promise<void>((resolve, reject) =>
                     {
-                        if (error)
-                            reject(error);
-                        else
-                            resolve();
+                        client.send(serverKey as string, params, function (error)
+                        {
+                            if (error)
+                                reject(error);
+                            else
+                                resolve();
+                        });
                     });
-                });
-            }
+                }
         });
 
         each(this.api.serverTwoWayConfig, function (config, serverKey)
         {
-            proxy[serverKey] = <any>function (params)
-            {
-                log('calling ' + serverKey + ' with %o', params);
-                return new Promise<PayloadDataType>((resolve, reject) =>
+            if (config['jsonrpcws'] !== false)
+                proxy[serverKey] = <any>function (params)
                 {
-                    client.send(serverKey, params, function (error, result)
+                    log('calling ' + serverKey + ' with %o', params);
+                    return new Promise<PayloadDataType>((resolve, reject) =>
                     {
-                        if (error)
-                            reject(error);
-                        else
-                            resolve(result);
+                        client.send(serverKey as string, params, function (error, result)
+                        {
+                            if (error)
+                                reject(error);
+                            else
+                                resolve(result);
+                        });
                     });
-                });
-            }
+                }
         });
 
         return proxy;
@@ -82,38 +84,40 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection,
         var proxy: Partial<TClientOneWayProxy & TClientTwoWayProxy> = {};
         each(this.api.clientOneWayConfig, function (config, clientKey)
         {
-            proxy[clientKey] = <any>function (params)
-            {
-                log('calling ' + clientKey + ' with %o', params);
-                return new Promise<PayloadDataType>((resolve, reject) =>
+            if (config['jsonrpcws'] !== false)
+                proxy[clientKey] = <any>function (params)
                 {
-                    client.sendMethod(clientKey, params, function (error, result)
+                    log('calling ' + clientKey + ' with %o', params);
+                    return new Promise<PayloadDataType>((resolve, reject) =>
                     {
-                        if (error)
-                            reject(error);
-                        else
-                            resolve(result);
+                        client.sendMethod(clientKey as string, params, function (error, result)
+                        {
+                            if (error)
+                                reject(error);
+                            else
+                                resolve(result);
+                        });
                     });
-                });
-            }
+                }
         });
 
         each(this.api.clientTwoWayConfig, function (config, clientKey)
         {
-            proxy[clientKey] = <any>function (params)
-            {
-                log('calling ' + clientKey + ' with %o', params);
-                return new Promise<PayloadDataType>((resolve, reject) =>
+            if (config['jsonrpcws'] !== false)
+                proxy[clientKey] = <any>function (params)
                 {
-                    client.sendMethod(clientKey, params, function (error, result)
+                    log('calling ' + clientKey + ' with %o', params);
+                    return new Promise<PayloadDataType>((resolve, reject) =>
                     {
-                        if (error)
-                            reject(error);
-                        else
-                            resolve(result);
+                        client.sendMethod(clientKey as string, params, function (error, result)
+                        {
+                            if (error)
+                                reject(error);
+                            else
+                                resolve(result);
+                        });
                     });
-                });
-            }
+                }
         });
 
         return proxy;
@@ -158,44 +162,46 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection,
 
             each(this.api.clientOneWayConfig, function (config, clientKey)
             {
-                client.expose(clientKey, function (params, reply)
-                {
-                    try
+                if (config['jsonrpcws'] !== false)
+                    client.expose(clientKey as string, function (params, reply)
                     {
-                        Promise.resolve((<any>clientImplWithProxy[clientKey])(params)).then(function (result)
+                        try
                         {
-                            reply(null, result);
-                        }, function (reason)
+                            Promise.resolve((<any>clientImplWithProxy[clientKey])(params)).then(function (result)
                             {
-                                reply(reason);
-                            });
-                    }
-                    catch (e)
-                    {
-                        reply({ message: e.message, stack: e.stack, argv: process.argv });
-                    }
-                })
+                                reply(null, result);
+                            }, function (reason)
+                                {
+                                    reply(reason);
+                                });
+                        }
+                        catch (e)
+                        {
+                            reply({ message: e.message, stack: e.stack, argv: process.argv });
+                        }
+                    })
             });
 
             each(this.api.clientTwoWayConfig, function (config, clientKey)
             {
-                client.expose(clientKey, function (params, reply)
-                {
-                    try
+                if (config['jsonrpcws'] !== false)
+                    client.expose(clientKey as string, function (params, reply)
                     {
-                        Promise.resolve((<any>clientImplWithProxy[clientKey])(params)).then(function (result)
+                        try
                         {
-                            reply(null, result);
-                        }, function (reason)
+                            Promise.resolve((<any>clientImplWithProxy[clientKey])(params)).then(function (result)
                             {
-                                reply(reason);
-                            });
-                    }
-                    catch (e)
-                    {
-                        reply({ message: e.message, stack: e.stack, argv: process.argv });
-                    }
-                });
+                                reply(null, result);
+                            }, function (reason)
+                                {
+                                    reply(reason);
+                                });
+                        }
+                        catch (e)
+                        {
+                            reply({ message: e.message, stack: e.stack, argv: process.argv });
+                        }
+                    });
             });
 
             return clientImplWithProxy;

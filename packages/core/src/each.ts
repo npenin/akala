@@ -5,7 +5,7 @@ export function array<T>(array: T[] | ArrayLike<T>, body: (element: T, i?: numbe
 
 export function object<TIn>(o: TIn, body: (element: TIn[keyof TIn], i?: keyof TIn) => void)
 {
-    array(Object.keys(o), function <TKey extends keyof TIn>(key: TKey)
+    array(Object.keys(o) as (keyof TIn)[], function (key)
     {
         body(o[key], key);
     });
@@ -95,7 +95,7 @@ export function mapObject<TIn, TResultValue>(o: TIn, body: (element: TIn[keyof T
         if (asArray)
             resultArray.push(body(el, i));
         else
-            result[i] = body(el, i);
+            result[i] = body(el, i) as any;
     });
     if (asArray)
         return resultArray;
