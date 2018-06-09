@@ -106,6 +106,8 @@ export class FetchHttp implements Http<Response>
             {
                 case 'json':
                     init.headers['Accept'] = 'application/json, text/json';
+                    if (typeof (options.body) !== 'string')
+                        init.body = JSON.stringify(options.body);
                     break;
                 case 'xml':
                     init.headers['Accept'] = 'text/xml';

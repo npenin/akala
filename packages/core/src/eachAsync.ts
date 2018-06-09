@@ -27,9 +27,9 @@ export function array<T>(array: T[] | ArrayLike<T>, body: (element: T, i: number
 
 export function object<T>(o: T, body: (element: T[keyof T], i: keyof T, next: NextFunction) => void, complete: NextFunction)
 {
-    array(Object.keys(o), function (key, i, next)
+    array(Object.keys(o) as (keyof T)[], function (key, i, next)
     {
-        body(o[key], key as keyof T, next);
+        body(o[key], key, next);
     }, complete);
 }
 
