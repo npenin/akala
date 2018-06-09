@@ -49,20 +49,36 @@ createClient('api/' + process.argv[2]).then(function (socket: jsonrpc.Client<jso
     var server = client.$proxy();
     server.register({ path: '/' });
     akala.register('$bus', client);
-    akala.register('$updateConfig', function (config, key)
+    akala.register('$updateConfig', new Proxy(function (config, key: string)
     {
         var configToSave = {};
         configToSave[key] = config;
         return server.updateConfig(configToSave);
-    });
+    }, {
+            get: function (updateConfig, key: string)
+            {
+                return function (config, subKey)
+                {
+                    updateConfig(config, key + '.' + subKey);
+                }
+            }
+        }));
     akala.register('$getConfig', function (key)
     {
         return server.getConfig(key);
     });
-    akala.registerFactory('$config', function ()
+    akala.registerFactory('$config', new Proxy(function (key?: string)
     {
-        return server.getConfig(null)
-    });
+        return server.getConfig(key || null)
+    }, {
+            get: function (getConfig, key: string)
+            {
+                return function (subKey)
+                {
+                    return server.getConfig(key + '.' + subKey);
+                }
+            }
+        });
 
 
     var server = client.$proxy();

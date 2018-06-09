@@ -29,7 +29,7 @@ if (process.execArgv && process.execArgv.length >= 1)
     process.execArgv[0] = process.execArgv[0].replace('-brk', '');
 
 
-async function updateConfig(newConfig, key)
+async function updateConfig(newConfig, key: string)
 {
     var config = await getConfig();
     var keys = key.split('.');
@@ -48,8 +48,24 @@ async function updateConfig(newConfig, key)
     writeConfig(config);
 }
 
-akala.register('$updateConfig', updateConfig);
-akala.registerFactory('$config', getConfig);
+akala.register('$updateConfig', new Proxy(updateConfig, {
+    get: function (uc, key: string)
+    {
+        return function (config, subKey)
+        {
+            return uc(config, key + '.' + subKey);
+        }
+    }
+}));
+akala.registerFactory('$config', new Proxy(getConfig, {
+    get: function (c, key: string)
+    {
+        return function ()
+        {
+            return c().then(function (config) { return config[key]; });
+        }
+    }
+}));
 
 function writeConfig(config)
 {
