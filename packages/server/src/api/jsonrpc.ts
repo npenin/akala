@@ -59,42 +59,44 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection, TServerOneWay, TS
 
             akala.each(api.serverOneWayConfig, function (config, serverKey)
             {
-                server.expose(serverKey, function (params, reply)
-                {
-                    log('receiving ' + serverKey + ' with %o', params);
-                    var result = (<any>serverImpl[serverKey])(params, this);
-                    if (akala.isPromiseLike(result))
-                        result.then(function (value)
-                        {
-                            log('replying with %o', value);
-                            reply(null, value);
-                        }, function (reason)
+                if (config['jsonrpcws'] !== false)
+                    server.expose(serverKey as string, function (params, reply)
+                    {
+                        log('receiving ' + serverKey + ' with %o', params);
+                        var result = (<any>serverImpl[serverKey])(params, this);
+                        if (akala.isPromiseLike(result))
+                            result.then(function (value)
                             {
-                                reply(reason);
-                            });
-                    else
-                        reply(null, result);
-                })
+                                log('replying with %o', value);
+                                reply(null, value);
+                            }, function (reason)
+                                {
+                                    reply(reason);
+                                });
+                        else
+                            reply(null, result);
+                    })
             });
 
             akala.each(api.serverTwoWayConfig, function (config, serverKey)
             {
-                server.expose(serverKey, function (params, reply)
-                {
-                    log('receiving ' + serverKey + ' with %o', params);
-                    var result = (<any>serverImpl[serverKey])(params, this);
-                    if (akala.isPromiseLike(result))
-                        result.then(function (value)
-                        {
-                            log('replying with %o', value);
-                            reply(null, value);
-                        }, function (reason)
+                if (config['jsonrpcws'] !== false)
+                    server.expose(serverKey as string, function (params, reply)
+                    {
+                        log('receiving ' + serverKey + ' with %o', params);
+                        var result = (<any>serverImpl[serverKey])(params, this);
+                        if (akala.isPromiseLike(result))
+                            result.then(function (value)
                             {
-                                reply(reason);
-                            });
-                    else
-                        reply(null, result)
-                });
+                                log('replying with %o', value);
+                                reply(null, value);
+                            }, function (reason)
+                                {
+                                    reply(reason);
+                                });
+                        else
+                            reply(null, result)
+                    });
             });
 
             akala.each(api.clientOneWayConfig, function (config, clientKey: any)
