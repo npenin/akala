@@ -105,7 +105,7 @@ export class Injector
         if (~indexOfDot)
         {
             var keys = param.split('.')
-            return keys.reduce(function (result, key, i)
+            return keys.reduce((result, key, i) =>
             {
                 if (result instanceof Injector)
                     return result.resolve(key);
