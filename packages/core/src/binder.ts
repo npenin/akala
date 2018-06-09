@@ -3,7 +3,7 @@ import { EventEmitter } from 'events';
 import { Promisify as promisify, isPromiseLike } from './promiseHelpers';
 import * as formatters from './formatters';
 import { array as eachAsync } from './eachAsync'
-import { object as each } from './each'
+import { object as each, map } from './each'
 import { Formatter } from './formatters/common';
 export interface IWatched extends Object
 {
@@ -25,20 +25,18 @@ export class Binding extends EventEmitter
 
     public static unbindify<T>(element: T): Partial<T>
     {
-        var result: Partial<T> = {};
-        each(element, function (value, key)
+        return map(element, function (value, key)
         {
             if (typeof (value) == 'object')
             {
                 if (value instanceof Binding)
-                    result[key] = value.getValue();
+                    return value.getValue();
                 else
-                    result[key] = Binding.unbindify(value) as any;
+                    return Binding.unbindify(value) as any;
             }
             else
-                result[key] = value;
+                return value;
         })
-        return result;
     }
 
     constructor(protected _expression: string, private _target: IWatched, register: boolean = true)
