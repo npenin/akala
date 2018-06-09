@@ -96,13 +96,13 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
 
             akala.each(api.serverTwoWayConfig, function (config, serverKey)
             {
-                if (!config.rest)
+                if (!config['rest'])
                     return;
-                router[config.rest && config.rest.method || 'get'](config.rest.url, function (req: worker.Request, res: worker.Callback)
+                router[config['rest'] && config['rest'].method || 'get'](config['rest'].url, function (req: worker.Request, res: worker.Callback)
                 {
                     log('receiving ' + serverKey + ' with %o', req);
-                    if (config.rest.param)
-                        var result = (<any>serverImpl[serverKey])(buildParam(req, config.rest));
+                    if (config['rest'].param)
+                        var result = (<any>serverImpl[serverKey])(buildParam(req, config['rest']));
                     else
                         result = (<any>serverImpl[serverKey])(req);
                     if (akala.isPromiseLike(result))

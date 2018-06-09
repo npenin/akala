@@ -212,7 +212,7 @@ class MyResponse extends stream.Transform implements CallbackResponse
             if (field)
                 akala.each(field, function (value, key)
                 {
-                    self.setHeader(key, value);
+                    self.setHeader(key as string, value);
                 });
         }
     }
