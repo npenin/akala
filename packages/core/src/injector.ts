@@ -111,13 +111,17 @@ export class Injector
                     return result.resolve(key);
                 if (isPromiseLike(result))
                     return result.then((result) => { return result[key] });
+                if (result === this.injectables && typeof (result[key]) == 'undefined')
+                {
+                    return this.parent.resolve(key);
+                }
                 return result && result[key];
             }, this.injectables);
 
         }
         if (typeof (this.injectables[param]) != 'undefined')
         {
-            log('resolved ' + param + ' to %o', this.injectables[param]);
+            log(`resolved ${param} to ${this.injectables[param]}`);
             return this.injectables[param];
         }
         if (this.parent)
