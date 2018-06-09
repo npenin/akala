@@ -18,7 +18,7 @@ export class CallFormatterFactory implements FormatterFactory<any, ParsedString>
         {
             if (this.args && x && x[this.method])
             {
-                return x[this.method].apply(null, Binding.unbindify(this.args));
+                return x[this.method].apply(x, Binding.unbindify(this.args));
             }
         }
 
