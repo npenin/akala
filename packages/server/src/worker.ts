@@ -49,37 +49,52 @@ createClient('api/' + process.argv[2]).then(function (socket: jsonrpc.Client<jso
     var server = client.$proxy();
     server.register({ path: '/' });
     akala.register('$bus', client);
+    var updateConfigHandler = {
+        get: function (updateConfig, key)
+        {
+            if (typeof (key) == 'symbol' && key.toString() == 'Symbol(util.inspect.custom)')
+            {
+                return () => updateConfig;
+            }
+            return new Proxy(function $updateConfig(config, subKey)
+            {
+                if (typeof (subKey) == 'undefined')
+                    return updateConfig(config, key.toString());
+                return updateConfig(config, key.toString() + '.' + subKey);
+            }, updateConfigHandler);
+        }
+    };
+
     akala.register('$updateConfig', new Proxy(function (config, key: string)
     {
         var configToSave = {};
         configToSave[key] = config;
         return server.updateConfig(configToSave);
-    }, {
-            get: function (updateConfig, key: string)
-            {
-                return function (config, subKey)
-                {
-                    updateConfig(config, key + '.' + subKey);
-                }
-            }
-        }));
-    akala.register('$getConfig', function (key)
-    {
-        return server.getConfig(key);
-    });
-    akala.registerFactory('$config', new Proxy(function (key?: string)
-    {
-        return server.getConfig(key || null)
-    }, {
-            get: function (getConfig, key: string)
-            {
-                return function (subKey)
-                {
-                    return server.getConfig(key + '.' + subKey);
-                }
-            }
-        }));
+    }, updateConfigHandler));
 
+    var configProxyGetter = new Proxy(function (key?)
+    {
+        return server.getConfig(key || null);
+    }, {
+            get: function (getConfig, key)
+            {
+                if (typeof (key) == 'symbol' && key.toString() == 'Symbol(util.inspect.custom)')
+                {
+                    return () => getConfig;
+                }
+                if (key === 'then')
+                    return getConfig().then;
+                return new Proxy(function (subKey)
+                {
+                    if (subKey)
+                        return getConfig(key.toString() + '.' + subKey);
+                    return getConfig(key.toString());
+                }, configProxyGetter);
+            }
+        });
+
+    akala.register('$config', configProxyGetter);
+    akala.registerFactory('$getConfig', configProxyGetter);
 
     var server = client.$proxy();
 
