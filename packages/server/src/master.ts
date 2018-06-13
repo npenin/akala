@@ -297,12 +297,12 @@ fs.exists(configFile, function (exists)
                                         });
                                 });
                             },
-                            getConfig: async function (key: string)
+                            getConfig: async function (param: { key?: string })
                             {
                                 var config = await getConfig()
-                                if (key)
+                                if (param.key)
                                 {
-                                    return key.split('.').reduce(function (config, key)
+                                    return param.key.split('.').reduce(function (config, key)
                                     {
                                         return config[key];
                                     }, config);
