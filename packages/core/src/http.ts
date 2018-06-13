@@ -62,7 +62,6 @@ export class FetchHttp implements Http<Response>
         });
     }
 
-
     public invokeSOAP(namespace: string, action: string, url: string, params?: { [key: string]: string | number | boolean })
     {
         var body = '<?xml version="1.0" encoding="utf-8"?><s:Envelope s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body>' +

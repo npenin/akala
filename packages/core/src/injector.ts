@@ -107,6 +107,8 @@ export class Injector
             var keys = param.split('.')
             return keys.reduce((result, key, i) =>
             {
+                if (result instanceof Proxy)
+                    return result[key];
                 if (result instanceof Injector)
                     return result.resolve(key);
                 if (isPromiseLike(result))
