@@ -1,4 +1,20 @@
 
+var oldProxy = Proxy;
+
+global['Proxy'] = new oldProxy(oldProxy, {
+    get: function (target, key)
+    {
+        if (typeof (key) == 'symbol' && key == Symbol.hasInstance)
+        {
+            return function (o)
+            {
+                return o[Symbol.for('isProxy')];
+            }
+        }
+        return Reflect.get(target, key);
+    }
+});
+
 export function chain<T extends Function>(target: T, keyHandler: (keys: string[], ...args) => any[])
 {
     var configProxyGetter = {
@@ -13,7 +29,7 @@ export function chain<T extends Function>(target: T, keyHandler: (keys: string[]
                         return () => target;
                     case 'Symbol(Symbol.toPrimitive)':
                         return target[Symbol.toPrimitive];
-                    case 'Symbol(isChain)':
+                    case 'Symbol(isProxy)':
                         return true;
                     default:
                         throw new Error('Not supported');
@@ -49,7 +65,7 @@ export function chain<T extends Function>(target: T, keyHandler: (keys: string[]
                                             return () => getConfig;
                                         case 'Symbol(Symbol.toPrimitive)':
                                             return target[Symbol.toPrimitive];
-                                        case 'Symbol(isChain)':
+                                        case 'Symbol(isProxy)':
                                             return true;
                                         default:
                                             throw new Error('Not supported');
