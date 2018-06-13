@@ -65,36 +65,46 @@ createClient('api/' + process.argv[2]).then(function (socket: jsonrpc.Client<jso
         }
     };
 
-    akala.register('$updateConfig', new Proxy(function (config, key: string)
+    akala.register('$updateConfig', akala.chain(function (config, key: string)
     {
         var configToSave = {};
         configToSave[key] = config;
         return server.updateConfig(configToSave);
-    }, updateConfigHandler));
-
-    var configProxyGetter = new Proxy(function (key?)
-    {
-        return server.getConfig(key || null);
-    }, {
-            get: function (getConfig, key)
+    }, function (keys, config, key: string)
+        {
+            if (key)
             {
-                if (typeof (key) == 'symbol' && key.toString() == 'Symbol(util.inspect.custom)')
-                {
-                    return () => getConfig;
-                }
-                if (key === 'then')
-                    return getConfig().then;
-                return new Proxy(function (subKey)
-                {
-                    if (subKey)
-                        return getConfig(key.toString() + '.' + subKey);
-                    return getConfig(key.toString());
-                }, configProxyGetter);
+                keys = [].concat(keys);
+                keys.push(key);
             }
-        });
+            return [config, keys.join('.')];
+        }));
 
-    akala.register('$config', configProxyGetter);
-    akala.registerFactory('$getConfig', configProxyGetter);
+
+    akala.register('$config', akala.chain(function (key?: string)
+    {
+        return server.getConfig(key);
+    }, function (keys, key)
+        {
+            if (key)
+            {
+                keys = [].concat(keys);
+                keys.push(key);
+            }
+            return [keys.join('.')];
+        }));
+    akala.registerFactory('$getConfig', akala.chain(function (key?: string)
+    {
+        return server.getConfig(key);
+    }, function (keys, key)
+        {
+            if (key)
+            {
+                keys = [].concat(keys);
+                keys.push(key);
+            }
+            return [keys.join('.')];
+        }));
 
     var server = client.$proxy();
 
