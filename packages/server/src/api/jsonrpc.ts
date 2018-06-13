@@ -139,6 +139,6 @@ export var meta = new Api()
     .serverToClientOneWay<void>()({ 'after-master': true, ready: true })
     .clientToServer<{ module: string }, { config: any, workers: any[] }>()({ module: true })
     .clientToServerOneWay<any>()({ updateConfig: true })
-    .clientToServer<string, any>()({ getConfig: true })
+    .clientToServer<{key:string}, any>()({ getConfig: true })
     .clientToServerOneWay<{ masterPath?: string, workerPath?: string }>()({ master: true })
     ;

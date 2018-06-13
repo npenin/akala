@@ -83,19 +83,7 @@ createClient('api/' + process.argv[2]).then(function (socket: jsonrpc.Client<jso
 
     akala.register('$config', akala.chain(function (key?: string)
     {
-        return server.getConfig(key);
-    }, function (keys, key)
-        {
-            if (key)
-            {
-                keys = [].concat(keys);
-                keys.push(key);
-            }
-            return [keys.join('.')];
-        }));
-    akala.registerFactory('$getConfig', akala.chain(function (key?: string)
-    {
-        return server.getConfig(key);
+        return server.getConfig({ key: key || null });
     }, function (keys, key)
         {
             if (key)
