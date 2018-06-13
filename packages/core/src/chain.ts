@@ -1,8 +1,8 @@
 
-export function chain(target: Function, keyHandler: (...args) => any[])
+export function chain<T extends Function>(target: T, keyHandler: (keys: string[], ...args) => any[])
 {
     var configProxyGetter = {
-        get: function chain(target: () => any, key)
+        get: function chain(target: T, key)
         {
             var keys: string[] = [];
             if (typeof (key) == 'symbol')
