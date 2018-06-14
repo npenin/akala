@@ -20,23 +20,7 @@ function buildParam(req: worker.Request, config: RestConfig<any>)
             let url = parse(req.url, true);
             akala.each(config.param, function (value, key)
             {
-                switch (value)
-                {
-                    case 'body':
-                        result[key] = req.body[key];
-                        break;
-                    case 'header':
-                        result[key] = req.headers[key as string];
-                        break;
-                    case 'query':
-                        result[key] = url.query[key as string];
-                        break;
-                    case 'route':
-                        result[key] = req.params[key as string];
-                        break;
-                    default:
-                        result[key] = req.injector.resolve(value);
-                }
+                result[key] = req.injector.resolve(key);
             })
             return result;
     }
