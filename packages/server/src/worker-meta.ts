@@ -7,7 +7,6 @@ import * as jsonrpc from '@akala/json-rpc-ws'
 import * as send from 'send';
 import * as onFinished from 'on-finished';
 import { PayloadDataType } from '@akala/json-rpc-ws';
-import { lchmod } from 'fs';
 const log = akala.log('akala:worker');
 
 export { CallbackResponse }
@@ -67,6 +66,7 @@ class WorkerInjectorImpl extends akala.Injector
             let master = name.substr(0, indexOfDot);
             if (master in masterPrefixes)
             {
+                log(`resolving ${name}`)
                 switch (master)
                 {
                     case 'header':
@@ -74,6 +74,7 @@ class WorkerInjectorImpl extends akala.Injector
                     case 'query':
                         return this.request.query && this.request.query[name.substr(indexOfDot + 1)] as any;
                     case 'route':
+                        log(this.request.params)
                         return this.request.params && this.request.params[name.substr(indexOfDot + 1)] as any;
                     case 'body':
                         return this.request.body && this.request.body[name.substr(indexOfDot + 1)];
