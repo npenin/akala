@@ -8,7 +8,7 @@ global['Proxy'] = new oldProxy(oldProxy, {
         {
             return function (o)
             {
-                return o[Symbol.for('isProxy')];
+                return o && o[Symbol.for('isProxy')];
             }
         }
         return Reflect.get(target, key);
