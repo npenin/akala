@@ -20,7 +20,7 @@ function buildParam(req: worker.Request, config: RestConfig<any>)
             let url = parse(req.url, true);
             akala.each(config.param, function (value, key)
             {
-                result[key] = req.injector.resolve(key);
+                result[key] = req.injector.resolve(value);
             })
             return result;
     }
