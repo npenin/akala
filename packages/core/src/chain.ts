@@ -62,7 +62,7 @@ export function chain<T extends Function>(target: T, keyHandler: (keys: string[]
                                     switch (subKey.toString())
                                     {
                                         case 'Symbol(util.inspect.custom)':
-                                            return () => getConfig;
+                                            return () => target;
                                         case 'Symbol(Symbol.toPrimitive)':
                                             return target[Symbol.toPrimitive];
                                         case 'Symbol(isProxy)':
