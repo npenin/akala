@@ -61,10 +61,10 @@ class WorkerInjectorImpl extends akala.Injector
     {
         let indexOfDot = name.indexOf('.');
 
-        if (indexOfDot > -1)
+        if (~indexOfDot)
         {
             let master = name.substr(0, indexOfDot);
-            if (master in masterPrefixes)
+            if (~masterPrefixes.indexOf(master))
             {
                 log(`resolving ${name}`)
                 switch (master)
