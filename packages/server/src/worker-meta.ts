@@ -11,6 +11,12 @@ const log = akala.log('akala:worker');
 
 export { CallbackResponse }
 
+akala.register('$agent', akala.chain(createClient, function (keys, key: string)
+{
+    keys.push(key);
+    return keys;
+}))
+
 export function createClient<TConnection extends jsonrpc.Connection>(namespace: string): PromiseLike<jsonrpc.Client<TConnection>>
 {
     var client = jsonrpc.createClient<TConnection>();
