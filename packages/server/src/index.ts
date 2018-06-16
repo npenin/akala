@@ -15,6 +15,7 @@ export type resolve = worker.resolve;
 export
 {
     eachAsync, each, grep, map, extend,
+    chain,
     Translator, Queue, noop,
     Injector, injectWithName, injectNewWithName, inject, injectNew, register, factory, registerFactory, inspect, resolve, service, injectWithNameAsync, resolveAsync, onResolve,
     Promisify, isPromiseLike, when, whenOrTimeout,
