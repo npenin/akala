@@ -1,8 +1,9 @@
 import { default as popper } from 'popper.js';
-import { BaseControl } from './control';
+import { BaseControl, control } from './control';
 import * as akala from '@akala/core';
 import { IScope } from '../scope';
 
+@control()
 export class Popper extends BaseControl<popper.PopperOptions>
 {
     constructor()
