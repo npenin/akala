@@ -24,8 +24,65 @@ async function updateConfig(newConfig, key)
     writeConfig(config);
 }
 
-akala.register('$updateConfig', updateConfig);
-akala.registerFactory('$config', getConfig);
+
+var updateConfigGetter = {
+    get: function (updateConfig, key)
+    {
+        return new Proxy(function (newConfig, subKey)
+        {
+            return updateConfig(newConfig, key + '.' + subKey);
+        }, updateConfigGetter);
+    }
+}
+
+akala.register('$updateConfig', akala.chain(updateConfig, function (keys, config, key)
+{
+    if (key)
+    {
+        keys.push(key);
+    }
+    return [config, keys.join('.')];
+}));
+akala.register('$getConfig', akala.chain(getConfig, function (keys, key)
+{
+    if (key)
+    {
+        keys.push(key);
+    }
+    return [keys.join('.')];
+}));
+
+var getConfigGetter = {
+    get: function (getConfig: typeof getConfigWithKey, key: string)
+    {
+        return new Proxy(function (subKey?: string)
+        {
+            if (subKey)
+                return getConfig(key + '.' + subKey);
+            return getConfig(key);
+        }, getConfigGetter);
+    }
+}
+
+async function getConfigWithKey(key?: string)
+{
+    var config = await getConfig()
+    if (key)
+    {
+        return key.split('.').reduce(function (config, key)
+        {
+            return config[key];
+        }, config)
+    }
+    else
+        return config;
+}
+
+var getConfigProxy = new Proxy(getConfigWithKey, getConfigGetter);
+
+akala.register('$getConfig', getConfigProxy);
+
+akala.registerFactory('$config', getConfigProxy);
 
 function writeConfig(config)
 {
@@ -58,16 +115,7 @@ config.command('set <key> [value]')
     });
 
 config.command('get [key]')
-    .action(async function (context, next)
+    .action(function (context, next)
     {
-        var config = await getConfig()
-        if (context.params.key)
-        {
-            console.log(context.params.key.split('.').reduce(function (config, key)
-            {
-                return config[key];
-            }, config))
-        }
-        else
-            console.log(JSON.stringify(config, null, 4));
+        return akala.resolve('$getConfig')(context.params.key);
     });

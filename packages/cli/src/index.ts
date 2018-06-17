@@ -11,18 +11,20 @@ import * as fs from 'fs'
 import { promisify } from 'util'
 import * as akala from '@akala/core'
 import * as mock from 'mock-require'
+import { fork } from 'child_process';
+import { Module } from 'module';
 export default program;
 require.cache[module.filename] = module;
 
 mock('@akala/core', akala);
 
-program.command('run [cwd]').action(function (param)
+program.command('run [cwd]').action(function (context)
 {
-    if (param.cwd)
+    if (context.params.cwd)
     {
-        process.chdir(param);
+        process.chdir(context.params.cwd);
     }
-    require('@akala/server/dist/start');
+    require(require.resolve('@akala/server/dist/start', Module['_nodeModulePaths'](process.cwd())));
 })
 
 export interface CliConfig<T>
