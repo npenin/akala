@@ -12,7 +12,7 @@ import { promisify } from 'util'
 import * as akala from '@akala/core'
 import * as mock from 'mock-require'
 import { fork } from 'child_process';
-import { Module } from 'module';
+import Module = require('module');
 export default program;
 require.cache[module.filename] = module;
 
@@ -21,9 +21,10 @@ mock('@akala/core', akala);
 program.command('run [cwd]').action(function (context)
 {
     if (context.params.cwd)
-    {
         process.chdir(context.params.cwd);
-    }
+
+        console.log('running ' + process.cwd());
+
     require(require.resolve('@akala/server/dist/start', Module['_nodeModulePaths'](process.cwd())));
 })
 
@@ -71,10 +72,10 @@ akala.module('$api').register('cli', class Cli<TConnection, TServerOneWay, TServ
                             result[key] = req.args;
                             break;
                         case 'option':
-                            result[key] = req.options[key];
+                            result[key] = req.options[key as string];
                             break;
                         case 'param':
-                            result[key] = req.params[key];
+                            result[key] = req.params[key as string];
                             break;
                         default:
                             result[key] = di.resolve(value);
@@ -98,14 +99,12 @@ akala.module('$api').register('cli', class Cli<TConnection, TServerOneWay, TServ
             else
                 router = router.command(client).config(client);
         }
-        akala.each(this.api.serverOneWayConfig, function (config, name)
+        akala.each(this.api.serverOneWayConfig, function (config: { cli?: CliConfig<any> }, name)
         {
             if (config && config.cli && config.cli.command)
             {
                 var cmd = router.command(config.cli.command).action(function (context)
                 {
-                    var param = {};
-
                     Promise.resolve((impl[name] as any)(Cli.buildParam(context, config.cli, cmd))).then((value) =>
                     {
                         console.log(value)
@@ -117,7 +116,7 @@ akala.module('$api').register('cli', class Cli<TConnection, TServerOneWay, TServ
             }
         });
 
-        akala.each(this.api.serverTwoWayConfig, function (config, name)
+        akala.each(this.api.serverTwoWayConfig, function (config: { cli?: CliConfig<any> }, name)
         {
             if (config && config.cli && config.cli.command)
             {

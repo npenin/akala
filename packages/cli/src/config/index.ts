@@ -2,7 +2,7 @@ import program from '../router';
 import * as fs from 'fs';
 import { promisify } from 'util';
 import * as path from 'path';
-import { write } from 'fs/promises';
+import { write } from 'fs';
 import * as akala from '@akala/core'
 
 async function updateConfig(newConfig, key)
@@ -79,8 +79,6 @@ async function getConfigWithKey(key?: string)
 }
 
 var getConfigProxy = new Proxy(getConfigWithKey, getConfigGetter);
-
-akala.register('$getConfig', getConfigProxy);
 
 akala.registerFactory('$config', getConfigProxy);
 

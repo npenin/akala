@@ -391,4 +391,4 @@ cmd['process'] = function (argv: string[])
     mainRouter.process(argv);
 }
 
-export default cmd;
+export default cmd as Command & { process(args: string[]) };
