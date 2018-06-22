@@ -170,9 +170,12 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection,
                             Promise.resolve((<any>clientImplWithProxy[clientKey])(params)).then(function (result)
                             {
                                 reply(null, result);
-                            }, function (reason)
+                            }, function (e)
                                 {
-                                    reply(reason);
+                                    if (e instanceof Error)
+                                        reply({ message: e.message, stack: e.stack, argv: process.argv });
+                                    else
+                                        reply(e);
                                 });
                         }
                         catch (e)
@@ -192,9 +195,12 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection,
                             Promise.resolve((<any>clientImplWithProxy[clientKey])(params)).then(function (result)
                             {
                                 reply(null, result);
-                            }, function (reason)
+                            }, function (e)
                                 {
-                                    reply(reason);
+                                    if (e instanceof Error)
+                                        reply({ message: e.message, stack: e.stack, argv: process.argv });
+                                    else
+                                        reply(e);
                                 });
                         }
                         catch (e)
