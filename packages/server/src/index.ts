@@ -28,7 +28,8 @@ export
     Api,
     DualApi,
     JsonRpcWs,
-    Rest
+    Rest,
+    introspect
 } from '@akala/core';
 import * as st from 'serve-static';
 export { st as static };
