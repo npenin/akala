@@ -20,7 +20,6 @@ export
     Injector, injectWithName, injectNewWithName, inject, injectNew, register, factory, registerFactory, inspect, resolve, service, injectWithNameAsync, resolveAsync, onResolve,
     Promisify, isPromiseLike, when, whenOrTimeout,
     module,
-    log,
     IFactory,
     Interpolate,
     NextFunction,
@@ -33,3 +32,21 @@ export
 } from '@akala/core';
 import * as st from 'serve-static';
 export { st as static };
+
+import { log as corelog } from '@akala/core';
+import * as cluster from 'cluster';
+export function log(namespace: string)
+{
+    if (cluster.isWorker)
+    {
+        var isErrorLog = namespace.startsWith('error:');
+        if (isErrorLog)
+            namespace = namespace.substring('error:'.length);
+        var moduleNamespace = process.argv[2].replace(/[@\/]/g, ':');
+        if (isErrorLog)
+            moduleNamespace = 'error:' + moduleNamespace;
+        if (!namespace.startsWith(moduleNamespace))
+            namespace = moduleNamespace + ':' + namespace;
+    }
+    return corelog(namespace);
+}
