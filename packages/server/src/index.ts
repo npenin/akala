@@ -43,6 +43,8 @@ export function log(namespace: string)
         if (isErrorLog)
             namespace = namespace.substring('error:'.length);
         var moduleNamespace = process.argv[2].replace(/[@\/]/g, ':');
+        if (moduleNamespace[0] == ':')
+            moduleNamespace = moduleNamespace.substring(1);
         if (isErrorLog)
             moduleNamespace = 'error:' + moduleNamespace;
         if (!namespace.startsWith(moduleNamespace))
