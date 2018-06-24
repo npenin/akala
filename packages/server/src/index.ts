@@ -35,18 +35,42 @@ export { st as static };
 
 import { log as corelog } from '@akala/core';
 import * as cluster from 'cluster';
+import { isError } from 'util';
+
+let customOutputs = ['error', 'warn', 'verbose', 'debug', 'info']
+
+export var logger: {
+    error?: corelog.IDebugger,
+    warn?: corelog.IDebugger,
+    verbose?: corelog.IDebugger,
+    debug?: corelog.IDebugger,
+    info?: corelog.IDebugger,
+    [key: string]: corelog.IDebugger
+} = new Proxy({}, {
+    get: function (target, prop)
+    {
+        if (!Reflect.has(target, prop))
+            target[prop] = log(prop.toString());
+        return target[prop];
+    }
+})
+
 export function log(namespace: string)
 {
     if (cluster.isWorker)
     {
-        var isErrorLog = namespace.startsWith('error:');
-        if (isErrorLog)
-            namespace = namespace.substring('error:'.length);
+
+        var customOutput = customOutputs.find(o => namespace.startsWith(o + ':'));
+        if (customOutput)
+            namespace = namespace.substring((customOutput + ':').length);
+
+        customOutput = customOutput || customOutputs.find(o => namespace == o);
+
         var moduleNamespace = process.argv[2].replace(/[@\/]/g, ':');
         if (moduleNamespace[0] == ':')
             moduleNamespace = moduleNamespace.substring(1);
-        if (isErrorLog)
-            moduleNamespace = 'error:' + moduleNamespace;
+        if (customOutput)
+            moduleNamespace = customOutput + ':' + moduleNamespace;
         if (!namespace.startsWith(moduleNamespace))
             namespace = moduleNamespace + ':' + namespace;
     }
