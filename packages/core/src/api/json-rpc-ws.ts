@@ -123,10 +123,10 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection,
         return proxy;
     }
 
-    public createClientFromAbsoluteUrl(url: string, clientImpl: TClientOneWay & TClientTwoWay, ...rest: any[]): PromiseLike<TClientOneWay & TClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy> }>
+    public createClientFromAbsoluteUrl<T extends TClientOneWay & TClientTwoWay>(url: string, clientImpl: T, ...rest: any[]): PromiseLike<T & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy> }>
     {
         var client = jsonrpc.createClient<TConnection>();
-        var result = this.createClient(client)(clientImpl);
+        var result = this.createClient<T>(client, clientImpl);
         return new Promise((resolve, reject) =>
         {
             client.connect(url, function ()
@@ -136,7 +136,7 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection,
         });
     }
 
-    public createLateBoundClient(clientImpl: TClientOneWay & TClientTwoWay): TClientOneWay & TClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy>, $connect(url: string, connected: () => void): void }
+    public createLateBoundClient<T extends TClientOneWay & TClientTwoWay>(clientImpl: T): T & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy>, $connect(url: string, connected: () => void): void }
     {
         var client = jsonrpc.createClient<TConnection>();
         return extend({
@@ -144,74 +144,71 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection,
             {
                 client.connect(url, connected);
             }
-        }, this.createClient(client)(clientImpl));
+        }, this.createClient<T>(client, clientImpl));
     }
 
-    public createClient(client: jsonrpc.Client<TConnection>): (clientImpl: TClientOneWay & TClientTwoWay, ...dummy: any[]) => TClientOneWay & TClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy> }
+    public createClient<T extends TClientOneWay & TClientTwoWay>(client: jsonrpc.Client<TConnection>, clientImpl: T, ...dummy: any[]): T & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy> }
     {
-        return (clientImpl: TClientOneWay & TClientTwoWay, ...dummy: any[]) =>
+        dummy.unshift(clientImpl);
+        dummy.push({
+            $proxy: () =>
+            {
+                return this.createServerProxy(client);
+            }
+        });
+        var clientImplWithProxy = <TClientOneWay & TClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy> }>extend.apply(this, dummy);
+
+        each(this.api.clientOneWayConfig, function (config, clientKey)
         {
-            dummy.unshift(clientImpl);
-            dummy.push({
-                $proxy: () =>
+            if (config['jsonrpcws'] !== false)
+                client.expose(clientKey as string, function (params, reply)
                 {
-                    return this.createServerProxy(client);
-                }
-            });
-            var clientImplWithProxy = <TClientOneWay & TClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy> }>extend.apply(this, dummy);
-
-            each(this.api.clientOneWayConfig, function (config, clientKey)
-            {
-                if (config['jsonrpcws'] !== false)
-                    client.expose(clientKey as string, function (params, reply)
+                    try
                     {
-                        try
+                        Promise.resolve((<any>clientImplWithProxy[clientKey])(params)).then(function (result)
                         {
-                            Promise.resolve((<any>clientImplWithProxy[clientKey])(params)).then(function (result)
+                            reply(null, result);
+                        }, function (e)
                             {
-                                reply(null, result);
-                            }, function (e)
-                                {
-                                    if (e instanceof Error)
-                                        reply({ message: e.message, stack: e.stack, argv: process.argv });
-                                    else
-                                        reply(e);
-                                });
-                        }
-                        catch (e)
-                        {
-                            reply({ message: e.message, stack: e.stack, argv: process.argv });
-                        }
-                    })
-            });
-
-            each(this.api.clientTwoWayConfig, function (config, clientKey)
-            {
-                if (config['jsonrpcws'] !== false)
-                    client.expose(clientKey as string, function (params, reply)
+                                if (e instanceof Error)
+                                    reply({ message: e.message, stack: e.stack, argv: process.argv });
+                                else
+                                    reply(e);
+                            });
+                    }
+                    catch (e)
                     {
-                        try
-                        {
-                            Promise.resolve((<any>clientImplWithProxy[clientKey])(params)).then(function (result)
-                            {
-                                reply(null, result);
-                            }, function (e)
-                                {
-                                    if (e instanceof Error)
-                                        reply({ message: e.message, stack: e.stack, argv: process.argv });
-                                    else
-                                        reply(e);
-                                });
-                        }
-                        catch (e)
-                        {
-                            reply({ message: e.message, stack: e.stack, argv: process.argv });
-                        }
-                    });
-            });
+                        reply({ message: e.message, stack: e.stack, argv: process.argv });
+                    }
+                })
+        });
 
-            return clientImplWithProxy;
-        }
+        each(this.api.clientTwoWayConfig, function (config, clientKey)
+        {
+            if (config['jsonrpcws'] !== false)
+                client.expose(clientKey as string, function (params, reply)
+                {
+                    try
+                    {
+                        Promise.resolve((<any>clientImplWithProxy[clientKey])(params)).then(function (result)
+                        {
+                            reply(null, result);
+                        }, function (e)
+                            {
+                                if (e instanceof Error)
+                                    reply({ message: e.message, stack: e.stack, argv: process.argv });
+                                else
+                                    reply(e);
+                            });
+                    }
+                    catch (e)
+                    {
+                        reply({ message: e.message, stack: e.stack, argv: process.argv });
+                    }
+                });
+        });
+
+        return clientImplWithProxy as T & { $proxy(): TServerOneWayProxy & TServerTwoWayProxy };
     }
 }
 

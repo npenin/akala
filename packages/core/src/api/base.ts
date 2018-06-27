@@ -110,7 +110,7 @@ export interface IClientBuilder<T, TConnection,
     TClientOneWayProxy,
     TClientTwoWayProxy>
 {
-    createClient(client: T): (clientImpl: TClientOneWay & TClientTwoWay, ...dummy: any[]) => TClientOneWay & TClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy> };
+    createClient(client: T, clientImpl: TClientOneWay & TClientTwoWay, ...dummy: any[]): TClientOneWay & TClientTwoWay & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy> };
 }
 
 export class Api<

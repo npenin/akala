@@ -48,13 +48,7 @@ export function client<TConnection extends jsonrpc.Connection, TServerOneWay, TS
     {
         each(config, function (cfg, key)
         {
-            var builderCtor = module('$api').resolve(key as string);
-            if (builderCtor)
-            {
-                var builder = new builderCtor(api) as IClientBuilder<any, TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>;
-                if (builder.createClient)
-                    builder.createClient(cfg)(new impl());
-            }
+            createClient(key as string, api, cfg, new impl());
         })
     }
 }
@@ -77,7 +71,8 @@ export function createServerProxy<T, TConnection,
         TClientOneWayProxy,
         TClientTwoWayProxy>, client: T)
 {
-    var builder: IServerProxyBuilder<T, TConnection,
+    var builder: new (api: Api<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>) =>
+        IServerProxyBuilder<T, TConnection,
         TServerOneWay,
         TServerTwoWay,
         TClientOneWay,
@@ -86,10 +81,12 @@ export function createServerProxy<T, TConnection,
         TServerTwoWayProxy,
         TClientOneWayProxy,
         TClientTwoWayProxy> = module('$api').resolve(builderName);
-    return builder.createServerProxy(client);
+    if (!builder)
+        return null;
+    return new builder(api).createServerProxy(client);
 }
 
-export function createClient<T, TConnection,
+export function createClient<T, TImpl extends TClientOneWay & TClientTwoWay, TConnection,
     TServerOneWay,
     TServerTwoWay,
     TClientOneWay,
@@ -105,9 +102,10 @@ export function createClient<T, TConnection,
         TServerOneWayProxy,
         TServerTwoWayProxy,
         TClientOneWayProxy,
-        TClientTwoWayProxy>, client: T)
+        TClientTwoWayProxy>, client: T, clientImplementation: TImpl)
 {
-    var builder: IClientBuilder<T, TConnection,
+    var builder: new (api: Api<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>) =>
+        IClientBuilder<T, TConnection,
         TServerOneWay,
         TServerTwoWay,
         TClientOneWay,
@@ -116,5 +114,7 @@ export function createClient<T, TConnection,
         TServerTwoWayProxy,
         TClientOneWayProxy,
         TClientTwoWayProxy> = module('$api').resolve(builderName);
-    return builder.createClient(client);
+    if (!builder)
+        return null;
+    return new builder(api).createClient(client, clientImplementation);
 }
