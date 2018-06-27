@@ -36,7 +36,7 @@ createClient('api/' + process.argv[2]).then(function (socket: jsonrpc.Client<jso
 {
     log('worker connected')
     var worker = akala.register('$worker', new EventEmitter());
-    var client = api.jsonrpcws(new akala.DualApi(meta, metaRouter)).createClient(socket)({
+    var client = api.jsonrpcws(new akala.DualApi(meta, metaRouter)).createClient(socket, {
         'after-master': () =>
         {
             worker.emit('after-master');
