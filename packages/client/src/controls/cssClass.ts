@@ -88,14 +88,16 @@ export class CssClass extends BaseControl<any>
         if (parameter instanceof ObservableArray)
             parameter.on('collectionChanged', function (arg: ObservableArrayEventArgs<any>)
             {
-                arg.newItems.forEach(function (item)
-                {
-                    addClass(element, item);
-                })
-                arg.oldItems.forEach(function (item)
-                {
-                    removeClass(element, item);
-                })
+                if (arg.newItems)
+                    arg.newItems.forEach(function (item)
+                    {
+                        addClass(element, item);
+                    })
+                if (arg.oldItems)
+                    arg.oldItems.forEach(function (item)
+                    {
+                        removeClass(element, item);
+                    })
             }).init();
         else
             addClass(element, parameter);
