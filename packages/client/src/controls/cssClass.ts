@@ -91,12 +91,14 @@ export class CssClass extends BaseControl<any>
                 if (arg.newItems)
                     arg.newItems.forEach(function (item)
                     {
-                        addClass(element, item);
+                        if (item)
+                            addClass(element, item);
                     })
                 if (arg.oldItems)
                     arg.oldItems.forEach(function (item)
                     {
-                        removeClass(element, item);
+                        if (item)
+                            removeClass(element, item);
                     })
             }).init();
         else
