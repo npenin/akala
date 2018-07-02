@@ -60,7 +60,7 @@ function isArrayLike<T>(t: ArrayLike<T>): true
 function isArrayLike<T>(t: any): t is ArrayLike<T>
 function isArrayLike<T>(it: any): it is ArrayLike<T>
 {
-    return Array.isArray(it) || typeof (it['length']) != 'undefined'
+    return Array.isArray(it) || typeof (it) != 'undefined' && typeof (it['length']) != 'undefined'
 }
 
 export function grep<T>(array: T[] | ArrayLike<T>, body: (element: T, i?: number) => boolean): T[]
