@@ -4,6 +4,9 @@ import { Promisify, ObservableArray, ObservableArrayEventArgs, Binding, ParsedSt
 
 function removeClass(element: HTMLElement, item: ParsedString | Array<string> | string | { [key: string]: boolean })
 {
+
+    if (typeof (item) == 'undefined')
+        return;
     if (typeof (item) == 'string')
         if (~item.indexOf(' '))
             removeClass(element, item.split(' '));
@@ -21,6 +24,8 @@ type classParamType = Binding | ParsedString | Array<string> | string | { [key: 
 
 function addClass(element: HTMLElement, item: classParamType)
 {
+    if (typeof (item) == 'undefined')
+        return;
     if (typeof (item) == 'string')
     {
         if (~item.indexOf(' '))
@@ -91,14 +96,12 @@ export class CssClass extends BaseControl<any>
                 if (arg.newItems)
                     arg.newItems.forEach(function (item)
                     {
-                        if (item)
-                            addClass(element, item);
+                        addClass(element, item);
                     })
                 if (arg.oldItems)
                     arg.oldItems.forEach(function (item)
                     {
-                        if (item)
-                            removeClass(element, item);
+                        removeClass(element, item);
                     })
             }).init();
         else
