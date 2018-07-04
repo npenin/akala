@@ -11,7 +11,7 @@ export interface RestConfig<T>
 {
     method: string;
     url: string;
-    param?: { [key in keyof T]: 'body' | 'query' | 'header' | 'route' } | 'body' | 'query' | 'route';
+    param?: { [key in keyof T]: 'body' | 'query' | 'header' | 'route' | string } | 'body' | 'query' | 'route' | string;
     type?: 'json' | 'xml';
 }
 
