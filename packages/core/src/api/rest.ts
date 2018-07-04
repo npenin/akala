@@ -39,6 +39,8 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
             default:
                 var route = null;
                 var options: HttpOptions = { method: config.method, url: baseURL.toString(), type: config.type || 'json' };
+                if (typeof (config.param) == 'string')
+                    throw new Error(`${config.param} is not a valid value`);
                 each(config.param, function (value, key)
                 {
                     switch (value)
