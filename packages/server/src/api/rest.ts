@@ -16,11 +16,13 @@ function buildParam(req: worker.Request, config: RestConfig<any>)
         case 'route':
             return req.params;
         default:
+            if (typeof (config.param) == 'string')
+                return req.injector.resolve(config.param);
             let result: any = {};
             let url = parse(req.url, true);
             akala.each(config.param, function (value, key)
             {
-                result[key] = req.injector.resolve(value);
+                result[key] = req.injector.resolve(value as string);
             })
             return result;
     }
