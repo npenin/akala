@@ -1,4 +1,3 @@
-/// <reference types="ws" />
 import { Base } from './base';
 import { Connection, PayloadDataType } from './connection';
 import * as ws from 'ws';
@@ -6,7 +5,7 @@ export declare type SocketType = ws | WebSocket;
 export default class Client<TClientConnection extends Connection> extends Base<TClientConnection> {
     private socketConstructor;
     constructor(socketConstructor: new (address: string) => SocketType, browser: boolean);
-    private socket;
+    private socket?;
     /**
      * Connect to a json-rpc-ws server
      *

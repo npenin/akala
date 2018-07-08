@@ -98,7 +98,10 @@ var Connection = /** @class */ (function () {
      */
     Connection.prototype.sendRaw = function (payload) {
         payload.jsonrpc = '2.0';
-        this.socket.send(JSON.stringify(payload));
+        if (isBrowserSocket(this.parent, this.socket))
+            this.socket.send(JSON.stringify(payload));
+        else
+            this.socket.send(JSON.stringify(payload));
     };
     ;
     Connection.prototype.buildStream = function (id, result) {

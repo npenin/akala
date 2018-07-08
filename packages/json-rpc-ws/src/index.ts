@@ -1,5 +1,5 @@
 'use strict';
-import { Connection, SerializableObject, PayloadDataType } from './connection';
+import { Connection, SerializableObject, PayloadDataType, SerializedBuffer } from './connection';
 import { default as Client } from './client';
 import { default as Server } from './server';
 import { default as Errors } from './errors';
@@ -12,27 +12,14 @@ const logger = debug('json-rpc-ws');
  * MIT Licensed
  */
 
-export { Server, Client, Errors, Connection, SerializableObject, PayloadDataType };
+export { Server, Client, Errors, Connection, SerializableObject, PayloadDataType, SerializedBuffer };
 
-/**
- * Create a new server.
- *
- * @returns {Object} JsonRpcWs Server instance
- * @public
- */
 export function createServer<TConnection extends Connection>()
 {
   logger('createServer');
   return new Server<TConnection>();
 };
 
-
-/**
- * Create a new json-rpc websocket connection
- *
- * @returns {Object}JsonRpcWs Client instance
- * @public
- */
 export function createClient<TConnection extends Connection>()
 {
   logger('createClient');

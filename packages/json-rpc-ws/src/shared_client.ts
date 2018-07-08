@@ -18,7 +18,7 @@ export default class Client<TClientConnection extends Connection> extends Base<T
     this.browser = browser;
   };
 
-  private socket: SocketType;
+  private socket?: SocketType;
 
   /**
    * Connect to a json-rpc-ws server

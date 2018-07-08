@@ -1,4 +1,3 @@
-/// <reference types="ws" />
 import { Base } from './base';
 import { Connection, ReplyCallback, PayloadDataType } from './connection';
 import * as WebSocket from 'ws';
@@ -8,7 +7,7 @@ import * as WebSocket from 'ws';
  */
 export default class Server<TConnection extends Connection> extends Base<TConnection> {
     constructor();
-    server: WebSocket.Server;
+    server?: WebSocket.Server;
     /**
    * Start the server
    *

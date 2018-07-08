@@ -51,7 +51,8 @@ var Server = /** @class */ (function (_super) {
     Server.prototype.stop = function () {
         logger('Server stop');
         this.hangup();
-        this.server.close();
+        if (this.server)
+            this.server.close();
         delete this.server;
     };
     ;

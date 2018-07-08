@@ -59,7 +59,7 @@ export class Base<TConnection extends Connection>
   public connected(socket: ws | WebSocket)
   {
     logger('%s connected', this.type);
-    var connection = new Connection(socket, this);
+    var connection = new Connection(socket, this as any);
     this.connections[connection.id] = <any>connection;
   };
 

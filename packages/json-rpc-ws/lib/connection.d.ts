@@ -1,5 +1,4 @@
 /// <reference types="node" />
-/// <reference types="ws" />
 import { Error as ConnectionError, ErrorTypes } from './errors';
 import * as ws from 'ws';
 import * as stream from 'stream';
@@ -71,7 +70,7 @@ export declare class Connection {
      * @todo if we're not connected look up the response handler from payload.id
      */
     sendRaw(payload: Payload): void;
-    private buildStream(id, result);
+    private buildStream;
     /**
      * Validate payload as valid jsonrpc 2.0
      * http://www.jsonrpc.org/specification
@@ -130,5 +129,5 @@ export declare class Connection {
      * @returns {void}
      * @private
      */
-    private message(data);
+    private message;
 }

@@ -21,7 +21,7 @@ export default class Server<TConnection extends Connection> extends Base<TConnec
     logger('new Server');
   }
 
-  public server: WebSocket.Server;
+  public server?: WebSocket.Server;
 
   /**
  * Start the server
@@ -54,7 +54,8 @@ export default class Server<TConnection extends Connection> extends Base<TConnec
 
     logger('Server stop');
     this.hangup();
-    this.server.close();
+    if (this.server)
+      this.server.close();
     delete this.server;
   };
 

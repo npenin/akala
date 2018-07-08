@@ -1,4 +1,3 @@
-/// <reference types="ws" />
 import * as ws from 'ws';
 import { Connection, Handler, PayloadDataType } from './connection';
 /**
