@@ -7,6 +7,7 @@ import './sdk';
 import './config';
 import './client';
 import './plugins';
+import './helpers/newmodule';
 import * as fs from 'fs'
 import { promisify } from 'util'
 import * as akala from '@akala/core'
@@ -23,7 +24,7 @@ program.command('run [cwd]').action(function (context)
     if (context.params.cwd)
         process.chdir(context.params.cwd);
 
-        console.log('running ' + process.cwd());
+    console.log('running ' + process.cwd());
 
     require(require.resolve('@akala/server/dist/start', Module['_nodeModulePaths'](process.cwd())));
 })
