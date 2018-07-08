@@ -8,7 +8,10 @@ import * as mkdirpOld from 'mkdirp';
 import { spawn as spawnOld, SpawnOptions } from 'child_process';
 import { EOL } from 'os'
 
+
+
 const writeFile = promisify(fs.writeFile);
+const copyFile = promisify(fs.copyFile);
 const mkdirp = promisify(mkdirpOld);
 
 function spawn(cmd: string, args: string[], options: SpawnOptions)
@@ -46,84 +49,17 @@ config.command('new <name>')
 
         await spawn('git', ['init'], { stdio: 'inherit', cwd: context.params.name });
 
-        await writeFile(context.params.name + '/.gitignore', ['node_modules',
-            'dist',
-            'test/**/*.js',
-            'test/**/*.js.map',
-            'yarn-error.log',
-            'config.json'].join(EOL), { encoding: 'utf8' });
+        await copyFile(path.join(__dirname, '../../templates/newmodule/.gitignore'), context.params.name + '/.gitignore');
+        await copyFile(path.join(__dirname, '../../templates/newmodule/.npmignore'), context.params.name + '/.npmignore');
+        await copyFile(path.join(__dirname, '../../templates/newmodule/src/tsconfig.json'), context.params.name + '/src/tsconfig.json');
+        await copyFile(path.join(__dirname, '../../templates/newmodule/src/server/tsconfig.json'), context.params.name + '/src/server/tsconfig.json');
+        await copyFile(path.join(__dirname, '../../templates/newmodule/src/client/tsconfig.json'), context.params.name + '/src/client/tsconfig.json');
+        await copyFile(path.join(__dirname, '../../templates/newmodule/src/server/index.ts'), context.params.name + '/src/server/index.ts');
 
-        await writeFile(context.params.name + '/.npmignore', ['!dist', 'test'].join(EOL), { encoding: 'utf8' });
-
-        await writeFile(context.params.name + '/src/tsconfig.json', JSON.stringify({
-            "compileOnSave": true,
-            "compilerOptions": {
-                "rootDir": ".",
-                "experimentalDecorators": true,
-                "sourceMap": true,
-                "target": "es6",
-                "moduleResolution": "node",
-                "module": "commonjs",
-                "outDir": "../dist"
-            },
-
-            "exclude": [
-                "node_modules"
-            ]
-        }, null, 4));
-
-        await writeFile(context.params.name + '/src/server/tsconfig.json', JSON.stringify({
-            "compileOnSave": true,
-            "compilerOptions": {
-                "rootDir": ".",
-                "target": "es6",
-                "module": "commonjs",
-                "moduleResolution": "node",
-                "declaration": true
-            }
-        }
-            , null, 4));
-
-        await writeFile(context.params.name + '/src/client/tsconfig.json', JSON.stringify({
-            "compileOnSave": true,
-            "compilerOptions": {
-                "rootDir": ".",
-                "outDir": "../../dist/client",
-                "target": "es6",
-                "module": "commonjs",
-                "moduleResolution": "node",
-                "declaration": true,
-            }
-        }
-            , null, 4));
-
-        await writeFile(context.params.name + '/src/server/index.ts', "import * as akala from '@akala/server';\r\
-import { AssetRegistration } from '@akala-modules/core';\r\
-import { EventEmitter } from 'events';\r\
-\r\
-akala.injectWithName(['$isModule', '$master', '$worker'], function (isModule: akala.worker.IsModule, master: akala.worker.MasterRegistration, worker: EventEmitter)\r\
-{\r\
-    if (isModule('"+ context.params.name + "'))\r\
-    {\r\
-        worker.on('ready', function ()\r\
-        {\r\
-            // Called when all modules have been initialized\r\
-        });\r\
-        master(__filename, './master');\r\
-\r\
-        akala.injectWithName([AssetRegistration.name], function (virtualasset: PromiseLike<AssetRegistration>)\r\
-        {\r\
-            virtualasset.then((va) =>\r\
-            {\r\
-                va.register('/js/tiles.js', require.resolve('../tile'));\r\
-                va.register('/js/routes.js', require.resolve('../routes'));\r\
-            });\r\
-        })();\r\
-\r\
-    }\r\
-})()");
-
-        await npm('init', '-y', '--scope', /@[^\/]+/.exec(context.params.name)[0])
+        if (/@[^\/]+/.test(context.params.name))
+            await npm('init', '-y', '--scope', /@[^\/]+/.exec(context.params.name)[0]);
+        else
+            await npm('init', '-y');
 
         var packagejson = require(process.cwd() + '/' + context.params.name + '/package.json');
         packagejson.main = 'dist/server/index.js';
