@@ -59,24 +59,6 @@ var emptyCallback = function emptyCallback()
     logger('emptycallback');
 };
 
-/**
- * Socket onclose handler for browser WebSocket
- */
-var socketClosed = function socketClosed(this: Connection)
-{
-    delete this.socket.onclose;
-    this.close();
-};
-
-/**
- * Socket onerror handler for browser WebSocket
- */
-var socketError = function socketError(this: Connection)
-{
-    delete this.socket.onerror;
-    this.close();
-};
-
 export function isBrowserSocket(parent: { browser: true }, socket: ws | WebSocket): socket is WebSocket
 export function isBrowserSocket(parent: { browser: false }, socket: ws | WebSocket): socket is WebSocket
 export function isBrowserSocket(parent: { browser: boolean }, socket: ws | WebSocket): socket is WebSocket
