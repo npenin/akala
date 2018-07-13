@@ -9,7 +9,7 @@
   "main": "./lib/index.js",
   "typings": "./lib/index.d.ts",
   "scripts": {
-    "test": "lab -l",
+    "test": "lab -l -m 0",
     "validate": "npm ls",
     "jsdoc": "jsdoc",
     "docs": "jsdoc index.js lib -d docs",
@@ -42,11 +42,12 @@
   "browser": "./browser.js",
   "devDependencies": {
     "@types/assert": "0.0.31",
-    "@types/uuid": "^3.4.2",
-    "@types/ws": "^3.2.0",
     "@types/debug": "0.0.30",
     "@types/node": "^8.0.32",
+    "@types/uuid": "^3.4.2",
+    "@types/ws": "^3.2.0",
     "browserify": "^14.0.0",
+    "bufferutil": "^4.0.0",
     "code": "^5.0.0",
     "eslint": "^4.1.0",
     "eslint-config-andyet": "^2.0.0",
@@ -55,6 +56,7 @@
     "jsdoc": "^3.3.2",
     "lab": "^14.0.1",
     "phantomjs-prebuilt": "^2.1.14",
-    "selenium-webdriver": "^3.0.0"
+    "selenium-webdriver": "^3.0.0",
+    "utf-8-validate": "^5.0.1"
   }
 }

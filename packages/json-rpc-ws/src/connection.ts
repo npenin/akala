@@ -103,17 +103,46 @@ export class Connection
         logger('new Connection to %s', parent.type);
 
         if (isBrowserSocket(parent, socket))
-        {
             socket.onmessage = this.message.bind(this);
-            socket.onclose = socketClosed.bind(this);
-            socket.onerror = socketError.bind(this);
+        else
+            socket.on('message', this.message.bind(this));
+        // this.on('message', this.message.bind(this));
+        this.once('close', this.close.bind(this));
+        this.once('error', this.close.bind(this));
+        // if (isBrowserSocket(parent, socket))
+        // {
+        //     socket.addEventListener('close', socketClosed.bind(this), { once: true });
+        //     socket.addEventListener('error', socketError.bind(this), { once: true });
+        // }
+        // else
+        // {
+        //     socket.once('close', this.close.bind(this));
+        //     socket.once('error', this.close.bind(this));
+        // }
+    }
+
+    public on(event: 'message', handler: (ev: MessageEvent) => void): void
+    public on(event: 'error', handler: (ev: Event) => void): void
+    public on(event: 'close', handler: (ev: CloseEvent) => void): void
+    public on(event: 'message' | 'error' | 'close', handler: (ev?: any) => void): void
+    {
+        if (isBrowserSocket(this.parent, this.socket))
+            this.socket.addEventListener(event, handler);
+        else
+            this.socket.addEventListener(event, handler);
+    }
+
+    public once(event: 'message', handler: (ev: MessageEvent) => void): void
+    public once(event: 'error', handler: (ev: Event) => void): void
+    public once(event: 'close', handler: (ev: CloseEvent) => void): void
+    public once(event: 'message' | 'error' | 'close', handler: (ev?: any) => void): void
+    {
+        if (isBrowserSocket(this.parent, this.socket))
+        {
+            this.socket.addEventListener(event, handler, { once: true });
         }
         else
-        {
-            socket.on('message', this.message.bind(this));
-            socket.once('close', this.close.bind(this));
-            socket.once('error', this.close.bind(this));
-        }
+            this.socket.once(event, handler);
     }
 
     public id = uuid();
@@ -310,14 +339,20 @@ export class Connection
                 result.pipe(pt);
                 pt.on('data', function (chunk)
                 {
-                    if (Buffer.isBuffer(chunk))
-                        self.sendResult(id, undefined, { event: 'data', isBuffer: true, data: chunk.toJSON() });
+                    if (self.socket.readyState == ws.OPEN)
+                        if (Buffer.isBuffer(chunk))
+                            self.sendResult(id, undefined, { event: 'data', isBuffer: true, data: chunk.toJSON() });
+                        else
+                            self.sendResult(id, undefined, { event: 'data', isBuffer: false, data: chunk });
                     else
-                        self.sendResult(id, undefined, { event: 'data', isBuffer: false, data: chunk });
+                        logger('socket was closed before endof stream')
                 });
                 pt.on('end', function ()
                 {
-                    self.sendResult(id, undefined, { event: 'end' });
+                    if (self.socket.readyState == ws.OPEN)
+                        self.sendResult(id, undefined, { event: 'end' });
+                    else
+                        logger('socket was closed before end of stream')
                 });
             }
         }
@@ -411,6 +446,7 @@ export class Connection
         logger('close');
         if (error && error !== 1000)
         {
+            debugger;
             logger('close error %s', error.stack || error);
         }
         this.parent.disconnected(this); //Tell parent what went on so it can track connections
