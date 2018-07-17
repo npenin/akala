@@ -50,7 +50,7 @@ export interface Logger
     [key: string]: corelog.IDebugger
 }
 
-export var logger: Logger = new Proxy(<Logger><any>function (rootNamespace: string): Logger
+export var logger: Logger & ((rootNamespace: string) => Logger) = <any>new Proxy(function (rootNamespace: string): Logger
 {
     return new Proxy({}, {
         get: function (target, prop)
@@ -67,7 +67,7 @@ export var logger: Logger = new Proxy(<Logger><any>function (rootNamespace: stri
                 target[prop] = log(prop);
             return Reflect.get(target, prop);
         }
-    })
+    });
 
 export function log(namespace: string)
 {
