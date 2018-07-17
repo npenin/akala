@@ -47,20 +47,29 @@ export var logger: {
     debug?: corelog.IDebugger,
     info?: corelog.IDebugger,
     [key: string]: corelog.IDebugger
-} = new Proxy({}, {
-    get: function (target, prop)
-    {
-        if (!Reflect.has(target, prop))
-            target[prop] = log(prop.toString());
-        return target[prop];
-    }
-})
+} = new Proxy(function (rootNamespace: string)
+{
+    return new Proxy({}, {
+        get: function (target, prop)
+        {
+            if (!Reflect.has(target, prop))
+                target[prop] = log(prop.toString() + ':' + rootNamespace);
+            return target[prop];
+        }
+    })
+}, {
+        get: function (target, prop)
+        {
+            if (!Reflect.has(target, prop))
+                target[prop] = log(prop.toString());
+            return target[prop];
+        }
+    })
 
 export function log(namespace: string)
 {
-    if (cluster.isWorker)
+    if (!cluster.isMaster)
     {
-
         var customOutput = customOutputs.find(o => namespace.startsWith(o + ':'));
         if (customOutput)
             namespace = namespace.substring((customOutput + ':').length);
