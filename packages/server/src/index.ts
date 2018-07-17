@@ -40,29 +40,32 @@ import { isError } from 'util';
 
 let customOutputs = ['error', 'warn', 'verbose', 'debug', 'info']
 
-export var logger: {
+export interface Logger
+{
     error?: corelog.IDebugger,
     warn?: corelog.IDebugger,
     verbose?: corelog.IDebugger,
     debug?: corelog.IDebugger,
     info?: corelog.IDebugger,
     [key: string]: corelog.IDebugger
-} = new Proxy(function (rootNamespace: string)
+}
+
+export var logger: Logger = new Proxy(<Logger><any>function (rootNamespace: string): Logger
 {
     return new Proxy({}, {
         get: function (target, prop)
         {
-            if (!Reflect.has(target, prop))
-                target[prop] = log(prop.toString() + ':' + rootNamespace);
-            return target[prop];
+            if (!Reflect.has(target, prop) && typeof (prop) == 'string')
+                target[prop] = log(prop + ':' + rootNamespace);
+            return Reflect.get(target, prop);
         }
     })
 }, {
         get: function (target, prop)
         {
-            if (!Reflect.has(target, prop))
-                target[prop] = log(prop.toString());
-            return target[prop];
+            if (!Reflect.has(target, prop) && typeof (prop) == 'string')
+                target[prop] = log(prop);
+            return Reflect.get(target, prop);
         }
     })
 
