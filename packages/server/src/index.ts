@@ -83,7 +83,12 @@ export function log(namespace: string)
         if (moduleNamespace[0] == ':')
             moduleNamespace = moduleNamespace.substring(1);
         if (customOutput)
-            moduleNamespace = customOutput + ':' + moduleNamespace;
+        {
+            if (namespace == moduleNamespace)
+                namespace = moduleNamespace = customOutput + ':' + moduleNamespace;
+            else
+                moduleNamespace = customOutput + ':' + moduleNamespace;
+        }
         if (!namespace.startsWith(moduleNamespace))
             namespace = moduleNamespace + ':' + namespace;
     }
