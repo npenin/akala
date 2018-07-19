@@ -84,7 +84,7 @@ export function log(namespace: string)
             moduleNamespace = moduleNamespace.substring(1);
         if (customOutput)
         {
-            if (namespace == moduleNamespace)
+            if (namespace == moduleNamespace || customOutput == namespace)
                 namespace = moduleNamespace = customOutput + ':' + moduleNamespace;
             else
                 moduleNamespace = customOutput + ':' + moduleNamespace;
