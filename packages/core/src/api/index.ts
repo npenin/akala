@@ -27,30 +27,46 @@ export function server<TConnection extends jsonrpc.Connection, TServerOneWay, TS
 {
     return function (impl: new () => TServerOneWay & TServerTwoWay)
     {
-        each(config, function (cfg, key)
-        {
-            if (cfg === false)
-                return;
-            var builderCtor = module('$api').resolve(key as string);
-            if (builderCtor)
-            {
-                var builder = new builderCtor(api) as IServerBuilder<any, TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>;
-                if (builder.createServer)
-                    builder.createServer(cfg, new impl());
-            }
-        })
+        var implInstance = new impl();
+        buildServer(api, config, implInstance);
+        return implInstance;
     }
+}
+
+export function buildServer<TConnection extends jsonrpc.Connection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy extends TServerOneWay, TServerTwoWayProxy extends TServerTwoWay, TClientOneWayProxy extends TClientOneWay, TClientTwoWayProxy extends TClientTwoWay>(api: Api<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>, config, implInstance: TServerOneWay & TServerTwoWay)
+{
+    each(config, function (cfg, key)
+    {
+        if (cfg === false)
+            return;
+        var builderCtor = module('$api').resolve(key as string);
+        if (builderCtor)
+        {
+            var builder = new builderCtor(api) as IServerBuilder<any, TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>;
+            if (builder.createServer)
+                builder.createServer(cfg, implInstance);
+        }
+    })
 }
 
 export function client<TConnection extends jsonrpc.Connection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy extends TServerOneWay, TServerTwoWayProxy extends TServerTwoWay, TClientOneWayProxy extends TClientOneWay, TClientTwoWayProxy extends TClientTwoWay>(api: Api<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>, config)
 {
     return function (impl: new () => TClientOneWay & TClientTwoWay)
     {
-        each(config, function (cfg, key)
-        {
-            createClient(key as string, api, cfg, new impl());
-        })
+        var implInstance = new impl();
+        buildClient(api, config, implInstance);
+        return implInstance;
     }
+}
+
+export function buildClient<TConnection extends jsonrpc.Connection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy extends TServerOneWay, TServerTwoWayProxy extends TServerTwoWay, TClientOneWayProxy extends TClientOneWay, TClientTwoWayProxy extends TClientTwoWay>(api: Api<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>, config, implInstance: TClientOneWay & TClientTwoWay)
+{
+    each(config, function (cfg, key)
+    {
+        if (cfg === false)
+            return;
+        createClient(key as string, api, cfg, implInstance);
+    })
 }
 
 export function createServerProxy<T, TConnection,
