@@ -6,7 +6,6 @@ import './translator';
 export { router, wrouter, Request, Response, HttpRouter, CallbackResponse } from './router';
 export * from './helpers/mkdirp';
 
-export { server, client } from '@akala/core';
 export { Http } from './http'
 import * as worker from './worker-meta'
 export { worker };
@@ -29,7 +28,8 @@ export
     DualApi,
     JsonRpcWs,
     Rest,
-    introspect
+    introspect,
+    server, client, buildServer, buildClient
 } from '@akala/core';
 import * as st from 'serve-static';
 export { st as static };
