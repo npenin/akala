@@ -1,4 +1,4 @@
-import { Injector, injectWithName, NextFunction, log, isPromiseLike, module, Api } from '@akala/core';
+import { Injector, injectWithName, NextFunction, log, isPromiseLike, module, Api, api as coreApi } from '@akala/core';
 import { Response, Methods, requestHandlerWithNext, errorHandlerWithNext, Router } from '../router';
 import { WorkerInjector, Request, Callback } from '../worker-meta'
 import * as jsonrpc from '@akala/json-rpc-ws'
@@ -84,18 +84,23 @@ export function command<T extends Function>($inject: string[], f: T)
     }
 }
 
-
-export var api = {
-    jsonrpcws<TConnection extends jsonrpc.Connection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy extends TServerOneWay, TServerTwoWayProxy extends TServerTwoWay, TClientOneWayProxy extends TClientOneWay, TClientTwoWayProxy extends TClientTwoWay>(api: Api<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>)
+export namespace api
+{
+    export function jsonrpcws<TConnection extends jsonrpc.Connection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy extends TServerOneWay, TServerTwoWayProxy extends TServerTwoWay, TClientOneWayProxy extends TClientOneWay, TClientTwoWayProxy extends TClientTwoWay>(api: Api<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>)
         : JsonRpcWs<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>
     {
         return new (module('$api').resolve('jsonrpcws'))(api);
-    },
-    rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy extends TServerOneWay, TServerTwoWayProxy extends TServerTwoWay, TClientOneWayProxy extends TClientOneWay, TClientTwoWayProxy extends TClientTwoWay>(api: Api<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>)
+    }
+    export function rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy extends TServerOneWay, TServerTwoWayProxy extends TServerTwoWay, TClientOneWayProxy extends TClientOneWay, TClientTwoWayProxy extends TClientTwoWay>(api: Api<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>)
         : Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>
     {
         return new (module('$api').resolve('rest'))(api);
     }
+
+    export type ServerProxy<T extends Api<any, any, any, any, any, any, any, any, any>> = coreApi.ServerProxy<T>;
+    export type Server<T extends Api<any, any, any, any, any, any, any, any, any>> = coreApi.Server<T>;
+    export type ClientProxy<T extends Api<any, any, any, any, any, any, any, any, any>> = coreApi.ClientProxy<T>;
+    export type Client<T extends Api<any, any, any, any, any, any, any, any, any>> = coreApi.Client<T>;
 }
 
 export function registerCommandsIn(folder: string)
