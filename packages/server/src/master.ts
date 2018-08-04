@@ -99,11 +99,11 @@ akala.register('$preAuthenticationRouter', preAuthenticatedRouter);
 akala.register('$authenticationRouter', authenticationRouter);
 akala.register('$router', lateBoundRoutes);
 var masterRouter = router();
-masterRouter.use((req, res, next) =>
+masterRouter.use((req, ...rest) =>
 {
     var requestInjector = new WorkerInjectorImpl(req as any);
     Object.defineProperty(req, 'injector', { value: requestInjector, enumerable: false, configurable: false, writable: false });
-    next();
+    rest[rest.length - 1]();
 })
 masterRouter.use(preAuthenticatedRouter.router);
 masterRouter.use(authenticationRouter.router);
