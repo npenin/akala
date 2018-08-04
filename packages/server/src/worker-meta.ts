@@ -56,7 +56,7 @@ export interface WorkerInjector extends akala.Injector
 }
 const masterPrefixes = ['header', 'route', 'query', 'body'];
 
-class WorkerInjectorImpl extends akala.Injector
+export class WorkerInjectorImpl extends akala.Injector
 {
     constructor(private request: Request)
     {
