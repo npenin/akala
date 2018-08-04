@@ -4,7 +4,9 @@ import * as akala from '@akala/core';
 export interface IScope<T> extends akala.IWatched
 {
     $new<U>(): IScope<U>;
-    $set<U extends keyof T>(expression: U | string, value: T[U] | any);
+    $set<U extends Exclude<keyof T, number | symbol>>(expression: U, value: T[U]);
+    $set(expression: string, value: any);
+    $set(expression: string, value: any);
     $watch(expression: string, handler: (value: any) => void);
     $inject(f: Function);
     $bind(expression: string): akala.Binding;
