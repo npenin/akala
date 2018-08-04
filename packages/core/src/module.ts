@@ -45,6 +45,11 @@ export class Module extends di.Injector
         this.emitter.on('run', di.injectWithName(toInject, f));
     }
 
+    public runAsync(toInject: string[], f: di.Injectable<any>)
+    {
+        this.emitter.on('run', function () { di.injectWithNameAsync(toInject, f) });
+    }
+
     public init(toInject: string[], f: di.Injectable<any>)
     {
         if (!toInject || toInject.length == 0)

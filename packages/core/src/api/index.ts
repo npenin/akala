@@ -24,10 +24,10 @@ export namespace api
         return new (module('$api').resolve('rest'))(api);
     }
 
+    export type Server<T extends Api<any, any, any, any, any, any, any, any, any>> = T extends Api<any, infer OW, infer TW, any, any, any, any, any, any> ? OW & TW : any;
+    export type Client<T extends Api<any, any, any, any, any, any, any, any, any>> = T extends Api<any, any, any, infer OW, infer TW, any, any, any, any> ? OW & TW : any;
     export type ServerProxy<T extends Api<any, any, any, any, any, any, any, any, any>> = T extends Api<any, any, any, any, any, infer OW, infer TW, any, any> ? OW & TW : any;
-    export type Server<T extends Api<any, any, any, any, any, any, any, any, any>> = T extends Api<infer OW, infer TW, any, any, any, any, any, any, any> ? OW & TW : any;
     export type ClientProxy<T extends Api<any, any, any, any, any, any, any, any, any>> = T extends Api<any, any, any, any, any, any, any, infer OW, infer TW> ? OW & TW : any;
-    export type Client<T extends Api<any, any, any, any, any, any, any, any, any>> = T extends Api<any, infer OW, infer TW, any, any, any, any, any, any> ? OW & TW : any;
 
 }
 
