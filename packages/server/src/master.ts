@@ -19,6 +19,7 @@ import * as Orchestrator from 'orchestrator';
 import * as sequencify from 'sequencify';
 import { meta } from './api/jsonrpc';
 import { promisify } from 'util'
+import { WorkerInjectorImpl } from './worker-meta';
 
 var master = new EventEmitter();
 master.setMaxListeners(Infinity);
@@ -98,6 +99,11 @@ akala.register('$preAuthenticationRouter', preAuthenticatedRouter);
 akala.register('$authenticationRouter', authenticationRouter);
 akala.register('$router', lateBoundRoutes);
 var masterRouter = router();
+masterRouter.use((req, res, next) =>
+{
+    new WorkerInjectorImpl(req as any);
+    next();
+})
 masterRouter.use(preAuthenticatedRouter.router);
 masterRouter.use(authenticationRouter.router);
 masterRouter.use(lateBoundRoutes.router);
