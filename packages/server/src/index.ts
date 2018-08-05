@@ -6,7 +6,8 @@ import './translator';
 export { router, wrouter, Request, Response, HttpRouter, CallbackResponse } from './router';
 export * from './helpers/mkdirp';
 
-export { Http } from './http'
+import './http'
+export * from './http'
 import * as worker from './worker-meta'
 export { worker };
 import * as master from './master-meta';
