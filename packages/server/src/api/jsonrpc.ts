@@ -63,18 +63,25 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection, TServerOneWay, TS
                     server.expose(serverKey as string, function (params, reply)
                     {
                         log('receiving ' + serverKey + ' with %o', params);
-                        var result = (<any>serverImpl[serverKey])(params, this);
-                        if (akala.isPromiseLike(result))
-                            result.then(function (value)
-                            {
-                                log('replying with %o', value);
-                                reply(null, value);
-                            }, function (reason)
+                        try
+                        {
+                            var result = (<any>serverImpl[serverKey])(params, this);
+                            if (akala.isPromiseLike(result))
+                                result.then(function (value)
                                 {
-                                    reply(reason);
-                                });
-                        else
-                            reply(null, result);
+                                    log('replying with %o', value);
+                                    reply(null, value);
+                                }, function (reason)
+                                    {
+                                        reply(reason);
+                                    });
+                            else
+                                reply(null, result);
+                        }
+                        catch (e)
+                        {
+                            reply({ message: e.message, stack: e.stack, argv: process.argv });
+                        }
                     })
             });
 
@@ -84,18 +91,26 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection, TServerOneWay, TS
                     server.expose(serverKey as string, function (params, reply)
                     {
                         log('receiving ' + serverKey + ' with %o', params);
-                        var result = (<any>serverImpl[serverKey])(params, this);
-                        if (akala.isPromiseLike(result))
-                            result.then(function (value)
-                            {
-                                log('replying with %o', value);
-                                reply(null, value);
-                            }, function (reason)
+                        try
+                        {
+
+                            var result = (<any>serverImpl[serverKey])(params, this);
+                            if (akala.isPromiseLike(result))
+                                result.then(function (value)
                                 {
-                                    reply(reason);
-                                });
-                        else
-                            reply(null, result)
+                                    log('replying with %o', value);
+                                    reply(null, value);
+                                }, function (reason)
+                                    {
+                                        reply(reason);
+                                    });
+                            else
+                                reply(null, result)
+                        }
+                        catch (e)
+                        {
+                            reply({ message: e.message, stack: e.stack, argv: process.argv });
+                        }
                     });
             });
 
@@ -139,6 +154,6 @@ export var meta = new Api()
     .serverToClientOneWay<void>()({ 'after-master': true, ready: true })
     .clientToServer<{ module: string }, { config: any, workers: any[] }>()({ module: true })
     .clientToServerOneWay<any>()({ updateConfig: true })
-    .clientToServer<{key:string}, any>()({ getConfig: true })
+    .clientToServer<{ key: string }, any>()({ getConfig: true })
     .clientToServerOneWay<{ masterPath?: string, workerPath?: string }>()({ master: true })
     ;
