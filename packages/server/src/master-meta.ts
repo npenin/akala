@@ -1,5 +1,5 @@
 import * as akala from '@akala/core'
-import * as router from './router2';
+import * as router from './router';
 import * as debug from 'debug';
 import * as jsonrpc from '@akala/json-rpc-ws'
 import * as ws from 'ws'
@@ -16,7 +16,7 @@ import { api } from '.';
 var log = debug('akala:master');
 
 var httpRouter = router.HttpRouter;
-type request = router.Request;
+type request = router.Request & { body?: any };
 type response = router.Response;
 export { httpRouter as Router, request as Request, response as Response };
 

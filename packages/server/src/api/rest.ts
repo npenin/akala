@@ -20,12 +20,12 @@ function buildParam(req: master.Request | worker.Request, config: RestConfig<any
             return req.params;
         default:
             if (typeof (config.param) == 'string')
-                return req.injector.resolve(config.param);
+                return (req.injector as akala.Injector).resolve(config.param);
             let result: any = {};
             let url = parse(req.url, true);
             akala.each(config.param, function (value, key)
             {
-                result[key] = req.injector.resolve(value as string);
+                result[key] = (req.injector as akala.Injector).resolve(value as string);
             })
             return result;
     }
@@ -62,7 +62,7 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
             {
                 if (!config.rest)
                     return;
-                router[config.rest && config.rest.method || 'get'](config.rest.url, function (req: worker.Request | master.Request, res: worker.CallbackResponse | master.Response)
+                router[config.rest && config.rest.method || 'get'](config.rest.url, function (req: worker.Request | master.Request, res: akala.NextFunction | master.Response)
                 {
                     log('receiving ' + serverKey + ' with %o', req);
                     if (!req.injector)
@@ -156,13 +156,13 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
                         result.then(function (value)
                         {
                             log('replying with %o', value);
-                            req.injector.resolve('$callback')(value);
+                            (req.injector as akala.Injector).resolve('$callback')(value);
                         }, function (reason)
                             {
-                                req.injector.resolve('$callback')(500, reason);
+                                (req.injector as akala.Injector).resolve('$callback')(500, reason);
                             });
                     else
-                        req.injector.resolve('$callback')(result);
+                        (req.injector as akala.Injector).resolve('$callback')(result);
                 })
             });
 
@@ -264,13 +264,13 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
                         result.then(function (value)
                         {
                             log('replying with %o', value);
-                            req.injector.resolve('$callback')(value);
+                            (req.injector as akala.Injector).resolve('$callback')(value);
                         }, function (reason)
                             {
-                                req.injector.resolve('$callback')(500, reason);
+                                (req.injector as akala.Injector).resolve('$callback')(500, reason);
                             });
                     else
-                        req.injector.resolve('$callback')(result);
+                        (req.injector as akala.Injector).resolve('$callback')(result);
                 })
             });
 
