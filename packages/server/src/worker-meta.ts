@@ -58,7 +58,7 @@ const masterPrefixes = ['header', 'route', 'query', 'body'];
 
 export class WorkerInjectorImpl extends akala.Injector
 {
-    constructor(private request: Request)
+    constructor(private request: BaseRequest & { body?: any })
     {
         super();
     }

@@ -58,6 +58,7 @@ export interface Request extends http.IncomingMessage
     path: string;
     protocol: string;
     injector?: Injector;
+    body?: any;
 }
 export interface Response extends http.ServerResponse
 {
