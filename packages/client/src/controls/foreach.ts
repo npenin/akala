@@ -82,15 +82,16 @@ export class ForEach extends Control<ForeachParameter | string>
                 });
                 source = source.array;
             }
-            akala.each(source, function (value, key)
-            {
-                var scope = target.$new();
-                if (parsedParam.key)
-                    scope[parsedParam.key] = key;
-                if (parsedParam.value)
-                    scope[parsedParam.value] = value;
-                parent.appendChild(self.clone(element, scope, true));
-            });
+            if (source)
+                akala.each(source, function (value, key)
+                {
+                    var scope = target.$new();
+                    if (parsedParam.key)
+                        scope[parsedParam.key] = key;
+                    if (parsedParam.value)
+                        scope[parsedParam.value] = value;
+                    parent.appendChild(self.clone(element, scope, true));
+                });
             return result;
         }
 
