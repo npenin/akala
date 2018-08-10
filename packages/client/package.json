@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
     "build": "tsc -p src && browserify -r ./dist/index.js:@akala/client -o akala.js -r @akala/core",
-    "prepublishOnly": "tsc -p src && browserify -r ./dist/index.js:@akala/client -o akala.js -r @akala/core"
+    "prepublishOnly": "tsc -p src && browserify -r ./dist/index.js:@akala/client -r @akala/json-rpc-ws -o akala.js -r @akala/core"
   },
   "files": [
     "dist",
