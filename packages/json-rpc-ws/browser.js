@@ -1,6 +1,6 @@
 'use strict';
 
-var BrowserClient = require('./lib/browser').Client;
+var BrowserClient = require('./lib/browser').default;
 var Errors = require('./lib/errors').default;
 var logger = require('debug')('json-rpc-ws');
 
