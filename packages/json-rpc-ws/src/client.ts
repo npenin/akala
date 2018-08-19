@@ -8,6 +8,6 @@ export default class Client<TConnection extends Connection> extends ClientBase<T
 {
     constructor()
     {
-        super(WebSocket, false);
+        super(function (address: string) { return new WebSocket(address); }, false);
     }
 }

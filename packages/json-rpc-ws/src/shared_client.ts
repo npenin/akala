@@ -11,7 +11,7 @@ export type SocketType = ws | WebSocket;
 
 export default class Client<TClientConnection extends Connection> extends Base<TClientConnection>
 {
-  constructor(private socketConstructor: new (address: string) => SocketType, browser: boolean)
+  constructor(private socketConstructor: (address: string) => SocketType, browser: boolean)
   {
     super('client');
     logger('new Client');
@@ -33,7 +33,7 @@ export default class Client<TClientConnection extends Connection> extends Base<T
     assert(!this.isConnected(), 'Already connected');
     var self = this;
     var opened = false;
-    var socket = this.socket = new this.socketConstructor(address);
+    var socket = this.socket = this.socketConstructor(address);
     if (isBrowserSocket(this, socket))
     {
       socket.onerror = function onerror(err)
