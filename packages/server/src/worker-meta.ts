@@ -11,6 +11,8 @@ const log = akala.log('akala:worker');
 
 export { CallbackResponse }
 
+export var createClient: <TConnection extends jsonrpc.Connection>(namespace: string): PromiseLike<jsonrpc.Client<TConnection>> = akala.resolve('$agent');
+
 export type MasterRegistration = (from?: string, masterPath?: string, workerPath?: string) => void;
 export type IsModule = (moduleName: string) => boolean;
 
