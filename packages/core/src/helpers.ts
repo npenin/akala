@@ -53,7 +53,7 @@ export interface Translator
 }
 
 
-export function createClient<TConnection extends jsonrpc.Connection>(namespace: string): PromiseLike<jsonrpc.Client<TConnection>>
+function createClient<TConnection extends jsonrpc.Connection>(namespace: string): PromiseLike<jsonrpc.Client<TConnection>>
 {
     var client = jsonrpc.createClient<TConnection>();
     var resolveUrl: (url: string) => string = resolve('$resolveUrl');
