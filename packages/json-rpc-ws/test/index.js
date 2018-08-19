@@ -347,7 +347,7 @@ describe('json-rpc ws', () =>
       });
     });
 
-    it('works in browser', () =>
+    it('works in browser', { skip: true }, () =>
     {
 
       const driver = new Webdriver.Builder().forBrowser('phantomjs').build();
