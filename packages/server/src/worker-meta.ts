@@ -11,29 +11,6 @@ const log = akala.log('akala:worker');
 
 export { CallbackResponse }
 
-akala.register('$agent', akala.chain(createClient, function (keys, key: string)
-{
-    keys.push(key);
-    return keys;
-}))
-
-export function createClient<TConnection extends jsonrpc.Connection>(namespace: string): PromiseLike<jsonrpc.Client<TConnection>>
-{
-    var client = jsonrpc.createClient<TConnection>();
-    var resolveUrl: (url: string) => string = akala.resolve('$resolveUrl');
-    if (!resolveUrl)
-        throw new Error('no url resolver could be found');
-    log('creating client to ' + resolveUrl(namespace));
-    return new Promise<jsonrpc.Client<TConnection>>((resolve, reject) =>
-    {
-        client.connect(resolveUrl(namespace), function ()
-        {
-            resolve(client);
-        });
-    });
-}
-
-
 export type MasterRegistration = (from?: string, masterPath?: string, workerPath?: string) => void;
 export type IsModule = (moduleName: string) => boolean;
 
