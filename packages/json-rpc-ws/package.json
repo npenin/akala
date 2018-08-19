@@ -1,6 +1,6 @@
 {
   "name": "@akala/json-rpc-ws",
-  "version": "4.1.27",
+  "version": "7.0.0",
   "repository": {
     "type": "git",
     "url": "git@github.com:npenin/json-rpc-ws.git"
@@ -9,7 +9,8 @@
   "main": "./lib/index.js",
   "typings": "./lib/index.d.ts",
   "scripts": {
-    "test": "lab -l -m 0",
+    "test": "lab -a code -v -e test",
+    "lint": "eslint .",
     "validate": "npm ls",
     "jsdoc": "jsdoc",
     "docs": "jsdoc index.js lib -d docs",
@@ -32,6 +33,7 @@
   },
   "pre-commit": [
     "validate",
+    "lint",
     "test"
   ],
   "files": [

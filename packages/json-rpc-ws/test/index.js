@@ -1,258 +1,231 @@
 'use strict';
 
-/*eslint func-names: 0*/
-var Code = require('code');
-var Lab = require('lab');
-var WS = require('ws');
-var debug = require('debug');
-var JsonRpcWs = require('../');
-var Browserify = require('browserify');
-var selenium = require('selenium-webdriver');
-var fs = require('fs');
+const Code = require('code');
+const Lab = require('lab');
+const WS = require('ws');
+const JsonRpcWs = require('../');
+const Browserify = require('browserify');
+const Webdriver = require('selenium-webdriver');
 
-// debug.enable('json-rpc-ws');
+const lab = exports.lab = Lab.script();
+const { expect } = Code;
+const { describe, it, after, before } = lab;
 
 Code.settings.truncateMessages = false;
-var lab = exports.lab = Lab.script();
 
-lab.experiment('json-rpc ws', function ()
+describe('json-rpc ws', () =>
 {
 
-  var server = JsonRpcWs.createServer();
-  var client = JsonRpcWs.createClient();
-  var delayBuffer = [];
+  const server = JsonRpcWs.createServer();
+  const client = JsonRpcWs.createClient();
+  //const delayBuffer = [];
 
-  lab.before(function ()
+  before(() =>
   {
-    return new Promise((done, reject) =>
+
+    server.expose('reflect', function reflectReply(params, reply)
     {
-      server.expose('reflect', function (params, reply)
-      {
-        reply(null, params || 'empty');
-      });
-      server.expose('delay', function (params, reply)
-      {
 
-        var last;
-        if (delayBuffer.length > 0)
-        {
-          last = delayBuffer.pop();
-          last[1](null, last[0][0]);
-        }
-        delayBuffer.push(arguments);
-      });
-      server.expose('error', function (params, reply)
-      {
+      reply(null, params || 'empty');
+    });
+    server.expose('error', function errorReply(params, reply)
+    {
 
-        reply('error', null);
-      });
-      server.expose('browserClient', function (params, reply)
-      {
+      reply('error', null);
+    });
+    server.expose('browserClient', function browserReply(params, reply)
+    {
 
-        reply(null, this.id);
-      });
+      reply(null, this.id);
+    });
+
+    return new Promise((resolve) =>
+    {
 
       server.start({ host: 'localhost', port: 8081 }, function ()
       {
 
-        client.connect('ws://localhost:8081', done);
+        client.connect('ws://localhost:8081', resolve);
       });
     });
   });
 
-  lab.after(function ()
+  after(() =>
   {
-    return new Promise((done, reject) =>
+
+    return new Promise((resolve) =>
     {
+
       client.disconnect(function ()
       {
 
         server.stop();
-        done();
+        resolve();
       });
     });
   });
 
-  lab.test('client has an id', function (done)
+  it('client has an id', () =>
   {
-    Code.expect(client.id).to.not.equal(undefined);
+
+    expect(client.id).to.exist();
   });
 
-  lab.test('reflecting handler', function ()
+  it('reflecting handler', () =>
   {
-    return new Promise((done, reject) =>
-    {
-      client.send('reflect', ['test one'], function (error1, reply1)
+
+    return Promise.all([
+      new Promise((resolve) =>
       {
 
-        Code.expect(error1).to.equal(undefined);
-        Code.expect(reply1).to.have.length(1);
-        Code.expect(reply1[0]).to.equal('test one');
+        client.send('reflect', ['test one'], function (error1, reply1)
+        {
+
+          expect(error1).to.not.exist();
+          expect(reply1).to.have.length(1);
+          expect(reply1[0]).to.equal('test one');
+          resolve();
+        });
+      }),
+      new Promise((resolve) =>
+      {
+
         client.send('reflect', ['test two'], function (error2, reply2)
         {
 
-          Code.expect(error2).to.equal(undefined);
-          Code.expect(reply2).to.have.length(1);
-          Code.expect(reply2[0]).to.equal('test two');
-          client.send('reflect', null, function (error3, reply3)
-          {
-
-            Code.expect(error3).to.equal(undefined);
-            Code.expect(reply3).to.equal('empty');
-            client.send('reflect', undefined, function (error4, reply4)
-            {
-
-              Code.expect(error4).to.equal(undefined);
-              Code.expect(reply4).to.equal('empty');
-              done();
-            });
-          });
+          expect(error2).to.not.exist();
+          expect(reply2).to.have.length(1);
+          expect(reply2[0]).to.equal('test two');
+          resolve();
         });
-      });
-    });
+      }),
+      new Promise((resolve) =>
+      {
+
+        client.send('reflect', null, function (error3, reply3)
+        {
+
+          expect(error3).to.not.exist();
+          expect(reply3).to.equal('empty');
+          resolve();
+        });
+      }),
+      new Promise((resolve) =>
+      {
+
+        client.send('reflect', undefined, function (error4, reply4)
+        {
+
+          expect(error4).to.not.exist();
+          expect(reply4).to.equal('empty');
+          resolve();
+        });
+      })
+    ]);
   });
 
-  lab.test('error reply', function ()
+  it('error reply', () =>
   {
-    return new Promise((done, reject) =>
+
+    return new Promise((resolve) =>
     {
+
       client.send('error', null, function (error, reply)
       {
 
-        Code.expect(reply).to.equal(undefined);
-        Code.expect(error).to.equal('error');
-        done();
+        expect(reply).to.not.exist();
+        expect(error).to.equal('error');
+        resolve();
       });
     });
   });
 
-  lab.test('delay handler', function ()
+  it('cannot register duplicate handler', () =>
   {
-    return new Promise((done, reject) =>
+
+    const throws = () =>
     {
-      var counter = 0;
-      client.send('delay', ['test one'], function (error, reply)
+
+      server.expose('reflect', function (params, reply)
       {
 
-        Code.expect(counter).to.equal(0);
-        counter = counter + 1;
-        Code.expect(reply).to.equal('test one');
+        reply();
       });
-      client.send('delay', ['test two'], function (error, reply)
-      {
+    };
+    expect(throws).to.throw(Error);
+  });
 
-        Code.expect(counter).to.equal(1);
-        Code.expect(reply).to.equal('test two');
-        done();
-      });
-      client.send('delay', ['test three']);
+  it('hasHandler', () =>
+  {
+
+    expect(server.hasHandler('reflect')).to.equal(true);
+    expect(server.hasHandler('nonexistant')).to.equal(false);
+  });
+
+
+  it('connectionId', () =>
+  {
+
+    let connectionId;
+    server.expose('saveConnection', function saveConnectionReply(params, reply)
+    {
+
+      expect(this.id).to.exist();
+      connectionId = this.id;
+      reply(null, 'ok');
     });
-  });
 
-  lab.test('cannot register duplicate handler', function ()
-  {
-    return new Promise((done, reject) =>
+    client.expose('info', function infoReply(params, reply)
     {
-      Code.expect(function ()
-      {
 
-        server.expose('reflect', function (params, reply)
-        {
-
-          reply();
-        });
-      }).to.throw(Error);
-      done();
+      expect(params).to.not.exist();
+      reply(null, 'info ok');
     });
-  });
-
-  lab.test('hasHandler', function ()
-  {
-    Code.expect(server.hasHandler('reflect')).to.equal(true);
-    Code.expect(server.hasHandler('nonexistant')).to.equal(false);
-  });
-
-  lab.test('connection Ids', function ()
-  {
-    return new Promise((done, reject) =>
+    return new Promise((resolve) =>
     {
-      var connectionId;
-      server.expose('saveConnection', function (params, reply)
-      {
 
-        Code.expect(this.id).to.not.equal(undefined);
-        connectionId = this.id;
-        reply(null, 'ok');
-      });
-      client.expose('info', function (params, reply)
-      {
-
-        Code.expect(params).to.equal(undefined);
-        reply(null, 'info ok');
-      });
       client.send('saveConnection', null, function ()
       {
 
-        Code.expect(connectionId).to.not.equal(undefined);
-        Code.expect(server.getConnection(connectionId)).to.not.equal(undefined);
+        expect(connectionId).to.exist();
+        expect(server.getConnection(connectionId)).to.exist();
         server.send(connectionId, 'info', null, function (err, result)
         {
 
-          Code.expect(result).to.equal('info ok');
-          done();
+          expect(err).to.not.exist();
+          expect(result).to.equal('info ok');
+          resolve();
         });
       });
     });
   });
-  lab.test('invalid connection id', function ()
+
+  it('invalid connection id', () =>
   {
-    return new Promise((done, reject) =>
+
+    server.send(0, 'info', undefined); //No callback is ok
+    return new Promise((resolve) =>
     {
-      server.send(0, 'info', undefined); //No callback is ok
+
       server.send(0, 'info', undefined, function (err, result)
       {
 
-        Code.expect(result).to.equal(undefined);
-        Code.expect(err).to.include(['code', 'message']);
-        Code.expect(err.code).to.equal(-32000);
-        done();
-      });
-    });
-
-  });
-  lab.test('stream', function ()
-  {
-    return new Promise((done, reject) =>
-    {
-
-      fs.stat(__filename, function (err, stats)
-      {
-        debugger;
-        client.send('reflect', fs.createReadStream(__filename, { highWaterMark: 128 }), function (err, result)
-        {
-          Code.expect(err).to.be.undefined();
-          var receivedStats = 0;
-          result.on('data', function (chunk)
-          {
-            receivedStats += chunk.length;
-            // console.log(chunk);
-          })
-          result.on('end', function ()
-          {
-            Code.expect(receivedStats).equals(stats.size);
-            console.log('end');
-            done();
-          })
-        })
+        expect(result).to.not.exist();
+        expect(err).to.include(['code', 'message']);
+        expect(err.code).to.equal(-32000);
+        resolve();
       });
     });
   });
-  lab.test('invalid payloads do not throw exceptions', function ()
+
+  it('invalid payloads do not throw exceptions', () =>
   {
-    return new Promise((done, reject) =>
+
+    //This is for code coverage in the message handler to make sure rogue messages won't take the server down.;
+    const socket = new WS('ws://localhost:8081');
+    return new Promise((resolve) =>
     {
-      //This is for code coverage in the message handler to make sure rogue messages won't take the server down.;
-      var socket = new WS('ws://localhost:8081');
+
       socket.on('open', function ()
       {
 
@@ -270,37 +243,39 @@ lab.experiment('json-rpc ws', function ()
         socket.send('{"jsonrpc":"2.0", "error":{"code": -32000, "message":"Server error"}}\n');
         socket.send('{"jsonrpc":"2.0", "id":"asdf", "result":"test"}\n');
         socket.send('[{"jsonrpc":"2.0", "result":"test"},{"jsonrpc":"2.0", "result":"rest"}]');
-        setTimeout(function ()
-        {
-          done();
-        }, 100);
+        setTimeout(resolve, 100);
       });
     });
   });
-  lab.test('client.send', function ()
+
+  it('client.send', () =>
   {
-    return new Promise((done, reject) =>
+
+    //No callback
+    const doesNotThrow = () =>
     {
 
-      //No callback
       client.send('reflect', null); //Valid method
       client.send('nonexistant', null); //Unexposed method
-      Code.expect(function ()
-      {
+    };
 
-        client.send(1, null); //Invalid method
-      }).to.throw(Error);
-      done();
-    });
-  });
-  lab.test('client hangups', function ()
-  {
-    return new Promise((done, reject) =>
+    const throws = () =>
     {
 
-      var clientA = JsonRpcWs.createClient();
-      var clientB = JsonRpcWs.createClient();
-      //With and without callbacks;
+      client.send(1, null); //Invalid method
+    };
+    expect(throws).to.throw(Error);
+    expect(doesNotThrow).to.not.throw();
+  });
+
+  it('client hangups', () =>
+  {
+
+    const clientA = JsonRpcWs.createClient();
+    const clientB = JsonRpcWs.createClient();
+    return new Promise((resolve) =>
+    {
+
       clientA.connect('ws://localhost:8081', function ()
       {
 
@@ -311,140 +286,107 @@ lab.experiment('json-rpc ws', function ()
           {
 
             clientB.disconnect();
-            done();
+            resolve();
           });
         });
-
       });
     });
   });
-  lab.test('server.start without callback', function ()
+
+  it('server.start without callback', () =>
   {
-    return new Promise((done, reject) =>
+
+    const serverA = JsonRpcWs.createServer();
+    serverA.start({ port: 8082 });
+    return new Promise((resolve) =>
     {
-      var serverA = JsonRpcWs.createServer();
-      serverA.start({ port: 8082 });
-      serverA.server.once('listening', done);
+
+      serverA.server.once('listening', resolve);
     });
   });
 
-  lab.test('errors', function ()
+  it('errors', () =>
   {
-    return new Promise((done, reject) =>
-    {
-      var payload;
-      payload = JsonRpcWs.Errors('parseError');
-      Code.expect(payload.id).to.equal(undefined);
-      Code.expect(payload.error).to.include(['code', 'message']);
-      Code.expect(payload.error.data).to.equal(undefined);
-      payload = JsonRpcWs.Errors('parseError', 'a');
-      Code.expect(payload.id).to.equal('a');
-      Code.expect(payload.error).to.include(['code', 'message']);
-      Code.expect(payload.error.data).to.equal(undefined);
-      payload = JsonRpcWs.Errors('parseError', 'b', { extra: 'data' });
-      Code.expect(payload.id).to.equal('b');
-      Code.expect(payload.error).to.include(['code', 'message']);
-      Code.expect(payload.error.data).to.equal({ extra: 'data' });
-      done();
-    });
+
+    let payload;
+    payload = JsonRpcWs.Errors('parseError');
+    expect(payload.id).to.not.exist();
+    expect(payload.error).to.include(['code', 'message']);
+    expect(payload.error.data).to.not.exist();
+    payload = JsonRpcWs.Errors('parseError', 'a');
+    expect(payload.id).to.equal('a');
+    expect(payload.error).to.include(['code', 'message']);
+    expect(payload.error.data).to.not.exist();
+    payload = JsonRpcWs.Errors('parseError', 'b', { extra: 'data' });
+    expect(payload.id).to.equal('b');
+    expect(payload.error).to.include(['code', 'message']);
+    expect(payload.error.data).to.equal({ extra: 'data' });
   });
 
-  lab.experiment('browser', function ()
+  describe('browser', () =>
   {
 
-    var script;
-    lab.before(function ()
+    let script;
+    before(() =>
     {
-      return new Promise((done, reject) =>
+
+      process.env.PATH = `${process.env.PATH}:./node_modules/.bin`;
+      const b = Browserify();
+      b.add('./browser_test.js');
+      return new Promise((resolve) =>
       {
-        var b = Browserify();
-        b.add('./browser_test.js');
-        b.bundle(function (err, buf)
+
+        b.bundle((err, buf) =>
         {
 
-          Code.expect(err).to.not.exist();
+          expect(err).to.not.exist();
           script = buf.toString();
-          done();
+          expect(script).to.exist();
+          resolve();
         });
-
       });
     });
 
-    lab.test.skip('works in browser', { timeout: 700000 }, function ()
+    it('works in browser', () =>
     {
-      return new Promise((done, reject) =>
+
+      const driver = new Webdriver.Builder().forBrowser('phantomjs').build();
+      return new Promise((resolve) =>
       {
-        Code.expect(script).to.not.equal('');
-        //setup custom phantomJS capability
-        var phantomjs_exe = require('phantomjs-prebuilt').path;
-        var customPhantom = selenium.Capabilities.phantomjs();
-        customPhantom.set("phantomjs.binary.path", phantomjs_exe);
 
-        var prefs = new selenium.logging.Preferences();
-        prefs.setLevel(selenium.logging.Type.BROWSER, selenium.logging.Level.ALL);
-        prefs.setLevel(selenium.logging.Type.CLIENT, selenium.logging.Level.ALL);
-        prefs.setLevel(selenium.logging.Type.DRIVER, selenium.logging.Level.ALL);
-        prefs.setLevel(selenium.logging.Type.SERVER, selenium.logging.Level.ALL);
-        var logger = selenium.logging.getLogger();
-        selenium.logging.addConsoleHandler();
-        // logger.addHandler(function ()
-        // {
-        //   console.log(arguments);
-        // })
-        customPhantom.setLoggingPrefs(prefs)
-        //build custom phantomJS driver
-        var driver = new selenium.Builder().
-          withCapabilities(customPhantom).
-          build();
-
-        debugger;
-
+        let x = 0;
         driver.executeScript(script).then(function ()
         {
-          driver.executeScript(function ()
+
+          driver.executeAsyncScript(function ()
           {
-            window.result = null;
+
             var callback = arguments[arguments.length - 1];
-            browserClient.connect('ws://localhost:8081', function ()
+            browserClient.connect('ws://localhost:8081', function connected()
             {
-              window.result = arguments;
-              browserClient.send('browserClient', ['browser', 'client'], function (err, reply)
+
+              browserClient.send('browserClient', ['browser', 'client'], function sendReply(err, reply)
               {
-                window.result = [err, reply];
+
+                callback([err, reply]);
               });
             });
+          }).then((response) =>
+          {
+
+            const err = response[0];
+            const browserId = response[1];
+            expect(browserId).to.not.not.exist();
+            expect(err).to.equal(null);
+            server.send(browserId, 'info', null, function (err, result)
+            {
+
+              expect(err).to.not.exist();
+              expect(result).to.equal('browser');
+              driver.quit();
+              resolve();
+            });
           });
-          driver.wait(function ()
-          {
-            return driver.executeScript(function ()
-            {
-              return window.result != null
-            })
-          }, 10000).then(function ()
-          {
-            debugger;
-            driver.executeScript(function ()
-            {
-              return window.result;
-            }).then(function (response)
-            {
-              console.log('response');
-              var err = response[0];
-              var browserId = response[1];
-              Code.expect(browserId).to.not.equal(undefined);
-              Code.expect(err).to.equal(null);
-              server.send(browserId, 'info', null, function (err, result)
-              {
-                Code.expect(err).to.equal(undefined);
-                Code.expect(result).to.equal('browser');
-                driver.quit();
-                done();
-              });
-            }, function (rejection)
-              {
-                Code.expect(rejection).to.not.exist();
-              });
-          })
         });
       });
     });
