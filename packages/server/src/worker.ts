@@ -6,7 +6,7 @@ import * as jsonrpc from '@akala/json-rpc-ws';
 import * as debug from 'debug';
 import * as path from 'path';
 import { resolve, dirname } from 'path';
-import { createClient, Request, MasterRegistration, Callback, WorkerInjector, handle } from './worker-meta';
+import { Request, MasterRegistration, Callback, WorkerInjector, handle } from './worker-meta';
 import { metaRouter } from './master-meta'
 import { EventEmitter } from 'events'
 import { meta } from './api/jsonrpc';
@@ -32,7 +32,8 @@ akala.register('$router', app);
 
 akala.register('$io', createClient);
 
-createClient('api/' + process.argv[2]).then(function (socket: jsonrpc.Client<jsonrpc.Connection>)
+
+akala.resolve('$agent.api/' + process.argv[2]).then(function (socket: jsonrpc.Client<jsonrpc.Connection>)
 {
     log('worker connected')
     var worker = akala.register('$worker', new EventEmitter());
