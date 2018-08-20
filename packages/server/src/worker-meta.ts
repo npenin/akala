@@ -4,6 +4,7 @@ import * as express from 'express';
 import * as stream from 'stream';
 export { Router, Callback };
 import * as jsonrpc from '@akala/json-rpc-ws'
+import { Connection, Client } from '@akala/json-rpc-ws';
 import * as send from 'send';
 import * as onFinished from 'on-finished';
 import { PayloadDataType } from '@akala/json-rpc-ws';
@@ -11,7 +12,10 @@ const log = akala.log('akala:worker');
 
 export { CallbackResponse }
 
-export var createClient: <TConnection extends jsonrpc.Connection>(namespace: string): PromiseLike<jsonrpc.Client<TConnection>> = akala.resolve('$agent');
+export function createClient<TConnection extends jsonrpc.Connection>(namespace: string): PromiseLike<jsonrpc.Client<TConnection>>
+{
+    return akala.resolve('$agent.' + namespace);
+}
 
 export type MasterRegistration = (from?: string, masterPath?: string, workerPath?: string) => void;
 export type IsModule = (moduleName: string) => boolean;
