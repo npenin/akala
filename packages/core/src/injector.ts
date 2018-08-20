@@ -113,7 +113,7 @@ export class Injector
                     return result.resolve(key);
                 if (isPromiseLike(result))
                     return result.then((result) => { return result[key] });
-                if (result === this.injectables && typeof (result[key]) == 'undefined')
+                if (result === this.injectables && typeof (result[key]) == 'undefined' && this.parent)
                 {
                     return this.parent.resolve(key);
                 }
