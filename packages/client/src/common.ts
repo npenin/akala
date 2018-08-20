@@ -48,7 +48,7 @@ export var serviceModule: core.Module = core.module('akala-services')
 export function resolveUrl(namespace: string)
 {
     var root = document.head.querySelector('base').href;
-    return new URL(namespace, root);
+    return new URL(namespace, root).toString();
 }
 
 core.register('$resolveUrl', resolveUrl)
