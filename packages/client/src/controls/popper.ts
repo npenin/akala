@@ -19,11 +19,11 @@ export class Popper extends BaseControl<popper.PopperOptions>
         {
             parameter.onChanged(function (ev)
             {
-                new popperCl(element, document.querySelector(ev.eventArgs.value.popper), ev.eventArgs.value)
+                new popperCl(element, ev.eventArgs.value)
             })
         }
         else
-            new popperCl(element, document.querySelector(parameter['popper']), akala.Binding.unbindify(parameter))
+            new popperCl(element, element.querySelector(parameter['popper']), akala.Binding.unbindify(parameter))
 
     }
 }
