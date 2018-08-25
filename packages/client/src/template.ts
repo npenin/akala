@@ -3,7 +3,7 @@ import { Control } from './controls/controls'
 import { Scope } from './scope'
 import { service } from './common'
 
-if (MutationObserver)
+if (MutationObserver && false)
 {
     var domObserver = new MutationObserver(function (mutations: MutationRecord[])
     {
@@ -225,7 +225,7 @@ export function applyTemplate(items: ArrayLike<HTMLElement>, data, root?: Elemen
         {
             akala.each(el.querySelectorAll('[data-bind]'), function (el: HTMLElement)
             {
-                var closest = el.parentElement.closest('[data-bind]');
+                var closest = el.parentElement && el.parentElement.closest('[data-bind]');
                 var applyInnerTemplate = !!closest || !root;
                 if (!applyInnerTemplate && root)
                     applyInnerTemplate = applyInnerTemplate || root == closest;
