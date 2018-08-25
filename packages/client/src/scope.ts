@@ -31,7 +31,7 @@ export class Scope<T> implements IScope<T>
     public $inject<T>(f: akala.Injectable<T>)
     {
         var scope = this;
-        if (!this.resolver)
+        if (!this.hasOwnProperty('resolver'))
         {
             this.resolver = new akala.Injector();
             this.resolver.setInjectables(this);
