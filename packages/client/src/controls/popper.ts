@@ -23,7 +23,7 @@ export class Popper extends BaseControl<popper.PopperOptions>
             })
         }
         else
-            new popperCl(element, element.querySelector(parameter['popper']), akala.Binding.unbindify(parameter))
+            new popperCl(element, element.parentElement.querySelector(parameter['popper']), akala.Binding.unbindify(parameter))
 
     }
 }
