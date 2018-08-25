@@ -1,7 +1,9 @@
-import { default as popper } from 'popper.js';
+import * as popper from 'popper.js';
 import { BaseControl, control } from './control';
 import * as akala from '@akala/core';
 import { IScope } from '../scope';
+
+const popperCl: typeof popper.default = <any>popper;
 
 @control()
 export class Popper extends BaseControl<popper.PopperOptions>
@@ -17,11 +19,11 @@ export class Popper extends BaseControl<popper.PopperOptions>
         {
             parameter.onChanged(function (ev)
             {
-                new popper(element, document.querySelector(ev.eventArgs.value.popper), ev.eventArgs.value)
+                new popperCl(element, document.querySelector(ev.eventArgs.value.popper), ev.eventArgs.value)
             })
         }
         else
-            new popper(element, document.querySelector(parameter['popper']), akala.Binding.unbindify(parameter))
+            new popperCl(element, document.querySelector(parameter['popper']), akala.Binding.unbindify(parameter))
 
     }
 }
