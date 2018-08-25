@@ -20,6 +20,8 @@ export class Popper extends BaseControl<popper.PopperOptions>
         {
             parameter.onChanged(function (ev)
             {
+                if (popper)
+                    popper.destroy();
                 popper = new popperCl(element, ev.eventArgs.value)
             })
         }
