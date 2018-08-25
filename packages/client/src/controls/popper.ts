@@ -15,15 +15,22 @@ export class Popper extends BaseControl<popper.PopperOptions>
 
     public link(scope: IScope<any>, element: Element, parameter: akala.Binding | popper.PopperOptions)
     {
+        var popper: popper.default;
         if (parameter instanceof akala.Binding)
         {
             parameter.onChanged(function (ev)
             {
-                new popperCl(element, ev.eventArgs.value)
+                popper = new popperCl(element, ev.eventArgs.value)
             })
         }
         else
-            new popperCl(element, element.parentElement.querySelector(parameter['popper']), akala.Binding.unbindify(parameter))
+            popper = new popperCl(element, element.parentElement.querySelector(parameter['popper']), akala.Binding.unbindify(parameter))
+
+        element.addEventListener('click', function ()
+        {
+            if (popper)
+                popper.scheduleUpdate()
+        });
 
     }
 }
