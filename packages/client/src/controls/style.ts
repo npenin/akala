@@ -11,6 +11,13 @@ function setProperty(style, value)
         {
             if (typeof (value) != 'object')
                 style[prop] = value;
+            else if (value instanceof Binding)
+            {
+                value.onChanged(function (ev)
+                {
+                    style[prop] = ev.eventArgs.value;
+                });
+            }
             else
                 setProperty(style[prop], value);
         })
