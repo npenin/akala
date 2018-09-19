@@ -9,6 +9,8 @@ import { Api, IClientBuilder, IServerProxyBuilder, IClientProxyBuilder } from '.
 var log = debug('akala:metadata')
 var clientLog = debug('akala:metadata:client');
 
+export type Connection = jsonrpc.Connection;
+
 export class JsonRpcWs<TConnection extends jsonrpc.Connection,
     TServerOneWay,
     TServerTwoWay,

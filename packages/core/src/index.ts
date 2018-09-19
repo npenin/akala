@@ -8,7 +8,7 @@ export * from './helpers'
 export * from './queue'
 export * from './router'
 import { Module } from './module';
-export { JsonRpcWs } from './api/json-rpc-ws';
+export { JsonRpcWs, Connection } from './api/json-rpc-ws';
 export { Rest } from './api/rest';
 export * from './api';
 export { Module };
