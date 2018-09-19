@@ -3,12 +3,13 @@ import * as jsonrpc from '@akala/json-rpc-ws';
 import * as master from '../master-meta';
 import * as router from '../router';
 import { Proxy, Api, JsonRpcWs as JsonRpcWsBase, IServerBuilder, IClientProxyBuilder, IClientBuilder } from '@akala/core';
-import { Connection } from '@akala/json-rpc-ws';
 import * as ws from 'ws';
 
 const log = akala.log('akala:metadata');
 
-export function createServer<TConnection extends jsonrpc.Connection>(router: router.HttpRouter, path: string)
+export type Connection = akala.Connection;
+
+export function createServer<TConnection extends akala.Connection>(router: router.HttpRouter, path: string)
 {
     var server = jsonrpc.createServer<TConnection>();
     var wss = server.server = new ws.Server({ noServer: true, clientTracking: true })
@@ -40,7 +41,7 @@ export function createServer<TConnection extends jsonrpc.Connection>(router: rou
     return server;
 }
 
-export class JsonRpcWs<TConnection extends jsonrpc.Connection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy extends TServerOneWay, TServerTwoWayProxy extends TServerTwoWay, TClientOneWayProxy extends TClientOneWay, TClientTwoWayProxy extends TClientTwoWay>
+export class JsonRpcWs<TConnection extends akala.Connection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy extends TServerOneWay, TServerTwoWayProxy extends TServerTwoWay, TClientOneWayProxy extends TClientOneWay, TClientTwoWayProxy extends TClientTwoWay>
     extends JsonRpcWsBase<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>
     implements IServerBuilder<string, TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>
 {
