@@ -30,7 +30,7 @@ export
     JsonRpcWs,
     Rest,
     introspect,
-    server, client, buildServer, buildClient
+    server, client, buildServer, buildClient, Connection
 } from '@akala/core';
 import * as st from 'serve-static';
 export { st as static };
