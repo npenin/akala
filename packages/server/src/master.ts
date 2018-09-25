@@ -463,7 +463,8 @@ fs.exists(configFile, function (exists)
                         {
                             if (err)
                             {
-                                console.error('error occurred');
+                                console.error('error occurred on ' + req.url);
+
                                 console.error(err.stack);
                                 res.statusCode = 500;
                                 res.write(JSON.stringify(err));
