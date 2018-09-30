@@ -102,6 +102,8 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
         var client: Http = resolve('$http');
         var resolveUrl: (url: string) => string = resolve('$resolveUrl');
         baseUrl = resolveUrl(baseUrl);
+        if (!baseUrl.endsWith('/'))
+            baseUrl += '/';
 
         var proxy: Partial<TServerOneWayProxy & TServerTwoWayProxy> = {};
         each(this.api.serverTwoWayConfig, function (config, key)
