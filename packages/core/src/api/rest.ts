@@ -100,6 +100,9 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
     public createServerProxy(baseUrl: string): Partial<TServerOneWayProxy & TServerTwoWayProxy>
     {
         var client: Http = resolve('$http');
+        var resolveUrl: (url: string) => string = resolve('$resolveUrl');
+        baseUrl = resolveUrl(baseUrl);
+
         var proxy: Partial<TServerOneWayProxy & TServerTwoWayProxy> = {};
         each(this.api.serverTwoWayConfig, function (config, key)
         {
@@ -126,8 +129,6 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
 
     public createClient(baseUrl: string): (impl: TClientOneWay & TClientTwoWay) => Partial<TClientOneWay & TClientTwoWay> & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy> }
     {
-        var client: Http = resolve('$http');
-        var proxy: Partial<TClientOneWay & TClientTwoWay> = {};
         return (impl) => Object.assign(impl, { $proxy: () => { return this.createServerProxy(baseUrl); } });
     }
 }
