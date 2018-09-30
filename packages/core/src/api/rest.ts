@@ -144,7 +144,7 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
                             default:
                                 return res.json();
                         }
-                    };
+                    });
                 } as any;
             }
         });
