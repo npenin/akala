@@ -41,57 +41,58 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
                 var options: HttpOptions = { method: config.method, url: baseURL.toString(), type: config.type || 'json' };
                 if (typeof (config.param) == 'string')
                     throw new Error(`${config.param} is not a valid value`);
-                each(config.param, function (value, key)
-                {
-                    switch (value)
+                if (config.param !== null && typeof (config.param) !== 'undefined')
+                    each(config.param, function (value, key)
                     {
-                        case 'body':
-                            if (typeof (param[key]) == 'object')
-                                options.body = Object.assign(options.body || {}, param[key]);
-                            else
-                            {
-                                if (!options.body)
-                                    options.body = {};
-                                options.body[key] = param[key] as any;
-                            }
-                            break;
-                        case 'header':
-                            if (typeof (param[key]) == 'object')
-                                options.headers = Object.assign(options.headers || {}, param[key]);
-                            else
-                            {
-                                if (!options.headers)
-                                    options.headers = {};
-                                options.headers[key as string] = param[key] as any;
-                            }
-                            break;
-                        case 'query':
-                            if (typeof (param[key]) == 'object')
-                                options.queryString = Object.assign(options.queryString || {}, param[key]);
-                            else
-                            {
-                                if (!options.queryString)
-                                    options.queryString = {};
-                                options.queryString[key] = param[key];
-                            }
-                            break;
-                        case 'route':
-                            if (typeof (param[key]) == 'object')
-                                route = Object.assign(route || {}, param[key]);
-                            else
-                            {
-                                if (!route)
-                                    route = {};
-                                route[key] = param[key];
-                            }
-                            break;
+                        switch (value)
+                        {
+                            case 'body':
+                                if (typeof (param[key]) == 'object')
+                                    options.body = Object.assign(options.body || {}, param[key]);
+                                else
+                                {
+                                    if (!options.body)
+                                        options.body = {};
+                                    options.body[key] = param[key] as any;
+                                }
+                                break;
+                            case 'header':
+                                if (typeof (param[key]) == 'object')
+                                    options.headers = Object.assign(options.headers || {}, param[key]);
+                                else
+                                {
+                                    if (!options.headers)
+                                        options.headers = {};
+                                    options.headers[key as string] = param[key] as any;
+                                }
+                                break;
+                            case 'query':
+                                if (typeof (param[key]) == 'object')
+                                    options.queryString = Object.assign(options.queryString || {}, param[key]);
+                                else
+                                {
+                                    if (!options.queryString)
+                                        options.queryString = {};
+                                    options.queryString[key] = param[key];
+                                }
+                                break;
+                            case 'route':
+                                if (typeof (param[key]) == 'object')
+                                    route = Object.assign(route || {}, param[key]);
+                                else
+                                {
+                                    if (!route)
+                                        route = {};
+                                    route[key] = param[key];
+                                }
+                                break;
 
-                    }
-                    if (route)
-                        options.url = new URL(pathRegexp.compile(url)(route), baseURL).toString()
-                    else
-                        options.url = new URL(url, baseURL).toString();
-                })
+                        }
+                        if (route)
+                            options.url = new URL(pathRegexp.compile(url)(route), baseURL).toString()
+                        else
+                            options.url = new URL(url, baseURL).toString();
+                    })
                 return options;
         }
     }
