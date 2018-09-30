@@ -110,7 +110,19 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
             {
                 proxy[key] = function (param)
                 {
-                    return client.call(Rest.buildCall(config['rest'], baseUrl, param));
+                    return client.call(Rest.buildCall(config['rest'], baseUrl, param)).then((res) =>
+                    {
+                        switch (config['rest'].type)
+                        {
+                            case 'raw':
+                                return res;
+                            case 'text':
+                                return res.text();
+                            case 'json':
+                            default:
+                                return res.json();
+                        }
+                    });
                 } as any;
             }
         });
@@ -120,7 +132,19 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
             {
                 proxy[key] = function (param)
                 {
-                    return client.call(Rest.buildCall(config['rest'], baseUrl, param));
+                    return client.call(Rest.buildCall(config['rest'], baseUrl, param)).then((res) =>
+                    {
+                        switch (config['rest'].type)
+                        {
+                            case 'raw':
+                                return res;
+                            case 'text':
+                                return res.text();
+                            case 'json':
+                            default:
+                                return res.json();
+                        }
+                    };
                 } as any;
             }
         });
