@@ -22,7 +22,7 @@ var app = new WorkerRouter();
 
 function resolveUrl(namespace: string)
 {
-    var url = 'https://' + process.argv[3] + '/' + namespace + '/';
+    var url = process.argv[3] + '/' + namespace + '/';
     return url;
 }
 
@@ -42,26 +42,11 @@ akala.resolve('$agent.api/' + process.argv[2]).then(function (socket: jsonrpc.Cl
         {
             worker.emit('ready');
         },
-        getContent: handle(app, '/api')
+        getContent: handle(app, '/')
     });
     var server = client.$proxy();
-    server.register({ path: '/' });
+    server.register({ path: '/api/' + process.argv[2], remap: '/api' });
     akala.register('$bus', client);
-    var updateConfigHandler = {
-        get: function (updateConfig, key)
-        {
-            if (typeof (key) == 'symbol' && key.toString() == 'Symbol(util.inspect.custom)')
-            {
-                return () => updateConfig;
-            }
-            return new Proxy(function $updateConfig(config, subKey)
-            {
-                if (typeof (subKey) == 'undefined')
-                    return updateConfig(config, key.toString());
-                return updateConfig(config, key.toString() + '.' + subKey);
-            }, updateConfigHandler);
-        }
-    };
 
     akala.register('$updateConfig', akala.chain(function (config, key: string)
     {
@@ -91,8 +76,6 @@ akala.resolve('$agent.api/' + process.argv[2]).then(function (socket: jsonrpc.Cl
             }
             return [keys.join('.')];
         }));
-
-    var server = client.$proxy();
 
     server.module({ module: process.argv[2] }).then(function (param)
     {

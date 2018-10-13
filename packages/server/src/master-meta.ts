@@ -24,7 +24,7 @@ export { httpRouter as Router, request as Request, response as Response };
 export var metaRouter = new akala.Api()
     .connection<Connection>()
     .serverToClient<Partial<worker.Request>, router.CallbackResponse>()({ getContent: true })
-    .clientToServerOneWay<{ path: string }>()({ register: true })
+    .clientToServerOneWay<{ path: string, remap: string }>()({ register: true })
 
 
 export function expressWrap(handler: express.Handler)
@@ -125,16 +125,16 @@ export function serveRouter<TOConnection extends Connection,
     router.use(path, subRouter.router);
 
     return api.jsonrpcws(new DualApi(metaRouter, other)).createServer(path, akala.extend({
-        register: function (params: { path: string }, socket: TOConnection)
+        register: function (param: { path: string, remap: string }, socket: TOConnection)
         {
             var locationReplacer = function (header)
             {
-                return header.replace(path, path + params.path)
+                return header.replace(path, path + param.path)
             };
 
             var client = this.$proxy(socket);
 
-            subRouter.use(params.path, function (req: router.Request, res: router.Response, next: akala.NextFunction)
+            subRouter.use(param.path, function (req: router.Request, res: router.Response, next: akala.NextFunction)
             {
                 if (socket.socket.readyState == ws.CLOSED || socket.socket.readyState == ws.CLOSING)
                 {
@@ -145,7 +145,14 @@ export function serveRouter<TOConnection extends Connection,
                 {
                     bodyparser.urlencoded({ extended: true })(req as any, res as any, function (err)
                     {
-                        client.getContent(translateRequest(req)).then(handleResponse(res, locationReplacer, 200), handleResponse(res, locationReplacer, 500));
+                        var translatedReq = translateRequest(req);
+                        if (param.remap)
+                        {
+                            if (translatedReq.url == '/')
+                                translatedReq.url = '';
+                            translatedReq.url = param.remap + translatedReq.url;
+                        }
+                        client.getContent(translatedReq).then(handleResponse(res, locationReplacer, 200), handleResponse(res, locationReplacer, 500));
                     })
                 })
             });

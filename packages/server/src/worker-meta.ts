@@ -386,9 +386,6 @@ export function handle(app: Router, root: string)
             requestInjector.register('$callback', callback);
             // log(request);
             Object.defineProperty(request, 'injector', { value: requestInjector, enumerable: false, configurable: false, writable: false });
-            if (request.url == '/')
-                request.url = '';
-            request.url = root + request.url;
 
             log(request.url);
             app.handle(request, callback);
