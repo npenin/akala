@@ -4,7 +4,6 @@ import * as fs from 'fs';
 import * as st from 'serve-static';
 import * as jsonrpc from '@akala/json-rpc-ws';
 import * as ws from 'ws';
-import * as https from 'https';
 import * as akala from '@akala/core';
 import { relative, sep as pathSeparator, dirname, join as pathJoin } from 'path';
 import { serveRouter } from './master-meta';
@@ -20,6 +19,12 @@ import * as sequencify from 'sequencify';
 import { meta } from './api/jsonrpc';
 import { promisify } from 'util'
 import { WorkerInjectorImpl } from './worker-meta';
+
+var httpPackage: 'http' | 'https';
+if (!fs.existsSync('privkey.pem') || !fs.existsSync('fullchain.pem'))
+    httpPackage = 'http'
+else
+    httpPackage = 'https';
 
 var master = new EventEmitter();
 master.setMaxListeners(Infinity);
@@ -245,9 +250,9 @@ fs.exists(configFile, function (exists)
                                 next();
                             finished = true;
 
-                            app.useGet('/assets/' + folder, st('node_modules/' + plugin + '/assets'));
+                            preAuthenticatedRouter.useGet('/assets/' + folder, st('node_modules/' + plugin + '/assets'));
 
-                            app.useGet('/' + plugin, st('node_modules/' + plugin + '/views'));
+                            preAuthenticatedRouter.useGet('/' + plugin, st('node_modules/' + plugin + '/views'));
 
                             var localWorkers = getDependencies();
                             log('localWorkers for %s: %s', folder, localWorkers);
@@ -349,7 +354,7 @@ fs.exists(configFile, function (exists)
                         });
 
                         cluster.setupMaster(<any>{
-                            args: [plugin, dn + ':' + port],
+                            args: [plugin, httpPackage + '://' + dn + ':' + port],
                             execArgv: []
                         });
                         var worker = cluster.fork();
@@ -487,7 +492,16 @@ fs.exists(configFile, function (exists)
             });
     });
 
-    var server = https.createServer({ key: fs.readFileSync('privkey.pem'), cert: fs.readFileSync('fullchain.pem') });
+    if (httpPackage == 'http')
+    {
+        const http = require('http');
+        var server = http.createServer();
+    }
+    else
+    {
+        const https = require('https');
+        var server = https.createServer({ key: fs.readFileSync('privkey.pem'), cert: fs.readFileSync('fullchain.pem') });
+    }
     // var server = http2.createSecureServer({ allowHTTP1: true, key: fs.readFileSync('priv.pem'), cert: fs.readFileSync('fullchain.pem') });
     server.listen(port, dn);
     masterRouter.attachTo(server);
