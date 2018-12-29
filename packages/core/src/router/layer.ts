@@ -25,7 +25,7 @@ var log = debug('router:layer');
 
 var hasOwnProperty = Object.prototype.hasOwnProperty
 
-export interface LayerRegExp extends pathRegexp.PathRegExp
+export interface LayerRegExp extends RegExp
 {
     fast_star?: boolean;
     fast_slash?: boolean;
@@ -134,7 +134,7 @@ export class Layer<T extends Function>
      * @api private
      */
 
-    public match(path: string):boolean
+    public match(path: string): boolean
     {
         var match: RegExpExecArray;
         log(this.regexp);
