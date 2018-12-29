@@ -7,7 +7,7 @@ export * from './promiseHelpers';
 export { each as eachAsync, NextFunction } from './eachAsync';
 export { each, grep } from './each';
 export * from './router';
-import { debug as log } from 'debug';
+import { default as log } from 'debug';
 
 export function noop() { };
 
