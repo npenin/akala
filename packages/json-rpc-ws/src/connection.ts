@@ -89,8 +89,8 @@ export class Connection
         else
             socket.on('message', this.message.bind(this));
         // this.on('message', this.message.bind(this));
-        this.once('close', this.close.bind(this));
-        this.once('error', this.close.bind(this));
+        this.once('close', this.close.bind(this) as any);
+        this.once('error', this.close.bind(this) as any);
         // if (isBrowserSocket(parent, socket))
         // {
         //     socket.addEventListener('close', socketClosed.bind(this), { once: true });

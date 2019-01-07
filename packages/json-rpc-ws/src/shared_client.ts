@@ -16,9 +16,9 @@ export default class Client<TClientConnection extends Connection> extends Base<T
     super('client');
     logger('new Client');
     this.browser = browser;
-  };
+  }
 
-  private socket?: SocketType;
+  public socket?: SocketType;
 
   /**
    * Connect to a json-rpc-ws server
@@ -70,14 +70,14 @@ export default class Client<TClientConnection extends Connection> extends Base<T
         {
 
           opened = true;
-          callback.apply(this, arguments);
+          callback.apply(this, []);
         });
-        socket.once('error', function socketError(this: SocketType)
+        socket.once('error', function socketError(this: SocketType, err)
         {
 
           if (!opened)
           {
-            callback.apply(this, arguments);
+            callback.apply(this, [err]);
           }
         });
       }
