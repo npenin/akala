@@ -8,6 +8,7 @@ import './config';
 import './client';
 import './plugins';
 import './helpers/newmodule';
+import './helpers/repl';
 import * as fs from 'fs'
 import { promisify } from 'util'
 import * as akala from '@akala/core'
@@ -19,18 +20,18 @@ require.cache[module.filename] = module;
 
 mock('@akala/core', akala);
 
-program.command('run [cwd]').action(function (context)
-{
+program.command('run [cwd]').action(function (context) {
     if (context.params.cwd)
         process.chdir(context.params.cwd);
+
+    akala.unregister('$resolveUrl');
 
     console.log('running ' + process.cwd());
 
     require(require.resolve('@akala/server/dist/start', Module['_nodeModulePaths'](process.cwd())));
 })
 
-export interface CliConfig<T>
-{
+export interface CliConfig<T> {
     command: string;
     param?: { [key in keyof T]: 'param' | 'args' | 'option' } | 'param' | 'args';
     type?: 'json' | 'xml';
@@ -50,25 +51,20 @@ akala.module('$api').register('cli', class Cli<TConnection, TServerOneWay, TServ
     TClientOneWayProxy,
     TClientTwoWayProxy>
 {
-    constructor(public api: akala.Api<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>)
-    {
+    constructor(public api: akala.Api<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>) {
 
     }
 
-    static buildParam(req: CliContext & akala.Request, config: CliConfig<any>, di: akala.Injector)
-    {
-        switch (config.param)
-        {
+    static buildParam(req: CliContext & akala.Request, config: CliConfig<any>, di: akala.Injector) {
+        switch (config.param) {
             case 'param':
                 return req.params;
             case 'args':
                 return req.args
             default:
                 let result: any = {};
-                akala.each(config.param, function (value, key)
-                {
-                    switch (value)
-                    {
+                akala.each(config.param, function (value, key) {
+                    switch (value) {
                         case 'args':
                             result[key] = req.args;
                             break;
@@ -89,45 +85,33 @@ akala.module('$api').register('cli', class Cli<TConnection, TServerOneWay, TServ
 
     createServer(client: boolean | string, impl: TServerOneWay & TServerTwoWay): Partial<TServerOneWay & TServerTwoWay & {
         proxy: (TConnection) => TClientOneWayProxy & TClientTwoWayProxy;
-    }>
-    {
+    }> {
         var router: ICommandBuilder = program;
-        if (typeof (client) == 'string')
-        {
+        if (typeof (client) == 'string') {
             let indexOfColon = client.indexOf(':');
             if (~indexOfColon)
                 router = router.command(client.substr(indexOfColon + 1)).config(client.substr(0, indexOfColon));
             else
                 router = router.command(client).config(client);
         }
-        akala.each(this.api.serverOneWayConfig, function (config: { cli?: CliConfig<any> }, name)
-        {
-            if (config && config.cli && config.cli.command)
-            {
-                var cmd = router.command(config.cli.command).action(function (context)
-                {
-                    Promise.resolve((impl[name] as any)(Cli.buildParam(context, config.cli, cmd))).then((value) =>
-                    {
+        akala.each(this.api.serverOneWayConfig, function (config: { cli?: CliConfig<any> }, name) {
+            if (config && config.cli && config.cli.command) {
+                var cmd = router.command(config.cli.command).action(function (context) {
+                    Promise.resolve((impl[name] as any)(Cli.buildParam(context, config.cli, cmd))).then((value) => {
                         console.log(value)
-                    }, (reason) =>
-                        {
+                    }, (reason) => {
                             console.error(reason);
                         });
                 });
             }
         });
 
-        akala.each(this.api.serverTwoWayConfig, function (config: { cli?: CliConfig<any> }, name)
-        {
-            if (config && config.cli && config.cli.command)
-            {
-                var cmd = router.command(config.cli.command).action(function (context)
-                {
-                    Promise.resolve((impl[name] as any)(Cli.buildParam(context, config.cli, cmd))).then((value) =>
-                    {
+        akala.each(this.api.serverTwoWayConfig, function (config: { cli?: CliConfig<any> }, name) {
+            if (config && config.cli && config.cli.command) {
+                var cmd = router.command(config.cli.command).action(function (context) {
+                    Promise.resolve((impl[name] as any)(Cli.buildParam(context, config.cli, cmd))).then((value) => {
                         console.log(value)
-                    }, (reason) =>
-                        {
+                    }, (reason) => {
                             console.error(reason);
                         });
                 });
@@ -139,16 +123,12 @@ akala.module('$api').register('cli', class Cli<TConnection, TServerOneWay, TServ
 
 });
 
-(async function ()
-{
+(async function () {
 
-    if (await promisify(fs.exists)('./config.json'))
-    {
+    if (await promisify(fs.exists)('./config.json')) {
         var content = JSON.parse(await promisify(fs.readFile)('./config.json', 'utf-8'));
-        if (content.plugins)
-        {
-            akala.each(content.plugins, function (plugin, name)
-            {
+        if (content.plugins) {
+            akala.each(content.plugins, function (plugin, name) {
                 require(plugin);
             });
         }
