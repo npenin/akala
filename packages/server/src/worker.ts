@@ -45,7 +45,7 @@ akala.resolve('$agent.api/' + process.argv[2]).then(function (socket: jsonrpc.Cl
         getContent: handle(app, '/')
     });
     var server = client.$proxy();
-    server.register({ path: '/', remap: '/api' });
+    server.register({ path: '/api/' + process.argv[2], remap: '/api' });
     akala.register('$bus', client);
 
     akala.register('$updateConfig', akala.chain(function (config, key: string)
