@@ -269,7 +269,7 @@ fs.exists(configFile, function (exists)
                             log('callback called')
                         });
 
-                        var sockets = serveRouter(app, '/api/' + plugin, meta, {
+                        var sockets = serveRouter(app, '/', meta, {
                             master: function (param: { masterPath?: string, workerPath?: string }, socket: Connection)
                             {
                                 log(arguments);
