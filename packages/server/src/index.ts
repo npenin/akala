@@ -35,6 +35,7 @@ export
 import * as st from 'serve-static';
 export { st as static };
 
+import {IDebugger} from 'debug'
 import { log as corelog } from '@akala/core';
 import * as cluster from 'cluster';
 import { isError } from 'util';
@@ -43,12 +44,12 @@ let customOutputs = ['error', 'warn', 'verbose', 'debug', 'info']
 
 export interface Logger
 {
-    error?: corelog.IDebugger,
-    warn?: corelog.IDebugger,
-    verbose?: corelog.IDebugger,
-    debug?: corelog.IDebugger,
-    info?: corelog.IDebugger,
-    [key: string]: corelog.IDebugger
+    error?: IDebugger,
+    warn?: IDebugger,
+    verbose?: IDebugger,
+    debug?: IDebugger,
+    info?: IDebugger,
+    [key: string]: IDebugger
 }
 
 export var logger: Logger & ((rootNamespace: string) => Logger) = <any>new Proxy(function (rootNamespace: string): Logger
