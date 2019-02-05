@@ -30,7 +30,7 @@ akala.register('$resolveUrl', resolveUrl);
 
 akala.register('$router', app);
 
-akala.resolve('$agent.api/' + process.argv[2]).then(function (socket: jsonrpc.Client<jsonrpc.Connection>)
+akala.resolve('$agent.api/manage/' + process.argv[2]).then(function (socket: jsonrpc.Client<jsonrpc.Connection>)
 {
     log('worker connected')
     var worker = akala.register('$worker', new EventEmitter());

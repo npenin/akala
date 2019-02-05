@@ -157,4 +157,5 @@ export var meta = new Api()
     .clientToServerOneWay<any>()({ updateConfig: true })
     .clientToServer<{ key: string }, any>()({ getConfig: true })
     .clientToServerOneWay<{ masterPath?: string, workerPath?: string }>()({ master: true })
+    .clientToServerOneWay<{ path: string, remap: string }>()({ register: true })
     ;
