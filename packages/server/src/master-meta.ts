@@ -118,13 +118,13 @@ export function serveRouter<TOConnection extends Connection,
         TOServerOneWayProxy,
         TOServerTwoWayProxy,
         TOClientOneWayProxy,
-        TOClientTwoWayProxy>, impl?: TOServerOneWay & TOServerTwoWay)
+        TOClientTwoWayProxy>, impl?: TOServerOneWay & TOServerTwoWay): api.Server<typeof other & typeof metaRouter>
 {
     var subRouter = new httpRouter();
     log('creating server on ' + path);
     router.use(path, subRouter.router);
 
-    return api.jsonrpcws(new DualApi(metaRouter, other)).createServer(path, akala.extend({
+    return api.jsonrpcws(other && new DualApi(metaRouter, other) || metaRouter).createServer(path, akala.extend({
         register: function (param: { path: string, remap: string }, socket: TOConnection)
         {
             var locationReplacer = function (header)
@@ -157,5 +157,5 @@ export function serveRouter<TOConnection extends Connection,
                 })
             });
         }
-    }, impl));
+    }, impl || {}));
 }

@@ -17,6 +17,7 @@ var orchestratorLog = debug('akala:master:orchestrator');
 import * as Orchestrator from 'orchestrator';
 import * as sequencify from 'sequencify';
 import { meta } from './api/jsonrpc';
+import { api } from '.'
 import { promisify } from 'util'
 import { WorkerInjectorImpl } from './worker-meta';
 
@@ -269,8 +270,14 @@ fs.exists(configFile, function (exists)
                             log('callback called')
                         });
 
-                        var sockets = serveRouter(app, '/', meta, {
-                            master: function (param: { masterPath?: string, workerPath?: string }, socket: Connection)
+                        var server = serveRouter(app, '/');
+
+                        var sockets = api.jsonrpcws(meta).createServer('/api/manage/' + plugin, {
+                            register(p, c?: Connection)
+                            {
+                                return server.register(p, c)
+                            },
+                            master(param: { masterPath?: string, workerPath?: string }, socket: Connection)
                             {
                                 log(arguments);
                                 log(socket.submodule + ' emitted master event with ' + (param && param.masterPath));
