@@ -24,8 +24,8 @@ export namespace api
         return new (module('$api').resolve('rest'))(api);
     }
 
-    export type Server<T extends Api<any, any, any, any, any, any, any, any, any>> = T extends Api<any, infer OW, infer TW, any, any, any, any, any, any> ? OW & TW : any;
-    export type Client<T extends Api<any, any, any, any, any, any, any, any, any>> = T extends Api<any, any, any, infer OW, infer TW, any, any, any, any> ? OW & TW : any;
+    export type Server<T extends Api<any, any, any, any, any, any, any, any, any>> = T extends Api<any, infer OW, infer TW, any, any, any, any, any, any> ? OW & TW & { $proxy(client): ClientProxy<T> } : any;
+    export type Client<T extends Api<any, any, any, any, any, any, any, any, any>> = T extends Api<any, any, any, infer OW, infer TW, any, any, any, any> ? OW & TW & { $proxy(): ServerProxy<T> } : any;
     export type ServerProxy<T extends Api<any, any, any, any, any, any, any, any, any>> = T extends Api<any, any, any, any, any, infer OW, infer TW, any, any> ? OW & TW : any;
     export type ClientProxy<T extends Api<any, any, any, any, any, any, any, any, any>> = T extends Api<any, any, any, any, any, any, any, infer OW, infer TW> ? OW & TW : any;
 
@@ -97,14 +97,14 @@ export function createServerProxy<T, TConnection,
 {
     var builder: new (api: Api<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>) =>
         IServerProxyBuilder<T, TConnection,
-        TServerOneWay,
-        TServerTwoWay,
-        TClientOneWay,
-        TClientTwoWay,
-        TServerOneWayProxy,
-        TServerTwoWayProxy,
-        TClientOneWayProxy,
-        TClientTwoWayProxy> = module('$api').resolve(builderName);
+            TServerOneWay,
+            TServerTwoWay,
+            TClientOneWay,
+            TClientTwoWay,
+            TServerOneWayProxy,
+            TServerTwoWayProxy,
+            TClientOneWayProxy,
+            TClientTwoWayProxy> = module('$api').resolve(builderName);
     if (!builder)
         return null;
     return new builder(api).createServerProxy(client);
@@ -130,14 +130,14 @@ export function createClient<T, TImpl extends TClientOneWay & TClientTwoWay, TCo
 {
     var builder: new (api: Api<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>) =>
         IClientBuilder<T, TConnection,
-        TServerOneWay,
-        TServerTwoWay,
-        TClientOneWay,
-        TClientTwoWay,
-        TServerOneWayProxy,
-        TServerTwoWayProxy,
-        TClientOneWayProxy,
-        TClientTwoWayProxy> = module('$api').resolve(builderName);
+            TServerOneWay,
+            TServerTwoWay,
+            TClientOneWay,
+            TClientTwoWay,
+            TServerOneWayProxy,
+            TServerTwoWayProxy,
+            TClientOneWayProxy,
+            TClientTwoWayProxy> = module('$api').resolve(builderName);
     if (!builder)
         return null;
     return new builder(api).createClient(client, clientImplementation);
