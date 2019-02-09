@@ -1,6 +1,6 @@
-import { Injector, injectWithName, NextFunction, log, isPromiseLike, module, Api, api as coreApi } from '@akala/core';
-import { Response, Methods, requestHandlerWithNext, errorHandlerWithNext, Router } from '../router';
-import { WorkerInjector, Request, Callback } from '../worker-meta'
+import * as akala from '@akala/core';
+import { Methods, requestHandlerWithNext, errorHandlerWithNext, Router } from '../router';
+import { Request } from '../worker-meta'
 import * as jsonrpc from '@akala/json-rpc-ws'
 
 import * as fs from 'fs';
@@ -12,14 +12,14 @@ import { Rest } from './rest';
 
 
 export var restapi = <Methods<apiHandler<Function>>>{};
-var debug = log('akala:api');
+var debug = akala.log('akala:api');
 
 ['all'].concat(http.METHODS).forEach(function (method: keyof Methods<apiHandler<Function>>)
 {
     method = <keyof Methods<apiHandler<Function>>>method.toLowerCase();
     restapi[method as any] = function <T extends Function>(path: string, $inject: string[], ...handlers: T[])
     {
-        return injectWithName(['$router'], function (router: Router<requestHandlerWithNext, errorHandlerWithNext>)
+        return akala.injectWithName(['$router'], function (router: Router<requestHandlerWithNext, errorHandlerWithNext>)
         {
             var args: any[] = [path];
             args.concat(handlers);
@@ -29,7 +29,7 @@ var debug = log('akala:api');
                 {
                     var requestInjector = request.injector;
                     var result = requestInjector.injectWithName($inject, <any>handler)();
-                    if (isPromiseLike(result))
+                    if (akala.isPromiseLike(result))
                     {
                         result.then(function (r)
                         {
@@ -52,7 +52,7 @@ export type apiHandler<T> = (path: string, $inject: string[], ...handlers: T[]) 
 
 export function command<T extends Function>($inject: string[], f: T)
 {
-    return function (request: Request, next: NextFunction)
+    return function (request: Request, next: akala.NextFunction)
     {
         var injector = request.injector;
         var callback = request.injector.resolve('$callback');
@@ -69,7 +69,7 @@ export function command<T extends Function>($inject: string[], f: T)
 
         injector.register('$next', next);
         var result = request.injector.injectWithName($inject, <any>f)();
-        if (isPromiseLike(result))
+        if (akala.isPromiseLike(result))
         {
             result.then(function (r)
             {
@@ -86,21 +86,26 @@ export function command<T extends Function>($inject: string[], f: T)
 
 export namespace api
 {
-    export function jsonrpcws<TConnection extends jsonrpc.Connection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy extends TServerOneWay, TServerTwoWayProxy extends TServerTwoWay, TClientOneWayProxy extends TClientOneWay, TClientTwoWayProxy extends TClientTwoWay>(api: Api<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>)
+    export function jsonrpcws<TConnection extends jsonrpc.Connection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy extends TServerOneWay, TServerTwoWayProxy extends TServerTwoWay, TClientOneWayProxy extends TClientOneWay, TClientTwoWayProxy extends TClientTwoWay>(api: akala.Api<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>)
         : JsonRpcWs<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>
     {
-        return new (module('$api').resolve('jsonrpcws'))(api);
+        return new (akala.module('$api').resolve('jsonrpcws'))(api);
     }
-    export function rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy extends TServerOneWay, TServerTwoWayProxy extends TServerTwoWay, TClientOneWayProxy extends TClientOneWay, TClientTwoWayProxy extends TClientTwoWay>(api: Api<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>)
+    export function rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy extends TServerOneWay, TServerTwoWayProxy extends TServerTwoWay, TClientOneWayProxy extends TClientOneWay, TClientTwoWayProxy extends TClientTwoWay>(api: akala.Api<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>)
         : Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>
     {
-        return new (module('$api').resolve('rest'))(api);
+        return new (akala.module('$api').resolve('rest'))(api);
     }
 
-    export type ServerProxy<T extends Api<any, any, any, any, any, any, any, any, any>> = coreApi.ServerProxy<T>;
-    export type Server<T extends Api<any, any, any, any, any, any, any, any, any>> = coreApi.Server<T>;
-    export type ClientProxy<T extends Api<any, any, any, any, any, any, any, any, any>> = coreApi.ClientProxy<T>;
-    export type Client<T extends Api<any, any, any, any, any, any, any, any, any>> = coreApi.Client<T>;
+    export var buildServer = akala.buildServer;
+    export var buildClient = akala.buildClient;
+    export var server = akala.server;
+    export var client = akala.client;
+
+    export type ServerProxy<T extends akala.Api<any, any, any, any, any, any, any, any, any>> = akala.api.ServerProxy<T>;
+    export type Server<T extends akala.Api<any, any, any, any, any, any, any, any, any>> = akala.api.Server<T>;
+    export type ClientProxy<T extends akala.Api<any, any, any, any, any, any, any, any, any>> = akala.api.ClientProxy<T>;
+    export type Client<T extends akala.Api<any, any, any, any, any, any, any, any, any>> = akala.api.Client<T>;
 }
 
 export function registerCommandsIn(folder: string)
