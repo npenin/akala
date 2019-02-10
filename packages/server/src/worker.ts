@@ -13,6 +13,7 @@ import { meta } from './api/jsonrpc';
 
 process.on('uncaughtException', function (error)
 {
+    console.error(process.argv[2]);
     console.error(error);
     process.exit(500);
 })
