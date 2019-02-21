@@ -17,7 +17,7 @@ export class Request implements akala.Request
     public params: { [key: string]: any };
 };
 
-if (!window.setImmediate)
+if (!window['setImmediate'])
     window['setImmediate'] = function (fn)
     {
         var args = arguments.length && Array.prototype.slice.call(arguments, 1) || [];
