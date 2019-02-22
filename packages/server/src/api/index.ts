@@ -102,6 +102,8 @@ export namespace api
     export var server = akala.server;
     export var client = akala.client;
 
+    export type ServerWithoutProxy<T extends akala.Api<any, any, any, any, any, any, any, any, any>> = akala.api.ServerWithoutProxy<T>;
+    export type ClientWithoutProxy<T extends akala.Api<any, any, any, any, any, any, any, any, any>> = akala.api.ClientWithoutProxy<T>;
     export type ServerProxy<T extends akala.Api<any, any, any, any, any, any, any, any, any>> = akala.api.ServerProxy<T>;
     export type Server<T extends akala.Api<any, any, any, any, any, any, any, any, any>> = akala.api.Server<T>;
     export type ClientProxy<T extends akala.Api<any, any, any, any, any, any, any, any, any>> = akala.api.ClientProxy<T>;
