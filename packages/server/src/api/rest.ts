@@ -156,13 +156,19 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
                         result.then(function (value)
                         {
                             log('replying with %o', value);
-                            (req.injector as akala.Injector).resolve('$callback')(value);
+                            if (value && value.statusCode)
+                                (req.injector as akala.Injector).resolve('$callback')(value);
+                            else
+                                (req.injector as akala.Injector).resolve('$callback')(200, value);
                         }, function (reason)
                             {
                                 (req.injector as akala.Injector).resolve('$callback')(500, reason);
                             });
-                    else
+                    else if (result && result.statusCode)
                         (req.injector as akala.Injector).resolve('$callback')(result);
+                    else
+                        (req.injector as akala.Injector).resolve('$callback')(200, result);
+
                 })
             });
 
@@ -264,13 +270,19 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
                         result.then(function (value)
                         {
                             log('replying with %o', value);
-                            (req.injector as akala.Injector).resolve('$callback')(value);
+                            if (value && value.statusCode)
+                                (req.injector as akala.Injector).resolve('$callback')(value);
+                            else
+                                (req.injector as akala.Injector).resolve('$callback')(200, value);
                         }, function (reason)
                             {
                                 (req.injector as akala.Injector).resolve('$callback')(500, reason);
                             });
-                    else
+                    else if (result && result.statusCode)
                         (req.injector as akala.Injector).resolve('$callback')(result);
+                    else
+                        (req.injector as akala.Injector).resolve('$callback')(200, result);
+
                 })
             });
 

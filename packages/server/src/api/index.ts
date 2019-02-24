@@ -28,19 +28,25 @@ var debug = akala.log('akala:api');
                 router[method](path, function (request: Request)
                 {
                     var requestInjector = request.injector;
-                    var result = requestInjector.injectWithName($inject, <any>handler)();
+                    var result: any = requestInjector.injectWithName($inject, <any>handler)();
                     if (akala.isPromiseLike(result))
                     {
-                        result.then(function (r)
+                        result.then(function (value: any)
                         {
-                            requestInjector.resolve('$callback')(200, r);
+                            if (value && value.statusCode)
+                                requestInjector.resolve('$callback')(value);
+                            else
+                                requestInjector.resolve('$callback')(200, value);
                         }, function (err)
                             {
                                 requestInjector.resolve('$callback')(500, err);
                             });
                     }
                     else if (typeof result != 'undefined')
-                        requestInjector.resolve('$callback')(200, result);
+                        if (result && result.statusCode)
+                            requestInjector.resolve('$callback')(result);
+                        else
+                            requestInjector.resolve('$callback')(200, result);
                 });
             })
             return api;
