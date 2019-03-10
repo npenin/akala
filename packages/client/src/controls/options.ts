@@ -117,6 +117,7 @@ export class Options extends Control<parameter>
                 else
                     value.setValue(model[0], value);
             });
+
             value.onChanged(function (ev)
             {
                 if (value !== ev.source)
