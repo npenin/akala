@@ -24,8 +24,10 @@ export namespace api
         return new (module('$api').resolve('rest'))(api);
     }
 
-    export type Server<T extends Api<any, any, any, any, any, any, any, any, any>> = T extends Api<any, infer OW, infer TW, any, any, any, any, any, any> ? OW & TW & { $proxy(client): Partial<ClientProxy<T>> } : any;
-    export type Client<T extends Api<any, any, any, any, any, any, any, any, any>> = T extends Api<any, any, any, infer OW, infer TW, any, any, any, any> ? OW & TW & { $proxy(): Partial<ServerProxy<T>> } : any;
+    export type ServerWithoutProxy<T extends Api<any, any, any, any, any, any, any, any, any>> = T extends Api<any, infer OW, infer TW, any, any, any, any, any, any> ? OW & TW : any;
+    export type Server<T extends Api<any, any, any, any, any, any, any, any, any>> = ServerWithoutProxy<T> & { $proxy(client): ClientProxy<T> };
+    export type ClientWithoutProxy<T extends Api<any, any, any, any, any, any, any, any, any>> = T extends Api<any, any, any, infer OW, infer TW, any, any, any, any> ? OW & TW : any;
+    export type Client<T extends Api<any, any, any, any, any, any, any, any, any>> = ClientWithoutProxy<T> & { $proxy(): ServerProxy<T> };
     export type ServerProxy<T extends Api<any, any, any, any, any, any, any, any, any>> = T extends Api<any, any, any, any, any, infer OW, infer TW, any, any> ? OW & TW : any;
     export type ClientProxy<T extends Api<any, any, any, any, any, any, any, any, any>> = T extends Api<any, any, any, any, any, any, any, infer OW, infer TW> ? OW & TW : any;
 

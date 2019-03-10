@@ -101,7 +101,15 @@ export class Injector
     public resolve<T=any>(param: string): T
     {
         log('resolving ' + param);
+
+        if (typeof (this.injectables[param]) != 'undefined')
+        {
+            log(`resolved ${param}`);
+            log.extend('verbose')(`resolved ${param} to ${this.injectables[param]}`);
+            return this.injectables[param];
+        }
         var indexOfDot = param.indexOf('.');
+
         if (~indexOfDot)
         {
             var keys = param.split('.')
@@ -120,11 +128,6 @@ export class Injector
                 return result && result[key];
             }, this.injectables);
 
-        }
-        if (typeof (this.injectables[param]) != 'undefined')
-        {
-            log(`resolved ${param} to ${this.injectables[param]}`);
-            return this.injectables[param];
         }
         if (this.parent)
         {
@@ -208,7 +211,7 @@ export class Injector
                             if (isPromiseLike(v))
                                 return v;
                             return Promise.resolve(v);
-                        })).then((args) => { return a.apply(null, args) });
+                        })).then((args) => { resolve(a.apply(null, args)) });
                     else
                         resolve(a.apply(null, args));
                 }
@@ -285,6 +288,7 @@ export class Injector
     }
     public registerDescriptor(name: string, value: PropertyDescriptor, override?: boolean)
     {
+        log('registering ' + name);
         if (!override && typeof (this.injectables[name]) != 'undefined')
             throw new Error('There is already a registered item for ' + name);
         if (typeof (this.injectables[name]) !== 'undefined')

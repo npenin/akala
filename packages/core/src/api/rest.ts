@@ -42,6 +42,7 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
                 if (typeof (config.param) == 'string')
                     throw new Error(`${config.param} is not a valid value`);
                 if (config.param !== null && typeof (config.param) !== 'undefined')
+                {
                     each(config.param, function (value, key)
                     {
                         switch (value)
@@ -86,13 +87,46 @@ export class Rest<TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TCli
                                     route[key] = param[key];
                                 }
                                 break;
-
+                            default:
+                                var indexOfDot = value.indexOf('.');
+                                if (~indexOfDot)
+                                {
+                                    var subKey = value.substr(indexOfDot + 1);
+                                    switch (value.substr(0, indexOfDot))
+                                    {
+                                        case 'body':
+                                            options.body = options.body || {};
+                                            options.body[subKey] = param[key] as any;
+                                            break;
+                                        case 'header':
+                                            if (!options.headers)
+                                                options.headers = {};
+                                            options.headers[subKey] = param[key] as any;
+                                            break;
+                                        case 'query':
+                                            if (!options.queryString)
+                                                options.queryString = {};
+                                            options.queryString[subKey] = param[key];
+                                            break;
+                                        case 'route':
+                                            if (!route)
+                                                route = {};
+                                            route[subKey] = param[key];
+                                            break;
+                                        default:
+                                            console.log('ignoring ' + value)
+                                    }
+                                    break;
+                                }
+                                else
+                                    console.log('ignoring ' + value)
                         }
-                        if (route)
-                            options.url = new URL(pathRegexp.compile(url)(route), baseURL).toString()
-                        else
-                            options.url = new URL(url, baseURL).toString();
                     })
+                    if (route)
+                        options.url = new URL(pathRegexp.compile(url)(route), baseURL).toString()
+                    else
+                        options.url = new URL(url, baseURL).toString();
+                }
                 return options;
         }
     }
