@@ -142,7 +142,6 @@ export class Template
     public get(t: string | PromiseLike<string>, registerTemplate: boolean = true): PromiseLike<templateFunction>
     {
         var http = this.http;
-        var self = this;
         return akala.Promisify(t).then<templateFunction>(function (t: string)
         {
             var p = new Promise<templateFunction>((resolve, reject) =>
@@ -214,8 +213,6 @@ export function filter<T extends Element=Element>(items: ArrayLike<T>, filter: s
     })
 }
 
-var databindRegex = /(\w+):([^;]+);?/g;
-
 export function applyTemplate(items: ArrayLike<HTMLElement>, data, root?: Element)
 {
     data.$new = Scope.prototype.$new;
@@ -266,11 +263,3 @@ export function applyTemplate(items: ArrayLike<HTMLElement>, data, root?: Elemen
         return element;
     }
 };
-function tmpl(data, options)
-{
-    if (this.length > 1)
-        throw 'A template can only be a single item';
-    if (this.length == 0)
-        return null;
-    return Template.build(this[0]);
-}
