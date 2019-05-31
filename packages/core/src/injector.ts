@@ -91,37 +91,44 @@ export class Injector
     }
 
     public inject<T>(a: Injectable<T>): Injected<T>
-    public inject<T>(a: string[]): (b: TypedPropertyDescriptor<Injectable<T>>) => void
-    public inject<T>(a: Injectable<T> | string[]): Injected<T> | ((b: TypedPropertyDescriptor<Injectable<T>>) => void)
-    public inject<T>(a: Injectable<T> | string[])
+    public inject<T>(...a: string[]): (b: TypedPropertyDescriptor<Injectable<T>>) => void
+    public inject<T>(a: Injectable<T> | string, ...b: string[]): Injected<T> | ((b: TypedPropertyDescriptor<Injectable<T>>) => void)
+    public inject<T>(a: Injectable<T> | string, ...b: string[])
     {
         if (typeof a == 'function')
             return this.injectWithName(a['$inject'] || getParamNames(a), a);
         var self = this;
-        return function (b: TypedPropertyDescriptor<Injectable<T>>)
+        return function (c: TypedPropertyDescriptor<Injectable<T>>)
         {
-            var oldf = self.injectWithName(a, b.value);
-            b.value = function ()
+            if (typeof b == 'undefined')
+                b = [];
+            b.unshift(a);
+            var oldf = self.injectWithName(b, c.value);
+            c.value = function ()
             {
                 return oldf.apply(this, arguments);
             }
         }
     }
 
-    public injectAsync<T>(a: Injectable<Promisify<T>> | string[])
+    public injectAsync<T>(a: Injectable<Promisify<T>>)
+    public injectAsync<T>(...a: string[])
+    public injectAsync<T>(a: Injectable<Promisify<T>> | string, ...b: string[])
     {
         if (typeof a == 'function')
             return this.injectWithNameAsync(a['$inject'] || getParamNames(a), a)
 
+        if (typeof b == 'undefined')
+            b = [];
+        b.unshift(a);
         var self = this;
-        var wait = false;
 
-        return function <U>(b: TypedPropertyDescriptor<InjectableAsync<U>>)
+        return function <U>(c: TypedPropertyDescriptor<InjectableAsync<U>>)
         {
-            var f = b.value;
-            b.value = function ()
+            var f = c.value;
+            c.value = function ()
             {
-                return self.injectWithNameAsync(a, f);
+                return self.injectWithNameAsync(b, f);
             }
         }
     }
