@@ -2,10 +2,11 @@ import { getParamNames } from './reflect';
 import * as debug from 'debug';
 import { whenOrTimeout, isPromiseLike } from './promiseHelpers';
 import { EventEmitter } from 'events';
-import { Promisify } from './index';
 
 var log = debug('akala:core:injector');
 
+type Promisify<T> = T extends Promise<infer U> ? Promise<U> : T extends PromiseLike<infer U> ? PromiseLike<U> : PromiseLike<T>;
+type UnPromisify<T> = T extends PromiseLike<infer U> ? U : T;
 
 function ctorToFunction(this: new () => any)
 {
@@ -17,6 +18,7 @@ function ctorToFunction(this: new () => any)
 
 export type Injected<T> = (instance?: any) => T;
 export type Injectable<T> = (...args: any[]) => T;
+export type InjectableAsync<T> = (...args: any[]) => Promisify<T>;
 
 
 export class Injector
@@ -60,9 +62,9 @@ export class Injector
             this.parent.notify(name, value);
     }
 
-    public onResolve<T=any>(name: string): PromiseLike<T>
-    public onResolve<T=any>(name: string, handler: (value: T) => void): void
-    public onResolve<T=any>(name: string, handler?: (value: T) => void)
+    public onResolve<T = any>(name: string): PromiseLike<T>
+    public onResolve<T = any>(name: string, handler: (value: T) => void): void
+    public onResolve<T = any>(name: string, handler?: (value: T) => void)
     {
         if (!handler)
             return new Promise<T>((resolve, reject) =>
@@ -88,9 +90,40 @@ export class Injector
             this.parent.onResolve(name, handler);
     }
 
-    public inject<T>(a: Injectable<T>)
+    public inject<T>(a: Injectable<T>): Injected<T>
+    public inject<T>(a: string[]): (b: TypedPropertyDescriptor<Injectable<T>>) => void
+    public inject<T>(a: Injectable<T> | string[]): Injected<T> | ((b: TypedPropertyDescriptor<Injectable<T>>) => void)
+    public inject<T>(a: Injectable<T> | string[])
     {
-        return this.injectWithName(a['$inject'] || getParamNames(a), a);
+        if (typeof a == 'function')
+            return this.injectWithName(a['$inject'] || getParamNames(a), a);
+        var self = this;
+        return function (b: TypedPropertyDescriptor<Injectable<T>>)
+        {
+            var oldf = self.injectWithName(a, b.value);
+            b.value = function ()
+            {
+                return oldf.apply(this, arguments);
+            }
+        }
+    }
+
+    public injectAsync<T>(a: Injectable<Promisify<T>> | string[])
+    {
+        if (typeof a == 'function')
+            return this.injectWithNameAsync(a['$inject'] || getParamNames(a), a)
+
+        var self = this;
+        var wait = false;
+
+        return function <U>(b: TypedPropertyDescriptor<InjectableAsync<U>>)
+        {
+            var f = b.value;
+            b.value = function ()
+            {
+                return self.injectWithNameAsync(a, f);
+            }
+        }
     }
 
     public injectNew<T>(ctor: Injectable<T>)
@@ -98,7 +131,7 @@ export class Injector
         return this.inject(ctorToFunction.bind(ctor));
     }
 
-    public resolve<T=any>(param: string): T
+    public resolve<T = any>(param: string): T
     {
         log('resolving ' + param);
 
@@ -137,7 +170,7 @@ export class Injector
         return null;
     }
 
-    public resolveAsync<T=any>(name: string): T | PromiseLike<T>
+    public resolveAsync<T = any>(name: string): T | PromiseLike<T>
     {
         log('resolving ' + name);
         if (typeof (this.injectables[name]) != 'undefined')
@@ -184,13 +217,13 @@ export class Injector
         return injectWithName(toInject, ctorToFunction.bind(ctor));
     }
 
-    public injectWithNameAsync<T>(toInject: string[], a: Injectable<T>): PromiseLike<T>
+    public injectWithNameAsync<T>(toInject: string[], a: InjectableAsync<T>): Promisify<T>
     {
         var paramNames = <string[]>getParamNames(a);
         var self = this;
         var wait = false;
 
-        return new Promise<T>((resolve, reject) =>
+        return new Promise<UnPromisify<T>>((resolve, reject) =>
         {
             if (paramNames.length == toInject.length || paramNames.length == 0)
             {
@@ -218,7 +251,7 @@ export class Injector
             }
             else
                 reject('the number of arguments does not match the number of injected parameters');
-        });
+        }) as unknown as Promisify<T>;
     }
 
 
@@ -306,7 +339,7 @@ if (!global['$$defaultInjector'])
 var defaultInjector: Injector = global['$$defaultInjector'];
 
 
-export function resolve<T=any>(name: string): T
+export function resolve<T = any>(name: string): T
 {
     return defaultInjector.resolve<T>(name);
 }
@@ -326,7 +359,9 @@ export function inspect()
     return defaultInjector.inspect();
 }
 
-export function inject<T>(a: Injectable<T>)
+export function inject<T>(a: Injectable<T>): Injected<T>
+export function inject<T>(a: string[]): (b: TypedPropertyDescriptor<T>) => void
+export function inject<T>(a: string[] | Injectable<T>)
 {
     return defaultInjector.inject(a);
 }
@@ -346,17 +381,17 @@ export function injectNewWithName(toInject: string[], a: Function)
     return defaultInjector.injectNewWithName(toInject, a);
 }
 
-export function resolveAsync<T=any>(name: string)
+export function resolveAsync<T = any>(name: string)
 {
     return defaultInjector.resolveAsync<T>(name)
 }
 
-export function onResolve<T=any>(name: string)
+export function onResolve<T = any>(name: string)
 {
     return defaultInjector.onResolve<T>(name)
 }
 
-export function injectWithNameAsync<T>(toInject: string[], a: Injectable<T>)
+export function injectWithNameAsync<T>(toInject: string[], a: InjectableAsync<T>)
 {
     return defaultInjector.injectWithNameAsync(toInject, a);
 }
