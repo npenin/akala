@@ -367,10 +367,10 @@ export function inspect()
 }
 
 export function inject<T>(a: Injectable<T>): Injected<T>
-export function inject<T>(a: string[]): (b: TypedPropertyDescriptor<T>) => void
-export function inject<T>(a: string[] | Injectable<T>)
+export function inject<T>(...a: string[]): (b: TypedPropertyDescriptor<T>) => void
+export function inject<T>(a: string | Injectable<T>, ...b: string[])
 {
-    return defaultInjector.inject(a);
+    return defaultInjector.inject(a, ...b);
 }
 
 export function injectNew<T>(a: Injectable<T>)
