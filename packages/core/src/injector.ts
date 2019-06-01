@@ -407,7 +407,7 @@ export function register(name: string, value: any, override?: boolean)
 {
     return defaultInjector.register(name, value, override);
 }
-export function registerFactory(name: string, value: () => any, override?: boolean)
+export function registerFactory<T>(name: string, value: () => T, override?: boolean)
 {
     return defaultInjector.registerFactory(name, value, override);
 }
