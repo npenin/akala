@@ -144,6 +144,8 @@ fs.exists(configFile, function (exists)
 
     fs.readFile(sourcesFile, 'utf8', function (error, sourcesFileContent)
     {
+        if (error && error.code == 'ENOENT')
+            return;
         var sources: string[] = JSON.parse(sourcesFileContent);
         var tmpModules: string[] = [];
 

@@ -1,4 +1,3 @@
-import * as fs from 'fs';
 import * as akala from '@akala/core';
 import { api } from './api';
 import { WorkerRouter } from './router';
