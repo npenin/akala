@@ -1,5 +1,5 @@
 import * as cluster from 'cluster';
-require('source-map-support').install();
+import 'source-map-support/register'
 
 Error.stackTraceLimit = Infinity;
 process.on('warning', e => console.warn(e.stack));
