@@ -1,12 +1,7 @@
-import * as cluster from 'cluster';
-import * as url from 'url';
 import * as fs from 'fs';
-import * as st from 'serve-static';
 import * as jsonrpc from '@akala/json-rpc-ws';
-import * as ws from 'ws';
 import * as akala from '@akala/core';
-import { relative, sep as pathSeparator, dirname, join as pathJoin } from 'path';
-import { serveRouter } from './master-meta';
+import { join as pathJoin } from 'path';
 import * as debug from 'debug';
 // import * as $ from 'underscore';
 import { EventEmitter } from 'events';
@@ -30,8 +25,8 @@ master.setMaxListeners(Infinity);
 
 var port = process.env.PORT || '5678';
 
-if (process.execArgv && process.execArgv.length >= 1)
-    process.execArgv[0] = process.execArgv[0].replace('-brk', '');
+// if (process.execArgv && process.execArgv.length >= 1)
+//     process.execArgv[0] = process.execArgv[0].replace('-brk', '');
 
 
 
@@ -67,8 +62,6 @@ masterRouter.use(authenticationRouter.router);
 masterRouter.use(lateBoundRoutes.router);
 masterRouter.use(app.router);
 
-var configFile = fs.realpathSync('./config.json');
-var sourcesFile = fs.realpathSync('./sources.list');
 var orchestrator = new Orchestrator();
 orchestrator.onAll(function (e)
 {
@@ -91,6 +84,7 @@ var globalWorkers = {};
 var modulesDefinitions: { [name: string]: sequencify.definition } = {};
 var root: string;
 
+var configFile = fs.realpathSync('./config.json');
 fs.exists(configFile, function (exists)
 {
     var config = exists && require(configFile) || {};
@@ -99,6 +93,7 @@ fs.exists(configFile, function (exists)
     port = config && config['@akala/server'] && config['@akala/server'].port || port;
     var dn = config && config['@akala/server'] && config['@akala/server'].dn || 'localhost';
 
+    var sourcesFile = './sources.list';
     fs.readFile(sourcesFile, 'utf8', function (error, sourcesFileContent)
     {
         var sources: string[] = [];

@@ -241,9 +241,11 @@ export function microservice(
             sockets.ready(null);
         });
 
-        cluster.setupMaster(<any>{
-            args: [plugin, url],
-            execArgv: []
+        var forkArgs = process.argv.slice(2);
+        forkArgs.push(plugin, url)
+        cluster.setupMaster({
+            args: forkArgs,
+            // execArgv: []
         });
         var worker = cluster.fork();
         app.get('/api/manage/restart/' + folder, function ()
