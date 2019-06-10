@@ -96,7 +96,7 @@ akala.resolve('$agent.api/manage/' + process.argv[2]).then(function (socket: jso
             log('requiring %s for %s', worker, process.argv[2]);
             require(worker);
         }
-        process.chdir(path.join(process.cwd(), 'node_modules', process.argv[2]));
+        // process.chdir(path.join(process.cwd(), 'node_modules', process.argv[2]));
         akala.register('$master', function (from?: string, masterPath?: string, workerPath?: string)
         {
             masterCalled = true;
@@ -106,7 +106,7 @@ akala.resolve('$agent.api/manage/' + process.argv[2]).then(function (socket: jso
         akala.register('$isModule', (m: string) => { return m == process.argv[2]; }, true);
         log('new cwd: ' + process.cwd());
 
-        require(process.cwd());
+        require(process.argv[2]);
 
         if (!masterCalled)
             server.master(null);
