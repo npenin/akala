@@ -179,7 +179,7 @@ export class HttpRouter extends Router<requestHandlerWithNext, errorHandlerWithN
                     res.end();
                     return res;
                 }
-            self.handle(req, res, function () { console.error('deadend'); console.error(req); });
+            self.handle(req, res, function () { console.error('deadend'); console.error({ url: req.url, headers: req.headers, ip: req.ip }); });
         });
     }
 
