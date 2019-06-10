@@ -281,7 +281,7 @@ export class Injector
             }
         }
         else
-            return function (instance?: any)
+            return function (instance?: any, ...otherArgs: any[])
             {
                 var args = [];
                 var unknownArgIndex = 0;
@@ -290,13 +290,21 @@ export class Injector
                     var resolved = self.resolve(param);
                     if (resolved && paramNames.indexOf(param) == args.length)
                         args[args.length] = resolved;
-                    else if (typeof (arguments[unknownArgIndex]) != 'undefined')
-                        args[args.length] = arguments[unknownArgIndex++];
+                    else if (typeof (otherArgs[unknownArgIndex]) != 'undefined')
+                        args[args.length] = otherArgs[unknownArgIndex++];
                     else
                         args[args.length] = resolved;
                 }
                 return a.apply(instance, args);
             }
+    }
+
+    public exec<T>(...toInject: string[])
+    {
+        return function (f: Injectable<T>)
+        {
+            return injectWithName(toInject, f)(this);
+        }
     }
 
 
@@ -366,11 +374,16 @@ export function inspect()
     return defaultInjector.inspect();
 }
 
-export function inject<T>(a: Injectable<T>): Injected<T>
-export function inject<T>(...a: string[]): (b: TypedPropertyDescriptor<T>) => void
+export function inject<T>(injectable: Injectable<T>): Injected<T>
+export function inject<T>(...toInject: string[]): (b: TypedPropertyDescriptor<T>) => void
 export function inject<T>(a: string | Injectable<T>, ...b: string[])
 {
     return defaultInjector.inject(a, ...b);
+}
+
+export function exec<T>(...toInject: string[]): (f: Injectable<T>) => T
+{
+    return defaultInjector.exec(...toInject);
 }
 
 export function injectNew<T>(a: Injectable<T>)
