@@ -73,7 +73,7 @@ export class Injector
             })
 
         var value = this.resolve(name);
-        if (value !== undefined)
+        if (value !== undefined && value !== null)
         {
             handler(value);
             return;
