@@ -30,10 +30,11 @@ akala.register('$resolveUrl', resolveUrl);
 
 akala.register('$router', app);
 
+var worker: EventEmitter = akala.register('$worker', new EventEmitter());
+
 akala.resolve('$agent.api/manage/' + process.argv[2]).then(function (socket: jsonrpc.Client<jsonrpc.Connection>)
 {
     log('worker connected')
-    var worker = akala.register('$worker', new EventEmitter());
     var client = api.jsonrpcws(new akala.DualApi(meta, metaRouter)).createClient(socket, {
         'after-master': () =>
         {
@@ -85,26 +86,47 @@ akala.resolve('$agent.api/manage/' + process.argv[2]).then(function (socket: jso
         akala.register('$master', function (from?: string, masterPath?: string, workerPath?: string)
         {
             log(from + ' is not the current module path. Ignoring...');
-            return;
+            return false;
         });
         akala.register('$isModule', () => { return false });
 
-        for (var worker of param.workers)
+        for (let subworker of param.workers)
         {
-            if (!worker)
+            if (!subworker)
                 continue;
-            log('requiring %s for %s', worker, process.argv[2]);
-            require(worker);
+            log('requiring %s for %s', subworker, process.argv[2]);
+            require(subworker);
         }
+
         // process.chdir(path.join(process.cwd(), 'node_modules', process.argv[2]));
         akala.register('$master', function (from?: string, masterPath?: string, workerPath?: string)
         {
+            if (masterCalled)
+            {
+                console.error('$master was already called');
+                return;
+            }
             masterCalled = true;
             server.master({ masterPath: masterPath && resolve(dirname(from), masterPath) || null, workerPath: workerPath && resolve(dirname(from), workerPath) || null });
+            return masterCalled;
         }, true);
 
         akala.register('$isModule', (m: string) => { return m == process.argv[2]; }, true);
         log('new cwd: ' + process.cwd());
+
+        if (worker.listenerCount('master') > 0)
+        {
+            worker.emit('master', function (from?: string, masterPath?: string, workerPath?: string)
+            {
+                if (masterCalled)
+                {
+                    console.error('$master was already called');
+                    return;
+                }
+                masterCalled = true;
+                server.master({ masterPath: masterPath && resolve(dirname(from), masterPath) || null, workerPath: workerPath && resolve(dirname(from), workerPath) || null });
+            });
+        }
 
         require(process.argv[2]);
 
