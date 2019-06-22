@@ -179,6 +179,7 @@ export class Injector
 
     public resolveAsync<T = any>(name: string): T | PromiseLike<T>
     {
+        return this.resolve<T | PromiseLike<T>>(name) || this.onResolve<T>(name);
         log('resolving ' + name);
         if (typeof (this.injectables[name]) != 'undefined')
         {
