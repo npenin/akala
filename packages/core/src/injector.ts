@@ -73,7 +73,7 @@ export class Injector
             })
 
         var value = this.resolve(name);
-        if (value !== null)
+        if (value !== undefined)
         {
             handler(value);
             return;
@@ -179,7 +179,7 @@ export class Injector
 
     public resolveAsync<T = any>(name: string): T | PromiseLike<T>
     {
-        return this.resolve<T | PromiseLike<T>>(name) || this.onResolve<T>(name);
+        return this.onResolve<T>(name);
         log('resolving ' + name);
         if (typeof (this.injectables[name]) != 'undefined')
         {
