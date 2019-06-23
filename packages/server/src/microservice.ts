@@ -132,9 +132,9 @@ export function microservice(
                 next();
             finished = true;
 
-            preAuthenticatedRouter.useGet('/assets/' + folder, st('node_modules/' + plugin + '/assets'));
+            preAuthenticatedRouter.useGet('/assets/' + folder, st('node_modules/' + plugin + '/assets') as any);
 
-            preAuthenticatedRouter.useGet('/' + plugin, st('node_modules/' + plugin + '/views'));
+            preAuthenticatedRouter.useGet('/' + plugin, st('node_modules/' + plugin + '/views') as any);
 
             var localWorkers = getDependencies();
             log('localWorkers for %s: %s', folder, localWorkers);
