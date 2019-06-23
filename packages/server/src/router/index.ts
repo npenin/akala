@@ -64,6 +64,7 @@ export interface Response extends http.ServerResponse
     status(statusCode: number): Response;
     sendStatus(statusCode: number): Response;
     json(content: any): Response;
+    redirect(url: string, redirectCode?: number): Response;
 }
 
 export class Router<T extends (akala.Middleware1<any> | akala.Middleware2<any, any>), U extends akala.ErrorMiddleware1<any> | akala.ErrorMiddleware2<any, any>> extends akala.Router<T, U, HttpLayer<T>, HttpRoute<T>> implements Methods<(path: string, ...handlers: T[]) => Router<T, U>>
@@ -176,6 +177,14 @@ export class HttpRouter extends Router<requestHandlerWithNext, errorHandlerWithN
                                 content = JSON.stringify(content);
                         }
                     res.write(content);
+                    res.end();
+                    return res;
+                }
+
+            if (!res.redirect)
+                res.redirect = function (uri, code: number)
+                {
+                    res.writeHead(code || 302, 'redirect', { location: uri });
                     res.end();
                     return res;
                 }
