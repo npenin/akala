@@ -31,7 +31,7 @@ export function expressWrap(handler: express.Handler)
 {
     return function (req: router.Request, response: router.Response, ...rest)
     {
-        handler(req as any, response as express.Response, rest[rest.length - 1]);
+        handler(req as any, response as unknown as express.Response, rest[rest.length - 1]);
     }
 }
 
