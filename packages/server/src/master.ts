@@ -13,6 +13,8 @@ import * as Orchestrator from 'orchestrator';
 import * as sequencify from 'sequencify';
 import { microservice } from './microservice';
 import { updateConfig, getConfig } from './config';
+import * as st from 'serve-static';
+import bodyParser = require('body-parser');
 
 var httpPackage: 'http' | 'https';
 if (!fs.existsSync('privkey.pem') || !fs.existsSync('fullchain.pem'))
@@ -83,6 +85,7 @@ var modulesEvent: { [module: string]: EventEmitter } = {};
 var globalWorkers = {};
 var modulesDefinitions: { [name: string]: sequencify.definition } = {};
 var root: string;
+var index: string;
 
 var configFile = fs.realpathSync('./config.json');
 fs.exists(configFile, function (exists)
@@ -90,6 +93,7 @@ fs.exists(configFile, function (exists)
     var config = exists && require(configFile) || {};
 
     root = config && config['@akala/server'] && config['@akala/server'].root;
+    index = config && config['@akala/server'] && config['@akala/server'].index;
     port = config && config['@akala/server'] && config['@akala/server'].port || port;
     var dn = config && config['@akala/server'] && config['@akala/server'].dn || 'localhost';
 
@@ -152,13 +156,17 @@ fs.exists(configFile, function (exists)
                     master.emit('ready');
                     log('registering error handler');
 
+                    var serveRoot = st(root, { index: index || undefined })
                     app.get('*', function (request, response)
                     {
                         if (request.url.endsWith('.map'))
                         {
                             response.sendStatus(404);
                         }
-                        fs.createReadStream(root + '/index.html').pipe(response);
+                        serveRoot(request as any, response as any, function ()
+                        {
+                            fs.createReadStream(root + '/index.html').pipe(response);
+                        })
                     });
 
                     masterRouter.use(function (err, req: Request, res: Response, next)
