@@ -225,7 +225,7 @@ export class Injector
         return injectWithName(toInject, ctorToFunction.bind(ctor));
     }
 
-    public injectWithNameAsync<T>(toInject: string[], a: InjectableAsync<T>): Promisify<T>
+    public injectWithNameAsync<T>(toInject: string[], a: InjectableAsync<T> | Injectable<T>): Promisify<T>
     {
         var paramNames = <string[]>getParamNames(a);
         var self = this;
@@ -412,7 +412,7 @@ export function onResolve<T = any>(name: string)
     return defaultInjector.onResolve<T>(name)
 }
 
-export function injectWithNameAsync<T>(toInject: string[], a: InjectableAsync<T>)
+export function injectWithNameAsync<T>(toInject: string[], a: InjectableAsync<T> | Injectable<T>)
 {
     return defaultInjector.injectWithNameAsync(toInject, a);
 }

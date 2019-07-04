@@ -24,7 +24,6 @@ class Router extends r.Router<handlerType, errorhandlerType, Layer, r.Route<hand
 
 var router = new Router();
 
-debugger;
 router.use('/api/', function (req, next: Next)
 {
     console.log('api');
