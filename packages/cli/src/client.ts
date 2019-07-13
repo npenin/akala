@@ -21,4 +21,4 @@ program.command('client').command('api <name> <url>')
                 program.process(['config', 'set', 'plugins.' + context.params.name, filePath + '/api.js']);
                 await promisify(fs.writeFile)(filePath + '/api.js', await response.text());
             }
-    })
+    });

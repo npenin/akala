@@ -1,8 +1,6 @@
 import program from '../router';
 import * as fs from 'fs';
 import { promisify } from 'util';
-import * as path from 'path';
-import { write } from 'fs';
 import * as akala from '@akala/core'
 
 async function updateConfig(newConfig, key)
@@ -35,23 +33,6 @@ var updateConfigGetter = {
     }
 }
 
-akala.register('$updateConfig', akala.chain(updateConfig, function (keys, config, key)
-{
-    if (key)
-    {
-        keys.push(key);
-    }
-    return [config, keys.join('.')];
-}));
-akala.register('$getConfig', akala.chain(getConfig, function (keys, key)
-{
-    if (key)
-    {
-        keys.push(key);
-    }
-    return [keys.join('.')];
-}));
-
 var getConfigGetter = {
     get: function (getConfig: typeof getConfigWithKey, key: string)
     {
@@ -80,7 +61,30 @@ async function getConfigWithKey(key?: string)
 
 var getConfigProxy = new Proxy(getConfigWithKey, getConfigGetter);
 
-akala.registerFactory('$config', getConfigProxy);
+export function init()
+{
+
+    akala.register('$updateConfig', akala.chain(updateConfig, function (keys, config, key)
+    {
+        if (key)
+        {
+            keys.push(key);
+        }
+        return [config, keys.join('.')];
+    }));
+    akala.register('$getConfig', akala.chain(getConfig, function (keys, key)
+    {
+        if (key)
+        {
+            keys.push(key);
+        }
+        return [keys.join('.')];
+    }));
+
+    akala.registerFactory('$config', getConfigProxy);
+}
+
+init();
 
 function writeConfig(config)
 {
