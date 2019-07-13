@@ -1,5 +1,3 @@
-import { SSL_OP_MICROSOFT_BIG_SSLV3_BUFFER } from "constants";
-
 
 export function polymorph(types: ('string' | 'number' | 'boolean' | 'function' | 'object' | 'symbol')[])
 {
@@ -10,12 +8,10 @@ export function polymorph(types: ('string' | 'number' | 'boolean' | 'function' |
         return current;
     }, '')
 
-    return function <T extends Function>(target: any, propertyKey: string, descriptor: TypedPropertyDescriptor<T>)
+    return function <T extends Function>(oldF: T)
     {
-        var oldF = descriptor.value;
-        descriptor.value = function (...args)
+        return function (...args)
         {
-            debugger;
             var finalArgs = [];
             let argsIndex = 0;
             for (let i = 0; i < types.length; i++)
@@ -28,5 +24,15 @@ export function polymorph(types: ('string' | 'number' | 'boolean' | 'function' |
             }
             return oldF.apply(this, finalArgs);
         } as any
+    };
+}
+
+export function Polymorph(types: ('string' | 'number' | 'boolean' | 'function' | 'object' | 'symbol')[])
+{
+    var readyToPolymorph = polymorph(types);
+
+    return function <T extends Function>(target: any, propertyKey?: string, descriptor?: TypedPropertyDescriptor<T>)
+    {
+        descriptor.value = readyToPolymorph(descriptor.value)
     };
 }
