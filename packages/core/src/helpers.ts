@@ -1,5 +1,5 @@
 import { Module } from './module';
-import { register, resolve } from './injector'
+import { register, resolve, onResolve } from './injector'
 import * as jsonrpc from '@akala/json-rpc-ws'
 import { chain } from './chain'
 export type Module = Module;
@@ -53,13 +53,13 @@ export interface Translator
 }
 
 
-function createClient<TConnection extends jsonrpc.Connection>(namespace: string): PromiseLike<jsonrpc.Client<TConnection>>
+async function createClient<TConnection extends jsonrpc.Connection>(namespace: string)
 {
     var client = jsonrpc.createClient<TConnection>();
-    var resolveUrl: (url: string) => string = resolve('$resolveUrl');
+    var resolveUrl = await onResolve<(url: string) => string>('$resolveUrl');
     if (!resolveUrl)
         throw new Error('no url resolver could be found');
-    return new Promise<jsonrpc.Client<TConnection>>((resolve, reject) =>
+    return await new Promise<jsonrpc.Client<TConnection>>((resolve, reject) =>
     {
         client.connect(resolveUrl(namespace), function ()
         {
