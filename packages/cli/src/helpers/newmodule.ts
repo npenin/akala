@@ -2,8 +2,6 @@ import program from '../router';
 import * as fs from 'fs';
 import { promisify } from 'util';
 import * as path from 'path';
-import { write } from 'fs';
-import * as akala from '@akala/core'
 import * as mkdirpOld from 'mkdirp';
 import { spawn as spawnOld, SpawnOptions } from 'child_process';
 import { EOL } from 'os'

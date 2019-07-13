@@ -4,14 +4,16 @@ import { LayerRegExp, Layer } from '@akala/core/dist/router/layer';
 import { Key } from 'path-to-regexp';
 import { URL } from 'url';
 
-export interface CliContext {
+export interface CliContext
+{
     args: string[];
     argv: string[];
     options?: { [key: string]: string | boolean | string[] };
     commandPath?: string;
 }
 
-export interface ICommandBuilder {
+export interface ICommandBuilder
+{
     command(cmd: string): Command;
 }
 
@@ -20,14 +22,16 @@ type errorHandlerWithNext = akala.ErrorMiddleware1<CliContext & akala.Request>;
 
 class CliLayer extends akala.Layer<cliHandlerWithNext> implements akala.IRoutable<cliHandlerWithNext>
 {
-    constructor(path: string, options: akala.LayerOptions, handler: cliHandlerWithNext) {
+    constructor(path: string, options: akala.LayerOptions, handler: cliHandlerWithNext)
+    {
         super(path, akala.extend({ length: 1 }, options), handler);
         this.regexp = cliToRegexp(path, this.keys = [], options);
         if (this.keys.length)
             this.name = this.keys[0].name.toString();
     }
 
-    public isApplicable(req: CliContext & Request, route): boolean {
+    public isApplicable(req: CliContext & Request, route): boolean
+    {
         return true;
     }
 
@@ -36,53 +40,67 @@ class CliLayer extends akala.Layer<cliHandlerWithNext> implements akala.IRoutabl
 
 class CliRoute extends akala.Route<cliHandlerWithNext, CliLayer>
 {
-    constructor(path: string) {
+    constructor(path: string)
+    {
         super(path);
     }
-    public isApplicable(req: { method: string }) {
+    public isApplicable(req: { method: string })
+    {
         return true
     }
 }
 
-class CliRouter extends akala.Router<cliHandlerWithNext, errorHandlerWithNext, CliLayer, CliRoute> implements ICommandBuilder {
-    constructor(private injector?: akala.Injector) {
+class CliRouter extends akala.Router<cliHandlerWithNext, errorHandlerWithNext, CliLayer, CliRoute> implements ICommandBuilder
+{
+    constructor(private injector?: akala.Injector)
+    {
         super({ separator: ' ' });
     }
 
-    protected buildLayer(path: string, options: akala.LayerOptions, handler: cliHandlerWithNext) {
+    protected buildLayer(path: string, options: akala.LayerOptions, handler: cliHandlerWithNext)
+    {
         return new CliLayer(path, options, handler);
     }
 
-    protected buildRoute(path: string) {
+    protected buildRoute(path: string)
+    {
         return new CliRoute(path);
     }
 
-    getPathname(req) {
+    getPathname(req)
+    {
         if (req.url)
             return req.url;
         return CliRouter.getAsCli(req.args);
     }
 
-    public static getAsCli(args: string[]) {
-        return args.map(function (v) {
+    public static getAsCli(args: string[])
+    {
+        return args.map(function (v)
+        {
             if (~v.indexOf('"'))
                 return '"' + v + '"';
             return v;
         }).join(' ')
     }
 
-    public command(path: string) {
+    public command(path: string)
+    {
         var cmd = new Command(this.injector);
 
-        var layer = this.layer(path, function (context) {
+        var layer = this.layer(path, function (context)
+        {
             cmd.request = context;
             cmd._action.apply(null, Array.from(arguments));
         });
 
-        layer.isApplicable = function (context, route) {
+        layer.isApplicable = function (context, route)
+        {
             cmd.request = context;
-            return !context.options || !Object.keys(context.options).filter(function (optionName) {
-                return !cmd.options.find(function (option) {
+            return !context.options || !Object.keys(context.options).filter(function (optionName)
+            {
+                return !cmd.options.find(function (option)
+                {
                     return option.matches(context);
                 })
             }).length;
@@ -93,42 +111,52 @@ class CliRouter extends akala.Router<cliHandlerWithNext, errorHandlerWithNext, C
         return cmd;
     }
 
-    protected shift(req, removed) {
-        if (removed == req.args[0]) {
+    protected shift(req, removed)
+    {
+        if (removed == req.args[0])
+        {
             req.args.shift();
         }
     }
 
-    protected unshift(req, removed) {
+    protected unshift(req, removed)
+    {
         req.args.unshift(removed);
     }
 
-    public handle(context, next) {
+    public handle(context, next)
+    {
         this.internalHandle({
-            ensureCleanStart: function () {
+            ensureCleanStart: function ()
+            {
             }
         }, context, next);
     }
 
-    public process(argv: string[]) {
+    public process(argv: string[])
+    {
         this.handle({
             argv: argv,
             args: argv,
             options: {}
-        }, function (err) {
+        }, function (err)
+        {
             if (err)
                 console.error(err);
         });
     }
 }
 
-class Option {
+class Option
+{
     public names: { name: string, pattern: RegExp }[] = [];
     public single: boolean = true;
     public args: LayerRegExp & { keys: Key[] };
 
-    constructor(specification: string, private description: string, private defaultValue: any) {
-        var followingArgs = specification.replace(/(?:^|[\|, ]+)-(-)?([^ ]+)(?:[^<\[])?/g, (match, doubleDash, name) => {
+    constructor(specification: string, private description: string, private defaultValue: any)
+    {
+        var followingArgs = specification.replace(/(?:^|[\|, ]+)-(-)?([^ ]+)(?:[^<\[])?/g, (match, doubleDash, name) =>
+        {
             if (doubleDash)
                 this.names.push({ name: name, pattern: new RegExp('^--' + escapeRegExp(name) + '$') });
             else
@@ -136,7 +164,8 @@ class Option {
             return '';
         });
 
-        if (followingArgs.length > 0) {
+        if (followingArgs.length > 0)
+        {
             let keys = [];
             this.args = cliToRegexp(followingArgs, keys) as any;
             if (keys.length == 1 && keys[0].variadic)
@@ -144,8 +173,10 @@ class Option {
         }
     }
 
-    public matches(context: CliContext) {
-        var optionValues = this.names.filter((nameSpec) => {
+    public matches(context: CliContext)
+    {
+        var optionValues = this.names.filter((nameSpec) =>
+        {
             if (typeof (this.defaultValue) != 'undefined')
                 context.options[nameSpec.name] = this.defaultValue;
             return context.args.find(nameSpec.pattern.test.bind(nameSpec.pattern));
@@ -159,10 +190,14 @@ class Option {
 
         let indexesToRemove: number[];
 
-        for (let i = 0; i < context.args.length; i++) {
-            for (let j = 0; j < this.names.length; j++) {
-                if (this.names[j].pattern.test(context.args[i])) {
-                    if (this.args) {
+        for (let i = 0; i < context.args.length; i++)
+        {
+            for (let j = 0; j < this.names.length; j++)
+            {
+                if (this.names[j].pattern.test(context.args[i]))
+                {
+                    if (this.args)
+                    {
                         var match = CliRouter.getAsCli(context.args.slice(i + 1, this.args.keys.length + i + 1)).match(this.args);
                         if (!match)
                             continue;
@@ -181,7 +216,8 @@ class Option {
                         i += this.args.keys.length + 1;
                         j = -1;
                     }
-                    else {
+                    else
+                    {
                         context.options[this.names[j].name] = true;
                         indexesToRemove.push(i);
                         i++;
@@ -191,7 +227,8 @@ class Option {
             }
         }
 
-        for (let i = 0; i < indexesToRemove.length; i++) {
+        for (let i = 0; i < indexesToRemove.length; i++)
+        {
             context.args.splice(i, 1);
         }
     }
@@ -199,20 +236,26 @@ class Option {
 
 const masterPrefixes = ['param', 'option']
 
-class Command extends akala.Injector implements ICommandBuilder {
-    constructor(injector?: akala.Injector) {
+class Command extends akala.Injector implements ICommandBuilder
+{
+    constructor(injector?: akala.Injector)
+    {
         super(injector);
     }
 
     public request?: CliContext & akala.Request;
 
-    public resolve<T=any>(name: string): T {
+    public resolve<T = any>(name: string): T
+    {
         let indexOfDot = name.indexOf('.');
 
-        if (indexOfDot > -1) {
+        if (indexOfDot > -1)
+        {
             let master = name.substr(0, indexOfDot);
-            if (master in masterPrefixes) {
-                switch (master) {
+            if (master in masterPrefixes)
+            {
+                switch (master)
+                {
                     case 'param':
                         return this.request.params && this.request.params[name.substr(indexOfDot + 1)] as any;
                     case 'option':
@@ -230,39 +273,49 @@ class Command extends akala.Injector implements ICommandBuilder {
 
     public handler: cliHandlerWithNext;
 
-    public action(action: cliHandlerWithNext) {
+    public action(action: cliHandlerWithNext)
+    {
         this._action = action;
-        
+
         return this;
     }
 
-    public config(configName: string) {
-        this.registerFactory('$config', () => {
-            return this.parent.resolve<Promise<any>>('$config').then((config) => {
+    public config(configName: string)
+    {
+        this.registerFactory('$config', () =>
+        {
+            return this.parent.resolve<Promise<any>>('$config').then((config) =>
+            {
                 return config[configName];
             })
         });
 
-        this.register('$updateConfig', (value, key) => {
+        this.register('$updateConfig', (value, key) =>
+        {
             return this.parent.resolve('$updateConfig')(value, configName + '.' + key);
         });
 
         return this;
     }
 
-    public option(spec: string, description: string, defaultValue: any) {
+    public option(spec: string, description: string, defaultValue: any)
+    {
         this.options.push(new Option(spec, description, defaultValue));
         return this;
     }
 
-    public command(cmd: string): Command {
+    public command(cmd: string): Command
+    {
         if (!this.subCommands)
             this.subCommands = new CliRouter(this);
         if (!this._action)
-            this.action((context, next) => {
+            this.action((context, next) =>
+            {
                 this.request = context;
-                if (this.options.length) {
-                    this.options.forEach(function (option) {
+                if (this.options.length)
+                {
+                    this.options.forEach(function (option)
+                    {
                         option.matches(context);
                     });
                 }
@@ -272,35 +325,40 @@ class Command extends akala.Injector implements ICommandBuilder {
     }
 }
 
-function cliToRegexp(cli: string, keys: Key[], options?: akala.LayerOptions): LayerRegExp {
+function cliToRegexp(cli: string, keys: Key[], options?: akala.LayerOptions): LayerRegExp
+{
     var flags: string = undefined;
     var regexp = '^';
     if (options && options.sensitive)
         flags += 'i';
 
-    if (cli == '*') {
+    if (cli == '*')
+    {
         regexp = '^.*$';
     }
-    else {
-        regexp = cli.replace(/( ?)([<\[])?(\.{3})?([-\w]+)[>\]]?/g, function (m, space, argcase, variadic, name) {
-            switch (argcase) {
+    else
+    {
+        regexp = cli.replace(/( ?)([<\[])?(\.{3})?([-\w]+)[>\]]?/g, function (m, space, argcase, variadic, name)
+        {
+            switch (argcase)
+            {
                 case '[':
                     if (space)
-                        keys.push({ name: name, repeat: !!variadic, prefix: null, optional: true, delimiter: ' ', partial: false, pattern: '(?: +([^\\s]+|(?:"(?:[^"\\\\]|(?:\\\\[^"])|(?:\\\\""))+")))?' });
+                        keys.push({ name: name, repeat: !!variadic, prefix: null, optional: true, delimiter: ' ', pattern: '(?: +([^\\s]+|(?:"(?:[^"\\\\]|(?:\\\\[^"])|(?:\\\\""))+")))?' });
                     else
-                        keys.push({ name: name, repeat: !!variadic, prefix: null, optional: true, delimiter: ' ', partial: false, pattern: '([^\\s]+|(?:"(?:[^"\\\\]|(?:\\\\[^"])|(?:\\\\""))+"))?' });
+                        keys.push({ name: name, repeat: !!variadic, prefix: null, optional: true, delimiter: ' ', pattern: '([^\\s]+|(?:"(?:[^"\\\\]|(?:\\\\[^"])|(?:\\\\""))+"))?' });
                     break;
                 case '<':
                     if (space)
-                        keys.push({ name: name, repeat: !!variadic, prefix: null, optional: false, delimiter: ' ', partial: false, pattern: ' +([^\\s]+|(?:"(?:[^"\\\\]|(?:\\\\[^"])|(?:\\\\""))+"))' });
+                        keys.push({ name: name, repeat: !!variadic, prefix: null, optional: false, delimiter: ' ', pattern: ' +([^\\s]+|(?:"(?:[^"\\\\]|(?:\\\\[^"])|(?:\\\\""))+"))' });
                     else
-                        keys.push({ name: name, repeat: !!variadic, prefix: null, optional: false, delimiter: ' ', partial: false, pattern: '([^\\s]+|(?:"(?:[^"\\\\]|(?:\\\\[^"])|(?:\\\\""))+"))' });
+                        keys.push({ name: name, repeat: !!variadic, prefix: null, optional: false, delimiter: ' ', pattern: '([^\\s]+|(?:"(?:[^"\\\\]|(?:\\\\[^"])|(?:\\\\""))+"))' });
                     break;
                 default:
                     if (space)
-                        keys.push({ name: name, repeat: !!variadic, prefix: null, optional: false, delimiter: ' ', partial: false, pattern: ' +(' + escapeRegExp(name) + ')' });
+                        keys.push({ name: name, repeat: !!variadic, prefix: null, optional: false, delimiter: ' ', pattern: ' +(' + escapeRegExp(name) + ')' });
                     else
-                        keys.push({ name: name, repeat: !!variadic, prefix: null, optional: false, delimiter: ' ', partial: false, pattern: '(' + escapeRegExp(name) + ')' });
+                        keys.push({ name: name, repeat: !!variadic, prefix: null, optional: false, delimiter: ' ', pattern: '(' + escapeRegExp(name) + ')' });
                     break;
             }
             return keys[keys.length - 1].pattern;
@@ -311,7 +369,8 @@ function cliToRegexp(cli: string, keys: Key[], options?: akala.LayerOptions): La
         regexp += '(?=\/|$)';
     var result: LayerRegExp & { keys: Key[] };
     result = new RegExp(regexp, flags) as any;
-    if (regexp == '^.*$') {
+    if (regexp == '^.*$')
+    {
         result.fast_star = true;
     }
     result.keys = keys;
@@ -323,10 +382,12 @@ var cmd = mainRouter.command('*');
 
 cmd.option('--url', 'remote url of akala server', 'http://localhost:5678/')
 cmd['cliToRegexp'] = cliToRegexp;
-cmd['process'] = function (argv: string[]) {
+cmd['process'] = function (argv: string[])
+{
 
     akala.register('$resolveUrl',
-        function resolveUrl(namespace: string) {
+        function resolveUrl(namespace: string)
+        {
             return new URL(namespace, cmd.request.options['url'] as string).toString();
         }, true);
     mainRouter.process(argv);
