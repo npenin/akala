@@ -19,3 +19,4 @@ export * from './interpolate';
 import * as introspect from './reflect';
 export { introspect };
 export * from './chain';
+export * from './polymorph';
