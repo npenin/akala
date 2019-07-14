@@ -46,7 +46,7 @@ export class WorkerInjectorImpl extends akala.Injector
         super();
     }
 
-    public resolve<T=any>(name: string): T
+    public resolve<T = any>(name: string): T
     {
         let indexOfDot = name.indexOf('.');
 
@@ -388,7 +388,10 @@ export function handle(app: Router, root: string)
             Object.defineProperty(request, 'injector', { value: requestInjector, enumerable: false, configurable: false, writable: false });
 
             log(request.url);
-            app.handle(request, callback);
+            app.handle(request, callback, function (err, req, callback)
+            {
+                callback(500, err);
+            });
         })
     }
 }
