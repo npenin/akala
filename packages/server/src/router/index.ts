@@ -67,7 +67,7 @@ export interface Response extends http.ServerResponse
     redirect(url: string, redirectCode?: number): Response;
 }
 
-export class Router<T extends (akala.Middleware1<any> | akala.Middleware2<any, any>), U extends akala.ErrorMiddleware1<any> | akala.ErrorMiddleware2<any, any>> extends akala.Router<T, U, HttpLayer<T>, HttpRoute<T>> implements Methods<(path: string, ...handlers: T[]) => Router<T, U>>
+export class Router<T extends (akala.Middleware1<any> | akala.Middleware2<any, any>), U extends akala.ErrorMiddleware1<any> | akala.ErrorMiddleware2<any, any>> extends akala.Router<T, U, HttpLayer<T>, HttpRoute<T>> implements Methods<(path: string, ...handlers: (T | U)[]) => Router<T, U>>
 {
     constructor(options?: akala.RouterOptions)
     {
@@ -84,35 +84,35 @@ export class Router<T extends (akala.Middleware1<any> | akala.Middleware2<any, a
         return new HttpRoute<T>(path);
     }
 
-    'all': (path: string, ...handlers: T[]) => this;
-    'checkout': (path: string, ...handlers: T[]) => this;
-    'connect': (path: string, ...handlers: T[]) => this;
-    'copy': (path: string, ...handlers: T[]) => this;
-    'delete': (path: string, ...handlers: T[]) => this;
-    'get': (path: string, ...handlers: T[]) => this;
-    'head': (path: string, ...handlers: T[]) => this;
-    'lock': (path: string, ...handlers: T[]) => this;
-    'm-search': (path: string, ...handlers: T[]) => this;
-    'merge': (path: string, ...handlers: T[]) => this;
-    'mkactivity': (path: string, ...handlers: T[]) => this;
-    'mkcalendar': (path: string, ...handlers: T[]) => this;
-    'mkcol': (path: string, ...handlers: T[]) => this;
-    'move': (path: string, ...handlers: T[]) => this;
-    'notify': (path: string, ...handlers: T[]) => this;
-    'options': (path: string, ...handlers: T[]) => this;
-    'patch': (path: string, ...handlers: T[]) => this;
-    'post': (path: string, ...handlers: T[]) => this;
-    'prop': (path: string, ...handlers: T[]) => this;
-    'find': (path: string, ...handlers: T[]) => this;
-    'proppatch': (path: string, ...handlers: T[]) => this;
-    'purge': (path: string, ...handlers: T[]) => this;
-    'put': (path: string, ...handlers: T[]) => this;
-    'report': (path: string, ...handlers: T[]) => this;
-    'search': (path: string, ...handlers: T[]) => this;
-    'subscribe': (path: string, ...handlers: T[]) => this;
-    'trace': (path: string, ...handlers: T[]) => this;
-    'unlock': (path: string, ...handlers: T[]) => this;
-    'unsubscribe': (path: string, ...handlers: T[]) => this;
+    'all': (path: string, ...handlers: (T | U)[]) => this;
+    'checkout': (path: string, ...handlers: (T | U)[]) => this;
+    'connect': (path: string, ...handlers: (T | U)[]) => this;
+    'copy': (path: string, ...handlers: (T | U)[]) => this;
+    'delete': (path: string, ...handlers: (T | U)[]) => this;
+    'get': (path: string, ...handlers: (T | U)[]) => this;
+    'head': (path: string, ...handlers: (T | U)[]) => this;
+    'lock': (path: string, ...handlers: (T | U)[]) => this;
+    'm-search': (path: string, ...handlers: (T | U)[]) => this;
+    'merge': (path: string, ...handlers: (T | U)[]) => this;
+    'mkactivity': (path: string, ...handlers: (T | U)[]) => this;
+    'mkcalendar': (path: string, ...handlers: (T | U)[]) => this;
+    'mkcol': (path: string, ...handlers: (T | U)[]) => this;
+    'move': (path: string, ...handlers: (T | U)[]) => this;
+    'notify': (path: string, ...handlers: (T | U)[]) => this;
+    'options': (path: string, ...handlers: (T | U)[]) => this;
+    'patch': (path: string, ...handlers: (T | U)[]) => this;
+    'post': (path: string, ...handlers: (T | U)[]) => this;
+    'prop': (path: string, ...handlers: (T | U)[]) => this;
+    'find': (path: string, ...handlers: (T | U)[]) => this;
+    'proppatch': (path: string, ...handlers: (T | U)[]) => this;
+    'purge': (path: string, ...handlers: (T | U)[]) => this;
+    'put': (path: string, ...handlers: (T | U)[]) => this;
+    'report': (path: string, ...handlers: (T | U)[]) => this;
+    'search': (path: string, ...handlers: (T | U)[]) => this;
+    'subscribe': (path: string, ...handlers: (T | U)[]) => this;
+    'trace': (path: string, ...handlers: (T | U)[]) => this;
+    'unlock': (path: string, ...handlers: (T | U)[]) => this;
+    'unsubscribe': (path: string, ...handlers: (T | U)[]) => this;
 }
 
 export class HttpRouter extends Router<requestHandlerWithNext, errorHandlerWithNext>
@@ -337,11 +337,11 @@ export class WorkerRouter extends Router<workerRequestHandler, workerErrorHandle
         super(options);
     }
 
-    public handle(req: worker.Request, callback: Callback): void
+    public handle(req: worker.Request, callback: Callback, deadend: workerErrorHandler): void
     {
         var methods: string[];
 
-        var args: any[] = [{
+        return this.internalHandle({
             preHandle: function (done)
             {
                 if (req.method === 'OPTIONS')
@@ -367,9 +367,7 @@ export class WorkerRouter extends Router<workerRequestHandler, workerErrorHandle
                     return false;
                 }
             }
-        }, req];
-
-        return this.internalHandle.apply(this, args.concat(callback));
+        }, req, callback, deadend);
     }
 
 

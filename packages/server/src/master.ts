@@ -13,8 +13,9 @@ import * as Orchestrator from 'orchestrator';
 import * as sequencify from 'sequencify';
 import { microservice } from './microservice';
 import { updateConfig, getConfig } from './config';
-import * as st from 'serve-static';
+// import * as st from 'serve-static';
 import bodyParser = require('body-parser');
+import { expressWrap, serveStatic } from './master-meta';
 
 var httpPackage: 'http' | 'https';
 if (!fs.existsSync('privkey.pem') || !fs.existsSync('fullchain.pem'))
@@ -156,17 +157,20 @@ fs.exists(configFile, function (exists)
                     master.emit('ready');
                     log('registering error handler');
 
-                    var serveRoot = st(root, { index: index || undefined })
+                    var serveRoot = serveStatic(root, { index: index || undefined })
+                    preAuthenticatedRouter.use(serveStatic(root, { index: index || undefined, fallthrough: true }));
+                    preAuthenticatedRouter.get('/favicon.ico', serveStatic(root, { index: index || undefined, fallthrough: false }));
+                    preAuthenticatedRouter.get('/manifest.json', serveStatic(root, { index: index || undefined, fallthrough: false }));
                     app.get('*', function (request, response)
                     {
                         if (request.url.endsWith('.map'))
                         {
                             response.sendStatus(404);
                         }
-                        serveRoot(request as any, response as any, function ()
+                        serveRoot(request, response, function ()
                         {
                             fs.createReadStream(root + '/index.html').pipe(response);
-                        })
+                        });
                     });
 
                     masterRouter.use(function (err, req: Request, res: Response, next)

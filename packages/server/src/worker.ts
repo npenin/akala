@@ -128,7 +128,7 @@ akala.resolve('$agent.api/manage/' + process.argv[2]).then(function (socket: jso
             });
         }
 
-        require(process.argv[2]);
+        require.main.require(process.argv[2]);
 
         if (!masterCalled)
             server.master(null);
