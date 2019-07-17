@@ -295,8 +295,10 @@ export function microservice(
                 masterPath = masterPath.replace(/\\/g, '/');
             log('path being required: ' + masterPath);
             akala.register('$module', plugin, true);
+            akala.register('$isModule', function (p) { return p == plugin; }, true);
             require(masterPath);
             akala.unregister('$module');
+            akala.unregister('$isModule');
             // orchestratorLog(globalWorkers);
             // console.log('emitting after-master for ' + plugin);
             modulesEvent[plugin].emit('after-master');
