@@ -295,7 +295,7 @@ export function microservice(
                 masterPath = masterPath.replace(/\\/g, '/');
             log('path being required: ' + masterPath);
             akala.register('$module', plugin, true);
-            akala.register('$isModule', function (p) { return p == plugin; }, true);
+            akala.register('$isModule', function (p) { return false; }, true);
             require(masterPath);
             akala.unregister('$module');
             akala.unregister('$isModule');
