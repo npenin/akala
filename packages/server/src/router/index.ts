@@ -7,6 +7,7 @@ import * as worker from '../worker-meta'
 import { HttpRoute } from './route';
 import { HttpLayer } from './layer';
 import { Readable } from 'stream';
+import { Socket } from 'net';
 var debug = akala.log('akala:router');
 var routing = require('routington');
 
@@ -133,7 +134,7 @@ export class HttpRouter extends Router<requestHandlerWithNext, errorHandlerWithN
     public attachTo(server: http.Server | http2.Http2SecureServer)
     {
         var self = this;
-        server.on('upgrade', (req: Request, socket, head) =>
+        server.on('upgrade', (req: Request, socket: Socket, head) =>
         {
             req.ip = req.socket.remoteAddress;
             var uri = url.parse(req.url, true);
@@ -143,7 +144,8 @@ export class HttpRouter extends Router<requestHandlerWithNext, errorHandlerWithN
             self.handle(req, socket, head, function ()
             {
                 console.error('ws deadend');
-                console.error(req.url)
+                console.error(req.url);
+                socket.end();
             });
         })
         server.on('request', (req: Request, res: Response) =>
@@ -188,7 +190,7 @@ export class HttpRouter extends Router<requestHandlerWithNext, errorHandlerWithN
                     res.end();
                     return res;
                 }
-            self.handle(req, res, function () { console.error('deadend'); console.error({ url: req.url, headers: req.headers, ip: req.ip }); });
+            self.handle(req, res, function () { console.error('deadend'); console.error({ url: req.url, headers: req.headers, ip: req.ip }); res.writeHead(404, 'Not found').end(); });
         });
     }
 
