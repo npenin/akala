@@ -25,6 +25,7 @@ else
 
 var master = new EventEmitter();
 master.setMaxListeners(Infinity);
+akala.register('$master', master);
 
 var port = process.env.PORT || '5678';
 
