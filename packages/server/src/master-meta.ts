@@ -34,18 +34,18 @@ export function serveStatic(path, options: send.SendOptions & { fallthrough?: bo
     if (typeof (options.fallthrough) == 'undefined')
         options.fallthrough = true;
     options.root = path;
-    return function (req: request, res: response, next: akala.NextFunction)
+    return function (req: request, res: response, ...next: akala.NextFunction[])
     {
         var sendstr = send(req, req.url, options);
         sendstr.on('error', function (error)
         {
             if (error && error.code == "ENOENT")
                 if (options.fallthrough)
-                    next();
+                    next[next.length - 1]();
                 else
                     res.status(404).end();
             else
-                next(error);
+                next[next.length - 1](error);
         });
         sendstr.pipe(res);
     }
