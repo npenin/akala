@@ -219,7 +219,7 @@ export function microservice(
                     });
                 // socket.join(submodule);
 
-                var moduleEvents = modulesEvent[param.module] = modulesEvent[param.module] || new EventEmitter();
+                modulesEvent[param.module] = modulesEvent[param.module] || new EventEmitter();
 
                 modulesEvent[param.module].on('after-master', function ()
                 {
@@ -241,6 +241,7 @@ export function microservice(
             sockets.ready(null);
         });
 
+        debugger;
         var forkArgs = process.argv.slice(2);
         forkArgs.push(plugin, url)
         cluster.setupMaster({
