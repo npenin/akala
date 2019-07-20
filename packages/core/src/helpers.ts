@@ -61,9 +61,12 @@ async function createClient<TConnection extends jsonrpc.Connection>(namespace: s
         throw new Error('no url resolver could be found');
     return await new Promise<jsonrpc.Client<TConnection>>((resolve, reject) =>
     {
-        client.connect(resolveUrl(namespace), function ()
+        client.connect(resolveUrl(namespace), function (err)
         {
-            resolve(client);
+            if (err)
+                reject(err);
+            else
+                resolve(client);
         });
     });
 }
