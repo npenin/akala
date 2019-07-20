@@ -145,7 +145,7 @@ export function microservice(
                     return globalWorkers[dep];
                 }), function (dep)
                     {
-                        return !dep;
+                        return dep;
                     })
             });
             log('callback called')
