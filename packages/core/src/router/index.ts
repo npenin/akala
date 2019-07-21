@@ -526,8 +526,7 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
      * @public
      */
     public use(...handlers: (T | U)[])
-    public use(path: string, ...handlers: U[])
-    public use(path: string, ...handlers: T[])
+    public use(path: string, ...handlers: (T | U)[])
     public use(...handlers: (string | T | U)[])
     {
         var offset = 0
