@@ -165,28 +165,27 @@ export function serveRouter<TOConnection extends Connection,
 
             var client = this.$proxy(socket);
 
-            subRouter.use(param.path, function (req: router.Request, res: router.Response, next: akala.NextFunction)
-            {
-                if (socket.socket.readyState == ws.CLOSED || socket.socket.readyState == ws.CLOSING)
+            subRouter.use(param.path,
+                function (_req: router.Request, _res: router.Response, next: akala.NextFunction)
                 {
-                    next();
-                    return;
-                }
-                bodyparser.json()(req as any, res as any, function (err)
+                    if (socket.socket.readyState == ws.CLOSED || socket.socket.readyState == ws.CLOSING)
+                        next('route');
+                    else
+                        next();
+                },
+                bodyparser.json(),
+                bodyparser.urlencoded({ extended: true }),
+                function (req, res, next)
                 {
-                    bodyparser.urlencoded({ extended: true })(req as any, res as any, function (err)
+                    var translatedReq = translateRequest(req);
+                    if (param.remap)
                     {
-                        var translatedReq = translateRequest(req);
-                        if (param.remap)
-                        {
-                            if (translatedReq.url == '/')
-                                translatedReq.url = '';
-                            translatedReq.url = param.remap + translatedReq.url;
-                        }
-                        client.getContent(translatedReq).then(handleResponse(res, locationReplacer, 200), handleResponse(res, locationReplacer, 500));
-                    })
-                })
-            });
+                        if (translatedReq.url == '/')
+                            translatedReq.url = '';
+                        translatedReq.url = param.remap + translatedReq.url;
+                    }
+                    client.getContent(translatedReq).then(handleResponse(res, locationReplacer, 200), next);
+                });
         }
     }, impl || {}));
 }
