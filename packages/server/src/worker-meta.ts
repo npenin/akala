@@ -328,7 +328,9 @@ export function handle(app: Router, root: string)
             {
                 var response: CallbackResponse;
                 if (arguments.length == 0)
-                    return resolve();
+                    return reject();
+                if (arguments.length == 1 && status === 'route')
+                    return reject(status);
 
                 if (isNaN(Number(status)) || Array.isArray(status))
                 {
@@ -388,9 +390,9 @@ export function handle(app: Router, root: string)
             Object.defineProperty(request, 'injector', { value: requestInjector, enumerable: false, configurable: false, writable: false });
 
             log(request.url);
-            app.handle(request, callback, function (err, req, callback)
+            app.handle(request, callback, function (err, _req, _callback)
             {
-                callback(500, err);
+                reject(err);
             });
         })
     }
