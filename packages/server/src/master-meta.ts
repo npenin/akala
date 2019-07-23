@@ -151,16 +151,37 @@ export function serveRouter<TOConnection extends Connection,
         TOClientOneWayProxy,
         TOClientTwoWayProxy>, impl?: TOServerOneWay & TOServerTwoWay): api.Server<typeof other & typeof metaRouter>
 {
-    var subRouter = new httpRouter();
-    log('creating server on ' + path);
-    router.use(path, subRouter.router);
+    return serveRouterAdvanced(router, path, path, other);
+}
 
-    return api.jsonrpcws(other && new DualApi(metaRouter, other) || metaRouter).createServer(path, akala.extend({
+export function serveRouterAdvanced<TOConnection extends Connection,
+    TOServerOneWay,
+    TOServerTwoWay,
+    TOClientOneWay,
+    TOClientTwoWay,
+    TOServerOneWayProxy extends TOServerOneWay,
+    TOServerTwoWayProxy extends TOServerTwoWay,
+    TOClientOneWayProxy extends TOClientOneWay,
+    TOClientTwoWayProxy extends TOClientTwoWay>(router: router.HttpRouter, pathToRegister: string, pathToServe: string, other?: Api<TOConnection,
+        TOServerOneWay,
+        TOServerTwoWay,
+        TOClientOneWay,
+        TOClientTwoWay,
+        TOServerOneWayProxy,
+        TOServerTwoWayProxy,
+        TOClientOneWayProxy,
+        TOClientTwoWayProxy>, impl?: TOServerOneWay & TOServerTwoWay): api.Server<typeof other & typeof metaRouter>
+{
+    var subRouter = new httpRouter();
+    log(`creating server on ${pathToRegister} for ${pathToServe}`);
+    router.use(pathToServe, subRouter.router);
+
+    return api.jsonrpcws(other && new DualApi(metaRouter, other) || metaRouter).createServer(pathToRegister, akala.extend({
         register: function (param: { path: string, remap: string }, socket: TOConnection)
         {
             var locationReplacer = function (header)
             {
-                return header.replace(path, path + param.path)
+                return header.replace(pathToServe, pathToServe + param.path)
             };
 
             var client = this.$proxy(socket);
