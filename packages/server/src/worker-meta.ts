@@ -1,10 +1,9 @@
-import { Request as BaseRequest, WorkerRouter as Router, Callback, CallbackResponse } from './router';
+import { Request as BaseRequest, WorkerRouter as Router, Callback, CallbackResponse, workerErrorHandler, workerHandler, workerRequestHandler } from './router';
 import * as akala from '@akala/core';
 import * as express from 'express';
 import * as stream from 'stream';
-export { Router, Callback };
+export { Router, Callback, workerHandler as RouterHandler, workerErrorHandler as ErrorHandler, workerRequestHandler as RequestHandler };
 import * as jsonrpc from '@akala/json-rpc-ws'
-import { Connection, Client } from '@akala/json-rpc-ws';
 import * as send from 'send';
 import * as onFinished from 'on-finished';
 import { PayloadDataType } from '@akala/json-rpc-ws';
