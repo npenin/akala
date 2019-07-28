@@ -169,7 +169,7 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
      * @private
      */
 
-    public handle(req: Request, ...rest)
+    public handle<TRequest extends Request>(req: TRequest, ...rest)
     {
         return this.internalHandle.apply(this, [{}, req].concat(rest));
     }
