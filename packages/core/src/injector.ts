@@ -417,7 +417,7 @@ export function injectWithNameAsync<T>(toInject: string[], a: InjectableAsync<T>
     return defaultInjector.injectWithNameAsync(toInject, a);
 }
 
-export function register(name: string, value: any, override?: boolean)
+export function register<T>(name: string, value: T, override?: boolean)
 {
     return defaultInjector.register(name, value, override);
 }
