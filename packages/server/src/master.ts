@@ -5,27 +5,21 @@ import { join as pathJoin } from 'path';
 import * as debug from 'debug';
 // import * as $ from 'underscore';
 import { EventEmitter } from 'events';
-import { router, Request, Response, CallbackResponse } from './router';
+import { router, Request, Response } from './router';
 import * as pac from './package';
 var log = debug('akala:master');
 var orchestratorLog = debug('akala:master:orchestrator');
 import * as Orchestrator from 'orchestrator';
-import * as sequencify from 'sequencify';
 import { microservice } from './microservice';
 import { updateConfig, getConfig } from './config';
 // import * as st from 'serve-static';
-import bodyParser = require('body-parser');
-import { expressWrap, serveStatic } from './master-meta';
+import { serveStatic } from './master-meta';
 
 var httpPackage: 'http' | 'https';
 if (!fs.existsSync('privkey.pem') || !fs.existsSync('fullchain.pem'))
     httpPackage = 'http'
 else
     httpPackage = 'https';
-
-var master = new EventEmitter();
-master.setMaxListeners(Infinity);
-akala.register('$master', master);
 
 var port = process.env.PORT || '5678';
 
@@ -66,26 +60,6 @@ masterRouter.use(authenticationRouter.router);
 masterRouter.use(lateBoundRoutes.router);
 masterRouter.use(app.router);
 
-var orchestrator = new Orchestrator();
-orchestrator.onAll(function (e)
-{
-    if (e.src == 'task_not_found')
-        console.error(e.message);
-    if (e.src == 'task_err')
-        console.error(e.err);
-
-    orchestratorLog(e);
-});
-
-interface Connection extends jsonrpc.Connection
-{
-    submodule?: string;
-}
-
-var socketModules: { [module: string]: Connection } = {};
-var modulesEvent: { [module: string]: EventEmitter } = {};
-var globalWorkers = {};
-var modulesDefinitions: { [name: string]: sequencify.definition } = {};
 var root: string;
 var index: string;
 
@@ -99,16 +73,19 @@ fs.exists(configFile, function (exists)
     port = config && config['@akala/server'] && config['@akala/server'].port || port;
     var dn = config && config['@akala/server'] && config['@akala/server'].dn || 'localhost';
 
+    akala.register('$rootUrl', httpPackage + '://' + dn + ':' + port);
+
     var sourcesFile = './sources.list';
     fs.readFile(sourcesFile, 'utf8', function (error, sourcesFileContent)
     {
         var sources: string[] = [];
-        var tmpModules: string[] = [];
+        var modules: string[] = [];
         if (error && error.code == 'ENOENT')
         {
             var pkg: pac.CoreProperties = require(pathJoin(process.cwd(), './package.json'))
             var [source, folder] = pkg.name.split('/');
-            microservice(folder, pkg.name, source, [source], config, modulesDefinitions, modulesEvent, orchestrator, preAuthenticatedRouter, globalWorkers, app, master, socketModules, httpPackage + '://' + dn + ':' + port, tmpModules);
+            microservice(pkg.name, source, [source], config, preAuthenticatedRouter);
+            modules.push(pkg.name)
         }
         else
         {
@@ -126,7 +103,8 @@ fs.exists(configFile, function (exists)
 
                 modules.forEach(function (folder)
                 {
-                    microservice(folder, source + '/' + folder, source, sources, config, modulesDefinitions, modulesEvent, orchestrator, preAuthenticatedRouter, globalWorkers, app, master, socketModules, httpPackage + '://' + dn + ':' + port, tmpModules);
+                    microservice(source + '/' + folder, source, [source], config, preAuthenticatedRouter);
+                    modules.push(source + '/' + folder);
                 });
 
                 next();
@@ -139,23 +117,12 @@ fs.exists(configFile, function (exists)
                     return;
                 }
 
-                var modules = tmpModules;
                 akala.register('$$modules', modules);
-                akala.register('$$socketModules', socketModules);
-                // akala.register('$$sockets', sockets);
+
                 log(modules);
 
-                var masterDependencies = [];
-                akala.each(modules, function (e)
+                akala.module('bootstrap', ...modules).init([], function ()
                 {
-                    masterDependencies.push(e + '#master');
-                });
-
-                orchestrator.add('@akala/server#master', function () { });
-
-                orchestrator.add('default', masterDependencies, function ()
-                {
-                    master.emit('ready');
                     log('registering error handler');
 
                     var serveRoot = serveStatic(root, { index: index || undefined })
@@ -200,21 +167,23 @@ fs.exists(configFile, function (exists)
                     console.log('server ready...');
                 });
 
-                orchestrator.start('default');
+                akala.module('bootstrap').start();
             });
     });
 
-    if (httpPackage == 'http')
+    switch (httpPackage)
     {
-        const http = require('http');
-        var server = http.createServer();
+        case 'http':
+            const http = require('http');
+            var server = http.createServer();
+            break;
+        case 'https':
+            // const http2 = require('http2');
+            // var server = http2.createSecureServer({ allowHTTP1: true, key: fs.readFileSync('priv.pem'), cert: fs.readFileSync('fullchain.pem') });
+            const https = require(httpPackage);
+            var server = https.createServer({ key: fs.readFileSync('privkey.pem'), cert: fs.readFileSync('fullchain.pem') });
+            break;
     }
-    else
-    {
-        const https = require('https');
-        var server = https.createServer({ key: fs.readFileSync('privkey.pem'), cert: fs.readFileSync('fullchain.pem') });
-    }
-    // var server = http2.createSecureServer({ allowHTTP1: true, key: fs.readFileSync('priv.pem'), cert: fs.readFileSync('fullchain.pem') });
     server.listen(port, dn);
     masterRouter.attachTo(server);
 });

@@ -12,6 +12,7 @@ import * as worker from './worker-meta'
 export { worker };
 import * as master from './master-meta';
 export { master };
+
 export type resolve = worker.resolve;
 export
 {
@@ -20,7 +21,7 @@ export
     Translator, Queue, noop,
     Injector, injectWithName, injectNewWithName, inject, injectNew, register, factory, registerFactory, inspect, resolve, service, injectWithNameAsync, resolveAsync, onResolve, exec,
     Promisify, isPromiseLike, when, whenOrTimeout,
-    module,
+    module, Module,
     IFactory,
     Interpolate,
     NextFunction,
@@ -30,10 +31,8 @@ export
     JsonRpcWs,
     Rest,
     introspect,
-    server, client, buildServer, buildClient, Connection
+    server, client, buildServer, buildClient, Connection,
 } from '@akala/core';
-import * as st from 'serve-static';
-export { st as static };
 
 import { log as corelog } from '@akala/core';
 import * as cluster from 'cluster';
