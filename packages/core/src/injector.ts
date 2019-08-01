@@ -1,12 +1,9 @@
 import { getParamNames } from './reflect';
 import * as debug from 'debug';
-import { whenOrTimeout, isPromiseLike } from './promiseHelpers';
+import { isPromiseLike } from './promiseHelpers';
 import { EventEmitter } from 'events';
 
 var log = debug('akala:core:injector');
-
-type Promisify<T> = T extends Promise<infer U> ? Promise<U> : T extends PromiseLike<infer U> ? PromiseLike<U> : PromiseLike<T>;
-type UnPromisify<T> = T extends PromiseLike<infer U> ? U : T;
 
 function ctorToFunction(this: new () => any)
 {
@@ -18,7 +15,9 @@ function ctorToFunction(this: new () => any)
 
 export type Injected<T> = (instance?: any) => T;
 export type Injectable<T> = (...args: any[]) => T;
-export type InjectableAsync<T> = (...args: any[]) => Promisify<T>;
+export type InjectableWithTypedThis<T, U> = (this: U, ...args: any[]) => T;
+export type InjectableAsync<T> = (...args: any[]) => PromiseLike<T>;
+export type InjectableAsyncWithTypedThis<T, U> = (this: U, ...args: any[]) => PromiseLike<T>;
 
 
 export class Injector
@@ -111,9 +110,9 @@ export class Injector
         }
     }
 
-    public injectAsync<T>(a: Injectable<Promisify<T>>)
+    public injectAsync<T>(a: Injectable<T>)
     public injectAsync<T>(...a: string[])
-    public injectAsync<T>(a: Injectable<Promisify<T>> | string, ...b: string[])
+    public injectAsync<T>(a: Injectable<T> | string, ...b: string[])
     {
         if (typeof a == 'function')
             return this.injectWithNameAsync(a['$inject'] || getParamNames(a), a)
@@ -225,13 +224,15 @@ export class Injector
         return injectWithName(toInject, ctorToFunction.bind(ctor));
     }
 
-    public injectWithNameAsync<T>(toInject: string[], a: InjectableAsync<T> | Injectable<T>): Promisify<T>
+    public injectWithNameAsync<T>(toInject: string[], a: InjectableAsync<T> | Injectable<T>): PromiseLike<T>
     {
+        if (!toInject || toInject.length == 0)
+            return Promise.resolve<T>(a());
         var paramNames = <string[]>getParamNames(a);
         var self = this;
         var wait = false;
 
-        return new Promise<UnPromisify<T>>((resolve, reject) =>
+        return new Promise<T>((resolve, reject) =>
         {
             if (paramNames.length == toInject.length || paramNames.length == 0)
             {
@@ -259,45 +260,47 @@ export class Injector
             }
             else
                 reject('the number of arguments does not match the number of injected parameters');
-        }) as unknown as Promisify<T>;
+        });
     }
 
 
     public injectWithName<T>(toInject: string[], a: Injectable<T>): Injected<T>
     {
-        var paramNames = <string[]>getParamNames(a);
-        var self = this;
-        if (paramNames.length == toInject.length || paramNames.length == 0)
+        if (!toInject || toInject.length == 0)
         {
-            if (toInject.length == paramNames.length && paramNames.length == 0)
-                return <Injectable<T>>a;
-            return function (instance?: any)
+            var paramNames = <string[]>getParamNames(a);
+            var self = this;
+            if (paramNames.length == toInject.length || paramNames.length == 0)
             {
-                var args = [];
-                for (var param of toInject)
+                if (toInject.length == paramNames.length && paramNames.length == 0)
+                    return <Injectable<T>>a;
+                return function (instance?: any)
                 {
-                    args[args.length] = self.resolve(param)
+                    var args = [];
+                    for (var param of toInject)
+                    {
+                        args[args.length] = self.resolve(param)
+                    }
+                    return a.apply(instance, args);
                 }
-                return a.apply(instance, args);
             }
         }
-        else
-            return function (instance?: any, ...otherArgs: any[])
+        return function (instance?: any, ...otherArgs: any[])
+        {
+            var args = [];
+            var unknownArgIndex = 0;
+            for (var param of toInject)
             {
-                var args = [];
-                var unknownArgIndex = 0;
-                for (var param of toInject)
-                {
-                    var resolved = self.resolve(param);
-                    if (resolved && paramNames.indexOf(param) == args.length)
-                        args[args.length] = resolved;
-                    else if (typeof (otherArgs[unknownArgIndex]) != 'undefined')
-                        args[args.length] = otherArgs[unknownArgIndex++];
-                    else
-                        args[args.length] = resolved;
-                }
-                return a.apply(instance, args);
+                var resolved = self.resolve(param);
+                if (resolved && paramNames.indexOf(param) == args.length)
+                    args[args.length] = resolved;
+                else if (typeof (otherArgs[unknownArgIndex]) != 'undefined')
+                    args[args.length] = otherArgs[unknownArgIndex++];
+                else
+                    args[args.length] = resolved;
             }
+            return a.apply(instance, args);
+        }
     }
 
     public exec<T>(...toInject: string[])

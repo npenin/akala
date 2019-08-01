@@ -7,6 +7,20 @@ process.hrtime = process.hrtime || require('browser-process-hrtime');
 var moduleInjector = new di.Injector();
 di.register('$modules', moduleInjector);
 
+export class ExtendableEvent
+{
+    private promises: PromiseLike<any>[] = [];
+
+    public waitUntil<T>(p: PromiseLike<T>): void
+    {
+        this.promises.push(p)
+    }
+
+    public complete()
+    {
+        return Promise.all(this.promises);
+    }
+}
 
 export class Module extends di.Injector
 {
@@ -19,43 +33,60 @@ export class Module extends di.Injector
         if (existingModule)
             return existingModule;
         Module.registerModule(this);
+        this.emitter.setMaxListeners(0);
     }
 
     private emitter = new EventEmitter();
 
     private static o = new orchestrator();
 
+    private activateEvent = new ExtendableEvent();
+    private readyEvent = new ExtendableEvent();
+
     public static registerModule(m: Module)
     {
         var emitter = m.emitter;
-        Module.o.add(m.name, m.dep, function ()
+        Module.o.add(m.name + '#activate', m.dep.map(dep => dep + '#activate'), function (done)
         {
-            di.merge(m);
-            emitter.emit('init');
-
-            emitter.emit('run');
+            emitter.emit('activate', m.activateEvent);
+            m.activateEvent.complete().then(() =>
+            {
+                done();
+            }, done);
         });
+
+        Module.o.add(m.name + '#ready', [m.name + '#activate'].concat(m.dep.map(dep => dep + '#ready')), function (done)
+        {
+            emitter.emit('ready', m.readyEvent);
+            m.readyEvent.complete().then(() =>
+            {
+                done();
+            }, done);
+        });
+
+        Module.o.add(m.name, [m.name + '#ready'], function () { });
+
         moduleInjector.register(m.name, m);
     }
 
-    private starting: boolean;
-
-    public run(toInject: string[], f: di.Injectable<any>)
+    public run(toInject: string[], f: di.InjectableWithTypedThis<any, ExtendableEvent>)
     {
-        this.emitter.on('run', di.injectWithName(toInject, f));
+        this.emitter.on('ready', this.injectWithName(toInject, f));
     }
 
-    public runAsync(toInject: string[], f: di.Injectable<any>)
+    public runAsync(toInject: string[], f: di.InjectableAsyncWithTypedThis<any, ExtendableEvent>)
     {
-        this.emitter.on('run', function () { di.injectWithNameAsync(toInject, f) });
+        this.emitter.on('ready', (ev) => { this.injectWithNameAsync(toInject, f.bind(ev) as di.InjectableAsyncWithTypedThis<any, ExtendableEvent>) });
     }
 
-    public init(toInject: string[], f: di.Injectable<any>)
+    public init(toInject: string[], f: di.InjectableWithTypedThis<any, ExtendableEvent>)
     {
-        if (!toInject || toInject.length == 0)
-            this.emitter.on('init', f);
-        else
-            this.emitter.on('init', di.injectWithName(toInject, f));
+        this.emitter.on('activate', this.injectWithName(toInject, f));
+    }
+
+    public initAsync(toInject: string[], f: di.InjectableAsyncWithTypedThis<any, ExtendableEvent>)
+    {
+        this.emitter.on('activate', function (ev: ExtendableEvent) { di.injectWithNameAsync(toInject, f.bind(ev) as di.InjectableAsyncWithTypedThis<any, ExtendableEvent>) });
     }
 
     public start(toInject?: string[], f?: di.Injectable<any>)
@@ -64,12 +95,5 @@ export class Module extends di.Injector
             Module.o.start(this.name);
         else
             Module.o.on('stop', <any>di.injectWithName(toInject, f));
-    }
-
-    private internalStart(callback)
-    {
-        if (this.starting)
-            return;
-        this.starting = true;
     }
 }
