@@ -7,11 +7,9 @@ import * as ws from 'ws';
 
 const log = akala.log('akala:metadata');
 
-export type Connection = akala.Connection;
-
 export function createServer<TConnection extends akala.Connection>(router: router.HttpRouter, path: string)
 {
-    var server = jsonrpc.createServer<TConnection>();
+    var server = jsonrpc.createServer<TConnection & jsonrpc.Connection>();
     var wss = server.server = new ws.Server({ noServer: true, clientTracking: true })
 
     wss.on('connection', function (...args)

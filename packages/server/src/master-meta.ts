@@ -13,6 +13,7 @@ import * as bodyparser from 'body-parser'
 import * as express from 'express';
 import { api } from '.';
 import * as send from 'send'
+import * as cp from 'child_process'
 
 var log = debug('akala:master');
 

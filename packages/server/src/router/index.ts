@@ -51,7 +51,7 @@ export interface Methods<T>
     'unsubscribe': T
 }
 
-export interface Request extends http.IncomingMessage
+export interface Request extends http.IncomingMessage, akala.Request
 {
     ip: string;
     params: { [key: string]: any };
@@ -339,7 +339,7 @@ export class WorkerRouter extends Router<workerRequestHandler, workerErrorHandle
         super(options);
     }
 
-    public handle(req: worker.Request, callback: Callback, deadend: workerErrorHandler): void
+    public handle(req, callback: Callback, deadend: workerErrorHandler): void
     {
         var methods: string[];
 
