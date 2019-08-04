@@ -3,7 +3,10 @@ import * as jsonrpc from '@akala/json-rpc-ws';
 import * as master from '../master-meta';
 import * as router from '../router';
 import { Proxy, Api, JsonRpcWs as JsonRpcWsBase, IServerBuilder, IClientProxyBuilder, IClientBuilder } from '@akala/core';
+import { ServiceWorker } from '../service-worker'
 import * as ws from 'ws';
+import { ApiServiceWorker } from './api-service-worker';
+import * as net from 'net'
 
 const log = akala.log('akala:metadata');
 
@@ -37,6 +40,27 @@ export function createServer<TConnection extends akala.Connection>(router: route
     });
 
     return server;
+}
+
+
+export function createServerWorker(router: router.HttpRouter, path: string, worker: ApiServiceWorker | string)
+{
+    var serviceWorker: ApiServiceWorker;
+
+    if (typeof worker == 'string')
+        serviceWorker = new ApiServiceWorker(worker);
+    else
+        serviceWorker = worker;
+
+    router.upgrade(path, 'websocket', function (request, socket, head)
+    {
+        log('received upgrade request');
+        request.method = 'GET';
+        serviceWorker.postMessage({ request, head }, socket);
+        request.method = 'upgrade';
+    });
+
+    return serviceWorker;
 }
 
 export class JsonRpcWs<TConnection extends akala.Connection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy extends TServerOneWay, TServerTwoWayProxy extends TServerTwoWay, TClientOneWayProxy extends TClientOneWay, TClientTwoWayProxy extends TClientTwoWay>
