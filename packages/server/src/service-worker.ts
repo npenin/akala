@@ -2,6 +2,9 @@ import { EventEmitter } from 'events'
 import * as akala from '@akala/core'
 import { ChildProcess, fork } from 'child_process';
 
+import * as net from 'net'
+import * as udp from 'dgram'
+
 var self = global['self'] = new EventEmitter();
 
 function resolveUrl(namespace: string)
@@ -14,9 +17,10 @@ akala.register('$resolveUrl', resolveUrl);
 
 export interface ServiceWorkerOptions
 {
-    restartOnCrash?: boolean;
-    retries?: number;
-    numberOfMinutesBeforeRetryReset?: number
+    workerStarter: string
+    restartOnCrash: boolean;
+    retries: number;
+    numberOfMinutesBeforeRetryReset: number
 }
 
 export class ServiceWorker extends EventEmitter
@@ -25,15 +29,15 @@ export class ServiceWorker extends EventEmitter
 
     public on(evt: 'activate', handler: (evt: ExtendableEvent) => void): this
     public on(evt: 'install', handler: (evt: ExtendableEvent) => void): this
-    public on<T>(evt: 'message', handler: (...args: any[]) => void): this
+    public on<T>(evt: 'message', handler: (message: any, socket?: net.Socket | udp.Socket) => void): this
     public on(evt: string, handler: (...args: any[]) => void): this
     {
         return super.on(evt, handler);
     }
 
-    private fork(options: ServiceWorkerOptions, path: string, config: string)
+    private fork(options: Partial<ServiceWorkerOptions>, path: string, config: string)
     {
-        var cp = this.cp = fork(require.resolve('./worker'), [path, config]);
+        var cp = this.cp = fork(require.resolve(options.workerStarter), [path, config]);
 
         cp.on('exit', () =>
         {
@@ -72,12 +76,12 @@ export class ServiceWorker extends EventEmitter
         })
     }
 
-    constructor(path: string, options?: ServiceWorkerOptions)
+    constructor(path: string, options?: Partial<ServiceWorkerOptions>)
     {
         super();
         if (!options)
             options = {};
-        options = akala.extend({ restartOnCrash: true, retries: 5, numberOfMinutesBeforeRetryReset: 1 }, options)
+        options = akala.extend({ restartOnCrash: true, retries: 5, numberOfMinutesBeforeRetryReset: 1, workerStarter: require.resolve('./worker') }, options)
         if (typeof (path) != 'undefined')
         {
             akala.exec<void>('$rootUrl')((config: string) =>
@@ -133,7 +137,7 @@ export class ServiceWorker extends EventEmitter
         }
     }
 
-    public postMessage(message)
+    public postMessage(message, socket?: net.Socket | udp.Socket)
     {
         this.cp.send(message)
     }
@@ -154,6 +158,7 @@ export class ServiceWorker extends EventEmitter
     {
         return ev.complete();
     }
+
 }
 
 export class ExtendableEvent
@@ -171,3 +176,35 @@ export class ExtendableEvent
     }
 }
 
+export function start<T extends ServiceWorker>(path: string, ctor: new (path: string) => T)
+{
+    process.on('uncaughtException', function (error)
+    {
+        console.error(process.argv[2]);
+        console.error(error);
+        process.exit(500);
+    })
+
+    function resolveUrl(namespace: string)
+    {
+        var url = process.argv[3] + '/' + namespace + '/';
+        return url;
+    }
+
+    akala.register('$resolveUrl', resolveUrl);
+
+    var sw = akala.register('$worker', new ctor(undefined));
+
+    global['self'] = sw;
+
+    require(path);
+
+    return sw;
+}
+
+if (require.main === module)
+{
+    start(process.argv[2], ServiceWorker)
+
+
+}
