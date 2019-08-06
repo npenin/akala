@@ -46,6 +46,8 @@ export class Module extends di.Injector
     public static registerModule(m: Module)
     {
         var emitter = m.emitter;
+        if (typeof m.dep == 'undefined')
+            m.dep = [];
         Module.o.add(m.name + '#activate', m.dep.map(dep => dep + '#activate'), function (done)
         {
             emitter.emit('activate', m.activateEvent);
