@@ -28,10 +28,14 @@ export class Module extends di.Injector
     {
         super();
         var existingModule = moduleInjector.resolve(name);
-        if (existingModule && dep)
+        if (existingModule && typeof (dep) != 'undefined')
             throw new Error('the module can be registered only once with dependencies');
         if (existingModule)
+        {
+            if (typeof (dep) != 'undefined')
+                existingModule.dep = dep;
             return existingModule;
+        }
         Module.registerModule(this);
         this.emitter.setMaxListeners(0);
     }
