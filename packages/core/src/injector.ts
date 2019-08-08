@@ -292,12 +292,16 @@ export class Injector
             for (var param of toInject)
             {
                 var resolved = self.resolve(param);
-                if (resolved && paramNames.indexOf(param) == args.length)
+                if (resolved && paramNames && paramNames.indexOf(param) == args.length)
                     args[args.length] = resolved;
                 else if (typeof (otherArgs[unknownArgIndex]) != 'undefined')
                     args[args.length] = otherArgs[unknownArgIndex++];
                 else
                     args[args.length] = resolved;
+            }
+            if (otherArgs && otherArgs.length > unknownArgIndex)
+            {
+                args.concat(otherArgs.slice(unknownArgIndex));
             }
             return a.apply(instance, args);
         }
