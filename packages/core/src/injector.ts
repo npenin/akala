@@ -267,7 +267,7 @@ export class Injector
     public injectWithName<T>(toInject: string[], a: Injectable<T>): Injected<T>
     {
         var self = this;
-        if (!toInject || toInject.length == 0)
+        if (toInject && toInject.length > 0)
         {
             var paramNames = <string[]>getParamNames(a);
             if (paramNames.length == toInject.length || paramNames.length == 0)
