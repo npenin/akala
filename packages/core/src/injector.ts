@@ -266,10 +266,10 @@ export class Injector
 
     public injectWithName<T>(toInject: string[], a: Injectable<T>): Injected<T>
     {
+        var self = this;
         if (!toInject || toInject.length == 0)
         {
             var paramNames = <string[]>getParamNames(a);
-            var self = this;
             if (paramNames.length == toInject.length || paramNames.length == 0)
             {
                 if (toInject.length == paramNames.length && paramNames.length == 0)
