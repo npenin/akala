@@ -168,8 +168,13 @@ fs.exists(configFile, function (exists)
                             res.end();
                         }
                     });
-                    console.log('server ready...');
+
                 });
+
+                akala.module('bootstrap').run(['$rootUrl'], function (url)
+                {
+                    console.log('server ready and listening on ' + url + '...');
+                })
 
                 akala.module('bootstrap').start();
             });
