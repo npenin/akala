@@ -1,24 +1,14 @@
-import * as cluster from 'cluster';
 import * as pac from './package';
-import { EventEmitter } from 'events';
-import * as sequencify from 'sequencify';
 import * as akala from '@akala/core';
-import * as Orchestrator from 'orchestrator';
 import { HttpRouter } from './router';
 import * as debug from 'debug';
-import { serveRouter } from './master-meta';
-const log = debug('akala:master');
-import { meta } from './api/jsonrpc';
-import { api } from '.'
-import * as st from 'serve-static';
+import * as master from './master-meta'
 
 export function microservice(
     plugin: string,
     source: string,
     sources: string[],
     config: {},
-    // modulesDefinitions: { [name: string]: akala.Module },
-    preAuthenticatedRouter: HttpRouter,
 )
 {
 
@@ -63,7 +53,7 @@ export function microservice(
     if (config && dependencies.length)
     {
         var activeDependencies = [];
-        dependencies.forEach(function (dep, i)
+        dependencies.forEach(function (dep)
         {
             var isOptional = dep[dep.length - 1] == '?';
             if (isOptional)
@@ -85,12 +75,12 @@ export function microservice(
 
     akala.module(
         plugin,
-        ...dependencies || []
-    ).init([], function ()
+        ...dependencies
+    ).init(['$preAuthenticationRouter'], function (preAuthenticatedRouter: HttpRouter)
     {
-        preAuthenticatedRouter.useGet('/assets/' + plugin, st('node_modules/' + plugin + '/assets') as any);
+        preAuthenticatedRouter.useGet('/assets/' + plugin, master.serveStatic('node_modules/' + plugin + '/assets'));
 
-        preAuthenticatedRouter.useGet('/' + plugin, st('node_modules/' + plugin + '/views') as any);
+        preAuthenticatedRouter.useGet('/' + plugin, master.serveStatic('node_modules/' + plugin + '/views') as any);
 
     });
 
