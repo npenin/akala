@@ -5,11 +5,9 @@ import { ChildProcess, fork } from 'child_process';
 import * as net from 'net'
 import * as udp from 'dgram'
 
-var self = global['self'] = new EventEmitter();
-
 function resolveUrl(namespace: string)
 {
-    var url = process.argv[3] + '/' + namespace + '/';
+    var url = akala.resolve('$rootUrl') + '/' + namespace + '/';
     return url;
 }
 
@@ -81,7 +79,7 @@ export class ServiceWorker extends EventEmitter
         super();
         if (!options)
             options = {};
-        options = akala.extend({ restartOnCrash: true, retries: 5, numberOfMinutesBeforeRetryReset: 1, workerStarter: require.resolve('./worker') }, options)
+        options = akala.extend({ restartOnCrash: true, retries: 5, numberOfMinutesBeforeRetryReset: 1, workerStarter: __filename }, options)
         if (typeof (path) != 'undefined')
         {
             akala.exec<void>('$rootUrl')((config: string) =>
@@ -185,13 +183,7 @@ export function start<T extends ServiceWorker>(path: string, ctor: new (path: st
         process.exit(500);
     })
 
-    function resolveUrl(namespace: string)
-    {
-        var url = process.argv[3] + '/' + namespace + '/';
-        return url;
-    }
-
-    akala.register('$resolveUrl', resolveUrl);
+    akala.register('$rootUrl', process.argv[3])
 
     var sw = akala.register('$worker', new ctor(undefined));
 
