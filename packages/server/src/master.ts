@@ -97,7 +97,7 @@ fs.exists(configFile, function (exists)
         }
         akala.eachAsync(sources, function (source, i, next)
         {
-            fs.readdir('node_modules/' + source, function (err, modules)
+            fs.readdir('node_modules/' + source, function (err, dirModules)
             {
                 if (err)
                 {
@@ -105,7 +105,7 @@ fs.exists(configFile, function (exists)
                     return;
                 }
 
-                modules.forEach(function (folder)
+                dirModules.forEach(function (folder)
                 {
                     microservice(source + '/' + folder, source, [source], config);
                     modules.push(source + '/' + folder);
