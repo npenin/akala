@@ -15,11 +15,7 @@ import { updateConfig, getConfig } from './config';
 // import * as st from 'serve-static';
 import { serveStatic } from './master-meta';
 
-var httpPackage: 'http' | 'https';
-if (!fs.existsSync('privkey.pem') || !fs.existsSync('fullchain.pem'))
-    httpPackage = 'http'
-else
-    httpPackage = 'https';
+var httpPackage: 'http' | 'https' = 'http';
 
 var port = process.env.PORT || '5678';
 
@@ -62,6 +58,8 @@ masterRouter.use(app.router);
 
 var root: string;
 var index: string;
+var privateKey: string;
+var fullchain: string;
 
 var configFile = fs.realpathSync('./config.json');
 fs.exists(configFile, function (exists)
@@ -71,6 +69,12 @@ fs.exists(configFile, function (exists)
     root = config && config['@akala/server'] && config['@akala/server'].root;
     index = config && config['@akala/server'] && config['@akala/server'].index;
     port = config && config['@akala/server'] && config['@akala/server'].port || port;
+    privateKey = config && config['@akala/server'] && config['@akala/server'].privateKey || 'privkey.pem';
+    fullchain = config && config['@akala/server'] && config['@akala/server'].fullchain || 'fullchain.pem';
+    if (fs.existsSync(privateKey) && fs.existsSync(fullchain))
+        httpPackage = 'https';
+
+
     var dn = config && config['@akala/server'] && config['@akala/server'].dn || 'localhost';
 
     akala.register('$rootUrl', httpPackage + '://' + dn + ':' + port);
@@ -84,7 +88,7 @@ fs.exists(configFile, function (exists)
         {
             var pkg: pac.CoreProperties = require(pathJoin(process.cwd(), './package.json'))
             var [source, folder] = pkg.name.split('/');
-            microservice(pkg.name, source, [source], config, preAuthenticatedRouter);
+            microservice(pkg.name, source, [source], config);
             modules.push(pkg.name)
         }
         else
@@ -103,7 +107,7 @@ fs.exists(configFile, function (exists)
 
                 modules.forEach(function (folder)
                 {
-                    microservice(source + '/' + folder, source, [source], config, preAuthenticatedRouter);
+                    microservice(source + '/' + folder, source, [source], config);
                     modules.push(source + '/' + folder);
                 });
 
@@ -181,7 +185,7 @@ fs.exists(configFile, function (exists)
             // const http2 = require('http2');
             // var server = http2.createSecureServer({ allowHTTP1: true, key: fs.readFileSync('priv.pem'), cert: fs.readFileSync('fullchain.pem') });
             const https = require(httpPackage);
-            var server = https.createServer({ key: fs.readFileSync('privkey.pem'), cert: fs.readFileSync('fullchain.pem') });
+            var server = https.createServer({ key: fs.readFileSync(privateKey), cert: fs.readFileSync(fullchain) });
             break;
     }
     server.listen(port, dn);

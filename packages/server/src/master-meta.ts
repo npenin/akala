@@ -28,7 +28,7 @@ export var metaRouter = new akala.Api()
     .serverToClient<Partial<worker.Request>, router.CallbackResponse>()({ getContent: true })
     .clientToServerOneWay<{ path: string, remap: string }>()({ register: true })
 
-export function serveStatic(path, options: send.SendOptions & { fallthrough?: boolean })
+export function serveStatic(path, options?: send.SendOptions & { fallthrough?: boolean })
 {
     if (!options)
         options = {};
