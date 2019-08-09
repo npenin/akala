@@ -173,6 +173,7 @@ interface ServiceWorkerRegistrationEventMap
 {
     'push': PushEvent
     'fetch': FetchEvent
+    'install': InstallEvent & ExtendableEvent
 }
 
 interface ServiceWorkerGlobalScope extends WindowOrWorkerGlobalScope
@@ -183,6 +184,7 @@ interface ServiceWorkerGlobalScope extends WindowOrWorkerGlobalScope
     addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
     removeEventListener<K extends keyof ServiceWorkerRegistrationEventMap>(type: K, listener: (this: ServiceWorkerRegistration, ev: ServiceWorkerRegistrationEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
     removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    skipWaiting(): Promise<void>
 }
 
 declare function skipWaiting(): void;
