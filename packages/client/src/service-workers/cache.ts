@@ -9,14 +9,32 @@ module cache
     {
         event.respondWith(
             caches.match(event.request)
-                .then(function (response)
+                .then(async function (response)
                 {
                     // Cache hit - return response
+
                     if (response)
                     {
+                        event.request.headers.append('if-modified-since', response.headers.get('last-modified'))
+                        event.request.headers.append('if-match', response.headers.get('etag'))
+
+                        fetch(event.request).then(function (res)
+                        {
+                            if (res.status == 200)
+                            {
+                                caches.open('akala').then(cache => cache.put(event.request, response.clone()))
+                                self.clients.matchAll().then(c => c.postMessage)
+                            }
+
+                        })
                         return response;
                     }
-                    return fetch(event.request);
+                    else
+                        return fetch(event.request).then(response =>
+                        {
+                            caches.open('akala').then(cache => cache.put(event.request, response.clone()))
+                            return response;
+                        });
                 })
         );
     });

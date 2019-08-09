@@ -38,7 +38,6 @@ export class Part extends EventEmitter
 
     public apply<TScope extends IScope<any>>(partInstance: () => PartInstance, part: PartDefinition<TScope>, params: any, next: akala.NextFunction)
     {
-        var parts = this.parts;
         var template = this.template;
         if (part.template)
             template.get(part.template).then(function (template)

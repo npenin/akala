@@ -132,52 +132,58 @@ export class Interpolate
     }
 
 }
-export type templateFunction = (target: any, parent: HTMLElement) => ArrayLike<HTMLElement>;
+export interface templateFunction
+{
+    (target: any, parent: HTMLElement): ArrayLike<HTMLElement>;
+    hotReplace(markup: string): void;
+}
 var cache = new akala.Injector();
 @service('$template', '$interpolate', '$http')
 export class Template
 {
     constructor(private interpolator: Interpolate, private http: akala.Http) { }
 
-    public get(t: string | PromiseLike<string>, registerTemplate: boolean = true): PromiseLike<templateFunction>
+    public enableHotReplacement: boolean;
+
+    public async get(t: string | PromiseLike<string>, registerTemplate: boolean = true): Promise<templateFunction>
     {
         var http = this.http;
-        return akala.Promisify(t).then<templateFunction>(function (t: string)
+        var text = await akala.Promisify(t);
+
+        if (!text)
+            return null;
+
+        var template = <templateFunction | PromiseLike<templateFunction>>cache.resolve(text);
+        if (template)
+            return template;
+        else if (/</.test(text))
         {
-            var p = new Promise<templateFunction>((resolve, reject) =>
+            template = Template.build(text);
+            return template;
+        }
+        else
+        {
+            var internalGet = (async function ()
             {
-                if (!t)
-                    resolve(null);
-                else
+                var response = await http.get(text)
+                var data = await response.text();
+                template = Template.build(data);
+                if (registerTemplate)
+                    cache.register(text, template, true);
+                if (navigator.serviceWorker)
                 {
-                    var template = <templateFunction | PromiseLike<templateFunction>>cache.resolve(t);
-                    if (template)
-                        resolve(template);
-                    else if (/</.test(t))
+
+                    navigator.serviceWorker.addEventListener('message', function (msg)
                     {
-                        template = Template.build(t);
-                        resolve(template);
-                    }
-                    else
-                    {
-                        cache.register(t, p);
-                        http.get(t).then(function (data)
-                        {
-                            data.text().then(function (data)
-                            {
-                                var template = Template.build(data);
-                                if (registerTemplate)
-                                    cache.register(t, template, true);
-                                resolve(template);
-                            })
-                        },
-                            reject
-                        );
-                    }
+
+                    })
                 }
-            });
-            return p;
-        });
+                return template;
+            })();
+
+            cache.register(text, internalGet);
+            return await internalGet;
+        }
     }
 
     public static buildElements(string): ArrayLike<HTMLElement>
@@ -190,8 +196,39 @@ export class Template
     public static build(markup: string): templateFunction
     {
         var template = Interpolate.build(markup)
-        return function (data, parent?)
+        var f: templateFunction = function (data, parent?: HTMLElement)
         {
+            f.hotReplace = function (markup: string)
+            {
+                template = Interpolate.build(markup);
+                var newTemplateInstance = Template.buildElements(template(data));
+                if (parent)
+                {
+                    if (newTemplateInstance.length > templateInstance.length)
+                        akala.each(newTemplateInstance, function (inst, i)
+                        {
+                            if (i < templateInstance.length)
+                                parent.replaceChild(inst, templateInstance[i]);
+                            else
+                                parent.appendChild(inst);
+                        })
+                    else
+                        akala.each(templateInstance, function (inst, i)
+                        {
+                            if (i < newTemplateInstance.length)
+                                parent.replaceChild(newTemplateInstance[i], inst);
+                            else
+                                parent.removeChild(inst);
+                        })
+                }
+                else
+                {
+                    confirm('template has changed, please consider reloading to see updated change');
+                }
+                templateInstance = newTemplateInstance;
+                applyTemplate(templateInstance, data, parent) as ArrayLike<HTMLElement>
+            }
+
             var templateInstance = Template.buildElements(template(data));
             if (parent)
             {
@@ -201,11 +238,17 @@ export class Template
                 })
             }
             return applyTemplate(templateInstance, data, parent) as ArrayLike<HTMLElement>;
+        } as any;
+        f.hotReplace = function (markup: string)
+        {
+            template = Interpolate.build(markup);
         }
+
+        return f;
     }
 }
 
-export function filter<T extends Element=Element>(items: ArrayLike<T>, filter: string)
+export function filter<T extends Element = Element>(items: ArrayLike<T>, filter: string)
 {
     return akala.grep(items, function (element)
     {
