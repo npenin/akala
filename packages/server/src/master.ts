@@ -133,6 +133,10 @@ fs.exists(configFile, function (exists)
                     preAuthenticatedRouter.use(serveStatic(root, { index: index || undefined, fallthrough: true }));
                     preAuthenticatedRouter.get('/favicon.ico', serveStatic(root, { index: index || undefined, fallthrough: false }));
                     preAuthenticatedRouter.get('/manifest.json', serveStatic(root, { index: index || undefined, fallthrough: false }));
+                    app.get('/@akala/client', function (_req: Request, res: Response)
+                    {
+                        res.json(modules.map(m => { return { name: m, dep: akala.module(m).dep } }))
+                    });
                     app.get('*', function (request, response)
                     {
                         if (request.url.endsWith('.map'))
