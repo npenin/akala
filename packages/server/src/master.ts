@@ -143,10 +143,11 @@ fs.exists(configFile, function (exists)
                         {
                             response.sendStatus(404);
                         }
-                        serveRoot(request, response, function ()
-                        {
-                            fs.createReadStream(root + '/index.html').pipe(response);
-                        });
+                        else
+                            serveRoot(request, response, function ()
+                            {
+                                fs.createReadStream(root + '/index.html').pipe(response);
+                            });
                     });
 
                     masterRouter.use(function (err, req: Request, res: Response, next)
