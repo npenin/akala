@@ -316,6 +316,7 @@ export interface Callback
     (status: number, data: any): void;
     (meta: CallbackResponse, data: any): void;
     redirect(url: string);
+    sendFile?(path: string, options?: any, callback?: akala.NextFunction)
 }
 
 export interface CallbackResponse
