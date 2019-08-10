@@ -5,6 +5,15 @@ import { ChildProcess, fork } from 'child_process';
 import * as net from 'net'
 import * as udp from 'dgram'
 
+
+function resolveUrl(namespace: string)
+{
+    var url = akala.resolve('$rootUrl') + '/' + namespace + '/';
+    return url;
+}
+
+akala.register('$resolveUrl', resolveUrl);
+
 export interface ServiceWorkerOptions
 {
     workerStarter: string
@@ -176,14 +185,6 @@ export function start<T extends ServiceWorker>(path: string, ctor: new (path: st
     })
 
     akala.register('$rootUrl', process.argv[3])
-
-    function resolveUrl(namespace: string)
-    {
-        var url = akala.resolve('$rootUrl') + '/' + namespace + '/';
-        return url;
-    }
-
-    akala.register('$resolveUrl', resolveUrl);
 
     var sw = akala.register('$worker', new ctor(undefined));
 
