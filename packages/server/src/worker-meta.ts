@@ -80,6 +80,11 @@ export interface Request extends BaseRequest
     body: any;
 }
 
+export interface SendFileOptions extends send.SendOptions
+{
+    headers?: { [key: string]: string }
+}
+
 export function expressWrap(handler: express.Handler)
 {
     return function (req: Request, next: akala.NextFunction)
@@ -127,7 +132,7 @@ class MyResponse extends stream.Transform implements CallbackResponse
     send: Callback
     json: Callback
     jsonp = undefined
-    sendFile(path: string, options?: any, callback?: akala.NextFunction)
+    sendFile(path: string, options?: SendFileOptions, callback?: akala.NextFunction)
     {
         var encodedPath = encodeURI(path);
         var done = callback;
@@ -140,7 +145,7 @@ class MyResponse extends stream.Transform implements CallbackResponse
             else
                 res.send(200);
         };
-        var opts = options || {};
+        var opts: SendFileOptions = options || {};
 
         if (!path)
         {
@@ -398,7 +403,7 @@ export function handle(app: Router, root: string)
 }
 
 
-function sendfile(res, file, options, callback)
+function sendfile(res, file, options: SendFileOptions, callback)
 {
     var done = false;
     var streaming;
