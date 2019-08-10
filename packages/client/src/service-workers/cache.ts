@@ -1,4 +1,5 @@
 // /// <reference types="types-serviceworker" />
+
 /// <reference path="../../serviceworker.d.ts" />
 
 module cache
@@ -8,8 +9,9 @@ module cache
     self.addEventListener('fetch', function (event)
     {
         event.respondWith(
-            caches.match(event.request)
-                .then(async function (response)
+            caches.open('akala').then(function (cache)
+            {
+                return cache.match(event.request).then(response =>
                 {
                     // Cache hit - return response
 
@@ -32,10 +34,13 @@ module cache
                     else
                         return fetch(event.request).then(response =>
                         {
-                            caches.open('akala').then(cache => cache.put(event.request, response.clone()))
-                            return response;
+                            return caches.open('akala').then(cache => cache.put(event.request, response.clone())).then(() =>
+                            {
+                                return response;
+                            })
                         });
                 })
+            })
         );
     });
 }
