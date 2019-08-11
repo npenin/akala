@@ -17,8 +17,8 @@ module cache
 
                     if (response)
                     {
-                        event.request.headers.append('if-modified-since', response.headers.get('last-modified'))
-                        event.request.headers.append('if-match', response.headers.get('etag'))
+                        // event.request.headers.append('if-modified-since', response.headers.get('last-modified'))
+                        // event.request.headers.append('if-match', response.headers.get('etag'))
 
                         fetch(event.request).then(function (res)
                         {
