@@ -27,13 +27,20 @@ export class Module extends di.Injector
     constructor(public name: string, public dep?: string[])
     {
         super();
-        var existingModule = moduleInjector.resolve(name);
+        var existingModule = moduleInjector.resolve<Module>(name);
         if (existingModule && typeof (dep) != 'undefined')
             throw new Error('the module can be registered only once with dependencies');
         if (existingModule)
         {
             if (typeof (dep) != 'undefined')
+            {
+                delete Module.o.tasks[name + '#activate'];
+                delete Module.o.tasks[name + '#ready'];
+                delete Module.o.tasks[name];
                 existingModule.dep = dep;
+                moduleInjector.unregister(name);
+                Module.registerModule(existingModule);
+            }
             return existingModule;
         }
         Module.registerModule(this);
