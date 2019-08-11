@@ -386,10 +386,11 @@ export class Router extends akala.Router<workerHandler, workerErrorHandler, work
     }
 }
 
-namespace router
+export var router = new Router();
+
+namespace routerInit
 {
     declare var self: ServiceWorkerGlobalScope;
-    var router = new Router();
     self.addEventListener('fetch', function (ev)
     {
         router.handle(ev.request, ev);
