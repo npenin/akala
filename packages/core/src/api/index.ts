@@ -1,4 +1,5 @@
 import { Api, DualApi, IServerProxyBuilder, IClientBuilder, IServerBuilder } from './base'
+import * as base from './base'
 
 export * from './base';
 
@@ -24,12 +25,12 @@ export namespace api
         return new (module('$api').resolve('rest'))(api);
     }
 
-    export type ServerWithoutProxy<T extends Api<any, any, any, any, any, any, any, any, any>> = T extends Api<any, infer OW, infer TW, any, any, any, any, any, any> ? OW & TW : any;
-    export type Server<T extends Api<any, any, any, any, any, any, any, any, any>> = ServerWithoutProxy<T> & { $proxy(client): ClientProxy<T> };
-    export type ClientWithoutProxy<T extends Api<any, any, any, any, any, any, any, any, any>> = T extends Api<any, any, any, infer OW, infer TW, any, any, any, any> ? OW & TW : any;
-    export type Client<T extends Api<any, any, any, any, any, any, any, any, any>> = ClientWithoutProxy<T> & { $proxy(): ServerProxy<T> };
-    export type ServerProxy<T extends Api<any, any, any, any, any, any, any, any, any>> = T extends Api<any, any, any, any, any, infer OW, infer TW, any, any> ? OW & TW : any;
-    export type ClientProxy<T extends Api<any, any, any, any, any, any, any, any, any>> = T extends Api<any, any, any, any, any, any, any, infer OW, infer TW> ? OW & TW : any;
+    export type ServerWithoutProxy<T extends Api<any, any, any, any, any, any, any, any, any>> = base.ServerWithoutProxy<T>;
+    export type Server<T extends Api<any, any, any, any, any, any, any, any, any>> = base.Server<T>;
+    export type ClientWithoutProxy<T extends Api<any, any, any, any, any, any, any, any, any>> = base.ClientWithoutProxy<T>;
+    export type Client<T extends Api<any, any, any, any, any, any, any, any, any>> = base.Client<T>;
+    export type ServerProxy<T extends Api<any, any, any, any, any, any, any, any, any>> = base.ServerProxy<T>;
+    export type ClientProxy<T extends Api<any, any, any, any, any, any, any, any, any>> = base.ClientProxy<T>;
 
 }
 
