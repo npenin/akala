@@ -1,6 +1,8 @@
+import {isPromiseLike} from './helpers'
+
 export type NextFunction = (error?, ...args: any[]) => void;
 
-export function array<T>(array: T[] | ArrayLike<T>, body: (element: T, i: number, next: NextFunction) => void, complete: NextFunction)
+export function array<T>(array: T[] | ArrayLike<T>, body: (element: T, i: number, next: NextFunction) => void | PromiseLike<void>, complete: NextFunction)
 {
     var loop = function (i)
     {
@@ -9,13 +11,17 @@ export function array<T>(array: T[] | ArrayLike<T>, body: (element: T, i: number
         else
             try
             {
-                body(array[i], i, function (error?)
+                var promise=body(array[i], i, function (error?)
                 {
                     if (error)
                         complete(error);
                     else
                         setImmediate(loop, i + 1)
                 });
+                if(promise && isPromiseLike(promise))
+                {
+                    promise.then(()=>setImmediate(loop, i+1), complete);
+                }
             }
             catch (e)
             {
@@ -33,6 +39,8 @@ export function object<T>(o: T, body: (element: T[keyof T], i: keyof T, next: Ne
     }, complete);
 }
 
+export function each<T>(array: T[] | ArrayLike<T>, body: (element: T, i?: number, next?: NextFunction) => PromiseLike<void>, complete: NextFunction): void
+export function each<T>(array: T[] | ArrayLike<T>, body: (element: T, i?: number, next?: NextFunction) => PromiseLike<void>): PromiseLike<void>
 export function each<T>(array: T[] | ArrayLike<T>, body: (element: T, i: number, next: NextFunction) => void, complete: NextFunction): void
 export function each(o: any, body: (element: any, i: string, next: NextFunction) => void, complete: NextFunction): void
 export function each<T>(array: T[] | ArrayLike<T>, body: (element: T, i: number, next: NextFunction) => void): PromiseLike<void>

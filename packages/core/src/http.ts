@@ -16,14 +16,14 @@ export interface HttpOptions
     body?: any;
     headers?: { [key: string]: string | number | Date };
     contentType?: 'json' | 'form';
-    type?: 'json' | 'xml';
+    type?: 'json' | 'xml' | 'text';
 }
 
-export interface Http<TResponse=Response>
+export interface Http<TResponse = Response>
 {
     get(url: string, params?: any): PromiseLike<TResponse>;
     post(url: string, body?: any): PromiseLike<FormData>;
-    postJSON<T=string>(url: string, body?: any): PromiseLike<T>;
+    postJSON<T = string>(url: string, body?: any): PromiseLike<T>;
     getJSON<T>(url: string, params?: any): PromiseLike<T>;
     invokeSOAP(namespace: string, action: string, url: string, params?: { [key: string]: string | number | boolean }): PromiseLike<TResponse>;
     call(options: HttpOptions): PromiseLike<TResponse>;
@@ -47,7 +47,7 @@ export class FetchHttp implements Http<Response>
             return r.formData();
         });
     }
-    public postJSON<T=string>(url: string, body?: any): PromiseLike<T>
+    public postJSON<T = string>(url: string, body?: any): PromiseLike<T>
     {
         return this.call({ method: 'POST', url: url, body: body, contentType: 'json', type: 'json' }).then((r) =>
         {
@@ -105,22 +105,27 @@ export class FetchHttp implements Http<Response>
             {
                 case 'json':
                     init.headers['Accept'] = 'application/json, text/json';
-                    if (typeof (options.body) !== 'string')
-                        init.body = JSON.stringify(options.body);
+                    if (!options.contentType && typeof (init.body) !== 'string')
+                        init.body = JSON.stringify(init.body);
                     break;
                 case 'xml':
                     init.headers['Accept'] = 'text/xml';
                     break;
+                case 'text':
+                    init.headers['Accept'] = 'text/plain';
+                    break;
             }
         }
 
-        if (options.contentType)
+        if (options.contentType && options.body)
         {
             init.headers = init.headers || {};
             switch (options.contentType)
             {
                 case 'json':
                     init.headers['Content-Type'] = 'application/json; charset=UTF-8'
+                    if (typeof (init.body) !== 'string')
+                        init.body = JSON.stringify(init.body);
                     break;
                 case 'form':
                     init.headers['Content-Type'] = 'multipart/form-data';
