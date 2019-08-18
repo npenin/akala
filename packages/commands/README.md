@@ -1,4 +1,4 @@
 # akala-commands
 redux like command processor
 
-see test cases to see examples
+see test cases in src/test to see examples
