@@ -4,13 +4,13 @@ export type jsonObject = { [key: string]: jsonPrimitive | jsonPrimitive[] | json
 export interface Command
 {
     name: string;
-    triggers: TriggerConfigurations;
+    config: Configurations;
     inject?: string[];
 }
 
-export type TriggerConfigurations = { [key: string]: jsonObject & TriggerConfiguration };
+export type Configurations = { [key: string]: jsonObject & Configuration };
 
-export interface TriggerConfiguration
+export interface Configuration
 {
     inject?: string[];
 }

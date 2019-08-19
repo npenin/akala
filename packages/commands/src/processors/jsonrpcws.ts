@@ -9,7 +9,7 @@ export class JsonRpcWs extends Processor
         return new Promise<any>((resolve, reject) =>
         {
             var param: jsonrpcws.SerializableObject[];
-            var inject = command.triggers && command.triggers['jsonrpcws'] && command.triggers['jsonrpcws'].inject || command.inject;
+            var inject = command.config && command.config['jsonrpcws'] && command.config['jsonrpcws'].inject || command.inject;
             if (inject && inject.length && params && params.length)
             {
                 param = [];

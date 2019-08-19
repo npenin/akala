@@ -3,7 +3,7 @@ import { Injector, InjectableWithTypedThis } from "@akala/core";
 import { Processor, Processors } from "./processor";
 import { Container } from "./container";
 import * as metadata from './metadata'
-import { TriggerConfigurations } from "./metadata";
+import { Configurations } from "./metadata";
 
 type Injectable<T, U> = InjectableWithTypedThis<T, U> & { '$inject'?: string[] }
 
@@ -17,7 +17,7 @@ export class Command<T = any> implements metadata.Command
     }
 
     public readonly name: string;
-    public triggers: TriggerConfigurations = {};
+    public config: Configurations = {};
 
     public $proxy(processor: Processor)
     {
