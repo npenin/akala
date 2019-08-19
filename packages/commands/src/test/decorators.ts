@@ -1,5 +1,5 @@
 import { Container } from "../container";
-import { inject, triggerredBy } from "../decorators";
+import { inject, configure } from "../decorators";
 import * as assert from 'assert'
 
 describe('test decorators', function ()
@@ -8,7 +8,7 @@ describe('test decorators', function ()
     {
         var container = new Container<null>('decorator', null);
 
-        container.register(triggerredBy('http', { inject: ['route.step'] })(inject('param.0')(function f(a)
+        container.register(configure('http', { inject: ['route.step'] })(inject('param.0')(function f(a)
         {
             assert.strictEqual(a, 'test');
             return a;

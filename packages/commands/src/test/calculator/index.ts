@@ -1,5 +1,5 @@
 import * as cmds from "../..";
-import { triggerredBy } from "../../decorators";
+import { configure } from "../../decorators";
 
 export type state = { value: number };
 
@@ -20,7 +20,7 @@ cmd = calculator.register(new cmds.Command<state>(function reset()
 }, 'reset'));
 cmd.config['http'] = { method: 'post', route: '/reset' }
 
-cmd = triggerredBy('http', { method: 'post', route: '/decrement/:step?', inject: ['$state', 'route.step'] })(
+cmd = configure('http', { method: 'post', route: '/decrement/:step?', inject: ['$state', 'route.step'] })(
     calculator.register(new cmds.Command<state>(function decrement(state: state, step: number)
     {
         if (step && typeof step == 'string')
