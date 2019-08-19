@@ -6,6 +6,7 @@ import { Command } from './command';
 import { Trigger } from './trigger';
 import { Processor } from './processor';
 import { Local } from './processors';
+import { commandList, metadata } from './generator';
 
 export class Container<TState> extends akala.Injector
 {
@@ -17,7 +18,7 @@ export class Container<TState> extends akala.Injector
 
         var iTrigger = trigger;
 
-        this.keys().forEach(cmdName =>
+        commandList(metadata(this)).forEach(cmdName =>
         {
             iTrigger.register(this, this.resolve(cmdName), server);
         });
