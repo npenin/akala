@@ -13,10 +13,11 @@ export function inject(...toInject: string[])
     }
 }
 
-export function triggerredBy<T extends Configuration>(name: string, config: T): (cmd: Command<any> | Injectable<any>) => Command<any>
-export function triggerredBy(config: Configurations): (cmd: Command<any> | Injectable<any>) => Command<any>
-export function triggerredBy(name: Configurations | string, config?: any): (cmd: Command<any> | Injectable<any>) => Command<any>
+export function configure<T extends Configuration>(name: string, config: T): (cmd: Command<any> | Injectable<any>) => Command<any>
+export function configure(config: Configurations): (cmd: Command<any> | Injectable<any>) => Command<any>
+export function configure(name: Configurations | string, config?: any): (cmd: Command<any> | Injectable<any>) => Command<any>
 {
+    debugger;
     if (typeof name == 'string')
         config = { [name]: config };
     else
@@ -26,7 +27,7 @@ export function triggerredBy(name: Configurations | string, config?: any): (cmd:
         if (typeof cmd == 'function')
             cmd = new Command<any>(cmd);
 
-        Object.assign({}, config, cmd.config);
+        cmd.config = Object.assign({}, config, cmd.config);
 
         return cmd;
     }
