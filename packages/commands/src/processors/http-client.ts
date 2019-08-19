@@ -3,16 +3,16 @@ import * as pathRegexp from 'path-to-regexp';
 import { CommandProxy } from '../command';
 import { Container } from '../container';
 import { Processor } from '../processor';
-import { Command, TriggerConfiguration } from '../metadata';
+import { Command, Configuration } from '../metadata';
 
 export class HttpClient extends Processor
 {
     public process(command: Command, ...param: any[])
     {
-        if (!command.triggers)
+        if (!command.config)
             throw new Error('no trigger configuration defined');
 
-        var config = command.triggers['http'] as unknown as HttpConfiguration;
+        var config = command.config.http as unknown as HttpConfiguration;
         if (!config)
             throw new Error('no http configuration specified');
 
@@ -108,7 +108,7 @@ export class HttpClient extends Processor
     }
 }
 
-export interface HttpConfiguration extends TriggerConfiguration
+export interface HttpConfiguration extends Configuration
 {
     method: string;
     route: string;

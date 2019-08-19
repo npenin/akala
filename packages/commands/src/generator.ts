@@ -13,7 +13,7 @@ export function metadata(container: Container<any>): meta.Container
             return;
         var cmd = container.resolve<Command>(key);
         if (cmd && cmd.name)
-            metacontainer.commands.push({ name: cmd.name, inject: cmd.inject || [], triggers: cmd.triggers });
+            metacontainer.commands.push({ name: cmd.name, inject: cmd.inject || [], config: cmd.config });
     });
     return metacontainer;
 }
@@ -24,8 +24,8 @@ export function proxy(metacontainer: meta.Container, processor: Processor)
 
     metacontainer.commands.forEach(cmd =>
     {
-        var proxycmd = container.register(new Command(function proxy(arg) { processor.process(cmd, arg); }, cmd.name, cmd.triggers[processor.name] && cmd.triggers[processor.name].inject || cmd.inject));
-        proxycmd.triggers = Object.assign({}, cmd.triggers);
+        var proxycmd = container.register(new Command(function proxy(arg) { processor.process(cmd, arg); }, cmd.name, cmd.config[processor.name] && cmd.config[processor.name].inject || cmd.inject));
+        proxycmd.config = Object.assign({}, cmd.config);
     });
 
     return container;

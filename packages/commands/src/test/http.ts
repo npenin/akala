@@ -26,9 +26,9 @@ describe('test http processing', function ()
             {
                 var cmdName = url.substr(1, indexOfSecondSlash - 1);
                 var cmd = calculator.resolve(cmdName);
-                if (cmd && cmd.triggers && cmd.triggers.http && cmd.triggers.http.inject)
+                if (cmd && cmd.config && cmd.config.http && cmd.config.http.inject)
                 {
-                    var config = cmd.triggers.http as any as HttpConfiguration;
+                    var config = cmd.config.http as any as HttpConfiguration;
                     var keys: pathRegexp.Key[] = [];
                     var regexp = pathRegexp.default(config.route, keys);
                     var match = url.match(regexp)
