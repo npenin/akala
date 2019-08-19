@@ -1,8 +1,9 @@
 import { Processor } from "../processor";
 import { CommandProxy } from "../command";
 import { EventEmitter } from "events";
+import { Container } from "../container";
 
-export class EventProcessor extends EventEmitter implements Processor
+export class EventProcessor<T> extends EventEmitter implements Processor<T>
 {
     public async process(command: CommandProxy<any>, ...param: any[])
     {
@@ -14,7 +15,8 @@ export class EventProcessor extends EventEmitter implements Processor
 
     public name = 'event';
 
-    constructor(private processor: Processor)
+
+    constructor(private processor: Processor<T>)
     {
         super();
     }

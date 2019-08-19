@@ -23,8 +23,8 @@ export class Container<TState> extends akala.Injector
             iTrigger.register(this, this.resolve(cmdName), server);
         });
     }
-    public processor: Processor;
-    constructor(public name: string, public state: TState, processor?: Processor)
+    public processor: Processor<TState>;
+    constructor(public name: string, public state: TState, processor?: Processor<TState>)
     {
         super();
         this.register('$state', state);

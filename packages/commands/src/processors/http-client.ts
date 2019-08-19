@@ -5,7 +5,7 @@ import { Container } from '../container';
 import { Processor } from '../processor';
 import { Command, Configuration } from '../metadata';
 
-export class HttpClient extends Processor
+export class HttpClient<T> extends Processor<T>
 {
     public process(command: Command, ...param: any[])
     {

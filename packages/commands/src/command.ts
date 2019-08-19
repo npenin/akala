@@ -19,15 +19,15 @@ export class Command<T = any> implements metadata.Command
     public readonly name: string;
     public config: Configurations = {};
 
-    public $proxy(processor: Processor)
+    public $proxy(processor: Processor<T>)
     {
-        return new CommandProxy(processor, this.name, this.inject);
+        return new CommandProxy<T>(processor, this.name, this.inject);
     }
 }
 
 export class CommandProxy<T = any> extends Command<T>
 {
-    constructor(public processor: Processor, name: string, inject?: string[])
+    constructor(public processor: Processor<T>, name: string, inject?: string[])
     {
         super(function (...args)
         {
