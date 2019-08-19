@@ -27,7 +27,8 @@ export class Container<TState> extends akala.Injector
     constructor(public name: string, public state: TState, processor?: Processor<TState>)
     {
         super();
-        this.register('$state', state);
+        if (typeof state !== 'undefined')
+            this.register('$state', state);
         this.processor = processor || new Local(this);
     }
 
