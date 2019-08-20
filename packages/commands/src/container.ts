@@ -7,6 +7,7 @@ import { Trigger } from './trigger';
 import { Processor } from './processor';
 import { Local } from './processors';
 import { commandList, metadata } from './generator';
+import { Pipe } from './processors/pipe';
 
 export class Container<TState> extends akala.Injector
 {
@@ -30,6 +31,11 @@ export class Container<TState> extends akala.Injector
         if (typeof state !== 'undefined')
             this.register('$state', state);
         this.processor = processor || new Local(this);
+    }
+
+    public pipe(container: Container<TState>)
+    {
+        this.processor = new Pipe(container);
     }
 
     public dispatch(command: string, ...param: any[])
