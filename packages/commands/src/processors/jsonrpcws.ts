@@ -1,9 +1,9 @@
 import * as jsonrpcws from '@akala/json-rpc-ws'
-import { Processor } from '../processor'
+import { CommandProcessor } from '../processor'
 import { Command } from '../metadata';
 import { Container } from '../container';
 
-export class JsonRpcWs<T> extends Processor<T>
+export class JsonRpcWs<T> extends CommandProcessor<T>
 {
     public process(command: Command, ...params: any[])
     {

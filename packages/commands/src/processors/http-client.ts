@@ -2,10 +2,10 @@ import { Injector, NextFunction, isPromiseLike, HttpOptions, each, Http } from '
 import * as pathRegexp from 'path-to-regexp';
 import { CommandProxy } from '../command';
 import { Container } from '../container';
-import { Processor } from '../processor';
+import { CommandProcessor } from '../processor';
 import { Command, Configuration } from '../metadata';
 
-export class HttpClient<T> extends Processor<T>
+export class HttpClient<T> extends CommandProcessor<T>
 {
     public process(command: Command, ...param: any[])
     {

@@ -40,6 +40,8 @@ export class Container<TState> extends akala.Injector
 
     public dispatch(command: string, ...param: any[])
     {
+        if (this.processor.requiresCommandName)
+            return this.processor.process(command, ...param);
         return this.processor.process(this.resolve(command), ...param);
     }
 
