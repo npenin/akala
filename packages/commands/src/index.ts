@@ -1,6 +1,7 @@
 export * from './command'
 export * from './container'
 export * from './decorators'
+export * from './generator'
 export * from './trigger'
 export * from './processor'
 import * as Processors from './processors'
