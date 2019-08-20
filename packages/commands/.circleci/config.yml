@@ -32,6 +32,10 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+          
+      - run: yarn global add typescript
+      
+      - run: yarn build
 
       # run tests!
       - run: yarn test
