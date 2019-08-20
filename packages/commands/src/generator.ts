@@ -24,7 +24,7 @@ export function proxy(metacontainer: meta.Container, processor: Processor<void>)
 
     metacontainer.commands.forEach(cmd =>
     {
-        var proxycmd = container.register(new Command(function proxy(arg) { processor.process(cmd, arg); }, cmd.name, cmd.config[processor.name] && cmd.config[processor.name].inject || cmd.inject));
+        var proxycmd = container.register(new CommandProxy(processor, cmd.name, cmd.config[processor.name] && cmd.config[processor.name].inject || cmd.inject));
         proxycmd.config = Object.assign({}, cmd.config);
     });
 

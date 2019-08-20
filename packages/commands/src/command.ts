@@ -31,7 +31,10 @@ export class CommandProxy<T = any> extends Command<T>
     {
         super(function (...args)
         {
-            processor.process(cmd, args);
+            if (processor.requiresCommandName)
+                processor.process(name, args);
+            else
+                processor.process(cmd, args);
         }, name, inject);
         var cmd = this;
     }

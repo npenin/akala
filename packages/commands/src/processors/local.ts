@@ -1,10 +1,10 @@
 import { CommandProxy } from '../command';
 import { Injector } from '@akala/core';
-import { Processor } from '../processor'
+import { Processor, CommandProcessor } from '../processor'
 import { Container } from '../container';
 import assert = require('assert');
 
-export class Local<T> extends Processor<T>
+export class Local<T> extends CommandProcessor<T>
 {
     public process(command: CommandProxy<any>, ...param: any[])
     {
