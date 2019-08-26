@@ -16,7 +16,7 @@ import * as master from './master-meta';
 export { master };
 
 
-import * as commands from '@akala/commands';
+import * as commands from './commands';
 export { commands };
 export { ServiceWorker } from './service-worker';
 export { ApiServiceWorker } from './api/api-service-worker';
