@@ -3,13 +3,16 @@ import * as akala from '@akala/core'
 import { ChildProcess, fork } from 'child_process';
 
 import * as net from 'net'
-import * as udp from 'dgram'
-
 
 function resolveUrl(namespace: string)
 {
     var url = akala.resolve('$rootUrl') + '/' + namespace + '/';
     return url;
+}
+
+function isMainProcess(p: ChildProcess | NodeJS.Process): p is NodeJS.Process
+{
+    return typeof p['argv'] != 'undefined';
 }
 
 akala.register('$resolveUrl', resolveUrl);
@@ -20,6 +23,7 @@ export interface ServiceWorkerOptions
     restartOnCrash: boolean;
     retries: number;
     numberOfMinutesBeforeRetryReset: number
+    args?: string[];
 }
 
 export class ServiceWorker extends EventEmitter
@@ -28,7 +32,7 @@ export class ServiceWorker extends EventEmitter
 
     public on(evt: 'activate', handler: (evt: ExtendableEvent) => void): this
     public on(evt: 'install', handler: (evt: ExtendableEvent) => void): this
-    public on<T>(evt: 'message', handler: (message: any, socket?: net.Socket | udp.Socket) => void): this
+    public on(evt: string, handler: (...args: any[]) => void): this
     public on(evt: string, handler: (...args: any[]) => void): this
     {
         return super.on(evt, handler);
@@ -36,7 +40,11 @@ export class ServiceWorker extends EventEmitter
 
     private fork(options: Partial<ServiceWorkerOptions>, path: string, config: string)
     {
-        var cp = this.cp = fork(require.resolve(options.workerStarter), [path, config]);
+        var args = [path, config]
+        if (options.args)
+            args.push(...options.args);
+
+        var cp = this.cp = fork(require.resolve(options.workerStarter), args);
 
         cp.on('exit', () =>
         {
@@ -75,7 +83,7 @@ export class ServiceWorker extends EventEmitter
         })
     }
 
-    constructor(path: string, options?: Partial<ServiceWorkerOptions>)
+    constructor(public readonly path: string, public readonly options?: Partial<ServiceWorkerOptions>)
     {
         super();
         if (!options)
@@ -136,10 +144,30 @@ export class ServiceWorker extends EventEmitter
         }
     }
 
-    public postMessage(message, socket?: net.Socket | udp.Socket)
+    public postMessage(message, socket?: net.Socket)
     {
-        this.cp.send(message)
+        return new Promise<void>((resolve, reject) =>
+        {
+            if (isMainProcess(this.cp))
+                this.cp.send(message, socket, null, function (err?: any)
+                {
+                    if (err)
+                        reject(err);
+                    else
+                        resolve();
+                })
+            else
+                this.cp.send(message, socket, null, function (err?: any)
+                {
+                    if (err)
+                        reject(err);
+                    else
+                        resolve();
+                })
+        })
     }
+
+
 
     public kill(arg0: number & string, arg1: string | number)
     {
@@ -175,16 +203,16 @@ export class ExtendableEvent
     }
 }
 
-export function start<T extends ServiceWorker>(path: string, ctor: new (path: string) => T)
+export function start<T extends ServiceWorker>(path: string, rootUrl: string, ctor: new (path: string) => T)
 {
     process.on('uncaughtException', function (error)
     {
-        console.error(process.argv[2]);
+        console.error(path);
         console.error(error);
         process.exit(500);
     })
 
-    akala.register('$rootUrl', process.argv[3])
+    akala.register('$rootUrl', rootUrl)
 
     var sw = akala.register('$worker', new ctor(undefined));
 
@@ -197,7 +225,5 @@ export function start<T extends ServiceWorker>(path: string, ctor: new (path: st
 
 if (require.main === module)
 {
-    start(process.argv[2], ServiceWorker)
-
-
+    start(process.argv[2], process.argv[3], ServiceWorker)
 }

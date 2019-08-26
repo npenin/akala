@@ -4,6 +4,7 @@ import * as jsonrpc from '@akala/json-rpc-ws';
 import { WorkerRouter } from "../router";
 import * as ws from 'ws';
 import * as net from 'net';
+import * as udp from 'dgram';
 import { Request } from '../master-meta';
 
 export class ApiServiceWorker extends ServiceWorker
@@ -16,15 +17,24 @@ export class ApiServiceWorker extends ServiceWorker
             options.workerStarter = module.filename;
         super(path, options)
     }
+
+    public on<T>(evt: 'message', handler: (message: any, socket?: net.Socket | udp.Socket) => void): this
+    public on(evt: 'activate', handler: (evt: ExtendableEvent) => void): this
+    public on(evt: 'install', handler: (evt: ExtendableEvent) => void): this
+    public on(evt: string, handler: (...args: any[]) => void): this
+    public on(evt: string, handler: (...args: any[]) => void): this
+    {
+        return super.on(evt, handler);
+    }
 }
 
 if (require.main === module)
 {
-    var worker = start(process.argv[2], ApiServiceWorker);
+    var worker = start(process.argv[2], process.argv[3], ApiServiceWorker);
 
     worker.on('activate', function ()
     {
-        const log = akala.log('akala:api-service-worker:' + process.argv[2]);
+        const log = akala.log('akala:api-service-worker:' + worker.path);
         akala.register('$router', new WorkerRouter());
 
         let server = jsonrpc.createServer<jsonrpc.Connection>();
