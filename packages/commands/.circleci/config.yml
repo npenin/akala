@@ -116,9 +116,10 @@ workflows:
             
   test:
     jobs:
+      - build
       - test:
           requires:
-            - checkout
+            - build
 
   release:
     jobs:
