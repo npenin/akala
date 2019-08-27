@@ -87,7 +87,9 @@ workflows:
   build:
     jobs:
       - checkout
-      - build
+      - build:
+          requires:
+            - checkout
 
   release:
     jobs:
