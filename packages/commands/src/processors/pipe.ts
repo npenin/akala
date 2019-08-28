@@ -6,12 +6,12 @@ import assert = require('assert');
 
 export class Pipe<T> extends CommandNameProcessor<T>
 {
-    public process(command: string, ...param: any[])
+    public process(command: string, param: { param: any[], [key: string]: any }): any | PromiseLike<any>
     {
         if (!this.container)
             assert.fail('container is undefined');
         else
-            this.container.dispatch(command, ...param);
+            return this.container.dispatch(command, param);
     }
 
     constructor(container: Container<T>)

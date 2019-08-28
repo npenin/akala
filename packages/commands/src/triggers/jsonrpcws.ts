@@ -7,11 +7,11 @@ import * as jsonrpcws from '@akala/json-rpc-ws'
 
 function wrap<TState>(container: Container<TState>, c: Command<TState>)
 {
-    return function (param: jsonrpcws.SerializableObject[], reply: (error: any, response?: jsonrpcws.SerializableObject) => void)
+    return function (this: jsonrpcws.Connection, param: jsonrpcws.PayloadDataType, reply: (error: any, response?: jsonrpcws.SerializableObject) => void)
     {
         if (!param)
-            param = [];
-        var result = container.dispatch(c.name, ...param)
+            param = { param: [] };
+        var result = container.dispatch(c.name, Object.assign(param, { connection: this }));
         if (isPromiseLike<jsonrpcws.SerializableObject>(result))
         {
             result.then(function (r: jsonrpcws.SerializableObject)

@@ -33,11 +33,11 @@ describe('test jsonrpcws processing', function ()
     {
         calculator.dispatch('reset')
         assert.equal(calculator.state.value, 0)
-        client.send('increment', null, function (error)
+        client.send('increment', null, function (error?)
         {
             assert.ifError(error);
             assert.equal(calculator.state.value, 1)
-            client.send('decrement', [2] as any, function (error: any)
+            client.send('decrement', { param: [2] } as any, function (error: any)
             {
                 done(error)
             });

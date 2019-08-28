@@ -14,6 +14,7 @@ describe('test decorators', function ()
             return a;
         })));
 
+        assert.strictEqual(container.dispatch('f', { param: ['test'] }), 'test');
         assert.strictEqual(container.dispatch('f', 'test'), 'test');
     })
 });
