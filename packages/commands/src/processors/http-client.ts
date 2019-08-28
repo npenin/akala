@@ -7,7 +7,7 @@ import { Command, Configuration } from '../metadata';
 
 export class HttpClient<T> extends CommandProcessor<T>
 {
-    public process(command: Command, ...param: any[])
+    public process(command: Command, param: { param: any[], [key: string]: any }): any | PromiseLike<any>
     {
         if (!command.config)
             throw new Error('no trigger configuration defined');
@@ -19,7 +19,7 @@ export class HttpClient<T> extends CommandProcessor<T>
         var injector = this.injector;
         return injector.injectWithNameAsync(['$http', '$resolveUrl'], async function (http: Http, resolveUrl)
         {
-            const res = await http.call(HttpClient.buildCall(config, resolveUrl, command, ...param));
+            const res = await http.call(HttpClient.buildCall(config, resolveUrl, command, ...param.param));
             switch (config.type)
             {
                 case 'raw':

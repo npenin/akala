@@ -32,10 +32,21 @@ export class CommandProxy<T = any> extends Command<T>
         super(function (...args)
         {
             if (processor.requiresCommandName)
-                processor.process(name, args);
+                processor.process(name, { param: args });
             else
-                processor.process(cmd, args);
+                processor.process(cmd, { param: args });
         }, name, inject);
         var cmd = this;
+    }
+}
+
+export class MapCommand extends Command<any>
+{
+    constructor(public container: Container<any>, commandToTrigger: string, name: string, inject?: string[])
+    {
+        super(function (...args)
+        {
+            container.dispatch(commandToTrigger, { param: args });
+        }, name, inject);
     }
 }

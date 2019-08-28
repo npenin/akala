@@ -38,11 +38,24 @@ export class Container<TState> extends akala.Injector
         this.processor = new Pipe(container);
     }
 
-    public dispatch(command: string, ...param: any[])
+    public dispatch(command: string, param: { param: any[], [key: string]: any }): any
+    public dispatch(command: string, ...param: any[]): any
+    public dispatch(command: string, param: any | { param: any[], [key: string]: any }, ...params: any[]): any
     {
-        if (this.processor.requiresCommandName)
-            return this.processor.process(command, ...param);
-        return this.processor.process(this.resolve(command), ...param);
+        if (typeof (param) == 'object' && param.param && Array.isArray(param.param))
+        {
+            if (this.processor.requiresCommandName)
+                return this.processor.process(command, param);
+            return this.processor.process(this.resolve(command), param);
+        }
+        else
+        {
+            if (typeof params == 'undefined')
+                params = [];
+            if (typeof param !== 'undefined')
+                params.unshift(param);
+            return this.dispatch(command, { param: params });
+        }
     }
 
     public resolve<T = Command<TState>>(name: string): T

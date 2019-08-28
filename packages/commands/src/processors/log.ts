@@ -6,7 +6,9 @@ export class LogProcessor<T> extends EventProcessor<T>
 {
     public name = 'log';
 
-    constructor(processor: Processor<T>, preExecute?: (command: CommandProxy<any>, ...param: any[]) => void, postExecute?: (command: CommandProxy<any>, ...param: any[]) => void)
+    constructor(processor: Processor<T>,
+        preExecute?: (command: CommandProxy<T>, param: { param: any[], [key: string]: any }) => void,
+        postExecute?: (command: CommandProxy<T>, param: { param: any[], [key: string]: any }) => void)
     {
         super(processor);
         if (preExecute)
