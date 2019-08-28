@@ -2,6 +2,7 @@ import * as jsonrpcws from '@akala/json-rpc-ws'
 import { CommandProcessor } from '../processor'
 import { Command } from '../metadata';
 import { Container } from '../container';
+import { Base } from '@akala/json-rpc-ws/lib/base';
 
 export class JsonRpcWs<T> extends CommandProcessor<T>
 {
@@ -9,7 +10,7 @@ export class JsonRpcWs<T> extends CommandProcessor<T>
     {
         return new Promise<any>((resolve, reject) =>
         {
-            this.client.send(command.name, params, function (err: any, result: jsonrpcws.PayloadDataType)
+            this.client.sendMethod(command.name, params, function (err: any, result: jsonrpcws.PayloadDataType)
             {
                 if (err)
                     reject(err);
@@ -19,7 +20,7 @@ export class JsonRpcWs<T> extends CommandProcessor<T>
         })
     }
 
-    constructor(private client: jsonrpcws.Client<jsonrpcws.Connection>)
+    constructor(private client: jsonrpcws.Connection)
     {
         super('jsonrpcws');
     }
