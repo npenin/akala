@@ -47,7 +47,7 @@ describe('test jsonrpcws processing', function ()
     it('should work with proxy commands', async function ()
     {
         var container = metadata(calculator);
-        var calculatorProxy = proxy(container, new LogProcessor(new JsonRpcWs(client), function (cmd, args)
+        var calculatorProxy = proxy(container, new LogProcessor(new JsonRpcWs(client.getConnection()), function (cmd, args)
         {
             console.log(args);
         }));
@@ -65,7 +65,7 @@ describe('test jsonrpcws processing', function ()
     it('should generate correct proxy', async function ()
     {
         var container = metadata(calculator);
-        var meta = helper(proxy(container, new JsonRpcWs(client)), container);
+        var meta = helper(proxy(container, new JsonRpcWs(client.getConnection())), container);
         assert.ok(meta);
         await meta.reset();
         await meta.increment();

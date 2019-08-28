@@ -4,6 +4,7 @@ import { Command } from '../command';
 import { Injector, isPromiseLike } from '@akala/core';
 import { Base } from '@akala/json-rpc-ws/lib/base';
 import * as jsonrpcws from '@akala/json-rpc-ws'
+import { JsonRpcWs as Processor } from '../processors';
 
 function wrap<TState>(container: Container<TState>, c: Command<TState>)
 {
@@ -11,7 +12,7 @@ function wrap<TState>(container: Container<TState>, c: Command<TState>)
     {
         if (!param)
             param = { param: [] };
-        var result = container.dispatch(c.name, Object.assign(param, { connection: this }));
+        var result = container.dispatch(c.name, Object.assign(param, { connection: this, connectionAsContainer: new Container('unknown', null, new Processor(this)) }));
         if (isPromiseLike<jsonrpcws.SerializableObject>(result))
         {
             result.then(function (r: jsonrpcws.SerializableObject)
