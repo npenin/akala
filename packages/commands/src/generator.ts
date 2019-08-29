@@ -24,7 +24,9 @@ export function proxy<T = any>(metacontainer: meta.Container, processor: Process
 
     metacontainer.commands.forEach(cmd =>
     {
-        var proxycmd = container.register(new CommandProxy(processor, cmd.name, cmd.config[processor.name] && cmd.config[processor.name].inject || cmd.inject));
+        //typescript bug https://github.com/microsoft/TypeScript/issues/29642 forcing the declaration of cmdConfig
+        var cmdConfig = cmd.config && cmd.config[processor.name];
+        var proxycmd = container.register(new CommandProxy(processor, cmd.name, cmdConfig && cmdConfig.inject || cmd.inject));
         proxycmd.config = Object.assign({}, cmd.config);
     });
 
