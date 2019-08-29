@@ -66,9 +66,9 @@ if (require.main === module)
             });
         FileSystem.discoverCommands(process.argv[4], container, { recursive: true, processor: container.processor });
 
-        worker.on('message', function (message: { command: string, args: any[] })
+        worker.on('message', function (message: { command: string, args: any[] }, socket: any)
         {
-            container.dispatch(message.command, ...message.args);
+            container.dispatch(message.command, { param: message.args, connection: socket });
         })
     })
 }

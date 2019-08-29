@@ -44,7 +44,7 @@ async function processCommand<T>(container: Container<T>, c: Command<T>, injecte
 
     inj.register('headers', req.headers);
 
-    var config = c.config.http as any as HttpConfiguration;
+    var config = c.config['http'] as any as HttpConfiguration;
     if (config.inject)
     {
         return inj.injectWithName(config.inject, async function (...args)
@@ -82,7 +82,7 @@ function wrapWorker<T>(container: Container<T>, c: Command<T>): worker.RequestHa
 
 export var trigger = new Trigger('http', function register<T>(container: Container<T>, command: Command<T>, router: HttpRouter | WorkerRouter)
 {
-    var config = command.config.http as any as HttpConfiguration;
+    var config = command.config['http'] as any as HttpConfiguration;
 
     if (config.method === 'use' || !config.method)
     {
