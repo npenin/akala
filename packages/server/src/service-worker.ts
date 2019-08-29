@@ -32,7 +32,7 @@ export class ServiceWorker extends EventEmitter
 
     public on(evt: 'activate', handler: (evt: ExtendableEvent) => void): this
     public on(evt: 'install', handler: (evt: ExtendableEvent) => void): this
-    public on(evt: string, handler: (...args: any[]) => void): this
+    public on(evt: string, handler: (message: any, socket?: any) => void): this
     public on(evt: string, handler: (...args: any[]) => void): this
     {
         return super.on(evt, handler);
