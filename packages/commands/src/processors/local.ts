@@ -24,7 +24,7 @@ export class Local<T> extends CommandProcessor<T>
         if (!this.container)
             assert.fail('container is undefined');
         else
-            Local.execute(command.inject, command.handler, this.container, param);
+            return Local.execute(command.inject, command.handler, this.container, param);
     }
 
     constructor(container: Container<T>)
