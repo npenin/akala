@@ -1,5 +1,7 @@
 // export * from './http-client'
+export * from './event'
+export * from './http-client'
 export * from './jsonrpcws'
 export * from './local'
-export * from './event'
 export * from './log'
+export * from './pipe'
