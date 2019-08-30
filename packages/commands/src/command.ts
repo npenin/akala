@@ -14,6 +14,14 @@ export class Command<T = any> implements metadata.Command
         this.name = name || handler.name;
         if (typeof inject == 'undefined')
             this.inject = handler['$inject'];
+        if (typeof this.inject == 'undefined' && handler.length)
+        {
+            this.inject = [];
+            for (let i = 0; i < handler.length; i++)
+            {
+                this.inject.push('param.' + i);
+            }
+        }
     }
 
     public readonly name: string;
