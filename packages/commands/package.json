@@ -9,7 +9,11 @@
   "scripts": {
     "test": "mocha",
     "prepublishOnly": "tsc -p src",
-    "build": "tsc -p src"
+    "build": "tsc -p src",
+    "cli": "node dist/cli.js"
+  },
+  "browser": {
+    "./dist/processors/fs.js": "./dist/processors/fs.browser.js"
   },
   "bin": {
     "ac": "dist/cli.js"

@@ -46,7 +46,10 @@ export class Container<TState> extends akala.Injector
         {
             if (this.processor.requiresCommandName)
                 return this.processor.process(command, param);
-            return this.processor.process(this.resolve(command), param);
+            var cmd = this.resolve(command);
+            if (!cmd)
+                throw new Error(`Command with name ${command} could not be found`)
+            return this.processor.process(cmd, param);
         }
         else
         {
