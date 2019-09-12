@@ -65,17 +65,17 @@ export class FileSystem<T> extends CommandProcessor<T>
                 if (f.name.endsWith('.js'))
                 {
                     let fsConfig = { path: path.join(root, f.name) };
-                    let otherConfigsFile = path.join(root, path.basename(f.name) + '.json');
+                    let otherConfigsFile = path.join(root, path.basename(f.name) + 'on');
                     if (!options)
                         throw new Error('cannot happen');
-                    let cmd = configure<FileSystemConfiguration>('fs', fsConfig)(new CommandProxy(options.processor as Processor<T>, path.basename(f.name)));
+                    let cmd = configure<FileSystemConfiguration>('fs', fsConfig)(new CommandProxy(options.processor as Processor<T>, path.basename(f.name, path.extname(f.name))));
                     if (files.find(file => file.name == cmd.name + '.json'))
                         cmd = configure(require(path.resolve(otherConfigsFile)))(cmd);
                     container.register(cmd);
                 }
                 else if (f.name.endsWith('.json'))
                 {
-                    if (!files.find(file => file.name == path.basename(f.name) + '.js'))
+                    if (!files.find(file => file.name == path.basename(f.name, '.json') + '.js'))
                     {
                         let cmd: FSCommand = require(path.resolve(path.join(root, f.name)))
                         this.versatileCommandRegister(cmd, container);

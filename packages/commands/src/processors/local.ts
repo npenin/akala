@@ -14,7 +14,9 @@ export class Local<T> extends CommandProcessor<T>
         {
             var injector = new Injector(container);
             Object.keys(param).forEach((key) => injector.register(key, param[key]));
-            return injector.injectWithName(inject || [], command)(container.state);
+            if (!inject)
+                inject = param.param.map((a, i) => 'param.' + i);
+            return injector.injectWithName(inject, command)(container.state);
         }
     }
 

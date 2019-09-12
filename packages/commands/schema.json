@@ -1,0 +1,92 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json",
+    "type": "object",
+    "title": "Container Schema",
+    "description": "This exposes the container metadata information.",
+    "required": [
+        "name",
+        "commands"
+    ],
+    "properties": {
+        "name": {
+            "$id": "#/properties/name",
+            "type": "string",
+            "title": "The container's name",
+            "description": "This is the name of the container.",
+            "default": "",
+            "examples": [
+                "cli"
+            ],
+            "pattern": "^(.*)$"
+        },
+        "commands": {
+            "$id": "#/properties/commands",
+            "type": "array",
+            "title": "The Commands Schema",
+            "description": "This lists all commands available for a given container.",
+            "items": {
+                "$id": "#/properties/commands/items",
+                "type": "object",
+                "title": "The Command Schema",
+                "description": "This exposes the command metadata information.",
+                "required": [
+                    "name",
+                    "inject",
+                    "config"
+                ],
+                "properties": {
+                    "name": {
+                        "$id": "#/properties/commands/items/properties/name",
+                        "type": "string",
+                        "title": "The command's name",
+                        "description": "this is the command name",
+                        "default": "",
+                        "examples": [
+                            "generate",
+                            "generate-metadata"
+                        ],
+                        "pattern": "^(.*)$"
+                    },
+                    "inject": {
+                        "$id": "#/properties/commands/items/properties/inject",
+                        "type": "array",
+                        "title": "The Inject Schema",
+                        "description": "This should match the required command parameters."
+                    },
+                    "config": {
+                        "$id": "#/properties/commands/items/properties/config",
+                        "type": "object",
+                        "title": "The Config Schema",
+                        "description": "This is the providers/triggers configuration",
+                        "properties": {
+                            "fs": {
+                                "$id": "#/properties/commands/items/properties/config/properties/fs",
+                                "type": "object",
+                                "title": "The Fs Schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "required": [
+                                    "path"
+                                ],
+                                "properties": {
+                                    "path": {
+                                        "$id": "#/properties/commands/items/properties/config/properties/fs/properties/path",
+                                        "type": "string",
+                                        "title": "The Path Schema",
+                                        "description": "An explanation about the purpose of this instance.",
+                                        "default": "",
+                                        "examples": [
+                                            "dist\\cli\\generate-metadata.js"
+                                        ],
+                                        "pattern": "^(.*)$"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
