@@ -3,6 +3,7 @@ import { HttpRouter, WorkerRouter, Methods, Router } from '../../router';
 import { Injector, NextFunction, isPromiseLike } from '@akala/core';
 import * as master from '../../master-meta';
 import * as worker from '../../worker-meta';
+import { Local } from '@akala/commands/dist/processors';
 
 function wrapHttp<T>(container: Container<T>, command: Command<T>)
 {
@@ -28,33 +29,11 @@ function wrapHttp<T>(container: Container<T>, command: Command<T>)
 
 async function processCommand<T>(container: Container<T>, c: Command<T>, injected: { '$request': master.Request | worker.Request, [key: string]: any })
 {
-    var inj = new Injector(container)
-    injected.$request.injector = inj;
     var req = injected.$request;
-    Object.keys(injected).forEach(k => inj.register(k, injected[k]));
-
-    if (req.params)
-        inj.register('param', req.params);
-
-    if (req.query)
-        inj.register('query', req.query);
-
-    if (req.body)
-        inj.register('body', req.body);
-
-    inj.register('headers', req.headers);
-
-    var config = c.config['http'] as any as HttpConfiguration;
-    if (config.inject)
+    return Local.execute(c.config.http.inject || c.inject || [], function (...args)
     {
-        return inj.injectWithName(config.inject, async function (...args)
-        {
-            await container.dispatch(c.name, ...args);
-        });
-    }
-    else
-        return await container.dispatch(c.name);
-
+        container.dispatch(c.name, ...args)
+    }, container, { param: [], params: req.params, query: req.query, body: req.body, headers: req.headers, ...injected });
 }
 
 function wrapWorker<T>(container: Container<T>, c: Command<T>): worker.RequestHandler
