@@ -73,10 +73,20 @@ export function microservice(
         return;
 
 
-    akala.module(
+    var module = akala.module(
         plugin,
         ...dependencies
-    ).init(['$preAuthenticationRouter'], function (preAuthenticatedRouter: HttpRouter)
+    );
+    // module.register('$config', akala.chain(function (keys: string[])
+    // {
+    //     akala.resolve('$config.' + plugin + '.' + keys.join('.'));
+    // }, function (keys, key: string)
+    //     {
+    //         keys.push(key);
+    //         return keys;
+    //     }));
+
+    module.init(['$preAuthenticationRouter'], function (preAuthenticatedRouter: HttpRouter)
     {
         preAuthenticatedRouter.useGet('/assets/' + plugin, master.serveStatic('node_modules/' + plugin + '/assets'));
 

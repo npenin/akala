@@ -1,28 +1,17 @@
 import * as fs from 'fs';
-import * as jsonrpc from '@akala/json-rpc-ws';
 import * as akala from '@akala/core';
 import { join as pathJoin } from 'path';
 import * as debug from 'debug';
-// import * as $ from 'underscore';
-import { EventEmitter } from 'events';
 import { router, Request, Response } from './router';
 import * as pac from './package';
 var log = debug('akala:master');
-var orchestratorLog = debug('akala:master:orchestrator');
-import * as Orchestrator from 'orchestrator';
 import { microservice } from './microservice';
 import { updateConfig, getConfig } from './config';
-// import * as st from 'serve-static';
 import { serveStatic } from './master-meta';
 
 var httpPackage: 'http' | 'https' = 'http';
 
 var port = process.env.PORT || '5678';
-
-// if (process.execArgv && process.execArgv.length >= 1)
-//     process.execArgv[0] = process.execArgv[0].replace('-brk', '');
-
-
 
 akala.register('$updateConfig', new Proxy(updateConfig, {
     get: function (uc, key: string)
