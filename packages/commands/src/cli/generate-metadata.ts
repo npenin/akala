@@ -22,7 +22,7 @@ export default async function generate(name: string, folder?: string, outputFile
 {
     folder = folder || process.cwd();
     if (!name)
-        name = path.basename(folder);
+        name = path.basename(folder, path.extname(folder));
     var container = new Container(name, {});
     var output: fs.WriteStream;
     output = fs.createWriteStream(outputFile || 'commands.d.ts');
