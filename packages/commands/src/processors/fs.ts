@@ -47,7 +47,7 @@ export class FileSystem<T> extends CommandProcessor<T>
         }
         if (!options.isDirectory)
         {
-            var metacontainer: Metadata.Container = require(root);
+            var metacontainer: Metadata.Container = require(path.resolve(root));
             metacontainer.commands.forEach(cmd =>
             {
                 this.versatileCommandRegister(cmd as FSCommand, container);
