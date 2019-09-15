@@ -31,7 +31,7 @@ export default async function generate(name: string, folder?: string, outputFile
     var meta = akala.metadata(container);
 
     await write(output, 'declare module "@akala/commands" {\n');
-    await write(output, '\tdeclare namespace description \n\t{\n');
+    await write(output, '\texport namespace description \n\t{\n');
 
     await write(output, `\t\texport interface ${name} \n\t\t{\n`);
     await core.eachAsync(meta.commands, async function (cmd)
