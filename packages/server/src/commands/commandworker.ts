@@ -1,7 +1,6 @@
 import { ServiceWorker, ServiceWorkerOptions, start } from "../service-worker";
 import * as net from 'net';
-import { Container, CommandNameProcessor } from '@akala/commands';
-import { FileSystem } from './processors/fs';
+import { Container, CommandNameProcessor, Processors } from '@akala/commands';
 import { LogProcessor } from '@akala/commands/dist/processors';
 import { logger } from '..';
 
@@ -55,7 +54,7 @@ if (require.main === module)
     worker.on('activate', function ()
     {
         const log = logger('akala:server-worker:' + worker.path);
-        container.processor = new LogProcessor(new FileSystem(container, process.argv[4]), function (cmd, ...args)
+        container.processor = new LogProcessor(new Processors.FileSystem(container, process.argv[4]), function (cmd, ...args)
         {
             log.info(cmd);
             log.verbose(args);
@@ -64,7 +63,7 @@ if (require.main === module)
                 log.info(cmd);
                 log.verbose(args);
             });
-        FileSystem.discoverCommands(process.argv[4], container, { recursive: true, processor: container.processor });
+        Processors.FileSystem.discoverCommands(process.argv[4], container, { recursive: true, processor: container.processor });
 
         worker.on('message', function (message: { command: string, args: any[] }, socket: any)
         {
