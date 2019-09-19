@@ -7,4 +7,5 @@ export * from './processor'
 import * as Processors from './processors'
 import * as Triggers from './triggers'
 import * as Metadata from './metadata'
-export { Processors, Triggers, Metadata }
+import * as cli from './cli'
+export { Processors, Triggers, Metadata, cli }

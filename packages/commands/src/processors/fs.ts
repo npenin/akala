@@ -15,6 +15,7 @@ import { Local } from './local';
 export interface FileSystemConfiguration extends Metadata.Configuration
 {
     path: string;
+    source?: string;
 }
 
 export type FSCommand = Metadata.Command & { config?: { fs?: FileSystemConfiguration } };
@@ -64,13 +65,19 @@ export class FileSystem<T> extends CommandProcessor<T>
             if (f.isFile())
                 if (f.name.endsWith('.js'))
                 {
-                    let fsConfig = { path: path.join(root, f.name) };
+                    let fsConfig = { path: path.join(root, f.name).replace(/\\/g, '/') };
                     let otherConfigsFile = path.join(root, path.basename(f.name) + 'on');
                     if (!options)
                         throw new Error('cannot happen');
                     let cmd = configure<FileSystemConfiguration>('fs', fsConfig)(new CommandProxy(options.processor as Processor<T>, path.basename(f.name, path.extname(f.name))));
                     if (files.find(file => file.name == cmd.name + '.json'))
-                        cmd = configure(require(path.resolve(otherConfigsFile)))(cmd);
+                        cmd = configure(require(path.resolve(otherConfigsFile)))(cmd) as any;
+                    if (files.find(file => file.name == f.name + '.map'))
+                    {
+                        var sourceMap = JSON.parse(await fs.readFile(path.join(root, path.basename(f.name) + '.map'), 'utf-8'));
+                        if (cmd.config.fs)
+                            cmd.config.fs.source = path.join(path.relative(process.cwd(), root), sourceMap.sources[0]).replace(/\\/g, '/');
+                    }
                     container.register(cmd);
                 }
                 else if (f.name.endsWith('.json'))

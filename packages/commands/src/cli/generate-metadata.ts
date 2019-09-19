@@ -4,7 +4,7 @@ import { Container } from "../container";
 import * as path from 'path'
 import * as fs from 'fs';
 import { jsonObject } from "../metadata";
-import { FileSystemConfiguration } from "../processors/fs-browser";
+import { FileSystemConfiguration } from "../processors/fs";
 
 async function write(output: fs.WriteStream, content: string)
 {
@@ -34,8 +34,13 @@ export default async function generate(name: string, folder?: string, outputFile
     if (!name)
         name = path.basename(folder, path.extname(folder));
     var container = new Container(name, {});
-    var output: fs.WriteStream;
-    output = fs.createWriteStream(outputFile || 'commands.d.ts');
+    if (!outputFile || (await fs.promises.lstat(outputFile)).isDirectory())
+        outputFile = outputFile && outputFile + '/commands.ts' || 'commands.ts';
+
+    var outputFolder = path.dirname(outputFile);
+
+    var output = fs.createWriteStream(outputFile);
+
     await akala.Processors.FileSystem.discoverCommands(folder, container);
 
     var meta = akala.metadata(container);
@@ -55,15 +60,19 @@ export default async function generate(name: string, folder?: string, outputFile
         await write(output, 'declare type Arguments<T> = T extends ((...x: infer X) => any) ? X : never;\n');
     }
 
-    await write(output, 'declare module "@akala/commands" {\n');
-    await write(output, '\texport namespace description \n\t{\n');
+    if (outputFile.endsWith('.d.ts'))
+        await write(output, 'declare ');
+    else
+        await write(output, 'export ');
 
-    await write(output, `\t\texport interface ${name} \n\t\t{\n`);
+    await write(output, 'namespace description \n\t{\n');
+
+    await write(output, `\texport interface ${name} \n\t\t{\n`);
 
     await core.eachAsync(meta.commands, async function (cmd)
     {
 
-        await write(output, `\t\t\tdispatch (cmd:'${cmd.name}'`);
+        await write(output, `\t\tdispatch (cmd:'${cmd.name}'`);
         if (cmd.inject && cmd.inject.length)
         {
             await core.eachAsync(cmd.inject, async function (i)
@@ -74,15 +83,17 @@ export default async function generate(name: string, folder?: string, outputFile
         else if (cmd.config.fs)
         {
             let config = cmd.config.fs as jsonObject & FileSystemConfiguration;
-            await write(output, `, ...args:Arguments<typeof import('./${config.path.replace(/\\/g, '/')}').default>`);
+            var filePath = path.relative(outputFolder, config.source || config.path);
+            filePath = path.join(path.dirname(filePath), path.basename(filePath, path.extname(filePath)));
+            filePath = filePath.replace(/\\/g, '/');
+
+            await write(output, `, ...args:Arguments<typeof import('./${filePath}').default>): ReturnType<typeof import('./${filePath}').default>\n`);
         }
         else
-            await write(output, `, ...args:any[]`);
-        await write(output, `): any\n`);
+            await write(output, `, ...args:any[]): any\n`);
 
     });
 
-    await write(output, '\t\t}\n');
     await write(output, '\t}\n');
     await write(output, '}\n');
 };

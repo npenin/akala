@@ -14,6 +14,7 @@ import { Local } from './local';
 export interface FileSystemConfiguration extends Metadata.Configuration
 {
     path: string;
+    source?: string;
 }
 
 export type FSCommand = Metadata.Command & { config?: { fs?: FileSystemConfiguration } };

@@ -13,8 +13,8 @@ export function inject(...toInject: string[])
     }
 }
 
-export function configure<T extends Configuration>(name: string, config: T): (cmd: Command<any> | Injectable<any>) => Command<any>
-export function configure(config: Configurations): (cmd: Command<any> | Injectable<any>) => Command<any>
+export function configure<T extends Configuration, TKey extends string = string>(name: TKey, config: T): (cmd: Command<any> | Injectable<any>) => Command<any> & { config: { [k in TKey]: T } }
+export function configure(config: Configurations): (cmd: Command<any> | Injectable<any>) => Command<any> & { config: Configurations }
 export function configure(name: Configurations | string, config?: any): (cmd: Command<any> | Injectable<any>) => Command<any>
 {
     debugger;
