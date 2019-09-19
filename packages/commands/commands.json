@@ -2,11 +2,22 @@
     "name": "cli",
     "commands": [
         {
+            "name": "generate-declaration",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/generate-declaration.js",
+                    "source": "src/cli/generate-declaration.ts"
+                }
+            }
+        },
+        {
             "name": "generate-metadata",
             "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist\\cli\\generate-metadata.js"
+                    "path": "dist/cli/generate-metadata.js",
+                    "source": "src/cli/generate-metadata.ts"
                 }
             }
         },
@@ -15,9 +26,21 @@
             "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist\\cli\\generate.js"
+                    "path": "dist/cli/generate.js",
+                    "source": "src/cli/generate.ts"
+                }
+            }
+        },
+        {
+            "name": "start",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/start.js",
+                    "source": "src/cli/start.ts"
                 }
             }
         }
-    ]
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
 }
