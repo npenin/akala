@@ -1,11 +1,18 @@
 import { ServiceWorker, ServiceWorkerOptions, start, SocketExchange } from "../service-worker";
 import * as net from 'net';
 import { Container, CommandNameProcessor, Processors, Trigger, Command } from '@akala/commands';
+import * as akala from '@akala/core'
 import { LogProcessor } from '@akala/commands/dist/processors';
 import { logger } from '..';
+import { ApiServiceWorker } from "../api/api-service-worker";
 
 export class CommandWorker<T> extends ServiceWorker implements CommandNameProcessor<T>
 {
+    public static overJsonRpcWs()
+    {
+        return new ApiServiceWorker(__filename)
+    }
+
     public get name() { return this.path; }
 
     public requiresCommandName: true;
@@ -70,14 +77,9 @@ class Worker extends ServiceWorker implements Trigger
     }
 }
 
-declare module global
-{
-    export var self: ServiceWorker & Trigger
-}
-
 if (require.main === module)
 {
-    var worker = start(null, process.argv[3], Worker);
+    let worker = start(null, process.argv[3], Worker);
     global['self'] = worker;
     let container: Container<any> = new Container(process.argv[2], {});
     container.attach('service-worker', worker);
@@ -89,10 +91,35 @@ if (require.main === module)
             log.info(cmd);
             log.verbose(param);
         }, function (cmd, param)
-            {
-                log.info(cmd);
-                log.verbose(param);
-            });
+        {
+            log.info(cmd);
+            log.verbose(param);
+        });
         evt.waitUntil(Processors.FileSystem.discoverCommands(process.argv[4], container, { recursive: true, processor: container.processor }));
     })
+}
+else 
+{
+    let worker = akala.resolve<ServiceWorker>('$worker');
+    worker.on('activate', function (evt)
+    {
+        let container: Container<any> = new Container(process.argv[2], {});
+        let server = akala.resolve('jsonrpcws');
+        if (!server)
+            return;
+        container.attach('jsonrpcws', server);
+
+        const log = logger('akala:server-worker:' + process.argv[2]);
+        container.processor = new LogProcessor(new Processors.FileSystem(container, process.argv[4]), function (cmd, param)
+        {
+            log.info(cmd);
+            log.verbose(param);
+        }, function (cmd, param)
+        {
+            log.info(cmd);
+            log.verbose(param);
+        });
+        evt.waitUntil(Processors.FileSystem.discoverCommands(process.argv[4], container, { recursive: true, processor: container.processor }));
+    })
+
 }

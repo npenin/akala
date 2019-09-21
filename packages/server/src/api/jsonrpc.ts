@@ -95,9 +95,9 @@ export class JsonRpcWs<TConnection extends akala.Connection, TServerOneWay, TSer
                                     log('replying with %o', value);
                                     reply(null, value);
                                 }, function (reason)
-                                    {
-                                        reply(reason);
-                                    });
+                                {
+                                    reply(reason);
+                                });
                             else
                                 reply(null, result);
                         }
@@ -124,9 +124,9 @@ export class JsonRpcWs<TConnection extends akala.Connection, TServerOneWay, TSer
                                     log('replying with %o', value);
                                     reply(null, value);
                                 }, function (reason)
-                                    {
-                                        reply(reason);
-                                    });
+                                {
+                                    reply(reason);
+                                });
                             else
                                 reply(null, result)
                         }
