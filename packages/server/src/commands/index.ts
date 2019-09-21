@@ -1,5 +1,5 @@
-import { HttpConfiguration, trigger } from './triggers/http';
+import { trigger } from './triggers/http';
 import { CommandWorker } from './commandworker'
 export * from '@akala/commands'
 
-export { HttpConfiguration, trigger as Http, CommandWorker as Worker };
+export { trigger as Http, CommandWorker as Worker };

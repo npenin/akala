@@ -16,9 +16,9 @@ function wrapHttp<T>(container: Container<T>, command: Command<T>)
             {
                 res.json(r);
             }, function (err)
-                {
-                    res.status(500).json(err);
-                });
+            {
+                res.status(500).json(err);
+            });
         }
         else if (typeof result != 'undefined')
             res.json(result);
@@ -48,9 +48,9 @@ function wrapWorker<T>(container: Container<T>, c: Command<T>): worker.RequestHa
             {
                 res(200, r);
             }, function (err)
-                {
-                    res(500, err);
-                });
+            {
+                res(500, err);
+            });
         }
         else if (typeof result != 'undefined')
             res(result);
@@ -61,7 +61,10 @@ function wrapWorker<T>(container: Container<T>, c: Command<T>): worker.RequestHa
 
 export var trigger = new Trigger('http', function register<T>(container: Container<T>, command: Command<T>, router: HttpRouter | WorkerRouter)
 {
-    var config = command.config['http'] as any as HttpConfiguration;
+    if (!command.config || !command.config.http)
+        return;
+
+    var config = command.config.http;
 
     if (config.method === 'use' || !config.method)
     {
@@ -75,11 +78,4 @@ export var trigger = new Trigger('http', function register<T>(container: Contain
             router[config.method](config.route, wrapHttp(container, command));
         else
             router[config.method](config.route, wrapWorker(container, command));
-})
-
-
-export interface HttpConfiguration extends Metadata.Configuration
-{
-    method: 'use' | keyof Methods<any>;
-    route: string;
-}
+});
