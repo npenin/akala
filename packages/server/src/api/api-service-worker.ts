@@ -38,6 +38,7 @@ if (require.main === module)
         akala.register('$router', new WorkerRouter());
 
         let server = jsonrpc.createServer<jsonrpc.Connection>();
+        akala.register('jsonrpcws', server);
         let wss = server.server = new ws.Server({ noServer: true, clientTracking: true })
 
         wss.on('connection', function (...args)
