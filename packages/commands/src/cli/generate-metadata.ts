@@ -20,21 +20,14 @@ async function write(output: fs.WriteStream, content: string)
     })
 }
 
-function camelCase(s: string)
-{
-    return s.replace(/-[A-Z]/g, function (s)
-    {
-        return s[1].toUpperCase();
-    });
-}
-
 export default async function generate(name: string, folder?: string, outputFile?: string)
 {
     folder = folder || process.cwd();
     if (!name)
         name = path.basename(folder, path.extname(folder));
     var container = new Container(name, {});
-    if (!outputFile || (await fs.promises.lstat(outputFile)).isDirectory())
+
+    if (!outputFile || fs.existsSync(outputFile) && (await fs.promises.lstat(outputFile)).isDirectory())
         outputFile = outputFile && outputFile + '/commands.ts' || 'commands.ts';
 
     var outputFolder = path.dirname(outputFile);

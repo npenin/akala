@@ -2,7 +2,7 @@ import * as akala from '@akala/core'
 import { Container } from './container';
 import { Command } from './command';
 
-var triggers: Trigger[] = akala.module('$serverless').register('triggers', [])
+var triggers: Trigger[] = akala.module('@akala/commands').register('triggers', [])
 export class Trigger
 {
     constructor(public name: string, public register: <T>(container: Container<T>, command: Command<T>, media?: any) => void)

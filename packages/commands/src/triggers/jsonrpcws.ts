@@ -14,7 +14,8 @@ function wrap<TState>(container: Container<TState>, c: Command<TState>)
             param = { param: [] };
         if (Array.isArray(param))
             param = { param: param };
-        var result = container.dispatch(c.name, Object.assign(param, { _trigger: 'jsonrpcws', connection: this, connectionAsContainer: new Container('unknown', null, new Processor(this)) }));
+        var self = this;
+        var result = container.dispatch(c.name, Object.assign(param, { _trigger: 'jsonrpcws', connection: this, get connectionAsContainer() { return new Container('unknown', null, new Processor(self)) } }));
         if (isPromiseLike<jsonrpcws.SerializableObject>(result))
         {
             result.then(function (r: jsonrpcws.SerializableObject)
