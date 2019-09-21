@@ -42,7 +42,9 @@ export
     server, client, buildServer, buildClient, Connection,
 } from '@akala/core';
 
-import { log as corelog } from '@akala/core';
+import * as core from '@akala/core'
+export { core };
+
 import * as cluster from 'cluster';
 
 let customOutputs = ['error', 'warn', 'verbose', 'debug', 'info']
@@ -99,5 +101,5 @@ export function log(namespace: string)
         if (!namespace.startsWith(moduleNamespace))
             namespace = moduleNamespace + ':' + namespace;
     }
-    return corelog(namespace);
+    return core.log(namespace);
 }

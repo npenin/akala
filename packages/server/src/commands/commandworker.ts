@@ -1,6 +1,6 @@
-import { ServiceWorker, ServiceWorkerOptions, start } from "../service-worker";
+import { ServiceWorker, ServiceWorkerOptions, start, SocketExchange } from "../service-worker";
 import * as net from 'net';
-import { Container, CommandNameProcessor, Processors } from '@akala/commands';
+import { Container, CommandNameProcessor, Processors, Trigger, Command } from '@akala/commands';
 import { LogProcessor } from '@akala/commands/dist/processors';
 import { logger } from '..';
 
@@ -10,64 +10,89 @@ export class CommandWorker<T> extends ServiceWorker implements CommandNameProces
 
     public requiresCommandName: true;
 
-    public process(cmd: string, ...args: any[])
+    public process(cmd: string, param: { param: any[], [key: string]: any }): any | PromiseLike<any>
     {
         if (require.main === module)
             throw new Error('this is not supported')
-        else
-        {
-            this.postMessage(cmd, ...args);
-        }
+        this.postMessage(cmd, param);
     }
 
-    public postMessage(command: string, socket: net.Socket): Promise<void>
-    public postMessage(command: string, ...args: any[]): Promise<void>
-    public postMessage(command: string, ...args: any[]): Promise<void>
+    public postMessage(command: string, socket: SocketExchange): Promise<void>
+    public postMessage(command: string, param: { param: any[], socket?: SocketExchange, [key: string]: any }): Promise<void>
+    public postMessage(command: string, param: SocketExchange | { param: any[], [key: string]: any }): Promise<void>
     {
-        return super.postMessage({ command: command, args: args });
+        if (param instanceof net.Socket)
+            return super.postMessage({ command: command }, param);
+        if (param instanceof net.Server)
+            return super.postMessage({ command: command }, param);
+        else if (typeof param.socket != 'undefined')
+        {
+            let socket = param.socket;
+            delete param.socket
+            return super.postMessage(Object.assign(param, { command: command }), socket);
+        }
+        else
+            return super.postMessage(Object.assign(param, { command: command }));
     }
 
-    constructor(path: string, commandsPath: string, options?: Partial<ServiceWorkerOptions>)
+    constructor(name: string, commandsPath: string, options?: Partial<ServiceWorkerOptions>)
     {
         if (!options)
             options = {};
         if (!options.workerStarter)
             options.workerStarter = module.filename;
         options.args = [commandsPath];
-        super(path, options)
+        super(name, options)
         this.requiresCommandName = true;
     }
 }
 
-class Worker<T> extends CommandWorker<T>
+class Worker extends ServiceWorker implements Trigger
 {
-    constructor(path: string)
+    public readonly name: string = 'service-worker';
+
+    private registeredContainers: string[];
+
+    public register<T>(container: Container<T>, _command: Command<T>, worker: Worker)
     {
-        super(path, '')
+        if (worker.registeredContainers.indexOf(container.name) != -1)
+            return;
+
+        worker.on('message', function (message: { command: string, param: any[], [key: string]: any }, socket?: SocketExchange)
+        {
+            container.dispatch(message.command, Object.assign({}, message.param, { _trigger: 'service-worker', connection: socket }));
+        })
     }
+    constructor(name: string)
+    {
+        super(name)
+        Trigger.registerTrigger(this);
+    }
+}
+
+declare module global
+{
+    export var self: ServiceWorker & Trigger
 }
 
 if (require.main === module)
 {
-    var worker = start(process.argv[2], process.argv[3], Worker);
-    var container: Container<any> = new Container(worker.path, {});
-    worker.on('activate', function ()
+    var worker = start(null, process.argv[3], Worker);
+    global['self'] = worker;
+    let container: Container<any> = new Container(process.argv[2], {});
+    container.attach('service-worker', worker);
+    worker.on('activate', function (evt)
     {
-        const log = logger('akala:server-worker:' + worker.path);
-        container.processor = new LogProcessor(new Processors.FileSystem(container, process.argv[4]), function (cmd, ...args)
+        const log = logger('akala:server-worker:' + process.argv[2]);
+        container.processor = new LogProcessor(new Processors.FileSystem(container, process.argv[4]), function (cmd, param)
         {
             log.info(cmd);
-            log.verbose(args);
-        }, function (cmd, ...args)
+            log.verbose(param);
+        }, function (cmd, param)
             {
                 log.info(cmd);
-                log.verbose(args);
+                log.verbose(param);
             });
-        Processors.FileSystem.discoverCommands(process.argv[4], container, { recursive: true, processor: container.processor });
-
-        worker.on('message', function (message: { command: string, args: any[] }, socket: any)
-        {
-            container.dispatch(message.command, { param: message.args, connection: socket });
-        })
+        evt.waitUntil(Processors.FileSystem.discoverCommands(process.argv[4], container, { recursive: true, processor: container.processor }));
     })
 }
