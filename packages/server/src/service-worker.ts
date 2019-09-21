@@ -2,8 +2,6 @@ import { EventEmitter } from 'events'
 import * as akala from '@akala/core'
 import { ChildProcess, fork } from 'child_process';
 
-import * as net from 'net'
-
 function resolveUrl(namespace: string)
 {
     var url = akala.resolve('$rootUrl') + '/' + namespace + '/';
@@ -16,6 +14,10 @@ function isMainProcess(p: ChildProcess | NodeJS.Process): p is NodeJS.Process
 }
 
 akala.register('$resolveUrl', resolveUrl);
+
+type Argument2<T> = T extends (z: any, x: infer X, ...args: any[]) => any ? X : never;
+
+export type SocketExchange = Argument2<ChildProcess["send"]>;
 
 export interface ServiceWorkerOptions
 {
@@ -32,7 +34,8 @@ export class ServiceWorker extends EventEmitter
 
     public on(evt: 'activate', handler: (evt: ExtendableEvent) => void): this
     public on(evt: 'install', handler: (evt: ExtendableEvent) => void): this
-    public on(evt: string, handler: (message: any, socket?: any) => void): this
+    public on(evt: 'message', handler: (message: any, socket?: SocketExchange) => void): this
+    public on(evt: string, handler: (...args: any[]) => void): this
     public on(evt: string, handler: (...args: any[]) => void): this
     {
         return super.on(evt, handler);
@@ -86,11 +89,12 @@ export class ServiceWorker extends EventEmitter
     constructor(public readonly path: string, public readonly options?: Partial<ServiceWorkerOptions>)
     {
         super();
-        if (!options)
-            options = {};
-        options = akala.extend({ restartOnCrash: true, retries: 5, numberOfMinutesBeforeRetryReset: 1, workerStarter: __filename }, options)
         if (typeof (path) != 'undefined')
         {
+            if (!options)
+                options = {};
+            options = akala.extend({ restartOnCrash: true, retries: 5, numberOfMinutesBeforeRetryReset: 1, workerStarter: __filename }, options)
+            this.args = options.args;
             akala.exec<void>('$rootUrl')((config: string) =>
             {
                 if (options.restartOnCrash)
@@ -141,10 +145,13 @@ export class ServiceWorker extends EventEmitter
                 else
                     this.emit('message', ...args);
             });
+            this.args = process.argv.slice(3);
         }
     }
 
-    public postMessage(message, socket?: net.Socket)
+    public readonly args: string[];
+
+    public postMessage(message, socket?: SocketExchange)
     {
         return new Promise<void>((resolve, reject) =>
         {
@@ -203,7 +210,7 @@ export class ExtendableEvent
     }
 }
 
-export function start<T extends ServiceWorker>(path: string, rootUrl: string, ctor: new (path: string) => T)
+export function start<T extends ServiceWorker>(path: string | null, rootUrl: string, ctor: new (path: string) => T)
 {
     process.on('uncaughtException', function (error)
     {
@@ -218,7 +225,8 @@ export function start<T extends ServiceWorker>(path: string, rootUrl: string, ct
 
     global['self'] = sw;
 
-    require(path);
+    if (path)
+        require(path);
 
     return sw;
 }

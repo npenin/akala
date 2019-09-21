@@ -33,7 +33,7 @@ async function processCommand<T>(container: Container<T>, c: Command<T>, injecte
     return Local.execute(c.config.http.inject || c.inject || [], function (...args)
     {
         container.dispatch(c.name, ...args)
-    }, container, { param: [], params: req.params, query: req.query, body: req.body, headers: req.headers, ...injected });
+    }, container, { param: [], route: req.params, query: req.query, body: req.body, headers: req.headers, ...injected });
 }
 
 function wrapWorker<T>(container: Container<T>, c: Command<T>): worker.RequestHandler
