@@ -7,7 +7,7 @@ import * as fs from 'fs';
 import * as http from 'http';
 import './jsonrpc';
 import './rest';
-import { JsonRpcWs } from './jsonrpc';
+import { JsonRpcWs, createServerWorker as internalCreateServerWorker } from './jsonrpc';
 import { Rest } from './rest';
 
 
@@ -38,9 +38,9 @@ var debug = akala.log('akala:api');
                             else
                                 requestInjector.resolve('$callback')(200, value);
                         }, function (err)
-                            {
-                                requestInjector.resolve('$callback')(500, err);
-                            });
+                        {
+                            requestInjector.resolve('$callback')(500, err);
+                        });
                     }
                     else if (typeof result != 'undefined')
                         if (result && result.statusCode)
@@ -81,9 +81,9 @@ export function command<T extends Function>($inject: string[], f: T)
             {
                 callback(200, r);
             }, function (err)
-                {
-                    callback(500, err);
-                });
+            {
+                callback(500, err);
+            });
         }
         else if (typeof result != 'undefined')
             callback(200, result);
@@ -107,6 +107,8 @@ export namespace api
     export var buildClient = akala.buildClient;
     export var server = akala.server;
     export var client = akala.client;
+
+    export var createServerWorker = internalCreateServerWorker;
 
     export type ServerWithoutProxy<T extends akala.Api<any, any, any, any, any, any, any, any, any>> = akala.api.ServerWithoutProxy<T>;
     export type ClientWithoutProxy<T extends akala.Api<any, any, any, any, any, any, any, any, any>> = akala.api.ClientWithoutProxy<T>;

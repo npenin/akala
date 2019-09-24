@@ -1,16 +1,26 @@
 import { ServiceWorker, ServiceWorkerOptions, start, SocketExchange } from "../service-worker";
 import * as net from 'net';
 import { Container, CommandNameProcessor, Processors, Trigger, Command } from '@akala/commands';
-import * as akala from '@akala/core'
-import { LogProcessor } from '@akala/commands/dist/processors';
 import { logger } from '..';
-import { ApiServiceWorker } from "../api/api-service-worker";
+import { HttpRouter } from "../router";
+import { resolve } from "path";
 
 export class CommandWorker<T> extends ServiceWorker implements CommandNameProcessor<T>
 {
-    public static overJsonRpcWs()
+    public attachWSServer(router: HttpRouter, path: string)
     {
-        return new ApiServiceWorker(__filename)
+        var self = this;
+
+        this.process('$attachWS', { param: [] });
+
+        router.upgrade(path, 'websocket', function (request, socket, head)
+        {
+            request.method = 'GET';
+            self.postMessage('$upgrade', { param: [request, head], socket });
+            request.method = 'upgrade';
+        });
+
+        return this;
     }
 
     public get name() { return this.path; }
@@ -65,6 +75,7 @@ class Worker extends ServiceWorker implements Trigger
         if (worker.registeredContainers.indexOf(container.name) != -1)
             return;
 
+        worker.registeredContainers.push(container.name);
         worker.on('message', function (message: { command: string, param: any[], [key: string]: any }, socket?: SocketExchange)
         {
             container.dispatch(message.command, Object.assign({}, message.param, { _trigger: 'service-worker', connection: socket }));
@@ -82,11 +93,12 @@ if (require.main === module)
     let worker = start(null, process.argv[3], Worker);
     global['self'] = worker;
     let container: Container<any> = new Container(process.argv[2], {});
+
     container.attach('service-worker', worker);
     worker.on('activate', function (evt)
     {
         const log = logger('akala:server-worker:' + process.argv[2]);
-        container.processor = new LogProcessor(new Processors.FileSystem(container, process.argv[4]), function (cmd, param)
+        var processor = container.processor = new Processors.LogProcessor(new Processors.FileSystem(container, process.argv[4]), function (cmd, param)
         {
             log.info(cmd);
             log.verbose(param);
@@ -95,31 +107,7 @@ if (require.main === module)
             log.info(cmd);
             log.verbose(param);
         });
+        evt.waitUntil(Processors.FileSystem.discoverCommands(resolve(__dirname, './commands'), container, { recursive: true, processor: processor['processor'] }));
         evt.waitUntil(Processors.FileSystem.discoverCommands(process.argv[4], container, { recursive: true, processor: container.processor }));
     })
-}
-else 
-{
-    let worker = akala.resolve<ServiceWorker>('$worker');
-    worker.on('activate', function (evt)
-    {
-        let container: Container<any> = new Container(process.argv[2], {});
-        let server = akala.resolve('jsonrpcws');
-        if (!server)
-            return;
-        container.attach('jsonrpcws', server);
-
-        const log = logger('akala:server-worker:' + process.argv[2]);
-        container.processor = new LogProcessor(new Processors.FileSystem(container, process.argv[4]), function (cmd, param)
-        {
-            log.info(cmd);
-            log.verbose(param);
-        }, function (cmd, param)
-        {
-            log.info(cmd);
-            log.verbose(param);
-        });
-        evt.waitUntil(Processors.FileSystem.discoverCommands(process.argv[4], container, { recursive: true, processor: container.processor }));
-    })
-
 }
