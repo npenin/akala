@@ -51,6 +51,11 @@ export default async function generate(name: string, folder?: string, outputFile
     if (hasFs)
     {
         await write(output, 'declare type Arguments<T> = T extends ((...x: infer X) => any) ? X : never;\n');
+        await write(output, 'declare type Argument1<T> = T extends ((x: infer X, ...z:any[]) => any) ? X : never;\n');
+        await write(output, 'declare type Argument2<T> = T extends ((a:any, x: infer X, ...z:any[]) => any) ? X : never;\n');
+        await write(output, 'declare type Argument3<T> = T extends ((a:any, b:any, x: infer X, ...z:any[]) => any) ? X : never;\n');
+        await write(output, 'declare type Argument4<T> = T extends ((a:any, b:any, c:any, x: infer X, ...z:any[]) => any) ? X : never;\n');
+        await write(output, 'declare type Argument5<T> = T extends ((a:any, b:any, c:any, d:any, x: infer X, ...z:any[]) => any) ? X : never;\n');
     }
 
     if (outputFile.endsWith('.d.ts'))
@@ -79,8 +84,14 @@ export default async function generate(name: string, folder?: string, outputFile
             var filePath = path.relative(outputFolder, config.source || config.path);
             filePath = path.join(path.dirname(filePath), path.basename(filePath, path.extname(filePath)));
             filePath = filePath.replace(/\\/g, '/');
-
-            await write(output, `, ...args:Arguments<typeof import('./${filePath}').default>): ReturnType<typeof import('./${filePath}').default>\n`);
+            if (config.inject)
+            {
+                await write(output, ', ...args:[');
+                await write(output, config.inject.filter(p => p.startsWith('param.')).map(p => `Argument${p.substr('param.'.length)}<typeof import('./${filePath}').default>`).join(', '));
+                await write(output, `]): ReturnType<typeof import('./${filePath}').default>\n`);
+            }
+            else
+                await write(output, `, ...args:Arguments<typeof import('./${filePath}').default>): ReturnType<typeof import('./${filePath}').default>\n`);
         }
         else
             await write(output, `, ...args:any[]): any\n`);

@@ -9,10 +9,10 @@ export function metadata(container: Container<any>): meta.Container
     var metacontainer: meta.Container = { name: container.name || 'unnamed', commands: [] };
     container.keys().forEach((key) =>
     {
-        if (key === '$injector' || key === '$state')
+        if (key === '$injector' || key === '$state' || key === '$this')
             return;
         var cmd = container.resolve<Command>(key);
-        if (cmd && cmd.name)
+        if (cmd && cmd.name && cmd instanceof Command)
             metacontainer.commands.push({ name: cmd.name, inject: cmd.inject || [], config: cmd.config });
     });
     return metacontainer;

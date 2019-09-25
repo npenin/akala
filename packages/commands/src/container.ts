@@ -30,6 +30,7 @@ export class Container<TState> extends akala.Injector
         super();
         if (typeof state !== 'undefined')
             this.register('$state', state);
+        this.register('$container', this);
         this.processor = processor || new Local(this);
     }
 
