@@ -80,6 +80,29 @@ export class FileSystem<T> extends CommandProcessor<T>
                     otherConfigsFile = path.join(path.dirname(source), path.basename(source, path.extname(source))) + '.json';
                     if (existsSync(otherConfigsFile))
                         cmd = configure(require(path.resolve(otherConfigsFile)))(cmd) as any;
+                    if (!cmd.config.fs.inject)
+                    {
+                        var params = [];
+                        akala.each(cmd.config, config =>
+                        {
+                            if (config.inject)
+                            {
+                                akala.each(config.inject, item =>
+                                {
+                                    if (item.startsWith('param.'))
+                                        params[Number(item.substring('param.'.length))] = item;
+                                });
+                            }
+                        })
+                    }
+                    if (!cmd.config.fs.inject)
+                    {
+                        let func = require(path.resolve(cmd.config.fs.path)).default;
+                        if (func.$inject)
+                            cmd.config.fs.inject = func.$inject;
+                        else
+                            cmd.config.fs.inject = akala.introspect.getParamNames(func).map((v, i) => 'param.' + i);
+                    }
                     container.register(cmd);
                 }
                 else if (f.name.endsWith('.json'))
