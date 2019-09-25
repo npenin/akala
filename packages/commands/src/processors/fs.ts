@@ -25,12 +25,12 @@ export class FileSystem<T> extends CommandProcessor<T>
 {
     public static async versatileCommandRegister<T>(cmd: FSCommand, container: Container<T>)
     {
-        if (cmd.config.fs)
+        if (cmd.config && cmd.config.fs)
             if (container.processor instanceof FileSystem)
                 return container.register(configure('fs', cmd.config.fs)(new CommandProxy(container.processor, cmd.name)));
             else
                 return container.register(configure('fs', cmd.config.fs)(new CommandProxy(new FileSystem(container, null), cmd.name)));
-        else if (cmd.config.http)
+        else if (cmd.config && cmd.config.http)
             return container.register(configure('http', cmd.config.http)(new CommandProxy(new HttpClient(container), cmd.name)))
         throw new Error(`no valid configuration was found for command ${cmd.name}`);
     }
