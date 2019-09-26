@@ -4,8 +4,12 @@ import { EventEmitter } from 'events'
 
 process.hrtime = process.hrtime || require('browser-process-hrtime');
 
-var moduleInjector = new di.Injector();
-di.register('$modules', moduleInjector);
+var moduleInjector = di.resolve<di.Injector>('$modules');
+if (!moduleInjector)
+{
+    moduleInjector = new di.Injector();
+    di.register('$modules', moduleInjector);
+}
 
 export class ExtendableEvent
 {
