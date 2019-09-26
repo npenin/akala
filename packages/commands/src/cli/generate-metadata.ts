@@ -51,11 +51,11 @@ export default async function generate(name: string, folder?: string, outputFile
     if (hasFs)
     {
         await write(output, 'declare type Arguments<T> = T extends ((...x: infer X) => any) ? X : never;\n');
-        await write(output, 'declare type Argument1<T> = T extends ((x: infer X, ...z:any[]) => any) ? X : never;\n');
-        await write(output, 'declare type Argument2<T> = T extends ((a:any, x: infer X, ...z:any[]) => any) ? X : never;\n');
-        await write(output, 'declare type Argument3<T> = T extends ((a:any, b:any, x: infer X, ...z:any[]) => any) ? X : never;\n');
-        await write(output, 'declare type Argument4<T> = T extends ((a:any, b:any, c:any, x: infer X, ...z:any[]) => any) ? X : never;\n');
-        await write(output, 'declare type Argument5<T> = T extends ((a:any, b:any, c:any, d:any, x: infer X, ...z:any[]) => any) ? X : never;\n');
+        await write(output, 'declare type Argument0<T> = T extends ((x: infer X, ...z:any[]) => any) ? X : never;\n');
+        await write(output, 'declare type Argument1<T> = T extends ((a:any, x: infer X, ...z:any[]) => any) ? X : never;\n');
+        await write(output, 'declare type Argument2<T> = T extends ((a:any, b:any, x: infer X, ...z:any[]) => any) ? X : never;\n');
+        await write(output, 'declare type Argument3<T> = T extends ((a:any, b:any, c:any, x: infer X, ...z:any[]) => any) ? X : never;\n');
+        await write(output, 'declare type Argument4<T> = T extends ((a:any, b:any, c:any, d:any, x: infer X, ...z:any[]) => any) ? X : never;\n');
     }
 
     if (outputFile.endsWith('.d.ts'))
