@@ -9,7 +9,7 @@ export default async function generate(folder?: string, outputFile?: string)
     var name = path.basename(folder);
     var container = new Container(name, {});
     var output: fs.WriteStream;
-    if (!outputFile || (await fs.promises.lstat(outputFile)).isDirectory())
+    if (!outputFile || fs.existsSync(outputFile) && (await fs.promises.lstat(outputFile)).isDirectory())
         output = fs.createWriteStream(outputFile && outputFile + '/commands.json' || 'commands.json');
     else
         output = fs.createWriteStream(outputFile);
