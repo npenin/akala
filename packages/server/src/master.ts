@@ -103,75 +103,75 @@ fs.exists(configFile, function (exists)
                 next();
             });
         }, function (error?)
+        {
+            if (error)
             {
-                if (error)
+                console.error(error);
+                return;
+            }
+
+            akala.register('$$modules', modules);
+
+            log(modules);
+
+            akala.module('bootstrap', ...modules).init([], function ()
+            {
+                log('registering error handler');
+
+                var serveRoot = serveStatic(root, { index: index || undefined })
+                preAuthenticatedRouter.use(serveStatic(root, { index: index || undefined, fallthrough: true }));
+                preAuthenticatedRouter.get('/favicon.ico', serveStatic(root, { index: index || undefined, fallthrough: false }));
+                preAuthenticatedRouter.get('/manifest.json', serveStatic(root, { index: index || undefined, fallthrough: false }));
+                app.get('/@akala/client', function (_req: Request, res: Response)
                 {
-                    console.error(error);
-                    return;
-                }
-
-                akala.register('$$modules', modules);
-
-                log(modules);
-
-                akala.module('bootstrap', ...modules).init([], function ()
+                    res.json(modules.map(m => { return { name: m, dep: akala.module(m).dep } }))
+                });
+                app.get('*', function (request, response)
                 {
-                    log('registering error handler');
-
-                    var serveRoot = serveStatic(root, { index: index || undefined })
-                    preAuthenticatedRouter.use(serveStatic(root, { index: index || undefined, fallthrough: true }));
-                    preAuthenticatedRouter.get('/favicon.ico', serveStatic(root, { index: index || undefined, fallthrough: false }));
-                    preAuthenticatedRouter.get('/manifest.json', serveStatic(root, { index: index || undefined, fallthrough: false }));
-                    app.get('/@akala/client', function (_req: Request, res: Response)
+                    if (request.url.endsWith('.map'))
                     {
-                        res.json(modules.map(m => { return { name: m, dep: akala.module(m).dep } }))
-                    });
-                    app.get('*', function (request, response)
-                    {
-                        if (request.url.endsWith('.map'))
+                        response.sendStatus(404);
+                    }
+                    else
+                        serveRoot(request, response, function ()
                         {
-                            response.sendStatus(404);
-                        }
-                        else
-                            serveRoot(request, response, function ()
-                            {
-                                fs.createReadStream(root + '/index.html').pipe(response);
-                            });
-                    });
-
-                    masterRouter.use(function (err, req: Request, res: Response, next)
-                    {
-                        try
-                        {
-                            if (err)
-                            {
-                                console.error('error occurred on ' + req.url);
-
-                                console.error(err.stack);
-                                res.statusCode = 500;
-                                res.write(JSON.stringify(err));
-                                res.end();
-                            }
-                            else
-                                res.sendStatus(404);
-                        }
-                        catch (e)
-                        {
-                            console.error(e.stack)
-                            res.statusCode = 500;
-                            res.end();
-                        }
-                    });
-
+                            fs.createReadStream(root + '/index.html').pipe(response);
+                        });
                 });
 
-                akala.module('bootstrap').run(['$rootUrl'], function (url)
+                masterRouter.use(function (err, req: Request, res: Response, next)
                 {
-                    console.log('server ready and listening on ' + url + '...');
-                })
+                    try
+                    {
+                        if (err)
+                        {
+                            console.error('error occurred on ' + req.url);
 
-                akala.module('bootstrap').start();
+                            console.error(err.stack);
+                            res.statusCode = 500;
+                            res.write(JSON.stringify(err));
+                            res.end();
+                        }
+                        else
+                            res.sendStatus(404);
+                    }
+                    catch (e)
+                    {
+                        console.error(e.stack)
+                        res.statusCode = 500;
+                        res.end();
+                    }
+                });
+
             });
+
+            akala.module('bootstrap').run(['$rootUrl'], function (url)
+            {
+                console.log('server ready and listening on ' + url + '...');
+            })
+
+            akala.module('bootstrap').start();
+        });
     });
 
     switch (httpPackage)
@@ -188,6 +188,7 @@ fs.exists(configFile, function (exists)
             break;
     }
     server.listen(port, dn);
+    akala.register('$server', server);
     masterRouter.attachTo(server);
 });
 
