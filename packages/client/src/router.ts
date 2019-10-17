@@ -25,7 +25,7 @@ if (!window['setImmediate'])
         {
             fn.apply(this, args)
         }, 0);
-    }
+    } as any
 
 export type browserHandler = (req: Request, next: akala.NextFunction) => void;
 export type browserErrorHandler = (err: any, req: Request, next: akala.NextFunction) => void;
