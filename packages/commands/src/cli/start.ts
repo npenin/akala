@@ -17,5 +17,7 @@ export default async function start<TState = any>(name: string, folder?: string,
 
     var container = new Container(name, state);
     await akala.Processors.FileSystem.discoverCommands(folder, container);
+    var cmd = container.resolve('$init')
+    container.dispatch(cmd);
     return container;
 };

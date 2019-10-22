@@ -39,17 +39,25 @@ export class Container<TState> extends akala.Injector
         this.processor = new Pipe(container);
     }
 
-    public dispatch(command: string, param: { param: any[], [key: string]: any }): any
-    public dispatch(command: string, ...param: any[]): any
-    public dispatch(command: string, param: any | { param: any[], [key: string]: any }, ...params: any[]): any
+    public dispatch(command: string | Command<TState>, param: { param: any[], [key: string]: any }): any
+    public dispatch(command: string | Command<TState>, ...param: any[]): any
+    public dispatch(command: string | Command<TState>, param: any | { param: any[], [key: string]: any }, ...params: any[]): any
     {
         if (typeof (param) == 'object' && param.param && Array.isArray(param.param))
         {
             if (this.processor.requiresCommandName)
-                return this.processor.process(command, param);
-            var cmd = this.resolve(command);
-            if (!cmd)
-                throw new Error(`Command with name ${command} could not be found`)
+                if (typeof command == 'string')
+                    return this.processor.process(command, param);
+                else
+                    return this.processor.process(command.name, param);
+            if (typeof command == 'string')
+            {
+                var cmd = this.resolve(command);
+                if (!cmd)
+                    throw new Error(`Command with name ${command} could not be found`)
+            }
+            else
+                cmd = command;
             return this.processor.process(cmd, param);
         }
         else
