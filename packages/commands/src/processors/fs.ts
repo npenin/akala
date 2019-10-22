@@ -4,7 +4,7 @@ import * as path from 'path'
 import { promises as fs, existsSync } from 'fs'
 import * as akala from '@akala/core'
 import * as  Metadata from '../metadata';
-import { CommandProcessor, Processor } from '../processor';
+import { CommandProcessor, Processor, Processors } from '../processor';
 import { Container } from '../container';
 import { CommandProxy } from '../command';
 import { configure } from '../decorators';
