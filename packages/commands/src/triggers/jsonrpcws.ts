@@ -5,6 +5,7 @@ import { Injector, isPromiseLike } from '@akala/core';
 import { Base } from '@akala/json-rpc-ws/lib/base';
 import * as jsonrpcws from '@akala/json-rpc-ws'
 import { JsonRpcWs as Processor } from '../processors';
+import { commandList, metadata } from '../generator';
 
 function wrap<TState>(container: Container<TState>, c: Command<TState>)
 {
@@ -22,12 +23,12 @@ function wrap<TState>(container: Container<TState>, c: Command<TState>)
             {
                 reply(null, r);
             }, function (err: jsonrpcws.SerializableObject)
-                {
-                    if (err instanceof Error)
-                        reply(err.toString());
-                    else
-                        reply(err);
-                });
+            {
+                if (err instanceof Error)
+                    reply(err.toString());
+                else
+                    reply(err);
+            });
         }
         else if (typeof result != 'undefined')
             reply(null, result);
@@ -36,8 +37,12 @@ function wrap<TState>(container: Container<TState>, c: Command<TState>)
     }
 }
 
-export var trigger = new Trigger('jsonrpcws', function register<T>(container: Container<T>, command: Command<T>, media: Base<jsonrpcws.Connection>)
+export var trigger = new Trigger('jsonrpcws', function register<T>(container: Container<T>, media: Base<jsonrpcws.Connection>)
 {
-    media.expose(command.name, wrap(container, command))
+
+    commandList(metadata(container)).forEach(cmdName =>
+    {
+        media.expose(cmdName, wrap(container, container.resolve(cmdName)));
+    });
 })
 
