@@ -17,12 +17,7 @@ export class Container<TState> extends akala.Injector
         if (!trigger)
             throw new Error(`There is no registered trigger named ${triggerName}`);
 
-        var iTrigger = trigger;
-
-        commandList(metadata(this)).forEach(cmdName =>
-        {
-            iTrigger.register(this, this.resolve(cmdName), server);
-        });
+        trigger.register(this, server);
     }
     public processor: Processor<TState>;
     constructor(public name: string, public state: TState, processor?: Processor<TState>)
