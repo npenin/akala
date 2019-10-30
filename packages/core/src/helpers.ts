@@ -2,7 +2,7 @@ import { Module } from './module';
 import { register, resolve, onResolve } from './injector'
 import * as jsonrpc from '@akala/json-rpc-ws'
 import { chain } from './chain'
-export type Module = Module;
+export { Module };
 export * from './promiseHelpers';
 export { each as eachAsync, NextFunction } from './eachAsync';
 export { each, grep } from './each';
