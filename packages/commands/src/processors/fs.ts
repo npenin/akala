@@ -43,8 +43,19 @@ export class FileSystem<T> extends CommandProcessor<T>
             options.processor = new FileSystem<T>(container, root);
         if (typeof options.isDirectory == 'undefined')
         {
-            let stats = await fs.stat(root);
-            options.isDirectory = stats.isDirectory();
+            try
+            {
+                let stats = await fs.stat(root);
+                options.isDirectory = stats.isDirectory();
+            }
+            catch (e)
+            {
+                if (e.code == 'ENOENT')
+                {
+                    return this.discoverCommands(require.resolve(root), container, options);
+                }
+                throw e;
+            }
         }
         if (!options.isDirectory)
         {
@@ -133,7 +144,7 @@ export class FileSystem<T> extends CommandProcessor<T>
         if (!this.container)
             throw new Error('container is undefined');
 
-        return Local.execute(command.inject, script.default, this.container, param);
+        return Local.execute(command.config && command.config.fs && command.config.fs.inject || command.inject, script.default, this.container, param);
     }
 
     constructor(container: Container<T>, private root: string | null)

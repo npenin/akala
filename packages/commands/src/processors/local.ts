@@ -13,6 +13,7 @@ export class Local<T> extends CommandProcessor<T>
         else
         {
             var injector = new Injector(container);
+            injector.register('container', container);
             Object.keys(param).forEach((key) => injector.register(key, param[key]));
             if (!inject)
                 inject = param.param.map((a, i) => 'param.' + i);

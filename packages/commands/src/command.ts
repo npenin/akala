@@ -40,11 +40,21 @@ export class CommandProxy<T = any> extends Command<T>
         super(function (...args)
         {
             if (processor.requiresCommandName)
-                processor.process(name, { param: args });
+                return processor.process(name, { param: args });
             else
-                processor.process(cmd, { param: args });
+                return processor.process(cmd, { param: args });
         }, name, inject);
         var cmd = this;
+    }
+
+    public get inject()
+    {
+        return super.inject || this.config[this.processor.name] && this.config[this.processor.name]?.inject;
+    }
+
+    public set inject(value: string[] | undefined)
+    {
+        super.inject = value;
     }
 }
 
