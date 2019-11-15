@@ -17,7 +17,6 @@ export function configure<T extends Configuration, TKey extends string = string>
 export function configure(config: Configurations): (cmd: Command<any> | Injectable<any>) => Command<any> & { config: Configurations }
 export function configure(name: Configurations | string, config?: any): (cmd: Command<any> | Injectable<any>) => Command<any>
 {
-    debugger;
     if (typeof name == 'string')
         config = { [name]: config };
     else

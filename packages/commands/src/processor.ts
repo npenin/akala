@@ -24,5 +24,5 @@ export interface Processor<T>
 {
     readonly requiresCommandName: boolean;
     name: string;
-    process(cmd: Command | string, param: { param: any[], [key: string]: any }): any | PromiseLike<any>;
+    process(cmd: Command | string, param: { param?: any[], [key: string]: any }): any | PromiseLike<any>;
 }
