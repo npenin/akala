@@ -78,7 +78,7 @@ export class Container<TState> extends akala.Injector
             if (typeof value != 'undefined')
                 return super.register(cmd, value);
             else
-                throw new Error('value cannot be null');
+                throw new Error('value cannot be undefined');
         else
             return super.register(cmd.name, cmd);
     }
