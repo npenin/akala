@@ -1,48 +1,32 @@
 import { Trigger } from '../trigger'
 import { Container } from '../container';
-import { Command } from '../command';
-import { Injector, isPromiseLike } from '@akala/core';
-import { Base } from '@akala/json-rpc-ws/lib/base';
-import * as jsonrpcws from '@akala/json-rpc-ws'
-import { JsonRpcWs as Processor } from '../processors';
-import { commandList, metadata } from '../generator';
+import { Readable, Writable } from 'stream';
+import * as ws from 'ws';
+import debug from 'debug'
 
-function wrap<TState>(container: Container<TState>, c: Command<TState>)
+const log = debug('akala:commands:jsonrpcws')
+
+export var trigger = new Trigger('jsonrpcws', function register<T>(container: Container<T>, media: WebSocket)
 {
-    return function (this: jsonrpcws.Connection, param: jsonrpcws.PayloadDataType, reply: (error: any, response?: jsonrpcws.SerializableObject) => void)
+    media.onmessage = async function (ev: MessageEvent & { data: { jsonrpc: string, id: number | string, method: string, params: any } })
     {
-        if (!param)
-            param = { param: [] };
-        if (Array.isArray(param))
-            param = { param: param };
-        var self = this;
-        var result = container.dispatch(c.name, Object.assign(param, { _trigger: 'jsonrpcws', connection: this, get connectionAsContainer() { return new Container('unknown', null, new Processor(self)) } }));
-        if (isPromiseLike<jsonrpcws.SerializableObject>(result))
+        log(ev.data);
+        try
         {
-            result.then(function (r: jsonrpcws.SerializableObject)
+            var result = await container.dispatch(ev.data.method, Object.assign(ev.data.params ?? { param: [] }, { _trigger: trigger.name }));
+            if (media instanceof Writable)
             {
-                reply(null, r);
-            }, function (err: jsonrpcws.SerializableObject)
-            {
-                if (err instanceof Error)
-                    reply(err.toString());
-                else
-                    reply(err);
-            });
+                media.send(JSON.stringify({ jsonrpc: ev.data.jsonrpc, result: result, id: ev.data.id }));
+            }
         }
-        else if (typeof result != 'undefined')
-            reply(null, result);
-        else
-            reply(null);
-    }
-}
-
-export var trigger = new Trigger('jsonrpcws', function register<T>(container: Container<T>, media: Base<jsonrpcws.Connection>)
-{
-
-    commandList(metadata(container)).forEach(cmdName =>
-    {
-        media.expose(cmdName, wrap(container, container.resolve(cmdName)));
-    });
+        catch (e)
+        {
+            if (media instanceof Writable)
+            {
+                log(e);
+                media.send(JSON.stringify({ jsonrpc: '2.0', id: ev.data.id, error: { message: e.message, stackTrace: e.stackTrace, code: e.code } }))
+            }
+        }
+    };
 })
 

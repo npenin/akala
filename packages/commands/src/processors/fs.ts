@@ -39,8 +39,6 @@ export class FileSystem<T> extends CommandProcessor<T>
     {
         if (!options)
             options = {};
-        if (!options.processor)
-            options.processor = new FileSystem<T>(container, root);
         if (typeof options.isDirectory == 'undefined')
         {
             try
@@ -59,6 +57,9 @@ export class FileSystem<T> extends CommandProcessor<T>
         }
         if (!options.isDirectory)
         {
+            if (!options.processor)
+                options.processor = new FileSystem<T>(container, root);
+
             var metacontainer: Metadata.Container = require(path.resolve(root));
             metacontainer.commands.forEach(cmd =>
             {
@@ -69,6 +70,9 @@ export class FileSystem<T> extends CommandProcessor<T>
         }
         else if (existsSync(path.join(root, 'commands.json')))
             return this.discoverCommands(path.join(root, 'commands.json'), container, { processor: options.processor, isDirectory: false });
+
+        if (!options.processor)
+            options.processor = new FileSystem<T>(container, root);
 
         var files = await fs.readdir(root, { withFileTypes: true });
         await akala.eachAsync(files, async f =>
@@ -109,6 +113,8 @@ export class FileSystem<T> extends CommandProcessor<T>
                     if (!cmd.config.fs.inject)
                     {
                         let func = require(path.resolve(cmd.config.fs.path)).default;
+                        if (!func)
+                            throw new Error(`No default export is mentioned in ${path.resolve(cmd.config.fs.path)}`)
                         if (func.$inject)
                             cmd.config.fs.inject = func.$inject;
                         else
