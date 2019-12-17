@@ -10,8 +10,11 @@ export default async function config(this: State, name: string, options: any): P
     {
         var args = unparse(options);
         if (!args[2])
+        {
+            return args;
             delete this.config.containers[name]
-        else
+        }
+        else if (args[2] == 'set')
         {
             writeFileSync(join(__dirname, './log.txt'), new Error().stack);
             this.config.containers[name] = args.slice(4);
