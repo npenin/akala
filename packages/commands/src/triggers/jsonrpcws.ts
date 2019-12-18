@@ -3,30 +3,34 @@ import { Container } from '../container';
 import { Readable, Writable } from 'stream';
 import * as ws from 'ws';
 import debug from 'debug'
+import assert from 'assert'
 
 const log = debug('akala:commands:jsonrpcws')
 
-export var trigger = new Trigger('jsonrpcws', function register<T>(container: Container<T>, media: WebSocket)
+export var trigger = new Trigger('jsonrpcws', function register<T>(container: Container<T>, media: ws)
 {
-    media.onmessage = async function (ev: MessageEvent & { data: { jsonrpc: string, id: number | string, method: string, params: any } })
+    assert.ok(media.addEventListener, 'to be attached, the media must be an instance having addEventListener');
+
+    media.addEventListener('message', function (ev: { data: string }): void
     {
         log(ev.data);
+        var data: { jsonrpc: string, id: number | string, method: string, params: any } = JSON.parse(ev.data);
         try
         {
-            var result = await container.dispatch(ev.data.method, Object.assign(ev.data.params ?? { param: [] }, { _trigger: trigger.name }));
-            if (media instanceof Writable)
+            Promise.resolve(container.dispatch(data.method, Object.assign(data.params ?? { param: [] }, { _trigger: trigger.name }))).then((result: any) =>
             {
-                media.send(JSON.stringify({ jsonrpc: ev.data.jsonrpc, result: result, id: ev.data.id }));
-            }
+                media.send(JSON.stringify({ jsonrpc: data.jsonrpc, result: result || null, id: data.id }));
+            }, (e: any) =>
+            {
+                log(e);
+                media.send(JSON.stringify({ jsonrpc: '2.0', id: data.id, error: { message: e.message, stackTrace: e.stackTrace, code: e.code } }))
+            });
         }
         catch (e)
         {
-            if (media instanceof Writable)
-            {
-                log(e);
-                media.send(JSON.stringify({ jsonrpc: '2.0', id: ev.data.id, error: { message: e.message, stackTrace: e.stackTrace, code: e.code } }))
-            }
+            log(e);
+            media.send(JSON.stringify({ jsonrpc: '2.0', id: data.id, error: { message: e.message, stackTrace: e.stackTrace, code: e.code } }))
         }
-    };
+    });
 })
 
