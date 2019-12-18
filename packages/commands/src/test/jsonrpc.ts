@@ -1,30 +1,33 @@
 import { calculator } from './calculator'
 import * as assert from 'assert'
 import * as jsonrpc from '@akala/json-rpc-ws'
+import * as ws from 'ws'
 import { metadata, proxy, helper } from '../generator';
 import { JsonRpcWs, LogProcessor } from '../processors';
 
 describe('test jsonrpcws processing', function ()
 {
-    var server = jsonrpc.createServer();
-    calculator.attach('jsonrpcws', server);
+    var server: ws.Server;
 
     this.afterAll(function (done)
     {
         client.disconnect(function ()
         {
-            server.stop();
-            done();
+            if (server)
+                server.close(done);
+            else
+                done();
         })
     })
     this.beforeAll(function (done)
     {
-        server.start({ port: 8888 }, function ()
+        server = new ws.Server({ port: 8888 }, function ()
         {
-            if (!server.server)
+            if (!server)
                 throw new Error('server is not assigned');
-            client.connect('ws://localhost:' + server.server.options.port, done);
+            client.connect('ws://localhost:' + server.options.port, done);
         });
+        server.on('connection', socket => calculator.attach('jsonrpcws', socket));
     })
 
     var client = jsonrpc.createClient();
