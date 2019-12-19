@@ -70,15 +70,15 @@ export var logger: Logger & ((rootNamespace: string) => Logger) = <any>new Proxy
         }
     })
 }, {
-        get: function (target, prop)
-        {
-            if (!Reflect.has(target, prop) && typeof (prop) == 'string')
-                target[prop] = log(prop);
-            return Reflect.get(target, prop);
-        }
-    });
+    get: function (target, prop)
+    {
+        if (!Reflect.has(target, prop) && typeof (prop) == 'string')
+            target[prop] = log(prop);
+        return Reflect.get(target, prop);
+    }
+});
 
-export function log(namespace: string)
+export function log(namespace: string): debug.Debugger
 {
     if (!cluster.isMaster)
     {
