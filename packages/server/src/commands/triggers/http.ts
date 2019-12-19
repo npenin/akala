@@ -1,11 +1,11 @@
-import { Trigger, Container, Command, Metadata } from '@akala/commands';
+import { Trigger, Container, Command, metadata, Metadata } from '@akala/commands';
 import { HttpRouter, WorkerRouter, Methods, Router } from '../../router';
 import { Injector, NextFunction, isPromiseLike } from '@akala/core';
 import * as master from '../../master-meta';
 import * as worker from '../../worker-meta';
 import { Local } from '@akala/commands/dist/processors';
 
-function wrapHttp<T>(container: Container<T>, command: Command<T>)
+function wrapHttp<T>(container: Container<T>, command: Metadata.Command)
 {
     return function (req: master.Request, res: master.Response, next: NextFunction)
     {
@@ -27,7 +27,7 @@ function wrapHttp<T>(container: Container<T>, command: Command<T>)
     }
 }
 
-async function processCommand<T>(container: Container<T>, c: Command<T>, injected: { '$request': master.Request | worker.Request, [key: string]: any })
+async function processCommand<T>(container: Container<T>, c: Metadata.Command, injected: { '$request': master.Request | worker.Request, [key: string]: any })
 {
     var req = injected.$request;
     return Local.execute(c.config.http.inject || c.inject || [], function (...args)
@@ -36,7 +36,7 @@ async function processCommand<T>(container: Container<T>, c: Command<T>, injecte
     }, container, { param: [], route: req.params, query: req.query, body: req.body, headers: req.headers, ...injected });
 }
 
-function wrapWorker<T>(container: Container<T>, c: Command<T>): worker.RequestHandler
+function wrapWorker<T>(container: Container<T>, c: Metadata.Command): worker.RequestHandler
 {
     return function (req: worker.Request, res: worker.Callback)
     {
@@ -59,23 +59,26 @@ function wrapWorker<T>(container: Container<T>, c: Command<T>): worker.RequestHa
     }
 }
 
-export var trigger = new Trigger('http', function register<T>(container: Container<T>, command: Command<T>, router: HttpRouter | WorkerRouter)
+export var trigger = new Trigger('http', function register<T>(container: Container<T>, router: HttpRouter | WorkerRouter)
 {
-    if (!command.config || !command.config.http)
-        return;
-
-    var config = command.config.http;
-
-    if (config.method === 'use' || !config.method)
+    metadata(container).commands.forEach(command =>
     {
-        if (router instanceof HttpRouter)
-            router.use(config.route, wrapHttp(container, command));
+        if (!command.config || !command.config.http)
+            return;
+
+        var config = command.config.http;
+
+        if (config.method === 'use' || !config.method)
+        {
+            if (router instanceof HttpRouter)
+                router.use(config.route, wrapHttp(container, command));
+            else
+                router.use(config.route, wrapWorker(container, command));
+        }
         else
-            router.use(config.route, wrapWorker(container, command));
-    }
-    else
-        if (router instanceof HttpRouter)
-            router[config.method](config.route, wrapHttp(container, command));
-        else
-            router[config.method](config.route, wrapWorker(container, command));
+            if (router instanceof HttpRouter)
+                router[config.method](config.route, wrapHttp(container, command));
+            else
+                router[config.method](config.route, wrapWorker(container, command));
+    })
 });

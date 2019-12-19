@@ -70,7 +70,7 @@ class Worker extends ServiceWorker implements Trigger
 
     private registeredContainers: string[];
 
-    public register<T>(container: Container<T>, _command: Command<T>, worker: Worker)
+    public register<T>(container: Container<T>, worker: Worker)
     {
         if (worker.registeredContainers.indexOf(container.name) != -1)
             return;
