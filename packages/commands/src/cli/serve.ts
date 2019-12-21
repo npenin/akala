@@ -2,6 +2,7 @@ import { Server } from 'net';
 import { platform } from 'os';
 import * as ws from 'ws'
 import { Container } from '../container';
+import { join } from 'path';
 
 export default async function (container: Container<void>, options: { port?: number, cert?: string, key?: string, _: ('local' | 'http' | 'ws')[] })
 {
@@ -19,7 +20,7 @@ export default async function (container: Container<void>, options: { port?: num
         if (platform() == 'win32')
             server.listen('\\\\?\\pipe\\' + container.name.replace(/\//g, '\\'))
         else
-            server.listen('/var/run/' + container.name.replace(/\//g, '-') + '.sock');
+            server.listen(join(process.cwd(), container.name.replace(/\//g, '-') + '.sock'));
     }
     if (args.indexOf('http') > -1 || args.indexOf('ws') > -1)
     {
