@@ -3,8 +3,9 @@ import * as path from 'path'
 import { Container, Processors, proxy, metadata } from '@akala/commands';
 import yargs from 'yargs-parser'
 import { Socket } from 'net';
-import { platform } from 'os';
+import { platform, homedir } from 'os';
 import start from './commands/start'
+import State from './state';
 
 const tableChars = {
     'top': '─'
@@ -228,6 +229,10 @@ if (require.main == module)
         if (platform() == 'win32')
             socket.connect('\\\\?\\pipe\\akala\\pm')
         else
-            socket.connect('/var/run/akala-pm.sock');
+        {
+            var config = require(path.join(homedir(), './.pm.config.json'));
+            ;
+            socket.connect(path.join(config.containers.pm[0], './akala-pm.sock'));
+        }
     }
 }
