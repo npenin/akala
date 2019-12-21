@@ -1,12 +1,11 @@
 import State, { RunningContainer } from '../state'
-import { Container } from '@akala/commands'
 import { Server } from 'net';
 import { platform, homedir } from 'os';
 import { promises, exists } from 'fs';
 import { join } from 'path';
 import { promisify } from 'util';
 import { description } from '../container';
-import { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } from 'constants';
+
 const existsAsync = promisify(exists);
 
 export default async function (this: State, container: RunningContainer<State> & description.pm)
@@ -47,7 +46,8 @@ export default async function (this: State, container: RunningContainer<State> &
     if (platform() == 'win32')
         server.listen('\\\\?\\pipe\\akala\\pm')
     else
-        server.listen('/var/run/akala-pm.sock');
+        server.listen(join(this.config.containers.pm[0], './akala-pm.sock'));
+
     console.log('server listening');
 
     if (process.disconnect)
