@@ -1,4 +1,4 @@
-import { Container, Processors } from "@akala/commands";
+import { Container, Processors, CommandProxy } from "@akala/commands";
 import State, { RunningContainer } from "../state";
 import { fork, spawn, ChildProcess } from "child_process";
 import { description } from "../container";
@@ -101,6 +101,10 @@ export default async function start(this: State, pm: description.pm & Container<
         container.commandable = this.config.mapping[name].commandable;
         if (container.commandable)
             pm.register(name, container);
+        container.resolve = function (c: string)
+        {
+            return new CommandProxy<any>((container as RunningContainer).processor, c) as any;
+        }
         container.running = true;
         cp.on('exit', function ()
         {
