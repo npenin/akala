@@ -33,7 +33,7 @@ export var trigger = new Trigger('jsonrpc', function register<T>(container: Cont
                 if (media instanceof Writable)
                 {
                     log(e);
-                    media.write(JSON.stringify({ jsonrpc: '2.0', id: payload.id, error: { message: e.message, stackTrace: e.stackTrace, code: e.code } }))
+                    media.write(JSON.stringify({ jsonrpc: '2.0', id: payload.id, error: { message: e.message, stackTrace: e.stack, code: e.code } }))
                 }
             }
         });
