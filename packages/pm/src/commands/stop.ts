@@ -2,7 +2,7 @@ import { Container } from "@akala/commands";
 import State, { RunningContainer } from "../state";
 import { fork } from "child_process";
 
-export default async function stop(this: State, name?: string)
+export default async function stop(this: State, name: string, container: Container<State>)
 {
     await Promise.all(this.processes.filter(p => name == 'pm' || !name || p.name == name && p.process).map(cp =>
     {
@@ -14,8 +14,9 @@ export default async function stop(this: State, name?: string)
                 {
                     cp.process.kill();
                 }, 5000)
-                cp.process.on('exit', function (code, signal)
+                cp.process.on('exit', (code, signal) =>
                 {
+                    container.unregister(cp.name);
                     clearTimeout(timeout);
                     resolve(signal);
                 })
@@ -31,3 +32,5 @@ export default async function stop(this: State, name?: string)
             process.exit()
     });
 };
+
+exports.default.$inject = ['param.0', 'container']

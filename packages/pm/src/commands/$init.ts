@@ -47,13 +47,19 @@ export default async function (this: State, container: RunningContainer<State> &
         server.listen('\\\\?\\pipe\\akala\\pm')
     else
     {
-        server.listen(join(this.config.containers.pm[0], './akala-pm.sock'));
+        var socketPath = join(this.config.containers.pm[0], './akala-pm.sock');
+        server.listen(socketPath);
 
-        server.on('close', () =>
+
+        process.on('SIGINT', () =>
         {
-            unlink(join(this.config.containers.pm[0], './akala-pm.sock'), function (err)
+            server.close(function (err)
             {
-            });
+                unlink(socketPath, function (err)
+                {
+                    process.exit();
+                });
+            })
         })
     }
 
