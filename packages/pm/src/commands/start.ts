@@ -1,9 +1,9 @@
 import { Container, Processors, CommandProxy } from "@akala/commands";
 import State, { RunningContainer } from "../state";
-import { fork, spawn, ChildProcess } from "child_process";
+import { spawn, ChildProcess } from "child_process";
 import { description } from "../container";
 import unparse from 'yargs-unparser';
-import { Transform, TransformOptions, Duplex } from "stream";
+import { TransformOptions, Duplex } from "stream";
 
 export default async function start(this: State, pm: description.pm & Container<State>, name: string, options?: any)
 {
@@ -23,7 +23,7 @@ export default async function start(this: State, pm: description.pm & Container<
             console.log(message);
             cp.disconnect();
         })
-        return new Promise((resolve, reject) =>
+        return new Promise((resolve) =>
         {
             cp.on('disconnect', function ()
             {
@@ -78,7 +78,7 @@ export default async function start(this: State, pm: description.pm & Container<
             console.log(message);
             cp.disconnect();
         })
-        return new Promise((resolve, reject) =>
+        return new Promise((resolve) =>
         {
             cp.on('disconnect', function ()
             {

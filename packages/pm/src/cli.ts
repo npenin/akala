@@ -5,7 +5,6 @@ import yargs from 'yargs-parser'
 import { Socket } from 'net';
 import { platform, homedir } from 'os';
 import start from './commands/start'
-import State from './state';
 
 const tableChars = {
     'top': '─'
