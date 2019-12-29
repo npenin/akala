@@ -24,10 +24,8 @@ export default async function discover(this: State, packageName: string, folder:
                 if (Array.isArray(packageConfig))
                     throw new Error('bin property must be of type object or string');
                 return Promise.all(Object.keys(packageConfig.bin).map(v => pm.dispatch('map', v, join(path, 'node_modules', packageName, packageConfig.bin[v]), false)));
-                break;
             case 'string':
-                return pm.dispatch('map', packageName, join(path, 'node_modules', packageName, packageConfig.bin), false);
-                break;
+                return await pm.dispatch('map', packageName, join(path, 'node_modules', packageName, packageConfig.bin), false);
             default:
                 throw new Error('bin property must be of type object or string');
         }
@@ -42,7 +40,7 @@ export default async function discover(this: State, packageName: string, folder:
 
                 return await Promise.all(Object.keys(packageConfig.commands).map(v => pm.dispatch('map', v, join(path, 'node_modules', packageName, packageConfig.commands[v]), true)));
             case 'string':
-                return pm.dispatch('map', packageName, join(path, 'node_modules', packageName, packageConfig.commands), true);
+                return await pm.dispatch('map', packageName, join(path, 'node_modules', packageName, packageConfig.commands), true);
             default:
                 throw new Error('commands property must be of type object or string');
         }
