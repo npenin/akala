@@ -45,7 +45,7 @@ import { lstatSync } from 'fs';
         {
             console.error(e);
             if (process.send)
-                process.send(JSON.stringify({ jsonrpc: '2.0', id: oMessage.id, error: { message: e.message, stackTrace: e.stackTrace, code: e.code } }))
+                process.send(JSON.stringify({ jsonrpc: '2.0', id: oMessage.id, error: { message: e.message, stackTrace: e.stack, code: e.code } }))
         }
     })
 })(process.argv[2]);
