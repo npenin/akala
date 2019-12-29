@@ -41,9 +41,8 @@ if (require.main == module)
 
         socket.on('connect', async function ()
         {
-            let container = new Container('pm', {});
             socket.setEncoding('utf-8');
-            container = proxy(metadata(container), new Processors.JsonRPC(socket));
+            let container = new Container('pm', {}, new Processors.JsonRPC(socket));
 
             try
             {
@@ -230,7 +229,7 @@ if (require.main == module)
         else
         {
             var config = require(path.join(homedir(), './.pm.config.json'));
-            ;
+
             socket.connect(path.join(config.containers.pm[0], './akala-pm.sock'));
         }
     }
