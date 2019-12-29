@@ -1,7 +1,7 @@
 import State, { RunningContainer } from '../state'
 import { Server } from 'net';
 import { platform, homedir } from 'os';
-import { promises, exists } from 'fs';
+import { promises, exists, unlink } from 'fs';
 import { join } from 'path';
 import { promisify } from 'util';
 import { description } from '../container';
@@ -46,7 +46,16 @@ export default async function (this: State, container: RunningContainer<State> &
     if (platform() == 'win32')
         server.listen('\\\\?\\pipe\\akala\\pm')
     else
+    {
         server.listen(join(this.config.containers.pm[0], './akala-pm.sock'));
+
+        server.on('close', () =>
+        {
+            unlink(join(this.config.containers.pm[0], './akala-pm.sock'), function (err)
+            {
+            });
+        })
+    }
 
     console.log('server listening');
 
