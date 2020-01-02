@@ -23,15 +23,13 @@ export type FSCommand = Metadata.Command & { config?: { fs?: FileSystemConfigura
 
 export class FileSystem<T> extends CommandProcessor<T>
 {
-    public static async versatileCommandRegister<T>(cmd: FSCommand, container: Container<T>)
+    public static async versatileCommandRegister<T>(cmd: FSCommand, container: Container<T>, processor?: Processor<T>)
     {
         if (cmd.config && cmd.config.fs)
-            if (container.processor instanceof FileSystem)
-                return container.register(configure('fs', cmd.config.fs)(new CommandProxy(container.processor, cmd.name)));
-            else
-                return container.register(configure('fs', cmd.config.fs)(new CommandProxy(new FileSystem(container, null), cmd.name)));
-        else if (cmd.config && cmd.config.http)
-            return container.register(configure('http', cmd.config.http)(new CommandProxy(new HttpClient(container), cmd.name)))
+            if (processor)
+                return container.register(configure('fs', cmd.config.fs)(new CommandProxy(processor, cmd.name)));
+            else if (cmd.config && cmd.config.http)
+                return container.register(configure('http', cmd.config.http)(new CommandProxy(new HttpClient(container), cmd.name)))
         throw new Error(`no valid configuration was found for command ${cmd.name}`);
     }
 
@@ -63,7 +61,7 @@ export class FileSystem<T> extends CommandProcessor<T>
             var metacontainer: Metadata.Container = require(path.resolve(root));
             metacontainer.commands.forEach(cmd =>
             {
-                this.versatileCommandRegister(cmd as FSCommand, container);
+                this.versatileCommandRegister(cmd as FSCommand, container, options?.processor);
             });
             container.pipe(proxy(metacontainer, options.processor))
             return;
@@ -127,7 +125,7 @@ export class FileSystem<T> extends CommandProcessor<T>
                     if (!files.find(file => file.name == path.basename(f.name, '.json') + '.js'))
                     {
                         let cmd: FSCommand = require(path.resolve(path.join(root, f.name)))
-                        this.versatileCommandRegister(cmd, container);
+                        this.versatileCommandRegister(cmd, container, options?.processor);
                     }
                 }
                 else
