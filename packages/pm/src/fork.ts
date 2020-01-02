@@ -18,12 +18,13 @@ import { lstatSync } from 'fs';
 
     var cliContainer = new Container(folder, {});
 
+    var processor: Processors.FileSystem<any>;
     if (folderOrFile.isFile())
-        cliContainer.processor = new Processors.FileSystem(cliContainer, path.dirname(folder));
+        processor = new Processors.FileSystem(cliContainer, path.dirname(folder));
     else
-        cliContainer.processor = new Processors.FileSystem(cliContainer, folder);
+        processor = new Processors.FileSystem(cliContainer, folder);
 
-    Processors.FileSystem.discoverCommands(folder, cliContainer, { processor: cliContainer.processor, isDirectory: folderOrFile.isDirectory() }).then(() =>
+    Processors.FileSystem.discoverCommands(folder, cliContainer, { processor: processor, isDirectory: folderOrFile.isDirectory() }).then(() =>
     {
         if (require.main == module)
         {
