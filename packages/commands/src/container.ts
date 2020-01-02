@@ -2,11 +2,11 @@ import { promises as fs } from 'fs'
 import { Injectable, Injector } from '@akala/core'
 import * as vm from 'vm'
 import * as akala from '@akala/core'
-import { Command } from './command';
+import { Command, CommandProxy } from './command';
 import { Trigger } from './trigger';
 import { Processor } from './processor';
 import { Local } from './processors';
-import { commandList, metadata } from './generator';
+import { commandList, metadata, proxy } from './generator';
 import { Pipe } from './processors/pipe';
 
 export class Container<TState> extends akala.Injector
@@ -70,6 +70,19 @@ export class Container<TState> extends akala.Injector
         return super.resolve<T>(name);
     }
 
+    public proxy()
+    {
+        var proxy = new Container('proxy-' + this.name, null);
+        proxy.resolve = <T>(name: string) =>
+        {
+            var result = super.resolve(name);
+            if (result instanceof Command)
+                return new CommandProxy(this.processor, name, result.inject);
+            return result;
+        }
+
+    }
+
     public register<T>(name: string, value: T): T
     public register(cmd: Command<TState>): Command<TState>
     public register<T>(cmd: string | Command<TState>, value?: T): T | Command<TState>
@@ -79,6 +92,8 @@ export class Container<TState> extends akala.Injector
                 return super.register(cmd, value);
             else
                 throw new Error('value cannot be undefined');
+        else if (value instanceof Container)
+            return super.register(name, value.proxy());
         else
             return super.register(cmd.name, cmd);
     }
