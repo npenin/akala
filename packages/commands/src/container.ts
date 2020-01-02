@@ -93,7 +93,7 @@ export class Container<TState> extends akala.Injector
             else
                 throw new Error('value cannot be undefined');
         else if (value instanceof Container)
-            return super.register(name, value.proxy());
+            return super.register(name, value.proxy()) as any;
         else
             return super.register(cmd.name, cmd);
     }
