@@ -1,14 +1,13 @@
 import * as jsonrpcws from '@akala/json-rpc-ws'
 import { CommandNameProcessor } from '../processor'
-import { Writable, Transform, Readable } from 'stream';
+import { Writable, Readable } from 'stream';
 import { v4 } from 'uuid'
 import debug from 'debug'
+
 const log = debug('akala:commands:jsonrpc')
 
 export class JsonRPC<T> extends CommandNameProcessor<T>
 {
-    private transform: Transform;
-
     public process(command: string, params: { param: jsonrpcws.SerializableObject[], [key: string]: jsonrpcws.SerializableObject | jsonrpcws.SerializableObject[] | string | number })
     {
         return new Promise<void>((resolve, reject) =>
@@ -40,7 +39,7 @@ export class JsonRPC<T> extends CommandNameProcessor<T>
                 })
             }
 
-            this.transform.write({ jsonrpc: '2.0', id: messageId, method: command, params: params }, function (error)
+            this.stream.write(JSON.stringify({ jsonrpc: '2.0', id: messageId, method: command, params: params }), function (error)
             {
 
                 if (error)
@@ -55,20 +54,5 @@ export class JsonRPC<T> extends CommandNameProcessor<T>
     constructor(private stream: Writable)
     {
         super('jsonrpc');
-        this.transform = new Transform({
-            objectMode: true,
-            transform(chunk, encoding, callback)
-            {
-                try
-                {
-                    callback(null, JSON.stringify(chunk as any) + '\n')
-                }
-                catch (e)
-                {
-                    callback(e);
-                }
-            }
-        });
-        this.transform.pipe(this.stream);
     }
 }
