@@ -80,7 +80,7 @@ export class Container<TState> extends akala.Injector
                 return new CommandProxy(this.processor, name, result.inject);
             return result;
         }
-
+        return proxy;
     }
 
     public register<T>(name: string, value: T): T
