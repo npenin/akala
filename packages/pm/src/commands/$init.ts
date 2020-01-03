@@ -39,7 +39,7 @@ export default async function (this: State, container: RunningContainer<State> &
 
     var server = new Server((socket) =>
     {
-        socket.setEncoding('utf-8')
+        socket.setEncoding('utf-8');
         container.attach('jsonrpc', socket);
     });
 
