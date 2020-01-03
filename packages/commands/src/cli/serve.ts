@@ -14,6 +14,7 @@ export default async function (container: Container<void>, options: { port?: num
     {
         let server = new Server((socket) =>
         {
+            socket.setDefaultEncoding('utf-8');
             container.attach('jsonrpc', socket);
         });
 

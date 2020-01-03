@@ -39,7 +39,7 @@ export class JsonRPC<T> extends CommandNameProcessor<T>
                 })
             }
 
-            this.stream.write(JSON.stringify({ jsonrpc: '2.0', id: messageId, method: command, params: params }), function (error)
+            this.stream.write(JSON.stringify({ jsonrpc: '2.0', id: messageId, method: command, params: params }) + '\n', function (error)
             {
                 if (error)
                     reject(error);
