@@ -2,13 +2,13 @@ import * as akala from '@akala/core'
 import { Command } from "./metadata";
 import { Container } from './container';
 
-export const Processors = akala.module('$serverless').register('processors', new akala.Injector());
-
 export abstract class CommandProcessor<T>
 {
     public readonly requiresCommandName: false = false;
     abstract process(cmd: Command, param: { param: any[], [key: string]: any }): any | PromiseLike<any>;
-    constructor(public name: string, protected container?: Container<T>) { }
+    constructor(public name: string, protected container?: Container<T>)
+    {
+    }
 }
 
 export abstract class CommandNameProcessor<T>
