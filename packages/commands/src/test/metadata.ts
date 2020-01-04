@@ -37,11 +37,11 @@ describe('test helpers', function ()
     })
 
 
-    it('should list 3 commands', function ()
+    it('should list 3 commands + 3 default commands', function ()
     {
         var meta = commandList(metadata(calculator))
         assert.ok(meta);
-        assert.strictEqual(meta.length, 3);
+        assert.strictEqual(meta.length, 6);
         assert.notStrictEqual(meta.indexOf('increment'), -1)
         assert.notStrictEqual(meta.indexOf('decrement'), -1)
         assert.notStrictEqual(meta.indexOf('reset'), -1)
