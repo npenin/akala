@@ -8,6 +8,9 @@ import { Processor } from './processor';
 import { Local } from './processors';
 import { commandList, metadata, proxy } from './generator';
 import { Pipe } from './processors/pipe';
+import $serve from './commands/$serve'
+import $attach from './commands/$attach'
+import $metadata from './commands/$metadata'
 
 export class Container<TState> extends akala.Injector
 {
@@ -26,7 +29,11 @@ export class Container<TState> extends akala.Injector
         if (typeof state !== 'undefined')
             this.register('$state', state);
         this.register('$container', this);
-        this.processor = processor || new Local(this);
+        var localProcessor = new Local(this);
+        this.processor = processor || localProcessor;
+        this.register(new Command($serve, '$serve', $serve.$inject))
+        this.register(new Command($attach, '$attach', $attach.$inject))
+        this.register(new Command($metadata, '$metadata', $metadata.$inject))
     }
 
     public pipe(container: Container<TState>)
