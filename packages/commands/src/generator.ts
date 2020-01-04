@@ -20,7 +20,7 @@ export function metadata(container: Container<any>): meta.Container
 
 export function proxy<T = any>(metacontainer: meta.Container, processor: Processor<T>)
 {
-    var container = new Container<T>(metacontainer.name, undefined as any, processor);
+    var container = new Container<T>(metacontainer.name, undefined as any);
 
     metacontainer.commands.forEach(cmd =>
     {
