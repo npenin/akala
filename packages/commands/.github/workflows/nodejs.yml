@@ -24,3 +24,9 @@ jobs:
         npm test
       env:
         CI: true
+    - name: Create .npmrc
+      run: echo "//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN\nregistry=https://npm.pkg.github.com/npenin" >> ~/.npmrc
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Publish
+      run: npm publish --no-git-tag-version
