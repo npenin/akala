@@ -19,11 +19,7 @@ export class Local<T> extends CommandProcessor<T>
             var triggerInject = cmd.config[param._trigger]?.inject;
             if (!triggerInject)
                 triggerInject = cmd.inject;
-            if (triggerInject)
-            {
-                var params = triggerInject.map((v, i) => { return { name: v, value: param.param[i] } });
-                param.param = params.filter(x => x.name.startsWith('param.')).map(x => x.value);
-            }
+            inject = triggerInject;
         }
         Object.keys(param).forEach((key) => injector.register(key, param[key]));
         if (!inject)

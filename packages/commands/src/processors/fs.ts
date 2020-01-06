@@ -134,7 +134,7 @@ export class FileSystem<T> extends CommandProcessor<T>
         });
     }
 
-    public async process(command: FSCommand, param: { param: any[] })
+    public async process(command: FSCommand, param: { param: any[], _trigger?: string })
     {
         var filepath: string;
         if (command && command.config && command.config.fs)
@@ -147,6 +147,9 @@ export class FileSystem<T> extends CommandProcessor<T>
 
         if (!this.container)
             throw new Error('container is undefined');
+
+        if (!param._trigger)
+            param._trigger = this.name;
 
         return Local.execute(command, script.default, this.container, param);
     }
