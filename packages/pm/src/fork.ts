@@ -16,7 +16,11 @@ import { lstatSync } from 'fs';
         return;
     }
 
-    var cliContainer = new Container(folder, {});
+    var cliContainer: Container<any> = ;
+    if (folderOrFile.isFile())
+        cliContainer = new Container(path.basename(folder), {});
+    else
+        cliContainer = new Container(folder, {});
 
     var processor: Processors.FileSystem<any>;
     if (folderOrFile.isFile())
