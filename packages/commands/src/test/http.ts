@@ -49,7 +49,7 @@ describe('test http processing', function ()
             }
             else
                 cmdName = url.substr(1);
-            Promise.resolve(calculator.dispatch(cmdName, ...params)).then(function (result)
+            Promise.resolve(calculator.dispatch(cmdName, { param: params })).then(function (result)
             {
                 res.writeHead(200);
                 if (typeof result != 'undefined')

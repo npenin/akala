@@ -16,7 +16,7 @@ export var trigger = new Trigger('jsonrpc', function register<T>(container: Cont
             log(payload);
             try
             {
-                var result = await container.dispatch(payload.method, Object.assign(payload.params ?? { param: [] }, {
+                var result = await container.dispatch(payload.method, Object.assign(payload.params, {
                     _trigger: trigger.name, get connectionAsContainer()
                     {
                         if (media instanceof Writable)

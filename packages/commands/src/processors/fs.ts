@@ -63,7 +63,7 @@ export class FileSystem<T> extends CommandProcessor<T>
             {
                 this.versatileCommandRegister(cmd as FSCommand, container, options?.processor);
             });
-            container.pipe(proxy(metacontainer, options.processor))
+            container.name = metacontainer.name;
             return;
         }
         else if (existsSync(path.join(root, 'commands.json')))
@@ -148,7 +148,7 @@ export class FileSystem<T> extends CommandProcessor<T>
         if (!this.container)
             throw new Error('container is undefined');
 
-        return Local.execute(command.config && command.config.fs && command.config.fs.inject || command.inject, script.default, this.container, param);
+        return Local.execute(command, script.default, this.container, param);
     }
 
     constructor(container: Container<T>, private root: string | null)
