@@ -1,33 +1,43 @@
-import { CommandProxy } from '../command';
+import { CommandProxy, Command } from '../command';
 import { Injector, Injectable } from '@akala/core';
-import { Processor, CommandProcessor } from '../processor'
+import * as  Metadata from '../metadata';
+import { CommandProcessor } from '../processor'
 import { Container } from '../container';
 import assert = require('assert');
 
 export class Local<T> extends CommandProcessor<T>
 {
-    public static execute<T>(inject: undefined | string[], command: Injectable<any>, container: Container<T>, param: { param: any[], [key: string]: any }): any | PromiseLike<any>
+    public static execute<T>(cmd: Metadata.Command, command: Injectable<any>, container: Container<T>, param: { param: any[], [key: string]: any }): any | PromiseLike<any>
     {
         if (!container)
             assert.fail('container is undefined');
-        else
+        var inject = cmd.inject;
+        var injector = new Injector(container);
+        injector.register('container', container);
+        if (param._trigger)
         {
-            var injector = new Injector(container);
-            injector.register('container', container);
-            Object.keys(param).forEach((key) => injector.register(key, param[key]));
-            if (!inject)
-                inject = param.param.map((a, i) => 'param.' + i);
-            return injector.injectWithName(inject, command)(container.state);
+            var triggerInject = cmd.config[param._trigger]?.inject;
+            if (!triggerInject)
+                triggerInject = cmd.inject;
+            if (triggerInject)
+            {
+                var params = triggerInject.map((v, i) => { return { name: v, value: param.param[i] } });
+                param.param = params.filter(x => x.name.startsWith('param.')).map(x => x.value);
+            }
         }
+        Object.keys(param).forEach((key) => injector.register(key, param[key]));
+        if (!inject)
+            inject = param.param.map((a, i) => 'param.' + i);
+        return injector.injectWithName(inject, command)(container.state);
     }
 
 
-    public process(command: CommandProxy, param: { param: any[], [key: string]: any }): any | PromiseLike<any>
+    public process(command: Command<T>, param: { param: any[], [key: string]: any }): any | PromiseLike<any>
     {
         if (!this.container)
             assert.fail('container is undefined');
         else
-            return Local.execute(command.inject, command.handler, this.container, param);
+            return Local.execute<T>(command, command.handler, this.container, param);
     }
 
     constructor(container: Container<T>)

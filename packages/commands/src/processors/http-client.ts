@@ -47,8 +47,8 @@ export class HttpClient<T> extends CommandProcessor<T>
             config.type = undefined;
         }
         var options: HttpOptions = { method: config.method, url: '', type: config.type };
-        if (command.inject)
-            each(command.inject, function (value, key)
+        if (config.inject)
+            each(config.inject, function (value, key)
             {
                 switch (value)
                 {

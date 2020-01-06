@@ -58,10 +58,10 @@ describe('test jsonrpcws processing', function ()
         assert.equal(calculator.state.value, 0)
 
         await calculatorProxy.dispatch('increment')
-        assert.equal(calculator.state.value, 1)
+        assert.equal(calculator.state.value, 1, 'increment failed')
 
         await calculatorProxy.dispatch('decrement', 2)
-        assert.equal(calculator.state.value, -1)
+        assert.equal(calculator.state.value, -1, 'decrement failed')
     })
 
 
