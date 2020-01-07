@@ -117,6 +117,8 @@ export class FileSystem<T> extends CommandProcessor<T>
                             cmd.config.fs.inject = func.$inject;
                         else
                             cmd.config.fs.inject = akala.introspect.getParamNames(func).map((v, i) => 'param.' + i);
+                        if (cmd.config.fs.inject && !cmd.inject)
+                            cmd.inject = cmd.config.fs.inject;
                     }
                     container.register(cmd);
                 }
