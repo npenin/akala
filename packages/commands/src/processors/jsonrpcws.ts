@@ -8,6 +8,12 @@ export class JsonRpcWs<T> extends CommandProcessor<T>
     {
         return new Promise<any>((resolve, reject) =>
         {
+            var inject = command?.config[this.name]?.inject || command.inject;
+            if (inject)
+            {
+                var injectParams = inject;
+                params.param = params.param.filter((v, i) => injectParams[i].substring(0, 'param'.length) == 'param');
+            }
             this.client.sendMethod(command.name, params, function (err: any, result: jsonrpcws.PayloadDataType)
             {
                 if (err)
