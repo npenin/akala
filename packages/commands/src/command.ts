@@ -42,7 +42,7 @@ export class CommandProxy<T = any> extends Command<T>
             if (processor.requiresCommandName)
                 return processor.process(name, { param: args });
             else
-                return processor.process(cmd, { param: args });
+                return processor.process(cmd, { _trigger: 'proxy', param: args });
         }, name, inject);
         var cmd = this;
     }
