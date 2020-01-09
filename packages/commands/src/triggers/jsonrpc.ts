@@ -16,13 +16,13 @@ export var trigger = new Trigger('jsonrpc', function register<T>(container: Cont
             log(payload);
             try
             {
-                var result = await container.dispatch(payload.method, Object.assign(payload.params, {
+                var result = await container.dispatch(payload.method, Object.assign({}, {
                     _trigger: trigger.name, get connectionAsContainer()
                     {
                         if (media instanceof Writable)
                             return new Container('', null, new JsonRPC(media));
                     }
-                }));
+                }, payload.params));
                 if (media instanceof Writable)
                 {
                     media.write(JSON.stringify({ jsonrpc: payload.jsonrpc, result: result, id: payload.id }) + '\n')
