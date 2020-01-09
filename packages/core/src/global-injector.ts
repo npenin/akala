@@ -1,12 +1,10 @@
 import { Module } from './module'
-import { Injector, Injectable, Injected, InjectableAsync } from './injector';
+import { Injector, Injectable, Injected, InjectableAsync, defaultInjector } from './injector';
 
 declare var $$defaultInjector;
 
 if (!global['$$defaultInjector'])
-    global['$$defaultInjector'] = new Module('@akala/core');
-
-export var defaultInjector: Module = global['$$defaultInjector'];
+    global['$$defaultInjector'] = defaultInjector;
 
 
 export function resolve<T = any>(name: string): T

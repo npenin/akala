@@ -2,7 +2,6 @@ import { getParamNames } from './reflect';
 import * as debug from 'debug';
 import { isPromiseLike } from './promiseHelpers';
 import { EventEmitter } from 'events';
-import { defaultInjector } from './global-injector'
 
 var log = debug('akala:core:injector');
 
@@ -27,6 +26,7 @@ export class Injector
     {
         if (this.parent == null)
             this.parent = defaultInjector;
+
         this.register('$injector', this);
     }
 
@@ -355,3 +355,5 @@ export class Injector
         this.notify(name, value);
     }
 }
+
+export var defaultInjector = new Injector();
