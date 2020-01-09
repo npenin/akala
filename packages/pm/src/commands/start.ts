@@ -114,24 +114,26 @@ export default async function start(this: State, pm: description.pm & Container<
     }
 };
 
-class IpcStream extends Duplex
+export class IpcStream extends Duplex
 {
-    constructor(private cp: ChildProcess, options?: TransformOptions)
+    constructor(private cp: ChildProcess | NodeJS.Process, options?: TransformOptions)
     {
         super(options);
         this.cp.on('message', (message) =>
         {
             this.push(message + '\n');
         })
-
     }
 
-    _write(chunk: string | Buffer, encoding: string, callback: () => void)
+    _write(chunk: string | Buffer, encoding: string, callback: (error?: any) => void)
     {
         // The underlying source only deals with strings.
         if (Buffer.isBuffer(chunk))
-            chunk = chunk.toString(encoding);
-        this.cp.send(chunk + '\n', callback);
+            chunk = chunk.toString('utf8');
+        if (this.cp.send)
+            this.cp.send(chunk + '\n', callback);
+        else
+            callback(new Error('there is no send method on this process'));
     }
 
     _read()
