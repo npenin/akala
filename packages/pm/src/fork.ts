@@ -33,9 +33,26 @@ import { IpcStream } from './commands/start';
     {
         if (require.main == module)
         {
-            cliContainer.attach('jsonrpc', new IpcStream(process));
+            // cliContainer.attach('jsonrpc', new IpcStream(process));
             var args = yargs(process.argv.slice(3))
             cliContainer.dispatch(cliContainer.resolve('$init') || '$serve', { options: args, param: args._ });
         }
     });
+
+    process.on('message', async function (message: string)
+    {
+        var oMessage = JSON.parse(message);
+        try
+        {
+            var result = await cliContainer.dispatch(oMessage, Object.assign(oMessage.params ?? { param: [] }, { _trigger: 'ipc' }));
+            if (process.send)
+                process.send(JSON.stringify({ jsonrpc: oMessage.jsonrpc, result: result, id: oMessage.id } + '\n'));
+        }
+        catch (e)
+        {
+            console.error(e);
+            if (process.send)
+                process.send(JSON.stringify({ jsonrpc: oMessage.jsonrpc, id: oMessage.id, error: { message: e.message, stack: e.stack, code: e.code } }) + '\n')
+        }
+    })
 })(process.argv[2]);
