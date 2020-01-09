@@ -44,7 +44,7 @@ import { IpcStream } from './commands/start';
         var oMessage = JSON.parse(message);
         try
         {
-            var result = await cliContainer.dispatch(oMessage, Object.assign(oMessage.params ?? { param: [] }, { _trigger: 'ipc' }));
+            var result = await cliContainer.dispatch(oMessage.method, Object.assign(oMessage.params ?? { param: [] }, { _trigger: 'ipc', }));
             if (process.send)
                 process.send(JSON.stringify({ jsonrpc: oMessage.jsonrpc, result: result, id: oMessage.id } + '\n'));
         }
