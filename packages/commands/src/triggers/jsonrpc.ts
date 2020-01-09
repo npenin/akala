@@ -9,34 +9,31 @@ const log = debug('akala:commands:jsonrpc')
 
 export var trigger = new Trigger('jsonrpc', function register<T>(container: Container<T>, media: Readable)
 {
-    if (media.listenerCount('data') == 0)
+    media.pipe(split2(JSON.parse)).on('data', async function (payload: { jsonrpc: string, id: number | string, method: string, params: any })
     {
-        media.pipe(split2(JSON.parse)).on('data', async function (payload: { jsonrpc: string, id: number | string, method: string, params: any })
+        log(payload);
+        try
         {
-            log(payload);
-            try
-            {
-                var result = await container.dispatch(payload.method, Object.assign({}, {
-                    _trigger: trigger.name, get connectionAsContainer()
-                    {
-                        if (media instanceof Writable)
-                            return new Container('', null, new JsonRPC(media));
-                    }
-                }, payload.params));
-                if (media instanceof Writable)
+            var result = await container.dispatch(payload.method, Object.assign({}, {
+                _trigger: trigger.name, get connectionAsContainer()
                 {
-                    media.write(JSON.stringify({ jsonrpc: payload.jsonrpc, result: result, id: payload.id }) + '\n')
+                    if (media instanceof Writable)
+                        return new Container('', null, new JsonRPC(media));
                 }
-            }
-            catch (e)
+            }, payload.params));
+            if (media instanceof Writable)
             {
-                if (media instanceof Writable)
-                {
-                    log(e);
-                    media.write(JSON.stringify({ jsonrpc: '2.0', id: payload.id, error: { message: e.message, stack: e.stack, code: e.code } }))
-                }
+                media.write(JSON.stringify({ jsonrpc: payload.jsonrpc, result: result, id: payload.id }) + '\n')
             }
-        });
-    }
+        }
+        catch (e)
+        {
+            if (media instanceof Writable)
+            {
+                log(e);
+                media.write(JSON.stringify({ jsonrpc: payload.jsonrpc, id: payload.id, error: { message: e.message, stack: e.stack, code: e.code } }) + '\n')
+            }
+        }
+    });
 })
 
