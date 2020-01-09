@@ -1,0 +1,81 @@
+import { Module } from './module'
+import { Injector, Injectable, Injected, InjectableAsync } from './injector';
+
+declare var $$defaultInjector;
+
+if (!global['$$defaultInjector'])
+    global['$$defaultInjector'] = new Module('@akala/core');
+
+export var defaultInjector: Module = global['$$defaultInjector'];
+
+
+export function resolve<T = any>(name: string): T
+{
+    return defaultInjector.resolve<T>(name);
+}
+
+export function unregister(name: string)
+{
+    return defaultInjector.unregister(name);
+}
+
+export function merge(i: Injector)
+{
+    return defaultInjector.merge(i);
+}
+
+export function inspect()
+{
+    return defaultInjector.inspect();
+}
+
+export function inject<T>(injectable: Injectable<T>): Injected<T>
+export function inject<T>(...toInject: string[]): (b: TypedPropertyDescriptor<T>) => void
+export function inject<T>(a: string | Injectable<T>, ...b: string[])
+{
+    return defaultInjector.inject(a, ...b);
+}
+
+export function exec<T>(...toInject: string[]): (f: Injectable<T>) => T
+{
+    return defaultInjector.exec(...toInject);
+}
+
+export function injectNew<T>(a: Injectable<T>)
+{
+    return defaultInjector.injectNew(a);
+}
+
+export function injectWithName<T>(toInject: string[], a: Injectable<T>)
+{
+    return defaultInjector.injectWithName(toInject, a);
+}
+
+export function injectNewWithName(toInject: string[], a: Function)
+{
+    return defaultInjector.injectNewWithName(toInject, a);
+}
+
+export function resolveAsync<T = any>(name: string)
+{
+    return defaultInjector.resolveAsync<T>(name)
+}
+
+export function onResolve<T = any>(name: string)
+{
+    return defaultInjector.onResolve<T>(name)
+}
+
+export function injectWithNameAsync<T>(toInject: string[], a: InjectableAsync<T> | Injectable<T>)
+{
+    return defaultInjector.injectWithNameAsync(toInject, a);
+}
+
+export function register<T>(name: string, value: T, override?: boolean)
+{
+    return defaultInjector.register(name, value, override);
+}
+export function registerFactory<T>(name: string, value: () => T, override?: boolean)
+{
+    return defaultInjector.registerFactory(name, value, override);
+}

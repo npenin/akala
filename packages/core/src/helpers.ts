@@ -1,5 +1,5 @@
 import { Module } from './module';
-import { register, resolve, onResolve } from './injector'
+import { register, resolve, onResolve } from './global-injector'
 import * as jsonrpc from '@akala/json-rpc-ws'
 import { chain } from './chain'
 export { Module };

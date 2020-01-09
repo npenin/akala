@@ -1,4 +1,5 @@
 export * from './injector';
+export * from './global-injector';
 export * from './factory';
 export * from './http';
 export * from './service';

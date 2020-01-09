@@ -12,7 +12,7 @@
  */
 
 var debug = require('debug')('router')
-import { flatten, FlatArray } from 'array-flatten';
+import * as flatten from 'array-flatten';
 import { Layer, LayerOptions } from './layer';
 // import * as methods from 'methods';
 import { extend } from '../helpers';

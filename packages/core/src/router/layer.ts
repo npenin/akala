@@ -12,10 +12,11 @@
  * @private
  */
 
-import { pathToRegexp as pathRegexp, Key } from 'path-to-regexp';
+import * as pathRegexp from 'path-to-regexp';
 import * as debug from 'debug';
 import { NextFunction } from '../eachAsync';
 import { Route } from './route';
+import pathToRegexp = require('path-to-regexp');
 var log = debug('router:layer');
 
 /**
@@ -50,7 +51,7 @@ export class Layer<T extends Function>
     public params: any;
     public path: string;
     protected regexp: LayerRegExp;
-    public keys: Key[];
+    public keys: pathToRegexp.Key[];
     private isErrorHandler: boolean;
     private isRequestHandler: boolean;
     constructor(path: string, options: LayerOptions, fn: T)

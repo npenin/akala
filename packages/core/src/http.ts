@@ -1,4 +1,4 @@
-import { register, injectWithName, Injected } from "./injector";
+import { register, injectWithName } from "./global-injector";
 import { ParsedAny, Parser } from "./parser";
 import { each, map, grep } from "./each";
 import { extend, module } from "./helpers";
@@ -7,6 +7,7 @@ import { FormatterFactory } from "./formatters/common";
 import * as uri from 'url';
 import * as qs from 'querystring'
 import 'isomorphic-fetch';
+import { Injected } from "./injector";
 
 export interface HttpOptions
 {
