@@ -30,7 +30,7 @@ function wrapHttp<T>(container: Container<T>, command: Metadata.Command)
 async function processCommand<T>(container: Container<T>, c: Metadata.Command, injected: { '$request': master.Request | worker.Request, [key: string]: any })
 {
     var req = injected.$request;
-    return Local.execute(c.config.http.inject || c.inject || [], function (...args)
+    return Local.execute(c, function (...args)
     {
         container.dispatch(c.name, ...args)
     }, container, { param: [], route: req.params, query: req.query, body: req.body, headers: req.headers, ...injected });
