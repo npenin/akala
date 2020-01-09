@@ -2,6 +2,7 @@ import { getParamNames } from './reflect';
 import * as debug from 'debug';
 import { isPromiseLike } from './promiseHelpers';
 import { EventEmitter } from 'events';
+import { Module } from './module';
 
 var log = debug('akala:core:injector');
 
@@ -357,7 +358,7 @@ export class Injector
 declare var $$defaultInjector;
 
 if (!global['$$defaultInjector'])
-    global['$$defaultInjector'] = new Injector();
+    global['$$defaultInjector'] = new Module('@akala/core');
 
 var defaultInjector: Injector = global['$$defaultInjector'];
 

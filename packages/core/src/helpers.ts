@@ -71,8 +71,11 @@ async function createClient<TConnection extends jsonrpc.Connection>(namespace: s
     });
 }
 
-register('$agent', chain(createClient, function (keys, key: string)
+module('@akala/core').init([], () =>
 {
-    keys.push(key);
-    return keys;
-}))
+    register('$agent', chain(createClient, function (keys, key: string)
+    {
+        keys.push(key);
+        return keys;
+    }))
+})
