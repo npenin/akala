@@ -2,7 +2,7 @@ import { getParamNames } from './reflect';
 import * as debug from 'debug';
 import { isPromiseLike } from './promiseHelpers';
 import { EventEmitter } from 'events';
-import { Module } from './module';
+import { defaultInjector } from './global-injector'
 
 var log = debug('akala:core:injector');
 
@@ -222,7 +222,7 @@ export class Injector
 
     public injectNewWithName(toInject: string[], ctor: Function)
     {
-        return injectWithName(toInject, ctorToFunction.bind(ctor));
+        return this.injectWithName(toInject, ctorToFunction.bind(ctor));
     }
 
     public injectWithNameAsync<T>(toInject: string[], a: InjectableAsync<T> | Injectable<T>): PromiseLike<T>
@@ -310,9 +310,10 @@ export class Injector
 
     public exec<T>(...toInject: string[])
     {
+        var self = this;
         return function (f: Injectable<T>)
         {
-            return injectWithName(toInject, f)(this);
+            return self.injectWithName(toInject, f)(this);
         }
     }
 
@@ -353,83 +354,4 @@ export class Injector
         Object.defineProperty(this.injectables, name, value);
         this.notify(name, value);
     }
-}
-
-declare var $$defaultInjector;
-
-if (!global['$$defaultInjector'])
-    global['$$defaultInjector'] = new Module('@akala/core');
-
-var defaultInjector: Injector = global['$$defaultInjector'];
-
-
-export function resolve<T = any>(name: string): T
-{
-    return defaultInjector.resolve<T>(name);
-}
-
-export function unregister(name: string)
-{
-    return defaultInjector.unregister(name);
-}
-
-export function merge(i: Injector)
-{
-    return defaultInjector.merge(i);
-}
-
-export function inspect()
-{
-    return defaultInjector.inspect();
-}
-
-export function inject<T>(injectable: Injectable<T>): Injected<T>
-export function inject<T>(...toInject: string[]): (b: TypedPropertyDescriptor<T>) => void
-export function inject<T>(a: string | Injectable<T>, ...b: string[])
-{
-    return defaultInjector.inject(a, ...b);
-}
-
-export function exec<T>(...toInject: string[]): (f: Injectable<T>) => T
-{
-    return defaultInjector.exec(...toInject);
-}
-
-export function injectNew<T>(a: Injectable<T>)
-{
-    return defaultInjector.injectNew(a);
-}
-
-export function injectWithName<T>(toInject: string[], a: Injectable<T>)
-{
-    return defaultInjector.injectWithName(toInject, a);
-}
-
-export function injectNewWithName(toInject: string[], a: Function)
-{
-    return defaultInjector.injectNewWithName(toInject, a);
-}
-
-export function resolveAsync<T = any>(name: string)
-{
-    return defaultInjector.resolveAsync<T>(name)
-}
-
-export function onResolve<T = any>(name: string)
-{
-    return defaultInjector.onResolve<T>(name)
-}
-
-export function injectWithNameAsync<T>(toInject: string[], a: InjectableAsync<T> | Injectable<T>)
-{
-    return defaultInjector.injectWithNameAsync(toInject, a);
-}
-
-export function register<T>(name: string, value: T, override?: boolean)
-{
-    return defaultInjector.register(name, value, override);
-}
-export function registerFactory<T>(name: string, value: () => T, override?: boolean)
-{
-    return defaultInjector.registerFactory(name, value, override);
 }

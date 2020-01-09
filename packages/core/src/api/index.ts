@@ -1,4 +1,4 @@
-import { Api, DualApi, IServerProxyBuilder, IClientBuilder, IServerBuilder } from './base'
+import { Api, IServerProxyBuilder, IClientBuilder, IServerBuilder } from './base'
 import * as base from './base'
 
 export * from './base';
@@ -9,7 +9,6 @@ import { Rest } from './rest'
 import './rest';
 import './json-rpc-ws';
 import { module, each } from '../helpers';
-import { Http } from '../http';
 
 export namespace api
 {

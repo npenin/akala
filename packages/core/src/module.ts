@@ -1,13 +1,14 @@
-import * as di from './injector'
+import * as di from './global-injector'
 import * as orchestrator from 'orchestrator'
 import { EventEmitter } from 'events'
+import { Injector, InjectableWithTypedThis, InjectableAsyncWithTypedThis, Injectable } from './injector';
 
 process.hrtime = process.hrtime || require('browser-process-hrtime');
 
-var moduleInjector = di.resolve<di.Injector>('$modules');
+var moduleInjector = di.resolve<Injector>('$modules');
 if (!moduleInjector)
 {
-    moduleInjector = new di.Injector();
+    moduleInjector = new Injector();
     di.register('$modules', moduleInjector);
 }
 
@@ -26,7 +27,7 @@ export class ExtendableEvent
     }
 }
 
-export class Module extends di.Injector
+export class Module extends Injector
 {
     constructor(public name: string, public dep?: string[])
     {
@@ -86,27 +87,27 @@ export class Module extends di.Injector
         moduleInjector.register(m.name, m);
     }
 
-    public run(toInject: string[], f: di.InjectableWithTypedThis<any, ExtendableEvent>)
+    public run(toInject: string[], f: InjectableWithTypedThis<any, ExtendableEvent>)
     {
         this.emitter.on('ready', this.injectWithName(toInject, f));
     }
 
-    public runAsync(toInject: string[], f: di.InjectableAsyncWithTypedThis<any, ExtendableEvent>)
+    public runAsync(toInject: string[], f: InjectableAsyncWithTypedThis<any, ExtendableEvent>)
     {
-        this.emitter.on('ready', (ev) => { this.injectWithNameAsync(toInject, f.bind(ev) as di.InjectableAsyncWithTypedThis<any, ExtendableEvent>) });
+        this.emitter.on('ready', (ev) => { this.injectWithNameAsync(toInject, f.bind(ev) as InjectableAsyncWithTypedThis<any, ExtendableEvent>) });
     }
 
-    public init(toInject: string[], f: di.InjectableWithTypedThis<any, ExtendableEvent>)
+    public init(toInject: string[], f: InjectableWithTypedThis<any, ExtendableEvent>)
     {
         this.emitter.on('activate', this.injectWithName(toInject, f));
     }
 
-    public initAsync(toInject: string[], f: di.InjectableAsyncWithTypedThis<any, ExtendableEvent>)
+    public initAsync(toInject: string[], f: InjectableAsyncWithTypedThis<any, ExtendableEvent>)
     {
-        this.emitter.on('activate', function (ev: ExtendableEvent) { di.injectWithNameAsync(toInject, f.bind(ev) as di.InjectableAsyncWithTypedThis<any, ExtendableEvent>) });
+        this.emitter.on('activate', function (ev: ExtendableEvent) { di.injectWithNameAsync(toInject, f.bind(ev) as InjectableAsyncWithTypedThis<any, ExtendableEvent>) });
     }
 
-    public start(toInject?: string[], f?: di.Injectable<any>)
+    public start(toInject?: string[], f?: Injectable<any>)
     {
         if (arguments.length == 0)
             Module.o.start(this.name);

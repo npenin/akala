@@ -1,4 +1,4 @@
-import { inject, injectWithName, registerFactory } from './injector'
+import { inject, injectWithName, registerFactory } from './global-injector'
 
 export function factory(name: string, ...toInject: string[])
 {

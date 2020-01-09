@@ -1,8 +1,7 @@
-import { Http, HttpFormatterFactory, HttpOptions } from '../http'
-import { Api, IServerProxyBuilder, IClientBuilder, IServerBuilder } from './base';
+import { Http, HttpOptions } from '../http'
+import { Api, IServerProxyBuilder } from './base';
 import { each } from '../each';
-import { createServer } from 'https';
-import { resolve } from '../injector';
+import { resolve } from '../global-injector';
 import { module } from '../helpers';
 import * as pathRegexp from 'path-to-regexp';
 

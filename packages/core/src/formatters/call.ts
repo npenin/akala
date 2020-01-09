@@ -1,9 +1,8 @@
-import { extend, module } from "../helpers";
+import { module } from "../helpers";
 import { FormatterFactory } from "../formatters/common";
-import { Parser, ParsedFunction, ParsedBinary, ParsedString } from "../parser";
-import { resolve, injectWithName } from "../injector";
+import { Parser, ParsedString } from "../parser";
+import { injectWithName } from "../global-injector";
 import { Binding } from "../binder";
-import { map } from "../each";
 
 export class CallFormatterFactory implements FormatterFactory<any, ParsedString>
 {
