@@ -93,7 +93,7 @@ export default async function start(this: State, pm: description.pm & Container<
         var cp = spawn(process.execPath, args, { cwd: process.cwd(), stdio: ['inherit', 'inherit', 'inherit', 'ipc'], shell: false, windowsHide: true });
         if (!container)
         {
-            container = new Container(name, null, new Processors.JsonRPC(new IpcStream(cp))) as RunningContainer;
+            container = new Container(name, null, new Processors.JsonRPC(new IpcStream(cp, { encoding: 'utf8' }))) as RunningContainer;
             container.path = name;
             this.processes.push(container);
         }
