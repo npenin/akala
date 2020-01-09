@@ -5,13 +5,6 @@ import { Injector, InjectableWithTypedThis, InjectableAsyncWithTypedThis, Inject
 
 process.hrtime = process.hrtime || require('browser-process-hrtime');
 
-var moduleInjector = di.resolve<Injector>('$modules');
-if (!moduleInjector)
-{
-    moduleInjector = new Injector();
-    di.register('$modules', moduleInjector);
-}
-
 export class ExtendableEvent
 {
     private promises: PromiseLike<any>[] = [];
@@ -115,3 +108,12 @@ export class Module extends Injector
             Module.o.on('stop', <any>di.injectWithName(toInject, f));
     }
 }
+
+
+var moduleInjector = di.resolve<Injector>('$modules');
+if (!moduleInjector)
+{
+    moduleInjector = new Injector();
+    di.register('$modules', moduleInjector);
+}
+

@@ -544,7 +544,7 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
             }
         }
 
-        var callbacks = flatten(handlers as Array<T | U>)
+        var callbacks = flatten.flatten(handlers as Array<T | U>)
 
         if (callbacks.length === 0)
         {
