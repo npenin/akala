@@ -30,7 +30,7 @@ describe('test http processing', function ()
                 {
                     var config = cmd.config.http as any as HttpConfiguration;
                     var keys: pathRegexp.Key[] = [];
-                    var regexp = pathRegexp.default(config.route, keys);
+                    var regexp = pathRegexp.pathToRegexp(config.route, keys);
                     var match = url.match(regexp)
                     if (match && config.inject)
                     {
