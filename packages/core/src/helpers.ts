@@ -71,7 +71,8 @@ async function createClient<TConnection extends jsonrpc.Connection>(namespace: s
     });
 }
 
-module('@akala/core').init([], () =>
+var m = module('@akala/core');
+m.init([], () =>
 {
     register('$agent', chain(createClient, function (keys, key: string)
     {
@@ -79,3 +80,4 @@ module('@akala/core').init([], () =>
         return keys;
     }))
 })
+m.start();
