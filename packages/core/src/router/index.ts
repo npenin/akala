@@ -12,7 +12,7 @@
  */
 
 var debug = require('debug')('router')
-import * as flatten from 'array-flatten';
+import { flatten, FlatArray } from 'array-flatten';
 import { Layer, LayerOptions } from './layer';
 // import * as methods from 'methods';
 import { extend } from '../helpers';
@@ -544,7 +544,7 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
             }
         }
 
-        var callbacks = flatten(handlers as flatten.NestedArray<T | U>)
+        var callbacks = flatten(handlers as Array<T | U>)
 
         if (callbacks.length === 0)
         {
