@@ -28,10 +28,10 @@ export default async function (this: State, container: RunningContainer<State> &
     {
         return promises.writeFile(configPath, JSON.stringify(this, null, 4), 'utf-8').then(() => console.log('config saved'))
     }
-    this.config.save();
+    await this.config.save();
 
     container.name = 'pm';
-    container.dispatch('map', 'pm', join(__dirname, '../../commands.json'), true);
+    await container.dispatch('map', 'pm', join(__dirname, '../../commands.json'), true);
 
     this.processes.push(container);
     container.running = true;
@@ -48,8 +48,8 @@ export default async function (this: State, container: RunningContainer<State> &
     else
     {
         var socketPath = join(this.config.containers.pm[0], './akala-pm.sock');
-        server.listen(socketPath);
 
+        server.listen(socketPath);
 
         process.on('SIGINT', () =>
         {
