@@ -35,7 +35,7 @@ import { IpcStream } from './commands/start';
         {
             // cliContainer.attach('jsonrpc', new IpcStream(process));
             var args = yargs(process.argv.slice(3))
-            cliContainer.dispatch(cliContainer.resolve('$init') || '$serve', { options: args, param: args._ });
+            cliContainer.dispatch(cliContainer.resolve('$init') || '$serve', { options: args, param: args._, _trigger: 'cli' });
         }
     });
 
