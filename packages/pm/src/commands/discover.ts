@@ -12,7 +12,7 @@ export default async function discover(this: State, packageName: string, folder:
     var path = folder || this.config.containers['pm'][0];
 
     if (existsSync(join(path, 'node_modules', packageName, './commands.json')))
-        return pm.dispatch('map', packageName, join(path, 'node_modules', packageName, './commands.json'), false);
+        return pm.dispatch('map', packageName, join(path, 'node_modules', packageName, './commands.json'), true);
 
     var packageConfig = require(join(path, 'node_modules', packageName, './package.json'));
     delete require.cache[join(path, 'node_modules', packageName, './package.json')];

@@ -18,9 +18,9 @@ export default async function config(this: State, name: string, options: any): P
         {
             writeFileSync(join(__dirname, './log.txt'), new Error().stack);
             this.config.containers[name] = args.slice(4);
+            await this.config.save();
         }
 
-        await this.config.save();
         return this.config.containers[name];
     }
     else
