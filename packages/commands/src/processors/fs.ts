@@ -61,6 +61,8 @@ export class FileSystem<T> extends CommandProcessor<T>
             var metacontainer: Metadata.Container = require(path.resolve(root));
             metacontainer.commands.forEach(cmd =>
             {
+                if (cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata')
+                    return;
                 this.versatileCommandRegister(cmd as FSCommand, container, options?.processor);
             });
             container.name = metacontainer.name;
