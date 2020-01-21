@@ -27,9 +27,9 @@ export class FileSystem<T> extends CommandProcessor<T>
     {
         if (cmd.config && cmd.config.fs)
             if (processor)
-                return container.register(configure('fs', cmd.config.fs)(new CommandProxy(processor, cmd.name)));
+                return container.register(configure(cmd.config)(new CommandProxy(processor, cmd.name)));
             else if (cmd.config && cmd.config.http)
-                return container.register(configure('http', cmd.config.http)(new CommandProxy(new HttpClient(container), cmd.name)))
+                return container.register(configure(cmd.config)(new CommandProxy(new HttpClient(container), cmd.name)))
         throw new Error(`no valid configuration was found for command ${cmd.name}`);
     }
 
