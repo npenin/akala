@@ -7,33 +7,6 @@ import { TransformOptions, Duplex } from "stream";
 
 export default async function start(this: State, pm: description.pm & Container<State>, name: string, options?: any)
 {
-    if (false && name == 'pm')
-    {
-        options._.shift();
-        let args = unparse(options);
-        args.unshift(require.resolve('../fork'));
-
-        var cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: true, stdio: ['ignore', 'ignore', 'ignore', 'ipc'] });
-        cp.on('exit', function ()
-        {
-            console.log(arguments);
-        })
-        cp.on('message', function (message)
-        {
-            console.log(message);
-            cp.disconnect();
-        })
-        return new Promise((resolve) =>
-        {
-            cp.on('disconnect', function ()
-            {
-                cp.unref();
-                console.log('pm started');
-                resolve();
-            })
-        })
-    }
-
     if (this.isDaemon)
     {
         var container = this.processes.find(c => c.name == name);
@@ -93,7 +66,7 @@ export default async function start(this: State, pm: description.pm & Container<
         var cp = spawn(process.execPath, args, { cwd: process.cwd(), stdio: ['inherit', 'inherit', 'inherit', 'ipc'], shell: false, windowsHide: true });
         if (!container)
         {
-            container = new Container(name, null, new Processors.JsonRPC(new IpcStream(cp, { encoding: 'utf8' }))) as RunningContainer;
+            container = new Container(name, null, new Processors.JsonRPC(new IpcStream(cp))) as RunningContainer;
             container.path = name;
             this.processes.push(container);
         }
@@ -121,6 +94,8 @@ export class IpcStream extends Duplex
         super(options);
         this.cp.on('message', (message) =>
         {
+            if (Buffer.isBuffer(message))
+                message = message.toString('utf8');
             this.push(message + '\n');
         })
     }
