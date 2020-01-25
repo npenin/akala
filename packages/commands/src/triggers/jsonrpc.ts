@@ -9,6 +9,7 @@ const log = debug('akala:commands:jsonrpc')
 
 export var trigger = new Trigger('jsonrpc', function register<T>(container: Container<T>, media: Readable)
 {
+    media.setEncoding('utf8');
     media.pipe(split2(JSON.parse)).on('data', async function (payload: { jsonrpc: string, id: number | string, method: string, params: any })
     {
         log(payload);

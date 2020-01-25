@@ -116,7 +116,7 @@ export async function serveController<T>(path: string, container: Container<T>, 
     if (typeof files[path] == 'undefined')
         files[path] = [];
 
-    var file = await fs.readFile(path, 'utf-8')
+    var file = await fs.readFile(path, 'utf8')
     var commands = vm.runInContext(file, context, { filename: path, displayErrors: true });
     akala.each(commands, function (f: Injectable<any> | Command<T>)
     {
