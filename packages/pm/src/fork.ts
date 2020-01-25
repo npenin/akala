@@ -41,6 +41,8 @@ import { IpcStream } from './commands/start';
 
     process.on('message', async function (message: string)
     {
+        if (Buffer.isBuffer(message))
+            message = message.toString('utf8');
         var oMessage = JSON.parse(message);
         try
         {
