@@ -1,15 +1,10 @@
-'use strict';
-
 const Code = require('code');
-const Lab = require('lab');
 const WS = require('ws');
 const JsonRpcWs = require('../');
 const Browserify = require('browserify');
 const Webdriver = require('selenium-webdriver');
 
-const lab = exports.lab = Lab.script();
 const { expect } = Code;
-const { describe, it, after, before } = lab;
 
 Code.settings.truncateMessages = false;
 
@@ -348,7 +343,7 @@ describe('json-rpc ws', () =>
       });
     });
 
-    it('works in browser', { skip: true }, () =>
+    it.skip('works in browser', () =>
     {
 
       const driver = new Webdriver.Builder().forBrowser('phantomjs').build();
