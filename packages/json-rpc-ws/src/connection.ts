@@ -90,7 +90,7 @@ export class Connection
     /**
      *
      */
-    constructor(public socket: SocketAdapter, public parent: { type: string, browser: boolean, getHandler: (id: string) => Handler<Connection, any, any>, disconnected: (connection: Connection) => void })
+    constructor(public socket: SocketAdapter, public parent: { type: string, browser: boolean, getHandler: (method: string) => Handler<Connection, any, any>, disconnected: (connection: Connection) => void })
     {
         logger('new Connection to %s', parent.type);
 

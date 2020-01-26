@@ -14,9 +14,11 @@ const logger = debug('json-rpc-ws');
 
 export { Server, Client, ServerAdapter, SocketAdapter, Errors, Connection, SerializableObject, PayloadDataType, SerializedBuffer, Payload, ErrorPayload };
 import wsServerAdapter from './ws/server'
+import { WsSocketAdapter } from './ws/connection';
 export namespace ws
 {
   export var ServerAdapter = wsServerAdapter;
+  export var SocketAdapter = WsSocketAdapter;
 
   export function createServer<TConnection extends Connection>()
   {
