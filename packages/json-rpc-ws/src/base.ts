@@ -2,10 +2,8 @@
 import * as debug from 'debug';
 import * as uuid from 'uuid';
 const logger = debug('json-rpc-ws');
-import * as ws from 'ws';
 
-
-import { Connection, Handler, PayloadDataType } from './connection';
+import { Connection, Handler, PayloadDataType, SocketAdapter } from './connection';
 
 
 
@@ -15,7 +13,7 @@ import { Connection, Handler, PayloadDataType } from './connection';
  * @constructor
  * @public
  */
-export class Base<TConnection extends Connection>
+export class Base<TConnection extends Connection = Connection>
 {
   constructor(public type: string)
   {
@@ -41,7 +39,6 @@ export class Base<TConnection extends Connection>
    */
   public expose<TParamType extends PayloadDataType, TReplyType extends PayloadDataType>(method: string, handler: Handler<TConnection, TParamType, TReplyType>)
   {
-
     logger('registering handler for %s', method);
     if (this.requestHandlers[method])
     {
@@ -56,7 +53,7 @@ export class Base<TConnection extends Connection>
    * @param {Object} socket - new socket connection
    * @private
    */
-  public connected(socket: ws | WebSocket)
+  public connected(socket: SocketAdapter)
   {
     logger('%s connected', this.type);
     var connection = new Connection(socket, this as any);
@@ -85,7 +82,6 @@ export class Base<TConnection extends Connection>
    */
   public hasHandler(method: string)
   {
-
     if (this.requestHandlers[method] !== undefined)
     {
       return true;

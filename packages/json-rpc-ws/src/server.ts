@@ -2,26 +2,31 @@
 
 import { Base } from './base';
 import { default as Errors } from './errors';
-import { Connection, ReplyCallback, PayloadDataType } from './connection';
-import * as WebSocket from 'ws';
+import { Connection, ReplyCallback, PayloadDataType, SocketAdapter } from './connection';
 import * as debug from 'debug';
 const logger = debug('json-rpc-ws');
 
+export interface ServerAdapter
+{
+  close(): void;
+  onConnection(arg1: (socket: SocketAdapter) => void): void;
+  once(event: 'listening', callback: () => void): void;
 
+}
 
 /**
  * json-rpc-ws server
  *
  */
-export default class Server<TConnection extends Connection> extends Base<TConnection>
+export default class Server<TConnection extends Connection = Connection> extends Base<TConnection>
 {
+  private server?: ServerAdapter;
+
   constructor()
   {
     super('server');
     logger('new Server');
   }
-
-  public server?: WebSocket.Server;
 
   /**
  * Start the server
@@ -30,16 +35,18 @@ export default class Server<TConnection extends Connection> extends Base<TConnec
  * @param {function} callback - optional callback which is called once the server has started listening.
  * @public
  */
-  public start(options?: WebSocket.ServerOptions, callback?: () => void)
+  public start(server: ServerAdapter, callback?: () => void)
   {
 
     logger('Server start');
-    this.server = new WebSocket.Server(options);
+
+    this.server = server;
+
     if (typeof callback === 'function')
     {
       this.server.once('listening', callback);
     }
-    this.server.on('connection', this.connected.bind(this));
+    this.server.onConnection(this.connected.bind(this));
   };
 
 
@@ -54,8 +61,7 @@ export default class Server<TConnection extends Connection> extends Base<TConnec
 
     logger('Server stop');
     this.hangup();
-    if (this.server)
-      this.server.close();
+    this.server?.close();
     delete this.server;
   };
 

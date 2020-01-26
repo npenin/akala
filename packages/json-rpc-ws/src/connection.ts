@@ -3,7 +3,6 @@ import { v4 as uuid } from 'uuid';
 import * as debug from 'debug';
 import { ok as Assert } from 'assert';
 import { default as Errors, Error as ConnectionError, ErrorTypes } from './errors';
-import * as ws from 'ws';
 import * as stream from 'stream';
 const logger = debug('json-rpc-ws');
 
@@ -59,19 +58,30 @@ var emptyCallback = function emptyCallback()
     logger('emptycallback');
 };
 
-export function isBrowserSocket(parent: { browser: true }, socket: ws | WebSocket): socket is WebSocket
-export function isBrowserSocket(parent: { browser: false }, socket: ws | WebSocket): socket is WebSocket
-export function isBrowserSocket(parent: { browser: boolean }, socket: ws | WebSocket): socket is WebSocket
-export function isBrowserSocket(parent: { browser: boolean }, socket: ws | WebSocket): socket is WebSocket
+export interface SocketAdapter<TSocket = any>
 {
-    return socket && parent.browser;
+    readonly open: boolean;
+    close(): void;
+    send(data: string): void;
+
+    on(event: 'message', handler: (this: TSocket, ev: MessageEvent) => void): void;
+    on(event: 'open', handler: (this: TSocket) => void): void;
+    on(event: 'error', handler: (this: TSocket, ev: Event) => void): void;
+    on(event: 'close', handler: (this: TSocket, ev: CloseEvent) => void): void;
+    on(event: 'message' | 'error' | 'close' | 'open', handler: (ev?: any) => void): void
+
+    once(event: 'message', handler: (this: TSocket, ev: MessageEvent) => void): void;
+    once(event: 'open', handler: (this: TSocket) => void): void;
+    once(event: 'error', handler: (this: TSocket, ev: Event) => void): void;
+    once(event: 'close', handler: (this: TSocket, ev: CloseEvent) => void): void;
+    once(event: 'message' | 'error' | 'close' | 'open', handler: (ev?: any) => void): void
 }
 
 /**
  * json-rpc-ws connection
  *
  * @constructor
- * @param {Socket} socket - web socket for this connection
+ * @param {SocketAdapter} socket - socket adapter for this connection
  * @param {Object} parent - parent that controls this connection
  */
 
@@ -80,14 +90,11 @@ export class Connection
     /**
      *
      */
-    constructor(public socket: ws | WebSocket, public parent: { type: string, browser: boolean, getHandler: (id: string) => Handler<Connection, any, any>, disconnected: (connection: Connection) => void })
+    constructor(public socket: SocketAdapter, public parent: { type: string, browser: boolean, getHandler: (id: string) => Handler<Connection, any, any>, disconnected: (connection: Connection) => void })
     {
         logger('new Connection to %s', parent.type);
 
-        if (isBrowserSocket(parent, socket))
-            socket.onmessage = this.message.bind(this);
-        else
-            socket.on('message', this.message.bind(this));
+        socket.on('message', this.message.bind(this));
         // this.on('message', this.message.bind(this));
         this.once('close', this.close.bind(this) as any);
         this.once('error', this.close.bind(this) as any);
@@ -108,10 +115,7 @@ export class Connection
     public on(event: 'close', handler: (ev: CloseEvent) => void): void
     public on(event: 'message' | 'error' | 'close', handler: (ev?: any) => void): void
     {
-        if (isBrowserSocket(this.parent, this.socket))
-            this.socket.addEventListener(event, handler);
-        else
-            this.socket.addEventListener(event, handler);
+        this.socket.on(event, handler);
     }
 
     public once(event: 'message', handler: (ev: MessageEvent) => void): void
@@ -119,12 +123,7 @@ export class Connection
     public once(event: 'close', handler: (ev: CloseEvent) => void): void
     public once(event: 'message' | 'error' | 'close', handler: (ev?: any) => void): void
     {
-        if (isBrowserSocket(this.parent, this.socket))
-        {
-            this.socket.addEventListener(event, handler, { once: true });
-        }
-        else
-            this.socket.once(event, handler);
+        this.socket.once(event, handler);
     }
 
     public id = uuid();
@@ -142,10 +141,7 @@ export class Connection
     public sendRaw(payload: Payload)
     {
         payload.jsonrpc = '2.0';
-        if (isBrowserSocket(this.parent, this.socket))
-            this.socket.send(JSON.stringify(payload));
-        else
-            this.socket.send(JSON.stringify(payload));
+        this.socket.send(JSON.stringify(payload));
     };
 
     private buildStream(id: string | number, result: PayloadDataType)
@@ -321,7 +317,7 @@ export class Connection
                 result.pipe(pt);
                 pt.on('data', function (chunk)
                 {
-                    if (self.socket.readyState == ws.OPEN)
+                    if (self.socket.open)
                         if (Buffer.isBuffer(chunk))
                             self.sendResult(id, undefined, { event: 'data', isBuffer: true, data: chunk.toJSON() });
                         else
@@ -331,7 +327,7 @@ export class Connection
                 });
                 pt.on('end', function ()
                 {
-                    if (self.socket.readyState == ws.OPEN)
+                    if (self.socket.open)
                         self.sendResult(id, undefined, { event: 'end' });
                     else
                         logger('socket was closed before end of stream')
@@ -448,24 +444,8 @@ export class Connection
         if (typeof callback === 'function')
         {
             var socket = this.socket;
-            if (isBrowserSocket(this.parent, socket))
-            {
-                socket.onerror = () =>
-                {
-                    delete socket.onerror;
-                    callback();
-                };
-                socket.onclose = () =>
-                {
-                    delete socket.onclose;
-                    callback();
-                };
-            }
-            else
-            {
-                socket.once('error', callback);
-                socket.once('close', callback);
-            }
+            socket.once('error', callback);
+            socket.once('close', callback);
         }
         this.socket.close();
     };
@@ -485,7 +465,7 @@ export class Connection
         //name of handle function ?!?!?
         logger('message %j', data);
         var payload;
-        if (this.parent.browser && typeof (data) !== 'string') 
+        if (typeof (data) !== 'string') 
         {
             payload = jsonParse(data.data);
         }

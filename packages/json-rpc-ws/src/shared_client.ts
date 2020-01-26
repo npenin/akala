@@ -1,24 +1,20 @@
 'use strict';
 
 import { Base } from './base';
-import { Connection, isBrowserSocket, PayloadDataType } from './connection';
-import * as ws from 'ws';
+import { Connection, PayloadDataType, SocketAdapter } from './connection';
 import * as debug from 'debug';
 const logger = debug('json-rpc-ws');
 import { ok as assert } from 'assert';
 
-export type SocketType = ws | WebSocket;
-
 export default class Client<TClientConnection extends Connection> extends Base<TClientConnection>
 {
-  constructor(private socketConstructor: (address: string) => SocketType, browser: boolean)
+  constructor(private socketConstructor: (address: string) => SocketAdapter)
   {
     super('client');
     logger('new Client');
-    this.browser = browser;
   }
 
-  public socket?: SocketType;
+  public socket?: SocketAdapter;
 
   /**
    * Connect to a json-rpc-ws server
@@ -34,55 +30,29 @@ export default class Client<TClientConnection extends Connection> extends Base<T
     var self = this;
     var opened = false;
     var socket = this.socket = this.socketConstructor(address);
-    if (isBrowserSocket(this, socket))
+    socket.once('open', function clientConnected()
     {
-      socket.onerror = function onerror(err)
-      {
-        if (!opened && callback)
-        {
-          delete socket.onopen;
-          callback(err);
-        }
-      };
-      socket.onopen = function onopen()
+
+      // The client connected handler runs scoped as the socket so we can pass
+      // it into our connected method like thisk
+      self.connected(this);
+    });
+    if (callback)
+    {
+      socket.once('open', function socketOpen()
       {
         opened = true;
-        delete socket.onopen;
-        self.connected(this);
-        if (callback)
-        {
-          callback();
-        }
-      };
-    }
-    else
-    {
-      socket.once('open', function clientConnected(this: SocketType)
-      {
-
-        // The client connected handler runs scoped as the socket so we can pass
-        // it into our connected method like thisk
-        self.connected(this);
+        callback.apply(this, []);
       });
-      if (callback)
+      socket.once('error', function socketError(err)
       {
-        socket.once('open', function socketOpen(this: SocketType)
+        if (!opened)
         {
-
-          opened = true;
-          callback.apply(this, []);
-        });
-        socket.once('error', function socketError(this: SocketType, err)
-        {
-
-          if (!opened)
-          {
-            callback.apply(this, [err]);
-          }
-        });
-      }
+          callback.apply(this, [err]);
+        }
+      });
     }
-  };
+  }
 
   /**
    * Test whether we have a connection or not
@@ -92,12 +62,7 @@ export default class Client<TClientConnection extends Connection> extends Base<T
    */
   public isConnected()
   {
-
-    if (Object.keys(this.connections).length === 0)
-    {
-      return false;
-    }
-    return true;
+    return Object.keys(this.connections).length !== 0;
   };
 
   /**

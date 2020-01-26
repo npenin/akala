@@ -16,8 +16,8 @@ Code.settings.truncateMessages = false;
 describe('json-rpc ws', () =>
 {
 
-  const server = JsonRpcWs.createServer();
-  const client = JsonRpcWs.createClient();
+  const server = JsonRpcWs.ws.createServer();
+  const client = JsonRpcWs.ws.createClient();
   //const delayBuffer = [];
 
   before(() =>
@@ -42,9 +42,8 @@ describe('json-rpc ws', () =>
     return new Promise((resolve) =>
     {
 
-      server.start({ host: 'localhost', port: 8081 }, function ()
+      server.start(new JsonRpcWs.ws.ServerAdapter({ host: 'localhost', port: 8081 }), function ()
       {
-
         client.connect('ws://localhost:8081', resolve);
       });
     });
@@ -271,8 +270,8 @@ describe('json-rpc ws', () =>
   it('client hangups', () =>
   {
 
-    const clientA = JsonRpcWs.createClient();
-    const clientB = JsonRpcWs.createClient();
+    const clientA = JsonRpcWs.ws.createClient();
+    const clientB = JsonRpcWs.ws.createClient();
     return new Promise((resolve) =>
     {
 
@@ -296,12 +295,14 @@ describe('json-rpc ws', () =>
   it('server.start without callback', () =>
   {
 
-    const serverA = JsonRpcWs.createServer();
-    serverA.start({ port: 8082 });
+    const serverA = JsonRpcWs.ws.createServer();
+    serverA.start(new JsonRpcWs.ws.ServerAdapter({ port: 8082 }));
     return new Promise((resolve) =>
     {
-
       serverA.server.once('listening', resolve);
+    }).then(() =>
+    {
+      serverA.stop()
     });
   });
 

@@ -1,8 +1,8 @@
 'use strict';
-import { Connection, SerializableObject, PayloadDataType, SerializedBuffer } from './connection';
-import { default as Client } from './client';
-import { default as Server } from './server';
-import { default as Errors } from './errors';
+import { Connection, SerializableObject, PayloadDataType, SerializedBuffer, Payload, SocketAdapter } from './connection';
+import { default as Client } from './ws/client';
+import { default as Server, ServerAdapter } from './server';
+import { default as Errors, Payload as ErrorPayload } from './errors';
 import * as debug from 'debug';
 const logger = debug('json-rpc-ws');
 
@@ -12,16 +12,21 @@ const logger = debug('json-rpc-ws');
  * MIT Licensed
  */
 
-export { Server, Client, Errors, Connection, SerializableObject, PayloadDataType, SerializedBuffer };
-
-export function createServer<TConnection extends Connection>()
+export { Server, Client, ServerAdapter, SocketAdapter, Errors, Connection, SerializableObject, PayloadDataType, SerializedBuffer, Payload, ErrorPayload };
+import wsServerAdapter from './ws/server'
+export namespace ws
 {
-  logger('createServer');
-  return new Server<TConnection>();
-};
+  export var ServerAdapter = wsServerAdapter;
 
-export function createClient<TConnection extends Connection>()
-{
-  logger('createClient');
-  return new Client<TConnection>();
-};
+  export function createServer<TConnection extends Connection>()
+  {
+    logger('createServer');
+    return new Server<TConnection>();
+  };
+
+  export function createClient<TConnection extends Connection>()
+  {
+    logger('createClient');
+    return new Client<TConnection>();
+  };
+}
