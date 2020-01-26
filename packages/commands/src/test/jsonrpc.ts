@@ -3,7 +3,7 @@ import * as assert from 'assert'
 import * as jsonrpc from '@akala/json-rpc-ws'
 import * as ws from 'ws'
 import { metadata, proxy, helper } from '../generator';
-import { JsonRpcWs, LogProcessor } from '../processors';
+import { JsonRpc, LogProcessor } from '../processors';
 
 describe('test jsonrpcws processing', function ()
 {
@@ -30,7 +30,7 @@ describe('test jsonrpcws processing', function ()
         server.on('connection', socket => calculator.attach('jsonrpcws', socket));
     })
 
-    var client = jsonrpc.createClient();
+    var client = jsonrpc.ws.createClient();
 
     it('should serve commands', function (done)
     {
@@ -50,7 +50,7 @@ describe('test jsonrpcws processing', function ()
     it('should work with proxy commands', async function ()
     {
         var container = metadata(calculator);
-        var calculatorProxy = proxy(container, new LogProcessor(new JsonRpcWs(client.getConnection()), function (cmd, args)
+        var calculatorProxy = proxy(container, new LogProcessor(new JsonRpc(client.getConnection()), function (cmd, args)
         {
             console.log(args);
         }));
@@ -68,7 +68,7 @@ describe('test jsonrpcws processing', function ()
     it('should generate correct proxy', async function ()
     {
         var container = metadata(calculator);
-        var meta = helper(proxy(container, new JsonRpcWs(client.getConnection())), container);
+        var meta = helper(proxy(container, new JsonRpc(client.getConnection())), container);
         assert.ok(meta);
         await meta.reset();
         await meta.increment();
