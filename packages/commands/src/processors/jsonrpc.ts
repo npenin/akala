@@ -1,56 +1,30 @@
 import * as jsonrpcws from '@akala/json-rpc-ws'
-import { CommandNameProcessor } from '../processor'
-import { Writable, Readable } from 'stream';
-import { v4 } from 'uuid'
-import debug from 'debug'
+import { CommandProcessor } from '../processor'
+import { Command } from '../metadata';
 
-const log = debug('akala:commands:jsonrpc')
-
-export class JsonRPC<T> extends CommandNameProcessor<T>
+export class JsonRpc<T> extends CommandProcessor<T>
 {
-    public process(command: string, params: { param: jsonrpcws.SerializableObject[], [key: string]: jsonrpcws.SerializableObject | jsonrpcws.SerializableObject[] | string | number })
+    public process(command: Command, params: { param: jsonrpcws.SerializableObject[], [key: string]: jsonrpcws.SerializableObject | jsonrpcws.SerializableObject[] | string | number })
     {
-        return new Promise<void>((resolve, reject) =>
+        return new Promise<any>((resolve, reject) =>
         {
-            var messageId = v4();
-            var waitingReply = this.stream instanceof Readable;
-            if (waitingReply)
+            var inject = command?.config[this.name]?.inject || command.inject;
+            if (inject)
             {
-                this.stream.on('data', function (replyString: Buffer)
-                {
-                    try
-                    {
-                        log(replyString);
-                        var reply = JSON.parse(replyString.toString());
-                        if (reply.jsonrpc != '2.0')
-                            reject('invalid json rpc reply');
-                        if (reply.id == messageId)
-                        {
-                            if (reply.error)
-                                reject(reply.error);
-                            else
-                                resolve(reply.result);
-                        }
-                    }
-                    catch (e)
-                    {
-                        reject(e);
-                    }
-                })
+                var injectParams = inject;
+                params.param = params.param.filter((v, i) => injectParams[i].substring(0, 'param'.length) == 'param');
             }
-
-            this.stream.write(JSON.stringify({ jsonrpc: '2.0', id: messageId, method: command, params: params }) + '\n', function (error)
+            this.client.sendMethod(command.name, params, function (err: any, result: jsonrpcws.PayloadDataType)
             {
-                if (error)
-                    reject(error);
-                else if (!waitingReply)
-                    resolve();
+                if (err)
+                    reject(err);
+                else
+                    resolve(result);
             });
-            this.stream.on('error', reject);
-        });
+        })
     }
 
-    constructor(private stream: Writable)
+    constructor(private client: jsonrpcws.Connection)
     {
         super('jsonrpc');
     }

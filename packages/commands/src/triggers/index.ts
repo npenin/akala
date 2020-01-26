@@ -1,4 +1,3 @@
-import { trigger as jsonrpcws } from './jsonrpcws'
-import { trigger as stream } from './jsonrpc'
+import { trigger as jsonrpcws } from './jsonrpc'
 
-export { jsonrpcws, stream }
+export { jsonrpcws }
