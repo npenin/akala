@@ -2,28 +2,31 @@ import { Trigger } from '../trigger'
 import { Container } from '../container';
 import debug from 'debug'
 import assert from 'assert'
-import { Connection } from '@akala/json-rpc-ws';
+import { Connection, ws } from '@akala/json-rpc-ws';
 
 
-export var trigger = new Trigger('jsonrpc', function register<T>(container: Container<T>, media: Connection)
+export var trigger = new Trigger('jsonrpc', function register<T>(container: Container<T>, media: ws.SocketAdapter)
 {
-    assert.ok(media instanceof Connection, 'to be attached, the media must be an instance of @akala/json-rpc-ws.Connection');
+    assert.ok(media instanceof ws.SocketAdapter, 'to be attached, the media must be an instance of @akala/json-rpc-ws.Connection');
     const log = debug('akala:commands:jsonrpcws:' + container.name)
-
-    if (!media.parent.getHandler)
-        media.parent.getHandler = function (method: string)
+    new Connection(media, {
+        type: 'client', browser: false, getHandler(method: string)
         {
-            return function (params, reply)
+            return async function (params, reply)
             {
-                container.dispatch(method, Object.assign(params ?? { param: [] }, { _trigger: trigger.name })).then((result: any) =>
+                try
                 {
+                    var result = await container.dispatch(method, Object.assign(params ?? { param: [] }, { _trigger: trigger.name }))
                     reply(null, result);
-                }, (error: any) =>
+                }
+                catch (error)
                 {
                     log(error);
                     reply(error);
-                });
+                }
             }
-        }
+        },
+        disconnected() { }
+    });
 })
 
