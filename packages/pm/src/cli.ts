@@ -229,12 +229,12 @@ if (require.main == module)
         })
 
         if (platform() == 'win32')
-            socket.connect('\\\\?\\pipe\\akala\\pm')
+            socket.connect('\\\\?\\pipe\\pm')
         else
         {
             var config = require(path.join(homedir(), './.pm.config.json'));
 
-            socket.connect(path.join(config.containers.pm[0], './akala-pm.sock'));
+            socket.connect(path.join(config.containers.pm[0], './pm.sock'));
         }
     }
 }
