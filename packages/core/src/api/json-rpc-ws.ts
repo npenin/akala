@@ -127,7 +127,7 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection,
 
     public createClientFromAbsoluteUrl<T extends TClientOneWay & TClientTwoWay>(url: string, clientImpl: T, ...rest: any[]): PromiseLike<T & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy> }>
     {
-        var client = jsonrpc.createClient<TConnection>();
+        var client = jsonrpc.ws.createClient<TConnection>();
         var result = this.createClient<T>(client, clientImpl);
         return new Promise((resolve, reject) =>
         {
@@ -140,7 +140,7 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection,
 
     public createLateBoundClient<T extends TClientOneWay & TClientTwoWay>(clientImpl: T): T & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy>, $connect(url: string, connected: () => void): void }
     {
-        var client = jsonrpc.createClient<TConnection>();
+        var client = jsonrpc.ws.createClient<TConnection>();
         return extend({
             $connect: function (url, connected)
             {
@@ -171,12 +171,12 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection,
                         {
                             reply(null, result);
                         }, function (e)
-                            {
-                                if (e instanceof Error)
-                                    reply({ message: e.message, stack: e.stack, argv: process.argv });
-                                else
-                                    reply(e);
-                            });
+                        {
+                            if (e instanceof Error)
+                                reply({ message: e.message, stack: e.stack, argv: process.argv });
+                            else
+                                reply(e);
+                        });
                     }
                     catch (e)
                     {
@@ -196,12 +196,12 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection,
                         {
                             reply(null, result);
                         }, function (e)
-                            {
-                                if (e instanceof Error)
-                                    reply({ message: e.message, stack: e.stack, argv: process.argv });
-                                else
-                                    reply(e);
-                            });
+                        {
+                            if (e instanceof Error)
+                                reply({ message: e.message, stack: e.stack, argv: process.argv });
+                            else
+                                reply(e);
+                        });
                     }
                     catch (e)
                     {

@@ -16,7 +16,7 @@ import * as pathRegexp from 'path-to-regexp';
 import * as debug from 'debug';
 import { NextFunction } from '../eachAsync';
 import { Route } from './route';
-import pathToRegexp = require('path-to-regexp');
+import pathToRegexp = pathRegexp.pathToRegexp;
 var log = debug('router:layer');
 
 /**
@@ -51,7 +51,7 @@ export class Layer<T extends Function>
     public params: any;
     public path: string;
     protected regexp: LayerRegExp;
-    public keys: pathToRegexp.Key[];
+    public keys: pathRegexp.Key[];
     private isErrorHandler: boolean;
     private isRequestHandler: boolean;
     constructor(path: string, options: LayerOptions, fn: T)
@@ -68,7 +68,7 @@ export class Layer<T extends Function>
         this.name = fn.name || '<anonymous>'
         this.params = undefined
         this.path = undefined
-        this.regexp = pathRegexp(path, this.keys = [], opts);
+        this.regexp = pathToRegexp(path, this.keys = [], opts);
 
         // set fast path flags
         this.regexp.fast_star = path === '*'
