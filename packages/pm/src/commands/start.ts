@@ -2,8 +2,8 @@ import { Container, Processors, CommandProxy } from "@akala/commands";
 import State, { RunningContainer } from "../state";
 import { spawn, ChildProcess } from "child_process";
 import { description } from "../container";
-import unparse from 'yargs-unparser';
-import { TransformOptions, Duplex } from "stream";
+import * as jsonrpc from '@akala/json-rpc-ws'
+import debug from "debug";
 
 export default async function start(this: State, pm: description.pm & Container<State>, name: string, options?: any)
 {
@@ -39,6 +39,8 @@ export default async function start(this: State, pm: description.pm & Container<
     if (options && options.inspect)
         args.unshift('--inspect-brk');
 
+    const log = debug('akala:pm:' + name);
+
     if (!this.isDaemon)
     {
         var cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: true, stdio: ['ignore', 'ignore', 'ignore', 'ipc'] });
@@ -66,7 +68,27 @@ export default async function start(this: State, pm: description.pm & Container<
         var cp = spawn(process.execPath, args, { cwd: process.cwd(), stdio: ['inherit', 'inherit', 'inherit', 'ipc'], shell: false, windowsHide: true });
         if (!container)
         {
-            container = new Container(name, null, new Processors.JsonRPC(new IpcStream(cp))) as RunningContainer;
+            container = new Container(name, null, new Processors.JsonRpc(new jsonrpc.Connection(new IpcAdapter(cp), {
+                type: 'client', browser: false, getHandler(method: string)
+                {
+                    return async function (params, reply)
+                    {
+                        try
+                        {
+                            var result = await container?.dispatch(method, Object.assign(params ?? { param: [] }, { _trigger: 'jsonrpc' }))
+                            reply(null, result);
+                        }
+                        catch (error)
+                        {
+                            log(error);
+                            reply(error);
+                        }
+                    }
+                }
+                , disconnected()
+                {
+                }
+            }))) as RunningContainer;
             container.path = name;
             this.processes.push(container);
         }
@@ -87,33 +109,74 @@ export default async function start(this: State, pm: description.pm & Container<
     }
 };
 
-export class IpcStream extends Duplex
+export class IpcAdapter implements jsonrpc.SocketAdapter
 {
-    constructor(private cp: ChildProcess | NodeJS.Process, options?: TransformOptions)
+    get open() { return !!this.cp.pid };
+    close(): void
     {
-        super(options);
-        this.cp.on('message', (message) =>
+        throw new Error("Method not implemented.");
+    }
+    send(data: string): void
+    {
+        throw new Error("Method not implemented.");
+    }
+    on(event: "message", handler: (this: any, ev: MessageEvent) => void): void;
+    on(event: "open", handler: (this: any) => void): void;
+    on(event: "error", handler: (this: any, ev: Event) => void): void;
+    on(event: "close", handler: (this: any, ev: CloseEvent) => void): void;
+    on(event: "message" | "open" | "error" | "close", handler: (ev?: any) => void): void;
+    on(event: any, handler: any)
+    {
+        switch (event)
         {
-            if (Buffer.isBuffer(message))
-                message = message.toString('utf8');
-            this.push(message + '\n');
-        })
+            case 'message':
+                this.cp.on('message', handler);
+                break;
+            case 'open':
+                handler();
+                break;
+            case 'close':
+                this.cp.on('disconnect', handler);
+                break;
+        }
+    }
+    once(event: "message", handler: (this: any, ev: MessageEvent) => void): void;
+    once(event: "open", handler: (this: any) => void): void;
+    once(event: "error", handler: (this: any, ev: Event) => void): void;
+    once(event: "close", handler: (this: any, ev: CloseEvent) => void): void;
+    once(event: "message" | "open" | "error" | "close", handler: (ev?: any) => void): void
+    {
+        switch (event)
+        {
+            case 'message':
+                this.cp.on('message', handler);
+                break;
+            case 'open':
+                handler();
+                break;
+            case 'close':
+                this.cp.on('disconnect', handler);
+                break;
+        }
+    }
+    constructor(private cp: ChildProcess | NodeJS.Process)
+    {
     }
 
-    _write(chunk: string | Buffer, encoding: string, callback: (error?: any) => void)
-    {
-        // The underlying source only deals with strings.
-        if (Buffer.isBuffer(chunk))
-            chunk = chunk.toString('utf8');
-        if (this.cp.send)
-            this.cp.send(chunk + '\n', callback);
-        else
-            callback(new Error('there is no send method on this process'));
-    }
+    // _write(chunk: string | Buffer, encoding: string, callback: (error?: any) => void)
+    // {
+    //     // The underlying source only deals with strings.
+    //     if (Buffer.isBuffer(chunk))
+    //         chunk = chunk.toString('utf8');
+    //     if (this.cp.send)
+    //         this.cp.send(chunk + '\n', callback);
+    //     else
+    //         callback(new Error('there is no send method on this process'));
+    // }
 
-    _read()
-    {
-    }
+    // _read()
+    // {
+    // }
 }
 
 exports.default.$inject = ['container', 'param.0', 'options']
