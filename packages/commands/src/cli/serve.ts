@@ -126,7 +126,7 @@ export default async function (container: Container<void>, options: { port?: num
         if (platform() == 'win32')
             socketPath = '\\\\?\\pipe\\' + container.name.replace(/\//g, '\\');
         else
-            socketPath = join(process.cwd(), container.name.replace(/\//g, '-') + '.sock');
+            socketPath = join(process.cwd(), container.name.replace(/\//g, '-').replace(/^@/g, '') + '.sock');
 
         server.listen(socketPath);
 
