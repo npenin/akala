@@ -9,3 +9,4 @@ import * as Triggers from './triggers'
 import * as Metadata from './metadata'
 import * as cli from './cli'
 export { Processors, Triggers, Metadata, cli }
+export { NetSocketAdapter } from './cli/serve'
