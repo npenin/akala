@@ -55,7 +55,7 @@ export interface Translator
 
 async function createClient<TConnection extends jsonrpc.Connection>(namespace: string)
 {
-    var client = jsonrpc.createClient<TConnection>();
+    var client = jsonrpc.ws.createClient<TConnection>();
     var resolveUrl = await onResolve<(url: string) => string>('$resolveUrl');
     if (!resolveUrl)
         throw new Error('no url resolver could be found');
