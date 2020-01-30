@@ -2,15 +2,16 @@
 # yarn lockfile v1
 
 
-"@akala/commands@^0.4.10":
-  version "0.4.10"
-  resolved "https://registry.yarnpkg.com/@akala/commands/-/commands-0.4.10.tgz#1be78f688cad9a47cf113dc39f06a5ddade49bd4"
-  integrity sha512-kxBX410D7kV1Uor7pBzf4JOc7ZFuTEw+rdKgFvFvr0fxMZDr6eHxtL8/gFspGnHw812hkK8K832/q0D/RSW/Gw==
+"@akala/commands@^0.4.11":
+  version "0.4.11"
+  resolved "https://registry.yarnpkg.com/@akala/commands/-/commands-0.4.11.tgz#8e384fdb07f44b5193e800e7b53c13308c29793a"
+  integrity sha512-PY7fwlbs1AqjxGjullFKoi8vDA69GcnyJZwnp10VxLHW5WHbV9ff3ZxMnoTD0DFOpDt2lkXQvP84Fereq1Z9mg==
   dependencies:
     "@akala/core" "^2.0.105"
+    "@akala/json-rpc-ws" "^8.0.2"
     debug "^4.1.1"
     split2 "^3.1.1"
-    uuid "^3.3.3"
+    uuid "^3.4.0"
 
 "@akala/core@^2.0.105":
   version "2.0.105"
@@ -39,6 +40,15 @@
     debug "^3.1.0"
     uuid "^3.3.2"
     ws "^6.0.0"
+
+"@akala/json-rpc-ws@^8.0.2":
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/@akala/json-rpc-ws/-/json-rpc-ws-8.0.2.tgz#91215844315e799cd11a690b9a1fe2eff9b8b286"
+  integrity sha512-qYHOJkGfIjiCttfxb/7kECz9jjZATFjZH3ljZCcf6bpzNpZt0jnsd8Z91L80gTgyigekXEeYR8T58SAyFISoVw==
+  dependencies:
+    debug "^4.1.1"
+    uuid "^3.4.0"
+    ws "^7.2.1"
 
 "@babel/code-frame@^7.0.0":
   version "7.5.5"
@@ -114,10 +124,10 @@
   resolved "https://registry.yarnpkg.com/@types/yargs-parser/-/yargs-parser-13.1.0.tgz#c563aa192f39350a1d18da36c5a8da382bbd8228"
   integrity sha512-gCubfBUZ6KxzoibJ+SCUc/57Ms1jz5NjHe4+dI2krNmU5zCPAphyLJYyTOg06ueIyfj+SaCUqmzun7ImlxDcKg==
 
-"@types/yargs@^15.0.1":
-  version "15.0.1"
-  resolved "https://registry.yarnpkg.com/@types/yargs/-/yargs-15.0.1.tgz#9266a9d7be68cfcc982568211085a49a277f7c96"
-  integrity sha512-sYlwNU7zYi6eZbMzFvG6eHD7VsEvFdoDtlD7eI1JTg7YNnuguzmiGsc6MPSq5l8n+h21AsNof0je+9sgOe4+dg==
+"@types/yargs@^15.0.2":
+  version "15.0.2"
+  resolved "https://registry.yarnpkg.com/@types/yargs/-/yargs-15.0.2.tgz#0bf292a0369493cee030e2e4f4ff84f5982b028d"
+  integrity sha512-hFkuAp58M2xOc1QgJhkFrLMnqa8KWTFRTnzrI1zlEcOfg3DZ0eH3aPAo/N6QlVVu8E4KS4xD1jtEG3rdQYFmIg==
   dependencies:
     "@types/yargs-parser" "*"
 
@@ -2443,10 +2453,15 @@ utils-merge@^1.0.0:
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
 
-uuid@^3.3.2, uuid@^3.3.3:
+uuid@^3.3.2:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.3.tgz#4568f0216e78760ee1dbf3a4d2cf53e224112866"
   integrity sha512-pW0No1RGHgzlpHJO1nsVrHKpOEIxkGg1xB+v0ZmdNH5OAeAwzAVrCnI2/6Mtx+Uys6iaylxa+D3g4j63IKKjSQ==
+
+uuid@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
+  integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
 
 validate-npm-package-license@^3.0.1:
   version "3.0.4"
