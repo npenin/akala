@@ -5,6 +5,7 @@ import { Container } from '../container';
 import { join } from 'path';
 import * as jsonrpcws from '@akala/json-rpc-ws';
 import { EventEmitter } from 'events';
+import { unlink } from 'fs';
 
 export class NetSocketAdapter implements jsonrpcws.SocketAdapter
 {
@@ -111,6 +112,8 @@ export default async function (container: Container<void>, options: { port?: num
     if (!args || args.length == 0)
         args = ['local'];
 
+    var stops: (() => Promise<void>)[] = [];
+
     if (args.indexOf('local') > -1)
     {
         let server = new Server((socket) =>
@@ -119,11 +122,35 @@ export default async function (container: Container<void>, options: { port?: num
             container.attach('jsonrpc', new NetSocketAdapter(socket));
         });
 
+        var socketPath: string;
         if (platform() == 'win32')
-            server.listen('\\\\?\\pipe\\' + container.name.replace(/\//g, '\\'))
+            socketPath = '\\\\?\\pipe\\' + container.name.replace(/\//g, '\\');
         else
-            server.listen(join(process.cwd(), container.name.replace(/\//g, '-') + '.sock'));
+            socketPath = join(process.cwd(), container.name.replace(/\//g, '-') + '.sock');
+
+        server.listen(socketPath);
+
+        stops.push(() =>
+        {
+            return new Promise((resolve, reject) =>
+            {
+                server.close(function (err)
+                {
+                    if (err)
+                        reject(err);
+                    else
+                        unlink(socketPath, function (err)
+                        {
+                            if (err)
+                                reject(err);
+                            else
+                                resolve();
+                        });
+                })
+            });
+        });
     }
+
     if (args.indexOf('http') > -1 || args.indexOf('ws') > -1)
     {
         let port: number;
@@ -151,6 +178,20 @@ export default async function (container: Container<void>, options: { port?: num
                 })
             }
             server.listen(port);
+
+            stops.push(() =>
+            {
+                return new Promise<void>((resolve, reject) =>
+                {
+                    server.close(function (err)
+                    {
+                        if (err)
+                            reject(err);
+                        else
+                            resolve();
+                    })
+                })
+            })
         }
         else
         {
@@ -167,9 +208,29 @@ export default async function (container: Container<void>, options: { port?: num
                 })
             }
             server.listen(port);
+            stops.push(() =>
+            {
+                return new Promise<void>((resolve, reject) =>
+                {
+                    server.close(function (err)
+                    {
+                        if (err)
+                            reject(err);
+                        else
+                            resolve();
+                    });
+                });
+            })
+
         }
     }
+
     console.log('server listening');
+
+    return function ()
+    {
+        return Promise.all(stops.map(i => i()));
+    }
 }
 
 exports.default.$inject = ['container', 'options'];
