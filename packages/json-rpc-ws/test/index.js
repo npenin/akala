@@ -11,7 +11,7 @@ Code.settings.truncateMessages = false;
 describe('json-rpc ws', () =>
 {
 
-  const server = JsonRpcWs.ws.createServer();
+  const server = JsonRpcWs.ws.createServer({ host: 'localhost', port: 8081 });
   const client = JsonRpcWs.ws.createClient();
   //const delayBuffer = [];
 
@@ -36,8 +36,7 @@ describe('json-rpc ws', () =>
 
     return new Promise((resolve) =>
     {
-
-      server.start(new JsonRpcWs.ws.ServerAdapter({ host: 'localhost', port: 8081 }), function ()
+      server.start(null, function ()
       {
         client.connect('ws://localhost:8081', resolve);
       });

@@ -4,6 +4,7 @@ import { Base } from './base';
 import { default as Errors } from './errors';
 import { Connection, ReplyCallback, PayloadDataType, SocketAdapter } from './connection';
 import * as debug from 'debug';
+import assert = require('assert');
 const logger = debug('json-rpc-ws');
 
 export interface ServerAdapter
@@ -11,7 +12,7 @@ export interface ServerAdapter
   close(): void;
   onConnection(arg1: (socket: SocketAdapter) => void): void;
   once(event: 'listening', callback: () => void): void;
-
+  start(): void;
 }
 
 /**
@@ -20,9 +21,7 @@ export interface ServerAdapter
  */
 export default class Server<TConnection extends Connection = Connection> extends Base<TConnection>
 {
-  private server?: ServerAdapter;
-
-  constructor()
+  constructor(private server?: ServerAdapter)
   {
     super('server');
     logger('new Server');
@@ -35,18 +34,21 @@ export default class Server<TConnection extends Connection = Connection> extends
  * @param {function} callback - optional callback which is called once the server has started listening.
  * @public
  */
-  public start(server: ServerAdapter, callback?: () => void)
+  public start(server?: ServerAdapter, callback?: () => void)
   {
 
     logger('Server start');
-
-    this.server = server;
+    if (server && this.server && server !== this.server)
+      assert.fail('a ServerAdapter was already defined at construction, and a different server is provided at start');
+    if (server)
+      this.server = server;
+    assert.ok(this.server, 'no ServerAdapter was defined (neither at construction nor at start)');
+    this.server?.start();
 
     if (typeof callback === 'function')
-    {
-      this.server.once('listening', callback);
-    }
-    this.server.onConnection(this.connected.bind(this));
+      this.server?.once('listening', callback);
+
+    this.server?.onConnection(this.connected.bind(this));
   };
 
 

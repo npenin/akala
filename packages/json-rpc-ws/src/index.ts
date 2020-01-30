@@ -3,8 +3,6 @@ import { Connection, SerializableObject, PayloadDataType, SerializedBuffer, Payl
 import { default as Client } from './ws/client';
 import { default as Server, ServerAdapter } from './server';
 import { default as Errors, Payload as ErrorPayload } from './errors';
-import * as debug from 'debug';
-const logger = debug('json-rpc-ws');
 
 /**
  * json-rpc-ws: a node.js json-rpc websocket client
@@ -12,23 +10,6 @@ const logger = debug('json-rpc-ws');
  * MIT Licensed
  */
 
+import * as ws from './ws';
+export { ws };
 export { Server, Client, ServerAdapter, SocketAdapter, Errors, Connection, SerializableObject, PayloadDataType, SerializedBuffer, Payload, ErrorPayload };
-import wsServerAdapter from './ws/server'
-import { WsSocketAdapter } from './ws/connection';
-export namespace ws
-{
-  export var ServerAdapter = wsServerAdapter;
-  export var SocketAdapter = WsSocketAdapter;
-
-  export function createServer<TConnection extends Connection>()
-  {
-    logger('createServer');
-    return new Server<TConnection>();
-  };
-
-  export function createClient<TConnection extends Connection>()
-  {
-    logger('createClient');
-    return new Client<TConnection>();
-  };
-}

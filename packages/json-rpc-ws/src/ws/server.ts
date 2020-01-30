@@ -1,34 +1,47 @@
 'use strict';
 
-import { ServerAdapter } from '../server';
+import { ServerAdapter, default as BaseServer } from '../server';
 import * as ws from 'ws';
-import { SocketAdapter } from '../connection';
+import { SocketAdapter, Connection } from '../connection';
 
-export default class Adapter implements ServerAdapter
+
+export class Adapter implements ServerAdapter
 {
-  readonly server: ws.Server;
+  private server?: ws.Server;
 
   close(): void
   {
-    this.server.close();
+    this.server?.close();
   }
 
   onConnection(handler: (socket: SocketAdapter<ws | WebSocket>) => void): void
   {
-    this.server.on('connection', handler);
+    this.server?.on('connection', handler);
   }
 
   once(event: 'listening', callback: () => void): void
   {
-    this.server.on(event, callback);
+    this.server?.on(event, callback);
+  }
+
+  start()
+  {
+    this.server = new ws.Server(this.options);
   }
 
   /**
    *
    */
-  constructor(options?: ws.ServerOptions)
+  constructor(private options?: ws.ServerOptions)
   {
-    this.server = new ws.Server(options);
   }
 }
 
+
+export default class Server<TConnection extends Connection = Connection> extends BaseServer<TConnection>
+{
+  constructor(adapter?: Adapter)
+  {
+    super(adapter);
+  }
+}
