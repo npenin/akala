@@ -1,13 +1,12 @@
 import { Trigger } from '../trigger'
 import { Container } from '../container';
 import debug from 'debug'
-import assert from 'assert'
-import { Connection, ws } from '@akala/json-rpc-ws';
+import { Connection, SocketAdapter } from '@akala/json-rpc-ws';
 
 
-export var trigger = new Trigger('jsonrpc', function register<T>(container: Container<T>, media: ws.SocketAdapter)
+export var trigger = new Trigger('jsonrpc', function register<T>(container: Container<T>, media: SocketAdapter)
 {
-    assert.ok(media instanceof ws.SocketAdapter, 'to be attached, the media must be an instance of @akala/json-rpc-ws.Connection');
+    // assert.ok(media instanceof ws.SocketAdapter, 'to be attached, the media must be an instance of @akala/json-rpc-ws.Connection');
     const log = debug('akala:commands:jsonrpcws:' + container.name)
     new Connection(media, {
         type: 'client', browser: false, getHandler(method: string)
