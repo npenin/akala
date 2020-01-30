@@ -75,7 +75,7 @@ export default async function start(this: State, pm: description.pm & Container<
                     {
                         try
                         {
-                            var result = await container?.dispatch(method, Object.assign(params ?? { param: [] }, { _trigger: 'jsonrpc' }))
+                            var result = await (container as Container<void>).dispatch(method, Object.assign(params ?? { param: [] }, { _trigger: 'jsonrpc' }))
                             reply(null, result);
                         }
                         catch (error)
@@ -124,8 +124,7 @@ export class IpcAdapter implements jsonrpc.SocketAdapter
     on(event: "open", handler: (this: any) => void): void;
     on(event: "error", handler: (this: any, ev: Event) => void): void;
     on(event: "close", handler: (this: any, ev: CloseEvent) => void): void;
-    on(event: "message" | "open" | "error" | "close", handler: (ev?: any) => void): void;
-    on(event: any, handler: any)
+    on(event: "message" | "open" | "error" | "close", handler: (ev?: any) => void): void
     {
         switch (event)
         {
@@ -159,6 +158,7 @@ export class IpcAdapter implements jsonrpc.SocketAdapter
                 break;
         }
     }
+
     constructor(private cp: ChildProcess | NodeJS.Process)
     {
     }
