@@ -3,7 +3,6 @@ import * as path from 'path'
 import { Container, Processors } from '@akala/commands';
 import yargs from 'yargs-parser'
 import { lstatSync } from 'fs';
-import { IpcStream } from './commands/start';
 
 (async function (folder)
 {

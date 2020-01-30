@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 import * as path from 'path'
-import { Container, Processors, proxy, metadata } from '@akala/commands';
+import { Container, Processors, proxy, metadata, NetSocketAdapter } from '@akala/commands';
 import yargs from 'yargs-parser'
 import { Socket } from 'net';
 import { platform, homedir } from 'os';
-import start from './commands/start'
+import start, { IpcAdapter } from './commands/start'
+import * as jsonrpcws from '@akala/json-rpc-ws';
 
 const tableChars = {
     'top': '─'
@@ -39,10 +40,13 @@ if (require.main == module)
     {
         var socket = new Socket();
 
+
+
         socket.on('connect', async function ()
         {
             socket.setEncoding('utf-8');
-            let container = new Container('pm', {}, new Processors.JsonRPC(socket));
+            let container = new Container('pm', {});
+            container.processor = new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(socket), container));
 
             try
             {
