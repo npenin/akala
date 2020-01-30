@@ -5,6 +5,8 @@ import { promises, exists, unlink } from 'fs';
 import { join } from 'path';
 import { promisify } from 'util';
 import { description } from '../container';
+import serve from '@akala/commands/dist/cli/serve';
+import { Container } from '@akala/commands';
 
 const existsAsync = promisify(exists);
 
@@ -36,34 +38,8 @@ export default async function (this: State, container: RunningContainer<State> &
     this.processes.push(container);
     container.running = true;
 
-
-    var server = new Server((socket) =>
-    {
-        socket.setEncoding('utf-8');
-        container.attach('jsonrpc', socket);
-    });
-
-    if (platform() == 'win32')
-        server.listen('\\\\?\\pipe\\akala\\pm')
-    else
-    {
-        var socketPath = join(this.config.containers.pm[0], './akala-pm.sock');
-
-        server.listen(socketPath);
-
-        process.on('SIGINT', () =>
-        {
-            server.close(function (err)
-            {
-                unlink(socketPath, function (err)
-                {
-                    process.exit();
-                });
-            })
-        })
-    }
-
-    console.log('server listening');
+    var stop = await serve(container as Container<any>, { _: ['local'] });
+    process.on('SIGINT', stop);
 
     if (process.disconnect)
     {
