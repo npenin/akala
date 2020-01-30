@@ -27,7 +27,7 @@ describe('test jsonrpcws processing', function ()
                 throw new Error('server is not assigned');
             client.connect('ws://localhost:' + server.options.port, done);
         });
-        server.on('connection', socket => calculator.attach('jsonrpcws', socket));
+        server.on('connection', socket => calculator.attach('jsonrpc', new jsonrpc.ws.SocketAdapter(socket, false)));
     })
 
     var client = jsonrpc.ws.createClient();
@@ -36,7 +36,7 @@ describe('test jsonrpcws processing', function ()
     {
         calculator.dispatch('reset')
         assert.equal(calculator.state.value, 0)
-        client.send('increment', null, function (error?)
+        client.send('increment', undefined, function (error?)
         {
             assert.ifError(error);
             assert.equal(calculator.state.value, 1)
