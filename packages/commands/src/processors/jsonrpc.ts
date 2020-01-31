@@ -1,10 +1,10 @@
 import * as jsonrpcws from '@akala/json-rpc-ws'
-import { CommandNameProcessor } from '../processor'
+import { CommandProcessor } from '../processor'
 import { Command } from '../metadata';
 import { Container } from '../container';
 import { IDebugger } from 'debug';
 
-export class JsonRpc<T> extends CommandNameProcessor<T>
+export class JsonRpc<T> extends CommandProcessor<T>
 {
     public static getConnection(socket: jsonrpcws.SocketAdapter, container: Container<any>, log?: IDebugger): jsonrpcws.Connection
     {
@@ -35,11 +35,19 @@ export class JsonRpc<T> extends CommandNameProcessor<T>
         })
     }
 
-    public process(command: string, params: { param: jsonrpcws.SerializableObject[], [key: string]: jsonrpcws.SerializableObject | jsonrpcws.SerializableObject[] | string | number })
+    public process(command: Command, params: { param: jsonrpcws.SerializableObject[], [key: string]: jsonrpcws.SerializableObject | jsonrpcws.SerializableObject[] | string | number })
     {
         return new Promise<any>((resolve, reject) =>
         {
-            this.client.sendMethod(command, params, function (err: any, result: jsonrpcws.PayloadDataType)
+            if (command.inject)
+            {
+                var param = command.inject.map((v, i) =>
+                {
+                    return { name: v, value: params.param[i] }
+                }).filter(p => p.name.startsWith('param.'));
+                params.param = param.map(p => p.value);
+            }
+            this.client.sendMethod(command.name, params, function (err: any, result: jsonrpcws.PayloadDataType)
             {
                 if (err)
                     reject(err);
