@@ -1,7 +1,6 @@
 import State, { RunningContainer } from '../state'
-import { Server } from 'net';
-import { platform, homedir } from 'os';
-import { promises, exists, unlink } from 'fs';
+import { homedir } from 'os';
+import { promises, exists } from 'fs';
 import { join } from 'path';
 import { promisify } from 'util';
 import { description } from '../container';
