@@ -18,15 +18,22 @@ export function metadata(container: Container<any>): meta.Container
     return metacontainer;
 }
 
-export function proxy<T = any>(metacontainer: meta.Container, processor: Processor<T>)
+export function proxy<T = any>(metacontainer: meta.Container, processor: Processor<T>): Container<T>
+export function proxy<T = any>(metacontainer: meta.Container, processor: (c: Container<T>) => Processor<T>): Container<T>
+export function proxy<T = any>(metacontainer: meta.Container, processor: Processor<T> | ((c: Container<T>) => Processor<T>)): Container<T>
 {
+
     var container = new Container<T>(metacontainer.name, undefined as any);
+    if (processor instanceof Function)
+    {
+        processor = processor(container);
+    }
 
     metacontainer.commands.forEach(cmd =>
     {
         if (cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata')
             return;
-        var proxycmd = container.register(new CommandProxy(processor, cmd.name, cmd.inject));
+        var proxycmd = container.register(new CommandProxy(processor as Processor<T>, cmd.name, cmd.inject));
         proxycmd.config = Object.assign({}, cmd.config);
     });
 
