@@ -114,11 +114,13 @@ export class IpcAdapter implements jsonrpc.SocketAdapter
     get open() { return !!this.cp.pid };
     close(): void
     {
-        throw new Error("Method not implemented.");
     }
     send(data: string): void
     {
-        throw new Error("Method not implemented.");
+        if (this.cp.send)
+            this.cp.send(data + '\n');
+        else
+            console.warn(`process ${this.cp.pid} does not support send over IPC`);
     }
     on(event: "message", handler: (this: any, ev: MessageEvent) => void): void;
     on(event: "open", handler: (this: any) => void): void;
