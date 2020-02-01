@@ -23,6 +23,8 @@ export class JsonRpc<T> extends CommandProcessor<T>
                 {
                     try
                     {
+                        if (log)
+                            log(params);
                         var result = await container.dispatch(method, Object.assign(params ?? { param: [] }, { _trigger: 'jsonrpc' }))
                         reply(null, result);
                     }
