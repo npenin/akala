@@ -45,12 +45,11 @@ if (require.main == module)
         socket.on('connect', async function ()
         {
             socket.setEncoding('utf-8');
-            let container = new Container('pm', {});
-            container.processor = new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(socket), container));
+            var processor = new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(socket)));
 
             try
             {
-                var result = await container.dispatch(args._[0], { options: args, param: args._.slice(1) });
+                var result = await processor.process(args._[0], { options: args, param: args._.slice(1) } as any);
 
                 socket.end(() =>
                 {
