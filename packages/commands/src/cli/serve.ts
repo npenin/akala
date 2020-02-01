@@ -11,7 +11,7 @@ export class NetSocketAdapter implements jsonrpcws.SocketAdapter
 {
     constructor(private socket: Socket)
     {
-
+        socket.setNoDelay(true);
     }
 
     private buffer: Buffer | null = null;
