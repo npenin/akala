@@ -26,6 +26,25 @@ export default
             })
 
         },
+        async update(packageName: string, path: string)
+        {
+            await new Promise((resolve, reject) =>
+            {
+                var err = ''
+                cp
+                    .spawn(npm, ['up', packageName, '--prefix', path, '--production'], { stdio: ['ignore', 'ignore', 'pipe'], shell: false, windowsHide: true })
+                    .on('error', reject).on('exit', (code) =>
+                    {
+                        if (code == 0)
+                            resolve()
+                        reject(new Error('npm exited with error code ' + code + '\n' + err))
+                    }).stderr.on('data', (chunk) =>
+                    {
+                        err += chunk;
+                    });
+            })
+
+        },
         async link(packageName: string, path: string)
         {
             await new Promise((resolve, reject) =>
