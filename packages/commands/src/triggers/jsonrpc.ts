@@ -1,7 +1,7 @@
 import { Trigger } from '../trigger'
 import { Container } from '../container';
 import debug from 'debug'
-import { Connection, SocketAdapter } from '@akala/json-rpc-ws';
+import { SocketAdapter } from '@akala/json-rpc-ws';
 import { JsonRpc } from '../processors';
 
 
