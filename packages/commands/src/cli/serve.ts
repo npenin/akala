@@ -44,10 +44,13 @@ export class NetSocketAdapter implements jsonrpcws.SocketAdapter
                     this.dataEventRegistered = true;
                     this.socket.on('data', (data) =>
                     {
+                        if (!Buffer.isBuffer(data))
+                            data = Buffer.from(data);
                         if (!this.buffer)
                             this.buffer = data;
                         else
                             this.buffer = Buffer.concat([this.buffer, data]);
+
                         if (this.buffer.toString('utf8', this.buffer.length - 2) == '}\n')
                         {
                             this.ee.emit('message', this.buffer.toString('utf8'));
