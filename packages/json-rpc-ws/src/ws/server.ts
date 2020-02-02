@@ -7,7 +7,7 @@ import { SocketAdapter, Connection } from '../connection';
 
 export class Adapter implements ServerAdapter
 {
-  private server?: ws.Server;
+  public server?: ws.Server;
 
   close(): void
   {
