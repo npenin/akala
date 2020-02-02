@@ -3,12 +3,13 @@ import { CommandProcessor, CommandNameProcessor } from '../processor'
 import { Command } from '../metadata';
 import { Container } from '../container';
 import { IDebugger } from 'debug';
+import { Local } from './local';
 
 export class JsonRpc<T> extends CommandProcessor<T>
 {
     public static getConnection(socket: jsonrpcws.SocketAdapter, container?: Container<any>, log?: IDebugger): jsonrpcws.Connection
     {
-        return new jsonrpcws.Connection(socket, {
+        var connection = new jsonrpcws.Connection(socket, {
             type: 'client',
             browser: false,
             disconnected()
@@ -25,7 +26,14 @@ export class JsonRpc<T> extends CommandProcessor<T>
                     {
                         if (log)
                             log(params);
-                        var result = await container.dispatch(method, Object.assign(params ?? { param: [] }, { _trigger: 'jsonrpc' }))
+
+                        var cmd = container.resolve(method);
+                        if (!cmd)
+                            throw new Error(`Command with name ${method} could not be found`);
+
+                        var result = await Local.execute(cmd, cmd.handler, container, Object.assign(params ?? { param: [] }, {
+                            _trigger: 'jsonrpc', containerAsConnection: new Container(container?.name + '-client', null, new JsonRpc(connection))
+                        }))
                         reply(null, result);
                     }
                     catch (error)
@@ -36,7 +44,9 @@ export class JsonRpc<T> extends CommandProcessor<T>
                     }
                 }
             }
-        })
+        });
+
+        return connection;
     }
 
     public process(command: string, params: { param: jsonrpcws.SerializableObject[], [key: string]: jsonrpcws.SerializableObject | jsonrpcws.SerializableObject[] | string | number }): Promise<any>
