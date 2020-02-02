@@ -17,7 +17,8 @@ export class Local<T> extends CommandProcessor<T>
 
         if (param._trigger === 'proxy')
             inject = undefined;
-
+        if (param._trigger && cmd.config && cmd.config[param._trigger] && cmd.config[param._trigger]?.inject)
+            inject = cmd.config[param._trigger]?.inject;
         Object.keys(param).forEach((key) => injector.register(key, param[key]));
         if (!inject)
             inject = param.param.map((a, i) => 'param.' + i);
