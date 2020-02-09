@@ -106,6 +106,98 @@ export class Container<TState> extends akala.Injector
     }
 }
 
+export function lazy<T extends object>(ctor: () => T): T
+{
+    var instance: T = null;
+    return new Proxy<T>({} as any,
+        {
+            getPrototypeOf?(target: T): object | null
+            {
+                if (!instance)
+                    instance = ctor();
+                return Reflect.getPrototypeOf(instance);
+            },
+            setPrototypeOf?(target: T, v: any): boolean
+            {
+                if (!instance)
+                    instance = ctor();
+                return Reflect.setPrototypeOf(instance, v);
+            },
+            isExtensible?(target: T): boolean
+            {
+                if (!instance)
+                    instance = ctor();
+                return Reflect.isExtensible(instance);
+            },
+            preventExtensions?(target: T): boolean
+            {
+                if (!instance)
+                    instance = ctor();
+                return Reflect.preventExtensions(instance);
+            },
+            getOwnPropertyDescriptor?(target: T, p: PropertyKey): PropertyDescriptor | undefined
+            {
+                if (!instance)
+                    instance = ctor();
+                return Reflect.getOwnPropertyDescriptor(instance, p);
+            },
+            has?(target: T, p: PropertyKey): boolean
+            {
+                if (!instance)
+                    instance = ctor();
+                return Reflect.has(p);
+            },
+            get?(target: T, p: PropertyKey, receiver: any): any
+            {
+                if (!instance)
+                    instance = ctor();
+                return Reflect.get(instance, p);
+            },
+            set?(target: T, p: PropertyKey, value: any, receiver: any): boolean
+            {
+                if (!instance)
+                    instance = ctor();
+                return Reflect.set(p, value);
+            },
+            deleteProperty?(target: T, p: PropertyKey): boolean
+            {
+                if (!instance)
+                    instance = ctor();
+                return Reflect.deleteProperty(p);
+            },
+            defineProperty?(target: T, p: PropertyKey, attributes: PropertyDescriptor): boolean
+            {
+                if (!instance)
+                    instance = ctor();
+                return Reflect.defineProperty(p, attributes);
+            },
+            enumerate?(target: T): PropertyKey[]
+            {
+                if (!instance)
+                    instance = ctor();
+                return Reflect.enumerate();
+            },
+            ownKeys?(target: T): PropertyKey[]
+            {
+                if (!instance)
+                    instance = ctor();
+                return Reflect.ownKeys();
+            },
+            apply?(target: T, thisArg: any, argArray?: any): any
+            {
+                if (!instance)
+                    instance = ctor();
+                return Reflect.apply(instance, thisArg, argArray);
+            },
+            construct?(target: T, argArray: any, newTarget?: any): object
+            {
+                if (!instance)
+                    instance = ctor();
+                return Reflect.construct(instance, argArray, newTarget);
+            }
+        });
+}
+
 /*
 var files: { [key: string]: Command[] }
 
