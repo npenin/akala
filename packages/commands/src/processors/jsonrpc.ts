@@ -1,7 +1,7 @@
 import * as jsonrpcws from '@akala/json-rpc-ws'
 import { CommandProcessor, CommandNameProcessor } from '../processor'
 import { Command } from '../metadata';
-import { Container } from '../container';
+import { Container, lazy } from '../container';
 import { IDebugger } from 'debug';
 import { Local } from './local';
 
@@ -32,7 +32,7 @@ export class JsonRpc<T> extends CommandProcessor<T>
                             throw new Error(`Command with name ${method} could not be found`);
 
                         var result = await Local.execute(cmd, cmd.handler, container, Object.assign(params ?? { param: [] }, {
-                            _trigger: 'jsonrpc', containerAsConnection: new Container(container?.name + '-client', null, new JsonRpc(connection))
+                            _trigger: 'jsonrpc', containerAsConnection: lazy(() => new Container(container?.name + '-client', null, new JsonRpc(connection)))
                         }))
                         reply(null, result);
                     }
