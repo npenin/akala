@@ -108,92 +108,95 @@ export class Container<TState> extends akala.Injector
 
 export function lazy<T extends object>(ctor: () => T): T
 {
-    var instance: T = null;
+    var instance: T | null = null;
     return new Proxy<T>({} as any,
         {
-            getPrototypeOf?(target: T): object | null
+            getPrototypeOf(target: T): object | null
             {
                 if (!instance)
                     instance = ctor();
                 return Reflect.getPrototypeOf(instance);
             },
-            setPrototypeOf?(target: T, v: any): boolean
+            setPrototypeOf(target: T, v: any): boolean
             {
                 if (!instance)
                     instance = ctor();
                 return Reflect.setPrototypeOf(instance, v);
             },
-            isExtensible?(target: T): boolean
+            isExtensible(target: T): boolean
             {
                 if (!instance)
                     instance = ctor();
                 return Reflect.isExtensible(instance);
             },
-            preventExtensions?(target: T): boolean
+            preventExtensions(target: T): boolean
             {
                 if (!instance)
                     instance = ctor();
                 return Reflect.preventExtensions(instance);
             },
-            getOwnPropertyDescriptor?(target: T, p: PropertyKey): PropertyDescriptor | undefined
+            getOwnPropertyDescriptor(target: T, p: PropertyKey): PropertyDescriptor | undefined
             {
                 if (!instance)
                     instance = ctor();
                 return Reflect.getOwnPropertyDescriptor(instance, p);
             },
-            has?(target: T, p: PropertyKey): boolean
+            has(target: T, p: PropertyKey): boolean
             {
                 if (!instance)
                     instance = ctor();
-                return Reflect.has(p);
+                return Reflect.has(instance, p);
             },
-            get?(target: T, p: PropertyKey, receiver: any): any
+            get(target: T, p: PropertyKey, receiver: any): any
             {
                 if (!instance)
                     instance = ctor();
                 return Reflect.get(instance, p);
             },
-            set?(target: T, p: PropertyKey, value: any, receiver: any): boolean
+            set(target: T, p: PropertyKey, value: any, receiver: any): boolean
             {
                 if (!instance)
                     instance = ctor();
-                return Reflect.set(p, value);
+                return Reflect.set(instance, p, value);
             },
-            deleteProperty?(target: T, p: PropertyKey): boolean
+            deleteProperty(target: T, p: PropertyKey): boolean
             {
                 if (!instance)
                     instance = ctor();
-                return Reflect.deleteProperty(p);
+                return Reflect.deleteProperty(instance, p);
             },
-            defineProperty?(target: T, p: PropertyKey, attributes: PropertyDescriptor): boolean
+            defineProperty(target: T, p: PropertyKey, attributes: PropertyDescriptor): boolean
             {
                 if (!instance)
                     instance = ctor();
-                return Reflect.defineProperty(p, attributes);
+                return Reflect.defineProperty(instance, p, attributes);
             },
-            enumerate?(target: T): PropertyKey[]
+            enumerate(target: T): PropertyKey[]
             {
                 if (!instance)
                     instance = ctor();
-                return Reflect.enumerate();
+                var result: PropertyKey[] = [];
+                for (var x of Reflect.enumerate(instance as any))
+                    result.push(x);
+                return result;
             },
-            ownKeys?(target: T): PropertyKey[]
+            ownKeys(target: T): PropertyKey[]
             {
                 if (!instance)
                     instance = ctor();
-                return Reflect.ownKeys();
+                return Reflect.ownKeys(instance);
             },
-            apply?(target: T, thisArg: any, argArray?: any): any
+            apply(target: T, thisArg: any, argArray?: any): any
             {
                 if (!instance)
                     instance = ctor();
-                return Reflect.apply(instance, thisArg, argArray);
+                return Reflect.apply(instance as any, thisArg, argArray);
             },
-            construct?(target: T, argArray: any, newTarget?: any): object
+            construct(target: T, argArray: any, newTarget?: any): object
             {
                 if (!instance)
                     instance = ctor();
-                return Reflect.construct(instance, argArray, newTarget);
+                return Reflect.construct(instance as any, argArray, newTarget);
             }
         });
 }
