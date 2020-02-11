@@ -3,6 +3,7 @@ import * as path from 'path'
 import { Container, Processors } from '@akala/commands';
 import yargs from 'yargs-parser'
 import { lstatSync } from 'fs';
+import { IpcAdapter } from './commands/start';
 
 (async function (folder)
 {
@@ -34,7 +35,7 @@ import { lstatSync } from 'fs';
         {
             // cliContainer.attach('jsonrpc', new IpcStream(process));
             var args = yargs(process.argv.slice(3))
-            cliContainer.dispatch(cliContainer.resolve('$init') || '$serve', { options: args, param: args._, _trigger: 'fs' });
+            cliContainer.dispatch(cliContainer.resolve('$init') || '$serve', { options: args, param: args._, _trigger: 'fs', pm: new Container('pm', new Processors.JsonRpc(Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer))) });
         }
     });
 

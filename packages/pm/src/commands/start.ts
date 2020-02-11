@@ -114,6 +114,7 @@ export class IpcAdapter implements jsonrpc.SocketAdapter
     get open() { return !!this.cp.pid };
     close(): void
     {
+        this.cp.disconnect();
     }
     send(data: string): void
     {
