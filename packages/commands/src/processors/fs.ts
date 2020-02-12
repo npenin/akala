@@ -93,8 +93,11 @@ export class FileSystem<T> extends CommandProcessor<T>
                     let source = cmd.config.fs.source || cmd.config.fs.path;
                     let otherConfigsFile: string;
                     otherConfigsFile = path.join(path.dirname(source), path.basename(source, path.extname(source))) + '.json';
-                    if (existsSync(otherConfigsFile))
-                        cmd = configure(require(path.resolve(otherConfigsFile)))(cmd) as any;
+                    if (existsSync(path.resolve(otherConfigsFile)))
+                    {
+                        var otherConfigs = require(path.resolve(otherConfigsFile));
+                        cmd = configure(otherConfigs)(cmd) as any;
+                    }
                     if (!cmd.config.fs.inject)
                     {
                         var params = [];
