@@ -35,7 +35,10 @@ import { IpcAdapter } from './commands/start';
         {
             // cliContainer.attach('jsonrpc', new IpcStream(process));
             var args = yargs(process.argv.slice(3))
-            cliContainer.dispatch(cliContainer.resolve('$init') || '$serve', { options: args, param: args._, _trigger: 'fs', pm: new Container('pm', new Processors.JsonRpc(Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer))) });
+            var stop = cliContainer.dispatch(cliContainer.resolve('$init') || '$serve', { options: args, param: args._, _trigger: 'fs', pm: new Container('pm', new Processors.JsonRpc(Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer))) });
+
+            if (stop && typeof stop == 'function')
+                process.on('SIGINT', stop);
         }
     });
 
