@@ -71,14 +71,7 @@ export default async function generate(name: string, folder?: string, outputFile
     {
 
         await write(output, `\t\tdispatch (cmd:'${cmd.name}'`);
-        if (cmd.inject && cmd.inject.length)
-        {
-            await core.eachAsync(cmd.inject, async function (i)
-            {
-                await write(output, `, ${i}`);
-            });
-        }
-        else if (cmd.config.fs)
+        if (cmd.config.fs)
         {
             let config = cmd.config.fs as jsonObject & FileSystemConfiguration;
             var filePath = path.relative(outputFolder, config.source || config.path);
@@ -87,11 +80,22 @@ export default async function generate(name: string, folder?: string, outputFile
             if (config.inject)
             {
                 await write(output, ', ...args:[');
-                await write(output, config.inject.filter(p => p.startsWith('param.')).map(p => `Argument${p.substr('param.'.length)}<typeof import('./${filePath}').default>`).join(', '));
+                var args: string[] = [];
+                config.inject.forEach((p, i) =>
+                {
+                    if (p.startsWith('param.'))
+                        args.push(`Argument${i}<typeof import('./${filePath}').default>`)
+                })
+                await write(output, args.join(', '));
                 await write(output, `]): ReturnType<typeof import('./${filePath}').default>\n`);
             }
             else
                 await write(output, `, ...args:Arguments<typeof import('./${filePath}').default>): ReturnType<typeof import('./${filePath}').default>\n`);
+        }
+        else if (cmd.inject && cmd.inject.length)
+        {
+            await write(output, cmd.inject.filter(p => p.startsWith('param.')).map(p => `any`).join(', '));
+            await write(output, `): any\n`);
         }
         else
             await write(output, `, ...args:any[]): any\n`);

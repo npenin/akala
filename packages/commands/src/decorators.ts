@@ -1,6 +1,7 @@
 import { Command } from "./command";
 import { Injectable as baseInjectable } from "@akala/core";
 import { Configuration, Configurations } from "./metadata";
+import * as akala from '@akala/core'
 
 type Injectable<T> = baseInjectable<any> & { '$inject'?: string[] };
 
@@ -26,7 +27,11 @@ export function configure(name: Configurations | string, config?: any): (cmd: Co
         if (typeof cmd == 'function')
             cmd = new Command<any>(cmd);
 
-        cmd.config = Object.assign({}, config, cmd.config);
+        akala.extend(cmd.config, config)
+
+
+        if (cmd.config[''])
+            cmd.inject = cmd.config[''].inject;
 
         return cmd;
     }
