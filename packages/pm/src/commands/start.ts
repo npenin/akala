@@ -39,6 +39,9 @@ export default async function start(this: State, pm: description.pm & Container<
     if (options && options.inspect)
         args.unshift('--inspect-brk');
 
+    if (options && options.v)
+        args.push('-v')
+
     const log = debug('akala:pm:' + name);
 
     if (!this.isDaemon)
