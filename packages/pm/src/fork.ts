@@ -47,6 +47,7 @@ import debug from 'debug';
 
         if (stop && typeof stop == 'function')
             process.on('SIGINT', stop);
+        process.on('SIGINT', () => process.exit());
     }
 
     process.on('message', async function (message: string)
