@@ -2,8 +2,32 @@
     "name": "commands",
     "commands": [
         {
+            "name": "$serve",
+            "inject": [
+                "container",
+                "options"
+            ],
+            "config": {}
+        },
+        {
+            "name": "$attach",
+            "inject": [
+                "container"
+            ],
+            "config": {}
+        },
+        {
+            "name": "$metadata",
+            "inject": [
+                "container"
+            ],
+            "config": {}
+        },
+        {
             "name": "$init",
-            "inject": [],
+            "inject": [
+                "container"
+            ],
             "config": {
                 "fs": {
                     "path": "dist/commands/$init.js",
@@ -16,7 +40,10 @@
         },
         {
             "name": "config",
-            "inject": [],
+            "inject": [
+                "param.0",
+                "options"
+            ],
             "config": {
                 "fs": {
                     "path": "dist/commands/config.js",
@@ -30,7 +57,11 @@
         },
         {
             "name": "discover",
-            "inject": [],
+            "inject": [
+                "param.0",
+                "param.1",
+                "container"
+            ],
             "config": {
                 "fs": {
                     "path": "dist/commands/discover.js",
@@ -45,7 +76,11 @@
         },
         {
             "name": "install",
-            "inject": [],
+            "inject": [
+                "param.0",
+                "param.1",
+                "container"
+            ],
             "config": {
                 "fs": {
                     "path": "dist/commands/install.js",
@@ -59,23 +94,12 @@
             }
         },
         {
-            "name": "update",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/update.js",
-                    "source": "src/commands/update.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "container"
-                    ]
-                }
-            }
-        },
-        {
             "name": "link",
-            "inject": [],
+            "inject": [
+                "param.0",
+                "param.1",
+                "container"
+            ],
             "config": {
                 "fs": {
                     "path": "dist/commands/link.js",
@@ -101,7 +125,11 @@
         },
         {
             "name": "map",
-            "inject": [],
+            "inject": [
+                "param.0",
+                "param.1",
+                "param.2"
+            ],
             "config": {
                 "fs": {
                     "path": "dist/commands/map.js",
@@ -116,7 +144,11 @@
         },
         {
             "name": "run",
-            "inject": [],
+            "inject": [
+                "param.0",
+                "param.1",
+                "param.2"
+            ],
             "config": {
                 "fs": {
                     "path": "dist/commands/run.js",
@@ -131,7 +163,11 @@
         },
         {
             "name": "start",
-            "inject": [],
+            "inject": [
+                "container",
+                "param.0",
+                "options"
+            ],
             "config": {
                 "fs": {
                     "path": "dist/commands/start.js",
@@ -146,7 +182,9 @@
         },
         {
             "name": "status",
-            "inject": [],
+            "inject": [
+                "param.0"
+            ],
             "config": {
                 "fs": {
                     "path": "dist/commands/status.js",
@@ -159,13 +197,53 @@
         },
         {
             "name": "stop",
-            "inject": [],
+            "inject": [
+                "param.0",
+                "container"
+            ],
             "config": {
                 "fs": {
                     "path": "dist/commands/stop.js",
                     "source": "src/commands/stop.ts",
                     "inject": [
-                        "param.0"
+                        "param.0",
+                        "container"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "update",
+            "inject": [
+                "param.0",
+                "param.1",
+                "container"
+            ],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/update.js",
+                    "source": "src/commands/update.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "container"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "version",
+            "inject": [
+                "param.0",
+                "param.1"
+            ],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/version.js",
+                    "source": "src/commands/version.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
                     ]
                 }
             }

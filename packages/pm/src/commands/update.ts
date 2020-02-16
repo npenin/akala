@@ -10,12 +10,14 @@ import discover from './discover'
 
 
 
-export default async function install(this: State, packageName: string, folder: string, pm: description.pm)
+export default async function update(this: State, packageName: string, folder: string, pm: description.pm): Promise<string>
 {
     var path = folder || this.config.containers['pm'][0];
     await npmHelper.update(packageName, path);
 
-    return await pm.dispatch('discover', packageName, folder)
+    await pm.dispatch('discover', packageName, folder)
+
+    return await pm.dispatch('version', packageName, folder);
 };
 
 exports.default.$inject = ['param.0', 'param.1', 'container']
