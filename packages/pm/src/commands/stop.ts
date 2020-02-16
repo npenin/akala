@@ -29,7 +29,10 @@ export default async function stop(this: State, name: string, container: Contain
     })).then(() =>
     {
         if (name == 'pm' || !name)
+        {
+            process.emit('SIGINT', 'SIGINT')
             process.exit()
+        }
     });
 };
 
