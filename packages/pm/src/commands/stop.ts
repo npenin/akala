@@ -30,8 +30,8 @@ export default async function stop(this: State, name: string, container: Contain
     {
         if (name == 'pm' || !name)
         {
-            process.emit('SIGINT', 'SIGINT')
-            process.exit()
+            process.emit('SIGINT', 'SIGINT');
+            process.exit();
         }
     });
 };
