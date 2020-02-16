@@ -39,17 +39,15 @@ import debug from 'debug';
             log({ cmd, params });
         });
 
-    Processors.FileSystem.discoverCommands(folder, cliContainer, { processor: processor, isDirectory: folderOrFile.isDirectory() }).then(() =>
+    await Processors.FileSystem.discoverCommands(folder, cliContainer, { processor: processor, isDirectory: folderOrFile.isDirectory() });
+    if (require.main == module)
     {
-        if (require.main == module)
-        {
-            // cliContainer.attach('jsonrpc', new IpcStream(process));
-            var stop = cliContainer.dispatch(cliContainer.resolve('$init') || '$serve', { options: args, param: args._, _trigger: 'fs', pm: new Container('pm', new Processors.JsonRpc(Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer))) });
+        // cliContainer.attach('jsonrpc', new IpcStream(process));
+        var stop = await cliContainer.dispatch(cliContainer.resolve('$init') || '$serve', { options: args, param: args._, _trigger: 'fs', pm: new Container('pm', new Processors.JsonRpc(Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer))) });
 
-            if (stop && typeof stop == 'function')
-                process.on('SIGINT', stop);
-        }
-    });
+        if (stop && typeof stop == 'function')
+            process.on('SIGINT', stop);
+    }
 
     process.on('message', async function (message: string)
     {
