@@ -1,12 +1,11 @@
 // export * from './sharedComponent/component';
 // export * from './sharedComponent/jsonrpc';
 // export * from './sharedComponent/service';
-export * from './api'
 import './translator';
 export { router, wrouter, Request, Response, HttpRouter, CallbackResponse } from './router';
 export * from './helpers/mkdirp';
 
-
+import './commands/triggers/http'
 
 import './http'
 export * from './http'
@@ -19,7 +18,6 @@ export { master };
 import * as commands from './commands';
 export { commands };
 export { ServiceWorker } from './service-worker';
-export { ApiServiceWorker } from './api/api-service-worker';
 
 export type resolve = worker.resolve;
 export

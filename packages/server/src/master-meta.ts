@@ -1,19 +1,15 @@
 import * as akala from '@akala/core'
 import * as router from './router';
 import * as debug from 'debug';
-import * as jsonrpc from '@akala/json-rpc-ws'
 import * as ws from 'ws'
 import * as worker from './worker-meta'
-export { CoreProperties as Package } from '../src/package';
-import { createServer } from './api/jsonrpc';
-import { Proxy, Api, DualApi } from '@akala/core';
+export { CoreProperties as Package } from './package';
+import { Api, DualApi } from '@akala/core';
 import { Connection } from '@akala/json-rpc-ws'
 import * as stream from 'stream'
 import * as bodyparser from 'body-parser'
 import * as express from 'express';
-import { api } from '.';
 import * as send from 'send'
-import * as cp from 'child_process'
 
 var log = debug('akala:master');
 
@@ -21,12 +17,6 @@ var httpRouter = router.HttpRouter;
 type request = router.Request & { body?: any };
 type response = router.Response;
 export { httpRouter as Router, request as Request, response as Response };
-
-
-export var metaRouter = new akala.Api()
-    .connection<Connection>()
-    .serverToClient<Partial<worker.Request>, router.CallbackResponse>()({ getContent: true })
-    .clientToServerOneWay<{ path: string, remap: string }>()({ register: true })
 
 export function serveStatic(path, options?: send.SendOptions & { fallthrough?: boolean })
 {
@@ -132,82 +122,4 @@ export function handleResponse(res: router.Response, locationReplacer: (key: str
             res.end();
         }
     }
-}
-
-export function serveRouter<TOConnection extends Connection,
-    TOServerOneWay,
-    TOServerTwoWay,
-    TOClientOneWay,
-    TOClientTwoWay,
-    TOServerOneWayProxy extends TOServerOneWay,
-    TOServerTwoWayProxy extends TOServerTwoWay,
-    TOClientOneWayProxy extends TOClientOneWay,
-    TOClientTwoWayProxy extends TOClientTwoWay>(router: router.HttpRouter, path: string, other?: Api<TOConnection,
-        TOServerOneWay,
-        TOServerTwoWay,
-        TOClientOneWay,
-        TOClientTwoWay,
-        TOServerOneWayProxy,
-        TOServerTwoWayProxy,
-        TOClientOneWayProxy,
-        TOClientTwoWayProxy>, impl?: TOServerOneWay & TOServerTwoWay): api.Server<typeof other & typeof metaRouter>
-{
-    return serveRouterAdvanced(router, path, path, other);
-}
-
-export function serveRouterAdvanced<TOConnection extends Connection,
-    TOServerOneWay,
-    TOServerTwoWay,
-    TOClientOneWay,
-    TOClientTwoWay,
-    TOServerOneWayProxy extends TOServerOneWay,
-    TOServerTwoWayProxy extends TOServerTwoWay,
-    TOClientOneWayProxy extends TOClientOneWay,
-    TOClientTwoWayProxy extends TOClientTwoWay>(router: router.HttpRouter, pathToRegister: string, pathToServe: string, other?: Api<TOConnection,
-        TOServerOneWay,
-        TOServerTwoWay,
-        TOClientOneWay,
-        TOClientTwoWay,
-        TOServerOneWayProxy,
-        TOServerTwoWayProxy,
-        TOClientOneWayProxy,
-        TOClientTwoWayProxy>, impl?: TOServerOneWay & TOServerTwoWay): api.Server<typeof other & typeof metaRouter>
-{
-    var subRouter = new httpRouter();
-    log(`creating server on ${pathToRegister} for ${pathToServe}`);
-    router.use(pathToServe, subRouter.router);
-
-    return api.jsonrpcws(other && new DualApi(metaRouter, other) || metaRouter).createServer(pathToRegister, akala.extend({
-        register: function (param: { path: string, remap: string }, socket: TOConnection)
-        {
-            var locationReplacer = function (header)
-            {
-                return header.replace(pathToServe, pathToServe + param.path)
-            };
-
-            var client = this.$proxy(socket);
-
-            subRouter.use(param.path,
-                function (_req: router.Request, _res: router.Response, next: akala.NextFunction)
-                {
-                    if (socket.socket.readyState == ws.CLOSED || socket.socket.readyState == ws.CLOSING)
-                        next('route');
-                    else
-                        next();
-                },
-                bodyparser.json(),
-                bodyparser.urlencoded({ extended: true }),
-                function (req, res, next)
-                {
-                    var translatedReq = translateRequest(req);
-                    if (param.remap)
-                    {
-                        if (translatedReq.url == '/')
-                            translatedReq.url = '';
-                        translatedReq.url = param.remap + translatedReq.url;
-                    }
-                    client.getContent(translatedReq).then(handleResponse(res, locationReplacer, 200), next);
-                });
-        }
-    }, impl || {}));
 }
