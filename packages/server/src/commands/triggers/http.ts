@@ -1,6 +1,6 @@
-import { Trigger, Container, Command, metadata, Metadata } from '@akala/commands';
-import { HttpRouter, WorkerRouter, Methods, Router } from '../../router';
-import { Injector, NextFunction, isPromiseLike } from '@akala/core';
+import { Trigger, Container, metadata, Metadata } from '@akala/commands';
+import { HttpRouter, WorkerRouter } from '../../router';
+import { NextFunction, isPromiseLike } from '@akala/core';
 import * as master from '../../master-meta';
 import * as worker from '../../worker-meta';
 import { Local } from '@akala/commands/dist/processors';
