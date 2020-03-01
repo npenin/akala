@@ -278,5 +278,6 @@ function readLine()
                 }
             }
         })
+        process.stdin.resume();
     })
 }
