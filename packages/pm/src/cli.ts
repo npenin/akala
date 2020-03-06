@@ -218,7 +218,7 @@ if (require.main == module)
                     {
                         console.log(e.message);
                         var value = await readLine();
-                        if (e.code.as)
+                        if (e.as)
                             args[e] = value;
                         else
                             args._.push(value);
