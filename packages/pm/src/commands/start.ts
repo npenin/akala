@@ -91,7 +91,7 @@ export default async function start(this: State, pm: description.pm & Container<
                 , disconnected()
                 {
                 }
-            }))) as RunningContainer;
+            }), true)) as RunningContainer;
             container.path = name;
             this.processes.push(container);
         }
