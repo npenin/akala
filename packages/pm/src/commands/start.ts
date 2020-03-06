@@ -101,7 +101,7 @@ export default async function start(this: State, pm: description.pm & Container<
             pm.register(name, container);
         container.resolve = function (c: string)
         {
-            return new CommandProxy<any>((container as RunningContainer).processor, c) as any;
+            return new CommandProxy<any>((container as RunningContainer).processor, c, ['$param']) as any;
         }
         container.running = true;
         cp.on('exit', function ()
