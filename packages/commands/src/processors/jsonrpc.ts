@@ -5,6 +5,8 @@ import { Container, lazy } from '../container';
 import { IDebugger } from 'debug';
 import { Local } from './local';
 
+
+
 export class JsonRpc<T> extends CommandProcessor<T>
 {
     public static getConnection(socket: jsonrpcws.SocketAdapter, container?: Container<any>, log?: IDebugger): jsonrpcws.Connection
@@ -55,7 +57,7 @@ export class JsonRpc<T> extends CommandProcessor<T>
     {
         return new Promise<any>((resolve, reject) =>
         {
-            if (typeof command != 'string' && command.inject)
+            if (!this.passthrough && typeof command != 'string' && command.inject)
             {
                 var param = command.inject.map((v, i) =>
                 {
@@ -73,7 +75,7 @@ export class JsonRpc<T> extends CommandProcessor<T>
         })
     }
 
-    constructor(private client: jsonrpcws.Connection)
+    constructor(private client: jsonrpcws.Connection, private passthrough?: boolean)
     {
         super('jsonrpc');
     }
