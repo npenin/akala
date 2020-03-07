@@ -99,10 +99,10 @@ export default async function start(this: State, pm: description.pm & Container<
         container.commandable = this.config.mapping[name].commandable;
         if (container.commandable)
             pm.register(name, container);
-        container.resolve = function (c: string)
-        {
-            return new CommandProxy<any>((container as RunningContainer).processor, c, ['$param']) as any;
-        }
+        // container.resolve = function (c: string)
+        // {
+        //     return new CommandProxy<any>((container as RunningContainer).processor, c, ['$param']) as any;
+        // }
         container.running = true;
         cp.on('exit', function ()
         {

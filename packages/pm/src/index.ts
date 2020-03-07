@@ -6,6 +6,11 @@ export class InteractError extends Error
     {
         super(message);
     }
+
+    public toJSON()
+    {
+        return { code: this.code, message: this.message, as: this.as };
+    }
 }
 
 export default function interact(message: string, as?: string)
