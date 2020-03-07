@@ -75,7 +75,7 @@ export class Container<TState> extends akala.Injector
 
     public proxy()
     {
-        var proxy = new Container('proxy-' + this.name, null);
+        var proxy = new Container('proxy-' + this.name, null, this.processor);
         proxy.resolve = (name: string) =>
         {
             var result = super.resolve(name);
