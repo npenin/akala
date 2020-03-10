@@ -92,7 +92,7 @@ export class Container<TState> extends akala.Injector
     public register<T>(cmd: string | Command<TState> | Container<any>, value?: T): T | Command<TState> | Container<any>
     {
         if (cmd instanceof Container || cmd instanceof Command)
-            return super.register(cmd.name, cmd);
+            return this.register(cmd.name, cmd);
         else 
         {
             if (cmd == '$injector' || cmd == '$container')
