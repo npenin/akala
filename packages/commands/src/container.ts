@@ -91,8 +91,12 @@ export class Container<TState> extends akala.Injector
     public register(cmd: Container<any>): Container<any>
     public register<T>(cmd: string | Command<TState> | Container<any>, value?: T): T | Command<TState> | Container<any>
     {
-        if (typeof (cmd) == 'string')
+        if (cmd instanceof Container || cmd instanceof Command)
+            return super.register(cmd.name, cmd);
+        else 
         {
+            if (cmd == '$injector')
+                return super.register(cmd, value) as any;
             if (value instanceof Container)
                 return super.register(cmd, value.proxy());
             if (typeof value != 'undefined')
@@ -100,10 +104,6 @@ export class Container<TState> extends akala.Injector
             else
                 throw new Error('value cannot be undefined');
         }
-        else if (value instanceof Container)
-            return this.register(value.name, value);
-        else
-            return super.register(cmd.name, cmd);
     }
 }
 
