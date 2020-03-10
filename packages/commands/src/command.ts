@@ -39,6 +39,14 @@ export class CommandProxy<T = any> extends Command<T>
     {
         super(function (...args)
         {
+            if (cmd.inject && cmd.inject.length == 1 && cmd.inject[0] == '$params')
+            {
+                if (processor.requiresCommandName)
+                    return processor.process(name, args[0]);
+                else
+                    return processor.process(cmd, args[0]);
+            }
+
             if (processor.requiresCommandName)
                 return processor.process(name, { param: args });
             else
