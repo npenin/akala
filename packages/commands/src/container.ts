@@ -79,7 +79,7 @@ export class Container<TState> extends akala.Injector
         proxy.resolve = (name: string) =>
         {
             var result = super.resolve(name);
-            if (result instanceof Command)
+            if (result instanceof Command || !result)
                 return new CommandProxy(this.processor, name, ['$param']);
             return result;
         }
