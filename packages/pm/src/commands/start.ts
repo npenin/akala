@@ -80,7 +80,7 @@ export default async function start(this: State, pm: description.pm & Container<
                         {
                             if (!params)
                                 params = { param: [] };
-                            if (!params._trigger)
+                            if (!params._trigger || params._trigger == 'proxy')
                                 params._trigger = 'jsonrpc'
                             var result = await (container as Container<void>).dispatch(method, params)
                             reply(null, result);
