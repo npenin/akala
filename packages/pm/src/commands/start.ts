@@ -78,7 +78,11 @@ export default async function start(this: State, pm: description.pm & Container<
                     {
                         try
                         {
-                            var result = await (container as Container<void>).dispatch(method, Object.assign(params ?? { param: [] }, { _trigger: 'jsonrpc' }))
+                            if (!params)
+                                params = { param: [] };
+                            if (!params._trigger)
+                                params._trigger = 'jsonrpc'
+                            var result = await (container as Container<void>).dispatch(method, params)
                             reply(null, result);
                         }
                         catch (error)
