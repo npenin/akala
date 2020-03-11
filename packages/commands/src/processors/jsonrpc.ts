@@ -33,9 +33,13 @@ export class JsonRpc<T> extends CommandProcessor<T>
                         if (!cmd)
                             throw new Error(`Command with name ${method} could not be found on ${socket.constructor.name}`);
 
-                        var result = await Local.execute(cmd, cmd.handler, container, Object.assign(params ?? { param: [] }, {
-                            _trigger: 'jsonrpc', containerAsConnection: lazy(() => new Container(container?.name + '-client', null, new JsonRpc(connection)))
-                        }))
+                        if (!params)
+                            params = { param: [] };
+                        params.containerAsConnection = lazy(() => new Container(container?.name + '-client', null, new JsonRpc(connection)));
+                        if (!params._trigger)
+                            params._trigger = 'jsonrpc';
+
+                        var result = await Local.execute(cmd, cmd.handler, container, params);
                         reply(null, result);
                     }
                     catch (error)
