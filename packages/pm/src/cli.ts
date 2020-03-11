@@ -51,7 +51,7 @@ if (require.main == module)
             {
                 try
                 {
-                    var result = await processor.process(args._[0], { options: args, param: args._.slice(1) } as any);
+                    var result = await processor.process(args._[0], { options: args, param: args._.slice(1), _trigger: 'cli' } as any);
 
                     socket.end(() =>
                     {
