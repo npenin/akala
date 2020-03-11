@@ -36,7 +36,7 @@ export class JsonRpc<T> extends CommandProcessor<T>
                         if (!params)
                             params = { param: [] };
                         params.containerAsConnection = lazy(() => new Container(container?.name + '-client', null, new JsonRpc(connection)));
-                        if (!params._trigger)
+                        if (!params._trigger || params._trigger == 'proxy')
                             params._trigger = 'jsonrpc';
 
                         var result = await Local.execute(cmd, cmd.handler, container, params);
@@ -46,7 +46,10 @@ export class JsonRpc<T> extends CommandProcessor<T>
                     {
                         if (log)
                             log(error);
-                        reply(error);
+                        if (typeof error.toJSON == 'function')
+                            reply(error.toJSON());
+                        else
+                            reply(error);
                     }
                 }
             }
@@ -72,7 +75,9 @@ export class JsonRpc<T> extends CommandProcessor<T>
             this.client.sendMethod(typeof command == 'string' ? command : command.name, params, function (err: any, result: jsonrpcws.PayloadDataType)
             {
                 if (err)
+                {
                     reject(err);
+                }
                 else
                     resolve(result);
             });
