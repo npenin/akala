@@ -58,7 +58,7 @@ import debug from 'debug';
         var oMessage = JSON.parse(message);
         try
         {
-            var result = await cliContainer.dispatch(oMessage.method, Object.assign(oMessage.params ?? { param: [] }, { _trigger: 'ipc', }));
+            var result = await cliContainer.dispatch(oMessage.method, Object.assign(oMessage.params ?? { param: [] }, { _trigger: 'cli', }));
             if (process.send)
                 process.send(JSON.stringify({ jsonrpc: oMessage.jsonrpc, result: result, id: oMessage.id }) + '\n');
         }
