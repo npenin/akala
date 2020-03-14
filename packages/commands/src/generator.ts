@@ -2,7 +2,7 @@ import { Container } from "./container";
 import * as meta from './metadata'
 import { Command, CommandProxy } from "./command";
 import { Processor } from "./processor";
-import { Injector } from "@akala/core";
+import { Injector, register } from "@akala/core";
 
 export function metadata(container: Container<any>): meta.Container
 {
@@ -29,6 +29,13 @@ export function proxy<T = any>(metacontainer: meta.Container, processor: Process
         processor = processor(container);
     }
 
+    registerCommands(metacontainer, processor, container);
+
+    return container;
+}
+
+export function registerCommands<T>(metacontainer: meta.Container, processor: Processor<T>, container: Container<T>)
+{
     metacontainer.commands.forEach(cmd =>
     {
         if (cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata')
@@ -36,8 +43,6 @@ export function proxy<T = any>(metacontainer: meta.Container, processor: Process
         var proxycmd = container.register(new CommandProxy(processor as Processor<T>, cmd.name, cmd.inject));
         proxycmd.config = Object.assign({}, cmd.config);
     });
-
-    return container;
 }
 
 export function helper<TState>(container: Container<TState>, metacontainer?: meta.Container)
