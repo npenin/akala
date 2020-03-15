@@ -9,23 +9,34 @@ type Injectable<T, U> = InjectableWithTypedThis<T, U> & { '$inject'?: string[] }
 
 export class Command<T = any> implements metadata.Command
 {
-    constructor(public readonly handler: Injectable<any | PromiseLike<any>, T>, name?: string, public inject?: string[])
+    constructor(public readonly handler: Injectable<any | PromiseLike<any>, T>, name?: string, inject?: string[])
     {
         this.name = name || handler.name;
         if (typeof inject == 'undefined')
-            this.inject = handler['$inject'];
-        if (typeof this.inject == 'undefined' && handler.length)
+            inject = handler['$inject'];
+        if (typeof inject == 'undefined' && handler.length)
         {
-            this.inject = [];
+            inject = [];
             for (let i = 0; i < handler.length; i++)
             {
-                this.inject.push('param.' + i);
+                inject.push('param.' + i);
             }
         }
+        this.inject = inject;
+    }
+
+    public get inject(): string[] | undefined
+    {
+        return this.config[''].inject;
+    }
+
+    public set inject(value: string[] | undefined)
+    {
+        this.config[''].inject = value;;
     }
 
     public readonly name: string;
-    public config: Configurations = { '': {} };
+    public config: Configurations = { '': {} } = { '': {} };
 
     public $proxy(processor: Processor<T>)
     {
