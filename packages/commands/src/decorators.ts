@@ -1,4 +1,4 @@
-import { Command } from "./command";
+import { Command } from "./model/command";
 import { Injectable as baseInjectable } from "@akala/core";
 import { Configuration, Configurations } from "./metadata";
 import * as akala from '@akala/core'

@@ -1,8 +1,8 @@
 import { Injector, NextFunction, isPromiseLike, HttpOptions, each, Http } from '@akala/core';
 import * as pathRegexp from 'path-to-regexp';
-import { CommandProxy } from '../command';
-import { Container } from '../container';
-import { CommandProcessor } from '../processor';
+import { CommandProxy } from '../model/command';
+import { Container } from '../model/container';
+import { CommandProcessor } from '../model/processor';
 import { Command, Configuration } from '../metadata';
 
 export class HttpClient<T> extends CommandProcessor<T>

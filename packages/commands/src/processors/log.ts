@@ -1,5 +1,5 @@
-import { Processor } from "../processor";
-import { CommandProxy } from "../command";
+import { Processor } from "../model/processor";
+import { CommandProxy } from "../model/command";
 import { EventProcessor } from "./event";
 
 export class LogProcessor<T> extends EventProcessor<T>

@@ -1,5 +1,5 @@
 import * as akala from '@akala/core'
-import { Command } from "./metadata";
+import { Command } from "../metadata";
 import { Container } from './container';
 
 export abstract class CommandProcessor<T>

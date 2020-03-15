@@ -1,12 +1,13 @@
 import * as akala from "..";
 import * as core from '@akala/core'
-import { Container } from "../container";
+import { Container } from "../model/container";
 import * as path from 'path'
 import * as fs from 'fs';
 import { jsonObject } from "../metadata";
 import { FileSystemConfiguration } from "../processors/fs";
+import { Writable } from "stream";
 
-async function write(output: fs.WriteStream, content: string)
+async function write(output: Writable, content: string)
 {
     return new Promise<void>((resolve, reject) =>
     {
@@ -20,21 +21,31 @@ async function write(output: fs.WriteStream, content: string)
     })
 }
 
-export default async function generate(name: string, folder?: string, outputFile?: string)
+export default async function generate(name?: string, folder?: string, outputFile?: string)
 {
     folder = folder || process.cwd();
     if (!name)
         name = path.basename(folder, path.extname(folder));
     var container = new Container(name, {});
 
-    if (!outputFile || fs.existsSync(outputFile) && (await fs.promises.lstat(outputFile)).isDirectory())
-        outputFile = outputFile && outputFile + '/commands.ts' || 'commands.ts';
+    var output: Writable = undefined as any;
+    if (!outputFile)
+    {
+        output = process.stdout;
+        outputFile = '';
+    }
+    else if (fs.existsSync(outputFile) && (await fs.promises.lstat(outputFile)).isDirectory())
+        outputFile = outputFile + '/commands.ts';
+
+    if (typeof output == 'undefined')
+        output = fs.createWriteStream(outputFile);
 
     var outputFolder = path.dirname(outputFile);
 
-    var output = fs.createWriteStream(outputFile);
 
     await akala.Processors.FileSystem.discoverCommands(folder, container);
+
+
 
     var meta = akala.metadata(container);
 

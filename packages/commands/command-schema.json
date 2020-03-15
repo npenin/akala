@@ -1,0 +1,65 @@
+{
+    "definitions": {
+        "inject": {
+            "$id": "#/inject",
+            "type": "object",
+            "title": "The inject Schema",
+            "description": "Dependencies to be inserted during runtime by the provider/trigger",
+            "required": [
+                "inject"
+            ],
+            "properties": {
+                "inject": {
+                    "type": "array",
+                    "examples": [
+                        "param.0",
+                        "$container",
+                        "$injector",
+                        "options.name (if the provider provides options)",
+                        "connectionAsContainer"
+                    ]
+                }
+            }
+        }
+    },
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://raw.githubusercontent.com/npenin/akala-commands/master/command-schema.json",
+    "type": "object",
+    "title": "The Config Schema",
+    "description": "This is the providers/triggers configuration",
+    "required": [
+        ""
+    ],
+    "properties": {
+        "fs": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/inject"
+                },
+                {
+                    "$id": "#/fs",
+                    "type": "object",
+                    "title": "The fs Schema",
+                    "required": [
+                        "path"
+                    ],
+                    "properties": {
+                        "path": {
+                            "$id": "#/fs/properties/path",
+                            "type": "string",
+                            "title": "The Path Schema",
+                            "default": "",
+                            "examples": [
+                                "dist\\cli\\generate-metadata.js"
+                            ],
+                            "pattern": "^(.*)$"
+                        }
+                    }
+                }
+            ]
+        },
+        "": {
+            "$ref": "#/definitions/inject"
+        }
+    }
+}

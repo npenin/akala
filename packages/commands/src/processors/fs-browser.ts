@@ -3,9 +3,9 @@
 import * as path from 'path'
 import * as akala from '@akala/core'
 import * as  Metadata from '../metadata';
-import { CommandProcessor, Processor } from '../processor';
-import { Container } from '../container';
-import { CommandProxy } from '../command';
+import { CommandProcessor, Processor } from '../model/processor';
+import { Container } from '../model/container';
+import { CommandProxy } from '../model/command';
 import { configure } from '../decorators';
 import { HttpClient } from './http-client';
 import { proxy } from '../generator';

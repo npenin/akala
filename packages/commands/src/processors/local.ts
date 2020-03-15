@@ -1,8 +1,8 @@
-import { CommandProxy, Command } from '../command';
+import { CommandProxy, Command } from '../model/command';
 import { Injector, Injectable } from '@akala/core';
 import * as  Metadata from '../metadata';
-import { CommandProcessor } from '../processor'
-import { Container } from '../container';
+import { CommandProcessor } from '../model/processor'
+import { Container } from '../model/container';
 import assert = require('assert');
 
 export class Local<T> extends CommandProcessor<T>
