@@ -124,8 +124,12 @@ export class FileSystem<T> extends CommandProcessor<T>
                         else
                             cmd.config.fs.inject = akala.introspect.getParamNames(func).map((v, i) => 'param.' + i);
                         if (cmd.config.fs.inject && !cmd.inject)
+                        {
                             cmd.inject = cmd.config.fs.inject;
+                            cmd.config[''] = { inject: cmd.inject };
+                        }
                     }
+
                     container.register(cmd);
                 }
                 else if (f.name.endsWith('.json'))

@@ -16,6 +16,7 @@ export interface Configurations
 {
     [key: string]: undefined | jsonObject & Configuration;
     http?: jsonObject & HttpConfiguration;
+    '': jsonObject & Configuration;
 };
 
 export interface Configuration
