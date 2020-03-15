@@ -1,18 +1,17 @@
-import { Container } from "./container";
+import { Container } from "./model/container";
 import * as meta from './metadata'
-import { Command, CommandProxy } from "./command";
-import { Processor } from "./processor";
-import { Injector, register } from "@akala/core";
+import { Command, CommandProxy } from "./model/command";
+import { Processor } from "./model/processor";
 
 export function metadata(container: Container<any>): meta.Container
 {
     var metacontainer: meta.Container = { name: container.name || 'unnamed', commands: [] };
     container.keys().forEach((key) =>
     {
-        if (key === '$injector' || key === '$state' || key === '$this')
+        if (key === '$injector' || key === '$state' || key === '$container')
             return;
         var cmd = container.resolve<Command>(key);
-        if (cmd && cmd.name && cmd instanceof Command)
+        if (cmd && cmd.name && cmd instanceof Command && cmd.name[0] != '$')
             metacontainer.commands.push({ name: cmd.name, inject: cmd.inject || [], config: cmd.config });
     });
     return metacontainer;

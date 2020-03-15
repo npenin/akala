@@ -1,7 +1,7 @@
 import * as jsonrpcws from '@akala/json-rpc-ws'
-import { CommandProcessor, CommandNameProcessor } from '../processor'
+import { CommandProcessor, CommandNameProcessor } from '../model/processor'
 import { Command } from '../metadata';
-import { Container, lazy } from '../container';
+import { Container, lazy } from '../model/container';
 import { IDebugger } from 'debug';
 import { Local } from './local';
 

@@ -1,5 +1,5 @@
 import serve from "../cli/serve";
-import { Container } from "../container";
+import { Container } from "../model/container";
 
 export default function $serve(container: Container<any>, options: { port?: number, cert?: string, key?: string, _: ('local' | 'http' | 'ws')[] })
 {

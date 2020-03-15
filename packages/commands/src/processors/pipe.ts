@@ -1,7 +1,7 @@
-import { CommandProxy } from '../command';
+import { CommandProxy } from '../model/command';
 import { Injector } from '@akala/core';
-import { CommandNameProcessor } from '../processor'
-import { Container } from '../container';
+import { CommandNameProcessor } from '../model/processor'
+import { Container } from '../model/container';
 import assert = require('assert');
 
 export class Pipe<T> extends CommandNameProcessor<T>

@@ -1,7 +1,7 @@
 import { Server, Socket } from 'net';
 import { platform } from 'os';
 import * as ws from 'ws'
-import { Container } from '../container';
+import { Container } from '../model/container';
 import { join } from 'path';
 import * as jsonrpcws from '@akala/json-rpc-ws';
 import { EventEmitter } from 'events';

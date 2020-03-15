@@ -55,34 +55,7 @@
                         "description": "This should match the required command parameters."
                     },
                     "config": {
-                        "$id": "#/properties/commands/items/properties/config",
-                        "type": "object",
-                        "title": "The Config Schema",
-                        "description": "This is the providers/triggers configuration",
-                        "properties": {
-                            "fs": {
-                                "$id": "#/properties/commands/items/properties/config/properties/fs",
-                                "type": "object",
-                                "title": "The Fs Schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "required": [
-                                    "path"
-                                ],
-                                "properties": {
-                                    "path": {
-                                        "$id": "#/properties/commands/items/properties/config/properties/fs/properties/path",
-                                        "type": "string",
-                                        "title": "The Path Schema",
-                                        "description": "An explanation about the purpose of this instance.",
-                                        "default": "",
-                                        "examples": [
-                                            "dist\\cli\\generate-metadata.js"
-                                        ],
-                                        "pattern": "^(.*)$"
-                                    }
-                                }
-                            }
-                        }
+                        "$ref": "https://raw.githubusercontent.com/npenin/akala-commands/master/command-schema.json"
                     }
                 }
             }

@@ -1,7 +1,7 @@
-import { Processor, CommandNameProcessor, CommandProcessor, CommandProcessors } from "../processor";
-import { CommandProxy } from "../command";
+import { Processor, CommandNameProcessor, CommandProcessor, CommandProcessors } from "../model/processor";
+import { CommandProxy } from "../model/command";
 import { EventEmitter } from "events";
-import { Container } from "../container";
+import { Container } from "../model/container";
 
 export class EventProcessor<T> extends EventEmitter implements Processor<T>
 {

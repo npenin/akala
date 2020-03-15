@@ -4,9 +4,9 @@ import * as path from 'path'
 import { promises as fs, existsSync } from 'fs'
 import * as akala from '@akala/core'
 import * as  Metadata from '../metadata';
-import { CommandProcessor, Processor } from '../processor';
-import { Container } from '../container';
-import { CommandProxy } from '../command';
+import { CommandProcessor, Processor } from '../model/processor';
+import { Container } from '../model/container';
+import { CommandProxy } from '../model/command';
 import { configure } from '../decorators';
 import { HttpClient } from './http-client';
 import { proxy } from '../generator';
@@ -96,6 +96,7 @@ export class FileSystem<T> extends CommandProcessor<T>
                     if (existsSync(path.resolve(otherConfigsFile)))
                     {
                         var otherConfigs = require(path.resolve(otherConfigsFile));
+                        delete otherConfigs.$schema;
                         cmd = configure(otherConfigs)(cmd) as any;
                     }
                     if (!cmd.config.fs.inject)

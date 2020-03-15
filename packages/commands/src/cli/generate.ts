@@ -1,16 +1,24 @@
 import * as akala from "../";
-import { Container } from "../container";
+import { Container } from "../model/container";
 import * as path from 'path'
 import * as fs from 'fs';
+import { join } from "path";
+import { Writable } from "stream";
 
-export default async function generate(folder?: string, outputFile?: string)
+export default async function generate(folder?: string, name?: string, outputFile?: string)
 {
     folder = folder || process.cwd();
-    var name = path.basename(folder);
+    if (!name && fs.existsSync(join(folder, './package.json')))
+        name = require(join(folder, './package.json')).name;
+    if (!name)
+        name = path.basename(folder);
     var container = new Container(name, {});
-    var output: fs.WriteStream;
-    if (!outputFile || fs.existsSync(outputFile) && (await fs.promises.lstat(outputFile)).isDirectory())
-        output = fs.createWriteStream(outputFile && outputFile + '/commands.json' || 'commands.json');
+
+    var output: Writable;
+    if (!outputFile)
+        output = process.stdout;
+    else if (fs.existsSync(outputFile) && fs.lstatSync(outputFile).isDirectory())
+        output = fs.createWriteStream(outputFile + '/commands.json');
     else
         output = fs.createWriteStream(outputFile);
 
@@ -22,7 +30,7 @@ export default async function generate(folder?: string, outputFile?: string)
     {
         if (err)
             console.error(err);
-        output.close();
+        output.end();
     });
 
 };

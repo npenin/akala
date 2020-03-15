@@ -1,12 +1,15 @@
 import * as akala from '@akala/core'
 import { Command, CommandProxy } from './command';
 import { Trigger } from './trigger';
-import { Processor } from './processor';
-import { Local } from './processors';
-import { Pipe } from './processors/pipe';
-import $serve from './commands/$serve'
-import $attach from './commands/$attach'
-import $metadata from './commands/$metadata'
+import { Processor, CommandNameProcessor } from './processor';
+import { Local } from '../processors';
+import { Pipe } from '../processors/pipe';
+import $serve from '../commands/$serve'
+import $attach from '../commands/$attach'
+import $metadata from '../commands/$metadata'
+import { UnknownCommandError } from './error-unknowncommand';
+
+const log = akala.log('akala:commands');
 
 export class Container<TState> extends akala.Injector
 {
@@ -18,7 +21,28 @@ export class Container<TState> extends akala.Injector
 
         trigger.register(this, server);
     }
-    public processor: Processor<TState>;
+
+    public get processor()
+    {
+        return this._processor;
+    }
+
+    private _processor: Processor<TState>;
+
+    public get trapProcessor()
+    {
+        return this._trapProcessor;
+    }
+
+    private _trapProcessor?: CommandNameProcessor<TState>;
+
+    public trap(trapProcessor: CommandNameProcessor<TState>)
+    {
+        if (this._processor.requiresCommandName)
+            console.warn('You can assigna a trap, however, it will never get call with a processor that already need only the command name');
+        this._trapProcessor = trapProcessor;
+    }
+
     constructor(public name: string, public state: TState, processor?: Processor<TState>)
     {
         super();
@@ -26,7 +50,7 @@ export class Container<TState> extends akala.Injector
             this.register('$state', state);
         this.register('$container', this);
         var localProcessor = new Local(this);
-        this.processor = processor || localProcessor;
+        this._processor = processor || localProcessor;
         this.register(new Command($serve, '$serve', $serve.$inject))
         this.register(new Command($attach, '$attach', $attach.$inject))
         this.register(new Command($metadata, '$metadata', $metadata.$inject))
@@ -34,7 +58,7 @@ export class Container<TState> extends akala.Injector
 
     public pipe(container: Container<TState>)
     {
-        this.processor = new Pipe(container);
+        this._processor = new Pipe(container);
     }
 
     public dispatch(command: string | Command<TState>, param: { param: any[], [key: string]: any }): any
@@ -52,7 +76,11 @@ export class Container<TState> extends akala.Injector
             {
                 var cmd = this.resolve(command);
                 if (!cmd)
-                    throw new Error(`Command with name ${command} could not be found`)
+                {
+                    if (this._trapProcessor)
+                        return this._trapProcessor.process(command, param);
+                    throw new UnknownCommandError(command)
+                }
             }
             else
                 cmd = command;

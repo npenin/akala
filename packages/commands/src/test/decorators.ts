@@ -1,4 +1,4 @@
-import { Container } from "../container";
+import { Container } from "../model/container";
 import { inject, configure } from "../decorators";
 import * as assert from 'assert'
 

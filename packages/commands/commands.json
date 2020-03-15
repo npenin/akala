@@ -3,7 +3,11 @@
     "commands": [
         {
             "name": "generate-declaration",
-            "inject": [],
+            "inject": [
+                "param.0",
+                "param.1",
+                "param.2"
+            ],
             "config": {
                 "fs": {
                     "path": "dist/cli/generate-declaration.js",
@@ -13,12 +17,23 @@
                         "param.1",
                         "param.2"
                     ]
+                },
+                "cli": {
+                    "inject": [
+                        "options.name",
+                        "param.0",
+                        "param.1"
+                    ]
                 }
             }
         },
         {
             "name": "generate-metadata",
-            "inject": [],
+            "inject": [
+                "param.0",
+                "param.1",
+                "param.2"
+            ],
             "config": {
                 "fs": {
                     "path": "dist/cli/generate-metadata.js",
@@ -28,17 +43,10 @@
                         "param.1",
                         "param.2"
                     ]
-                }
-            }
-        },
-        {
-            "name": "generate",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/cli/generate.js",
-                    "source": "src/cli/generate.ts",
+                },
+                "cli": {
                     "inject": [
+                        "options.name",
                         "param.0",
                         "param.1"
                     ]
@@ -46,16 +54,44 @@
             }
         },
         {
-            "name": "start",
-            "inject": [],
+            "name": "generate",
+            "inject": [
+                "param.0",
+                "param.1",
+                "param.2"
+            ],
             "config": {
                 "fs": {
-                    "path": "dist/cli/start.js",
-                    "source": "src/cli/start.ts",
+                    "path": "dist/cli/generate.js",
+                    "source": "src/cli/generate.ts",
                     "inject": [
                         "param.0",
                         "param.1",
                         "param.2"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0",
+                        "options.name",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "serve",
+            "inject": [
+                "container",
+                "options"
+            ],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/serve.js",
+                    "source": "src/cli/serve.ts",
+                    "inject": [
+                        "container",
+                        "options"
                     ]
                 }
             }
