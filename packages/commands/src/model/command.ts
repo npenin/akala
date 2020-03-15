@@ -25,7 +25,7 @@ export class Command<T = any> implements metadata.Command
     }
 
     public readonly name: string;
-    public config: Configurations = {};
+    public config: Configurations = { '': {} };
 
     public $proxy(processor: Processor<T>)
     {
