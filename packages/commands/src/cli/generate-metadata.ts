@@ -42,10 +42,7 @@ export default async function generate(name?: string, folder?: string, outputFil
 
     var outputFolder = path.dirname(outputFile);
 
-
     await akala.Processors.FileSystem.discoverCommands(folder, container);
-
-
 
     var meta = akala.metadata(container);
 
@@ -76,7 +73,7 @@ export default async function generate(name?: string, folder?: string, outputFil
 
     await write(output, 'namespace description \n\t{\n');
 
-    await write(output, `\texport interface ${name} \n\t\t{\n`);
+    await write(output, `\texport interface ${name} \n\t{\n`);
 
     await core.eachAsync(meta.commands, async function (cmd)
     {
