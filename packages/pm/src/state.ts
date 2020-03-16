@@ -18,4 +18,5 @@ export interface RunningContainer<T = any> extends Container<T>
     process: ChildProcess;
     running?: boolean;
     commandable?: boolean;
+    ready?: boolean;
 }

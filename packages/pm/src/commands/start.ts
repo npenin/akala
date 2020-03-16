@@ -1,9 +1,10 @@
-import { Container, Processors, CommandProxy } from "@akala/commands";
+import { Container, Processors, CommandProxy, Metadata, registerCommands, Command } from "@akala/commands";
 import State, { RunningContainer } from "../state";
 import { spawn, ChildProcess } from "child_process";
 import { description } from "../container";
 import * as jsonrpc from '@akala/json-rpc-ws'
 import debug from "debug";
+import { Local } from "@akala/commands/dist/processors";
 
 export default async function start(this: State, pm: description.pm & Container<State>, name: string, options?: any)
 {
@@ -71,7 +72,8 @@ export default async function start(this: State, pm: description.pm & Container<
         var cp = spawn(process.execPath, args, { cwd: process.cwd(), stdio: ['inherit', 'inherit', 'inherit', 'ipc'], shell: false, windowsHide: true });
         if (!container)
         {
-            container = new Container(name, null, new Processors.JsonRpc(new jsonrpc.Connection(new IpcAdapter(cp), {
+
+            var processor = new Processors.JsonRpc(new jsonrpc.Connection(new IpcAdapter(cp), {
                 type: 'client', browser: false, getHandler(method: string)
                 {
                     return async function (params, reply)
@@ -82,7 +84,7 @@ export default async function start(this: State, pm: description.pm & Container<
                                 params = { param: [] };
                             if (!params._trigger || params._trigger == 'proxy')
                                 params._trigger = 'jsonrpc'
-                            var result = await (container as Container<void>).dispatch(method, params)
+                            var result = await pm.dispatch(method, params)
                             reply(null, result);
                         }
                         catch (error)
@@ -95,11 +97,17 @@ export default async function start(this: State, pm: description.pm & Container<
                 , disconnected()
                 {
                 }
-            }), true)) as RunningContainer;
-            container.path = name;
+            }), true);
+
+            container = new Container(name, null) as RunningContainer;
+            container.register(new Command(function ()
+            {
+                (container as RunningContainer).ready = true;
+            }, 'ready'));
             this.processes.push(container);
         }
         container.process = cp;
+        container.path = name;
         container.commandable = this.config.mapping[name].commandable;
         if (container.commandable)
             pm.register(name, container);
@@ -111,7 +119,7 @@ export default async function start(this: State, pm: description.pm & Container<
         cp.on('exit', function ()
         {
             (container as RunningContainer).running = false;
-        })
+        });
         return { execPath: process.execPath, args: args, cwd: process.cwd(), stdio: ['inherit', 'inherit', 'inherit', 'ipc'], shell: false, windowsHide: true };
     }
 };
