@@ -130,6 +130,12 @@ export class FileSystem<T> extends CommandProcessor<T>
                         }
                     }
 
+                    if (!cmd.config[''])
+                        cmd.config[''] = {};
+
+                    if (!cmd.config[''].inject && cmd.inject)
+                        cmd.config[''].inject = cmd.inject;
+
                     container.register(cmd);
                 }
                 else if (f.name.endsWith('.json'))
