@@ -51,22 +51,4 @@ import debug from 'debug';
         process.on('SIGINT', () => process.exit());
     }
 
-    process.on('message', async function (message: string)
-    {
-        if (Buffer.isBuffer(message))
-            message = message.toString('utf8');
-        var oMessage = JSON.parse(message);
-        try
-        {
-            var result = await cliContainer.dispatch(oMessage.method, Object.assign(oMessage.params ?? { param: [] }, { _trigger: 'cli', }));
-            if (process.send)
-                process.send(JSON.stringify({ jsonrpc: oMessage.jsonrpc, result: result, id: oMessage.id }) + '\n');
-        }
-        catch (e)
-        {
-            console.error(e);
-            if (process.send)
-                process.send(JSON.stringify({ jsonrpc: oMessage.jsonrpc, id: oMessage.id, error: { message: e.message, stack: e.stack, code: e.code } }) + '\n')
-        }
-    })
 })(process.argv[2]);
