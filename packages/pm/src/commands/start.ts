@@ -99,7 +99,7 @@ export default async function start(this: State, pm: description.pm & Container<
                 }
             }), true);
 
-            container = new Container(name, null) as RunningContainer;
+            container = new Container(name, null, processor) as RunningContainer;
             container.register(new Command(function ()
             {
                 (container as RunningContainer).ready = true;
