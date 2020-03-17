@@ -12,7 +12,17 @@ var promise = FileSystem.discoverCommands(path.resolve(__dirname, './cli'), cliC
     if (require.main == module)
     {
         var args = yargs(process.argv.slice(2))
-        cliContainer.dispatch(args._[0], { options: args, param: args._.slice(1), _trigger: 'cli' });
+        cliContainer.dispatch(args._[0], { options: args, param: args._.slice(1), _trigger: 'cli' }).then((result: any) =>
+        {
+            if (typeof (result) != 'undefined')
+                console.log(result);
+        }, (error: Error) =>
+        {
+            if (args.v)
+                console.log(error);
+            else
+                console.log(error.message);
+        });
     }
 });
 
