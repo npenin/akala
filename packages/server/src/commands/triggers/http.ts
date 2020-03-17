@@ -4,6 +4,9 @@ import { NextFunction, isPromiseLike } from '@akala/core';
 import * as master from '../../master-meta';
 import * as worker from '../../worker-meta';
 import { Local } from '@akala/commands/dist/processors';
+import * as http from 'http';
+import * as https from 'https';
+import * as http2 from 'http2';
 
 function wrapHttp<T>(container: Container<T>, command: Metadata.Command)
 {
@@ -59,8 +62,13 @@ function wrapWorker<T>(container: Container<T>, c: Metadata.Command): worker.Req
     }
 }
 
-export var trigger = new Trigger('http', function register<T>(container: Container<T>, router: HttpRouter | WorkerRouter)
+export var trigger = new Trigger('http', function register<T>(container: Container<T>, router: HttpRouter | WorkerRouter | http.Server | https.Server | http2.Http2Server)
 {
+    var commandRouter: HttpRouter | WorkerRouter = new HttpRouter();
+    if (router instanceof http.Server || router instanceof https.Server || router instanceof http2.Http2Server)
+        commandRouter.attachTo(router);
+
+
     metadata(container).commands.forEach(command =>
     {
         if (!command.config || !command.config.http)
@@ -70,15 +78,17 @@ export var trigger = new Trigger('http', function register<T>(container: Contain
 
         if (config.method === 'use' || !config.method)
         {
-            if (router instanceof HttpRouter)
-                router.use(config.route, wrapHttp(container, command));
+            if (commandRouter instanceof HttpRouter)
+                commandRouter.use(config.route, wrapHttp(container, command));
             else
-                router.use(config.route, wrapWorker(container, command));
+                commandRouter.use(config.route, wrapWorker(container, command));
         }
         else
             if (router instanceof HttpRouter)
-                router[config.method](config.route, wrapHttp(container, command));
+                commandRouter[config.method](config.route, wrapHttp(container, command));
             else
-                router[config.method](config.route, wrapWorker(container, command));
-    })
+                commandRouter[config.method](config.route, wrapWorker(container, command));
+    });
+
+    return commandRouter;
 });

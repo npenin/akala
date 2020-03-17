@@ -17,7 +17,6 @@ export { master };
 
 import * as commands from './commands';
 export { commands };
-export { ServiceWorker } from './service-worker';
 
 export type resolve = worker.resolve;
 export

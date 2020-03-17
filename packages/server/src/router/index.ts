@@ -1,5 +1,6 @@
 import * as url from 'url';
 import * as http from 'http';
+import * as https from 'https';
 import * as http2 from 'http2';
 import * as akala from '@akala/core';
 import * as jsonrpc from '@akala/json-rpc-ws'
@@ -131,7 +132,7 @@ export class HttpRouter extends Router<requestHandlerWithNext, errorHandlerWithN
         return this;
     }
 
-    public attachTo(server: http.Server | http2.Http2SecureServer)
+    public attachTo(server: http.Server | https.Server | http2.Http2Server | http2.Http2SecureServer)
     {
         var self = this;
         server.on('upgrade', (req: Request, socket: Socket, head) =>
