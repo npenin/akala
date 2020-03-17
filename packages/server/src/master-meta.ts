@@ -1,13 +1,9 @@
 import * as akala from '@akala/core'
 import * as router from './router';
 import * as debug from 'debug';
-import * as ws from 'ws'
 import * as worker from './worker-meta'
 export { CoreProperties as Package } from './package';
-import { Api, DualApi } from '@akala/core';
-import { Connection } from '@akala/json-rpc-ws'
 import * as stream from 'stream'
-import * as bodyparser from 'body-parser'
 import * as express from 'express';
 import * as send from 'send'
 
