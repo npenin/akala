@@ -111,7 +111,7 @@ export class NetSocketAdapter implements jsonrpcws.SocketAdapter
     }
 }
 
-export default async function (container: Container<void>, options: { port?: number, cert?: string, key?: string, _: ('local' | 'http' | 'ws')[] })
+export default async function <T = void>(container: Container<T>, options: { port?: number, cert?: string, key?: string, _: ('local' | 'http' | 'ws')[] })
 {
     var args = options._;
     if (!args || args.length == 0)
@@ -172,6 +172,7 @@ export default async function (container: Container<void>, options: { port?: num
         {
             const https = await import('https');
             let server = https.createServer({ cert: options.cert, key: options.key });
+            container.register('webServer', server);
             if (args.indexOf('http') > -1)
                 container.attach('http', server);
             if (args.indexOf('ws') > -1)
@@ -202,8 +203,10 @@ export default async function (container: Container<void>, options: { port?: num
         {
             const http = await import('http');
             let server = http.createServer();
+            container.register('$webServer', server);
+
             if (args.indexOf('http') > -1)
-                container.attach('http', server);
+                container.register('$masterRouter', container.attach('http', server));
             if (args.indexOf('ws') > -1)
             {
                 var wsServer = new ws.Server({ server });

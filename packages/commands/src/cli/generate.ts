@@ -4,6 +4,7 @@ import * as path from 'path'
 import * as fs from 'fs';
 import { join } from "path";
 import { Writable } from "stream";
+import { outputHelper } from "./new";
 
 export default async function generate(folder?: string, name?: string, outputFile?: string)
 {
@@ -15,12 +16,7 @@ export default async function generate(folder?: string, name?: string, outputFil
     var container = new Container(name, {});
 
     var output: Writable;
-    if (!outputFile)
-        output = process.stdout;
-    else if (fs.existsSync(outputFile) && fs.lstatSync(outputFile).isDirectory())
-        output = fs.createWriteStream(outputFile + '/commands.json');
-    else
-        output = fs.createWriteStream(outputFile);
+    ({ output, outputFile } = await outputHelper(outputFile, 'commands.json', true));
 
     await akala.Processors.FileSystem.discoverCommands(folder, container);
 
