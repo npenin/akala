@@ -1,7 +1,5 @@
-import { Injector, NextFunction, isPromiseLike, HttpOptions, each, Http } from '@akala/core';
+import { Injector, HttpOptions, each, Http, defaultInjector } from '@akala/core';
 import * as pathRegexp from 'path-to-regexp';
-import { CommandProxy } from '../model/command';
-import { Container } from '../model/container';
 import { CommandProcessor } from '../model/processor';
 import { Command, Configuration } from '../metadata';
 
@@ -19,7 +17,7 @@ export class HttpClient<T> extends CommandProcessor<T>
         var injector = this.injector;
         return injector.injectWithNameAsync(['$http', '$resolveUrl'], async function (http: Http, resolveUrl)
         {
-            const res = await http.call(HttpClient.buildCall(config, resolveUrl, command, ...param.param));
+            const res = await http.call(HttpClient.buildCall(config, resolveUrl, ...param.param));
             switch (config.type)
             {
                 case 'raw':
@@ -35,7 +33,7 @@ export class HttpClient<T> extends CommandProcessor<T>
         })
     }
 
-    public static buildCall(config: HttpConfiguration, resolveUrl: (s: string) => string, command: Command, ...param: any[]): HttpOptions
+    public static buildCall(config: HttpConfiguration, resolveUrl: (s: string) => string, ...param: any[]): HttpOptions
     {
         var url = config.route;
         if (url[0] == '/')
@@ -101,10 +99,13 @@ export class HttpClient<T> extends CommandProcessor<T>
         return options;
     }
 
+    private injector: Injector;
 
-    constructor(private injector: Injector)
+    constructor(injector?: Injector)
     {
         super('http')
+
+        this.injector = injector || defaultInjector;
     }
 }
 

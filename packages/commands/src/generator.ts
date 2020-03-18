@@ -2,6 +2,7 @@ import { Container } from "./model/container";
 import * as meta from './metadata'
 import { Command, CommandProxy } from "./model/command";
 import { Processor } from "./model/processor";
+import { configure } from "./decorators";
 
 export function metadata(container: Container<any>): meta.Container
 {
@@ -28,19 +29,18 @@ export function proxy<T = any>(metacontainer: meta.Container, processor: Process
         processor = processor(container);
     }
 
-    registerCommands(metacontainer, processor, container);
+    registerCommands(metacontainer.commands, processor, container);
 
     return container;
 }
 
-export function registerCommands<T>(metacontainer: meta.Container, processor: Processor<T>, container: Container<T>)
+export function registerCommands<T>(commands: meta.Command[], processor: Processor<T>, container: Container<T>)
 {
-    metacontainer.commands.forEach(cmd =>
+    commands.forEach(cmd =>
     {
         if (cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata')
             return;
-        var proxycmd = container.register(new CommandProxy(processor as Processor<T>, cmd.name, cmd.inject));
-        proxycmd.config = Object.assign({}, cmd.config);
+        container.register(configure(cmd.config)(new CommandProxy(processor as Processor<T>, cmd.name, cmd.inject)));
     });
 }
 

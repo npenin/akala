@@ -1,16 +1,15 @@
-
-
 import * as path from 'path'
 import { promises as fs, existsSync } from 'fs'
 import * as akala from '@akala/core'
 import * as  Metadata from '../metadata';
-import { CommandProcessor, Processor } from '../model/processor';
+import { CommandProcessor, Processor, CommandNameProcessor } from '../model/processor';
 import { Container } from '../model/container';
-import { CommandProxy } from '../model/command';
+import { CommandProxy, Command } from '../model/command';
 import { configure } from '../decorators';
 import { HttpClient } from './http-client';
-import { proxy } from '../generator';
+import { proxy, registerCommands } from '../generator';
 import { Local } from './local';
+import { UnknownCommandError } from '../model/error-unknowncommand';
 
 export interface FileSystemConfiguration extends Metadata.Configuration
 {
@@ -23,17 +22,35 @@ export type FSCommand = Metadata.Command & { config?: { fs?: FileSystemConfigura
 
 export class FileSystem<T> extends CommandProcessor<T>
 {
-    public static async versatileCommandRegister<T>(cmd: FSCommand, container: Container<T>, processor?: Processor<T>)
+    public static async asTrap<T>(container: Container<T>, path?: string): Promise<CommandNameProcessor<T>>
     {
-        if (cmd.config && cmd.config.fs)
-            if (processor)
-                return container.register(configure(cmd.config)(new CommandProxy(processor, cmd.name, cmd.inject)));
-            else if (cmd.config && cmd.config.http)
-                return container.register(configure(cmd.config)(new CommandProxy(new HttpClient(container), cmd.name, cmd.inject)))
-        throw new Error(`no valid configuration was found for command ${cmd.name}`);
+        var fs = new FileSystem<T>(container, path);
+        var commands = await FileSystem.discoverMetaCommands(path || process.cwd(), { recursive: true });
+        return {
+            process(cmd, params)
+            {
+                var command = commands.find(c => c.name == cmd);
+                if (!command)
+                    throw new UnknownCommandError(cmd);
+                return fs.process(command as FSCommand, params);
+            },
+            name: fs.name,
+            requiresCommandName: true
+        };
     }
 
     public static async discoverCommands<T>(root: string, container: Container<T>, options?: { recursive?: boolean, processor?: Processor<T>, isDirectory?: boolean }): Promise<void>
+    {
+        if (!options)
+            options = {};
+
+        if (!options.processor)
+            options.processor = new FileSystem<T>(container, root);
+
+        registerCommands(await this.discoverMetaCommands(root, options), options.processor, container);
+    }
+
+    public static async discoverMetaCommands<T>(root: string, options?: { recursive?: boolean, processor?: Processor<T>, isDirectory?: boolean }): Promise<Metadata.Command[]>
     {
         if (!options)
             options = {};
@@ -48,31 +65,20 @@ export class FileSystem<T> extends CommandProcessor<T>
             {
                 if (e.code == 'ENOENT')
                 {
-                    return this.discoverCommands(require.resolve(root), container, options);
+                    return this.discoverMetaCommands(require.resolve(root), options);
                 }
                 throw e;
             }
         }
         if (!options.isDirectory)
         {
-            if (!options.processor)
-                options.processor = new FileSystem<T>(container, root);
-
             var metacontainer: Metadata.Container = require(path.resolve(root));
-            metacontainer.commands.forEach(cmd =>
-            {
-                if (cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata')
-                    return;
-                this.versatileCommandRegister(cmd as FSCommand, container, options?.processor);
-            });
-            container.name = metacontainer.name;
-            return;
+            return metacontainer.commands.filter(cmd => !(cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata'));
         }
         else if (existsSync(path.join(root, 'commands.json')))
-            return this.discoverCommands(path.join(root, 'commands.json'), container, { processor: options.processor, isDirectory: false });
+            return this.discoverMetaCommands(path.join(root, 'commands.json'), { processor: options.processor, isDirectory: false });
 
-        if (!options.processor)
-            options.processor = new FileSystem<T>(container, root);
+        var commands: Metadata.Command[] = [];
 
         var files = await fs.readdir(root, { withFileTypes: true });
         await akala.eachAsync(files, async f =>
@@ -136,20 +142,22 @@ export class FileSystem<T> extends CommandProcessor<T>
                     if (!cmd.config[''].inject && cmd.inject)
                         cmd.config[''].inject = cmd.inject;
 
-                    container.register(cmd);
+                    commands.push(cmd);
                 }
                 else if (f.name.endsWith('.json'))
                 {
                     if (!files.find(file => file.name == path.basename(f.name, '.json') + '.js'))
                     {
                         let cmd: FSCommand = require(path.resolve(path.join(root, f.name)))
-                        this.versatileCommandRegister(cmd, container, options?.processor);
+                        commands.push(cmd);
                     }
                 }
                 else
                     if (f.isDirectory() && options && options.recursive)
-                        container.register(f.name, await FileSystem.discoverCommands(path.join(root, f.name), new Container(container.name + '.' + f.name, container.state), options));
+                        commands.push(...await FileSystem.discoverMetaCommands(path.join(root, f.name), options));
         });
+
+        return commands;
     }
 
     public async process(command: FSCommand, param: { param: any[], _trigger?: string })
@@ -172,7 +180,7 @@ export class FileSystem<T> extends CommandProcessor<T>
         return Local.execute(command, script.default, this.container, param);
     }
 
-    constructor(container: Container<T>, private root: string | null)
+    constructor(container: Container<T>, private root?: string)
     {
         super('fs', container);
     }
