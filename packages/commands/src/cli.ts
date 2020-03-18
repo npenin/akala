@@ -7,10 +7,13 @@ import yargs from 'yargs-parser'
 
 var cliContainer = new Container('cli', {});
 
-var promise = FileSystem.discoverCommands(path.resolve(__dirname, './cli'), cliContainer).then(() =>
+export var container: Promise<description.commands> = (async function ()
 {
+    await FileSystem.discoverCommands(path.resolve(__dirname, './cli'), cliContainer);
+
     if (require.main == module)
     {
+        cliContainer.trap(await FileSystem.asTrap(cliContainer));
         var args = yargs(process.argv.slice(2))
         cliContainer.dispatch(args._[0], { options: args, param: args._.slice(1), _trigger: 'cli' }).then((result: any) =>
         {
@@ -24,6 +27,6 @@ var promise = FileSystem.discoverCommands(path.resolve(__dirname, './cli'), cliC
                 console.log(error.message);
         });
     }
-});
 
-export var container: Promise<description.commands> = promise.then(() => cliContainer);
+    return cliContainer;
+})()
