@@ -40,9 +40,6 @@
                     "$id": "#/fs",
                     "type": "object",
                     "title": "The fs Schema",
-                    "required": [
-                        "path"
-                    ],
                     "properties": {
                         "path": {
                             "$id": "#/fs/properties/path",
@@ -51,8 +48,16 @@
                             "default": "",
                             "examples": [
                                 "dist\\cli\\generate-metadata.js"
-                            ],
-                            "pattern": "^(.*)$"
+                            ]
+                        },
+                        "source": {
+                            "$id": "#/fs/properties/path",
+                            "type": "string",
+                            "title": "The Path Schema",
+                            "default": "",
+                            "examples": [
+                                "src\\cli\\generate-metadata.ts"
+                            ]
                         }
                     }
                 }
