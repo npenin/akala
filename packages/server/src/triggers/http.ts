@@ -1,11 +1,13 @@
 import { Trigger, Container, metadata, Metadata } from '@akala/commands';
-import { HttpRouter, WorkerRouter } from '../../router';
+import { HttpRouter, WorkerRouter } from '../router';
 import { NextFunction, isPromiseLike } from '@akala/core';
-import * as master from '../../master-meta';
-import * as worker from '../../worker-meta';
+import * as master from '../master-meta';
+import * as worker from '../worker-meta';
 import { Local } from '@akala/commands/dist/processors';
 import * as http from 'http';
 import * as https from 'https';
+import * as tls from 'tls'
+import * as net from 'net'
 import * as http2 from 'http2';
 
 function wrapHttp<T>(container: Container<T>, command: Metadata.Command)
@@ -62,10 +64,10 @@ function wrapWorker<T>(container: Container<T>, c: Metadata.Command): worker.Req
     }
 }
 
-export var trigger = new Trigger('http', function register<T>(container: Container<T>, router: HttpRouter | WorkerRouter | http.Server | https.Server | http2.Http2Server)
+export var trigger = new Trigger('http', function register<T>(container: Container<T>, router: HttpRouter | http.Server | https.Server | http2.Http2SecureServer | http2.Http2Server)
 {
     var commandRouter: HttpRouter | WorkerRouter = new HttpRouter();
-    if (router instanceof http.Server || router instanceof https.Server || router instanceof http2.Http2Server)
+    if (!(router instanceof HttpRouter))
         commandRouter.attachTo(router);
 
 

@@ -42,14 +42,14 @@ export function expressWrap(handler: express.Handler)
 {
     return function (req: router.Request, response: router.Response, ...rest)
     {
-        handler(req as any, response as unknown as express.Response, rest[rest.length - 1]);
+        handler(req as any, response as any, rest[rest.length - 1]);
     }
 }
 export function expressWrapError(handler: express.ErrorRequestHandler)
 {
     return function (error, req: router.Request, response: router.Response, ...rest)
     {
-        handler(error, req as any, response as unknown as express.Response, rest[rest.length - 1]);
+        handler(error, req as any, response as any, rest[rest.length - 1]);
     }
 }
 
