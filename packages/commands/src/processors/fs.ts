@@ -52,6 +52,8 @@ export class FileSystem<T> extends CommandProcessor<T>
 
     public static async discoverMetaCommands<T>(root: string, options?: { recursive?: boolean, processor?: Processor<T>, isDirectory?: boolean }): Promise<Metadata.Command[]>
     {
+        const log = akala.log('commands:fs:discovery');
+
         if (!options)
             options = {};
         if (typeof options.isDirectory == 'undefined')
@@ -78,6 +80,13 @@ export class FileSystem<T> extends CommandProcessor<T>
         else if (existsSync(path.join(root, 'commands.json')))
             return this.discoverMetaCommands(path.join(root, 'commands.json'), { processor: options.processor, isDirectory: false });
 
+        else if (existsSync(path.join(root, 'package.json')))
+        {
+            var packageDef = require(path.join(root, 'package.json'));
+            if (packageDef.commands && typeof (packageDef.commands) == 'string')
+                return this.discoverMetaCommands(path.join(root, packageDef.commands), { processor: options.processor });
+        }
+
         var commands: Metadata.Command[] = [];
 
         var files = await fs.readdir(root, { withFileTypes: true });
@@ -90,6 +99,7 @@ export class FileSystem<T> extends CommandProcessor<T>
                     if (!options)
                         throw new Error('cannot happen');
                     let cmd = configure<FileSystemConfiguration>('fs', fsConfig)(new CommandProxy(options.processor as Processor<T>, path.basename(f.name, path.extname(f.name))));
+                    log(cmd.name);
                     if (files.find(file => file.name == f.name + '.map'))
                     {
                         var sourceMap = JSON.parse(await fs.readFile(path.join(root, path.basename(f.name) + '.map'), 'utf8'));
@@ -101,34 +111,68 @@ export class FileSystem<T> extends CommandProcessor<T>
                     otherConfigsFile = path.join(path.dirname(source), path.basename(source, path.extname(source))) + '.json';
                     if (existsSync(path.resolve(otherConfigsFile)))
                     {
+                        log(`found config file ${otherConfigsFile}`)
                         var otherConfigs = require(path.resolve(otherConfigsFile));
                         delete otherConfigs.$schema;
                         cmd = configure(otherConfigs)(cmd) as any;
                     }
                     if (!cmd.config.fs.inject)
                     {
-                        var params = [];
+                        log(`looking for fs default definition`)
+                        var params: string[] = [];
+                        if (cmd.inject && cmd.inject.length)
+                        {
+                            log(cmd.inject);
+                            akala.each(cmd.inject, item =>
+                            {
+                                if (!item.startsWith('param.'))
+                                    params.push('ignore');
+                                else
+                                    params.push(item);
+                            });
+                            cmd.config.fs.inject = params;
+                        }
+                    }
+                    if (!cmd.config.fs.inject)
+                    {
+                        log(`looking for fs in any configuration`)
+                        params = [];
                         akala.each(cmd.config, config =>
                         {
-                            if (config.inject)
+                            if (config.inject && config.inject.length && !cmd.config.fs.inject)
                             {
                                 akala.each(config.inject, item =>
                                 {
                                     if (item.startsWith('param.'))
                                         params[Number(item.substring('param.'.length))] = item;
                                 });
+                                cmd.config.fs.inject = params;
                             }
-                        })
+                        });
                     }
+
                     if (!cmd.config.fs.inject)
                     {
                         let func = require(path.resolve(cmd.config.fs.path)).default;
                         if (!func)
                             throw new Error(`No default export is mentioned in ${path.resolve(cmd.config.fs.path)}`)
                         if (func.$inject)
+                        {
+                            log(`taking $inject`)
                             cmd.config.fs.inject = func.$inject;
+                        }
                         else
-                            cmd.config.fs.inject = akala.introspect.getParamNames(func).map((v, i) => 'param.' + i);
+                        {
+                            log(`reflection on function arguments`)
+                            let n = 0;
+                            cmd.config.fs.inject = akala.introspect.getParamNames(func).map(v =>
+                            {
+                                if (v == 'container')
+                                    return v;
+                                return 'param.' + (n++)
+                            }
+                            );
+                        }
                         if (cmd.config.fs.inject && !cmd.inject)
                         {
                             cmd.inject = cmd.config.fs.inject;
