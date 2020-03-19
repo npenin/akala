@@ -1,0 +1,113 @@
+{
+    "name": "@akala/server",
+    "commands": [
+        {
+            "name": "asset",
+            "inject": [
+                "container",
+                "param.0",
+                "param.1"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "container",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/asset.js",
+                    "source": "src/commands/asset.ts",
+                    "inject": [
+                        "container",
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "compile",
+            "inject": [
+                "param.0",
+                "options.throwOnMissingFile",
+                "param.1"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "options.throwOnMissingFile",
+                        "param.1"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/compile.js",
+                    "source": "src/commands/compile.ts",
+                    "inject": [
+                        "param.0",
+                        "ignore",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "remove-asset",
+            "inject": [
+                "container",
+                "param.0",
+                "param.1"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "container",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/remove-asset.js",
+                    "source": "src/commands/remove-asset.ts",
+                    "inject": [
+                        "container",
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "route",
+            "inject": [
+                "$router",
+                "param.0",
+                "param.1",
+                "options"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "$router",
+                        "param.0",
+                        "param.1",
+                        "options"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/route.js",
+                    "source": "src/commands/route.ts",
+                    "inject": [
+                        "$router",
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+}

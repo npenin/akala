@@ -1,12 +1,14 @@
 import { serve, Container } from "@akala/commands";
 import { HttpRouter, router } from "../router";
-import './triggers/http'
+import '../triggers/http'
 import { State } from "../state";
+import { Injector } from "@akala/core";
 
 export default async function $init(container: Container<State>, options: any)
 {
     serve(container, options);
-    container.state = {} as any;
+    container.state.assets = new Injector();
+    container.state.mode = process.env.NODE_ENV as any;
     container.injectWithName(['$masterRouter'], function (masterRouter: HttpRouter)
     {
         if (typeof (masterRouter) != 'undefined')

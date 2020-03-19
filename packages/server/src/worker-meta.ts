@@ -92,7 +92,7 @@ export function expressWrap(handler: express.Handler)
         var callback = req.injector.resolve('$callback');
         var headers: any = {};
         var response = buildResponse(req, callback, next);
-        handler(<any>req, response, next);
+        handler(req as any, response as any, next);
     }
 }
 
