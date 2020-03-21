@@ -1,15 +1,19 @@
 #!/usr/bin/env node
 import 'source-map-support/register'
 import * as path from 'path'
-import { Container, Processors, Processor } from '@akala/commands';
+import * as ac from '@akala/commands';
 import yargs from 'yargs-parser'
 import { lstatSync } from 'fs';
 import { IpcAdapter } from './commands/start';
 import debug from 'debug';
+import mock from 'mock-require'
 
 (async function (folder)
 {
-    const log = debug(folder)
+    const log = debug(folder);
+
+    mock('@akala/commands', ac);
+    mock('@akala/pm', require('..'));
 
     if (process.argv[2] == 'pm')
         folder = path.resolve(__dirname, './commands')
@@ -21,30 +25,30 @@ import debug from 'debug';
         return;
     }
 
-    var cliContainer: Container<any>;
+    var cliContainer: ac.Container<any>;
     if (folderOrFile.isFile())
-        cliContainer = new Container(path.basename(folder), {});
+        cliContainer = new ac.Container(path.basename(folder), {});
     else
-        cliContainer = new Container(folder, {});
+        cliContainer = new ac.Container(folder, {});
 
-    var processor: Processor<any>;
+    var processor: ac.Processor<any>;
     if (folderOrFile.isFile())
-        processor = new Processors.FileSystem(cliContainer, path.dirname(folder));
+        processor = new ac.Processors.FileSystem(cliContainer, path.dirname(folder));
     else
-        processor = new Processors.FileSystem(cliContainer, folder);
+        processor = new ac.Processors.FileSystem(cliContainer, folder);
 
     var args = yargs(process.argv.slice(3))
     if (args.v)
-        processor = new Processors.LogProcessor(processor, (cmd, params) =>
+        processor = new ac.Processors.LogProcessor(processor, (cmd, params) =>
         {
             log({ cmd, params });
         });
 
-    await Processors.FileSystem.discoverCommands(folder, cliContainer, { processor: processor, isDirectory: folderOrFile.isDirectory() });
+    await ac.Processors.FileSystem.discoverCommands(folder, cliContainer, { processor: processor, isDirectory: folderOrFile.isDirectory() });
     if (require.main == module)
     {
         // cliContainer.attach('jsonrpc', new IpcStream(process));
-        var stop = await cliContainer.dispatch(cliContainer.resolve('$init') || '$serve', { options: args, param: args._, _trigger: 'fs', pm: new Container('pm', new Processors.JsonRpc(Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer))) });
+        var stop = await cliContainer.dispatch(cliContainer.resolve('$init') || '$serve', { options: args, param: args._, _trigger: 'cli', pm: new ac.Container('pm', new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer))) });
 
         if (stop && typeof stop == 'function')
             process.on('SIGINT', stop);

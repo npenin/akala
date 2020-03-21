@@ -29,8 +29,12 @@ export default async function (this: State, container: RunningContainer<State> &
     {
         return promises.writeFile(configPath, JSON.stringify(this, null, 4), 'utf-8').then(() => console.log('config saved'))
     }
-    await this.config.save();
 
+    if (!this.config.externals)
+        this.config.externals = [];
+
+
+    await this.config.save();
     container.name = 'pm';
     await container.dispatch('map', 'pm', join(__dirname, '../../commands.json'), true);
 

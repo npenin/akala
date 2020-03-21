@@ -83,7 +83,8 @@ export default async function start(this: State, pm: description.pm & Container<
                             if (!params)
                                 params = { param: [] };
                             if (!params._trigger || params._trigger == 'proxy')
-                                params._trigger = 'jsonrpc'
+                                params._trigger = 'jsonrpc';
+                            params.process = container;
                             var result = await pm.dispatch(method, params)
                             reply(null, result);
                         }
@@ -100,17 +101,17 @@ export default async function start(this: State, pm: description.pm & Container<
             }), true);
 
             container = new Container(name, null, processor) as RunningContainer;
-            container.register(new Command(function ()
+            container.dispatch('$metadata').then((metaContainer: Metadata.Container) =>
             {
-                (container as RunningContainer).ready = true;
-            }, 'ready'));
+                registerCommands(metaContainer.commands, processor, container as Container<any>);
+            });
             this.processes.push(container);
         }
         container.process = cp;
         container.path = name;
         container.commandable = this.config.mapping[name].commandable;
         if (container.commandable)
-            pm.register(name, container);
+            pm.register(name, container, true);
         // container.resolve = function (c: string)
         // {
         //     return new CommandProxy<any>((container as RunningContainer).processor, c, ['$param']) as any;
