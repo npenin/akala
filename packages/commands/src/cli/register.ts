@@ -69,13 +69,21 @@ export default async function register(commandsPath?: string, name?: string, for
             if (packageFile.commands === commandsPath)
                 console.log('no change to perform; this path is already registered');
             else if (typeof packageFile.commands != 'undefined' && !force)
-                throw new Error(`There already is registered as commands. Please use -f flag or give it a name using --name`);
+                throw new Error(`There already is a registered commands file. Please use -f flag or give it a name using --name`);
             else
                 packageFile.commands = commandsPath, dirty = true;
         }
         else
         {
-
+            if (packageFile.commands[packageFile.name] && packageFile.commands[packageFile] != commandsPath && !force)
+                throw new Error(`There already is a registered commands file. Please use -f flag or give it a name using --name`);
+            else if (packageFile.commands[packageFile.name] === commandsPath)
+                console.log('no change to perform; this path is already registered');
+            else
+                packageFile.commands[packageFile.name] = commandsPath, dirty = true;
         }
     }
+
+    if (dirty)
+        await fs.promises.writeFile(path.join(process.cwd(), packagePath), JSON.stringify(packageFile, null, 4));
 };

@@ -13,13 +13,13 @@ const log = akala.log('akala:commands');
 
 export class Container<TState> extends akala.Injector
 {
-    attach(triggerName: string, server: any)
+    attach(triggerName: string, server: any): any
     {
         var trigger = Trigger.find(triggerName);
         if (!trigger)
             throw new Error(`There is no registered trigger named ${triggerName}`);
 
-        trigger.register(this, server);
+        return trigger.register(this, server);
     }
 
     public get processor()
@@ -114,21 +114,21 @@ export class Container<TState> extends akala.Injector
         return proxy;
     }
 
-    public register<T>(name: string, value: T): T
-    public register(cmd: Command<TState>): Command<TState>
-    public register(cmd: Container<any>): Container<any>
-    public register<T>(cmd: string | Command<TState> | Container<any>, value?: T): T | Command<TState> | Container<any>
+    public register<T>(name: string, value: T, override?: boolean): T
+    public register(cmd: Command<TState>, override?: boolean): Command<TState>
+    public register(cmd: Container<any>, override?: boolean): Container<any>
+    public register<T>(cmd: string | Command<TState> | Container<any>, value?: T, override?: boolean): T | Command<TState> | Container<any>
     {
         if (cmd instanceof Container || cmd instanceof Command)
-            return this.register(cmd.name, cmd);
+            return this.register(cmd.name, cmd, !!value);
         else 
         {
             if (cmd == '$injector' || cmd == '$container')
-                return super.register(cmd, value) as any;
+                return super.register(cmd, value, override) as any;
             if (value instanceof Container)
-                return super.register(cmd, value.proxy());
+                return super.register(cmd, value.proxy(), override);
             if (typeof value != 'undefined')
-                return super.register(cmd, value);
+                return super.register(cmd, value, override);
             else
                 throw new Error('value cannot be undefined');
         }
