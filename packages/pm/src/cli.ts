@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 import * as path from 'path'
-import { Container, Processors, proxy, metadata, NetSocketAdapter } from '@akala/commands';
+import { Processors, NetSocketAdapter } from '@akala/commands';
 import yargs from 'yargs-parser'
 import { Socket } from 'net';
 import { platform, homedir } from 'os';
-import start, { IpcAdapter } from './commands/start'
-import * as jsonrpcws from '@akala/json-rpc-ws';
+import start from './commands/start'
 
 const tableChars = {
     'top': '─'
@@ -51,7 +50,7 @@ if (require.main == module)
             {
                 try
                 {
-                    var result = await processor.process(args._[0], { options: args, param: args._.slice(1), _trigger: 'cli' } as any);
+                    var result = await processor.process(args._[0], { options: args, param: args._.slice(1), _trigger: 'cli', cwd: process.cwd() } as any);
 
                     socket.end(() =>
                     {
@@ -255,7 +254,7 @@ var stdinBuffer: string = '';
 function readLine()
 {
     process.stdin.pause();
-    return new Promise<string>((resolve, reject) =>
+    return new Promise<string>((resolve) =>
     {
 
         process.stdin.on('data', function processChunk(chunk)

@@ -9,6 +9,7 @@ export default interface State
         containers: { [key: string]: string[] }
         mapping: { [key: string]: { path: string, commandable: boolean } }
         save(): Promise<void>
+        externals?: string[];
     }
 }
 

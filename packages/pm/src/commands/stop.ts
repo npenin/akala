@@ -1,12 +1,11 @@
 import { Container } from "@akala/commands";
-import State, { RunningContainer } from "../state";
-import { fork } from "child_process";
+import State from "../state";
 
 export default async function stop(this: State, name: string, container: Container<State>)
 {
     await Promise.all(this.processes.filter(p => name == 'pm' || !name || p.name == name && p.process).map(cp =>
     {
-        return new Promise((resolve, reject) =>
+        return new Promise((resolve) =>
         {
             if (cp.process && cp.running)
             {
