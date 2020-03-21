@@ -2,7 +2,7 @@ import * as akala from '@akala/core'
 import * as router from './router';
 import * as debug from 'debug';
 import * as worker from './worker-meta'
-export { CoreProperties as Package } from './package';
+export { CoreProperties as Package } from '../src/package';
 import * as stream from 'stream'
 import * as express from 'express';
 import * as send from 'send'
@@ -20,7 +20,7 @@ export function serveStatic(path, options?: send.SendOptions & { fallthrough?: b
         options = {};
     if (typeof (options.fallthrough) == 'undefined')
         options.fallthrough = true;
-    options.root = path;
+
     return function (req: request, res: response, ...next: akala.NextFunction[])
     {
         var sendstr = send(req, req.url, options);

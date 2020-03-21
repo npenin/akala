@@ -217,7 +217,7 @@ export class HttpRouter extends Router<requestHandlerWithNext, errorHandlerWithN
                 return false;
             }
             return layer;
-        }, rest);
+        }, ...rest);
         return this;
     }
 

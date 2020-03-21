@@ -2,27 +2,50 @@
     "name": "@akala/server",
     "commands": [
         {
+            "name": "$init",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/commands/$init.js",
+                    "source": "src/commands/$init.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "inject": [
+                        "container",
+                        "options"
+                    ]
+                }
+            }
+        },
+        {
             "name": "asset",
             "inject": [
                 "container",
                 "param.0",
-                "param.1"
+                "param.1",
+                "cwd"
             ],
             "config": {
                 "": {
                     "inject": [
                         "container",
                         "param.0",
-                        "param.1"
+                        "param.1",
+                        "cwd"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/asset.js",
                     "source": "src/commands/asset.ts",
                     "inject": [
-                        "container",
+                        "ignore",
                         "param.0",
-                        "param.1"
+                        "param.1",
+                        "ignore"
                     ]
                 }
             }
@@ -82,28 +105,32 @@
         {
             "name": "route",
             "inject": [
-                "$router",
                 "param.0",
                 "param.1",
-                "options"
+                "param.2"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "$router",
                         "param.0",
                         "param.1",
-                        "options"
+                        "param.2"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/route.js",
                     "source": "src/commands/route.ts",
                     "inject": [
-                        "$router",
                         "param.0",
                         "param.1",
                         "param.2"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "options"
                     ]
                 }
             }

@@ -1,27 +1,27 @@
 import { State } from "../state";
 import { Container } from "@akala/commands";
-import { join } from "path";
+import { join, isAbsolute, resolve } from "path";
 import { serveStatic } from "../master-meta";
 import * as requireIfExists from 'require-optional'
 import { FSWatcher, watch } from 'chokidar'
 import { logger } from '../logger'
+import { description } from "../commands";
 const chokidar: { watch: typeof watch } = requireIfExists('chokidar');
 
 const log = logger('assets');
 
 export var targetWatchers: { [key: string]: FSWatcher } = {};
 
-export default async function register(this: State, container: Container<State>, route: string, path: string)
+export default async function register(this: State, container: Container<State> & description.commands, route: string, path: string, cwd: string)
 {
-    await this.assets.injectWithNameAsync([route], async (asset: string[]) =>
+    await this.assets.injectWithName([route], async (asset: string[]) =>
     {
-        if (typeof (asset) == 'undefined')
-        {
-            this.assets.register(route, asset = []);
-        }
+        if (!asset)
+            asset = this.assets.register(route, []);
 
-        log.info(`addind ${path} to ${route}`);
-
+        log.info(`adding ${path} to ${route}`);
+        if (!isAbsolute(path))
+            path = resolve(cwd, path);
         asset.push(path);
 
         var cachePath = join('./build', route);
@@ -40,9 +40,9 @@ export default async function register(this: State, container: Container<State>,
             else
                 targetWatchers[route].add(path);
         }
-        await container.dispatch('compile', cachePath, asset);
+        await container.dispatch('compile', cachePath, ...asset);
 
-        if (this.preAuthenticatedRouter)
-            this.preAuthenticatedRouter.useGet(route, serveStatic(cachePath, { fallthrough: false }));
-    });
+        if (this.masterRouter)
+            container.dispatch('route', route, cachePath, { fallthrough: false, pre: true, get: true })
+    })();
 }
