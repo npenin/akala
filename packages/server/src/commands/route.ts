@@ -20,12 +20,14 @@ export default function route(this: State, route: string, target: string, option
     else
         method = 'get';
 
+
     if (!path.isAbsolute(target))
         target = path.resolve(cwd, target);
 
     if (options.root && !path.isAbsolute(options.root))
         options.root = path.resolve(cwd, options.root);
 
+    console.log('registering route to ' + target + ' as ' + route);
     if (options.pre)
         this.preAuthenticatedRouter[method](route, serveStatic(target, options))
     else if (options.auth)
