@@ -47,10 +47,14 @@ export class FileSystem<T> extends CommandProcessor<T>
         if (!options.processor)
             options.processor = new FileSystem<T>(container, root);
 
-        registerCommands(await this.discoverMetaCommands(root, options), options.processor, container);
+        var commands = await this.discoverMetaCommands(root, options);
+        registerCommands(commands, options.processor, container);
+
+        if (typeof (commands.name) != 'undefined')
+            container.name = commands.name;
     }
 
-    public static async discoverMetaCommands<T>(root: string, options?: { recursive?: boolean, processor?: Processor<T>, isDirectory?: boolean }): Promise<Metadata.Command[]>
+    public static async discoverMetaCommands<T>(root: string, options?: { recursive?: boolean, processor?: Processor<T>, isDirectory?: boolean }): Promise<Metadata.Command[] & { name?: string }>
     {
         const log = akala.log('commands:fs:discovery');
 
@@ -75,7 +79,10 @@ export class FileSystem<T> extends CommandProcessor<T>
         if (!options.isDirectory)
         {
             var metacontainer: Metadata.Container = require(path.resolve(root));
-            return metacontainer.commands.filter(cmd => !(cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata'));
+
+            var commands = metacontainer.commands.filter(cmd => !(cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata'));
+            Object.defineProperty(commands, 'name', { enumerable: false, value: metacontainer.name });
+            return commands;
         }
         else if (existsSync(path.join(root, 'commands.json')))
             return this.discoverMetaCommands(path.join(root, 'commands.json'), { processor: options.processor, isDirectory: false });

@@ -5,7 +5,7 @@ import { Command } from './command';
 var triggers: Trigger[] = akala.module('@akala/commands').register('triggers', [])
 export class Trigger
 {
-    constructor(public name: string, public register: <T>(container: Container<T>, media?: any) => void)
+    constructor(public name: string, public register: <T>(container: Container<T>, media?: any) => any)
     {
         Trigger.registerTrigger(this);
     }

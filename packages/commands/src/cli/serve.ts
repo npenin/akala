@@ -6,6 +6,9 @@ import { join } from 'path';
 import * as jsonrpcws from '@akala/json-rpc-ws';
 import { EventEmitter } from 'events';
 import { unlink } from 'fs';
+import { Http2SecureServer, Http2Server } from 'http2';
+import { Server as httpServer } from 'http'
+import { Server as httpsServer } from 'https'
 
 export class NetSocketAdapter implements jsonrpcws.SocketAdapter
 {
@@ -134,6 +137,7 @@ export default async function <T = void>(container: Container<T>, options: { por
             socketPath = join(process.cwd(), container.name.replace(/\//g, '-').replace(/^@/g, '') + '.sock');
 
         server.listen(socketPath);
+        console.log(`listening on ${socketPath}`);
 
         stops.push(() =>
         {
@@ -159,6 +163,7 @@ export default async function <T = void>(container: Container<T>, options: { por
     if (args.indexOf('http') > -1 || args.indexOf('ws') > -1)
     {
         let port: number;
+        let message = 'listening on ';
         if (options.port)
             port = options.port;
         else
@@ -168,70 +173,50 @@ export default async function <T = void>(container: Container<T>, options: { por
             else
                 port = 80;
         }
+        let server: httpServer | httpsServer;// | Http2SecureServer | Http2Server;
         if (options.cert && options.key)
         {
             const https = await import('https');
-            let server = https.createServer({ cert: options.cert, key: options.key });
-            container.register('webServer', server);
-            if (args.indexOf('http') > -1)
-                container.attach('http', server);
-            if (args.indexOf('ws') > -1)
-            {
-                var wsServer = new ws.Server({ server });
-                wsServer.on('connection', (socket: ws) =>
-                {
-                    container.attach('jsonrpc', new jsonrpcws.ws.SocketAdapter(socket, false));
-                })
-            }
-            server.listen(port);
-
-            stops.push(() =>
-            {
-                return new Promise<void>((resolve, reject) =>
-                {
-                    server.close(function (err)
-                    {
-                        if (err)
-                            reject(err);
-                        else
-                            resolve();
-                    })
-                })
-            })
+            server = https.createServer({ cert: options.cert, key: options.key });
+            message += 'https://';
         }
         else
         {
             const http = await import('http');
-            let server = http.createServer();
-            container.register('$webServer', server);
-
-            if (args.indexOf('http') > -1)
-                container.register('$masterRouter', container.attach('http', server));
-            if (args.indexOf('ws') > -1)
-            {
-                var wsServer = new ws.Server({ server });
-                wsServer.on('connection', (socket: ws) =>
-                {
-                    container.attach('jsonrpc', new jsonrpcws.ws.SocketAdapter(socket, false));
-                })
-            }
-            server.listen(port);
-            stops.push(() =>
-            {
-                return new Promise<void>((resolve, reject) =>
-                {
-                    server.close(function (err)
-                    {
-                        if (err)
-                            reject(err);
-                        else
-                            resolve();
-                    });
-                });
-            })
-
+            server = http.createServer();
+            message += 'http://';
         }
+        container.register('$webServer', server);
+
+        if (args.indexOf('http') > -1)
+            container.register('$masterRouter', container.attach('http', server));
+        if (args.indexOf('ws') > -1)
+        {
+            var wsServer = new ws.Server({ server });
+            container.register('$wsServer', wsServer);
+            wsServer.on('connection', (socket: ws) =>
+            {
+                container.attach('jsonrpc', new jsonrpcws.ws.SocketAdapter(socket, false));
+            })
+        }
+        server.listen(port);
+        console.log(message + '0.0.0.0:' + port);
+
+        stops.push(() =>
+        {
+            return new Promise<void>((resolve, reject) =>
+            {
+                server.close(function (err)
+                {
+                    if (err)
+                        reject(err);
+                    else
+                        resolve();
+                })
+            })
+        })
     }
+
 
     console.log('server listening');
 

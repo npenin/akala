@@ -4,6 +4,8 @@ import { Command, CommandProxy } from "./model/command";
 import { Processor } from "./model/processor";
 import { configure } from "./decorators";
 
+export const ignoredCommands = ['$serve', '$metadata', '$attach']
+
 export function metadata(container: Container<any>): meta.Container
 {
     var metacontainer: meta.Container = { name: container.name || 'unnamed', commands: [] };
@@ -12,7 +14,7 @@ export function metadata(container: Container<any>): meta.Container
         if (key === '$injector' || key === '$state' || key === '$container')
             return;
         var cmd = container.resolve<Command>(key);
-        if (cmd && cmd.name && cmd instanceof Command && cmd.name[0] != '$')
+        if (cmd && cmd.name && cmd instanceof Command && ignoredCommands.indexOf(cmd.name) == -1)
             metacontainer.commands.push({ name: cmd.name, inject: cmd.inject || [], config: cmd.config });
     });
     return metacontainer;
