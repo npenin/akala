@@ -454,7 +454,7 @@ http.METHODS.concat('ALL').forEach(function (method)
             layer.method = method;
             route.methods[method] = true;
             return layer;
-        }, rest);
+        }, ...rest);
         return this;
     }
 })

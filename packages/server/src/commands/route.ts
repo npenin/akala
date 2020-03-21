@@ -1,11 +1,9 @@
-import { Container } from "@akala/commands";
-import { HttpRouter } from "../router";
 import { serveStatic } from "../master-meta";
-import * as yargs from 'yargs-parser'
 import { State } from "../state";
 import { SendOptions } from "send";
+import * as path from 'path'
 
-export default async function route(this: State, route: string, target: string, options: { pre?: boolean, auth?: boolean, app?: boolean, get?: boolean, use?: boolean } & SendOptions)
+export default function route(this: State, route: string, target: string, options: { pre?: boolean, auth?: boolean, app?: boolean, get?: boolean, use?: boolean } & SendOptions, cwd: string)
 {
     var method: 'get' | 'use' | 'useGet';
 
@@ -21,6 +19,12 @@ export default async function route(this: State, route: string, target: string, 
         method = 'use';
     else
         method = 'get';
+
+    if (!path.isAbsolute(target))
+        target = path.resolve(cwd, target);
+
+    if (options.root && !path.isAbsolute(options.root))
+        options.root = path.resolve(cwd, options.root);
 
     if (options.pre)
         this.preAuthenticatedRouter[method](route, serveStatic(target, options))
