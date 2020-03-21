@@ -16,7 +16,8 @@ export default async function register(this: State, container: Container<State> 
 {
     await this.assets.injectWithName([route], async (asset: string[]) =>
     {
-        if (!asset)
+        var newRoute = !asset;
+        if (newRoute)
             asset = this.assets.register(route, []);
 
         log.info(`adding ${path} to ${route}`);
@@ -40,8 +41,10 @@ export default async function register(this: State, container: Container<State> 
             else
                 targetWatchers[route].add(path);
         }
+
         await container.dispatch('compile', cachePath, ...asset);
 
-        container.dispatch('route', route, resolve(cachePath), { fallthrough: false, pre: true, get: true })
+        if (newRoute)
+            container.dispatch('route', route, resolve(cachePath), { fallthrough: false, pre: true, get: true })
     })();
 }
