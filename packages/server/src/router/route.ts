@@ -1,6 +1,5 @@
-import { Route, Layer, LayerOptions } from '@akala/core';
+import { Route, LayerOptions } from '@akala/core';
 import { HttpLayer } from './layer';
-import { METHODS as methods } from 'http'
 
 export class HttpRoute<T extends Function> extends Route<T, HttpLayer<T>>
 {
@@ -99,7 +98,7 @@ export class HttpRoute<T extends Function> extends Route<T, HttpLayer<T>>
             this.methods._all = true;
             layer.method = undefined;
             return layer;
-        }, handlers);
+        }, ...handlers);
     }
 
     public checkout: (...handlers: T[]) => this;
