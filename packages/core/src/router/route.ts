@@ -14,7 +14,6 @@
  */
 
 var debug = require('debug')('router:route')
-var flatten = require('array-flatten')
 import { Layer, LayerOptions } from './layer'
 
 /**
@@ -102,12 +101,9 @@ export class Route<T extends Function, TLayer extends Layer<T>>
         return true;
     }
 
-    public addHandler(postBuildLayer: (layer: TLayer) => TLayer, ...handlers: T[][])
     public addHandler(postBuildLayer: (layer: TLayer) => TLayer, ...handlers: T[])
-    public addHandler(postBuildLayer: (layer: TLayer) => TLayer, ...handlers: (T | T[])[])
-    public addHandler(postBuildLayer: (layer: TLayer) => TLayer, ...handlers: (T | T[])[])
     {
-        var callbacks: T[] = flatten(handlers)
+        var callbacks: T[] = handlers
 
         if (callbacks.length === 0)
         {
