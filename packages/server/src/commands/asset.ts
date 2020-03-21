@@ -43,6 +43,6 @@ export default async function register(this: State, container: Container<State> 
         await container.dispatch('compile', cachePath, ...asset);
 
         if (this.masterRouter)
-            container.dispatch('route', route, cachePath, { fallthrough: false, pre: true, get: true })
+            container.dispatch('route', route, resolve(cachePath), { fallthrough: false, pre: true, get: true })
     })();
 }
