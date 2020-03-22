@@ -7,6 +7,7 @@ export * from './binder';
 export * from './parser';
 export * from './helpers'
 export * from './router'
+export * from './queue'
 import { Module } from './module';
 export { JsonRpcWs, Connection } from './api/json-rpc-ws';
 export { Rest } from './api/rest';
