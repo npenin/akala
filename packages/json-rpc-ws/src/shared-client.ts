@@ -1,12 +1,12 @@
-'use strict';
-
 import { Base } from './base';
-import { Connection, PayloadDataType, SocketAdapter } from './connection';
 import * as debug from 'debug';
 const logger = debug('json-rpc-ws');
 import { ok as assert } from 'assert';
+import { SocketAdapter, PayloadDataType } from './shared-connection';
 
-export default class Client<TClientConnection extends Connection> extends Base<TClientConnection>
+
+
+export default abstract class Client<TStreamable> extends Base<TStreamable>
 {
   constructor(private socketConstructor: (address: string) => SocketAdapter)
   {
@@ -30,28 +30,24 @@ export default class Client<TClientConnection extends Connection> extends Base<T
     var self = this;
     var opened = false;
     var socket = this.socket = this.socketConstructor(address);
+
     socket.once('open', function clientConnected()
     {
-
       // The client connected handler runs scoped as the socket so we can pass
       // it into our connected method like thisk
-      self.connected(this);
+      self.connected(socket);
+      opened = true;
+      if (callback)
+        callback.call(this);
     });
     if (callback)
-    {
-      socket.once('open', function socketOpen()
-      {
-        opened = true;
-        callback.apply(this, []);
-      });
-      socket.once('error', function socketError(err)
+      this.socket.once('error', function socketError(err)
       {
         if (!opened)
         {
-          callback.apply(this, [err]);
+          callback.call(self, err);
         }
       });
-    }
   }
 
   /**
@@ -101,11 +97,11 @@ export default class Client<TClientConnection extends Connection> extends Base<T
    * @public
    * @todo allow for empty params aka arguments.length === 2
    */
-  public send<TParamType extends PayloadDataType, TReplyType extends PayloadDataType>(method: string, params: TParamType, callback?: (error?: any, result?: TReplyType) => void)
+  public send<TParamType extends PayloadDataType<TStreamable>, TReplyType extends PayloadDataType<TStreamable>>(method: string, params: TParamType, callback?: (error?: any, result?: TReplyType) => void)
   {
     logger('send %s', method);
     assert(this.isConnected(), 'Not connected');
     var connection = this.getConnection();
-    connection.sendMethod(method, params, callback);
+    connection.sendMethod(method, params as any, callback as any);
   };
 }

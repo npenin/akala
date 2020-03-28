@@ -1,7 +1,7 @@
 const Code = require('code');
 const WS = require('ws');
 const JsonRpcWs = require('../');
-const Browserify = require('browserify');
+// const Browserify = require('browserify');
 const Webdriver = require('selenium-webdriver');
 
 const { expect } = Code;
@@ -326,20 +326,6 @@ describe('json-rpc ws', () =>
     {
 
       process.env.PATH = `${process.env.PATH}:./node_modules/.bin`;
-      const b = Browserify();
-      b.add('./browser_test.js');
-      return new Promise((resolve) =>
-      {
-
-        b.bundle((err, buf) =>
-        {
-
-          expect(err).to.not.exist();
-          script = buf.toString();
-          expect(script).to.exist();
-          resolve();
-        });
-      });
     });
 
     it.skip('works in browser', () =>
@@ -350,7 +336,7 @@ describe('json-rpc ws', () =>
       {
 
         let x = 0;
-        driver.executeScript(script).then(function ()
+        driver.executeScript('./browser_test._js').then(function ()
         {
 
           driver.executeAsyncScript(function ()

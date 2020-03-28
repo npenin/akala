@@ -1,9 +1,9 @@
 'use strict';
 import * as debug from 'debug';
-import * as uuid from 'uuid';
+import { v4 as uuid } from 'uuid';
 const logger = debug('json-rpc-ws');
 
-import { Connection, Handler, PayloadDataType, SocketAdapter } from './connection';
+import { Connection, Handler, PayloadDataType, Parent, SocketAdapter } from './shared-connection';
 
 
 
@@ -13,7 +13,7 @@ import { Connection, Handler, PayloadDataType, SocketAdapter } from './connectio
  * @constructor
  * @public
  */
-export class Base<TConnection extends Connection = Connection>
+export abstract class Base<TStreamable, TConnection extends Connection<TStreamable> = Connection<TStreamable>> implements Parent<TStreamable, TConnection>
 {
   constructor(public type: string)
   {
@@ -24,9 +24,9 @@ export class Base<TConnection extends Connection = Connection>
 
   public browser: boolean = false;
 
-  private requestHandlers: { [method: string]: Handler<TConnection, any, any> } = {};
+  private requestHandlers: { [method: string]: Handler<TConnection, TStreamable, any, any> } = {};
 
-  protected connections: { [id: string]: TConnection } = {};
+  protected connections: { [id: string]: Connection<any> } = {};
 
 
   /**
@@ -37,7 +37,7 @@ export class Base<TConnection extends Connection = Connection>
    * @todo enforce handler w/ two-param callback
    * @public
    */
-  public expose<TParamType extends PayloadDataType, TReplyType extends PayloadDataType>(method: string, handler: Handler<TConnection, TParamType, TReplyType>)
+  public expose<TParamType extends PayloadDataType<TStreamable>, TReplyType extends PayloadDataType<TStreamable>>(method: string, handler: Handler<TConnection, TStreamable, TParamType, TReplyType>)
   {
     logger('registering handler for %s', method);
     if (this.requestHandlers[method])
@@ -55,10 +55,14 @@ export class Base<TConnection extends Connection = Connection>
    */
   public connected(socket: SocketAdapter)
   {
-    logger('%s connected', this.type);
-    var connection = new Connection(socket, this as any);
-    this.connections[connection.id] = <any>connection;
-  };
+    var connection = this.connection(socket);
+    logger('%s connected with id %s', this.type, connection.id);
+
+    this.connections[connection.id] = connection;
+  }
+
+  abstract connection(socket: SocketAdapter): Connection<any>;
+  ;
 
   /**
    * Disconnected event handler
@@ -66,7 +70,7 @@ export class Base<TConnection extends Connection = Connection>
    * @param {Object} connection - connection object that has been closed
    * @private
    */
-  public disconnected(connection: TConnection)
+  public disconnected(connection: Connection<TStreamable>)
   {
 
     logger('disconnected');
@@ -98,7 +102,6 @@ export class Base<TConnection extends Connection = Connection>
    */
   public getHandler(method: string)
   {
-
     return this.requestHandlers[method];
   };
 
@@ -123,7 +126,7 @@ export class Base<TConnection extends Connection = Connection>
   {
     logger('hangup');
     var connections = Object.keys(this.connections);
-    connections.forEach(function hangupConnection(this: Base<TConnection>, id)
+    connections.forEach(function hangupConnection(this: Base<TStreamable, TConnection>, id)
     {
       this.connections[id].close();
       delete this.connections[id];

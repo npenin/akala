@@ -1,9 +1,7 @@
-'use strict';
-
-import { ServerAdapter, default as BaseServer } from '../server';
+import { ServerAdapter } from '../server';
 import * as ws from 'ws';
-import { SocketAdapter, Connection } from '../connection';
-
+import { SocketAdapter } from '../shared-connection';
+import WsSocketAdapter from './ws-socket-adapter';
 
 export class Adapter implements ServerAdapter
 {
@@ -14,9 +12,12 @@ export class Adapter implements ServerAdapter
     this.server?.close();
   }
 
-  onConnection(handler: (socket: SocketAdapter<ws | WebSocket>) => void): void
+  onConnection(handler: (socket: SocketAdapter<ws>) => void): void
   {
-    this.server?.on('connection', handler);
+    this.server?.on('connection', function (socket)
+    {
+      handler(new WsSocketAdapter(socket));
+    });
   }
 
   once(event: 'listening', callback: () => void): void
@@ -34,14 +35,5 @@ export class Adapter implements ServerAdapter
    */
   constructor(private options?: ws.ServerOptions)
   {
-  }
-}
-
-
-export default class Server<TConnection extends Connection = Connection> extends BaseServer<TConnection>
-{
-  constructor(adapter?: Adapter)
-  {
-    super(adapter);
   }
 }

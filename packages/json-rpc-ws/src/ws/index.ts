@@ -1,6 +1,7 @@
 
-import { WsSocketAdapter as SocketAdapter } from './connection';
-import { default as Server, Adapter as ServerAdapter } from './server';
+import SocketAdapter from './ws-socket-adapter';
+import { Adapter as ServerAdapter } from './server';
+import Server from '../server';
 import { Connection } from '../connection';
 import Client from './client';
 export { SocketAdapter, ServerAdapter }
@@ -8,10 +9,10 @@ import * as debug from 'debug';
 import * as ws from 'ws';
 const logger = debug('json-rpc-ws');
 
-export function createClient<TConnection extends Connection = Connection>()
+export function createClient()
 {
   logger('create ws client');
-  return new Client<TConnection>();
+  return new Client();
 };
 export function createServer<TConnection extends Connection = Connection>(options?: ws.ServerOptions)
 {

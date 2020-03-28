@@ -9,15 +9,11 @@
   "main": "./lib/index.js",
   "typings": "./lib/index.d.ts",
   "scripts": {
-    "test": "yarn prepublishOnly && mocha",
+    "test": "mocha --require source-map-support/register",
     "validate": "npm ls",
     "jsdoc": "jsdoc",
     "docs": "jsdoc index.js lib -d docs",
-    "preversion": "git checkout master && git pull origin master && npm ls",
-    "publish-patch": "npm run preversion && npm version patch && git push origin master --tags && npm publish",
-    "publish-minor": "npm run preversion && npm version minor && git push origin master --tags && npm publish",
-    "publish-major": "npm run preversion && npm version major && git push origin master --tags && npm publish",
-    "prepublishOnly": "tsc -p src"
+    "prepublishOnly": "tsc -p src && webpack"
   },
   "keywords": [
     "json-rpc",
@@ -27,8 +23,8 @@
   "license": "MIT",
   "dependencies": {
     "debug": "^4.1.1",
-    "uuid": "^3.4.0",
-    "ws": "^7.2.1"
+    "uuid": "^7.0.2",
+    "ws": "^7.2.3"
   },
   "pre-commit": [
     "validate",
@@ -42,19 +38,17 @@
   ],
   "browser": "./browser.js",
   "devDependencies": {
-    "@types/assert": "1.4.5",
+    "@types/assert": "1.4.6",
     "@types/debug": "4.1.5",
-    "@types/node": "^13.5.2",
-    "@types/uuid": "^3.4.7",
+    "@types/node": "^13.9.5",
+    "@types/uuid": "^7.0.2",
     "@types/ws": "^7.2.1",
-    "ajv": "^6.11.0",
-    "browserify": "^16.5.0",
     "bufferutil": "^4.0.0",
-    "code": "^5.2.0",
-    "git-validate": "^2.2.4",
-    "jsdoc": "^3.3.2",
     "mocha": "^7.0.1",
     "phantomjs-prebuilt": "^2.1.16",
-    "selenium-webdriver": "^4.0.0-alpha.5"
+    "selenium-webdriver": "^4.0.0-alpha.5",
+    "source-map-support": "^0.5.16",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
   }
 }

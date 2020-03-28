@@ -2,12 +2,14 @@
 
 import { Base } from './base';
 import { default as Errors } from './errors';
-import { Connection, ReplyCallback, PayloadDataType, SocketAdapter } from './connection';
+import { ReplyCallback, PayloadDataType as BasePayloadDataType, SocketAdapter } from './shared-connection';
+import { Connection } from './connection';
+import * as stream from 'stream'
 import * as debug from 'debug';
 import assert = require('assert');
 const logger = debug('json-rpc-ws');
 
-export interface ServerAdapter
+export interface ServerAdapter 
 {
   close(): void;
   onConnection(arg1: (socket: SocketAdapter) => void): void;
@@ -15,16 +17,23 @@ export interface ServerAdapter
   start(): void;
 }
 
+export type PayloadDataType = BasePayloadDataType<stream.Readable>;
+
 /**
  * json-rpc-ws server
  *
  */
-export default class Server<TConnection extends Connection = Connection> extends Base<TConnection>
+export default class Server<TConnection extends Connection> extends Base<stream.Readable, TConnection>
 {
   constructor(private server?: ServerAdapter)
   {
     super('server');
     logger('new Server');
+  }
+
+  connection(socket: SocketAdapter): Connection
+  {
+    return new Connection(socket, this as any);
   }
 
   /**
@@ -48,7 +57,10 @@ export default class Server<TConnection extends Connection = Connection> extends
     if (typeof callback === 'function')
       this.server?.once('listening', callback);
 
-    this.server?.onConnection(this.connected.bind(this));
+    this.server?.onConnection(socket =>
+    {
+      this.connected(socket)
+    });
   };
 
 

@@ -1,13 +1,6 @@
 import * as ws from 'ws';
-import { SocketAdapter } from '../connection';
-
-export function isBrowserSocket(browser: true, socket: ws | WebSocket): socket is WebSocket
-export function isBrowserSocket(browser: false, socket: ws | WebSocket): socket is ws
-export function isBrowserSocket(browser: boolean, socket: ws | WebSocket): socket is WebSocket
-export function isBrowserSocket(browser: boolean, socket: ws | WebSocket): socket is WebSocket
-{
-    return socket && browser;
-}
+import { SocketAdapter } from '../shared-connection';
+import { Readable } from 'stream';
 
 /**
  * json-rpc-ws connection
@@ -16,12 +9,10 @@ export function isBrowserSocket(browser: boolean, socket: ws | WebSocket): socke
  * @param {Socket} socket - web socket for this connection
  * @param {Object} parent - parent that controls this connection
  */
-
-export class WsSocketAdapter implements SocketAdapter
+export default class WsSocketAdapter implements SocketAdapter<Readable>
 {
-    constructor(private socket: ws | WebSocket, private browser: boolean)
+    constructor(private socket: ws)
     {
-
     }
 
     get open()
@@ -45,10 +36,7 @@ export class WsSocketAdapter implements SocketAdapter
     public on(event: "close", handler: (ev: CloseEvent) => void): void;
     public on(event: "message" | "error" | "close" | "open", handler: (ev?: any) => void): void
     {
-        if (isBrowserSocket(this.browser, this.socket))
-            this.socket.addEventListener(event, handler);
-        else
-            this.socket.addEventListener(event, handler);
+        this.socket.on(event, handler);
     }
     public once(event: "open", handler: () => void): void;
     public once(event: "message", handler: (ev: MessageEvent) => void): void;
@@ -56,9 +44,6 @@ export class WsSocketAdapter implements SocketAdapter
     public once(event: "close", handler: (ev: CloseEvent) => void): void;
     public once(event: "message" | "error" | "close" | "open", handler: (ev?: any) => void): void
     {
-        if (isBrowserSocket(this.browser, this.socket))
-            this.socket.addEventListener(event, handler, { once: true });
-        else
-            this.socket.once(event, handler);
+        this.socket.once(event, handler);
     }
 }
