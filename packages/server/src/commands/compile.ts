@@ -6,6 +6,16 @@ import * as path from 'path'
 
 export default function compile(this: State, target: string, throwOnMissingFile?: boolean, ...inputs: string[])
 {
+    if (!target)
+        return Promise.all(this.assets.keys()
+            .filter(v => v !== '$injector')
+            .map(route => this.assets.resolve(route))
+            .map(asset =>
+            {
+                console.log(asset);
+                return compile.call(this, asset.output, throwOnMissingFile, ...asset.inputs)
+            }));
+
     return new Promise<void>((resolve, reject) =>
     {
         mkdirp(path.dirname(target), () =>
@@ -13,7 +23,7 @@ export default function compile(this: State, target: string, throwOnMissingFile?
             if (!inputs || inputs.length === 0 || (inputs.length == 1 && !inputs[0]))
             {
                 // console.log('looking for assets');
-                inputs = this.assets.injectWithName([target], (assets: string[]) => assets)();
+                inputs = this.assets.injectWithName([target], (assets: { inputs: string[], output: string }) => assets.inputs)();
                 target = path.join('./build', target);
             }
 
@@ -37,6 +47,7 @@ export default function compile(this: State, target: string, throwOnMissingFile?
                     input.on('end', function ()
                     {
                         // console.log(`end of ${inputFile} reached`);
+                        input.close();
                         output.write('\n', next);
                     });
                     input.pipe(output, { end: false });

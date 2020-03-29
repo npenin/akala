@@ -2,6 +2,7 @@ import { serveStatic } from "../master-meta";
 import { State } from "../state";
 import { SendOptions } from "send";
 import * as path from 'path'
+import { HttpRouter } from "../router";
 
 export default function route(this: State, route: string, target: string, options: { pre?: boolean, auth?: boolean, app?: boolean, get?: boolean, use?: boolean } & SendOptions, cwd: string)
 {
@@ -21,19 +22,27 @@ export default function route(this: State, route: string, target: string, option
         method = 'get';
 
 
-    if (!path.isAbsolute(target))
+    if (target && !path.isAbsolute(target))
         target = path.resolve(cwd, target);
 
     if (options.root && !path.isAbsolute(options.root))
+    {
         options.root = path.resolve(cwd, options.root);
+    }
+
+    var router: HttpRouter;
+
+
 
     console.log('registering route to ' + target + ' as ' + route);
     if (options.pre)
-        this.preAuthenticatedRouter[method](route, serveStatic(target, options))
+        router = this.preAuthenticatedRouter;
     else if (options.auth)
-        this.authenticationRouter[method](route, serveStatic(target, options));
+        router = this.authenticationRouter;
     else if (options.app)
-        this.app[method](route, serveStatic(target, options));
+        router = this.app;
     else
-        this.lateBoundRoutes[method](route, serveStatic(target, options));
+        router = this.lateBoundRoutes;
+
+    router[method](route, serveStatic(target, options));
 }
