@@ -23,7 +23,7 @@ export function serveStatic(path, options?: send.SendOptions & { fallthrough?: b
 
     return function (req: request, res: response, ...next: akala.NextFunction[])
     {
-        var sendstr = send(req, req.url, options);
+        var sendstr = send(req, path || req.url, options);
         sendstr.on('error', function (error)
         {
             if (error && error.code == "ENOENT")

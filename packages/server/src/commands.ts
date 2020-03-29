@@ -12,6 +12,6 @@ export namespace description
 		dispatch (cmd:'asset', ...args:[Argument1<typeof import('./commands/asset').default>, Argument2<typeof import('./commands/asset').default>]): ReturnType<typeof import('./commands/asset').default>
 		dispatch (cmd:'compile', ...args:[Argument0<typeof import('./commands/compile').default>, Argument2<typeof import('./commands/compile').default>]): ReturnType<typeof import('./commands/compile').default>
 		dispatch (cmd:'remove-asset', ...args:[Argument1<typeof import('./commands/remove-asset').default>, Argument2<typeof import('./commands/remove-asset').default>]): ReturnType<typeof import('./commands/remove-asset').default>
-		dispatch (cmd:'route', ...args:[Argument0<typeof import('./commands/route').default>, Argument1<typeof import('./commands/route').default>, Argument2<typeof import('./commands/route').default>]): ReturnType<typeof import('./commands/route').default>
+		dispatch (cmd:'route', ...args:[Argument0<typeof import('./commands/route').default>, Argument1<typeof import('./commands/route').default>, Argument2<typeof import('./commands/route').default>, Argument3<typeof import('./commands/route').default>]): ReturnType<typeof import('./commands/route').default>
 	}
 }
