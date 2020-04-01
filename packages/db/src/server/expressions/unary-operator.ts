@@ -1,0 +1,4 @@
+export enum UnaryOperator
+{
+    Not,
+}
