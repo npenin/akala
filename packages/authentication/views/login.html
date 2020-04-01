@@ -1,0 +1,40 @@
+<html>
+
+<head>
+    <script>
+        function submitForm(ev)
+        {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var form = document.getElementsByTagName('form')[0];
+            fetch(form.action, {
+                method: form.method, body: JSON.stringify({ username: username, password: password }), headers: {
+                    'content-type': 'application/json',
+                }
+            }).then((res) =>
+            {
+                debugger;
+                if (res.status == 200)
+                {
+                    res.json().then((token) =>
+                    {
+                        localStorage.setItem('token', token.access_token);
+                        window.location = '/';
+                    });
+                }
+            })
+            ev.preventDefault();
+            return false;
+        }
+    </script>
+</head>
+
+<body>
+    <form action="/api/login" method="POST" onsubmit="submitForm(event)">
+        <input placeholder="username" name="username" id="username" type="text" />
+        <input placeholder="password" name="password" id="password" type="password" />
+        <input type="submit" value="log in" />
+    </form>
+</body>
+
+</html>

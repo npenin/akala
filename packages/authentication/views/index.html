@@ -1,0 +1,21 @@
+<html>
+
+<body>
+    pwet
+    <script>
+        fetch('/api/@akala-modules/authentication/me', {
+            method: 'GET', headers: {
+                'content-type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token'),
+            }
+        }).then((res) =>
+        {
+            if (res.url.endsWith('/me'))
+                res.json().then(profile => document.write('Welcome ' + profile.displayName));
+            else
+                res.text().then(document.write.bind(document));
+        })
+    </script>
+</body>
+
+</html>

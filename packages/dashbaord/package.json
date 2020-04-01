@@ -1,0 +1,31 @@
+{
+    "name": "dashbaord",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/server/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\"",
+        "build:js": "tsc -p src",
+        "build:js:routes": "browserify -x @akala/client -x @akala/core dist/client/routes.js -o dist/routes.js",
+        "build:js:tile": "browserify -x @akala/client -x @akala/core -i @domojs/theme-default/dist/tile dist/client/tile.js -o dist/tile.js",
+        "prepublishOnly": "npm run build",
+        "build": "npm run build:js && npm run build:js:routes && npm run build:js:tile"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "MIT",
+    "types": "dist/server/index.d.ts",
+    "dependencies": {
+        "@akala/server": "^2.1.40"
+    },
+    "peerDependencies": {
+        "@akala-modules/pages": "^0.0.4"
+    },
+    "devDependencies": {
+        "@akala/client": "^2.0.76",
+        "@fortawesome/fontawesome-common-types": "^0.2.19",
+        "@types/debug": "^4.1.4",
+        "@types/node": "^12.6.8",
+        "@types/popper.js": "^1.11.0"
+    }
+}
