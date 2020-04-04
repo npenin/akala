@@ -21,6 +21,8 @@ export type LocationService = location.LocationService;
 export type Injector = core.Injector;
 export var init: typeof core.Module.prototype.init;
 
+export { controls };
+
 common.$$injector['router'] = routing.router
 common.$$injector['BaseControl'] = controls.BaseControl
 common.$$injector['Control'] = controls.Control
@@ -63,9 +65,9 @@ export function load(...scripts: string[])
             });
             scriptTag.src = script; // set the source of the script to your script
         }, function ()
-            {
-                resolve(null);
-            });
+        {
+            resolve(null);
+        });
     });
 }
 
