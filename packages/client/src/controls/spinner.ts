@@ -1,6 +1,6 @@
 import * as di from '@akala/core'
 import { control, Control } from './control'
-import { Promisify, Binding } from '@akala/core'
+import { Binding } from '@akala/core'
 import { IScope } from '../scope'
 import { Template } from '../template';
 
