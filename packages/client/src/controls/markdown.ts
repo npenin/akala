@@ -1,6 +1,5 @@
-import * as di from '@akala/core'
-import { control, BaseControl } from './control'
-import { Promisify, Binding } from '@akala/core'
+import { control } from './control'
+import { Binding } from '@akala/core'
 import * as showdown from 'showdown';
 import { Text } from './text'
 
@@ -13,7 +12,7 @@ export class Markdown extends Text
     }
     private markdown = new showdown.Converter();
 
-    public link(target: any, element: HTMLElement, parameter: Binding | string)
+    public link(target: any, element: HTMLElement, parameter: Binding)
     {
         if (parameter instanceof Binding)
         {
