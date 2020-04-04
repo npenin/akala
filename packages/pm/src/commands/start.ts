@@ -74,7 +74,7 @@ export default async function start(this: State, pm: description.pm & Container<
         {
 
             var processor = new Processors.JsonRpc(new jsonrpc.Connection(new IpcAdapter(cp), {
-                type: 'client', browser: false, getHandler(method: string)
+                type: 'client', getHandler(method: string)
                 {
                     return async function (params, reply)
                     {
