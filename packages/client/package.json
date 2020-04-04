@@ -6,7 +6,7 @@
   "typings": "./akala-client.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
-    "build": "tsc -p src && browserify -r ./dist/index.js:@akala/client -r @akala/json-rpc-ws -o akala.js -r @akala/core",
+    "build": "tsc -p src && webpack",
     "prepublishOnly": "npm run build"
   },
   "author": "npenin",
@@ -19,15 +19,14 @@
     "@types/orchestrator": "0.3.2",
     "@types/showdown": "^1.9.2",
     "@types/ws": "^6.0.3",
-    "browserify": "^16.5.0",
     "content-type": "^1.0.4",
     "mime": "^2.1.0",
     "orchestrator": "^0.3.8",
-    "popper.js": "^1.16.0",
-    "typescript": "^3.6.4",
-    "utf-8-validate": "^5.0.1"
+    "typescript": "^3.8.3"
   },
   "optionalDependencies": {
+    "@popperjs/core": "^2.2.0",
     "showdown": "^1.8.6"
-  }
+  },
+  "gitHead": "a3c791c6665de57e03bea1b087cbbecc531b15b3"
 }
