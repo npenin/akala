@@ -196,7 +196,7 @@ export default async function <T = void>(container: Container<T>, options: { por
             container.register('$wsServer', wsServer);
             wsServer.on('connection', (socket: ws) =>
             {
-                container.attach('jsonrpc', new jsonrpcws.ws.SocketAdapter(socket, false));
+                container.attach('jsonrpc', new jsonrpcws.ws.SocketAdapter(socket));
             })
         }
         server.listen(port);
