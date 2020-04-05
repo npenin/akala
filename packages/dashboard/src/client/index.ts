@@ -1,6 +1,7 @@
 
 import * as akala from '@akala/client';
 import { IconName, IconPrefix } from '@fortawesome/fontawesome-common-types'
+import { ObservableArray } from '@akala/client';
 
 export interface Tile
 {
@@ -101,9 +102,4 @@ export type TileDef = Tile | PromiseLike<Tile>;
 export interface Tiles
 {
     add(tile: TileDef);
-}
-
-declare global
-{
-    export var tiles: Tiles;
 }
