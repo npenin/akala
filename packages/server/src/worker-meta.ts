@@ -11,7 +11,7 @@ const log = akala.log('akala:worker');
 
 export { CallbackResponse }
 
-export function createClient<TConnection extends jsonrpc.Connection>(namespace: string): PromiseLike<jsonrpc.Client<TConnection>>
+export function createClient<TConnection extends jsonrpc.Connection>(namespace: string): PromiseLike<jsonrpc.Client>
 {
     return akala.resolve('$agent.' + namespace);
 }
@@ -25,8 +25,8 @@ export interface resolve
     (param: '$request'): Request
     (param: '$callback'): Callback
     (param: '$router'): Router
-    (param: '$io'): <TConnection extends jsonrpc.Connection>(namespace: string) => PromiseLike<jsonrpc.Client<TConnection>>
-    (param: '$bus'): jsonrpc.Client<jsonrpc.Connection>
+    (param: '$io'): <TConnection extends jsonrpc.Connection>(namespace: string) => PromiseLike<jsonrpc.Client>
+    (param: '$bus'): jsonrpc.Client
     (param: '$master'): MasterRegistration
     (param: '$isModule'): IsModule
     (param: string): any
@@ -328,7 +328,7 @@ export function handle(app: Router, root: string)
     {
         return new Promise((resolve, reject) =>
         {
-            var callback: Callback = <any>function callback(status, data?: PayloadDataType | string)
+            var callback: Callback = <any>function callback(status, data?: PayloadDataType<stream.Readable> | string)
             {
                 var response: CallbackResponse;
                 if (arguments.length == 0)
