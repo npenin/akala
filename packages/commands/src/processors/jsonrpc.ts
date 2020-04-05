@@ -4,6 +4,7 @@ import { Command } from '../metadata';
 import { Container, lazy } from '../model/container';
 import { IDebugger } from 'debug';
 import { Local } from './local';
+import { Readable } from 'stream';
 
 
 
@@ -13,7 +14,6 @@ export class JsonRpc<T> extends CommandProcessor<T>
     {
         var connection = new jsonrpcws.Connection(socket, {
             type: 'client',
-            browser: false,
             disconnected()
             {
 
@@ -72,7 +72,7 @@ export class JsonRpc<T> extends CommandProcessor<T>
                 }).filter(p => p.name.startsWith('param.'));
                 params.param = param.map(p => p.value);
             }
-            this.client.sendMethod(typeof command == 'string' ? command : command.name, params, function (err: any, result: jsonrpcws.PayloadDataType)
+            this.client.sendMethod(typeof command == 'string' ? command : command.name, params, function (err: any, result: jsonrpcws.PayloadDataType<any>)
             {
                 if (err)
                 {
@@ -84,7 +84,7 @@ export class JsonRpc<T> extends CommandProcessor<T>
         })
     }
 
-    constructor(private client: jsonrpcws.Connection, private passthrough?: boolean)
+    constructor(private client: jsonrpcws.BaseConnection<any>, private passthrough?: boolean)
     {
         super('jsonrpc');
     }
