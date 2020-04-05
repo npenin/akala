@@ -53,13 +53,13 @@ export interface Translator
 }
 
 
-async function createClient<TConnection extends jsonrpc.Connection>(namespace: string)
+async function createClient(namespace: string)
 {
-    var client = jsonrpc.ws.createClient<TConnection>();
+    var client = jsonrpc.ws.createClient();
     var resolveUrl = await onResolve<(url: string) => string>('$resolveUrl');
     if (!resolveUrl)
         throw new Error('no url resolver could be found');
-    return await new Promise<jsonrpc.Client<TConnection>>((resolve, reject) =>
+    return await new Promise<jsonrpc.Client>((resolve, reject) =>
     {
         client.connect(resolveUrl(namespace), function (err)
         {

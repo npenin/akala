@@ -2,7 +2,6 @@ import { Proxy } from '../each'
 import { extend } from '../helpers'
 
 import * as debug from 'debug'
-import { PayloadDataType, Payload } from '@akala/json-rpc-ws/lib/connection';
 
 var log = debug('akala:metadata')
 var clientLog = debug('akala:metadata:client');
@@ -20,14 +19,14 @@ export interface IBuilder<TConnection,
     TClientTwoWayProxy extends TClientTwoWay>
 {
     api: Api<TConnection,
-    TServerOneWay,
-    TServerTwoWay,
-    TClientOneWay,
-    TClientTwoWay,
-    TServerOneWayProxy,
-    TServerTwoWayProxy,
-    TClientOneWayProxy,
-    TClientTwoWayProxy>;
+        TServerOneWay,
+        TServerTwoWay,
+        TClientOneWay,
+        TClientTwoWay,
+        TServerOneWayProxy,
+        TServerTwoWayProxy,
+        TClientOneWayProxy,
+        TClientTwoWayProxy>;
 }
 
 export interface IServerProxyBuilder<T, TConnection,

@@ -3,7 +3,6 @@ import { Proxy, each } from '../each'
 import { extend, module } from '../helpers'
 
 import * as debug from 'debug'
-import { PayloadDataType, Payload } from '@akala/json-rpc-ws/lib/connection';
 import { Api, IClientBuilder, IServerProxyBuilder, IClientProxyBuilder } from './base';
 
 var log = debug('akala:metadata')
@@ -21,9 +20,9 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection,
     TClientOneWayProxy extends TClientOneWay,
     TClientTwoWayProxy extends TClientTwoWay>
 
-    implements IServerProxyBuilder<jsonrpc.Client<TConnection>, TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>,
+    implements IServerProxyBuilder<jsonrpc.Client, TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>,
     IClientProxyBuilder<TConnection, TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>,
-    IClientBuilder<jsonrpc.Client<TConnection>, TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>
+    IClientBuilder<jsonrpc.Client, TConnection, TServerOneWay, TServerTwoWay, TClientOneWay, TClientTwoWay, TServerOneWayProxy, TServerTwoWayProxy, TClientOneWayProxy, TClientTwoWayProxy>
 {
     constructor(public api: Api<TConnection, TServerOneWay, TServerTwoWay,
         TClientOneWay,
@@ -36,7 +35,7 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection,
 
     }
 
-    public createServerProxy(client: jsonrpc.Client<TConnection>): Partial<TServerOneWayProxy & TServerTwoWayProxy>
+    public createServerProxy(client: jsonrpc.Client): Partial<TServerOneWayProxy & TServerTwoWayProxy>
     {
         var proxy: Partial<TServerOneWayProxy & TServerTwoWayProxy> = {};
         each(this.api.serverOneWayConfig, function (config, serverKey)
@@ -64,7 +63,7 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection,
                 proxy[serverKey] = <any>function (params)
                 {
                     log('calling ' + serverKey + ' with %o', params);
-                    return new Promise<PayloadDataType>((resolve, reject) =>
+                    return new Promise<jsonrpc.PayloadDataType<any>>((resolve, reject) =>
                     {
                         client.send(serverKey as string, params, function (error, result)
                         {
@@ -90,7 +89,7 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection,
                 proxy[clientKey] = <any>function (params)
                 {
                     log('calling ' + clientKey + ' with %o', params);
-                    return new Promise<PayloadDataType>((resolve, reject) =>
+                    return new Promise<jsonrpc.PayloadDataType<any>>((resolve, reject) =>
                     {
                         client.sendMethod(clientKey as string, params, function (error, result)
                         {
@@ -109,7 +108,7 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection,
                 proxy[clientKey] = <any>function (params)
                 {
                     log('calling ' + clientKey + ' with %o', params);
-                    return new Promise<PayloadDataType>((resolve, reject) =>
+                    return new Promise<jsonrpc.PayloadDataType<any>>((resolve, reject) =>
                     {
                         client.sendMethod(clientKey as string, params, function (error, result)
                         {
@@ -127,7 +126,7 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection,
 
     public createClientFromAbsoluteUrl<T extends TClientOneWay & TClientTwoWay>(url: string, clientImpl: T, ...rest: any[]): PromiseLike<T & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy> }>
     {
-        var client = jsonrpc.ws.createClient<TConnection>();
+        var client = jsonrpc.ws.createClient();
         var result = this.createClient<T>(client, clientImpl);
         return new Promise((resolve, reject) =>
         {
@@ -140,7 +139,7 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection,
 
     public createLateBoundClient<T extends TClientOneWay & TClientTwoWay>(clientImpl: T): T & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy>, $connect(url: string, connected: () => void): void }
     {
-        var client = jsonrpc.ws.createClient<TConnection>();
+        var client = jsonrpc.ws.createClient();
         return extend({
             $connect: function (url, connected)
             {
@@ -149,7 +148,7 @@ export class JsonRpcWs<TConnection extends jsonrpc.Connection,
         }, this.createClient<T>(client, clientImpl));
     }
 
-    public createClient<T extends TClientOneWay & TClientTwoWay>(client: jsonrpc.Client<TConnection>, clientImpl: T, ...dummy: any[]): T & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy> }
+    public createClient<T extends TClientOneWay & TClientTwoWay>(client: jsonrpc.Client, clientImpl: T, ...dummy: any[]): T & { $proxy(): Partial<TServerOneWayProxy & TServerTwoWayProxy> }
     {
         dummy.unshift(clientImpl);
         dummy.push({
