@@ -1,7 +1,7 @@
 import * as akala from '@akala/core'
 import { Router, Request } from './router'
 import { EventEmitter } from 'events'
-import { Part as PartControl } from './controls/part'
+import './controls/part'
 import { Template } from './template'
 import { IScope } from './scope'
 import { service } from './common'
