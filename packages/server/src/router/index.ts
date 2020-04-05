@@ -325,7 +325,7 @@ export interface CallbackResponse
     headers?: { [header: string]: any };
     statusCode?: number;
     statusMessage?: string;
-    data?: jsonrpc.PayloadDataType | string;
+    data?: jsonrpc.PayloadDataType<any> | string;
 }
 
 export type workerRequestHandler = (req: worker.Request, callback: worker.Callback) => void;
