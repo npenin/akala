@@ -2,8 +2,9 @@ import * as akala from '@akala/server';
 import * as path from 'path'
 
 var moduleName = require('../../package.json').name
+var router = akala.router();
 
-akala.exec<void>('$isModule', '$master', '$router')(function (isModule: akala.worker.IsModule, master: akala.worker.MasterRegistration, router: akala.worker.Router)
+akala.module<void>('$isModule', '$master', '$router')(function (isModule: akala.worker.IsModule, master: akala.worker.MasterRegistration, router: akala.worker.Router)
 {
     if (isModule(moduleName))
         master(__filename, './master');
