@@ -1,12 +1,11 @@
-import * as di from '@akala/core'
 import { control, BaseControl } from './control'
 import { IScope } from '../scope'
-import { Promisify, Binding } from '@akala/core'
+import { Binding } from '@akala/core'
 import { Part as PartService } from '../part'
 
 function noop() { }
 
-@control("$part")
+@control("akala-services.$part")
 export class Part extends BaseControl<string | { [property: string]: Binding }>
 {
     constructor(private partService: PartService)
