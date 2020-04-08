@@ -71,7 +71,7 @@ export function load(...scripts: string[])
     });
 }
 
-common.serviceModule.start(['$location'], function ($location: location.LocationService)
+common.serviceModule.init(['$location'], function ($location: location.LocationService)
 {
     $location.on('change', function (path: string)
     {
