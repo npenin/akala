@@ -87,7 +87,7 @@ common.serviceModule.init(['$location'], function ($location: location.LocationS
     $location.start({ hashbang: false })
 });
 
-window.addEventListener('load', function ()
-{
-    common.$$injector.start();
-});
+// window.addEventListener('load', function ()
+// {
+//     common.$$injector.start();
+// });
