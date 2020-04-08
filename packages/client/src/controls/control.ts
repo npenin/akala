@@ -13,7 +13,7 @@ export function control(...toInject: string[])
             {
                 registeredControls.forEach(function (ctrl)
                 {
-                    akala.injectNewWithName(ctrl[0], ctrl[1])();
+                    Control.injector.injectNewWithName(ctrl[0], ctrl[1])();
                 });
             });
         registeredControls.push([toInject, ctrl]);
