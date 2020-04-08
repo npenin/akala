@@ -100,15 +100,16 @@ export class Module extends Injector
 
     public initAsync(toInject: string[], f: InjectableAsyncWithTypedThis<any, ExtendableEvent>)
     {
-        this.emitter.on('activate', function (ev: ExtendableEvent) { di.injectWithNameAsync(toInject, f.bind(ev) as InjectableAsyncWithTypedThis<any, ExtendableEvent>) });
+        this.emitter.on('activate', (ev: ExtendableEvent) => { this.injectWithNameAsync(toInject, f.bind(ev) as InjectableAsyncWithTypedThis<any, ExtendableEvent>) });
         return this;
     }
 
     public start(toInject?: string[], f?: Injectable<any>)
     {
         if (arguments.length > 0)
-            Module.o.on('stop', <any>di.injectWithName(toInject, f));
-        Module.o.start(this.name);
+            Module.o.on('stop', this.injectWithName(toInject, f));
+        else
+            Module.o.start(this.name);
     }
 }
 
