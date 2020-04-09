@@ -5,7 +5,7 @@ import { Part as PartService } from '../part'
 
 function noop() { }
 
-@control("$modules.akala-services.$part")
+@control("akala-services.$part")
 export class Part extends BaseControl<string | { [property: string]: Binding }>
 {
     constructor(private partService: PartService)
