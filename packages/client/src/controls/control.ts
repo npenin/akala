@@ -2,21 +2,14 @@ import * as akala from '@akala/core';
 import { IScope } from '../scope';
 import { applyTemplate } from '../template';
 
-var registeredControls: { 0: string[], 1: new (...args: any[]) => any }[] = [];
-
 export function control(...toInject: string[])
 {
     return function (ctrl: new (...args: any[]) => any)
     {
-        if (registeredControls.length == 0)
-            Control.injector.init([], function ()
-            {
-                registeredControls.forEach(function (ctrl)
-                {
-                    Control.injector.injectNewWithName(ctrl[0], ctrl[1])();
-                });
-            });
-        registeredControls.push([toInject, ctrl]);
+        Control.injector.init([], function ()
+        {
+            Control.injector.injectNewWithName(toInject, ctrl)();
+        });
     }
 }
 
