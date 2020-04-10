@@ -16,6 +16,7 @@ module.exports = {
         aliasFields: ['browser'],
         symlinks: false,
     },
+    node: false,
     plugins: [],
     devtool: 'source-map',
     mode: 'production',

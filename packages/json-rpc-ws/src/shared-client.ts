@@ -1,7 +1,6 @@
 import { Base } from './base';
 import * as debug from 'debug';
 const logger = debug('json-rpc-ws');
-import { ok as assert } from 'assert';
 import { SocketAdapter, PayloadDataType } from './shared-connection';
 
 
@@ -26,7 +25,8 @@ export default abstract class Client<TStreamable> extends Base<TStreamable>
   public connect(address: string, callback: (err?: any) => void)
   {
     logger('Client connect %s', address);
-    assert(!this.isConnected(), 'Already connected');
+    if (!this.isConnected())
+      throw new Error('Already connected');
     var self = this;
     var opened = false;
     var socket = this.socket = this.socketConstructor(address);
@@ -82,8 +82,8 @@ export default abstract class Client<TStreamable> extends Base<TStreamable>
    */
   public disconnect(callback: () => void)
   {
-
-    assert(this.isConnected(), 'Not connected');
+    if (this.isConnected())
+      throw new Error('Not connected');
     var connection = this.getConnection();
     connection.hangup(callback);
   };
@@ -100,7 +100,8 @@ export default abstract class Client<TStreamable> extends Base<TStreamable>
   public send<TParamType extends PayloadDataType<TStreamable>, TReplyType extends PayloadDataType<TStreamable>>(method: string, params: TParamType, callback?: (error?: any, result?: TReplyType) => void)
   {
     logger('send %s', method);
-    assert(this.isConnected(), 'Not connected');
+    if (!this.isConnected())
+      throw new Error('Not connected');
     var connection = this.getConnection();
     connection.sendMethod(method, params as any, callback as any);
   };

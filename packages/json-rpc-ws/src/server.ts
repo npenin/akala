@@ -6,7 +6,11 @@ import { ReplyCallback, PayloadDataType as BasePayloadDataType, SocketAdapter } 
 import { Connection } from './connection';
 import * as stream from 'stream'
 import * as debug from 'debug';
-import assert = require('assert');
+function assert(ok: any, message: string): void
+{
+  if (!ok)
+    throw new Error(message);
+}
 const logger = debug('json-rpc-ws');
 
 export interface ServerAdapter 
@@ -48,10 +52,10 @@ export default class Server<TConnection extends Connection> extends Base<stream.
 
     logger('Server start');
     if (server && this.server && server !== this.server)
-      assert.fail('a ServerAdapter was already defined at construction, and a different server is provided at start');
+      throw new Error('a ServerAdapter was already defined at construction, and a different server is provided at start');
     if (server)
       this.server = server;
-    assert.ok(this.server, 'no ServerAdapter was defined (neither at construction nor at start)');
+    assert(this.server, 'no ServerAdapter was defined (neither at construction nor at start)');
     this.server?.start();
 
     if (typeof callback === 'function')
