@@ -8,7 +8,7 @@
  */
 require('debug').enable('json-rpc-ws');
 
-var JsonRpcWs = require('../browser');
+var JsonRpcWs = require('../lib/browser');
 var browserClient = JsonRpcWs.createClient();
 
 browserClient.expose('info', function info(params, reply)

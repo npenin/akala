@@ -1,6 +1,5 @@
 import { v4 as uuid } from 'uuid';
 import * as debug from 'debug';
-import { ok as Assert } from 'assert';
 import { default as Errors, Error as ConnectionError, ErrorTypes } from './errors';
 const logger = debug('json-rpc-ws');
 
@@ -100,7 +99,8 @@ export abstract class Connection<TStreamable>
      */
     constructor(public socket: SocketAdapter, public parent: Parent<TStreamable, Connection<TStreamable>>)
     {
-        Assert(this.socket.send, 'socket.send is not defined');
+        if (!this.socket.send)
+            throw new Error('socket.send is not defined');
         logger('new Connection to %s', parent.type);
 
         socket.on('message', this.message.bind(this));
@@ -248,7 +248,8 @@ export abstract class Connection<TStreamable>
         logger('sendResult %s %s %j %j', id, isStream, error, result);
         // Assert(id, 'Must have an id.');
         // Assert(error || result, 'Must have an error or a result.');
-        Assert(!(error && result), 'Cannot have both an error and a result');
+        if (error && result)
+            throw new Error('Cannot have both an error and a result');
 
         var response: Payload<TStreamable> = { id: id, stream: !!isStream || this.isStream(result) };
 
@@ -282,8 +283,10 @@ export abstract class Connection<TStreamable>
     public sendMethod<TParamType extends PayloadDataType<TStreamable>, TReplyType extends PayloadDataType<TStreamable>>(method: string, params?: TParamType, callback?: ReplyCallback<TReplyType>)
     {
         var id = uuid();
-        Assert((typeof method === 'string') && (method.length > 0), 'method must be a non-empty string');
-        Assert(params === null || params === undefined || (params as any) instanceof Object, 'params, if provided,  must be an array, object or null');
+        if (typeof method !== 'string' || !method.length)
+            throw new Error('method must be a non-empty string');
+        if (params !== null && params !== undefined && !(params instanceof Object))
+            throw new Error('params, if provided,  must be an array, object or null');
         logger('sendMethod %s', method, id);
         if (callback)
         {
@@ -356,7 +359,8 @@ export abstract class Connection<TStreamable>
     public hangup(callback: () => void)
     {
         logger('hangup');
-        Assert(this.socket, 'Not connected');
+        if (!this.socket)
+            throw new Error('Not connected');
         if (typeof callback === 'function')
         {
             var socket = this.socket;

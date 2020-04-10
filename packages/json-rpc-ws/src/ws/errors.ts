@@ -1,10 +1,8 @@
 'use strict';
 
 import * as debug from 'debug';
-import { ok as assert } from 'assert';
 
 const logger = debug('json-rpc-ws');
-// var assert = require('assert').ok;
 
 /*
  * http://www.jsonrpc.org/specification#error_object
@@ -56,7 +54,8 @@ export interface Payload
 export default function getError(type: ErrorTypes, id?: number | string, data?: any)
 {
 
-  assert(errors[type], 'Invalid error type ' + type);
+  if (!errors[type])
+    throw new Error('Invalid error type ' + type);
 
   var payload: Payload = {
     error: errors[type],

@@ -336,7 +336,7 @@ describe('json-rpc ws', () =>
       {
 
         let x = 0;
-        driver.executeScript('./browser_test._js').then(function ()
+        driver.executeScript('../browser_test.js').then(function ()
         {
 
           driver.executeAsyncScript(function ()
