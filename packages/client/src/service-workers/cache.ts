@@ -9,7 +9,7 @@ module cache
 {
     declare var self: ServiceWorkerGlobalScope;
 
-    router.use('fetch', function (req, event: FetchEvent, next)
+    router.use(function (req, event: FetchEvent, next)
     {
         if (req.method == 'install' || req.method == 'push' || req.method == 'updateFound')
             next();
