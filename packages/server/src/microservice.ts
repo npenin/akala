@@ -1,7 +1,6 @@
 import * as pac from './package';
 import * as akala from '@akala/core';
 import { HttpRouter } from './router';
-import * as debug from 'debug';
 import * as master from './master-meta'
 
 export function microservice(

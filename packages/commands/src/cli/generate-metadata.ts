@@ -1,4 +1,4 @@
-import * as akala from "..";
+import * as akala from "../index";
 import * as core from '@akala/core'
 import { Container } from "../model/container";
 import * as path from 'path'

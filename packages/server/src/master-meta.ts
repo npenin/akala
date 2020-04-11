@@ -1,13 +1,12 @@
 import * as akala from '@akala/core'
 import * as router from './router';
-import * as debug from 'debug';
 import * as worker from './worker-meta'
 export { CoreProperties as Package } from '../src/package';
 import * as stream from 'stream'
 import * as express from 'express';
 import * as send from 'send'
 
-var log = debug('akala:master');
+var log = akala.log('akala:master');
 
 var httpRouter = router.HttpRouter;
 type request = router.Request & { body?: any };

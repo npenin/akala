@@ -6,12 +6,11 @@ export { Router, Callback, workerHandler as RouterHandler, workerErrorHandler as
 import * as jsonrpc from '@akala/json-rpc-ws'
 import * as send from 'send';
 import * as onFinished from 'on-finished';
-import { PayloadDataType } from '@akala/json-rpc-ws';
 const log = akala.log('akala:worker');
 
 export { CallbackResponse }
 
-export function createClient<TConnection extends jsonrpc.Connection>(namespace: string): PromiseLike<jsonrpc.Client>
+export function createClient(namespace: string): PromiseLike<jsonrpc.Client>
 {
     return akala.resolve('$agent.' + namespace);
 }
@@ -25,7 +24,7 @@ export interface resolve
     (param: '$request'): Request
     (param: '$callback'): Callback
     (param: '$router'): Router
-    (param: '$io'): <TConnection extends jsonrpc.Connection>(namespace: string) => PromiseLike<jsonrpc.Client>
+    (param: '$io'): (namespace: string) => PromiseLike<jsonrpc.Client>
     (param: '$bus'): jsonrpc.Client
     (param: '$master'): MasterRegistration
     (param: '$isModule'): IsModule
@@ -328,7 +327,7 @@ export function handle(app: Router, root: string)
     {
         return new Promise((resolve, reject) =>
         {
-            var callback: Callback = <any>function callback(status, data?: PayloadDataType<stream.Readable> | string)
+            var callback: Callback = <any>function callback(status, data?: jsonrpc.PayloadDataType<stream.Readable> | string)
             {
                 var response: CallbackResponse;
                 if (arguments.length == 0)

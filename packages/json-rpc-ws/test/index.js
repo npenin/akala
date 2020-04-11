@@ -1,4 +1,3 @@
-const Code = require('code');
 const WS = require('ws');
 const JsonRpcWs = require('../');
 // const Browserify = require('browserify');
@@ -324,8 +323,7 @@ describe('json-rpc ws', () =>
     let script;
     before(() =>
     {
-
-      process.env.PATH = `${process.env.PATH}:./node_modules/.bin`;
+      // process.env.PATH = `${process.env.PATH}:./node_modules/.bin`;
     });
 
     it.skip('works in browser', () =>

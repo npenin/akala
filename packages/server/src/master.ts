@@ -1,10 +1,9 @@
 import * as fs from 'fs';
 import * as akala from '@akala/core';
 import { join as pathJoin } from 'path';
-import * as debug from 'debug';
 import { router, Request, Response } from './router';
 import * as pac from './package';
-var log = debug('akala:master');
+var log = akala.log('akala:master');
 import { microservice } from './microservice';
 import { updateConfig, getConfig } from './config';
 import { serveStatic } from './master-meta';
