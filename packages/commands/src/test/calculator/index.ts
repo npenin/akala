@@ -1,4 +1,4 @@
-import * as cmds from "../..";
+import * as cmds from "../../index";
 import { configure } from "../../decorators";
 
 export type state = { value: number };

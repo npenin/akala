@@ -9,7 +9,7 @@
         "build:js": "tsc -p src",
         "build:js:routes": "browserify -x @akala/client -x @akala/core dist/client/routes.js -o dist/routes.js",
         "build:js:tile": "browserify -x @akala/client -x @akala/core -i @domojs/theme-default/dist/tile dist/client/tile.js -o dist/tile.js",
-        "prepublishOnly": "npm run build",
+        "prepublishOnly": "npm run build:js",
         "build": "npm run build:js && npm run build:js:routes && npm run build:js:tile"
     },
     "keywords": [],
@@ -17,6 +17,7 @@
     "license": "MIT",
     "types": "dist/server/index.d.ts",
     "dependencies": {
+        "@akala/core": "^2.1.19",
         "@akala/server": "^4.0.21"
     },
     "peerDependencies": {

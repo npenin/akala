@@ -4,7 +4,6 @@ import { spawn, ChildProcess } from "child_process";
 import { description } from "../container";
 import * as jsonrpc from '@akala/json-rpc-ws'
 import debug from "debug";
-import { Local } from "@akala/commands/dist/processors";
 
 export default async function start(this: State, pm: description.pm & Container<State>, name: string, options?: any)
 {

@@ -1,7 +1,6 @@
 
 import * as akala from '@akala/client';
 import { IconName, IconPrefix } from '@fortawesome/fontawesome-common-types'
-import { ObservableArray } from '@akala/client';
 
 export interface Tile
 {
