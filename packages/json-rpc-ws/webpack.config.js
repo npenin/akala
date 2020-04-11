@@ -10,6 +10,7 @@ module.exports = {
         filename: '[name].js',
         chunkFilename: 'browser.js',
         library: '@akala/json-rpc-ws',
+        globalObject: 'this',
         libraryTarget: 'umd',
     },
     resolve: {
