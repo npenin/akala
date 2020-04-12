@@ -54,7 +54,7 @@ if (require.main == module)
                     if (cmd && cmd.config && cmd.config.cli && cmd.config.cli.options)
                         args = yargs(process.argv.slice(3), cmd.config.cli.options);
                     else
-                        args._.splice(1);
+                        args._ = args._.slice(1);
                     var result = await processor.process(cmd && cmd.name || args._[0], { options: args, param: args._, _trigger: 'cli', cwd: process.cwd() } as any);
 
                     socket.end(() =>
