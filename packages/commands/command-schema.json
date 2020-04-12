@@ -31,40 +31,125 @@
         ""
     ],
     "properties": {
-        "fs": {
+        "cli": {
             "allOf": [
                 {
                     "$ref": "#/definitions/inject"
                 },
                 {
-                    "$id": "#/fs",
+                    "$id": "#/cli",
                     "type": "object",
-                    "title": "The fs Schema",
+                    "title": "The cli Schema",
                     "properties": {
-                        "path": {
-                            "$id": "#/fs/properties/path",
-                            "type": "string",
-                            "title": "The Path Schema",
-                            "default": "",
-                            "examples": [
-                                "dist\\cli\\generate-metadata.js"
-                            ]
-                        },
-                        "source": {
-                            "$id": "#/fs/properties/path",
-                            "type": "string",
-                            "title": "The Path Schema",
-                            "default": "",
-                            "examples": [
-                                "src\\cli\\generate-metadata.ts"
-                            ]
+                        "options": {
+                            "$id": "#/cli/properties/options",
+                            "type": "object",
+                            "title": "The cli options Schema",
+                            "properties": {
+                                "alias": {
+                                    "type": "object",
+                                    "patternProperties": {
+                                        "^.+$": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                },
+                                "array": {
+                                    "oneOf": [
+                                        {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "key": {
+                                                    "type": "string"
+                                                },
+                                                "boolean": {
+                                                    "type": "boolean"
+                                                },
+                                                "number": {
+                                                    "type": "boolean"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "boolean": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "normalize": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "number": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "string": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "count": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
-            ]
-        },
-        "": {
-            "$ref": "#/definitions/inject"
+            ],
+            "fs": {
+                "allOf": [
+                    {
+                        "$ref": "#/definitions/inject"
+                    },
+                    {
+                        "$id": "#/fs",
+                        "type": "object",
+                        "title": "The fs Schema",
+                        "properties": {
+                            "path": {
+                                "$id": "#/fs/properties/path",
+                                "type": "string",
+                                "title": "The Path Schema",
+                                "default": "",
+                                "examples": [
+                                    "dist\\cli\\generate-metadata.js"
+                                ]
+                            },
+                            "source": {
+                                "$id": "#/fs/properties/path",
+                                "type": "string",
+                                "title": "The Path Schema",
+                                "default": "",
+                                "examples": [
+                                    "src\\cli\\generate-metadata.ts"
+                                ]
+                            }
+                        }
+                    }
+                ]
+            },
+            "": {
+                "$ref": "#/definitions/inject"
+            }
         }
     }
-}
