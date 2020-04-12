@@ -51,10 +51,9 @@ if (require.main == module)
                 {
                     var metaContainer: Metadata.Container = await processor.process('$metadata', { param: [] });
                     var cmd = metaContainer.commands.find(c => c.name === args._[0]);
-                    if (!cmd)
-                        throw new Error('unknown command ' + args._[0])
-                    args = yargs(process.argv.slice(3), cmd?.config?.cli?.options);
-                    var result = await processor.process(cmd.name, { options: args, param: args._, _trigger: 'cli', cwd: process.cwd() } as any);
+                    if (cmd && cmd.config && cmd.config.cli && cmd.config.cli.options)
+                        args = yargs(process.argv.slice(3), cmd.config.cli.options);
+                    var result = await processor.process(cmd && cmd.name || args._[0], { options: args, param: args._, _trigger: 'cli', cwd: process.cwd() } as any);
 
                     socket.end(() =>
                     {
