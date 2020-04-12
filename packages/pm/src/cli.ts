@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import * as path from 'path'
-import { Processors, NetSocketAdapter } from '@akala/commands';
+import { Processors, NetSocketAdapter, Metadata, proxy } from '@akala/commands';
 import yargs from 'yargs-parser'
 import { Socket } from 'net';
 import { platform, homedir } from 'os';
@@ -45,12 +45,16 @@ if (require.main == module)
         {
             socket.setEncoding('utf-8');
             var processor = new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(socket)));
-
             (async function send(args: yargs.Arguments)
             {
                 try
                 {
-                    var result = await processor.process(args._[0], { options: args, param: args._.slice(1), _trigger: 'cli', cwd: process.cwd() } as any);
+                    var metaContainer: Metadata.Container = await processor.process('$metadata', { param: [] });
+                    var cmd = metaContainer.commands.find(c => c.name === args._[0]);
+                    if (!cmd)
+                        throw new Error('unknown command ' + args._[0])
+                    args = yargs(process.argv.slice(3), cmd?.config?.cli?.options);
+                    var result = await processor.process(cmd.name, { options: args, param: args._, _trigger: 'cli', cwd: process.cwd() } as any);
 
                     socket.end(() =>
                     {
