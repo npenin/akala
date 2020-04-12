@@ -23,7 +23,7 @@
         }
     },
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://raw.githubusercontent.com/npenin/akala-commands/master/command-schema.json",
+    "$id": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
     "type": "object",
     "title": "The Config Schema",
     "description": "This is the providers/triggers configuration",
@@ -115,41 +115,42 @@
                         }
                     }
                 }
-            ],
-            "fs": {
-                "allOf": [
-                    {
-                        "$ref": "#/definitions/inject"
-                    },
-                    {
-                        "$id": "#/fs",
-                        "type": "object",
-                        "title": "The fs Schema",
-                        "properties": {
-                            "path": {
-                                "$id": "#/fs/properties/path",
-                                "type": "string",
-                                "title": "The Path Schema",
-                                "default": "",
-                                "examples": [
-                                    "dist\\cli\\generate-metadata.js"
-                                ]
-                            },
-                            "source": {
-                                "$id": "#/fs/properties/path",
-                                "type": "string",
-                                "title": "The Path Schema",
-                                "default": "",
-                                "examples": [
-                                    "src\\cli\\generate-metadata.ts"
-                                ]
-                            }
+            ]
+        },
+        "fs": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/inject"
+                },
+                {
+                    "$id": "#/fs",
+                    "type": "object",
+                    "title": "The fs Schema",
+                    "properties": {
+                        "path": {
+                            "$id": "#/fs/properties/path",
+                            "type": "string",
+                            "title": "The Path Schema",
+                            "default": "",
+                            "examples": [
+                                "dist\\cli\\generate-metadata.js"
+                            ]
+                        },
+                        "source": {
+                            "$id": "#/fs/properties/path",
+                            "type": "string",
+                            "title": "The Path Schema",
+                            "default": "",
+                            "examples": [
+                                "src\\cli\\generate-metadata.ts"
+                            ]
                         }
                     }
-                ]
-            },
-            "": {
-                "$ref": "#/definitions/inject"
-            }
+                }
+            ]
+        },
+        "": {
+            "$ref": "#/definitions/inject"
         }
     }
+}
