@@ -1,5 +1,4 @@
-import { Trigger } from "./trigger";
-import { Injector, InjectableWithTypedThis } from "@akala/core";
+import { InjectableWithTypedThis } from "@akala/core";
 import { Processor } from "./processor";
 import { Container } from "./container";
 import * as metadata from '../metadata'
