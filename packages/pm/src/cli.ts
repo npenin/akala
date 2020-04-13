@@ -50,13 +50,16 @@ if (require.main == module)
                 try
                 {
                     var metaContainer: Metadata.Container = await processor.process('$metadata', { param: [] });
-                    var cmd = metaContainer.commands.find(c => c.name === args._[0]);
+                    var cmdName = args._[0];
+                    var cmd = metaContainer.commands.find(c => c.name === cmdName);
                     if (cmd)
                         if (cmd.config && cmd.config.cli && cmd.config.cli.options)
                             args = yargs(process.argv.slice(3), cmd.config.cli.options);
                         else
                             args._ = args._.slice(1);
-                    var result = await processor.process(cmd && cmd.name || args._[0], { options: args, param: args._, _trigger: 'cli', cwd: process.cwd() } as any);
+                    else
+                        args._ = args._.slice(1);
+                    var result = await processor.process(cmdName, { options: args, param: args._, _trigger: 'cli', cwd: process.cwd() } as any);
 
                     socket.end(() =>
                     {
