@@ -8,11 +8,11 @@ export * from './parser';
 export * from './helpers'
 export * from './router'
 export * from './queue'
-import { Module } from './module';
+import { Module, ExtendableEvent } from './module';
 export { JsonRpcWs, Connection } from './api/json-rpc-ws';
 export { Rest } from './api/rest';
 export * from './api';
-export { Module };
+export { Module, ExtendableEvent };
 export * from './promiseHelpers';
 export { each as eachAsync, NextFunction } from './eachAsync';
 export { each, grep, map, Proxy } from './each';

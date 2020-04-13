@@ -83,7 +83,7 @@ export class Module extends Injector
         moduleInjector.register(m.name, m);
     }
 
-    public run(toInject: string[], f: InjectableWithTypedThis<any, ExtendableEvent>)
+    public ready(toInject: string[], f: InjectableWithTypedThis<any, ExtendableEvent>)
     {
         if (this.readyEvent.done)
             this.injectWithName(toInject, f)();
@@ -92,7 +92,7 @@ export class Module extends Injector
         return this;
     }
 
-    public runAsync(toInject: string[], f: InjectableAsyncWithTypedThis<any, ExtendableEvent>)
+    public readyAsync(toInject: string[], f: InjectableAsyncWithTypedThis<any, ExtendableEvent>)
     {
         if (this.readyEvent.done)
             return this.injectWithNameAsync(toInject, f.bind(this.readyEvent) as InjectableAsyncWithTypedThis<any, ExtendableEvent>);
@@ -101,7 +101,7 @@ export class Module extends Injector
         return this;
     }
 
-    public init(toInject: string[], f: InjectableWithTypedThis<any, ExtendableEvent>)
+    public activate(toInject: string[], f: InjectableWithTypedThis<any, ExtendableEvent>)
     {
         if (this.activateEvent.done)
             this.injectWithName(toInject, f)();
@@ -110,7 +110,7 @@ export class Module extends Injector
         return this;
     }
 
-    public initAsync(toInject: string[], f: InjectableAsyncWithTypedThis<any, ExtendableEvent>)
+    public activateAsync(toInject: string[], f: InjectableAsyncWithTypedThis<any, ExtendableEvent>)
     {
         if (this.readyEvent.done)
             return this.injectWithNameAsync(toInject, f.bind(this.readyEvent) as InjectableAsyncWithTypedThis<any, ExtendableEvent>);

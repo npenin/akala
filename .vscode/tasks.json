@@ -32,7 +32,27 @@
         },
         {
             "type": "typescript",
+            "tsconfig": "packages/commands/src/tsconfig.json",
+            "isBackground": true,
+            "option": "watch",
+            "problemMatcher": [
+                "$tsc-watch"
+            ],
+            "group": "build"
+        },
+        {
+            "type": "typescript",
             "tsconfig": "packages/core/src/tsconfig.json",
+            "isBackground": true,
+            "option": "watch",
+            "problemMatcher": [
+                "$tsc"
+            ],
+            "group": "build"
+        },
+        {
+            "type": "typescript",
+            "tsconfig": "packages/json-rpc-ws/src/tsconfig.json",
             "isBackground": true,
             "option": "watch",
             "problemMatcher": [

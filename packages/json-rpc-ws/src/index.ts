@@ -1,5 +1,5 @@
 'use strict';
-import { Connection as BaseConnection, SerializableObject, PayloadDataType, SerializedBuffer, Payload, SocketAdapter } from './shared-connection';
+import { Connection as BaseConnection, SerializableObject, PayloadDataType, SerializedBuffer, Payload, SocketAdapter, Deferred } from './shared-connection';
 import { Connection } from './connection'
 import { default as Client } from './ws/client';
 import { default as Server, ServerAdapter } from './server';
@@ -13,4 +13,4 @@ import { default as Errors, Payload as ErrorPayload } from './errors';
 
 import * as ws from './ws';
 export { ws };
-export { Server, Client, ServerAdapter, SocketAdapter, Errors, BaseConnection, Connection, SerializableObject, PayloadDataType, SerializedBuffer, Payload, ErrorPayload };
+export { Server, Client, ServerAdapter, SocketAdapter, Errors, BaseConnection, Connection, SerializableObject, Deferred, PayloadDataType, SerializedBuffer, Payload, ErrorPayload };

@@ -58,7 +58,7 @@ export default async function _new(type: string, name: string, options: yargs.Ar
         case 'command':
         case 'cmd':
         case 'c':
-            var { output } = await outputHelper(destination, name + '.ts', options.f || options.force);
+            var { output } = await outputHelper(destination, name + '.ts', options.force);
             await write(output, `export default async function ${name}()
 {
 
@@ -66,8 +66,8 @@ export default async function _new(type: string, name: string, options: yargs.Ar
             break;
         case 'cc':
         case 'command-config':
-            var { output } = await outputHelper(destination, name + '.json', options.f || options.force);
-            await write(output, JSON.stringify({ $schema: "https://raw.githubusercontent.com/npenin/akala-commands/master/command-schema.json", "": { inject: [] } }, null, 4));
+            var { output } = await outputHelper(destination, name + '.json', options.force);
+            await write(output, JSON.stringify({ $schema: "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json", "": { inject: [] } }, null, 4));
             break;
         default:
             throw new Error(`${type} is not supported`);
