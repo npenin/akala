@@ -21,7 +21,7 @@ export var container: Promise<description.commands> = (async function ()
         cliContainer.trap(await FileSystem.asTrap(cliContainer));
         var cmd = cliContainer.resolve(process.argv[2]);
         var args = yargs(process.argv.slice(3), cmd?.config?.cli?.options);
-        cliContainer.dispatch(cmd, { options: args, param: args._.slice(1), _trigger: 'cli' }).then((result: any) =>
+        cliContainer.dispatch(cmd, { options: args, param: args._, _trigger: 'cli' }).then((result: any) =>
         {
             if (typeof (result) != 'undefined')
                 console.log(result);

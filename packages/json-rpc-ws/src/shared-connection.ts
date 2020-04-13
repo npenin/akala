@@ -20,6 +20,33 @@ export interface Payload<T>
     stream?: boolean;
 }
 
+export class Deferred<T> extends Promise<T>
+{
+    private _resolve?: (value?: T | PromiseLike<T> | undefined) => void;
+    private _reject?: (reason?: any) => void;
+    resolve(_value?: T | PromiseLike<T> | undefined): void
+    {
+        if (typeof (this._resolve) == 'undefined')
+            throw new Error('Not Implemented');
+
+        this._resolve(_value);
+    }
+    reject(_reason?: any): void
+    {
+        if (typeof (this._reject) == 'undefined')
+            throw new Error('Not Implemented');
+
+        this._reject(_reason);
+    }
+    constructor()
+    {
+        super((resolve, reject) =>
+        {
+            this._resolve = resolve;
+            this._reject = reject;
+        })
+    }
+}
 
 export type Handler<TConnection extends Connection<TStreamable>, TStreamable, ParamType extends PayloadDataType<TStreamable>, ParamCallbackType extends PayloadDataType<TStreamable>> = (this: TConnection, params: ParamType, reply: ReplyCallback<ParamCallbackType>) => void;
 export type ReplyCallback<ParamType> = (error: any, params?: ParamType) => void;

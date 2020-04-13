@@ -4,6 +4,7 @@ import { spawn, ChildProcess } from "child_process";
 import { description } from "../container";
 import * as jsonrpc from '@akala/json-rpc-ws'
 import debug from "debug";
+import { eachAsync } from "@akala/core";
 
 export default async function start(this: State, pm: description.pm & Container<State>, name: string, options?: any)
 {
@@ -68,6 +69,15 @@ export default async function start(this: State, pm: description.pm & Container<
     }
     else
     {
+        if (!container && this.config.mapping[name].dependencies?.length)
+        {
+            await eachAsync(this.config.mapping[name].dependencies, async function (dep)
+            {
+                await pm.dispatch('start', dep, { wait: true });
+
+            })
+        }
+
         var cp = spawn(process.execPath, args, { cwd: process.cwd(), stdio: ['inherit', 'inherit', 'inherit', 'ipc'], shell: false, windowsHide: true });
         if (!container)
         {
@@ -109,6 +119,9 @@ export default async function start(this: State, pm: description.pm & Container<
         container.process = cp;
         container.path = name;
         container.commandable = this.config.mapping[name].commandable;
+        container.ready = new jsonrpc.Deferred();
+
+        this.config.mapping[name]
         if (container.commandable)
             pm.register(name, container, true);
         // container.resolve = function (c: string)
@@ -120,6 +133,8 @@ export default async function start(this: State, pm: description.pm & Container<
         {
             (container as RunningContainer).running = false;
         });
+        if (options.wait && container.commandable)
+            await container.ready;
         return { execPath: process.execPath, args: args, cwd: process.cwd(), stdio: ['inherit', 'inherit', 'inherit', 'ipc'], shell: false, windowsHide: true };
     }
 };

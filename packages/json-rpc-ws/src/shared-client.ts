@@ -3,8 +3,6 @@ import * as debug from 'debug';
 const logger = debug('json-rpc-ws');
 import { SocketAdapter, PayloadDataType } from './shared-connection';
 
-
-
 export default abstract class Client<TStreamable> extends Base<TStreamable>
 {
   constructor(private socketConstructor: (address: string) => SocketAdapter)

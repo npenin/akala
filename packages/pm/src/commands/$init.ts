@@ -34,9 +34,11 @@ export default async function (this: State, container: RunningContainer<State> &
         this.config.externals = [];
 
 
+
     await this.config.save();
     container.name = 'pm';
     await container.dispatch('map', 'pm', join(__dirname, '../../commands.json'), true);
+
 
     this.processes.push(container);
     container.running = true;
