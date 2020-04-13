@@ -6,7 +6,7 @@ export function control(...toInject: string[])
 {
     return function (ctrl: new (...args: any[]) => any)
     {
-        Control.injector.init([], function ()
+        Control.injector.activate([], function ()
         {
             Control.injector.injectNewWithName(toInject, ctrl)();
         });
