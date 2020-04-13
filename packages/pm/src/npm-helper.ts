@@ -1,6 +1,12 @@
 import * as cp from 'child_process'
 import { platform } from "os";
 
+
+// if (typeof (process.versions.pnp) != 'undefined')
+// {
+
+// }
+
 var npm = 'npm';
 if (platform() == 'win32')
     npm = 'npm.cmd';
