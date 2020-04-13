@@ -85,7 +85,7 @@ export function microservice(
     //         return keys;
     //     }));
 
-    module.init(['$preAuthenticationRouter'], function (preAuthenticatedRouter: HttpRouter)
+    module.activate(['$preAuthenticationRouter'], function (preAuthenticatedRouter: HttpRouter)
     {
         preAuthenticatedRouter.useGet('/assets/' + plugin, master.serveStatic('node_modules/' + plugin + '/assets'));
 
