@@ -113,7 +113,7 @@ fs.exists(configFile, function (exists)
 
             log(modules);
 
-            akala.module('bootstrap', ...modules).init([], function ()
+            akala.module('bootstrap', ...modules).activate([], function ()
             {
                 log('registering error handler');
 
@@ -164,7 +164,7 @@ fs.exists(configFile, function (exists)
 
             });
 
-            akala.module('bootstrap').run(['$rootUrl'], function (url)
+            akala.module('bootstrap').activate(['$rootUrl'], function (url)
             {
                 console.log('server ready and listening on ' + url + '...');
             })

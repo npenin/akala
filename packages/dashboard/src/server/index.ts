@@ -8,7 +8,7 @@ import { promises as fs } from 'fs';
 
 var moduleName = require('../../package.json').name
 
-akala.module('@akala/dashboard', '@akala/pages').init([], function ()
+akala.module('@akala/dashboard', '@akala/pages').activate([], function ()
 {
     mkdirp('./pages', async function ()
     {
