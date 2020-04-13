@@ -31,7 +31,8 @@ module cache
                                 if (res.status == 200)
                                 {
                                     caches.open('akala').then(cache => cache.put(req, res.clone()));
-                                    self.clients.get(event.clientId).then(cl => cl.postMessage({ type: 'update' }))
+                                    if (event.clientId)
+                                        self.clients.get(event.clientId).then(cl => cl.postMessage({ type: 'update' }))
                                 }
 
                             })
