@@ -19,7 +19,7 @@ export type Part = part.Part;
 export var router: typeof routing.router
 export type LocationService = location.LocationService;
 export type Injector = core.Injector;
-export var init: typeof core.Module.prototype.init;
+export var init: typeof core.Module.prototype.activate;
 
 export { controls };
 
@@ -41,9 +41,9 @@ common.serviceModule.register('promisify', core.Promisify);
 
 
 // export { Promisify, Deferred };
-export var run: (toInject: string[], f: Function) => void = common.$$injector.run.bind(common.$$injector);
+export var run: (toInject: string[], f: Function) => void = common.$$injector.ready.bind(common.$$injector);
 
-common.$$injector.init([], function ()
+common.$$injector.activate([], function ()
 {
     var rootScope = common.$$injector.register('$rootScope', new scope.Scope());
 
@@ -71,7 +71,7 @@ export function load(...scripts: string[])
     });
 }
 
-common.serviceModule.init(['$location'], function ($location: location.LocationService)
+common.serviceModule.activate(['$location'], function ($location: location.LocationService)
 {
     $location.on('change', function (path: string)
     {
