@@ -1,6 +1,7 @@
 {
     "compileOnSave": true,
     "compilerOptions": {
+        "composite": true,
         "rootDir": ".",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
@@ -10,6 +11,13 @@
         "module": "commonjs",
         "outDir": "../dist"
     },
+    "references": [
+        {"path": "../../commands/src"},
+        {"path": "../../core/src"},
+        {"path": "../../db/src"},
+        {"path": "../../json-rpc-ws/src"},
+        {"path": "../../server/src"}
+        ],
     "exclude": [
         "node_modules"
     ]
