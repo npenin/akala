@@ -325,7 +325,7 @@ class Command extends akala.Injector implements ICommandBuilder
     }
 }
 
-function cliToRegexp(cli: string, keys: Key[], options?: akala.LayerOptions): LayerRegExp
+function cliToRegexp(cli: string, keys: (Partial<Key> & {repeat:boolean, optional:boolean, delimiter:string})[], options?: akala.LayerOptions): LayerRegExp
 {
     var flags: string = undefined;
     var regexp = '^';
@@ -367,7 +367,7 @@ function cliToRegexp(cli: string, keys: Key[], options?: akala.LayerOptions): La
 
     if (options && options.end)
         regexp += '(?=\/|$)';
-    var result: LayerRegExp & { keys: Key[] };
+    var result: LayerRegExp & { keys: Partial<Key>[] };
     result = new RegExp(regexp, flags) as any;
     if (regexp == '^.*$')
     {
