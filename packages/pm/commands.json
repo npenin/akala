@@ -1,6 +1,26 @@
 {
-    "name": "pm",
+    "name": "commands",
     "commands": [
+        {
+            "name": "$init",
+            "inject": [
+                "container"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "container"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/$init.js",
+                    "source": "src/commands/$init.ts",
+                    "inject": [
+                        "container"
+                    ]
+                }
+            }
+        },
         {
             "name": "alias",
             "inject": [
@@ -55,19 +75,32 @@
             "inject": [
                 "param.0",
                 "param.1",
-                "container"
+                "param.2"
             ],
             "config": {
                 "": {
                     "inject": [
                         "param.0",
                         "param.1",
-                        "container"
+                        "param.2"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/discover.js",
                     "source": "src/commands/discover.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "cli": {
+                    "options": {
+                        "normalize": [
+                            "param.0",
+                            "param.1"
+                        ]
+                    },
                     "inject": [
                         "param.0",
                         "param.1",
@@ -124,6 +157,26 @@
                         "param.0",
                         "param.1",
                         "container"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "log",
+            "inject": [
+                "param.0"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/log.js",
+                    "source": "src/commands/log.ts",
+                    "inject": [
+                        "param.0"
                     ]
                 }
             }
@@ -228,21 +281,37 @@
         {
             "name": "start",
             "inject": [
-                "container",
-                "param.0",
-                "options"
+                "param.0"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "container",
-                        "param.0",
-                        "options"
+                        "param.0"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/start.js",
                     "source": "src/commands/start.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "options": {
+                        "alias": {
+                            "wait": [
+                                "w"
+                            ],
+                            "verbose": [
+                                "v"
+                            ]
+                        },
+                        "boolean": [
+                            "inspect",
+                            "verbose",
+                            "wait"
+                        ]
+                    },
                     "inject": [
                         "container",
                         "param.0",

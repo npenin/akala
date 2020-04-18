@@ -1,7 +1,5 @@
 import State from "../state";
 import unparse from 'yargs-unparser';
-import { writeFileSync } from "fs";
-import { join } from "path";
 
 export default async function config(this: State, name: string, options: any): Promise<string[]>
 {
@@ -9,15 +7,9 @@ export default async function config(this: State, name: string, options: any): P
     if (options)
     {
         var args = unparse(options);
-        if (!args[2])
+        if (args[1] && args[1] == 'set')
         {
-            return args;
-            delete this.config.containers[name]
-        }
-        else if (args[2] == 'set')
-        {
-            writeFileSync(join(__dirname, './log.txt'), new Error().stack);
-            this.config.containers[name] = args.slice(3);
+            this.config.containers[name] = args.slice(2);
             await this.config.save();
         }
 

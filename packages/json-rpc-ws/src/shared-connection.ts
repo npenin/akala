@@ -40,11 +40,15 @@ export class Deferred<T> extends Promise<T>
     }
     constructor()
     {
+        var _resolve;
+        var _reject;
         super((resolve, reject) =>
         {
-            this._resolve = resolve;
-            this._reject = reject;
-        })
+            _resolve = resolve;
+            _reject = reject;
+        });
+        this._resolve = _resolve;
+        this._reject = _reject;
     }
 }
 

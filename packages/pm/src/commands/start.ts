@@ -78,7 +78,7 @@ export default async function start(this: State, pm: description.pm & Container<
             })
         }
 
-        var cp = spawn(process.execPath, args, { cwd: process.cwd(), stdio: ['inherit', 'inherit', 'inherit', 'ipc'], shell: false, windowsHide: true });
+        var cp = spawn(process.execPath, args, { cwd: process.cwd(), stdio: ['pipe', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
         if (!container)
         {
 
