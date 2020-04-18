@@ -25,7 +25,7 @@ export class FileSystem<T> extends CommandProcessor<T>
     public static async asTrap<T>(container: Container<T>, path?: string): Promise<CommandNameProcessor<T>>
     {
         var fs = new FileSystem<T>(container, path);
-        var commands = await FileSystem.discoverMetaCommands(path || process.cwd(), { recursive: true });
+        var commands = await FileSystem.discoverMetaCommands(path || process.cwd(), { processor: fs, recursive: true, ignoreFileWithNoDefaultExport: true });
         return {
             process(cmd, params)
             {
@@ -54,7 +54,7 @@ export class FileSystem<T> extends CommandProcessor<T>
             container.name = commands.name;
     }
 
-    public static async discoverMetaCommands<T>(root: string, options?: { recursive?: boolean, processor?: Processor<T>, isDirectory?: boolean }): Promise<Metadata.Command[] & { name?: string }>
+    public static async discoverMetaCommands<T>(root: string, options?: { recursive?: boolean, processor?: Processor<T>, isDirectory?: boolean, ignoreFileWithNoDefaultExport?: boolean }): Promise<Metadata.Command[] & { name?: string }>
     {
         const log = akala.log('commands:fs:discovery');
 
@@ -93,6 +93,8 @@ export class FileSystem<T> extends CommandProcessor<T>
             if (packageDef.commands && typeof (packageDef.commands) == 'string')
                 return this.discoverMetaCommands(path.join(root, packageDef.commands), { processor: options.processor });
         }
+        if (!options.processor)
+            throw new Error('Processor not defined');
 
         var commands: Metadata.Command[] = [];
 
@@ -162,7 +164,10 @@ export class FileSystem<T> extends CommandProcessor<T>
                     {
                         let func = require(path.resolve(cmd.config.fs.path)).default;
                         if (!func)
-                            throw new Error(`No default export is mentioned in ${path.resolve(cmd.config.fs.path)}`)
+                            if (!options.ignoreFileWithNoDefaultExport)
+                                throw new Error(`No default export is mentioned in ${path.resolve(cmd.config.fs.path)}`)
+                            else
+                                return
                         if (func.$inject)
                         {
                             log(`taking $inject`)

@@ -54,11 +54,27 @@ if (require.main == module)
                     var cmd = metaContainer.commands.find(c => c.name === cmdName);
                     if (cmd)
                         if (cmd.config && cmd.config.cli && cmd.config.cli.options)
+                        {
                             args = yargs(process.argv.slice(3), cmd.config.cli.options);
+                            if (cmd.config.cli.options.normalize)
+                            {
+                                var params = cmd.config.cli.options.normalize.filter(p => p.length > 'param.'.length && p.substr(0, 'param.'.length) == 'param.');
+                                if (params.length > 0)
+                                {
+                                    params.forEach(key =>
+                                    {
+                                        var positionalIndex = Number(key.substr('param.'.length));
+                                        if (args._[positionalIndex])
+                                            args._[positionalIndex] = path.resolve(args._[positionalIndex]);
+                                    });
+                                }
+                            }
+                        }
                         else
                             args._ = args._.slice(1);
                     else
                         args._ = args._.slice(1);
+
                     var result = await processor.process(cmdName, { options: args, param: args._, _trigger: 'cli', cwd: process.cwd() } as any);
 
                     socket.end(() =>
