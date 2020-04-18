@@ -30,26 +30,26 @@ export default async function register(this: State, container: Container<State> 
             path = resolve(cwd, path);
         asset.inputs.push(path);
 
-        var cachePath = asset.output = resolve(join('./build', route));
-        if (this.mode === 'development')
-        {
-            if (!targetWatchers[route])
-            {
-                log.info(`starting to watch '${asset}'`)
-                targetWatchers[route] = chokidar.watch(asset.inputs, { persistent: false, ignoreInitial: true });
-                targetWatchers[route].on('change', function (path)
-                {
-                    log.info(`change detected in ${path}`)
-                    container.dispatch('compile', cachePath, ...asset.inputs)
-                })
-            }
-            else
-                targetWatchers[route].add(path);
-        }
+        asset.output = resolve(join('./build', route));
+        // if (this.mode === 'development')
+        // {
+        //     if (!targetWatchers[route])
+        //     {
+        //         log.info(`starting to watch '${asset}'`)
+        //         targetWatchers[route] = chokidar.watch(asset.inputs, { persistent: false, ignoreInitial: true });
+        //         targetWatchers[route].on('change', function (path)
+        //         {
+        //             log.info(`change detected in ${path}`)
+        //             container.dispatch('compile', cachePath, ...asset.inputs)
+        //         })
+        //     }
+        //     else
+        //         targetWatchers[route].add(path);
+        // }
 
-        await container.dispatch('compile', cachePath, ...asset.inputs);
+        await container.dispatch('webpack', route, true);
 
         if (newRoute)
-            container.dispatch('route', route, resolve(cachePath), { fallthrough: false, pre: true, get: true }, cwd)
+            container.dispatch('route', route, resolve(asset.output), { fallthrough: false, pre: true, get: true }, cwd)
     })();
 }

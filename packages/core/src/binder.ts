@@ -17,8 +17,26 @@ export interface EventArgs
     eventArgs: { fieldName: string, value: any };
 }
 
+
+
 export class Binding extends EventEmitter
 {
+    public static defineProperty(target: any, property: string | symbol, value?: any)
+    {
+        var binding = new Binding(property.toString(), target);
+        Object.defineProperty(target, property, {
+            get()
+            {
+                return value;
+            }, set(value: any)
+            {
+                binding.setValue(value, binding);
+            }
+        });
+
+        return binding;
+    }
+
     public static readonly ChangingFieldEventName = "fieldChanging";
     public static readonly ChangedFieldEventName = "fieldChanged";
     public static readonly ErrorEventName = "bindingError";
@@ -250,9 +268,9 @@ export class Binding extends EventEmitter
                                 next();
                             }, reject);
                         }, function ()
-                            {
-                                resolve(value);
-                            });
+                        {
+                            resolve(value);
+                        });
                     }
                     else
                         resolve(value);
@@ -282,15 +300,15 @@ export class Binding extends EventEmitter
                         source: source
                     });
             }, function (ex)
-                {
-                    if (watcher)
-                        watcher.emit(Binding.ErrorEventName, {
-                            target: target,
-                            field: setter.expression,
-                            Exception: ex,
-                            source: source
-                        });
-                });
+            {
+                if (watcher)
+                    watcher.emit(Binding.ErrorEventName, {
+                        target: target,
+                        field: setter.expression,
+                        Exception: ex,
+                        source: source
+                    });
+            });
 
             return promise;
         };
