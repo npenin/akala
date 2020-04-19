@@ -5,6 +5,7 @@ import yargs from 'yargs-parser'
 import { Socket } from 'net';
 import { platform, homedir } from 'os';
 import start from './commands/start'
+import { Readable } from 'stream';
 
 const tableChars = {
     'top': '─'
@@ -77,135 +78,108 @@ if (require.main == module)
 
                     var result = await processor.process(cmdName, { options: args, param: args._, _trigger: 'cli', cwd: process.cwd() } as any);
 
-                    socket.end(() =>
+                    if (result instanceof Readable)
                     {
-                        switch (args.output)
+                        result.pipe(process.stdout);
+                    }
+                    else
+                        socket.end(() =>
                         {
-                            case 'table':
-                                var columnNames: string[] = [];
-                                var columns: { [key: string]: { maxWidthContent: number, maxWidth: number, values: string[] } } = {};
-                                if (Array.isArray(result))
-                                {
-                                    for (var r of result)
+                            switch (args.output)
+                            {
+                                case 'table':
+                                    var columnNames: string[] = [];
+                                    var columns: { [key: string]: { maxWidthContent: number, maxWidth: number, values: string[] } } = {};
+                                    if (Array.isArray(result))
                                     {
-                                        Object.keys(r).forEach(k =>
-                                        {
-                                            if (columnNames.indexOf(k) == -1)
-                                                columnNames.push(k);
-                                        })
-                                    }
-
-                                    columnNames.forEach(c =>
-                                    {
-                                        columns[c] = { maxWidthContent: 0, maxWidth: c.length + 2, values: [] };
-
                                         for (var r of result)
                                         {
-                                            if (typeof (r[c]) == 'undefined' || typeof r[c] == 'string' && r[c].length == 0)
-                                                columns[c].values.push('');
-                                            else if (r[c] == null)
+                                            Object.keys(r).forEach(k =>
                                             {
-                                                columns[c].values.push('-');
-                                                columns[c].maxWidthContent = Math.max(columns[c].maxWidthContent, 1);
-                                            }
-                                            else
-                                            {
-                                                columns[c].values.push(r[c].toString());
-                                                columns[c].maxWidthContent = Math.max(columns[c].maxWidthContent, r[c].toString().length);
-                                            }
-                                            columns[c].maxWidth = Math.max(columns[c].maxWidthContent, columns[c].maxWidth);
+                                                if (columnNames.indexOf(k) == -1)
+                                                    columnNames.push(k);
+                                            })
                                         }
-                                    });
 
-                                    var columnNamesForDisplay = columnNames.slice(0);
-                                    var width = columnNamesForDisplay.reduce((length, c, i) => columns[columnNames[i]].maxWidth + length, 0) + columnNamesForDisplay.length + 1
-                                    if (process.stdout.columns < width)
-                                    {
-                                        for (var c of columnNames)
+                                        columnNames.forEach(c =>
                                         {
-                                            if (columns[c].maxWidthContent == 0)
-                                                columnNamesForDisplay = columnNamesForDisplay.splice(columnNamesForDisplay.indexOf(c), 1)
-                                        }
-                                        width = columnNamesForDisplay.reduce((length, c, i) => columns[columnNames[i]].maxWidth + length, 0) + columnNamesForDisplay.length + 1
-                                    }
-                                    if (process.stdout.columns < width)
-                                    {
-                                        columnNamesForDisplay = columnNamesForDisplay.map(c =>
-                                        {
-                                            if (c.length > 8 + truncate.length)
+                                            columns[c] = { maxWidthContent: 0, maxWidth: c.length + 2, values: [] };
+
+                                            for (var r of result)
                                             {
-                                                var newName = c.substring(0, 8) + truncate;
-                                                columns[c].maxWidth = Math.max(columns[c].maxWidthContent, newName.length);
-                                                return newName;
+                                                if (typeof (r[c]) == 'undefined' || typeof r[c] == 'string' && r[c].length == 0)
+                                                    columns[c].values.push('');
+                                                else if (r[c] == null)
+                                                {
+                                                    columns[c].values.push('-');
+                                                    columns[c].maxWidthContent = Math.max(columns[c].maxWidthContent, 1);
+                                                }
+                                                else
+                                                {
+                                                    columns[c].values.push(r[c].toString());
+                                                    columns[c].maxWidthContent = Math.max(columns[c].maxWidthContent, r[c].toString().length);
+                                                }
+                                                columns[c].maxWidth = Math.max(columns[c].maxWidthContent, columns[c].maxWidth);
                                             }
+                                        });
 
-                                            return c;
-                                        })
-                                        width = columnNamesForDisplay.reduce((length, c, i) => columns[columnNames[i]].maxWidth + length, 0) + columnNamesForDisplay.length + 1
-                                    }
-                                    if (process.stdout.columns < width)
-                                    {
-                                        columnNamesForDisplay.forEach(c =>
+                                        var columnNamesForDisplay = columnNames.slice(0);
+                                        var width = columnNamesForDisplay.reduce((length, c, i) => columns[columnNames[i]].maxWidth + length, 0) + columnNamesForDisplay.length + 1
+                                        if (process.stdout.columns < width)
                                         {
-                                            columns[c].maxWidth = Math.max(columns[c].maxWidthContent, c.length);
-                                        })
-                                        width = columnNamesForDisplay.reduce((length, c, i) => columns[columnNames[i]].maxWidth + length, 0) + columnNamesForDisplay.length + 1
-                                    }
-                                    if (process.stdout.columns >= width)
-                                    {
-                                        process.stdout.write(tableChars["top-left"]);
-                                        columnNamesForDisplay.forEach((c, i) =>
+                                            for (var c of columnNames)
+                                            {
+                                                if (columns[c].maxWidthContent == 0)
+                                                    columnNamesForDisplay = columnNamesForDisplay.splice(columnNamesForDisplay.indexOf(c), 1)
+                                            }
+                                            width = columnNamesForDisplay.reduce((length, c, i) => columns[columnNames[i]].maxWidth + length, 0) + columnNamesForDisplay.length + 1
+                                        }
+                                        if (process.stdout.columns < width)
                                         {
-                                            for (let j = 0; j < columns[columnNames[i]].maxWidth; j++)
-                                                process.stdout.write(tableChars["top"]);
+                                            columnNamesForDisplay = columnNamesForDisplay.map(c =>
+                                            {
+                                                if (c.length > 8 + truncate.length)
+                                                {
+                                                    var newName = c.substring(0, 8) + truncate;
+                                                    columns[c].maxWidth = Math.max(columns[c].maxWidthContent, newName.length);
+                                                    return newName;
+                                                }
 
-                                            if (i == columnNames.length - 1)
-                                                process.stdout.write(tableChars["top-right"]);
-                                            else
-                                                process.stdout.write(tableChars["top-mid"]);
-                                        })
-
-                                        process.stdout.write('\n');
-                                        process.stdout.write(tableChars["left"]);
-
-                                        columnNamesForDisplay.forEach((c, i) =>
+                                                return c;
+                                            })
+                                            width = columnNamesForDisplay.reduce((length, c, i) => columns[columnNames[i]].maxWidth + length, 0) + columnNamesForDisplay.length + 1
+                                        }
+                                        if (process.stdout.columns < width)
                                         {
-                                            for (var pad = 0; pad < (columns[columnNames[i]].maxWidth - c.length) / 2; pad++)
-                                                process.stdout.write(' ');
-                                            process.stdout.write(c);
-                                            for (pad += c.length; pad < columns[columnNames[i]].maxWidth; pad++)
-                                                process.stdout.write(' ');
-
-                                            if (i == columnNames.length - 1)
-                                                process.stdout.write(tableChars["right"]);
-                                            else
-                                                process.stdout.write(tableChars["middle"]);
-                                        })
-                                        process.stdout.write('\n');
-
-                                        process.stdout.write(tableChars["left-mid"]);
-
-                                        columnNamesForDisplay.forEach((c, i) =>
+                                            columnNamesForDisplay.forEach(c =>
+                                            {
+                                                columns[c].maxWidth = Math.max(columns[c].maxWidthContent, c.length);
+                                            })
+                                            width = columnNamesForDisplay.reduce((length, c, i) => columns[columnNames[i]].maxWidth + length, 0) + columnNamesForDisplay.length + 1
+                                        }
+                                        if (process.stdout.columns >= width)
                                         {
-                                            for (let j = 0; j < columns[columnNames[i]].maxWidth; j++)
-                                                process.stdout.write(tableChars["mid"]);
-
-                                            if (i == columnNames.length - 1)
-                                                process.stdout.write(tableChars["right-mid"]);
-                                            else
-                                                process.stdout.write(tableChars["mid-mid"]);
-                                        })
-                                        process.stdout.write('\n');
-                                        for (let r = 0; r < result.length; r++)
-                                        {
-                                            process.stdout.write(tableChars["left"]);
+                                            process.stdout.write(tableChars["top-left"]);
                                             columnNamesForDisplay.forEach((c, i) =>
                                             {
-                                                var value = columns[columnNames[i]].values[r];
-                                                for (var pad = 0; pad < Math.floor((columns[columnNames[i]].maxWidth - value.length) / 2); pad++)
+                                                for (let j = 0; j < columns[columnNames[i]].maxWidth; j++)
+                                                    process.stdout.write(tableChars["top"]);
+
+                                                if (i == columnNames.length - 1)
+                                                    process.stdout.write(tableChars["top-right"]);
+                                                else
+                                                    process.stdout.write(tableChars["top-mid"]);
+                                            })
+
+                                            process.stdout.write('\n');
+                                            process.stdout.write(tableChars["left"]);
+
+                                            columnNamesForDisplay.forEach((c, i) =>
+                                            {
+                                                for (var pad = 0; pad < (columns[columnNames[i]].maxWidth - c.length) / 2; pad++)
                                                     process.stdout.write(' ');
-                                                process.stdout.write(value);
-                                                for (pad += value.length; pad < columns[columnNames[i]].maxWidth; pad++)
+                                                process.stdout.write(c);
+                                                for (pad += c.length; pad < columns[columnNames[i]].maxWidth; pad++)
                                                     process.stdout.write(' ');
 
                                                 if (i == columnNames.length - 1)
@@ -214,27 +188,59 @@ if (require.main == module)
                                                     process.stdout.write(tableChars["middle"]);
                                             })
                                             process.stdout.write('\n');
-                                        }
-                                        process.stdout.write(tableChars["bottom-left"]);
-                                        columnNamesForDisplay.forEach((c, i) =>
-                                        {
-                                            for (let j = 0; j < columns[columnNames[i]].maxWidth; j++)
-                                                process.stdout.write(tableChars["bottom"]);
 
-                                            if (i == columnNames.length - 1)
-                                                process.stdout.write(tableChars["bottom-right"]);
-                                            else
-                                                process.stdout.write(tableChars["bottom-mid"]);
-                                        })
-                                        process.stdout.write('\n');
-                                        return;
+                                            process.stdout.write(tableChars["left-mid"]);
+
+                                            columnNamesForDisplay.forEach((c, i) =>
+                                            {
+                                                for (let j = 0; j < columns[columnNames[i]].maxWidth; j++)
+                                                    process.stdout.write(tableChars["mid"]);
+
+                                                if (i == columnNames.length - 1)
+                                                    process.stdout.write(tableChars["right-mid"]);
+                                                else
+                                                    process.stdout.write(tableChars["mid-mid"]);
+                                            })
+                                            process.stdout.write('\n');
+                                            for (let r = 0; r < result.length; r++)
+                                            {
+                                                process.stdout.write(tableChars["left"]);
+                                                columnNamesForDisplay.forEach((c, i) =>
+                                                {
+                                                    var value = columns[columnNames[i]].values[r];
+                                                    for (var pad = 0; pad < Math.floor((columns[columnNames[i]].maxWidth - value.length) / 2); pad++)
+                                                        process.stdout.write(' ');
+                                                    process.stdout.write(value);
+                                                    for (pad += value.length; pad < columns[columnNames[i]].maxWidth; pad++)
+                                                        process.stdout.write(' ');
+
+                                                    if (i == columnNames.length - 1)
+                                                        process.stdout.write(tableChars["right"]);
+                                                    else
+                                                        process.stdout.write(tableChars["middle"]);
+                                                })
+                                                process.stdout.write('\n');
+                                            }
+                                            process.stdout.write(tableChars["bottom-left"]);
+                                            columnNamesForDisplay.forEach((c, i) =>
+                                            {
+                                                for (let j = 0; j < columns[columnNames[i]].maxWidth; j++)
+                                                    process.stdout.write(tableChars["bottom"]);
+
+                                                if (i == columnNames.length - 1)
+                                                    process.stdout.write(tableChars["bottom-right"]);
+                                                else
+                                                    process.stdout.write(tableChars["bottom-mid"]);
+                                            })
+                                            process.stdout.write('\n');
+                                            return;
+                                        }
                                     }
-                                }
-                            default:
-                                console.log(result);
-                                break;
-                        }
-                    })
+                                default:
+                                    console.log(result);
+                                    break;
+                            }
+                        })
                 }
                 catch (e)
                 {

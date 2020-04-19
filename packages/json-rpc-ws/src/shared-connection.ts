@@ -428,6 +428,7 @@ export abstract class Connection<TStreamable>
 
         if (payload === null)
         {
+            console.error(data);
             return Errors('parseError');
         }
         //Object or array

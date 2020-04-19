@@ -5,6 +5,7 @@ import { description } from "../container";
 import * as jsonrpc from '@akala/json-rpc-ws'
 import debug from "debug";
 import { eachAsync } from "@akala/core";
+import { NewLinePrefixer } from "../new-line-prefixer";
 
 export default async function start(this: State, pm: description.pm & Container<State>, name: string, options?: any)
 {
@@ -78,10 +79,12 @@ export default async function start(this: State, pm: description.pm & Container<
             })
         }
 
-        var cp = spawn(process.execPath, args, { cwd: process.cwd(), stdio: ['pipe', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
+        var cp = spawn(process.execPath, args, { cwd: process.cwd(), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
+        cp.stderr?.pipe(new NewLinePrefixer(name)).pipe(process.stderr);
+        cp.stdout?.pipe(new NewLinePrefixer(name)).pipe(process.stdout);
+
         if (!container)
         {
-
             var processor = new Processors.JsonRpc(new jsonrpc.Connection(new IpcAdapter(cp), {
                 type: 'client', getHandler(method: string)
                 {
