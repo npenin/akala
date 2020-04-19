@@ -6,12 +6,15 @@ export class NewLinePrefixer extends Transform
     {
         super();
         this.setDefaultEncoding('utf8');
+        this.setEncoding('utf8');
     }
 
     _transform(chunk: any, encoding: string, callback: TransformCallback): void
     {
         if (Buffer.isBuffer(chunk))
         {
+            if (encoding == 'buffer')
+                encoding = 'utf8';
             chunk = chunk.toString(encoding || 'utf8');
         }
 
