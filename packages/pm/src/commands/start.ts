@@ -80,8 +80,8 @@ export default async function start(this: State, pm: description.pm & Container<
         }
 
         var cp = spawn(process.execPath, args, { cwd: process.cwd(), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
-        cp.stderr?.pipe(new NewLinePrefixer(name)).pipe(process.stderr);
-        cp.stdout?.pipe(new NewLinePrefixer(name)).pipe(process.stdout);
+        cp.stderr?.pipe(new NewLinePrefixer(name + ' ')).pipe(process.stderr);
+        cp.stdout?.pipe(new NewLinePrefixer(name + ' ')).pipe(process.stdout);
 
         if (!container)
         {

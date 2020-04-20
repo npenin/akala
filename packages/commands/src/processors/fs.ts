@@ -19,6 +19,15 @@ export interface FileSystemConfiguration extends Metadata.Configuration
 
 export type FSCommand = Metadata.Command & { config?: { fs?: FileSystemConfiguration } };
 
+export interface DiscoveryOptions<T>
+{
+    recursive?: boolean
+    processor?: Processor<T>
+    isDirectory?: boolean
+    ignoreFileWithNoDefaultExport?: boolean
+    relativeTo?: string;
+}
+
 
 export class FileSystem<T> extends CommandProcessor<T>
 {
@@ -39,7 +48,7 @@ export class FileSystem<T> extends CommandProcessor<T>
         };
     }
 
-    public static async discoverCommands<T>(root: string, container: Container<T>, options?: { recursive?: boolean, processor?: Processor<T>, isDirectory?: boolean }): Promise<void>
+    public static async discoverCommands<T>(root: string, container: Container<T>, options?: DiscoveryOptions<T>): Promise<void>
     {
         if (!options)
             options = {};
@@ -54,7 +63,7 @@ export class FileSystem<T> extends CommandProcessor<T>
             container.name = commands.name;
     }
 
-    public static async discoverMetaCommands<T>(root: string, options?: { recursive?: boolean, processor?: Processor<T>, isDirectory?: boolean, ignoreFileWithNoDefaultExport?: boolean }): Promise<Metadata.Command[] & { name?: string }>
+    public static async discoverMetaCommands<T>(root: string, options?: DiscoveryOptions<T>): Promise<Metadata.Command[] & { name?: string }>
     {
         const log = akala.log('commands:fs:discovery');
 
@@ -75,6 +84,14 @@ export class FileSystem<T> extends CommandProcessor<T>
                 }
                 throw e;
             }
+        }
+
+        if (!options.relativeTo)
+        {
+            if (!options.isDirectory)
+                options.relativeTo = path.dirname(root);
+            else
+                options.relativeTo = root;
         }
         if (!options.isDirectory)
         {
@@ -99,12 +116,14 @@ export class FileSystem<T> extends CommandProcessor<T>
         var commands: Metadata.Command[] = [];
 
         var files = await fs.readdir(root, { withFileTypes: true });
+        var relativeTo = options.relativeTo;
         await akala.eachAsync(files, async f =>
         {
             if (f.isFile())
                 if (f.name.endsWith('.js'))
                 {
-                    let fsConfig = { path: path.join(root, f.name).replace(/\\/g, '/') };
+                    let fsConfig = { path: path.relative(relativeTo, path.join(root, f.name).replace(/\\/g, '/')) };
+
                     if (!options)
                         throw new Error('cannot happen');
                     let cmd = configure<FileSystemConfiguration>('fs', fsConfig)(new CommandProxy(options.processor as Processor<T>, path.basename(f.name, path.extname(f.name))));
@@ -113,15 +132,15 @@ export class FileSystem<T> extends CommandProcessor<T>
                     {
                         var sourceMap = JSON.parse(await fs.readFile(path.join(root, path.basename(f.name) + '.map'), 'utf8'));
                         if (cmd.config.fs)
-                            cmd.config.fs.source = path.join(path.relative(process.cwd(), root), sourceMap.sources[0]).replace(/\\/g, '/');
+                            cmd.config.fs.source = path.join(path.relative(relativeTo, root), sourceMap.sources[0]).replace(/\\/g, '/');
                     }
                     let source = cmd.config.fs.source || cmd.config.fs.path;
                     let otherConfigsFile: string;
                     otherConfigsFile = path.join(path.dirname(source), path.basename(source, path.extname(source))) + '.json';
-                    if (existsSync(path.resolve(otherConfigsFile)))
+                    if (existsSync(path.resolve(relativeTo, otherConfigsFile)))
                     {
                         log(`found config file ${otherConfigsFile}`)
-                        var otherConfigs = require(path.resolve(otherConfigsFile));
+                        var otherConfigs = require(path.resolve(relativeTo, otherConfigsFile));
                         delete otherConfigs.$schema;
                         cmd = configure(otherConfigs)(cmd) as any;
                     }
@@ -162,7 +181,7 @@ export class FileSystem<T> extends CommandProcessor<T>
 
                     if (!cmd.config.fs.inject)
                     {
-                        let func = require(path.resolve(cmd.config.fs.path)).default;
+                        let func = require(path.resolve(relativeTo, cmd.config.fs.path)).default;
                         if (!func)
                             if (!options.ignoreFileWithNoDefaultExport)
                                 throw new Error(`No default export is mentioned in ${path.resolve(cmd.config.fs.path)}`)

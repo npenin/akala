@@ -1,12 +1,25 @@
 {
-    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/command-schema.json",
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
     "cli": {
         "inject": [
             "param.0",
             "param.1",
             "options",
             "cwd"
-        ]
+        ],
+        "options": {
+            "normalize": [
+                "param.1",
+                "root"
+            ],
+            "boolean": [
+                "get",
+                "use",
+                "pre",
+                "auth",
+                "app"
+            ]
+        }
     },
     "": {
         "inject": [
