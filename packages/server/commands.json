@@ -1,5 +1,5 @@
 {
-    "name": "commands",
+    "name": "akala-server",
     "commands": [
         {
             "name": "$init",
@@ -46,6 +46,19 @@
                         "param.0",
                         "param.1",
                         "ignore"
+                    ]
+                },
+                "cli": {
+                    "options": {
+                        "normalize": [
+                            "param.1"
+                        ]
+                    },
+                    "inject": [
+                        "container",
+                        "param.0",
+                        "param.1",
+                        "cwd"
                     ]
                 }
             }
@@ -202,6 +215,38 @@
                         "param.1",
                         "options",
                         "cwd"
+                    ],
+                    "options": {
+                        "normalize": [
+                            "param.1",
+                            "root"
+                        ],
+                        "boolean": [
+                            "get",
+                            "use",
+                            "pre",
+                            "auth",
+                            "app"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "name": "webpack-html",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/commands/webpack-html.js",
+                    "source": "src/commands/webpack-html.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "inject": [
+                        "options"
                     ]
                 }
             }

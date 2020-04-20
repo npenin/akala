@@ -52,13 +52,13 @@ export async function write(output: Writable, content: string)
 
 export default async function _new(type: string, name: string, options: yargs.Arguments, destination?: string)
 {
-
+    // console.error(arguments);
     switch (type)
     {
         case 'command':
         case 'cmd':
         case 'c':
-            var { output } = await outputHelper(destination, name + '.ts', options.force);
+            var { output } = await outputHelper(destination, name + '.ts', options && options.force);
             await write(output, `export default async function ${name}()
 {
 
@@ -66,7 +66,7 @@ export default async function _new(type: string, name: string, options: yargs.Ar
             break;
         case 'cc':
         case 'command-config':
-            var { output } = await outputHelper(destination, name + '.json', options.force);
+            var { output } = await outputHelper(destination, name + '.json', options && options.force);
             await write(output, JSON.stringify({ $schema: "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json", "": { inject: [] } }, null, 4));
             break;
         default:

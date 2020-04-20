@@ -13,6 +13,9 @@ export default async function config(this: State, name: string, options: any): P
             await this.config.save();
         }
 
+        if (typeof name == 'undefined')
+            return this.config as any;
+
         return this.config.containers[name];
     }
     else

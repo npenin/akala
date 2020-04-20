@@ -8,10 +8,13 @@ export default async function $init(container: Container<State>, options: any)
 {
     await serve(container, options);
     container.state.assets = new Injector();
+    var init = true;
     Binding.defineProperty(container.state, 'mode', process.env.NODE_ENV).onChanged(function (ev)
     {
-        container.dispatch('webpack', undefined, true);
+        if (!init)
+            container.dispatch('webpack', undefined, true);
     })
+    init = false;
 
     container.injectWithName(['$masterRouter'], function (masterRouter: HttpRouter)
     {

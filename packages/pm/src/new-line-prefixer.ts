@@ -9,6 +9,8 @@ export class NewLinePrefixer extends Transform
         this.setEncoding('utf8');
     }
 
+    private blankNewLine = true;
+
     _transform(chunk: any, encoding: string, callback: TransformCallback): void
     {
         if (Buffer.isBuffer(chunk))
@@ -21,8 +23,12 @@ export class NewLinePrefixer extends Transform
         if (typeof chunk != 'string')
             throw new Error(`Unsupported chunk type ${typeof chunk}`)
 
+        if (this.blankNewLine)
+            chunk = this.prefix + chunk;
 
-        callback(null, chunk.replace(/\n/g, `\n${this.prefix}`))
+        this.blankNewLine = /\n$/.test(chunk);
+
+        callback(null, chunk.replace(/\n([^$])/g, `\n${this.prefix}$1`))
 
     }
 }

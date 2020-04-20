@@ -1,6 +1,19 @@
 {
-    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/command-schema.json",
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
     "": {
+        "inject": [
+            "container",
+            "param.0",
+            "param.1",
+            "cwd"
+        ]
+    },
+    "cli": {
+        "options": {
+            "normalize": [
+                "param.1"
+            ]
+        },
         "inject": [
             "container",
             "param.0",

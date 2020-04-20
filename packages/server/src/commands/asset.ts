@@ -19,8 +19,14 @@ export interface Asset
 
 export default async function register(this: State, container: Container<State> & description.commands, route: string, path: string, cwd: string)
 {
-    await this.assets.injectWithName([route], async (asset: Asset) =>
+    if (typeof route == 'undefined' && typeof path == 'undefined')
+        return this.assets.toJSON();
+
+    return await this.assets.injectWithName([route], async (asset: Asset) =>
     {
+        if (typeof path == 'undefined')
+            return asset;
+
         var newRoute = !asset;
         if (newRoute)
             asset = this.assets.register(route, { inputs: [], output: null });
