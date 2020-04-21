@@ -1,18 +1,14 @@
 import * as webpack from 'webpack'
 import { State } from '../state'
-import { extend, Binding } from '@akala/core';
-import { Asset } from './asset'
-import * as path from 'path'
 import HtmlPlugin = require('html-webpack-plugin');
 import { CleanWebpackPlugin as CleanPlugin } from 'clean-webpack-plugin'
 import CssExtractPlugin = require('mini-css-extract-plugin')
 
-export var html = { title: 'Output management', xhtml: true, hash: true, inject: true, excludeChunks: ['sw'] };
+export var html = { title: 'Output management', xhtml: true, hash: true, inject: true };
 
 export var config: webpack.Configuration = {
     entry: {},
     output: {
-        path: path.resolve('./build'),
     },
 
     resolve: {
@@ -53,7 +49,7 @@ export var config: webpack.Configuration = {
 var compiler: webpack.Compiler;
 var watcher: webpack.Watching;
 
-export default async function compile(this: State, target?: string, reload?: boolean, options?: webpack.Configuration)
+export default async function compile(this: State, target?: string, reload?: boolean)
 {
     if (reload || !config.entry[target])
     {

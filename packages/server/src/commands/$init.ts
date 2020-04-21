@@ -3,6 +3,8 @@ import { HttpRouter, router } from "../router";
 import '../triggers/http'
 import { State } from "../state";
 import { Injector, Binding } from "@akala/core";
+import * as webpack from './webpack'
+import { join } from "path";
 
 export default async function $init(container: Container<State>, options: any)
 {
@@ -14,6 +16,10 @@ export default async function $init(container: Container<State>, options: any)
         if (!init)
             container.dispatch('webpack', undefined, true);
     })
+
+    webpack.config.output.path = join(process.cwd(), './build');
+
+
     init = false;
 
     container.injectWithName(['$masterRouter'], function (masterRouter: HttpRouter)
