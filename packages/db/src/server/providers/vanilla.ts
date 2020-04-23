@@ -238,6 +238,7 @@ export class ExpressionExecutor extends ExpressionVisitor
         return arg0;
     }
 
+    //@ts-ignore TS2416
     async visitCall<T, TMethod extends keyof T>(arg0: CallExpression<T, TMethod>)
     {
         var source = await this.visit(arg0.source);
@@ -264,6 +265,7 @@ export class ExpressionExecutor extends ExpressionVisitor
         }, compare);
     }
 
+    //@ts-ignore TS2416
     async visitMember<T, TMember extends keyof T>(arg0: MemberExpression<T, TMember, T[TMember]>)
     {
         await this.visit(arg0.source);

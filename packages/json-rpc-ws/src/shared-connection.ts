@@ -4,10 +4,10 @@ import { default as Errors, Error as ConnectionError, ErrorTypes } from './error
 const logger = debug('json-rpc-ws');
 
 
-export type SerializableObject = { [key: string]: string | number | SerializableObject | SerializableObject[] };
+export type SerializableObject = { [key: string]: string | number | string[] | number[] | boolean | boolean[] | SerializableObject | SerializableObject[] };
 
 export type PayloadDataType<T> = number | SerializableObject | SerializableObject[] | null | undefined | void | { event: string, isBuffer: boolean, data: string | SerializedBuffer } | T;
-export type SerializedBuffer = { type: 'Buffer', data: Uint8Array };
+export type SerializedBuffer = { type: 'Buffer', data: Uint8Array | number[] };
 
 export interface Payload<T>
 {
@@ -286,7 +286,14 @@ export abstract class Connection<TStreamable>
 
         if (result)
         {
-            response.result = result;
+            var cleanResult = {};
+            Object.getOwnPropertyNames(result).forEach(p =>
+            {
+                if (p[0] != '_')
+                    Object.defineProperty(cleanResult, p, Object.getOwnPropertyDescriptor(result, p) as PropertyDescriptor)
+            });
+
+            response.result = cleanResult;
             if (response.stream && this.isStream(result))
             {
                 if (typeof id == 'undefined')

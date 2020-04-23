@@ -274,7 +274,7 @@ export class Connection extends BaseConnection<ReadableStream<Uint8Array>>
         {
           case 'data':
             if (result.data)
-              s.push(result.data.data);
+              s.push(Uint8Array.from(result.data.data));
 
             this.responseHandlers[id as string] = f;
             break;

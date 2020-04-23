@@ -28,17 +28,26 @@ export class Connection extends BaseConnection<stream.Readable>
         params.pipe(pt);
         pt.on('data', (chunk: Uint8Array | string) =>
         {
-            if (this.socket.open)
+            if (this.socket && this.socket.open)
                 if (isBuffer(chunk))
-                    this.sendRaw({ id: id, result: { event: 'data', isBuffer: true, data: { type: 'Buffer', data: chunk } } });
+                {
+                    if (Buffer.isBuffer(chunk))
+                        this.sendRaw({ id: id, result: { event: 'data', isBuffer: true, data: chunk.toJSON() } });
+                    else
+                        this.sendRaw({ id: id, result: { event: 'data', isBuffer: true, data: { type: 'Buffer', data: chunk } } });
+                }
                 else
                     this.sendRaw({ id: id, result: { event: 'data', isBuffer: false, data: chunk.toString() } });
-            logger('socket was closed before endof stream')
+            else
+            {
+                logger('socket was closed before endof stream')
+                params.unpipe(pt);
+            }
         });
         pt.on('end', () =>
         {
             if (this.socket.open)
-                this.sendRaw({ id: id, result: { event: 'end' }, stream: false });
+                this.sendRaw({ id: id, result: { event: 'end' }, stream: true });
             else
                 logger('socket was closed before end of stream')
         });
@@ -93,7 +102,7 @@ export class Connection extends BaseConnection<stream.Readable>
                             if (typeof (result.data) == 'string')
                                 d = result.data;
                             else
-                                d = result.data.data;
+                                d = Uint8Array.from(result.data.data);
                             if (canPush)
                                 s.push(d);
                             else
