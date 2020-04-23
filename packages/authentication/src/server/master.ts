@@ -1,8 +1,7 @@
 import * as akala from '@akala/server'
 import * as oauth2orize from 'oauth2orize'
 import { AuthorizationCode } from '../model/authorization-code';
-import { Store, File, BinaryOperator } from '@akala/storage';
-import * as utils from 'util'
+import { expressions } from '@akala/storage';
 import { AuthenticationStore } from './authentication-store'
 import * as uuid from 'uuid'
 import { Client } from '../model/client';
@@ -11,6 +10,8 @@ import { AccessToken } from '../model/access-token';
 import * as passport from 'passport'
 import { ensureLoggedIn } from 'connect-ensure-login'
 import { promises as fs } from 'fs';
+
+
 
 import { Strategy as LocalStrategy } from 'passport-local';
 import { BasicStrategy } from 'passport-http';
@@ -62,7 +63,7 @@ passport.deserializeUser(async (id: string, done) =>
     var store = await AuthenticationStore.create();
     try
     {
-        var user = await store.User.where('id', BinaryOperator.Equal, id).firstOrDefault();
+        var user = await store.User.where('id', expressions.BinaryOperator.Equal, id).firstOrDefault();
         done(null, user);
     }
     catch (error)
@@ -105,7 +106,7 @@ server.deserializeClient(async (id, done) =>
     try
     {
         var store = await AuthenticationStore.create();
-        done(null, await store.User.where('id', BinaryOperator.Equal, id));
+        done(null, await store.User.where('id', expressions.BinaryOperator.Equal, id));
     }
     catch (e)
     {
@@ -120,7 +121,7 @@ passport.use('local', new LocalStrategy({ session: false },
 
         try
         {
-            var user = await store.User.where('name', BinaryOperator.Equal, username).firstOrDefault();
+            var user = await store.User.where('name', expressions.BinaryOperator.Equal, username).firstOrDefault();
             if (!user)
             {
                 if (!await store.User.any())
@@ -154,7 +155,7 @@ async function verifyClient(clientId, clientSecret, done)
 
     try
     {
-        var client = await store.Client.where('id', BinaryOperator.Equal, clientId).firstOrDefault();
+        var client = await store.Client.where('id', expressions.BinaryOperator.Equal, clientId).firstOrDefault();
         if (!client) return done(null, false);
         if (client.clientSecret !== clientSecret) return done(null, false);
         return done(null, client);
@@ -175,11 +176,11 @@ passport.use('bearer', new BearerStrategy(
         var store = await AuthenticationStore.create();
         try
         {
-            var token = await store.AccessToken.where('token', BinaryOperator.Equal, accessToken).firstOrDefault();
+            var token = await store.AccessToken.where('token', expressions.BinaryOperator.Equal, accessToken).firstOrDefault();
             if (!token) return done(null, false);
             if (token.userId)
             {
-                var user = await store.User.where('id', BinaryOperator.Equal, token.userId).firstOrDefault();
+                var user = await store.User.where('id', expressions.BinaryOperator.Equal, token.userId).firstOrDefault();
                 if (!user)
                     return done(null, false);
                 done(null, user, { message: 'welcome user', scope: '*' });
@@ -190,7 +191,7 @@ passport.use('bearer', new BearerStrategy(
                 // The request came from a client only since userId is null,
                 // therefore the client is passed back instead of a user.
 
-                var client = await store.Client.where('id', BinaryOperator.Equal, token.clientId).firstOrDefault();
+                var client = await store.Client.where('id', expressions.BinaryOperator.Equal, token.clientId).firstOrDefault();
                 if (!client) return done(null, false);
                 // To keep this example simple, restricted scopes are not implemented,
                 // and this is just for illustrative purposes.
@@ -227,7 +228,7 @@ server.exchange(oauth2orize.exchange.code(async function (client, code, redirect
     try
     {
         var store = await AuthenticationStore.create();
-        var authCode = await store.AuthorizationCode.where('code', BinaryOperator.Equal, code).firstOrDefault();
+        var authCode = await store.AuthorizationCode.where('code', expressions.BinaryOperator.Equal, code).firstOrDefault();
 
 
         if (client.id !== authCode.clientId)
@@ -254,7 +255,7 @@ server.exchange(oauth2orize.exchange.password(async (client: Client, username: s
     // Validate the client
     if (typeof (client.id) !== 'undefined' || !client.isTrusted || client.name !== 'self')
     {
-        var localClient = await store.Client.where('id', BinaryOperator.Equal, client.id).firstOrDefault()
+        var localClient = await store.Client.where('id', expressions.BinaryOperator.Equal, client.id).firstOrDefault()
 
         if (!localClient)
             return done(null, false);
@@ -262,7 +263,7 @@ server.exchange(oauth2orize.exchange.password(async (client: Client, username: s
             return done(null, false);
     }
     // Validate the user
-    var user = await store.User.where('name', BinaryOperator.Equal, username).firstOrDefault()
+    var user = await store.User.where('name', expressions.BinaryOperator.Equal, username).firstOrDefault()
 
     if (!user) return done(null, false);
     if ((await hash)(password) !== user.password) return done(null, false);
@@ -281,34 +282,34 @@ export var authorization =
     server.authorization(async (clientId, redirectUri, done) =>
     {
         var store = await AuthenticationStore.create();
-        var client = await store.Client.where('id', BinaryOperator.Equal, clientId).firstOrDefault();
+        var client = await store.Client.where('id', expressions.BinaryOperator.Equal, clientId).firstOrDefault();
 
         if (!client) return done(new Error('Client not found'));
         // WARNING: For security purposes, it is highly advisable to check that
         //          redirectUri provided by the client matches one registered with
         //          the server. For simplicity, this example does not. You have
         //          been warned.
-        if (!await store.AuthorizationCode.where('clientId', BinaryOperator.Equal, client.id).where('redirectURI', BinaryOperator.Equal, redirectUri).any())
+        if (!await store.AuthorizationCode.where('clientId', expressions.BinaryOperator.Equal, client.id).where('redirectURI', expressions.BinaryOperator.Equal, redirectUri).any())
             return done(new Error('Not client is matching'));
 
         return done(null, client, redirectUri);
     }, async (client: Client, user: User, scope, type, done: (error: Error, canHaveToken: boolean) => void) =>
-        {
-            // Check if grant request qualifies for immediate approval
+    {
+        // Check if grant request qualifies for immediate approval
 
-            // Auto-approve
-            if (client.isTrusted)
-                return done(null, true);
+        // Auto-approve
+        if (client.isTrusted)
+            return done(null, true);
 
-            var store = await AuthenticationStore.create();
-            var token = await store.AccessToken.where('clientId', BinaryOperator.Equal, client.id).where('userId', BinaryOperator.Equal, user.id)
-            // Auto-approve
-            if (token)
-                return done(null, true);
+        var store = await AuthenticationStore.create();
+        var token = await store.AccessToken.where('clientId', expressions.BinaryOperator.Equal, client.id).where('userId', expressions.BinaryOperator.Equal, user.id)
+        // Auto-approve
+        if (token)
+            return done(null, true);
 
-            // Otherwise ask user
-            return done(null, false);
-        });
+        // Otherwise ask user
+        return done(null, false);
+    });
 
 export var decision = server.decision();
 export var token = server.token();
@@ -318,11 +319,11 @@ export var errorHandler = server.errorHandler();
 
 var ready = false;
 
-akala.module('@akala-modules/authentication').init(['$authenticationRouter', '$injector'],
+akala.module('@akala-modules/authentication').activate(['$authenticationRouter', '$injector'],
     async function init(router: akala.HttpRouter)
     {
         var store = await AuthenticationStore.create();
-        if (!await store.Client.where('name', BinaryOperator.Equal, 'self').any())
+        if (!await store.Client.where('name', expressions.BinaryOperator.Equal, 'self').any())
         {
             var client = new Client();
             client.id = uuid.v4();
@@ -346,7 +347,7 @@ akala.module('@akala-modules/authentication').init(['$authenticationRouter', '$i
             server.authorize(async function (clientID, redirectURI, done)
             {
                 var store = await AuthenticationStore.create();
-                var client = await store.Client.where('id', BinaryOperator.Equal, clientID).firstOrDefault()
+                var client = await store.Client.where('id', expressions.BinaryOperator.Equal, clientID).firstOrDefault()
                 if (!client)
                     return done(null, false);
                 if (client.redirectUri != redirectURI)
@@ -396,7 +397,7 @@ akala.module('@akala-modules/authentication').init(['$authenticationRouter', '$i
         });
     })
 
-akala.module('@akala-modules/authentication').run([], function ()
+akala.module('@akala-modules/authentication').ready([], function ()
 {
     ready = true;
 })

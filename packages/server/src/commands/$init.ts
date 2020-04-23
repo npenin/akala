@@ -5,6 +5,9 @@ import { State } from "../state";
 import { Injector, Binding } from "@akala/core";
 import * as webpack from './webpack'
 import { join } from "path";
+import HtmlPlugin = require('html-webpack-plugin');
+import { CleanWebpackPlugin as CleanPlugin } from 'clean-webpack-plugin'
+import CssExtractPlugin = require('mini-css-extract-plugin')
 
 export default async function $init(container: Container<State>, options: any)
 {
@@ -17,8 +20,54 @@ export default async function $init(container: Container<State>, options: any)
             container.dispatch('webpack', undefined, true);
     })
 
-    webpack.config.output.path = join(process.cwd(), './build');
+    var html = new HtmlPlugin({ title: 'Output management', xhtml: true, hash: true, inject: true });
 
+    container.state.webpack = {
+        config: {
+            entry: {},
+            output: {
+                path: join(process.cwd(), './build')
+            },
+
+            resolve: {
+                aliasFields: ['browser'],
+                // Add `.ts` and `.tsx` as a resolvable extension.
+                extensions: [".ts", ".tsx", ".js", ".scss"],
+                symlinks: false,
+            },
+            module: {
+                rules: [
+                    {
+                        test: /\.ts?$/,
+                        use: 'ts-loader',
+                        exclude: /node_modules/,
+                    },
+                    {
+                        test: /\.scss?$/,
+                        use: [CssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+                        exclude: /node_modules/,
+                    },
+                    {
+                        test: /\.html$/,
+                        use: 'raw-loader'
+                    }
+                ],
+            },
+            plugins: [
+                new CleanPlugin(),
+                html,
+                new CssExtractPlugin({ moduleFilename: ({ name }) => `${name.replace('/js/', '/css/')}.css`, })
+            ],
+            devtool: 'source-map',
+            mode: 'development',
+            optimization: {
+                usedExports: true,
+                namedModules: true,
+                namedChunks: true,
+                sideEffects: true,
+            },
+        }, html: (html as any).options
+    };
 
     init = false;
 

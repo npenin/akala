@@ -1,5 +1,6 @@
 import { HttpRouter } from "./router"
 import { Injector } from "@akala/core";
+import * as webpack from "webpack";
 
 export interface State
 {
@@ -10,4 +11,5 @@ export interface State
     authenticationRouter?: HttpRouter;
     lateBoundRoutes?: HttpRouter;
     app?: HttpRouter;
+    webpack: { config: webpack.Configuration, html: any }
 }

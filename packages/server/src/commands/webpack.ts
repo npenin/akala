@@ -1,57 +1,12 @@
 import * as webpack from 'webpack'
 import { State } from '../state'
-import HtmlPlugin = require('html-webpack-plugin');
-import { CleanWebpackPlugin as CleanPlugin } from 'clean-webpack-plugin'
-import CssExtractPlugin = require('mini-css-extract-plugin')
-
-export var html = { title: 'Output management', xhtml: true, hash: true, inject: true };
-
-export var config: webpack.Configuration = {
-    entry: {},
-    output: {
-    },
-
-    resolve: {
-        aliasFields: ['browser'],
-        // Add `.ts` and `.tsx` as a resolvable extension.
-        extensions: [".ts", ".tsx", ".js", ".scss"],
-        symlinks: false,
-    },
-    module: {
-        rules: [
-            {
-                test: /\.ts?$/,
-                use: 'ts-loader',
-                exclude: /node_modules/,
-            },
-            {
-                test: /\.scss?$/,
-                use: [CssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-                exclude: /node_modules/,
-            },
-        ],
-    },
-    plugins: [
-        new CleanPlugin(),
-        new HtmlPlugin(html),
-        new CssExtractPlugin({ moduleFilename: ({ name }) => `${name.replace('/js/', '/css/')}.css`, })
-    ],
-    devtool: 'source-map',
-    mode: 'development',
-    optimization: {
-        usedExports: true,
-        namedModules: true,
-        namedChunks: true,
-        sideEffects: true,
-    },
-};
 
 var compiler: webpack.Compiler;
 var watcher: webpack.Watching;
 
 export default async function compile(this: State, target?: string, reload?: boolean)
 {
-    if (reload || !config.entry[target])
+    if (reload || target && !this.webpack.config.entry[target])
     {
         if (watcher)
         {
@@ -62,10 +17,12 @@ export default async function compile(this: State, target?: string, reload?: boo
             });
         }
 
-        if (!config.entry[target])
-            config.entry[target] = this.assets.resolve(target).inputs;
+        if (target && !this.webpack.config.entry[target])
+            this.webpack.config.entry[target] = this.assets.resolve(target).inputs;
 
-        compiler = webpack(config);
+        console.log(this.webpack.config)
+
+        compiler = webpack(this.webpack.config);
 
         if (this.mode == "development")
         {
@@ -76,14 +33,15 @@ export default async function compile(this: State, target?: string, reload?: boo
         }
     }
 
-    return new Promise((resolve, reject) =>
+    return await new Promise((resolve, reject) =>
     {
-        compiler.run(function (err)
+        compiler.run((err, stats) =>
         {
+            console.error(err);
             if (err)
                 reject(err);
             else
-                resolve();
+                resolve(this.webpack.config);
         })
     })
 }

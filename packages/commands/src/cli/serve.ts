@@ -17,9 +17,36 @@ export class NetSocketAdapter implements jsonrpcws.SocketAdapter
         socket.setNoDelay(true);
     }
 
-    private buffer: Buffer | null = null;
+    private buffer: string = '';
     private dataEventRegistered: boolean = false;
     private ee = new EventEmitter();
+
+    private registerDataEvent()
+    {
+        if (!this.dataEventRegistered)
+        {
+            this.dataEventRegistered = true;
+            this.socket.on('data', (data) =>
+            {
+                var sData: string = data as any;
+                if (Buffer.isBuffer(data))
+                    sData = data.toString('utf8');
+
+
+                var indexOfEOL = sData.indexOf('}\n');
+                while (indexOfEOL > -1)
+                {
+                    this.ee.emit('message', this.buffer + sData.substr(0, indexOfEOL + 1));
+                    sData = sData.substr(indexOfEOL + 2);
+                    this.buffer = '';
+                    indexOfEOL = sData.indexOf('}\n');
+                }
+
+                this.buffer = this.buffer + sData;
+            })
+        }
+
+    }
 
     get open()
     {
@@ -42,25 +69,7 @@ export class NetSocketAdapter implements jsonrpcws.SocketAdapter
         switch (event)
         {
             case 'message':
-                if (!this.dataEventRegistered)
-                {
-                    this.dataEventRegistered = true;
-                    this.socket.on('data', (data) =>
-                    {
-                        if (!Buffer.isBuffer(data))
-                            data = Buffer.from(data);
-                        if (!this.buffer)
-                            this.buffer = data;
-                        else
-                            this.buffer = Buffer.concat([this.buffer, data]);
-
-                        if (this.buffer.toString('utf8', this.buffer.length - 2) == '}\n')
-                        {
-                            this.ee.emit('message', this.buffer.toString('utf8'));
-                            this.buffer = null;
-                        }
-                    })
-                }
+                this.registerDataEvent();
                 this.ee.on('message', handler);
                 break;
             case 'open':
@@ -83,22 +92,7 @@ export class NetSocketAdapter implements jsonrpcws.SocketAdapter
         switch (event)
         {
             case 'message':
-                if (!this.dataEventRegistered)
-                {
-                    this.dataEventRegistered = true;
-                    this.socket.on('data', (data) =>
-                    {
-                        if (!this.buffer)
-                            this.buffer = data;
-                        else
-                            this.buffer = Buffer.concat([this.buffer, data]);
-                        if (this.buffer.toString('utf8', this.buffer.length - 2) == '}\n')
-                        {
-                            this.ee.emit('message', this.buffer.toString('utf8'));
-                            this.buffer = null;
-                        }
-                    })
-                }
+                this.registerDataEvent();
                 this.ee.once('message', handler);
                 break;
             case 'open':
