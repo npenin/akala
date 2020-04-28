@@ -1,8 +1,12 @@
-import * as akala from '@akala/server';
+import * as akala from '@akala/core';
+import * as server from '@akala/server';
 
-var moduleName = require('../../package.json').name
 
-akala.module(moduleName).ready(['$router'], function (router: akala.worker.Router)
+var moduleName = require('../../package.json').name;
+
+
+
+akala.module(moduleName).ready(['$router'], function (router: server.HttpRouter)
 {
     router.get('/api/me', function (req, res)
     {

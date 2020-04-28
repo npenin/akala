@@ -113,6 +113,7 @@ export class Binding extends EventEmitter
                 return;
             var args = (<any[]>[Binding.ChangingFieldEventName, a]);
 
+            //@ts-ignore TS2345
             binding.emit.apply(binding, args);
         });
         watcher.onChanged(function (a: EventArgs)
@@ -120,6 +121,8 @@ export class Binding extends EventEmitter
             if (a.source == binding || a.source === null)
                 return;
             var args = (<any[]>[Binding.ChangedFieldEventName, { source: a.source, target: a.target, eventArgs: { fieldName: a.eventArgs.fieldName, value: binding.getValue() } }]);
+
+            //@ts-ignore TS2345
             binding.emit.apply(binding, args);
         });
         watcher.onError(function (a)
@@ -127,6 +130,8 @@ export class Binding extends EventEmitter
             if (a.source == binding || a.source === null)
                 return;
             var args = (<any[]>[Binding.ChangedFieldEventName, a]);
+
+            //@ts-ignore TS2345
             binding.emit.apply(binding, args);
         });
 
@@ -429,6 +434,7 @@ export class ObservableArray<T> extends EventEmitter
     public indexOf(searchElement: T, fromIndex?: number): number;
     public indexOf()
     {
+        //@ts-ignore TS2345
         return this.array.indexOf.apply(this.array, arguments);
     }
 

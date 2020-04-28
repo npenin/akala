@@ -14,7 +14,7 @@ export class Adapter implements ServerAdapter
 
   onConnection(handler: (socket: SocketAdapter<ws>) => void): void
   {
-    this.server?.on('connection', function (socket)
+    this.server?.on('connection', function (socket: ws)
     {
       handler(new WsSocketAdapter(socket));
     });

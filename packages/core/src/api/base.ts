@@ -1,7 +1,7 @@
 import { Proxy } from '../each'
 import { extend } from '../helpers'
 
-import * as debug from 'debug'
+import debug from 'debug'
 
 var log = debug('akala:metadata')
 var clientLog = debug('akala:metadata:client');

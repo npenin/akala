@@ -13,7 +13,7 @@
  */
 
 import * as pathRegexp from 'path-to-regexp';
-import * as debug from 'debug';
+import debug from 'debug';
 import { NextFunction } from '../eachAsync';
 import { Route } from './route';
 import pathToRegexp = pathRegexp.pathToRegexp;

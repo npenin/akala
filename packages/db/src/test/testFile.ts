@@ -1,5 +1,5 @@
 import * as akala from '@akala/core'
-import * as mock from 'mock-require'
+import mock from 'mock-require'
 mock('@akala/core', akala);
 mock('@akala/server', akala);
 import * as db from '../server'

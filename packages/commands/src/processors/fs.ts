@@ -122,11 +122,11 @@ export class FileSystem<T> extends CommandProcessor<T>
             if (f.isFile())
                 if (f.name.endsWith('.js'))
                 {
-                    let fsConfig = { path: path.relative(relativeTo, path.join(root, f.name).replace(/\\/g, '/')) };
+                    let fsConfig: FileSystemConfiguration = { path: path.relative(relativeTo, path.join(root, f.name).replace(/\\/g, '/')) };
 
                     if (!options)
                         throw new Error('cannot happen');
-                    let cmd = configure<FileSystemConfiguration>('fs', fsConfig)(new CommandProxy(options.processor as Processor<T>, path.basename(f.name, path.extname(f.name))));
+                    let cmd: Command & { config: { fs: FileSystemConfiguration } } = configure('fs', fsConfig)(new CommandProxy(options.processor as Processor<T>, path.basename(f.name, path.extname(f.name))));
                     log(cmd.name);
                     if (files.find(file => file.name == f.name + '.map'))
                     {
@@ -167,7 +167,7 @@ export class FileSystem<T> extends CommandProcessor<T>
                         params = [];
                         akala.each(cmd.config, config =>
                         {
-                            if (config.inject && config.inject.length && !cmd.config.fs.inject)
+                            if (config && config.inject && config.inject.length && !cmd.config.fs.inject)
                             {
                                 akala.each(config.inject, item =>
                                 {
@@ -186,8 +186,14 @@ export class FileSystem<T> extends CommandProcessor<T>
                             if (!options.ignoreFileWithNoDefaultExport)
                                 throw new Error(`No default export is mentioned in ${path.resolve(cmd.config.fs.path)}`)
                             else
-                                return
-                        if (func.$inject)
+                                return;
+
+                        if (func instanceof Command)
+                        {
+                            cmd = configure('fs', fsConfig)(func);
+                        }
+
+                        if (!cmd.config.fs.inject && func.$inject)
                         {
                             log(`taking $inject`)
                             cmd.config.fs.inject = func.$inject;

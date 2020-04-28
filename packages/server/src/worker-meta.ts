@@ -4,8 +4,8 @@ import * as express from 'express';
 import * as stream from 'stream';
 export { Router, Callback, workerHandler as RouterHandler, workerErrorHandler as ErrorHandler, workerRequestHandler as RequestHandler };
 import * as jsonrpc from '@akala/json-rpc-ws'
-import * as send from 'send';
-import * as onFinished from 'on-finished';
+import send from 'send';
+import onFinished from 'on-finished';
 const log = akala.log('akala:worker');
 
 export { CallbackResponse }

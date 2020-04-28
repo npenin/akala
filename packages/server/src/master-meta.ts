@@ -4,7 +4,7 @@ import * as worker from './worker-meta'
 export { CoreProperties as Package } from '../src/package';
 import * as stream from 'stream'
 import * as express from 'express';
-import * as send from 'send'
+import send from 'send'
 
 var log = akala.log('akala:master');
 

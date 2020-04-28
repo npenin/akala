@@ -5,7 +5,7 @@ import { default as Errors } from './errors';
 import { ReplyCallback, PayloadDataType as BasePayloadDataType, SocketAdapter } from './shared-connection';
 import { Connection } from './connection';
 import * as stream from 'stream'
-import * as debug from 'debug';
+import debug from 'debug';
 function assert(ok: any, message: string): void
 {
   if (!ok)

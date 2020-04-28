@@ -1,5 +1,5 @@
 import ClientBase from '../shared-client';
-import * as debug from 'debug';
+import debug from 'debug';
 import { SocketAdapter } from '../shared-connection';
 
 const logger = debug('json-rpc-ws');

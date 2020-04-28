@@ -5,7 +5,6 @@ debug.enable('*,-*:verbose');
 // debug.enable('*,-*:verbose,-router*');
 import program, { CliContext, ICommandBuilder } from './router';
 import './sdk';
-import * as config from './config';
 import './client';
 import './plugins';
 import './helpers/newmodule';
@@ -13,14 +12,10 @@ import './helpers/repl';
 import * as fs from 'fs'
 import { promisify } from 'util'
 import * as akala from '@akala/core'
-import * as mock from 'mock-require'
-import { fork } from 'child_process';
-import Module = require('module');
-import { fileURLToPath } from 'url';
+import mock from 'mock-require'
 import { join } from 'path';
 import * as cluster from 'cluster'
 import { EventEmitter } from 'events';
-import { object } from '@akala/core/dist/each';
 export default program;
 require.cache[module.filename] = module;
 
@@ -209,9 +204,9 @@ akala.module('$api').register('cli', class Cli<TConnection, TServerOneWay, TServ
                     {
                         console.log(value)
                     }, (reason) =>
-                        {
-                            console.error(reason);
-                        });
+                    {
+                        console.error(reason);
+                    });
                 });
             }
         });
@@ -226,9 +221,9 @@ akala.module('$api').register('cli', class Cli<TConnection, TServerOneWay, TServ
                     {
                         console.log(value)
                     }, (reason) =>
-                        {
-                            console.error(reason);
-                        });
+                    {
+                        console.error(reason);
+                    });
                 });
             }
         });
@@ -246,7 +241,7 @@ akala.module('$api').register('cli', class Cli<TConnection, TServerOneWay, TServ
         var content = JSON.parse(await promisify(fs.readFile)('./config.json', 'utf-8'));
         if (content.plugins)
         {
-            akala.each(content.plugins, function (plugin, name)
+            akala.each(content.plugins, function (plugin)
             {
                 require(plugin);
             });
