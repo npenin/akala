@@ -5,7 +5,7 @@ import Server from '../server';
 import { Connection } from '../connection';
 import Client from './client';
 export { SocketAdapter, ServerAdapter }
-import * as debug from 'debug';
+import debug from 'debug';
 import * as ws from 'ws';
 const logger = debug('json-rpc-ws');
 

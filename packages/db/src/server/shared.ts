@@ -12,7 +12,8 @@ export { Cardinality } from './cardinality'
 export { ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator };
 export { PersistenceEngine } from './PersistenceEngine'
 
-export var providers = akala.module('db', '@akala/storage')
+export var providers = akala.module('db', '@akala/storage');
+
 
 export interface DbSet<T> extends Query<T>
 {

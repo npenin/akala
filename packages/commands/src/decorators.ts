@@ -43,7 +43,7 @@ export function extend<TCommand extends Command, TConfiguration extends { [key: 
     return cmd as TCommand & { config: TConfiguration };
 }
 
-export function configure<T extends Configuration, TKey extends string = string>(name: TKey, config: T): extendF<{ [name in TKey]: T & jsonObject }>
+export function configure<T extends Configuration, TKey extends string>(name: TKey, config: T): extendF<{ [name in TKey]: T & jsonObject }>
 export function configure<T extends Configurations>(config: T): extendF<T>
 export function configure(name: Configurations | string, config?: any)
 {

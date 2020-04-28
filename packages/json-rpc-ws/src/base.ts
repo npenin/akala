@@ -1,5 +1,5 @@
 'use strict';
-import * as debug from 'debug';
+import debug from 'debug';
 import { v4 as uuid } from 'uuid';
 const logger = debug('json-rpc-ws');
 

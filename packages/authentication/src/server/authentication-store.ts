@@ -3,7 +3,7 @@ import { AuthorizationCode } from '../model/authorization-code';
 import { AccessToken } from '../model/access-token';
 import { Client } from '../model/client';
 import { User } from '../model/user';
-import * as akala from '@akala/server';
+import * as akala from '@akala/core';
 import { providers } from '@akala/storage';
 
 export class AuthenticationStore implements StoreDefinition
@@ -12,6 +12,7 @@ export class AuthenticationStore implements StoreDefinition
     AccessToken: DbSet<AccessToken>;
     Client: DbSet<Client>;
     User: DbSet<User>;
+
     [key: string]: DbSet<any>;
     public static async create(engine?: PersistenceEngine<any>)
     {

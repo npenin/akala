@@ -1,6 +1,6 @@
 'use strict';
 
-import * as WebSocket from 'ws';
+import ws from 'ws';
 import { Connection } from '../connection';
 import { default as ClientBase } from './shared-client';
 
@@ -17,6 +17,6 @@ export default class Client extends ClientBase<stream.Readable>
     }
     constructor()
     {
-        super(function (address: string) { return new WsSocketAdapter(new WebSocket(address)); });
+        super(function (address: string) { return new WsSocketAdapter(new ws(address)); });
     }
 }

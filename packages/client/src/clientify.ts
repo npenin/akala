@@ -41,7 +41,7 @@ common.serviceModule.register('promisify', core.Promisify);
 
 
 // export { Promisify, Deferred };
-export var run: (toInject: string[], f: Function) => void = common.$$injector.ready.bind(common.$$injector);
+export var run: typeof common.$$injector.ready = common.$$injector.ready.bind(common.$$injector);
 
 common.$$injector.activate([], function ()
 {

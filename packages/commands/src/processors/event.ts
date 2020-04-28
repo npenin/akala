@@ -15,7 +15,7 @@ export class EventProcessor<T> extends EventEmitter implements Processor<T>
             else
                 var result = await this.processor.process(command.name, param)
         else if (typeof command !== 'string')
-            var result = await this.processor.process(command, param)
+            var result = await (this.processor as Processor<T>).process(command, param)
         else
             throw new Error('Command was required but only command name was provided');
         this.emit('processed', command, param);

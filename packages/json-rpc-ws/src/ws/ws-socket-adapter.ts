@@ -1,4 +1,4 @@
-import * as ws from 'ws';
+import ws from 'ws';
 import { SocketAdapter } from '../shared-connection';
 import { Readable } from 'stream';
 

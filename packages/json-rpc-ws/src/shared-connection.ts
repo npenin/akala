@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import * as debug from 'debug';
+import debug from 'debug';
 import { default as Errors, Error as ConnectionError, ErrorTypes } from './errors';
 const logger = debug('json-rpc-ws');
 

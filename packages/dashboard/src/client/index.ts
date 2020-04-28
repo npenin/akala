@@ -1,5 +1,6 @@
 
-import * as akala from '@akala/client';
+import * as akala from '@akala/core';
+import * as client from '@akala/client';
 import { IconName, IconPrefix } from '@fortawesome/fontawesome-common-types'
 
 export interface Tile
@@ -7,7 +8,7 @@ export interface Tile
     text: string,
     icon?: IconName,
     iconLibrary?: IconPrefix,
-    url?: string,
+    url?: string | PromiseLike<string>,
     cmd?: string,
     color?: BlockColors;
     click?(...args: any[]): boolean | void;
@@ -42,8 +43,8 @@ export type TileDef = Tile | PromiseLike<Tile>;
         array: list
     }
 
-    @akala.control()
-    class BlockColor extends akala.BaseControl<string>
+    @client.control()
+    class BlockColor extends client.BaseControl<string>
     {
         constructor()
         {
@@ -75,14 +76,14 @@ export type TileDef = Tile | PromiseLike<Tile>;
         }
     }
 
-    akala.run(['$part'], function (part: akala.Part)
+    client.ready(['$part'], function (part: client.Part)
     {
         part.use('/', 'body', {
             template: '/@akala-modules/pages/tiles.html', controller: function (scope)
             {
                 scope['list'] = list;
 
-                scope['tileClick'] = function (tile: Tile, $location: akala.LocationService, $http: akala.Http)
+                scope['tileClick'] = function (tile: Tile, $location: client.LocationService, $http: akala.Http)
                 {
                     if (tile.url)
                         if (akala.isPromiseLike(tile.url))

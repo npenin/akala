@@ -1,5 +1,5 @@
 import { getParamNames } from './reflect';
-import * as debug from 'debug';
+import debug from 'debug';
 import { isPromiseLike } from './promiseHelpers';
 import { EventEmitter } from 'events';
 

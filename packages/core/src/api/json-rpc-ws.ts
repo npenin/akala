@@ -2,7 +2,7 @@ import * as jsonrpc from '@akala/json-rpc-ws'
 import { Proxy, each } from '../each'
 import { extend, module } from '../helpers'
 
-import * as debug from 'debug'
+import debug from 'debug'
 import { Api, IClientBuilder, IServerProxyBuilder, IClientProxyBuilder } from './base';
 
 var log = debug('akala:metadata')

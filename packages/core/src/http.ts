@@ -17,7 +17,7 @@ export interface HttpOptions
     body?: any;
     headers?: { [key: string]: string | number | Date };
     contentType?: 'json' | 'form';
-    type?: 'json' | 'xml' | 'text';
+    type?: 'json' | 'xml' | 'text' | 'raw';
 }
 
 export interface Http<TResponse = Response>

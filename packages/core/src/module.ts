@@ -1,5 +1,5 @@
 import * as di from './global-injector'
-import * as orchestrator from 'orchestrator'
+import orchestrator from 'orchestrator'
 import { EventEmitter } from 'events'
 import { Injector, InjectableWithTypedThis, InjectableAsyncWithTypedThis, Injectable } from './injector';
 

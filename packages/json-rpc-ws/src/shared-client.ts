@@ -1,5 +1,5 @@
 import { Base } from './base';
-import * as debug from 'debug';
+import debug from 'debug';
 const logger = debug('json-rpc-ws');
 import { SocketAdapter, PayloadDataType } from './shared-connection';
 

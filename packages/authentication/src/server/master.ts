@@ -1,4 +1,5 @@
-import * as akala from '@akala/server'
+import * as akala from '@akala/core'
+import * as web from '@akala/server'
 import * as oauth2orize from 'oauth2orize'
 import { AuthorizationCode } from '../model/authorization-code';
 import { expressions } from '@akala/storage';
@@ -38,7 +39,7 @@ var hash = akala.injectWithNameAsync(['$config.@akala-modules/authentication.sec
 
 function tryAuthenticate(strategy)
 {
-    return akala.master.expressWrap(function (req, res, next)
+    return web.master.expressWrap(function (req, res, next)
     {
         passport.authenticate(strategy, { session: false },
             function (error, user)
@@ -72,8 +73,8 @@ passport.deserializeUser(async (id: string, done) =>
     }
 });
 
-var authenticationMethods: { [key: string]: akala.HttpRouter } = {};
-var auth = akala.router();
+var authenticationMethods: { [key: string]: web.HttpRouter } = {};
+var auth = web.router();
 
 auth.use(bodyParser.json())
 auth.use(bodyParser.urlencoded())
@@ -82,7 +83,7 @@ auth.post('/api/login/:provider', function (req, res, next)
 {
     if (!authenticationMethods[req.params.provider])
     {
-        authenticationMethods[req.params.provider] = new akala.HttpRouter();
+        authenticationMethods[req.params.provider] = new web.HttpRouter();
         authenticationMethods[req.params.provider].use(passport.authenticate(req.params.provider, { successReturnToOrRedirect: '/', failureRedirect: '/login.html', session: false }, function (err, account)
         {
             if (err)
@@ -320,7 +321,7 @@ export var errorHandler = server.errorHandler();
 var ready = false;
 
 akala.module('@akala-modules/authentication').activate(['$authenticationRouter', '$injector'],
-    async function init(router: akala.HttpRouter)
+    async function init(router: web.HttpRouter)
     {
         var store = await AuthenticationStore.create();
         if (!await store.Client.where('name', expressions.BinaryOperator.Equal, 'self').any())
@@ -337,13 +338,13 @@ akala.module('@akala-modules/authentication').activate(['$authenticationRouter',
             await fs.writeFile(resolve(process.cwd(), './local-token.json'), at.token, 'utf8')
         }
 
-        router.use(akala.master.expressWrap(passport.initialize()));
+        router.use(web.master.expressWrap(passport.initialize()));
 
         router.use(tryAuthenticate('basic'))
         router.use(tryAuthenticate('bearer'))
 
-        router.post('/api/token', bodyParser.json(), bodyParser.urlencoded(), server.token(), akala.master.expressWrapError(server.errorHandler()));
-        router.get('/api/authorize', akala.master.expressWrap(ensureLoggedIn()),
+        router.post('/api/token', bodyParser.json(), bodyParser.urlencoded(), server.token(), web.master.expressWrapError(server.errorHandler()));
+        router.get('/api/authorize', web.master.expressWrap(ensureLoggedIn()),
             server.authorize(async function (clientID, redirectURI, done)
             {
                 var store = await AuthenticationStore.create();
@@ -354,7 +355,7 @@ akala.module('@akala-modules/authentication').activate(['$authenticationRouter',
                     return done(null, false);
                 return done(null, client, client.redirectUri);
             }),
-            function (req: akala.master.Request, res: akala.master.Response)
+            function (req: web.master.Request, res: web.master.Response)
             {
                 res.json({
                     transactionID: req['oauth2'].transactionID,
@@ -362,10 +363,10 @@ akala.module('@akala-modules/authentication').activate(['$authenticationRouter',
                 });
             });
 
-        router.post('/api/authorize', bodyParser.json(), bodyParser.urlencoded(), akala.master.expressWrap(ensureLoggedIn()), akala.master.expressWrap(server.decision()));
+        router.post('/api/authorize', bodyParser.json(), bodyParser.urlencoded(), web.master.expressWrap(ensureLoggedIn()), web.master.expressWrap(server.decision()));
 
         // router.post('/api/login/:provider', auth.router);
-        router.post('/api/login', bodyParser.json(), bodyParser.urlencoded(), function (req: akala.Request & { user?: Client }, res, next)
+        router.post('/api/login', bodyParser.json(), bodyParser.urlencoded(), function (req: web.Request & { user?: Client }, res, next)
         {
             req.user = new Client();
             req.user.isTrusted = true;

@@ -2,7 +2,7 @@ import program from '../router';
 import * as fs from 'fs';
 import { promisify } from 'util';
 import * as path from 'path';
-import * as mkdirpOld from 'mkdirp';
+import mkdirp from 'mkdirp';
 import { spawn as spawnOld, SpawnOptions } from 'child_process';
 import { EOL } from 'os'
 
@@ -10,7 +10,6 @@ import { EOL } from 'os'
 
 const writeFile = promisify(fs.writeFile);
 const copyFile = promisify(fs.copyFile);
-const mkdirp = promisify(mkdirpOld);
 
 function spawn(cmd: string, args: string[], options: SpawnOptions)
 {
