@@ -120,7 +120,23 @@ export abstract class BaseControl<T> extends Control<T>
         super(name, priority);
     }
 
-    public abstract link(scope: IScope<any>, element: Element, parameter: akala.Binding | T);
+    public link(scope: IScope<any>, element: Element, parameter: akala.Binding | T)
+    {
+        if (parameter instanceof akala.Binding)
+        {
+            parameter.onChanged(function (e)
+            {
+                if (akala.isPromiseLike(e.eventArgs.value))
+                    e.eventArgs.value.then((value) => this.apply(scope, element, value));
+                else
+                    this.apply(scope, element, e.eventArgs.value)
+            });
+        }
+        else
+            this.apply(scope, element, parameter);
+    }
+
+    public abstract apply(scope: IScope<any>, element: Element, parameter: T);
 
     public instanciate(scope: IScope<any>, element: Element, parameter: akala.Binding | T): void | Element
     {

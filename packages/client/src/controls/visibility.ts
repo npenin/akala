@@ -35,6 +35,8 @@ export class Hide extends BaseControl<di.Binding>
             toggle(!ev.eventArgs.value);
         });
     }
+
+    public apply() { }
 }
 
 @control()
@@ -53,4 +55,7 @@ export class Show extends BaseControl<di.Binding>
             toggle(ev.eventArgs.value);
         });
     }
+
+    public apply() { }
+
 }
