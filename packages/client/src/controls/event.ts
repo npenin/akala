@@ -49,6 +49,13 @@ export class Events extends BaseControl<Partial<HTMLElementEventHandlerMap> | Pr
         })
 
     }
+
+    public apply(scope: IScope<any>, element: Element, parameter: Partial<HTMLElementEventHandlerMap>)
+    {
+        if (parameter instanceof Function)
+            return scope.$inject(parameter);
+        console.error(`${parameter} is not a function`);
+    }
 }
 
 
@@ -69,18 +76,20 @@ export class Event extends BaseControl<Function>
                 var value = parameter.getValue();
                 if (isPromiseLike(value))
                 {
-                    value.then(function (value)
-                    {
-                        if (value instanceof Function)
-                            return scope.$inject(value);
-                    })
+                    value.then((value) => this.apply(scope, element, value));
                 }
-                if (value instanceof Function)
-                    return scope.$inject(value);
+                this.apply(scope, element, value)
             }
             else
-                return scope.$inject(<Function>parameter);
+                this.apply(scope, element, parameter)
         });
 
+    }
+
+    public apply(scope: IScope<any>, element: Element, parameter: Function)
+    {
+        if (parameter instanceof Function)
+            return scope.$inject(parameter);
+        console.error(`${parameter} is not a function`);
     }
 }

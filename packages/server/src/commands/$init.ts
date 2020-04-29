@@ -8,6 +8,7 @@ import { join } from "path";
 import HtmlPlugin = require('html-webpack-plugin');
 import { CleanWebpackPlugin as CleanPlugin } from 'clean-webpack-plugin'
 import CssExtractPlugin = require('mini-css-extract-plugin')
+import { serveStatic } from "../master-meta";
 
 export default async function $init(container: Container<State>, options: any)
 {
@@ -92,6 +93,8 @@ export default async function $init(container: Container<State>, options: any)
             container.state.authenticationRouter = authenticationRouter;
             container.state.lateBoundRoutes = lateBoundRoutes;
             container.state.app = app;
+
+            preAuthenticatedRouter.useGet('/', serveStatic(null, { root: join(process.cwd(), './build'), fallthrough: true }));
         }
         else
             console.error('there is no router; Working in degraded mode');

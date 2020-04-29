@@ -18,7 +18,7 @@ export class Scope<T> implements IScope<T>
     {
     }
 
-    private resolver: akala.Injector;
+    private $$resolver: akala.Injector;
     public $$watchers: { [key: string]: akala.Binding } = {};
 
     public $new<U>(): Scope<U>
@@ -28,15 +28,22 @@ export class Scope<T> implements IScope<T>
         return new newScope();
     }
 
-    public $inject<T>(f: akala.Injectable<T>)
+    public $inject<T>(f: akala.Injectable<T>, params?: { [key: string]: any })
     {
         var scope = this;
-        if (!this.hasOwnProperty('resolver'))
+        if (!this.hasOwnProperty('$$resolver'))
         {
-            this.resolver = new akala.Injector();
-            this.resolver.setInjectables(this);
+            this.$$resolver = new akala.Injector();
+            this.$$resolver.setInjectables(this);
         }
-        return this.resolver.inject(f)(this);
+        var inj = new akala.Injector(this.$$resolver);
+        if (params)
+        {
+            akala.each(params, (value, key) =>
+                inj.register(key as string, value)
+            );
+        }
+        return this.$$resolver.inject(f)(this);
     }
 
     public $set(expression: string, value: any)

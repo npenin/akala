@@ -107,4 +107,6 @@ export class CssClass extends BaseControl<any>
         else
             addClass(element, parameter);
     }
+
+    public apply() { }
 }

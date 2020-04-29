@@ -1,6 +1,7 @@
 import * as di from '@akala/core'
 import { control, BaseControl } from './control'
 import { Promisify, Binding } from '@akala/core'
+import { IScope } from '../clientify';
 
 @control()
 export class Text extends BaseControl<string>
@@ -10,7 +11,7 @@ export class Text extends BaseControl<string>
         super(name || 'text', 400)
     }
 
-    public link(target: any, element: HTMLElement, parameter: Binding | string)
+    public link(scope: IScope<any>, element: HTMLElement, parameter: Binding | string)
     {
         var self = this;
         if (parameter instanceof Binding)
@@ -20,17 +21,17 @@ export class Text extends BaseControl<string>
                 if (di.isPromiseLike(ev.eventArgs.value))
                     ev.eventArgs.value.then(function (value)
                     {
-                        self.setValue(element, value);
+                        self.apply(scope, element, value);
                     });
                 else
-                    self.setValue(element, ev.eventArgs.value);
+                    self.apply(scope, element, ev.eventArgs.value);
             });
         }
         else
-            self.setValue(element, parameter);
+            self.apply(scope, element, parameter);
     }
 
-    protected setValue(element: Element, value: string)
+    public apply(_scope: IScope<any>, element: Element, value: string)
     {
         element.textContent = value;
     }

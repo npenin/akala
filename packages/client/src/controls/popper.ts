@@ -33,4 +33,6 @@ export class Popper extends BaseControl<popper.Options>
         });
 
     }
+
+    public apply() { }
 }
