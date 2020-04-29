@@ -124,7 +124,7 @@ export abstract class BaseControl<T> extends Control<T>
     {
         if (parameter instanceof akala.Binding)
         {
-            parameter.onChanged(function (e)
+            parameter.onChanged(e =>
             {
                 if (akala.isPromiseLike(e.eventArgs.value))
                     e.eventArgs.value.then((value) => this.apply(scope, element, value));
