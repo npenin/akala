@@ -31,7 +31,7 @@ export class Part extends BaseControl<string | { [property: string]: Binding }>
                 else
                     partService.apply(function () { return { scope, element } }, parameter as PartDefinition<typeof scope>, {}, noop);
 
-        else
+        else if (typeof parameter != 'undefined')
             partService.register(parameter, { scope, element });
     }
 
