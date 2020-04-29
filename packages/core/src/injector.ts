@@ -317,7 +317,6 @@ export class Injector
         }
     }
 
-
     private injectables = {};
 
     public unregister(name: string)
@@ -344,6 +343,40 @@ export class Injector
         }, override);
         return value;
     }
+
+    public factory(name: string, override?: boolean)
+    {
+        var inj = this;
+        return function <T>(fact: () => T)
+        {
+            return inj.registerFactory(name, fact, override);
+        }
+    }
+
+    public service(name: string, ...toInject: string[])
+    public service(name: string, override?: boolean, ...toInject: string[])
+    public service(name: string, override?: boolean | string, ...toInject: string[])
+    {
+        var inj = this;
+        var singleton;
+
+        if (typeof toInject == 'undefined')
+            toInject = [];
+
+        if (typeof override == 'string')
+        {
+            toInject.unshift(override)
+            override = false;
+        }
+
+        return function <T>(fact: new (...args: any[]) => T)
+        {
+            if (singleton)
+                return singleton;
+            return singleton = inj.injectNewWithName(toInject, fact);
+        }
+    }
+
     public registerDescriptor(name: string, value: PropertyDescriptor, override?: boolean)
     {
         log('registering ' + name);
