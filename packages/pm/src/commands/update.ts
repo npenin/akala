@@ -1,16 +1,10 @@
 import State from "../state";
-import * as cp from 'child_process'
-import { platform } from "os";
-import { join } from "path";
-import { existsSync } from "fs";
-import { description } from "../container";
-import { Transform, PassThrough } from "stream";
 import npmHelper from "../npm-helper";
-import discover from './discover'
+import { Container } from "@akala/commands";
 
 
 
-export default async function update(this: State, packageName: string, folder: string, pm: description.pm): Promise<string>
+export default async function update(this: State, packageName: string, folder: string, pm: Container<State>): Promise<string>
 {
     var version = await pm.dispatch('version', packageName, folder);
 

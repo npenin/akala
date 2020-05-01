@@ -1,5 +1,5 @@
 {
-    "name": "commands",
+    "name": "pm",
     "commands": [
         {
             "name": "$init",
@@ -75,14 +75,14 @@
             "inject": [
                 "param.0",
                 "param.1",
-                "param.2"
+                "container"
             ],
             "config": {
                 "": {
                     "inject": [
                         "param.0",
                         "param.1",
-                        "param.2"
+                        "container"
                     ]
                 },
                 "fs": {
@@ -91,7 +91,7 @@
                     "inject": [
                         "param.0",
                         "param.1",
-                        "param.2"
+                        "ignore"
                     ]
                 },
                 "cli": {
@@ -112,24 +112,25 @@
         {
             "name": "install",
             "inject": [
-                "param.0",
-                "param.1",
-                "container"
+                "param.0"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "container"
+                        "param.0"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/install.js",
                     "source": "src/commands/install.ts",
                     "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
                         "param.0",
-                        "param.1",
+                        "cwd",
                         "container"
                     ]
                 }
