@@ -43,7 +43,7 @@ export class Scope<T> implements IScope<T>
                 inj.register(key as string, value)
             );
         }
-        return this.$$resolver.inject(f)(this);
+        return inj.inject(f)(this);
     }
 
     public $set(expression: string, value: any)
