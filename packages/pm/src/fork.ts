@@ -16,7 +16,7 @@ import mock from 'mock-require'
     mock('@akala/pm', require('..'));
 
     if (process.argv[2] == 'pm')
-        folder = path.resolve(__dirname, './commands')
+        folder = path.resolve(__dirname, '..')
 
     var folderOrFile = lstatSync(folder);
     if (folderOrFile.isFile() && path.extname(folder) == '.js')
