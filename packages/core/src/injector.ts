@@ -55,7 +55,7 @@ export class Injector
     protected notify<T>(name: string, value?: PropertyDescriptor)
     {
         if (typeof value == 'undefined')
-            value = Object.getOwnPropertyDescriptor(this, name);
+            value = Object.getOwnPropertyDescriptor(this.injectables, name);
         if (this.notifier.listenerCount(name) > 0)
             this.notifier.emit(name, value);
         if (this.parent)
@@ -371,9 +371,14 @@ export class Injector
 
         return function <T>(fact: new (...args: any[]) => T)
         {
-            if (singleton)
-                return singleton;
-            return singleton = inj.injectNewWithName(toInject, fact);
+            inj.registerDescriptor(name, {
+                get()
+                {
+                    if (singleton)
+                        return singleton;
+                    return singleton = inj.injectNewWithName(toInject, fact)();
+                }
+            })
         }
     }
 

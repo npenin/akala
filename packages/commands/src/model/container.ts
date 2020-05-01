@@ -65,7 +65,7 @@ export class Container<TState> extends akala.Injector
     public dispatch(command: string | Command<TState>, ...param: any[]): any
     public dispatch(command: string | Command<TState>, param: any | { param: any[], [key: string]: any }, ...params: any[]): any
     {
-        if (typeof (param) == 'object' && param.param && Array.isArray(param.param))
+        if (typeof (param) == 'object' && param !== null && param.param && Array.isArray(param.param))
         {
             if (this.processor.requiresCommandName)
                 if (typeof command == 'string')
@@ -88,7 +88,7 @@ export class Container<TState> extends akala.Injector
         }
         else
         {
-            if (typeof params == 'undefined')
+            if (typeof params == 'undefined' || params === null)
                 params = [];
             if (typeof param !== 'undefined')
                 params.unshift(param);

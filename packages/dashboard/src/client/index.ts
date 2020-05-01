@@ -51,32 +51,15 @@ export type TileDef = Tile | PromiseLike<Tile>;
             super('color');
         }
 
-        public link(target: any, element: Element, parameter: akala.Binding | string): any
+        public apply(target: any, element: Element, parameter: string): any
         {
-            if (parameter instanceof akala.Binding)
-            {
-                parameter.onChanged(function (e)
-                {
-                    var color = e.eventArgs.value;
-                    if (typeof color == 'undefined')
-                        color = Math.floor(Math.random() * Object.keys(BlockColors).length / 2);
-
-                    if (akala.isPromiseLike(e.eventArgs.value))
-                        e.eventArgs.value.then((value) => { element.classList.add('block-' + BlockColors[value]) });
-                    else if (typeof e.eventArgs.value == 'undefined')
-                        element.classList.add('block-' + BlockColors[color]);
-                });
-            }
-            else 
-            {
-                if (typeof parameter == 'undefined')
-                    parameter = BlockColors[Math.floor(Math.random() * Object.keys(BlockColors).length / 2)];
-                element.classList.add('block-' + parameter);
-            }
+            if (typeof parameter == 'undefined')
+                parameter = BlockColors[Math.floor(Math.random() * Object.keys(BlockColors).length / 2)];
+            element.classList.add('block-' + parameter);
         }
     }
 
-    client.ready(['$part'], function (part: client.Part)
+    akala.module('bootstrap').ready(['$part'], function (part: client.Part)
     {
         part.use('/', 'body', {
             template: '/@akala-modules/pages/tiles.html', controller: function (scope)
