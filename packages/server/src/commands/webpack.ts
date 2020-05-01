@@ -17,18 +17,18 @@ export default async function compile(this: State, target?: string, reload?: boo
             });
         }
 
-        if (target && !this.webpack.config.entry[target])
-            this.webpack.config.entry[target] = this.assets.resolve(target).inputs;
-
         console.log(this.webpack.config)
 
         compiler = webpack(this.webpack.config);
 
         if (this.mode == "development")
         {
-            watcher = compiler.watch({}, function (err)
+            watcher = compiler.watch({}, function (err, stats)
             {
-                console.error(err);
+                if (err)
+                    console.error(err);
+                else
+                    console.log(stats);
             })
         }
     }

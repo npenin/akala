@@ -33,5 +33,7 @@ export default async function register(this: State, container: Container<State> 
     else
         this.webpack.config.entry[route] = [path];
 
+    container.dispatch('webpack', null, true)
+
     return this.webpack.config.entry[route];
 }

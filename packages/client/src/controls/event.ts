@@ -25,7 +25,7 @@ export class Events extends BaseControl<Partial<HTMLElementEventHandlerMap> | Pr
         {
             akala.each(value, function (handler, event)
             {
-                element.addEventListener(event, function ()
+                element.addEventListener(event, () =>
                 {
                     if (handler instanceof Binding)
                     {
@@ -69,7 +69,7 @@ export class Event extends BaseControl<Function>
 
     public link(scope: IScope<any>, element: Element, parameter: Binding | Function)
     {
-        element.addEventListener(this.eventName, function ()
+        element.addEventListener(this.eventName, () =>
         {
             if (parameter instanceof Binding)
             {

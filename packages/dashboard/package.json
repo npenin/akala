@@ -6,7 +6,7 @@
     "main": "dist/server/index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\"",
-        "build:js": "tsc -p src",
+        "build:js": "tsc -p .",
         "build:js:routes": "browserify -x @akala/client -x @akala/core dist/client/routes.js -o dist/routes.js",
         "build:js:tile": "browserify -x @akala/client -x @akala/core -i @domojs/theme-default/dist/tile dist/client/tile.js -o dist/tile.js",
         "prepublishOnly": "npm run build:js",
@@ -18,7 +18,8 @@
     "types": "dist/server/index.d.ts",
     "dependencies": {
         "@akala/core": "^3.1.0",
-        "@akala/server": "^4.0.40"
+        "@akala/server": "^4.0.40",
+        "reflect-metadata": "^0.1.13"
     },
     "peerDependencies": {
         "@akala/pages": "^0.0.4"
