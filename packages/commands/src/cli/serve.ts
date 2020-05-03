@@ -111,7 +111,7 @@ export class NetSocketAdapter implements jsonrpcws.SocketAdapter
 export interface ServeOptions
 {
     port?: number;
-    tcpPort?: number;
+    tcpPort?: number | string;
     cert?: string;
     key?: string;
     _: ('local' | 'http' | 'ws' | 'tcp')[];
@@ -172,7 +172,16 @@ export default async function <T = void>(container: Container<T>, options: Serve
             container.attach('jsonrpc', new NetSocketAdapter(socket));
         });
 
-        server.listen(options.tcpPort || 1337);
+        if (typeof options.tcpPort == 'string')
+        {
+            let indexOfColon = options.tcpPort.lastIndexOf(':');
+            if (indexOfColon > -1)
+                server.listen(Number(options.tcpPort.substr(indexOfColon + 1)), options.tcpPort.substr(0, indexOfColon));
+            else
+                server.listen(options.tcpPort);
+        }
+        else
+            server.listen(options.tcpPort || 1337);
         console.log(`listening on ${options.tcpPort || 1337}`);
 
         stops.push(() =>

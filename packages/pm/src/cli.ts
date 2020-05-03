@@ -28,7 +28,7 @@ const truncate = '…';
 
 if (require.main == module)
 {
-    var args = yargs(process.argv.slice(2), { alias: { output: ['o', 'output'] } });
+    var args = yargs(process.argv.slice(2), { alias: { output: ['o', 'output'] }, number: ["pm-sock"] });
 
     if (args._[0] == 'start' && (args._[1] == 'pm' || typeof args._[1] == 'undefined'))
     {
@@ -56,7 +56,8 @@ if (require.main == module)
                     if (cmd)
                         if (cmd.config && cmd.config.cli && cmd.config.cli.options)
                         {
-                            args = yargs(process.argv.slice(3), cmd.config.cli.options);
+                            args = yargs(process.argv.slice(2), cmd.config.cli.options);
+                            args._.splice(0, 1);
                             if (cmd.config.cli.options.normalize)
                             {
                                 var params = cmd.config.cli.options.normalize.filter(p => p.length > 'param.'.length && p.substr(0, 'param.'.length) == 'param.');
