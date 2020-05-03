@@ -111,9 +111,10 @@ export class NetSocketAdapter implements jsonrpcws.SocketAdapter
 export interface ServeOptions
 {
     port?: number;
+    tcpPort?: number;
     cert?: string;
     key?: string;
-    _: ('local' | 'http' | 'ws')[];
+    _: ('local' | 'http' | 'ws' | 'tcp')[];
 }
 
 export default async function <T = void>(container: Container<T>, options: ServeOptions)
@@ -124,7 +125,7 @@ export default async function <T = void>(container: Container<T>, options: Serve
 
     var stops: (() => Promise<void>)[] = [];
 
-    if (args.indexOf('local') > -1)
+    if (args.indexOf('local') > -1 || args.indexOf('tcp') > -1)
     {
         let server = new Server((socket) =>
         {
@@ -132,14 +133,22 @@ export default async function <T = void>(container: Container<T>, options: Serve
             container.attach('jsonrpc', new NetSocketAdapter(socket));
         });
 
-        var socketPath: string;
-        if (platform() == 'win32')
-            socketPath = '\\\\?\\pipe\\' + container.name.replace(/\//g, '\\');
-        else
-            socketPath = join(process.cwd(), container.name.replace(/\//g, '-').replace(/^@/g, '') + '.sock');
+        if (args.indexOf('local') > -1)
+        {
+            var socketPath: string;
+            if (platform() == 'win32')
+                socketPath = '\\\\?\\pipe\\' + container.name.replace(/\//g, '\\');
+            else
+                socketPath = join(process.cwd(), container.name.replace(/\//g, '-').replace(/^@/g, '') + '.sock');
 
-        server.listen(socketPath);
-        console.log(`listening on ${socketPath}`);
+            server.listen(socketPath);
+            console.log(`listening on ${socketPath}`);
+        }
+        if (args.indexOf('tcp') > -1)
+        {
+            server.listen(options.tcpPort || 1337);
+            console.log(`listening on ${options.tcpPort || 1337}`);
+        }
 
         stops.push(() =>
         {
