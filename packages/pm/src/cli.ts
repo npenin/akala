@@ -28,7 +28,7 @@ const truncate = '…';
 
 if (require.main == module)
 {
-    var args = yargs(process.argv.slice(2), { alias: { output: ['o', 'output'], pmSock: ['pmSock', 'pm-sock'] } });
+    var args = yargs(process.argv.slice(2), { alias: { output: ['o', 'output'] } });
 
     if (args._[0] == 'start' && (args._[1] == 'pm' || typeof args._[1] == 'undefined'))
     {
