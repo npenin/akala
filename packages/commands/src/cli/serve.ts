@@ -125,7 +125,7 @@ export default async function <T = void>(container: Container<T>, options: Serve
 
     var stops: (() => Promise<void>)[] = [];
 
-    if (args.indexOf('local') > -1 || args.indexOf('tcp') > -1)
+    if (args.indexOf('local') > -1)
     {
         let server = new Server((socket) =>
         {
@@ -133,22 +133,14 @@ export default async function <T = void>(container: Container<T>, options: Serve
             container.attach('jsonrpc', new NetSocketAdapter(socket));
         });
 
-        if (args.indexOf('local') > -1)
-        {
-            var socketPath: string;
-            if (platform() == 'win32')
-                socketPath = '\\\\?\\pipe\\' + container.name.replace(/\//g, '\\');
-            else
-                socketPath = join(process.cwd(), container.name.replace(/\//g, '-').replace(/^@/g, '') + '.sock');
+        var socketPath: string;
+        if (platform() == 'win32')
+            socketPath = '\\\\?\\pipe\\' + container.name.replace(/\//g, '\\');
+        else
+            socketPath = join(process.cwd(), container.name.replace(/\//g, '-').replace(/^@/g, '') + '.sock');
 
-            server.listen(socketPath);
-            console.log(`listening on ${socketPath}`);
-        }
-        if (args.indexOf('tcp') > -1)
-        {
-            server.listen(options.tcpPort || 1337);
-            console.log(`listening on ${options.tcpPort || 1337}`);
-        }
+        server.listen(socketPath);
+        console.log(`listening on ${socketPath}`);
 
         stops.push(() =>
         {
@@ -166,6 +158,33 @@ export default async function <T = void>(container: Container<T>, options: Serve
                             else
                                 resolve();
                         });
+                })
+            });
+        });
+    }
+
+
+    if (args.indexOf('tcp') > -1)
+    {
+        let server = new Server((socket) =>
+        {
+            socket.setDefaultEncoding('utf8');
+            container.attach('jsonrpc', new NetSocketAdapter(socket));
+        });
+
+        server.listen(options.tcpPort || 1337);
+        console.log(`listening on ${options.tcpPort || 1337}`);
+
+        stops.push(() =>
+        {
+            return new Promise((resolve, reject) =>
+            {
+                server.close(function (err)
+                {
+                    if (err)
+                        reject(err);
+                    else
+                        resolve();
                 })
             });
         });
