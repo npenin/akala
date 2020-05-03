@@ -270,7 +270,9 @@ if (require.main == module)
                 console.error(e);
         })
 
-        if (platform() == 'win32')
+        if (args.pmSock)
+            socket.connect(args.pmsock);
+        else if (platform() == 'win32')
             socket.connect('\\\\?\\pipe\\pm')
         else
         {
