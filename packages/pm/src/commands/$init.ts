@@ -5,11 +5,11 @@ import { join } from 'path';
 import { promisify } from 'util';
 import { description } from '../container';
 import serve from '@akala/commands/dist/cli/serve';
-import { Container } from '@akala/commands';
+import { Container, ServeOptions } from '@akala/commands';
 
 const existsAsync = promisify(exists);
 
-export default async function (this: State, container: RunningContainer<State> & description.pm)
+export default async function (this: State, container: RunningContainer<State> & description.pm, options: ServeOptions)
 {
     this.isDaemon = true;
     this.processes = [];
@@ -33,8 +33,6 @@ export default async function (this: State, container: RunningContainer<State> &
     if (!this.config.externals)
         this.config.externals = [];
 
-
-
     await this.config.save();
     container.name = 'pm';
     await container.dispatch('map', 'pm', join(__dirname, '../../commands.json'), true);
@@ -43,7 +41,7 @@ export default async function (this: State, container: RunningContainer<State> &
     this.processes.push(container);
     container.running = true;
 
-    var stop = await serve(container as Container<any>, { _: ['local'] });
+    var stop = await serve(container as Container<any>, options || { _: ['local'] });
     process.on('SIGINT', stop);
 
     if (process.disconnect)
@@ -54,4 +52,4 @@ export default async function (this: State, container: RunningContainer<State> &
     }
 }
 
-exports.default.$inject = ['container'];
+exports.default.$inject = ['container', 'options'];

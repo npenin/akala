@@ -1,12 +1,13 @@
 FROM node:lts
 ENV NODE_ENV production
 WORKDIR /usr/src/app
-ADD latest.tar.gz /usr/src
-RUN mv /usr/src/yarn-v1.22.4 /usr/lib/yarn
-ENV PATH "$PATH:/usr/lib/yarn/bin"
+ADD https://yarnpkg.com/latest.tar.gz /usr/src
+RUN mkdir /usr/lib/yarn
+RUN tar -C /usr/lib/yarn --strip-components=1 -xf /usr/src/latest.tar.gz
+ENV PATH "$PATH:/usr/lib/yarn/bin:/usr/src/app/node_modules/.bin"
 COPY package.docker.json package.json
 RUN yarn install --production --silent
 VOLUME /export
+ENTRYPOINT ["node", "node_modules/@akala/pm/dist/fork.js", "pm"] 
+CMD ["local"]
 RUN ln -s pm.sock /export/pm.sock
-CMD node node_modules/@akala/pm/dist/fork.js pm
-EXPOSE 80
