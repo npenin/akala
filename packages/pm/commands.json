@@ -4,19 +4,28 @@
         {
             "name": "$init",
             "inject": [
-                "container"
+                "container",
+                "param.0"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "container"
+                        "container",
+                        "param.0"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/$init.js",
                     "source": "src/commands/$init.ts",
                     "inject": [
-                        "container"
+                        "container",
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "container",
+                        "options"
                     ]
                 }
             }
