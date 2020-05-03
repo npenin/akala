@@ -10,4 +10,4 @@ import * as Triggers from './triggers'
 import * as Metadata from './metadata'
 import * as cli from './cli'
 export { Processors, Triggers, Metadata, cli }
-export { NetSocketAdapter, default as serve } from './cli/serve'
+export { NetSocketAdapter, default as serve, ServeOptions } from './cli/serve'

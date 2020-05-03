@@ -6,9 +6,13 @@ export default async function version(this: State, packageName: string, folder: 
 {
     var path = folder || this.config.containers['pm'][0];
 
-    var packageConfig = require(join(path, 'node_modules', packageName, './package.json'));
-    delete require.cache[join(path, 'node_modules', packageName, './package.json')];
-
+    if (packageName == 'pm' || typeof packageName == 'undefined')
+        var packageConfig = require('../../package.json');
+    else
+    {
+        var packageConfig = require(join(path, 'node_modules', packageName, './package.json'));
+        delete require.cache[join(path, 'node_modules', packageName, './package.json')];
+    }
     return packageConfig.version;
 }
 

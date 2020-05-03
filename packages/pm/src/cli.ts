@@ -271,7 +271,18 @@ if (require.main == module)
         })
 
         if (args.pmSock)
-            socket.connect(args.pmsock);
+        {
+            if (typeof (args.pmSock) == 'string')
+            {
+                let indexOfColon = args.pmSock.indexOf(':');
+                if (indexOfColon > -1)
+                    socket.connect(Number(args.pmSock.substring(indexOfColon + 1)), args.pmSock.substring(0, indexOfColon));
+                else
+                    socket.connect(args.pmSock);
+            }
+            else
+                socket.connect(args.pmSock);
+        }
         else if (platform() == 'win32')
             socket.connect('\\\\?\\pipe\\pm')
         else

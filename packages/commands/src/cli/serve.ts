@@ -108,7 +108,15 @@ export class NetSocketAdapter implements jsonrpcws.SocketAdapter
     }
 }
 
-export default async function <T = void>(container: Container<T>, options: { port?: number, cert?: string, key?: string, _: ('local' | 'http' | 'ws')[] })
+export interface ServeOptions
+{
+    port?: number;
+    cert?: string;
+    key?: string;
+    _: ('local' | 'http' | 'ws')[];
+}
+
+export default async function <T = void>(container: Container<T>, options: ServeOptions)
 {
     var args = options._;
     if (!args || args.length == 0)
