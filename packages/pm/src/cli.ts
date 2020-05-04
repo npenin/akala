@@ -57,7 +57,6 @@ if (require.main == module)
                         if (cmd.config && cmd.config.cli && cmd.config.cli.options)
                         {
                             args = yargs(process.argv.slice(2), cmd.config.cli.options);
-                            args._.splice(0, 1);
                             if (cmd.config.cli.options.normalize)
                             {
                                 var params = cmd.config.cli.options.normalize.filter(p => p.length > 'param.'.length && p.substr(0, 'param.'.length) == 'param.');
@@ -72,10 +71,11 @@ if (require.main == module)
                                 }
                             }
                         }
-                        else
-                            args._ = args._.slice(1);
-                    else
-                        args._ = args._.slice(1);
+
+                    args._ = args._.slice(1);
+
+                    delete args['pm-sock'];
+                    delete args.pmSock;
 
                     var result = await processor.process(cmdName, { options: args, param: args._, _trigger: 'cli', cwd: process.cwd() } as any);
 

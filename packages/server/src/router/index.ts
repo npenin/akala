@@ -10,7 +10,6 @@ import { HttpLayer } from './layer';
 import { Readable } from 'stream';
 import { Socket } from 'net';
 var debug = akala.log('akala:router');
-var routing = require('routington');
 
 export type httpHandler = (req: Request, res: Response) => void;
 
