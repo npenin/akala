@@ -1,5 +1,5 @@
 import State from "../state";
-import npmHelper from "../npm-helper";
+import helper from "../yarn-helper";
 import { Container } from "@akala/commands";
 
 
@@ -9,7 +9,7 @@ export default async function update(this: State, packageName: string, folder: s
     var version = await pm.dispatch('version', packageName, folder);
 
     var path = folder || this.config.containers['pm'][0];
-    await npmHelper.update(packageName, path);
+    await helper.update(packageName, path);
 
     await pm.dispatch('discover', packageName, folder)
 

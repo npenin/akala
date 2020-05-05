@@ -1,6 +1,9 @@
 {
   "name": "@akala/pm",
-  "bin": "dist/cli.js",
+  "bin": {
+    "pm": "dist/cli.js",
+    "pm-fork": "dist/fork.js"
+  },
   "version": "1.3.22",
   "scripts": {
     "test": "echo 1",
@@ -15,7 +18,10 @@
     "@akala/commands": "^0.6.46",
     "@akala/core": "^3.1.6",
     "@akala/json-rpc-ws": "^9.0.32",
+    "@yarnpkg/cli": "^2.0.0-rc.33",
+    "@yarnpkg/plugin-essentials": "^2.0.0-rc.27",
     "chokidar": "^3.3.1",
+    "clipanion": "^2.3.1",
     "debug": "^4.1.1",
     "mock-require": "^3.0.3",
     "reflect-metadata": "^0.1.13",
