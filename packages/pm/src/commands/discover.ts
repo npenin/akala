@@ -5,7 +5,6 @@ import { description } from "../container";
 import map from './map'
 import { createRequire } from "module";
 
-
 type Unpromise<T> = T extends Promise<infer X> ? X : never;
 type mapReturn = Unpromise<ReturnType<typeof map>>;
 
@@ -15,27 +14,11 @@ export default async function discover(this: State, packageName: string, folder:
     var path = folder || process.cwd();
 
     var tmpRequire: ReturnType<typeof createRequire> | undefined = undefined;
-    if (existsSync(path))
-        if (isAbsolute(packageName))
-        {
-            let stats = await fs.stat(path)
-            if (stats.isFile())
-                tmpRequire = createRequire(packageName);
-            else
-                tmpRequire = createRequire(join(packageName, './package.json'));
-            packageName = basename(packageName);
-        }
-        else
-        {
-            let stats = await fs.stat(join(path, packageName))
-            if (stats.isFile())
-                tmpRequire = createRequire(join(path, packageName))
-            else
-                tmpRequire = createRequire(join(path, packageName, './package.json'));
-        }
 
     if (typeof tmpRequire == 'undefined')
-        tmpRequire = createRequire(join(path, './package.json'));
+    {
+        tmpRequire = createRequire(path);
+    }
 
     function tryModuleRequireResolve(p: string)
     {
@@ -51,7 +34,7 @@ export default async function discover(this: State, packageName: string, folder:
 
     var moduleRequire = tmpRequire;
 
-    var packageConfig = moduleRequire('./package.json');
+    var packageConfig = moduleRequire(packageName + '/package.json');
     delete moduleRequire.cache['./package.json'];
 
     if (packageConfig.commands)
