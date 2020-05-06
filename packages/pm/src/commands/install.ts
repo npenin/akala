@@ -8,6 +8,5 @@ export default async function install(this: State, packageName: string, pm: Cont
 {
     var path = process.cwd();
     await helper.install(packageName, path);
-
     return await pm.dispatch('discover', packageName, createRequire(path))
 };
