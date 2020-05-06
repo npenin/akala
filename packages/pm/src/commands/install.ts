@@ -6,6 +6,7 @@ import { createRequire } from 'module'
 
 export default async function install(this: State, packageName: string, pm: Container<State>)
 {
+    console.log(arguments);
     var path = process.cwd();
     await helper.install(packageName, path);
 
