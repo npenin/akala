@@ -10,7 +10,6 @@ type mapReturn = Unpromise<ReturnType<typeof map>>;
 
 export default async function discover(this: State, packageName: string, folder: string, pm: description.pm): Promise<mapReturn[] | mapReturn>
 {
-
     var path = folder || process.cwd();
 
     var tmpRequire: ReturnType<typeof createRequire> | undefined = undefined;
