@@ -6,4 +6,5 @@ RUN npm i -g yarn
 RUN yarn set version berry
 RUN yarn install
 ENTRYPOINT ["yarn" ,"pm-fork", "pm"] 
-CMD ["local", "tcp"]
+CMD ["local", "tcp", "--tcpPort=31416"]
+EXPOSE 31416

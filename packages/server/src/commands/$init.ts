@@ -95,6 +95,7 @@ export default async function $init(container: Container<State>, options: any)
             container.state.app = app;
 
             preAuthenticatedRouter.useGet('/', serveStatic(null, { root: join(process.cwd(), './build'), fallthrough: true }));
+            masterRouter.useGet('/', serveStatic(require.resolve('../../views/index.html')));
         }
         else
             console.error('there is no router; Working in degraded mode');
