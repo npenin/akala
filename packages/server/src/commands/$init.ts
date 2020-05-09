@@ -108,6 +108,7 @@ export default async function $init(container: Container<State>, options: any)
                 const crossFs = new PosixFS(zipOpenFs);
 
                 res.statusCode = 200;
+
                 crossFs.createReadStream(require.resolve('../../views/index.html')).pipe(res);
             });
         }
