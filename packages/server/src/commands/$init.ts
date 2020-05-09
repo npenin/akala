@@ -9,6 +9,7 @@ import HtmlPlugin = require('html-webpack-plugin');
 import { CleanWebpackPlugin as CleanPlugin } from 'clean-webpack-plugin'
 import CssExtractPlugin = require('mini-css-extract-plugin')
 import { serveStatic } from "../master-meta";
+import pnpapi from 'pnpapi'
 
 export default async function $init(container: Container<State>, options: any)
 {
@@ -95,7 +96,20 @@ export default async function $init(container: Container<State>, options: any)
             container.state.app = app;
 
             preAuthenticatedRouter.useGet('/', serveStatic(null, { root: join(process.cwd(), './build'), fallthrough: true }));
-            masterRouter.useGet('/', serveStatic(require.resolve('../../views/index.html')));
+            masterRouter.useGet('/', async function (req, res)
+            {
+                const { PosixFS, ZipOpenFS } = await import(`@yarnpkg/fslib`);
+                const libzip = await (await import(`@yarnpkg/libzip`)).getLibzipPromise();
+
+                // This will transparently open zip archives
+                const zipOpenFs = new ZipOpenFS({ libzip });
+
+                // This will convert all paths into a Posix variant, required for cross-platform compatibility
+                const crossFs = new PosixFS(zipOpenFs);
+
+                res.statusCode = 200;
+                crossFs.createReadStream(require.resolve('../../views/index.html')).pipe(res);
+            });
         }
         else
             console.error('there is no router; Working in degraded mode');
