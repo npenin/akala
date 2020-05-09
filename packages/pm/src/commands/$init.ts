@@ -37,9 +37,11 @@ export default async function (this: State, container: RunningContainer<State> &
     container.name = 'pm';
     await container.dispatch('map', 'pm', join(__dirname, '../../commands.json'), true);
 
-
     this.processes.push(container);
     container.running = true;
+
+    if (!options.tcpPort)
+        options.tcpPort = 31416;
 
     var stop = await serve(container as Container<any>, options || { _: ['local'] });
     process.on('SIGINT', stop);

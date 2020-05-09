@@ -181,8 +181,8 @@ export default async function <T = void>(container: Container<T>, options: Serve
                 server.listen(options.tcpPort);
         }
         else
-            server.listen(options.tcpPort || 1337);
-        console.log(`listening on ${options.tcpPort || 1337}`);
+            server.listen(options.tcpPort);
+        console.log(`listening on ${options.tcpPort}`);
 
         stops.push(() =>
         {

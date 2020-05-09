@@ -21,7 +21,7 @@ export default async function $init(container: Container<State>, options: any)
             container.dispatch('webpack', undefined, true);
     })
 
-    var html = new HtmlPlugin({ title: 'Output management', xhtml: true, hash: true, inject: true });
+    var html = new HtmlPlugin({ title: 'Output management', template: require.resolve('@akala/server/views/index.html'), xhtml: true, hash: true, inject: true });
 
     container.state.webpack = {
         config: {
