@@ -176,7 +176,12 @@ export default async function <T = void>(container: Container<T>, options: Serve
         {
             let indexOfColon = options.tcpPort.lastIndexOf(':');
             if (indexOfColon > -1)
-                server.listen(Number(options.tcpPort.substr(indexOfColon + 1)), options.tcpPort.substr(0, indexOfColon));
+            {
+                let host = options.tcpPort.substr(0, indexOfColon);
+                let port = Number(options.tcpPort.substr(indexOfColon + 1))
+                server.listen(port, host);
+                options.tcpPort = host + ':' + port;
+            }
             else
                 server.listen(options.tcpPort);
         }
