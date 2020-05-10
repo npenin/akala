@@ -3,10 +3,10 @@ ENV NODE_ENV production
 WORKDIR /usr/src/domojs
 RUN npm i -g yarn
 COPY package.json package.json
-RUN ["yarn", "set", "version", "berry"]
-RUN ["yarn"]
-# ENTRYPOINT /bin/sh
-ENTRYPOINT ["yarn" ,"pm-fork", "pm"] 
+COPY install.sh install.sh
+RUN mkdir /root/yarn && ln -s /usr/src/domojs/.yarn /root/yarn
+ENTRYPOINT /bin/sh install.sh
+# ENTRYPOINT ["yarn" ,"pm-fork", "pm"] 
 CMD ["local", "tcp", "--tcpPort=31416"]
 EXPOSE 31416
-VOLUME /usr/src/domojs
+VOLUME /root
