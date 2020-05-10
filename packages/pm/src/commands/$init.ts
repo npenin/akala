@@ -9,11 +9,15 @@ import { Container, ServeOptions } from '@akala/commands';
 
 const existsAsync = promisify(exists);
 
-export default async function (this: State, container: RunningContainer<State> & description.pm, options: ServeOptions)
+export default async function (this: State, container: RunningContainer<State> & description.pm, options: ServeOptions & {})
 {
     this.isDaemon = true;
     this.processes = [];
-    var configPath = join(homedir(), './.pm.config.json');
+    var configPath: string;
+    if (await existsAsync('./.pm.config.json'))
+        configPath = join(process.cwd(), './.pm.config.json')
+    else
+        configPath = join(homedir(), './.pm.config.json');
     if (await existsAsync(configPath))
     {
         this.config = JSON.parse(await promises.readFile(configPath, 'utf-8'));

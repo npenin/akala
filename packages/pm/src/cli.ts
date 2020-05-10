@@ -6,6 +6,7 @@ import { Socket } from 'net';
 import { platform, homedir } from 'os';
 import start from './commands/start'
 import { Readable } from 'stream';
+import { existsSync } from 'fs';
 
 const tableChars = {
     'top': '─'
@@ -288,7 +289,10 @@ if (require.main == module)
             socket.connect('\\\\?\\pipe\\pm')
         else
         {
-            var config = require(path.join(homedir(), './.pm.config.json'));
+            if (existsSync('./.pm.config.json'))
+                var config = require(path.join(process.cwd(), './.pm.config.json'));
+            else
+                var config = require(path.join(homedir(), './.pm.config.json'));
 
             socket.connect(path.join(config.containers.pm[0], './pm.sock'));
         }
