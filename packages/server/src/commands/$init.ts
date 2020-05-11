@@ -9,7 +9,7 @@ import HtmlPlugin = require('html-webpack-plugin');
 import { CleanWebpackPlugin as CleanPlugin } from 'clean-webpack-plugin'
 import CssExtractPlugin = require('mini-css-extract-plugin')
 import { serveStatic } from "../master-meta";
-import pnpapi from 'pnpapi'
+import PnpWebPackPlugin from 'pnp-webpack-plugin'
 
 export default async function $init(container: Container<State>, options: any)
 {
@@ -30,8 +30,11 @@ export default async function $init(container: Container<State>, options: any)
             output: {
                 path: join(process.cwd(), './build')
             },
-
+            resolveLoader: {
+                plugins: [PnpWebPackPlugin.moduleLoader(module)]
+            },
             resolve: {
+                plugins: [PnpWebPackPlugin],
                 aliasFields: ['browser'],
                 // Add `.ts` and `.tsx` as a resolvable extension.
                 extensions: [".ts", ".tsx", ".js", ".scss"],

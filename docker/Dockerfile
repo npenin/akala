@@ -4,7 +4,7 @@ WORKDIR /usr/src/domojs
 RUN npm i -g yarn
 COPY package.json package.json
 COPY install.sh install.sh
-RUN mkdir /root/yarn && ln -s /usr/src/domojs/.yarn /root/yarn
+RUN mkdir /root/.yarn && ln -s /usr/src/domojs/.yarn /root/.yarn
 ENTRYPOINT . ./install.sh
 # ENTRYPOINT ["yarn" ,"pm-fork", "pm"] 
 CMD ["local", "tcp", "--tcpPort=31416"]
