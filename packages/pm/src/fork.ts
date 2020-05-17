@@ -1,5 +1,7 @@
 #!/usr/bin/env node
-import 'source-map-support/register'
+import * as sms from 'source-map-support'
+sms.install();
+
 import * as path from 'path'
 import * as ac from '@akala/commands';
 import yargs from 'yargs-parser'

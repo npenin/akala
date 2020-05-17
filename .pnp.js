@@ -70,7 +70,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
     "enableTopLevelFallback": true,
     "ignorePatternData": "(^(?:\\.vscode\\/pnpify(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)|$))$)",
     "fallbackExclusionList": [
-      ["@akala-modules/authentication", ["virtual:90d1256ad2eef60464a0ef188ee6fcfdee911dcbea833c9e2b6b92c449c0ad67ac7985d21d1e692aa40b7a0d10110715068fc80bc80b369938f4b7fccf685b79#workspace:packages/authentication", "workspace:packages/authentication"]],
+      ["@akala-modules/authentication", ["workspace:packages/authentication"]],
       ["@akala/cli", ["workspace:packages/cli"]],
       ["@akala/client", ["workspace:packages/client"]],
       ["@akala/commands", ["workspace:packages/commands"]],
@@ -84,6 +84,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ["akala", ["workspace:."]]
     ],
     "fallbackPool": [
+      [
+        "@yarnpkg/pnpify",
+        "virtual:e162714e264c8b6d0881044d6cb5e063e4e584762dc24bb04563f0791d264a3e3addb1432fc6f1bea52d8be841002d878d8625589e4db687fec022ff3d583240#npm:2.0.0-rc.22"
+      ],
       [
         "lerna",
         "npm:3.20.2"
@@ -100,6 +104,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {
           "packageLocation": "./",
           "packageDependencies": [
+            ["@yarnpkg/pnpify", "virtual:e162714e264c8b6d0881044d6cb5e063e4e584762dc24bb04563f0791d264a3e3addb1432fc6f1bea52d8be841002d878d8625589e4db687fec022ff3d583240#npm:2.0.0-rc.22"],
             ["lerna", "npm:3.20.2"],
             ["typescript", "patch:typescript@npm%3A3.8.3#builtin<compat/typescript>::version=3.8.3&hash=8cac75"]
           ],
@@ -107,42 +112,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@akala-modules/authentication", [
-        ["virtual:90d1256ad2eef60464a0ef188ee6fcfdee911dcbea833c9e2b6b92c449c0ad67ac7985d21d1e692aa40b7a0d10110715068fc80bc80b369938f4b7fccf685b79#workspace:packages/authentication", {
-          "packageLocation": "./.yarn/$$virtual/@akala-modules-authentication-virtual-c35e357f45/1/packages/authentication/",
-          "packageDependencies": [
-            ["@akala-modules/authentication", "virtual:90d1256ad2eef60464a0ef188ee6fcfdee911dcbea833c9e2b6b92c449c0ad67ac7985d21d1e692aa40b7a0d10110715068fc80bc80b369938f4b7fccf685b79#workspace:packages/authentication"],
-            ["@akala/server", "npm:3.0.30"],
-            ["@akala/storage", "workspace:packages/db"],
-            ["@types/connect-ensure-login", "npm:0.1.5"],
-            ["@types/debug", "npm:4.1.5"],
-            ["@types/node", "npm:13.13.6"],
-            ["@types/oauth2orize", "npm:1.8.8"],
-            ["@types/passport", "npm:1.0.3"],
-            ["@types/passport-http", "npm:0.3.8"],
-            ["@types/passport-http-bearer", "npm:1.0.35"],
-            ["@types/passport-local", "npm:1.0.33"],
-            ["@types/passport-oauth2-client-password", "npm:0.1.2"],
-            ["@types/uuid", "npm:7.0.3"],
-            ["connect-ensure-login", "npm:0.1.1"],
-            ["oauth2orize", "npm:1.11.0"],
-            ["passport", "npm:0.4.1"],
-            ["passport-http", "npm:0.3.0"],
-            ["passport-http-bearer", "npm:1.0.1"],
-            ["passport-local", "npm:1.0.0"],
-            ["passport-oauth2-client-password", "npm:0.1.2"],
-            ["reflect-metadata", "npm:0.1.13"],
-            ["typescript", "patch:typescript@npm%3A3.8.3#builtin<compat/typescript>::version=3.8.3&hash=8cac75"],
-            ["uuid", "npm:7.0.3"]
-          ],
-          "packagePeers": [
-            "@akala/server"
-          ],
-          "linkType": "SOFT",
-        }],
         ["workspace:packages/authentication", {
           "packageLocation": "./packages/authentication/",
           "packageDependencies": [
             ["@akala-modules/authentication", "workspace:packages/authentication"],
+            ["@akala/commands", "workspace:packages/commands"],
             ["@akala/server", "workspace:packages/server"],
             ["@akala/storage", "workspace:packages/db"],
             ["@types/connect-ensure-login", "npm:0.1.5"],
@@ -167,21 +141,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["uuid", "npm:7.0.3"]
           ],
           "linkType": "SOFT",
-        }]
-      ]],
-      ["@akala-modules/core", [
-        ["npm:1.2.17", {
-          "packageLocation": "./.yarn/cache/@akala-modules-core-npm-1.2.17-90d1256ad2-3.zip/node_modules/@akala-modules/core/",
-          "packageDependencies": [
-            ["@akala-modules/core", "npm:1.2.17"],
-            ["@akala-modules/authentication", "virtual:90d1256ad2eef60464a0ef188ee6fcfdee911dcbea833c9e2b6b92c449c0ad67ac7985d21d1e692aa40b7a0d10110715068fc80bc80b369938f4b7fccf685b79#workspace:packages/authentication"],
-            ["@akala/client", "workspace:packages/client"],
-            ["@akala/json-rpc-ws", "npm:7.0.2"],
-            ["@akala/server", "npm:3.0.30"],
-            ["send", "npm:0.17.1"],
-            ["uuid", "npm:3.4.0"]
-          ],
-          "linkType": "HARD",
         }]
       ]],
       ["@akala/cli", [
@@ -232,19 +191,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@akala/commands", [
-        ["npm:0.4.47", {
-          "packageLocation": "./.yarn/cache/@akala-commands-npm-0.4.47-046a660531-3.zip/node_modules/@akala/commands/",
-          "packageDependencies": [
-            ["@akala/commands", "npm:0.4.47"],
-            ["@akala/core", "npm:2.1.21"],
-            ["@akala/json-rpc-ws", "npm:8.0.2"],
-            ["debug", "virtual:a65a2214ea59e9247a8873bc4aee1d739134eb22098031c9e1446b376b8f2fb2d46bbc8c340b5520947f2ac6f92efc3c00784857744257a90e4c08733416bea0#npm:4.1.1"],
-            ["split2", "npm:3.1.1"],
-            ["uuid", "npm:3.4.0"],
-            ["yargs-parser", "npm:18.1.2"]
-          ],
-          "linkType": "HARD",
-        }],
         ["workspace:packages/commands", {
           "packageLocation": "./packages/commands/",
           "packageDependencies": [
@@ -275,25 +221,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@akala/core", [
-        ["npm:2.1.21", {
-          "packageLocation": "./.yarn/cache/@akala-core-npm-2.1.21-38cbf3be72-3.zip/node_modules/@akala/core/",
-          "packageDependencies": [
-            ["@akala/core", "npm:2.1.21"],
-            ["@akala/json-rpc-ws", "workspace:packages/json-rpc-ws"],
-            ["browser-process-hrtime", "npm:1.0.0"],
-            ["debug", "virtual:a65a2214ea59e9247a8873bc4aee1d739134eb22098031c9e1446b376b8f2fb2d46bbc8c340b5520947f2ac6f92efc3c00784857744257a90e4c08733416bea0#npm:4.1.1"],
-            ["es6-promise", "npm:4.2.8"],
-            ["isomorphic-fetch", "npm:2.2.1"],
-            ["mock-require", "npm:3.0.3"],
-            ["orchestrator", "npm:0.3.8"],
-            ["parseurl", "npm:1.3.3"],
-            ["path-to-regexp", "npm:6.1.0"],
-            ["routington", "npm:1.0.3"],
-            ["utils-merge", "npm:1.0.1"],
-            ["ws", "virtual:ed9cd44c02411fdc618a73d1579ea3dfa69f3f6850c388b43871cf8b07187fb44f732de39d4bc24be684ecc841dd55df77bc51d48b5c5ece4cdfaf0981bbc766#npm:7.2.3"]
-          ],
-          "linkType": "HARD",
-        }],
         ["workspace:packages/core", {
           "packageLocation": "./packages/core/",
           "packageDependencies": [
@@ -344,26 +271,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@akala/json-rpc-ws", [
-        ["npm:7.0.2", {
-          "packageLocation": "./.yarn/cache/@akala-json-rpc-ws-npm-7.0.2-7671d62f8a-3.zip/node_modules/@akala/json-rpc-ws/",
-          "packageDependencies": [
-            ["@akala/json-rpc-ws", "npm:7.0.2"],
-            ["debug", "virtual:8bb97bed484f021974a05538f31c077871d2363ce26ebed59b11577446762350604c9011c0660ae55b141dd86d888615a377ccccd7a87c5e54ae38233a22d5a9#npm:3.2.6"],
-            ["uuid", "npm:3.4.0"],
-            ["ws", "npm:6.2.1"]
-          ],
-          "linkType": "HARD",
-        }],
-        ["npm:8.0.2", {
-          "packageLocation": "./.yarn/cache/@akala-json-rpc-ws-npm-8.0.2-95ba4f27e1-3.zip/node_modules/@akala/json-rpc-ws/",
-          "packageDependencies": [
-            ["@akala/json-rpc-ws", "npm:8.0.2"],
-            ["debug", "virtual:a65a2214ea59e9247a8873bc4aee1d739134eb22098031c9e1446b376b8f2fb2d46bbc8c340b5520947f2ac6f92efc3c00784857744257a90e4c08733416bea0#npm:4.1.1"],
-            ["uuid", "npm:3.4.0"],
-            ["ws", "virtual:ed9cd44c02411fdc618a73d1579ea3dfa69f3f6850c388b43871cf8b07187fb44f732de39d4bc24be684ecc841dd55df77bc51d48b5c5ece4cdfaf0981bbc766#npm:7.2.3"]
-          ],
-          "linkType": "HARD",
-        }],
         ["workspace:packages/json-rpc-ws", {
           "packageLocation": "./packages/json-rpc-ws/",
           "packageDependencies": [
@@ -394,7 +301,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./packages/pages/",
           "packageDependencies": [
             ["@akala/pages", "workspace:packages/pages"],
-            ["@akala-modules/core", "npm:1.2.17"],
             ["@akala/core", "workspace:packages/core"],
             ["@akala/server", "workspace:packages/server"],
             ["@types/debug", "npm:4.1.5"],
@@ -415,6 +321,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/debug", "npm:4.1.5"],
             ["@types/mock-require", "npm:2.0.0"],
             ["@types/node", "npm:13.13.6"],
+            ["@types/source-map-support", "npm:0.5.1"],
             ["@types/ws", "npm:7.2.4"],
             ["@types/yargs", "npm:15.0.4"],
             ["@yarnpkg/cli", "virtual:91fc466237a26c4f680a573bb317312bc01f6320e3c0d6253e095d71d385a847c9ab751e863f6595d70ef7793dd2390d1357cd5966129fe19616a6a5b5487025#npm:2.0.0-rc.33"],
@@ -436,27 +343,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@akala/server", [
-        ["npm:3.0.30", {
-          "packageLocation": "./.yarn/cache/@akala-server-npm-3.0.30-86349e258f-3.zip/node_modules/@akala/server/",
-          "packageDependencies": [
-            ["@akala/server", "npm:3.0.30"],
-            ["@akala/commands", "npm:0.4.47"],
-            ["@akala/core", "npm:2.1.21"],
-            ["@akala/json-rpc-ws", "npm:7.0.2"],
-            ["body-parser", "npm:1.19.0"],
-            ["express", "npm:4.17.1"],
-            ["on-finished", "npm:2.3.0"],
-            ["orchestrator", "npm:0.3.8"],
-            ["routington", "npm:1.0.3"],
-            ["send", "npm:0.17.1"],
-            ["sequencify", "npm:0.0.7"],
-            ["source-map-support", "npm:0.5.16"],
-            ["underscore", "npm:1.10.2"],
-            ["ws", "virtual:ed9cd44c02411fdc618a73d1579ea3dfa69f3f6850c388b43871cf8b07187fb44f732de39d4bc24be684ecc841dd55df77bc51d48b5c5ece4cdfaf0981bbc766#npm:7.2.3"],
-            ["xml2js", "npm:0.4.23"]
-          ],
-          "linkType": "HARD",
-        }],
         ["workspace:packages/server", {
           "packageLocation": "./packages/server/",
           "packageDependencies": [
@@ -2449,6 +2335,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["@types/source-map-support", [
+        ["npm:0.5.1", {
+          "packageLocation": "./.yarn/cache/@types-source-map-support-npm-0.5.1-08b9c9bac4-3.zip/node_modules/@types/source-map-support/",
+          "packageDependencies": [
+            ["@types/source-map-support", "npm:0.5.1"],
+            ["@types/node", "npm:13.11.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["@types/split2", [
         ["npm:2.1.6", {
           "packageLocation": "./.yarn/cache/@types-split2-npm-2.1.6-cce4cc8e76-3.zip/node_modules/@types/split2/",
@@ -3321,6 +3217,24 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "typescript"
           ],
           "linkType": "HARD",
+        }],
+        ["virtual:e162714e264c8b6d0881044d6cb5e063e4e584762dc24bb04563f0791d264a3e3addb1432fc6f1bea52d8be841002d878d8625589e4db687fec022ff3d583240#npm:2.0.0-rc.22", {
+          "packageLocation": "./.yarn/$$virtual/@yarnpkg-pnpify-virtual-ae9271b7a4/0/cache/@yarnpkg-pnpify-npm-2.0.0-rc.22-946ff3bc32-3.zip/node_modules/@yarnpkg/pnpify/",
+          "packageDependencies": [
+            ["@yarnpkg/pnpify", "virtual:e162714e264c8b6d0881044d6cb5e063e4e584762dc24bb04563f0791d264a3e3addb1432fc6f1bea52d8be841002d878d8625589e4db687fec022ff3d583240#npm:2.0.0-rc.22"],
+            ["@yarnpkg/core", "npm:2.0.0-rc.27"],
+            ["@yarnpkg/fslib", "npm:2.0.0-rc.20"],
+            ["chalk", "npm:3.0.0"],
+            ["comment-json", "npm:2.4.2"],
+            ["cross-spawn", "npm:6.0.5"],
+            ["eslint", null],
+            ["typescript", "patch:typescript@npm%3A3.8.3#builtin<compat/typescript>::version=3.8.3&hash=8cac75"]
+          ],
+          "packagePeers": [
+            "eslint",
+            "typescript"
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["@yarnpkg/shell", [
@@ -3503,6 +3417,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",
           "packageDependencies": [
             ["akala", "workspace:."],
+            ["@yarnpkg/pnpify", "virtual:e162714e264c8b6d0881044d6cb5e063e4e584762dc24bb04563f0791d264a3e3addb1432fc6f1bea52d8be841002d878d8625589e4db687fec022ff3d583240#npm:2.0.0-rc.22"],
             ["lerna", "npm:3.20.2"],
             ["typescript", "patch:typescript@npm%3A3.8.3#builtin<compat/typescript>::version=3.8.3&hash=8cac75"]
           ],
@@ -3858,15 +3773,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/async-foreach-npm-0.1.3-1122283fef-3.zip/node_modules/async-foreach/",
           "packageDependencies": [
             ["async-foreach", "npm:0.1.3"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["async-limiter", [
-        ["npm:1.0.1", {
-          "packageLocation": "./.yarn/cache/async-limiter-npm-1.0.1-7e6819bcdb-3.zip/node_modules/async-limiter/",
-          "packageDependencies": [
-            ["async-limiter", "npm:1.0.1"]
           ],
           "linkType": "HARD",
         }]
@@ -13722,14 +13628,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["through2", "npm:2.0.5"]
           ],
           "linkType": "HARD",
-        }],
-        ["npm:3.1.1", {
-          "packageLocation": "./.yarn/cache/split2-npm-3.1.1-8b06eb6152-3.zip/node_modules/split2/",
-          "packageDependencies": [
-            ["split2", "npm:3.1.1"],
-            ["readable-stream", "npm:3.6.0"]
-          ],
-          "linkType": "HARD",
         }]
       ]],
       ["sprintf-js", [
@@ -15299,14 +15197,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["ws", [
-        ["npm:6.2.1", {
-          "packageLocation": "./.yarn/cache/ws-npm-6.2.1-bbe0ef9859-3.zip/node_modules/ws/",
-          "packageDependencies": [
-            ["ws", "npm:6.2.1"],
-            ["async-limiter", "npm:1.0.1"]
-          ],
-          "linkType": "HARD",
-        }],
         ["virtual:a65a2214ea59e9247a8873bc4aee1d739134eb22098031c9e1446b376b8f2fb2d46bbc8c340b5520947f2ac6f92efc3c00784857744257a90e4c08733416bea0#npm:7.2.3", {
           "packageLocation": "./.yarn/$$virtual/ws-virtual-4796557441/0/cache/ws-npm-7.2.3-e2147dfc25-3.zip/node_modules/ws/",
           "packageDependencies": [
@@ -15538,15 +15428,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/yargs-parser-npm-15.0.1-7ef5e80780-3.zip/node_modules/yargs-parser/",
           "packageDependencies": [
             ["yargs-parser", "npm:15.0.1"],
-            ["camelcase", "npm:5.3.1"],
-            ["decamelize", "npm:1.2.0"]
-          ],
-          "linkType": "HARD",
-        }],
-        ["npm:18.1.2", {
-          "packageLocation": "./.yarn/cache/yargs-parser-npm-18.1.2-48e6a5a36d-3.zip/node_modules/yargs-parser/",
-          "packageDependencies": [
-            ["yargs-parser", "npm:18.1.2"],
             ["camelcase", "npm:5.3.1"],
             ["decamelize", "npm:1.2.0"]
           ],

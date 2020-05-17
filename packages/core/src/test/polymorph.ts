@@ -1,3 +1,4 @@
+///<reference types="node" />
 require('source-map-support').install();
 
 import { Polymorph } from '../polymorph'
