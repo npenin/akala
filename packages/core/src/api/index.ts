@@ -8,7 +8,8 @@ import * as jsonrpc from '@akala/json-rpc-ws'
 import { Rest } from './rest'
 import './rest';
 import './json-rpc-ws';
-import { module, each } from '../helpers';
+import { module } from '../helpers';
+import { each } from '../each';
 
 export namespace api
 {

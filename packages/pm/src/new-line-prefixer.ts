@@ -11,7 +11,7 @@ export class NewLinePrefixer extends Transform
 
     private blankNewLine = true;
 
-    _transform(chunk: any, encoding: string, callback: TransformCallback): void
+    _transform(chunk: any, encoding: BufferEncoding | 'buffer', callback: TransformCallback): void
     {
         if (Buffer.isBuffer(chunk))
         {
