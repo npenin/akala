@@ -312,7 +312,7 @@ class MyResponse extends stream.Transform implements CallbackResponse
         delete this.headers[name];
     }
 
-    public _write(chunk: any, encoding?: string, callback?: (err: Error) => void): void
+    public _write(chunk: any, encoding?: BufferEncoding, callback?: (err: Error) => void): void
     {
         if (!this.headersSent)
             this.writeHead(this.statusCode);

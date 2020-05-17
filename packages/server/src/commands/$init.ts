@@ -9,6 +9,7 @@ import HtmlPlugin = require('html-webpack-plugin');
 import { CleanWebpackPlugin as CleanPlugin } from 'clean-webpack-plugin'
 import CssExtractPlugin = require('mini-css-extract-plugin')
 import { serveStatic } from "../master-meta";
+import fs from 'fs';
 
 export default async function $init(container: Container<State>, options: any)
 {
@@ -21,7 +22,8 @@ export default async function $init(container: Container<State>, options: any)
             container.dispatch('webpack', undefined, true);
     })
 
-    var html = new HtmlPlugin({ title: 'Output management', xhtml: true, hash: true, inject: true });
+    var html = new HtmlPlugin({ title: 'Output management', template: require.resolve('@akala/server/views/index.html'), xhtml: true, hash: true, inject: true });
+
 
     container.state.webpack = {
         config: {
@@ -40,17 +42,17 @@ export default async function $init(container: Container<State>, options: any)
                 rules: [
                     {
                         test: /\.ts?$/,
-                        use: 'ts-loader',
+                        use: require.resolve('ts-loader'),
                         exclude: /node_modules/,
                     },
                     {
                         test: /\.scss?$/,
-                        use: [CssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+                        use: [CssExtractPlugin.loader, require.resolve('css-loader'), require.resolve('sass-loader')],
                         exclude: /node_modules/,
                     },
                     {
                         test: /\.html$/,
-                        use: 'raw-loader'
+                        use: require.resolve('raw-loader')
                     }
                 ],
             },
@@ -95,6 +97,12 @@ export default async function $init(container: Container<State>, options: any)
             container.state.app = app;
 
             preAuthenticatedRouter.useGet('/', serveStatic(null, { root: join(process.cwd(), './build'), fallthrough: true }));
+            if (container.state.mode !== 'production')
+                masterRouter.useGet('/', async function (req, res)
+                {
+                    res.statusCode = 200;
+                    fs.createReadStream(require.resolve('../../views/index.html'), { autoClose: true }).pipe(res);
+                });
         }
         else
             console.error('there is no router; Working in degraded mode');

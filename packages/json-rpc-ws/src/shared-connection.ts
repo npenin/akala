@@ -286,20 +286,25 @@ export abstract class Connection<TStreamable>
 
         if (result)
         {
-            var cleanResult = {};
-            Object.getOwnPropertyNames(result).forEach(p =>
+            if (typeof result == 'object' && !Array.isArray(result))
             {
-                if (p[0] != '_')
-                    Object.defineProperty(cleanResult, p, Object.getOwnPropertyDescriptor(result, p) as PropertyDescriptor)
-            });
+                var cleanResult = {};
+                Object.getOwnPropertyNames(result).forEach(p =>
+                    {
+                        if (p[0] != '_')
+                        Object.defineProperty(cleanResult, p, Object.getOwnPropertyDescriptor(result, p) as PropertyDescriptor)
+                    });
+                }
+                else
+                cleanResult=result;
 
             response.result = cleanResult;
-            if (response.stream && this.isStream(result))
+            if (response.stream)
             {
                 if (typeof id == 'undefined')
                     throw new Error('streams are not supported without an id');
                 logger('result is stream');
-                this.sendStream(id, result);
+                this.sendStream(id, result as TStreamable);
             }
         }
         else
