@@ -12,7 +12,7 @@ export default async function unregister(this: State, container: Container<State
         if (typeof (asset) == 'undefined')
             return;
 
-        asset.inputs.splice(asset.inputs.indexOf(path), 1);
+        this.webpack.config.entry[route].splice(this.webpack.config.entry[route].indexOf(path), 1);
 
         await container.dispatch('compile', asset.output);
     })();
