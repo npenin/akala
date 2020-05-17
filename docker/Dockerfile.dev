@@ -4,5 +4,8 @@ WORKDIR /root
 RUN npm i -g yarn
 COPY package.json package.json
 COPY install.sh install.sh
+RUN apk add eudev-dev make gcc g++ python linux-headers udev
+RUN alias pm='node /root/akala/packages/pm/dist/cli.js'
+RUN alias pm-form='node /root/akala/packages/pm/dist/fork.js'
 ENTRYPOINT /bin/sh
 VOLUME /root
