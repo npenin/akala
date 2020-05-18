@@ -1,5 +1,5 @@
 {
-    "name": "akala-server",
+    "name": "@akala/server",
     "commands": [
         {
             "name": "$init",
@@ -157,6 +157,32 @@
             }
         },
         {
+            "name": "remote-route",
+            "inject": [
+                "param.0",
+                "param.1",
+                "param.2"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/remote-route.js",
+                    "source": "src/commands/remote-route.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                }
+            }
+        },
+        {
             "name": "remove-asset",
             "inject": [
                 "container",
@@ -178,6 +204,32 @@
                         "container",
                         "param.0",
                         "param.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "require",
+            "inject": [
+                "param.0",
+                "param.1",
+                "param.2"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/require.js",
+                    "source": "src/commands/require.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
                     ]
                 }
             }
