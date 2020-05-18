@@ -17,6 +17,8 @@ export default class Client extends ClientBase<stream.Readable>
     }
     constructor()
     {
-        super(function (address: string) { return new WsSocketAdapter(new ws(address)); });
+        super(Client.connect);
     }
+
+    public static connect(address: string) { return new WsSocketAdapter(new ws(address)); }
 }

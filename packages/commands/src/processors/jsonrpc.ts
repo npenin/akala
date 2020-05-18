@@ -4,12 +4,23 @@ import { Command } from '../metadata';
 import { Container, lazy } from '../model/container';
 import { IDebugger } from 'debug';
 import { Local } from './local';
-import { Readable } from 'stream';
 
 
 
 export class JsonRpc<T> extends CommandProcessor<T>
 {
+    public static connect(address: string): Promise<JsonRpc<any>>
+    {
+        return new Promise<jsonrpcws.SocketAdapter>((resolve, reject) =>
+        {
+            var socket = jsonrpcws.ws.connect(address);
+            socket.on('open', function ()
+            {
+                resolve(socket);
+            });
+        }).then((socket) => new JsonRpc(JsonRpc.getConnection(socket)));
+    }
+
     public static getConnection(socket: jsonrpcws.SocketAdapter, container?: Container<any>, log?: IDebugger): jsonrpcws.Connection
     {
         var connection = new jsonrpcws.Connection(socket, {

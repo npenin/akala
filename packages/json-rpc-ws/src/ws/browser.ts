@@ -60,6 +60,20 @@ export default class Client extends ClientBase<ReadableStream>
 
     constructor()
     {
-        super(function (address: string) { return new WebSocketAdapter(new WebSocket(address.replace(/^http/, 'ws'))); });
+        super(Client.connect);
     }
+
+    public static connect(address: string) { return new WebSocketAdapter(new WebSocket(address.replace(/^http/, 'ws'))); }
 }
+
+import debug from 'debug';
+const logger = debug('json-rpc-ws');
+export { SocketAdapter }
+
+export function createClient()
+{
+    logger('create ws client');
+    return new Client();
+};
+
+export const connect = Client.connect;
