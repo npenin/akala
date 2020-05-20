@@ -84,7 +84,11 @@ export class Module extends Injector
     }
 
     public ready(toInject: string[], f: InjectableWithTypedThis<any, ExtendableEvent>)
+    public ready(toInject: string[]): (f: InjectableWithTypedThis<any, ExtendableEvent>) => this
+    public ready(toInject: string[], f?: InjectableWithTypedThis<any, ExtendableEvent>)
     {
+        if (!f)
+            return (f: InjectableWithTypedThis<any, ExtendableEvent>) => this.ready(toInject, f);
         if (this.readyEvent.done)
             this.injectWithName(toInject, f)();
         else
@@ -92,8 +96,12 @@ export class Module extends Injector
         return this;
     }
 
-    public readyAsync(toInject: string[], f: InjectableAsyncWithTypedThis<any, ExtendableEvent>)
+    public readyAsync(toInject: string[], f: InjectableWithTypedThis<any, ExtendableEvent>)
+    public readyAsync(toInject: string[]): (f: InjectableWithTypedThis<any, ExtendableEvent>) => this
+    public readyAsync(toInject: string[], f?: InjectableAsyncWithTypedThis<any, ExtendableEvent>)
     {
+        if (!f)
+            return (f: InjectableWithTypedThis<any, ExtendableEvent>) => this.readyAsync(toInject, f);
         if (this.readyEvent.done)
             return this.injectWithNameAsync(toInject, f.bind(this.readyEvent) as InjectableAsyncWithTypedThis<any, ExtendableEvent>);
         else
@@ -102,7 +110,11 @@ export class Module extends Injector
     }
 
     public activate(toInject: string[], f: InjectableWithTypedThis<any, ExtendableEvent>)
+    public activate(toInject: string[]): (f: InjectableWithTypedThis<any, ExtendableEvent>) => this
+    public activate(toInject: string[], f?: InjectableWithTypedThis<any, ExtendableEvent>)
     {
+        if (!f)
+            return (f: InjectableWithTypedThis<any, ExtendableEvent>) => this.activate(toInject, f);
         if (this.activateEvent.done)
             this.injectWithName(toInject, f)();
         else
@@ -110,13 +122,33 @@ export class Module extends Injector
         return this;
     }
 
-    public activateAsync(toInject: string[], f: InjectableAsyncWithTypedThis<any, ExtendableEvent>)
+    public activateAsync(toInject: string[], f: InjectableWithTypedThis<any, ExtendableEvent>)
+    public activateAsync(toInject: string[]): (f: InjectableWithTypedThis<any, ExtendableEvent>) => this
+    public activateAsync(toInject: string[], f?: InjectableAsyncWithTypedThis<any, ExtendableEvent>)
     {
+        if (!f)
+            return (f: InjectableAsyncWithTypedThis<any, ExtendableEvent>) => this.activateAsync(toInject, f);
         if (this.readyEvent.done)
             return this.injectWithNameAsync(toInject, f.bind(this.readyEvent) as InjectableAsyncWithTypedThis<any, ExtendableEvent>);
         else
             this.emitter.on('activate', (ev: ExtendableEvent) => { this.injectWithNameAsync(toInject, f.bind(ev) as InjectableAsyncWithTypedThis<any, ExtendableEvent>) });
         return this;
+    }
+
+    public activateNew(...toInject: string[])
+    {
+        return <T>(ctor: new (...args: any[]) => T) =>
+        {
+            return this.activate(toInject, ctor.bind(ctor));
+        }
+    }
+
+    public activateNewAsync(...toInject: string[])
+    {
+        return function <T>(ctor: new (...args: any[]) => T)
+        {
+            return this.activateAsync(toInject, ctor.bind(ctor));
+        }
     }
 
     public start(toInject?: string[], f?: Injectable<any>)

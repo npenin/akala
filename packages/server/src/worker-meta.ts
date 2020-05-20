@@ -10,7 +10,7 @@ const log = akala.log('akala:worker');
 
 export { CallbackResponse }
 
-export function createClient(namespace: string): PromiseLike<jsonrpc.Client>
+export function createClient(namespace: string): PromiseLike<jsonrpc.ws.Client>
 {
     return akala.resolve('$agent.' + namespace);
 }
@@ -24,8 +24,8 @@ export interface resolve
     (param: '$request'): Request
     (param: '$callback'): Callback
     (param: '$router'): Router
-    (param: '$io'): (namespace: string) => PromiseLike<jsonrpc.Client>
-    (param: '$bus'): jsonrpc.Client
+    (param: '$io'): (namespace: string) => PromiseLike<jsonrpc.ws.Client>
+    (param: '$bus'): jsonrpc.ws.Client
     (param: '$master'): MasterRegistration
     (param: '$isModule'): IsModule
     (param: string): any

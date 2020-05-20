@@ -52,28 +52,23 @@ export interface Translator
     (format: string, ...parameters: any[]): string;
 }
 
-
-async function createClient(namespace: string)
+export async function createSocket(namespace: string)
 {
-    var client = jsonrpc.ws.createClient();
     var resolveUrl = await onResolve<(url: string) => string>('$resolveUrl');
     if (!resolveUrl)
         throw new Error('no url resolver could be found');
-    return await new Promise<jsonrpc.Client>((resolve, reject) =>
+    return await new Promise<jsonrpc.SocketAdapter>((resolve, reject) =>
     {
-        client.connect(resolveUrl(namespace), function (err)
+        var socket = jsonrpc.ws.connect(resolveUrl(namespace));
+
+        socket.once('open', function ()
         {
-            if (err)
-                reject(err);
-            else
-                resolve(client);
+            resolve(socket);
+        });
+
+        socket.once('error', function (err)
+        {
+            reject(err);
         });
     });
 }
-
-if (!resolve('$agent'))
-    register('$agent', chain(createClient, function (keys, key: string)
-    {
-        keys.push(key);
-        return keys;
-    }))
