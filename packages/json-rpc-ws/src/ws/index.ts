@@ -23,4 +23,6 @@ export function createServer<TConnection extends Connection = Connection>(option
     return new Server<TConnection>();
 };
 
+export { Client }
+
 export const connect = Client.connect;
