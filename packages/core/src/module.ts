@@ -151,6 +151,22 @@ export class Module extends Injector
         }
     }
 
+    public readyNew(...toInject: string[])
+    {
+        return <T>(ctor: new (...args: any[]) => T) =>
+        {
+            return this.ready(toInject, ctor.bind(ctor));
+        }
+    }
+
+    public readyNewAsync(...toInject: string[])
+    {
+        return function <T>(ctor: new (...args: any[]) => T)
+        {
+            return this.readyAsync(toInject, ctor.bind(ctor));
+        }
+    }
+
     public start(toInject?: string[], f?: Injectable<any>)
     {
         if (arguments.length > 0)

@@ -6,6 +6,7 @@ import { Template } from './template'
 import { IScope } from './scope'
 import { service } from './common'
 import { LocationService as Location } from './locationService'
+import { Injector } from '@akala/core'
 
 export type PartInstance = { scope: any, element: HTMLElement };
 
@@ -65,9 +66,18 @@ export class Part extends EventEmitter
         }
     }
 
-    public use<TScope extends IScope<any>>(url: string, partName: string = 'body', part: PartDefinition<TScope>)
+    public use<TScope extends IScope<any>>(url: string): Part
+    public use<TScope extends IScope<any>>(url: string, partName: string, part: PartDefinition<TScope>)
+    public use<TScope extends IScope<any>>(url: string, partName: string = 'body', part?: PartDefinition<TScope>)
     {
         var self = this;
+        if (!part)
+        {
+            var partService = new Part(this.template, new Router(), this.location);
+            partService.parts = new Injector(this.parts);
+
+            return partService;
+        }
         this.router.on(url, function (req: Request, next: akala.NextFunction)
         {
             console.log('apply part for url' + url);
