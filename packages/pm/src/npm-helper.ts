@@ -21,17 +21,17 @@ if (platform() == 'win32')
 
 export default
     {
-        async install(packageName: string, path: string)
+        async install(packageName: string, path?: string)
         {
-            await spawnAsync(npm, {}, 'i', packageName, '--prefix', path, '--production');
+            await spawnAsync(npm, {}, 'i', packageName, '--prefix', path || process.cwd(), '--production');
 
         },
-        async update(packageName: string, path: string)
+        async update(packageName: string, path?: string)
         {
-            await spawnAsync(npm, {}, 'up', packageName, '--prefix', path, '--production');
+            await spawnAsync(npm, {}, 'up', packageName, '--prefix', path || process.cwd(), '--production');
         },
-        async link(packageName: string, path: string)
+        async link(packageName: string, path?: string)
         {
-            await spawnAsync(npm, { cwd: path }, 'link', packageName)
+            await spawnAsync(npm, { cwd: path || process.cwd() }, 'link', packageName)
         }
     }

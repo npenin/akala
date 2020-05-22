@@ -1,8 +1,7 @@
 import State from "../state";
 import npmHelper from "../npm-helper";
 import { Container } from "@akala/commands";
-import { hasYarn } from "./install";
-import yarnHelper from "../yarn-helper";
+import yarnHelper, { hasYarn } from "../yarn-helper";
 import { createRequire } from "module";
 
 
@@ -12,12 +11,12 @@ export default async function update(this: State, packageName: string, folder: s
     var version = await pm.dispatch('version', packageName, folder);
 
 
-    if (await hasYarn())
-        await yarnHelper.install(packageName, folder || process.cwd());
+    if (await hasYarn(folder))
+        await yarnHelper.install(packageName, folder);
     else
-        await npmHelper.install(packageName, folder || process.cwd());
+        await npmHelper.install(packageName, folder);
 
-    await pm.dispatch('discover', packageName, createRequire(folder || process.cwd()))
+    await pm.dispatch('discover', packageName, folder || process.cwd())
 
     return 'updated from ' + version + ' to ' + await pm.dispatch('version', packageName, folder);
 };
