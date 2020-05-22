@@ -3,6 +3,7 @@ import { platform } from "os";
 import { fstat, existsSync, exists } from 'fs';
 import { promisify } from 'util';
 import { spawnAsync } from './clli-helper';
+import { join } from 'path';
 
 
 // if (typeof (process.versions.pnp) != 'undefined')
@@ -10,9 +11,9 @@ import { spawnAsync } from './clli-helper';
 
 // }
 
-function hasYarn()
+export function hasYarn(path?: string)
 {
-    return promisify(exists)('./yarn.lock')
+    return promisify(exists)(join(path || process.cwd(), './yarn.lock'))
 }
 
 var npm = 'yarn';
@@ -21,15 +22,15 @@ if (platform() == 'win32')
 
 export default
     {
-        async install(packageName: string, path: string)
+        async install(packageName: string, path?: string)
         {
             await spawnAsync(npm, { cwd: path }, 'add', packageName, '--production')
         },
-        async update(packageName: string, path: string)
+        async update(packageName: string, path?: string)
         {
             await spawnAsync(npm, { cwd: path }, 'upgrade', packageName, '--production')
         },
-        async link(packageName: string, path: string)
+        async link(packageName: string, path?: string)
         {
             await spawnAsync(npm, { cwd: path }, 'link', packageName, '--production')
         }
