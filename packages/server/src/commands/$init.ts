@@ -22,7 +22,13 @@ export default async function $init(container: Container<State>, options: any)
             container.dispatch('webpack', undefined, true);
     })
 
-    var html = new HtmlPlugin({ title: 'Output management', template: require.resolve('@akala/server/views/index.html'), xhtml: true, hash: true, inject: true });
+    var indexHtmlPath: string;
+    if (typeof process.versions['pnp'] != 'undefined')
+        indexHtmlPath = require.resolve('../../views/index.html');
+    else
+        indexHtmlPath = resolve(__dirname, '../../views/index.html');
+
+    var html = new HtmlPlugin({ title: 'Output management', template: indexHtmlPath, xhtml: true, hash: true, inject: true });
 
 
     container.state.webpack = {
@@ -101,13 +107,8 @@ export default async function $init(container: Container<State>, options: any)
                 masterRouter.useGet('/', async function (req, res)
                 {
                     res.statusCode = 200;
-                    if (typeof process.versions['pnp'] != 'undefined')
-                        // do something with the PnP API ...
-                        fs.createReadStream(require.resolve('../../views/index.html'), { autoClose: true }).pipe(res);
-                    else
-                        // fallback
-                        fs.createReadStream(resolve(__dirname, '../../views/index.html'), { autoClose: true }).pipe(res);
 
+                    fs.createReadStream(indexHtmlPath, { autoClose: true }).pipe(res);
                 });
         }
         else
