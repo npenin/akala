@@ -18,7 +18,7 @@ export default async function discover(this: State, packageName: string, folder:
     if (existsSync(path))
         if (isAbsolute(packageName))
         {
-            let stats = await fs.stat(path)
+            let stats = await fs.stat(packageName)
             if (stats.isFile())
                 tmpRequire = createRequire(packageName);
             else
