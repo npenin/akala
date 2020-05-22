@@ -15,23 +15,22 @@ function hasYarn()
     return promisify(exists)('./yarn.lock')
 }
 
-var npm = 'npm';
+var npm = 'yarn';
 if (platform() == 'win32')
-    npm = 'npm.cmd';
+    npm = 'yarn.cmd';
 
 export default
     {
         async install(packageName: string, path: string)
         {
-            await spawnAsync(npm, {}, 'i', packageName, '--prefix', path, '--production');
-
+            await spawnAsync(npm, { cwd: path }, 'add', packageName, '--production')
         },
         async update(packageName: string, path: string)
         {
-            await spawnAsync(npm, {}, 'up', packageName, '--prefix', path, '--production');
+            await spawnAsync(npm, { cwd: path }, 'upgrade', packageName, '--production')
         },
         async link(packageName: string, path: string)
         {
-            await spawnAsync(npm, { cwd: path }, 'link', packageName)
+            await spawnAsync(npm, { cwd: path }, 'link', packageName, '--production')
         }
     }

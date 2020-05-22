@@ -1,6 +1,4 @@
 import * as core from '@akala/core';
-import * as jsonrpc from '@akala/json-rpc-ws';
-import { url } from 'inspector';
 
 export var $$injector: core.Module = window['akala'] = core.extend(core.module('akala', 'akala-services', 'controls'),
     {
