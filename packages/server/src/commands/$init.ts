@@ -4,7 +4,7 @@ import '../triggers/http'
 import { State } from "../state";
 import { Injector, Binding } from "@akala/core";
 import * as webpack from './webpack'
-import { join } from "path";
+import { join, resolve } from "path";
 import HtmlPlugin = require('html-webpack-plugin');
 import { CleanWebpackPlugin as CleanPlugin } from 'clean-webpack-plugin'
 import CssExtractPlugin = require('mini-css-extract-plugin')
@@ -101,7 +101,13 @@ export default async function $init(container: Container<State>, options: any)
                 masterRouter.useGet('/', async function (req, res)
                 {
                     res.statusCode = 200;
-                    fs.createReadStream(require.resolve('../../views/index.html'), { autoClose: true }).pipe(res);
+                    if (typeof process.versions['pnp'] != 'undefined')
+                        // do something with the PnP API ...
+                        fs.createReadStream(require.resolve('../../views/index.html'), { autoClose: true }).pipe(res);
+                    else
+                        // fallback
+                        fs.createReadStream(resolve(__dirname, '../../views/index.html'), { autoClose: true }).pipe(res);
+
                 });
         }
         else
