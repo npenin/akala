@@ -70,7 +70,7 @@ export default async function $init(container: Container<State>, options: any)
                 new CssExtractPlugin({ moduleFilename: ({ name }) => `${name.replace('/js/', '/css/')}.css`, })
             ],
             devtool: 'source-map',
-            mode: 'development',
+            mode: container.state.mode || 'development',
             optimization: {
                 usedExports: true,
                 namedModules: true,
