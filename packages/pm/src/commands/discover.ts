@@ -1,5 +1,5 @@
 import State from "../state";
-import { join, isAbsolute, basename } from "path";
+import { join, isAbsolute, basename, resolve } from "path";
 import { existsSync, promises as fs } from "fs";
 import { description } from "../container";
 import map from './map'
@@ -35,9 +35,10 @@ export default async function discover(this: State, packageName: string, folder:
         }
         else
         {
+            path = resolve(path);
             let stats = await fs.stat(join(path, packageName))
             if (stats.isFile())
-                tmpRequire = createRequire(join(path, packageName))
+                tmpRequire = createRequire(join(path, packageName));
             else
                 tmpRequire = createRequire(join(path, packageName, './package.json'));
         }
