@@ -15,7 +15,9 @@ const debug = log('akala:server')
 
 export default async function $init(container: Container<State>, options: any)
 {
-    await serve(container, options);
+    var stop = await serve(container, options);
+    process.on('SIGINT', stop);
+
     container.state.assets = new Injector();
     var init = true;
     Binding.defineProperty(container.state, 'mode', options.mode || process.env.NODE_ENV).onChanged(function (ev)
@@ -117,5 +119,7 @@ export default async function $init(container: Container<State>, options: any)
         }
         else
             console.error('there is no router; Working in degraded mode');
+
     })();
+    return stop;
 }
