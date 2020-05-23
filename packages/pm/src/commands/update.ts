@@ -10,8 +10,7 @@ export default async function update(this: State, packageName: string, folder: s
 {
     var version = await pm.dispatch('version', packageName, folder);
 
-
-    if (await hasYarn(folder))
+    if (process.versions['pnp'])
         await yarnHelper.install(packageName, folder);
     else
         await npmHelper.install(packageName, folder);
