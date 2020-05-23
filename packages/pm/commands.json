@@ -133,7 +133,6 @@
                 "cli": {
                     "inject": [
                         "param.0",
-                        "ignore",
                         "container"
                     ]
                 }
@@ -371,20 +370,24 @@
             "name": "update",
             "inject": [
                 "param.0",
-                "param.1",
-                "container"
+                "param.1"
             ],
             "config": {
                 "": {
                     "inject": [
                         "param.0",
-                        "param.1",
-                        "container"
+                        "param.1"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/update.js",
                     "source": "src/commands/update.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "cli": {
                     "inject": [
                         "param.0",
                         "param.1",
