@@ -1,8 +1,11 @@
 import webpack from 'webpack'
 import { State } from '../state'
+import { log as debug } from '@akala/core';
 
 var compiler: webpack.Compiler;
 var watcher: webpack.Watching;
+
+const log = debug('webpack');
 
 export default async function compile(this: State, target?: string, reload?: boolean)
 {
@@ -17,7 +20,7 @@ export default async function compile(this: State, target?: string, reload?: boo
             });
         }
 
-        console.log(this.webpack.config)
+        log(this.webpack.config);
 
         compiler = webpack(this.webpack.config);
 
@@ -38,6 +41,7 @@ export default async function compile(this: State, target?: string, reload?: boo
         compiler.run((err, stats) =>
         {
             console.error(err);
+            log(stats);
             if (err)
                 reject(err);
             else

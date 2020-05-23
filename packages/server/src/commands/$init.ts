@@ -22,7 +22,7 @@ export default async function $init(container: Container<State>, options: any)
     {
         if (!init)
             container.dispatch('webpack', undefined, true);
-    })
+    });
 
     var indexHtmlPath: string;
     if (typeof process.versions['pnp'] != 'undefined')
