@@ -50,12 +50,12 @@ export default async function $init(container: Container<State>, options: any)
                 rules: [
                     {
                         test: /\.ts?$/,
-                        use: require.resolve('ts-loader'),
+                        use: require('ts-loader'),
                         exclude: /node_modules/,
                     },
                     {
                         test: /\.scss?$/,
-                        use: [CssExtractPlugin.loader, require.resolve('css-loader'), require.resolve('sass-loader')],
+                        use: [CssExtractPlugin.loader, require('css-loader'), require('sass-loader')],
                         exclude: /node_modules/,
                     },
                     {
