@@ -205,14 +205,12 @@
         {
             "name": "remove-asset",
             "inject": [
-                "container",
                 "param.0",
                 "param.1"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "container",
                         "param.0",
                         "param.1"
                     ]
@@ -221,7 +219,6 @@
                     "path": "dist/commands/remove-asset.js",
                     "source": "src/commands/remove-asset.ts",
                     "inject": [
-                        "container",
                         "param.0",
                         "param.1"
                     ]
@@ -231,19 +228,25 @@
         {
             "name": "require",
             "inject": [
-                "param.0"
+                "$injector",
+                "param.0",
+                "param.1"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0"
+                        "$injector",
+                        "param.0",
+                        "param.1"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/require.js",
                     "source": "src/commands/require.ts",
                     "inject": [
-                        "param.0"
+                        "ignore",
+                        "param.0",
+                        "param.1"
                     ]
                 },
                 "cli": {
