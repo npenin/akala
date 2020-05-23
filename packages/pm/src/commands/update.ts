@@ -20,5 +20,3 @@ export default async function update(this: State, packageName: string, folder: s
 
     return 'updated from ' + version + ' to ' + await pm.dispatch('version', packageName, folder);
 };
-
-exports.default.$inject = ['param.0', 'param.1', 'container']

@@ -1,5 +1,5 @@
 {
-    "name": "@akala/server",
+    "name": "server",
     "commands": [
         {
             "name": "$init",
@@ -211,25 +211,26 @@
         {
             "name": "require",
             "inject": [
-                "param.0",
-                "param.1",
-                "param.2"
+                "param.0"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
+                        "param.0"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/require.js",
                     "source": "src/commands/require.ts",
                     "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "$injector",
                         "param.0",
-                        "param.1",
-                        "param.2"
+                        "cwd"
                     ]
                 }
             }
