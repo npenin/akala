@@ -6,9 +6,13 @@ import { Container } from "@akala/commands";
 export default async function install(this: State, packageName: string, pm: Container<State>)
 {
     if (await hasYarn())
+    {
         await yarnHelper.install(packageName);
+        return await pm.dispatch('discover', packageName)
+    }
     else
+    {
         await npmHelper.install(packageName);
-
-    return await pm.dispatch('discover', packageName)
+        return await pm.dispatch('discover', packageName, 'node_modules')
+    }
 };
