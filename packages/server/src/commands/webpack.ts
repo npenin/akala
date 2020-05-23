@@ -30,8 +30,6 @@ export default async function compile(this: State, target?: string, reload?: boo
             {
                 if (err)
                     console.error(err);
-                else
-                    console.log(stats);
             })
         }
     }
