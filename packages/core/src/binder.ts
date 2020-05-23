@@ -28,9 +28,10 @@ export class Binding extends EventEmitter
             get()
             {
                 return value;
-            }, set(value: any)
+            }, set(newValue: any)
             {
-                binding.setValue(value, binding);
+                value = newValue;
+                binding.setValue(newValue, binding);
             }
         });
 
