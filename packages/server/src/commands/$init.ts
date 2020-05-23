@@ -2,7 +2,7 @@ import { serve, Container } from "@akala/commands";
 import { HttpRouter, router } from "../router";
 import '../triggers/http'
 import { State } from "../state";
-import { Injector, Binding } from "@akala/core";
+import { Injector, Binding, log } from "@akala/core";
 import * as webpack from './webpack'
 import { join, resolve } from "path";
 import HtmlPlugin = require('html-webpack-plugin');
@@ -10,6 +10,8 @@ import { CleanWebpackPlugin as CleanPlugin } from 'clean-webpack-plugin'
 import CssExtractPlugin = require('mini-css-extract-plugin')
 import { serveStatic } from "../master-meta";
 import fs from 'fs';
+
+const debug = log('akala:server')
 
 export default async function $init(container: Container<State>, options: any)
 {
@@ -110,6 +112,8 @@ export default async function $init(container: Container<State>, options: any)
 
                     fs.createReadStream(indexHtmlPath, { autoClose: true }).pipe(res);
                 });
+            else
+                debug('started in production mode');
         }
         else
             console.error('there is no router; Working in degraded mode');
