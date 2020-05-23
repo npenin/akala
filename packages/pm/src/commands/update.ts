@@ -11,11 +11,15 @@ export default async function update(this: State, packageName: string, folder: s
     var version = await pm.dispatch('version', packageName, folder);
 
     if (process.versions['pnp'])
-        await yarnHelper.install(packageName, folder);
+    {
+        await yarnHelper.update(packageName, folder);
+        await pm.dispatch('discover', packageName)
+    }
     else
-        await npmHelper.install(packageName, folder);
-
-    await pm.dispatch('discover', packageName, folder || process.cwd())
+    {
+        await npmHelper.update(packageName, folder);
+        await pm.dispatch('discover', packageName, 'node_modules')
+    }
 
     return 'updated from ' + version + ' to ' + await pm.dispatch('version', packageName, folder);
 };
