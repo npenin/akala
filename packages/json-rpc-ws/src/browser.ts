@@ -1,18 +1,15 @@
-import { Connection as BaseConnection, PayloadDataType, SerializableObject, SerializedBuffer, SocketAdapter, Parent, Deferred } from './shared-connection'
-import Errors from './errors';
+import { Connection as BaseConnection, SerializableObject, PayloadDataType, SerializedBuffer, Payload, SocketAdapter, Deferred, Parent } from './shared-connection';
+import { default as Client } from './shared-client';
+import { default as Errors, Payload as ErrorPayload } from './errors';
+
+
 import debug from 'debug';
 
 const logger = debug('json-rpc-ws');
 
-import Client from './ws/browser'
-
-export { Client }
-export { Errors }
-export function createClient()
-{
-  logger('createClient');
-  return new Client();
-}
+import * as ws from './ws/browser';
+export { ws };
+export { Client, SocketAdapter, Errors, BaseConnection, SerializableObject, Deferred, PayloadDataType, SerializedBuffer, Payload, ErrorPayload };
 
 class ByobReader implements ReadableStreamBYOBReader
 {
