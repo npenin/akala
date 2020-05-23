@@ -22,18 +22,6 @@ export type FSCommand = Metadata.Command & { config?: { fs?: FileSystemConfigura
 
 export class FileSystem<T> extends CommandProcessor<T>
 {
-    public static async versatileCommandRegister<T>(cmd: FSCommand, container: Container<T>)
-    {
-        if (cmd.config.fs)
-            if (container.processor instanceof FileSystem)
-                return container.register(configure('fs', cmd.config.fs)(new CommandProxy(container.processor, cmd.name)));
-            else
-                return container.register(configure('fs', cmd.config.fs)(new CommandProxy(new FileSystem(container, null), cmd.name)));
-        else if (cmd.config.http)
-            return container.register(configure('http', cmd.config.http)(new CommandProxy(new HttpClient(container), cmd.name)))
-        throw new Error(`no valid configuration was found for command ${cmd.name}`);
-    }
-
     public static async discoverCommands<T>(root: string, container: Container<T>, options?: { recursive?: boolean, processor?: Processor<T>, isDirectory?: boolean }): Promise<void>
     {
         throw new Error('this is not supported in a browser')
