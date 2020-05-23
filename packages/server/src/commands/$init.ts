@@ -57,7 +57,12 @@ export default async function $init(container: Container<State>, options: any)
                     },
                     {
                         test: /\.scss?$/,
-                        use: [CssExtractPlugin.loader, require.resolve('css-loader'), require.resolve('sass-loader')],
+                        use: [CssExtractPlugin.loader, require.resolve('css-loader'), {
+                            loader: require.resolve('sass-loader'),
+                            options: {
+                                implementation: require.resolve('node-sass'),
+                            },
+                        },],
                         exclude: /node_modules/,
                     },
                     {
