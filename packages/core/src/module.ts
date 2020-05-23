@@ -139,7 +139,10 @@ export class Module extends Injector
     {
         return <T>(ctor: new (...args: any[]) => T) =>
         {
-            return this.activate(toInject, ctor.bind(ctor));
+            return this.activate(toInject, function (...args)
+            {
+                return new ctor(...args);
+            });
         }
     }
 
@@ -147,7 +150,10 @@ export class Module extends Injector
     {
         return function <T>(ctor: new (...args: any[]) => T)
         {
-            return this.activateAsync(toInject, ctor.bind(ctor));
+            return this.activateAsync(toInject, function (...args)
+            {
+                return new ctor(...args);
+            });
         }
     }
 
@@ -155,7 +161,10 @@ export class Module extends Injector
     {
         return <T>(ctor: new (...args: any[]) => T) =>
         {
-            return this.ready(toInject, ctor.bind(ctor));
+            return this.ready(toInject, function (...args)
+            {
+                return new ctor(...args);
+            });
         }
     }
 
@@ -163,7 +172,10 @@ export class Module extends Injector
     {
         return function <T>(ctor: new (...args: any[]) => T)
         {
-            return this.readyAsync(toInject, ctor.bind(ctor));
+            return this.readyAsync(toInject, function (...args)
+            {
+                return new ctor(...args);
+            });
         }
     }
 
