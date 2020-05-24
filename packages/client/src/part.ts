@@ -89,6 +89,6 @@ export class Part extends EventEmitter
 
 export interface PartDefinition<TScope extends IScope<any>>
 {
-    template?: string;
+    template?: string | Promise<string>;
     controller?(scope: TScope, element: Element, params: any, next: () => void): void;
 }
