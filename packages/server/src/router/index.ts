@@ -199,17 +199,17 @@ export class HttpRouter extends Router<requestHandlerWithNext, errorHandlerWithN
         var route = this.route(path);
         route.addHandler((layer: HttpLayer<any>) =>
         {
-            // console.log('building upgrade layer for ' + path);
+            debug('building upgrade layer for ' + path);
             route.methods['upgrade'] = true;
             layer.isApplicable = <TRoute extends akala.Route<any, akala.Layer<any>>>(req, route: TRoute) =>
             {
                 var method = req.method.toLowerCase();
-                // console.log('upgrade layer received ' + method);
+                debug('upgrade layer received ' + method);
                 if (method == 'upgrade')
                 {
                     if (req.headers['connection'].toLowerCase() == 'upgrade' && req.headers['upgrade'].toLowerCase() == upgradeSupport)
                     {
-                        // log('layer received upgrade request');
+                        debug('layer received upgrade request');
                         return true;
                     }
                 }
