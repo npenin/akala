@@ -112,7 +112,12 @@ export default async function start(this: State, pm: description.pm & Container<
                 }
             }), true);
 
-            container = new Container(name, null, processor) as RunningContainer;
+            if (container)
+                this.processes.splice(this.processes.indexOf(container), 1, container = new Container(name, null, processor) as RunningContainer);
+            else
+                container = new Container(name, null, processor) as RunningContainer;
+
+
             container.dispatch('$metadata').then((metaContainer: Metadata.Container) =>
             {
                 registerCommands(metaContainer.commands, processor, container as Container<any>);
