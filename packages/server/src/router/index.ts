@@ -207,7 +207,7 @@ export class HttpRouter extends Router<requestHandlerWithNext, errorHandlerWithN
                 // console.log('upgrade layer received ' + method);
                 if (method == 'upgrade')
                 {
-                    if (req.headers['connection'].toLowerCase() == 'upgrade' && req.headers['upgrade'].toLowerCase() == 'websocket')
+                    if (req.headers['connection'].toLowerCase() == 'upgrade' && req.headers['upgrade'].toLowerCase() == upgradeSupport)
                     {
                         // log('layer received upgrade request');
                         return true;
