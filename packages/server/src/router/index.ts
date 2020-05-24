@@ -210,7 +210,6 @@ export class HttpRouter extends Router<requestHandlerWithNext, errorHandlerWithN
                     if (req.headers['connection'].toLowerCase() == 'upgrade' && req.headers['upgrade'].toLowerCase() == upgradeSupport)
                     {
                         debug('layer received upgrade request');
-                        debug(layer['isRequestHandler'])
                         return true;
                     }
                 }
