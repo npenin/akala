@@ -83,7 +83,7 @@ export default async function start(this: State, pm: description.pm & Container<
         cp.stderr?.pipe(new NewLinePrefixer(name + ' ')).pipe(process.stderr);
         cp.stdout?.pipe(new NewLinePrefixer(name + ' ')).pipe(process.stdout);
 
-        if (!container)
+        if (!container || !container.running)
         {
             var processor = new Processors.JsonRpc(new jsonrpc.Connection(new IpcAdapter(cp), {
                 type: 'client', getHandler(method: string)
