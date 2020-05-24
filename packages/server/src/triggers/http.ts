@@ -6,8 +6,6 @@ import * as worker from '../worker-meta';
 import { Local } from '@akala/commands/dist/processors';
 import * as http from 'http';
 import * as https from 'https';
-import * as tls from 'tls'
-import * as net from 'net'
 import * as http2 from 'http2';
 
 function wrapHttp<T>(container: Container<T>, command: Metadata.Command)

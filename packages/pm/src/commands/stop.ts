@@ -10,7 +10,16 @@ export default async function stop(this: State, name: string, container: Contain
             if (cp.process && cp.running)
             {
                 if (cp.commandable && cp.resolve('$stop'))
-                    await cp.dispatch('$stop')
+                {
+                    try
+                    {
+                        await cp.dispatch('$stop')
+                    }
+                    catch (e)
+                    {
+                        console.error(e);
+                    }
+                }
                 var timeout = setTimeout(function ()
                 {
                     cp.process.kill();
