@@ -6,7 +6,7 @@ import { configure } from "./decorators";
 
 export const ignoredCommands = ['$serve', '$metadata', '$attach']
 
-export function metadata(container: Container<any>): meta.Container
+export function metadata(container: Container<any>, deep?: boolean): meta.Container
 {
     var metacontainer: meta.Container = { name: container.name || 'unnamed', commands: [] };
     container.keys().forEach((key) =>
@@ -16,6 +16,12 @@ export function metadata(container: Container<any>): meta.Container
         var cmd = container.resolve<Command>(key);
         if (cmd && cmd.name && cmd instanceof Command && ignoredCommands.indexOf(cmd.name) == -1)
             metacontainer.commands.push({ name: cmd.name, inject: cmd.inject || [], config: cmd.config });
+        if (cmd instanceof Container && deep)
+        {
+            let subContainer = metadata(cmd as Container<any>, deep);
+            subContainer.commands.forEach(c => c.name = cmd.name + '.' + c.name)
+            metacontainer.commands.push(...subContainer.commands);
+        }
     });
     return metacontainer;
 }
