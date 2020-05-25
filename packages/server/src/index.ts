@@ -14,6 +14,7 @@ export type resolve = worker.resolve;
 
 import { description } from './commands'
 export { description }
+export { State } from './state'
 
 import * as commands from '@akala/commands'
 
