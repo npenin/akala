@@ -2,9 +2,9 @@ import { metadata } from "../generator";
 import { Container } from "../model/container";
 import * as meta from "../metadata";
 
-export default function $metadata(container: Container<any>): meta.Container
+export default function $metadata(container: Container<any>, deep: boolean): meta.Container
 {
-    return metadata(container);
+    return metadata(container, deep);
 }
 
-$metadata.$inject = ['container'];
+$metadata.$inject = ['container', 'param.0'];
