@@ -88,8 +88,10 @@ export default async function start(this: State, pm: description.pm & Container<
             var processor = new Processors.JsonRpc(new jsonrpc.Connection(new IpcAdapter(cp), {
                 type: 'client', getHandler(method: string)
                 {
+                    log(method);
                     return async function (params, reply)
                     {
+                        log(params);
                         try
                         {
                             if (!params)
@@ -98,6 +100,7 @@ export default async function start(this: State, pm: description.pm & Container<
                                 params._trigger = 'jsonrpc';
                             params.process = container;
                             var result = await pm.dispatch(method, params)
+                            log(result);
                             reply(null, result);
                         }
                         catch (error)
