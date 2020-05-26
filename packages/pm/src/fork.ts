@@ -7,6 +7,7 @@ import { lstatSync } from 'fs';
 import { IpcAdapter } from './commands/start';
 import debug from 'debug';
 import mock from 'mock-require'
+import { CommandNameProcessor } from '@akala/commands';
 
 (async function (folder)
 {
@@ -51,8 +52,10 @@ import mock from 'mock-require'
         var init = cliContainer.resolve('$init');
         if (init && init.config && init.config.cli && init.config.cli.options)
             args = yargs(process.argv.slice(3), init.config.cli.options);
-
-        var stop = await cliContainer.dispatch(init || '$serve', { options: args, param: args._, _trigger: 'cli', pm: new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer))) });
+        var pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer)));
+        pm.trap(pm.processor as CommandNameProcessor<any>);
+        pm.unregister('$metadata');
+        var stop = await cliContainer.dispatch(init || '$serve', { options: args, param: args._, _trigger: 'cli', pm: pm });
 
         if (stop && typeof stop == 'function')
             process.on('SIGINT', stop);
