@@ -16,7 +16,6 @@ const debug = log('akala:server')
 export default async function $init(container: Container<State>, options: any, pm: Container<void>)
 {
     var stop = await serve(container, options);
-    process.on('SIGINT', stop);
 
     container.state.pm = pm;
 

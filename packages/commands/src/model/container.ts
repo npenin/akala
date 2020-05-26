@@ -39,7 +39,7 @@ export class Container<TState> extends akala.Injector
     public trap(trapProcessor: CommandNameProcessor<TState>)
     {
         if (this._processor.requiresCommandName)
-            console.warn('You can assigna a trap, however, it will never get call with a processor that already need only the command name');
+            console.warn('You can assign a trap, however, it will never get call with a processor that already need only the command name');
         this._trapProcessor = trapProcessor;
     }
 
@@ -49,8 +49,7 @@ export class Container<TState> extends akala.Injector
         if (typeof state !== 'undefined')
             this.register('$state', state);
         this.register('$container', this);
-        var localProcessor = new Local(this);
-        this._processor = processor || localProcessor;
+        this._processor = processor || new Local(this);
         this.register(new Command($serve, '$serve', $serve.$inject))
         this.register(new Command($attach, '$attach', $attach.$inject))
         this.register(new Command($metadata, '$metadata', $metadata.$inject))
