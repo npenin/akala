@@ -23,6 +23,7 @@ export class JsonRpc<T> extends CommandProcessor<T>
 
     public static getConnection(socket: jsonrpcws.SocketAdapter, container?: Container<any>, log?: IDebugger): jsonrpcws.Connection
     {
+        var error = new Error();
         var connection = new jsonrpcws.Connection(socket, {
             type: 'client',
             disconnected()
@@ -42,7 +43,10 @@ export class JsonRpc<T> extends CommandProcessor<T>
 
                         var cmd = container.resolve(method);
                         if (!cmd)
-                            throw new Error(`Command with name ${method} could not be found on ${socket.constructor.name}`);
+                        {
+                            error.message = `Command with name ${method} could not be found on ${socket.constructor.name}`;
+                            throw error;
+                        }
 
                         if (!params)
                             params = { param: [] };
