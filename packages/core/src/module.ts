@@ -60,7 +60,7 @@ export class Module extends Injector
         var emitter = m.emitter;
         if (typeof m.dep == 'undefined')
             m.dep = [];
-        Module.o.add(m.name + '#activate', m.dep.map(dep => dep + '#activate'), function (done)
+        Module.o.add(m.name + '#activate', m.dep.map(dep => dep.name + '#activate'), function (done)
         {
             emitter.emit('activate', m.activateEvent);
             m.activateEvent.complete().then(() =>
@@ -69,7 +69,7 @@ export class Module extends Injector
             }, done);
         });
 
-        Module.o.add(m.name + '#ready', [m.name + '#activate'].concat(m.dep.map(dep => dep + '#ready')), function (done)
+        Module.o.add(m.name + '#ready', [m.name + '#activate'].concat(m.dep.map(dep => dep.name + '#ready')), function (done)
         {
             emitter.emit('ready', m.readyEvent);
             m.readyEvent.complete().then(() =>
