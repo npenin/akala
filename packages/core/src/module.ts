@@ -29,7 +29,7 @@ export class Module extends Injector
     {
         super(moduleInjector);
         var existingModule = moduleInjector.resolve<Module>(name);
-        if (existingModule && typeof (existingModule.dep) != 'undefined' && typeof (dep) != 'undefined')
+        if (existingModule && typeof (existingModule.dep) != 'undefined' && existingModule.dep.length && typeof (dep) != 'undefined' && dep.length)
             throw new Error('the module ' + existingModule.name + ' can be registered only once with dependencies');
         if (existingModule)
         {
