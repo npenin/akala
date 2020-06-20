@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
     "prepublishOnly": "tsc -p .",
-    "snyk-protect": "snyk protect"
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "files": [
     "dist",
@@ -59,8 +60,10 @@
     "style-loader": "^1.2.0",
     "ts-loader": "^7.0.1",
     "webpack": "^4.43.0",
-    "xml2js": "^0.4.23"
+    "xml2js": "^0.4.23",
+    "snyk": "^1.346.0"
   },
   "commands": "./commands.json",
-  "gitHead": "9a7dc56fd13ed7a84529bec5a8bbc0279e91165d"
+  "gitHead": "9a7dc56fd13ed7a84529bec5a8bbc0279e91165d",
+  "snyk": true
 }
