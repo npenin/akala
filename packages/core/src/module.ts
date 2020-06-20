@@ -25,7 +25,7 @@ export class ExtendableEvent
 
 export class Module extends Injector
 {
-    constructor(public name: string, public dep?: string[])
+    constructor(public name: string, public dep?: Module[])
     {
         super(moduleInjector);
         var existingModule = moduleInjector.resolve<Module>(name);
