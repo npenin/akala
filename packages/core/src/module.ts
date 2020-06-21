@@ -16,7 +16,11 @@ export class ExtendableEvent
 
     public complete()
     {
-        return Promise.all(this.promises).finally(() => this._done = true);
+        const done = () =>
+        {
+            this._done = true;
+        }
+        return Promise.all(this.promises).then(done, done);
     }
 
     public get done() { return this._done; }
@@ -60,22 +64,16 @@ export class Module extends Injector
         var emitter = m.emitter;
         if (typeof m.dep == 'undefined')
             m.dep = [];
-        Module.o.add(m.name + '#activate', m.dep.map(dep => dep.name + '#activate'), function (done)
+        Module.o.add(m.name + '#activate', m.dep.map(dep => dep.name + '#activate'), function ()
         {
             emitter.emit('activate', m.activateEvent);
-            m.activateEvent.complete().then(() =>
-            {
-                done();
-            }, done);
+            return m.activateEvent.complete();
         });
 
-        Module.o.add(m.name + '#ready', [m.name + '#activate'].concat(m.dep.map(dep => dep.name + '#ready')), function (done)
+        Module.o.add(m.name + '#ready', [m.name + '#activate'].concat(m.dep.map(dep => dep.name + '#ready')), function ()
         {
             emitter.emit('ready', m.readyEvent);
-            m.readyEvent.complete().then(() =>
-            {
-                done();
-            }, done);
+            return m.readyEvent.complete();
         });
 
         Module.o.add(m.name, [m.name + '#ready'], function () { });
