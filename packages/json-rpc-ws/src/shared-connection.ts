@@ -1,6 +1,7 @@
 import { v4 as uuid } from 'uuid';
 import debug from 'debug';
 import { default as Errors, Error as ConnectionError, ErrorTypes } from './errors';
+import { promises } from 'fs';
 const logger = debug('json-rpc-ws');
 
 
@@ -20,10 +21,11 @@ export interface Payload<T>
     stream?: boolean;
 }
 
-export class Deferred<T> extends Promise<T>
+export class Deferred<T> implements PromiseLike<T>
 {
     private _resolve?: (value?: T | PromiseLike<T> | undefined) => void;
     private _reject?: (reason?: any) => void;
+    promise: Promise<T>;
     resolve(_value?: T | PromiseLike<T> | undefined): void
     {
         if (typeof (this._resolve) == 'undefined')
@@ -42,13 +44,31 @@ export class Deferred<T> extends Promise<T>
     {
         var _resolve;
         var _reject;
-        super((resolve, reject) =>
+        this.promise = new Promise<T>((resolve, reject) =>
         {
             _resolve = resolve;
             _reject = reject;
         });
         this._resolve = _resolve;
         this._reject = _reject;
+    }
+
+    public then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>
+    {
+        return this.promise.then(onfulfilled, onrejected);
+    }
+    public catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>
+    {
+        return this.promise.catch(onrejected);
+    }
+    public finally(onfinally?: (() => void) | undefined | null): Promise<T>
+    {
+        return this.promise.finally(onfinally);
+    }
+
+    public get [Symbol.toStringTag]()
+    {
+        return this.promise[Symbol.toStringTag];
     }
 }
 
@@ -290,13 +310,13 @@ export abstract class Connection<TStreamable>
             {
                 var cleanResult = {};
                 Object.getOwnPropertyNames(result).forEach(p =>
-                    {
-                        if (p[0] != '_')
+                {
+                    if (p[0] != '_')
                         Object.defineProperty(cleanResult, p, Object.getOwnPropertyDescriptor(result, p) as PropertyDescriptor)
-                    });
-                }
-                else
-                cleanResult=result;
+                });
+            }
+            else
+                cleanResult = result;
 
             response.result = cleanResult;
             if (response.stream)
