@@ -1,7 +1,9 @@
 import * as di from './global-injector'
 import orchestrator from 'orchestrator'
-import { EventEmitter } from 'events'
+import Emittery, { EventEmitter } from 'events'
 import { Injector, InjectableWithTypedThis, InjectableAsyncWithTypedThis, Injectable } from './injector';
+import { eachAsync } from './helpers';
+import { Deferred } from '@akala/json-rpc-ws';
 
 process.hrtime = process.hrtime || require('browser-process-hrtime');
 
@@ -14,13 +16,21 @@ export class ExtendableEvent
         this.promises.push(p)
     }
 
-    public complete()
+    private readonly _whenDone = new Deferred<void>();
+
+    public get whenDone(): PromiseLike<void>
     {
-        const done = () =>
+        return this._whenDone;
+    }
+
+    public async complete()
+    {
+        for (var p of this.promises)
         {
-            this._done = true;
+            await p;
         }
-        return Promise.all(this.promises).then(done, done);
+        this._whenDone.resolve();
+        this._done = true;
     }
 
     public get done() { return this._done; }
@@ -64,16 +74,31 @@ export class Module extends Injector
         var emitter = m.emitter;
         if (typeof m.dep == 'undefined')
             m.dep = [];
-        Module.o.add(m.name + '#activate', m.dep.map(dep => dep.name + '#activate'), function ()
+        var activateDependencies = m.dep.map(dep => dep.name + '#activate');
+        Module.o.add(m.name + '#activate', activateDependencies, async function ()
         {
-            emitter.emit('activate', m.activateEvent);
-            return m.activateEvent.complete();
+            var handlers = emitter.rawListeners('activate');
+            await eachAsync(handlers, (f, i, next) =>
+            {
+                var result = f(m.activateEvent);
+                if (result && typeof result.then === 'function')
+                    result.then(() => next(), next);
+                else
+                    next();
+            });
+            await m.activateEvent.complete();
         });
 
-        Module.o.add(m.name + '#ready', [m.name + '#activate'].concat(m.dep.map(dep => dep.name + '#ready')), function ()
+        Module.o.add(m.name + '#ready', [m.name + '#activate'].concat(m.dep.map(dep => dep.name + '#ready')), async function ()
         {
-            emitter.emit('ready', m.readyEvent);
-            return m.readyEvent.complete();
+            var handlers = emitter.rawListeners('ready');
+            await eachAsync(handlers, (f, i, next) =>
+            {
+                var result = f(m.readyEvent);
+                if (result && typeof result.then === 'function')
+                    result.then(() => next(), next);
+            })
+            await m.readyEvent.complete();
         });
 
         Module.o.add(m.name, [m.name + '#ready'], function () { });
@@ -179,10 +204,13 @@ export class Module extends Injector
 
     public start(toInject?: string[], f?: Injectable<any>)
     {
-        if (arguments.length > 0)
-            Module.o.on('stop', this.injectWithName(toInject, f));
-        else
+        return new Promise<void>((resolve, reject) =>
+        {
+            if (arguments.length > 0)
+                Module.o.on('stop', this.injectWithName(toInject, f));
+            Module.o.on('stop', () => resolve());
             Module.o.start(this.name);
+        })
     }
 }
 

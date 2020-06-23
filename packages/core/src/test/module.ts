@@ -4,7 +4,6 @@ import { module } from '..';
 import * as assert from 'assert'
 
 var activate: any = {};
-var ready: any = {};
 
 module('a').activate([], function ()
 {
@@ -12,17 +11,23 @@ module('a').activate([], function ()
 })
 module('b', 'a').activate([], function ()
 {
+    assert.ok(activate.a, 'a is not activated for b');
+
     activate.b = true;
 })
-module('c').activate([], function ()
+module('c').activate([], async function ()
 {
-    activate.c = true;
-})
-module('c', 'b').activate([], function ()
-{
+    await module('b').start();
+
     if (!activate.a || !activate.b)
         throw new Error();
 })
+module('c').activate([], function ()
+{
+    console.log('activation of c');
+    assert.ok(activate.a, 'a is not activated for c');
+    assert.ok(activate.b, 'b is not activated for c');
+    activate.c = true;
+})
 
 module('c').start([], () => assert.deepEqual(activate, { a: true, b: true, c: true }));
-module('c').start();
