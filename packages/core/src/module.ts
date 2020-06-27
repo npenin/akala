@@ -1,14 +1,25 @@
 import * as di from './global-injector'
 import orchestrator from 'orchestrator'
-import Emittery, { EventEmitter } from 'events'
 import { Injector, InjectableWithTypedThis, InjectableAsyncWithTypedThis, Injectable } from './injector';
 import { eachAsync } from './helpers';
-import { Deferred } from '@akala/json-rpc-ws';
+import debug from 'debug'
+
+const orchestratorLog = debug('akala:module:orchestrator');
 
 process.hrtime = process.hrtime || require('browser-process-hrtime');
 
 export class ExtendableEvent
 {
+    private markAsDone: (value?: void | PromiseLike<void>) => void;
+    private _triggered: boolean;
+    constructor()
+    {
+        this._whenDone = new Promise<void>((resolve, reject) =>
+        {
+            this.markAsDone = resolve;
+        })
+    }
+
     private promises: PromiseLike<any>[] = [];
 
     public waitUntil<T>(p: PromiseLike<T>): void
@@ -16,9 +27,43 @@ export class ExtendableEvent
         this.promises.push(p)
     }
 
-    private readonly _whenDone = new Deferred<void>();
+    private handlers: ((ev: this) => void | PromiseLike<void>)[] = [];
 
-    public get whenDone(): PromiseLike<void>
+    public async trigger()
+    {
+        if (!this._triggered)
+        {
+            this._triggered = true;
+            await eachAsync(this.handlers, (f, i, next) =>
+            {
+                var result = f(this);
+                if (result && typeof result.then === 'function')
+                    result.then(() => next(), next);
+                else
+                    next();
+            });
+        }
+        await this.complete();
+    }
+
+    public addHandler(handler: (ev: this) => void | PromiseLike<void>)
+    {
+        if (this._done || this._triggered)
+        {
+            handler(this);
+        }
+        else
+            this.handlers.push(handler);
+    }
+
+    public get triggered()
+    {
+        return this._triggered;
+    }
+
+    private readonly _whenDone: Promise<void>;
+
+    public get whenDone(): Promise<void>
     {
         return this._whenDone;
     }
@@ -29,7 +74,7 @@ export class ExtendableEvent
         {
             await p;
         }
-        this._whenDone.resolve();
+        this.markAsDone();
         this._done = true;
     }
 
@@ -59,46 +104,38 @@ export class Module extends Injector
             return existingModule;
         }
         Module.registerModule(this);
-        this.emitter.setMaxListeners(0);
     }
-
-    private emitter = new EventEmitter();
 
     private static o = new orchestrator();
 
     public readonly activateEvent = new ExtendableEvent();
     public readonly readyEvent = new ExtendableEvent();
 
+    public addDependency(m: Module)
+    {
+        if (this.dep.indexOf(m) != -1)
+            return;
+        delete Module.o.tasks[this.name + '#activate'];
+        delete Module.o.tasks[this.name + '#ready'];
+        delete Module.o.tasks[this.name];
+        this.dep.push(m);
+        moduleInjector.unregister(this.name);
+        Module.registerModule(this);
+    }
+
     public static registerModule(m: Module)
     {
-        var emitter = m.emitter;
         if (typeof m.dep == 'undefined')
             m.dep = [];
         var activateDependencies = m.dep.map(dep => dep.name + '#activate');
-        Module.o.add(m.name + '#activate', activateDependencies, async function ()
+        Module.o.add(m.name + '#activate', activateDependencies, function ()
         {
-            var handlers = emitter.rawListeners('activate');
-            await eachAsync(handlers, (f, i, next) =>
-            {
-                var result = f(m.activateEvent);
-                if (result && typeof result.then === 'function')
-                    result.then(() => next(), next);
-                else
-                    next();
-            });
-            await m.activateEvent.complete();
+            return m.activateEvent.trigger();
         });
 
-        Module.o.add(m.name + '#ready', [m.name + '#activate'].concat(m.dep.map(dep => dep.name + '#ready')), async function ()
+        Module.o.add(m.name + '#ready', [m.name + '#activate'].concat(m.dep.map(dep => dep.name + '#ready')), function ()
         {
-            var handlers = emitter.rawListeners('ready');
-            await eachAsync(handlers, (f, i, next) =>
-            {
-                var result = f(m.readyEvent);
-                if (result && typeof result.then === 'function')
-                    result.then(() => next(), next);
-            })
-            await m.readyEvent.complete();
+            return m.readyEvent.trigger();
         });
 
         Module.o.add(m.name, [m.name + '#ready'], function () { });
@@ -112,10 +149,7 @@ export class Module extends Injector
     {
         if (!f)
             return (f: InjectableWithTypedThis<any, ExtendableEvent>) => this.ready(toInject, f);
-        if (this.readyEvent.done)
-            this.injectWithName(toInject, f)();
-        else
-            this.emitter.on('ready', this.injectWithName(toInject, f));
+        this.readyEvent.addHandler(this.injectWithName(toInject, f));
         return this;
     }
 
@@ -125,10 +159,7 @@ export class Module extends Injector
     {
         if (!f)
             return (f: InjectableWithTypedThis<any, ExtendableEvent>) => this.readyAsync(toInject, f);
-        if (this.readyEvent.done)
-            return this.injectWithNameAsync(toInject, f.bind(this.readyEvent) as InjectableAsyncWithTypedThis<any, ExtendableEvent>);
-        else
-            this.emitter.on('ready', (ev) => { this.injectWithNameAsync(toInject, f.bind(ev) as InjectableAsyncWithTypedThis<any, ExtendableEvent>) });
+        this.readyEvent.addHandler(ev => this.injectWithNameAsync(toInject, f.bind(ev)));
         return this;
     }
 
@@ -138,10 +169,7 @@ export class Module extends Injector
     {
         if (!f)
             return (f: InjectableWithTypedThis<any, ExtendableEvent>) => this.activate(toInject, f);
-        if (this.activateEvent.done)
-            this.injectWithName(toInject, f)();
-        else
-            this.emitter.on('activate', this.injectWithName(toInject, f));
+        this.activateEvent.addHandler(this.injectWithName(toInject, f));
         return this;
     }
 
@@ -151,10 +179,7 @@ export class Module extends Injector
     {
         if (!f)
             return (f: InjectableAsyncWithTypedThis<any, ExtendableEvent>) => this.activateAsync(toInject, f);
-        if (this.readyEvent.done)
-            return this.injectWithNameAsync(toInject, f.bind(this.readyEvent) as InjectableAsyncWithTypedThis<any, ExtendableEvent>);
-        else
-            this.emitter.on('activate', (ev: ExtendableEvent) => { this.injectWithNameAsync(toInject, f.bind(ev) as InjectableAsyncWithTypedThis<any, ExtendableEvent>) });
+        this.activateEvent.addHandler(ev => this.injectWithNameAsync(toInject, f.bind(this.activateEvent)));
         return this;
     }
 
@@ -213,6 +238,9 @@ export class Module extends Injector
         })
     }
 }
+
+Module['o'].on('task_start', orchestratorLog)
+Module['o'].on('task_stop', orchestratorLog)
 
 
 var moduleInjector = di.resolve<Injector>('$modules');
