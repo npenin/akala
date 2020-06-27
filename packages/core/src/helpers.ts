@@ -5,7 +5,7 @@ import { chain } from './chain'
 export { Module };
 export * from './promiseHelpers';
 export { each as eachAsync, NextFunction } from './eachAsync';
-export { each, grep } from './each';
+export { each, grep, Proxy, map } from './each';
 export * from './router';
 import log from 'debug';
 

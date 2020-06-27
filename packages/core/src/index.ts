@@ -11,8 +11,8 @@ export * from './queue'
 import { Module, ExtendableEvent } from './module';
 export { Module, ExtendableEvent };
 export * from './promiseHelpers';
-export { each as eachAsync, NextFunction } from './eachAsync';
-export { each, grep, map, Proxy } from './each';
+// export { each as eachAsync, NextFunction } from './eachAsync';
+// export { each, grep, map, Proxy } from './each';
 export * from './interpolate';
 import * as introspect from './reflect';
 export { introspect };
