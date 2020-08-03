@@ -26,7 +26,7 @@ import '../model/client';
 import '../model/user';
 import { resolve } from 'path';
 
-var hash = akala.injectWithNameAsync(['$config.@akala-modules/authentication.secret'], function (secret)
+var hash = akala.defaultInjector.injectWithNameAsync(['$config.@akala-modules/authentication.secret'], function (secret)
 {
     return function hash(s: string)
     {
@@ -127,7 +127,7 @@ passport.use('local', new LocalStrategy({ session: false },
             {
                 if (!await store.User.any())
                 {
-                    user = await akala.resolveAsync<User>('$config.@akala-modules/authentication.default');
+                    user = await akala.defaultInjector.resolveAsync<User>('$config.@akala-modules/authentication.default');
                     if (!user)
                     {
                         user = { name: 'admin', displayName: 'Admin', password: (await hash)('admin') };

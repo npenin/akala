@@ -39,16 +39,16 @@ mainRouter.use(function (error)
 common.serviceModule.register('$location', new location.LocationService());
 common.serviceModule.register('promisify', core.Promisify);
 
-
 // export { Promisify, Deferred };
 export var run: typeof common.$$injector.ready = common.$$injector.ready.bind(common.$$injector);
 
 common.$$injector.activate([], function ()
 {
-    var rootScope = common.$$injector.register('$rootScope', new scope.Scope());
+    common.$$injector.register('$rootScope', new scope.Scope());
 
-    applyTemplate([document.body], rootScope);
 });
+
+export { applyTemplate };
 
 export function load(...scripts: string[])
 {

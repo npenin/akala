@@ -79,12 +79,12 @@ describe('test http processing', function ()
     {
         debugger;
         calculator.dispatch('reset');
-        akala.register('$resolveUrl', function (url: string)
+        akala.defaultInjector.register('$resolveUrl', function (url: string)
         {
             return new URL(url, 'http://localhost:8887/');
         })
         var container = metadata(calculator);
-        var calculatorProxy = proxy(container, new HttpClient(akala.resolve('$injector')));
+        var calculatorProxy = proxy(container, new HttpClient(akala.defaultInjector.resolve('$injector')));
         assert.equal(calculator.state.value, 0)
         await calculatorProxy.dispatch('increment');
         assert.equal(calculator.state.value, 1)

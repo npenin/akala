@@ -1,0 +1,212 @@
+import { getParamNames } from './reflect';
+import debug from 'debug';
+import { isPromiseLike } from './promiseHelpers';
+import { EventEmitter } from 'events';
+import "reflect-metadata";
+import { Injector, InjectedParameter, InjectableConstructor, Injectable } from './injector';
+
+var log = debug('akala:core:injector');
+
+function ctorToFunction(this: new () => any)
+{
+    var args = [null];
+    for (var i = 0; i < arguments.length; i++)
+        args[i + 1] = arguments[i];
+    return new (Function.prototype.bind.apply(this, args));
+}
+
+export type PropertyInjection = ((i: Injector) => void);
+export type ParameterInjection = ((i: Injector) => InjectedParameter<any>);
+
+export const injectSymbol = Symbol('inject');
+export const afterInjectSymbol = Symbol('after-inject');
+
+export interface InjectableOjbect
+{
+    [injectSymbol]: ((i: Injector) => void)[];
+};
+
+export function inject(name?: string)
+{
+    return function (target: any, propertyKey: string, parameterIndex?: number)
+    {
+        if (typeof parameterIndex == 'number')
+        {
+            if (!name)
+                throw new Error('name is required as parameter names are not available in reflection');
+            var injections: { [key: string]: (PropertyInjection | ParameterInjection)[] } = Reflect.getOwnMetadata(injectSymbol, target, propertyKey) || { [propertyKey]: [] };
+            if (!injections[propertyKey])
+                injections[propertyKey] = [];
+            injections[propertyKey].push({
+                ['parameterInjection_' + name]: function (injector: Injector)
+                {
+                    var resolved = injector.resolve(name);
+                    return { index: parameterIndex, value: resolved };
+                }
+            }['parameterInjection_' + name]);
+            Reflect.defineMetadata(injectSymbol, injections, target, propertyKey)
+        }
+        else
+        {
+            var injections: { [key: string]: (PropertyInjection | ParameterInjection)[] } = Reflect.getOwnMetadata(injectSymbol, target) || {};
+            if (!injections[propertyKey])
+                injections[propertyKey] = [];
+            injections[propertyKey].push({
+                ['propertyInjection_' + (name || propertyKey)]: function (injector: Injector)
+                {
+                    this[propertyKey] = injector.resolve(name || propertyKey);
+                }
+            }['propertyInjection_' + (name || propertyKey)]);
+
+            Reflect.defineMetadata(injectSymbol, injections, target)
+
+        }
+    }
+}
+
+export function applyInjector(injector: Injector, obj: any, prototype?: any)
+{
+    var injections = Reflect.getOwnMetadata(injectSymbol, prototype || obj);
+    if (injections && injections.length)
+        injections.forEach(f => f(injector));
+
+    if (prototype !== Object.prototype)
+        applyInjector(injector, obj, Reflect.getPrototypeOf(prototype || obj));
+
+    for (let property in injections)
+    {
+        if (property && property.length)
+        {
+            var descriptor = Reflect.getOwnPropertyDescriptor(obj, property);
+            if (!descriptor && prototype)
+            {
+                descriptor = Reflect.getOwnPropertyDescriptor(prototype, property);
+                if (descriptor && typeof descriptor.value !== 'function')
+                    descriptor = null;
+            }
+            if (!descriptor)
+            {
+                let valueSet = false;
+                let value: any;
+                Reflect.defineProperty(obj, property, {
+                    get()
+                    {
+                        if (valueSet)
+                            return value;
+                        injections[property].forEach(i => i.call(obj, injector));
+                        return obj[property];
+                    },
+                    set(v)
+                    {
+                        value = v;
+                        valueSet = true;
+                    }
+                })
+
+            }
+            else if (descriptor.value)
+            {
+                let oldFunction = descriptor.value;
+                Object.defineProperty(obj, property, {
+                    value(...args: any[]) 
+                    {
+                        (injections as ParameterInjection[]).
+                            map(p => p(injector)).
+                            forEach(p => args[p.index] = typeof args[p.index] == 'undefined' && p.value || args[p.index]);
+                        oldFunction.apply(this, args);
+                    }
+                })
+            }
+        }
+    }
+}
+
+export function injectable<TInstance, TClass extends { new(...args: any[]): TInstance }>(ctor: TClass): TClass
+{
+    //@ts-expect-error
+    let result = class DynamicProxy extends ctor
+    {
+        constructor(...args: any[])
+        {
+            let injectionObj: { [key: string]: ParameterInjection[] } = Reflect.getOwnMetadata(injectSymbol, ctor);
+            if (injectionObj)
+                var injections = injectionObj['undefined'];
+            var injector: Injector = Reflect.getOwnMetadata(injectSymbol, new.target)
+            if (!injector)
+            {
+                injector = args.shift();
+                if ((!injector || !(injector instanceof Injector)) && injections && injections.length)
+                    throw new Error(`No injector was provided while it is required to construct ${ctor}`)
+                if (injector)
+                    Reflect.defineMetadata(injectSymbol, injector, new.target);
+            }
+            var injected = injections && injections.map(f => f(injector)) || [];
+            injected = injected.filter(p => typeof p.index == 'number');
+            super(...Injector.mergeArrays(injected, ...args))
+            Reflect.deleteMetadata(injectSymbol, new.target);
+            // Object.setPrototypeOf(this, Object.create(ctor.prototype));
+            if (new.target == result)
+            {
+                applyInjector(injector, this);
+                if (typeof (this[afterInjectSymbol]) != 'undefined')
+                    this[afterInjectSymbol]();
+            }
+        }
+    }
+
+    // Object.setPrototypeOf(result, Object.create(ctor.prototype));
+
+    Object.assign(result, ctor);
+
+    return result;
+}
+
+export type InjectableClass<T> = T & {
+    new(injector: Injector): T;
+};
+
+export function useInjector(injector: Injector)
+{
+    return function classInjectorDecorator<TClass extends { new(...args: any[]): object }>(ctor: TClass): InjectableClass<TClass>
+    {
+        let result = class InjectedDynamicProxy extends injectable(ctor)
+        {
+            constructor(...args: any[])
+            {
+                Reflect.defineMetadata(injectSymbol, injector, new.target);
+                super(...args);
+            }
+        }
+
+        Object.assign(result, ctor);
+
+        //@ts-expect-error
+        return result;
+    }
+}
+
+export function extendInject<TClass extends { new(...args: any[]): object }>(injector: Injector, constructor: TClass)
+{
+    return useInjector(injector)<TClass>(constructor);
+}
+
+
+export class ReflectionInjector extends Injector
+{
+    constructor(protected parent?: Injector)
+    {
+        super(parent);
+    }
+
+    public injectNew<T>(ctor: InjectableConstructor<T>)
+    {
+        return this.inject<T>(ctorToFunction.bind(ctor));
+    }
+
+    public injectNewWithName(toInject: string[], ctor: Function)
+    {
+        return this.injectWithName(toInject, ctorToFunction.bind(ctor));
+    }
+}
+
+export var defaultInjector = new Injector();

@@ -1,19 +1,18 @@
-import * as di from '@akala/core'
-import { control, BaseControl } from './control'
-import { Promisify, Binding } from '@akala/core'
+import { control, BaseControl, Control } from './control'
+import { Promisify, Binding, extendInject } from '@akala/core'
 import { Text } from './text'
 
-@control()
+@control('href')
 export class Href extends Text
 {
     constructor()
     {
-        super('href');
+        super();
     }
 
 
-    protected setValue(element: Element, value)
+    public apply(value: string)
     {
-        element.attributes['href'] = value;
+        this.element.attributes['href'] = value;
     }
 }

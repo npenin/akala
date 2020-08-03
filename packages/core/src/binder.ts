@@ -44,6 +44,8 @@ export class Binding extends EventEmitter
 
     public static unbindify<T>(element: T): Partial<T>
     {
+        if (element instanceof Binding)
+            return element.getValue();
         return map(element, function (value, key)
         {
             if (typeof (value) == 'object')
@@ -79,6 +81,10 @@ export class Binding extends EventEmitter
     public onChanging(handler: (ev: EventArgs) => void)
     {
         this.on(Binding.ChangingFieldEventName, handler);
+        return () =>
+        {
+            this.off(Binding.ChangedFieldEventName, handler);
+        }
     }
 
     public onChanged(handler: (ev: EventArgs) => void, doNotTriggerHandler?: boolean)
@@ -93,11 +99,19 @@ export class Binding extends EventEmitter
                 },
                 source: null
             });
+        return () =>
+        {
+            this.off(Binding.ChangedFieldEventName, handler);
+        }
     }
 
     public onError(handler: (ev: EventArgs) => void)
     {
         this.on(Binding.ErrorEventName, handler);
+        return () =>
+        {
+            this.off(Binding.ChangedFieldEventName, handler);
+        }
     }
 
     private registeredBindings: Binding[] = [];

@@ -8,6 +8,7 @@ export const ignoredCommands = ['$serve', '$metadata', '$attach']
 
 export function metadata(container: Container<any>, deep?: boolean): meta.Container
 {
+    // console.log(deep);
     var metacontainer: meta.Container = { name: container.name || 'unnamed', commands: [] };
     container.keys().forEach((key) =>
     {
@@ -18,6 +19,7 @@ export function metadata(container: Container<any>, deep?: boolean): meta.Contai
             metacontainer.commands.push({ name: cmd.name, inject: cmd.inject || [], config: cmd.config });
         if (cmd instanceof Container && deep)
         {
+            // console.log(cmd);
             let subContainer = metadata(cmd as Container<any>, deep);
             subContainer.commands.forEach(c => c.name = cmd.name + '.' + c.name)
             metacontainer.commands.push(...subContainer.commands);

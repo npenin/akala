@@ -1,5 +1,6 @@
 export * from './injector';
-export * from './global-injector';
+export { InjectableOjbect, ParameterInjection, PropertyInjection, useInjector, extendInject, inject, injectSymbol, afterInjectSymbol, injectable } from './reflection-injector';
+// export * from './global-injector';
 export * from './factory';
 export * from './http';
 export * from './service';

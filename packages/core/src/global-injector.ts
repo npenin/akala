@@ -1,5 +1,5 @@
 import { Module } from './module'
-import { Injector, Injectable, Injected, InjectableAsync, defaultInjector } from './injector';
+import { Injector, Injectable, Injected, InjectableAsync, defaultInjector, InjectableConstructor } from './injector';
 
 declare var $$defaultInjector;
 
@@ -39,7 +39,7 @@ export function exec<T>(...toInject: string[]): (f: Injectable<T>) => T
     return defaultInjector.exec(...toInject);
 }
 
-export function injectNew<T>(a: Injectable<T>)
+export function injectNew<T>(a: InjectableConstructor<T>)
 {
     return defaultInjector.injectNew(a);
 }

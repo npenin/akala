@@ -18,7 +18,12 @@ export class JsonRpc<T> extends CommandProcessor<T>
             {
                 resolve(socket);
             });
-        }).then((socket) => new JsonRpc(JsonRpc.getConnection(socket)));
+        }).then((socket) =>
+        {
+            var provier = new JsonRpc(JsonRpc.getConnection(socket))
+            provier.passthrough = true;
+            return provier;
+        });
     }
 
     public static getConnection(socket: jsonrpcws.SocketAdapter, container?: Container<any>, log?: IDebugger): jsonrpcws.Connection
@@ -73,9 +78,9 @@ export class JsonRpc<T> extends CommandProcessor<T>
         return connection;
     }
 
-    public process(command: string, params: { param: jsonrpcws.SerializableObject[], [key: string]: jsonrpcws.SerializableObject | jsonrpcws.SerializableObject[] | string | number }): Promise<any>
-    public process(command: Command, params: { param: jsonrpcws.SerializableObject[], [key: string]: jsonrpcws.SerializableObject | jsonrpcws.SerializableObject[] | string | number }): Promise<any>
-    public process(command: Command | string, params: { param: jsonrpcws.SerializableObject[], [key: string]: jsonrpcws.SerializableObject | jsonrpcws.SerializableObject[] | string | number }): Promise<any>
+    public process(command: string, params: { param?: jsonrpcws.PayloadDataType<void>, [key: string]: jsonrpcws.PayloadDataType<void> }): Promise<any>
+    public process(command: Command, params: { param?: jsonrpcws.PayloadDataType<void>, [key: string]: jsonrpcws.PayloadDataType<void> }): Promise<any>
+    public process(command: Command | string, params: { param?: jsonrpcws.PayloadDataType<void>, [key: string]: jsonrpcws.PayloadDataType<void> }): Promise<any>
     {
         return new Promise<any>((resolve, reject) =>
         {

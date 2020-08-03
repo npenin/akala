@@ -3,12 +3,12 @@ import { control, BaseControl } from './control'
 import { Promisify, Binding } from '@akala/core'
 import { Text } from './text'
 
-@control()
+@control('json')
 export class Json extends Text
 {
     constructor()
     {
-        super('json');
+        super();
     }
 
     protected setValue(element: Element, value)

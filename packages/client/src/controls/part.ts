@@ -1,40 +1,55 @@
-import { control, BaseControl } from './control'
-import { IScope } from '../scope'
-import { Binding, Proxy } from '@akala/core'
+import { control, GenericControlInstance, Control } from './control'
+import { Binding, inject, extendInject } from '@akala/core'
 import { Part as PartService, PartDefinition } from '../part'
 
 function noop() { }
 
-@control("akala-services.$part")
-export class Part extends BaseControl<string | { [property: string]: Binding }>
+@control('part', 100)
+export class Part extends GenericControlInstance<string | { [property: string]: Binding }>
 {
-    constructor(private partService: PartService)
+    constructor()
     {
-        super('part', 100)
+        super();
     }
 
-    public apply(scope: IScope<any>, element: HTMLElement, parameter: string | PartDefinition<typeof scope> | Proxy<PartDefinition<typeof scope>, Binding>)
+    @inject("akala-services.$part") private partService: PartService;
+
+    public init()
     {
         var partService = this.partService;
-        if (typeof parameter != 'string')
+        if (typeof this.parameter != 'string')
         {
-            if (typeof parameter != 'undefined')
-                if (parameter.template instanceof Binding)
-                    parameter.template.onChanged(function (ev)
+            var nonStringParameter = this.parameter;
+            if (nonStringParameter instanceof Binding)
+            {
+                nonStringParameter.onChanged(ev =>
+                {
+                    if (ev.source !== null || ev.eventArgs.value)
+                        partService.apply(() => ({ scope: this.scope, element: this.element }), ev.eventArgs.value, {}, noop)
+                });
+
+            }
+            else
+
+                if (nonStringParameter.template instanceof Binding)
+                    nonStringParameter.template.onChanged((ev) =>
                     {
-                        if (parameter.controller instanceof Binding)
-                            partService.apply(function () { return { scope, element } }, { controller: parameter.controller.getValue(), template: ev.eventArgs.value }, {}, noop);
+                        var nonStringParameter = (nonStringParameter as { [property: string]: Binding });
+                        if (nonStringParameter.controller instanceof Binding)
+                            partService.apply(() => ({ scope: this.scope, element: this.element }), { controller: nonStringParameter.controller.getValue(), template: ev.eventArgs.value }, {}, noop);
                         else
-                            partService.apply(function () { return { scope, element } }, { controller: <any>parameter.controller, template: ev.eventArgs.value }, {}, noop);
+                            partService.apply(() => ({ scope: this.scope, element: this.element }), { controller: nonStringParameter.controller, template: ev.eventArgs.value }, {}, noop);
                     });
                 else
-                    if (parameter.controller instanceof Binding)
-                        partService.apply(function () { return { scope, element } }, { controller: parameter.controller.getValue(), template: parameter.template }, {}, noop);
+                {
+                    if (nonStringParameter.controller instanceof Binding)
+                        partService.apply(() => ({ scope: this.scope, element: this.element }), { controller: nonStringParameter.controller.getValue(), template: nonStringParameter.template }, {}, noop);
                     else
-                        partService.apply(function () { return { scope, element } }, parameter as PartDefinition<typeof scope>, {}, noop);
+                        partService.apply(() => ({ scope: this.scope, element: this.element }), nonStringParameter, {}, noop);
+                }
         }
         else
-            partService.register(parameter, { scope, element });
+            partService.register(this.parameter, { scope: this.scope, element: this.element });
     }
 
 }

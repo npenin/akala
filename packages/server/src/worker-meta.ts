@@ -12,7 +12,7 @@ export { CallbackResponse }
 
 export function createClient(namespace: string): PromiseLike<jsonrpc.ws.Client>
 {
-    return akala.resolve('$agent.' + namespace);
+    return akala.defaultInjector.resolve('$agent.' + namespace);
 }
 
 export type MasterRegistration = (from?: string, masterPath?: string, workerPath?: string) => void;

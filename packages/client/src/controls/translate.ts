@@ -1,9 +1,9 @@
-import * as di from '@akala/core'
+import * as akala from '@akala/core'
 import { control, BaseControl } from './control'
 import { Text } from './text'
 
 
-di.registerFactory('$translator', di.injectWithName(['$translations'], function (translations): di.Translator
+akala.defaultInjector.registerFactory('$translator', akala.defaultInjector.injectWithName(['$translations'], function (translations): akala.Translator
 {
     return function (key: string, ...parameters: any[])
     {
@@ -16,12 +16,12 @@ di.registerFactory('$translator', di.injectWithName(['$translations'], function 
     }
 }));
 
-@control('$translator')
+@control('translate')
 export class Translate extends Text
 {
-    constructor(private translator: di.Translator)
+    constructor(@akala.inject('$translator') private translator: akala.Translator)
     {
-        super('translate')
+        super()
     }
 
     protected setValue(element: Element, value)

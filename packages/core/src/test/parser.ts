@@ -1,7 +1,7 @@
 require('source-map-support').install();
 
 import * as parser from '../parser';
-import { register } from '..';
+import { defaultInjector } from '../injector';
 
 
 //b*(c+d) ==> (b*c)+d
@@ -16,7 +16,7 @@ console.log(test.toString());
 console.log(parser.Parser.parse("template || '/' + deviceType + '/new.html'", false)({ template: '/devices/virtualstate.html' }));
 console.log(parser.Parser.parse("template || '/' + deviceType + '/new.html'", false)({ deviceType: 'pioneer' }));
 
-register('#http', {
+defaultInjector.register('#http', {
     build: function (formatter)
     {
         return function (value)

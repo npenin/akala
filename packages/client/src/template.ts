@@ -1,5 +1,5 @@
 import * as akala from '@akala/core';
-import { Control } from './controls/controls'
+import { Control, IControlInstance } from './controls/controls'
 import { Scope } from './scope'
 import { service } from './common'
 
@@ -226,7 +226,7 @@ export class Template
                     confirm('template has changed, please consider reloading to see updated change');
                 }
                 templateInstance = newTemplateInstance;
-                applyTemplate(templateInstance, data, parent) as ArrayLike<HTMLElement>
+                applyTemplate(templateInstance, data, parent);
             }
 
             var templateInstance = Template.buildElements(template(data));
@@ -237,7 +237,7 @@ export class Template
                     parent.appendChild(inst);
                 })
             }
-            return applyTemplate(templateInstance, data, parent) as ArrayLike<HTMLElement>;
+            applyTemplate(templateInstance, data, parent);
         } as any;
         f.hotReplace = function (markup: string)
         {
@@ -275,34 +275,17 @@ export function applyTemplate(items: ArrayLike<HTMLElement>, data, root?: Elemen
                 }
             });
         });
-        return items;
+        // return items;
     }
     else
     {
-        var element: Element[] = [];
         var promises: PromiseLike<void>[] = [];
         akala.each(filter(items, '[data-bind]'), function (item)
         {
-            var subElem = Control.apply(akala.Parser.evalAsFunction(item.dataset['bind'], true), item, data);
-            if (akala.isPromiseLike(subElem))
-            {
-                promises.push(Promise.resolve(subElem).then(function (subElem)
-                {
-                    if (Array.isArray(subElem))
-                        for (let i = 0; i < subElem.length; i++)
-                            element.push(subElem[i]);
-                    else
-                        element.push(subElem as Element);
-                }));
-            }
-            else
-                element.push(subElem as Element);
+            promises.push(Control.apply(akala.Parser.evalAsFunction(item.dataset['bind'], true), item, data));
         });
         if (promises.length)
-            return akala.when(promises).then(function ()
-            {
-                return element;
-            });
-        return element;
+            return Promise.all(promises);
+        // return element;
     }
 };

@@ -3,22 +3,15 @@ import { Binding } from '@akala/core'
 import * as showdown from 'showdown';
 import { Text } from './text'
 
-@control()
+@control('markdown')
 export class Markdown extends Text
 {
-    constructor()
-    {
-        super('markdown')
-    }
     private markdown = new showdown.Converter();
 
-    public link(target: any, element: HTMLElement, parameter: Binding)
+    public init()
     {
-        if (parameter instanceof Binding)
-        {
-            parameter.formatter = this.markdown.makeHtml.bind(this.markdown);
-        }
-        super.link(target, element, parameter);
+        if (this.parameter instanceof Binding)
+            this.parameter.formatter = this.markdown.makeHtml.bind(this.markdown);
     }
 
     protected setValue(element: Element, value)

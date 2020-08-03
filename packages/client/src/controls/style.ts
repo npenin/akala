@@ -24,12 +24,12 @@ function setProperty(style, value)
     }
 }
 
-@control()
+@control('css')
 export class Style extends Text
 {
     constructor()
     {
-        super('css');
+        super();
     }
 
     protected setValue(element: HTMLElement, value)

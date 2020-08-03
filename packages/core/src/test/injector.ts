@@ -1,8 +1,11 @@
 require('source-map-support').install();
 
-import { register, injectWithName, chain } from '..';
+import { chain } from '..';
+import { defaultInjector, Injector } from '../injector';
+import * as assert from 'assert';
+import { useInjector, inject } from '../reflection-injector';
 
-var oldProxy = Proxy;
+/*var oldProxy = Proxy;
 
 global['Proxy'] = new oldProxy(oldProxy, {
     get: function (target, key)
@@ -34,19 +37,20 @@ var func2 = function (dummy, key?)
     console.log(key);
 };
 
-register('$config', chain(func, function (keys, ...args)
+var i1 = new Injector();
+i1.register('$config', chain(func, function (keys, ...args)
 {
     return [keys.join('.')];
 }));
 
-register('$updateConfig', chain(func2, function (keys, dummy, key?: string)
+i1.register('$updateConfig', chain(func2, function (keys, dummy, key?: string)
 {
     if (key)
         keys.push(key);
     return [dummy, keys.join('.')];
 }));
 
-injectWithName(['$config.pwet.a.b.c'], function (config)
+i1.injectWithName(['$config.pwet.a.b.c'], function (config)
 {
     config.then((result) =>
     {
@@ -55,7 +59,61 @@ injectWithName(['$config.pwet.a.b.c'], function (config)
 })();
 
 
-injectWithName(['$updateConfig.pwet.a.b.c'], function (config)
+i1.injectWithName(['$updateConfig.pwet.a.b.c'], function (config)
 {
     config({ x: 'y' }, 'd');
-})();
+})();*/
+
+var i = new Injector();
+i.register('os', 'linux')
+i.register('vendor', 'microsoft')
+i.register('action', 'loves')
+i.register('otherVendor', 'node')
+
+var subI = new Injector(i);
+@useInjector(subI)
+class A
+{
+    @inject('os')
+    public os: string;
+
+    @inject()
+    public vendor: string;
+
+    public otherVendor: string;
+
+    constructor(@inject('otherVendor') otherVendor?: string)
+    {
+        this.otherVendor = otherVendor;
+    }
+
+    public do(@inject('action') action: string)
+    {
+        return `${this.vendor} ${action} ${this.os}`;
+    }
+
+    public doOtherVendor(@inject('action') action: string)
+    {
+        return `${this.vendor} ${action} ${this.otherVendor}`;
+    }
+}
+
+assert.strictEqual(new A().os, i.resolve('os'), 'named injection does not work');
+assert.strictEqual(new A().vendor, i.resolve('vendor'), 'implicit injection does not work');
+assert.strictEqual(new A().otherVendor, i.resolve('otherVendor'), 'constructor injection does not work');
+assert.strictEqual(new A().do('loves'), 'microsoft loves linux', 'parameter injection does not work');
+
+
+class B extends A
+{
+    constructor()
+    {
+        super();
+    }
+}
+
+assert.strictEqual(new B().os, i.resolve('os'), 'named injection does not work on inherited classes');
+assert.strictEqual(new B().vendor, i.resolve('vendor'), 'implicit injection does not work on inherited classes');
+assert.strictEqual(new B().do('loves'), 'microsoft loves linux', 'parameter injection does not work on inherited classes');
+assert.strictEqual(new B().doOtherVendor('loves'), 'microsoft loves node', 'parameter injection does not work on inherited classes');
+

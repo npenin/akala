@@ -22,7 +22,7 @@ export class AuthenticationStore implements StoreDefinition
     }
 }
 
-export var provider = akala.injectWithNameAsync(['$config.@akala-modules/authentication.storage.provider', '$config.@akala-modules/authentication.storage.options'], async function (providerConfig, options)
+export var provider = akala.defaultInjector.injectWithNameAsync(['$config.@akala-modules/authentication.storage.provider', '$config.@akala-modules/authentication.storage.options'], async function (providerConfig, options)
 {
     var provider = new (providers.resolve<new () => PersistenceEngine<any>>(providerConfig));
     await provider.init(options);

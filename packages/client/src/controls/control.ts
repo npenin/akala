@@ -1,19 +1,44 @@
 import * as akala from '@akala/core';
 import { IScope } from '../scope';
 import { applyTemplate } from '../template';
+import { useInjector, Injector, inject, isPromiseLike } from '@akala/core';
 
-export function control(...toInject: string[])
+
+export function control<T = any>(name: string, priority?: number)
 {
-    return function (ctrl: new (...args: any[]) => any)
+    return function <TClass extends { new(...args: any[]): TInstance }, TInstance extends IControlInstance<T>>(ctrl: TClass)
     {
-        Control.injector.activate([], function ()
-        {
-            Control.injector.injectNewWithName(toInject, ctrl)();
-        });
+        Control.injector.activateNew()(
+            class extends Control<T> {
+
+                constructor()
+                {
+                    super(name, priority)
+                }
+
+                public instanciate(target: any, element: Element, parameter: akala.Binding | T)
+                {
+                    var i = new Injector(Control.injector)
+                    i.register('factory', this);
+                    i.register('scope', target);
+                    i.register('element', element);
+                    i.register('parameter', parameter);
+                    return new result(i);
+                }
+            });
+
+        var result = akala.injectable(ctrl);
+
+        return result;
     }
 }
 
-export abstract class Control<T> implements IControl
+export function controlFactory(...toInject: string[])
+{
+    return Control.injector.activateNew(...toInject);
+}
+
+export abstract class Control<T> implements IControl<T>
 {
     public static injector: akala.Module = akala.module('controls', 'akala-services');
 
@@ -22,7 +47,7 @@ export abstract class Control<T> implements IControl
         Control.injector.register($$name, this);
     }
 
-    public static apply(controls: any, element: Element, scope?: any)
+    public static async apply(controls: any, element: Element, scope?: any): Promise<void>
     {
         var applicableControls: Control<any>[] = [];
         var requiresNewScope = false;
@@ -54,21 +79,16 @@ export abstract class Control<T> implements IControl
             var controlSettings = controls[control.$$name];
             if (controlSettings instanceof Function)
                 controlSettings = controlSettings(scope, true);
-            var newElem = control.instanciate(scope, element, controlSettings, controls);
-            if (newElem)
-            {
-                return newElem;
-            }
+            await control.instanciate(scope, element, controlSettings, controls);
         };
-        akala.each(element.querySelectorAll('[data-bind]'), function (el: HTMLElement)
+        await akala.eachAsync(element.querySelectorAll('[data-bind]'), async function (el: HTMLElement)
         {
             if (el.parentElement.closest('[data-bind]') == element)
-                applyTemplate([el], scope, element);
+                await applyTemplate([el], scope, element);
         });
-        return element;
     }
 
-    protected wrap(element: HTMLElement, scope: IScope<any>, newControls?: any)
+    public wrap(element: HTMLElement, scope: IScope<any>, newControls?: any)
     {
         if (newControls)
         {
@@ -100,60 +120,84 @@ export abstract class Control<T> implements IControl
         return Control.apply(newControls, element, scope);
     }
 
-    protected clone(element: HTMLElement, scope: IScope<any>, newControls?: any)
-    {
-        var clone = element.cloneNode(true) as HTMLElement;
-        clone['$scope'] = scope;
-        this.wrap(clone, scope, newControls);
-        return clone;
-    }
-
-    public abstract instanciate(target: any, element: Element, parameter: akala.Binding | T, controls?: any): void | Element | PromiseLike<Element | ArrayLike<Element>>;
+    public abstract instanciate(target: any, element: Element, parameter: akala.Binding | T, controls?: any): IControlInstance<T> | PromiseLike<IControlInstance<T>>;
 
     public scope?: any | boolean;
 }
 
 export abstract class BaseControl<T> extends Control<T>
 {
+    @inject('$injector')
+    private injector: Injector
+
     constructor(name: string, priority?: number)
     {
         super(name, priority);
     }
 
-    public link(scope: IScope<any>, element: Element, parameter: akala.Binding | T)
+    public async instanciate(scope: IScope<any>, element: Element, parameter: akala.Binding | T)
     {
-        if (parameter instanceof akala.Binding)
-        {
-            parameter.onChanged(e =>
-            {
-                if (akala.isPromiseLike(e.eventArgs.value))
-                    e.eventArgs.value.then((value) => this.apply(scope, element, value));
-                else
-                    this.apply(scope, element, e.eventArgs.value)
-            });
-        }
-        else
-            this.apply(scope, element, parameter);
-    }
-
-    public abstract apply(scope: IScope<any>, element: Element, parameter: T);
-
-    public instanciate(scope: IScope<any>, element: Element, parameter: akala.Binding | T): void | Element
-    {
-        var self = this;
-        akala.Promisify(scope).then(function (scope)
-        {
-            akala.Promisify(parameter).then(function (parameter)
-            {
-                self.link(scope, element, parameter);
-            });
-        });
+        var injector = new Injector(this.injector);
+        injector.setInjectables({ scope, element, parameter, factory: this, $injector: injector });
+        return injector.injectNew<GenericControlInstance<T>>(GenericControlInstance)();
     }
 }
 
-export interface IControl
+@akala.injectable
+export class GenericControlInstance<TParameter, TScope = any> implements IControlInstance<TParameter>
+{
+    protected stopWatches: (() => void)[] = [];
+
+    protected async clone(element: HTMLElement, scope: IScope<any>, newControls?: any)
+    {
+        var clone = element.cloneNode(true) as HTMLElement;
+        clone['$scope'] = scope;
+        await this.factory.wrap(clone, scope, newControls);
+        return clone;
+    }
+
+    @inject()
+    protected factory: Control<TParameter>;
+    @inject()
+    protected readonly scope: IScope<TScope>;
+    @inject()
+    protected readonly element: HTMLElement;
+    @inject()
+    protected parameter: akala.Binding | TParameter
+
+    @inject('$injector')
+    protected readonly injector: Injector;
+
+    constructor()
+    {
+    }
+
+    public [akala.afterInjectSymbol]()
+    {
+        this.init();
+    }
+
+    init()
+    {
+    }
+
+    public dispose()
+    {
+        this.stopWatches.forEach(f => f());
+    }
+}
+
+export interface IControl<T>
 {
     priority: number;
 
-    instanciate(scope: IScope<any>, element: Element, parameter: any): void | Element | PromiseLike<Element | ArrayLike<Element>> | ArrayLike<Element>;
+    instanciate(scope: IScope<any>, element: Element, parameter: akala.Binding | T): IControlInstance<T> | PromiseLike<IControlInstance<T>>; // void | Element | PromiseLike<Element | ArrayLike<Element>> | ArrayLike<Element>
+
+}
+
+export interface IControlInstance<T>
+{
+    dispose(): void;
+
+    init?(): void;
 }

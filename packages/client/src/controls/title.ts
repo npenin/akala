@@ -3,12 +3,12 @@ import { control, BaseControl } from './control'
 import { Promisify, Binding } from '@akala/core'
 import { Text } from './text'
 
-@control()
+@control('title')
 export class Title extends Text
 {
     constructor()
     {
-        super('title')
+        super()
     }
 
 

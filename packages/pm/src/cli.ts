@@ -50,35 +50,39 @@ if (require.main == module)
             {
                 try
                 {
-                    var metaContainer: Metadata.Container = await processor.process('$metadata', { param: [] });
+                    var metaContainer: Metadata.Container = await processor.process('$metadata', { param: [true] });
                     var cmdName = args._[0];
-                    var cmd = metaContainer.commands.find(c => c.name === cmdName);
-                    if (cmd)
-                        if (cmd.config && cmd.config.cli && cmd.config.cli.options)
-                        {
-                            args = yargs(process.argv.slice(2), cmd.config.cli.options);
-                            if (cmd.config.cli.options.normalize)
+                    if (cmdName == '$metadata')
+                        result = metaContainer;
+                    else
+                    {
+                        var cmd = metaContainer.commands.find(c => c.name === cmdName);
+                        if (cmd)
+                            if (cmd.config && cmd.config.cli && cmd.config.cli.options)
                             {
-                                var params = cmd.config.cli.options.normalize.filter(p => p.length > 'param.'.length && p.substr(0, 'param.'.length) == 'param.');
-                                if (params.length > 0)
+                                args = yargs(process.argv.slice(2), cmd.config.cli.options);
+                                if (cmd.config.cli.options.normalize)
                                 {
-                                    params.forEach(key =>
+                                    var params = cmd.config.cli.options.normalize.filter(p => p.length > 'param.'.length && p.substr(0, 'param.'.length) == 'param.');
+                                    if (params.length > 0)
                                     {
-                                        var positionalIndex = Number(key.substr('param.'.length));
-                                        if (args._[positionalIndex])
-                                            args._[positionalIndex] = path.resolve(args._[positionalIndex]);
-                                    });
+                                        params.forEach(key =>
+                                        {
+                                            var positionalIndex = Number(key.substr('param.'.length));
+                                            if (args._[positionalIndex])
+                                                args._[positionalIndex] = path.resolve(args._[positionalIndex]);
+                                        });
+                                    }
                                 }
                             }
-                        }
 
-                    args._ = args._.slice(1);
+                        args._ = args._.slice(1);
 
-                    delete args['pm-sock'];
-                    delete args.pmSock;
+                        delete args['pm-sock'];
+                        delete args.pmSock;
 
-                    var result = await processor.process(cmdName, { options: args, param: args._, _trigger: 'cli', cwd: process.cwd() } as any);
-
+                        var result = await processor.process(cmdName, { options: args, param: args._, _trigger: 'cli', cwd: process.cwd() } as any);
+                    }
                     if (result instanceof Readable)
                     {
                         result.pipe(process.stdout);

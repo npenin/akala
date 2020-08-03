@@ -1,12 +1,12 @@
 import * as di from '@akala/core'
-import { control, BaseControl } from './control'
+import { control, BaseControl, GenericControlInstance } from './control'
 
-@control()
-export class Value extends BaseControl<string>
+@control('value', 400)
+export class Value extends GenericControlInstance<string>
 {
     constructor()
     {
-        super('value', 400)
+        super()
     }
 
     public apply(target: any, element: HTMLElement, parameter: string)
