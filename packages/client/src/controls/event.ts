@@ -1,95 +1,79 @@
 import * as akala from '@akala/core'
-import { control, BaseControl } from './control'
-import { Promisify, Binding, isPromiseLike } from '@akala/core'
+import { control, BaseControl, IControlInstance, GenericControlInstance, Control } from './control'
+import { Promisify, Binding, isPromiseLike, inject, Injector } from '@akala/core'
 import { IScope } from '../scope';
 
 export type HTMLElementEventHandlerMap = { [P in keyof Partial<HTMLElementEventMap>]: (this: HTMLElement, ev: HTMLElementEventMap[P]) => any };
 
-@control()
-export class Events extends BaseControl<Partial<HTMLElementEventHandlerMap> | PromiseLike<Partial<HTMLElementEventHandlerMap>>>
+
+@control('events', 400)
+export class Events extends GenericControlInstance<Partial<HTMLElementEventHandlerMap> | PromiseLike<Partial<HTMLElementEventHandlerMap>>>
 {
+    events: Event[] = [];
+
     constructor()
     {
-        super('event', 400)
+        super();
     }
 
-    public link(scope: IScope<any>, element: Element, parameter: Binding | Partial<HTMLElementEventHandlerMap> | PromiseLike<Partial<HTMLElementEventHandlerMap>>)
+    public init(@inject('$injector') injector?: Injector)
     {
         var value: Partial<HTMLElementEventHandlerMap> | PromiseLike<Partial<HTMLElementEventHandlerMap>>;
-        if (parameter instanceof Binding)
-            value = parameter.getValue();
+        if (this.parameter instanceof Binding)
+            value = this.parameter.getValue();
         else
-            value = parameter;
+            value = this.parameter;
 
-        akala.Promisify(value).then(function (value)
+        akala.Promisify(value).then((value) =>
         {
-            akala.each(value, function (handler, event)
+            akala.each(value, (handler, event) =>
             {
-                element.addEventListener(event, () =>
-                {
-                    if (handler instanceof Binding)
-                    {
-                        var value: (this: HTMLElement, ev: HTMLElementEventMap[typeof event]) => any = handler.getValue();
-                        if (isPromiseLike(value))
-                        {
-                            value.then(function (value)
-                            {
-                                if (value instanceof Function)
-                                    return scope.$inject(value);
-                            })
-                        }
-                        if (value instanceof Function)
-                            return scope.$inject(value);
-                    }
-                    else
-                        return scope.$inject(handler);
-                });
-
+                var i = new Injector(injector);
+                i.register('parameter', handler);
+                this.events.push(new Event(event));
             })
         })
-
     }
 
-    public apply(scope: IScope<any>, element: Element, parameter: Partial<HTMLElementEventHandlerMap>)
+    public dispose()
     {
-        if (parameter instanceof Function)
-            return scope.$inject(parameter);
-        console.error(`${parameter} is not a function`);
+        super.dispose();
+        this.events.forEach(e => e.dispose());
     }
 }
 
-
-@control()
-export class Event extends BaseControl<Function>
+@akala.useInjector(Control.injector)
+export class Event extends GenericControlInstance<Function>
 {
     constructor(private eventName: string)
     {
-        super(eventName, 400)
+        super();
     }
 
-    public link(scope: IScope<any>, element: Element, parameter: Binding | Function)
+    public init()
     {
-        element.addEventListener(this.eventName, () =>
+        var handler = () =>
         {
-            if (parameter instanceof Binding)
+            if (this.parameter instanceof Binding)
             {
-                var value = parameter.getValue();
+                var value = this.parameter.getValue();
                 if (isPromiseLike(value))
                 {
-                    value.then((value) => this.apply(scope, element, value));
+                    value.then((value) => this.apply(value));
                 }
-                this.apply(scope, element, value)
+                this.apply(value)
             }
             else
-                this.apply(scope, element, parameter)
-        });
-
+                this.apply(this.parameter)
+        };
+        this.element.addEventListener(this.eventName, handler);
+        this.stopWatches.push(() => this.element.removeEventListener(this.eventName, handler));
     }
 
-    public apply(scope: IScope<any>, element: Element, parameter: Function)
+    public apply(parameter: Function)
     {
         if (parameter instanceof Function)
-            return scope.$inject(parameter);
+            return this.scope.$inject(parameter);
         console.error(`${parameter} is not a function`);
     }
 }

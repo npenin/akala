@@ -10,6 +10,7 @@ import { HttpClient } from './http-client';
 import { proxy, registerCommands } from '../generator';
 import { Local } from './local';
 import { UnknownCommandError } from '../model/error-unknowncommand';
+import { ExtendedConfigurations, jsonObject } from '../metadata';
 
 export interface FileSystemConfiguration extends Metadata.Configuration
 {
@@ -27,6 +28,7 @@ export interface DiscoveryOptions<T>
     ignoreFileWithNoDefaultExport?: boolean
     relativeTo?: string;
 }
+
 
 
 export class FileSystem<T> extends CommandProcessor<T>
@@ -122,11 +124,11 @@ export class FileSystem<T> extends CommandProcessor<T>
             if (f.isFile())
                 if (f.name.endsWith('.js'))
                 {
-                    let fsConfig: FileSystemConfiguration = { path: path.relative(relativeTo, path.join(root, f.name).replace(/\\/g, '/')) };
+                    let fsConfig: FileSystemConfiguration & jsonObject = { path: path.relative(relativeTo, path.join(root, f.name).replace(/\\/g, '/')) };
 
                     if (!options)
                         throw new Error('cannot happen');
-                    let cmd: Command & { config: { fs: FileSystemConfiguration } } = configure('fs', fsConfig)(new CommandProxy(options.processor as Processor<T>, path.basename(f.name, path.extname(f.name))));
+                    let cmd: Command & { config: ExtendedConfigurations<FileSystemConfiguration & jsonObject, 'fs'> } = configure('fs', fsConfig)(new CommandProxy(options.processor as Processor<T>, path.basename(f.name, path.extname(f.name))));
                     log(cmd.name);
                     if (files.find(file => file.name == f.name + '.map'))
                     {
@@ -266,3 +268,5 @@ export class FileSystem<T> extends CommandProcessor<T>
         super('fs', container);
     }
 }
+
+export default FileSystem;

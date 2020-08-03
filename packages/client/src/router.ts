@@ -69,6 +69,7 @@ export class Router extends akala.Router<browserHandler, browserErrorHandler, Br
         var route = super.route(path);
         route.addHandler((layer: BrowserLayer) =>
         {
+            layer.route = route;
             return layer;
         }, handler);
     }

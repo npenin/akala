@@ -1,5 +1,5 @@
 import * as akala from '@akala/core'
-import { control, BaseControl } from './control'
+import { control, BaseControl, GenericControlInstance, Control } from './control'
 import { Promisify, ObservableArray, ObservableArrayEventArgs, Binding, ParsedString, isPromiseLike } from '@akala/core'
 
 function removeClass(element: HTMLElement, item: ParsedString | Array<string> | string | { [key: string]: boolean })
@@ -76,16 +76,12 @@ function addClass(element: HTMLElement, item: classParamType)
         })
 }
 
-@control()
-export class CssClass extends BaseControl<any>
+@control('class', 400)
+export class CssClass extends GenericControlInstance<any>
 {
-    constructor()
+    constructor(factory: Control<any>, target: any, element: HTMLElement, parameter: any)
     {
-        super('class', 400)
-    }
-
-    public link(target: any, element: HTMLElement, parameter: any)
-    {
+        super();
         if (parameter instanceof Array)
         {
             parameter = new ObservableArray(parameter);

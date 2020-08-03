@@ -52,7 +52,7 @@ export class Container<TState> extends akala.Injector
         this._processor = processor || new Local(this);
         this.register(new Command($serve, '$serve', $serve.$inject))
         this.register(new Command($attach, '$attach', $attach.$inject))
-        this.register(new Command($metadata, '$metadata', $metadata.$inject))
+        this.register($metadata);
     }
 
     public pipe(container: Container<TState>)
@@ -114,7 +114,7 @@ export class Container<TState> extends akala.Injector
     }
 
     public register<T>(name: string, value: T, override?: boolean): T
-    public register(cmd: Command<TState>, override?: boolean): Command<TState>
+    public register(cmd: Command, override?: boolean): Command<TState>
     public register(cmd: Container<any>, override?: boolean): Container<any>
     public register<T>(cmd: string | Command<TState> | Container<any>, value?: T, override?: boolean): T | Command<TState> | Container<any>
     {

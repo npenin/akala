@@ -6,8 +6,7 @@ const logger = debug('json-rpc-ws');
 
 
 export type SerializableObject = { [key: string]: string | number | string[] | number[] | boolean | boolean[] | SerializableObject | SerializableObject[] };
-
-export type PayloadDataType<T> = number | SerializableObject | SerializableObject[] | null | undefined | void | { event: string, isBuffer: boolean, data: string | SerializedBuffer } | T;
+export type PayloadDataType<T> = number | SerializableObject | SerializableObject[] | boolean | boolean[] | number[] | string | string[] | null | undefined | void | { event: string, isBuffer: boolean, data: string | SerializedBuffer } | T;
 export type SerializedBuffer = { type: 'Buffer', data: Uint8Array | number[] };
 
 export interface Payload<T>

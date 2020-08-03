@@ -1,5 +1,5 @@
 import * as akala from '@akala/core'
-import { control, Control } from './control'
+import { control, Control, GenericControlInstance } from './control'
 import { IScope } from '../scope'
 import { Template } from '../template';
 
@@ -11,12 +11,12 @@ export interface parameter
     value: akala.Binding | string;
 }
 
-@control()
-export class Options extends Control<parameter>
+@control('options', 350)
+export class Options extends GenericControlInstance<parameter>
 {
     constructor()
     {
-        super('options', 350)
+        super()
     }
 
     public instanciate(target: IScope<any>, element: HTMLSelectElement, parameter: parameter, controls: any)
@@ -71,22 +71,22 @@ export class Options extends Control<parameter>
                             var scope = target.$new();
                             scope['$key'] = this.length - 1;
                             scope['$value'] = args.newItems[0];
-                            element.appendChild(self.clone(Template.buildElements('<option data-bind="{value: ' + parameter.value + ', text:' + parameter.text + '}" />')[0] as HTMLElement, scope, true));
+                            self.clone(Template.buildElements('<option data-bind="{value: ' + parameter.value + ', text:' + parameter.text + '}" />')[0] as HTMLElement, scope, true).then(el => element.appendChild(el));
                             break;
                         case 'unshift':
                             var scope = target.$new();
                             scope['$key'] = 0;
                             scope['$value'] = args.newItems[0];
                             if (!offset)
-                                element.insertBefore(self.clone(Template.buildElements('<option data-bind="{value: ' + parameter.value + ', text:' + parameter.text + '}" />')[0] as HTMLElement, scope, true), element.firstChild);
+                                self.clone(Template.buildElements('<option data-bind="{value: ' + parameter.value + ', text:' + parameter.text + '}" />')[0] as HTMLElement, scope, true).then(el => element.insertBefore(el, element.firstChild));
                             else
-                                element.insertBefore(self.clone(Template.buildElements('<option data-bind="{value: ' + parameter.value + ', text:' + parameter.text + '}" />')[0] as HTMLElement, scope, true), element.children[offset]);
+                                self.clone(Template.buildElements('<option data-bind="{value: ' + parameter.value + ', text:' + parameter.text + '}" />')[0] as HTMLElement, scope, true).then(el => element.insertBefore(el, element.children[offset]));
                             break;
                         case 'replace':
                             var scope = target.$new();
                             scope['$key'] = this.indexOf(args.newItems[0]);
                             scope['$value'] = args.newItems[0];
-                            element.replaceChild(self.clone(Template.buildElements('<option data-bind="{value: ' + parameter.value + ', text:' + parameter.text + '}" />')[0] as HTMLElement, scope, true), element.children[offset + this.indexOf(args.newItems[0])]);
+                            self.clone(Template.buildElements('<option data-bind="{value: ' + parameter.value + ', text:' + parameter.text + '}" />')[0] as HTMLElement, scope, true).then(el => element.replaceChild(el, element.children[offset + this.indexOf(args.newItems[0])]));
                             break;
                     }
                 });
@@ -102,7 +102,7 @@ export class Options extends Control<parameter>
                 var scope = target.$new();
                 scope['$key'] = key;
                 scope['$item'] = value;
-                element.appendChild(self.clone(Template.buildElements('<option data-bind="{value: ' + (parameter.textvalue || parameter.value) + ', text:' + parameter.text + '}" />')[0] as HTMLElement, scope, true));
+                self.clone(Template.buildElements('<option data-bind="{value: ' + (parameter.textvalue || parameter.value) + ', text:' + parameter.text + '}" />')[0] as HTMLElement, scope, true).then(el => element.appendChild(el));
             })
 
             element.addEventListener('change', function ()

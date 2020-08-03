@@ -1,4 +1,4 @@
-import { serve, Container } from "@akala/commands";
+import { serve, Container, CommandProxy } from "@akala/commands";
 import { HttpRouter, router } from "../router";
 import '../triggers/http'
 import { State } from "../state";
@@ -18,6 +18,7 @@ export default async function $init(container: Container<State>, options: any, p
     var stop = await serve(container, options);
 
     container.state.pm = pm;
+    pm.register('$metadata', new CommandProxy(pm.processor, '$metadata'));
 
     container.state.assets = new Injector();
     var init = true;
@@ -34,7 +35,6 @@ export default async function $init(container: Container<State>, options: any, p
         indexHtmlPath = resolve(__dirname, '../../views/index.html');
 
     var html = new HtmlPlugin({ title: 'Output management', template: indexHtmlPath, xhtml: true, hash: true, inject: true });
-
 
     container.state.webpack = {
         config: {
@@ -120,7 +120,7 @@ export default async function $init(container: Container<State>, options: any, p
                 {
                     res.statusCode = 200;
 
-                    fs.createReadStream(indexHtmlPath, { autoClose: true }).pipe(res);
+                    fs.createReadStream(html['options'].template.substring(html['options'].template.indexOf('!') + 1), { autoClose: true }).pipe(res);
                 });
             else
                 debug('started in production mode');

@@ -1,4 +1,4 @@
-import { Container, Processors, CommandProxy, Metadata, registerCommands, Command } from "@akala/commands";
+import { Container, Processors, Metadata, registerCommands } from "@akala/commands";
 import State, { RunningContainer } from "../state";
 import { spawn, ChildProcess } from "child_process";
 import { description } from "../container";
@@ -120,11 +120,13 @@ export default async function start(this: State, pm: description.pm & Container<
             else
                 container = new Container(name, null, processor) as RunningContainer;
 
-
-            container.dispatch('$metadata').then((metaContainer: Metadata.Container) =>
-            {
-                registerCommands(metaContainer.commands, processor, container as Container<any>);
-            });
+            if (this.config.mapping[name].commandable)
+                container.dispatch('$metadata').then((metaContainer: Metadata.Container) =>
+                {
+                    console.log(metaContainer);
+                    registerCommands(metaContainer.commands, processor, container as Container<any>);
+                    pm.register(name, container, true);
+                });
             this.processes.push(container);
         }
         container.process = cp;
@@ -133,8 +135,6 @@ export default async function start(this: State, pm: description.pm & Container<
         container.ready = new jsonrpc.Deferred();
 
         this.config.mapping[name]
-        if (container.commandable)
-            pm.register(name, container, true);
         // container.resolve = function (c: string)
         // {
         //     return new CommandProxy<any>((container as RunningContainer).processor, c, ['$param']) as any;

@@ -1,6 +1,5 @@
 import * as akala from '@akala/core'
-import { control, Control } from './control'
-import { IScope } from '../scope'
+import { control, GenericControlInstance } from './control'
 
 export interface ForeachParameter
 {
@@ -9,30 +8,36 @@ export interface ForeachParameter
     value: string;
 }
 
-@control()
-export class ForEach extends Control<ForeachParameter | string>
+@control('each', 100)
+export class ForEach extends GenericControlInstance<ForeachParameter>
 {
-    constructor(name?: string)
-    {
-        super(name || 'each', 100)
-    }
-
-    public instanciate(target: IScope<any>, element: HTMLElement, parameter: ForeachParameter | string)
+    constructor(@akala.inject('parameter') parameter: ForeachParameter | string, @akala.inject('$injector') injector: akala.Injector)
     {
         if (typeof (parameter) == 'string')
-            parameter = this.parse(parameter);
+        {
+            parameter = ForEach.parse(parameter);
+            injector.register('parameter', parameter, true);
+        }
+        super();
+    }
 
-        var parsedParam: ForeachParameter = parameter;
+    public init()
+    {
+        if (this.parameter instanceof akala.Binding)
+            throw new Error('foreach parameter as a binging is not supported');
 
         var sourceBinding: akala.Binding;
-        if (parameter.in instanceof Function)
-            sourceBinding = parameter.in(target, true);
+        if (this.parameter.in instanceof Function)
+            sourceBinding = this.parameter.in(this.scope, true);
         else
-            sourceBinding = parameter.in;
+            sourceBinding = this.parameter.in;
 
         var self = this;
-        var parent = element.parentElement;
-        element.parentNode.removeChild(element);
+        var element = this.element;
+        var parent = this.element.parentElement;
+        if (this.element.parentNode)
+            this.element.parentNode.removeChild(this.element);
+        var parsedParam = self.parameter as ForeachParameter;
         // var newControls;
         function build(source: akala.ObservableArray<any> | any[])
         {
@@ -42,8 +47,6 @@ export class ForEach extends Control<ForeachParameter | string>
             {
                 source.on('collectionChanged', function (args)
                 {
-                    var key = -1;
-                    var isAdded = false;
                     switch (args.action)
                     {
                         case 'init':
@@ -55,28 +58,28 @@ export class ForEach extends Control<ForeachParameter | string>
                             parent.removeChild(parent.lastElementChild);
                             break;
                         case 'push':
-                            var scope = target.$new();
+                            var scope = self.scope.$new();
                             if (parsedParam.key)
                                 scope[parsedParam.key] = source.length - 1;
                             if (parsedParam.value)
                                 scope[parsedParam.value] = args.newItems[0];
-                            parent.appendChild(self.clone(element, scope, true));
+                            self.clone(element, scope, true).then(el => parent.appendChild(el));
                             break;
                         case 'unshift':
-                            var scope = target.$new();
+                            var scope = self.scope.$new();
                             if (parsedParam.key)
                                 scope[parsedParam.key] = 0;
                             if (parsedParam.value)
                                 scope[parsedParam.value] = args.newItems[0];
-                            parent.insertBefore(self.clone(element, scope, true), parent.firstElementChild);
+                            self.clone(element, scope, true).then(el => parent.insertBefore(el, parent.firstElementChild));
                             break;
                         case 'replace':
-                            var scope = target.$new();
+                            var scope = self.scope.$new();
                             if (parsedParam.key)
                                 scope[parsedParam.key] = source.indexOf(args.newItems[0]);
                             if (parsedParam.value)
                                 scope[parsedParam.value] = args.newItems[0];
-                            parent.replaceChild(self.clone(element, scope, true), parent.children[source.indexOf(args.newItems[0])]);
+                            self.clone(element, scope, true).then(el => parent.replaceChild(el, parent.children[source.indexOf(args.newItems[0])]));
                             break;
                     }
                 });
@@ -85,26 +88,25 @@ export class ForEach extends Control<ForeachParameter | string>
             if (source)
                 akala.each(source, function (value, key)
                 {
-                    var scope = target.$new();
+                    var scope = self.scope.$new();
                     if (parsedParam.key)
                         scope[parsedParam.key] = key;
                     if (parsedParam.value)
                         scope[parsedParam.value] = value;
-                    parent.appendChild(self.clone(element, scope, true));
+                    self.clone(element, scope, true).then(el => parent.appendChild(el));
                 });
             return result;
         }
 
-        sourceBinding.onChanged(function (ev)
+        this.stopWatches.push(sourceBinding.onChanged(function (ev)
         {
             Promise.resolve(ev.eventArgs.value).then(build);
-        }, true);
-        return Promise.resolve(sourceBinding.getValue()).then(build);
+        }));
     }
 
     private static expRegex = /^\s*\(?(\w+)(?:,\s*(\w+))?\)?\s+in\s+/;
 
-    protected parse(exp: string): ForeachParameter
+    protected static parse(exp: string): ForeachParameter
     {
         var result = ForEach.expRegex.exec(exp);
         return { in: akala.Parser.evalAsFunction(exp.substring(result[0].length)), key: result[2] && result[1], value: result[2] || result[1] }

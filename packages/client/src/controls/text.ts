@@ -1,38 +1,38 @@
 import * as di from '@akala/core'
-import { control, BaseControl } from './control'
-import { Promisify, Binding } from '@akala/core'
+import { control, GenericControlInstance, Control } from './control'
+import { Binding, extendInject } from '@akala/core'
 import { IScope } from '../clientify';
 
-@control()
-export class Text extends BaseControl<string>
+@control('text', 400)
+export class Text extends GenericControlInstance<string>
 {
-    constructor(name: string)
+    constructor()
     {
-        super(name || 'text', 400)
+        super();
     }
 
-    public link(scope: IScope<any>, element: HTMLElement, parameter: Binding | string)
+    public init()
     {
         var self = this;
-        if (parameter instanceof Binding)
+        if (this.parameter instanceof Binding)
         {
-            parameter.onChanged(function (ev)
+            this.stopWatches.push(this.parameter.onChanged(function (ev)
             {
                 if (di.isPromiseLike(ev.eventArgs.value))
                     ev.eventArgs.value.then(function (value)
                     {
-                        self.apply(scope, element, value);
+                        self.apply(value);
                     });
                 else
-                    self.apply(scope, element, ev.eventArgs.value);
-            });
+                    self.apply(ev.eventArgs.value);
+            }));
         }
         else
-            self.apply(scope, element, parameter);
+            self.apply(this.parameter);
     }
 
-    public apply(_scope: IScope<any>, element: Element, value: string)
+    public apply(value: string)
     {
-        element.textContent = value;
+        this.element.textContent = value;
     }
 }

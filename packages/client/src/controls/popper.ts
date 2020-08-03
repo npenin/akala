@@ -1,38 +1,36 @@
 import * as popper from '@popperjs/core';
-import { BaseControl, control } from './control';
+import { BaseControl, control, GenericControlInstance } from './control';
 import * as akala from '@akala/core';
 import { IScope } from '../scope';
 
-@control()
-export class Popper extends BaseControl<popper.Options>
+@control('popper', 400)
+export class Popper extends GenericControlInstance<popper.Options>
 {
     constructor()
     {
-        super('popper', 400);
+        super();
     }
 
-    public link(scope: IScope<any>, element: Element, parameter: akala.Binding | popper.Options)
+    public init()
     {
         var p: popper.Instance;
-        if (parameter instanceof akala.Binding)
+        if (this.parameter instanceof akala.Binding)
         {
-            parameter.onChanged(function (ev)
+            this.parameter.onChanged((ev) =>
             {
                 if (p)
                     p.destroy();
-                p = popper.createPopper(element, ev.eventArgs.value)
+                p = popper.createPopper(this.element, ev.eventArgs.value)
             })
         }
         else
-            p = popper.createPopper(element, element.parentElement.querySelector(parameter['popper']), akala.Binding.unbindify(parameter))
+            p = popper.createPopper(this.element, this.element.parentElement.querySelector(this.parameter['popper']), akala.Binding.unbindify(this.parameter))
 
-        element.addEventListener('click', function ()
+        this.element.addEventListener('click', function ()
         {
             if (p)
                 p.update()
         });
 
     }
-
-    public apply() { }
 }

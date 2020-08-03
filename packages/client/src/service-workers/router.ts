@@ -393,18 +393,30 @@ namespace routerInit
     declare var self: ServiceWorkerGlobalScope;
     self.addEventListener('fetch', function (ev)
     {
-        router.handle(ev.request, ev);
+        router.handle(ev.request, ev, function (err)
+        {
+            console.log('deadend')
+        });
     }, { capture: true })
     self.addEventListener('install', function (ev)
     {
-        router.handle({ method: 'install', url: '/' }, ev);
+        router.handle({ method: 'install', url: '/' }, ev, function ()
+        {
+            console.log('deadend')
+        });
     }, { capture: true })
     self.addEventListener('push', function (ev)
     {
-        router.handle({ method: 'push', url: '/' }, ev);
+        router.handle({ method: 'push', url: '/' }, ev, function ()
+        {
+            console.log('deadend')
+        });
     }, { capture: true })
     self.addEventListener('updatefound', function (ev)
     {
-        router.handle({ method: 'updatefound', url: '/' }, ev);
+        router.handle({ method: 'updatefound', url: '/' }, ev, function ()
+        {
+            console.log('deadend')
+        });
     }, { capture: true })
 }

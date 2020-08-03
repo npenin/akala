@@ -40,8 +40,8 @@ export default async function compile(this: State, target?: string, reload?: boo
         {
             console.error(err);
             log(stats);
-            if (err)
-                reject(err);
+            if (err || stats.hasErrors())
+                reject(err || stats.toJson());
             else
                 resolve(this.webpack.config);
         })

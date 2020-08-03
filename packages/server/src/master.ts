@@ -12,7 +12,7 @@ var httpPackage: 'http' | 'https' = 'http';
 
 var port = process.env.PORT || '5678';
 
-akala.register('$updateConfig', new Proxy(updateConfig, {
+akala.defaultInjector.register('$updateConfig', new Proxy(updateConfig, {
     get: function (uc, key: string)
     {
         return function (config, subKey)
@@ -21,7 +21,7 @@ akala.register('$updateConfig', new Proxy(updateConfig, {
         }
     }
 }));
-akala.registerFactory('$config', new Proxy(getConfig, {
+akala.defaultInjector.registerFactory('$config', new Proxy(getConfig, {
     get: function (c, key: string)
     {
         return function ()
@@ -35,9 +35,9 @@ var lateBoundRoutes = router();
 var preAuthenticatedRouter = router();
 var authenticationRouter = router();
 var app = router();
-akala.register('$preAuthenticationRouter', preAuthenticatedRouter);
-akala.register('$authenticationRouter', authenticationRouter);
-akala.register('$router', lateBoundRoutes);
+akala.defaultInjector.register('$preAuthenticationRouter', preAuthenticatedRouter);
+akala.defaultInjector.register('$authenticationRouter', authenticationRouter);
+akala.defaultInjector.register('$router', lateBoundRoutes);
 var masterRouter = router();
 masterRouter.use(preAuthenticatedRouter.router);
 masterRouter.use(authenticationRouter.router);
@@ -65,7 +65,7 @@ fs.exists(configFile, function (exists)
 
     var dn = config && config['@akala/server'] && config['@akala/server'].dn || 'localhost';
 
-    akala.register('$rootUrl', httpPackage + '://' + dn + ':' + port);
+    akala.defaultInjector.register('$rootUrl', httpPackage + '://' + dn + ':' + port);
 
     var sourcesFile = './sources.list';
     fs.readFile(sourcesFile, 'utf8', function (error, sourcesFileContent)
@@ -109,7 +109,7 @@ fs.exists(configFile, function (exists)
                 return;
             }
 
-            akala.register('$$modules', modules);
+            akala.defaultInjector.register('$$modules', modules);
 
             log(modules);
 
@@ -187,7 +187,7 @@ fs.exists(configFile, function (exists)
             break;
     }
     server.listen(port, dn);
-    akala.register('$server', server);
+    akala.defaultInjector.register('$server', server);
     masterRouter.attachTo(server);
 });
 

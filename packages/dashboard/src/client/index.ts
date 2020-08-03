@@ -43,12 +43,12 @@ export type TileDef = Tile | PromiseLike<Tile>;
         array: list
     }
 
-    @client.control()
-    class BlockColor extends client.BaseControl<string>
+    @client.control('color')
+    class BlockColor extends client.controls.GenericControlInstance<string>
     {
         constructor()
         {
-            super('color');
+            super();
         }
 
         public apply(target: any, element: Element, parameter: string): any

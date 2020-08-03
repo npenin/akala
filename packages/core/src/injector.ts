@@ -2,6 +2,7 @@ import { getParamNames } from './reflect';
 import debug from 'debug';
 import { isPromiseLike } from './promiseHelpers';
 import { EventEmitter } from 'events';
+import "reflect-metadata";
 
 var log = debug('akala:core:injector');
 
@@ -15,13 +16,35 @@ function ctorToFunction(this: new () => any)
 
 export type Injected<T> = (instance?: any) => T;
 export type Injectable<T> = (...args: any[]) => T;
+export type InjectableConstructor<T> = new (...args: any[]) => T;
 export type InjectableWithTypedThis<T, U> = (this: U, ...args: any[]) => T;
 export type InjectableAsync<T> = (...args: any[]) => PromiseLike<T>;
 export type InjectableAsyncWithTypedThis<T, U> = (this: U, ...args: any[]) => PromiseLike<T>;
+export type InjectedParameter<T> = { index: number, value: T };
 
 
 export class Injector
 {
+    public static mergeArrays(resolvedArgs: InjectedParameter<any>[], ...otherArgs: any[])
+    {
+        var args = [];
+        var unknownArgIndex = 0;
+        for (var arg of resolvedArgs.sort((a, b) => a.index - b.index))
+        {
+            if (arg.index === args.length)
+                args[args.length] = arg.value;
+            else if (typeof (otherArgs[unknownArgIndex]) != 'undefined')
+                args[args.length] = otherArgs[unknownArgIndex++];
+        }
+
+        return args.concat(otherArgs.slice(unknownArgIndex));
+    }
+
+    protected getArguments(toInject: string[]): InjectedParameter<any>[]
+    {
+        return toInject.map((p, i) => ({ index: i, value: this.resolve(p) }));
+    }
+
     constructor(protected parent?: Injector)
     {
         if (this.parent == null)
@@ -102,7 +125,7 @@ export class Injector
         {
             if (typeof b == 'undefined')
                 b = [];
-            b.unshift(a);
+            b.unshift(a as string);
             var oldf = self.injectWithName(b, c.value);
             c.value = function ()
             {
@@ -133,9 +156,9 @@ export class Injector
         }
     }
 
-    public injectNew<T>(ctor: Injectable<T>)
+    public injectNew<T>(ctor: InjectableConstructor<T>)
     {
-        return this.inject(ctorToFunction.bind(ctor));
+        return this.inject<T>(ctorToFunction.bind(ctor));
     }
 
     public resolve<T = any>(param: string): T
@@ -180,21 +203,7 @@ export class Injector
     public resolveAsync<T = any>(name: string): T | PromiseLike<T>
     {
         return this.onResolve<T>(name);
-        log('resolving ' + name);
-        if (typeof (this.injectables[name]) != 'undefined')
-        {
-            log('resolved ' + name + ' to %o', this.injectables[name]);
-            return this.injectables[name];
-        }
-        if (this.parent)
-        {
-            log('trying parent injector');
-            return this.parent.resolveAsync(name);
-        }
-        return this.onResolve<T>(name);
     }
-
-
 
     private inspecting: boolean = false;
 
@@ -275,36 +284,11 @@ export class Injector
             {
                 if (toInject.length == paramNames.length && paramNames.length == 0)
                     return <Injectable<T>>a;
-                return function (instance?: any)
-                {
-                    var args = [];
-                    for (var param of toInject)
-                    {
-                        args[args.length] = self.resolve(param)
-                    }
-                    return a.apply(instance, args);
-                }
             }
         }
-        return function (instance?: any, ...otherArgs: any[])
+        return (instance?: any, ...otherArgs: any[]) =>
         {
-            var args = [];
-            var unknownArgIndex = 0;
-            for (var param of toInject)
-            {
-                var resolved = self.resolve(param);
-                if (resolved && paramNames && paramNames.indexOf(param) == args.length)
-                    args[args.length] = resolved;
-                else if (typeof (otherArgs[unknownArgIndex]) != 'undefined')
-                    args[args.length] = otherArgs[unknownArgIndex++];
-                else
-                    args[args.length] = resolved;
-            }
-            if (otherArgs && otherArgs.length > unknownArgIndex)
-            {
-                args.concat(otherArgs.slice(unknownArgIndex));
-            }
-            return a.apply(instance, args);
+            return a.apply(instance, Injector.mergeArrays(this.getArguments(toInject), ...otherArgs));
         }
     }
 

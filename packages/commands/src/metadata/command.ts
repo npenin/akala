@@ -18,8 +18,12 @@ export interface Configurations
     [key: string]: undefined | jsonObject & Configuration;
     http?: jsonObject & HttpConfiguration;
     cli?: jsonObject & CliConfiguration;
-    '': jsonObject & Configuration;
+    ''?: jsonObject & Configuration;
 };
+
+export type ExtendedConfigurations<TConfiguration extends GenericConfiguration, TKey extends string> = Configurations & { [name in TKey]: TConfiguration }
+
+export type GenericConfiguration = Configuration & jsonObject;
 
 export interface CliConfiguration extends Configuration
 {

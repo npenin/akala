@@ -1,4 +1,4 @@
-import { Command, jsonObject } from "./metadata/command";
+import { jsonObject, ExtendedConfigurations, GenericConfiguration } from "./metadata/command";
 import { Command as ModelCommand } from "./model/command";
 import { Injectable as baseInjectable } from "@akala/core";
 import { Configuration, Configurations } from "./metadata";
@@ -17,22 +17,21 @@ export function inject(...toInject: string[])
 
 export interface extendF<TConfiguration extends { [key: string]: (jsonObject & Configuration) | undefined }>
 {
-    (cmd: Injectable<any>): ModelCommand & { config: TConfiguration }
-    <T extends Command>(cmd: T): T & { config: TConfiguration }
-    <TCommand extends Command>(cmdOrInj: TCommand | Injectable<any>): (TCommand | ModelCommand) & { config: TConfiguration }
-
+    (cmd: Injectable<any>, name?: string): ModelCommand & { config: TConfiguration }
+    <T extends ModelCommand>(cmd: T): T & { config: TConfiguration }
+    <TCommand extends ModelCommand>(cmdOrInj: TCommand | Injectable<any>): (TCommand | ModelCommand) & { config: TConfiguration }
 }
 
-export function extend<TConfiguration extends { [key: string]: Configuration }>(cmd: Injectable<any>, config: TConfiguration): ModelCommand & { config: TConfiguration }
-export function extend<T extends Command, TConfiguration extends { [key: string]: Configuration }>(cmd: T, config: { [key: string]: Configuration }): T & { config: TConfiguration }
-export function extend<TCommand extends Command, TConfiguration extends { [key: string]: Configuration }>(cmdOrInj: TCommand | Injectable<any>, config: { [key: string]: Configuration }): (TCommand | ModelCommand) & { config: TConfiguration }
-export function extend<TCommand extends Command, TConfiguration extends { [key: string]: Configuration }>(cmdOrInj: TCommand | Injectable<any>, config: { [key: string]: Configuration }): (TCommand | ModelCommand) & { config: TConfiguration }
+export function extend<TConfiguration extends Configurations>(cmd: Injectable<any>, config: TConfiguration): ModelCommand & { config: TConfiguration }
+export function extend<T extends ModelCommand, TConfiguration extends Configurations>(cmd: T, config: TConfiguration): T & { config: TConfiguration }
+export function extend<TCommand extends ModelCommand, TConfiguration extends Configurations>(cmdOrInj: TCommand | Injectable<any>, config: TConfiguration): ReturnType<extendF<TConfiguration>>
+export function extend<TCommand extends ModelCommand, TConfiguration extends Configurations>(cmdOrInj: TCommand | Injectable<any>, config: TConfiguration): (TCommand | ModelCommand) & { config: TConfiguration }
 {
-    var cmd: Command;
+    var cmd: ModelCommand;
     if (typeof cmdOrInj == 'function')
         cmd = new ModelCommand(cmdOrInj);
     else
-        cmd = cmdOrInj as Command;
+        cmd = cmdOrInj as ModelCommand;
 
     akala.extend(cmd.config, config)
 
@@ -43,16 +42,18 @@ export function extend<TCommand extends Command, TConfiguration extends { [key: 
     return cmd as TCommand & { config: TConfiguration };
 }
 
-export function configure<T extends Configuration, TKey extends string>(name: TKey, config: T): extendF<{ [name in TKey]: T & jsonObject }>
+export function configure<T extends GenericConfiguration, TKey extends string>(name: TKey, config: T): extendF<ExtendedConfigurations<T, TKey>>
 export function configure<T extends Configurations>(config: T): extendF<T>
-export function configure(name: Configurations | string, config?: any)
+export function configure<T extends Configurations>(nameOrConfig: T | string, config?: GenericConfiguration): extendF<Configurations>
 {
-    if (typeof name == 'string')
-        config = { [name]: config };
+    if (typeof nameOrConfig == 'string')
+        return function <TCommand extends ModelCommand>(cmd: TCommand | Injectable<any>)
+        {
+            return extend(cmd, { [nameOrConfig]: config });
+        }
     else
-        config = name;
-    return function <TCommand extends Command>(cmd: TCommand | Injectable<any>)
-    {
-        return extend<TCommand, { [key: string]: Configuration }>(cmd, config);
-    }
+        return function <TCommand extends ModelCommand>(cmd: TCommand | Injectable<any>)
+        {
+            return extend(cmd, nameOrConfig);
+        }
 }
