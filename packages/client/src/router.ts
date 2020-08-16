@@ -72,13 +72,14 @@ export class Router extends akala.Router<browserHandler, browserErrorHandler, Br
             layer.route = route;
             return layer;
         }, handler);
+        return route;
     }
 }
 
 
-export function router(): Router
+export function router(name?: string): Router
 {
-    var proto = new Router();
+    var proto = new Router({ name: name });
 
     return proto;
 }
