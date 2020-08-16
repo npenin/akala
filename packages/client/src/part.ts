@@ -1,5 +1,5 @@
 import * as akala from '@akala/core'
-import { Router, Request } from './router'
+import { Router, Request, BrowserLayer } from './router'
 import { EventEmitter } from 'events'
 import './controls/part'
 import { Template } from './template'
@@ -78,10 +78,18 @@ export class Part extends EventEmitter
 
             return partService;
         }
-        this.router.on(url, function (req: Request, next: akala.NextFunction)
+        var previousRequest: string;
+        var route = this.router.route(url);
+        route.addHandler((layer: BrowserLayer) =>
+        {
+            layer.name = partName;
+            return layer;
+        }, function (req: Request, next: akala.NextFunction)
         {
             console.log('apply part for url' + url);
-
+            if (previousRequest === req.url)
+                return;
+            previousRequest = req.url;
             self.apply(() => self.parts.resolve(partName), part, req.params, next);
         });
     }

@@ -36,6 +36,7 @@ export interface RouterOptions
     strict?: boolean;
     length?: number;
     separator?: string;
+    name?: string;
 }
 
 export interface NextParamCallback
@@ -83,8 +84,10 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
         this.separator = opts.separator || '/';
         this.strict = opts.strict
         this.length = opts.length || 2;
+        this.name = opts.name;
     }
 
+    public readonly name: string;
     private separator: string;
     private length: number;
     private caseSensitive: boolean;

@@ -4,7 +4,7 @@ import { Part as PartService, PartDefinition } from '../part'
 
 function noop() { }
 
-@control('part', 100)
+@control('part', 110)
 export class Part extends GenericControlInstance<string | { [property: string]: Binding }>
 {
     constructor()

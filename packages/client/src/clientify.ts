@@ -29,10 +29,10 @@ common.$$injector['Control'] = controls.Control
 common.$$injector['control'] = controls.control
 common.$$injector['load'] = loadScript
 
-var mainRouter = routing.router();
-mainRouter.use(common.serviceModule.register('$preRouter', routing.router()).router);
-mainRouter.use(common.serviceModule.register('$router', routing.router()).router);
-mainRouter.use(function (error)
+var mainRouter = routing.router('mainRouter');
+mainRouter.use(common.serviceModule.register('$preRouter', routing.router('preRouter')).router);
+mainRouter.use(common.serviceModule.register('$router', routing.router('router')).router);
+mainRouter.use(function (error, _req, _next)
 {
     console.error(error);
 });
@@ -84,7 +84,7 @@ common.serviceModule.ready(['$location'], function ($location: location.Location
         });
     });
 
-    $location.start({ hashbang: false })
+    $location.start({ hashbang: false, dispatch: false })
 });
 
 // window.addEventListener('load', function ()
