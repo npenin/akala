@@ -32,3 +32,6 @@ export function service(name, ...toInject: string[])
             });
     };
 }
+
+import component from './component';
+export { component };
