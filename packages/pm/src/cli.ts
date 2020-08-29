@@ -7,6 +7,10 @@ import { platform, homedir } from 'os';
 import start from './commands/start'
 import { Readable } from 'stream';
 
+import * as Parser from "yargs-parser";
+
+type Arguments = ReturnType<typeof Parser.default>;
+
 const tableChars = {
     'top': '─'
     , 'top-mid': '┬'
@@ -46,12 +50,12 @@ if (require.main == module)
         {
             socket.setEncoding('utf-8');
             var processor = new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(socket)));
-            (async function send(args: yargs.Arguments)
+            (async function send(args: Arguments)
             {
                 try
                 {
                     var metaContainer: Metadata.Container = await processor.process('$metadata', { param: [true] });
-                    var cmdName = args._[0];
+                    var cmdName = args._[0].toString();
                     if (cmdName == '$metadata')
                         result = metaContainer;
                     else
@@ -63,6 +67,8 @@ if (require.main == module)
                                 args = yargs(process.argv.slice(2), cmd.config.cli.options);
                                 if (cmd.config.cli.options.normalize)
                                 {
+                                    if (typeof cmd.config.cli.options.normalize == 'string')
+                                        cmd.config.cli.options.normalize = [cmd.config.cli.options.normalize];
                                     var params = cmd.config.cli.options.normalize.filter(p => p.length > 'param.'.length && p.substr(0, 'param.'.length) == 'param.');
                                     if (params.length > 0)
                                     {
@@ -70,7 +76,7 @@ if (require.main == module)
                                         {
                                             var positionalIndex = Number(key.substr('param.'.length));
                                             if (args._[positionalIndex])
-                                                args._[positionalIndex] = path.resolve(args._[positionalIndex]);
+                                                args._[positionalIndex] = path.resolve(args._[positionalIndex].toString());
                                         });
                                     }
                                 }

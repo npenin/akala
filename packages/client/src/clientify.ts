@@ -84,7 +84,7 @@ common.serviceModule.ready(['$location'], function ($location: location.Location
         });
     });
 
-    $location.start({ hashbang: false, dispatch: false })
+    // $location.start({ hashbang: false, dispatch: false })
 });
 
 // window.addEventListener('load', function ()

@@ -1,6 +1,6 @@
 import { control, GenericControlInstance, Control } from './control'
 import { Binding, inject, extendInject } from '@akala/core'
-import { Part as PartService, PartDefinition } from '../part'
+import { Part as PartService, PartDefinition, PartInstance } from '../part'
 
 function noop() { }
 
@@ -11,6 +11,7 @@ export class Part extends GenericControlInstance<string | { [property: string]: 
     {
         super();
     }
+
 
     @inject("akala-services.$part") private partService: PartService;
 
@@ -25,7 +26,7 @@ export class Part extends GenericControlInstance<string | { [property: string]: 
                 nonStringParameter.onChanged(ev =>
                 {
                     if (ev.source !== null || ev.eventArgs.value)
-                        partService.apply(() => ({ scope: this.scope, element: this.element }), ev.eventArgs.value, {}, noop)
+                        partService.apply(() => this as unknown as PartInstance, ev.eventArgs.value, {}, noop)
                 });
 
             }
@@ -36,16 +37,16 @@ export class Part extends GenericControlInstance<string | { [property: string]: 
                     {
                         var nonStringParameter = (nonStringParameter as { [property: string]: Binding });
                         if (nonStringParameter.controller instanceof Binding)
-                            partService.apply(() => ({ scope: this.scope, element: this.element }), { controller: nonStringParameter.controller.getValue(), template: ev.eventArgs.value }, {}, noop);
+                            partService.apply(() => this as unknown as PartInstance, { controller: nonStringParameter.controller.getValue(), template: ev.eventArgs.value }, {}, noop);
                         else
-                            partService.apply(() => ({ scope: this.scope, element: this.element }), { controller: nonStringParameter.controller, template: ev.eventArgs.value }, {}, noop);
+                            partService.apply(() => this as unknown as PartInstance, { controller: nonStringParameter.controller, template: ev.eventArgs.value }, {}, noop);
                     });
                 else
                 {
                     if (nonStringParameter.controller instanceof Binding)
-                        partService.apply(() => ({ scope: this.scope, element: this.element }), { controller: nonStringParameter.controller.getValue(), template: nonStringParameter.template }, {}, noop);
+                        partService.apply(() => this as unknown as PartInstance, { controller: nonStringParameter.controller.getValue(), template: nonStringParameter.template }, {}, noop);
                     else
-                        partService.apply(() => ({ scope: this.scope, element: this.element }), nonStringParameter, {}, noop);
+                        partService.apply(() => this as unknown as PartInstance, nonStringParameter, {}, noop);
                 }
         }
         else
