@@ -327,9 +327,11 @@ export class LocationService extends EventEmitter
 
     public dispatch(path: string, push?: boolean)
     {
-        this.emit('changing', path)
+        if (running)
+            this.emit('changing', path)
         if (push)
             history.pushState(null, '', path);
-        this.emit('change', path)
+        if (running)
+            this.emit('change', path)
     }
 }

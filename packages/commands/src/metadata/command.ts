@@ -1,5 +1,10 @@
+import { detailed } from "yargs-parser";
 import { HttpConfiguration } from "../processors/http-client";
-import { Options } from "yargs-parser";
+
+type Argument2<T> = T extends ((a: any, x: infer X, ...z: any[]) => any) ? X : never;
+
+
+type Options = Argument2<typeof detailed>
 
 export type jsonPrimitive = string | number | boolean | undefined;
 export type jsonObject = { [key: string]: jsonPrimitive | jsonPrimitive[] | jsonObject[] | jsonObject };

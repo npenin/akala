@@ -134,7 +134,7 @@ export class Interpolate
 }
 export interface templateFunction
 {
-    (target: any, parent: HTMLElement): ArrayLike<HTMLElement>;
+    (target: any, parent: HTMLElement): Promise<IControlInstance<any>[]>;
     hotReplace(markup: string): void;
 }
 var cache = new akala.Injector();
@@ -172,7 +172,6 @@ export class Template
                     cache.register(text, template, true);
                 if (navigator.serviceWorker)
                 {
-
                     navigator.serviceWorker.addEventListener('message', function (msg)
                     {
 
@@ -237,7 +236,7 @@ export class Template
                     parent.appendChild(inst);
                 })
             }
-            applyTemplate(templateInstance, data, parent);
+            return applyTemplate(templateInstance, data, parent);
         } as any;
         f.hotReplace = function (markup: string)
         {
@@ -256,14 +255,15 @@ export function filter<T extends Element = Element>(items: ArrayLike<T>, filter:
     })
 }
 
-export function applyTemplate(items: ArrayLike<HTMLElement>, data, root?: Element)
+export async function applyTemplate(items: ArrayLike<HTMLElement>, data, root?: Element): Promise<IControlInstance<any>[]>
 {
     data.$new = Scope.prototype.$new;
+    var instances: IControlInstance<any>[] = [];
     if (filter(items, '[data-bind]').length == 0)
     {
-        akala.each(items, function (el)
+        await akala.eachAsync(items, async function (el)
         {
-            akala.each(el.querySelectorAll('[data-bind]'), function (el: HTMLElement)
+            await akala.eachAsync(el.querySelectorAll('[data-bind]'), async function (el: HTMLElement)
             {
                 var closest = el.parentElement && el.parentElement.closest('[data-bind]');
                 var applyInnerTemplate = !!closest || !root;
@@ -271,21 +271,21 @@ export function applyTemplate(items: ArrayLike<HTMLElement>, data, root?: Elemen
                     applyInnerTemplate = applyInnerTemplate || root == closest;
                 if (applyInnerTemplate)
                 {
-                    applyTemplate([el], data, el);
+                    instances.push(...await applyTemplate([el], data, el));
                 }
             });
         });
-        // return items;
+        return instances;
     }
     else
     {
         var promises: PromiseLike<void>[] = [];
-        akala.each(filter(items, '[data-bind]'), function (item)
+        akala.eachAsync(filter(items, '[data-bind]'), function (item)
         {
-            promises.push(Control.apply(akala.Parser.evalAsFunction(item.dataset['bind'], true), item, data));
+            promises.push(Control.apply(akala.Parser.evalAsFunction(item.dataset['bind'], true), item, data).then(controls => { instances.push(...controls) }));
         });
         if (promises.length)
-            return Promise.all(promises);
+            return Promise.all(promises).then(x => instances);
         // return element;
     }
 };

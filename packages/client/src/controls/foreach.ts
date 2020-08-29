@@ -8,7 +8,7 @@ export interface ForeachParameter
     value: string;
 }
 
-@control('each', 100)
+@control('each', 100, { scope: true })
 export class ForEach extends GenericControlInstance<ForeachParameter>
 {
     constructor(@akala.inject('parameter') parameter: ForeachParameter | string, @akala.inject('$injector') injector: akala.Injector)

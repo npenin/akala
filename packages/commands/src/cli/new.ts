@@ -2,7 +2,9 @@ import { Writable } from "stream";
 import fs from 'fs';
 import path from 'path';
 import { promisify } from "util";
-import * as yargs from 'yargs-parser'
+import * as Parser from "yargs-parser";
+
+type Arguments = ReturnType<typeof Parser.default>;
 
 export async function outputHelper(outputFile: string | undefined, nameIfFolder: string, force: boolean)
 {
@@ -50,7 +52,7 @@ export async function write(output: Writable, content: string)
     })
 }
 
-export default async function _new(type: string, name: string, options: yargs.Arguments, destination?: string)
+export default async function _new(type: string, name: string, options: Arguments, destination?: string)
 {
     // console.error(arguments);
     switch (type)
