@@ -1,7 +1,7 @@
 import { HttpRouter } from "./router"
 import { Injector } from "@akala/core";
 import * as webpack from "webpack";
-import { Container } from "@akala/commands/src";
+import { Container } from "@akala/commands";
 
 export interface State
 {
