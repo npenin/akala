@@ -55,7 +55,7 @@ export class JsonRpc<T> extends CommandProcessor<T>
 
                         if (!params)
                             params = { param: [] };
-                        params.containerAsConnection = lazy(() => new Container(container?.name + '-client', null, new JsonRpc(connection)));
+                        params.connectionAsContainer = lazy(() => new Container(container?.name + '-client', null, new JsonRpc(connection)));
                         if (!params._trigger || params._trigger == 'proxy')
                             params._trigger = 'jsonrpc';
 

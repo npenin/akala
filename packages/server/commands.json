@@ -178,6 +178,32 @@
             }
         },
         {
+            "name": "remote-container",
+            "inject": [
+                "$param"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "$param"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/remote-container.js",
+                    "source": "src/commands/remote-container.ts",
+                    "inject": [
+                        "$param"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "connectionAsContainer",
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
             "name": "remote-route",
             "inject": [
                 "param.0",
