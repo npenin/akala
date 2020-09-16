@@ -1,4 +1,4 @@
-import { serveStatic, translateRequest } from "../master-meta";
+import { handleResponse, serveStatic, translateRequest } from "../master-meta";
 import { State } from "../state";
 import * as path from 'path'
 import { HttpRouter, CallbackResponse } from "../router";
@@ -36,6 +36,6 @@ export default function route(this: State, route: string, target: Container<void
     router[method](route, async function (req, res, next)
     {
         var result: CallbackResponse = await target.dispatch('$request', translateRequest(req));
-
+        handleResponse(res, null, 200)(result);
     });
 }
