@@ -445,10 +445,10 @@ export function wrouter(options?: akala.RouterOptions): WorkerRouter
 http.METHODS.concat('ALL').forEach(function (method)
 {
     method = method.toLowerCase();
-    Router.prototype[method] = function (this: Router<any, any>, path: string, ...rest)
+    Router.prototype[method] = function (this: Router<any, any>, path: string, ...rest: (requestHandlerWithNext | errorHandlerWithNext)[])
     {
         var route = this.route(path);
-        route.addHandler((layer: HttpLayer<any>) =>
+        route.addHandler((layer: HttpLayer<requestHandlerWithNext | errorHandlerWithNext>) =>
         {
             layer.method = method;
             route.methods[method] = true;

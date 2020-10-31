@@ -4,13 +4,13 @@
         {
             "name": "$init",
             "inject": [
-                "container",
+                "$container",
                 "param.0"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "container",
+                        "$container",
                         "param.0"
                     ]
                 },
@@ -18,13 +18,13 @@
                     "path": "dist/commands/$init.js",
                     "source": "src/commands/$init.ts",
                     "inject": [
-                        "container",
+                        "$container",
                         "param.0"
                     ]
                 },
                 "cli": {
                     "inject": [
-                        "container",
+                        "$container",
                         "options"
                     ]
                 }
@@ -33,25 +33,25 @@
         {
             "name": "alias",
             "inject": [
-                "container",
                 "param.0",
-                "param.1"
+                "param.1",
+                "param.2"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "container",
                         "param.0",
-                        "param.1"
+                        "param.1",
+                        "param.2"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/alias.js",
                     "source": "src/commands/alias.ts",
                     "inject": [
-                        "container",
                         "param.0",
-                        "param.1"
+                        "param.1",
+                        "param.2"
                     ]
                 }
             }
@@ -84,14 +84,14 @@
             "inject": [
                 "param.0",
                 "param.1",
-                "container"
+                "$container"
             ],
             "config": {
                 "": {
                     "inject": [
                         "param.0",
                         "param.1",
-                        "container"
+                        "$container"
                     ]
                 },
                 "fs": {
@@ -107,7 +107,7 @@
                     "inject": [
                         "param.0",
                         "param.1",
-                        "container"
+                        "$container"
                     ]
                 }
             }
@@ -133,7 +133,7 @@
                 "cli": {
                     "inject": [
                         "param.0",
-                        "container"
+                        "$container"
                     ]
                 }
             }
@@ -143,14 +143,14 @@
             "inject": [
                 "param.0",
                 "param.1",
-                "container"
+                "$container"
             ],
             "config": {
                 "": {
                     "inject": [
                         "param.0",
                         "param.1",
-                        "container"
+                        "$container"
                     ]
                 },
                 "fs": {
@@ -159,7 +159,7 @@
                     "inject": [
                         "param.0",
                         "param.1",
-                        "container"
+                        "$container"
                     ]
                 }
             }
@@ -316,7 +316,7 @@
                         ]
                     },
                     "inject": [
-                        "container",
+                        "$container",
                         "param.0",
                         "options"
                     ]
@@ -347,13 +347,13 @@
             "name": "stop",
             "inject": [
                 "param.0",
-                "container"
+                "$container"
             ],
             "config": {
                 "": {
                     "inject": [
                         "param.0",
-                        "container"
+                        "$container"
                     ]
                 },
                 "fs": {
@@ -361,7 +361,7 @@
                     "source": "src/commands/stop.ts",
                     "inject": [
                         "param.0",
-                        "container"
+                        "$container"
                     ]
                 }
             }
@@ -391,7 +391,7 @@
                     "inject": [
                         "param.0",
                         "param.1",
-                        "container"
+                        "$container"
                     ]
                 }
             }

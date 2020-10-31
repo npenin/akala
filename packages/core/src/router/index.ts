@@ -96,7 +96,7 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
     private strict: boolean;
     private stack = []
 
-    public router = this.handle.bind(this);
+    public readonly router = this.handle.bind(this);
 
     /**
      * Map the given param placeholder `name`(s) to the given callback.
@@ -196,6 +196,7 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
         }
 
         debug('dispatching %s %s', req['method'] || '', req.url)
+        debug(this.stack);
 
         var idx = 0
         var removed = ''
@@ -651,6 +652,7 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
             return layer.match(path);
         } catch (err)
         {
+            console.error(err);
             return err;
         }
     }

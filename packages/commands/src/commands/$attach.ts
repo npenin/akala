@@ -6,4 +6,4 @@ export default function attach<T>(container: Container<T>, name: string, server:
     container.attach(name, server);
 }
 
-attach.$inject = ['container'];
+attach.$inject = ['$container'];

@@ -18,7 +18,7 @@ export default async function $init(container: Container<State>, options: any, p
     var stop = await serve(container, options);
 
     container.state.pm = pm;
-    pm.register('$metadata', new CommandProxy(pm.processor, '$metadata'));
+    // pm.register('$metadata', new CommandProxy(pm.processor, '$metadata'));
 
     container.state.assets = new Injector();
     var init = true;
@@ -115,6 +115,11 @@ export default async function $init(container: Container<State>, options: any, p
             container.state.app = app;
 
             preAuthenticatedRouter.useGet('/', serveStatic(null, { root: join(process.cwd(), './build'), fallthrough: true }));
+            masterRouter.use('/api', function (req, res)
+            {
+                res.writeHead(404, 'Not found');
+                res.end();
+            })
             if (container.state.mode !== 'production')
                 masterRouter.useGet('/', async function (req, res)
                 {

@@ -15,4 +15,4 @@ export default async function link(this: State, packageName: string, folder: str
     return await pm.dispatch('discover', packageName, folder);
 };
 
-exports.default.$inject = ['param.0', 'param.1', 'container']
+exports.default.$inject = ['param.0', 'param.1', '$container']

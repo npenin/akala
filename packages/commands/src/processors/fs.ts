@@ -206,7 +206,7 @@ export class FileSystem<T> extends CommandProcessor<T>
                             let n = 0;
                             cmd.config.fs.inject = akala.introspect.getParamNames(func).map(v =>
                             {
-                                if (v == 'container')
+                                if (v == '$container')
                                     return v;
                                 return 'param.' + (n++)
                             }

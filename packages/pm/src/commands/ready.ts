@@ -5,4 +5,4 @@ export default async function ready(this: State, container: RunningContainer)
     container.ready?.resolve();
 };
 
-exports.default.inject = ['container']
+exports.default.inject = ['$container']

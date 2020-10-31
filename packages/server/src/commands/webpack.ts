@@ -38,8 +38,9 @@ export default async function compile(this: State, target?: string, reload?: boo
     {
         compiler.run((err, stats) =>
         {
-            console.error(err);
-            log(stats);
+            if (err)
+                console.error(err);
+            // log(stats);
             if (err || stats.hasErrors())
                 reject(err || stats.toJson());
             else

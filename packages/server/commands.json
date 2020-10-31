@@ -15,7 +15,7 @@
                 },
                 "cli": {
                     "inject": [
-                        "container",
+                        "$container",
                         "options",
                         "pm"
                     ]
@@ -25,7 +25,7 @@
         {
             "name": "asset",
             "inject": [
-                "container",
+                "$container",
                 "param.0",
                 "param.1",
                 "cwd"
@@ -33,7 +33,7 @@
             "config": {
                 "": {
                     "inject": [
-                        "container",
+                        "$container",
                         "param.0",
                         "param.1",
                         "cwd"
@@ -56,7 +56,7 @@
                         ]
                     },
                     "inject": [
-                        "container",
+                        "$container",
                         "param.0",
                         "param.1",
                         "cwd"
@@ -180,19 +180,22 @@
         {
             "name": "remote-container",
             "inject": [
-                "$param"
+                "param.0",
+                "param.1"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "$param"
+                        "param.0",
+                        "param.1"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/remote-container.js",
                     "source": "src/commands/remote-container.ts",
                     "inject": [
-                        "$param"
+                        "param.0",
+                        "param.1"
                     ]
                 },
                 "jsonrpc": {

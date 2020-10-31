@@ -101,4 +101,4 @@ export default async function discover(this: State, packageName: string, folder:
     return pm.dispatch('map', packageName, moduleRequire.resolve(packageConfig.main), path, false);
 };
 
-exports.default.$inject = ['param.0', 'param.1', 'container']
+exports.default.$inject = ['param.0', 'param.1', '$container']

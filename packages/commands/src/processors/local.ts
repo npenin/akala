@@ -13,8 +13,8 @@ export class Local<T> extends CommandProcessor<T>
             assert.fail('container is undefined');
         var inject = cmd.inject;
         var injector = new Injector(container);
-        injector.register('container', container);
-
+        injector.register('$container', container);
+        // console.log(param);
         if (param._trigger === 'proxy')
             inject = undefined;
         if (param._trigger && cmd.config && cmd.config[param._trigger] && cmd.config[param._trigger]?.inject)
@@ -23,6 +23,7 @@ export class Local<T> extends CommandProcessor<T>
         injector.register('$param', param);
         if (!inject)
             inject = param.param.map((a, i) => 'param.' + i);
+        // console.log(inject);
         return injector.injectWithName(inject, command)(container.state);
     }
 
