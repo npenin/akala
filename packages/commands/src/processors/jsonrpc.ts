@@ -55,7 +55,7 @@ export class JsonRpc<T> extends CommandProcessor<T>
 
                         if (!params)
                             params = { param: [] };
-                        params.connectionAsContainer = lazy(() => new Container(container?.name + '-client', null, new JsonRpc(connection)));
+                        params.connectionAsContainer = lazy(() => Container.proxy(container?.name + '-client', new JsonRpc(connection, true) as any));
                         if (!params._trigger || params._trigger == 'proxy')
                             params._trigger = 'jsonrpc';
 
@@ -86,11 +86,16 @@ export class JsonRpc<T> extends CommandProcessor<T>
         {
             if (!this.passthrough && typeof command != 'string' && command.inject)
             {
-                var param = command.inject.map((v, i) =>
+                if (command.inject.length != 1 || command.inject[0] != '$param')
                 {
-                    return { name: v, value: params.param[i] }
-                }).filter(p => p.name.startsWith('param.'));
-                params.param = param.map(p => p.value);
+                    // console.log(param);
+                    // console.log(command.inject);
+                    var param = command.inject.map((v, i) =>
+                    {
+                        return { name: v, value: params.param[i] }
+                    }).filter(p => p.name.startsWith('param.'));
+                    params.param = param.map(p => p.value);
+                }
             }
             this.client.sendMethod(typeof command == 'string' ? command : command.name, params, function (err: any, result: jsonrpcws.PayloadDataType<any>)
             {

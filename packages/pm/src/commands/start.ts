@@ -79,9 +79,9 @@ export default async function start(this: State, pm: description.pm & Container<
             })
         }
 
-        var cp = spawn(process.execPath, args, { cwd: process.cwd(), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
-        cp.stderr?.pipe(new NewLinePrefixer(name + ' ')).pipe(process.stderr);
-        cp.stdout?.pipe(new NewLinePrefixer(name + ' ')).pipe(process.stdout);
+        var cp = spawn(process.execPath, args, { cwd: process.cwd(), env: Object.assign({ DEBUG_COLORS: true }, process.env), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
+        cp.stderr?.pipe(new NewLinePrefixer(name + ' ', { useColors: true })).pipe(process.stderr);
+        cp.stdout?.pipe(new NewLinePrefixer(name + ' ', { useColors: true })).pipe(process.stdout);
 
         if (!container || !container.running)
         {
@@ -123,7 +123,7 @@ export default async function start(this: State, pm: description.pm & Container<
             if (this.config.mapping[name].commandable)
                 container.dispatch('$metadata').then((metaContainer: Metadata.Container) =>
                 {
-                    console.log(metaContainer);
+                    // console.log(metaContainer);
                     registerCommands(metaContainer.commands, processor, container as Container<any>);
                     pm.register(name, container, true);
                 });
@@ -223,4 +223,4 @@ export class IpcAdapter implements jsonrpc.SocketAdapter
     // }
 }
 
-exports.default.$inject = ['container', 'param.0', 'options']
+exports.default.$inject = ['$container', 'param.0', 'options']

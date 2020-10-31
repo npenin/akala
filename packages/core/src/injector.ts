@@ -5,6 +5,7 @@ import { EventEmitter } from 'events';
 import "reflect-metadata";
 
 var log = debug('akala:core:injector');
+var verboseLog = log.extend('verbose');
 
 function ctorToFunction(this: new () => any)
 {
@@ -168,7 +169,13 @@ export class Injector
         if (typeof (this.injectables[param]) != 'undefined')
         {
             log(`resolved ${param}`);
-            log.extend('verbose')(`resolved ${param} to ${this.injectables[param]}`);
+            if (verboseLog.enabled)
+            {
+                if (typeof this.injectables[param].name != 'undefined')
+                    verboseLog(`resolved ${param} to ${this.injectables[param]} with name ${this.injectables[param].name}`);
+                else
+                    verboseLog(`resolved ${param} to ${this.injectables[param]}`);
+            }
             return this.injectables[param];
         }
         var indexOfDot = param.indexOf('.');

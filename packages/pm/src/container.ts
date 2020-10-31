@@ -21,11 +21,11 @@ export namespace description
 	{
 	export interface pm 
 	{
-		dispatch (cmd:'$init', ...args:[]): ReturnType<typeof import('./commands/$init').default>
-		dispatch (cmd:'alias', ...args:[Argument1<typeof import('./commands/alias').default>, Argument2<typeof import('./commands/alias').default>]): ReturnType<typeof import('./commands/alias').default>
+		dispatch (cmd:'$init', ...args:[Argument1<typeof import('./commands/$init').default>]): ReturnType<typeof import('./commands/$init').default>
+		dispatch (cmd:'alias', ...args:[Argument0<typeof import('./commands/alias').default>, Argument1<typeof import('./commands/alias').default>, Argument2<typeof import('./commands/alias').default>]): ReturnType<typeof import('./commands/alias').default>
 		dispatch (cmd:'config', ...args:[Argument0<typeof import('./commands/config').default>]): ReturnType<typeof import('./commands/config').default>
-		dispatch (cmd:'discover', ...args:[Argument0<typeof import('./commands/discover').default>, Argument1<typeof import('./commands/discover').default>, Argument2<typeof import('./commands/discover').default>]): ReturnType<typeof import('./commands/discover').default>
-		dispatch (cmd:'install', ...args:[Argument0<typeof import('./commands/install').default>, Argument1<typeof import('./commands/install').default>]): ReturnType<typeof import('./commands/install').default>
+		dispatch (cmd:'discover', ...args:[Argument0<typeof import('./commands/discover').default>, Argument1<typeof import('./commands/discover').default>]): ReturnType<typeof import('./commands/discover').default>
+		dispatch (cmd:'install', ...args:[Argument0<typeof import('./commands/install').default>]): ReturnType<typeof import('./commands/install').default>
 		dispatch (cmd:'link', ...args:[Argument0<typeof import('./commands/link').default>, Argument1<typeof import('./commands/link').default>]): ReturnType<typeof import('./commands/link').default>
 		dispatch (cmd:'log', ...args:[Argument0<typeof import('./commands/log').default>]): ReturnType<typeof import('./commands/log').default>
 		dispatch (cmd:'ls', ...args:[]): ReturnType<typeof import('./commands/ls').default>

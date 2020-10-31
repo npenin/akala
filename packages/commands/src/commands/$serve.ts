@@ -6,4 +6,4 @@ export default function $serve(container: Container<any>, options: { port?: numb
     return serve(container, options);
 }
 
-$serve.$inject = ['container', 'options'];
+$serve.$inject = ['$container', 'options'];

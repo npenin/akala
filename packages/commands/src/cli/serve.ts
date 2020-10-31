@@ -271,4 +271,4 @@ export default async function <T = void>(container: Container<T>, options: Serve
     }
 }
 
-exports.default.$inject = ['container', 'options'];
+exports.default.$inject = ['$container', 'options'];

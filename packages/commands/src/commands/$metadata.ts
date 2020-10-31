@@ -4,23 +4,23 @@ import * as meta from "../metadata";
 import { configure } from "../decorators";
 import { Command } from "../model/command";
 
-export default configure({
+const $metadata = configure({
     "": {
-        inject: [
-            "container",
+        "inject": [
+            "$container",
             "param.0"
         ]
     },
-    cli: {
-        inject: [
-            "container",
+    "cli": {
+        "inject": [
+            "$container",
             "options.deep"
         ]
     }
-})<Command>(new Command($metadata, '$metadata'));
-
-function $metadata(container: Container<any>, deep: boolean): meta.Container
+})(function $metadata(container: Container<any>, deep: boolean): meta.Container
 {
+    console.log(container.name);
     return metadata(container, deep);
-}
+});
+export default $metadata;
 

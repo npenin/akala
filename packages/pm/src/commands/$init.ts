@@ -18,11 +18,11 @@ export async function metadata(container: Container<any>, deep?: boolean)
         var cmd = container.resolve<Command>(key);
         if (cmd && cmd.name && cmd instanceof Command && ignoredCommands.indexOf(cmd.name) == -1)
             metacontainer.commands.push({ name: cmd.name, inject: cmd.inject || [], config: cmd.config });
-        console.log(deep)
+        // console.log(deep)
         if (cmd instanceof Container && deep)
         {
             let subContainer: Metadata.Container = await cmd.dispatch('$metadata', deep);
-            console.log(subContainer);
+            // console.log(subContainer);
             subContainer.commands.forEach(c => c.name = key + '.' + c.name)
             metacontainer.commands.push(...subContainer.commands.filter(c => c.name !== key + '.$init' && c.name !== key + '.$stop'));
         }
@@ -64,7 +64,7 @@ export default async function (this: State, container: RunningContainer<State> &
     await container.dispatch('map', 'pm', join(__dirname, '../../commands.json'), true);
     var config = container.resolve<Configurations>('$metadata.config');
     container.unregister('$metadata');
-    container.register(configure(config)(new Command(metadata, '$metadata', ['container', 'param.0'])));
+    container.register(configure(config)(new Command(metadata, '$metadata', ['$container', 'param.0'])));
 
 
     this.processes.push(container);
@@ -81,4 +81,4 @@ export default async function (this: State, container: RunningContainer<State> &
     }
 }
 
-exports.default.$inject = ['container', 'options'];
+exports.default.$inject = ['$container', 'options'];

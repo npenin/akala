@@ -1,12 +1,14 @@
 import { Trigger, Container, metadata, Metadata } from '@akala/commands';
 import { HttpRouter, WorkerRouter } from '../router';
-import { NextFunction, isPromiseLike } from '@akala/core';
+import { NextFunction, isPromiseLike, log as debug } from '@akala/core';
 import * as master from '../master-meta';
 import * as worker from '../worker-meta';
 import { Local } from '@akala/commands/dist/processors';
 import * as http from 'http';
 import * as https from 'https';
 import * as http2 from 'http2';
+
+const log = debug('commands:trigger:http')
 
 function wrapHttp<T>(container: Container<T>, command: Metadata.Command)
 {
@@ -17,7 +19,10 @@ function wrapHttp<T>(container: Container<T>, command: Metadata.Command)
         {
             result.then(function (r)
             {
-                res.json(r);
+                if (typeof r == 'undefined')
+                    res.sendStatus(201);
+                else
+                    res.json(r);
             }, function (err)
             {
                 res.status(500).json(err);
@@ -62,20 +67,31 @@ function wrapWorker<T>(container: Container<T>, c: Metadata.Command): worker.Req
     }
 }
 
-export var trigger = new Trigger('http', function register<T>(container: Container<T>, router: HttpRouter | http.Server | https.Server | http2.Http2SecureServer | http2.Http2Server)
+export var trigger = new Trigger('http', function register<T>(container: Container<T>, router: { router: HttpRouter, meta: Metadata.Container } | HttpRouter | http.Server | https.Server | http2.Http2SecureServer | http2.Http2Server)
 {
     var commandRouter: HttpRouter | WorkerRouter = new HttpRouter();
-    if (!(router instanceof HttpRouter))
-        commandRouter.attachTo(router);
 
+    var meta: Metadata.Container;
+    if (router['router'] && typeof router['meta'] != 'undefined')
+    {
+        meta = router['meta'];
+        commandRouter = router = router['router'];
+    }
 
-    metadata(container).commands.forEach(command =>
+    if (!(router instanceof HttpRouter) && commandRouter instanceof HttpRouter)
+        commandRouter.attachTo(router as any);
+
+    if (!meta)
+        meta = metadata(container);
+
+    meta.commands.forEach(command =>
     {
         if (!command.config || !command.config.http)
             return;
 
         var config = command.config.http;
 
+        log(config.method || 'use');
         if (config.method === 'use' || !config.method)
         {
             if (commandRouter instanceof HttpRouter)

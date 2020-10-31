@@ -113,6 +113,23 @@ export class Container<TState> extends akala.Injector
         return proxy;
     }
 
+    public static proxy<T = any>(name: string, processor: CommandNameProcessor<T>)
+    {
+        var proxy = new Container('proxy-' + name, null, processor);
+        var proxyResolve = proxy.resolve;
+        proxy.unregister('$metadata');
+        proxy.unregister('$serve');
+        proxy.unregister('$attach');
+        proxy.resolve = (name: string) =>
+        {
+            var result = proxyResolve.call(proxy, name);
+            if (result instanceof Command || !result)
+                return new CommandProxy(processor, name, ['$param']);
+            return result;
+        }
+        return proxy;
+    }
+
     public register<T>(name: string, value: T, override?: boolean): T
     public register(cmd: Command, override?: boolean): Command<TState>
     public register(cmd: Container<any>, override?: boolean): Container<any>
@@ -134,7 +151,7 @@ export class Container<TState> extends akala.Injector
     }
 }
 
-export function lazy<T extends object>(ctor: () => T): T
+export function lazy<T extends object>(factory: () => T): T
 {
     var instance: T | null = null;
     return new Proxy<T>({} as any,
@@ -142,67 +159,67 @@ export function lazy<T extends object>(ctor: () => T): T
             getPrototypeOf(): object | null
             {
                 if (!instance)
-                    instance = ctor();
+                    instance = factory();
                 return Reflect.getPrototypeOf(instance);
             },
-            setPrototypeOf(target: any, v: any): boolean
+            setPrototypeOf(_target: any, v: any): boolean
             {
                 if (!instance)
-                    instance = ctor();
+                    instance = factory();
                 return Reflect.setPrototypeOf(instance, v);
             },
             isExtensible(): boolean
             {
                 if (!instance)
-                    instance = ctor();
+                    instance = factory();
                 return Reflect.isExtensible(instance);
             },
             preventExtensions(): boolean
             {
                 if (!instance)
-                    instance = ctor();
+                    instance = factory();
                 return Reflect.preventExtensions(instance);
             },
-            getOwnPropertyDescriptor(target: any, p: PropertyKey)
+            getOwnPropertyDescriptor(_target: any, p: PropertyKey)
             {
                 if (!instance)
-                    instance = ctor();
+                    instance = factory();
                 return Reflect.getOwnPropertyDescriptor(instance, p);
             },
-            has(target: any, p: PropertyKey): boolean
+            has(_target: any, p: PropertyKey): boolean
             {
                 if (!instance)
-                    instance = ctor();
+                    instance = factory();
                 return Reflect.has(instance, p);
             },
-            get(target: any, p: PropertyKey): any
+            get(_target: any, p: PropertyKey): any
             {
                 if (!instance)
-                    instance = ctor();
+                    instance = factory();
                 return Reflect.get(instance, p);
             },
-            set(target: any, p: PropertyKey, value: any): boolean
+            set(_target: any, p: PropertyKey, value: any): boolean
             {
                 if (!instance)
-                    instance = ctor();
+                    instance = factory();
                 return Reflect.set(instance, p, value);
             },
-            deleteProperty(target: any, p: PropertyKey): boolean
+            deleteProperty(_target: any, p: PropertyKey): boolean
             {
                 if (!instance)
-                    instance = ctor();
+                    instance = factory();
                 return Reflect.deleteProperty(instance, p);
             },
-            defineProperty(target: any, p: PropertyKey, attributes: PropertyDescriptor): boolean
+            defineProperty(_target: any, p: PropertyKey, attributes: PropertyDescriptor): boolean
             {
                 if (!instance)
-                    instance = ctor();
+                    instance = factory();
                 return Reflect.defineProperty(instance, p, attributes);
             },
             enumerate(): PropertyKey[]
             {
                 if (!instance)
-                    instance = ctor();
+                    instance = factory();
                 var result: PropertyKey[] = [];
                 for (var x of Reflect.enumerate(instance as any))
                     result.push(x);
@@ -211,19 +228,19 @@ export function lazy<T extends object>(ctor: () => T): T
             ownKeys(): PropertyKey[]
             {
                 if (!instance)
-                    instance = ctor();
+                    instance = factory();
                 return Reflect.ownKeys(instance);
             },
-            apply(target: any, thisArg: any, argArray?: any): any
+            apply(_target: any, thisArg: any, argArray?: any): any
             {
                 if (!instance)
-                    instance = ctor();
+                    instance = factory();
                 return Reflect.apply(instance as any, thisArg, argArray);
             },
-            construct(target: any, argArray: any, newTarget?: any): object
+            construct(_target: any, argArray: any, newTarget?: any): object
             {
                 if (!instance)
-                    instance = ctor();
+                    instance = factory();
                 return Reflect.construct(instance as any, argArray, newTarget);
             }
         });

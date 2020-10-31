@@ -90,6 +90,7 @@ export class Layer<T extends Function>
         if (!this.isErrorHandler)
         {
             log('skipping non error handler')
+            console.log(error);
             // not a standard error handler
             return next(error);
         }
@@ -138,6 +139,7 @@ export class Layer<T extends Function>
     public match(path: string): boolean
     {
         var match: RegExpExecArray;
+        log(this.name);
         log(this.regexp);
         if (path != null)
         {
