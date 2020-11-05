@@ -75,8 +75,8 @@ if (require.main == module)
                                         params.forEach(key =>
                                         {
                                             var positionalIndex = Number(key.substr('param.'.length));
-                                            if (args._[positionalIndex])
-                                                args._[positionalIndex] = path.resolve(args._[positionalIndex].toString());
+                                            if (args._[positionalIndex + 1])
+                                                args._[positionalIndex + 1] = path.resolve(args._[positionalIndex + 1].toString());
                                         });
                                     }
                                 }

@@ -90,7 +90,7 @@ export class Layer<T extends Function>
         if (!this.isErrorHandler)
         {
             log('skipping non error handler')
-            console.log(error);
+            console.error(error);
             // not a standard error handler
             return next(error);
         }

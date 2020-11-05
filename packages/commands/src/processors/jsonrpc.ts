@@ -69,7 +69,7 @@ export class JsonRpc<T> extends CommandProcessor<T>
                         if (typeof error.toJSON == 'function')
                             reply(error.toJSON());
                         else
-                            reply(error);
+                            reply({ message: error.message, stack: error.stack, code: error.code });
                     }
                 }
             }
