@@ -21,7 +21,6 @@ export default async function discover(this: State, packageName: string, folder:
 
     debug(path);
 
-
     var tmpRequire: ReturnType<typeof createRequire> | undefined = undefined;
     if (existsSync(path))
         if (isAbsolute(packageName))
