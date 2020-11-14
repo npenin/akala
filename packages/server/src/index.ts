@@ -18,7 +18,7 @@ export { State } from './state'
 
 import * as commands from '@akala/commands'
 
-export function connect(socket: net.Socket, container: commands.Container<void>): commands.Container<void> & description.commands
+export function connect(socket: net.Socket, container: commands.Container<any>): commands.Container<void> & description.commands
 {
     return commands.proxy(require('../commands.json'), c => new commands.Processors.JsonRpc(commands.Processors.JsonRpc.getConnection(new commands.NetSocketAdapter(socket), container || c)));
 }

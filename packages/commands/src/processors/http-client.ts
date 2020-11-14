@@ -26,7 +26,7 @@ export class HttpClient<T> extends CommandProcessor<T>
                     return res.text();
                 case 'json':
                 default:
-                    if (res.headers.has('content-length') && Number(res.headers.get('content-length')) > 0)
+                    if (res.status != 201 && (!res.headers.has('content-length') || Number(res.headers.get('content-length')) > 0))
                         return res.json();
                     return null;
             }
