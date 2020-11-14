@@ -8,6 +8,7 @@ import { IpcAdapter } from './commands/start';
 import debug from 'debug';
 import mock from 'mock-require'
 import { CommandNameProcessor } from '@akala/commands';
+import { Socket } from 'net';
 
 (async function (folder)
 {
@@ -52,7 +53,19 @@ import { CommandNameProcessor } from '@akala/commands';
         var init = cliContainer.resolve('$init');
         if (init && init.config && init.config.cli && init.config.cli.options)
             args = yargs(process.argv.slice(3), init.config.cli.options);
-        var pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer), true));
+        if (process.argv[2] != 'pm')
+            if (process.connected)
+                var pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer), true));
+            else
+            {
+                var pmSocket = new Socket();
+                await new Promise<void>((resolve, reject) =>
+                {
+                    pmSocket.on('error', reject)
+                    pmSocket.connect(args.pmSocket, resolve);
+                })
+                var pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new ac.NetSocketAdapter(pmSocket), cliContainer), true));
+            }
         // pm.trap(pm.processor as CommandNameProcessor<any>);
         // pm.unregister('$metadata');
         var stop = await cliContainer.dispatch(init || '$serve', { options: args, param: args._, _trigger: 'cli', pm: pm });
