@@ -40,8 +40,8 @@ async function processCommand<T>(container: Container<T>, c: Metadata.Command, i
     var req = injected.$request;
     return Local.execute(c, function (...args)
     {
-        container.dispatch(c.name, ...args)
-    }, container, { param: [], route: req.params, query: req.query, body: req.body, headers: req.headers, ...injected });
+        return container.dispatch(c.name, ...args.filter((a, i) => c.inject[i].startsWith('param.')));
+    }, container, { param: [], route: req.params, query: req.query, _trigger: 'http', body: req.body, headers: req.headers, ...injected });
 }
 
 function wrapWorker<T>(container: Container<T>, c: Metadata.Command): worker.RequestHandler
