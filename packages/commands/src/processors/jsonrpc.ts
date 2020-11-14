@@ -66,7 +66,7 @@ export class JsonRpc<T> extends CommandProcessor<T>
                     {
                         if (log)
                             log(error);
-                        if (typeof error.toJSON == 'function')
+                        if (error && typeof error.toJSON == 'function')
                             reply(error.toJSON());
                         else
                             reply({ message: error.message, stack: error.stack, code: error.code });
