@@ -1,0 +1,188 @@
+{
+    "name": "config",
+    "commands": [
+        {
+            "name": "$init",
+            "inject": [
+                "$container",
+                "param.0"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "$container",
+                        "param.0"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/$init.js",
+                    "source": "src/commands/$init.ts",
+                    "inject": [
+                        "$container",
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "options": {
+                        "normalize": [
+                            "param.0"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "name": "commit",
+            "inject": [
+                "$container",
+                "param.0"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "$container",
+                        "param.0"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/commit.js",
+                    "source": "src/commands/commit.ts",
+                    "inject": [
+                        "$container",
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0",
+                        "options.formatted"
+                    ],
+                    "options": {
+                        "boolean": [
+                            "formatted"
+                        ],
+                        "normalize": [
+                            "param.0"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "name": "get",
+            "inject": [
+                "param.0",
+                "param.1"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/get.js",
+                    "source": "src/commands/get.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0",
+                        "options.file"
+                    ],
+                    "options": {
+                        "alias": {
+                            "file": [
+                                "c"
+                            ]
+                        },
+                        "normalize": [
+                            "file"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "name": "revert",
+            "inject": [
+                "param.0"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/revert.js",
+                    "source": "src/commands/revert.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "options": {
+                        "normalize": [
+                            "param.0"
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "name": "set",
+            "inject": [
+                "param.0",
+                "param.1",
+                "param.2"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/set.js",
+                    "source": "src/commands/set.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "options.file"
+                    ],
+                    "options": {
+                        "alias": {
+                            "file": [
+                                "c"
+                            ]
+                        },
+                        "normalize": [
+                            "file"
+                        ]
+                    }
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+}

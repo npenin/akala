@@ -173,7 +173,7 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
 
     public handle<TRequest extends Request>(req: TRequest, ...rest)
     {
-        return this.internalHandle.apply(this, [{}, req].concat(rest));
+        return this.internalHandle.call(this, {}, req, ...rest);
     }
 
     protected internalHandle(options, req, ...rest)
@@ -340,10 +340,9 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
 
             var args: any[] = [req];
             args = args.concat(rest.slice(0, rest.length - 1));
-            ;
 
             // this should be done for the layer
-            self.process_params.apply(self, [layer, paramcalled].concat(args).concat(function (err)
+            self.process_params(layer, paramcalled, req, ...args, function (err)
             {
                 if (err)
                 {
@@ -356,7 +355,7 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
                 }
 
                 trim_prefix(layer, layerError, layerPath, path)
-            }));
+            });
         }
 
 
@@ -610,7 +609,7 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
             strict: this.strict,
             end: true,
             length: this.length
-        }, route.dispatch.bind(route))
+        }, route.dispatch.bind(route) as any)
 
         layer.route = route
 
