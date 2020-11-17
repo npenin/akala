@@ -120,13 +120,13 @@ export class Container<TState> extends akala.Injector
         proxy.unregister('$metadata');
         proxy.unregister('$serve');
         proxy.unregister('$attach');
-        proxy.resolve = (name: string) =>
+        proxy.resolve = ((name: string) =>
         {
             var result = proxyResolve.call(proxy, name);
             if (result instanceof Command || !result)
                 return new CommandProxy(processor, name, ['$param']);
             return result;
-        }
+        }) as any;
         return proxy;
     }
 

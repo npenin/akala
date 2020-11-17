@@ -34,10 +34,10 @@ export class ExpressionVisitor
 
     async visitNew<T>(expression: NewExpression<T>): Promise<Expressions>
     {
-        var members = await this.visitArray(expression.init);
+        var members = await this.visitArray(expression.init as any);
         if (members !== expression.init)
         {
-            return new NewExpression<T>(...members);
+            return new NewExpression<T>(...members as any);
         }
         return expression;
     }

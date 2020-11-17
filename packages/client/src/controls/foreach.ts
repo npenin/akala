@@ -58,20 +58,26 @@ export class ForEach extends GenericControlInstance<ForeachParameter>
                             parent.removeChild(parent.lastElementChild);
                             break;
                         case 'push':
-                            var scope = self.scope.$new();
-                            if (parsedParam.key)
-                                scope[parsedParam.key] = source.length - 1;
-                            if (parsedParam.value)
-                                scope[parsedParam.value] = args.newItems[0];
-                            self.clone(element, scope, true).then(el => parent.appendChild(el));
+                            args.newItems.forEach(arg =>
+                            {
+                                var scope = self.scope.$new();
+                                if (parsedParam.key)
+                                    scope[parsedParam.key] = source.length - 1;
+                                if (parsedParam.value)
+                                    scope[parsedParam.value] = arg;
+                                self.clone(element, scope, true).then(el => parent.appendChild(el));
+                            })
                             break;
                         case 'unshift':
-                            var scope = self.scope.$new();
-                            if (parsedParam.key)
-                                scope[parsedParam.key] = 0;
-                            if (parsedParam.value)
-                                scope[parsedParam.value] = args.newItems[0];
-                            self.clone(element, scope, true).then(el => parent.insertBefore(el, parent.firstElementChild));
+                            args.newItems.forEach(arg =>
+                            {
+                                var scope = self.scope.$new();
+                                if (parsedParam.key)
+                                    scope[parsedParam.key] = 0;
+                                if (parsedParam.value)
+                                    scope[parsedParam.value] = arg;
+                                self.clone(element, scope, true).then(el => parent.insertBefore(el, parent.firstElementChild));
+                            });
                             break;
                         case 'replace':
                             var scope = self.scope.$new();

@@ -395,7 +395,7 @@ export class ObservableArray<T> extends EventEmitter
 
     public push(...items: T[])
     {
-        this.array.push.apply(this.array, items);
+        this.array.push(...items);
         this.emit('collectionChanged', {
             action: 'push',
             newItems: items

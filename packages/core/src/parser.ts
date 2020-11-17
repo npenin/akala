@@ -445,7 +445,7 @@ export class Parser
             if (item instanceof ParsedBoolean || item instanceof ParsedString || item instanceof ParsedNumber)
                 results.push(item);
             else if (item instanceof ParsedBinary)
-                results.push(item.evaluate.bind(item));
+                results.push(item.evaluate.bind(item) as any);
             else
                 results.push(item);
             results.$$length += item.$$length;
