@@ -392,6 +392,15 @@ export class ObservableArray<T> extends EventEmitter
     }
 
     public get length() { return this.array.length; }
+    public set length(value: number)
+    {
+        var oldItems = this.array.slice(value);
+        this.emit('collectionChanged', {
+            action: 'pop',
+            newItems: oldItems
+        });
+        this.array.length = value;
+    }
 
     public push(...items: T[])
     {
