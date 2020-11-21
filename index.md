@@ -1,6 +1,6 @@
 Akala is a framework that aims to provide kind of a mix between [angular](https://angular.io), [redux](https://redux.js.org), [uci](https://openwrt.org/docs/guide-user/base-system/uci) and [pm2](https://pm2.io/).
 
-It is composed from multiple layers 
+It is composed of multiple layers 
 - [jsonrpc](jsonrpc): base communication layer (obviously other protocols can be used, but this one is the firstclass choice.
 - [core](core): base layer containing all necessary implementations for subsequent layers: modules, dependency injection, 2way data binding, ...
 - [commands](commands): base layer to implement a redux-like system.
