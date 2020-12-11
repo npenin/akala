@@ -9,7 +9,7 @@ import send from 'send'
 var log = akala.log('akala:master');
 
 var httpRouter = router.HttpRouter;
-type request = router.Request & { body?: any };
+type request = router.Request & { json(): Promise<any>, text(): Promise<any> };
 type response = router.Response;
 export { httpRouter as Router, request as Request, response as Response };
 

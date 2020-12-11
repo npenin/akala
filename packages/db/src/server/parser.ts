@@ -179,9 +179,13 @@ export class Parser
 
     public parseNumber(expression): ParsedOneOf
     {
-        var result = new ParsedNumber(/^[0-9.]/.exec(expression)[0]);
-
-        return this.tryParseOperator(expression.substring(result.$$length), result);
+        var num = /^[0-9.]/.exec(expression);
+        if (num[0].length != 1 || num[0][0] != '.')
+        {
+            var result = new ParsedNumber(num[0]);
+            return this.tryParseOperator(expression.substring(result.$$length), result);
+        }
+        return this.tryParseOperator(expression, this.parameters['']);
     }
 
     public parseNot(expression: string): ParsedOneOf
@@ -252,6 +256,7 @@ export class Parser
             switch (operator[1])
             {
                 case '.':
+                    return Parser.parseAccessor(expression, lhs as any);
                 default:
                     expression = expression.substring(operator[0].length);
                     var rhs = this.parse(expression);

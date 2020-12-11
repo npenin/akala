@@ -3,7 +3,7 @@ import { control, Control, GenericControlInstance } from './control'
 import { IScope } from '../scope'
 import { Template } from '../template';
 
-export interface parameter
+export interface OptionsParameter
 {
     in: akala.Binding | akala.ObservableArray<any>;
     text: akala.Binding | string;
@@ -12,30 +12,33 @@ export interface parameter
 }
 
 @control('options', 350)
-export class Options extends GenericControlInstance<parameter>
+export class Options extends GenericControlInstance<OptionsParameter>
 {
     constructor()
     {
         super()
     }
 
-    public instanciate(target: IScope<any>, element: HTMLSelectElement, parameter: parameter, controls: any)
+    @akala.inject('controls')
+    private controls: any;
+
+    public init()
     {
         var self = this;
-        var value: akala.Binding = controls.value;
-        if (controls.value instanceof Function)
-            value = controls.value(target, true);
+        var value: akala.Binding = this.controls.value;
+        if (this.controls.value instanceof Function)
+            value = this.controls.value(this.scope, true);
 
-        delete controls.value;
+        delete this.controls.value;
+        if (this.parameter instanceof akala.Binding)
+            throw new Error('Not Supported');
+        var parameter = this.parameter;
         // var newControls;
-        var source: any[] | akala.ObservableArray<any>;
-        if (parameter.in instanceof akala.Binding)
-            source = parameter.in.getValue();
-        else
-            source = parameter.in;
-        akala.Promisify(source).then(function (source)
+        var build = (source: any[] | akala.ObservableArray<any>) =>
         {
             var array: any[];
+            var element = this.element;
+            var target = this.scope;
 
             if (parameter.text instanceof akala.Binding)
                 parameter.text = parameter.text.expression;
@@ -49,8 +52,9 @@ export class Options extends GenericControlInstance<parameter>
                 parameter.value = '$item.' + parameter.value;
             if (source instanceof akala.ObservableArray)
             {
-                var offset = element.childElementCount;
-                source.on('collectionChanged', function (this: akala.ObservableArray<any>, args: akala.ObservableArrayEventArgs<any>)
+                var offset = this.element.childElementCount;
+
+                source.on('collectionChanged', function (this: akala.ObservableArray<any>, args: akala.ObservableArrayEventArgs<any>) 
                 {
                     var key = -1;
                     var isAdded = false;
@@ -94,21 +98,19 @@ export class Options extends GenericControlInstance<parameter>
             }
             else
                 array = source;
-            if (typeof (array) == 'undefined')
-                throw new Error('invalid array type');
+            if (typeof (array) !== 'undefined')
+                akala.each(array, (value, key) =>
+                {
+                    var scope = target.$new();
+                    scope['$key'] = key;
+                    scope['$item'] = value;
+                    self.clone(Template.buildElements('<option data-bind="{value: ' + (parameter.textvalue || parameter.value) + ', text:' + parameter.text + '}" />')[0] as HTMLElement, scope, true).then(el => element.appendChild(el));
+                })
 
-            akala.each(array, function (value, key)
+            this.element.addEventListener('change', () =>
             {
-                var scope = target.$new();
-                scope['$key'] = key;
-                scope['$item'] = value;
-                self.clone(Template.buildElements('<option data-bind="{value: ' + (parameter.textvalue || parameter.value) + ', text:' + parameter.text + '}" />')[0] as HTMLElement, scope, true).then(el => element.appendChild(el));
-            })
-
-            element.addEventListener('change', function ()
-            {
-                var val = element.value;
-                var model = akala.grep(array, function (it, i)
+                var val = (element as HTMLSelectElement).value;
+                var model = akala.grep(array, (it, i) =>
                 {
                     return val == akala.Parser.eval(<string>(parameter.textvalue || parameter.value), { $item: it, $key: i });
                 }, true);
@@ -118,19 +120,24 @@ export class Options extends GenericControlInstance<parameter>
                     value.setValue(model[0], value);
             });
 
-            value.onChanged(function (ev)
+            value.onChanged((ev) =>
             {
-                if (value !== ev.source)
+                if (value !== ev.eventArgs.source && typeof array != 'undefined')
                 {
                     var val = akala.Parser.eval(<string>(parameter.textvalue || parameter.value), { $item: ev.eventArgs.value, $key: array.indexOf(ev.eventArgs.value) });
-                    element.querySelectorAll('option').forEach(function (opt, i)
+                    this.element.querySelectorAll('option').forEach((opt, i) =>
                     {
                         opt.selected = val == opt.value;
                         if (opt.selected)
-                            element.selectedIndex = i;
+                            (element as HTMLSelectElement).selectedIndex = i;
                     });
                 }
             });
-        });
+        }
+
+        if (this.parameter.in instanceof akala.Binding)
+            this.parameter.in.onChanged(ev => akala.Promisify(ev.eventArgs.value).then(build));
+        else
+            akala.Promisify(this.parameter.in).then(build);
     }
 }

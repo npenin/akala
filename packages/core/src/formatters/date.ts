@@ -157,7 +157,7 @@ export class DateFormatter implements FormatterFactory<Date, DateFormatterSettin
     public parse(expression: string): DateFormatterSettings
     {
         // console.log(expression);
-        var settings = Parser.parse(expression);
+        var settings = new Parser().parse(expression);
         if (settings instanceof ParsedString)
             return { format: settings.value };
         return settings as DateFormatterSettings;

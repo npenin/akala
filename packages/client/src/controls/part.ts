@@ -25,7 +25,7 @@ export class Part extends GenericControlInstance<string | { [property: string]: 
             {
                 nonStringParameter.onChanged(ev =>
                 {
-                    if (ev.source !== null || ev.eventArgs.value)
+                    if (ev.eventArgs.source !== null || ev.eventArgs.value)
                         partService.apply(() => this as unknown as PartInstance, ev.eventArgs.value, {}, noop)
                 });
 
@@ -35,7 +35,7 @@ export class Part extends GenericControlInstance<string | { [property: string]: 
                 if (nonStringParameter.template instanceof Binding)
                     nonStringParameter.template.onChanged((ev) =>
                     {
-                        var nonStringParameter = (nonStringParameter as { [property: string]: Binding });
+                        nonStringParameter = (nonStringParameter as { [property: string]: Binding });
                         if (nonStringParameter.controller instanceof Binding)
                             partService.apply(() => this as unknown as PartInstance, { controller: nonStringParameter.controller.getValue(), template: ev.eventArgs.value }, {}, noop);
                         else

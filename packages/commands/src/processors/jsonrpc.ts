@@ -49,13 +49,14 @@ export class JsonRpc<T> extends CommandProcessor<T>
                         var cmd = container.resolve(method);
                         if (!cmd)
                         {
+                            container.inspect();
                             error.message = `Command with name ${method} could not be found on ${socket.constructor.name}`;
                             throw error;
                         }
 
                         if (!params)
                             params = { param: [] };
-                        params.connectionAsContainer = lazy(() => Container.proxy(container?.name + '-client', new JsonRpc(connection, true) as any));
+                        Object.defineProperty(params, 'connectionAsContainer', { enumerable: true, get() { return Container.proxy(container?.name + '-client', new JsonRpc(connection, true) as any) } });
                         if (!params._trigger || params._trigger == 'proxy')
                             params._trigger = 'jsonrpc';
 

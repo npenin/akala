@@ -118,13 +118,23 @@ export namespace Enumerable
         return i;
     }
 
-
     export function select<T, U>(source: Iterable<T>, project: Project<T, U>): Iterable<U>
     {
         return {
             *[Symbol.iterator]()
             {
                 for (let value of source)
+                    yield project(value);
+            }
+        }
+    }
+
+    export function selectAsync<T, U>(source: AsyncIterable<T>, project: Project<T, U>): AsyncIterable<U>
+    {
+        return {
+            async *[Symbol.asyncIterator]()
+            {
+                for await (let value of source)
                     yield project(value);
             }
         }
@@ -140,17 +150,58 @@ export namespace Enumerable
                 for (let value of source)
                 {
                     var group = criteria(value);
-                    if (typeof group == 'object')
-                        throw new NotSupportedException('Not yet implemented');
-                    if (typeof groups[group as string] == 'undefined')
+                    console.log({ value, group, result: this.result });
+                    if (typeof this.result == 'object')
                     {
-                        groups[group as string] = [];
+                        throw new NotSupportedException('Not yet implemented');
+                    }
+                    if (typeof groups[this.result as string] == 'undefined')
+                    {
+                        groups[this.result as string] = [];
                         result.push({ key: this.result, value: groups[this.result] });
                     }
-                    groups[group as string].push(value);
+                    groups[this.result as string].push(value);
 
                 }
                 return result[Symbol.iterator]();
+            }
+        }
+    }
+
+
+
+    export function groupByAsync<T, U extends string | number>(source: AsyncIterable<T>, criteria: Project<T, Promise<U>>): AsyncIterable<{ key: U, value: Iterable<T> }>
+    {
+        return {
+            [Symbol.asyncIterator]()
+            {
+                var result: { key: U, value: Iterable<T> }[];
+                var groupIndex = 0;
+                return {
+                    async next()
+                    {
+                        if (typeof result !== 'undefined')
+                            return { value: result[groupIndex++], done: groupIndex == result.length };
+                        result = [];
+                        var groups: { [key: string]: Array<T> } = {};
+                        for await (let value of source)
+                        {
+                            var group = await criteria(value);
+                            console.log({ value, group, result: this.result });
+                            if (typeof group == 'object')
+                            {
+                                throw new NotSupportedException('Not yet implemented');
+                            }
+                            if (typeof groups[group as string] == 'undefined')
+                            {
+                                groups[group as string] = [];
+                                result.push({ key: group, value: groups[group] });
+                            }
+                            groups[group].push(value);
+                        }
+                        return { value: result[groupIndex], done: groupIndex == result.length };
+                    }
+                }
             }
         }
     }

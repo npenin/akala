@@ -82,4 +82,38 @@ describe('simple query', function ()
         assert.equal(await store.ModelTest1.where('s2', db.expressions.BinaryOperator.Equal, 'pwet').length(), 2, 'we should have 2 objects with s2=pwet')
     });
 
+    it('works with grouped query', async function ()
+    {
+        var fpe = await File.from(__dirname);
+        var store = Store.create<TestStore>(fpe, 'ModelTest1');
+
+        fpe.beginTransaction();
+        for await (var obj of store.ModelTest1.where('s2', db.expressions.BinaryOperator.Equal, 'pwet'))
+            fpe.addCommand(store.ModelTest1.delete(obj));
+        await fpe.commitTransaction();
+
+        fpe.beginTransaction();
+        obj = new ModelTest1();
+        obj.s1 = 'pwic';
+        obj.s2 = 'pwet';
+        fpe.serialize(obj, store.ModelTest1);
+        // fpe.addCommand(store.ModelTest1.create(obj));
+        obj = new ModelTest1();
+        obj.s1 = 'prout';
+        obj.s2 = 'pwet';
+        fpe.addCommand(store.ModelTest1.create(obj));
+        await fpe.commitTransaction();
+
+        try
+        {
+            var group = await store.ModelTest1.groupBy('s2').singleOrDefault();
+            assert.strictEqual(group.key, 'pwet');
+            assert.strictEqual(await group.value.length(), 2);
+        }
+        catch (e)
+        {
+            //normal behaviour
+        }
+    });
+
 })

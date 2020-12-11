@@ -6,7 +6,7 @@ import { Template } from './template'
 import { IScope } from './scope'
 import { service } from './common'
 import { LocationService as Location } from './locationService'
-import { Injector } from '@akala/core'
+import { each, Injector } from '@akala/core'
 import { IControlInstance } from './controls/control'
 
 export type PartInstance = { scope: any, element: HTMLElement, controlsInPart?: IControlInstance<any>[] };
@@ -14,7 +14,9 @@ export type PartInstance = { scope: any, element: HTMLElement, controlsInPart?: 
 @service('$part', '$template', '$router', '$location')
 export class Part extends EventEmitter
 {
-    constructor(private template: Template, private router: Router, private location: Location)
+    private routers: { [key: string]: Router } = {};
+
+    constructor(private template: Template, router: Router, private location: Location)
     {
         super();
         location.on('changing', () =>
@@ -27,6 +29,15 @@ export class Part extends EventEmitter
                 (<PartInstance>parts.resolve(partName)).element.textContent = '';
             })
         })
+
+        router.use((req) =>
+        {
+            each(this.routers, router => router.handle(req, function (error)
+            {
+                if (error)
+                    console.error(error);
+            }))
+        })
     }
 
     private parts = new akala.Injector();
@@ -35,13 +46,15 @@ export class Part extends EventEmitter
     {
         var parts = this.parts;
         parts.register(partName, control);
+        if (!this.routers[partName])
+            this.routers[partName] = new Router();
         this.location.refresh();
     }
 
     public apply<TScope extends IScope<any>>(partInstance: () => PartInstance, part: PartDefinition<TScope>, params: any, next: akala.NextFunction)
     {
         var template = this.template;
-        if (part.template)
+        if (part && part.template)
             return template.get(part.template).then(function (template)
             {
                 var p = partInstance();
@@ -62,7 +75,7 @@ export class Part extends EventEmitter
             var p = partInstance();
             if (!p)
                 return;
-            if (part.controller)
+            if (part && part.controller)
                 part.controller(p.scope, p.element, params, next);
             else
                 next();
@@ -81,14 +94,16 @@ export class Part extends EventEmitter
 
             return partService;
         }
-        var route = this.router.route(url);
+        if (!this.routers[partName])
+            this.routers[partName] = new Router();
+        var route = this.routers[partName].route(url);
         route.addHandler((layer: BrowserLayer) =>
         {
             layer.name = partName;
             return layer;
         }, function (req: Request, next: akala.NextFunction)
         {
-            console.log('apply part for url' + url);
+            console.log('apply part ' + partName + ' for url ' + url);
             self.apply(() => self.parts.resolve(partName), part, req.params, next);
         });
     }

@@ -15,11 +15,83 @@ export interface ParsedAny
 
 export type ParsedOneOf = ParsedObject | ParsedArray | ParsedFunction | ParsedString | ParsedBoolean | ParsedNumber;
 
+export enum BinaryOperator
+{
+    Equal,
+    StrictEqual,
+    NotEqual,
+    StrictNotEqual,
+    LessThan,
+    LessThanOrEqual,
+    GreaterThan,
+    GreaterThanOrEqual,
+    And,
+    Or,
+    Minus,
+    Plus,
+    Modulo,
+    Div,
+    Times,
+    Pow,
+    Dot,
+    Unknown
+}
+function parseOperator(op: string): BinaryOperator
+{
+    switch (op)
+    {
+        case '==': return BinaryOperator.Equal;
+        case '===': return BinaryOperator.StrictEqual;
+        case '!=': return BinaryOperator.NotEqual;
+        case '!==': return BinaryOperator.StrictNotEqual;
+        case '<': return BinaryOperator.LessThan;
+        case '<=': return BinaryOperator.LessThanOrEqual;
+        case '>': return BinaryOperator.GreaterThan;
+        case '>=': return BinaryOperator.GreaterThanOrEqual;
+        case '&&': return BinaryOperator.And;
+        case '||': return BinaryOperator.Or;
+        case '-': return BinaryOperator.Minus;
+        case '+': return BinaryOperator.Plus;
+        case '%': return BinaryOperator.Modulo;
+        case '/': return BinaryOperator.Div;
+        case '*': return BinaryOperator.Times;
+        case '^': return BinaryOperator.Pow;
+        case '.': return BinaryOperator.Dot;
+        default: return BinaryOperator.Unknown;
+    }
+}
+function operatorLength(operator: BinaryOperator)
+{
+    switch (operator)
+    {
+
+        case BinaryOperator.Equal:
+        case BinaryOperator.NotEqual:
+        case BinaryOperator.LessThanOrEqual:
+        case BinaryOperator.GreaterThanOrEqual:
+        case BinaryOperator.And:
+        case BinaryOperator.Or:
+            return 2;
+        case BinaryOperator.LessThan:
+        case BinaryOperator.GreaterThan:
+        case BinaryOperator.Minus:
+        case BinaryOperator.Plus:
+        case BinaryOperator.Div:
+        case BinaryOperator.Modulo:
+        case BinaryOperator.Times:
+        case BinaryOperator.Pow:
+            return 1;
+        case BinaryOperator.Unknown:
+            throw new Error('Unknown operator');
+            break;
+    }
+}
+
 export class ParsedBinary implements ParsedAny
 {
-    constructor(public operator: '+' | '-' | '*' | '/' | '&&' | '||' | '<' | '<=' | '>' | '>=' | '.', public left: ParsedOneOf, public right: ParsedOneOf)
+    constructor(public operator: BinaryOperator, public left: ParsedOneOf, public right: ParsedOneOf)
     {
-        this.$$length = this.left.$$length + this.operator.length + this.right.$$length;
+        this.$$length = this.left.$$length + operatorLength(this.operator) + this.right.$$length;
     }
 
     public evaluate(value: any, asBinding?: boolean)
@@ -111,21 +183,21 @@ export class ParsedBinary implements ParsedAny
 
     public static applyPrecedence(operation: ParsedBinary)
     {
-        if (operation.operator != '+' && operation.operator != '-')
+        if (operation.operator != BinaryOperator.Plus && operation.operator != BinaryOperator.Minus)
         {
             if (operation.right instanceof Function && operation.right.$$ast)
             {
                 var right = ParsedBinary.applyPrecedence(operation.right.$$ast);
                 switch (right.operator)
                 {
-                    case '+':
-                    case '-':
+                    case BinaryOperator.Plus:
+                    case BinaryOperator.Minus:
                         break;
-                    case '*': // b*(c+d) ==> (b*c)+d
-                    case '/':
-                    case '&&':
-                    case '||':
-                    case '.':
+                    case BinaryOperator.Times: // b*(c+d) ==> (b*c)+d
+                    case BinaryOperator.Div:
+                    case BinaryOperator.And:
+                    case BinaryOperator.Or:
+                    case BinaryOperator.Dot:
                         var left = operation.left;
                         operation.right = right.right;
                         operation.left = new ParsedBinary(operation.operator, left, right.left);
@@ -204,29 +276,29 @@ export class ParsedBoolean implements ParsedAny
 
 export class Parser
 {
-    public static parse(expression: string, excludeFirstLevelFunction: false | undefined): ParsedFunction
-    public static parse(expression: string, excludeFirstLevelFunction: true): ParsedOneOf
-    public static parse(expression: string, excludeFirstLevelFunction?: boolean): ParsedFunction | ParsedOneOf
-    public static parse(expression: string, excludeFirstLevelFunction?: boolean): ParsedFunction | ParsedOneOf
+    public parse(expression: string, excludeFirstLevelFunction: false | undefined): ParsedFunction
+    public parse(expression: string, excludeFirstLevelFunction: true): ParsedOneOf
+    public parse(expression: string, excludeFirstLevelFunction?: boolean): ParsedFunction | ParsedOneOf
+    public parse(expression: string, excludeFirstLevelFunction?: boolean): ParsedFunction | ParsedOneOf
     {
         expression = expression.trim();
-        var result = Parser.parseAny(expression, excludeFirstLevelFunction);
+        var result = this.parseAny(expression, excludeFirstLevelFunction);
         if (!excludeFirstLevelFunction && result instanceof ParsedBinary)
             return result.evaluate.bind(result);
         return result;
     }
 
-    public static parseAny(expression: string, excludeFirstLevelFunction: boolean): ParsedOneOf
+    public parseAny(expression: string, excludeFirstLevelFunction: boolean): ParsedOneOf
     {
         switch (expression[0])
         {
             case '{':
-                return Parser.parseObject(expression, excludeFirstLevelFunction);
+                return this.parseObject(expression, excludeFirstLevelFunction);
             case '[':
-                return Parser.parseArray(expression, excludeFirstLevelFunction);
+                return this.parseArray(expression, excludeFirstLevelFunction);
             case '"':
             case "'":
-                return Parser.parseString(expression, expression[0]);
+                return this.parseString(expression, expression[0]);
             case '0':
             case '1':
             case '2':
@@ -238,20 +310,20 @@ export class Parser
             case '8':
             case '9':
             case '.':
-                return Parser.parseNumber(expression);
+                return this.parseNumber(expression);
             default:
-                return Parser.parseEval(expression);
+                return this.parseEval(expression);
         }
     }
 
-    public static parseNumber(expression): ParsedOneOf
+    public parseNumber(expression): ParsedOneOf
     {
         var result = new ParsedNumber(/^[0-9.]/.exec(expression)[0]);
 
-        return Parser.tryParseOperator(expression.substring(result.$$length), result);
+        return this.tryParseOperator(expression.substring(result.$$length), result);
     }
 
-    public static parseBoolean(expression): ParsedBoolean
+    public parseBoolean(expression): ParsedBoolean
     {
         var formatter: (o: any) => any = formatters.identity;
         if (expression[0] == '!')
@@ -275,16 +347,16 @@ export class Parser
         return null;
     }
 
-    public static parseEval(expression: string): ParsedBoolean | ParsedFunction | ParsedBinary
+    public parseEval(expression: string): ParsedBoolean | ParsedFunction | ParsedBinary
     {
-        var b = Parser.parseBoolean(expression);
+        var b = this.parseBoolean(expression);
         if (b)
             return b;
 
-        return Parser.parseFunction(expression);
+        return this.parseFunction(expression);
     }
 
-    public static parseFunction(expression: string): ParsedFunction | ParsedBinary
+    public parseFunction(expression: string): ParsedFunction | ParsedBinary
     {
         var length = 0;
         var formatter: (o: any) => any = formatters.identity;
@@ -332,7 +404,7 @@ export class Parser
                         if (i == parts.length - 1)
                             promise = value;
                         else
-                            promise = value.then(<ParsedFunction>Parser.parseFunction(parts.slice(i + 1).join('.'))).then(formatter);
+                            promise = value.then(<ParsedFunction>this.parseFunction(parts.slice(i + 1).join('.'))).then(formatter);
                         promise['$$length'] = item.length;
                         return promise;
                     }
@@ -340,12 +412,12 @@ export class Parser
             return value;
         }
         f.$$length = length;
-        f = Parser.tryParseOperator(expression.substr(item.length), f);
+        f = this.tryParseOperator(expression.substr(item.length), f);
 
         return f;
     }
 
-    public static parseFormatter(expression: string, lhs: ParsedOneOf): ParsedOneOf
+    public parseFormatter(expression: string, lhs: ParsedOneOf): ParsedOneOf
     {
         var item = /^ *# *([\w0-9\.\$]+) */.exec(expression);
         expression = expression.substring(item[0].length);
@@ -407,9 +479,9 @@ export class Parser
         return result;
     }
 
-    public static tryParseOperator(expression: string, lhs: ParsedFunction): ParsedFunction
-    public static tryParseOperator(expression: string, lhs: ParsedOneOf): ParsedOneOf
-    public static tryParseOperator(expression: string, lhs: ParsedOneOf)
+    public tryParseOperator(expression: string, lhs: ParsedFunction): ParsedFunction
+    public tryParseOperator(expression: string, lhs: ParsedOneOf): ParsedOneOf
+    public tryParseOperator(expression: string, lhs: ParsedOneOf)
     {
         var operator = /^ *([<>=!\+\-\/\*&\|\.#]+) */.exec(expression);
         if (operator)
@@ -417,12 +489,12 @@ export class Parser
             switch (operator[1])
             {
                 case '#':
-                    return Parser.parseFormatter(expression, lhs);
+                    return this.parseFormatter(expression, lhs);
                 case '.':
                 default:
                     expression = expression.substring(operator[0].length);
-                    var rhs = Parser.parseAny(expression, false);
-                    var binary = new ParsedBinary(<any>operator[1], lhs, rhs)
+                    var rhs = this.parseAny(expression, false);
+                    var binary = new ParsedBinary(parseOperator(operator[1]), lhs, rhs)
                     binary.$$length = lhs.$$length + operator[0].length + rhs.$$length;
                     return ParsedBinary.applyPrecedence(binary);
             }
@@ -431,15 +503,15 @@ export class Parser
             return lhs;
     }
 
-    public static parseArray(expression: string, excludeFirstLevelFunction?: boolean): ParsedArray | ParsedFunction
+    public parseArray(expression: string, excludeFirstLevelFunction?: boolean): ParsedArray | ParsedFunction
     {
         var results: ParsedArray = [];
         Object.defineProperty(results, '$$length', { value: 0, enumerable: false, configurable: true, writable: true });
         var isFunction = false;
-        return Parser.parseCSV(expression, function (result)
+        return this.parseCSV(expression, function (result)
         {
-            var item = Parser.parseAny(result, false);
-            item = Parser.tryParseOperator(result.substring(item.$$length), item);
+            var item = this.parseAny(result, false);
+            item = this.tryParseOperator(result.substring(item.$$length), item);
 
 
             if (item instanceof ParsedBoolean || item instanceof ParsedString || item instanceof ParsedNumber)
@@ -453,53 +525,53 @@ export class Parser
         }, ']', results, excludeFirstLevelFunction);
     }
 
-    public static parseString(expression: string, start: string): ParsedOneOf
+    public parseString(expression: string, start: string): ParsedOneOf
     {
         var evaluatedRegex = new RegExp("^" + start + "((?:[^\\" + start + "]|\\.)+)" + start).exec(expression);
         // console.log(arguments);
         var result = evaluatedRegex[1];
         var parsedString = new ParsedString(result);
-        return Parser.tryParseOperator(expression.substring(evaluatedRegex[0].length), parsedString);
+        return this.tryParseOperator(expression.substring(evaluatedRegex[0].length), parsedString);
     }
 
-    public static operate(operator: string, left?: any, right?: any)
+    public static operate(operator: BinaryOperator, left?: any, right?: any)
     {
         // if (arguments.length == 1)
         //     return function (left: any, right: any)
         //     {
-        //         return Parser.operate(operator, left, right);
+        //         return this.operate(operator, left, right);
         //     }
         switch (operator)
         {
-            case '==':
+            case BinaryOperator.Equal:
                 return left == right;
-            case '===':
+            case BinaryOperator.StrictEqual:
                 return left === right;
-            case '<':
+            case BinaryOperator.LessThan:
                 return left < right;
-            case '<=':
+            case BinaryOperator.LessThanOrEqual:
                 return left <= right;
-            case '>':
+            case BinaryOperator.GreaterThan:
                 return left > right;
-            case '>=':
+            case BinaryOperator.GreaterThanOrEqual:
                 return left >= right;
-            case '!=':
+            case BinaryOperator.NotEqual:
                 return left != right;
-            case '!==':
+            case BinaryOperator.StrictNotEqual:
                 return left !== right;
-            case '+':
+            case BinaryOperator.Plus:
                 return left + right;
-            case '-':
+            case BinaryOperator.Minus:
                 return left - right;
-            case '/':
+            case BinaryOperator.Div:
                 return left / right;
-            case '*':
+            case BinaryOperator.Times:
                 return left * right;
-            case '||':
+            case BinaryOperator.Or:
                 return left || right;
-            case '&&':
+            case BinaryOperator.And:
                 return left && right;
-            case '.':
+            case BinaryOperator.Dot:
                 if (right instanceof Function)
                     return right(left);
                 return left[right];
@@ -508,7 +580,7 @@ export class Parser
         }
     }
 
-    private static parseCSV<T extends ParsedArray | ParsedObject>(expression: string, parseItem: (expression: string) => ParsedAny, end: string, output: T, excludeFirstLevelFunction: boolean): ParsedFunction | T
+    public parseCSV<T extends ParsedArray | ParsedObject>(expression: string, parseItem: (expression: string) => ParsedAny, end: string, output: T, excludeFirstLevelFunction: boolean): ParsedFunction | T
     {
         expression = expression.substring(1);
         output.$$length++;
@@ -557,12 +629,12 @@ export class Parser
             return output;
     }
 
-    public static parseObject(expression: string, excludeFirstLevelFunction?: boolean)
+    public parseObject(expression: string, excludeFirstLevelFunction?: boolean)
     {
         var keyMatch: RegExpExecArray;
         var parsedObject: ParsedObject = {};
         Object.defineProperty(parsedObject, '$$length', { value: 0, enumerable: false, writable: true, configurable: true });
-        var result = Parser.parseCSV(expression, function (expression)
+        var result = this.parseCSV(expression, function (expression)
         {
             // var length = 0;
             var keyMatch = jsonKeyRegex.exec(expression);
@@ -571,7 +643,7 @@ export class Parser
             //console.log(keyMatch);
             var length = keyMatch[0].length + keyMatch.index;
             expression = expression.substring(length);
-            var item = Parser.parseAny(expression, false);
+            var item = this.parseAny(expression, false);
             length += item.$$length;
             if (item instanceof ParsedBoolean || item instanceof ParsedString || item instanceof ParsedNumber)
                 parsedObject[key] = item.value;
@@ -602,7 +674,7 @@ export class Parser
 
         while (parts.length > 1 && typeof (target) != 'undefined')
         {
-            target = Parser.eval(parts[0], target);
+            target = this.eval(parts[0], target);
             parts.shift();
         }
         if (typeof (target) == 'undefined')
@@ -613,17 +685,18 @@ export class Parser
 
     public static evalAsFunction(expression: string, excludeFirstLevelFunction?: boolean): ParsedFunction
     {
+        var parser = new Parser();
         if (!expression && typeof (expression) != 'string')
             return null;
-        var parts = Parser.parse(expression, excludeFirstLevelFunction);
+        var parts = parser.parse(expression, excludeFirstLevelFunction);
         if (parts instanceof Array)
-            return Parser.parseFunction(expression) as ParsedFunction;
+            return parser.parseFunction(expression) as ParsedFunction;
 
         return <ParsedFunction>parts;
     }
 
     public static eval(expression: string, value: any)
     {
-        return (Parser.evalAsFunction(expression, false) as ParsedFunction)(value, false);
+        return (this.evalAsFunction(expression, false) as ParsedFunction)(value, false);
     }
 }

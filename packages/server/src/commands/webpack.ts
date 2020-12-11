@@ -26,10 +26,12 @@ export default async function compile(this: State, target?: string, reload?: boo
 
         if (this.mode == "development")
         {
-            watcher = compiler.watch({}, function (err, stats)
+            watcher = compiler.watch({ poll: true }, (err) =>
             {
                 if (err)
                     console.error(err);
+                else
+                    log(this.webpack.config);
             })
         }
     }

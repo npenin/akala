@@ -138,7 +138,7 @@ export class Query<T> implements AsyncIterable<T>
     {
         if (typeof fieldOrExpression == 'string')
         {
-            let parameter = new ParameterExpression<T>(null)
+            let parameter = new ParameterExpression<T>()
             return this.select(LambdaExpression.typed<Project<T, U>, U>(new MemberExpression(parameter, fieldOrExpression as any), [parameter]));
         }
         if (typeof fieldOrExpression == 'symbol' || typeof fieldOrExpression == 'number' || typeof fieldOrExpression == 'string')
@@ -147,7 +147,7 @@ export class Query<T> implements AsyncIterable<T>
         if (!(fieldOrExpression instanceof TypedLambdaExpression))
         {
             let map = fieldOrExpression as { [K in keyof U]: string };
-            let parameter = new ParameterExpression<T>(null)
+            let parameter = new ParameterExpression<T>()
             var parser = new Parser(parameter);
             return this.select(LambdaExpression.typed<Project<T, U>, U>(new NewExpression<U>(...akala.map(map, (keySource, keyTarget) =>
             {
