@@ -1,5 +1,5 @@
 import { register, injectWithName } from "./global-injector";
-import { ParsedAny, Parser } from "./parser";
+import { Parser, ParsedAny } from "./parser";
 import { each, map, grep } from "./each";
 import { extend, module } from "./helpers";
 import { service } from "./service";
@@ -177,7 +177,7 @@ export class HttpCallFormatterFactory implements FormatterFactory<() => Promise<
         var method = /^ *(\w+)/.exec(expression);
         if (method)
             return { method: <keyof Http>method[1], $$length: method[0].length };
-        return Parser.parseAny(expression, false);
+        return new Parser().parseAny(expression, false);
     }
     public build(formatter, settings: { method: keyof Http }): Injected<any>
     {

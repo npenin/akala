@@ -3,21 +3,19 @@ import orchestrator from 'orchestrator'
 import { Injector, InjectableWithTypedThis, InjectableAsyncWithTypedThis, Injectable } from './injector';
 import { eachAsync } from './helpers';
 import debug from 'debug'
+import { isPromiseLike } from './promiseHelpers';
 
 const orchestratorLog = debug('akala:module:orchestrator');
 
 process.hrtime = process.hrtime || require('browser-process-hrtime');
 
-export class ExtendableEvent
+export class ExtendableEvent<T = void>
 {
-    private markAsDone: (value?: void | PromiseLike<void>) => void;
+    private markAsDone: (value?: T | PromiseLike<T>) => void;
     private _triggered: boolean;
-    constructor()
+    constructor(private once: boolean)
     {
-        this._whenDone = new Promise<void>((resolve, reject) =>
-        {
-            this.markAsDone = resolve;
-        })
+        this.reset();
     }
 
     private promises: PromiseLike<any>[] = [];
@@ -27,33 +25,64 @@ export class ExtendableEvent
         this.promises.push(p)
     }
 
-    private handlers: ((ev: this) => void | PromiseLike<void>)[] = [];
+    public reset()
+    {
+        if (!this.done && this._triggered || this.done && this.once)
+            throw new Error('you cannot reset an extended event if it did not complete yet');
+        this.promises = [];
+        this._done = false;
+        this.eventArgs = null;
+        this._triggered = false;
+        this._whenDone = new Promise<T>((resolve, reject) =>
+        {
+            this.markAsDone = resolve;
+        })
+    }
 
-    public async trigger()
+    private handlers: ((ev: this) => void | PromiseLike<T>)[] = [];
+
+    public eventArgs: T;
+
+    public async trigger(value: T)
     {
         if (!this._triggered)
         {
+            this.eventArgs = value;
             this._triggered = true;
             await eachAsync(this.handlers, (f, i, next) =>
             {
                 var result = f(this);
-                if (result && typeof result.then === 'function')
+                if (result && isPromiseLike(result) && typeof result.then === 'function')
                     result.then(() => next(), next);
                 else
                     next();
             });
         }
         await this.complete();
+        if (!this.once)
+            this.reset();
     }
 
-    public addHandler(handler: (ev: this) => void | PromiseLike<void>)
+    public removeHandler(handler: (ev: this) => void | PromiseLike<T>)
+    {
+        var indexOfHandler = this.handlers.indexOf(handler);
+        return indexOfHandler > -1 && this.handlers.splice(indexOfHandler, 1);
+    }
+
+    public addHandler(handler: (ev: this) => void | PromiseLike<T>): void | (() => void)
     {
         if (this._done || this._triggered)
         {
             handler(this);
         }
         else
-            this.handlers.push(handler);
+        {
+            var index = this.handlers.push(handler);
+            return () =>
+            {
+                this.handlers.splice(index, 1);
+            }
+        }
     }
 
     public get triggered()
@@ -61,9 +90,9 @@ export class ExtendableEvent
         return this._triggered;
     }
 
-    private readonly _whenDone: Promise<void>;
+    private _whenDone: Promise<T>;
 
-    public get whenDone(): Promise<void>
+    public get whenDone(): Promise<T>
     {
         return this._whenDone;
     }
@@ -108,8 +137,8 @@ export class Module extends Injector
 
     private static o = new orchestrator();
 
-    public readonly activateEvent = new ExtendableEvent();
-    public readonly readyEvent = new ExtendableEvent();
+    public readonly activateEvent = new ExtendableEvent(true);
+    public readonly readyEvent = new ExtendableEvent(true);
 
     public addDependency(m: Module)
     {

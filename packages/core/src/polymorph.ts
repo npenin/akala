@@ -1,5 +1,5 @@
 
-export function polymorph(types: ('string' | 'number' | 'boolean' | 'function' | 'object' | 'symbol')[])
+export function polymorph(...types: ('string' | 'number' | 'boolean' | 'function' | 'object' | 'symbol')[])
 {
     types.reduce((previous, current, i) =>
     {
@@ -27,9 +27,9 @@ export function polymorph(types: ('string' | 'number' | 'boolean' | 'function' |
     };
 }
 
-export function Polymorph(types: ('string' | 'number' | 'boolean' | 'function' | 'object' | 'symbol')[])
+export function Polymorph(...types: ('string' | 'number' | 'boolean' | 'function' | 'object' | 'symbol')[])
 {
-    var readyToPolymorph = polymorph(types);
+    var readyToPolymorph = polymorph(...types);
 
     return function <T extends Function>(target: any, propertyKey?: string, descriptor?: TypedPropertyDescriptor<T>)
     {

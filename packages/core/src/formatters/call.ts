@@ -9,7 +9,7 @@ export class CallFormatterFactory implements FormatterFactory<any, ParsedString>
     constructor() { }
     public parse(expression: string)
     {
-        return new ParsedString(expression.substring(0, Parser.parseFunction(expression).$$length));
+        return new ParsedString(expression.substring(0, new Parser().parseFunction(expression).$$length));
     }
     public build(formatter, settings: ParsedString)
     {

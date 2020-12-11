@@ -18,8 +18,15 @@ export class EventProcessor<T> extends EventEmitter implements Processor<T>
             var result = await (this.processor as Processor<T>).process(command, param)
         else
             throw new Error('Command was required but only command name was provided');
-        this.emit('processed', command, param);
+        this.emit('processed', command, param, result);
         return result;
+    }
+
+    public on(event: 'processing', handler: (cmd: CommandProxy<any> | string, param: { param: any[], [key: string]: any }) => void)
+    public on(event: 'processed', handler: (cmd: CommandProxy<any> | string, param: { param: any[], [key: string]: any }, result: any) => void)
+    public on(event: string, handler: (...args: any[]) => void)
+    {
+        super.on(event, handler);
     }
 
     public name = 'event';

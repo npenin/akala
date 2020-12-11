@@ -2,12 +2,11 @@ import * as common from './common'
 import * as routing from './router'
 import * as location from './locationService'
 import * as core from '@akala/core';
-import './template';
+export * from './template';
 import * as part from './part';
 import './part';
 import * as scope from './scope';
 import * as controls from './controls/controls';
-import { Template, applyTemplate } from './template';
 export { Control, BaseControl, control } from './controls/controls';
 
 export var loadScript = load;
@@ -47,8 +46,6 @@ common.$$injector.activate([], function ()
     common.$$injector.register('$rootScope', new scope.Scope());
 
 });
-
-export { applyTemplate };
 
 export function load(...scripts: string[])
 {

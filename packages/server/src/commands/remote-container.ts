@@ -14,7 +14,7 @@ export default async function route(this: State, target: Container<void>, route:
     }
     if (!metaContainer)
         metaContainer = await target.dispatch('$metadata');
-    console.log('metaContainer');
-    console.log(metaContainer);
+    // console.log('metaContainer');
+    // console.log(metaContainer);
     target.attach('http', { router, meta: metaContainer });
 }

@@ -113,9 +113,15 @@ export class Container<TState> extends akala.Injector
         return proxy;
     }
 
+    public static proxy<T = any>(name: string, processor: (container) => CommandNameProcessor<T>)
     public static proxy<T = any>(name: string, processor: CommandNameProcessor<T>)
+    public static proxy<T = any>(name: string, processor: CommandNameProcessor<T> | ((container) => CommandNameProcessor<T>))
     {
-        var proxy = new Container('proxy-' + name, null, processor);
+        var proxy = new Container('proxy-' + name, null, undefined);
+        if (typeof (processor) === 'function')
+            proxy._processor = processor(proxy);
+        else
+            proxy._processor = processor;
         var proxyResolve = proxy.resolve;
         proxy.unregister('$metadata');
         proxy.unregister('$serve');
@@ -124,7 +130,7 @@ export class Container<TState> extends akala.Injector
         {
             var result = proxyResolve.call(proxy, name);
             if (result instanceof Command || !result)
-                return new CommandProxy(processor, name, ['$param']);
+                return new CommandProxy(proxy.processor, name, ['$param']);
             return result;
         }) as any;
         return proxy;

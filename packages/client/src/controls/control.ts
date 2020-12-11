@@ -1,7 +1,7 @@
 import * as akala from '@akala/core';
 import { IScope } from '../scope';
-import { applyTemplate } from '../template';
 import { useInjector, Injector, inject, isPromiseLike } from '@akala/core';
+import { composer, Template } from '../template';
 
 
 export function control<T = any>(name: string, priority?: number, options?: { scope?: boolean })
@@ -19,13 +19,14 @@ export function control<T = any>(name: string, priority?: number, options?: { sc
 
                 public scope?: boolean;
 
-                public instanciate(target: any, element: Element, parameter: akala.Binding | T)
+                public instanciate(target: any, element: Element, parameter: akala.Binding | T, otherControls: any)
                 {
                     var i = new Injector(Control.injector)
                     i.register('factory', this);
                     i.register('scope', target);
                     i.register('element', element);
                     i.register('parameter', parameter);
+                    i.register('controls', otherControls);
                     return new result(i);
                 }
             });
@@ -50,7 +51,7 @@ export abstract class Control<T> implements IControl<T>
         Control.injector.register($$name, this);
     }
 
-    public static async apply(controls: any, element: Element, scope?: any): Promise<IControlInstance<any>[]>
+    public static async apply(controls: any, element: Element, scope?: any, options?: Control<any>[]): Promise<IControlInstance<any>[]>
     {
         var applicableControls: Control<any>[] = [];
         var requiresNewScope = false;
@@ -86,11 +87,7 @@ export abstract class Control<T> implements IControl<T>
             var controlInstance = await control.instanciate(scope, element, controlSettings, controls, instances);
             instances.push(controlInstance);
         };
-        await akala.eachAsync(element.querySelectorAll('[data-bind]'), async function (el: HTMLElement)
-        {
-            if (el.parentElement.closest('[data-bind]') == element)
-                instances.push(...await applyTemplate([el], scope, element));
-        });
+
         return instances;
     }
 
@@ -98,7 +95,7 @@ export abstract class Control<T> implements IControl<T>
     {
         if (newControls)
         {
-            var controls: any = akala.Parser.parse(element.dataset['bind'], true);
+            var controls: any = new akala.Parser().parse(element.dataset['bind'], true);
 
             var applicableControls: Control<any>[] = [];
 
@@ -121,9 +118,10 @@ export abstract class Control<T> implements IControl<T>
             {
                 newControls[control.$$name] = controls[control.$$name];
             });
+
         }
 
-        return Control.apply(newControls, element, scope);
+        return Template.composeAll([element], scope, undefined, { databind: newControls });
     }
 
     public abstract instanciate(target: any, element: Element, parameter: akala.Binding | T, controls?: any, instances?: IControlInstance<any>[]): IControlInstance<T> | PromiseLike<IControlInstance<T>>;
@@ -152,7 +150,7 @@ export abstract class BaseControl<T> extends Control<T>
 @akala.injectable
 export class GenericControlInstance<TParameter, TScope = any> implements IControlInstance<TParameter>
 {
-    protected stopWatches: (() => void)[] = [];
+    protected stopWatches: (() => (void | Promise<void>))[] = [];
 
     protected async clone(element: HTMLElement, scope: IScope<any>, newControls?: any)
     {

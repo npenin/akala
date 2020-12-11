@@ -52,9 +52,13 @@ export class HttpClient<T> extends CommandProcessor<T>
                 {
                     case 'body':
                         if (typeof (param[key]) == 'object')
+                        {
+                            options.contentType = options.type as any;
                             options.body = Object.assign(options.body || {}, param && param[key]);
+                        }
                         else
                         {
+                            options.contentType = options.type as any;
                             if (!options.body)
                                 options.body = {};
                             options.body = param && param[key] as any;
@@ -68,6 +72,7 @@ export class HttpClient<T> extends CommandProcessor<T>
                             switch (value.substr(0, indexOfDot))
                             {
                                 case 'body':
+                                    options.contentType = options.type as any;
                                     options.body = options.body || {};
                                     options.body[subKey] = param && param[key] as any;
                                     break;

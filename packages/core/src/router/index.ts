@@ -196,7 +196,7 @@ export abstract class Router<T extends (Middleware1<any> | Middleware2<any, any>
         }
 
         debug('dispatching %s %s', req['method'] || '', req.url)
-        debug(this.stack);
+        // debug(this.stack);
 
         var idx = 0
         var removed = ''

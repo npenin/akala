@@ -54,6 +54,16 @@ export function registerCommands<T>(commands: meta.Command[], processor: Process
     });
 }
 
+export function updateCommands<T>(commands: meta.Command[], processor: Processor<T>, container: Container<T>)
+{
+    commands.forEach(cmd =>
+    {
+        if (cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata')
+            return;
+        container.register(configure(cmd.config)(new CommandProxy(processor as Processor<T>, cmd.name, cmd.inject)), true);
+    });
+}
+
 export function helper<TState>(container: Container<TState>, metacontainer?: meta.Container)
 {
     var result: { [key: string]: (...args: any[]) => any } = {};

@@ -14,7 +14,7 @@ class Test
     public static transition(selector?: string, rollback?: boolean, callback?: () => void)
     public static transition(selector?: string, rollback?: boolean, duration?: number, callback?: () => void)
 
-    @Polymorph(['string', 'boolean', 'number', 'function'])
+    @Polymorph('string', 'boolean', 'number', 'function')
     public static transition(selector?: string | boolean | number | (() => void), rollback?: boolean | number | (() => void), duration?: number | (() => void), callback?: () => void)
     {
         if (typeof selector != 'undefined')

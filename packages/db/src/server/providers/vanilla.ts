@@ -155,10 +155,10 @@ export class ExpressionExecutor extends ExpressionVisitor
                 if (!arg0.argument)
                     throw new Exception('group by is missing the group criteria');
 
-                this.result = Enumerable.groupBy(this.result, function (value)
+                this.result = Enumerable.groupByAsync(this.result, async (value) =>
                 {
                     this.result = value;
-                    this.visit(arg0.argument);
+                    await this.visit(arg0.argument);
                     return this.result;
                 })
                 this.model = null
@@ -167,7 +167,7 @@ export class ExpressionExecutor extends ExpressionVisitor
                 if (!arg0.argument)
                     throw new Exception('select is missing the select criteria');
 
-                this.result = Enumerable.select(this.result, (value) =>
+                this.result = Enumerable.selectAsync(this.result, (value) =>
                 {
                     this.result = value;
                     this.visit(arg0.argument);

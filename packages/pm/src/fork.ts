@@ -55,7 +55,9 @@ import { Socket } from 'net';
             args = yargs(process.argv.slice(3), init.config.cli.options);
         if (process.argv[2] != 'pm')
             if (process.connected)
+            {
                 var pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer), true));
+            }
             else
             {
                 var pmSocket = new Socket();

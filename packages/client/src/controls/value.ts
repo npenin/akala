@@ -13,6 +13,9 @@ export class Value extends GenericControlInstance<string>
     {
         switch (element.tagName)
         {
+            case 'TEXTAREA':
+                element.innerText = parameter || '';
+                break;
             case 'INPUT':
                 switch ((element as HTMLInputElement).type)
                 {
@@ -21,7 +24,7 @@ export class Value extends GenericControlInstance<string>
                         (element as HTMLInputElement).checked = !!parameter;
                         break;
                     default:
-                        (element as HTMLInputElement).value = parameter;
+                        (element as HTMLInputElement).value = parameter || '';
                         break;
                 }
                 break;
@@ -31,25 +34,29 @@ export class Value extends GenericControlInstance<string>
         }
     }
 
-    public link(target: any, element: HTMLElement, parameter: di.Binding | string)
+    public init()
     {
-        if (typeof (parameter) == 'undefined')
+        if (typeof (this.parameter) == 'undefined')
             return;
-        if (parameter instanceof di.Binding)
+        if (this.parameter instanceof di.Binding)
         {
-            element.addEventListener('change', function ()
+            var parameter = this.parameter;
+            this.element.addEventListener('change', () =>
             {
-                switch (element.tagName)
+                switch (this.element.tagName)
                 {
+                    case 'TEXTAREA':
+                        parameter.setValue(this.element.innerText, parameter);
+                        break;
                     case 'INPUT':
-                        switch ((element as HTMLInputElement).type)
+                        switch ((this.element as HTMLInputElement).type)
                         {
                             case 'checkbox':
                             case 'radio':
-                                parameter.setValue((element as HTMLInputElement).checked, parameter);
+                                parameter.setValue((this.element as HTMLInputElement).checked, parameter);
                                 break;
                             default:
-                                parameter.setValue((element as HTMLInputElement).value, parameter);
+                                parameter.setValue((this.element as HTMLInputElement).value, parameter);
                                 break;
                         }
                         break;
@@ -57,13 +64,13 @@ export class Value extends GenericControlInstance<string>
             });
             parameter.onChanged((ev) =>
             {
-                if (parameter !== ev.source)
+                if (parameter !== ev.eventArgs.source)
                 {
-                    this.apply(target, element, ev.eventArgs.value);
+                    this.apply(this.scope, this.element, ev.eventArgs.value);
                 }
             });
         }
         else
-            this.apply(target, element, parameter);
+            this.apply(this.scope, this.element, this.parameter);
     }
 }

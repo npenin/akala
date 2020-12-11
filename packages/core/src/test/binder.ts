@@ -1,0 +1,23 @@
+require('source-map-support').install();
+
+import { Binding } from '../binder';
+import * as assert from 'assert';
+
+var target = {
+    foo: { bar: { a: 1, b: 'x', c: true } }
+};
+
+var changeEventCalled = false;
+var binding = new Binding('foo.bar.a', target);
+binding.onChanged(ev =>
+{
+    assert.strictEqual(ev.eventArgs.value, undefined);
+    changeEventCalled = true;
+}, true);
+
+Binding.getSetter(target, 'foo', undefined)({ baz: { d: 2, e: 'y', f: false } }, undefined).then((v) =>
+{
+    assert.ok(changeEventCalled, 'changeEventNotCalled');
+    assert.strictEqual(target.foo.bar, undefined);
+    assert.strictEqual(target.foo['baz']['d'], 2);
+});

@@ -5,6 +5,7 @@ import * as formatters from './formatters';
 import { array as eachAsync } from './eachAsync'
 import { object as each, map } from './each'
 import { Formatter } from './formatters/common';
+import { ExtendableEvent } from './module'
 export interface IWatched extends Object
 {
     $$watchers?: { [key: string]: Binding };
@@ -13,13 +14,26 @@ export interface IWatched extends Object
 export interface EventArgs
 {
     source: Binding;
-    target: any;
-    eventArgs: { fieldName: string, value: any };
+    error?: any;
+    fieldName: string;
+    value: any;
 }
 
+export class BindingExtendableEvent extends ExtendableEvent<EventArgs>
+{
+    constructor(public target: any)
+    {
+        super(false);
+    }
+}
 
+interface BindingEventArgs
+{
+    target: any;
+    eventArgs: EventArgs
+}
 
-export class Binding extends EventEmitter
+export class Binding 
 {
     public static defineProperty(target: any, property: string | symbol, value?: any)
     {
@@ -62,13 +76,19 @@ export class Binding extends EventEmitter
 
     constructor(protected _expression: string, private _target: IWatched, register: boolean = true)
     {
-        super();
         this.formatter = formatters.identity;
+        this.onChangingEvent = new BindingExtendableEvent(this);
+        this.onChangedEvent = new BindingExtendableEvent(this);
+        this.onErrorEvent = new BindingExtendableEvent(this);
+        this.onDisposeEvent = new ExtendableEvent(true);
         if (register)
             this.register();
-        else
-            this.setMaxListeners(0);
     }
+
+    protected onChangingEvent: BindingExtendableEvent;
+    protected onChangedEvent: BindingExtendableEvent;
+    protected onErrorEvent: BindingExtendableEvent;
+    protected onDisposeEvent: ExtendableEvent;
 
     public formatter: Formatter<any>;
 
@@ -78,40 +98,29 @@ export class Binding extends EventEmitter
 
     private evaluator = Parser.evalAsFunction(this.expression)
 
-    public onChanging(handler: (ev: EventArgs) => void)
+    public onChanging(handler: (ev: BindingExtendableEvent) => void)
     {
-        this.on(Binding.ChangingFieldEventName, handler);
-        return () =>
-        {
-            this.off(Binding.ChangedFieldEventName, handler);
-        }
+        return this.onChangingEvent.addHandler(handler);
     }
 
-    public onChanged(handler: (ev: EventArgs) => void, doNotTriggerHandler?: boolean)
+    public onChanged(handler: (args: BindingExtendableEvent) => void, doNotTriggerHandler?: boolean)
     {
-        this.on(Binding.ChangedFieldEventName, handler);
+        var off = this.onChangedEvent.addHandler(handler);
         if (!doNotTriggerHandler)
             handler({
                 target: this.target,
                 eventArgs: {
                     fieldName: this.expression,
-                    value: this.getValue()
-                },
-                source: null
-            });
-        return () =>
-        {
-            this.off(Binding.ChangedFieldEventName, handler);
-        }
+                    value: this.getValue(),
+                    source: null
+                }
+            } as BindingEventArgs as any);
+        return off;
     }
 
-    public onError(handler: (ev: EventArgs) => void)
+    public onError(handler: (ev: BindingExtendableEvent) => void)
     {
-        this.on(Binding.ErrorEventName, handler);
-        return () =>
-        {
-            this.off(Binding.ChangedFieldEventName, handler);
-        }
+        return this.onErrorEvent.addHandler(handler);
     }
 
     private registeredBindings: Binding[] = [];
@@ -122,32 +131,39 @@ export class Binding extends EventEmitter
             return;
         this.registeredBindings.push(binding);
         var watcher = this;
-        watcher.onChanging(function (a: EventArgs)
+        var offChanging = watcher.onChanging(function (a: BindingExtendableEvent)
         {
-            if (a.source == binding || a.source === null)
+            if (a.eventArgs.source == binding || a.eventArgs.source === null)
                 return;
-            var args = (<any[]>[Binding.ChangingFieldEventName, a]);
 
-            //@ts-ignore TS2345
-            binding.emit.apply(binding, args);
+            return binding.onChangingEvent.trigger(Object.assign({}, a.eventArgs, { value: binding.getValue() }));
         });
-        watcher.onChanged(function (a: EventArgs)
+        var offChanged = watcher.onChanged(function (a: BindingExtendableEvent)
         {
-            if (a.source == binding || a.source === null)
+            if (a.eventArgs.source == binding || a.eventArgs.source === null)
                 return;
-            var args = (<any[]>[Binding.ChangedFieldEventName, { source: a.source, target: a.target, eventArgs: { fieldName: a.eventArgs.fieldName, value: binding.getValue() } }]);
 
-            //@ts-ignore TS2345
-            binding.emit.apply(binding, args);
+            return binding.onChangedEvent.trigger(Object.assign({}, a.eventArgs, { value: binding.getValue() }));
         });
-        watcher.onError(function (a)
+        var offError = watcher.onError(function (a)
         {
-            if (a.source == binding || a.source === null)
+            if (a.eventArgs.source == binding || a.eventArgs.source === null)
                 return;
-            var args = (<any[]>[Binding.ChangedFieldEventName, a]);
 
-            //@ts-ignore TS2345
-            binding.emit.apply(binding, args);
+            return binding.onErrorEvent.trigger(Object.assign({}, a.eventArgs, { value: binding.getValue() }));
+        });
+        var offDispose = watcher.onDisposeEvent.addHandler(async function (a)
+        {
+            await binding.onDisposeEvent.trigger();
+            if (offChanged)
+                offChanged();
+            if (offChanging)
+                offChanging();
+            if (offError)
+                offError();
+
+            if (offDispose)
+                offDispose();
         });
 
     }
@@ -250,10 +266,10 @@ export class Binding extends EventEmitter
         elements.filter(':not(:input))').text(val);
     }*/
 
-    public static getSetter(target: IWatched, expression: string)
+    public static getSetter(target: IWatched, expression: string, source?: Binding)
     {
         var parts = Parser.parseBindable(expression);
-        return function (value: any, source: any, doNotTriggerEvents?: boolean)
+        return async function (value: any, doNotTriggerEvents?: boolean)
         {
             while (parts.length > 1)
             {
@@ -261,86 +277,55 @@ export class Binding extends EventEmitter
                     return;
                 target = target[parts.shift()];
             }
+            if (typeof target === 'undefined')
+                return;
+            if (typeof target.$$watchers == 'undefined')
+                target.$$watchers = {};
             var watcher = target.$$watchers[parts[0]];
             var setter = Parser.getSetter(parts[0], target);
             if (setter === null)
                 return;
 
-            var promise = new Promise((resolve, reject) =>
+            if (!doNotTriggerEvents)
             {
                 try
                 {
-                    if (doNotTriggerEvents)
-                        return resolve(value);
-
                     if (watcher)
-                    {
-                        var listeners = watcher.listeners(Binding.ChangingFieldEventName);
-
-                        eachAsync(listeners, function (listener, i, next)
-                        {
-                            promisify(listener({
-                                target: target,
-                                fieldName: setter.expression,
-                                source: source,
-                            })).then(function ()
-                            {
-                                next();
-                            }, reject);
-                        }, function ()
-                        {
-                            resolve(value);
-                        });
-                    }
-                    else
-                        resolve(value);
+                        await watcher.onChangingEvent.trigger({ fieldName: setter.expression, value, source });
                 }
-                catch (ex)
+                catch (e)
                 {
-                    watcher.emit(Binding.ErrorEventName, {
-                        target: target,
-                        field: setter.expression,
-                        Exception: ex,
-                        source: source
-                    });
-                    reject(ex);
+                    await watcher.onErrorEvent.trigger({ error: e, fieldName: setter.expression, value, source });
+                    throw e;
                 }
-            });
+            }
 
-            promise.then(function resolve(value)
-            {
-                setter.set(value);
-                if (watcher && !doNotTriggerEvents)
-                    watcher.emit(Binding.ChangedFieldEventName, {
-                        target: target,
-                        eventArgs: {
-                            fieldName: setter.expression,
-                            value: value
-                        },
-                        source: source
-                    });
-            }, function (ex)
-            {
-                if (watcher)
-                    watcher.emit(Binding.ErrorEventName, {
-                        target: target,
-                        field: setter.expression,
-                        Exception: ex,
-                        source: source
-                    });
-            });
+            setter.set(value);
 
-            return promise;
+            if (watcher && !doNotTriggerEvents)
+                try
+                {
+                    await watcher.onChangedEvent.trigger({
+                        fieldName: setter.expression,
+                        value: value,
+                        source
+                    });
+                }
+                catch (e)
+                {
+                    await watcher.onErrorEvent.trigger({ error: e, fieldName: setter.expression, value, source });
+                    throw e;
+                }
         };
     }
 
     public setValue(value: any, source?: Binding, doNotTriggerEvents?: boolean)
     {
         var target = this.target;
-        var setter = Binding.getSetter(this.target, this.expression);
+        var setter = Binding.getSetter(this.target, this.expression, source || this);
 
         if (setter != null)
-            setter(value, source || this, doNotTriggerEvents);
+            setter(value, doNotTriggerEvents);
 
     };
 }
@@ -362,12 +347,10 @@ export class PromiseBinding extends Binding
             }
             binding.formatter = self.formatter;
             binding.target = value;
-            self.emit(Binding.ChangedFieldEventName, {
-                target: value,
-                eventArgs: {
-                    fieldName: self.expression,
-                    value: self.getValue()
-                },
+
+            self.onChangedEvent.trigger({
+                fieldName: self.expression,
+                value: self.getValue(),
                 source: binding
             });
         };
@@ -384,11 +367,56 @@ if (typeof (Array.prototype['replace']) == 'undefined')
     });
 
 
+export type ObservableArrayPopEvent<T> =
+    {
+        action: 'pop'
+        oldItems: T[]
+    }
+
+export type ObservableArrayPushEvent<T> =
+    {
+        action: 'push'
+        newItems: T[]
+    }
+
+export type ObservableArrayShiftEvent<T> =
+    {
+        action: 'shift'
+        oldItems: T[]
+    }
+
+export type ObservableArrayUnshiftEvent<T> =
+    {
+        action: 'unshift'
+        newItems: T[]
+    }
+export type ObservableArrayReplaceEvent<T> =
+    {
+        action: 'replace'
+        oldItems: T[]
+        newItems: T[]
+    };
+
+export type ObservableArrayInitEvent<T> =
+    {
+        action: 'init';
+        oldItems: T[];
+        newItems: T[];
+    }
+
+export type ObservableArrayEventMap<T> = ObservableArrayPopEvent<T> | ObservableArrayPushEvent<T> | ObservableArrayShiftEvent<T> | ObservableArrayUnshiftEvent<T> | ObservableArrayReplaceEvent<T> | ObservableArrayInitEvent<T>;
+
+
 export class ObservableArray<T> extends EventEmitter
 {
     constructor(public array: Array<T>)
     {
         super();
+    }
+
+    public on(event: 'collectionChanged', handler: (args: ObservableArrayEventMap<T>) => void)
+    {
+        return super.on(event, handler);
     }
 
     public get length() { return this.array.length; }
@@ -428,12 +456,12 @@ export class ObservableArray<T> extends EventEmitter
             oldItems: [item]
         });
     };
-    public unshift = function (item)
+    public unshift = function (...items)
     {
-        this.array.unshift(item);
+        this.array.unshift(...items);
         this.emit('collectionChanged', {
             action: 'unshift',
-            newItems: [item]
+            newItems: items
         });
     };
     public replace(index, item)
@@ -458,8 +486,8 @@ export class ObservableArray<T> extends EventEmitter
     public indexOf(searchElement: T, fromIndex?: number): number;
     public indexOf()
     {
-        //@ts-ignore TS2345
-        return this.array.indexOf.apply(this.array, arguments);
+
+        return this.array.indexOf.apply(this.array, Array.from(arguments));
     }
 
     public toString()
@@ -491,12 +519,9 @@ export class WatchBinding extends Binding
         if (this.lastValue !== newValue)
         {
             this.lastValue = newValue;
-            this.emit(Binding.ChangedFieldEventName, {
-                target: this.target,
-                eventArgs: {
-                    fieldName: this.expression,
-                    value: newValue
-                },
+            this.onChangedEvent.trigger({
+                fieldName: this.expression,
+                value: newValue,
                 source: this
             });
         }

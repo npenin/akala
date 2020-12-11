@@ -34,29 +34,27 @@ export function inject(name?: string)
         {
             if (!name)
                 throw new Error('name is required as parameter names are not available in reflection');
-            var injections: { [key: string]: (PropertyInjection | ParameterInjection)[] } = Reflect.getOwnMetadata(injectSymbol, target, propertyKey) || { [propertyKey]: [] };
+            let injections: { [key: string]: (PropertyInjection | ParameterInjection)[] } = Reflect.getOwnMetadata(injectSymbol, target) || { [propertyKey]: [] };
             if (!injections[propertyKey])
                 injections[propertyKey] = [];
-            injections[propertyKey].push({
-                ['parameterInjection_' + name]: function (injector: Injector)
-                {
-                    var resolved = injector.resolve(name);
-                    return { index: parameterIndex, value: resolved };
-                }
-            }['parameterInjection_' + name]);
-            Reflect.defineMetadata(injectSymbol, injections, target, propertyKey)
+            injections[propertyKey].push(function (injector: Injector)
+            {
+                var resolved = injector.resolve(name);
+                return { index: parameterIndex, value: resolved };
+            });
+            if (propertyKey)
+                Reflect.defineMetadata(injectSymbol, injections[propertyKey], target[propertyKey]);
+            Reflect.defineMetadata(injectSymbol, injections, target)
         }
         else
         {
-            var injections: { [key: string]: (PropertyInjection | ParameterInjection)[] } = Reflect.getOwnMetadata(injectSymbol, target) || {};
+            let injections: { [key: string]: (PropertyInjection | ParameterInjection)[] } = Reflect.getOwnMetadata(injectSymbol, target) || { [propertyKey]: [] };
             if (!injections[propertyKey])
                 injections[propertyKey] = [];
-            injections[propertyKey].push({
-                ['propertyInjection_' + (name || propertyKey)]: function (injector: Injector)
-                {
-                    this[propertyKey] = injector.resolve(name || propertyKey);
-                }
-            }['propertyInjection_' + (name || propertyKey)]);
+            injections[propertyKey].push(function (injector: Injector)
+            {
+                this[propertyKey] = injector.resolve(name || propertyKey);
+            });
 
             Reflect.defineMetadata(injectSymbol, injections, target)
 
@@ -108,12 +106,9 @@ export function applyInjector(injector: Injector, obj: any, prototype?: any)
             {
                 let oldFunction = descriptor.value;
                 Object.defineProperty(obj, property, {
-                    value(...args: any[]) 
+                    value: function injected(...args: any[]) 
                     {
-                        (injections as ParameterInjection[]).
-                            map(p => p(injector)).
-                            forEach(p => args[p.index] = typeof args[p.index] == 'undefined' && p.value || args[p.index]);
-                        oldFunction.apply(this, args);
+                        oldFunction.apply(this, Injector.mergeArrays(injections[property].map(p => p(injector)), ...args));
                     }
                 })
             }

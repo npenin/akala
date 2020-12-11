@@ -52,10 +52,12 @@ export class ForEach extends GenericControlInstance<ForeachParameter>
                         case 'init':
                             break;
                         case 'shift':
-                            parent.removeChild(parent.firstElementChild);
+                            for (var i = 0; i < args.oldItems.length; i++)
+                                parent.removeChild(parent.firstElementChild);
                             break;
                         case 'pop':
-                            parent.removeChild(parent.lastElementChild);
+                            for (var i = 0; i < args.oldItems.length; i++)
+                                parent.removeChild(parent.lastElementChild);
                             break;
                         case 'push':
                             args.newItems.forEach(arg =>
@@ -104,10 +106,12 @@ export class ForEach extends GenericControlInstance<ForeachParameter>
             return result;
         }
 
-        this.stopWatches.push(sourceBinding.onChanged(function (ev)
+        var stopWatch = sourceBinding.onChanged(function (ev)
         {
             Promise.resolve(ev.eventArgs.value).then(build);
-        }));
+        });
+        if (stopWatch)
+            this.stopWatches.push(stopWatch);
     }
 
     private static expRegex = /^\s*\(?(\w+)(?:,\s*(\w+))?\)?\s+in\s+/;

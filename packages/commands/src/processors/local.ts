@@ -1,5 +1,5 @@
 import { CommandProxy, Command } from '../model/command';
-import { Injector, Injectable } from '@akala/core';
+import { Injector, Injectable, each } from '@akala/core';
 import * as  Metadata from '../metadata';
 import { CommandProcessor } from '../model/processor'
 import { Container } from '../model/container';
@@ -19,7 +19,7 @@ export class Local<T> extends CommandProcessor<T>
             inject = undefined;
         if (param._trigger && cmd.config && cmd.config[param._trigger] && cmd.config[param._trigger]?.inject)
             inject = cmd.config[param._trigger]?.inject;
-        Object.keys(param).forEach((key) => injector.register(key, param[key]));
+        each(Object.getOwnPropertyDescriptors(param), ((descriptor, key) => injector.registerDescriptor(key, descriptor)));
         injector.register('$param', param);
         if (!inject)
             inject = param.param.map((a, i) => 'param.' + i);

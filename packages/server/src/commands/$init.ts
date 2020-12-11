@@ -56,6 +56,11 @@ export default async function $init(container: Container<State>, options: any, p
                         use: require.resolve('ts-loader'),
                     },
                     {
+                        test: /\.js$/i,
+                        enforce: 'pre',
+                        use: require.resolve('source-map-loader'),
+                    },
+                    {
                         test: /\.s[ac]ss$/i,
                         use: [
                             CssExtractPlugin.loader,

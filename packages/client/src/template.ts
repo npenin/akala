@@ -137,10 +137,57 @@ export interface templateFunction
     (target: any, parent: HTMLElement): Promise<IControlInstance<any>[]>;
     hotReplace(markup: string): void;
 }
+
+interface Composer<TOptions = any>
+{
+    selector: string;
+    optionName: string;
+    apply(items: HTMLElement, data, options?: TOptions): Promise<IControlInstance<any>[]>;
+}
+
+class DataBindComposer implements Composer<Control<any>[]>
+{
+    selector = '[data-bind]';
+    optionName = 'databind';
+    async apply(item: HTMLElement, data: any, options?: Control<any>[])
+    {
+        var instances = await Control.apply(options || akala.Parser.evalAsFunction(item.dataset['bind'], true), item, data);
+
+        await akala.eachAsync(item.querySelectorAll(this.selector), async (el: HTMLElement) =>
+        {
+            if (el.parentElement.closest(this.selector) == item)
+                instances.push(...await Template.compose(this, [el], data, item));
+        });
+        return instances;
+    }
+}
+
+export function composer(selector: string, optionName: string): ClassDecorator
+export function composer(selector: (new () => Composer))
+export function composer(selector: Composer)
+export function composer(selector: string | Composer | (new () => Composer), optionName?: string)
+{
+    switch (typeof selector)
+    {
+        case 'string':
+            return function (composingFunction: (items: HTMLElement, data) => Promise<IControlInstance<any>[]>)
+            {
+                Template.composers.push({ selector: selector, optionName: optionName, apply: composingFunction });
+            }
+        case 'function':
+            Template.composers.push(new selector());
+            break;
+        case 'object':
+            Template.composers.push(selector);
+            break;
+    }
+}
+
 var cache = new akala.Injector();
 @service('$template', '$interpolate', '$http')
 export class Template
 {
+    public static composers: Composer[] = [new DataBindComposer()];
     constructor(private interpolator: Interpolate, private http: akala.Http) { }
 
     public enableHotReplacement: boolean;
@@ -195,9 +242,9 @@ export class Template
     public static build(markup: string): templateFunction
     {
         var template = Interpolate.build(markup)
-        var f: templateFunction = function (data, parent?: HTMLElement)
+        var f: templateFunction = ((data, parent?: HTMLElement) =>
         {
-            f.hotReplace = function (markup: string)
+            f.hotReplace = (markup: string) =>
             {
                 template = Interpolate.build(markup);
                 var newTemplateInstance = Template.buildElements(template(data));
@@ -225,7 +272,7 @@ export class Template
                     confirm('template has changed, please consider reloading to see updated change');
                 }
                 templateInstance = newTemplateInstance;
-                applyTemplate(templateInstance, data, parent);
+                this.composeAll(templateInstance, data, parent);
             }
 
             var templateInstance = Template.buildElements(template(data));
@@ -236,14 +283,60 @@ export class Template
                     parent.appendChild(inst);
                 })
             }
-            return applyTemplate(templateInstance, data, parent);
-        } as any;
+            return this.composeAll(templateInstance, data);
+        }) as any;
         f.hotReplace = function (markup: string)
         {
             template = Interpolate.build(markup);
         }
 
         return f;
+    }
+
+    static async composeAll(items: ArrayLike<HTMLElement>, data, root?: Element, options?: { [key: string]: any }): Promise<IControlInstance<any>[]>
+    {
+        var result: IControlInstance<any>[] = [];
+        return await akala.eachAsync(this.composers, (composer) =>
+        {
+            return this.compose(composer, items, data, root, options && options[composer.optionName]).then(instances => result.push(...instances));
+        }, true).then(() => result);
+    }
+
+    static async compose(composer: Composer, items: ArrayLike<HTMLElement>, data, root?: Element, options?: any): Promise<IControlInstance<any>[]>
+    {
+        data.$new = Scope.prototype.$new;
+        var instances: IControlInstance<any>[] = [];
+        if (filter(items, composer.selector).length == 0)
+        {
+            await akala.eachAsync(items, async function (el)
+            {
+                await akala.eachAsync(el.querySelectorAll(composer.selector), async function (el: HTMLElement)
+                {
+                    var closest = el.parentElement && el.parentElement.closest(composer.selector);
+                    var applyInnerTemplate = !!closest || !root;
+                    if (!applyInnerTemplate && root)
+                        applyInnerTemplate = applyInnerTemplate || root == closest;
+                    if (applyInnerTemplate)
+                    {
+                        instances.push(...await Template.compose(composer, [el], data, el, options && options[composer.optionName]));
+                    }
+                }, false);
+            }, false);
+            return instances;
+        }
+        else
+        {
+            var promises: PromiseLike<void>[] = [];
+            akala.eachAsync(filter(items, composer.selector), function (item)
+            {
+                promises.push(composer.apply(item, data, options).then(c => { instances.push(...c) }));
+            }, false);
+            if (promises.length)
+                return Promise.all(promises).then(x => instances);
+            // return element;
+        }
+
+        return instances;
     }
 }
 
@@ -254,38 +347,3 @@ export function filter<T extends Element = Element>(items: ArrayLike<T>, filter:
         return element.matches(filter);
     })
 }
-
-export async function applyTemplate(items: ArrayLike<HTMLElement>, data, root?: Element): Promise<IControlInstance<any>[]>
-{
-    data.$new = Scope.prototype.$new;
-    var instances: IControlInstance<any>[] = [];
-    if (filter(items, '[data-bind]').length == 0)
-    {
-        await akala.eachAsync(items, async function (el)
-        {
-            await akala.eachAsync(el.querySelectorAll('[data-bind]'), async function (el: HTMLElement)
-            {
-                var closest = el.parentElement && el.parentElement.closest('[data-bind]');
-                var applyInnerTemplate = !!closest || !root;
-                if (!applyInnerTemplate && root)
-                    applyInnerTemplate = applyInnerTemplate || root == closest;
-                if (applyInnerTemplate)
-                {
-                    instances.push(...await applyTemplate([el], data, el));
-                }
-            });
-        });
-        return instances;
-    }
-    else
-    {
-        var promises: PromiseLike<void>[] = [];
-        akala.eachAsync(filter(items, '[data-bind]'), function (item)
-        {
-            promises.push(Control.apply(akala.Parser.evalAsFunction(item.dataset['bind'], true), item, data).then(controls => { instances.push(...controls) }));
-        });
-        if (promises.length)
-            return Promise.all(promises).then(x => instances);
-        // return element;
-    }
-};

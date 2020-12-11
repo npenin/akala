@@ -16,7 +16,7 @@ export class Text extends GenericControlInstance<string>
         var self = this;
         if (this.parameter instanceof Binding)
         {
-            this.stopWatches.push(this.parameter.onChanged(function (ev)
+            let stopWatch = this.parameter.onChanged(function (ev)
             {
                 if (di.isPromiseLike(ev.eventArgs.value))
                     ev.eventArgs.value.then(function (value)
@@ -25,7 +25,9 @@ export class Text extends GenericControlInstance<string>
                     });
                 else
                     self.apply(ev.eventArgs.value);
-            }));
+            });
+            if (stopWatch)
+                this.stopWatches.push(stopWatch);
         }
         else
             self.apply(this.parameter);

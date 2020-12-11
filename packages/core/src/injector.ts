@@ -130,7 +130,7 @@ export class Injector
             var oldf = self.injectWithName(b, c.value);
             c.value = function ()
             {
-                return oldf.apply(this, arguments);
+                return oldf.apply(this, Array.from(arguments));
             }
         }
     }
@@ -241,43 +241,43 @@ export class Injector
         return this.injectWithName(toInject, ctorToFunction.bind(ctor));
     }
 
-    public injectWithNameAsync<T>(toInject: string[], a: InjectableAsync<T> | Injectable<T>): PromiseLike<T>
+    public async injectWithNameAsync<T>(toInject: string[], a: InjectableAsync<T> | Injectable<T>): Promise<T>
     {
         if (!toInject || toInject.length == 0)
             return Promise.resolve<T>(a());
-        var paramNames = <string[]>getParamNames(a);
+        var paramNames = getParamNames(a);
         var self = this;
         var wait = false;
 
-        return new Promise<T>((resolve, reject) =>
+        if (paramNames.length == toInject.length || paramNames.length == 0)
         {
-            if (paramNames.length == toInject.length || paramNames.length == 0)
-            {
-                if (toInject.length == paramNames.length && paramNames.length == 0)
-                    resolve(a.call(null));
-                else
-                {
-                    var args = [];
-                    for (var param of toInject)
-                    {
-                        args[args.length] = self.resolveAsync(param);
-                        if (isPromiseLike(args[args.length - 1]))
-                            wait = true;
-                    }
-                    if (wait)
-                        return Promise.all(args.map(function (v)
-                        {
-                            if (isPromiseLike(v))
-                                return v;
-                            return Promise.resolve(v);
-                        })).then((args) => { resolve(a.apply(null, args)) });
-                    else
-                        resolve(a.apply(null, args));
-                }
-            }
+            if (toInject.length == paramNames.length && paramNames.length == 0)
+                return await (a as Function).call(globalThis);
             else
-                reject('the number of arguments does not match the number of injected parameters');
-        });
+            {
+                var args = [];
+                for (var param of toInject)
+                {
+                    args[args.length] = self.resolveAsync(param);
+                    if (isPromiseLike(args[args.length - 1]))
+                        wait = true;
+                }
+                if (wait)
+                {
+                    let args2 = await Promise.all(args.map(function (v)
+                    {
+                        if (isPromiseLike(v))
+                            return v;
+                        return Promise.resolve(v);
+                    }));
+                    return (a as Function).apply(null, args2);
+                }
+                else
+                    return (a as Function).apply(null, args);
+            }
+        }
+        else
+            throw new Error('the number of arguments does not match the number of injected parameters');
     }
 
 
@@ -373,15 +373,15 @@ export class Injector
         }
     }
 
-    public registerDescriptor(name: string, value: PropertyDescriptor, override?: boolean)
+    public registerDescriptor(name: string | number | symbol, value: PropertyDescriptor, override?: boolean)
     {
-        log('registering ' + name);
+        log('registering ' + name.toString());
         if (!override && typeof (this.injectables[name]) != 'undefined')
-            throw new Error('There is already a registered item for ' + name);
+            throw new Error('There is already a registered item for ' + name.toString());
         if (typeof (this.injectables[name]) !== 'undefined')
-            this.unregister(name);
+            this.unregister(name.toString());
         Object.defineProperty(this.injectables, name, value);
-        this.notify(name, value);
+        this.notify(name.toString(), value);
     }
 }
 
