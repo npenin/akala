@@ -508,7 +508,7 @@ export class Parser
         var results: ParsedArray = [];
         Object.defineProperty(results, '$$length', { value: 0, enumerable: false, configurable: true, writable: true });
         var isFunction = false;
-        return this.parseCSV(expression, function (result)
+        return this.parseCSV(expression, (result) =>
         {
             var item = this.parseAny(result, false);
             item = this.tryParseOperator(result.substring(item.$$length), item);
@@ -634,7 +634,7 @@ export class Parser
         var keyMatch: RegExpExecArray;
         var parsedObject: ParsedObject = {};
         Object.defineProperty(parsedObject, '$$length', { value: 0, enumerable: false, writable: true, configurable: true });
-        var result = this.parseCSV(expression, function (expression)
+        var result = this.parseCSV(expression, (expression) =>
         {
             // var length = 0;
             var keyMatch = jsonKeyRegex.exec(expression);
