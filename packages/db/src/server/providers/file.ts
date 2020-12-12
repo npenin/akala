@@ -1,6 +1,6 @@
 import { PersistenceEngine, dynamicProxy } from "../PersistenceEngine";
 import { StrictExpressions } from "../expressions/expression";
-import { ExpressionExecutor } from "./vanilla";
+import { ExpressionExecutor } from "../expression-executor";
 import * as fs from "fs";
 import { join } from "path";
 import { CommandProcessor } from "../commands/command-processor";

@@ -26,16 +26,16 @@ export interface DbSet<T> extends Query<T>
     createSingle(record: T): PromiseLike<CommandResult>;
 }
 
-export interface StoreDefinition
-{
-    [key: string]: DbSet<any>
-}
+export type StoreDefinition<T = any> =
+    {
+        [key in keyof T]: T[key] extends DbSet<infer Y> ? T[key] : never;
+    }
 
 export class Store<TStore extends StoreDefinition>
 {
-    public static create<TStore extends StoreDefinition>(engine: PersistenceEngine<any>, ...names: (keyof TStore)[])
+    public static create<TStore extends StoreDefinition>(engine: PersistenceEngine<any>, ...names: (keyof TStore)[]): StoreDefinition<TStore>
     {
-        return new Store<TStore>(engine, ...names) as unknown as TStore;
+        return new Store<TStore>(engine, ...names) as any;
     }
 
     private constructor(private engine: PersistenceEngine, ...names: (keyof TStore)[])
@@ -44,7 +44,7 @@ export class Store<TStore extends StoreDefinition>
             Object.defineProperty(this, name, { value: this.set(name as string) });
     }
 
-    public set<T>(name: string)
+    public set<T>(name: keyof TStore & string)
     {
         return this.engine.dbSet<T>(name);
     }
@@ -129,13 +129,13 @@ export namespace Enumerable
         }
     }
 
-    export function selectAsync<T, U>(source: AsyncIterable<T>, project: Project<T, U>): AsyncIterable<U>
+    export function selectAsync<T, U>(source: AsyncIterable<T>, project: Project<T, Promise<U>>): AsyncIterable<U>
     {
         return {
             async *[Symbol.asyncIterator]()
             {
                 for await (let value of source)
-                    yield project(value);
+                    yield await project(value);
             }
         }
     }
@@ -181,7 +181,7 @@ export namespace Enumerable
                     async next()
                     {
                         if (typeof result !== 'undefined')
-                            return { value: result[groupIndex++], done: groupIndex == result.length };
+                            return { done: groupIndex >= result.length, value: result[groupIndex++] };
                         result = [];
                         var groups: { [key: string]: Array<T> } = {};
                         for await (let value of source)
@@ -199,7 +199,7 @@ export namespace Enumerable
                             }
                             groups[group].push(value);
                         }
-                        return { value: result[groupIndex], done: groupIndex == result.length };
+                        return { done: groupIndex >= result.length, value: result[groupIndex++] };
                     }
                 }
             }
