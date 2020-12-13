@@ -1,8 +1,9 @@
 FROM node:current-alpine3.12 as builder
-ADD https://github.com/balena-io/qemu/releases/download/v3.0.0%2Bresin/qemu-3.0.0+resin-arm.tar.gz /usr/qemu
-
+WORKDIR /usr/qemu
+ADD https://github.com/balena-io/qemu/releases/download/v3.0.0%2Bresin/qemu-3.0.0+resin-arm.tar.gz /usr/qemu/qemu.tar.gz
+RUN tar -zxvf qemu.tar.gz -C . 
 FROM --platform=arm64 node:current-alpine3.12 as release
-COPY --from=builder /usr/qemu/qemu-arm-static /usr/bin
+COPY --from=builder /usr/qemu/qemu-3.0.0+resin-arm/qemu-arm-static /usr/bin
 ENV NODE_ENV production
 WORKDIR /usr/src/akala
 # RUN npm i -g yarn
