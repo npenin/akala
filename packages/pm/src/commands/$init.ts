@@ -1,6 +1,6 @@
 import State, { RunningContainer } from '../state'
 import { homedir } from 'os';
-import { promises } from 'fs';
+import fs from 'fs/promises';
 import { join } from 'path';
 import { description } from '../container';
 import serve from '@akala/commands/dist/cli/serve';
@@ -37,7 +37,7 @@ export default async function (this: State, container: RunningContainer<State> &
     var configPath = join(homedir(), './.pm.config.json');
     try
     {
-        this.config = JSON.parse(await promises.readFile(configPath, 'utf-8'));
+        this.config = JSON.parse(await fs.readFile(configPath, 'utf-8'));
         process.chdir(this.config.containers.pm[0]);
     }
     catch (e)
@@ -53,7 +53,7 @@ export default async function (this: State, container: RunningContainer<State> &
 
     this.config.save = function ()
     {
-        return promises.writeFile(configPath, JSON.stringify(this, null, 4), 'utf-8').then(() => console.log('config saved'))
+        return fs.writeFile(configPath, JSON.stringify(this, null, 4), 'utf-8').then(() => console.log('config saved'))
     }
 
     if (!this.config.externals)
@@ -69,6 +69,15 @@ export default async function (this: State, container: RunningContainer<State> &
 
     this.processes.push(container);
     container.running = true;
+
+    try
+    {
+        await fs.unlink('./pm.sock')
+    }
+    catch (e)
+    {
+
+    }
 
     var stop = await serve(container as Container<any>, options || { _: ['local'] });
     process.on('SIGINT', stop);
