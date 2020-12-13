@@ -6,6 +6,15 @@ Storage is one of the most complex layer. It allows you to store data virtually 
 
 If you are familiar with EntityFramework in .NET, Storage uses a similar concept provide an interface to load and store data.
 
+```ts
+if (category)
+        return await store.Devices.where('category', db.expressions.BinaryOperator.Equal, category)
+            .select({ name: 'name', length: 'commands && commands.length + subdevices && subdevices.length' }).toArray();
+    else
+        return await store.Devices
+            .groupBy('category').select({ name: 'key', length: 'value.length' }).toArray();
+```
+
 ## Providers
 
 ### Vanilla
