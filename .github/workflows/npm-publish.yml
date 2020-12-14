@@ -33,6 +33,9 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - uses:  CultureHQ/actions-yarn@master
         with: 
+          args: install
+      - uses:  CultureHQ/actions-yarn@master
+        with: 
           args: lerna publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
@@ -46,6 +49,9 @@ jobs:
         with:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
+      - uses:  CultureHQ/actions-yarn@master
+        with: 
+          args: install
       - uses:  CultureHQ/actions-yarn@master
         with: 
           args: lerna publish
