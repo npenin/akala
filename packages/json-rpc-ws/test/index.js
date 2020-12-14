@@ -1,7 +1,8 @@
 const WS = require('ws');
 const JsonRpcWs = require('../');
 // const Browserify = require('browserify');
-const Webdriver = require('selenium-webdriver');
+// const Webdriver = require('selenium-webdriver');
+const puppeteer = require('puppeteer');
 
 const { expect } = Code;
 
@@ -326,47 +327,40 @@ describe('json-rpc ws', () =>
       // process.env.PATH = `${process.env.PATH}:./node_modules/.bin`;
     });
 
-    it.skip('works in browser', () =>
+    it.skip('works in browser', async () =>
     {
 
-      const driver = new Webdriver.Builder().forBrowser('phantomjs').build();
-      return new Promise((resolve) =>
+      const driver = await puppeteer.launch();
+      const page = await driver.newPage();
+
+      let x = 0;
+      await page.addScriptTag({ path: 'file://' + require.resolve('../browser_test.js') });
+      var response = await page.evaluate(function ()
       {
 
-        let x = 0;
-        driver.executeScript('../browser_test.js').then(function ()
+        var callback = arguments[arguments.length - 1];
+        browserClient.connect('ws://localhost:8081', function connected()
         {
 
-          driver.executeAsyncScript(function ()
+          browserClient.send('browserClient', ['browser', 'client'], function sendReply(err, reply)
           {
 
-            var callback = arguments[arguments.length - 1];
-            browserClient.connect('ws://localhost:8081', function connected()
-            {
-
-              browserClient.send('browserClient', ['browser', 'client'], function sendReply(err, reply)
-              {
-
-                callback([err, reply]);
-              });
-            });
-          }).then((response) =>
-          {
-
-            const err = response[0];
-            const browserId = response[1];
-            expect(browserId).to.not.not.exist();
-            expect(err).to.equal(null);
-            server.send(browserId, 'info', null, function (err, result)
-            {
-
-              expect(err).to.not.exist();
-              expect(result).to.equal('browser');
-              driver.quit();
-              resolve();
-            });
+            callback([err, reply]);
           });
         });
+      });
+
+      const err = response[0];
+      const browserId = response[1];
+      expect(browserId).to.not.not.exist();
+      expect(err).to.equal(null);
+      server.send(browserId, 'info', null, function (err, result)
+      {
+
+        expect(err).to.not.exist();
+        expect(result).to.equal('browser');
+        driver.quit();
+        resolve();
       });
     });
 
