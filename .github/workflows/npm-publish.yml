@@ -39,6 +39,7 @@ jobs:
           args: lerna publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          GIT_PATH: /usr/bin/git
 
   publish-gpr:
     needs: build
@@ -57,3 +58,4 @@ jobs:
           args: lerna publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GIT_PATH: /usr/bin/git
