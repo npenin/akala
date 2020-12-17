@@ -1,7 +1,6 @@
 FROM --platform=arm64 node:current-alpine3.12 as builder
-WORKDIR /usr/qemu
 ADD https://github.com/balena-io/qemu/releases/download/v3.0.0%2Bresin/qemu-3.0.0+resin-arm.tar.gz /usr/qemu/qemu.tar.gz
-RUN tar -zxvf qemu.tar.gz -C . 
+RUN tar -zxvf /usr/qemu/qemu.tar.gz -C /usr/qemu 
 FROM --platform=arm64 node:current-alpine3.12 as release
 COPY --from=builder /usr/qemu/qemu-3.0.0+resin-arm/qemu-arm-static /usr/bin
 ENV NODE_ENV production
