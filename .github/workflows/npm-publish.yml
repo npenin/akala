@@ -45,7 +45,7 @@ jobs:
       - name: Install Packages
         run: yarn install
       - name: publish
-        run: yarn lerna publish --canary
+        run: yarn lerna publish --canary -y
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
@@ -67,6 +67,6 @@ jobs:
       - name: Install Packages
         run: yarn install
       - name: publish
-        run: yarn lerna publish  --canary
+        run: yarn lerna publish  --canary -y
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
