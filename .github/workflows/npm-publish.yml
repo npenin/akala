@@ -68,7 +68,7 @@ jobs:
         run: yarn install
       - name: Login to Github packages
         run: npm login --registry=https://npm.pkg.github.com --scope=@akala
-      - name: publish
-        run: yarn lerna publish  --canary -y
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: publish
+        run: yarn lerna publish  --canary -y
