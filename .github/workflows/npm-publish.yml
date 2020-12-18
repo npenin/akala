@@ -67,7 +67,7 @@ jobs:
       - name: Install Packages
         run: yarn install
       - name: Login to Github packages
-        run: npm login --registry=https://npm.pkg.github.com --scope=@akala
+        run: npm login --registry=https://npm.pkg.github.com/npenin --scope=@akala
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: publish
