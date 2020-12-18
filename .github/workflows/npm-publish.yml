@@ -31,12 +31,16 @@ jobs:
         with:
           node-version: 12
           registry-url: https://registry.npmjs.org/
-      - uses:  CultureHQ/actions-yarn@master
-        with: 
-          args: install
-      - uses:  CultureHQ/actions-yarn@master
-        with: 
-          args: lerna publish
+      - name: Install yarn
+        run: |
+          curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+          echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+          sudo apt-get update
+          sudo apt-get install yarn
+      - name: Install Packages
+        run: yarn install
+      - name: publish
+        run: yarn lerna publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
           GIT_PATH: /usr/bin/git
@@ -50,12 +54,15 @@ jobs:
         with:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
-      - uses:  CultureHQ/actions-yarn@master
-        with: 
-          args: install
-      - uses:  CultureHQ/actions-yarn@master
-        with: 
-          args: lerna publish
+      - name: Install yarn
+        run: |
+          curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+          echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+          sudo apt-get update
+          sudo apt-get install yarn
+      - name: Install Packages
+        run: yarn install
+      - name: publish
+        run: yarn lerna publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          GIT_PATH: /usr/bin/git
