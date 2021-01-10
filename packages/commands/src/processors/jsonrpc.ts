@@ -33,7 +33,12 @@ export class JsonRpc<T> extends CommandProcessor<T>
             type: 'client',
             disconnected()
             {
-
+                if (container)
+                {
+                    var cmd = container.resolve('$disconnect');
+                    if (cmd)
+                        Local.execute(cmd, cmd.handler, container, { param: [] });
+                }
             },
             getHandler(method: string)
             {

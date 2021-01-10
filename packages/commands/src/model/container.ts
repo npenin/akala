@@ -13,11 +13,12 @@ const log = akala.log('akala:commands');
 
 export class Container<TState> extends akala.Injector
 {
-    attach(triggerName: string, server: any): any
+    attach(trigger: Trigger | string, server: any): any
     {
-        var trigger = Trigger.find(triggerName);
+        if (typeof trigger == 'string')
+            trigger = Trigger.find(trigger);
         if (!trigger)
-            throw new Error(`There is no registered trigger named ${triggerName}`);
+            throw new Error(`There is no registered trigger named ${trigger}`);
 
         return trigger.register(this, server);
     }
@@ -66,6 +67,7 @@ export class Container<TState> extends akala.Injector
     {
         if (typeof (param) == 'object' && param !== null && param.param && Array.isArray(param.param))
         {
+            log(`dispatching ${command}(${JSON.stringify(param)})`)
             if (this.processor.requiresCommandName)
                 if (typeof command == 'string')
                     return this.processor.process(command, param);
@@ -106,7 +108,7 @@ export class Container<TState> extends akala.Injector
         proxy.resolve = (name: string) =>
         {
             var result = super.resolve(name);
-            if (result instanceof Command || !result)
+            if (!result)
                 return new CommandProxy(this.processor, name, ['$param']);
             return result;
         }

@@ -55,11 +55,20 @@ export class FileSystem<T> extends CommandProcessor<T>
         if (!options)
             options = {};
 
+        var fs: FileSystem<T>;
         if (!options.processor)
-            options.processor = new FileSystem<T>(container, root);
+        {
+            if (!options.isDirectory)
+                options.relativeTo = path.dirname(root);
+            options.processor = fs = new FileSystem<T>(container, options.relativeTo);
+        }
 
         var commands = await this.discoverMetaCommands(root, options);
+
         registerCommands(commands, options.processor, container);
+
+        if (fs)
+            fs.root = options.relativeTo;
 
         if (typeof (commands.name) != 'undefined')
             container.name = commands.name;
