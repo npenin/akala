@@ -46,7 +46,7 @@ export default async function $init(container: Container<State>, options: any, p
             resolve: {
                 aliasFields: ['browser'],
                 // Add `.ts` and `.tsx` as a resolvable extension.
-                extensions: [".ts", ".tsx", ".js", ".scss"],
+                extensions: [".ts", ".tsx", ".js", ".css"],
                 symlinks: false,
             },
             module: {
@@ -60,19 +60,19 @@ export default async function $init(container: Container<State>, options: any, p
                         enforce: 'pre',
                         use: require.resolve('source-map-loader'),
                     },
-                    {
-                        test: /\.s[ac]ss$/i,
-                        use: [
-                            CssExtractPlugin.loader,
-                            require.resolve('css-loader'),
-                            {
-                                loader: require.resolve('sass-loader'),
-                                options: {
-                                    implementation: require('node-sass'),
-                                },
-                            },
-                        ],
-                    },
+                    // {
+                    //     test: /\.s[ac]ss$/i,
+                    //     use: [
+                    //         CssExtractPlugin.loader,
+                    //         require.resolve('css-loader'),
+                    //         {
+                    //             loader: require.resolve('sass-loader'),
+                    //             options: {
+                    //                 implementation: require('node-sass'),
+                    //             },
+                    //         },
+                    //     ],
+                    // },
                     {
                         test: /\.html$/,
                         use: require.resolve('raw-loader')
