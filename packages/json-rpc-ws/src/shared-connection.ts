@@ -248,7 +248,10 @@ export abstract class Connection<TStreamable>
             var handlerCallback = function handlerCallback(this: Connection<TStreamable>, err: any, reply: PayloadDataType<TStreamable>)
             {
                 logger('handler got callback %j, %j', err, reply);
-                return this.sendResult(id, err, reply);
+                if (typeof this.socket != 'undefined')
+                    this.sendResult(id, err, reply);
+                else
+                    console.error('no socket to reply to');
             };
             if (payload.stream)
                 params = this.buildStream(id, params);
