@@ -1,13 +1,13 @@
 import { Container, Processors, Metadata, registerCommands } from "@akala/commands";
 import State, { RunningContainer } from "../state";
 import { spawn, ChildProcess } from "child_process";
-import { description } from "../container";
+import pmContainer from "../container";
 import * as jsonrpc from '@akala/json-rpc-ws'
 import debug from "debug";
 import { eachAsync } from "@akala/core";
 import { NewLinePrefixer } from "../new-line-prefixer";
 
-export default async function start(this: State, pm: description.pm & Container<State>, name: string, options?: any)
+export default async function start(this: State, pm: pmContainer & Container<State>, name: string, options?: any)
 {
     if (this.isDaemon)
     {

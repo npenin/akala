@@ -27,6 +27,9 @@ export default async function stop(this: State, name: string, container: Contain
                 cp.process.on('exit', (_code, signal) =>
                 {
                     container.unregister(cp.name);
+                    var indexOfContainer = this.processes.indexOf(cp);
+                    if (indexOfContainer > -1)
+                        this.processes.splice(indexOfContainer, 1);
                     clearTimeout(timeout);
                     resolve(signal);
                 })

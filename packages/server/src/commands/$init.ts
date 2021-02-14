@@ -15,8 +15,6 @@ const debug = log('akala:server')
 
 export default async function $init(container: Container<State>, options: any, pm: Container<void>)
 {
-    var stop = await serve(container, options);
-
     container.state.pm = pm;
     // pm.register('$metadata', new CommandProxy(pm.processor, '$metadata'));
 

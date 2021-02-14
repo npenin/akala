@@ -5,5 +5,5 @@ export default async function alias(this: State, container: Container<State>, pa
 {
     this.config.externals?.push(path);
 
-    Processors.FileSystem.discoverMetaCommands(path, options)
+    await Processors.FileSystem.discoverMetaCommands(path, options)
 }

@@ -1,7 +1,7 @@
 import State from "../state";
 import unparse from 'yargs-unparser';
 
-export default async function config(this: State, name: string, options: any): Promise<string[]>
+export default async function config(this: State, name: string, options: unparse.Arguments): Promise<string[]>
 {
     debugger;
     if (options)

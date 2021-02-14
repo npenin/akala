@@ -80,6 +80,29 @@
             }
         },
         {
+            "name": "connect",
+            "inject": [
+                "param.0",
+                "options"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "options"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/connect.js",
+                    "source": "src/commands/connect.ts",
+                    "inject": [
+                        "param.0",
+                        "ignore"
+                    ]
+                }
+            }
+        },
+        {
             "name": "discover",
             "inject": [
                 "param.0",
