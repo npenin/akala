@@ -2,6 +2,10 @@ import { Container, Metadata, NetSocketAdapter, Processors, registerCommands, Se
 import { Socket } from "net";
 import { module } from "@akala/core";
 
+import pmContainer from './container';
+
+export { pmContainer as Container };
+
 export class InteractError extends Error
 {
     public readonly code = 'INTERACT';

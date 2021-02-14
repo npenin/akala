@@ -104,7 +104,7 @@ export class HttpClient<T> extends CommandProcessor<T>
         return options;
     }
 
-    private injector: Injector;
+    private readonly injector: Injector;
 
     constructor(injector?: Injector)
     {
