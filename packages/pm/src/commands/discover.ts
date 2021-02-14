@@ -1,7 +1,7 @@
 import State from "../state";
 import { join, isAbsolute, basename, resolve } from "path";
 import { existsSync, promises as fs } from "fs";
-import { description } from "../container";
+import pmContainer from "../container";
 import map from './map'
 import { createRequire } from "module";
 import { log } from "@akala/core";
@@ -13,7 +13,7 @@ type mapReturn = Unpromise<ReturnType<typeof map>>;
 const debug = log('discover');
 
 
-export default async function discover(this: State, packageName: string, folder: string, pm: description.pm): Promise<mapReturn[] | mapReturn>
+export default async function discover(this: State, packageName: string, folder: string, pm: pmContainer): Promise<mapReturn[] | mapReturn>
 {
     debug(arguments);
 

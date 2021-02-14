@@ -1,6 +1,7 @@
 import { Container } from "@akala/commands";
 import { ChildProcess } from "child_process";
 import { Deferred } from "@akala/json-rpc-ws";
+import { ServeMetadata } from "@akala/commands";
 
 export default interface State
 {
@@ -8,7 +9,7 @@ export default interface State
     isDaemon: boolean;
     config: {
         containers: { [key: string]: string[] }
-        mapping: { [key: string]: { path: string, commandable: boolean, dependencies?: string[] } }
+        mapping: { [key: string]: { path: string, commandable: boolean, dependencies?: string[], connect: ServeMetadata } }
         save(): Promise<void>
         externals?: string[];
     }

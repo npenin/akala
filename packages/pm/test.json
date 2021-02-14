@@ -1,0 +1,32 @@
+{
+    "name": "test",
+    "commands": [
+        {
+            "name": "pwet",
+            "inject": [
+                "param.0"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/test/pwet.js",
+                    "source": "src/test/pwet.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "standalone": true,
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+}

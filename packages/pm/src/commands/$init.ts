@@ -2,9 +2,9 @@ import State, { RunningContainer } from '../state'
 import { homedir } from 'os';
 import fs from 'fs/promises';
 import { join } from 'path';
-import { description } from '../container';
+import pmContainer from '../container';
 import serve from '@akala/commands/dist/cli/serve';
-import { Container, ServeOptions, Command, Metadata, ignoredCommands, configure } from '@akala/commands';
+import { Container, ServeOptions, Command, Metadata, ignoredCommands, configure, serveMetadata } from '@akala/commands';
 import { eachAsync } from '@akala/core';
 import { Configurations } from '@akala/commands/dist/metadata';
 
@@ -30,7 +30,7 @@ export async function metadata(container: Container<any>, deep?: boolean)
     return metacontainer;
 }
 
-export default async function (this: State, container: RunningContainer<State> & description.pm, options: ServeOptions)
+export default async function (this: State, container: RunningContainer<State> & pmContainer, options: ServeOptions)
 {
     this.isDaemon = true;
     this.processes = [];
@@ -79,7 +79,7 @@ export default async function (this: State, container: RunningContainer<State> &
 
     }
 
-    var stop = await serve(container as Container<any>, options || { _: ['local'] });
+    var stop = await serve(container as Container<any>, serveMetadata(container.name, options || { _: ['local'] }));
     process.on('SIGINT', stop);
 
     if (process.disconnect)

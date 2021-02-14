@@ -9,6 +9,7 @@ import { unlink } from 'fs';
 import { Http2SecureServer, Http2Server } from 'http2';
 import { Server as httpServer } from 'http'
 import { Server as httpsServer } from 'https'
+import { ServeMetadata } from '../serve-metadata';
 
 export class NetSocketAdapter implements jsonrpcws.SocketAdapter
 {
@@ -117,125 +118,85 @@ export interface ServeOptions
     _: ('local' | 'http' | 'ws' | 'tcp')[];
 }
 
-export default async function <T = void>(container: Container<T>, options: ServeOptions)
+export default async function <T = void>(container: Container<T>, options: ServeMetadata)
 {
-    var args = options._;
-    if (!args || args.length == 0)
-        args = ['local'];
-
     var stops: (() => Promise<void>)[] = [];
 
-    if (args.indexOf('local') > -1)
+    if (options.socket)
     {
-        let server = new Server((socket) =>
+        for (var socketPath in options.socket)
         {
-            socket.setDefaultEncoding('utf8');
-            container.attach('jsonrpc', new NetSocketAdapter(socket));
-        });
-
-        var socketPath: string;
-        if (platform() == 'win32')
-            socketPath = '\\\\?\\pipe\\' + container.name.replace(/\//g, '\\');
-        else
-            socketPath = join(process.cwd(), container.name.replace(/\//g, '-').replace(/^@/g, '') + '.sock');
-
-        server.listen(socketPath);
-        console.log(`listening on ${socketPath}`);
-
-        stops.push(() =>
-        {
-            return new Promise((resolve, reject) =>
+            let server = new Server((socket) =>
             {
-                server.close(function (err)
-                {
-                    if (err)
-                        reject(err);
-                    else
-                        unlink(socketPath, function (err)
-                        {
-                            if (err)
-                                reject(err);
-                            else
-                                resolve();
-                        });
-                })
+                socket.setDefaultEncoding('utf8');
+                container.attach('jsonrpc', new NetSocketAdapter(socket));
             });
-        });
+
+            server.listen(socketPath);
+            console.log(`listening on ${socketPath}`);
+
+            stops.push(() =>
+            {
+                return new Promise((resolve, reject) =>
+                {
+                    server.close(function (err)
+                    {
+                        if (err)
+                            reject(err);
+                        else
+                            unlink(socketPath, function (err)
+                            {
+                                if (err)
+                                    reject(err);
+                                else
+                                    resolve();
+                            });
+                    })
+                });
+            });
+        }
     }
 
-
-    if (args.indexOf('tcp') > -1)
+    if (options.http || options.https || options.ws || options.wss)
     {
-        let server = new Server((socket) =>
-        {
-            socket.setDefaultEncoding('utf8');
-            container.attach('jsonrpc', new NetSocketAdapter(socket));
-        });
-
-        if (typeof options.tcpPort == 'string')
-        {
-            let indexOfColon = options.tcpPort.lastIndexOf(':');
-            if (indexOfColon > -1)
-            {
-                let host = options.tcpPort.substr(0, indexOfColon);
-                let port = Number(options.tcpPort.substr(indexOfColon + 1))
-                server.listen(port, host);
-                options.tcpPort = host + ':' + port;
-            }
-            else
-                server.listen(options.tcpPort);
-        }
-        else
-            server.listen(options.tcpPort);
-
-        console.log(`listening on ${options.tcpPort}`);
-
-        stops.push(() =>
-        {
-            return new Promise((resolve, reject) =>
-            {
-                server.close(function (err)
-                {
-                    if (err)
-                        reject(err);
-                    else
-                        resolve();
-                })
-            });
-        });
-    }
-
-    if (args.indexOf('http') > -1 || args.indexOf('ws') > -1)
-    {
-        let port: number;
-        let message = 'listening on ';
-        if (options.port)
-            port = options.port;
-        else
-        {
-            if (options.cert && options.key)
-                port = 443
-            else
-                port = 80;
-        }
         let server: httpServer | httpsServer;// | Http2SecureServer | Http2Server;
-        if (options.cert && options.key)
+        let message = 'listening on ';
+        let port: number;
+        if (options.https || options.wss)
         {
             const https = await import('https');
-            server = https.createServer({ cert: options.cert, key: options.key });
-            message += 'https://';
+            server = https.createServer({ cert: options.https.cert || options.wss.cert, key: options.https.key || options.wss.key });
+            if (options.https)
+            {
+                message += 'https://';
+                port = options.https.port;
+            }
+            else
+            {
+                message += 'wss://';
+                port = options.wss.port;
+            }
         }
         else
         {
             const http = await import('http');
             server = http.createServer();
-            message += 'http://';
+            if (options.http)
+            {
+                message += 'http://';
+                port = options.http.port;
+            }
+            else
+            {
+                message += 'ws://';
+                port = options.http.port;
+            }
         }
         container.register('$webServer', server);
 
-        if (args.indexOf('http') > -1)
+        if (options.http || options.https)
             container.register('$masterRouter', container.attach('http', server));
-        if (args.indexOf('ws') > -1)
+        if (options.ws || options.wss)
         {
             var wsServer = new ws.Server({ server });
             container.register('$wsServer', wsServer);

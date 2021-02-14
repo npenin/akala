@@ -5,7 +5,7 @@ import { Container } from "@akala/commands";
 
 export default async function install(this: State, packageName: string, pm: Container<State>)
 {
-    if (process.versions['pnp'])
+    if (process.versions['pnp'] || await hasYarn())
     {
         await yarnHelper.install(packageName);
         return await pm.dispatch('discover', packageName)

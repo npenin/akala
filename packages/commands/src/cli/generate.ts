@@ -19,7 +19,7 @@ export default async function generate(folder?: string, name?: string, outputFil
     var outputFolder: string;
     ({ output, outputFile, outputFolder } = await outputHelper(outputFile, 'commands.json', true));
 
-    await akala.Processors.FileSystem.discoverCommands(path.resolve(folder), container, { relativeTo: outputFolder });
+    await akala.Processors.FileSystem.discoverCommands(path.resolve(folder), container, { relativeTo: outputFolder, isDirectory: true });
 
     var meta: akala.Metadata.Container & { $schema?: string } = akala.metadata(container);
     meta.$schema = 'https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json';
@@ -29,5 +29,4 @@ export default async function generate(folder?: string, name?: string, outputFil
             console.error(err);
         output.end();
     });
-
 };
