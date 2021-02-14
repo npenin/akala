@@ -73,11 +73,11 @@ import { module as coreModule } from '@akala/core';
         }
         else
             var serveArgs = ac.serveMetadata('pm', args as any);
-        var stop = await cliContainer.dispatch('$serve', serveArgs);
+        coreModule('@akala/pm').register('container', pm);
         if (init)
             await cliContainer.dispatch(init, { options: args, param: args._, _trigger: 'cli', pm: pm });
+        var stop = await cliContainer.dispatch('$serve', serveArgs);
 
-        coreModule('@akala/pm').register('container', pm);
 
         if (stop && typeof stop == 'function')
             process.on('SIGINT', stop);
