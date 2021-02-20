@@ -17,10 +17,16 @@ export { description }
 export { State } from './state'
 
 import * as commands from '@akala/commands'
+import { Container } from '@akala/commands';
 
-export function connect(socket: net.Socket, container: commands.Container<any>): commands.Container<void> & description.commands
+export async function connect(socket: net.NetConnectOpts, container?: commands.Container<any>): Promise<commands.Container<void> & description.commands>
 {
-    return commands.proxy(require('../commands.json'), c => new commands.Processors.JsonRpc(commands.Processors.JsonRpc.getConnection(new commands.NetSocketAdapter(socket), container || c)));
+    var metaContainer: commands.Metadata.Container = require('../commands.json');
+    if (!container)
+        container = new Container(metaContainer.name, undefined);
+    var processor = await commands.connectWith(socket, socket['host'], 'socket', container);
+    commands.registerCommands(metaContainer.commands, processor, container);
+    return container;
 }
 
 export { Logger, logger, log } from './logger'
