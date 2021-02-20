@@ -5,7 +5,7 @@ import { serveStatic } from "../master-meta";
 import requireIfExists from 'require-optional'
 import { FSWatcher, watch } from 'chokidar'
 import { logger } from '../logger'
-import { description } from "../commands";
+import description from "../commands";
 const chokidar: { watch: typeof watch } = requireIfExists('chokidar');
 
 const log = logger('assets');
@@ -17,7 +17,7 @@ export interface Asset
     output: string;
 };
 
-export default async function register(this: State, container: Container<State> & description.commands, route: string, path: string, cwd: string)
+export default async function register(this: State, container: Container<State> & description, route: string, path: string, cwd: string)
 {
     if (typeof route == 'undefined' && typeof path == 'undefined')
         return this.webpack.config.entry;
