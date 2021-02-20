@@ -50,6 +50,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
   publish-gpr:
+    if: 1 == 0
     needs: build
     runs-on: ubuntu-latest
     steps:
