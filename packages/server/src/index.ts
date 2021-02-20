@@ -12,21 +12,24 @@ import * as net from 'net'
 
 export type resolve = worker.resolve;
 
-import { description } from './commands'
+import description from './commands'
 export { description }
 export { State } from './state'
 
 import * as commands from '@akala/commands'
-import { Container } from '@akala/commands';
 
-export async function connect(socket: net.NetConnectOpts, container?: commands.Container<any>): Promise<commands.Container<void> & description.commands>
+export function connect(options: commands.ServeMetadata, settings: {
+    preferRemote?: boolean;
+    host?: string;
+}, ...orders: (keyof commands.ServeMetadata)[])
+    : Promise<{
+        container: description;
+        processor: commands.CommandProcessors<any>;
+    }>
 {
-    var metaContainer: commands.Metadata.Container = require('../commands.json');
-    if (!container)
-        container = new Container(metaContainer.name, undefined);
-    var processor = await commands.connectWith(socket, socket['host'], 'socket', container);
-    commands.registerCommands(metaContainer.commands, processor, container);
-    return container;
+    if (!settings)
+        settings = {};
+    return commands.connectByPreference(options, Object.assign({ container: require('../commands.json') }, settings), ...orders);
 }
 
 export { Logger, logger, log } from './logger'

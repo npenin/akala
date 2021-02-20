@@ -21,7 +21,7 @@ export interface ServeMetadata
     wss?: { port: number, cert: string, key: string };
 }
 
-export async function connectByPreference(options: ServeMetadata, settings: { preferRemote: boolean, host?: string, container: Metadata.Container }, ...orders: (keyof ServeMetadata)[])
+export async function connectByPreference(options: ServeMetadata, settings: { preferRemote?: boolean, host?: string, container: Metadata.Container }, ...orders: (keyof ServeMetadata)[])
 {
     if (!orders)
         orders = ['socket', 'wss', 'ws', 'https', 'http'];

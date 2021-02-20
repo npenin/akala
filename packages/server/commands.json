@@ -181,27 +181,31 @@
             "name": "remote-container",
             "inject": [
                 "param.0",
-                "param.1"
+                "param.1",
+                "param.2"
             ],
             "config": {
                 "": {
                     "inject": [
                         "param.0",
-                        "param.1"
+                        "param.1",
+                        "param.2"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/remote-container.js",
                     "source": "src/commands/remote-container.ts",
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "dummy",
+                        "param.1",
+                        "param.2"
                     ]
                 },
                 "jsonrpc": {
                     "inject": [
                         "connectionAsContainer",
-                        "param.0"
+                        "param.0",
+                        "param.1"
                     ]
                 }
             }
