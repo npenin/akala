@@ -2,6 +2,20 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
+			"command": "yarn",
+			"args": [
+				"tsc",
+				"-b",
+				"packages/tsconfig.json",
+				"--watch"
+			],
+			"problemMatcher": [
+				"$tsc-watch"
+			],
+			"group": "build",
+			"label": "yarn tsc: watch - packages/tsconfig.json"
+		},
+		{
 			"type": "typescript",
 			"tsconfig": "packages/tsconfig.json",
 			"option": "watch",
