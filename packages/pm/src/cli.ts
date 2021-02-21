@@ -9,7 +9,7 @@ import { Readable } from 'stream';
 
 import * as Parser from "yargs-parser";
 import unparse from "yargs-unparser";
-import { spawnAsync } from './clli-helper';
+import { spawnAsync } from './cli-helper';
 import { DiscoveryOptions } from '@akala/commands/dist/processors';
 
 type Arguments = ReturnType<typeof Parser.default>;

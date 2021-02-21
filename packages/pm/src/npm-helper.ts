@@ -2,7 +2,7 @@ import * as cp from 'child_process'
 import { platform } from "os";
 import { fstat, existsSync, exists } from 'fs';
 import { promisify } from 'util';
-import { spawnAsync } from './clli-helper';
+import { spawnAsync } from './cli-helper';
 
 
 // if (typeof (process.versions.pnp) != 'undefined')

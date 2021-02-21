@@ -4,7 +4,7 @@ export async function spawnAsync(program: string, options: cp.SpawnOptions, ...a
 {
     options = Object.assign({ stdio: ['ignore', 'ignore', 'pipe'], shell: false, windowsHide: true }, options);
 
-    await new Promise((resolve, reject) =>
+    await new Promise<void>((resolve, reject) =>
     {
         var err = ''
         cp

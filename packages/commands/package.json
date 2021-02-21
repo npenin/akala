@@ -13,8 +13,8 @@
     "cli": "node dist/cli.js"
   },
   "browser": {
-    "./dist/processors/fs.js": "./dist/processors/fs-browser.js",
-    "./dist/cli/serve.js": false
+    "./dist/cli/serve.js": false,
+    "./dist/processors/fs.js": "./dist/processors/fs-browser.js"
   },
   "bin": {
     "ac": "dist/cli.js"
@@ -45,10 +45,8 @@
   },
   "devDependencies": {
     "@types/debug": "^4.1.5",
-    "@types/express": "^4.17.7",
     "@types/mocha": "^8.2.1",
     "@types/node": "^14.14.31",
-    "@types/path-to-regexp": "^1.7.0",
     "@types/split2": "^2.1.6",
     "@types/uuid": "^8.0.0",
     "@types/ws": "^7.2.1",

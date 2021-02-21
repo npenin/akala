@@ -6,7 +6,7 @@ import { Injector, Binding, log } from "@akala/core";
 import * as webpack from './webpack'
 import { join, resolve } from "path";
 import HtmlPlugin = require('html-webpack-plugin');
-import { CleanWebpackPlugin as CleanPlugin } from 'clean-webpack-plugin'
+// import { CleanWebpackPlugin as CleanPlugin } from 'clean-webpack-plugin'
 import CssExtractPlugin = require('mini-css-extract-plugin')
 import { serveStatic } from "../master-meta";
 import fs from 'fs';
@@ -78,7 +78,7 @@ export default async function $init(container: Container<State>, options: any, p
                 ],
             },
             plugins: [
-                new CleanPlugin(),
+                // new CleanPlugin(),
                 html,
                 new CssExtractPlugin({ moduleFilename: ({ name }) => `${name.replace('/js/', '/css/')}.css`, })
             ],
@@ -86,8 +86,8 @@ export default async function $init(container: Container<State>, options: any, p
             mode: container.state.mode || 'development',
             optimization: {
                 usedExports: true,
-                namedModules: true,
-                namedChunks: true,
+                // namedModules: true,
+                // namedChunks: true,
                 sideEffects: true,
             },
         }, html: (html as any).options
