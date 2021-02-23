@@ -224,15 +224,6 @@ export function lazy<T extends object>(factory: () => T): T
                     instance = factory();
                 return Reflect.defineProperty(instance, p, attributes);
             },
-            enumerate(): PropertyKey[]
-            {
-                if (!instance)
-                    instance = factory();
-                var result: PropertyKey[] = [];
-                for (var x of Reflect.enumerate(instance as any))
-                    result.push(x);
-                return result;
-            },
             ownKeys(): PropertyKey[]
             {
                 if (!instance)

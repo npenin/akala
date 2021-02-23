@@ -69,15 +69,16 @@ import { module as coreModule } from '@akala/core';
                 })
                 var pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new ac.NetSocketAdapter(pmSocket), cliContainer), true));
             }
-            var serveArgs: ac.ServeMetadata = await pm.dispatch('connect', folder);
         }
         else
-            var serveArgs = ac.serveMetadata('pm', args as any);
+            pm = cliContainer;
+
         coreModule('@akala/pm').register('container', pm);
         if (init)
             await cliContainer.dispatch(init, { options: args, param: args._, _trigger: 'cli', pm: pm });
-        var stop = await cliContainer.dispatch('$serve', serveArgs);
 
+        var serveArgs: ac.ServeMetadata = await pm.dispatch('connect', process.argv[2]);
+        var stop = await cliContainer.dispatch('$serve', serveArgs);
 
         if (stop && typeof stop == 'function')
             process.on('SIGINT', stop);

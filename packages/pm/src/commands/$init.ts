@@ -79,8 +79,7 @@ export default async function (this: State, container: RunningContainer<State> &
 
     }
 
-    var stop = await serve(container as Container<any>, serveMetadata(container.name, options || { _: ['local'] }));
-    process.on('SIGINT', stop);
+    // var stop = await serve(container as Container<any>, serveMetadata(container.name, options || { _: ['local'] }));
 
     if (process.disconnect)
     {

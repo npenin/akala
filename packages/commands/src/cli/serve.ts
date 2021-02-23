@@ -124,7 +124,7 @@ export default async function <T = void>(container: Container<T>, options: Serve
 
     if (options.socket)
     {
-        for (var socketPath in options.socket)
+        for (var socketPath of options.socket)
         {
             let server = new Server((socket) =>
             {
@@ -133,7 +133,7 @@ export default async function <T = void>(container: Container<T>, options: Serve
             });
 
             server.listen(socketPath);
-            console.log(`listening on ${socketPath}`);
+            console.log(`listening on ${JSON.stringify(socketPath)}`);
 
             stops.push(() =>
             {
@@ -144,13 +144,14 @@ export default async function <T = void>(container: Container<T>, options: Serve
                         if (err)
                             reject(err);
                         else
-                            unlink(socketPath, function (err)
-                            {
-                                if (err)
-                                    reject(err);
-                                else
-                                    resolve();
-                            });
+                            if (socketPath['path'])
+                                unlink(socketPath['path'], function (err)
+                                {
+                                    if (err)
+                                        reject(err);
+                                    else
+                                        resolve();
+                                });
                     })
                 });
             });

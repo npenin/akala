@@ -8,8 +8,10 @@ export default function connect(this: State, name: string, options?: ServeOption
 export default function connect(this: State, name: string, options?: ServeOptions): ServeMetadata | void
 {
     var mapping = this.config.mapping[name];
+    console.log(name);
+    console.log(mapping);
     console.log(options);
-    if (options._.length > 1)
+    if (options && options._.length > 1)
         mapping.connect = serveMetadata(name, options);
     else
         return mapping.connect;
