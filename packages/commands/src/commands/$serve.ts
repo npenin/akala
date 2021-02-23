@@ -1,10 +1,10 @@
 import serve, { ServeOptions } from "../cli/serve";
-import serveMetadata from "../serve-metadata";
+import serveMetadata, { ServeMetadata } from "../serve-metadata";
 import { Container } from "../model/container";
 
-export default function $serve(container: Container<any>, options: ServeOptions)
+export default function $serve(container: Container<any>, options: ServeMetadata)
 {
-    return serve(container, serveMetadata(container.name, options));
+    return serve(container, options);
 }
 
-$serve.$inject = ['$container', 'options'];
+$serve.$inject = ['$container', 'param.0'];
