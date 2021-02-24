@@ -88,5 +88,3 @@ export default async function (this: State, container: RunningContainer<State> &
         process.disconnect();
     }
 }
-
-exports.default.$inject = ['$container', 'options'];

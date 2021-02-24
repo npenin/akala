@@ -48,5 +48,3 @@ export default async function stop(this: State, name: string, container: Contain
         }
     });
 };
-
-exports.default.$inject = ['param.0', '$container']
