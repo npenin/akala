@@ -17,11 +17,11 @@ declare type Argument14<T> = T extends ((a: any, b: any, c: any, d: any, e: any,
 declare type Argument15<T> = T extends ((a: any, b: any, c: any, d: any, e: any, f: any, g: any, h: any, i: any, j: any, k: any, l: any, m: any, n: any, o: any, x: infer X, ...z: any[]) => any) ? X : never;
 declare type Argument16<T> = T extends ((a: any, b: any, c: any, d: any, e: any, f: any, g: any, h: any, i: any, j: any, k: any, l: any, m: any, n: any, o: any, p: any, x: infer X, ...z: any[]) => any) ? X : never;
 declare type Argument17<T> = T extends ((a: any, b: any, c: any, d: any, e: any, f: any, g: any, h: any, i: any, j: any, k: any, l: any, m: any, n: any, o: any, p: any, q: any, x: infer X, ...z: any[]) => any) ? X : never;
-export default interface commands 
+export default interface pm 
 {
 	dispatch (cmd:'$init', ...args: [Argument1<typeof import('./commands/$init').default>]): ReturnType<typeof import('./commands/$init').default>
-	dispatch (cmd:'alias', ...args: [Argument0<typeof import('./commands/alias').default>, Argument1<typeof import('./commands/alias').default>, Argument2<typeof import('./commands/alias').default>]): ReturnType<typeof import('./commands/alias').default>
-	dispatch (cmd:'config', ...args: [Argument0<typeof import('./commands/config').default>]): ReturnType<typeof import('./commands/config').default>
+	dispatch (cmd:'alias', ...args: [Argument0<typeof import('./commands/alias').default>, Argument1<typeof import('./commands/alias').default>]): ReturnType<typeof import('./commands/alias').default>
+	dispatch (cmd:'config', ...args: [Argument0<typeof import('./commands/config').default>, Argument1<typeof import('./commands/config').default>]): ReturnType<typeof import('./commands/config').default>
 	dispatch (cmd:'connect', ...args: [Argument0<typeof import('./commands/connect').default>]): ReturnType<typeof import('./commands/connect').default>
 	dispatch (cmd:'discover', ...args: [Argument0<typeof import('./commands/discover').default>, Argument1<typeof import('./commands/discover').default>]): ReturnType<typeof import('./commands/discover').default>
 	dispatch (cmd:'install', ...args: [Argument0<typeof import('./commands/install').default>]): ReturnType<typeof import('./commands/install').default>
@@ -30,7 +30,6 @@ export default interface commands
 	dispatch (cmd:'ls', ...args: []): ReturnType<typeof import('./commands/ls').default>
 	dispatch (cmd:'map', ...args: [Argument0<typeof import('./commands/map').default>, Argument1<typeof import('./commands/map').default>, Argument2<typeof import('./commands/map').default>, Argument3<typeof import('./commands/map').default>]): ReturnType<typeof import('./commands/map').default>
 	dispatch (cmd:'ready', ...args: []): ReturnType<typeof import('./commands/ready').default>
-	dispatch (cmd:'run', ...args: [Argument0<typeof import('./commands/run').default>, Argument1<typeof import('./commands/run').default>, Argument2<typeof import('./commands/run').default>]): ReturnType<typeof import('./commands/run').default>
 	dispatch (cmd:'start', ...args: [Argument0<typeof import('./commands/start').default>]): ReturnType<typeof import('./commands/start').default>
 	dispatch (cmd:'status', ...args: [Argument0<typeof import('./commands/status').default>]): ReturnType<typeof import('./commands/status').default>
 	dispatch (cmd:'stop', ...args: [Argument0<typeof import('./commands/stop').default>]): ReturnType<typeof import('./commands/stop').default>

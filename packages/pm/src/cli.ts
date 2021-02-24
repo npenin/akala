@@ -64,7 +64,7 @@ if (require.main == module)
                     else
                     {
                         var cmd = metaContainer.commands.find(c => c.name === cmdName);
-                        await tryRun(processor, cmd, args);
+                        await tryRun(processor, cmd, args, false);
                     }
                     socket.end(() => { });
                 }
@@ -327,9 +327,9 @@ function prepareParam(cmd: Metadata.Command, args: yargs.Arguments, standalone?:
     return false;
 }
 
-async function tryRun(processor: Processor<any>, cmd: Metadata.Command, args: yargs.Arguments)
+async function tryRun(processor: Processor<any>, cmd: Metadata.Command, args: yargs.Arguments, localProcessing: boolean)
 {
-    var params = prepareParam(cmd, args, true);
+    var params = prepareParam(cmd, args, localProcessing);
     if (!params)
     {
         throw new Error('Either command does not exist or it is not standalone');
@@ -355,7 +355,7 @@ async function tryRun(processor: Processor<any>, cmd: Metadata.Command, args: ya
             else
                 args._.push(value);
             args._.unshift(cmd.name);
-            return await tryRun(processor, cmd, args);
+            return await tryRun(processor, cmd, args, localProcessing);
         }
         if (args.v)
             console.log(e);
@@ -381,7 +381,7 @@ async function tryLocalProcessing(args: yargs.Arguments)
             var options: DiscoveryOptions<any> = {};
             await Processors.FileSystem.discoverCommands(config.mapping[containerName].path, container, options);
             var cmd = container.resolve(cmdName);
-            return tryRun(options.processor, cmd, args);
+            return tryRun(options.processor, cmd, args, true);
         }
     }
     else
