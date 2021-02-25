@@ -1,4 +1,4 @@
-import { Container, Metadata, NetSocketAdapter, Processors, registerCommands, ServeMetadata } from "@akala/commands";
+import { connectByPreference, Container, Metadata, NetSocketAdapter, Processors, registerCommands, ServeMetadata, ConnectionPreference } from "@akala/commands";
 import { Socket } from "net";
 import { module } from "@akala/core";
 
@@ -40,11 +40,28 @@ export async function pm(socketPath?: string): Promise<Container<any>>
     return new Container('pm', {});
 }
 
-export function connect(name: string): Promise<ServeMetadata>
+export function connect(name: string): Promise<{ connect: ServeMetadata, container: Metadata.Container }>
 {
-    return module('@akala/pm').injectWithName(['container'], function (container: Container<void>)
+    return module('@akala/pm').injectWithName(['container'], async function (container: Container<void>)
     {
-        return container.dispatch('connect', name)
+        return { connect: await container.dispatch('connect', name) as ServeMetadata, container: await container.dispatch(name + '.$metadata') };
     })();
 }
 
+export function sidecar<T extends SidecarMap>(options?: Omit<ConnectionPreference, 'container'>, cache?: boolean): Sidecar<T>
+{
+    return new Proxy<Sidecar<T>>({} as any, {
+        get(target, property: keyof T, receiver)
+        {
+            if (typeof (property) !== 'string')
+                return Reflect.get(target, property);
+            if (!cache || typeof (target[property]) == 'undefined')
+                Object.defineProperty(target, property, { value: connect(property).then(meta => connectByPreference(meta.connect, Object.assign({ container: meta.container }, options))) });
+            return target[property];
+        }
+    });
+}
+
+export type SidecarMap = { [key: string]: Container<void>, pm: pmContainer & Container<void> };
+
+export type Sidecar<T extends SidecarMap> = { [key in keyof T]: Promise<T[key]> };

@@ -8,8 +8,8 @@ export * from './model/error-unknowncommand'
 import * as Processors from './processors'
 import * as Triggers from './triggers'
 import * as Metadata from './metadata'
-import serveMetadata, { ServeMetadata, connectByPreference, connectWith } from './serve-metadata'
+import serveMetadata, { ServeMetadata, connectByPreference, connectWith, ConnectionPreference } from './serve-metadata'
 // import * as cli from './cli'
 export { Processors, Triggers, Metadata }
 export { NetSocketAdapter, default as serve, ServeOptions } from './cli/serve'
-export { serveMetadata, ServeMetadata, connectByPreference, connectWith };
+export { serveMetadata, ServeMetadata, connectByPreference, connectWith, ConnectionPreference };
