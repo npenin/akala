@@ -22,6 +22,9 @@ export var init: typeof core.Module.prototype.activate;
 
 export { controls };
 
+import HotKeyTrigger from './hotkeytrigger'
+export { HotKeyTrigger }
+
 common.$$injector['router'] = routing.router
 common.$$injector['BaseControl'] = controls.BaseControl
 common.$$injector['Control'] = controls.Control
