@@ -1,4 +1,4 @@
-import { ConnectOpts, IpcNetConnectOpts, ListenOptions, NetConnectOpts } from 'net';
+import { ConnectOpts, IpcNetConnectOpts, isIP, ListenOptions, NetConnectOpts } from 'net';
 import { platform } from 'os';
 import { basename, dirname, join } from 'path';
 import { NetSocketAdapter, ServeOptions } from './cli/serve';
@@ -11,30 +11,41 @@ import ws from 'ws'
 import { Injector } from '@akala/core';
 import * as Metadata from './metadata';
 import { Container } from './model/container';
+import { CommonConnectionOptions, connect as tlsconnect, SecureContextOptions, TLSSocket } from 'tls'
+
+type TlsConnectOpts = NetConnectOpts & SecureContextOptions & CommonConnectionOptions;
 
 export interface ServeMetadata
 {
     socket?: (NetConnectOpts)[];
+    ssocket?: (TlsConnectOpts)[];
     https?: { port: number, cert: string, key: string };
     http?: { port: number };
     ws?: { port: number };
     wss?: { port: number, cert: string, key: string };
 }
 
-export async function connectByPreference(options: ServeMetadata, settings: { preferRemote?: boolean, host?: string, container: Metadata.Container }, ...orders: (keyof ServeMetadata)[])
+export interface ConnectionPreference
+{
+    preferRemote?: boolean;
+    host?: string;
+    container: Metadata.Container;
+}
+
+export async function connectByPreference(options: ServeMetadata, settings: ConnectionPreference, ...orders: (keyof ServeMetadata)[])
 {
     if (!orders)
-        orders = ['socket', 'wss', 'ws', 'https', 'http'];
+        orders = ['ssocket', 'socket', 'wss', 'ws', 'https', 'http'];
     var orderedOptions = orders.map(order =>
     {
         if (options[order])
         {
-            if (order === 'socket')
-                if (options.socket.length > 1)
+            if (order === 'socket' || order == 'ssocket')
+                if (options[order].length > 1)
                     if (settings?.preferRemote)
-                        return options.socket.find(s => typeof s['port'] != 'undefined');
+                        return options[order].find(s => !isIpcConnectOption(s));
                     else
-                        return options.socket.find(s => typeof s['path'] != 'undefined');
+                        return options[order].find(s => isIpcConnectOption(s));
                 else
                     return options.socket[0];
             return options[order];
@@ -54,22 +65,34 @@ export async function connectByPreference(options: ServeMetadata, settings: { pr
 
 }
 
-export async function connectWith<T>(options: NetConnectOpts, host: String, medium: keyof ServeMetadata, container?: Container<T>): Promise<CommandProcessors<T>>
+export async function connectWith<T>(options: NetConnectOpts, host: string, medium: keyof ServeMetadata, container?: Container<T>): Promise<CommandProcessors<T>>
 {
     switch (medium)
     {
         case 'socket':
-            var socket = await new Promise<net.Socket>((resolve, reject) =>
+            let socket = await new Promise<net.Socket>((resolve, reject) =>
             {
-                if (!options['path'] && host)
-                    options['host'] = host;
+                if (!isIpcConnectOption(options) && host)
+                    options.host = host;
                 var socket = net.connect(options, function ()
                 {
                     console.log('connected to ' + options);
                     resolve(socket)
                 }).on('error', reject);
             });
-            return new JsonRpc(JsonRpc.getConnection(new NetSocketAdapter(socket)), true);
+            return new JsonRpc(JsonRpc.getConnection(new NetSocketAdapter(socket), container), true);
+        case 'ssocket':
+            let ssocket = await new Promise<TLSSocket>((resolve, reject) =>
+            {
+                if (!options['path'] && host)
+                    options['host'] = host;
+                var socket = tlsconnect(options, function ()
+                {
+                    console.log('connected to ' + options);
+                    resolve(socket)
+                }).on('error', reject);
+            });
+            return new JsonRpc(JsonRpc.getConnection(new NetSocketAdapter(ssocket), container), true);
         case 'http':
         case 'https':
             var path: string;
@@ -77,7 +100,7 @@ export async function connectWith<T>(options: NetConnectOpts, host: String, medi
                 path = options.path;
             else
                 path = medium + '://' + (host || options.host || 'localhost') + ':' + options.port;
-            let injector = new Injector();
+            let injector = new Injector(container);
             injector.register('$resolveUrl', urlPath => new URL(urlPath, path).toString());
             return new HttpClient(injector);
         case 'ws':
@@ -87,7 +110,7 @@ export async function connectWith<T>(options: NetConnectOpts, host: String, medi
                 path = options.path;
             else
                 path = medium + '://' + (host || options.host || 'localhost') + ':' + options.port;
-            return new JsonRpc(JsonRpc.getConnection(new WsSocketAdapter(new ws(path))), true);
+            return new JsonRpc(JsonRpc.getConnection(new WsSocketAdapter(new ws(path)), container), true);
         default:
             var x: never = medium;
             throw new Error('Invalid medium type ' + medium);
