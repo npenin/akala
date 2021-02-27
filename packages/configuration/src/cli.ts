@@ -2,11 +2,11 @@
 import { Container, Processor, Processors, registerCommands } from '@akala/commands';
 import * as path from 'path'
 import yargs from 'yargs-parser'
-import { description } from './commander';
+import commander from './commander';
 
 var cliContainer = new Container('cli', {});
 
-export var container: Promise<description.commands> = (async function ()
+export var container: Promise<commander> = (async function ()
 {
     var root = path.resolve(__dirname, './commands');
     var options: Processors.DiscoveryOptions<any> = { processor: new Processors.FileSystem<any>(cliContainer, path.join(__dirname, '../')), relativeTo: path.join(__dirname, '../') };
