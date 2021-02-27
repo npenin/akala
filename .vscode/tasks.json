@@ -16,6 +16,19 @@
 			"label": "yarn tsc: watch - packages/tsconfig.json"
 		},
 		{
+			"command": "yarn",
+			"args": [
+				"tsc",
+				"-b",
+				"packages/tsconfig.json",
+			],
+			"problemMatcher": [
+				"$tsc"
+			],
+			"group": "build",
+			"label": "yarn tsc: packages/tsconfig.json"
+		},
+		{
 			"type": "typescript",
 			"tsconfig": "packages/tsconfig.json",
 			"option": "watch",

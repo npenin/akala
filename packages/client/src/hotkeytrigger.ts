@@ -14,7 +14,12 @@ export default new ac.Trigger('keybinding', (container) =>
             sequence += 'Shift+';
         if (ev.altKey)
             sequence += 'Alt+';
-        sequence += ev.key;
+        if (ev.key == 'Alt' || ev.key == 'Shift' || ev.key == 'Ctrl' || ev.key == 'Meta')
+            return;
+        if (ev.key)
+            sequence += ev.key;
+        else
+            sequence += ev.code;
 
         var cmd = container.resolve(sequence);
         if (chord !== container && !cmd)
@@ -32,5 +37,5 @@ export default new ac.Trigger('keybinding', (container) =>
             chord = cmd;
         }
         container.dispatch(cmd);
-    })
+    });
 })

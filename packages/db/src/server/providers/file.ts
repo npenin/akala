@@ -434,8 +434,6 @@ var proxyHandler: ProxyHandler<FileSystemEntries> = {
                 throw new Error('cannot set file content on a folder');
             return Reflect.deleteProperty(target, name);
         }
-        if (typeof name == 'number')
-            name = name.toString();
         Reflect.deleteProperty(target, name);
     },
     set(target, name, value)
@@ -452,8 +450,6 @@ var proxyHandler: ProxyHandler<FileSystemEntries> = {
                 throw new Error('cannot set file content on a folder');
             return Reflect.set(target, name, value);
         }
-        if (typeof name == 'number')
-            name = name.toString();
         if (!value[isFile] && !value[isDirectory])
             throw new Error('value needs to be either a file or a folder');
         if (value[isFile])
