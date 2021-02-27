@@ -11,57 +11,57 @@ import * as ws from './ws/browser';
 export { ws };
 export { Client, SocketAdapter, Errors, BaseConnection, SerializableObject, Deferred, PayloadDataType, SerializedBuffer, Payload, ErrorPayload };
 
-class ByobReader implements ReadableStreamBYOBReader
-{
-  reader: DefaultReader;
-  constructor(private stream: Readable)
-  {
-    this.reader = new DefaultReader(stream);
-    this.reader.releaseLock();
-  }
-  public emitError(error: any)
-  {
-    this.reader.emitError(error);
-  }
+// class ByobReader implements ReadableStreamBYOBReader
+// {
+//   reader: DefaultReader;
+//   constructor(private stream: Readable)
+//   {
+//     this.reader = new DefaultReader(stream);
+//     this.reader.releaseLock();
+//   }
+//   public emitError(error: any)
+//   {
+//     this.reader.emitError(error);
+//   }
 
-  get closed(): Promise<void>
-  {
-    return this.reader.closed;
-  }
-  cancel(reason?: any): Promise<void>
-  {
-    return this.reader.cancel(reason);
-  }
+//   get closed(): Promise<void>
+//   {
+//     return this.reader.closed;
+//   }
+//   cancel(reason?: any): Promise<void>
+//   {
+//     return this.reader.cancel(reason);
+//   }
 
-  public push(...chunks: (Uint8Array | null)[])
-  {
-    this.reader.push(...chunks);
-  }
+//   public push(...chunks: (Uint8Array | null)[])
+//   {
+//     this.reader.push(...chunks);
+//   }
 
-  read<T extends ArrayBufferView>(view: T): Promise<ReadableStreamReadResult<T>>
-  {
-    return this.reader.read().then(v =>
-    {
-      if (!v.done)
-      {
-        view.byteOffset = v.value.byteOffset;
-        view.byteLength = v.value.byteLength;
-        view.buffer = v.value.buffer;
-      }
-      return { done: v.done, value: view };
-    })
-  }
-  releaseLock(): void
-  {
-    if (this.stream.reader === this)
-      this.stream.reader = undefined;
-  }
-}
+//   read<T extends ArrayBufferView>(view: T): Promise<ReadableStreamDefaultReadResult<T>>
+//   {
+//     return this.reader.read().then(v =>
+//     {
+//       if (!v.done)
+//       {
+//         view.byteOffset = v.value.byteOffset;
+//         view.byteLength = v.value.byteLength;
+//         view.buffer = v.value.buffer;
+//       }
+//       return { done: v.done, value: view };
+//     })
+//   }
+//   releaseLock(): void
+//   {
+//     if (this.stream.reader === this)
+//       this.stream.reader = undefined;
+//   }
+// }
 
 
 class DefaultReader implements ReadableStreamDefaultReader<Uint8Array>
 {
-  private next?: Deferred<ReadableStreamReadResult<Uint8Array>>;
+  private next?: Deferred<ReadableStreamDefaultReadResult<Uint8Array>>;
   constructor(private stream: Readable)
   {
   }
@@ -82,7 +82,7 @@ class DefaultReader implements ReadableStreamDefaultReader<Uint8Array>
     if (totalLength === 0)
     {
       if (!this.next)
-        this.next = new Deferred<ReadableStreamReadResult<Uint8Array>>();
+        this.next = new Deferred<ReadableStreamDefaultReadResult<Uint8Array>>();
       return this.next.resolve({ done: true });
     }
     var buffer = new Uint8Array(totalLength);
@@ -99,18 +99,18 @@ class DefaultReader implements ReadableStreamDefaultReader<Uint8Array>
     }
 
     if (!this.next)
-      this.next = new Deferred<ReadableStreamReadResult<Uint8Array>>();
+      this.next = new Deferred<ReadableStreamDefaultReadResult<Uint8Array>>();
     this.next.resolve({ value: buffer, done: false });
 
     if (chunk === null)
     {
-      this.next = new Deferred<ReadableStreamReadResult<Uint8Array>>();
+      this.next = new Deferred<ReadableStreamDefaultReadResult<Uint8Array>>();
       this.next.resolve({ done: true });
       this.closed.resolve();
     }
   }
 
-  closed: Deferred<void> = new Deferred<void>();
+  closed: Deferred<undefined> = new Deferred<undefined>();
   cancel(reason?: any): Promise<void>
   {
     if (this.next)
@@ -118,10 +118,10 @@ class DefaultReader implements ReadableStreamDefaultReader<Uint8Array>
     else
       return Promise.reject(reason);
   }
-  read(): Promise<ReadableStreamReadResult<Uint8Array>>
+  read(): Promise<ReadableStreamDefaultReadResult<Uint8Array>>
   {
     if (!this.next)
-      this.next = new Deferred<ReadableStreamReadResult<Uint8Array>>();
+      this.next = new Deferred<ReadableStreamDefaultReadResult<Uint8Array>>();
     this.next.finally(() => this.next = undefined);
     return this.next;
   }
@@ -135,14 +135,14 @@ class DefaultReader implements ReadableStreamDefaultReader<Uint8Array>
 class Readable implements ReadableStream
 {
   private buffer: (Uint8Array | null)[] = [];
-  private _reader?: DefaultReader | ByobReader;
+  private _reader?: DefaultReader //| ByobReader;
   private target?: WritableStream<any>;
-  public get reader(): DefaultReader | ByobReader | undefined
+  public get reader(): DefaultReader /*| ByobReader*/ | undefined
   {
     return this._reader;
   }
 
-  public set reader(reader: DefaultReader | ByobReader | undefined)
+  public set reader(reader: DefaultReader /* | ByobReader*/ | undefined)
   {
     this._reader = reader;
     if (reader && this.buffer.length)
@@ -185,25 +185,25 @@ class Readable implements ReadableStream
       this.reader.push(chunk);
   }
 
-  getReader(options: { mode: "byob"; }): ReadableStreamBYOBReader;
+  // getReader(options: { mode: "byob"; }): ReadableStreamBYOBReader;
   getReader(): ReadableStreamDefaultReader<any>;
-  getReader(options?: any): ReadableStreamBYOBReader | ReadableStreamDefaultReader<any>
+  getReader(options?: any): ReadableStreamReader<any>
   {
     if (this.locked)
       throw new Error('stream is already locked');
 
-    if (options && options.mode === 'byob')
-    {
-      return this.reader = new ByobReader(this);
-    }
+    // if (options && options.mode === 'byob')
+    // {
+    //   return this.reader = new ByobReader(this);
+    // }
     return this.reader = new DefaultReader(this);
   }
-  pipeThrough<T>({ writable, readable }: { writable: WritableStream<any>; readable: ReadableStream<T>; }, options?: PipeOptions | undefined): ReadableStream<T>
+  pipeThrough<T>({ writable, readable }: { writable: WritableStream<any>; readable: ReadableStream<T>; }, options?: StreamPipeOptions | undefined): ReadableStream<T>
   {
     this.pipeTo(writable, options);
     return readable;
   }
-  async pipeTo(dest: WritableStream<any>, options?: PipeOptions | undefined): Promise<void>
+  async pipeTo(dest: WritableStream<any>, options?: StreamPipeOptions | undefined): Promise<void>
   {
     this.target = dest;
     var writer = dest.getWriter();

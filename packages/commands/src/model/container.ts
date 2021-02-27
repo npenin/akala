@@ -224,7 +224,7 @@ export function lazy<T extends object>(factory: () => T): T
                     instance = factory();
                 return Reflect.defineProperty(instance, p, attributes);
             },
-            ownKeys(): PropertyKey[]
+            ownKeys(): (string | symbol)[]
             {
                 if (!instance)
                     instance = factory();

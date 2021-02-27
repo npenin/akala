@@ -11,7 +11,7 @@ import ws from 'ws'
 import { Injector } from '@akala/core';
 import * as Metadata from './metadata';
 import { Container } from './model/container';
-import { CommonConnectionOptions, connect as tlsconnect, SecureContextOptions, TLSSocket } from 'tls'
+import { CommonConnectionOptions, connect as tlsconnect, ConnectionOptions, SecureContextOptions, TLSSocket } from 'tls'
 
 type TlsConnectOpts = NetConnectOpts & SecureContextOptions & CommonConnectionOptions;
 

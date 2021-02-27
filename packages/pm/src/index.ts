@@ -48,20 +48,29 @@ export function connect(name: string): Promise<{ connect: ServeMetadata, contain
     })();
 }
 
-export function sidecar<T extends SidecarMap>(options?: Omit<ConnectionPreference, 'container'>, cache?: boolean): Sidecar<T>
+const defaultOrders: (keyof ServeMetadata)[] = ['ssocket', 'socket', 'wss', 'ws'];
+
+export function sidecar<T extends SidecarMap>(options?: Omit<ConnectionPreference, 'container'> & { [key in keyof T]?: Partial<ConnectionPreference> & { orders?: (keyof ServeMetadata)[] } }, noCache?: boolean): Sidecar<T>
 {
     return new Proxy<Sidecar<T>>({} as any, {
-        get(target, property: keyof T, receiver)
+        get(target, property, receiver)
         {
             if (typeof (property) !== 'string')
                 return Reflect.get(target, property);
-            if (!cache || typeof (target[property]) == 'undefined')
-                Object.defineProperty(target, property, { value: connect(property).then(meta => connectByPreference(meta.connect, Object.assign({ container: meta.container }, options))) });
+
+            var orders = options && options[property] && options[property].orders || defaultOrders;
+
+            if (noCache || typeof (target[property]) == 'undefined')
+                Object.defineProperty(target, property, { value: connect(property).then(meta => connectByPreference(meta.connect, Object.assign({ container: meta.container }, options, options[property]), ...orders).then(c => c.container)) });
             return target[property];
         }
     });
 }
 
-export type SidecarMap = { [key: string]: Container<void>, pm: pmContainer & Container<void> };
-
 export type Sidecar<T extends SidecarMap> = { [key in keyof T]: Promise<T[key]> };
+
+export interface SidecarMap
+{
+    [key: string]: Container<void>;
+    pm: pmContainer & Container<void>
+}
