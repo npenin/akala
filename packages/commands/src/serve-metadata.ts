@@ -87,7 +87,7 @@ export async function connectWith<T>(options: NetConnectOpts, host: string, medi
                     options.host = host;
                 var socket = net.connect(options, function ()
                 {
-                    console.log('connected to ' + options);
+                    console.log('connected to ' + JSON.stringify(options));
                     resolve(socket)
                 }).on('error', reject);
             });
