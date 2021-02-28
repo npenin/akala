@@ -47,7 +47,7 @@ export async function connectByPreference(options: ServeMetadata, settings: Conn
                     else
                         return options[order].find(s => isIpcConnectOption(s));
                 else
-                    return options.socket[0];
+                    return options[order][0];
             return options[order];
         }
     });
