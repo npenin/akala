@@ -51,13 +51,24 @@ export async function connectByPreference(options: ServeMetadata, settings: Conn
             return options[order];
         }
     });
-    var preferredIndex = orders.findIndex((order, index) => order);
-    if (preferredIndex === -1)
-        throw new Error('no matching connection preference was found');
+    do
+    {
+        var preferredIndex = orders.findIndex((order, index) => order);
+        if (preferredIndex === -1)
+            throw new Error('no matching connection preference was found');
 
-    var container = new Container(settings?.container?.name || 'proxy', undefined);
+        var container = new Container(settings?.container?.name || 'proxy', undefined);
+        try
+        {
+            var processor = await connectWith(orderedOptions[preferredIndex], settings?.host, orders[preferredIndex], container)
+            break;
+        }
+        catch (e)
+        {
 
-    var processor = await connectWith(orderedOptions[preferredIndex], settings?.host, orders[preferredIndex], container)
+        }
+    }
+    while (true);
     if (settings?.container)
         registerCommands(settings.container.commands, processor, container);
 
