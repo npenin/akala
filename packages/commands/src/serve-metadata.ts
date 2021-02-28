@@ -65,7 +65,7 @@ export async function connectByPreference(options: ServeMetadata, settings: Conn
         }
         catch (e)
         {
-
+            orders.shift();
         }
     }
     while (true);
