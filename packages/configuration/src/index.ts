@@ -6,10 +6,11 @@ export { Configuration };
 import Commander from './commander'
 
 import * as pm from '@akala/pm';
+import { Container } from '@akala/commands';
 declare module '@akala/pm'
 {
     export interface SidecarMap
     {
-        '@akala/configuration': Commander;
+        '@akala/configuration': Commander & Container<void>;
     }
 }
