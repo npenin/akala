@@ -65,6 +65,7 @@ export async function connectByPreference(options: ServeMetadata, settings: Conn
         }
         catch (e)
         {
+            console.warn(e);
             orders.shift();
         }
     }
@@ -93,13 +94,16 @@ export async function connectWith<T>(options: NetConnectOpts, host: string, medi
             });
             return new JsonRpc(JsonRpc.getConnection(new NetSocketAdapter(socket), container), true);
         case 'ssocket':
+            const tlsOptions = options as TlsConnectOpts;
             let ssocket = await new Promise<TLSSocket>((resolve, reject) =>
             {
-                if (!options['path'] && host)
-                    options['host'] = host;
-                var socket = tlsconnect(options, function ()
+                if (!isIpcConnectOption(tlsOptions) && host)
+                    tlsOptions.host = tlsOptions.host || host;
+                tlsOptions['servername'] = tlsOptions['host'] || host;
+                var socket = tlsconnect(tlsOptions, function ()
                 {
-                    console.log('connected to ' + options);
+
+                    console.log('securely connected to ' + JSON.stringify(options));
                     resolve(socket)
                 }).on('error', reject);
             });
