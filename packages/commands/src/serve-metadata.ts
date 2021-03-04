@@ -102,7 +102,11 @@ export async function connectWith<T>(options: NetConnectOpts, host: string, medi
                 tlsOptions['servername'] = tlsOptions['host'] || host;
                 var socket = tlsconnect(tlsOptions, function ()
                 {
-
+                    if (!socket.authorized)
+                    {
+                        reject(socket.authorizationError);
+                        return;
+                    }
                     console.log('securely connected to ' + JSON.stringify(options));
                     resolve(socket)
                 }).on('error', reject);
