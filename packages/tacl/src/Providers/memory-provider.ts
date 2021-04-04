@@ -10,28 +10,31 @@ export default class MemoryProvider implements IAclProvider
     public readonly denied: OrderedList<string, AccessRule> = new OrderedList<string, AccessRule>();
 
     constructor()
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     {
     }
 
-    public GetAcls(resource: string, verb: string)
+    public GetAcls(resource: string, verb: string): OrderedList<string, AccessRule>
     {
         resource = this.GetAbsoluteResourcePath(verb, resource);
 
-        var acls = new OrderedList<string, AccessRule>();
+        const acls = new OrderedList<string, AccessRule>();
 
         while (resource !== '')
         {
-            var localAcls: AccessRule[];
+            let localAcls: AccessRule[];
+            // eslint-disable-next-line no-cond-assign
             if (localAcls = this.denied.tryGetValue(resource))
             {
-                for (var acl of localAcls)
+                for (const acl of localAcls)
                 {
                     acls.push(acl.resource, acl);
                 }
             }
+            // eslint-disable-next-line no-cond-assign
             if (localAcls = this.allowed.tryGetValue(resource))
             {
-                for (var acl of localAcls)
+                for (const acl of localAcls)
                 {
                     acls.push(acl.resource, acl);
                 }
@@ -45,14 +48,14 @@ export default class MemoryProvider implements IAclProvider
         return acls;
     }
 
-    public GetAclsBySubject(...subjects: string[]): Iterable<AccessRule>
+    public GetAclsBySubject(): Iterable<AccessRule>
     {
         throw new Error('Not Implemented');
     }
 
-    public SetAcls(...acls: AccessRule[])
+    public SetAcls(...acls: AccessRule[]): this
     {
-        for (var acl of acls)
+        for (const acl of acls)
         {
             switch (acl.type)
             {
@@ -74,7 +77,7 @@ export default class MemoryProvider implements IAclProvider
     {
         if (!acls || acls.length == 0)
             return this;
-        for (var acl of acls)
+        for (const acl of acls)
         {
             if (typeof acl === 'string')
                 throw new Error('Not Implemented');
@@ -83,17 +86,19 @@ export default class MemoryProvider implements IAclProvider
             switch (acl.type)
             {
                 case AccessRules.Allow:
+                    // eslint-disable-next-line no-cond-assign
                     if (localAcls = this.allowed.tryGetValue(this.GetAbsoluteResourcePath(acl)))
                     {
-                        var index = localAcls.findIndex(a => a.compare(acl as AccessRule));
+                        const index = localAcls.findIndex(a => a.compare(acl as AccessRule));
                         if (index > -1)
                             localAcls.splice(index, 1);
                     }
                     break;
                 case AccessRules.Deny:
+                    // eslint-disable-next-line no-cond-assign
                     if (localAcls = this.denied.tryGetValue(this.GetAbsoluteResourcePath(acl)))
                     {
-                        var index = localAcls.findIndex(a => a.compare(acl as AccessRule));
+                        const index = localAcls.findIndex(a => a.compare(acl as AccessRule));
                         if (index > -1)
                             localAcls.splice(index, 1);
                     }

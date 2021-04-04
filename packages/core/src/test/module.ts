@@ -3,7 +3,7 @@ require('source-map-support').install();
 import { module } from '..';
 import * as assert from 'assert'
 
-var activate: any = {};
+const activate: any = {};
 
 module('a').activate([], function ()
 {

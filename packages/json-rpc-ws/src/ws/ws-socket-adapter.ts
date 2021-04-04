@@ -1,5 +1,5 @@
 import ws from 'ws';
-import { SocketAdapter } from '../shared-connection';
+import { SocketAdapter, SocketAdapterEventMap } from '../shared-connection';
 import { Readable } from 'stream';
 
 /**
@@ -15,10 +15,10 @@ export default class WsSocketAdapter implements SocketAdapter<Readable>
     {
     }
 
-    get open()
+    get open(): boolean
     {
         return this.socket.readyState == ws.OPEN;
-    };
+    }
 
     close(): void
     {
@@ -30,19 +30,11 @@ export default class WsSocketAdapter implements SocketAdapter<Readable>
         this.socket.send(data);
     }
 
-    public on(event: "open", handler: () => void): void;
-    public on(event: "message", handler: (ev: MessageEvent) => void): void;
-    public on(event: "error", handler: (ev: Event) => void): void;
-    public on(event: "close", handler: (ev: CloseEvent) => void): void;
-    public on(event: "message" | "error" | "close" | "open", handler: (ev?: any) => void): void
+    public on<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
     {
         this.socket.on(event, handler);
     }
-    public once(event: "open", handler: () => void): void;
-    public once(event: "message", handler: (ev: MessageEvent) => void): void;
-    public once(event: "error", handler: (ev: Event) => void): void;
-    public once(event: "close", handler: (ev: CloseEvent) => void): void;
-    public once(event: "message" | "error" | "close" | "open", handler: (ev?: any) => void): void
+    public once<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
     {
         this.socket.once(event, handler);
     }

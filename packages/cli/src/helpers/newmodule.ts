@@ -25,7 +25,7 @@ function spawn(cmd: string, args: string[], options: SpawnOptions)
     })
 }
 
-var config = program.command('module');
+const config = program.command('module');
 config.command('new <name>')
     .action(async function (context, next)
     {
@@ -58,7 +58,7 @@ config.command('new <name>')
         else
             await npm('init', '-y');
 
-        var packagejson = require(process.cwd() + '/' + context.params.name + '/package.json');
+        const packagejson = require(process.cwd() + '/' + context.params.name + '/package.json');
         packagejson.main = 'dist/server/index.js';
         packagejson.types = 'dist/server/index.d.ts';
         packagejson.scripts = {

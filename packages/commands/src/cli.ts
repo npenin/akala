@@ -2,29 +2,28 @@
 import { Container } from "./model/container";
 import * as path from 'path'
 import { FileSystem, DiscoveryOptions } from "./processors/fs"
-import { description } from './commands'
+import commands from './commands'
 import yargs from 'yargs-parser'
 import { registerCommands } from "./generator";
-import { Processor } from "./model/processor";
 
-var cliContainer = new Container('cli', {});
+const cliContainer: commands & Container<void> = new Container<void>('cli', undefined);
 
-export var container: Promise<description.commands> = (async function ()
+export const container: Promise<commands> = (async function ()
 {
-    var root = path.resolve(__dirname, './cli');
-    var options: DiscoveryOptions<any> = { processor: new FileSystem<any>(cliContainer, path.join(__dirname, '../')), relativeTo: path.join(__dirname, '../') };
+    const root = path.resolve(__dirname, './cli');
+    const options: DiscoveryOptions = { processor: new FileSystem(cliContainer, path.join(__dirname, '../')), relativeTo: path.join(__dirname, '../') };
 
-    var commands = await FileSystem.discoverMetaCommands(root, options);
-    registerCommands(commands, options.processor as Processor<any>, cliContainer);
+    const commands = await FileSystem.discoverMetaCommands(root, options);
+    registerCommands(commands, options.processor, cliContainer);
 
     if (require.main == module)
     {
         // cliContainer.trap(await FileSystem.asTrap(cliContainer));
-        var cmd = cliContainer.resolve(process.argv[2]);
-        var args = yargs(process.argv.slice(3), cmd?.config?.cli?.options);
+        const cmd = cliContainer.resolve(process.argv[2]);
+        const args = yargs(process.argv.slice(3), cmd?.config?.cli?.options);
         // console.log(args);
         // console.log(cmd?.config?.cli?.options);
-        cliContainer.dispatch(cmd, { options: args, param: args._, _trigger: 'cli' }).then((result: any) =>
+        cliContainer.dispatch(cmd, { options: args, param: args._, _trigger: 'cli' }).then((result: unknown) =>
         {
             if (typeof (result) != 'undefined')
                 console.log(result);

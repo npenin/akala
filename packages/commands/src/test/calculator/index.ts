@@ -3,9 +3,9 @@ import { configure } from "../../decorators";
 
 export type state = { value: number };
 
-export var calculator = new cmds.Container<state>('counter', { value: 0 });
+export const calculator = new cmds.Container<state>('counter', { value: 0 });
 
-var cmd = calculator.register(new cmds.Command<state>(function increment(step: number)
+let cmd = calculator.register(new cmds.Command<state>(function increment(step: number)
 {
     if (step && typeof step == 'string')
         step = Number(step);

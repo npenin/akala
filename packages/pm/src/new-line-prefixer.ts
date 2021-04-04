@@ -1,5 +1,4 @@
 import { Transform, TransformCallback } from "stream";
-import debug from 'debug'
 
 interface Options
 {
@@ -38,7 +37,7 @@ export class NewLinePrefixer extends Transform
 
     private blankNewLine = true;
 
-    _transform(chunk: any, encoding: BufferEncoding | 'buffer', callback: TransformCallback): void
+    _transform(chunk: string | Buffer, encoding: BufferEncoding | 'buffer', callback: TransformCallback): void
     {
         if (Buffer.isBuffer(chunk))
         {

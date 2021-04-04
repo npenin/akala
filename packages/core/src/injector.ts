@@ -4,13 +4,13 @@ import { isPromiseLike } from './promiseHelpers';
 import { EventEmitter } from 'events';
 import "reflect-metadata";
 
-var log = debug('akala:core:injector');
-var verboseLog = log.extend('verbose');
+const log = debug('akala:core:injector');
+const verboseLog = log.extend('verbose');
 
 function ctorToFunction(this: new () => any)
 {
-    var args = [null];
-    for (var i = 0; i < arguments.length; i++)
+    const args = [null];
+    for (let i = 0; i < arguments.length; i++)
         args[i + 1] = arguments[i];
     return new (Function.prototype.bind.apply(this, args));
 }
@@ -28,9 +28,9 @@ export class Injector
 {
     public static mergeArrays(resolvedArgs: InjectedParameter<any>[], ...otherArgs: any[])
     {
-        var args = [];
-        var unknownArgIndex = 0;
-        for (var arg of resolvedArgs.sort((a, b) => a.index - b.index))
+        const args = [];
+        let unknownArgIndex = 0;
+        for (const arg of resolvedArgs.sort((a, b) => a.index - b.index))
         {
             if (arg.index === args.length)
                 args[args.length] = arg.value;
@@ -68,7 +68,7 @@ export class Injector
 
     public merge(i: Injector)
     {
-        var self = this;
+        const self = this;
         Object.getOwnPropertyNames(i.injectables).forEach(function (property)
         {
             if (property != '$injector')
@@ -96,7 +96,7 @@ export class Injector
                 this.onResolve(name, resolve);
             })
 
-        var value = this.resolve(name);
+        const value = this.resolve(name);
         if (value !== undefined && value !== null)
         {
             handler(value);
@@ -121,13 +121,13 @@ export class Injector
     {
         if (typeof a == 'function')
             return this.injectWithName(a['$inject'] || getParamNames(a), a);
-        var self = this;
+        const self = this;
         return function (c: TypedPropertyDescriptor<Injectable<T>>)
         {
             if (typeof b == 'undefined')
                 b = [];
             b.unshift(a as string);
-            var oldf = self.injectWithName(b, c.value);
+            const oldf = self.injectWithName(b, c.value);
             c.value = function ()
             {
                 return oldf.apply(this, Array.from(arguments));
@@ -145,11 +145,11 @@ export class Injector
         if (typeof b == 'undefined')
             b = [];
         b.unshift(a);
-        var self = this;
+        const self = this;
 
         return function <U>(c: TypedPropertyDescriptor<InjectableAsync<U>>)
         {
-            var f = c.value;
+            const f = c.value;
             c.value = function ()
             {
                 return self.injectWithNameAsync(b, f);
@@ -178,11 +178,11 @@ export class Injector
             }
             return this.injectables[param];
         }
-        var indexOfDot = param.indexOf('.');
+        const indexOfDot = param.indexOf('.');
 
         if (~indexOfDot)
         {
-            var keys = param.split('.')
+            const keys = param.split('.')
             return keys.reduce((result, key, i) =>
             {
                 if (result instanceof Proxy)
@@ -212,7 +212,7 @@ export class Injector
         return this.onResolve<T>(name);
     }
 
-    private inspecting: boolean = false;
+    private inspecting = false;
 
     public inspect()
     {
@@ -228,7 +228,7 @@ export class Injector
     public toJSON()
     {
         console.log(arguments);
-        var wasBrowsingForJSON = this.browsingForJSON;
+        const wasBrowsingForJSON = this.browsingForJSON;
         this.browsingForJSON = true;
         if (!wasBrowsingForJSON)
             return this.injectables;
@@ -245,9 +245,9 @@ export class Injector
     {
         if (!toInject || toInject.length == 0)
             return Promise.resolve<T>(a());
-        var paramNames = getParamNames(a);
-        var self = this;
-        var wait = false;
+        const paramNames = getParamNames(a);
+        const self = this;
+        let wait = false;
 
         if (paramNames.length == toInject.length || paramNames.length == 0)
         {
@@ -255,8 +255,8 @@ export class Injector
                 return await (a as Function).call(globalThis);
             else
             {
-                var args = [];
-                for (var param of toInject)
+                const args = [];
+                for (const param of toInject)
                 {
                     args[args.length] = self.resolveAsync(param);
                     if (isPromiseLike(args[args.length - 1]))
@@ -264,7 +264,7 @@ export class Injector
                 }
                 if (wait)
                 {
-                    let args2 = await Promise.all(args.map(function (v)
+                    const args2 = await Promise.all(args.map(function (v)
                     {
                         if (isPromiseLike(v))
                             return v;
@@ -283,10 +283,10 @@ export class Injector
 
     public injectWithName<T>(toInject: string[], a: Injectable<T>): Injected<T>
     {
-        var self = this;
+        const self = this;
         if (toInject && toInject.length > 0)
         {
-            var paramNames = <string[]>getParamNames(a);
+            const paramNames = <string[]>getParamNames(a);
             if (paramNames.length == toInject.length || paramNames.length == 0)
             {
                 if (toInject.length == paramNames.length && paramNames.length == 0)
@@ -301,7 +301,7 @@ export class Injector
 
     public exec<T>(...toInject: string[])
     {
-        var self = this;
+        const self = this;
         return function (f: Injectable<T>)
         {
             return self.injectWithName(toInject, f)(this);
@@ -312,7 +312,7 @@ export class Injector
 
     public unregister(name: string)
     {
-        var registration = Object.getOwnPropertyDescriptor(this.injectables, name);
+        const registration = Object.getOwnPropertyDescriptor(this.injectables, name);
         if (registration)
             delete this.injectables[name];
     }
@@ -337,7 +337,7 @@ export class Injector
 
     public factory(name: string, override?: boolean)
     {
-        var inj = this;
+        const inj = this;
         return function <T>(fact: () => T)
         {
             return inj.registerFactory(name, fact, override);
@@ -348,8 +348,8 @@ export class Injector
     public service(name: string, override?: boolean, ...toInject: string[])
     public service(name: string, override?: boolean | string, ...toInject: string[])
     {
-        var inj = this;
-        var singleton;
+        const inj = this;
+        let singleton;
 
         if (typeof toInject == 'undefined')
             toInject = [];

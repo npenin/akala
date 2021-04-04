@@ -65,7 +65,7 @@ export class FetchHttp implements Http<Response>
 
     public invokeSOAP(namespace: string, action: string, url: string, params?: { [key: string]: string | number | boolean })
     {
-        var body = '<?xml version="1.0" encoding="utf-8"?><s:Envelope s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body>' +
+        let body = '<?xml version="1.0" encoding="utf-8"?><s:Envelope s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"><s:Body>' +
             '<u:' + action + ' xmlns:u="' + namespace + '">';
         each(params, function (paramValue, paramName)
         {
@@ -77,7 +77,7 @@ export class FetchHttp implements Http<Response>
 
     public call(options: HttpOptions): Promise<Response>
     {
-        var init: RequestInit = { method: options.method || 'GET', body: options.body };
+        const init: RequestInit = { method: options.method || 'GET', body: options.body };
         if (typeof (options.url) == 'string')
             options.url = uri.parse(options.url, true);
         if (options.queryString)
@@ -148,7 +148,7 @@ export class FetchHttp implements Http<Response>
             if (typeof (value) == 'object')
             {
 
-                var keyPrefix = prefix;
+                let keyPrefix = prefix;
                 if (prefix)
                 {
                     if (typeof (key) == 'number')
@@ -174,7 +174,7 @@ export class HttpCallFormatterFactory implements FormatterFactory<() => Promise<
     constructor() { }
     public parse(expression: string): { method?: keyof Http } & ParsedAny
     {
-        var method = /^ *(\w+)/.exec(expression);
+        const method = /^ *(\w+)/.exec(expression);
         if (method)
             return { method: <keyof Http>method[1], $$length: method[0].length };
         return new Parser().parseAny(expression, false);
@@ -186,13 +186,13 @@ export class HttpCallFormatterFactory implements FormatterFactory<() => Promise<
 
         return function (scope)
         {
-            var settingsValue = settings as HttpOptions & { method?: keyof Http };
+            let settingsValue = settings as HttpOptions & { method?: keyof Http };
             if (settings instanceof Function)
                 settingsValue = settings(scope);
 
             return injectWithName(['$http'], function (http: Http)
             {
-                var formattedValue = formatter(scope);
+                const formattedValue = formatter(scope);
                 if (typeof (formattedValue) == 'string')
                     return (http[settingsValue.method || 'getJSON'] as Function)(formattedValue, grep(settingsValue, function (value, key)
                     {

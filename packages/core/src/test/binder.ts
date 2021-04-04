@@ -3,12 +3,12 @@ require('source-map-support').install();
 import { Binding } from '../binder';
 import * as assert from 'assert';
 
-var target = {
+const target = {
     foo: { bar: { a: 1, b: 'x', c: true } }
 };
 
-var changeEventCalled = false;
-var binding = new Binding('foo.bar.a', target);
+let changeEventCalled = false;
+const binding = new Binding('foo.bar.a', target);
 binding.onChanged(ev =>
 {
     assert.strictEqual(ev.eventArgs.value, undefined);

@@ -51,7 +51,7 @@ export class ExtendableEvent<T = void>
             this._triggered = true;
             await eachAsync(this.handlers, (f, i, next) =>
             {
-                var result = f(this);
+                const result = f(this);
                 if (result && isPromiseLike(result) && typeof result.then === 'function')
                     result.then(() => next(), next);
                 else
@@ -65,7 +65,7 @@ export class ExtendableEvent<T = void>
 
     public removeHandler(handler: (ev: this) => void | PromiseLike<T>)
     {
-        var indexOfHandler = this.handlers.indexOf(handler);
+        const indexOfHandler = this.handlers.indexOf(handler);
         return indexOfHandler > -1 && this.handlers.splice(indexOfHandler, 1);
     }
 
@@ -77,7 +77,7 @@ export class ExtendableEvent<T = void>
         }
         else
         {
-            var index = this.handlers.push(handler);
+            const index = this.handlers.push(handler);
             return () =>
             {
                 this.handlers.splice(index, 1);
@@ -99,7 +99,7 @@ export class ExtendableEvent<T = void>
 
     public async complete()
     {
-        for (var p of this.promises)
+        for (const p of this.promises)
         {
             await p;
         }
@@ -116,7 +116,7 @@ export class Module extends Injector
     constructor(public name: string, public dep?: Module[])
     {
         super(moduleInjector);
-        var existingModule = moduleInjector.resolve<Module>(name);
+        const existingModule = moduleInjector.resolve<Module>(name);
         if (existingModule && typeof (existingModule.dep) != 'undefined' && existingModule.dep.length && typeof (dep) != 'undefined' && dep.length)
             throw new Error('the module ' + existingModule.name + ' can be registered only once with dependencies');
         if (existingModule)
@@ -156,7 +156,7 @@ export class Module extends Injector
     {
         if (typeof m.dep == 'undefined')
             m.dep = [];
-        var activateDependencies = m.dep.map(dep => dep.name + '#activate');
+        const activateDependencies = m.dep.map(dep => dep.name + '#activate');
         Module.o.add(m.name + '#activate', activateDependencies, function ()
         {
             return m.activateEvent.trigger();

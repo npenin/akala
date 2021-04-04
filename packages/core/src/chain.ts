@@ -1,5 +1,5 @@
 
-var oldProxy = Proxy;
+const oldProxy = Proxy;
 
 global['Proxy'] = new oldProxy(oldProxy, {
     get: function (target, key)
@@ -17,10 +17,10 @@ global['Proxy'] = new oldProxy(oldProxy, {
 
 export function chain<T extends Function>(target: T, keyHandler: (keys: string[], ...args) => any[])
 {
-    var configProxyGetter = {
+    const configProxyGetter = {
         get: function chain(target: T, key)
         {
-            var keys: string[] = [];
+            const keys: string[] = [];
             if (typeof (key) == 'symbol')
             {
                 switch (key.toString())
@@ -38,7 +38,7 @@ export function chain<T extends Function>(target: T, keyHandler: (keys: string[]
             switch (key)
             {
                 case 'then':
-                    let c = target();
+                    const c = target();
                     return c.then.bind(c);
                 case 'apply':
                     return target.apply;
@@ -48,7 +48,7 @@ export function chain<T extends Function>(target: T, keyHandler: (keys: string[]
                     return target.toString.bind(target);
                 default:
                     keys.push(key);
-                    let proxy = new Proxy(function (...args)
+                    const proxy = new Proxy(function (...args)
                     {
                         if (!args)
                             args = [];
@@ -74,7 +74,7 @@ export function chain<T extends Function>(target: T, keyHandler: (keys: string[]
                                 switch (subKey)
                                 {
                                     case 'then':
-                                        let c = target.apply(this, keyHandler(keys));
+                                        const c = target.apply(this, keyHandler(keys));
                                         return c.then.bind(c);
                                     case 'apply':
                                         return getConfig.apply;

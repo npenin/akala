@@ -3,15 +3,12 @@ import * as server from '@akala/server';
 // import { AssetRegistration } from '@akala-modules/core';
 import { EventEmitter } from 'events';
 // import { register } from '@akala/pages'
-import { mkdirp } from '@akala/server';
 import { promises as fs } from 'fs';
 
-var moduleName = require('../../package.json').name
+const moduleName = require('../../package.json').name
 
-akala.module('@akala/dashboard', '@akala/pages').activate([], function ()
+akala.module('@akala/dashboard', '@akala/pages').activate([], async function ()
 {
-    mkdirp('./pages', async function ()
-    {
-        // register('/', server.master.serveStatic('./pages', { fallthrough: true }));
-    })
+    await fs.mkdir('./pages', { recursive: true });
+    // register('/', server.master.serveStatic('./pages', { fallthrough: true }));
 })

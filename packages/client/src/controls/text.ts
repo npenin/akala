@@ -13,10 +13,10 @@ export class Text extends GenericControlInstance<string>
 
     public init()
     {
-        var self = this;
+        const self = this;
         if (this.parameter instanceof Binding)
         {
-            let stopWatch = this.parameter.onChanged(function (ev)
+            const stopWatch = this.parameter.onChanged(function (ev)
             {
                 if (di.isPromiseLike(ev.eventArgs.value))
                     ev.eventArgs.value.then(function (value)

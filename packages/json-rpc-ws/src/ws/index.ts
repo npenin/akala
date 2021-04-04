@@ -9,19 +9,19 @@ import debug from 'debug';
 import * as ws from 'ws';
 const logger = debug('json-rpc-ws');
 
-export function createClient()
+export function createClient(): Client
 {
   logger('create ws client');
   return new Client();
-};
-export function createServer<TConnection extends Connection = Connection>(options?: ws.ServerOptions)
+}
+export function createServer<TConnection extends Connection = Connection>(options?: ws.ServerOptions): Server<TConnection>
 {
   logger('create ws server');
   if (options)
     return new Server<TConnection>(new ServerAdapter(options));
   else
     return new Server<TConnection>();
-};
+}
 
 export { Client }
 

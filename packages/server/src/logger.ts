@@ -2,7 +2,7 @@
 import * as cluster from 'cluster';
 import * as core from '@akala/core'
 
-let customOutputs = ['error', 'warn', 'verbose', 'debug', 'info']
+const customOutputs = ['error', 'warn', 'verbose', 'debug', 'info']
 
 export interface Logger
 {
@@ -14,7 +14,8 @@ export interface Logger
     [key: string]: debug.IDebugger
 }
 
-export var logger: Logger & ((rootNamespace: string) => Logger) = <any>new Proxy(function (rootNamespace: string): Logger
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const logger: Logger & ((rootNamespace: string) => Logger) = <any>new Proxy(function (rootNamespace: string): Logger
 {
     return new Proxy({}, {
         get: function (target, prop)
@@ -37,13 +38,13 @@ export function log(namespace: string): debug.Debugger
 {
     if (!cluster.isMaster)
     {
-        var customOutput = customOutputs.find(o => namespace.startsWith(o + ':'));
+        let customOutput = customOutputs.find(o => namespace.startsWith(o + ':'));
         if (customOutput)
             namespace = namespace.substring((customOutput + ':').length);
 
         customOutput = customOutput || customOutputs.find(o => namespace == o);
 
-        var moduleNamespace = process.argv[2].replace(/[@\/]/g, ':');
+        let moduleNamespace = process.argv[2].replace(/[@/]/g, ':');
         if (moduleNamespace[0] == ':')
             moduleNamespace = moduleNamespace.substring(1);
         if (customOutput)

@@ -34,7 +34,7 @@ export type TileDef = Tile | PromiseLike<Tile>;
 
 (function ()
 {
-    var list: akala.ObservableArray<TileDef> = new akala.ObservableArray<TileDef>([]);
+    const list: akala.ObservableArray<TileDef> = new akala.ObservableArray<TileDef>([]);
     window['tiles'] = {
         add: function (tile: TileDef)
         {
@@ -62,7 +62,7 @@ export type TileDef = Tile | PromiseLike<Tile>;
     akala.module('bootstrap').ready(['$part'], function (part: client.Part)
     {
         part.use('/', 'body', {
-            template: '/@akala-modules/pages/tiles.html', controller: function (scope)
+            template: '/@akala-modules/pages/tiles.html', controller: async function (scope)
             {
                 scope['list'] = list;
 
@@ -70,11 +70,11 @@ export type TileDef = Tile | PromiseLike<Tile>;
                 {
                     if (tile.url)
                         if (akala.isPromiseLike(tile.url))
-                            tile.url.then(function (url) { $location.show(url) });
+                            return tile.url.then(function (url) { $location.show(url) });
                         else
                             $location.show(tile.url);
                     if (tile.cmd)
-                        $http.get(tile.cmd)
+                        return $http.get(tile.cmd)
                 }
 
             }

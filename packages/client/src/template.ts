@@ -5,7 +5,7 @@ import { service } from './common'
 
 if (MutationObserver && false)
 {
-    var domObserver = new MutationObserver(function (mutations: MutationRecord[])
+    const domObserver = new MutationObserver(function (mutations: MutationRecord[])
     {
         mutations.forEach(function (mutation)
         {
@@ -28,10 +28,10 @@ export class Interpolate
     private static _startSymbol = '{{';
     private static _endSymbol = '}}';
 
-    public get startSymbol() { return Interpolate._startSymbol; };
-    public set startSymbol(value: string) { Interpolate._startSymbol = value; };
-    public get endSymbol() { return Interpolate._endSymbol; };
-    public set endSymbol(value: string) { Interpolate._endSymbol = value; };
+    public get startSymbol() { return Interpolate._startSymbol; }
+    public set startSymbol(value: string) { Interpolate._startSymbol = value; }
+    public get endSymbol() { return Interpolate._endSymbol; }
+    public set endSymbol(value: string) { Interpolate._endSymbol = value; }
 
     private static unescapeText(text)
     {
@@ -50,12 +50,12 @@ export class Interpolate
 
     public static build(text: string, mustHaveExpression?: boolean, trustedContext?: boolean, allOrNothing?: boolean): (obj: any) => string
     {
-        var startSymbolLength = Interpolate._startSymbol.length,
+        const startSymbolLength = Interpolate._startSymbol.length,
             endSymbolLength = Interpolate._endSymbol.length;
 
         if (!text.length || text.indexOf(Interpolate._startSymbol) === -1)
         {
-            var constantInterp;
+            let constantInterp;
             if (!mustHaveExpression)
             {
                 return function (target)
@@ -67,7 +67,7 @@ export class Interpolate
         }
 
         allOrNothing = !!allOrNothing;
-        var startIndex,
+        let startIndex,
             endIndex,
             index = 0,
             expressions = [],
@@ -106,9 +106,9 @@ export class Interpolate
             }
         }
 
-        var compute = function (values: akala.Binding[])
+        const compute = function (values: akala.Binding[])
         {
-            for (var i = 0, ii = expressions.length; i < ii; i++)
+            for (let i = 0, ii = expressions.length; i < ii; i++)
             {
                 if (allOrNothing && typeof (values[i]))
                     return;
@@ -119,9 +119,9 @@ export class Interpolate
 
         return function interpolationFn(target)
         {
-            var bindings: akala.Binding[] = [];
+            const bindings: akala.Binding[] = [];
 
-            for (var i = 0; i < expressions.length; i++)
+            for (let i = 0; i < expressions.length; i++)
             {
                 bindings[i] = parseFns[i](target);
             }
@@ -151,7 +151,7 @@ class DataBindComposer implements Composer<Control<any>[]>
     optionName = 'databind';
     async apply(item: HTMLElement, data: any, options?: Control<any>[])
     {
-        var instances = await Control.apply(options || akala.Parser.evalAsFunction(item.dataset['bind'], true), item, data);
+        const instances = await Control.apply(options || akala.Parser.evalAsFunction(item.dataset['bind'], true), item, data);
 
         await akala.eachAsync(item.querySelectorAll(this.selector), async (el: HTMLElement) =>
         {
@@ -183,7 +183,7 @@ export function composer(selector: string | Composer | (new () => Composer), opt
     }
 }
 
-var cache = new akala.Injector();
+const cache = new akala.Injector();
 @service('$template', '$interpolate', '$http')
 export class Template
 {
@@ -192,15 +192,15 @@ export class Template
 
     public enableHotReplacement: boolean;
 
-    public async get(t: string | PromiseLike<string>, registerTemplate: boolean = true): Promise<templateFunction>
+    public async get(t: string | PromiseLike<string>, registerTemplate = true): Promise<templateFunction>
     {
-        var http = this.http;
-        var text = await akala.Promisify(t);
+        const http = this.http;
+        const text = await akala.Promisify(t);
 
         if (!text)
             return null;
 
-        var template = <templateFunction | PromiseLike<templateFunction>>cache.resolve(text);
+        let template = <templateFunction | PromiseLike<templateFunction>>cache.resolve(text);
         if (template)
             return template;
         else if (/</.test(text))
@@ -210,10 +210,10 @@ export class Template
         }
         else
         {
-            var internalGet = (async function ()
+            const internalGet = (async function ()
             {
-                var response = await http.get(text)
-                var data = await response.text();
+                const response = await http.get(text)
+                const data = await response.text();
                 template = Template.build(data);
                 if (registerTemplate)
                     cache.register(text, template, true);
@@ -234,20 +234,20 @@ export class Template
 
     public static buildElements(string): ArrayLike<HTMLElement>
     {
-        var root = document.createElement('div');
+        const root = document.createElement('div');
         root.innerHTML = string;
         return akala.map(root.children, function (el) { return el as HTMLElement });
     }
 
     public static build(markup: string): templateFunction
     {
-        var template = Interpolate.build(markup)
+        let template = Interpolate.build(markup)
         var f: templateFunction = ((data, parent?: HTMLElement) =>
         {
             f.hotReplace = (markup: string) =>
             {
                 template = Interpolate.build(markup);
-                var newTemplateInstance = Template.buildElements(template(data));
+                const newTemplateInstance = Template.buildElements(template(data));
                 if (parent)
                 {
                     if (newTemplateInstance.length > templateInstance.length)
@@ -295,7 +295,7 @@ export class Template
 
     static async composeAll(items: ArrayLike<HTMLElement>, data, root?: Element, options?: { [key: string]: any }): Promise<IControlInstance<any>[]>
     {
-        var result: IControlInstance<any>[] = [];
+        const result: IControlInstance<any>[] = [];
         return await akala.eachAsync(this.composers, (composer) =>
         {
             return this.compose(composer, items, data, root, options && options[composer.optionName]).then(instances => result.push(...instances));
@@ -305,15 +305,15 @@ export class Template
     static async compose(composer: Composer, items: ArrayLike<HTMLElement>, data, root?: Element, options?: any): Promise<IControlInstance<any>[]>
     {
         data.$new = Scope.prototype.$new;
-        var instances: IControlInstance<any>[] = [];
+        const instances: IControlInstance<any>[] = [];
         if (filter(items, composer.selector).length == 0)
         {
             await akala.eachAsync(items, async function (el)
             {
                 await akala.eachAsync(el.querySelectorAll(composer.selector), async function (el: HTMLElement)
                 {
-                    var closest = el.parentElement && el.parentElement.closest(composer.selector);
-                    var applyInnerTemplate = !!closest || !root;
+                    const closest = el.parentElement && el.parentElement.closest(composer.selector);
+                    let applyInnerTemplate = !!closest || !root;
                     if (!applyInnerTemplate && root)
                         applyInnerTemplate = applyInnerTemplate || root == closest;
                     if (applyInnerTemplate)
@@ -326,7 +326,7 @@ export class Template
         }
         else
         {
-            var promises: PromiseLike<void>[] = [];
+            const promises: PromiseLike<void>[] = [];
             akala.eachAsync(filter(items, composer.selector), function (item)
             {
                 promises.push(composer.apply(item, data, options).then(c => { instances.push(...c) }));

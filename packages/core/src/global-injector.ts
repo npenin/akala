@@ -1,7 +1,7 @@
 import { Module } from './module'
 import { Injector, Injectable, Injected, InjectableAsync, defaultInjector, InjectableConstructor } from './injector';
 
-declare var $$defaultInjector;
+declare let $$defaultInjector;
 
 if (!global['$$defaultInjector'])
     global['$$defaultInjector'] = defaultInjector;

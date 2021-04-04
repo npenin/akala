@@ -1,12 +1,12 @@
 import * as cp from 'child_process'
 
-export async function spawnAsync(program: string, options: cp.SpawnOptions, ...args: string[])
+export function spawnAsync(program: string, options: cp.SpawnOptions, ...args: string[]): Promise<void>
 {
     options = Object.assign({ stdio: ['ignore', 'ignore', 'pipe'], shell: false, windowsHide: true }, options);
 
-    await new Promise<void>((resolve, reject) =>
+    return new Promise<void>((resolve, reject) =>
     {
-        var err = ''
+        let err = ''
         cp
             .spawn(program, args, options)
             .on('error', reject).on('exit', (code) =>

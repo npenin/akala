@@ -1,7 +1,7 @@
 import { State } from "../state";
 
 
-export default async function unregister(this: State, route: string, path: string)
+export default function unregister(this: State, route: string, path: string): void
 {
     if (!this.webpack || !this.webpack.config || !this.webpack.config.entry)
         return;

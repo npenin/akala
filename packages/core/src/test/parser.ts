@@ -7,11 +7,11 @@ import { BinaryOperator, ParsedBinary, ParsedString } from '..';
 
 //b*(c+d) ==> (b*c)+d
 
-var parser = new Parser();
+const parser = new Parser();
 
-var result = <ParsedBinary>parser.parseEval('b*c+d');
+const result = <ParsedBinary>parser.parseEval('b*c+d');
 console.log(result.evaluate({ b: 1, c: 2, d: 3 }));
-var test = new ParsedBinary(BinaryOperator.Times, new ParsedString('b'), new ParsedBinary(BinaryOperator.Plus, new ParsedString('c'), new ParsedString('d')));
+const test = new ParsedBinary(BinaryOperator.Times, new ParsedString('b'), new ParsedBinary(BinaryOperator.Plus, new ParsedString('c'), new ParsedString('d')));
 ParsedBinary.applyPrecedence(test);
 console.log(test.toString());
 

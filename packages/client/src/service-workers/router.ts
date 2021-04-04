@@ -1,422 +1,117 @@
 import * as akala from '@akala/core'
+import { MiddlewareComposite } from '@akala/core';
+import { MethodMiddleware, simpleRequest } from '../router';
 
-export type workerHandler = (req: Request & { method: string }, ev: ExtendableEvent, next: akala.NextFunction) => void;
-export type workerErrorHandler = (err: any, req: Request, res: ExtendableEvent, next: akala.NextFunction) => void;
+export type workerHandler = (req: simpleRequest, ev: FetchEvent) => Promise<unknown>;
 
-export class workerLayer extends akala.Layer<workerHandler> implements akala.IRoutable<workerHandler>
+
+export class Router extends akala.MiddlewareComposite<[Request, FetchEvent]>
 {
-    public route: akala.Route<workerHandler, workerLayer>;
-    public method?: string;
-    constructor(path: string, options: akala.LayerOptions, handler: workerHandler)
+    procesUpdateFound(ev: Event): Promise<unknown>
     {
-        super(path, options, handler);
+        return this.updateFoundMiddleware.process(ev);
     }
-}
-export class workerRoute extends akala.Route<workerHandler, workerLayer>
-{
-    constructor(path: string)
+    processPush(ev: PushEvent): Promise<unknown>
     {
-        super(path);
+        return this.pushMiddleware.process(ev);
+    }
+    processInstall(ev: InstallEvent & ExtendableEvent): Promise<unknown>
+    {
+        return this.installMiddleware.process(ev);
+    }
+    processActivate(ev: Event): Promise<unknown>
+    {
+        return this.activateMiddleware.process(ev);
+    }
+    private installMiddleware = new MiddlewareComposite<[ServiceWorkerRegistrationEventMap['install']]>()
+    private activateMiddleware = new MiddlewareComposite<[Event]>()
+    private pushMiddleware = new MiddlewareComposite<[ServiceWorkerRegistrationEventMap['push']]>()
+    private updateFoundMiddleware = new MiddlewareComposite<[Event]>()
+
+    constructor()
+    {
+        super();
     }
 
-    public methods: { [key: string]: boolean };
-
-    public buildLayer(path: string, options: akala.LayerOptions, callback: workerHandler)
+    public install(...handlers: ((evt: ServiceWorkerRegistrationEventMap['install']) => Promise<unknown>)[]): this
     {
-        return new workerLayer('/', options, callback);
-    }
-}
-export class Router extends akala.Router<workerHandler, workerErrorHandler, workerLayer, workerRoute>
-{
-    constructor(options?: akala.RouterOptions)
-    {
-        super(options)
-    }
-
-    protected buildLayer(path: string, options: akala.LayerOptions, handler: workerHandler): workerLayer
-    {
-        return new workerLayer(path, options, handler);
-    }
-    protected buildRoute(path: string): workerRoute
-    {
-        return new workerRoute(path);
-    }
-
-    public install(this: Router, ...handlers: workerHandler[])
-    {
-        var route = this.route('/');
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'install';
-            route.methods.install = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public activate(this: Router, ...handlers: workerHandler[])
-    {
-        var route = this.route('/');
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'activate';
-            route.methods.activate = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public message(this: Router, ...handlers: workerHandler[])
-    {
-        var route = this.route('/');
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'install';
-            route.methods.install = true;
-            return layer;
-        }, ...handlers);
+        this.installMiddleware.use(...handlers);
         return this;
     }
 
-    public 'checkout'(this: Router, path: string, ...handlers: workerHandler[])
+
+    public push(...handlers: ((evt: ServiceWorkerRegistrationEventMap['push']) => Promise<unknown>)[]): this
     {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'checkout';
-            route.methods['checkout'] = true;
-            return layer;
-        }, ...handlers);
+        this.pushMiddleware.use(...handlers);
         return this;
     }
-    public 'connect'(this: Router, path: string, ...handlers: workerHandler[])
+
+
+    public updateFound(...handlers: ((evt: Event) => Promise<unknown>)[]): this
     {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'connect';
-            route.methods['connect'] = true;
-            return layer;
-        }, ...handlers);
+        this.updateFoundMiddleware.use(...handlers);
         return this;
     }
-    public 'copy'(this: Router, path: string, ...handlers: workerHandler[])
+
+    public activate(...handlers: ((evt: Event) => Promise<unknown>)[]): this
     {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'copy';
-            route.methods['copy'] = true;
-            return layer;
-        }, ...handlers);
+        this.activateMiddleware.use(...handlers);
         return this;
     }
-    public 'delete'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'delete';
-            route.methods['delete'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public 'get'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'get';
-            route.methods['get'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public 'head'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'head';
-            route.methods['head'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public 'lock'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'lock';
-            route.methods['lock'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public 'm-search'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'm-search';
-            route.methods['m-search'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public 'merge'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'merge';
-            route.methods['merge'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public 'mkactivity'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'mkactivity';
-            route.methods['mkactivity'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public 'mkcalendar'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'mkcalendar';
-            route.methods['mkcalendar'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public 'mkcol'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'mkcol';
-            route.methods['mkcol'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public 'move'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'move';
-            route.methods['move'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public 'notify'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'notify';
-            route.methods['notify'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public 'options'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'options';
-            route.methods['options'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public 'patch'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'patch';
-            route.methods['patch'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public 'post'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'post';
-            route.methods['post'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public 'prop'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'prop';
-            route.methods['prop'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public 'find'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'find';
-            route.methods['find'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public 'proppatch'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'proppatch';
-            route.methods['proppatch'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public 'purge'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'purge';
-            route.methods['purge'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public 'put'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'put';
-            route.methods['put'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public 'report'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'report';
-            route.methods['report'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public 'search'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'search';
-            route.methods['search'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public 'subscribe'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'subscribe';
-            route.methods['subscribe'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public 'trace'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'trace';
-            route.methods['trace'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public 'unlock'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'unlock';
-            route.methods['unlock'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
-    public 'unsubscribe'(this: Router, path: string, ...handlers: workerHandler[])
-    {
-        var route = this.route(path);
-        route.addHandler((layer: workerLayer) =>
-        {
-            layer.method = 'unsubscribe';
-            route.methods['unsubscribe'] = true;
-            return layer;
-        }, ...handlers);
-        return this;
-    }
+
+    public 'checkout'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('checkout', path).use(...handlers)) }
+    public 'connect'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('connect', path).use(...handlers)) }
+    public 'copy'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('copy', path).use(...handlers)) }
+    public 'delete'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('delete', path).use(...handlers)) }
+    public 'get'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('get', path).use(...handlers)) }
+    public 'head'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('head', path).use(...handlers)) }
+    public 'lock'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('lock', path).use(...handlers)) }
+    public 'merge'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('merge', path).use(...handlers)) }
+    public 'mkactivity'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('mkactivity', path).use(...handlers)) }
+    public 'mkcalendar'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('mkcalendar', path).use(...handlers)) }
+    public 'mkcol'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('mkcol', path).use(...handlers)) }
+    public 'move'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('move', path).use(...handlers)) }
+    public 'notify'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('notify', path).use(...handlers)) }
+    public 'options'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('options', path).use(...handlers)) }
+    public 'patch'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('patch', path).use(...handlers)) }
+    public 'post'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('post', path).use(...handlers)) }
+    public 'prop'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('prop', path).use(...handlers)) }
+    public 'find'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('find', path).use(...handlers)) }
+    public 'proppatch'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('proppatch', path).use(...handlers)) }
+    public 'purge'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('purge', path).use(...handlers)) }
+    public 'put'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('put', path).use(...handlers)) }
+    public 'report'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('report', path).use(...handlers)) }
+    public 'search'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('search', path).use(...handlers)) }
+    public 'subscribe'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('subscribe', path).use(...handlers)) }
+    public 'trace'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('trace', path).use(...handlers)) }
+    public 'unlock'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('unlock', path).use(...handlers)) }
+    public 'unsubscribe'(path: string, ...handlers: workerHandler[]): this { return this.useMiddleware(new MethodMiddleware('unsubscribe', path).use(...handlers)) }
 }
 
-export var router = new Router();
+export const router = new Router();
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-namespace
 namespace routerInit
 {
-    declare var self: ServiceWorkerGlobalScope;
+    declare const self: ServiceWorkerGlobalScope;
     self.addEventListener('fetch', function (ev)
     {
-        router.handle(ev.request, ev, function (err)
-        {
-            console.log('deadend')
-        });
+        ev.waitUntil(router.process(ev.request, ev));
+    }, { capture: true })
+    self.addEventListener('activate', function (ev)
+    {
+        router.processActivate(ev);
     }, { capture: true })
     self.addEventListener('install', function (ev)
     {
-        router.handle({ method: 'install', url: '/' }, ev, function ()
-        {
-            console.log('deadend')
-        });
+        ev.waitUntil(router.processInstall(ev));
     }, { capture: true })
     self.addEventListener('push', function (ev)
     {
-        router.handle({ method: 'push', url: '/' }, ev, function ()
-        {
-            console.log('deadend')
-        });
+        ev.waitUntil(router.processPush(ev));
     }, { capture: true })
     self.addEventListener('updatefound', function (ev)
     {
-        router.handle({ method: 'updatefound', url: '/' }, ev, function ()
-        {
-            console.log('deadend')
-        });
+        router.procesUpdateFound(ev);
     }, { capture: true })
 }

@@ -1,20 +1,20 @@
 import { Module } from './module';
-import { register, resolve, onResolve } from './global-injector'
+import { onResolve } from './global-injector'
 import * as jsonrpc from '@akala/json-rpc-ws'
-import { chain } from './chain'
 export { Module };
 export * from './promiseHelpers';
 export { each as eachAsync, NextFunction, map as mapAsync } from './eachAsync';
 export { each, grep, Proxy, map } from './each';
-export * from './router';
 import log from 'debug';
 
-export function noop() { };
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-empty-function
+export function noop() { }
 
 export function extend<T, U>(target: T, other: U): T & U;
 export function extend<T, U, V>(target: T, other1: U, other2: V): T & U & V;
 export function extend<T, U, V, W>(target: T, other1: U, other2: V, other3: W): T & U & V & W;
 export function extend<T, U, V, W, X>(target: T, other1: U, other2: V, other3: W, other43: X): T & U & V & W & X;
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
 export function extend(target: any, ...args)
 {
     args.forEach(function (arg)
@@ -22,7 +22,6 @@ export function extend(target: any, ...args)
         if (typeof (arg) == 'object' && arg)
             Object.keys(arg).forEach(function (key)
             {
-                var a = typeof (target[key]);
                 switch (typeof (target[key]))
                 {
                     case 'object':
@@ -51,17 +50,18 @@ export function module(name: string, ...dependencies: (Module | string)[]): Modu
 export interface Translator
 {
     (key: string): string;
-    (format: string, ...parameters: any[]): string;
+    (format: string, ...parameters: unknown[]): string;
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export async function createSocket(namespace: string)
 {
-    var resolveUrl = await onResolve<(url: string) => string>('$resolveUrl');
+    const resolveUrl = await onResolve<(url: string) => string>('$resolveUrl');
     if (!resolveUrl)
         throw new Error('no url resolver could be found');
     return await new Promise<jsonrpc.SocketAdapter>((resolve, reject) =>
     {
-        var socket = jsonrpc.ws.connect(resolveUrl(namespace));
+        const socket = jsonrpc.ws.connect(resolveUrl(namespace));
 
         socket.once('open', function ()
         {

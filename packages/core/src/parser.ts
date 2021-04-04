@@ -5,7 +5,7 @@ import { module } from './helpers';
 import { FormatterFactory } from './formatters/common';
 
 
-var jsonKeyRegex = /^ *(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([^\: ]+)) *): */;
+const jsonKeyRegex = /^ *(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([^\: ]+)) *): */;
 // var jsonSingleQuoteKeyRegex = /^ *'([^']+)'|([^\: ]+) *: */;
 
 export interface ParsedAny
@@ -96,7 +96,7 @@ export class ParsedBinary implements ParsedAny
 
     public evaluate(value: any, asBinding?: boolean)
     {
-        var operation = this;
+        const operation = this;
         if (asBinding)
         {
             var left, right;
@@ -126,7 +126,7 @@ export class ParsedBinary implements ParsedAny
             else if (operation.right instanceof Object)
                 right = operation.right
 
-            var binding = new Binding(null, null, false);
+            const binding = new Binding(null, null, false);
             if (left instanceof Binding)
                 left.pipe(binding);
             if (right instanceof Binding)
@@ -134,7 +134,7 @@ export class ParsedBinary implements ParsedAny
             binding['$$length'] = operation.$$length;
             binding.getValue = function ()
             {
-                var fleft, fright;
+                let fleft, fright;
                 if (left instanceof Binding)
                     fleft = left.getValue();
                 else
@@ -187,7 +187,7 @@ export class ParsedBinary implements ParsedAny
         {
             if (operation.right instanceof Function && operation.right.$$ast)
             {
-                var right = ParsedBinary.applyPrecedence(operation.right.$$ast);
+                const right = ParsedBinary.applyPrecedence(operation.right.$$ast);
                 switch (right.operator)
                 {
                     case BinaryOperator.Plus:
@@ -282,7 +282,7 @@ export class Parser
     public parse(expression: string, excludeFirstLevelFunction?: boolean): ParsedFunction | ParsedOneOf
     {
         expression = expression.trim();
-        var result = this.parseAny(expression, excludeFirstLevelFunction);
+        const result = this.parseAny(expression, excludeFirstLevelFunction);
         if (!excludeFirstLevelFunction && result instanceof ParsedBinary)
             return result.evaluate.bind(result);
         return result;
@@ -318,14 +318,14 @@ export class Parser
 
     public parseNumber(expression): ParsedOneOf
     {
-        var result = new ParsedNumber(/^[0-9.]/.exec(expression)[0]);
+        const result = new ParsedNumber(/^[0-9.]/.exec(expression)[0]);
 
         return this.tryParseOperator(expression.substring(result.$$length), result);
     }
 
     public parseBoolean(expression): ParsedBoolean
     {
-        var formatter: (o: any) => any = formatters.identity;
+        let formatter: (o: any) => any = formatters.identity;
         if (expression[0] == '!')
         {
             formatter = formatters.negate;
@@ -339,7 +339,7 @@ export class Parser
 
         if (/^true|false|undefined/.exec(expression))
         {
-            var result = new ParsedBoolean(/^true|false|undefined/.exec(expression)[0]);
+            const result = new ParsedBoolean(/^true|false|undefined/.exec(expression)[0]);
             if (formatter !== formatters.identity)
                 result.value = formatter(result.value);
             return result;
@@ -349,7 +349,7 @@ export class Parser
 
     public parseEval(expression: string): ParsedBoolean | ParsedFunction | ParsedBinary
     {
-        var b = this.parseBoolean(expression);
+        const b = this.parseBoolean(expression);
         if (b)
             return b;
 
@@ -358,8 +358,8 @@ export class Parser
 
     public parseFunction(expression: string): ParsedFunction | ParsedBinary
     {
-        var length = 0;
-        var formatter: (o: any) => any = formatters.identity;
+        let length = 0;
+        let formatter: (o: any) => any = formatters.identity;
         if (expression[0] == '!')
         {
             formatter = formatters.negate;
@@ -373,11 +373,11 @@ export class Parser
             length++;
         }
 
-        var item = /^[\w0-9\.\$]*/.exec(expression)[0];
+        const item = /^[\w0-9\.\$]*/.exec(expression)[0];
         length += item.length;
-        var parts = Parser.parseBindable(item);
+        const parts = Parser.parseBindable(item);
 
-        var f: ParsedFunction = function (value, asBinding?: boolean)
+        let f: ParsedFunction = function (value, asBinding?: boolean)
         {
             if (asBinding)
             {
@@ -395,7 +395,7 @@ export class Parser
             }
 
             if (parts.length >= 1 && parts[0] != '')
-                for (var i = 0; i < parts.length && value; i++)
+                for (let i = 0; i < parts.length && value; i++)
                 {
                     value = value[parts[i]];
                     if (isPromiseLike(value))
@@ -419,20 +419,20 @@ export class Parser
 
     public parseFormatter(expression: string, lhs: ParsedOneOf): ParsedOneOf
     {
-        var item = /^ *# *([\w0-9\.\$]+) */.exec(expression);
+        const item = /^ *# *([\w0-9\.\$]+) */.exec(expression);
         expression = expression.substring(item[0].length);
-        var formatter: FormatterFactory<any, any> = module('$formatters').resolve('#' + item[1]);
+        const formatter: FormatterFactory<any, any> = module('$formatters').resolve('#' + item[1]);
         if (!formatter)
             throw new Error(`filter not found: ${item[1]}`)
-        var settings: ParsedObject;
+        let settings: ParsedObject;
         if (expression[0] == ':')
         {
             settings = formatter.parse(expression.substring(1));
         }
 
-        var result: ParsedFunction = function (value, asBinding?: boolean)
+        const result: ParsedFunction = function (value, asBinding?: boolean)
         {
-            var left;
+            let left;
             if (lhs instanceof Function)
                 left = lhs(value, asBinding);
             else if (lhs instanceof ParsedBinary)
@@ -455,7 +455,7 @@ export class Parser
                 }
                 else
                 {
-                    var b = new Binding('', left);
+                    const b = new Binding('', left);
                     b.formatter = formatter.build(formatters.identity, settings);
                     return b;
                 }
@@ -483,7 +483,7 @@ export class Parser
     public tryParseOperator(expression: string, lhs: ParsedOneOf): ParsedOneOf
     public tryParseOperator(expression: string, lhs: ParsedOneOf)
     {
-        var operator = /^ *([<>=!\+\-\/\*&\|\.#]+) */.exec(expression);
+        const operator = /^ *([<>=!\+\-\/\*&\|\.#]+) */.exec(expression);
         if (operator)
         {
             switch (operator[1])
@@ -505,12 +505,12 @@ export class Parser
 
     public parseArray(expression: string, excludeFirstLevelFunction?: boolean): ParsedArray | ParsedFunction
     {
-        var results: ParsedArray = [];
+        const results: ParsedArray = [];
         Object.defineProperty(results, '$$length', { value: 0, enumerable: false, configurable: true, writable: true });
-        var isFunction = false;
+        const isFunction = false;
         return this.parseCSV(expression, (result) =>
         {
-            var item = this.parseAny(result, false);
+            let item = this.parseAny(result, false);
             item = this.tryParseOperator(result.substring(item.$$length), item);
 
 
@@ -527,10 +527,10 @@ export class Parser
 
     public parseString(expression: string, start: string): ParsedOneOf
     {
-        var evaluatedRegex = new RegExp("^" + start + "((?:[^\\" + start + "]|\\.)+)" + start).exec(expression);
+        const evaluatedRegex = new RegExp("^" + start + "((?:[^\\" + start + "]|\\.)+)" + start).exec(expression);
         // console.log(arguments);
-        var result = evaluatedRegex[1];
-        var parsedString = new ParsedString(result);
+        const result = evaluatedRegex[1];
+        const parsedString = new ParsedString(result);
         return this.tryParseOperator(expression.substring(evaluatedRegex[0].length), parsedString);
     }
 
@@ -584,16 +584,16 @@ export class Parser
     {
         expression = expression.substring(1);
         output.$$length++;
-        var isFunction = false;
+        let isFunction = false;
         do
         {
-            var item = parseItem(expression);
+            const item = parseItem(expression);
 
             if (item instanceof Function || item instanceof ParsedBinary)
                 isFunction = true;
 
             expression = expression.substring(item.$$length);
-            var next = /^ *, */.exec(expression);
+            const next = /^ *, */.exec(expression);
             // console.log(expression)
             if (!next)
                 break;
@@ -604,16 +604,16 @@ export class Parser
         while (expression[0] != end);
         output.$$length += end.length;
         // console.log(output.$$length);
-        var result: any;
+        let result: any;
         if (output instanceof Array)
             result = [];
         else
             result = {};
         if (isFunction && !excludeFirstLevelFunction)
         {
-            var f: ParsedFunction = function (value, asBinding: boolean)
+            const f: ParsedFunction = function (value, asBinding: boolean)
             {
-                for (var i in output)
+                for (const i in output)
                 {
                     if ((<any>output[i]) instanceof Function)
                         result[i] = (<Function><any>output[i])(value, asBinding);
@@ -631,19 +631,19 @@ export class Parser
 
     public parseObject(expression: string, excludeFirstLevelFunction?: boolean)
     {
-        var keyMatch: RegExpExecArray;
-        var parsedObject: ParsedObject = {};
+        let keyMatch: RegExpExecArray;
+        const parsedObject: ParsedObject = {};
         Object.defineProperty(parsedObject, '$$length', { value: 0, enumerable: false, writable: true, configurable: true });
-        var result = this.parseCSV(expression, (expression) =>
+        const result = this.parseCSV(expression, (expression) =>
         {
             // var length = 0;
-            var keyMatch = jsonKeyRegex.exec(expression);
+            const keyMatch = jsonKeyRegex.exec(expression);
 
-            var key = keyMatch[1] || keyMatch[2] || keyMatch[3];
+            const key = keyMatch[1] || keyMatch[2] || keyMatch[3];
             //console.log(keyMatch);
-            var length = keyMatch[0].length + keyMatch.index;
+            let length = keyMatch[0].length + keyMatch.index;
             expression = expression.substring(length);
-            var item = this.parseAny(expression, false);
+            const item = this.parseAny(expression, false);
             length += item.$$length;
             if (item instanceof ParsedBoolean || item instanceof ParsedString || item instanceof ParsedNumber)
                 parsedObject[key] = item.value;
@@ -669,8 +669,8 @@ export class Parser
 
     public static getSetter(expression: string, root: any)
     {
-        var target = root;
-        var parts = Parser.parseBindable(expression);
+        let target = root;
+        const parts = Parser.parseBindable(expression);
 
         while (parts.length > 1 && typeof (target) != 'undefined')
         {
@@ -685,10 +685,10 @@ export class Parser
 
     public static evalAsFunction(expression: string, excludeFirstLevelFunction?: boolean): ParsedFunction
     {
-        var parser = new Parser();
+        const parser = new Parser();
         if (!expression && typeof (expression) != 'string')
             return null;
-        var parts = parser.parse(expression, excludeFirstLevelFunction);
+        const parts = parser.parse(expression, excludeFirstLevelFunction);
         if (parts instanceof Array)
             return parser.parseFunction(expression) as ParsedFunction;
 

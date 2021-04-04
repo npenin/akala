@@ -7,41 +7,41 @@ import { WatchBinding } from '@akala/core';
  * page exit events.
  */
 
-var prevContext;
+let prevContext;
 /**
  * Perform initial dispatch.
  */
 
-var dispatch = true;
+let dispatch = true;
 
 
 /**
  * Decode URL components (query string, pathname, hash).
  * Accommodates both regular percent encoding and x-www-form-urlencoded format.
  */
-var decodeURLComponents = true;
+let decodeURLComponents = true;
 
 /**
  * Base path.
  */
 
-var base = '';
+const base = '';
 
 /**
  * Running flag.
  */
 
-var running: boolean;
+let running: boolean;
 
 /**
  * HashBang option
  */
 
-var hashbang = false;
+let hashbang = false;
 /**
  * Detect click event
  */
-var clickEvent = ('undefined' !== typeof document) && document.ontouchstart ? 'touchstart' : 'click';
+const clickEvent = ('undefined' !== typeof document) && document.ontouchstart ? 'touchstart' : 'click';
 
 export interface StartOption
 {
@@ -72,7 +72,7 @@ export class LocationService extends EventEmitter
         }
         else
         {
-            var self = this;
+            const self = this;
             window.addEventListener('load', function ()
             {
                 setImmediate(function ()
@@ -95,7 +95,7 @@ export class LocationService extends EventEmitter
 
         // ensure link
         // use shadow dom when available
-        var el = e.path ? e.path[0] : e.target;
+        let el = e.path ? e.path[0] : e.target;
         while (el && 'A' !== el.nodeName) el = el.parentNode;
         if (!el || 'A' !== el.nodeName) return;
 
@@ -107,7 +107,7 @@ export class LocationService extends EventEmitter
         if (el.hasAttribute('download') || el.getAttribute('rel') === 'external') return;
 
         // ensure non-hash for the same path
-        var link = el.getAttribute('href');
+        const link = el.getAttribute('href');
         if (!hashbang && el.pathname === location.pathname && (el.hash || '#' === link)) return;
 
 
@@ -124,7 +124,7 @@ export class LocationService extends EventEmitter
 
 
         // rebuild path
-        var path = el.pathname + el.search + (el.hash || '');
+        let path = el.pathname + el.search + (el.hash || '');
 
         // strip leading "/[drive letter]:" on NW.js on Windows
         if (typeof process !== 'undefined' && path.match(/^\/[a-zA-Z]:\//))
@@ -133,7 +133,7 @@ export class LocationService extends EventEmitter
         }
 
         // same page
-        var orig = path;
+        const orig = path;
 
         if (path.indexOf(base) === 0)
         {
@@ -164,7 +164,7 @@ export class LocationService extends EventEmitter
 
     private sameOrigin(href)
     {
-        var origin = location.protocol + '//' + location.hostname;
+        let origin = location.protocol + '//' + location.hostname;
         if (location.port) origin += ':' + location.port;
         return (href && (0 === href.indexOf(origin)));
     }
@@ -176,13 +176,13 @@ export class LocationService extends EventEmitter
         if (!this.loaded) return;
         if (e.state)
         {
-            var path = e.state.path;
+            const path = e.state.path;
             this.replace(path, e.state);
         } else
         {
             this.show(location.pathname + location.hash, undefined, undefined, false);
         }
-    };
+    }
 
     public start(options: StartOption)
     {
@@ -202,9 +202,9 @@ export class LocationService extends EventEmitter
             hashbang = true;
         if (!dispatch)
             return;
-        var url = (hashbang && ~location.hash.indexOf('#/')) ? location.hash.substr(2) + location.search : location.pathname + location.search + location.hash;
+        const url = (hashbang && ~location.hash.indexOf('#/')) ? location.hash.substr(2) + location.search : location.pathname + location.search + location.hash;
         this.replace(url, null, true, dispatch);
-    };
+    }
 
     /**
  * Replace `path` with optional `state` object.
@@ -238,7 +238,7 @@ export class LocationService extends EventEmitter
         if (false !== dispatch)
             this.dispatch(path, false);
         return path;
-    };
+    }
 
     /**
      * Current path being processed
@@ -271,7 +271,7 @@ export class LocationService extends EventEmitter
         running = false;
         document.removeEventListener(clickEvent, this.onclickBound, false);
         window.removeEventListener('popstate', this.onpopstateBound, false);
-    };
+    }
 
     /**
      * Show `path` with optional `state` object.
@@ -284,14 +284,14 @@ export class LocationService extends EventEmitter
      * @api public
      */
 
-    public show(path: string, state?: any, dispatch?: boolean, push: boolean = true)
+    public show(path: string, state?: any, dispatch?: boolean, push = true)
     {
         this.current = path;
         if (!dispatch)
             this.dispatch(path, push);
         // if (false !== ctx.handled && false !== push) ctx.pushState();
         return state;
-    };
+    }
 
     /**
      * Goes back in the history
@@ -323,7 +323,7 @@ export class LocationService extends EventEmitter
                 this.show(base, state);
             });
         }
-    };
+    }
 
     public dispatch(path: string, push?: boolean)
     {

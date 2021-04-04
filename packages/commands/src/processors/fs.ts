@@ -6,11 +6,11 @@ import { CommandProcessor, Processor, CommandNameProcessor } from '../model/proc
 import { Container } from '../model/container';
 import { CommandProxy, Command } from '../model/command';
 import { configure } from '../decorators';
-import { HttpClient } from './http-client';
-import { proxy, registerCommands } from '../generator';
+import { registerCommands } from '../generator';
 import { Local } from './local';
 import { UnknownCommandError } from '../model/error-unknowncommand';
 import { ExtendedConfigurations, jsonObject } from '../metadata';
+import { MiddlewarePromise } from '@akala/core';
 
 export interface FileSystemConfiguration extends Metadata.Configuration
 {
@@ -20,10 +20,10 @@ export interface FileSystemConfiguration extends Metadata.Configuration
 
 export type FSCommand = Metadata.Command & { config?: { fs?: FileSystemConfiguration } };
 
-export interface DiscoveryOptions<T>
+export interface DiscoveryOptions
 {
     recursive?: boolean
-    processor?: Processor<T>
+    processor?: Processor
     isDirectory?: boolean
     ignoreFileWithNoDefaultExport?: boolean
     relativeTo?: string;
@@ -31,31 +31,31 @@ export interface DiscoveryOptions<T>
 
 
 
-export class FileSystem<T> extends CommandProcessor<T>
+export class FileSystem<T> extends CommandProcessor
 {
-    public static async asTrap<T>(container: Container<T>, path?: string): Promise<CommandNameProcessor<T>>
+    public static async asTrap<T>(container: Container<T>, path?: string): Promise<CommandNameProcessor>
     {
-        var fs = new FileSystem<T>(container, path);
-        var commands = await FileSystem.discoverMetaCommands(path || process.cwd(), { processor: fs, recursive: true, ignoreFileWithNoDefaultExport: true });
-        return {
-            process(cmd, params)
+        const fs = new FileSystem<T>(container, path);
+        const commands = await FileSystem.discoverMetaCommands(path || process.cwd(), { processor: fs, recursive: true, ignoreFileWithNoDefaultExport: true });
+        throw {
+            handle(cmd, params)
             {
-                var command = commands.find(c => c.name == cmd);
+                const command = commands.find(c => c.name == cmd);
                 if (!command)
-                    throw new UnknownCommandError(cmd);
-                return fs.process(command as FSCommand, params);
+                    return new UnknownCommandError(cmd);
+                return fs.handle(command as FSCommand, params);
             },
             name: fs.name,
             requiresCommandName: true
         };
     }
 
-    public static async discoverCommands<T>(root: string, container: Container<T>, options?: DiscoveryOptions<T>): Promise<void>
+    public static async discoverCommands<T>(root: string, container: Container<T>, options?: DiscoveryOptions): Promise<void>
     {
         if (!options)
             options = {};
 
-        var fs: FileSystem<T>;
+        let fs: FileSystem<T>;
         if (!options.processor)
         {
             if (!options.isDirectory)
@@ -63,7 +63,7 @@ export class FileSystem<T> extends CommandProcessor<T>
             options.processor = fs = new FileSystem<T>(container, options.relativeTo);
         }
 
-        var commands = await this.discoverMetaCommands(root, options);
+        const commands = await this.discoverMetaCommands(root, options);
 
         registerCommands(commands, options.processor, container);
 
@@ -74,7 +74,7 @@ export class FileSystem<T> extends CommandProcessor<T>
             container.name = commands.name;
     }
 
-    public static async discoverMetaCommands<T>(root: string, options?: DiscoveryOptions<T>): Promise<Metadata.Command[] & { name?: string }>
+    public static async discoverMetaCommands(root: string, options?: DiscoveryOptions): Promise<Metadata.Command[] & { name?: string }>
     {
         const log = akala.log('commands:fs:discovery');
 
@@ -84,7 +84,7 @@ export class FileSystem<T> extends CommandProcessor<T>
         {
             try
             {
-                let stats = await fs.stat(root);
+                const stats = await fs.stat(root);
                 options.isDirectory = stats.isDirectory();
             }
             catch (e)
@@ -106,9 +106,10 @@ export class FileSystem<T> extends CommandProcessor<T>
         }
         if (!options.isDirectory)
         {
-            var metacontainer: Metadata.Container = require(path.resolve(root));
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
+            const metacontainer: Metadata.Container = require(path.resolve(root));
 
-            var commands = metacontainer.commands.filter(cmd => !(cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata'));
+            const commands = metacontainer.commands.filter(cmd => !(cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata'));
             Object.defineProperty(commands, 'name', { enumerable: false, value: metacontainer.name });
             return commands;
         }
@@ -117,48 +118,50 @@ export class FileSystem<T> extends CommandProcessor<T>
 
         else if (existsSync(path.join(root, 'package.json')))
         {
-            var packageDef = require(path.join(root, 'package.json'));
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
+            const packageDef = require(path.join(root, 'package.json'));
             if (packageDef.commands && typeof (packageDef.commands) == 'string')
                 return this.discoverMetaCommands(path.join(root, packageDef.commands), { processor: options.processor });
         }
         if (!options.processor)
             throw new Error('Processor not defined');
 
-        var commands: Metadata.Command[] = [];
+        const commands: Metadata.Command[] = [];
 
-        var files = await fs.readdir(root, { withFileTypes: true });
-        var relativeTo = options.relativeTo;
+        const files = await fs.readdir(root, { withFileTypes: true });
+        const relativeTo = options.relativeTo;
         await akala.eachAsync(files, async f =>
         {
             if (f.isFile())
                 if (f.name.endsWith('.js'))
                 {
-                    let fsConfig: FileSystemConfiguration & jsonObject = { path: path.relative(relativeTo, path.join(root, f.name).replace(/\\/g, '/')) };
+                    const fsConfig: FileSystemConfiguration & jsonObject = { path: path.relative(relativeTo, path.join(root, f.name).replace(/\\/g, '/')) };
 
                     if (!options)
                         throw new Error('cannot happen');
-                    let cmd: Command & { config: ExtendedConfigurations<FileSystemConfiguration & jsonObject, 'fs'> } = configure('fs', fsConfig)(new CommandProxy(options.processor as Processor<T>, path.basename(f.name, path.extname(f.name))));
+                    let cmd: Command & { config: ExtendedConfigurations<FileSystemConfiguration & jsonObject, 'fs'> } = configure('fs', fsConfig)(new CommandProxy(options.processor as Processor, path.basename(f.name, path.extname(f.name))));
                     log(cmd.name);
                     if (files.find(file => file.name == f.name + '.map'))
                     {
-                        var sourceMap = JSON.parse(await fs.readFile(path.join(root, path.basename(f.name) + '.map'), 'utf8'));
+                        const sourceMap = JSON.parse(await fs.readFile(path.join(root, path.basename(f.name) + '.map'), 'utf8'));
                         if (cmd.config.fs)
                             cmd.config.fs.source = path.join(path.relative(relativeTo, root), sourceMap.sources[0]).replace(/\\/g, '/');
                     }
-                    let source = cmd.config.fs.source || cmd.config.fs.path;
-                    let otherConfigsFile: string;
-                    otherConfigsFile = path.join(path.dirname(source), path.basename(source, path.extname(source))) + '.json';
+                    const source = cmd.config.fs.source || cmd.config.fs.path;
+                    const otherConfigsFile: string = path.join(path.dirname(source), path.basename(source, path.extname(source))) + '.json';
                     if (existsSync(path.resolve(relativeTo, otherConfigsFile)))
                     {
                         log(`found config file ${otherConfigsFile}`)
-                        var otherConfigs = require(path.resolve(relativeTo, otherConfigsFile));
+                        // eslint-disable-next-line @typescript-eslint/no-var-requires
+                        const otherConfigs = require(path.resolve(relativeTo, otherConfigsFile));
                         delete otherConfigs.$schema;
-                        cmd = configure(otherConfigs)(cmd) as any;
+                        cmd = configure(otherConfigs)(cmd);
                     }
+                    let params: string[];
                     if (!cmd.config.fs.inject)
                     {
                         log(`looking for fs default definition`)
-                        var params: string[] = [];
+                        params = [];
                         if (cmd.inject && cmd.inject.length)
                         {
                             log(cmd.inject);
@@ -192,7 +195,8 @@ export class FileSystem<T> extends CommandProcessor<T>
 
                     if (!cmd.config.fs.inject)
                     {
-                        let func = require(path.resolve(relativeTo, cmd.config.fs.path)).default;
+                        // eslint-disable-next-line @typescript-eslint/no-var-requires
+                        const func = require(path.resolve(relativeTo, cmd.config.fs.path)).default;
                         if (!func)
                             if (!options.ignoreFileWithNoDefaultExport)
                                 throw new Error(`No default export is mentioned in ${path.resolve(cmd.config.fs.path)}`)
@@ -240,26 +244,28 @@ export class FileSystem<T> extends CommandProcessor<T>
                 {
                     if (!files.find(file => file.name == path.basename(f.name, '.json') + '.js'))
                     {
-                        let cmd: FSCommand = require(path.resolve(path.join(root, f.name)))
+                        // eslint-disable-next-line @typescript-eslint/no-var-requires
+                        const cmd: FSCommand = require(path.resolve(path.join(root, f.name)))
                         commands.push(cmd);
                     }
                 }
                 else
                     if (f.isDirectory() && options && options.recursive)
                         commands.push(...await FileSystem.discoverMetaCommands(path.join(root, f.name), options));
-        });
+        }, null, false);
 
         return commands;
     }
 
-    public async process(command: FSCommand, param: { param: any[], _trigger?: string })
+    public async handle(command: FSCommand, param: { param: unknown[], _trigger?: string }): MiddlewarePromise
     {
-        var filepath: string;
+        let filepath: string;
         if (command && command.config && command.config.fs)
             filepath = path.resolve(this.root || process.cwd(), command.config.fs.path);
         else
             filepath = path.resolve(this.root || process.cwd(), command.name);
-        var script = require(filepath);
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        const script = require(filepath);
         if (process.env.NODE_ENV !== 'production')
             delete require.cache[filepath];
 
@@ -269,7 +275,17 @@ export class FileSystem<T> extends CommandProcessor<T>
         if (!param._trigger)
             param._trigger = this.name;
 
-        return Local.execute(command, script.default, this.container, param);
+        return new Promise((resolve, reject) =>
+        {
+            try
+            {
+                reject(Local.execute(command, script.default, this.container, param));
+            }
+            catch (e)
+            {
+                resolve(e);
+            }
+        })
     }
 
     constructor(container: Container<T>, private root?: string)

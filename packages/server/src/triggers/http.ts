@@ -1,8 +1,6 @@
 import { Trigger, Container, metadata, Metadata } from '@akala/commands';
-import { HttpRouter, WorkerRouter } from '../router';
-import { NextFunction, isPromiseLike, log as debug, mapAsync } from '@akala/core';
-import * as master from '../master-meta';
-import * as worker from '../worker-meta';
+import { HttpRouter as Router, Request, Response } from '../router';
+import { log as debug, mapAsync } from '@akala/core';
 import { Local } from '@akala/commands/dist/processors';
 import * as http from 'http';
 import * as https from 'https';
@@ -13,34 +11,17 @@ const log = debug('commands:trigger:http')
 
 function wrapHttp<T>(container: Container<T>, command: Metadata.Command)
 {
-    return function (req: master.Request, res: master.Response, next: NextFunction)
+    return function (req: Request, res: Response): Promise<unknown>
     {
-        var result = processCommand(container, command, { '$request': req, $next: next, $response: res })
-        if (isPromiseLike(result))
-        {
-            result.then(function (r)
-            {
-                if (typeof r == 'undefined')
-                    res.sendStatus(201);
-                else
-                    res.json(r);
-            }, function (err)
-            {
-                res.status(500).json(err);
-            });
-        }
-        else if (typeof result != 'undefined')
-            res.json(result);
-        else
-            res.sendStatus(201);
+        return processCommand(container, command, { $request: req, $response: res })
     }
 }
 
-async function processCommand<T>(container: Container<T>, c: Metadata.Command, injected: { '$request': master.Request | worker.Request, '$response': master.Response, [key: string]: any })
+async function processCommand<T>(container: Container<T>, c: Metadata.Command, injected: { '$request': Request, '$response': Response, [key: string]: unknown })
 {
-    var req = injected.$request;
-    var res = injected.$response;
-    var bodyParsing: Promise<any>;
+    const req = injected.$request;
+    const res = injected.$response;
+    let bodyParsing: Promise<unknown>;
     return Local.execute(c, async function (...args)
     {
         args = await mapAsync(args, async el => await el);
@@ -102,19 +83,19 @@ async function processCommand<T>(container: Container<T>, c: Metadata.Command, i
     });
 }
 
-export var trigger = new Trigger('http', function register<T>(container: Container<T>, router: { router: HttpRouter, meta: Metadata.Container } | HttpRouter | http.Server | https.Server | http2.Http2SecureServer | http2.Http2Server)
+export const trigger = new Trigger('http', function register<T>(container: Container<T>, router: { router: Router, meta: Metadata.Container } | Router | http.Server | https.Server | http2.Http2SecureServer | http2.Http2Server)
 {
-    var commandRouter: HttpRouter | WorkerRouter = new HttpRouter();
+    let commandRouter: Router = new Router();
 
-    var meta: Metadata.Container;
+    let meta: Metadata.Container;
     if (router['router'] && typeof router['meta'] != 'undefined')
     {
         meta = router['meta'];
         commandRouter = router = router['router'];
     }
 
-    if (!(router instanceof HttpRouter) && commandRouter instanceof HttpRouter)
-        commandRouter.attachTo(router as any);
+    if (!(router instanceof Router) && commandRouter instanceof Router)
+        commandRouter.attachTo(router as http.Server | https.Server | http2.Http2Server | http2.Http2SecureServer);
 
     if (!meta)
         meta = metadata(container);
@@ -124,18 +105,18 @@ export var trigger = new Trigger('http', function register<T>(container: Contain
         if (!command.config || !command.config.http)
             return;
 
-        var config = command.config.http;
+        const config = command.config.http;
 
         log(config.method || 'use');
         if (config.method === 'use' || !config.method)
         {
-            if (commandRouter instanceof HttpRouter)
+            if (commandRouter instanceof Router)
                 commandRouter.use(config.route, wrapHttp(container, command));
             else
                 throw new Error('Not supported');
         }
         else
-            if (router instanceof HttpRouter)
+            if (router instanceof Router)
                 commandRouter[config.method](config.route, wrapHttp(container, command));
             else
                 throw new Error('Not supported');

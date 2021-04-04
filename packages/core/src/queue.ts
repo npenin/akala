@@ -13,7 +13,7 @@ export class Queue<T>
         this.pending.push(message);
         this.save();
         this.process();
-    };
+    }
 
     public save(_throw?: boolean)
     {
@@ -21,7 +21,7 @@ export class Queue<T>
             throw new Error('You need to define where and how to save the queue.');
     }
 
-    private processing: boolean = false;
+    private processing = false;
     private current: T;
 
     public process()
@@ -29,7 +29,7 @@ export class Queue<T>
         if (this.processing)
             return;
         this.processing = true;
-        var message = this.pending.shift();
+        const message = this.pending.shift();
         this.current = message;
         if (!message)
             return this.processing = false;
@@ -44,5 +44,5 @@ export class Queue<T>
             if (processed !== false)
                 process.nextTick(this.process.bind(this));
         });
-    };
+    }
 }

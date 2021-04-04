@@ -1,21 +1,15 @@
 import './translator';
-export { router, wrouter, Request, Response, HttpRouter, CallbackResponse } from './router';
-export * from './helpers/mkdirp';
+export { router, Request, Response, HttpRouter, CallbackResponse } from './router';
 
 import './http'
 export * from './http'
-import * as worker from './worker-meta'
-export { worker };
-import * as master from './master-meta';
-export { master };
-
-export type resolve = worker.resolve;
 
 import container from './commands'
 export { container }
 export { State } from './state'
 
-import * as pm from '@akala/pm'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import * as _pm from '@akala/pm'
 declare module '@akala/pm'
 {
     interface SidecarMap
@@ -33,7 +27,7 @@ export function connect(options: commands.ServeMetadata, settings: {
 }, ...orders: (keyof commands.ServeMetadata)[])
     : Promise<{
         container: container;
-        processor: commands.CommandProcessors<any>;
+        processor: commands.CommandProcessors;
     }>
 {
     if (!settings)

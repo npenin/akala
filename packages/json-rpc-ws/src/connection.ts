@@ -5,7 +5,7 @@ import { Connection as BaseConnection, PayloadDataType, SerializableObject, Seri
 const logger = debug('json-rpc-ws');
 
 
-function isBuffer(obj: any): obj is Uint8Array
+function isBuffer(obj: unknown): obj is Uint8Array
 {
     return obj && obj instanceof Uint8Array;
 }
@@ -22,9 +22,9 @@ export class Connection extends BaseConnection<stream.Readable>
         return result instanceof stream.Readable;
     }
 
-    protected sendStream(id: string | number, params: stream.Readable)
+    protected sendStream(id: string | number, params: stream.Readable): void
     {
-        var pt = new stream.PassThrough({ highWaterMark: 128 });
+        const pt = new stream.PassThrough({ highWaterMark: 128 });
         params.pipe(pt);
         pt.on('data', (chunk: Uint8Array | string) =>
         {
@@ -53,10 +53,10 @@ export class Connection extends BaseConnection<stream.Readable>
         });
     }
 
-    protected buildStream(this: Connection, id: string | number, result: PayloadDataType<stream.Readable>)
+    protected buildStream(this: Connection, id: string | number, result: PayloadDataType<stream.Readable>): SerializableObject & stream.Readable
     {
-        var data: (string | Uint8Array | null)[] = [];
-        var canPush = true;
+        const data: (string | Uint8Array | null)[] = [];
+        let canPush = true;
 
         class temp extends stream.Readable
         {
@@ -74,31 +74,30 @@ export class Connection extends BaseConnection<stream.Readable>
                     }
                 });
 
-                var o: any = this;
-                var src = result as SerializableObject;
-                Object.getOwnPropertyNames(src).forEach(function (p)
+                const src = result as SerializableObject;
+                Object.getOwnPropertyNames(src).forEach((p) =>
                 {
-                    if (Object.getOwnPropertyDescriptor(o, p) == null)
+                    if (Object.getOwnPropertyDescriptor(this, p) == null)
                     {
                         if (src && src[p])
-                            o[p] = src[p];
+                            this[p] = src[p];
                     }
-                })
+                });
             }
         }
 
-        var s = result = <SerializableObject & stream.Readable>new temp();
-        var f = this.responseHandlers[id] = (error, result: { event: string, isBuffer?: boolean, data?: SerializedBuffer | string }) =>
+        const s = result = <SerializableObject & stream.Readable>new temp();
+        const f = this.responseHandlers[id] = (error, result: { event: string, isBuffer?: boolean, data?: SerializedBuffer | string }) =>
         {
-            if (!!error)
+            if (error)
                 s.emit('error', error);
             else
                 switch (result.event)
                 {
                     case 'data':
-                        var d: Uint8Array | string | undefined = undefined;
                         if (result.data)
                         {
+                            let d: Uint8Array | string | undefined = undefined;
                             if (typeof (result.data) == 'string')
                                 d = result.data;
                             else
@@ -118,6 +117,6 @@ export class Connection extends BaseConnection<stream.Readable>
                         break;
                 }
         }
-        return result;
+        return s;
     }
 }

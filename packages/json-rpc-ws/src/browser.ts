@@ -66,7 +66,7 @@ class DefaultReader implements ReadableStreamDefaultReader<Uint8Array>
   {
   }
 
-  public emitError(error: any)
+  public emitError(error: Error)
   {
     if (!this.next)
       this.next = new Deferred();
@@ -78,21 +78,21 @@ class DefaultReader implements ReadableStreamDefaultReader<Uint8Array>
   {
     if (chunks.length == 0)
       return;
-    var totalLength = chunks.reduce((l, chunk) => l + (chunk === null ? 0 : chunk.byteLength - chunk.byteOffset), 0);
+    const totalLength = chunks.reduce((l, chunk) => l + (chunk === null ? 0 : chunk.byteLength - chunk.byteOffset), 0);
     if (totalLength === 0)
     {
       if (!this.next)
         this.next = new Deferred<ReadableStreamDefaultReadResult<Uint8Array>>();
       return this.next.resolve({ done: true });
     }
-    var buffer = new Uint8Array(totalLength);
-    var start = 0;
-    var chunk: Uint8Array | null | undefined = undefined;
+    const buffer = new Uint8Array(totalLength);
+    let start = 0;
+    let chunk: Uint8Array | null | undefined = undefined;
     for (chunk of chunks)
     {
       if (chunk === null)
         break;
-      for (var i = chunk.byteOffset; i < chunk.byteLength; i++)
+      for (let i = chunk.byteOffset; i < chunk.byteLength; i++)
       {
         buffer[start++] = chunk[i];
       }
@@ -111,7 +111,7 @@ class DefaultReader implements ReadableStreamDefaultReader<Uint8Array>
   }
 
   closed: Deferred<undefined> = new Deferred<undefined>();
-  cancel(reason?: any): Promise<void>
+  cancel(reason?: Error): Promise<void>
   {
     if (this.next)
       return this.next.then(() => Promise.reject(reason));
@@ -132,11 +132,11 @@ class DefaultReader implements ReadableStreamDefaultReader<Uint8Array>
   }
 }
 
-class Readable implements ReadableStream
+class Readable implements ReadableStream<Uint8Array>
 {
   private buffer: (Uint8Array | null)[] = [];
   private _reader?: DefaultReader //| ByobReader;
-  private target?: WritableStream<any>;
+  private target?: WritableStream<unknown>;
   public get reader(): DefaultReader /*| ByobReader*/ | undefined
   {
     return this._reader;
@@ -151,14 +151,11 @@ class Readable implements ReadableStream
     }
   }
 
-  constructor()
-  {
-  }
   get locked(): boolean
   {
     return !!this.reader && !this.target;
   }
-  cancel(_reason?: any): Promise<void>
+  cancel(_reason?: Error): Promise<void>
   {
 
     if (this.reader)
@@ -169,7 +166,7 @@ class Readable implements ReadableStream
     return Promise.resolve();
   }
 
-  emitError(error: any)
+  emitError(error: Error)
   {
     if (this.reader)
       return this.reader.emitError(error);
@@ -186,8 +183,8 @@ class Readable implements ReadableStream
   }
 
   // getReader(options: { mode: "byob"; }): ReadableStreamBYOBReader;
-  getReader(): ReadableStreamDefaultReader<any>;
-  getReader(options?: any): ReadableStreamReader<any>
+  getReader(): ReadableStreamDefaultReader<Uint8Array>;
+  getReader(): ReadableStreamReader<Uint8Array>
   {
     if (this.locked)
       throw new Error('stream is already locked');
@@ -198,16 +195,16 @@ class Readable implements ReadableStream
     // }
     return this.reader = new DefaultReader(this);
   }
-  pipeThrough<T>({ writable, readable }: { writable: WritableStream<any>; readable: ReadableStream<T>; }, options?: StreamPipeOptions | undefined): ReadableStream<T>
+  pipeThrough<T>({ writable, readable }: { writable: WritableStream<Uint8Array>; readable: ReadableStream<T>; }, options?: StreamPipeOptions | undefined): ReadableStream<T>
   {
     this.pipeTo(writable, options);
     return readable;
   }
-  async pipeTo(dest: WritableStream<any>, options?: StreamPipeOptions | undefined): Promise<void>
+  async pipeTo(dest: WritableStream<Uint8Array>, options?: StreamPipeOptions | undefined): Promise<void>
   {
     this.target = dest;
-    var writer = dest.getWriter();
-    var chunk: Uint8Array | null | undefined;
+    const writer = dest.getWriter();
+    let chunk: Uint8Array | null | undefined;
     while (typeof (chunk = this.buffer.shift()) != 'undefined')
     {
       if (chunk)
@@ -216,7 +213,7 @@ class Readable implements ReadableStream
         await writer.close()
     }
   }
-  tee(): [ReadableStream<any>, ReadableStream<any>]
+  tee(): [ReadableStream<Uint8Array>, ReadableStream<Uint8Array>]
   {
     throw new Error("Method not implemented.");
   }
@@ -231,10 +228,10 @@ export class Connection extends BaseConnection<ReadableStream<Uint8Array>>
   }
 
 
-  protected async sendStream(id: string | number, result: ReadableStream<Uint8Array>)
+  protected async sendStream(id: string | number, result: ReadableStream<Uint8Array>): Promise<void>
   {
-    var reader = result.getReader();
-    var chunk = await reader.read();
+    const reader = result.getReader();
+    const chunk = await reader.read();
     if (!chunk.done && this.socket.open)
       this.sendRaw({ id: id, result: { event: 'data', isBuffer: true, data: { type: 'Buffer', data: chunk.value } } });
     else if (this.socket.open)
@@ -245,27 +242,28 @@ export class Connection extends BaseConnection<ReadableStream<Uint8Array>>
 
   protected isStream(result: PayloadDataType<ReadableStream>): result is ReadableStream  
   {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return typeof (result) != 'undefined' && !!result && typeof ((result as any).getReader) == 'function';
   }
 
-  protected buildStream(id: string | number, result: PayloadDataType<ReadableStream>)
+  protected buildStream(id: string | number, result: PayloadDataType<ReadableStream<Uint8Array>>): ReadableStream<Uint8Array>
   {
-    var s = result = new Readable();
-    var src: SerializableObject = result as any;
+    const s = new Readable();
+    const src: SerializableObject = result as SerializableObject;
     Object.getOwnPropertyNames(src).forEach(function (p)
     {
       if (Object.getOwnPropertyDescriptor(result, p) == null)
       {
-        var prop = Object.getOwnPropertyDescriptor(src, p);
+        const prop = Object.getOwnPropertyDescriptor(src, p);
         if (prop)
           Object.defineProperty(result, p, prop);
       }
     })
 
-    var f = this.responseHandlers[id] = (error, result: { event: string, isBuffer?: boolean, data?: SerializedBuffer }) =>
+    const f = this.responseHandlers[id] = (error, result: { event: string, isBuffer?: boolean, data?: SerializedBuffer }) =>
     {
-      if (!!error)
-        s.emitError(error);
+      if (error)
+        s.emitError(error as unknown as Error);
       else
         switch (result.event)
         {
@@ -280,6 +278,6 @@ export class Connection extends BaseConnection<ReadableStream<Uint8Array>>
             break;
         }
     }
-    return result;
+    return s;
   }
 }

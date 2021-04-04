@@ -155,9 +155,7 @@ declare var FetchEvent: {
 };
 
 
-interface ExtendableEventInit extends EventInit
-{
-}
+type ExtendableEventInit = EventInit
 
 interface FetchEventInit extends ExtendableEventInit
 {

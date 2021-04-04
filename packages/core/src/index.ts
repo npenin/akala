@@ -6,6 +6,7 @@ export * from './http';
 export * from './service';
 export * from './binder';
 export * from './parser';
+export * from './type-helper'
 export * from './helpers'
 export * from './router'
 export * from './queue'

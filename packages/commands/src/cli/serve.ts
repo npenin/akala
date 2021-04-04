@@ -18,8 +18,8 @@ export class NetSocketAdapter implements jsonrpcws.SocketAdapter
         socket.setNoDelay(true);
     }
 
-    private buffer: string = '';
-    private dataEventRegistered: boolean = false;
+    private buffer = '';
+    private dataEventRegistered = false;
     private ee = new EventEmitter();
 
     private registerDataEvent()
@@ -29,12 +29,12 @@ export class NetSocketAdapter implements jsonrpcws.SocketAdapter
             this.dataEventRegistered = true;
             this.socket.on('data', (data) =>
             {
-                var sData: string = data as any;
+                let sData: string = data as any;
                 if (Buffer.isBuffer(data))
                     sData = data.toString('utf8');
 
 
-                var indexOfEOL = sData.indexOf('}\n');
+                let indexOfEOL = sData.indexOf('}\n');
                 while (indexOfEOL > -1)
                 {
                     this.ee.emit('message', this.buffer + sData.substr(0, indexOfEOL + 1));
@@ -52,7 +52,7 @@ export class NetSocketAdapter implements jsonrpcws.SocketAdapter
     get open()
     {
         return this.socket && (this.socket.readable || this.socket.writable);
-    };
+    }
     close(): void
     {
         this.socket.end();
@@ -120,13 +120,13 @@ export interface ServeOptions
 
 export default async function <T = void>(container: Container<T>, options: ServeMetadata)
 {
-    var stops: (() => Promise<void>)[] = [];
+    const stops: (() => Promise<void>)[] = [];
 
     if (options.socket)
     {
         for (var socketPath of options.socket)
         {
-            let server = new Server((socket) =>
+            const server = new Server((socket) =>
             {
                 socket.setDefaultEncoding('utf8');
                 container.attach('jsonrpc', new NetSocketAdapter(socket));
@@ -199,7 +199,7 @@ export default async function <T = void>(container: Container<T>, options: Serve
             container.register('$masterRouter', container.attach('http', server));
         if (options.ws || options.wss)
         {
-            var wsServer = new ws.Server({ server });
+            const wsServer = new ws.Server({ server });
             container.register('$wsServer', wsServer);
             wsServer.on('connection', (socket: ws) =>
             {

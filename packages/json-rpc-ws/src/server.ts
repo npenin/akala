@@ -6,7 +6,7 @@ import { ReplyCallback, PayloadDataType as BasePayloadDataType, SocketAdapter } 
 import { Connection } from './connection';
 import * as stream from 'stream'
 import debug from 'debug';
-function assert(ok: any, message: string): void
+function assert(ok: unknown, message: string): void
 {
   if (!ok)
     throw new Error(message);
@@ -37,7 +37,7 @@ export default class Server<TConnection extends Connection> extends Base<stream.
 
   connection(socket: SocketAdapter): Connection
   {
-    return new Connection(socket, this as any);
+    return new Connection(socket, this);
   }
 
   /**
@@ -47,7 +47,7 @@ export default class Server<TConnection extends Connection> extends Base<stream.
  * @param {function} callback - optional callback which is called once the server has started listening.
  * @public
  */
-  public start(server?: ServerAdapter, callback?: () => void)
+  public start(server?: ServerAdapter, callback?: () => void): void
   {
 
     logger('Server start');
@@ -65,7 +65,7 @@ export default class Server<TConnection extends Connection> extends Base<stream.
     {
       this.connected(socket)
     });
-  };
+  }
 
 
   /**
@@ -74,14 +74,14 @@ export default class Server<TConnection extends Connection> extends Base<stream.
    * @todo param {function} callback - called after the server has stopped
    * @public
    */
-  public stop()
+  public stop(): void
   {
 
     logger('Server stop');
     this.hangup();
     this.server?.close();
     delete this.server;
-  };
+  }
 
   /**
    * Send a method request through a specific connection
@@ -92,10 +92,10 @@ export default class Server<TConnection extends Connection> extends Base<stream.
    * @param {replyCallback} callback - optional reply handler
    * @public
    */
-  public send<TParam extends PayloadDataType, TReplyParam extends PayloadDataType>(id: string, method: string, params?: TParam, callback?: ReplyCallback<TReplyParam>)
+  public send<TParam extends PayloadDataType, TReplyParam extends PayloadDataType>(id: string, method: string, params?: TParam, callback?: ReplyCallback<TReplyParam>): void
   {
     logger('Server send %s %s', id, method);
-    var connection = this.getConnection(id);
+    const connection = this.getConnection(id);
     if (connection)
     {
       connection.sendMethod(method, params, callback);
@@ -104,9 +104,9 @@ export default class Server<TConnection extends Connection> extends Base<stream.
     {
       callback(Errors('serverError').error);
     }
-  };
+  }
 
-  public broadcast<TParam extends PayloadDataType, TReplyParam extends PayloadDataType>(method: string, params: TParam, callback?: ReplyCallback<TReplyParam>)
+  public broadcast<TParam extends PayloadDataType, TReplyParam extends PayloadDataType>(method: string, params: TParam, callback?: ReplyCallback<TReplyParam>): void
   {
     Object.keys(this.connections).forEach((id) =>
     {

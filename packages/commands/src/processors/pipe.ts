@@ -1,17 +1,16 @@
-import { CommandProxy } from '../model/command';
-import { Injector } from '@akala/core';
-import { CommandNameProcessor } from '../model/processor'
+import { MiddlewarePromise } from '@akala/core';
+import { CommandNameProcessor, StructuredParameters } from '../model/processor'
 import { Container } from '../model/container';
 import assert = require('assert');
 
-export class Pipe<T> extends CommandNameProcessor<T>
+export class Pipe<T> extends CommandNameProcessor
 {
-    public process(command: string, param: { param: any[], [key: string]: any }): any | PromiseLike<any>
+    public handle(command: string, param: StructuredParameters): MiddlewarePromise
     {
         if (!this.container)
             assert.fail('container is undefined');
         else
-            return this.container.dispatch(command, param);
+            throw this.container.dispatch(command, param);
     }
 
     constructor(container: Container<T>)

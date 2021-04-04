@@ -21,7 +21,7 @@ export function control<T = any>(name: string, priority?: number, options?: { sc
 
                 public instanciate(target: any, element: Element, parameter: akala.Binding | T, otherControls: any)
                 {
-                    var i = new Injector(Control.injector)
+                    const i = new Injector(Control.injector)
                     i.register('factory', this);
                     i.register('scope', target);
                     i.register('element', element);
@@ -53,11 +53,11 @@ export abstract class Control<T> implements IControl<T>
 
     public static async apply(controls: any, element: Element, scope?: any, options?: Control<any>[]): Promise<IControlInstance<any>[]>
     {
-        var applicableControls: Control<any>[] = [];
-        var requiresNewScope = false;
+        const applicableControls: Control<any>[] = [];
+        let requiresNewScope = false;
         Object.keys(controls).forEach(function (key)
         {
-            var control: Control<any> = Control.injector.resolve(key);
+            const control: Control<any> = Control.injector.resolve(key);
             if (control)
             {
                 applicableControls.push(control);
@@ -78,15 +78,15 @@ export abstract class Control<T> implements IControl<T>
             element['$scope'] = scope;
         }
 
-        var instances: IControlInstance<any>[] = [];
-        for (var control of applicableControls)
+        const instances: IControlInstance<any>[] = [];
+        for (const control of applicableControls)
         {
-            var controlSettings = controls[control.$$name];
+            let controlSettings = controls[control.$$name];
             if (controlSettings instanceof Function)
                 controlSettings = controlSettings(scope, true);
-            var controlInstance = await control.instanciate(scope, element, controlSettings, controls, instances);
+            const controlInstance = await control.instanciate(scope, element, controlSettings, controls, instances);
             instances.push(controlInstance);
-        };
+        }
 
         return instances;
     }
@@ -95,13 +95,13 @@ export abstract class Control<T> implements IControl<T>
     {
         if (newControls)
         {
-            var controls: any = new akala.Parser().parse(element.dataset['bind'], true);
+            const controls: any = new akala.Parser().parse(element.dataset['bind'], true);
 
-            var applicableControls: Control<any>[] = [];
+            let applicableControls: Control<any>[] = [];
 
             Object.keys(controls).forEach(function (key)
             {
-                var control: Control<any> = Control.injector.resolve(key);
+                const control: Control<any> = Control.injector.resolve(key);
                 if (control)
                     applicableControls.push(control);
                 else
@@ -141,7 +141,7 @@ export abstract class BaseControl<T> extends Control<T>
 
     public async instanciate(scope: IScope<any>, element: Element, parameter: akala.Binding | T)
     {
-        var injector = new Injector(this.injector);
+        const injector = new Injector(this.injector);
         injector.setInjectables({ scope, element, parameter, factory: this, $injector: injector });
         return injector.injectNew<GenericControlInstance<T>>(GenericControlInstance)();
     }
@@ -154,7 +154,7 @@ export class GenericControlInstance<TParameter, TScope = any> implements IContro
 
     protected async clone(element: HTMLElement, scope: IScope<any>, newControls?: any)
     {
-        var clone = element.cloneNode(true) as HTMLElement;
+        const clone = element.cloneNode(true) as HTMLElement;
         clone['$scope'] = scope;
         await this.factory.wrap(clone, scope, newControls);
         return clone;

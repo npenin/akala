@@ -1,11 +1,11 @@
 import { Container } from "@akala/commands";
 import State from "../state";
 
-export default async function stop(this: State, name: string, container: Container<State>)
+export default async function stop(this: State, name: string, container: Container<State>): Promise<void>
 {
     await Promise.all(this.processes.filter(p => name == 'pm' || !name || p.name == name && p.process).map(cp =>
     {
-        return new Promise(async (resolve) =>
+        return new Promise<unknown>((resolve) =>
         {
             if (cp.process && cp.running)
             {
@@ -13,21 +13,21 @@ export default async function stop(this: State, name: string, container: Contain
                 {
                     try
                     {
-                        await cp.dispatch('$stop')
+                        resolve(cp.dispatch('$stop'));
                     }
                     catch (e)
                     {
                         console.error(e);
                     }
                 }
-                var timeout = setTimeout(function ()
+                const timeout = setTimeout(function ()
                 {
                     cp.process.kill();
                 }, 5000)
                 cp.process.on('exit', (_code, signal) =>
                 {
                     container.unregister(cp.name);
-                    var indexOfContainer = this.processes.indexOf(cp);
+                    const indexOfContainer = this.processes.indexOf(cp);
                     if (indexOfContainer > -1)
                         this.processes.splice(indexOfContainer, 1);
                     clearTimeout(timeout);
@@ -47,4 +47,4 @@ export default async function stop(this: State, name: string, container: Contain
             process.exit();
         }
     });
-};
+}

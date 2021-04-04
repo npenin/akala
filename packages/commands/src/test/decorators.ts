@@ -6,7 +6,7 @@ describe('test decorators', function ()
 {
     it('should cover basics', function ()
     {
-        var container = new Container<null>('decorator', null);
+        const container = new Container<null>('decorator', null);
 
         container.register(configure('http', { inject: ['route.step'] })(inject('param.0')(function f(a)
         {

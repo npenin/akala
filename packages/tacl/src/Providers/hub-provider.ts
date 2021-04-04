@@ -12,29 +12,29 @@ export default class HubSecurityProvider implements IAclProvider
 
     public readonly providers: IAclProvider[] = [];
 
-    public push(provider: IAclProvider)
+    public push(provider: IAclProvider): void
     {
         this.providers.push(provider);
         provider.AclChanged.add(this.provider_AclChanged);
     }
 
-    public remove(provider: IAclProvider)
+    public remove(provider: IAclProvider): void
     {
-        var indexOfProvider = this.providers.indexOf(provider);
+        const indexOfProvider = this.providers.indexOf(provider);
         if (indexOfProvider > -1)
             this.providers.splice(indexOfProvider, 1);
         provider.AclChanged.remove(this.provider_AclChanged);
     }
 
-    provider_AclChanged(_sender: IAclProvider, resource: string)
+    provider_AclChanged(_sender: IAclProvider, resource: string): void
     {
         this.AclChanged.raise(this, resource);
     }
 
     public GetAcls(resource: string, verb: string): Iterable<AccessRule> 
     {
-        var acls: AccessRule[] = [];
-        for (var provider of this.providers)
+        const acls: AccessRule[] = [];
+        for (const provider of this.providers)
         {
             acls.push(...provider.GetAcls(resource, verb));
         }
@@ -43,8 +43,8 @@ export default class HubSecurityProvider implements IAclProvider
 
     public GetAclsBySubject(...subjects: string[]): Iterable<AccessRule> 
     {
-        var acls: AccessRule[] = [];
-        for (var provider of this.providers)
+        const acls: AccessRule[] = [];
+        for (const provider of this.providers)
         {
             acls.push(...provider.GetAclsBySubject(...subjects));
         }
@@ -53,7 +53,7 @@ export default class HubSecurityProvider implements IAclProvider
 
     public SetAcls(...acls: AccessRule[]): IAclProvider
     {
-        for (var provider of this.providers)
+        for (const provider of this.providers)
         {
             provider.SetAcls(...acls);
         }
@@ -66,8 +66,9 @@ export default class HubSecurityProvider implements IAclProvider
     public DeleteAcls(...acls: (AccessRule | string)[]): IAclProvider
     // public DeleteAcls<T extends AccessRule | string>(...acls: T[]): IAclProvider
     {
-        for (var provider of this.providers)
+        for (const provider of this.providers)
         {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             //@ts-ignore
             provider.DeleteAcls(...acls);
         }

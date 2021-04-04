@@ -7,17 +7,17 @@ import { JsonRpc, LogProcessor } from '../processors';
 
 describe('test jsonrpcws processing', function ()
 {
-    var server: ws.Server;
+    let server: ws.Server;
 
     this.afterAll(function (done)
     {
-        client.disconnect(function ()
+        client.disconnect().then(function ()
         {
             if (server)
                 server.close(done);
             else
                 done();
-        })
+        }, done);
     })
     this.beforeAll(function (done)
     {
@@ -30,17 +30,17 @@ describe('test jsonrpcws processing', function ()
         server.on('connection', (socket: ws) => calculator.attach('jsonrpc', new jsonrpc.ws.SocketAdapter(socket)));
     })
 
-    var client = jsonrpc.ws.createClient();
+    const client = jsonrpc.ws.createClient();
 
     it('should serve commands', function (done)
     {
         calculator.dispatch('reset')
-        assert.equal(calculator.state.value, 0)
+        assert.strictEqual(calculator.state.value, 0)
         client.send('increment', undefined, function (error?)
         {
             assert.ifError(error);
-            assert.equal(calculator.state.value, 1)
-            client.send('decrement', { param: [2] } as any, function (error: any)
+            assert.strictEqual(calculator.state.value, 1)
+            client.send('decrement', { param: [2] }, function (error)
             {
                 done(error)
             });
@@ -49,10 +49,11 @@ describe('test jsonrpcws processing', function ()
 
     it('should work with proxy commands', async function ()
     {
-        var container = metadata(calculator);
-        var calculatorProxy = proxy(container, new LogProcessor(new JsonRpc(client.getConnection()), function (cmd, args)
+        const container = metadata(calculator);
+        const calculatorProxy = proxy(container, new LogProcessor(new JsonRpc(client.getConnection()), function (cmd, args)
         {
             console.log(args);
+            return Promise.resolve();
         }));
         calculator.dispatch('reset');
         assert.equal(calculator.state.value, 0)
@@ -67,8 +68,8 @@ describe('test jsonrpcws processing', function ()
 
     it('should generate correct proxy', async function ()
     {
-        var container = metadata(calculator);
-        var meta = helper(proxy(container, new JsonRpc(client.getConnection())), container);
+        const container = metadata(calculator);
+        const meta = helper(proxy(container, new JsonRpc(client.getConnection())), container);
         assert.ok(meta);
         await meta.reset();
         await meta.increment();

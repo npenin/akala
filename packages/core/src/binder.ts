@@ -37,7 +37,7 @@ export class Binding
 {
     public static defineProperty(target: any, property: string | symbol, value?: any)
     {
-        var binding = new Binding(property.toString(), target);
+        const binding = new Binding(property.toString(), target);
         Object.defineProperty(target, property, {
             get()
             {
@@ -74,7 +74,7 @@ export class Binding
         })
     }
 
-    constructor(protected _expression: string, private _target: IWatched, register: boolean = true)
+    constructor(protected _expression: string, private _target: IWatched, register = true)
     {
         this.formatter = formatters.identity;
         this.onChangingEvent = new BindingExtendableEvent(this);
@@ -105,7 +105,7 @@ export class Binding
 
     public onChanged(handler: (args: BindingExtendableEvent) => void, doNotTriggerHandler?: boolean)
     {
-        var off = this.onChangedEvent.addHandler(handler);
+        const off = this.onChangedEvent.addHandler(handler);
         if (!doNotTriggerHandler)
             handler({
                 target: this.target,
@@ -130,22 +130,22 @@ export class Binding
         if (this.registeredBindings.indexOf(binding) > -1)
             return;
         this.registeredBindings.push(binding);
-        var watcher = this;
-        var offChanging = watcher.onChanging(function (a: BindingExtendableEvent)
+        const watcher = this;
+        const offChanging = watcher.onChanging(function (a: BindingExtendableEvent)
         {
             if (a.eventArgs.source == binding || a.eventArgs.source === null)
                 return;
 
             return binding.onChangingEvent.trigger(Object.assign({}, a.eventArgs, { value: binding.getValue() }));
         });
-        var offChanged = watcher.onChanged(function (a: BindingExtendableEvent)
+        const offChanged = watcher.onChanged(function (a: BindingExtendableEvent)
         {
             if (a.eventArgs.source == binding || a.eventArgs.source === null)
                 return;
 
             return binding.onChangedEvent.trigger(Object.assign({}, a.eventArgs, { value: binding.getValue() }));
         });
-        var offError = watcher.onError(function (a)
+        const offError = watcher.onError(function (a)
         {
             if (a.eventArgs.source == binding || a.eventArgs.source === null)
                 return;
@@ -176,9 +176,9 @@ export class Binding
 
     public register()
     {
-        var target = this.target;
-        var parts = Parser.parseBindable(this.expression);
-        var self = this;
+        let target = this.target;
+        const parts = Parser.parseBindable(this.expression);
+        const self = this;
         while (parts.length > 0)
         {
             var part = parts.shift();
@@ -196,13 +196,13 @@ export class Binding
                     }
                 }
 
-                var watcher: Binding = target.$$watchers && target.$$watchers[part];
+                let watcher: Binding = target.$$watchers && target.$$watchers[part];
 
                 if (!watcher)
                 {
                     if (isPromiseLike(target))
                     {
-                        var subParts = part;
+                        let subParts = part;
                         if (parts.length > 0)
                             subParts += '.' + parts.join('.');
 
@@ -221,11 +221,11 @@ export class Binding
                             }
 
 
-                            var subParts = part;
+                            let subParts = part;
                             if (parts.length > 0)
                                 subParts += '.' + parts.join('.');
 
-                            for (var i in args.newItems)
+                            for (const i in args.newItems)
                             {
                                 new Binding(subParts, args.newItems[i]).pipe(this);
                             }
@@ -268,7 +268,7 @@ export class Binding
 
     public static getSetter(target: IWatched, expression: string, source?: Binding)
     {
-        var parts = Parser.parseBindable(expression);
+        const parts = Parser.parseBindable(expression);
         return async function (value: any, doNotTriggerEvents?: boolean)
         {
             while (parts.length > 1)
@@ -281,8 +281,8 @@ export class Binding
                 return;
             if (typeof target.$$watchers == 'undefined')
                 target.$$watchers = {};
-            var watcher = target.$$watchers[parts[0]];
-            var setter = Parser.getSetter(parts[0], target);
+            const watcher = target.$$watchers[parts[0]];
+            const setter = Parser.getSetter(parts[0], target);
             if (setter === null)
                 return;
 
@@ -321,13 +321,13 @@ export class Binding
 
     public setValue(value: any, source?: Binding, doNotTriggerEvents?: boolean)
     {
-        var target = this.target;
-        var setter = Binding.getSetter(this.target, this.expression, source || this);
+        const target = this.target;
+        const setter = Binding.getSetter(this.target, this.expression, source || this);
 
         if (setter != null)
             setter(value, doNotTriggerEvents);
 
-    };
+    }
 }
 
 export class PromiseBinding extends Binding
@@ -335,8 +335,8 @@ export class PromiseBinding extends Binding
     constructor(expression: string, target: PromiseLike<any>)
     {
         super(expression, null, false);
-        var self = this;
-        var binding = new Binding(expression, null);
+        const self = this;
+        const binding = new Binding(expression, null);
         binding.pipe(self);
         var callback = function (value)
         {
@@ -422,7 +422,7 @@ export class ObservableArray<T> extends EventEmitter
     public get length() { return this.array.length; }
     public set length(value: number)
     {
-        var oldItems = this.array.slice(value);
+        const oldItems = this.array.slice(value);
         this.emit('collectionChanged', {
             action: 'pop',
             newItems: oldItems
@@ -437,25 +437,25 @@ export class ObservableArray<T> extends EventEmitter
             action: 'push',
             newItems: items
         });
-    };
+    }
 
 
     public shift()
     {
-        var item = this.array.shift();
+        const item = this.array.shift();
         this.emit('collectionChanged', {
             action: 'shift',
             oldItems: [item]
         });
-    };
+    }
     public pop()
     {
-        var item = this.array.pop();
+        const item = this.array.pop();
         this.emit('collectionChanged', {
             action: 'pop',
             oldItems: [item]
         });
-    };
+    }
     public unshift = function (...items)
     {
         this.array.unshift(...items);
@@ -466,14 +466,14 @@ export class ObservableArray<T> extends EventEmitter
     };
     public replace(index, item)
     {
-        var oldItem = this.array[index];
+        const oldItem = this.array[index];
         this.array['replace'](index, item);
         this.emit('collectionChanged', {
             action: 'replace',
             newItems: [item],
             oldItems: [oldItem]
         });
-    };
+    }
 
     public init()
     {
@@ -493,8 +493,8 @@ export class ObservableArray<T> extends EventEmitter
     public toString()
     {
         return this.array.toString();
-    };
-};
+    }
+}
 
 export interface ObservableArrayEventArgs<T>
 {
@@ -515,7 +515,7 @@ export class WatchBinding extends Binding
 
     private check()
     {
-        var newValue = this.getValue();
+        const newValue = this.getValue();
         if (this.lastValue !== newValue)
         {
             this.lastValue = newValue;

@@ -1,14 +1,13 @@
 import { Processor } from "../model/processor";
-import { CommandProxy } from "../model/command";
 import { EventProcessor } from "./event";
 
-export class LogProcessor<T> extends EventProcessor<T>
+export class LogProcessor extends EventProcessor
 {
     public name = 'log';
 
-    constructor(processor: Processor<T>,
-        preExecute?: typeof processor.process,
-        postExecute?: typeof processor.process)
+    constructor(processor: Processor,
+        preExecute?: typeof processor.handle,
+        postExecute?: typeof processor.handle)
     {
         super(processor);
         if (preExecute)

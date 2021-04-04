@@ -1,26 +1,21 @@
 import { State } from "../state";
 import { Container } from "@akala/commands";
-import { join, isAbsolute, resolve, dirname } from "path";
-import { serveStatic } from "../master-meta";
-import requireIfExists from 'require-optional'
-import { FSWatcher, watch } from 'chokidar'
-import { logger } from '../logger'
+import { isAbsolute, resolve } from "path";
+import { FSWatcher } from 'chokidar'
 import description from "../commands";
-const chokidar: { watch: typeof watch } = requireIfExists('chokidar');
+import { EntryObject } from "webpack";
 
-const log = logger('assets');
-
-export var targetWatchers: { [key: string]: FSWatcher } = {};
+export const targetWatchers: { [key: string]: FSWatcher } = {};
 export interface Asset
 {
     inputs: string[];
     output: string;
-};
+}
 
-export default async function register(this: State, container: Container<State> & description, route: string, path: string, cwd: string)
+export default async function register(this: State, container: Container<State> & description, route: string, path: string, cwd: string): Promise<EntryObject>
 {
     if (typeof route == 'undefined' && typeof path == 'undefined')
-        return this.webpack.config.entry;
+        return this.webpack.config.entry as EntryObject;
 
     if (typeof path == 'undefined')
         return this.webpack.config.entry[route];

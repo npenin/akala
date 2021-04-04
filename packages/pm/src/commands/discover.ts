@@ -15,17 +15,18 @@ const debug = log('discover');
 
 export default async function discover(this: State, packageName: string, folder: string, pm: pmContainer): Promise<mapReturn[] | mapReturn>
 {
+    // eslint-disable-next-line prefer-rest-params
     debug(arguments);
 
-    var path = folder || process.cwd();
+    let path = folder || process.cwd();
 
     debug(path);
 
-    var tmpRequire: ReturnType<typeof createRequire> | undefined = undefined;
+    let tmpRequire: ReturnType<typeof createRequire> | undefined = undefined;
     if (existsSync(path))
         if (isAbsolute(packageName))
         {
-            let stats = await fs.stat(packageName)
+            const stats = await fs.stat(packageName)
             if (stats.isFile())
                 tmpRequire = createRequire(packageName);
             else
@@ -35,7 +36,7 @@ export default async function discover(this: State, packageName: string, folder:
         else
         {
             path = resolve(path);
-            let stats = await fs.stat(join(path, packageName))
+            const stats = await fs.stat(join(path, packageName))
             if (stats.isFile())
                 tmpRequire = createRequire(join(path, packageName));
             else
@@ -57,9 +58,9 @@ export default async function discover(this: State, packageName: string, folder:
         }
     }
 
-    var moduleRequire = tmpRequire;
+    const moduleRequire = tmpRequire;
 
-    var packageConfig = moduleRequire('./package.json');
+    const packageConfig = moduleRequire('./package.json');
     delete moduleRequire.cache['./package.json'];
 
     if (packageConfig.commands)
@@ -93,11 +94,11 @@ export default async function discover(this: State, packageName: string, folder:
         }
     }
 
-    var commandsJsonFile = tryModuleRequireResolve(join(packageName, './commands.json'));
+    const commandsJsonFile = tryModuleRequireResolve(join(packageName, './commands.json'));
     if (commandsJsonFile)
         return pm.dispatch('map', packageName, moduleRequire.resolve('./commands.json'), path, true);
 
     return pm.dispatch('map', packageName, moduleRequire.resolve(packageConfig.main), path, false);
-};
+}
 
 exports.default.$inject = ['param.0', 'param.1', '$container']

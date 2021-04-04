@@ -1,7 +1,7 @@
 import State from "../state";
-import { Processors, Container } from "@akala/commands";
+import { Processors } from "@akala/commands";
 
-export default async function alias(this: State, path: string, options?: { recursive?: boolean })
+export default async function alias(this: State, path: string, options?: { recursive?: boolean }): Promise<void>
 {
     this.config.externals?.push(path);
 

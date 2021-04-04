@@ -9,7 +9,7 @@ export class Queue<T> extends core.Queue<T>
     {
         if (typeof (queue) == 'string')
         {
-            var queueObj = JSON.parse(fs.readFileSync(queue, 'utf8'));
+            const queueObj = JSON.parse(fs.readFileSync(queue, 'utf8'));
             super(handler, queueObj);
             this.filePath = queue;
         }
@@ -17,13 +17,13 @@ export class Queue<T> extends core.Queue<T>
             super(handler, queue);
     }
 
-    public save()
+    public save(): Promise<void> | void
     {
         if (this.filePath)
-            fs.writeFile(this.filePath, JSON.stringify(this.pending), function (err)
+            return fs.promises.writeFile(this.filePath, JSON.stringify(this.pending)).catch(function (err)
             {
-                if (err)
-                    console.error(err);
+                console.error(err);
+                throw err;
             });
     }
 }

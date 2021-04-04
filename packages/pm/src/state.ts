@@ -15,7 +15,7 @@ export default interface State
     }
 }
 
-export interface RunningContainer<T = any> extends Container<T>
+export interface RunningContainer<T = unknown> extends Container<T>
 {
     path: string;
     process: ChildProcess;

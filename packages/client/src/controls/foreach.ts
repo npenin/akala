@@ -26,22 +26,22 @@ export class ForEach extends GenericControlInstance<ForeachParameter>
         if (this.parameter instanceof akala.Binding)
             throw new Error('foreach parameter as a binging is not supported');
 
-        var sourceBinding: akala.Binding;
+        let sourceBinding: akala.Binding;
         if (this.parameter.in instanceof Function)
             sourceBinding = this.parameter.in(this.scope, true);
         else
             sourceBinding = this.parameter.in;
 
-        var self = this;
-        var element = this.element;
-        var parent = this.element.parentElement;
+        const self = this;
+        const element = this.element;
+        const parent = this.element.parentElement;
         if (this.element.parentNode)
             this.element.parentNode.removeChild(this.element);
-        var parsedParam = self.parameter as ForeachParameter;
+        const parsedParam = self.parameter as ForeachParameter;
         // var newControls;
         function build(source: akala.ObservableArray<any> | any[])
         {
-            var result: ArrayLike<Element> = [];
+            const result: ArrayLike<Element> = [];
 
             if (source instanceof akala.ObservableArray)
             {
@@ -62,7 +62,7 @@ export class ForEach extends GenericControlInstance<ForeachParameter>
                         case 'push':
                             args.newItems.forEach(arg =>
                             {
-                                var scope = self.scope.$new();
+                                const scope = self.scope.$new();
                                 if (parsedParam.key)
                                     scope[parsedParam.key] = source.length - 1;
                                 if (parsedParam.value)
@@ -73,7 +73,7 @@ export class ForEach extends GenericControlInstance<ForeachParameter>
                         case 'unshift':
                             args.newItems.forEach(arg =>
                             {
-                                var scope = self.scope.$new();
+                                const scope = self.scope.$new();
                                 if (parsedParam.key)
                                     scope[parsedParam.key] = 0;
                                 if (parsedParam.value)
@@ -96,7 +96,7 @@ export class ForEach extends GenericControlInstance<ForeachParameter>
             if (source)
                 akala.each(source, function (value, key)
                 {
-                    var scope = self.scope.$new();
+                    const scope = self.scope.$new();
                     if (parsedParam.key)
                         scope[parsedParam.key] = key;
                     if (parsedParam.value)
@@ -106,7 +106,7 @@ export class ForEach extends GenericControlInstance<ForeachParameter>
             return result;
         }
 
-        var stopWatch = sourceBinding.onChanged(function (ev)
+        const stopWatch = sourceBinding.onChanged(function (ev)
         {
             Promise.resolve(ev.eventArgs.value).then(build);
         });
@@ -118,7 +118,7 @@ export class ForEach extends GenericControlInstance<ForeachParameter>
 
     protected static parse(exp: string): ForeachParameter
     {
-        var result = ForEach.expRegex.exec(exp);
+        const result = ForEach.expRegex.exec(exp);
         return { in: akala.Parser.evalAsFunction(exp.substring(result[0].length)), key: result[2] && result[1], value: result[2] || result[1] }
     }
 }

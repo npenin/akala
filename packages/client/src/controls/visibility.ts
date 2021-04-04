@@ -5,7 +5,7 @@ import { Template } from '../template';
 
 function toggleBuilder(element)
 {
-    var currentDisplay = element.style.display;
+    let currentDisplay = element.style.display;
     if (currentDisplay == 'none')
     {
         currentDisplay = document.createElement(element.tagName).style.display;
@@ -29,7 +29,7 @@ export class Hide extends GenericControlInstance<void>
 
     public link(target: any, element: HTMLElement, parameter: di.Binding)
     {
-        var toggle = toggleBuilder(element);
+        const toggle = toggleBuilder(element);
         parameter.onChanged(function (ev)
         {
             toggle(!ev.eventArgs.value);
@@ -49,7 +49,7 @@ export class Show extends GenericControlInstance<di.Binding>
 
     public link(target: any, element: HTMLElement, parameter: di.Binding)
     {
-        var toggle = toggleBuilder(element);
+        const toggle = toggleBuilder(element);
         parameter.onChanged(function (ev)
         {
             toggle(ev.eventArgs.value);

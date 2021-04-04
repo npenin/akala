@@ -1,41 +1,44 @@
 import * as jsonrpcws from '@akala/json-rpc-ws'
-import { CommandProcessor, CommandNameProcessor } from '../model/processor'
+import { CommandProcessor, CommandNameProcessor, StructuredParameters } from '../model/processor'
 import { Command } from '../metadata';
-import { Container, lazy } from '../model/container';
+import { Container } from '../model/container';
 import { IDebugger } from 'debug';
 import { Local } from './local';
+import { Readable } from 'stream';
+import { MiddlewarePromise, OptionsResponse, SpecialNextParam } from '@akala/core';
+
+type OnlyArray<T> = Extract<T, unknown[]>;
 
 
-
-export class JsonRpc<T> extends CommandProcessor<T>
+export class JsonRpc extends CommandProcessor
 {
-    public static connect(address: string): Promise<JsonRpc<any>>
+    public static connect(address: string): Promise<JsonRpc>
     {
-        return new Promise<jsonrpcws.SocketAdapter>((resolve, reject) =>
+        return new Promise<jsonrpcws.SocketAdapter>((resolve) =>
         {
-            var socket = jsonrpcws.ws.connect(address);
+            const socket = jsonrpcws.ws.connect(address);
             socket.on('open', function ()
             {
                 resolve(socket);
             });
         }).then((socket) =>
         {
-            var provier = new JsonRpc(JsonRpc.getConnection(socket))
+            const provier = new JsonRpc(JsonRpc.getConnection(socket))
             provier.passthrough = true;
             return provier;
         });
     }
 
-    public static getConnection(socket: jsonrpcws.SocketAdapter, container?: Container<any>, log?: IDebugger): jsonrpcws.Connection
+    public static getConnection(socket: jsonrpcws.SocketAdapter, container?: Container<unknown>, log?: IDebugger): jsonrpcws.Connection
     {
-        var error = new Error();
-        var connection = new jsonrpcws.Connection(socket, {
+        const error = new Error();
+        const connection = new jsonrpcws.Connection(socket, {
             type: 'client',
             disconnected()
             {
                 if (container)
                 {
-                    var cmd = container.resolve('$disconnect');
+                    const cmd = container.resolve('$disconnect');
                     if (cmd)
                         Local.execute(cmd, cmd.handler, container, { param: [] });
                 }
@@ -43,7 +46,7 @@ export class JsonRpc<T> extends CommandProcessor<T>
             getHandler(method: string)
             {
                 if (!container)
-                    return null as any;
+                    return null;
                 return async function (params, reply)
                 {
                     try
@@ -51,7 +54,7 @@ export class JsonRpc<T> extends CommandProcessor<T>
                         if (log)
                             log(params);
 
-                        var cmd = container.resolve(method);
+                        const cmd = container.resolve(method);
                         if (!cmd)
                         {
                             container.inspect();
@@ -61,12 +64,17 @@ export class JsonRpc<T> extends CommandProcessor<T>
 
                         if (!params)
                             params = { param: [] };
-                        Object.defineProperty(params, 'connectionAsContainer', { enumerable: true, get() { return Container.proxy(container?.name + '-client', new JsonRpc(connection, true) as any) } });
-                        if (!params._trigger || params._trigger == 'proxy')
-                            params._trigger = 'jsonrpc';
+                        if (Array.isArray(params))
+                            params = { param: params };
+                        if (typeof (params) != 'object' || params instanceof Readable || !params['param'])
+                            params = { param: [params] } as unknown as jsonrpcws.SerializableObject;
 
-                        var result = await Local.execute(cmd, cmd.handler, container, params);
-                        reply(null, result);
+                        Object.defineProperty(params, 'connectionAsContainer', { enumerable: true, get() { return Container.proxy(container?.name + '-client', new JsonRpc(connection, true) as unknown as CommandNameProcessor) } });
+                        if (typeof (params) == 'object' && !params['_trigger'] || params['_trigger'] == 'proxy')
+                            params['_trigger'] = 'jsonrpc';
+
+                        const result = await Local.execute(cmd, cmd.handler, container, params as StructuredParameters<jsonrpcws.SerializableObject[]>);
+                        reply(null, result as jsonrpcws.PayloadDataType<Readable>);
                     }
                     catch (error)
                     {
@@ -84,11 +92,9 @@ export class JsonRpc<T> extends CommandProcessor<T>
         return connection;
     }
 
-    public process(command: string, params: { param?: jsonrpcws.PayloadDataType<void>, [key: string]: jsonrpcws.PayloadDataType<void> }): Promise<any>
-    public process(command: Command, params: { param?: jsonrpcws.PayloadDataType<void>, [key: string]: jsonrpcws.PayloadDataType<void> }): Promise<any>
-    public process(command: Command | string, params: { param?: jsonrpcws.PayloadDataType<void>, [key: string]: jsonrpcws.PayloadDataType<void> }): Promise<any>
+    public handle(command: Command | string, params: StructuredParameters<OnlyArray<jsonrpcws.PayloadDataType<void>>>): MiddlewarePromise
     {
-        return new Promise<any>((resolve, reject) =>
+        return new Promise<Error | SpecialNextParam | OptionsResponse>((resolve, reject) =>
         {
             if (!this.passthrough && typeof command != 'string' && command.inject)
             {
@@ -96,26 +102,26 @@ export class JsonRpc<T> extends CommandProcessor<T>
                 {
                     // console.log(param);
                     // console.log(command.inject);
-                    var param = command.inject.map((v, i) =>
+                    const param = command.inject.map((v, i) =>
                     {
                         return { name: v, value: params.param[i] }
                     }).filter(p => p.name.startsWith('param.'));
-                    params.param = param.map(p => p.value);
+                    params.param = param.map(p => p.value) as jsonrpcws.SerializableObject[];
                 }
             }
-            this.client.sendMethod(typeof command == 'string' ? command : command.name, params, function (err: any, result: jsonrpcws.PayloadDataType<any>)
+            this.client.sendMethod(typeof command == 'string' ? command : command.name, params as unknown as jsonrpcws.PayloadDataType<Readable>, function (err, result)
             {
                 if (err)
                 {
-                    reject(err);
+                    resolve(err as unknown as Error);
                 }
                 else
-                    resolve(result);
+                    reject(result);
             });
         })
     }
 
-    constructor(private client: jsonrpcws.BaseConnection<any>, private passthrough?: boolean)
+    constructor(private client: jsonrpcws.BaseConnection<Readable>, private passthrough?: boolean)
     {
         super('jsonrpc');
     }

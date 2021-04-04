@@ -1,44 +1,56 @@
-import { Processor, CommandProcessors } from "../model/processor";
+import { Processor, CommandProcessors, StructuredParameters } from "../model/processor";
 import { CommandProxy } from "../model/command";
 import { EventEmitter } from "events";
+import { MiddlewarePromise } from "@akala/core";
+import { Command } from "../metadata";
 
-export class EventProcessor<T> extends EventEmitter implements Processor<T>
+export class EventProcessor extends EventEmitter implements Processor
 {
-    public async process(command: CommandProxy<any>, param: { param: any[], [key: string]: any }): Promise<any>
-    public async process(command: string, param: { param: any[], [key: string]: any }): Promise<any>
-    public async process(command: CommandProxy<any> | string, param: { param: any[], [key: string]: any }): Promise<any>
-    {
-        this.emit('processing', command, param);
-        if (this.processor.requiresCommandName)
-            if (typeof command === 'string')
-                var result = await this.processor.process(command, param)
-            else
-                var result = await this.processor.process(command.name, param)
-        else if (typeof command !== 'string')
-            var result = await (this.processor as Processor<T>).process(command, param)
-        else
-            throw new Error('Command was required but only command name was provided');
-        this.emit('processed', command, param, result);
-        return result;
-    }
 
-    public on(event: 'processing', handler: (cmd: CommandProxy<any> | string, param: { param: any[], [key: string]: any }) => void)
-    public on(event: 'processed', handler: (cmd: CommandProxy<any> | string, param: { param: any[], [key: string]: any }, result: any) => void)
-    public on(event: string, handler: (...args: any[]) => void)
+    public on(event: 'processing', handler: (cmd: CommandProxy<unknown> | string, param: StructuredParameters) => void): this
+    public on(event: 'processing-failed', handler: (cmd: CommandProxy<unknown> | string, param: Error) => void): this
+    public on(event: 'processed', handler: (cmd: CommandProxy<unknown> | string, param: StructuredParameters, result: unknown) => void): this;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    public on(event: string, handler: (cmd: CommandProxy<unknown> | string, param: any, result?: unknown) => void): this
     {
-        super.on(event, handler);
+        return super.on(event, handler);
     }
 
     public name = 'event';
 
-    public get requiresCommandName()
+    public get requiresCommandName(): boolean
     {
         return this.processor.requiresCommandName;
     }
 
 
-    constructor(private processor: CommandProcessors<T>)
+    constructor(private processor: CommandProcessors)
     {
         super();
+    }
+    handle(command: string | Command, param: StructuredParameters<unknown[]>): MiddlewarePromise
+    {
+
+        this.emit('processing', command, param);
+        let result: MiddlewarePromise;
+        if (this.processor.requiresCommandName)
+            if (typeof command === 'string')
+                result = this.processor.handle(command, param)
+            else
+                result = this.processor.handle(command.name, param)
+        else if (typeof command !== 'string')
+            result = (this.processor as Processor).handle(command, param)
+        else
+            throw new Error('Command was required but only command name was provided');
+        result.then(err =>
+        {
+            this.emit('processing-failed', command, param, err);
+            return err;
+        }, result =>
+        {
+            this.emit('processed', command, param, result);
+            throw result;
+        })
+        return result;
     }
 }

@@ -1,128 +1,92 @@
+import { Key, ParseOptions, pathToRegexp, TokensToRegexpOptions, regexpToFunction, RegexpToFunctionOptions, MatchFunction } from "path-to-regexp";
+import { MiddlewareComposite } from "./composite";
+import { Middleware, MiddlewarePromise } from "./shared";
 
-/*!
- * router
- * Copyright(c) 2013 Roman Shtylman
- * Copyright(c) 2014 Douglas Christopher Wilson
- * MIT Licensed
- */
-
-'use strict'
-
-/**
- * Module dependencies.
- * @private
- */
-
-var debug = require('debug')('router:route')
-import { Layer, LayerOptions } from './layer'
-
-/**
- * Module variables.
- * @private
- */
-
-var slice = Array.prototype.slice
-
-export interface IRoutable<T extends Function>
+export interface Routable
 {
-    route: Route<T, Layer<T>>;
+    path: string;
+    params?: Record<string, unknown>
 }
 
-/**
- * Expose `Route`.
- */
+export type RouteBuilderArguments = [route: string | RegExp, options?: TokensToRegexpOptions & ParseOptions & RegexpToFunctionOptions]
+export type RouteBuilder<T extends [Routable, ...unknown[]]> = (...args: RouteBuilderArguments) => MiddlewareRoute<T>;
 
-export class Route<T extends Function, TLayer extends Layer<T>>
+
+export class MiddlewareRoute<T extends [Routable, ...unknown[]]> extends MiddlewareComposite<T>
 {
-    public stack: TLayer[] = [];
-
-    constructor(public path: string)
+    params: Key[];
+    match: MatchFunction<{ path: string, index: number, params: Record<string, string> }>;
+    delimiter: string;
+    constructor(route: string | RegExp, options?: TokensToRegexpOptions & ParseOptions & RegexpToFunctionOptions)
     {
-        debug('new %o', path);
+        super(route.toString());
+        this.params = [];
+        this.delimiter = options && options.delimiter || '/';
+
+        const routePath = pathToRegexp(route, this.params, options);
+        this.match = regexpToFunction<{ path: string, index: number, params: Record<string, string> }>(routePath, this.params, options);
     }
 
-    public dispatch(req, ...rest)
+    route(...args: RouteBuilderArguments): MiddlewareRoute<T>
     {
-        var done = arguments[arguments.length - 1];
-        var idx = 0
-        var stack = this.stack
-        if (stack.length === 0)
+        return new MiddlewareRoute<T>(...args);
+    }
+
+    isApplicable?: (x: T[0]) => boolean;
+
+    handle(...context: T): MiddlewarePromise
+    {
+        const req = context[0] as Routable;
+        const isMatch = this.match(req.path);
+
+        if (isMatch && (!this.isApplicable || this.isApplicable(req)))
         {
-            return done()
-        }
+            const oldPath = req.path;
+            const c = oldPath[isMatch.path.length];
+            if (c && c !== this.delimiter)
+                return Promise.resolve();
+            req.path = req.path.substring(isMatch.path.length) || this.delimiter;
 
-        req.route = this
-        var args = slice.call(arguments, 0);
-        args[args.length - 1] = next;
-        next()
+            const oldParams = req.params;
+            req.params = isMatch.params;
 
-        function next(err?)
-        {
-            // signal to exit route
-            if (err && err === 'route')
-                return done()
-
-            // signal to exit router
-            if (err && err === 'router')
-                return done(err)
-
-            // no more matching layers
-            if (idx >= stack.length)
-                return done(err)
-
-            var layer: TLayer;
-            var match: boolean;
-
-            // find next matching layer
-            while (match !== true && idx < stack.length)
+            return super.handle(...(context as unknown as T)).finally(() =>
             {
-                layer = stack[idx++]
-                match = layer.isApplicable(req, this);
-            }
-
-            // no match
-            if (match !== true)
-                return done(err)
-
-            if (err)
-                layer.handle_error.apply(layer, [err].concat(args));
-            else
-                layer.handle_request.apply(layer, args);
+                req.params = oldParams;
+                req.path = oldPath;
+            });
         }
+        return Promise.resolve();
     }
 
-    public buildLayer(path: string, options: LayerOptions, callback: T): TLayer
-    {
-        return <TLayer><any>new Layer<T>('/', options, callback);
-    }
 
-    public isApplicable(req)
-    {
-        return true;
-    }
 
-    public addHandler(postBuildLayer: (layer: TLayer) => TLayer, ...handlers: T[])
+    public useMiddleware(route: string | RegExp, ...middlewares: Middleware<T>[]): this
+    public useMiddleware(...middlewares: Middleware<T>[]): this
+    public useMiddleware(route: string | RegExp | Middleware<T>, ...middlewares: Middleware<T>[]): this
     {
-        var callbacks: T[] = handlers
-
-        if (callbacks.length === 0)
+        if (typeof route === 'string' || route instanceof RegExp)
         {
-            throw new TypeError('argument handler is required')
+            const routed = new MiddlewareRoute<T>(route, { end: false });
+            routed.useMiddleware(...middlewares);
+            super.useMiddleware(routed);
         }
+        else
+            super.useMiddleware(route, ...middlewares);
+        return this;
+    }
 
-        for (var i = 0; i < callbacks.length; i++)
+    public use(route: string | RegExp, ...middlewares: ((...args: T) => Promise<unknown>)[]): this
+    public use(...middlewares: ((...args: T) => Promise<unknown>)[]): this
+    public use(route: string | RegExp | ((...args: T) => Promise<unknown>), ...middlewares: ((...args: T) => Promise<unknown>)[]): this
+    {
+        if (typeof route === 'string' || route instanceof RegExp)
         {
-            var fn = callbacks[i]
-
-            if (typeof fn !== 'function')
-            {
-                throw new TypeError('argument handler must be a function')
-            }
-
-            var layer = postBuildLayer(this.buildLayer('/', { length: fn.length - 1 }, fn));
-            this.stack.push(layer)
+            const routed = new MiddlewareRoute<T>(route, { end: false });
+            routed.use(...middlewares);
+            return this;
         }
-
-        return this
+        else
+            return super.use(route, ...middlewares);
     }
 }
