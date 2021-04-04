@@ -1,8 +1,8 @@
 import State, { RunningContainer } from "../state";
 
-export default async function ready(this: State, container: RunningContainer)
+export default function ready(this: State, container: RunningContainer): void
 {
     container.ready?.resolve();
-};
+}
 
 exports.default.inject = ['$container']

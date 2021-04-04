@@ -6,9 +6,9 @@ import { Configurations } from "../metadata";
 
 type Injectable<T, U> = InjectableWithTypedThis<T, U> & { '$inject'?: string[] }
 
-export class Command<T = any> implements metadata.Command
+export class Command<T = unknown> implements metadata.Command
 {
-    constructor(public readonly handler: Injectable<any | PromiseLike<any>, T>, name?: string, inject?: string[])
+    constructor(public readonly handler: Injectable<unknown | PromiseLike<unknown>, T>, name?: string, inject?: string[])
     {
         this.name = name || handler.name;
         if (typeof inject == 'undefined')
@@ -31,41 +31,40 @@ export class Command<T = any> implements metadata.Command
 
     public set inject(value: string[] | undefined)
     {
-        this.config[''].inject = value;;
+        this.config[''].inject = value;
     }
 
     public readonly name: string;
-    public config: Configurations = { '': {} } = { '': {} };
+    public config: Configurations = { '': {} };
 
-    public $proxy(processor: Processor<T>)
+    public $proxy(processor: Processor): Command
     {
         return new CommandProxy<T>(processor, this.name, this.inject);
     }
 }
 
-export class CommandProxy<T = any> extends Command<T>
+export class CommandProxy<TState = unknown> extends Command<TState>
 {
-    constructor(public processor: Processor<T>, name: string, inject?: string[])
+    constructor(public processor: Processor, name: string, inject?: string[])
     {
-        super(function (...args)
+        super((...args) =>
         {
-            if (cmd.inject && cmd.inject.length == 1 && cmd.inject[0] == '$param')
+            if (this.inject && this.inject.length == 1 && this.inject[0] == '$param')
             {
                 if (processor.requiresCommandName)
-                    return processor.process(name, args[0]);
+                    return processor.handle(name, args[0]).then(err => { throw err }, result => result);
                 else
-                    return processor.process(cmd, args[0]);
+                    return processor.handle(this, args[0]).then(err => { throw err }, result => result);
             }
 
             if (processor.requiresCommandName)
-                return processor.process(name, { param: args });
+                return processor.handle(name, { param: args }).then(err => { throw err }, result => result);
             else
-                return processor.process(cmd, { _trigger: 'proxy', param: args });
+                return processor.handle(this, { _trigger: 'proxy', param: args }).then(err => { throw err }, result => result);
         }, name, inject);
-        var cmd = this;
     }
 
-    public get inject()
+    public get inject(): string[]
     {
         return super.inject || this.config[this.processor.name] && this.config[this.processor.name]?.inject;
     }
@@ -76,9 +75,9 @@ export class CommandProxy<T = any> extends Command<T>
     }
 }
 
-export class MapCommand extends Command<any>
+export class MapCommand extends Command<unknown>
 {
-    constructor(public container: Container<any>, commandToTrigger: string, name: string, inject?: string[])
+    constructor(public container: Container<unknown>, commandToTrigger: string, name: string, inject?: string[])
     {
         super(function (...args)
         {

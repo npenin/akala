@@ -36,7 +36,7 @@ function addClass(element: HTMLElement, item: classParamType)
         return addClass(element, item.value);
     else if (item instanceof Binding)
     {
-        var oldValue = null;
+        let oldValue = null;
         item.onChanged(function (ev)
         {
             if (oldValue)

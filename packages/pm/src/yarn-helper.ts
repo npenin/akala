@@ -1,6 +1,5 @@
-import * as cp from 'child_process'
 import { platform } from "os";
-import { fstat, existsSync, exists } from 'fs';
+import { stat } from 'fs';
 import { promisify } from 'util';
 import { spawnAsync } from './cli-helper';
 import { join } from 'path';
@@ -11,26 +10,26 @@ import { join } from 'path';
 
 // }
 
-export function hasYarn(path?: string)
+export function hasYarn(path?: string): Promise<boolean>
 {
-    return promisify(exists)(join(path || process.cwd(), './yarn.lock'))
+    return promisify(stat)(join(path || process.cwd(), './yarn.lock')).then(f => f.isFile())
 }
 
-var npm = 'yarn';
+let npm = 'yarn';
 if (platform() == 'win32')
     npm = 'yarn.cmd';
 
 export default
     {
-        async install(packageName: string, path?: string)
+        async install(packageName: string, path?: string): Promise<void>
         {
             await spawnAsync(npm, { cwd: path }, 'add', packageName, '--production')
         },
-        async update(packageName: string, path?: string)
+        async update(packageName: string, path?: string): Promise<void>
         {
             await spawnAsync(npm, { cwd: path }, 'upgrade', packageName, '--production')
         },
-        async link(packageName: string, path?: string)
+        async link(packageName: string, path?: string): Promise<void>
         {
             await spawnAsync(npm, { cwd: path }, 'link', packageName, '--production')
         }

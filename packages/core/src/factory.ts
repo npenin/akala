@@ -4,13 +4,13 @@ export function factory(name: string, ...toInject: string[])
 {
     return function (target: Function)
     {
-        var instance: IFactory<any> = null;
-        var factory = function ()
+        let instance: IFactory<any> = null;
+        const factory = function ()
         {
             if (!instance)
             {
-                var args = [null];
-                for (var arg in arguments)
+                const args = [null];
+                for (const arg in arguments)
                     args.push(arguments[arg]);
                 instance = new (target.bind.apply(target, args))();
             }

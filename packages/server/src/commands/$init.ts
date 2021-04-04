@@ -1,38 +1,38 @@
-import { serve, Container, CommandProxy } from "@akala/commands";
-import { HttpRouter, router } from "../router";
+import { Container } from "@akala/commands";
+import { router } from "../router";
+import { HttpRouter } from "../router";
 import '../triggers/http'
 import { State } from "../state";
 import { Injector, Binding, log } from "@akala/core";
-import * as webpack from './webpack'
 import { join, resolve } from "path";
 import HtmlPlugin = require('html-webpack-plugin');
 // import { CleanWebpackPlugin as CleanPlugin } from 'clean-webpack-plugin'
 import CssExtractPlugin = require('mini-css-extract-plugin')
-import { serveStatic } from "../master-meta";
 import fs from 'fs';
+import { StaticFileMiddleware } from "../router/staticFileMiddleware";
 
 const debug = log('akala:server')
 
-export default async function $init(container: Container<State>, options: any, pm: Container<void>)
+export default async function $init(container: Container<State>, options: Record<string, unknown>, pm: Container<void>): Promise<() => void>
 {
     container.state.pm = pm;
     // pm.register('$metadata', new CommandProxy(pm.processor, '$metadata'));
 
     container.state.assets = new Injector();
-    var init = true;
-    Binding.defineProperty(container.state, 'mode', options.mode || process.env.NODE_ENV).onChanged(function (ev)
+    let init = true;
+    Binding.defineProperty(container.state, 'mode', options.mode || process.env.NODE_ENV).onChanged(function ()
     {
         if (!init)
             container.dispatch('webpack', undefined, true);
     });
 
-    var indexHtmlPath: string;
+    let indexHtmlPath: string;
     if (typeof process.versions['pnp'] != 'undefined')
         indexHtmlPath = require.resolve('../../views/index.html');
     else
         indexHtmlPath = resolve(__dirname, '../../views/index.html');
 
-    var html = new HtmlPlugin({ title: 'Output management', template: indexHtmlPath, xhtml: true, hash: true, inject: true });
+    const html = new HtmlPlugin({ title: 'Output management', template: indexHtmlPath, xhtml: true, hash: true, inject: true });
 
     container.state.webpack = {
         config: {
@@ -90,7 +90,7 @@ export default async function $init(container: Container<State>, options: any, p
                 // namedChunks: true,
                 sideEffects: true,
             },
-        }, html: (html as any).options
+        }, html: html.options
     };
 
     init = false;
@@ -99,17 +99,17 @@ export default async function $init(container: Container<State>, options: any, p
     {
         if (masterRouter)
         {
-            var lateBoundRoutes = router();
-            var preAuthenticatedRouter = router();
-            var authenticationRouter = router();
-            var app = router();
+            const lateBoundRoutes = router();
+            const preAuthenticatedRouter = router();
+            const authenticationRouter = router();
+            const app = router();
             container.register('$preAuthenticationRouter', preAuthenticatedRouter);
             container.register('$authenticationRouter', authenticationRouter);
             container.register('$router', lateBoundRoutes);
-            masterRouter.use(preAuthenticatedRouter.router);
-            masterRouter.use(authenticationRouter.router);
-            masterRouter.use(lateBoundRoutes.router);
-            masterRouter.use(app.router);
+            masterRouter.useMiddleware(preAuthenticatedRouter);
+            masterRouter.useMiddleware(authenticationRouter);
+            masterRouter.useMiddleware(lateBoundRoutes);
+            masterRouter.useMiddleware(app);
 
             container.state.masterRouter = masterRouter
             container.state.preAuthenticatedRouter = preAuthenticatedRouter;
@@ -117,18 +117,22 @@ export default async function $init(container: Container<State>, options: any, p
             container.state.lateBoundRoutes = lateBoundRoutes;
             container.state.app = app;
 
-            preAuthenticatedRouter.useGet('/', serveStatic(null, { root: join(process.cwd(), './build'), fallthrough: true }));
-            masterRouter.use('/api', function (req, res)
+            preAuthenticatedRouter.useMiddleware('/', new StaticFileMiddleware(null, { root: join(process.cwd(), './build'), fallthrough: true }));
+            masterRouter.use('/api', function (_req, res)
             {
                 res.writeHead(404, 'Not found');
-                res.end();
-            })
+                return new Promise((resolve) =>
+                {
+                    res.end(resolve);
+                })
+            });
             if (container.state.mode !== 'production')
-                masterRouter.useGet('/', async function (req, res)
+                masterRouter.use('/', async function (_req, res)
                 {
                     res.statusCode = 200;
 
                     fs.createReadStream(html['options'].template.substring(html['options'].template.indexOf('!') + 1), { autoClose: true }).pipe(res);
+                    return res;
                 });
             else
                 debug('started in production mode');

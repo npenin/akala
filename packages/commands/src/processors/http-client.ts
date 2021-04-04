@@ -1,20 +1,20 @@
-import { Injector, HttpOptions, each, Http, defaultInjector } from '@akala/core';
+import { Injector, HttpOptions, each, Http, defaultInjector, MiddlewarePromise } from '@akala/core';
 import * as pathRegexp from 'path-to-regexp';
 import { CommandProcessor } from '../model/processor';
 import { Command, Configuration } from '../metadata';
 
-export class HttpClient<T> extends CommandProcessor<T>
+export class HttpClient extends CommandProcessor
 {
-    public process(command: Command, param: { param: any[], [key: string]: any }): any | PromiseLike<any>
+    public handle(command: Command, param: { param: unknown[], [key: string]: unknown }): MiddlewarePromise
     {
         if (!command.config)
             throw new Error('no trigger configuration defined');
 
-        var config = command.config.http as unknown as HttpConfiguration;
+        const config = command.config.http as unknown as HttpConfiguration;
         if (!config)
             throw new Error('no http configuration specified');
 
-        var injector = this.injector;
+        const injector = this.injector;
         return injector.injectWithNameAsync(['$http', '$resolveUrl'], async function (http: Http, resolveUrl)
         {
             const res = await http.call(HttpClient.buildCall(config, resolveUrl, ...param.param));
@@ -30,21 +30,21 @@ export class HttpClient<T> extends CommandProcessor<T>
                         return res.json();
                     return null;
             }
-        })
+        }).then(result => { throw result }, err => err);
     }
 
-    public static buildCall(config: HttpConfiguration, resolveUrl: (s: string) => string, ...param: any[]): HttpOptions
+    public static buildCall(config: HttpConfiguration, resolveUrl: (s: string) => string, ...param: unknown[]): HttpOptions
     {
-        var url = config.route;
+        let url = config.route;
         if (url[0] == '/')
             url = url.substr(1);
-        var route: { [key: string]: any } | null = null;
+        let route: { [key: string]: unknown } | null = null;
         if (config.type == 'raw')
         {
             config = Object.assign({}, config);
             config.type = undefined;
         }
-        var options: HttpOptions = { method: config.method, url: '', type: config.type };
+        const options: HttpOptions = { method: config.method, url: '', type: config.type };
         if (config.inject)
             each(config.inject, function (value, key)
             {
@@ -53,47 +53,49 @@ export class HttpClient<T> extends CommandProcessor<T>
                     case 'body':
                         if (typeof (param[key]) == 'object')
                         {
-                            options.contentType = options.type as any;
+                            options.contentType = options.type as HttpOptions['contentType'];
                             options.body = Object.assign(options.body || {}, param && param[key]);
                         }
                         else
                         {
-                            options.contentType = options.type as any;
+                            options.contentType = options.type as HttpOptions['contentType'];
                             if (!options.body)
                                 options.body = {};
-                            options.body = param && param[key] as any;
+                            options.body = param && param[key];
                         }
                         break;
                     default:
-                        var indexOfDot = value.indexOf('.');
-                        if (~indexOfDot)
                         {
-                            var subKey = value.substr(indexOfDot + 1);
-                            switch (value.substr(0, indexOfDot))
+                            const indexOfDot = value.indexOf('.');
+                            if (~indexOfDot)
                             {
-                                case 'body':
-                                    options.contentType = options.type as any;
-                                    options.body = options.body || {};
-                                    options.body[subKey] = param && param[key] as any;
-                                    break;
-                                case 'header':
-                                    if (!options.headers)
-                                        options.headers = {};
-                                    options.headers[subKey] = param && param[key] as any;
-                                    break;
-                                case 'query':
-                                    if (!options.queryString)
-                                        options.queryString = {};
-                                    options.queryString[subKey] = param && param[key];
-                                    break;
-                                case 'route':
-                                    if (!route)
-                                        route = {};
-                                    if (param && param[key])
-                                        route[subKey] = param && param[key] && param[key].toString();
-                                    break;
+                                const subKey = value.substr(indexOfDot + 1);
+                                switch (value.substr(0, indexOfDot))
+                                {
+                                    case 'body':
+                                        options.contentType = options.type as HttpOptions['contentType'];
+                                        options.body = options.body || {};
+                                        options.body[subKey] = param && param[key];
+                                        break;
+                                    case 'header':
+                                        if (!options.headers)
+                                            options.headers = {};
+                                        options.headers[subKey] = param && param[key] as string | number | Date;
+                                        break;
+                                    case 'query':
+                                        if (!options.queryString)
+                                            options.queryString = {};
+                                        options.queryString[subKey] = param && param[key];
+                                        break;
+                                    case 'route':
+                                        if (!route)
+                                            route = {};
+                                        if (param && param[key])
+                                            route[subKey] = param && param[key] && param[key].toString();
+                                        break;
+                                }
+                                break;
                             }
-                            break;
                         }
                 }
             })

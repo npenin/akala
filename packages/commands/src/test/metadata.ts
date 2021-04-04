@@ -6,7 +6,7 @@ describe('test helpers', function ()
 {
     it('should generate correct metadata', function ()
     {
-        var meta = metadata(calculator)
+        const meta = metadata(calculator)
         assert.ok(meta);
         assert.strictEqual(meta.name, calculator.name);
         assert.ok(meta.commands);
@@ -14,7 +14,7 @@ describe('test helpers', function ()
         {
             assert.ok(metacmd);
             assert.ok(metacmd.name, JSON.stringify(metacmd));
-            var cmd = calculator.resolve(metacmd.name);
+            const cmd = calculator.resolve(metacmd.name);
             assert.ok(cmd, `command ${metacmd.name} could not be found in ${JSON.stringify(meta.commands)}`);
             assert.strictEqual(metacmd.name, cmd.name);
             assert.deepStrictEqual(metacmd.inject, cmd.inject || []);
@@ -24,7 +24,7 @@ describe('test helpers', function ()
 
     it('should generate correct proxy', function ()
     {
-        var meta = helper(calculator)
+        const meta = helper(calculator)
         assert.ok(meta);
         meta.reset();
         meta.increment();
@@ -39,7 +39,7 @@ describe('test helpers', function ()
 
     it('should list 3 commands + 3 default commands', function ()
     {
-        var meta = commandList(metadata(calculator))
+        const meta = commandList(metadata(calculator))
         assert.ok(meta);
         assert.strictEqual(meta.length, 3);
         assert.notStrictEqual(meta.indexOf('increment'), -1)
@@ -49,7 +49,7 @@ describe('test helpers', function ()
 
     it('should generate correct metadata from object', function ()
     {
-        var container = fromObject({
+        const container = fromObject({
             value: 0, increment(step?: number | string)
             {
                 if (step && typeof (step) == 'string')
@@ -67,8 +67,8 @@ describe('test helpers', function ()
             }
         }, calculator.name + 'Object');
 
-        var meta = metadata(calculator)
-        var meta2 = metadata(container)
+        const meta = metadata(calculator)
+        const meta2 = metadata(container)
         assert.ok(meta2);
         assert.strictEqual(meta2.name, meta.name + 'Object');
         assert.ok(meta2.commands);
@@ -76,7 +76,7 @@ describe('test helpers', function ()
         {
             assert.ok(metacmd);
             assert.ok(metacmd.name, JSON.stringify(metacmd));
-            var cmd = meta.commands.find(c => c.name == metacmd.name);
+            const cmd = meta.commands.find(c => c.name == metacmd.name);
             if (!cmd)
             {
                 assert.fail(`command ${metacmd.name} could not be found in ${JSON.stringify(meta.commands)}`);
@@ -88,7 +88,7 @@ describe('test helpers', function ()
 
     it('should handle basics from object', function ()
     {
-        var container = fromObject({
+        const container = fromObject({
             value: 0, increment(step?: number | string)
             {
                 if (step && typeof (step) == 'string')

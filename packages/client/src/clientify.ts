@@ -9,16 +9,16 @@ import * as scope from './scope';
 import * as controls from './controls/controls';
 export { Control, BaseControl, control } from './controls/controls';
 
-export var loadScript = load;
+export const loadScript = load;
 
 export type IScope<T> = scope.IScope<T>;
 export type PartDefinition<T extends scope.IScope<T>> = part.PartDefinition<T>;
 export type Http = core.Http;
 export type Part = part.Part;
-export var router: typeof routing.router
+export const router = routing.router
 export type LocationService = location.LocationService;
 export type Injector = core.Injector;
-export var init: typeof core.Module.prototype.activate;
+export const init = core.Module.prototype.activate;
 
 export { controls };
 
@@ -31,18 +31,19 @@ common.$$injector['Control'] = controls.Control
 common.$$injector['control'] = controls.control
 common.$$injector['load'] = loadScript
 
-var mainRouter = routing.router('mainRouter');
-mainRouter.use(common.serviceModule.register('$preRouter', routing.router('preRouter')).router);
-mainRouter.use(common.serviceModule.register('$router', routing.router('router')).router);
-mainRouter.use(function (error, _req, _next)
+const mainRouter = routing.router('mainRouter');
+mainRouter.useMiddleware(common.serviceModule.register('$preRouter', routing.router('preRouter')));
+mainRouter.useMiddleware(common.serviceModule.register('$router', routing.router('router')));
+mainRouter.useError(function (error)
 {
     console.error(error);
+    return Promise.reject(error);
 });
 common.serviceModule.register('$location', new location.LocationService());
 common.serviceModule.register('promisify', core.Promisify);
 
 // export { Promisify, Deferred };
-export var run: typeof common.$$injector.ready = common.$$injector.ready.bind(common.$$injector);
+export const run: typeof common.$$injector.ready = common.$$injector.ready.bind(common.$$injector);
 
 common.$$injector.activate([], function ()
 {
@@ -50,16 +51,16 @@ common.$$injector.activate([], function ()
 
 });
 
-export function load(...scripts: string[])
+export function load(...scripts: string[]): Promise<unknown>
 {
-    return new Promise((resolve, reject) =>
+    return new Promise((resolve) =>
     {
-        var firstScriptTag = document.getElementsByTagName('script')[0]; // find the first script tag in the document
+        const firstScriptTag = document.getElementsByTagName('script')[0]; // find the first script tag in the document
         core.eachAsync(scripts, function (script, i, next)
         {
-            var scriptTag = document.createElement('script'); // create a script tag
+            const scriptTag = document.createElement('script'); // create a script tag
             firstScriptTag.parentNode.insertBefore(scriptTag, firstScriptTag); // append the script to the DOM
-            scriptTag.addEventListener('load', function (ev)
+            scriptTag.addEventListener('load', function ()
             {
                 next()
             });
@@ -75,7 +76,7 @@ common.serviceModule.ready(['$location'], function ($location: location.Location
 {
     $location.on('change', function (path: string)
     {
-        mainRouter.handle(new Request(path), function (err)
+        mainRouter.process(new routing.RouterRequest(path)).catch(function (err)
         {
             if (err)
                 console.error(err);

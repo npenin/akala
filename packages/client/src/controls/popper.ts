@@ -13,7 +13,7 @@ export class Popper extends GenericControlInstance<popper.Options>
 
     public init()
     {
-        var p: popper.Instance;
+        let p: popper.Instance;
         if (this.parameter instanceof akala.Binding)
         {
             this.parameter.onChanged((ev) =>

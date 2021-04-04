@@ -2,10 +2,10 @@ import * as ac from '@akala/commands'
 
 export default new ac.Trigger('keybinding', (container) =>
 {
-    var chord = container;
+    let chord = container;
     document.addEventListener('keydown', (ev) =>
     {
-        var sequence = '';
+        let sequence = '';
         if (ev.ctrlKey)
             sequence += 'Ctrl+';
         if (ev.metaKey)
@@ -21,7 +21,7 @@ export default new ac.Trigger('keybinding', (container) =>
         else
             sequence += ev.code;
 
-        var cmd = container.resolve(sequence);
+        const cmd = container.resolve(sequence);
         if (chord !== container && !cmd)
         {
             console.error('no command matches ' + chord.name + ', ' + sequence);

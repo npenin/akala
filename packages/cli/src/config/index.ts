@@ -5,8 +5,8 @@ import * as akala from '@akala/core'
 
 async function updateConfig(newConfig, key)
 {
-    var config = await getConfig();
-    var keys = key.split('.');
+    const config = await getConfig();
+    const keys = key.split('.');
     keys.reduce(function (config, key, i)
     {
         if (keys.length == i + 1)
@@ -47,7 +47,7 @@ var getConfigGetter = {
 
 async function getConfigWithKey(key?: string)
 {
-    var config = await getConfig()
+    const config = await getConfig()
     if (key)
     {
         return key.split('.').reduce(function (config, key)
@@ -59,7 +59,7 @@ async function getConfigWithKey(key?: string)
         return config;
 }
 
-var getConfigProxy = new Proxy(getConfigWithKey, getConfigGetter);
+const getConfigProxy = new Proxy(getConfigWithKey, getConfigGetter);
 
 export function init()
 {
@@ -109,7 +109,7 @@ function getConfig()
         });
 }
 
-var config = program.command('config');
+const config = program.command('config');
 config.command('set <key> [value]')
     .action(async function (context, next)
     {

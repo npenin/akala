@@ -1,18 +1,18 @@
-import { CommandProxy, Command } from '../model/command';
-import { Injector, Injectable, each } from '@akala/core';
+import { Command } from '../model/command';
+import { Injector, Injectable, each, MiddlewarePromise } from '@akala/core';
 import * as  Metadata from '../metadata';
-import { CommandProcessor } from '../model/processor'
+import { CommandProcessor, StructuredParameters } from '../model/processor'
 import { Container } from '../model/container';
 import assert = require('assert');
 
-export class Local<T> extends CommandProcessor<T>
+export class Local extends CommandProcessor
 {
-    public static execute<T>(cmd: Metadata.Command, command: Injectable<any>, container: Container<T>, param: { param: any[], [key: string]: any }): any | PromiseLike<any>
+    public static execute<T>(cmd: Metadata.Command, command: Injectable<unknown>, container: Container<T>, param: StructuredParameters): unknown | PromiseLike<unknown>
     {
         if (!container)
             assert.fail('container is undefined');
-        var inject = cmd.inject;
-        var injector = new Injector(container);
+        let inject = cmd.inject;
+        const injector = new Injector(container);
         injector.register('$container', container);
         // console.log(param);
         if (param._trigger === 'proxy')
@@ -28,15 +28,25 @@ export class Local<T> extends CommandProcessor<T>
     }
 
 
-    public process(command: Command<T>, param: { param: any[], [key: string]: any }): any | PromiseLike<any>
+    public handle(command: Command, param: StructuredParameters): MiddlewarePromise
     {
         if (!this.container)
             assert.fail('container is undefined');
         else
-            return Local.execute<T>(command, command.handler, this.container, param);
+            return new Promise((resolve, reject) =>
+            {
+                try
+                {
+                    reject(Local.execute<unknown>(command, command.handler, this.container, param));
+                }
+                catch (e)
+                {
+                    resolve(e);
+                }
+            })
     }
 
-    constructor(container: Container<T>)
+    constructor(container: Container<unknown>)
     {
         super('local', container);
     }

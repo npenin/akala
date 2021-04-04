@@ -3,11 +3,11 @@ import { resolve } from 'path';
 import * as repl from 'repl'
 
 export function replEval(input: string): string[] {
-    var args: string[] = [];
-    var match: RegExpExecArray;
-    var arg = '';
-    var indexOfDQuotes = -1, indexOfQuotes = -1, indexOfSpace = -1;
-    var regex = /(["' $])/g;
+    const args: string[] = [];
+    let match: RegExpExecArray;
+    let arg = '';
+    let indexOfDQuotes = -1, indexOfQuotes = -1, indexOfSpace = -1;
+    const regex = /(["' $])/g;
     while (match = regex.exec(input)) {
         switch (match[1]) {
             case '\'':
@@ -62,7 +62,7 @@ export function replEval(input: string): string[] {
     return args;
 }
 
-var replStarted = false;
+let replStarted = false;
 
 program.command('repl')
     .action(function (context) {
@@ -74,11 +74,11 @@ program.command('repl')
 
         replStarted = true;
 
-        var server = repl.start(Object.assign(context as any || {}, {
+        const server = repl.start(Object.assign(context as any || {}, {
             eval: function (input: string, context, file, cb) {
 
                 try {
-                    var result = program.process(replEval(input));
+                    const result = program.process(replEval(input));
                     if (result && result.then) {
                         result.then(function () {
                             cb();

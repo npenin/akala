@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 module.exports = {
     entry: {
         browser: './lib/browser.js',
@@ -6,6 +7,7 @@ module.exports = {
         // markdown: './src/controls/markdown.ts',
     },
     output: {
+        // eslint-disable-next-line no-undef
         path: __dirname,
         filename: '[name].js',
         chunkFilename: 'browser.js',

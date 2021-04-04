@@ -3,25 +3,24 @@ import { homedir } from 'os';
 import fs from 'fs/promises';
 import { join } from 'path';
 import pmContainer from '../container';
-import serve from '@akala/commands/dist/cli/serve';
-import { Container, ServeOptions, Command, Metadata, ignoredCommands, configure, serveMetadata } from '@akala/commands';
+import { Container, Command, Metadata, ignoredCommands, configure } from '@akala/commands';
 import { eachAsync } from '@akala/core';
 import { Configurations } from '@akala/commands/dist/metadata';
 
-export async function metadata(container: Container<any>, deep?: boolean)
+export async function metadata(container: Container<unknown>, deep?: boolean): Promise<Metadata.Container>
 {
-    var metacontainer: Metadata.Container = { name: container.name || 'unnamed', commands: [] };
+    const metacontainer: Metadata.Container = { name: container.name || 'unnamed', commands: [] };
     await eachAsync(container.keys(), async key =>
     {
         if (key === '$injector' || key === '$state' || key === '$container' || ignoredCommands.indexOf(key) > -1 || key == '$init' || key == '$stop')
             return;
-        var cmd = container.resolve<Command>(key);
+        const cmd = container.resolve<Command>(key);
         if (cmd && cmd.name && cmd instanceof Command && ignoredCommands.indexOf(cmd.name) == -1)
             metacontainer.commands.push({ name: cmd.name, inject: cmd.inject || [], config: cmd.config });
         // console.log(deep)
         if (cmd instanceof Container && deep)
         {
-            let subContainer: Metadata.Container = await cmd.dispatch('$metadata', deep);
+            const subContainer = await cmd.dispatch('$metadata', deep) as Metadata.Container;
             // console.log(subContainer);
             subContainer.commands.forEach(c => c.name = key + '.' + c.name)
             metacontainer.commands.push(...subContainer.commands.filter(c => c.name !== key + '.$init' && c.name !== key + '.$stop'));
@@ -30,11 +29,11 @@ export async function metadata(container: Container<any>, deep?: boolean)
     return metacontainer;
 }
 
-export default async function (this: State, container: RunningContainer<State> & pmContainer, options: ServeOptions)
+export default async function (this: State, container: RunningContainer<State> & pmContainer): Promise<void>
 {
     this.isDaemon = true;
     this.processes = [];
-    var configPath = join(homedir(), './.pm.config.json');
+    const configPath = join(homedir(), './.pm.config.json');
     try
     {
         this.config = JSON.parse(await fs.readFile(configPath, 'utf-8'));
@@ -46,7 +45,7 @@ export default async function (this: State, container: RunningContainer<State> &
             this.config = {
                 containers: { pm: [process.cwd()] },
                 mapping: {}
-            } as any;
+            } as unknown as State['config'];
         else
             throw e;
     }
@@ -62,7 +61,7 @@ export default async function (this: State, container: RunningContainer<State> &
     await this.config.save();
     container.name = 'pm';
     await container.dispatch('map', 'pm', join(__dirname, '../../commands.json'), true);
-    var config = container.resolve<Configurations>('$metadata.config');
+    const config = container.resolve<Configurations>('$metadata.config');
     container.unregister('$metadata');
     container.register(configure(config)(new Command(metadata, '$metadata', ['$container', 'param.0'])));
 
@@ -76,7 +75,7 @@ export default async function (this: State, container: RunningContainer<State> &
     }
     catch (e)
     {
-
+        console.warn(e);
     }
 
     // var stop = await serve(container as Container<any>, serveMetadata(container.name, options || { _: ['local'] }));

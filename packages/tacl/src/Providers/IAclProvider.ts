@@ -12,28 +12,28 @@ export default interface IAclProvider
 }
 export type AclChangedHandler = (sender: IAclProvider, resource: string) => void;
 
-export class Event<THandler extends (...args: any[]) => void>
+export class Event<THandler extends (...args: unknown[]) => void>
 {
     private handlers: THandler[] = [];
 
-    public add(...handlers: THandler[])
+    public add(...handlers: THandler[]): void
     {
         this.handlers.push(...handlers);
     }
 
-    public remove(...handlers: THandler[])
+    public remove(...handlers: THandler[]): void
     {
-        for (let handler of handlers)
+        for (const handler of handlers)
         {
-            let indexOfHandler = this.handlers.indexOf(handler);
+            const indexOfHandler = this.handlers.indexOf(handler);
             if (indexOfHandler > -1)
                 this.handlers.splice(indexOfHandler, 1);
         }
     }
 
-    public raise(...args: Parameters<THandler>)
+    public raise(...args: Parameters<THandler>): void
     {
-        for (var handler of this.handlers)
+        for (const handler of this.handlers)
         {
             handler(...args);
         }

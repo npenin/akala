@@ -1,15 +1,9 @@
 
 
-import * as path from 'path'
-import * as akala from '@akala/core'
 import * as  Metadata from '../metadata';
-import { CommandProcessor, Processor } from '../model/processor';
+import { CommandProcessor, Processor, StructuredParameters } from '../model/processor';
 import { Container } from '../model/container';
-import { CommandProxy } from '../model/command';
-import { configure } from '../decorators';
-import { HttpClient } from './http-client';
-import { proxy } from '../generator';
-import { Local } from './local';
+import { MiddlewarePromise } from '@akala/core';
 
 export interface FileSystemConfiguration extends Metadata.Configuration
 {
@@ -20,19 +14,29 @@ export interface FileSystemConfiguration extends Metadata.Configuration
 export type FSCommand = Metadata.Command & { config?: { fs?: FileSystemConfiguration } };
 
 
-export class FileSystem<T> extends CommandProcessor<T>
+export interface DiscoveryOptions
 {
-    public static async discoverCommands<T>(root: string, container: Container<T>, options?: { recursive?: boolean, processor?: Processor<T>, isDirectory?: boolean }): Promise<void>
+    recursive?: boolean
+    processor?: Processor
+    isDirectory?: boolean
+    ignoreFileWithNoDefaultExport?: boolean
+    relativeTo?: string;
+}
+export class FileSystem extends CommandProcessor
+{
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    public static async discoverCommands<T>(root: string, container: Container<unknown>, options?: DiscoveryOptions): Promise<void>
     {
         throw new Error('this is not supported in a browser')
     }
 
-    public async process(command: FSCommand, param: { param: any[] })
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    public async handle(command: FSCommand, param: StructuredParameters): MiddlewarePromise
     {
-        throw new Error('this is not supported in a browser')
+        return new Error('this is not supported in a browser')
     }
 
-    constructor(container: Container<T>, private root: string | null)
+    constructor(container: Container<unknown>, private root: string | null)
     {
         super('fs', container);
         throw new Error('this is not supported in a browser')

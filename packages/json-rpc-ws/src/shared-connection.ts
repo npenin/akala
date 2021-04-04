@@ -1,7 +1,6 @@
 import { v4 as uuid } from 'uuid';
 import debug from 'debug';
 import { default as Errors, Error as ConnectionError, ErrorTypes } from './errors';
-import { promises } from 'fs';
 const logger = debug('json-rpc-ws');
 
 
@@ -9,21 +8,32 @@ export type SerializableObject = { [key: string]: string | number | string[] | n
 export type PayloadDataType<T> = number | SerializableObject | SerializableObject[] | boolean | boolean[] | number[] | string | string[] | null | undefined | void | { event: string, isBuffer: boolean, data: string | SerializedBuffer } | T;
 export type SerializedBuffer = { type: 'Buffer', data: Uint8Array | number[] };
 
-export interface Payload<T>
+export type Payload<T> = SerializablePayload | StreamPayload<T>;
+
+interface CommonPayload
 {
     jsonrpc?: '2.0';
     id?: string | number;
     method?: string;
-    params?: any;
-    result?: PayloadDataType<T>;
     error?: ConnectionError;
-    stream?: boolean;
+}
+export interface SerializablePayload extends CommonPayload
+{
+    params?: PayloadDataType<void>;
+    result?: PayloadDataType<void>;
+    stream?: false;
+}
+export interface StreamPayload<T> extends CommonPayload
+{
+    params?: T;
+    result?: PayloadDataType<T>;
+    stream?: true;
 }
 
 export class Deferred<T> implements PromiseLike<T>
 {
     private _resolve?: (value?: T | PromiseLike<T> | undefined) => void;
-    private _reject?: (reason?: any) => void;
+    private _reject?: (reason?: Error) => void;
     promise: Promise<T>;
     resolve(_value?: T | PromiseLike<T> | undefined): void
     {
@@ -32,7 +42,7 @@ export class Deferred<T> implements PromiseLike<T>
 
         this._resolve(_value);
     }
-    reject(_reason?: any): void
+    reject(_reason?: Error): void
     {
         if (typeof (this._reject) == 'undefined')
             throw new Error('Not Implemented');
@@ -41,8 +51,8 @@ export class Deferred<T> implements PromiseLike<T>
     }
     constructor()
     {
-        var _resolve;
-        var _reject;
+        let _resolve;
+        let _reject;
         this.promise = new Promise<T>((resolve, reject) =>
         {
             _resolve = resolve;
@@ -52,11 +62,11 @@ export class Deferred<T> implements PromiseLike<T>
         this._reject = _reject;
     }
 
-    public then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>
+    public then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: Error) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>
     {
         return this.promise.then(onfulfilled, onrejected);
     }
-    public catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>
+    public catch<TResult = never>(onrejected?: ((reason: Error) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>
     {
         return this.promise.catch(onrejected);
     }
@@ -65,14 +75,14 @@ export class Deferred<T> implements PromiseLike<T>
         return this.promise.finally(onfinally);
     }
 
-    public get [Symbol.toStringTag]()
+    public get [Symbol.toStringTag](): string
     {
         return this.promise[Symbol.toStringTag];
     }
 }
 
 export type Handler<TConnection extends Connection<TStreamable>, TStreamable, ParamType extends PayloadDataType<TStreamable>, ParamCallbackType extends PayloadDataType<TStreamable>> = (this: TConnection, params: ParamType, reply: ReplyCallback<ParamCallbackType>) => void;
-export type ReplyCallback<ParamType> = (error: any, params?: ParamType) => void;
+export type ReplyCallback<ParamType> = (error: ConnectionError, params?: ParamType) => void;
 
 
 /**
@@ -81,10 +91,11 @@ export type ReplyCallback<ParamType> = (error: any, params?: ParamType) => void;
  * @param {String} data - json data to be parsed
  * @returns {Object} Parsed json data
  */
-var jsonParse = function jsonParse(data: string): any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const jsonParse = function jsonParse(data: string): any
 {
 
-    var payload;
+    let payload;
     try
     {
         payload = JSON.parse(data);
@@ -102,35 +113,36 @@ var jsonParse = function jsonParse(data: string): any
  * callback for every sendMethod. We need a dummy callback to throw into responseHandlers
  * for when the user doesn't supply callback to sendMethod
  */
-var emptyCallback = function emptyCallback()
+const emptyCallback = function emptyCallback()
 {
 
     logger('emptycallback');
 };
 
-export interface SocketAdapter<TSocket = any>
+export interface SocketAdapterEventMap
+{
+    message: MessageEvent;
+    open: Event;
+    error: Event;
+    close: CloseEvent;
+}
+
+
+export interface SocketAdapter<TSocket = unknown>
 {
     readonly open: boolean;
     close(): void;
     send(data: string): void;
 
-    on(event: 'message', handler: (this: TSocket, ev: MessageEvent) => void): void;
-    on(event: 'open', handler: (this: TSocket) => void): void;
-    on(event: 'error', handler: (this: TSocket, ev: Event) => void): void;
-    on(event: 'close', handler: (this: TSocket, ev: CloseEvent) => void): void;
-    on(event: 'message' | 'error' | 'close' | 'open', handler: (ev?: any) => void): void
+    on<K extends keyof SocketAdapterEventMap>(event: K, handler: (this: TSocket, ev: SocketAdapterEventMap[K]) => void): void
 
-    once(event: 'message', handler: (this: TSocket, ev: MessageEvent) => void): void;
-    once(event: 'open', handler: (this: TSocket) => void): void;
-    once(event: 'error', handler: (this: TSocket, ev: Event) => void): void;
-    once(event: 'close', handler: (this: TSocket, ev: CloseEvent) => void): void;
-    once(event: 'message' | 'error' | 'close' | 'open', handler: (ev?: any) => void): void
+    once<K extends keyof SocketAdapterEventMap>(event: K, handler: (this: TSocket, ev: SocketAdapterEventMap[K]) => void): void;
 }
 
 export interface Parent<TStreamable, TConnection extends Connection<TStreamable>>
 {
     type: string;
-    getHandler: (method: string) => Handler<TConnection, TStreamable, any, any>;
+    getHandler: (method: string) => Handler<TConnection, TStreamable, PayloadDataType<TStreamable>, PayloadDataType<TStreamable>>;
     disconnected: (connection: TConnection) => void
 }
 
@@ -155,8 +167,8 @@ export abstract class Connection<TStreamable>
 
         socket.on('message', this.message.bind(this));
         // this.on('message', this.message.bind(this));
-        this.once('close', this.close.bind(this) as any);
-        this.once('error', this.close.bind(this) as any);
+        this.once('close', this.close.bind(this));
+        this.once('error', this.close.bind(this));
         // if (isBrowserSocket(parent, socket))
         // {
         //     socket.addEventListener('close', socketClosed.bind(this), { once: true });
@@ -169,24 +181,19 @@ export abstract class Connection<TStreamable>
         // }
     }
 
-    public on(event: 'message', handler: (ev: MessageEvent) => void): void
-    public on(event: 'error', handler: (ev: Event) => void): void
-    public on(event: 'close', handler: (ev: CloseEvent) => void): void
-    public on(event: 'message' | 'error' | 'close', handler: (ev?: any) => void): void
+
+    public on<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
     {
         this.socket.on(event, handler);
     }
 
-    public once(event: 'message', handler: (ev: MessageEvent) => void): void
-    public once(event: 'error', handler: (ev: Event) => void): void
-    public once(event: 'close', handler: (ev: CloseEvent) => void): void
-    public once(event: 'message' | 'error' | 'close', handler: (ev?: any) => void): void
+    public once<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
     {
         this.socket.once(event, handler);
     }
 
     public id = uuid();
-    protected responseHandlers: { [messageId: string]: ReplyCallback<any> } = {};
+    protected responseHandlers: { [messageId: string]: ReplyCallback<unknown> } = {};
 
     /**
      * Send json payload to the socket connection
@@ -197,11 +204,11 @@ export abstract class Connection<TStreamable>
      * @todo make sure this.connection exists, is connected
      * @todo if we're not connected look up the response handler from payload.id
      */
-    public sendRaw(payload: Payload<TStreamable>)
+    public sendRaw(payload: Payload<TStreamable>): void
     {
         payload.jsonrpc = '2.0';
         this.socket.send(JSON.stringify(payload));
-    };
+    }
 
 
     /**
@@ -214,12 +221,12 @@ export abstract class Connection<TStreamable>
      */
     public processPayload(payload: Payload<TStreamable>): void
     {
-        var version = payload.jsonrpc;
-        var id = payload.id;
-        var method = payload.method;
-        var params = payload.params;
-        var result = payload.result;
-        var error = payload.error;
+        const version = payload.jsonrpc;
+        const id = payload.id;
+        const method = payload.method;
+        let params = payload.params;
+        let result = payload.result;
+        const error = payload.error;
         if (version !== '2.0')
         {
             return this.sendError('invalidRequest', id, { info: 'jsonrpc must be exactly "2.0"' });
@@ -227,7 +234,7 @@ export abstract class Connection<TStreamable>
         //Will either have a method (request), or result or error (response)
         if (typeof method === 'string')
         {
-            var handler = this.parent.getHandler(method);
+            const handler = this.parent.getHandler(method);
             if (!handler)
             {
                 return this.sendError('methodNotFound', id, { info: 'no handler found for method ' + method });
@@ -245,7 +252,7 @@ export abstract class Connection<TStreamable>
             {
                 return handler.call(this, params, emptyCallback);
             }
-            var handlerCallback = function handlerCallback(this: Connection<TStreamable>, err: any, reply: PayloadDataType<TStreamable>)
+            const handlerCallback = function handlerCallback(this: Connection<TStreamable>, err: ConnectionError, reply: PayloadDataType<TStreamable>)
             {
                 logger('handler got callback %j, %j', err, reply);
                 if (typeof this.socket != 'undefined')
@@ -266,7 +273,7 @@ export abstract class Connection<TStreamable>
         if (typeof id === 'string' || typeof id === 'number')
         {
             logger('message id %s result %j error %j', id, result, error);
-            var responseHandler = this.responseHandlers[id];
+            const responseHandler = this.responseHandlers[id];
             if (!responseHandler)
             {
                 return this.sendError('invalidRequest', id, { info: 'no response handler for id ' + id });
@@ -281,8 +288,8 @@ export abstract class Connection<TStreamable>
         }
     }
 
-    protected abstract buildStream(id: string | number, result: TStreamable): any;
-    protected abstract sendStream(id: string | number, result: TStreamable): any;
+    protected abstract buildStream(id: string | number, result: PayloadDataType<TStreamable>): TStreamable;
+    protected abstract sendStream(id: string | number, result: TStreamable): void;
     protected abstract isStream(result: PayloadDataType<TStreamable>): result is TStreamable;
 
 
@@ -295,7 +302,7 @@ export abstract class Connection<TStreamable>
      * @public
      *
      */
-    public sendResult(id: string | number | undefined, error: ConnectionError | undefined, result?: PayloadDataType<TStreamable>, isStream?: boolean)
+    public sendResult(id: string | number | undefined, error: ConnectionError | undefined, result?: PayloadDataType<TStreamable>, isStream?: boolean): void
     {
 
         logger('sendResult %s %s %j %j', id, isStream, error, result);
@@ -304,13 +311,14 @@ export abstract class Connection<TStreamable>
         if (error && result)
             throw new Error('Cannot have both an error and a result');
 
-        var response: Payload<TStreamable> = { id: id, stream: !!isStream || this.isStream(result) };
+        const response: Payload<TStreamable> = { id: id, stream: !!isStream || this.isStream(result) };
 
         if (result)
         {
+            let cleanResult: PayloadDataType<TStreamable>;
             if (typeof result == 'object' && !Array.isArray(result))
             {
-                var cleanResult = {};
+                cleanResult = {};
                 Object.getOwnPropertyNames(result).forEach(p =>
                 {
                     if (p[0] != '_')
@@ -335,7 +343,7 @@ export abstract class Connection<TStreamable>
         }
 
         this.sendRaw(response);
-    };
+    }
 
     /**
      * Send a method message
@@ -345,9 +353,9 @@ export abstract class Connection<TStreamable>
      * @param {function} callback - optional callback for a reply from the message
      * @public
      */
-    public sendMethod<TParamType extends PayloadDataType<TStreamable>, TReplyType extends PayloadDataType<TStreamable>>(method: string, params?: TParamType, callback?: ReplyCallback<TReplyType>)
+    public sendMethod<TParamType extends PayloadDataType<TStreamable>, TReplyType extends PayloadDataType<TStreamable>>(method: string, params?: TParamType, callback?: ReplyCallback<TReplyType>): void
     {
-        var id = uuid();
+        const id = uuid();
         if (typeof method !== 'string' || !method.length)
             throw new Error('method must be a non-empty string');
         if (params !== null && params !== undefined && !(params instanceof Object))
@@ -361,7 +369,7 @@ export abstract class Connection<TStreamable>
         {
             this.responseHandlers[id] = emptyCallback;
         }
-        var request: Payload<TStreamable> = {
+        const request: Payload<TStreamable> = {
             id: id,
             method: method
         };
@@ -378,7 +386,7 @@ export abstract class Connection<TStreamable>
         }
 
         this.sendRaw(request);
-    };
+    }
 
     /**
      * Send an error message
@@ -388,13 +396,13 @@ export abstract class Connection<TStreamable>
      * @param {Any} data - Optional value for data portion of reply
      * @public
      */
-    public sendError(error: ErrorTypes, id: number | string | undefined, data?: any)
+    public sendError(error: ErrorTypes, id: number | string | undefined, data?: SerializableObject): void
     {
 
         logger('sendError %s', error);
         //TODO if id matches a responseHandler, we should dump it right?
         this.sendRaw(Errors(error, id, data));
-    };
+    }
 
     /**
      * Called when socket gets 'close' event
@@ -402,14 +410,14 @@ export abstract class Connection<TStreamable>
      * @param {ConnectionError} error - optional error object of close wasn't expected
      * @private
      */
-    public close(error?: ConnectionError | 1000 | Error)
+    public close(error?: ConnectionError | 1000 | Error | Event): void
     {
 
         logger('close');
         if (error && error !== 1000)
         {
-            debugger;
-            logger('close error %s', error.stack || error);
+            // debugger;
+            logger('close error %s', error['stack'] || error);
         }
         this.parent.disconnected(this); //Tell parent what went on so it can track connections
         delete this.socket;
@@ -417,23 +425,20 @@ export abstract class Connection<TStreamable>
 
     /**
      * Hang up the current socket
-     *
-     * @param {function} callback - called when socket has been closed
-     * @public
      */
-    public hangup(callback: () => void)
+    public hangup(): Promise<CloseEvent>
     {
         logger('hangup');
         if (!this.socket)
             throw new Error('Not connected');
-        if (typeof callback === 'function')
+        return new Promise<CloseEvent>((resolve, reject) =>
         {
-            var socket = this.socket;
-            socket.once('error', callback);
-            socket.once('close', callback);
-        }
-        this.socket.close();
-    };
+            const socket = this.socket;
+            socket.once('error', reject);
+            socket.once('close', resolve);
+            this.socket.close();
+        });
+    }
 
     /**
      * Incoming message handler
@@ -449,7 +454,7 @@ export abstract class Connection<TStreamable>
         //If it's an object handle
         //name of handle function ?!?!?
         logger('message %j', data);
-        var payload;
+        let payload;
         if (typeof (data) !== 'string') 
         {
             payload = jsonParse(data.data);
@@ -474,5 +479,5 @@ export abstract class Connection<TStreamable>
         {
             this.processPayload(payload);
         }
-    };
+    }
 }

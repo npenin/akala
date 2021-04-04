@@ -2,12 +2,12 @@ import webpack from 'webpack'
 import { State } from '../state'
 import { log as debug } from '@akala/core';
 
-var compiler: webpack.Compiler;
-var watcher: webpack.Watching;
+let compiler: webpack.Compiler;
+let watcher: webpack.Watching;
 
 const log = debug('webpack');
 
-export default async function compile(this: State, target?: string, reload?: boolean)
+export default async function compile(this: State, target?: string, reload?: boolean): Promise<webpack.Configuration>
 {
     if (reload || target && !this.webpack.config.entry[target])
     {

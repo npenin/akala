@@ -14,16 +14,16 @@ export default class RouterProvider implements IAclProvider
     constructor(configSection?: AclConfiguration, parameters?: { [key: string]: string })
     {
         this.provider_AclChanged = this.provider_AclChanged.bind(this);
-        var providerNames: string | null = null;
+        let providerNames: string | null = null;
         if (parameters)
             providerNames = parameters.providers;
         if (providerNames !== null && configSection)
         {
-            for (var providerName of providerNames.split(','))
+            for (const providerName of providerNames.split(','))
             {
-                var realProviderName = providerName;
+                let realProviderName = providerName;
 
-                var provider: (new (...args: any[]) => IAclProvider) | null = null;
+                let provider: (new (...args: unknown[]) => IAclProvider) | null = null;
                 while (provider == null)
                 {
                     provider = AclManager.registeredProviders[realProviderName];
@@ -45,7 +45,7 @@ export default class RouterProvider implements IAclProvider
 
 
 
-    public Register(resource: string, provider: IAclProvider, priority: number = 3): RouterProvider
+    public Register(resource: string, provider: IAclProvider, priority = 3): RouterProvider
     {
         resource = resource.toLowerCase();
         if (!this.routes[resource])
@@ -59,9 +59,9 @@ export default class RouterProvider implements IAclProvider
     {
         if (this.AclChanged != null)
         {
-            for (var resource of Object.keys(this.routes))
+            for (const resource of Object.keys(this.routes))
             {
-                for (var provider of this.routes[resource])
+                for (const provider of this.routes[resource])
                 {
                     if (provider == sender)
                     {
@@ -75,19 +75,19 @@ export default class RouterProvider implements IAclProvider
     private GetConcernedProviders(resource: string)
     {
         //Ordered list for priority. Values are the provider and the resource it was registered for
-        var concernedProviders = new OrderedList<number, { resource: string, provider: IAclProvider }>();
+        const concernedProviders = new OrderedList<number, { resource: string, provider: IAclProvider }>();
         resource = resource.toLowerCase();
         while (resource !== '')
         {
             if (this.routes[resource])
             {
-                for (var providers of this.routes[resource].entries())
+                for (const providers of this.routes[resource].entries())
                 {
-                    for (var provider of providers.value)
+                    for (const provider of providers.value)
                         concernedProviders.push(providers.key, { resource, provider: provider });
                 }
             }
-            var lastIndexOf = resource.lastIndexOf('/');
+            const lastIndexOf = resource.lastIndexOf('/');
             if (lastIndexOf > 0)
                 resource = resource.substring(0, lastIndexOf);
             else if (lastIndexOf == 0 && resource.length > 1)
@@ -99,14 +99,14 @@ export default class RouterProvider implements IAclProvider
         return concernedProviders;
     }
 
-    public GetAcls(resource: string, verb: string)
+    public GetAcls(resource: string, verb: string): OrderedList<string, AccessRule>
     {
-        var acls = new OrderedList<string, AccessRule>();
-        for (var provider of this.GetConcernedProviders(resource))
+        const acls = new OrderedList<string, AccessRule>();
+        for (const provider of this.GetConcernedProviders(resource))
         {
-            for (var acl of provider.provider.GetAcls(provider.resource == AclManager.ROOT ? resource : resource.substring(provider.resource.length), verb))
+            for (const acl of provider.provider.GetAcls(provider.resource == AclManager.ROOT ? resource : resource.substring(provider.resource.length), verb))
             {
-                var computedAcl: AccessRule | null = null;
+                let computedAcl: AccessRule | null = null;
                 switch (acl.type)
                 {
                     case AccessRules.Allow:
@@ -123,7 +123,7 @@ export default class RouterProvider implements IAclProvider
         return acls;
     }
 
-    public GetAclsBySubject(...subjects: string[]): Iterable<AccessRule>
+    public GetAclsBySubject(): Iterable<AccessRule>
     {
         throw new Error('Not Implemented');
     }
@@ -133,9 +133,9 @@ export default class RouterProvider implements IAclProvider
         if (acls == null || acls.length == 0)
             return this;
 
-        for (var acl of acls)
+        for (const acl of acls)
         {
-            for (var provider of this.GetConcernedProviders(acl.resource))
+            for (const provider of this.GetConcernedProviders(acl.resource))
             {
                 switch (acl.type)
                 {
@@ -161,18 +161,18 @@ export default class RouterProvider implements IAclProvider
             return this;
 
 
-        var resource = acls[0];
+        const resource = acls[0];
         if (typeof (resource) === 'string')
         {
             acls.shift();
-            for (var provider of this.GetConcernedProviders(resource))
+            for (const provider of this.GetConcernedProviders(resource))
             {
                 provider.provider.DeleteAcls(resource.substring(provider.resource.length), ...acls.filter(acl => typeof acl === 'string') as string[]);
             }
         }
 
-        for (var acl of (acls.filter(a => typeof a !== 'string') as AccessRule[]))
-            for (var provider of this.GetConcernedProviders(acl.resource))
+        for (const acl of (acls.filter(a => typeof a !== 'string') as AccessRule[]))
+            for (const provider of this.GetConcernedProviders(acl.resource))
             {
                 switch (acl.type)
                 {

@@ -7,7 +7,7 @@ export interface DateFormatterSettings
     format: string;
 }
 
-var formats = {
+const formats = {
     h: Date.prototype.getUTCHours,
     m: Date.prototype.getUTCMinutes,
     y: Date.prototype.getUTCFullYear,
@@ -24,10 +24,10 @@ export function formatParser(format: string)
     return {
         format: function (value: Date)
         {
-            var result: string = '';
-            var offset = 0;
-            var currentFormat: string;
-            for (var i = offset; i < format.length; i++)
+            let result = '';
+            let offset = 0;
+            let currentFormat: string;
+            for (let i = offset; i < format.length; i++)
             {
                 if (i == offset)
                     currentFormat = format[i];
@@ -76,11 +76,11 @@ export function formatParser(format: string)
         },
         parse: function (value: string)
         {
-            var result = new Date(0, 0, 0, 0, 0, 0, 0);
-            var formatOffset = 0;
-            var valueOffset = 0;
-            var currentFormat: string;
-            for (var i = formatOffset; i <= format.length; i++)
+            const result = new Date(0, 0, 0, 0, 0, 0, 0);
+            let formatOffset = 0;
+            let valueOffset = 0;
+            let currentFormat: string;
+            for (let i = formatOffset; i <= format.length; i++)
             {
                 if (i == formatOffset)
                     currentFormat = format[i];
@@ -157,14 +157,14 @@ export class DateFormatter implements FormatterFactory<Date, DateFormatterSettin
     public parse(expression: string): DateFormatterSettings
     {
         // console.log(expression);
-        var settings = new Parser().parse(expression);
+        const settings = new Parser().parse(expression);
         if (settings instanceof ParsedString)
             return { format: settings.value };
         return settings as DateFormatterSettings;
     }
     public build(formatter: Formatter<any>, settings: DateFormatterSettings): Formatter<Date>
     {
-        var parser = formatParser(settings && settings.format || 'yyyy-MM-dd');
+        const parser = formatParser(settings && settings.format || 'yyyy-MM-dd');
         return function (value)
         {
             value = formatter(value);

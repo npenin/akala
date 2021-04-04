@@ -14,18 +14,18 @@ export class Spinner extends GenericControlInstance<any>
 
     public init()
     {
-        var parent: Element = this.element;
-        var wrapped: PromiseLike<any> = this.factory.wrap(this.element, this.scope, true);
-        var settings: any = {};
+        let parent: Element = this.element;
+        let wrapped: PromiseLike<any> = this.factory.wrap(this.element, this.scope, true);
+        const settings: any = {};
         if (this.parameter instanceof Binding)
         {
-            let parameter = this.parameter.getValue();
+            const parameter = this.parameter.getValue();
             if (di.isPromiseLike(parameter))
                 wrapped = parameter;
         }
         if (this.parameter && this.parameter.promise instanceof Binding)
         {
-            var promise = this.parameter.promise.getValue();
+            const promise = this.parameter.promise.getValue();
             if (di.isPromiseLike(promise))
                 wrapped = promise;
         }
@@ -35,7 +35,7 @@ export class Spinner extends GenericControlInstance<any>
             settings.classes = this.parameter && this.parameter.classes || 'fa fa-spin fa-3x fa-circle-o-notch';
         if (di.isPromiseLike(wrapped))
         {
-            var spinner: Element;
+            let spinner: Element;
 
             if (this.element[0].tagName.toLowerCase() == 'tr')
             {

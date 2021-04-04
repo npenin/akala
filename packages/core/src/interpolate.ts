@@ -9,10 +9,10 @@ export class Interpolate
     private static _startSymbol = '{{';
     private static _endSymbol = '}}';
 
-    public get startSymbol() { return Interpolate._startSymbol; };
-    public set startSymbol(value: string) { Interpolate._startSymbol = value; };
-    public get endSymbol() { return Interpolate._endSymbol; };
-    public set endSymbol(value: string) { Interpolate._endSymbol = value; };
+    public get startSymbol() { return Interpolate._startSymbol; }
+    public set startSymbol(value: string) { Interpolate._startSymbol = value; }
+    public get endSymbol() { return Interpolate._endSymbol; }
+    public set endSymbol(value: string) { Interpolate._endSymbol = value; }
 
     private static unescapeText(text)
     {
@@ -31,12 +31,12 @@ export class Interpolate
 
     public static build(text: string, mustHaveExpression?: boolean, trustedContext?: boolean, allOrNothing?: boolean): (value: any) => string
     {
-        var startSymbolLength = Interpolate._startSymbol.length,
+        const startSymbolLength = Interpolate._startSymbol.length,
             endSymbolLength = Interpolate._endSymbol.length;
 
         if (!text.length || text.indexOf(Interpolate._startSymbol) === -1)
         {
-            var constantInterp;
+            let constantInterp;
             if (!mustHaveExpression)
             {
                 return function (target)
@@ -48,7 +48,7 @@ export class Interpolate
         }
 
         allOrNothing = !!allOrNothing;
-        var startIndex,
+        let startIndex,
             endIndex,
             index = 0,
             expressions = [],
@@ -87,9 +87,9 @@ export class Interpolate
             }
         }
 
-        var compute = function (values: Binding[])
+        const compute = function (values: Binding[])
         {
-            for (var i = 0, ii = expressions.length; i < ii; i++)
+            for (let i = 0, ii = expressions.length; i < ii; i++)
             {
                 if (allOrNothing && typeof (values[i].getValue()))
                     return;
@@ -100,9 +100,9 @@ export class Interpolate
 
         return function interpolationFn(target)
         {
-            var bindings: Binding[] = [];
+            const bindings: Binding[] = [];
 
-            for (var i = 0; i < expressions.length; i++)
+            for (let i = 0; i < expressions.length; i++)
             {
                 bindings[i] = parseFns[i](target);
             }

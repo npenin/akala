@@ -1,64 +1,65 @@
+import 'source-map-support/register'
 import * as r from '../router'
-import { NextFunction as Next } from '../eachAsync'
+import 'mocha'
+import assert from 'assert';
 
-type handlerType = ({ url: string, params: any }, next: Next) => void;
-type errorhandlerType = (error: any, { url: string, params: any }, next: Next) => void;
-
-type Layer = r.Layer<handlerType> & r.IRoutable<handlerType>;
-
-class Router extends r.Router<handlerType, errorhandlerType, Layer, r.Route<handlerType, Layer>>
+class Router extends r.Router1<{ path: string, params?: Record<string, unknown> }>
 {
     constructor(options?: r.RouterOptions)
     {
         super(options);
     }
-    protected buildLayer(path: string, options: r.LayerOptions, handler: handlerType): Layer
-    {
-        return <any>new r.Layer<handlerType>(path, options, handler);
-    }
-    protected buildRoute(path: string): r.Route<handlerType, Layer>
-    {
-        return new r.Route<handlerType, Layer>(path);
-    }
 }
-
-var router = new Router();
-
-router.use('/api/', function (req, next: Next)
+describe('router', () =>
 {
-    console.log('api');
-    next();
-})
+    const router = new Router();
 
-var ra = new Router();
+    router.use('/api', function ()
+    {
+        console.log('api');
+        return Promise.reject();
+    });
 
-var rb = new Router();
+    const ra = new Router();
 
-ra.use('/:id?', function (req, next)
-{
-    console.log('a' + req.url);
-    console.log(req.params);
-})
+    const rb = new Router();
 
-rb.use('/:id?', function (req, next)
-{
-    console.log('b' + req.url);
-    console.log(req.params);
-})
+    ra.use('/:id?', async function (req)
+    {
+        console.log('a' + req.path);
+        return req.params.id;
+    });
 
-router.use('/api/a', ra.router);
-router.use('/api/b', rb.router);
+    rb.use('/:id?', async function (req)
+    {
+        console.log('b' + req.path);
+        return req.params.id;
+    })
 
-// router.handleRoute({ path: '/' });
-// router.handleRoute({ path: '/a' });
-// router.handleRoute({ path: '/api/pwic' });
-router.handle(<any>{ url: '/api/a' }, function ()
-{
-    console.log('failed');
+    router.useMiddleware('/api/a', ra);
+    router.useMiddleware('/api/b', rb);
+
+    it('works with simple non matching path', () =>
+    {
+        return router.process({ path: '/' }).catch((x) => typeof x === 'undefined' ? Promise.resolve() : Promise.reject(new Error('should not have matched anything')));
+    });
+    it('does not catch non matching routes', async () =>
+    {
+        await router.process({ path: '/a' }).catch((x) => typeof x === 'undefined' ? Promise.resolve() : Promise.reject(new Error('matched when it should not')));
+        await router.process({ path: '/api/pwic' }).catch((x) => typeof x === 'undefined' ? Promise.resolve() : Promise.reject(new Error('matched when it should not')));
+    });
+    it('catches obvious path', () =>
+    {
+        return router.process({ path: '/api/a' }).catch(() =>
+            Promise.reject(new Error('should never reach that point'))
+        );
+    });
+    it('catches path with id', async () =>
+    {
+        assert.strictEqual('pwet', await router.process({ path: '/api/a/pwet' }).catch(() =>
+            Promise.reject(new Error('should never reach that point'))
+        ));
+    });
+    // router.handleRoute({ path: '/api/b' });
+    // router.handleRoute({ path: '/api/b/pwic' });
 });
-// router.handle({ url: '/api/a/pwic' }, function ()
-// {
-//     console.log('failed');
-// });
-// router.handleRoute({ path: '/api/b' });
-// router.handleRoute({ path: '/api/b/pwic' });

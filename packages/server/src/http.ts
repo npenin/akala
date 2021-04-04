@@ -20,5 +20,5 @@ FetchHttp.prototype['getXML'] = function (this: FetchHttp, url: string)
 
 export interface Http extends coreHttp
 {
-    getXML<T=any>(url: string): PromiseLike<T>
+    getXML<T = unknown>(url: string): PromiseLike<T>
 }

@@ -86,9 +86,9 @@ class CliRouter extends akala.Router<cliHandlerWithNext, errorHandlerWithNext, C
 
     public command(path: string)
     {
-        var cmd = new Command(this.injector);
+        const cmd = new Command(this.injector);
 
-        var layer = this.layer(path, function (context)
+        const layer = this.layer(path, function (context)
         {
             cmd.request = context;
             cmd._action.apply(null, Array.from(arguments));
@@ -150,12 +150,12 @@ class CliRouter extends akala.Router<cliHandlerWithNext, errorHandlerWithNext, C
 class Option
 {
     public names: { name: string, pattern: RegExp }[] = [];
-    public single: boolean = true;
+    public single = true;
     public args: LayerRegExp & { keys: Key[] };
 
     constructor(specification: string, private description: string, private defaultValue: any)
     {
-        var followingArgs = specification.replace(/(?:^|[\|, ]+)-(-)?([^ ]+)(?:[^<\[])?/g, (match, doubleDash, name) =>
+        const followingArgs = specification.replace(/(?:^|[\|, ]+)-(-)?([^ ]+)(?:[^<\[])?/g, (match, doubleDash, name) =>
         {
             if (doubleDash)
                 this.names.push({ name: name, pattern: new RegExp('^--' + escapeRegExp(name) + '$') });
@@ -166,7 +166,7 @@ class Option
 
         if (followingArgs.length > 0)
         {
-            let keys = [];
+            const keys = [];
             this.args = cliToRegexp(followingArgs, keys) as any;
             if (keys.length == 1 && keys[0].variadic)
                 this.single = false;
@@ -175,7 +175,7 @@ class Option
 
     public matches(context: CliContext)
     {
-        var optionValues = this.names.filter((nameSpec) =>
+        const optionValues = this.names.filter((nameSpec) =>
         {
             if (typeof (this.defaultValue) != 'undefined')
                 context.options[nameSpec.name] = this.defaultValue;
@@ -198,7 +198,7 @@ class Option
                 {
                     if (this.args)
                     {
-                        var match = CliRouter.getAsCli(context.args.slice(i + 1, this.args.keys.length + i + 1)).match(this.args);
+                        const match = CliRouter.getAsCli(context.args.slice(i + 1, this.args.keys.length + i + 1)).match(this.args);
                         if (!match)
                             continue;
                         indexesToRemove.push(i);
@@ -247,11 +247,11 @@ class Command extends akala.Injector implements ICommandBuilder
 
     public resolve<T = any>(name: string): T
     {
-        let indexOfDot = name.indexOf('.');
+        const indexOfDot = name.indexOf('.');
 
         if (indexOfDot > -1)
         {
-            let master = name.substr(0, indexOfDot);
+            const master = name.substr(0, indexOfDot);
             if (master in masterPrefixes)
             {
                 switch (master)
@@ -327,8 +327,8 @@ class Command extends akala.Injector implements ICommandBuilder
 
 function cliToRegexp(cli: string, keys: (Partial<Key> & {repeat:boolean, optional:boolean, delimiter:string})[], options?: akala.LayerOptions): LayerRegExp
 {
-    var flags: string = undefined;
-    var regexp = '^';
+    let flags: string = undefined;
+    let regexp = '^';
     if (options && options.sensitive)
         flags += 'i';
 
@@ -367,7 +367,7 @@ function cliToRegexp(cli: string, keys: (Partial<Key> & {repeat:boolean, optiona
 
     if (options && options.end)
         regexp += '(?=\/|$)';
-    var result: LayerRegExp & { keys: Partial<Key>[] };
+    let result: LayerRegExp & { keys: Partial<Key>[] };
     result = new RegExp(regexp, flags) as any;
     if (regexp == '^.*$')
     {
@@ -377,8 +377,8 @@ function cliToRegexp(cli: string, keys: (Partial<Key> & {repeat:boolean, optiona
     return result;
 }
 
-var mainRouter = new CliRouter();
-var cmd = mainRouter.command('*');
+const mainRouter = new CliRouter();
+const cmd = mainRouter.command('*');
 
 cmd.option('--url', 'remote url of akala server', 'http://localhost:5678/')
 cmd['cliToRegexp'] = cliToRegexp;

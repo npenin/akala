@@ -11,7 +11,7 @@ export class Configuration
     {
         try
         {
-            var content = await fs.readFile(file, 'utf8');
+            const content = await fs.readFile(file, 'utf8');
             return new Configuration(file, JSON.parse(content));
         }
         catch (e)
@@ -36,7 +36,7 @@ export class Configuration
 
     public set(key: string, newConfig: any)
     {
-        var keys = key.split('.');
+        const keys = key.split('.');
         keys.reduce(function (config, key, i)
         {
             if (keys.length == i + 1)

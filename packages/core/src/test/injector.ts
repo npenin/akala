@@ -64,13 +64,13 @@ i1.injectWithName(['$updateConfig.pwet.a.b.c'], function (config)
     config({ x: 'y' }, 'd');
 })();*/
 
-var i = new Injector();
+const i = new Injector();
 i.register('os', 'linux')
 i.register('vendor', 'microsoft')
 i.register('action', 'loves')
 i.register('otherVendor', 'node')
 
-var subI = new Injector(i);
+const subI = new Injector(i);
 @useInjector(subI)
 class A
 {

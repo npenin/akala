@@ -1,7 +1,7 @@
 // /// <reference types="types-serviceworker" />
 /// <reference path="../../serviceworker.d.ts" />
 
-module immediate
+namespace immediate
 {
     declare var self: ServiceWorkerGlobalScope;
 

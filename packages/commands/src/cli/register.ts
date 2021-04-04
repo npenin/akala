@@ -14,7 +14,7 @@ export default async function register(commandsPath?: string, name?: string, for
         else
             throw new Error('please specify commands path');
 
-    var packagePath = 'package.json';
+    let packagePath = 'package.json';
     while (!fs.existsSync(packagePath))
     {
         packagePath = '../' + packagePath;
@@ -22,7 +22,7 @@ export default async function register(commandsPath?: string, name?: string, for
 
     if (!fs.existsSync(packagePath))
     {
-        var depth = process.cwd().length - process.cwd().replace('/', '').length;
+        let depth = process.cwd().length - process.cwd().replace('/', '').length;
         if (os.platform() != "win32")
             depth - 1;
         for (; depth > 0; depth--, packagePath = '../' + packagePath)
@@ -34,8 +34,8 @@ export default async function register(commandsPath?: string, name?: string, for
             throw new Error('Unable to find package.json file in current folder or any of its parent');
     }
 
-    var packageFile = require(path.join(process.cwd(), packagePath));
-    var dirty = false;
+    const packageFile = require(path.join(process.cwd(), packagePath));
+    let dirty = false;
     if (typeof (name) != 'undefined' && name !== packageFile.name)
     {
         if (typeof (packageFile.commands) == 'string' || typeof (packageFile.commands) == 'undefined')
@@ -44,7 +44,7 @@ export default async function register(commandsPath?: string, name?: string, for
             //     console.log('no change to perform; this path is already registered');
             // else
             // {
-            var commands: any = {};
+            const commands: any = {};
             if (packageFile.commands)
                 commands[packageFile.name] = packageFile.commands;
             commands[name] = commandsPath
@@ -86,4 +86,4 @@ export default async function register(commandsPath?: string, name?: string, for
 
     if (dirty)
         await fs.promises.writeFile(path.join(process.cwd(), packagePath), JSON.stringify(packageFile, null, 4));
-};
+}

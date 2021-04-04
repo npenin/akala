@@ -1,10 +1,9 @@
-import { promisify } from 'util'
 import * as fs from 'fs';
 
-export async function updateConfig(newConfig, key: string)
+export async function updateConfig(newConfig: unknown, key: string): Promise<void>
 {
-    var config = await getConfig();
-    var keys = key.split('.');
+    const config = await getConfig();
+    const keys = key.split('.');
     keys.reduce(function (config, key, i)
     {
         if (keys.length == i + 1)
@@ -20,25 +19,25 @@ export async function updateConfig(newConfig, key: string)
     writeConfig(config);
 }
 
-export function writeConfig(config)
+export function writeConfig(config: unknown): Promise<void>
 {
-    return promisify(fs.writeFile)('./config.json', JSON.stringify(config, null, 4), 'utf8').catch(function (err)
+    return fs.promises.writeFile('./config.json', JSON.stringify(config, null, 4), 'utf8').catch(function (err)
     {
         if (err)
             console.error(err);
     });
 }
 
-export function getConfig()
+export function getConfig<T = unknown>(): Promise<T>
 {
-    return promisify(fs.readFile)('./config.json', 'utf8').then(function (content)
+    return fs.promises.readFile('./config.json', 'utf8').then(function (content)
     {
         return JSON.parse(content);
-    }, function (err)
+    }, function ()
+    {
+        writeConfig({}).then(function ()
         {
-            writeConfig({}).then(function (config)
-            {
-                return {};
-            })
-        });
+            return {};
+        })
+    });
 }

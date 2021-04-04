@@ -25,7 +25,7 @@ export class Adapter implements ServerAdapter
     this.server?.on(event, callback);
   }
 
-  start()
+  start(): void
   {
     this.server = new ws.Server(this.options);
   }

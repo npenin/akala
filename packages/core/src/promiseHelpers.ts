@@ -28,8 +28,8 @@ export function whenOrTimeout<T>(promise: PromiseLike<T>, timeoutInMs: number): 
 {
     return new Promise<T>((resolve, reject) =>
     {
-        var timedOut = false;
-        var timeOut = setTimeout(function ()
+        let timedOut = false;
+        const timeOut = setTimeout(function ()
         {
             timedOut = true;
             reject('timeout');

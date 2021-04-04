@@ -11,7 +11,7 @@ import { SocketAdapter } from '../shared-connection';
 
 export default class Client extends ClientBase<stream.Readable>
 {
-    connection(socket: SocketAdapter)
+    connection(socket: SocketAdapter): Connection
     {
         return new Connection(socket, this);
     }
@@ -20,5 +20,5 @@ export default class Client extends ClientBase<stream.Readable>
         super(Client.connect);
     }
 
-    public static connect(address: string) { return new WsSocketAdapter(new ws(address)); }
+    public static connect(address: string): SocketAdapter { return new WsSocketAdapter(new ws(address)); }
 }

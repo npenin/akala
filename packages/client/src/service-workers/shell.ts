@@ -1,7 +1,7 @@
 // /// <reference types="types-serviceworker" />
 /// <reference path="../../serviceworker.d.ts" />
 
-module shell
+namespace shell
 {
     declare var self: ServiceWorkerGlobalScope;
 

@@ -9,14 +9,6 @@ const logger = debug('json-rpc-ws');
  */
 export class Errors
 {
-  /**
-   *
-   */
-  constructor()
-  {
-
-  }
-
   parseError: Error = { code: -32700, message: 'Parse error' }
   invalidRequest: Error = { code: -32600, message: 'Invalid Request' }
   methodNotFound: Error = { code: -32601, message: 'Method not found' }
@@ -31,11 +23,11 @@ export interface Error
 {
   code: number;
   message: string;
-  data?: any;
+  data?: unknown;
   stack?: undefined;
 }
 
-var errors = new Errors();
+const errors = new Errors();
 
 export interface Payload
 {
@@ -51,13 +43,13 @@ export interface Payload
  * @param {Any} data - optional data attribute for error message
  * @returns {Object|null} mreply object that can be sent back
  */
-export default function getError(type: ErrorTypes, id?: number | string, data?: any)
+export default function getError(type: ErrorTypes, id?: number | string, data?: unknown): Payload
 {
 
   if (!errors[type])
     throw new Error('Invalid error type ' + type);
 
-  var payload: Payload = {
+  const payload: Payload = {
     error: errors[type],
   };
   if (typeof id === 'string' || typeof id === 'number')
@@ -70,4 +62,4 @@ export default function getError(type: ErrorTypes, id?: number | string, data?: 
   }
   logger('error %j', payload);
   return payload;
-};
+}

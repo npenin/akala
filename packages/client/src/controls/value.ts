@@ -40,7 +40,7 @@ export class Value extends GenericControlInstance<string>
             return;
         if (this.parameter instanceof di.Binding)
         {
-            var parameter = this.parameter;
+            const parameter = this.parameter;
             this.element.addEventListener('change', () =>
             {
                 switch (this.element.tagName)

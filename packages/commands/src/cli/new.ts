@@ -8,8 +8,8 @@ type Arguments = ReturnType<typeof Parser.default>;
 
 export async function outputHelper(outputFile: string | undefined, nameIfFolder: string, force: boolean)
 {
-    var output: Writable = undefined as any;
-    var exists = false;
+    let output: Writable = undefined as any;
+    let exists = false;
     if (!outputFile)
     {
         output = process.stdout;
@@ -32,7 +32,7 @@ export async function outputHelper(outputFile: string | undefined, nameIfFolder:
     if (typeof output == 'undefined')
         output = fs.createWriteStream(outputFile);
 
-    var outputFolder = path.dirname(outputFile);
+    const outputFolder = path.dirname(outputFile);
 
 
     return { output, outputFolder, outputFile, exists };
@@ -74,4 +74,4 @@ export default async function _new(type: string, name: string, options: Argument
         default:
             throw new Error(`${type} is not supported`);
     }
-};
+}

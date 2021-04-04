@@ -1,7 +1,7 @@
 'use strict';
 
 import { default as ClientBase } from './shared-client';
-import { SocketAdapter } from '../shared-connection';
+import { SocketAdapter, SocketAdapterEventMap } from '../shared-connection';
 import { Connection } from '../browser'
 /**
  * json-rpc-ws connection
@@ -18,10 +18,10 @@ export class WebSocketAdapter implements SocketAdapter
 
     }
 
-    get open()
+    get open(): boolean
     {
         return this.socket.readyState == WebSocket.OPEN;
-    };
+    }
 
     close(): void
     {
@@ -33,19 +33,11 @@ export class WebSocketAdapter implements SocketAdapter
         this.socket.send(data);
     }
 
-    public on(event: "open", handler: () => void): void;
-    public on(event: "message", handler: (ev: MessageEvent) => void): void;
-    public on(event: "error", handler: (ev: Event) => void): void;
-    public on(event: "close", handler: (ev: CloseEvent) => void): void;
-    public on(event: "message" | "error" | "close" | "open", handler: (ev?: any) => void): void
+    public on<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
     {
         this.socket.addEventListener(event, handler);
     }
-    public once(event: "open", handler: () => void): void;
-    public once(event: "message", handler: (ev: MessageEvent) => void): void;
-    public once(event: "error", handler: (ev: Event) => void): void;
-    public once(event: "close", handler: (ev: CloseEvent) => void): void;
-    public once(event: "message" | "error" | "close" | "open", handler: (ev?: any) => void): void
+    public once<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
     {
         this.socket.addEventListener(event, handler, { once: true });
     }
@@ -63,17 +55,17 @@ export default class Client extends ClientBase<ReadableStream>
         super(Client.connect);
     }
 
-    public static connect(address: string) { return new WebSocketAdapter(new WebSocket(address.replace(/^http/, 'ws'))); }
+    public static connect(address: string): SocketAdapter { return new WebSocketAdapter(new WebSocket(address.replace(/^http/, 'ws'))); }
 }
 
 import debug from 'debug';
 const logger = debug('json-rpc-ws');
 export { SocketAdapter }
 
-export function createClient()
+export function createClient(): Client
 {
     logger('create ws client');
     return new Client();
-};
+}
 
 export const connect = Client.connect;

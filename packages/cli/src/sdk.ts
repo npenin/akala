@@ -4,9 +4,9 @@ import { spawn, SpawnOptions, ChildProcess } from 'child_process';
 function start(command: string, options?: SpawnOptions): Promise<number>
 function start(command: string, args?: ReadonlyArray<string>, options?: SpawnOptions): Promise<number>
 function start(command: string, args?: ReadonlyArray<string> | SpawnOptions, options?: SpawnOptions): Promise<number> {
-    var cp: ChildProcess = spawn.apply(this, arguments);
+    const cp: ChildProcess = spawn.apply(this, arguments);
     return new Promise((resolve, reject) => {
-        var hasError: any = null;
+        let hasError: any = null;
         cp.on('error', function (e) {
             hasError = e;
         });
@@ -19,14 +19,14 @@ function start(command: string, args?: ReadonlyArray<string> | SpawnOptions, opt
     });
 }
 
-var ts = program
+const ts = program
     .command('ts <project>')
     .action(function (context) {
         console.log(`typescript ${JSON.stringify(context.params)}`);
         return start('tsc', ['-p', context.params.project], { shell: true, stdio: 'inherit' });
     });
 
-var browserify = program
+const browserify = program
     .command('browserify <file> [...browserifyArgs]')
     .action(function (context) {
         return start('browserify', [context.params.file].concat(context.params.browserifyArgs), { shell: true, stdio: 'inherit' })

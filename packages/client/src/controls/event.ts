@@ -18,7 +18,7 @@ export class Events extends GenericControlInstance<Partial<HTMLElementEventHandl
 
     public init(@inject('$injector') injector?: Injector)
     {
-        var value: Partial<HTMLElementEventHandlerMap> | PromiseLike<Partial<HTMLElementEventHandlerMap>>;
+        let value: Partial<HTMLElementEventHandlerMap> | PromiseLike<Partial<HTMLElementEventHandlerMap>>;
         if (this.parameter instanceof Binding)
             value = this.parameter.getValue();
         else
@@ -28,7 +28,7 @@ export class Events extends GenericControlInstance<Partial<HTMLElementEventHandl
         {
             akala.each(value, (handler, event) =>
             {
-                var i = new Injector(injector);
+                const i = new Injector(injector);
                 i.register('parameter', handler);
                 this.events.push(new Event(event));
             })
@@ -52,11 +52,11 @@ export class Event extends GenericControlInstance<Function>
 
     public init()
     {
-        var handler = () =>
+        const handler = () =>
         {
             if (this.parameter instanceof Binding)
             {
-                var value = this.parameter.getValue();
+                const value = this.parameter.getValue();
                 if (isPromiseLike(value))
                 {
                     value.then((value) => this.apply(value));

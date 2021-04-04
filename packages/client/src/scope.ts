@@ -26,7 +26,7 @@ export class Scope<T> implements IScope<T>
 
     public $new<U>(): Scope<U>
     {
-        var root = this['$root'] || this;
+        const root = this['$root'] || this;
         var newScope = function ()
         {
             Object.defineProperty(this, '$parent', {
@@ -49,13 +49,13 @@ export class Scope<T> implements IScope<T>
 
     public $inject<T>(f: akala.Injectable<T>, params?: { [key: string]: any })
     {
-        var scope = this;
+        const scope = this;
         if (!this.hasOwnProperty('$$resolver'))
         {
             this.$$resolver = new akala.Injector();
             this.$$resolver.setInjectables(this);
         }
-        var inj = new akala.Injector(this.$$resolver);
+        const inj = new akala.Injector(this.$$resolver);
         if (params)
         {
             akala.each(params, (value, key) =>
@@ -73,7 +73,7 @@ export class Scope<T> implements IScope<T>
 
     public $bind(expression: string): akala.Binding
     {
-        var binding = this.$$watchers[expression];
+        let binding = this.$$watchers[expression];
         if (!binding)
         {
             binding = new akala.Binding(expression, this);
@@ -84,7 +84,7 @@ export class Scope<T> implements IScope<T>
 
     public $watch(expression: string, handler: (value: any) => void)
     {
-        var binding = this.$bind(expression);
+        const binding = this.$bind(expression);
         if (!binding['handlers'])
             binding['handlers'] = [];
         if (binding['handlers'].indexOf(handler) > -1)

@@ -1,12 +1,12 @@
-import { serveStatic } from "../master-meta";
 import { State } from "../state";
 import { SendOptions } from "send";
 import * as path from 'path'
 import { HttpRouter } from "../router";
+import { StaticFileMiddleware } from "../router/staticFileMiddleware";
 
-export default function route(this: State, route: string, target: string, options: { pre?: boolean, auth?: boolean, app?: boolean, get?: boolean, use?: boolean } & SendOptions, cwd: string)
+export default function route(this: State, route: string, target: string, options: { pre?: boolean, auth?: boolean, app?: boolean, get?: boolean, use?: boolean } & SendOptions, cwd: string): void
 {
-    var method: 'get' | 'use' | 'useGet';
+    let method: 'get' | 'use' | 'useGet';
 
     if (!options)
         options = {};
@@ -30,7 +30,7 @@ export default function route(this: State, route: string, target: string, option
         options.root = path.resolve(cwd, options.root);
     }
 
-    var router: HttpRouter;
+    let router: HttpRouter;
 
 
 
@@ -44,5 +44,5 @@ export default function route(this: State, route: string, target: string, option
     else
         router = this.lateBoundRoutes;
 
-    router[method](route, serveStatic(target, options));
+    router[method + 'Middleware'](route, new StaticFileMiddleware(target, options));
 }

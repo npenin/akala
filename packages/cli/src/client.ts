@@ -7,9 +7,9 @@ import { promisify } from 'util';
 program.command('client').command('api <name> <url>')
     .action(async function (context)
     {
-        var http: akala.Http = akala.resolve('$http');
-        var response = await http.get(context.params.url);
-        var filePath = await promisify(fs.mkdtemp)('api', 'utf8');
+        const http: akala.Http = akala.resolve('$http');
+        const response = await http.get(context.params.url);
+        const filePath = await promisify(fs.mkdtemp)('api', 'utf8');
         if (response.headers.has('content-type'))
             if (~response.headers.get('content-type').indexOf('text/javascript'))
             {

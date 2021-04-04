@@ -27,7 +27,7 @@ program.command('run [cwd]').action(function (context)
     mock('@akala/core', akala)
     mock('@akala/server', require('@akala/server'))
     // debugger;
-    var pkg = require(join(process.cwd(), context.params.cwd, './package.json'));
+    const pkg = require(join(process.cwd(), context.params.cwd, './package.json'));
     mock(pkg.name + '/package.json', pkg);
 
     if (context.params.cwd)
@@ -47,7 +47,7 @@ program.command('run [cwd]').action(function (context)
             }));
         });
 
-        var dummyRouter = {};
+        const dummyRouter = {};
         akala.register('$router', new Proxy(dummyRouter, {
             get: function (target, property)
             {
@@ -158,7 +158,7 @@ akala.module('$api').register('cli', class Cli<TConnection, TServerOneWay, TServ
             case 'args':
                 return req.args
             default:
-                let result: any = {};
+                const result: any = {};
                 akala.each(config.param, function (value, key)
                 {
                     switch (value)
@@ -185,10 +185,10 @@ akala.module('$api').register('cli', class Cli<TConnection, TServerOneWay, TServ
         proxy: (TConnection) => TClientOneWayProxy & TClientTwoWayProxy;
     }>
     {
-        var router: ICommandBuilder = program;
+        let router: ICommandBuilder = program;
         if (typeof (client) == 'string')
         {
-            let indexOfColon = client.indexOf(':');
+            const indexOfColon = client.indexOf(':');
             if (~indexOfColon)
                 router = router.command(client.substr(indexOfColon + 1)).config(client.substr(0, indexOfColon));
             else
@@ -238,7 +238,7 @@ akala.module('$api').register('cli', class Cli<TConnection, TServerOneWay, TServ
 
     if (await promisify(fs.exists)('./config.json'))
     {
-        var content = JSON.parse(await promisify(fs.readFile)('./config.json', 'utf-8'));
+        const content = JSON.parse(await promisify(fs.readFile)('./config.json', 'utf-8'));
         if (content.plugins)
         {
             akala.each(content.plugins, function (plugin)

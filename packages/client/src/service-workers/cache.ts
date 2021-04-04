@@ -5,54 +5,40 @@ import { router } from "./router";
 /// <reference path="../../serviceworker.d.ts" />
 
 
-module cache
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-namespace
+namespace cache
 {
-    declare var self: ServiceWorkerGlobalScope;
+    declare const self: ServiceWorkerGlobalScope;
 
-    function isFetchEvent(req: { method: string }, ev: ExtendableEvent): ev is FetchEvent
+    router.use(async function (req: Request, event: FetchEvent)
     {
-        return req.method != 'install' && req.method != 'push' && req.method != 'updateFound';
-    }
-
-    router.use(function (req: RequestInfo & { method: string }, event: ExtendableEvent, next)
-    {
-        if (!isFetchEvent(req, event))
-            return next();
-
         event.respondWith(
-            caches.open('akala').then(function (cache)
+            caches.open('akala').then(async function (cache)
             {
-                return cache.match(req).then(response =>
+                const response = await cache.match(req);
+                // Cache hit - return response
+
+                if (response)
                 {
-                    // Cache hit - return response
+                    // req.headers.append('if-modified-since', response.headers.get('last-modified'))
+                    // req.headers.append('if-match', response.headers.get('etag'))
 
-                    if (response)
+                    const res = await fetch(req);
+                    if (res.status == 200)
                     {
-                        // req.headers.append('if-modified-since', response.headers.get('last-modified'))
-                        // req.headers.append('if-match', response.headers.get('etag'))
-
-                        fetch(req).then(function (res)
-                        {
-                            if (res.status == 200)
-                            {
-                                caches.open('akala').then(cache => cache.put(req, res.clone()));
-                                if (event.clientId)
-                                    self.clients.get(event.clientId).then(cl => cl.postMessage({ type: 'update' }))
-                            }
-
-                        })
-                        return response;
+                        cache.put(req, res.clone());
+                        if (event.clientId)
+                            self.clients.get(event.clientId).then(cl => cl.postMessage({ type: 'update' }))
                     }
-                    else
-                        return fetch(req).then(response =>
-                        {
-                            return caches.open('akala').then(cache => cache.put(req, response.clone())).then(() =>
-                            {
-                                return response;
-                            })
-                        });
-                })
-            })
-        );
+
+                    return response;
+                }
+                else
+                {
+                    const response = await fetch(req);
+                    await cache.put(req, response.clone())
+                    return response;
+                }
+            }));
     })
 }

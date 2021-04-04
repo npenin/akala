@@ -7,7 +7,7 @@ import { AclConfiguration } from "./Configuration/AclConfiguration";
 
 export function provider(name: string)
 {
-    return function (ctor: new (...args: any[]) => IAclProvider)
+    return function (ctor: new (...args: unknown[]) => IAclProvider): void
     {
         AclManager.registeredProviders[name] = ctor;
     }
@@ -17,7 +17,7 @@ type Action<T> = (a: T) => void;
 
 export default class AclManager
 {
-    static readonly registeredProviders: { [key: string]: new (...args: any[]) => IAclProvider } = {};
+    static readonly registeredProviders: { [key: string]: new (...args: unknown[]) => IAclProvider } = {};
     readonly providers: { [key: string]: IAclProvider } = {};
     public defaultProvider: IAclProvider;
     AclChanged = new Event<AclChangedHandler>();
@@ -26,20 +26,20 @@ export default class AclManager
     {
         this.DefaultProvider_AclChanged = this.DefaultProvider_AclChanged.bind(this);
         if (configuration && configuration.providers)
-            for (var provider of configuration.providers)
+            for (const provider of configuration.providers)
             {
-                var securityProvider = new (AclManager.registeredProviders[provider.name])();
+                const securityProvider = new (AclManager.registeredProviders[provider.name])();
                 this.providers[provider.name] = securityProvider;
                 if (provider.name == configuration.defaultProvider)
                     this.defaultProvider = securityProvider;
             }
-        //@ts-ignore 2565
+
         if (typeof this.defaultProvider == 'undefined')
             this.defaultProvider = this.defaultProvider = new AclManager.registeredProviders.memory();
         if (configuration && configuration.rights)
-            for (var ace of configuration.rights)
+            for (const ace of configuration.rights)
             {
-                var privilege: AccessRule | null = null;
+                let privilege: AccessRule | null = null;
                 switch (ace.type)
                 {
                     case AccessRules.Allow:
@@ -57,24 +57,24 @@ export default class AclManager
             }
     }
 
-    public allow(resource: string, verb: string, ...subjects: string[])
+    public allow(resource: string, verb: string, ...subjects: string[]): IAclProvider
     {
-        var acls: AccessRule[] = [];
+        const acls: AccessRule[] = [];
         resource = resource.toLowerCase();
         verb = verb.toLowerCase();
-        for (var subject of subjects)
+        for (const subject of subjects)
         {
             acls.push(new Allow(resource, verb, subject.toLowerCase()));
         }
         return this.defaultProvider.SetAcls(...acls);
     }
 
-    public deny(resource: string, verb: string, ...subjects: string[])
+    public deny(resource: string, verb: string, ...subjects: string[]): IAclProvider
     {
-        var acls: AccessRule[] = [];
+        const acls: AccessRule[] = [];
         resource = resource.toLowerCase();
         verb = verb.toLowerCase();
-        for (var subject of subjects)
+        for (const subject of subjects)
         {
             acls.push(new Deny(resource, verb, subject.toLowerCase()));
         }
@@ -87,11 +87,11 @@ export default class AclManager
     /// <param name="resource"></param>
     /// <param name="subjects"></param>
     /// <returns><see cref="true"/> if the <paramref name="subjects"/> specified have at least one rule that allow them to do something within the resource hierarchy</returns>
-    public canBrowse(resource: string, ...subjects: string[])
+    public canBrowse(resource: string, ...subjects: string[]): boolean
     {
         resource = resource.toLowerCase();
-        for (let acl of this.defaultProvider.GetAcls(resource, "*"))
-            if (acl.type == AccessRules.Allow)
+        for (const acl of this.defaultProvider.GetAcls(resource, "*"))
+            if (acl.type == AccessRules.Allow && subjects.indexOf(acl.subject) != -1)
                 return true;
 
         return false;
@@ -99,24 +99,24 @@ export default class AclManager
 
     public isAllowed(resource: string, verb: string, ...subjects: string[]): boolean
     {
-        var acls = new OrderedList<string, AccessRule>();
+        const acls = new OrderedList<string, AccessRule>();
         //OrderedList<string, Acl> denied = new OrderedList<string, Acl>(new ReverseComparer<string>());
-        var subjectList: string[] = [];
-        for (var subject of subjects)
+        const subjectList: string[] = [];
+        for (const subject of subjects)
             subjectList.push(subject.toLowerCase());
         resource = resource.toLowerCase();
         verb = verb.toLowerCase();
-        for (var acl of this.defaultProvider.GetAcls(resource, verb))
+        for (const acl of this.defaultProvider.GetAcls(resource, verb))
             acls.push(acl.resource, acl);
 
-        var isExplicit = false;
-        var aclType = AccessRules.Deny;
-        var set = false;
-        var mostAppropriateResourcePath = resource;
+        let isExplicit = false;
+        let aclType = AccessRules.Deny;
+        let set = false;
+        let mostAppropriateResourcePath = resource;
 
-        var isFirst = true;
+        let isFirst = true;
 
-        for (var acl of acls)
+        for (const acl of acls)
         {
             if (isFirst)
             {
@@ -188,14 +188,14 @@ export default class AclManager
 
     aclChangedHandlers = new OrderedList<string, Action<string>>();
 
-    public UnregisterForRuleChange(resource: string, handler: Action<string>)
+    public UnregisterForRuleChange(resource: string, handler: Action<string>): void
     {
         this.aclChangedHandlers.remove(resource, handler);
         if (this.aclChangedHandlers.length == 0)
             this.defaultProvider.AclChanged.remove(this.DefaultProvider_AclChanged);
     }
 
-    public RegisterForRuleChange(resource: string, handler: Action<string>)
+    public RegisterForRuleChange(resource: string, handler: Action<string>): void
     {
         if (this.aclChangedHandlers.length == 0)
             this.defaultProvider.AclChanged.add(this.DefaultProvider_AclChanged);
@@ -204,15 +204,16 @@ export default class AclManager
 
     private DefaultProvider_AclChanged(sender: IAclProvider, resource: string)
     {
-        var currentResource = resource;
-        var lastIndexOfSlash = resource.length;
-        var handlers = [];
+        let currentResource = resource;
+        let lastIndexOfSlash = resource.length;
+        let handlers = [];
         do
         {
             currentResource = currentResource.substring(0, lastIndexOfSlash);
+            // eslint-disable-next-line no-cond-assign
             if (handlers = this.aclChangedHandlers.tryGetValue(currentResource))
             {
-                for (var handler of handlers)
+                for (const handler of handlers)
                 {
                     handler(resource);
                 }
@@ -221,11 +222,13 @@ export default class AclManager
                 break;
             lastIndexOfSlash = currentResource.lastIndexOf('/');
         }
+        // eslint-disable-next-line no-constant-condition
         while (true);
 
+        // eslint-disable-next-line no-cond-assign
         if (handlers = this.aclChangedHandlers.tryGetValue("*"))
         {
-            for (var handler of handlers)
+            for (const handler of handlers)
             {
                 handler(resource);
             }

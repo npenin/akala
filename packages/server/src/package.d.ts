@@ -6,7 +6,7 @@ export interface Person
   "name": string;
   "url"?: string;
   "email"?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export type ScriptsPublishAfter = string;
 export type ScriptsInstallAfter = string;
@@ -57,7 +57,7 @@ export interface CoreProperties
      * The email address to which issues should be reported.
      */
     "email"?: string;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * You should specify a license for your package so that people know how they are permitted to use it, and any restrictions you're placing on it.
@@ -69,7 +69,7 @@ export interface CoreProperties
   "licenses"?: {
     "type"?: string;
     "url"?: string;
-    [k: string]: any;
+    [k: string]: unknown;
   }[];
   /**
    * A person who has been involved in creating or maintaining this package
@@ -97,7 +97,7 @@ export interface CoreProperties
   /**
    * Specify either a single file or an array of filenames to put in place for the man program to find.
    */
-  "man"?: any[] | string;
+  "man"?: unknown[] | string;
   "directories"?: {
     /**
      * If you specify a 'bin' directory, then all the files in that folder will be used as the 'bin' hash.
@@ -120,7 +120,7 @@ export interface CoreProperties
      */
     "man"?: string;
     "test"?: string;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * Specify the place where your code lives. This is helpful for people who want to contribute.
@@ -128,7 +128,7 @@ export interface CoreProperties
   "repository"?: {
     "type"?: string;
     "url"?: string;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   /**
    * The 'scripts' member is an object hash of script commands that are run at various times in the lifecycle of your package. The key is the lifecycle event, and the value is the command to run at that point.
@@ -235,7 +235,7 @@ export interface CoreProperties
   /**
    * A 'config' hash can be used to set configuration parameters used in package scripts that persist across upgrades.
    */
-  "config"?: any;
+  "config"?: unknown;
   /**
    * Dependencies are specified with a simple hash of package name to version range. The version range is a string which has one or more space-separated descriptors. Dependencies can also be identified with a tarball or git URL.
    */
@@ -272,19 +272,19 @@ export interface CoreProperties
    * If set to true, then npm will refuse to publish it.
    */
   "private"?: boolean;
-  "publishConfig"?: any;
+  "publishConfig"?: unknown;
   "dist"?: {
     "shasum"?: string;
     "tarball"?: string;
-    [k: string]: any;
+    [k: string]: unknown;
   };
   "readme"?: string;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export interface JspmDefinition
 {
   "jspm"?: CoreProperties;
-  [k: string]: any;
+  [k: string]: unknown;
 }
 export type BundledDependency = string[];
 export type JsonSchemaForNpmPackageJsonFiles = CoreProperties & JspmDefinition & {
@@ -292,11 +292,11 @@ export type JsonSchemaForNpmPackageJsonFiles = CoreProperties & JspmDefinition &
    * Array of package names that will be bundled when publishing the package.
    */
   "bundleDependencies"?: BundledDependency;
-  [k: string]: any;
+  [k: string]: unknown;
 } | {
   /**
    * Array of package names that will be bundled when publishing the package.
    */
   "bundledDependencies"?: BundledDependency;
-  [k: string]: any;
-} & any;
+  [k: string]: unknown;
+};

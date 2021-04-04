@@ -2,15 +2,15 @@ import { State } from "../state";
 import { Container, Metadata } from "@akala/commands";
 import { HttpRouter } from "../router";
 
-export default async function route(this: State, target: Container<void>, route: string, metaContainer?: Metadata.Container)
+export default async function route(this: State, target: Container<void>, route: string, metaContainer?: Metadata.Container): Promise<void>
 {
     console.log('registering route to ' + target + ' as ' + route);
 
-    var router = this.app;
+    let router = this.app;
     if (route)
     {
         router = new HttpRouter({ name: 'remote-container-' + target.name });
-        this.app.use(route, router.router);
+        this.app.useMiddleware(route, router);
     }
     if (!metaContainer)
         metaContainer = await target.dispatch('$metadata');

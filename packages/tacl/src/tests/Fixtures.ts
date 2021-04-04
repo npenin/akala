@@ -6,9 +6,9 @@ describe('general', function ()
 
     it('should work', function ()
     {
-        var categories: IAclProvider = new MemoryProvider();
-        var widgets: IAclProvider = new MemoryProvider();
-        var urls: IAclProvider = new MemoryProvider();
+        // var categories: IAclProvider = new MemoryProvider();
+        const widgets: IAclProvider = new MemoryProvider();
+        const urls: IAclProvider = new MemoryProvider();
 
         widgets.SetAcls(
             new Deny("/", "read", "*"),
@@ -22,10 +22,10 @@ describe('general', function ()
             new Deny("/", "read", "g2")
         );
 
-        var router = new RouterProvider();
+        const router = new RouterProvider();
         router.Register("/a", widgets);
         router.Register("/a/b", urls);
-        var aclManager = new AclManager();
+        const aclManager = new AclManager();
         aclManager.defaultProvider = router;
 
         assert.strictEqual(5, router.GetAcls("/a/b/c", "read").length);
@@ -42,9 +42,9 @@ describe('general', function ()
 
     it('ShouldWorkWithRootRegisteredOnRouter', function ()
     {
-        var categories = new MemoryProvider();
-        var widgets = new MemoryProvider();
-        var urls = new MemoryProvider();
+        // const categories = new MemoryProvider();
+        const widgets = new MemoryProvider();
+        const urls = new MemoryProvider();
 
         widgets.SetAcls(
             new Deny("/", "read", "*"),
@@ -58,10 +58,10 @@ describe('general', function ()
             new Deny("/", "read", "g2")
         );
 
-        var router = new RouterProvider();
+        const router = new RouterProvider();
         router.Register("/", widgets);
         router.Register("/b", urls);
-        var aclManager = new AclManager();
+        const aclManager = new AclManager();
         aclManager.defaultProvider = router;
 
         assert.strictEqual(5, router.GetAcls("/b/c", "read").length);
@@ -78,7 +78,7 @@ describe('general', function ()
 
     it('ShouldDenyEveryoneWhenNoRule', function ()
     {
-        var aclManager = new AclManager();
+        const aclManager = new AclManager();
         aclManager.defaultProvider = new MemoryProvider();
         assert.ok(!aclManager.isAllowed("/", "read"));
         assert.ok(!aclManager.isAllowed("/", "read", "s.ros"));
@@ -86,7 +86,7 @@ describe('general', function ()
 
     it('ShouldDenyNotAuthorized', function ()
     {
-        var aclManager = new AclManager();
+        const aclManager = new AclManager();
         aclManager.defaultProvider = new MemoryProvider();
 
         aclManager.allow("/travel", "read", "s.ros");
@@ -96,7 +96,7 @@ describe('general', function ()
 
     it('Bug', function ()
     {
-        var aclManager = new AclManager();
+        const aclManager = new AclManager();
         aclManager.defaultProvider = new MemoryProvider();
         aclManager.allow("/", "read", "*");
         aclManager.deny("/travel", "read", "s.ros");
@@ -121,12 +121,12 @@ describe('general', function ()
 
     it('ShouldHandleStarVerb', function ()
     {
-        var router = new RouterProvider();
-        var aclManager = new AclManager();
+        const router = new RouterProvider();
+        const aclManager = new AclManager();
         aclManager.defaultProvider = router;
-        var urls = new MemoryProvider();
+        const urls = new MemoryProvider();
         router.Register("/Widget/Rss/Urls", urls);
-        var actions = new MemoryProvider();
+        const actions = new MemoryProvider();
         router.Register("/Widget", actions);
         aclManager.allow("/Widget", "*", "*");
         aclManager.deny("/Widget/Rss/Urls", "access", "~/Widgets/ClientRss/ClientRssWidget.ascx");
@@ -142,8 +142,8 @@ describe('general', function ()
 
     it('ShouldNotifyOnAclRuleChange', function ()
     {
-        var router = new RouterProvider();
-        var aclManager = new AclManager();
+        const router = new RouterProvider();
+        const aclManager = new AclManager();
         aclManager.defaultProvider = router;
         router.Register("/travel", new MemoryProvider());
         aclManager.RegisterForRuleChange("/travel", s => console.log(`'${s}' has changed`));

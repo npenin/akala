@@ -22,11 +22,11 @@ export abstract class Base<TStreamable, TConnection extends Connection<TStreamab
 
   public id = uuid();
 
-  public browser: boolean = false;
+  public browser = false;
 
-  private requestHandlers: { [method: string]: Handler<TConnection, TStreamable, any, any> } = {};
+  private requestHandlers: { [method: string]: Handler<TConnection, TStreamable, PayloadDataType<TStreamable>, PayloadDataType<TStreamable>> } = {};
 
-  protected connections: { [id: string]: Connection<any> } = {};
+  protected connections: { [id: string]: Connection<TStreamable> } = {};
 
 
   /**
@@ -37,7 +37,7 @@ export abstract class Base<TStreamable, TConnection extends Connection<TStreamab
    * @todo enforce handler w/ two-param callback
    * @public
    */
-  public expose<TParamType extends PayloadDataType<TStreamable>, TReplyType extends PayloadDataType<TStreamable>>(method: string, handler: Handler<TConnection, TStreamable, TParamType, TReplyType>)
+  public expose<TParamType extends PayloadDataType<TStreamable>, TReplyType extends PayloadDataType<TStreamable>>(method: string, handler: Handler<TConnection, TStreamable, TParamType, TReplyType>): void
   {
     logger('registering handler for %s', method);
     if (this.requestHandlers[method])
@@ -45,7 +45,7 @@ export abstract class Base<TStreamable, TConnection extends Connection<TStreamab
       throw Error('cannot expose handler, already exists ' + method);
     }
     this.requestHandlers[method] = handler;
-  };
+  }
 
   /**
    * Connected event handler
@@ -53,15 +53,15 @@ export abstract class Base<TStreamable, TConnection extends Connection<TStreamab
    * @param {Object} socket - new socket connection
    * @private
    */
-  public connected(socket: SocketAdapter)
+  public connected(socket: SocketAdapter): void
   {
-    var connection = this.connection(socket);
+    const connection = this.connection(socket);
     logger('%s connected with id %s', this.type, connection.id);
 
     this.connections[connection.id] = connection;
   }
 
-  abstract connection(socket: SocketAdapter): Connection<any>;
+  abstract connection(socket: SocketAdapter): Connection<TStreamable>;
   ;
 
   /**
@@ -70,12 +70,12 @@ export abstract class Base<TStreamable, TConnection extends Connection<TStreamab
    * @param {Object} connection - connection object that has been closed
    * @private
    */
-  public disconnected(connection: Connection<TStreamable>)
+  public disconnected(connection: Connection<TStreamable>): void
   {
 
     logger('disconnected');
     delete this.connections[connection.id];
-  };
+  }
 
   /**
    * Test if a handler exists for a given method
@@ -84,14 +84,14 @@ export abstract class Base<TStreamable, TConnection extends Connection<TStreamab
    * @returns {Boolean} whether or not there are any handlers for the given method
    * @public
    */
-  public hasHandler(method: string)
+  public hasHandler(method: string): boolean
   {
     if (this.requestHandlers[method] !== undefined)
     {
       return true;
     }
     return false;
-  };
+  }
 
   /**
    * Get handler for a given method
@@ -100,10 +100,10 @@ export abstract class Base<TStreamable, TConnection extends Connection<TStreamab
    * @returns {Array}  - handler for given method
    * @public
    */
-  public getHandler(method: string)
+  public getHandler(method: string): Handler<TConnection, TStreamable, PayloadDataType<TStreamable>, PayloadDataType<TStreamable>>
   {
     return this.requestHandlers[method];
-  };
+  }
 
   /**
    * Get a connection by id
@@ -112,24 +112,24 @@ export abstract class Base<TStreamable, TConnection extends Connection<TStreamab
    * @returns {Connection} - Connection
    * @public
    */
-  public getConnection(id: string)
+  public getConnection(id: string): Connection<TStreamable>
   {
     return this.connections[id];
-  };
+  }
 
   /**
    * Shut down all existing connections
    *
    * @public
    */
-  public hangup()
+  public hangup(): void
   {
     logger('hangup');
-    var connections = Object.keys(this.connections);
+    const connections = Object.keys(this.connections);
     connections.forEach(function hangupConnection(this: Base<TStreamable, TConnection>, id)
     {
       this.connections[id].close();
       delete this.connections[id];
     }, this);
-  };
+  }
 }

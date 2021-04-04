@@ -27,7 +27,7 @@ export function extend<T extends ModelCommand, TConfiguration extends Configurat
 export function extend<TCommand extends ModelCommand, TConfiguration extends Configurations>(cmdOrInj: TCommand | Injectable<any>, config: TConfiguration): ReturnType<extendF<TConfiguration>>
 export function extend<TCommand extends ModelCommand, TConfiguration extends Configurations>(cmdOrInj: TCommand | Injectable<any>, config: TConfiguration): (TCommand | ModelCommand) & { config: TConfiguration }
 {
-    var cmd: ModelCommand;
+    let cmd: ModelCommand;
     if (typeof cmdOrInj == 'function')
         cmd = new ModelCommand(cmdOrInj);
     else

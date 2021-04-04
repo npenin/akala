@@ -15,25 +15,25 @@ export class InteractError extends Error
         super(message);
     }
 
-    public toJSON()
+    public toJSON(): Record<string, unknown>
     {
         return { code: this.code, message: this.message, as: this.as };
     }
 }
 
-export default function interact(message: string, as?: string)
+export default function interact(message: string, as?: string): void
 {
     throw new InteractError(message, as);
 }
 
-export async function pm(socketPath?: string): Promise<Container<any>>
+export async function pm(socketPath?: string): Promise<Container<unknown>>
 {
     if (socketPath)
     {
-        var pmSocket = new Socket();
-        var pm = new Container('pm', null, new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(pmSocket)), true));
+        const pmSocket = new Socket();
+        const pm = new Container('pm', null, new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(pmSocket)), true));
         pmSocket.connect(socketPath);
-        var metaContainer: Metadata.Container = await pm.processor.process('$metadata', { param: [] });
+        const metaContainer: Metadata.Container = await pm.processor.handle('$metadata', { param: [] }).then(err => { throw err }, res => res);
         registerCommands(metaContainer.commands, pm.processor, pm);
         return pm;
     }
@@ -44,7 +44,7 @@ export function connect(name: string): Promise<{ connect: ServeMetadata, contain
 {
     return module('@akala/pm').injectWithName(['container'], async function (container: Container<void>)
     {
-        return { connect: await container.dispatch('connect', name) as ServeMetadata, container: await container.dispatch(name + '.$metadata') };
+        return { connect: await container.dispatch('connect', name) as ServeMetadata, container: await container.dispatch(name + '.$metadata') as Metadata.Container };
     })();
 }
 
@@ -52,13 +52,14 @@ const defaultOrders: (keyof ServeMetadata)[] = ['ssocket', 'socket', 'wss', 'ws'
 
 export function sidecar<T extends SidecarMap>(options?: Omit<ConnectionPreference, 'container'> & { [key in keyof T]?: Partial<ConnectionPreference> & { orders?: (keyof ServeMetadata)[] } }, noCache?: boolean): Sidecar<T>
 {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return new Proxy<Sidecar<T>>({} as any, {
-        get(target, property, receiver)
+        get(target, property)
         {
             if (typeof (property) !== 'string')
                 return Reflect.get(target, property);
 
-            var orders = options && options[property] && options[property].orders || defaultOrders;
+            const orders = options && options[property] && options[property].orders || defaultOrders;
 
             if (noCache || typeof (target[property]) == 'undefined')
                 Object.defineProperty(target, property, { value: connect(property).then(meta => connectByPreference(meta.connect, Object.assign({ container: meta.container }, options, options[property]), ...orders).then(c => c.container)) });
