@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import { calculator } from './calculator'
 import * as assert from 'assert'
 import * as http from 'http';

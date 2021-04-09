@@ -7,22 +7,24 @@ import "reflect-metadata";
 const log = debug('akala:core:injector');
 const verboseLog = log.extend('verbose');
 
-function ctorToFunction(this: new () => any)
-{
-    const args = [null];
-    for (let i = 0; i < arguments.length; i++)
-        args[i + 1] = arguments[i];
-    return new (Function.prototype.bind.apply(this, args));
-}
-
-export type Injected<T> = (instance?: any) => T;
-export type Injectable<T> = (...args: any[]) => T;
-export type InjectableConstructor<T> = new (...args: any[]) => T;
+export type Injected<T> = (instance?: unknown) => T;
+export type Injectable<T> = (...args: unknown[]) => T;
+export type InjectableConstructor<T> = new (...args: unknown[]) => T;
 export type InjectableWithTypedThis<T, U> = (this: U, ...args: any[]) => T;
 export type InjectableAsync<T> = (...args: any[]) => PromiseLike<T>;
 export type InjectableAsyncWithTypedThis<T, U> = (this: U, ...args: any[]) => PromiseLike<T>;
 export type InjectedParameter<T> = { index: number, value: T };
 
+export function ctorToFunction<T extends unknown[], TResult>(ctor: new (...args: T) => TResult): (...parameters: T) => TResult 
+{
+    return (...parameters: T) =>
+    {
+        const args = [null];
+        for (let i = 0; i < parameters.length; i++)
+            args[i + 1] = parameters[i];
+        return new ctor(...parameters);
+    }
+}
 
 export class Injector
 {
@@ -68,11 +70,10 @@ export class Injector
 
     public merge(i: Injector)
     {
-        const self = this;
-        Object.getOwnPropertyNames(i.injectables).forEach(function (property)
+        Object.getOwnPropertyNames(i.injectables).forEach((property) =>
         {
             if (property != '$injector')
-                self.registerDescriptor(property, Object.getOwnPropertyDescriptor(i.injectables, property));
+                this.registerDescriptor(property, Object.getOwnPropertyDescriptor(i.injectables, property));
         })
     }
 
@@ -121,6 +122,7 @@ export class Injector
     {
         if (typeof a == 'function')
             return this.injectWithName(a['$inject'] || getParamNames(a), a);
+        // eslint-disable-next-line @typescript-eslint/no-this-alias
         const self = this;
         return function (c: TypedPropertyDescriptor<Injectable<T>>)
         {
@@ -128,9 +130,9 @@ export class Injector
                 b = [];
             b.unshift(a as string);
             const oldf = self.injectWithName(b, c.value);
-            c.value = function ()
+            c.value = function (...args)
             {
-                return oldf.apply(this, Array.from(arguments));
+                return oldf.apply(this, Array.from(args));
             }
         }
     }
@@ -145,21 +147,20 @@ export class Injector
         if (typeof b == 'undefined')
             b = [];
         b.unshift(a);
-        const self = this;
 
-        return function <U>(c: TypedPropertyDescriptor<InjectableAsync<U>>)
+        return <U>(c: TypedPropertyDescriptor<InjectableAsync<U>>) =>
         {
             const f = c.value;
             c.value = function ()
             {
-                return self.injectWithNameAsync(b, f);
+                return this.injectWithNameAsync(b, f);
             }
         }
     }
 
     public injectNew<T>(ctor: InjectableConstructor<T>)
     {
-        return this.inject<T>(ctorToFunction.bind(ctor));
+        return this.inject<T>(ctorToFunction(ctor));
     }
 
     public resolve<T = any>(param: string): T
@@ -225,9 +226,9 @@ export class Injector
 
     private browsingForJSON = false;
 
-    public toJSON()
+    public toJSON(...args: unknown[])
     {
-        console.log(arguments);
+        console.log(args);
         const wasBrowsingForJSON = this.browsingForJSON;
         this.browsingForJSON = true;
         if (!wasBrowsingForJSON)
@@ -236,9 +237,9 @@ export class Injector
         return undefined;
     }
 
-    public injectNewWithName(toInject: string[], ctor: Function)
+    public injectNewWithName<T>(toInject: string[], ctor: InjectableConstructor<T>)
     {
-        return this.injectWithName(toInject, ctorToFunction.bind(ctor));
+        return this.injectWithName(toInject, ctorToFunction(ctor));
     }
 
     public async injectWithNameAsync<T>(toInject: string[], a: InjectableAsync<T> | Injectable<T>): Promise<T>
@@ -246,19 +247,19 @@ export class Injector
         if (!toInject || toInject.length == 0)
             return Promise.resolve<T>(a());
         const paramNames = getParamNames(a);
-        const self = this;
         let wait = false;
 
         if (paramNames.length == toInject.length || paramNames.length == 0)
         {
             if (toInject.length == paramNames.length && paramNames.length == 0)
+                // eslint-disable-next-line @typescript-eslint/ban-types
                 return await (a as Function).call(globalThis);
             else
             {
                 const args = [];
                 for (const param of toInject)
                 {
-                    args[args.length] = self.resolveAsync(param);
+                    args[args.length] = this.resolveAsync(param);
                     if (isPromiseLike(args[args.length - 1]))
                         wait = true;
                 }
@@ -270,10 +271,10 @@ export class Injector
                             return v;
                         return Promise.resolve(v);
                     }));
-                    return (a as Function).apply(null, args2);
+                    return a(...args2);
                 }
                 else
-                    return (a as Function).apply(null, args);
+                    return a(...args);
             }
         }
         else
@@ -283,7 +284,6 @@ export class Injector
 
     public injectWithName<T>(toInject: string[], a: Injectable<T>): Injected<T>
     {
-        const self = this;
         if (toInject && toInject.length > 0)
         {
             const paramNames = <string[]>getParamNames(a);
@@ -301,10 +301,9 @@ export class Injector
 
     public exec<T>(...toInject: string[])
     {
-        const self = this;
-        return function (f: Injectable<T>)
+        return (f: Injectable<T>) =>
         {
-            return self.injectWithName(toInject, f)(this);
+            return this.injectWithName(toInject, f)(this);
         }
     }
 
@@ -337,10 +336,9 @@ export class Injector
 
     public factory(name: string, override?: boolean)
     {
-        const inj = this;
-        return function <T>(fact: () => T)
+        return <T>(fact: () => T) =>
         {
-            return inj.registerFactory(name, fact, override);
+            return this.registerFactory(name, fact, override);
         }
     }
 
@@ -348,7 +346,6 @@ export class Injector
     public service(name: string, override?: boolean, ...toInject: string[])
     public service(name: string, override?: boolean | string, ...toInject: string[])
     {
-        const inj = this;
         let singleton;
 
         if (typeof toInject == 'undefined')
@@ -360,14 +357,14 @@ export class Injector
             override = false;
         }
 
-        return function <T>(fact: new (...args: any[]) => T)
+        return <T>(fact: new (...args: any[]) => T) =>
         {
-            inj.registerDescriptor(name, {
-                get()
+            this.registerDescriptor(name, {
+                get: () =>
                 {
                     if (singleton)
                         return singleton;
-                    return singleton = inj.injectNewWithName(toInject, fact)();
+                    return singleton = this.injectNewWithName(toInject, fact)();
                 }
             })
         }

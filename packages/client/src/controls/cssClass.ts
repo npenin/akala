@@ -104,5 +104,6 @@ export class CssClass extends GenericControlInstance<any>
             addClass(element, parameter);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     public apply() { }
 }

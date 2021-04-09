@@ -1,4 +1,5 @@
 import * as core from '@akala/core';
+import { ctorToFunction } from '@akala/core';
 
 export var $$injector: core.Module = core.module('akala', 'akala-services', 'controls')
 
@@ -14,7 +15,7 @@ core.defaultInjector.register('$resolveUrl', resolveUrl)
 
 export function service(name, ...toInject: string[])
 {
-    return function (target: new (...args: any[]) => any)
+    return function (target: new (...args: unknown[]) => any)
     {
         let instance = null;
         if (toInject == null || toInject.length == 0 && target.length > 0)
@@ -22,14 +23,11 @@ export function service(name, ...toInject: string[])
         else
             serviceModule.registerFactory(name, function ()
             {
-                return instance || serviceModule.injectWithName(toInject, function () 
+                return instance || serviceModule.injectWithName(toInject, (...args: unknown[]) =>
                 {
-                    const args = [null];
-                    for (let i = 0; i < arguments.length; i++)
-                        args[i + 1] = arguments[i];
-                    return instance = new (Function.prototype.bind.apply(target, args));
-                })();
-            });
+                    instance = ctorToFunction(target)(...args);
+                });
+            })();
     };
 }
 

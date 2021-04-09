@@ -31,6 +31,7 @@ export class Cardinality
     public static ManyToMany = new Cardinality(CardinalityValues.ManyToMany);
 }
 
+/* eslint-disable @typescript-eslint/no-namespace */
 export namespace Cardinality
 {
     export namespace One

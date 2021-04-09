@@ -8,7 +8,7 @@ export function polymorph(...types: ('string' | 'number' | 'boolean' | 'function
         return current;
     }, '')
 
-    return function <T extends Function>(oldF: T)
+    return function <T extends (...args: unknown[]) => unknown>(oldF: T)
     {
         return function (...args)
         {
@@ -31,7 +31,7 @@ export function Polymorph(...types: ('string' | 'number' | 'boolean' | 'function
 {
     const readyToPolymorph = polymorph(...types);
 
-    return function <T extends Function>(target: any, propertyKey?: string, descriptor?: TypedPropertyDescriptor<T>)
+    return function <T extends (...args: unknown[]) => unknown>(target: any, propertyKey?: string, descriptor?: TypedPropertyDescriptor<T>)
     {
         descriptor.value = readyToPolymorph(descriptor.value)
     };

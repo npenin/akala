@@ -9,10 +9,10 @@ const cliContainer = new Container('cli', {});
 export var container: Promise<commander> = (async function ()
 {
     const root = path.resolve(__dirname, './commands');
-    const options: Processors.DiscoveryOptions<any> = { processor: new Processors.FileSystem<any>(cliContainer, path.join(__dirname, '../')), relativeTo: path.join(__dirname, '../') };
+    const options: Processors.DiscoveryOptions = { processor: new Processors.FileSystem<any>(cliContainer, path.join(__dirname, '../')), relativeTo: path.join(__dirname, '../') };
 
     const commands = await Processors.FileSystem.discoverMetaCommands(root, options);
-    registerCommands(commands, options.processor as Processor<any>, cliContainer);
+    registerCommands(commands, options.processor as Processor, cliContainer);
 
     if (require.main == module)
     {

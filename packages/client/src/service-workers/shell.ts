@@ -1,21 +1,18 @@
 // /// <reference types="types-serviceworker" />
-/// <reference path="../../serviceworker.d.ts" />
+import "../../serviceworker.d.ts"
 
-namespace shell
+declare var self: ServiceWorkerGlobalScope;
+
+self.addEventListener('install', function (evt)
 {
-    declare var self: ServiceWorkerGlobalScope;
+    caches.open('akala').then(cache => cache.add('/'));
+})
 
-    self.addEventListener('install', function (evt)
+self.addEventListener('fetch', function (event)
+{
+    if (event.request.mode == "navigate")
     {
-        caches.open('akala').then(cache => cache.add('/'));
-    })
-
-    self.addEventListener('fetch', function (event)
-    {
-        if (event.request.mode == "navigate")
-        {
-            event.respondWith(caches.open('akala').then(cache => cache.match('/')))
-            return;
-        }
-    });
-}
+        event.respondWith(caches.open('akala').then(cache => cache.match('/')))
+        return;
+    }
+});

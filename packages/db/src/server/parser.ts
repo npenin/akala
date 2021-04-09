@@ -1,5 +1,5 @@
 import { BinaryExpression } from "./expressions/binary-expression";
-import { StrictExpressions, TypedExpression, StrictTypedExpression } from "./expressions/expression";
+import { StrictExpressions, StrictTypedExpression } from "./expressions/expression";
 import { BinaryOperator } from "./expressions/binary-operator";
 import { ConstantExpression } from "./expressions/constant-expression";
 import { UnaryExpression } from "./expressions/unary-expression";
@@ -9,7 +9,7 @@ import { ParameterExpression } from "./expressions/parameter-expression";
 import { NewExpression } from "./expressions/new-expression";
 
 
-var jsonKeyRegex = /^ *(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([^\: ]+)) *): */;
+var jsonKeyRegex = /^ *(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([^: ]+)) *): */;
 // var jsonSingleQuoteKeyRegex = /^ *'([^']+)'|([^\: ]+) *: */;
 
 export interface ParsedAny
@@ -220,7 +220,7 @@ export class Parser
     {
         if (expression[0] == '.')
         {
-            var member: StrictTypedExpression<any> & ParsedAny = new MemberExpression(source, /^[\w0-9\$]*/.exec(expression.substring(1))[0]);
+            var member: StrictTypedExpression<any> & ParsedAny = new MemberExpression(source, /^[\w0-9$]*/.exec(expression.substring(1))[0]);
             member.$$length = 1 + member.member.length;
             return member;
         }
@@ -231,7 +231,7 @@ export class Parser
 
     public parseVariable(expression: string): StrictTypedExpression<any> & ParsedAny
     {
-        var item = /^[\w0-9\$]*/.exec(expression)[0];
+        var item = /^[\w0-9$]*/.exec(expression)[0];
 
         var keys = Object.keys(this.parameters);
         if (typeof this.parameters[item] == 'undefined' && keys.length != 1)
@@ -250,7 +250,7 @@ export class Parser
     public tryParseOperator(expression: string, lhs: ParsedOneOf): ParsedOneOf
     public tryParseOperator(expression: string, lhs: ParsedOneOf)
     {
-        var operator = /^ *([<>=!\+\-\/\*&\|\.#]+) */.exec(expression);
+        var operator = /^ *([<>=!+-/*&|.#]+) */.exec(expression);
         if (operator)
         {
             switch (operator[1])

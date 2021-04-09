@@ -1,10 +1,10 @@
-import { replEval } from '../../dist/helpers/repl'
+import { replEval } from '../../helpers/repl'
 import * as assert from 'assert'
 import 'source-map-support/register'
 
 function equals(input: string, output: string[], message?: string)
 {
-    assert.deepEqual(replEval(input), output, message);
+    assert.deepStrictEqual(replEval(input), output, message);
 }
 
 equals('a b', ['a', 'b']);

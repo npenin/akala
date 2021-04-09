@@ -4,21 +4,21 @@ import * as fs from 'fs'
 import { promisify } from 'util';
 
 
-program.command('client').command('api <name> <url>')
+program.command('client').command<{ name: string, url: string }>('api <name> <url>')
     .action(async function (context)
     {
-        const http: akala.Http = akala.resolve('$http');
-        const response = await http.get(context.params.url);
+        const http: akala.Http = akala.defaultInjector.resolve('$http');
+        const response = await http.get(context.options.url);
         const filePath = await promisify(fs.mkdtemp)('api', 'utf8');
         if (response.headers.has('content-type'))
             if (~response.headers.get('content-type').indexOf('text/javascript'))
             {
-                program.process(['config', 'set', 'plugins.' + context.params.name, filePath + '/api.json']);
+                program.process({ args: ['config', 'set', 'plugins.' + context.options.name, filePath + '/api.json'], argv: [], options: {} });
                 await promisify(fs.writeFile)(filePath + '/api.json', await response.text());
             }
             else
             {
-                program.process(['config', 'set', 'plugins.' + context.params.name, filePath + '/api.js']);
+                program.process({ args: ['config', 'set', 'plugins.' + context.options.name, filePath + '/api.js'], argv: [], options: {} });
                 await promisify(fs.writeFile)(filePath + '/api.js', await response.text());
             }
     });

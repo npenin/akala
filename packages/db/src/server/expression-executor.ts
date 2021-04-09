@@ -12,7 +12,8 @@ import { UnaryExpression } from "./expressions/unary-expression";
 import { BinaryExpression } from "./expressions/binary-expression";
 import { QuerySymbols } from "./Query";
 import { Exception } from "./exceptions";
-import { Enumerable, ModelDefinition } from "./shared";
+import { ModelDefinition } from "./shared";
+import * as  Enumerable from "./Enumerable";
 import { isPromiseLike } from "@akala/core";
 import { BinaryOperator } from "./expressions/binary-operator";
 
@@ -40,9 +41,9 @@ export class ExpressionExecutor extends ExpressionVisitor
     async visitNew<T>(expression: NewExpression<T>)
     {
 
-        var result = {};
+        const result = {};
 
-        for (var m of expression.init)
+        for (const m of expression.init)
         {
             await this.visit(m.source);
             result[m.member] = this.result;
@@ -166,12 +167,13 @@ export class ExpressionExecutor extends ExpressionVisitor
         return arg0;
     }
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore TS2416
     async visitCall<T, TMethod extends keyof T>(arg0: CallExpression<T, TMethod>)
     {
-        var source = await this.visit(arg0.source);
-        var src = this.result;
-        var args = await (this as ExpressionVisitor).visitArray(arg0.arguments) as StrictExpressions[];
+        const source = await this.visit(arg0.source);
+        const src = this.result;
+        const args = await (this as ExpressionVisitor).visitArray(arg0.arguments) as StrictExpressions[];
         if (source !== arg0.source || args !== arg0.arguments)
         {
             if (!this.isTypedExpression(source))
@@ -184,15 +186,16 @@ export class ExpressionExecutor extends ExpressionVisitor
 
     async visitEnumerable<T>(map: IEnumerable<T>, addToNew: (item: T) => void, visitSingle: (item: T) => PromiseLike<T>, compare?: EqualityComparer<T>): Promise<void>
     {
-        var result = [];
+        const result = [];
         super.visitEnumerable(map, addToNew, async (t) =>
         {
-            var x = await visitSingle.call(this, t);
+            const x = await visitSingle.call(this, t);
             result.push(this.result);
             return x;
         }, compare);
     }
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore TS2416
     async visitMember<T, TMember extends keyof T>(arg0: MemberExpression<T, TMember, T[TMember]>)
     {
@@ -214,10 +217,10 @@ export class ExpressionExecutor extends ExpressionVisitor
     }
     async visitLambda<T extends (...args: any[]) => any>(arg0: TypedLambdaExpression<T>)
     {
-        var parameters: Parameter<T> = await this.visitArray(arg0.parameters) as any;
-        var wasEvaluating = this.evaluating;
+        const parameters: Parameter<T> = await this.visitArray(arg0.parameters) as any;
+        const wasEvaluating = this.evaluating;
         this.evaluating = this.result;
-        var body = await (this as ExpressionVisitor).visit(arg0.body);
+        const body = await (this as ExpressionVisitor).visit(arg0.body);
         this.evaluating = wasEvaluating;
         if (body !== arg0.body || parameters !== arg0.parameters)
             return new TypedLambdaExpression<T>(body, arg0.parameters);
@@ -237,14 +240,14 @@ export class ExpressionExecutor extends ExpressionVisitor
     }
     async visitUnary(arg0: UnaryExpression)
     {
-        var operand = await (this as ExpressionVisitor).visit(arg0.operand);
+        const operand = await (this as ExpressionVisitor).visit(arg0.operand);
         if (operand !== arg0.operand)
             return new UnaryExpression(operand, arg0.operator);
         return arg0;
     }
     async visitBinary<T extends Expressions = StrictExpressions>(expression: BinaryExpression<T>)
     {
-        var left = await (this as ExpressionVisitor).visit(expression.left);
+        const left = await (this as ExpressionVisitor).visit(expression.left);
         if (isPromiseLike(this.result))
             var leftResult = await this.result;
 

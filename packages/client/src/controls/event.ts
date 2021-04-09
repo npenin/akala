@@ -43,7 +43,7 @@ export class Events extends GenericControlInstance<Partial<HTMLElementEventHandl
 }
 
 @akala.useInjector(Control.injector)
-export class Event extends GenericControlInstance<Function>
+export class Event extends GenericControlInstance<(...args: unknown[]) => unknown>
 {
     constructor(private eventName: string)
     {
@@ -70,7 +70,7 @@ export class Event extends GenericControlInstance<Function>
         this.stopWatches.push(() => this.element.removeEventListener(this.eventName, handler));
     }
 
-    public apply(parameter: Function)
+    public apply(parameter: (...args: unknown[]) => unknown)
     {
         if (parameter instanceof Function)
             return this.scope.$inject(parameter);

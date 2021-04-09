@@ -33,10 +33,6 @@ export interface Http<TResponse = Response>
 @service('$http')
 export class FetchHttp implements Http<Response>
 {
-    constructor()
-    {
-    }
-
     public get(url: string, params?: any)
     {
         return this.call({ url: url, method: 'GET', queryString: params });
@@ -171,7 +167,6 @@ export class FetchHttp implements Http<Response>
 
 export class HttpCallFormatterFactory implements FormatterFactory<() => Promise<any>, { method?: keyof Http }>
 {
-    constructor() { }
     public parse(expression: string): { method?: keyof Http } & ParsedAny
     {
         const method = /^ *(\w+)/.exec(expression);
@@ -194,17 +189,17 @@ export class HttpCallFormatterFactory implements FormatterFactory<() => Promise<
             {
                 const formattedValue = formatter(scope);
                 if (typeof (formattedValue) == 'string')
-                    return (http[settingsValue.method || 'getJSON'] as Function)(formattedValue, grep(settingsValue, function (value, key)
+                    return (http[settingsValue.method || 'getJSON'] as typeof http.getJSON)(formattedValue, grep(settingsValue, function (value, key)
                     {
                         return key != 'method';
                     }));
 
                 if (Array.isArray(formattedValue))
                 {
-                    return (http[settingsValue.method || 'getJSON'] as Function).apply(http, formattedValue);
+                    return (http[settingsValue.method || 'getJSON'] as typeof http.getJSON).apply(http, formattedValue);
                 }
 
-                return (http[settingsValue.method || 'getJSON'] as Function)(formattedValue);
+                return (http[settingsValue.method || 'getJSON'] as typeof http.getJSON)(formattedValue);
             });
         }
     }

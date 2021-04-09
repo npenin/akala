@@ -6,6 +6,7 @@ import { array as eachAsync } from './eachAsync'
 import { object as each, map } from './each'
 import { Formatter } from './formatters/common';
 import { ExtendableEvent } from './module'
+import { Arguments } from './type-helper';
 export interface IWatched extends Object
 {
     $$watchers?: { [key: string]: Binding };
@@ -130,29 +131,28 @@ export class Binding
         if (this.registeredBindings.indexOf(binding) > -1)
             return;
         this.registeredBindings.push(binding);
-        const watcher = this;
-        const offChanging = watcher.onChanging(function (a: BindingExtendableEvent)
+        const offChanging = this.onChanging(function (a: BindingExtendableEvent)
         {
             if (a.eventArgs.source == binding || a.eventArgs.source === null)
                 return;
 
             return binding.onChangingEvent.trigger(Object.assign({}, a.eventArgs, { value: binding.getValue() }));
         });
-        const offChanged = watcher.onChanged(function (a: BindingExtendableEvent)
+        const offChanged = this.onChanged(function (a: BindingExtendableEvent)
         {
             if (a.eventArgs.source == binding || a.eventArgs.source === null)
                 return;
 
             return binding.onChangedEvent.trigger(Object.assign({}, a.eventArgs, { value: binding.getValue() }));
         });
-        const offError = watcher.onError(function (a)
+        const offError = this.onError(function (a)
         {
             if (a.eventArgs.source == binding || a.eventArgs.source === null)
                 return;
 
             return binding.onErrorEvent.trigger(Object.assign({}, a.eventArgs, { value: binding.getValue() }));
         });
-        var offDispose = watcher.onDisposeEvent.addHandler(async function (a)
+        var offDispose = this.onDisposeEvent.addHandler(async function (a)
         {
             await binding.onDisposeEvent.trigger();
             if (offChanged)
@@ -178,13 +178,12 @@ export class Binding
     {
         let target = this.target;
         const parts = Parser.parseBindable(this.expression);
-        const self = this;
         while (parts.length > 0)
         {
             var part = parts.shift();
             if (target !== null && target !== undefined && typeof (target) == 'object')
             {
-                if (!target.hasOwnProperty('$$watchers'))
+                if (!Object.getOwnPropertyDescriptor(target, '$$watchers'))
                 {
                     try
                     {
@@ -252,6 +251,7 @@ export class Binding
         }
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     public apply(elements, doNotRegisterEvents?: boolean) { }
     /*apply(elements, doNotRegisterEvents)
     {
@@ -335,22 +335,21 @@ export class PromiseBinding extends Binding
     constructor(expression: string, target: PromiseLike<any>)
     {
         super(expression, null, false);
-        const self = this;
         const binding = new Binding(expression, null);
-        binding.pipe(self);
-        var callback = function (value)
+        binding.pipe(this);
+        var callback = (value) =>
         {
             if (isPromiseLike(value))
             {
                 value.then(callback);
                 return;
             }
-            binding.formatter = self.formatter;
+            binding.formatter = this.formatter;
             binding.target = value;
 
-            self.onChangedEvent.trigger({
-                fieldName: self.expression,
-                value: self.getValue(),
+            this.onChangedEvent.trigger({
+                fieldName: this.expression,
+                value: this.getValue(),
                 source: binding
             });
         };
@@ -475,7 +474,7 @@ export class ObservableArray<T> extends EventEmitter
         });
     }
 
-    public init()
+    public init(): void
     {
         this.emit('collectionChanged', {
             action: 'init',
@@ -483,14 +482,13 @@ export class ObservableArray<T> extends EventEmitter
         });
     }
 
-    public indexOf(searchElement: T, fromIndex?: number): number;
-    public indexOf()
+    public indexOf(searchElement: T, fromIndex?: number): number
+    public indexOf(...args: Arguments<typeof Array.prototype.indexOf>): ReturnType<typeof Array.prototype.indexOf>
     {
-
-        return this.array.indexOf.apply(this.array, Array.from(arguments));
+        return this.array.indexOf(...args);
     }
 
-    public toString()
+    public toString(): string
     {
         return this.array.toString();
     }

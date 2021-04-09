@@ -172,16 +172,13 @@ export class GenericControlInstance<TParameter, TScope = any> implements IContro
     @inject('$injector')
     protected readonly injector: Injector;
 
-    constructor()
-    {
-    }
-
     public [akala.afterInjectSymbol]()
     {
         this.init();
     }
 
     init()
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     {
     }
 

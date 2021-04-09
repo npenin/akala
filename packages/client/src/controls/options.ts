@@ -24,6 +24,7 @@ export class Options extends GenericControlInstance<OptionsParameter>
 
     public init()
     {
+        // eslint-disable-next-line @typescript-eslint/no-this-alias
         const self = this;
         let value: akala.Binding = this.controls.value;
         if (this.controls.value instanceof Function)

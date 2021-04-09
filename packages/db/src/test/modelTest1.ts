@@ -4,8 +4,6 @@ import 'reflect-metadata'
 @db.Model
 export class ModelTest1
 {
-    constructor() { }
-
     @db.Key(db.Types.string)
     public s1: string;
 

@@ -4,7 +4,6 @@ import { promisify } from 'util';
 import * as path from 'path';
 import mkdirp from 'mkdirp';
 import { spawn as spawnOld, SpawnOptions } from 'child_process';
-import { EOL } from 'os'
 
 
 
@@ -13,7 +12,7 @@ const copyFile = promisify(fs.copyFile);
 
 function spawn(cmd: string, args: string[], options: SpawnOptions)
 {
-    return new Promise((resolve, reject) =>
+    return new Promise<void>((resolve, reject) =>
     {
         spawnOld(cmd, args, options).on('close', function (code, signal)
         {
@@ -26,39 +25,40 @@ function spawn(cmd: string, args: string[], options: SpawnOptions)
 }
 
 const config = program.command('module');
-config.command('new <name>')
-    .action(async function (context, next)
+config.command<{ name: string }>('new <name>')
+    .action(async function (context)
     {
         function npm(...args: string[])
         {
-            return spawn(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', args, { stdio: 'inherit', cwd: context.params.name });
+            return spawn(/^win/.test(process.platform) ? 'npm.cmd' : 'npm', args, { stdio: 'inherit', cwd: context.options.name });
         }
 
         function yarn(...args: string[])
         {
-            return spawn(/^win/.test(process.platform) ? 'yarn.cmd' : 'yarn', args, { stdio: 'inherit', cwd: context.params.name });
+            return spawn(/^win/.test(process.platform) ? 'yarn.cmd' : 'yarn', args, { stdio: 'inherit', cwd: context.options.name });
         }
 
-        await mkdirp(context.params.name);
-        await mkdirp(context.params.name + '/src');
-        await mkdirp(context.params.name + '/src/server');
-        await mkdirp(context.params.name + '/src/client');
+        await mkdirp(context.options.name);
+        await mkdirp(context.options.name + '/src');
+        await mkdirp(context.options.name + '/src/server');
+        await mkdirp(context.options.name + '/src/client');
 
-        await spawn('git', ['init'], { stdio: 'inherit', cwd: context.params.name });
+        await spawn('git', ['init'], { stdio: 'inherit', cwd: context.options.name });
 
-        await copyFile(path.join(__dirname, '../../templates/newmodule/.gitignore'), context.params.name + '/.gitignore');
-        await copyFile(path.join(__dirname, '../../templates/newmodule/.npmignore'), context.params.name + '/.npmignore');
-        await copyFile(path.join(__dirname, '../../templates/newmodule/src/tsconfig.json'), context.params.name + '/src/tsconfig.json');
-        await copyFile(path.join(__dirname, '../../templates/newmodule/src/server/tsconfig.json'), context.params.name + '/src/server/tsconfig.json');
-        await copyFile(path.join(__dirname, '../../templates/newmodule/src/client/tsconfig.json'), context.params.name + '/src/client/tsconfig.json');
-        await copyFile(path.join(__dirname, '../../templates/newmodule/src/server/index.ts'), context.params.name + '/src/server/index.ts');
+        await copyFile(path.join(__dirname, '../../templates/newmodule/.gitignore'), context.options.name + '/.gitignore');
+        await copyFile(path.join(__dirname, '../../templates/newmodule/.npmignore'), context.options.name + '/.npmignore');
+        await copyFile(path.join(__dirname, '../../templates/newmodule/src/tsconfig.json'), context.options.name + '/src/tsconfig.json');
+        await copyFile(path.join(__dirname, '../../templates/newmodule/src/server/tsconfig.json'), context.options.name + '/src/server/tsconfig.json');
+        await copyFile(path.join(__dirname, '../../templates/newmodule/src/client/tsconfig.json'), context.options.name + '/src/client/tsconfig.json');
+        await copyFile(path.join(__dirname, '../../templates/newmodule/src/server/index.ts'), context.options.name + '/src/server/index.ts');
 
-        if (/@[^\/]+/.test(context.params.name))
-            await npm('init', '-y', '--scope', /@[^\/]+/.exec(context.params.name)[0]);
+        if (/@[^/]+/.test(context.options.name))
+            await npm('init', '-y', '--scope', /@[^/]+/.exec(context.options.name)[0]);
         else
             await npm('init', '-y');
 
-        const packagejson = require(process.cwd() + '/' + context.params.name + '/package.json');
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        const packagejson = require(process.cwd() + '/' + context.options.name + '/package.json');
         packagejson.main = 'dist/server/index.js';
         packagejson.types = 'dist/server/index.d.ts';
         packagejson.scripts = {
@@ -70,7 +70,7 @@ config.command('new <name>')
             "build": "npm run build:js && npm run build:js:routes && npm run build:js:tile"
         };
         packagejson.license = "MIT";
-        await writeFile(context.params.name + '/package.json', JSON.stringify(packagejson, null, 4));
+        await writeFile(context.options.name + '/package.json', JSON.stringify(packagejson, null, 4));
 
         let useYarn = true;
         try

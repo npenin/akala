@@ -378,10 +378,9 @@ class FileEntry implements FileSystemFile
     [isFile]: true = true;
     [isDirectory]?: false = false;
     [model]: ModelDefinition<any>;
-    get [fileContent]() { debugger; return fileContents[this[fspath]].lastContent; }
+    get [fileContent]() { return fileContents[this[fspath]].lastContent; }
     set [fileContent](value)
     {
-        debugger;
         if (fileContents[this[fspath]])
             fileContents[this[fspath]].lastContent = value;
     }

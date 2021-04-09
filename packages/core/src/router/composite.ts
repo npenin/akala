@@ -136,7 +136,7 @@ export class MiddlewareComposite<T extends unknown[]> implements Middleware<T>, 
                 else
                     try
                     {
-                        if (isErrorMiddleware(middleware))
+                        if (!isStandardMiddleware(middleware))
                             next();
                         else
                             middleware.handle(...req).then(err =>
@@ -195,5 +195,10 @@ export interface MiddlewareComposite<T extends unknown[]> extends Middleware<T>,
 function isErrorMiddleware<T extends unknown[]>(middleware: AnyMiddleware<T>): middleware is ErrorMiddleware<T>
 {
     return middleware && middleware['handleError'];
+}
+
+function isStandardMiddleware<T extends unknown[]>(middleware: AnyMiddleware<T>): middleware is Middleware<T>
+{
+    return middleware && middleware['handle'];
 }
 

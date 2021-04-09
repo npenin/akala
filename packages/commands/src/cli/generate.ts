@@ -10,6 +10,7 @@ export default async function generate(folder?: string, name?: string, outputFil
 {
     folder = folder || process.cwd();
     if (!name && fs.existsSync(join(folder, './package.json')))
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
         name = require(join(folder, './package.json')).name;
     if (!name)
         name = path.basename(folder);

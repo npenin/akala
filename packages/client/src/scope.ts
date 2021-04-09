@@ -1,6 +1,4 @@
 import * as akala from '@akala/core';
-import { applyInjector } from '@akala/core/dist/reflection-injector';
-
 
 export interface IScope<T> extends akala.IWatched
 {
@@ -9,16 +7,12 @@ export interface IScope<T> extends akala.IWatched
     $set(expression: string, value: any);
     $set(expression: string, value: any);
     $watch(expression: string, handler: (value: any) => void);
-    $inject(f: Function);
+    $inject(f: (...args: unknown[]) => unknown);
     $bind(expression: string): akala.Binding;
 }
 
 export class Scope<T> implements IScope<T>
 {
-    constructor()
-    {
-    }
-
     public get $root() { return this; }
 
     private $$resolver: akala.Injector;
@@ -49,8 +43,7 @@ export class Scope<T> implements IScope<T>
 
     public $inject<T>(f: akala.Injectable<T>, params?: { [key: string]: any })
     {
-        const scope = this;
-        if (!this.hasOwnProperty('$$resolver'))
+        if (!Object.getOwnPropertyDescriptor(this, '$$resolver'))
         {
             this.$$resolver = new akala.Injector();
             this.$$resolver.setInjectables(this);

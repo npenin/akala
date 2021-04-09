@@ -61,10 +61,10 @@ async function getConfigWithKey(key?: string)
 
 const getConfigProxy = new Proxy(getConfigWithKey, getConfigGetter);
 
-export function init()
+export function init(): void
 {
 
-    akala.register('$updateConfig', akala.chain(updateConfig, function (keys, config, key)
+    akala.defaultInjector.register('$updateConfig', akala.chain(updateConfig, function (keys, config, key)
     {
         if (key)
         {
@@ -72,7 +72,7 @@ export function init()
         }
         return [config, keys.join('.')];
     }));
-    akala.register('$getConfig', akala.chain(getConfig, function (keys, key)
+    akala.defaultInjector.register('$getConfig', akala.chain(getConfig, function (keys, key)
     {
         if (key)
         {
@@ -81,7 +81,7 @@ export function init()
         return [keys.join('.')];
     }));
 
-    akala.registerFactory('$config', getConfigProxy);
+    akala.defaultInjector.registerFactory('$config', getConfigProxy);
 }
 
 init();
@@ -101,23 +101,23 @@ function getConfig()
     {
         return JSON.parse(content);
     }, function (err)
+    {
+        writeConfig({}).then(function (config)
         {
-            writeConfig({}).then(function (config)
-            {
-                return {};
-            })
-        });
+            return {};
+        })
+    });
 }
 
 const config = program.command('config');
 config.command('set <key> [value]')
-    .action(async function (context, next)
+    .action(async function (context)
     {
-        await updateConfig(context.params.value, context.params.key)
+        await updateConfig(context.options.value, context.options.key)
     });
 
 config.command('get [key]')
-    .action(function (context, next)
+    .action(function (context)
     {
-        return akala.resolve('$getConfig')(context.params.key);
+        return akala.defaultInjector.resolve('$getConfig')(context.options.key);
     });

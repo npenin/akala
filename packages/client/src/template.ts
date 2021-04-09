@@ -3,6 +3,7 @@ import { Control, IControlInstance } from './controls/controls'
 import { Scope } from './scope'
 import { service } from './common'
 
+// eslint-disable-next-line no-constant-condition
 if (MutationObserver && false)
 {
     const domObserver = new MutationObserver(function (mutations: MutationRecord[])
@@ -14,9 +15,9 @@ if (MutationObserver && false)
                 case 'characterData':
                     return;
                 case 'attributes':
-
+                    break;
                 case 'childList':
-
+                    break;
             }
         })
     })
@@ -70,10 +71,10 @@ export class Interpolate
         let startIndex,
             endIndex,
             index = 0,
-            expressions = [],
+            exp;
+        const expressions = [],
             parseFns: ((target: any) => akala.Binding)[] = [],
             textLength = text.length,
-            exp,
             concat = [],
             expressionPositions = [];
 

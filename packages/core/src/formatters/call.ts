@@ -6,7 +6,6 @@ import { Binding } from "../binder";
 
 export class CallFormatterFactory implements FormatterFactory<any, ParsedString>
 {
-    constructor() { }
     public parse(expression: string)
     {
         return new ParsedString(expression.substring(0, new Parser().parseFunction(expression).$$length));
@@ -17,7 +16,7 @@ export class CallFormatterFactory implements FormatterFactory<any, ParsedString>
         {
             if (this.args && x && x[this.method])
             {
-                return x[this.method].apply(x, Binding.unbindify(this.args));
+                return x[this.method](...Binding.unbindify<unknown[]>(this.args));
             }
         }
 

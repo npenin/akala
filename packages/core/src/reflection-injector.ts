@@ -3,17 +3,9 @@ import debug from 'debug';
 import { isPromiseLike } from './promiseHelpers';
 import { EventEmitter } from 'events';
 import "reflect-metadata";
-import { Injector, InjectedParameter, InjectableConstructor, Injectable } from './injector';
+import { Injector, InjectedParameter, InjectableConstructor, Injectable, ctorToFunction } from './injector';
 
 const log = debug('akala:core:injector');
-
-function ctorToFunction(this: new () => any)
-{
-    const args = [null];
-    for (let i = 0; i < arguments.length; i++)
-        args[i + 1] = arguments[i];
-    return new (Function.prototype.bind.apply(this, args));
-}
 
 export type PropertyInjection = ((i: Injector) => void);
 export type ParameterInjection = ((i: Injector) => InjectedParameter<any>);
@@ -118,6 +110,7 @@ export function applyInjector(injector: Injector, obj: any, prototype?: any)
 
 export function injectable<TInstance, TClass extends { new(...args: any[]): TInstance }>(ctor: TClass): TClass
 {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-expect-error
     const result = class DynamicProxy extends ctor
     {
@@ -162,6 +155,7 @@ export type InjectableClass<T> = T & {
 
 export function useInjector(injector: Injector)
 {
+    // eslint-disable-next-line @typescript-eslint/ban-types
     return function classInjectorDecorator<TClass extends { new(...args: any[]): object }>(ctor: TClass): InjectableClass<TClass>
     {
         const result = class InjectedDynamicProxy extends injectable(ctor)
@@ -175,11 +169,13 @@ export function useInjector(injector: Injector)
 
         Object.assign(result, ctor);
 
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-expect-error
         return result;
     }
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export function extendInject<TClass extends { new(...args: any[]): object }>(injector: Injector, constructor: TClass)
 {
     return useInjector(injector)<TClass>(constructor);
@@ -191,16 +187,6 @@ export class ReflectionInjector extends Injector
     constructor(protected parent?: Injector)
     {
         super(parent);
-    }
-
-    public injectNew<T>(ctor: InjectableConstructor<T>)
-    {
-        return this.inject<T>(ctorToFunction.bind(ctor));
-    }
-
-    public injectNewWithName(toInject: string[], ctor: Function)
-    {
-        return this.injectWithName(toInject, ctorToFunction.bind(ctor));
     }
 }
 

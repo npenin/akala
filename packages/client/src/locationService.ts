@@ -72,12 +72,11 @@ export class LocationService extends EventEmitter
         }
         else
         {
-            const self = this;
-            window.addEventListener('load', function ()
+            window.addEventListener('load', () =>
             {
-                setImmediate(function ()
+                setImmediate(() =>
                 {
-                    self.loaded = true;
+                    this.loaded = true;
                 });
             });
         }

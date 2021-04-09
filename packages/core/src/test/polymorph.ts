@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 require('source-map-support').install();
 
 import { Polymorph } from '../polymorph'
@@ -29,6 +30,7 @@ class Test
     }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 function noop() { }
 
 console.log(Test.transition(noop));

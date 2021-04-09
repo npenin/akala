@@ -99,6 +99,7 @@ export abstract class PersistenceEngine<TOptions = string>
     }
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export var dynamicProxy = function <T extends Object>(target: T, model: ModelDefinition<T>)
 {
     var updateCommand: Update<T> = null;

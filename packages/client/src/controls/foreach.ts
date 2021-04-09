@@ -32,20 +32,19 @@ export class ForEach extends GenericControlInstance<ForeachParameter>
         else
             sourceBinding = this.parameter.in;
 
-        const self = this;
         const element = this.element;
         const parent = this.element.parentElement;
         if (this.element.parentNode)
             this.element.parentNode.removeChild(this.element);
-        const parsedParam = self.parameter as ForeachParameter;
+        const parsedParam = this.parameter as ForeachParameter;
         // var newControls;
-        function build(source: akala.ObservableArray<any> | any[])
+        const build = (source: akala.ObservableArray<any> | any[]) =>
         {
             const result: ArrayLike<Element> = [];
 
             if (source instanceof akala.ObservableArray)
             {
-                source.on('collectionChanged', function (args)
+                source.on('collectionChanged', (args) =>
                 {
                     switch (args.action)
                     {
@@ -62,32 +61,32 @@ export class ForEach extends GenericControlInstance<ForeachParameter>
                         case 'push':
                             args.newItems.forEach(arg =>
                             {
-                                const scope = self.scope.$new();
+                                const scope = this.scope.$new();
                                 if (parsedParam.key)
                                     scope[parsedParam.key] = source.length - 1;
                                 if (parsedParam.value)
                                     scope[parsedParam.value] = arg;
-                                self.clone(element, scope, true).then(el => parent.appendChild(el));
+                                this.clone(element, scope, true).then(el => parent.appendChild(el));
                             })
                             break;
                         case 'unshift':
                             args.newItems.forEach(arg =>
                             {
-                                const scope = self.scope.$new();
+                                const scope = this.scope.$new();
                                 if (parsedParam.key)
                                     scope[parsedParam.key] = 0;
                                 if (parsedParam.value)
                                     scope[parsedParam.value] = arg;
-                                self.clone(element, scope, true).then(el => parent.insertBefore(el, parent.firstElementChild));
+                                this.clone(element, scope, true).then(el => parent.insertBefore(el, parent.firstElementChild));
                             });
                             break;
                         case 'replace':
-                            var scope = self.scope.$new();
+                            var scope = this.scope.$new();
                             if (parsedParam.key)
                                 scope[parsedParam.key] = source.indexOf(args.newItems[0]);
                             if (parsedParam.value)
                                 scope[parsedParam.value] = args.newItems[0];
-                            self.clone(element, scope, true).then(el => parent.replaceChild(el, parent.children[source.indexOf(args.newItems[0])]));
+                            this.clone(element, scope, true).then(el => parent.replaceChild(el, parent.children[source.indexOf(args.newItems[0])]));
                             break;
                     }
                 });
@@ -96,12 +95,12 @@ export class ForEach extends GenericControlInstance<ForeachParameter>
             if (source)
                 akala.each(source, function (value, key)
                 {
-                    const scope = self.scope.$new();
+                    const scope = this.scope.$new();
                     if (parsedParam.key)
                         scope[parsedParam.key] = key;
                     if (parsedParam.value)
                         scope[parsedParam.value] = value;
-                    self.clone(element, scope, true).then(el => parent.appendChild(el));
+                    this.clone(element, scope, true).then(el => parent.appendChild(el));
                 });
             return result;
         }

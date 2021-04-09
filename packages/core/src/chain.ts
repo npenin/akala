@@ -15,7 +15,7 @@ global['Proxy'] = new oldProxy(oldProxy, {
     }
 });
 
-export function chain<T extends Function>(target: T, keyHandler: (keys: string[], ...args) => any[])
+export function chain<T extends (...args: unknown[]) => unknown>(target: T, keyHandler: (keys: string[], ...args) => any[])
 {
     const configProxyGetter = {
         get: function chain(target: T, key)
@@ -38,8 +38,10 @@ export function chain<T extends Function>(target: T, keyHandler: (keys: string[]
             switch (key)
             {
                 case 'then':
-                    const c = target();
-                    return c.then.bind(c);
+                    {
+                        const c = target();
+                        return c['then'].bind(c);
+                    }
                 case 'apply':
                     return target.apply;
                 case 'length':
@@ -47,14 +49,15 @@ export function chain<T extends Function>(target: T, keyHandler: (keys: string[]
                 case 'toString':
                     return target.toString.bind(target);
                 default:
-                    keys.push(key);
-                    const proxy = new Proxy(function (...args)
                     {
-                        if (!args)
-                            args = [];
-                        args.unshift(keys);
-                        return target.apply(this, keyHandler.apply(this, args));
-                    }, {
+                        keys.push(key);
+                        const proxy = new Proxy(function (...args)
+                        {
+                            if (!args)
+                                args = [];
+                            args.unshift(keys);
+                            return target.apply(this, keyHandler.apply(this, args));
+                        }, {
                             get: function (getConfig, subKey)
                             {
                                 if (typeof (subKey) == 'symbol')
@@ -74,8 +77,10 @@ export function chain<T extends Function>(target: T, keyHandler: (keys: string[]
                                 switch (subKey)
                                 {
                                     case 'then':
-                                        const c = target.apply(this, keyHandler(keys));
-                                        return c.then.bind(c);
+                                        {
+                                            const c = target.apply(this, keyHandler(keys));
+                                            return c['then'].bind(c);
+                                        }
                                     case 'apply':
                                         return getConfig.apply;
                                     case 'length':
@@ -88,7 +93,8 @@ export function chain<T extends Function>(target: T, keyHandler: (keys: string[]
                                 return proxy;
                             }
                         });
-                    return proxy;
+                        return proxy;
+                    }
             }
         }
     };

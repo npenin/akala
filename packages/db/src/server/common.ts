@@ -78,7 +78,7 @@ export type Relationship<T, TMember extends keyof T> = {
 };
 export type StorageField = { isKey: boolean, mode: ModelMode.StorageField, nameInStorage: string, generator: Generator, model: ModelDefinition<any> } & FieldType;
 export type Field<T = any> = Attribute<T, any> | StorageField;
-export enum ModelMode { Attribute, Relationship, StorageField };
+export enum ModelMode { Attribute, Relationship, StorageField }
 
 export class StorageView<U extends { [key: string]: any }>
 {
@@ -118,6 +118,7 @@ export class ModelDefinition<TObject extends { [key: string]: any }>
 
     public dbSet(engine: PersistenceEngine<any>): DbSet<TObject>
     {
+        // eslint-disable-next-line @typescript-eslint/no-this-alias
         var model = this;
         return Object.assign(new Query<TObject>(new PersistenceEngineQueryProvider(engine), new ConstantExpression(this)), {
             model, update(record: TObject)
@@ -215,7 +216,7 @@ export class ModelDefinition<TObject extends { [key: string]: any }>
     public defineRelationship<TTargetObject>(name: Extract<keyof TObject, string>, targetType: ModelDefinition<TTargetObject>, foreignKeyMapping: { [key: string]: string })
     {
         this.relationships[name] = Object.assign({ name, target: targetType, mode: ModelMode.Relationship });
-        for (let fk in foreignKeyMapping)
+        for (const fk in foreignKeyMapping)
         {
             if (this.members[fk])
                 continue;

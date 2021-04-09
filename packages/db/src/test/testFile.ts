@@ -1,3 +1,5 @@
+/* eslint-disable no-debugger, no-console */
+
 import * as akala from '@akala/core'
 import mock from 'mock-require'
 mock('@akala/core', akala);
@@ -38,7 +40,7 @@ describe('simple query', function ()
         await fpe.commitTransaction();
 
         var cnt = await store.ModelTest1.where('s1', db.expressions.BinaryOperator.Equal, 'pwic').length();
-        assert.notStrictEqual(cnt, 0, 'fount 0 item with s1=pwic');;
+        assert.notStrictEqual(cnt, 0, 'fount 0 item with s1=pwic');
         assert.equal(cnt, 1, 'found ' + cnt + ' item with s1=pwic');
         for await (var value of store.ModelTest1.where('s1', db.expressions.BinaryOperator.Equal, 'pwic'))
         {

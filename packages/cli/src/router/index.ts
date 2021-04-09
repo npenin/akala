@@ -1,396 +1,232 @@
 import * as akala from '@akala/core'
-import { escapeRegExp } from '@akala/core/dist/reflect';
-import { LayerRegExp, Layer } from '@akala/core/dist/router/layer';
-import { Key } from 'path-to-regexp';
-import { URL } from 'url';
 
-export interface CliContext
+export interface CliContext<TOptions extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>
 {
     args: string[];
     argv: string[];
-    options?: { [key: string]: string | boolean | string[] };
+    options: TOptions
     commandPath?: string;
 }
 
-export interface ICommandBuilder
+type cliHandlerWithNext = akala.Middleware<[context: CliContext]>;
+
+interface OptionParseOption
 {
-    command(cmd: string): Command;
+    flagStart: string;
+    fullOptionStart: string;
+    valueAssign: string;
 }
 
-type cliHandlerWithNext = akala.Middleware1<CliContext & akala.Request>;
-type errorHandlerWithNext = akala.ErrorMiddleware1<CliContext & akala.Request>;
+const defaultOptionParseOption: OptionParseOption = { flagStart: '-', fullOptionStart: '--', valueAssign: '=' };
 
-class CliLayer extends akala.Layer<cliHandlerWithNext> implements akala.IRoutable<cliHandlerWithNext>
+interface OptionOptions
 {
-    constructor(path: string, options: akala.LayerOptions, handler: cliHandlerWithNext)
-    {
-        super(path, akala.extend({ length: 1 }, options), handler);
-        this.regexp = cliToRegexp(path, this.keys = [], options);
-        if (this.keys.length)
-            this.name = this.keys[0].name.toString();
-    }
-
-    public isApplicable(req: CliContext & Request, route): boolean
-    {
-        return true;
-    }
-
-    public route: akala.Route<cliHandlerWithNext, akala.Layer<cliHandlerWithNext>>;
+    aliases?: string[],
+    needsValue?: boolean,
+    caseSensitive?: boolean,
 }
 
-class CliRoute extends akala.Route<cliHandlerWithNext, CliLayer>
+class OptionMiddleware implements cliHandlerWithNext
 {
-    constructor(path: string)
+    matchers: { isFull: boolean; pattern: RegExp; }[];
+    constructor(private readonly name: string, private options?: OptionOptions, parseOptions: OptionParseOption = defaultOptionParseOption)
     {
-        super(path);
-    }
-    public isApplicable(req: { method: string })
-    {
-        return true
-    }
-}
-
-class CliRouter extends akala.Router<cliHandlerWithNext, errorHandlerWithNext, CliLayer, CliRoute> implements ICommandBuilder
-{
-    constructor(private injector?: akala.Injector)
-    {
-        super({ separator: ' ' });
-    }
-
-    protected buildLayer(path: string, options: akala.LayerOptions, handler: cliHandlerWithNext)
-    {
-        return new CliLayer(path, options, handler);
-    }
-
-    protected buildRoute(path: string)
-    {
-        return new CliRoute(path);
-    }
-
-    getPathname(req)
-    {
-        if (req.url)
-            return req.url;
-        return CliRouter.getAsCli(req.args);
-    }
-
-    public static getAsCli(args: string[])
-    {
-        return args.map(function (v)
+        if (!options)
+            options = {};
+        this.matchers = [name].concat(options?.aliases).map(n =>
         {
-            if (~v.indexOf('"'))
-                return '"' + v + '"';
-            return v;
-        }).join(' ')
-    }
+            if (n.length > 1)
+                return {
+                    isFull: true,
+                    pattern: new RegExp('^' + parseOptions.fullOptionStart + akala.introspect.escapeRegExp(n) + '(?:' + parseOptions.valueAssign + '(.*))?$', options.caseSensitive ? 'i' : '')
+                };
 
-    public command(path: string)
-    {
-        const cmd = new Command(this.injector);
-
-        const layer = this.layer(path, function (context)
-        {
-            cmd.request = context;
-            cmd._action.apply(null, Array.from(arguments));
+            return {
+                isFull: false,
+                pattern: new RegExp('^' + parseOptions.flagStart + '[^' + akala.introspect.escapeRegExp(n) + ']+([' + akala.introspect.escapeRegExp(n) + ']+)', options.caseSensitive ? 'i' : '')
+            };
         });
+    }
 
-        layer.isApplicable = function (context, route)
+    handle(context: CliContext): akala.MiddlewarePromise
+    {
+        for (let index = 0; index < context.args.length; index++)
         {
-            cmd.request = context;
-            return !context.options || !Object.keys(context.options).filter(function (optionName)
+            const element = context.args[index];
+
+            for (let jndex = 0; jndex < this.matchers.length; jndex++)
             {
-                return !cmd.options.find(function (option)
+                const matcher = this.matchers[jndex];
+                const match = matcher.pattern.exec(element);
+                if (match)
                 {
-                    return option.matches(context);
-                })
-            }).length;
-        }
-
-        cmd.name = layer.name;
-
-        return cmd;
-    }
-
-    protected shift(req, removed)
-    {
-        if (removed == req.args[0])
-        {
-            req.args.shift();
-        }
-    }
-
-    protected unshift(req, removed)
-    {
-        req.args.unshift(removed);
-    }
-
-    public handle(context, next)
-    {
-        this.internalHandle({
-            ensureCleanStart: function ()
-            {
-            }
-        }, context, next);
-    }
-
-    public process(argv: string[])
-    {
-        this.handle({
-            argv: argv,
-            args: argv,
-            options: {}
-        }, function (err)
-        {
-            if (err)
-                console.error(err);
-        });
-    }
-}
-
-class Option
-{
-    public names: { name: string, pattern: RegExp }[] = [];
-    public single = true;
-    public args: LayerRegExp & { keys: Key[] };
-
-    constructor(specification: string, private description: string, private defaultValue: any)
-    {
-        const followingArgs = specification.replace(/(?:^|[\|, ]+)-(-)?([^ ]+)(?:[^<\[])?/g, (match, doubleDash, name) =>
-        {
-            if (doubleDash)
-                this.names.push({ name: name, pattern: new RegExp('^--' + escapeRegExp(name) + '$') });
-            else
-                this.names.push({ name: name, pattern: new RegExp('^-' + escapeRegExp(name) + '$') });
-            return '';
-        });
-
-        if (followingArgs.length > 0)
-        {
-            const keys = [];
-            this.args = cliToRegexp(followingArgs, keys) as any;
-            if (keys.length == 1 && keys[0].variadic)
-                this.single = false;
-        }
-    }
-
-    public matches(context: CliContext)
-    {
-        const optionValues = this.names.filter((nameSpec) =>
-        {
-            if (typeof (this.defaultValue) != 'undefined')
-                context.options[nameSpec.name] = this.defaultValue;
-            return context.args.find(nameSpec.pattern.test.bind(nameSpec.pattern));
-        });
-
-        if (optionValues.length == 0)
-            return false;
-
-        if (optionValues.length > 1 && this.single)
-            return false;
-
-        let indexesToRemove: number[];
-
-        for (let i = 0; i < context.args.length; i++)
-        {
-            for (let j = 0; j < this.names.length; j++)
-            {
-                if (this.names[j].pattern.test(context.args[i]))
-                {
-                    if (this.args)
+                    if (matcher.isFull)
                     {
-                        const match = CliRouter.getAsCli(context.args.slice(i + 1, this.args.keys.length + i + 1)).match(this.args);
-                        if (!match)
-                            continue;
-                        indexesToRemove.push(i);
-                        for (let x = i + 1; x < this.args.keys.length + x + 1; x++)
-                            indexesToRemove.push(x);
-
-                        if (typeof (context.options[this.names[j].name]) == 'undefined' && !this.single)
-                            context.options[this.names[j].name] = [];
-
-                        if (this.single)
-                            context.options[this.names[j].name] = match[1];
+                        if (match[1])
+                        {
+                            context.options[this.name] = match[1];
+                            context.args.splice(index, 1);
+                        }
+                        else if (this.options.needsValue)
+                        {
+                            if (context.args.length == index + 1)
+                                return Promise.resolve(new Error('No value was given for option ' + this.name));
+                            context.options[this.name] = context.args[index + 1];
+                            context.args.splice(index, 2);
+                        }
+                    }
+                    else
+                    {
+                        if (match[1])
+                            context.options[this.name] = match[1];
+                        else if (this.options.needsValue)
+                            context.options[this.name] = match[1].length;
                         else
-                            (context.options[this.names[j].name] as string[]).push(match[1]);
-
-                        i += this.args.keys.length + 1;
-                        j = -1;
+                            context.options[this.name] = true;
+                        context.args.splice(index, 1);
                     }
-                    else
-                    {
-                        context.options[this.names[j].name] = true;
-                        indexesToRemove.push(i);
-                        i++;
-                        j = -1;
-                    }
+                    return Promise.resolve();
                 }
             }
         }
-
-        for (let i = 0; i < indexesToRemove.length; i++)
-        {
-            context.args.splice(i, 1);
-        }
+        return Promise.resolve();
     }
 }
 
-const masterPrefixes = ['param', 'option']
-
-class Command extends akala.Injector implements ICommandBuilder
+class OptionsMiddleware implements cliHandlerWithNext
 {
-    constructor(injector?: akala.Injector)
+    private options = new akala.MiddlewareComposite<[CliContext]>();
+
+    option(name: string, option?: OptionOptions)
     {
-        super(injector);
+        return this.optionMiddleware(new OptionMiddleware(name, option));
     }
 
-    public request?: CliContext & akala.Request;
-
-    public resolve<T = any>(name: string): T
+    optionMiddleware(middleware: OptionMiddleware): this
     {
-        const indexOfDot = name.indexOf('.');
-
-        if (indexOfDot > -1)
-        {
-            const master = name.substr(0, indexOfDot);
-            if (master in masterPrefixes)
-            {
-                switch (master)
-                {
-                    case 'param':
-                        return this.request.params && this.request.params[name.substr(indexOfDot + 1)] as any;
-                    case 'option':
-                        return this.request.options && this.request.options[name.substr(indexOfDot + 1)] as any;
-                }
-            }
-        }
-        return super.resolve<T>(name);
-    }
-
-    public name: string;
-    public _action: cliHandlerWithNext;
-    public options: Option[] = [];
-    private subCommands: CliRouter;
-
-    public handler: cliHandlerWithNext;
-
-    public action(action: cliHandlerWithNext)
-    {
-        this._action = action;
-
+        this.options.useMiddleware(middleware);
         return this;
     }
 
-    public config(configName: string)
+    handle(context: CliContext): akala.MiddlewarePromise
     {
-        this.registerFactory('$config', () =>
+        return this.options.handle(context);
+    }
+}
+
+class UsageError extends Error
+{
+    constructor(cli: string)
+    {
+        super(`Invalid usage. This command requires the following arguments: ${cli}`);
+    }
+}
+
+class NamespaceMiddleware<TOptions extends Record<string, string | boolean | string[] | number>> extends akala.MiddlewareComposite<[CliContext<TOptions>]> implements cliHandlerWithNext
+{
+    private _preAction: akala.Middleware<[CliContext<TOptions>]>;
+    private _action: akala.Middleware<[CliContext<TOptions>]>;
+    private readonly _option = new OptionsMiddleware();
+
+    constructor(name: string, private _cli?: akala.Middleware<[CliContext<TOptions>]>)
+    {
+        super(name);
+        if (name && ~name.indexOf(' '))
+            throw new Error('command name cannot contain a space');
+    }
+
+    public command<TOptions2 extends TOptions = TOptions>(name: string): NamespaceMiddleware<TOptions2>
+    {
+        var cli = /(\w+)(?: (\w+))*((?: (?:<\w+>))*(?: (?:\[\w+\]))*)/.exec(name);
+        if (!cli || cli[0].length != name.length)
+            throw new Error(`${name} must match the following syntax: name <mandatoryparameters> [optionparameters].`)
+
+        if (cli[2])
+            return this.command(cli[1]).command(cli[2] + cli[3]);
+
+        var args = cli[3];
+        var parameters: { name: keyof TOptions2, optional: boolean }[] = [];
+        var parameter: RegExpExecArray;
+        const parameterParsing = / <(\w+)>| \[(\w+)\]/g;
+        // eslint-disable-next-line no-cond-assign
+        while (parameter = parameterParsing.exec(args))
         {
-            return this.parent.resolve<Promise<any>>('$config').then((config) =>
+            if (parameter[0][1] == '<')
+                parameters.push({ name: parameter[1], optional: false })
+            else
+                parameters.push({ name: parameter[2], optional: true });
+        }
+
+        var middleware = new NamespaceMiddleware<TOptions2>(cli[1], akala.convertToMiddleware(function (context)
+        {
+            if (context.args.length < (~parameters.findIndex(p => p.optional) || parameters.length))
+                throw new UsageError(name);
+
+            for (let index = 0; index < parameters.length; index++)
             {
-                return config[configName];
+                const parameter = parameters[index];
+                // if (!parameter.optional)
+                context.options[parameter.name] = context.args.shift() as TOptions2[typeof parameter.name];
+                // if (parameter.optional)
+                //     context.options[parameter.name] = context.args.shift() as TOptions2[typeof parameter.name];
+            }
+            return Promise.reject();
+        }));
+        super.useMiddleware(middleware);
+        return middleware;
+    }
+
+    public preAction(handler: (context: CliContext<TOptions>) => Promise<void>)
+    {
+        this._preAction = akala.convertToMiddleware(handler);
+    }
+
+    public action(handler: (context: CliContext<TOptions>) => Promise<unknown> | void)
+    {
+        this._action = akala.convertToMiddleware((...args) =>
+        {
+            var result = handler(...args);
+            if (result)
+                if (akala.isPromiseLike(result))
+                    return result;
+            return Promise.resolve(result);
+
+        });
+    }
+
+
+    option(name: string, option?: OptionOptions)
+    {
+        this._option.option(name, option);
+    }
+
+    async handle(context: CliContext<TOptions>): akala.MiddlewarePromise
+    {
+        var args = context.args.slice(0);
+        if (this.name === null || context.args.shift() == this.name)
+        {
+            var error = await this._option.handle(context);
+            if (error)
+                return error;
+            if (this._cli)
+                error = await this._cli.handle(context);
+            if (error)
+                return error;
+            if (this._preAction)
+                error = await this._preAction.handle(context)
+            if (error)
+                return error;
+            return super.handle(context).then(err =>
+            {
+                if (!err && this._action)
+                    return this._action.handle(context);
+                context.args = args;
             })
-        });
-
-        this.register('$updateConfig', (value, key) =>
-        {
-            return this.parent.resolve('$updateConfig')(value, configName + '.' + key);
-        });
-
-        return this;
-    }
-
-    public option(spec: string, description: string, defaultValue: any)
-    {
-        this.options.push(new Option(spec, description, defaultValue));
-        return this;
-    }
-
-    public command(cmd: string): Command
-    {
-        if (!this.subCommands)
-            this.subCommands = new CliRouter(this);
-        if (!this._action)
-            this.action((context, next) =>
-            {
-                this.request = context;
-                if (this.options.length)
-                {
-                    this.options.forEach(function (option)
-                    {
-                        option.matches(context);
-                    });
-                }
-                this.subCommands.handle(context, next);
-            });
-        return this.subCommands.command.apply(this.subCommands, Array.from(arguments));
+        }
     }
 }
 
-function cliToRegexp(cli: string, keys: (Partial<Key> & {repeat:boolean, optional:boolean, delimiter:string})[], options?: akala.LayerOptions): LayerRegExp
-{
-    let flags: string = undefined;
-    let regexp = '^';
-    if (options && options.sensitive)
-        flags += 'i';
+const mainRouter = new NamespaceMiddleware(null);
+const cmd = mainRouter;
 
-    if (cli == '*')
-    {
-        regexp = '^.*$';
-    }
-    else
-    {
-        regexp = cli.replace(/( ?)([<\[])?(\.{3})?([-\w]+)[>\]]?/g, function (m, space, argcase, variadic, name)
-        {
-            switch (argcase)
-            {
-                case '[':
-                    if (space)
-                        keys.push({ name: name, repeat: !!variadic, prefix: null, optional: true, delimiter: ' ', pattern: '(?: +([^\\s]+|(?:"(?:[^"\\\\]|(?:\\\\[^"])|(?:\\\\""))+")))?' });
-                    else
-                        keys.push({ name: name, repeat: !!variadic, prefix: null, optional: true, delimiter: ' ', pattern: '([^\\s]+|(?:"(?:[^"\\\\]|(?:\\\\[^"])|(?:\\\\""))+"))?' });
-                    break;
-                case '<':
-                    if (space)
-                        keys.push({ name: name, repeat: !!variadic, prefix: null, optional: false, delimiter: ' ', pattern: ' +([^\\s]+|(?:"(?:[^"\\\\]|(?:\\\\[^"])|(?:\\\\""))+"))' });
-                    else
-                        keys.push({ name: name, repeat: !!variadic, prefix: null, optional: false, delimiter: ' ', pattern: '([^\\s]+|(?:"(?:[^"\\\\]|(?:\\\\[^"])|(?:\\\\""))+"))' });
-                    break;
-                default:
-                    if (space)
-                        keys.push({ name: name, repeat: !!variadic, prefix: null, optional: false, delimiter: ' ', pattern: ' +(' + escapeRegExp(name) + ')' });
-                    else
-                        keys.push({ name: name, repeat: !!variadic, prefix: null, optional: false, delimiter: ' ', pattern: '(' + escapeRegExp(name) + ')' });
-                    break;
-            }
-            return keys[keys.length - 1].pattern;
-        });
-    }
-
-    if (options && options.end)
-        regexp += '(?=\/|$)';
-    let result: LayerRegExp & { keys: Partial<Key>[] };
-    result = new RegExp(regexp, flags) as any;
-    if (regexp == '^.*$')
-    {
-        result.fast_star = true;
-    }
-    result.keys = keys;
-    return result;
-}
-
-const mainRouter = new CliRouter();
-const cmd = mainRouter.command('*');
-
-cmd.option('--url', 'remote url of akala server', 'http://localhost:5678/')
-cmd['cliToRegexp'] = cliToRegexp;
-cmd['process'] = function (argv: string[])
-{
-
-    akala.register('$resolveUrl',
-        function resolveUrl(namespace: string)
-        {
-            return new URL(namespace, cmd.request.options['url'] as string).toString();
-        }, true);
-    mainRouter.process(argv);
-}
-
-export default cmd as Command & { process(args: string[]) };
+export default cmd;

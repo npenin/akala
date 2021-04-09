@@ -152,8 +152,6 @@ export function formatParser(format: string)
 
 export class DateFormatter implements FormatterFactory<Date, DateFormatterSettings>
 {
-    constructor() { }
-
     public parse(expression: string): DateFormatterSettings
     {
         // console.log(expression);

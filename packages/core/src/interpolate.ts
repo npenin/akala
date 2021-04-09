@@ -1,8 +1,4 @@
 import { Binding } from './binder'
-import { Injector } from './injector'
-import { Http } from './http'
-import * as di from './promiseHelpers'
-import * as helpers from './helpers'
 
 export class Interpolate
 {
@@ -50,11 +46,11 @@ export class Interpolate
         allOrNothing = !!allOrNothing;
         let startIndex,
             endIndex,
-            index = 0,
-            expressions = [],
+            exp: string,
+            index = 0;
+        const expressions = [],
             parseFns: ((target: any) => Binding)[] = [],
             textLength = text.length,
-            exp,
             concat = [],
             expressionPositions = [];
 

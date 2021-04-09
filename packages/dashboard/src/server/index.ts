@@ -5,6 +5,7 @@ import { EventEmitter } from 'events';
 // import { register } from '@akala/pages'
 import { promises as fs } from 'fs';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const moduleName = require('../../package.json').name
 
 akala.module('@akala/dashboard', '@akala/pages').activate([], async function ()

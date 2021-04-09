@@ -4,6 +4,10 @@ module.exports = {
     plugins: [
         '@typescript-eslint',
     ],
+    rules: {
+        "@typescript-eslint/no-inferrable-types": "off",
+        "no-var": "off",
+    },
     extends: [
         'eslint:recommended',
         "plugin:@typescript-eslint/eslint-recommended",

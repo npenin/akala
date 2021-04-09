@@ -10,11 +10,11 @@ export function service(name: string, ...toInject: string[])
         else
             registerFactory(name, function ()
             {
-                return instance || injectWithName(toInject, function () 
+                return instance || injectWithName(toInject, function (...parameters: unknown[]) 
                 {
                     const args = [null];
-                    for (let i = 0; i < arguments.length; i++)
-                        args[i + 1] = arguments[i];
+                    for (let i = 0; i < parameters.length; i++)
+                        args[i + 1] = parameters[i];
                     return instance = new (Function.prototype.bind.apply(target, args));
                 })();
             });

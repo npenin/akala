@@ -167,7 +167,7 @@ export class Module extends Injector
             return m.readyEvent.trigger();
         });
 
-        Module.o.add(m.name, [m.name + '#ready'], function () { });
+        Module.o.add(m.name, [m.name + '#ready']);
 
         moduleInjector.register(m.name, m);
     }

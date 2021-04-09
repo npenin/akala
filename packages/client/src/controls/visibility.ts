@@ -36,6 +36,7 @@ export class Hide extends GenericControlInstance<void>
         });
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     public apply() { }
 }
 
@@ -56,6 +57,7 @@ export class Show extends GenericControlInstance<di.Binding>
         });
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     public apply() { }
 
 }

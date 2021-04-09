@@ -2,8 +2,6 @@ import * as akala from '@akala/core'
 import "reflect-metadata";
 import { FieldType, StorageFieldType, ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator } from './common';
 import { Query } from './Query';
-import { Predicate, Project, PredicateAsync } from './expressions/expression';
-import { NotSupportedException } from './exceptions';
 import { PersistenceEngine } from './PersistenceEngine';
 import { Update, Create, Delete, CommandResult } from './commands/command';
 import { isDate } from 'util';
@@ -40,170 +38,13 @@ export class Store<TStore extends StoreDefinition>
 
     private constructor(private engine: PersistenceEngine, ...names: (keyof TStore)[])
     {
-        for (var name of names)
+        for (const name of names)
             Object.defineProperty(this, name, { value: this.set(name as string) });
     }
 
     public set<T>(name: keyof TStore & string)
     {
         return this.engine.dbSet<T>(name);
-    }
-}
-
-export namespace Enumerable
-{
-    export function where<T>(source: Iterable<T>, predicate: Predicate<T>): Iterable<T>
-    {
-        return {
-            *[Symbol.iterator]()
-            {
-                for (var v of source)
-                    if (predicate(v))
-                        yield v;
-            }
-        }
-    }
-
-    export function whereAsync<T>(source: Iterable<T>, predicate: PredicateAsync<T>): AsyncIterable<T>
-    {
-        return {
-            async *[Symbol.asyncIterator]()
-            {
-                for await (var v of source)
-                    if (await predicate(v))
-                        yield v;
-            }
-        }
-    }
-
-    export function any<T>(source: Iterable<T>, predicate: Predicate<T>): boolean
-    {
-        for (var v of source)
-            if (predicate(v))
-                return true;
-        return false;
-    }
-
-    export async function anyAsync<T>(source: Iterable<T>, predicate: PredicateAsync<T>): Promise<boolean>
-    {
-        for (var v of source)
-            if (await predicate(v))
-                return true;
-        return false;
-    }
-
-    export function length<T>(source: { length: number } | Iterable<T>): number
-    {
-        if (typeof source['length'] != 'undefined')
-            return source['length'];
-
-        var i = 0;
-        for (var v of source as Iterable<T>)
-        {
-            i++;
-        }
-        return i;
-    }
-
-    export async function lengthAsync<T>(source: { length: number } | Iterable<T> | AsyncIterable<T>): Promise<number>
-    {
-        if (typeof source['length'] != 'undefined')
-            return source['length'];
-
-        var i = 0;
-        for await (var v of source as Iterable<T>)
-        {
-            i++;
-        }
-        return i;
-    }
-
-    export function select<T, U>(source: Iterable<T>, project: Project<T, U>): Iterable<U>
-    {
-        return {
-            *[Symbol.iterator]()
-            {
-                for (let value of source)
-                    yield project(value);
-            }
-        }
-    }
-
-    export function selectAsync<T, U>(source: AsyncIterable<T>, project: Project<T, Promise<U>>): AsyncIterable<U>
-    {
-        return {
-            async *[Symbol.asyncIterator]()
-            {
-                for await (let value of source)
-                    yield await project(value);
-            }
-        }
-    }
-
-    export function groupBy<T, U extends string | number>(source: Iterable<T>, criteria: Project<T, U>): Iterable<{ key: U, value: Iterable<T> }>
-    {
-        return {
-            [Symbol.iterator]()
-            {
-                var groups: { [key: string]: Array<T> } = {};
-                var result = [];
-                for (let value of source)
-                {
-                    var group = criteria(value);
-                    console.log({ value, group, result: this.result });
-                    if (typeof this.result == 'object')
-                    {
-                        throw new NotSupportedException('Not yet implemented');
-                    }
-                    if (typeof groups[this.result as string] == 'undefined')
-                    {
-                        groups[this.result as string] = [];
-                        result.push({ key: this.result, value: groups[this.result] });
-                    }
-                    groups[this.result as string].push(value);
-
-                }
-                return result[Symbol.iterator]();
-            }
-        }
-    }
-
-
-
-    export function groupByAsync<T, U extends string | number>(source: AsyncIterable<T>, criteria: Project<T, Promise<U>>): AsyncIterable<{ key: U, value: Iterable<T> }>
-    {
-        return {
-            [Symbol.asyncIterator]()
-            {
-                var result: { key: U, value: Iterable<T> }[];
-                var groupIndex = 0;
-                return {
-                    async next()
-                    {
-                        if (typeof result !== 'undefined')
-                            return { done: groupIndex >= result.length, value: result[groupIndex++] };
-                        result = [];
-                        var groups: { [key: string]: Array<T> } = {};
-                        for await (let value of source)
-                        {
-                            var group = await criteria(value);
-                            console.log({ value, group, result: this.result });
-                            if (typeof group == 'object')
-                            {
-                                throw new NotSupportedException('Not yet implemented');
-                            }
-                            if (typeof groups[group as string] == 'undefined')
-                            {
-                                groups[group as string] = [];
-                                result.push({ key: group, value: groups[group] });
-                            }
-                            groups[group].push(value);
-                        }
-                        return { done: groupIndex >= result.length, value: result[groupIndex++] };
-                    }
-                }
-            }
-        }
     }
 }
 
@@ -238,6 +79,9 @@ export function Model<TObject>(name: string | (new () => TObject), nameInStorage
     }
 }
 
+import * as Enumerable from './Enumerable'
+export { Enumerable };
+
 export function Field(type?: FieldType | (() => FieldType), generator?: Generator)
 export function Field<T>(target: any, propertyKey: string, descriptor?: TypedPropertyDescriptor<T>)
 export function Field<T>(type?: FieldType | (() => FieldType), propertyKey?: string | Generator, descriptor?: TypedPropertyDescriptor<T>)
@@ -266,7 +110,7 @@ function member(isKey: boolean, type?: FieldType | (() => FieldType), generator?
 {
     return function <T>(target: any, propertyKey: Extract<keyof T, string>, descriptor?: TypedPropertyDescriptor<T>)
     {
-        var model: ModelDefinition<T> = Reflect.getMetadata('db:model', target);
+        let model: ModelDefinition<T> = Reflect.getMetadata('db:model', target);
 
         if (typeof model == 'undefined')
             Reflect.metadata('db:model', model = new ModelDefinition<T>(null, null, null))(target);
@@ -278,7 +122,7 @@ function member(isKey: boolean, type?: FieldType | (() => FieldType), generator?
                 model.defineMember(propertyKey, isKey, type, generator);
         else 
         {
-            var designType = Reflect.getMetadata('design:type', target, propertyKey);
+            const designType = Reflect.getMetadata('design:type', target, propertyKey);
             if (typeof descriptor == 'undefined')
             {
                 let value: T;
@@ -289,7 +133,7 @@ function member(isKey: boolean, type?: FieldType | (() => FieldType), generator?
             if (designType === String)
             {
                 model.defineMember(propertyKey, isKey, StorageFieldType.string(), generator);
-                let set = descriptor.set;
+                const set = descriptor.set;
                 descriptor.set = function (value: T)
                 {
                     if (typeof value != 'string')
@@ -302,7 +146,7 @@ function member(isKey: boolean, type?: FieldType | (() => FieldType), generator?
             else if (designType === Number)
             {
                 model.defineMember(propertyKey, isKey, StorageFieldType.double(), generator);
-                let set = descriptor.set;
+                const set = descriptor.set;
                 descriptor.set = function (value: T)
                 {
                     if (typeof value != 'number')
@@ -313,7 +157,7 @@ function member(isKey: boolean, type?: FieldType | (() => FieldType), generator?
             else if (designType === Date)
             {
                 model.defineMember(propertyKey, isKey, StorageFieldType.datetime(), generator);
-                let set = descriptor.set;
+                const set = descriptor.set;
                 descriptor.set = function (value: T)
                 {
                     if (typeof value != 'object' || !isDate(value) || isNaN(value.getTime()))
@@ -325,7 +169,7 @@ function member(isKey: boolean, type?: FieldType | (() => FieldType), generator?
             {
                 model.defineMember(propertyKey, isKey, StorageFieldType.boolean(), generator);
 
-                let set = descriptor.set;
+                const set = descriptor.set;
                 descriptor.set = function (value: T)
                 {
                     if (typeof value != 'boolean')

@@ -34,6 +34,7 @@ export default async function register(commandsPath?: string, name?: string, for
             throw new Error('Unable to find package.json file in current folder or any of its parent');
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const packageFile = require(path.join(process.cwd(), packagePath));
     let dirty = false;
     if (typeof (name) != 'undefined' && name !== packageFile.name)

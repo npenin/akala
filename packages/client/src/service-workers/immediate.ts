@@ -1,17 +1,14 @@
 // /// <reference types="types-serviceworker" />
-/// <reference path="../../serviceworker.d.ts" />
+import "../../serviceworker.d.ts";
 
-namespace immediate
+declare var self: ServiceWorkerGlobalScope;
+
+self.addEventListener('install', function (evt)
 {
-    declare var self: ServiceWorkerGlobalScope;
+    evt.waitUntil(self.skipWaiting());
+})
 
-    self.addEventListener('install', function (evt)
-    {
-        evt.waitUntil(self.skipWaiting());
-    })
-
-    self.addEventListener('activate', function (evt)
-    {
-        self.clients.claim();
-    })
-}
+self.addEventListener('activate', function (evt)
+{
+    self.clients.claim();
+})

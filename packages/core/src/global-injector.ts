@@ -49,9 +49,9 @@ export function injectWithName<T>(toInject: string[], a: Injectable<T>)
     return defaultInjector.injectWithName(toInject, a);
 }
 
-export function injectNewWithName(toInject: string[], a: Function)
+export function injectNewWithName<T>(toInject: string[], a: InjectableConstructor<T>)
 {
-    return defaultInjector.injectNewWithName(toInject, a);
+    return defaultInjector.injectNewWithName<T>(toInject, a);
 }
 
 export function resolveAsync<T = any>(name: string)

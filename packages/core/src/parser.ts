@@ -1,11 +1,11 @@
-import { isPromiseLike, PromiseStatus } from './promiseHelpers';
+import { isPromiseLike } from './promiseHelpers';
 import { Binding, PromiseBinding } from './binder';
 import * as formatters from './formatters';
 import { module } from './helpers';
 import { FormatterFactory } from './formatters/common';
 
 
-const jsonKeyRegex = /^ *(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([^\: ]+)) *): */;
+const jsonKeyRegex = /^ *(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([^: ]+)) *): */;
 // var jsonSingleQuoteKeyRegex = /^ *'([^']+)'|([^\: ]+) *: */;
 
 export interface ParsedAny
@@ -96,42 +96,41 @@ export class ParsedBinary implements ParsedAny
 
     public evaluate(value: any, asBinding?: boolean)
     {
-        const operation = this;
         if (asBinding)
         {
             var left, right;
-            if (operation.left instanceof Function)
-                left = operation.left(value, asBinding);
-            else if (operation.left instanceof ParsedBinary)
-                left = operation.left.evaluate(value, asBinding);
-            else if (operation.left instanceof ParsedString)
-                left = operation.left.value;
-            else if (operation.left instanceof ParsedNumber)
-                left = operation.left.value;
-            else if (operation.left instanceof Array)
-                left = operation.left;
-            else if (operation.left instanceof Object)
-                left = operation.left;
+            if (this.left instanceof Function)
+                left = this.left(value, asBinding);
+            else if (this.left instanceof ParsedBinary)
+                left = this.left.evaluate(value, asBinding);
+            else if (this.left instanceof ParsedString)
+                left = this.left.value;
+            else if (this.left instanceof ParsedNumber)
+                left = this.left.value;
+            else if (this.left instanceof Array)
+                left = this.left;
+            else if (this.left instanceof Object)
+                left = this.left;
 
-            if (operation.right instanceof Function)
-                right = operation.right(value, asBinding);
-            else if (operation.right instanceof ParsedBinary)
-                right = operation.right.evaluate(value, asBinding);
-            else if (operation.right instanceof ParsedString)
-                right = operation.right.value;
-            else if (operation.right instanceof ParsedNumber)
-                right = operation.right.value;
-            else if (operation.right instanceof Array)
-                right = operation.right;
-            else if (operation.right instanceof Object)
-                right = operation.right
+            if (this.right instanceof Function)
+                right = this.right(value, asBinding);
+            else if (this.right instanceof ParsedBinary)
+                right = this.right.evaluate(value, asBinding);
+            else if (this.right instanceof ParsedString)
+                right = this.right.value;
+            else if (this.right instanceof ParsedNumber)
+                right = this.right.value;
+            else if (this.right instanceof Array)
+                right = this.right;
+            else if (this.right instanceof Object)
+                right = this.right
 
             const binding = new Binding(null, null, false);
             if (left instanceof Binding)
                 left.pipe(binding);
             if (right instanceof Binding)
                 right.pipe(binding);
-            binding['$$length'] = operation.$$length;
+            binding['$$length'] = this.$$length;
             binding.getValue = function ()
             {
                 let fleft, fright;
@@ -143,39 +142,39 @@ export class ParsedBinary implements ParsedAny
                     fright = right.getValue();
                 else
                     fright = right;
-                return Parser.operate(operation.operator, fleft, fright);
+                return Parser.operate(this.operator, fleft, fright);
             }
             return binding;
         }
         else
         {
             var left, right;
-            if (operation.left instanceof Function)
-                left = operation.left(value, false);
-            else if (operation.left instanceof ParsedBinary)
-                left = operation.left.evaluate(value, asBinding);
-            else if (operation.left instanceof ParsedString)
-                left = operation.left.value;
-            else if (operation.left instanceof ParsedNumber)
-                left = operation.left.value;
-            else if (operation.left instanceof Array)
-                left = operation.left;
-            else if (operation.left instanceof Object)
-                left = operation.left;
+            if (this.left instanceof Function)
+                left = this.left(value, false);
+            else if (this.left instanceof ParsedBinary)
+                left = this.left.evaluate(value, asBinding);
+            else if (this.left instanceof ParsedString)
+                left = this.left.value;
+            else if (this.left instanceof ParsedNumber)
+                left = this.left.value;
+            else if (this.left instanceof Array)
+                left = this.left;
+            else if (this.left instanceof Object)
+                left = this.left;
 
-            if (operation.right instanceof Function)
-                right = operation.right(value, false);
-            else if (operation.right instanceof ParsedBinary)
-                right = operation.right.evaluate(value, asBinding);
-            else if (operation.right instanceof ParsedString)
-                right = operation.right.value;
-            else if (operation.right instanceof ParsedNumber)
-                right = operation.right.value;
-            else if (operation.right instanceof Array)
-                right = operation.right;
-            else if (operation.right instanceof Object)
-                right = operation.right;
-            return <any>Parser.operate(operation.operator, left, right);
+            if (this.right instanceof Function)
+                right = this.right(value, false);
+            else if (this.right instanceof ParsedBinary)
+                right = this.right.evaluate(value, asBinding);
+            else if (this.right instanceof ParsedString)
+                right = this.right.value;
+            else if (this.right instanceof ParsedNumber)
+                right = this.right.value;
+            else if (this.right instanceof Array)
+                right = this.right;
+            else if (this.right instanceof Object)
+                right = this.right;
+            return <any>Parser.operate(this.operator, left, right);
         }
     }
 
@@ -373,7 +372,7 @@ export class Parser
             length++;
         }
 
-        const item = /^[\w0-9\.\$]*/.exec(expression)[0];
+        const item = /^[\w0-9.$]*/.exec(expression)[0];
         length += item.length;
         const parts = Parser.parseBindable(item);
 
@@ -419,7 +418,7 @@ export class Parser
 
     public parseFormatter(expression: string, lhs: ParsedOneOf): ParsedOneOf
     {
-        const item = /^ *# *([\w0-9\.\$]+) */.exec(expression);
+        const item = /^ *# *([\w0-9.$]+) */.exec(expression);
         expression = expression.substring(item[0].length);
         const formatter: FormatterFactory<any, any> = module('$formatters').resolve('#' + item[1]);
         if (!formatter)
@@ -483,7 +482,7 @@ export class Parser
     public tryParseOperator(expression: string, lhs: ParsedOneOf): ParsedOneOf
     public tryParseOperator(expression: string, lhs: ParsedOneOf)
     {
-        const operator = /^ *([<>=!\+\-\/\*&\|\.#]+) */.exec(expression);
+        const operator = /^ *([<>=!+\-/*&|.#]+) */.exec(expression);
         if (operator)
         {
             switch (operator[1])
@@ -615,8 +614,8 @@ export class Parser
             {
                 for (const i in output)
                 {
-                    if ((<any>output[i]) instanceof Function)
-                        result[i] = (<Function><any>output[i])(value, asBinding);
+                    if (output[i] instanceof Function)
+                        result[i] = (output[i] as unknown as ParsedFunction)(value, asBinding);
                     else
                         result[i] = output[i];
                 }
