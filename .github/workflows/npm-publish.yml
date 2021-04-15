@@ -25,6 +25,8 @@ jobs:
           sudo apt-get install yarn
       - name: Install Packages
         run: yarn install
+      - name: Compile
+        run: yarn tsc -b packages
 
   publish-npm:
     if: 1 == 0
