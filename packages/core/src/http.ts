@@ -1,5 +1,5 @@
 import { register, injectWithName } from "./global-injector";
-import { Parser, ParsedAny } from "./parser";
+import { ParsedAny, Parser } from "./parser";
 import { each, map, grep } from "./each";
 import { extend, module } from "./helpers";
 import { service } from "./service";
@@ -7,6 +7,9 @@ import { FormatterFactory } from "./formatters/common";
 import * as uri from 'url';
 import * as qs from 'querystring'
 import 'isomorphic-fetch';
+import fetch, { RequestInit, Response } from 'node-fetch'
+import http from 'http';
+import https from 'https';
 import { Injected } from "./injector";
 
 export interface HttpOptions
@@ -18,6 +21,7 @@ export interface HttpOptions
     headers?: { [key: string]: string | number | Date };
     contentType?: 'json' | 'form';
     type?: 'json' | 'xml' | 'text' | 'raw';
+    agent?: http.Agent | https.Agent;
 }
 
 export interface Http<TResponse = Response>
@@ -39,9 +43,9 @@ export class FetchHttp implements Http<Response>
     }
     public post(url: string, body?: any): PromiseLike<FormData>
     {
-        return this.call({ method: 'POST', url: url, body: body }).then((r) =>
+        return this.call({ method: 'POST', url: url, body: body }).then(r =>
         {
-            return r.formData();
+            return (r as unknown as globalThis.Response).formData();
         });
     }
     public postJSON<T = string>(url: string, body?: any): PromiseLike<T>
@@ -131,6 +135,9 @@ export class FetchHttp implements Http<Response>
                     break;
             }
         }
+
+        if (options.agent)
+            init.agent = options.agent;
 
         return fetch(uri.format(options.url), init);
     }
