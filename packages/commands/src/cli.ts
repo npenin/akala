@@ -3,8 +3,9 @@ import { Container } from "./model/container";
 import * as path from 'path'
 import { FileSystem, DiscoveryOptions } from "./processors/fs"
 import commands from './commands'
-import yargs from 'yargs-parser'
 import { registerCommands } from "./generator";
+import { Triggers } from ".";
+import program, { buildCliContextFromProcess, CliContext, NamespaceMiddleware } from "@akala/cli";
 
 const cliContainer: commands & Container<void> = new Container<void>('cli', undefined);
 
@@ -15,25 +16,24 @@ export const container: Promise<commands> = (async function ()
 
     const commands = await FileSystem.discoverMetaCommands(root, options);
     registerCommands(commands, options.processor, cliContainer);
+    const cli = new NamespaceMiddleware(null);
+    program.options({ verbose: { aliases: ['v'] } }).useMiddleware({
+        handle(c)
+        {
+            return cli.handle(c).then(e =>
+            {
+                if (c.options.verbose)
+                    console.error(e);
+                else
+                    console.error(e['message'] || e);
+            })
+        }
+    });
 
     if (require.main == module)
     {
-        // cliContainer.trap(await FileSystem.asTrap(cliContainer));
-        const cmd = cliContainer.resolve(process.argv[2]);
-        const args = yargs(process.argv.slice(3), cmd?.config?.cli?.options);
-        // console.log(args);
-        // console.log(cmd?.config?.cli?.options);
-        cliContainer.dispatch(cmd, { options: args, param: args._, _trigger: 'cli' }).then((result: unknown) =>
-        {
-            if (typeof (result) != 'undefined')
-                console.log(result);
-        }, (error: Error) =>
-        {
-            if (args.v)
-                console.log(error);
-            else
-                console.log(error.message);
-        });
+        cliContainer.attach(Triggers.cli, cli);
+        program.handle(buildCliContextFromProcess());
     }
 
     return cliContainer;

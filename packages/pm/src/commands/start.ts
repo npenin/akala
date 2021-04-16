@@ -8,7 +8,7 @@ import { eachAsync } from "@akala/core";
 import { NewLinePrefixer } from "../new-line-prefixer";
 import { SocketAdapterEventMap } from "@akala/json-rpc-ws/src/shared-connection";
 
-export default async function start(this: State, pm: pmContainer & Container<State>, name: string, options?: { inspect?: boolean, v?: boolean, wait?: boolean }): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
+export default async function start(this: State, pm: pmContainer & Container<State>, name: string, options?: { inspect?: boolean, verbose?: boolean, wait?: boolean }): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
 {
     let args: string[];
     if (this.isDaemon)
@@ -46,7 +46,7 @@ export default async function start(this: State, pm: pmContainer & Container<Sta
 
     args.unshift(...process.execArgv);
 
-    if (options && options.v)
+    if (options && options.verbose)
         args.push('-v')
 
     const log = debug('akala:pm:' + name);

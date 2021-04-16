@@ -13,12 +13,12 @@ program.command('client').command<{ name: string, url: string }>('api <name> <ur
         if (response.headers.has('content-type'))
             if (~response.headers.get('content-type').indexOf('text/javascript'))
             {
-                program.process({ args: ['config', 'set', 'plugins.' + context.options.name, filePath + '/api.json'], argv: [], options: {} });
+                program.process({ args: ['config', 'set', 'plugins.' + context.options.name, filePath + '/api.json'], argv: [], options: {}, currentWorkingDirectory: undefined });
                 await promisify(fs.writeFile)(filePath + '/api.json', await response.text());
             }
             else
             {
-                program.process({ args: ['config', 'set', 'plugins.' + context.options.name, filePath + '/api.js'], argv: [], options: {} });
+                program.process({ args: ['config', 'set', 'plugins.' + context.options.name, filePath + '/api.js'], argv: [], options: {}, currentWorkingDirectory: undefined });
                 await promisify(fs.writeFile)(filePath + '/api.js', await response.text());
             }
     });

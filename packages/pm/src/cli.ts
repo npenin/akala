@@ -1,19 +1,15 @@
 #!/usr/bin/env node
 import * as path from 'path'
 import { Processors, NetSocketAdapter, Metadata, Container, Processor } from '@akala/commands';
-import yargs from 'yargs-parser'
 import { Socket } from 'net';
 import { platform, homedir } from 'os';
 import start from './commands/start'
 import { Readable } from 'stream';
 
-import * as Parser from "yargs-parser";
-import unparse from "yargs-unparser";
 import { spawnAsync } from './cli-helper';
 import { DiscoveryOptions } from '@akala/commands/dist/processors';
 import State from './state';
-
-type Arguments = ReturnType<typeof Parser.default>;
+import program, { CliContext, NamespaceMiddleware } from '@akala/cli';
 
 const tableChars = {
     'top': '─'
@@ -34,99 +30,118 @@ const tableChars = {
 }
 const truncate = '…';
 
+type CliOptions = { output: string, verbose: boolean, pmSock: string | number };
+
 if (require.main == module)
 {
-    const args = yargs(process.argv.slice(2), { alias: { output: ['o', 'output'] }, number: ["pm-sock"] });
 
-    if (args._[0] == 'start' && (args._[1] == 'pm' || typeof args._[1] == 'undefined'))
+    const cli = program.options<CliOptions>({ output: { aliases: ['o'] }, verbose: { aliases: ['v'] }, pmSock: { aliases: ['pm-sock'] } });
+    cli.command<{ program: string, inspect?: boolean, wait?: boolean }>('start [program]')
+        .action(c =>
+        {
+            if (typeof c.options.program == 'undefined')
+                c.options.program = 'pm';
+            start.call({} as unknown as State, null, c.options.program, c.options);
+            throw undefined;
+        });
+
+    let socket: Socket;
+    let processor: Processors.JsonRpc;
+    let metaContainer: Metadata.Container;
+    const handle = new NamespaceMiddleware<CliOptions>(null,);
+    cli.useMiddleware(handle);
+    handle.preAction(async c =>
     {
-        if (typeof args._[1] == 'undefined')
-            args._[1] = 'pm';
-        start.call({} as unknown as State, null, args._[1], args as unknown);
-    }
-    else
-    {
-        // eslint-disable-next-line no-var
-        var socket = new Socket();
         process.stdin.pause();
-        process.stdin.setEncoding('utf8')
+        process.stdin.setEncoding('utf8');
+        if (!socket)
+        {
+            socket = new Socket();
 
-        socket.on('connect', async function ()
-        {
-            socket.setEncoding('utf-8');
-            const processor = new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(socket)));
-            (async function send(args: Arguments)
+            if (c.options.pmSock)
             {
-                try
+                if (typeof (c.options.pmSock) == 'string')
                 {
-                    const metaContainer: Metadata.Container = await processor.handle('$metadata', { param: [true] }).then(err => { throw err }, res => res);
-                    const cmdName = args._[0].toString();
-                    if (cmdName == '$metadata')
-                        return formatResult(metaContainer, args.output);
+                    const indexOfColon = c.options.pmSock.indexOf(':');
+                    if (indexOfColon > -1)
+                        socket.connect(Number(c.options.pmSock.substring(indexOfColon + 1)), c.options.pmSock.substring(0, indexOfColon));
                     else
-                    {
-                        const cmd = metaContainer.commands.find(c => c.name === cmdName);
-                        await tryRun(processor, cmd, args, false);
-                    }
-                    // eslint-disable-next-line @typescript-eslint/no-empty-function
-                    socket.end(() => { });
+                        socket.connect(c.options.pmSock);
                 }
-                catch (e)
-                {
-                    if (e.code == 'INTERACT')
-                    {
-                        console.log(e.message);
-                        const value = await readLine();
-                        if (e.as)
-                            args[e] = value;
-                        else
-                            args._.push(value);
-                        await send(args);
-                    }
-                    if (args.v)
-                        console.log(e);
-                    else
-                        console.log(e.message)
-                    socket.end();
-                }
-            })(args);
-        })
-        socket.on('error', (e: Error & { code?: string }) =>
-        {
-            if (e.code === 'ENOENT')
-            {
-                tryLocalProcessing(args).catch(() =>
-                {
-                    console.error('pm is not started');
-                });
-            }
-            else
-                console.error(e);
-        })
-
-        if (args.pmSock)
-        {
-            if (typeof (args.pmSock) == 'string')
-            {
-                const indexOfColon = args.pmSock.indexOf(':');
-                if (indexOfColon > -1)
-                    socket.connect(Number(args.pmSock.substring(indexOfColon + 1)), args.pmSock.substring(0, indexOfColon));
                 else
-                    socket.connect(args.pmSock);
+                    socket.connect(c.options.pmSock as number);
             }
+            else if (platform() == 'win32')
+                socket.connect('\\\\?\\pipe\\pm')
             else
-                socket.connect(args.pmSock);
-        }
-        else if (platform() == 'win32')
-            socket.connect('\\\\?\\pipe\\pm')
-        else
-        {
-            // eslint-disable-next-line @typescript-eslint/no-var-requires
-            const config = require(path.join(homedir(), './.pm.config.json'));
+            {
+                // eslint-disable-next-line @typescript-eslint/no-var-requires
+                const config = require(path.join(homedir(), './.pm.config.json'));
 
-            socket.connect(path.join(config.containers.pm[0], './pm.sock'));
+                socket.connect(path.join(config.containers.pm[0], './pm.sock'));
+            }
+
+            await new Promise<void>((resolve, reject) =>
+            {
+                socket.on('connect', async function ()
+                {
+                    resolve();
+                    socket.setEncoding('utf-8');
+                });
+                socket.on('error', (e: Error & { code?: string }) =>
+                {
+                    if (e.code === 'ENOENT')
+                    {
+                        tryLocalProcessing(c).catch(() =>
+                        {
+                            console.error('pm is not started');
+                        });
+                    }
+                    else
+                        reject(e);
+                })
+            });
         }
-    }
+
+        if (!processor)
+            processor = new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(socket)));
+        if (!metaContainer)
+            metaContainer = await processor.handle('$metadata', { param: [true] }).then(err => { if (err) throw err }, res => res);
+    });
+
+    handle.action(async args =>
+    {
+        try
+        {
+            const cmdName = args.args[0].toString();
+            if (cmdName == '$metadata')
+                return formatResult(metaContainer, args.options.output);
+            else
+            {
+                const cmd = metaContainer.commands.find(c => c.name === cmdName);
+                await tryRun(processor, cmd, args, false);
+            }
+            await new Promise<void>((resolve) => socket.end(resolve));
+        }
+        catch (e)
+        {
+            if (e.code == 'INTERACT')
+            {
+                console.log(e.message);
+                const value = await readLine();
+                if (e.as)
+                    args.options[e] = value;
+                else
+                    args.args.push(value);
+                return handle.handle(args).then(e => { if (e) throw e }, res => res);
+            }
+            if (args.options.verbose)
+                console.log(e);
+            else
+                console.log(e.message)
+            await new Promise<void>((resolve) => socket.end(resolve));
+        }
+    });
 }
 
 function formatResult(result: unknown, outputFormat: string)
@@ -296,60 +311,36 @@ function formatResult(result: unknown, outputFormat: string)
     }
 }
 
-function prepareParam(cmd: Metadata.Command, args: yargs.Arguments, standalone?: boolean)
+function prepareParam(cmd: Metadata.Command, args: CliContext, standalone?: boolean)
 {
-    if (cmd)
-    {
-        if (cmd.config && cmd.config.cli && (!standalone || cmd.config.cli.standalone))
-        {
-            if (cmd.config.cli.options)
-            {
-                args = yargs(process.argv.slice(2), cmd.config.cli.options);
-                if (cmd.config.cli.options.normalize)
-                {
-                    if (typeof cmd.config.cli.options.normalize == 'string')
-                        cmd.config.cli.options.normalize = [cmd.config.cli.options.normalize];
-                    const params = cmd.config.cli.options.normalize.filter(p => p.length > 'param.'.length && p.substr(0, 'param.'.length) == 'param.');
-                    if (params.length > 0)
-                    {
-                        params.forEach(key =>
-                        {
-                            const positionalIndex = Number(key.substr('param.'.length));
-                            if (args._[positionalIndex + 1])
-                                args._[positionalIndex + 1] = path.resolve(args._[positionalIndex + 1].toString());
-                        });
-                    }
-                }
-            }
-        }
-        else if (standalone)
-            return false;
+    if (!cmd)
+        return false;
+
+    if (!cmd.config || !cmd.config.cli || (standalone && !cmd.config.cli.standalone))
+        return false;
 
 
-        args._ = args._.slice(1);
+    args.args = args.args.slice(1);
 
-        delete args['pm-sock'];
-        delete args.pmSock;
-        return { options: args, param: args._, _trigger: 'cli', cwd: process.cwd() };
-    }
-
-    return false;
+    delete args['pm-sock'];
+    delete args.options.pmSock;
+    return { options: args.options, param: args.args, _trigger: 'cli', cwd: args.currentWorkingDirectory };
 }
 
-async function tryRun(processor: Processor, cmd: Metadata.Command, args: yargs.Arguments, localProcessing: boolean)
+async function tryRun(processor: Processor, cmd: Metadata.Command, args: CliContext, localProcessing: boolean)
 {
     const params = prepareParam(cmd, args, localProcessing);
     if (!params)
-    {
         throw new Error('Either command does not exist or it is not standalone');
-    }
+
     try
     {
+
         const result = await processor.handle(cmd, params).then(err => { throw err }, res => res);
         if (result instanceof Readable)
             result.pipe(process.stdout);
         else
-            formatResult(result, args.output);
+            formatResult(result, args.options.output as string);
     }
 
     catch (e)
@@ -360,26 +351,25 @@ async function tryRun(processor: Processor, cmd: Metadata.Command, args: yargs.A
             let value = await readLine();
             value = value.trim();
             if (e.as)
-                args[e] = value;
+                args.options[e] = value;
             else
-                args._.push(value);
-            args._.unshift(cmd.name);
+                args.args.push(value);
+            args.args.unshift(cmd.name);
             return await tryRun(processor, cmd, args, localProcessing);
         }
-        if (args.v)
+        if (args.options.verbose)
             console.log(e);
         else
-            console.log(e.message)
-        socket.end();
+            console.log(e.message);
     }
 
 }
 
-async function tryLocalProcessing(args: yargs.Arguments)
+async function tryLocalProcessing(args: CliContext)
 {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const config = require(path.join(homedir(), './.pm.config.json'));
-    let cmdName = args._.shift();
+    let cmdName = args.args.shift();
     const indexOfDot = cmdName.indexOf('.');
     if (indexOfDot > -1)
     {
@@ -397,7 +387,12 @@ async function tryLocalProcessing(args: yargs.Arguments)
     else
     {
         if (!config.mapping[cmdName].commandable)
-            return spawnAsync(config.mapping[cmdName].path, null, ...unparse(args));
+            return spawnAsync(config.mapping[cmdName].path, null, ...Object.entries(args).flatMap((key, value) =>
+            {
+                if (Array.isArray(value))
+                    return ['--' + key, ...value];
+                return ['--' + key, value];
+            }));
     }
 }
 
