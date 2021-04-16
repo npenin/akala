@@ -1,6 +1,6 @@
 import * as ac from '@akala/commands'
 
-export default new ac.Trigger('keybinding', (container) =>
+export default new ac.Trigger<void, void>('keybinding', (container) =>
 {
     let chord = container;
     document.addEventListener('keydown', (ev) =>

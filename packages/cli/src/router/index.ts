@@ -1,4 +1,5 @@
 import * as akala from '@akala/core'
+import * as path from 'path'
 
 export interface CliContext<TOptions extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>
 {
@@ -6,11 +7,10 @@ export interface CliContext<TOptions extends Record<string, string | boolean | s
     argv: string[];
     options: TOptions
     commandPath?: string;
+    currentWorkingDirectory: string;
 }
 
-type cliHandlerWithNext = akala.Middleware<[context: CliContext]>;
-
-interface OptionParseOption
+export interface OptionParseOption
 {
     flagStart: string;
     fullOptionStart: string;
@@ -19,14 +19,15 @@ interface OptionParseOption
 
 const defaultOptionParseOption: OptionParseOption = { flagStart: '-', fullOptionStart: '--', valueAssign: '=' };
 
-interface OptionOptions
+export interface OptionOptions
 {
     aliases?: string[],
     needsValue?: boolean,
     caseSensitive?: boolean,
+    normalize?: boolean;
 }
 
-class OptionMiddleware implements cliHandlerWithNext
+class OptionMiddleware implements akala.Middleware<[context: CliContext]>
 {
     matchers: { isFull: boolean; pattern: RegExp; }[];
     constructor(private readonly name: string, private options?: OptionOptions, parseOptions: OptionParseOption = defaultOptionParseOption)
@@ -57,58 +58,65 @@ class OptionMiddleware implements cliHandlerWithNext
             for (let jndex = 0; jndex < this.matchers.length; jndex++)
             {
                 const matcher = this.matchers[jndex];
-                const match = matcher.pattern.exec(element);
-                if (match)
+                let match: RegExpExecArray;
+                // eslint-disable-next-line no-cond-assign
+                while (match = matcher.pattern.exec(element))
                 {
+                    var value = undefined;
                     if (matcher.isFull)
                     {
                         if (match[1])
                         {
-                            context.options[this.name] = match[1];
+                            value = match[1];
                             context.args.splice(index, 1);
                         }
                         else if (this.options.needsValue)
                         {
                             if (context.args.length == index + 1)
                                 return Promise.resolve(new Error('No value was given for option ' + this.name));
-                            context.options[this.name] = context.args[index + 1];
+                            value = context.args[index + 1];
                             context.args.splice(index, 2);
                         }
+                        else
+                            value = true;
                     }
                     else
                     {
                         if (match[1])
-                            context.options[this.name] = match[1];
+                            value = match[1];
                         else if (this.options.needsValue)
-                            context.options[this.name] = match[1].length;
+                            value = match[1].length;
                         else
-                            context.options[this.name] = true;
+                            value = true;
                         context.args.splice(index, 1);
                     }
-                    return Promise.resolve();
+                    if (!value)
+                        if (this.options.normalize)
+                            context.options[this.name] = path.resolve(context.currentWorkingDirectory, context.options[this.name].toString());
                 }
+                return Promise.resolve();
             }
         }
         return Promise.resolve();
     }
 }
 
-class OptionsMiddleware implements cliHandlerWithNext
+class OptionsMiddleware<TOptions extends Record<string, string | number | boolean | string[]>> implements akala.Middleware<[context: CliContext]>
 {
     private options = new akala.MiddlewareComposite<[CliContext]>();
 
-    option(name: string, option?: OptionOptions)
+    option<TValue extends string | number | boolean | string[], TName extends string>(name: TName, option?: OptionOptions): OptionsMiddleware<TOptions & { [key in TName]: TValue }>
     {
         return this.optionMiddleware(new OptionMiddleware(name, option));
     }
 
-    optionMiddleware(middleware: OptionMiddleware): this
+    optionMiddleware<TValue extends string | number | boolean | string[] = string | number | boolean | string[], TName extends string = string>(middleware: OptionMiddleware): OptionsMiddleware<TOptions & Record<TName, TValue>>
     {
         this.options.useMiddleware(middleware);
         return this;
     }
 
-    handle(context: CliContext): akala.MiddlewarePromise
+    handle(context: CliContext<TOptions>): akala.MiddlewarePromise
     {
         return this.options.handle(context);
     }
@@ -122,7 +130,7 @@ class UsageError extends Error
     }
 }
 
-class NamespaceMiddleware<TOptions extends Record<string, string | boolean | string[] | number>> extends akala.MiddlewareComposite<[CliContext<TOptions>]> implements cliHandlerWithNext
+export class NamespaceMiddleware<TOptions extends Record<string, string | boolean | string[] | number>> extends akala.MiddlewareComposite<[CliContext<TOptions>]> implements akala.Middleware<[context: CliContext]>
 {
     private _preAction: akala.Middleware<[CliContext<TOptions>]>;
     private _action: akala.Middleware<[CliContext<TOptions>]>;
@@ -135,17 +143,17 @@ class NamespaceMiddleware<TOptions extends Record<string, string | boolean | str
             throw new Error('command name cannot contain a space');
     }
 
-    public command<TOptions2 extends TOptions = TOptions>(name: string): NamespaceMiddleware<TOptions2>
+    public command<TOptions2 extends Record<string, string | boolean | string[] | number> = TOptions>(name: string): NamespaceMiddleware<TOptions2 & TOptions>
     {
         var cli = /(\w+)(?: (\w+))*((?: (?:<\w+>))*(?: (?:\[\w+\]))*)/.exec(name);
         if (!cli || cli[0].length != name.length)
             throw new Error(`${name} must match the following syntax: name <mandatoryparameters> [optionparameters].`)
 
         if (cli[2])
-            return this.command(cli[1]).command(cli[2] + cli[3]);
+            return this.command(cli[1]).command<TOptions2>(cli[2] + cli[3]);
 
         var args = cli[3];
-        var parameters: { name: keyof TOptions2, optional: boolean }[] = [];
+        var parameters: { name: keyof TOptions2 | keyof TOptions, optional: boolean }[] = [];
         var parameter: RegExpExecArray;
         const parameterParsing = / <(\w+)>| \[(\w+)\]/g;
         // eslint-disable-next-line no-cond-assign
@@ -157,7 +165,7 @@ class NamespaceMiddleware<TOptions extends Record<string, string | boolean | str
                 parameters.push({ name: parameter[2], optional: true });
         }
 
-        var middleware = new NamespaceMiddleware<TOptions2>(cli[1], akala.convertToMiddleware(function (context)
+        var middleware = new NamespaceMiddleware<TOptions & TOptions2>(cli[1], akala.convertToMiddleware(function (context)
         {
             if (context.args.length < (~parameters.findIndex(p => p.optional) || parameters.length))
                 throw new UsageError(name);
@@ -166,7 +174,7 @@ class NamespaceMiddleware<TOptions extends Record<string, string | boolean | str
             {
                 const parameter = parameters[index];
                 // if (!parameter.optional)
-                context.options[parameter.name] = context.args.shift() as TOptions2[typeof parameter.name];
+                context.options[parameter.name] = context.args.shift() as (TOptions & TOptions2)[typeof parameter.name];
                 // if (parameter.optional)
                 //     context.options[parameter.name] = context.args.shift() as TOptions2[typeof parameter.name];
             }
@@ -194,10 +202,20 @@ class NamespaceMiddleware<TOptions extends Record<string, string | boolean | str
         });
     }
 
-
-    option(name: string, option?: OptionOptions)
+    options<T extends { [key: string]: string | number | boolean | string[] }>(options: { [key in Exclude<keyof T, number | symbol>]: OptionOptions }) 
     {
-        this._option.option(name, option);
+        akala.each(options, (o, key) =>
+        {
+            this.option<T[typeof key], typeof key>(key, o);
+        });
+        return this as NamespaceMiddleware<T>;
+    }
+
+    option<TValue extends string | number | boolean | string[] = string | number | boolean | string[], TName extends string = string>(name: TName, option?: OptionOptions)
+        : NamespaceMiddleware<TOptions & { [key in TName]: TValue }>
+    {
+        this._option.option<TValue, TName>(name, option);
+        return this as unknown as NamespaceMiddleware<TOptions & { [key in TName]: TValue }>;
     }
 
     async handle(context: CliContext<TOptions>): akala.MiddlewarePromise

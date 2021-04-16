@@ -1,22 +1,22 @@
 import * as akala from '@akala/core'
 import { Container } from './container';
 
-const triggers: Trigger<unknown>[] = akala.module('@akala/commands').register('triggers', [])
-export class Trigger<U>
+const triggers: Trigger<unknown, unknown>[] = akala.module('@akala/commands').register('triggers', [])
+export class Trigger<U, V>
 {
-    constructor(public name: string, public register: <T>(container: Container<T>, media?: U) => unknown)
+    constructor(public name: string, public register: (container: Container<unknown>, media?: U) => V)
     {
         Trigger.registerTrigger(this);
     }
 
-    public static registerTrigger<U>(trigger: Trigger<U>): void
+    public static registerTrigger<U>(trigger: Trigger<U, unknown>): void
     {
         triggers.push(trigger);
     }
 
-    public static find<U>(name: string): Trigger<U>
+    public static find<U, V = unknown>(name: string): Trigger<U, V>
     {
-        return triggers.find(t => t.name == name);
+        return triggers.find(t => t.name == name) as Trigger<U, V>;
     }
 }
 

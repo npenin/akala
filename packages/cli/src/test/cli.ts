@@ -14,7 +14,7 @@ assert.throws(() => { program.command('h <nopt1> [opt1] <nopt2> [opt2]').action(
 
 (async function ()
 {
-    assert.deepStrictEqual(await program.process<Record<string, string>>({ args: ['a'], argv: ['a'], options: {} }), { opt: undefined })
-    assert.deepStrictEqual(await program.process<Record<string, string>>({ args: ['a', 'x'], argv: ['a', 'x'], options: {} }), { opt: 'x' })
+    assert.deepStrictEqual(await program.process<Record<string, string>>({ args: ['a'], argv: ['a'], options: {}, currentWorkingDirectory: undefined }), { opt: undefined })
+    assert.deepStrictEqual(await program.process<Record<string, string>>({ args: ['a', 'x'], argv: ['a', 'x'], options: {}, currentWorkingDirectory: undefined }), { opt: 'x' })
     console.log('ok');
 })();

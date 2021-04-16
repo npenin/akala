@@ -16,7 +16,9 @@ export type AsDispatchArg<T extends unknown[]> = T[0] | StructuredParameters<T>;
 
 export class Container<TState> extends akala.Injector
 {
-    attach<T extends Trigger<X>, X>(trigger: T | string, server: X): unknown
+    attach<T extends Trigger<unknown, unknown>>(trigger: T, server: T extends Trigger<infer A, unknown> ? A : never): T extends Trigger<unknown, infer B> ? B : never
+    attach<TResult>(trigger: string, server: unknown): TResult
+    attach<TResult, X, T extends Trigger<X, TResult>>(trigger: T | string, server: X): TResult
     {
         if (typeof trigger == 'string')
             trigger = Trigger.find<X>(trigger) as T;

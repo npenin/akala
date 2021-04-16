@@ -1,6 +1,7 @@
 import program from '../router';
 import { resolve } from 'path';
 import * as repl from 'repl'
+import { buildCliContext } from '..';
 
 export function replEval(input: string): string[]
 {
@@ -93,7 +94,7 @@ program.command('repl')
             {
                 try
                 {
-                    const result = program.process({ args: replEval(input), argv: process.argv, options: {} });
+                    const result = program.process(buildCliContext(...replEval(input)));
                     if (result && result.then)
                     {
                         result.then(function ()

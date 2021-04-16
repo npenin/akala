@@ -1,10 +1,5 @@
-import { detailed } from "yargs-parser";
+import { OptionOptions } from "@akala/cli";
 import { HttpConfiguration } from "../processors/http-client";
-
-type Argument2<T> = T extends ((a: any, x: infer X, ...z: any[]) => any) ? X : never;
-
-
-type Options = Argument2<typeof detailed>
 
 export type jsonPrimitive = string | number | boolean | undefined;
 export type jsonObject = { [key: string]: jsonPrimitive | jsonPrimitive[] | jsonObject[] | jsonObject };
@@ -22,7 +17,6 @@ export interface Configurations
 {
     [key: string]: undefined | jsonObject & Configuration;
     http?: jsonObject & HttpConfiguration;
-    cli?: jsonObject & CliConfiguration;
     ''?: jsonObject & Configuration;
 }
 
@@ -30,13 +24,20 @@ export type ExtendedConfigurations<TConfiguration extends GenericConfiguration, 
 
 export type GenericConfiguration = Configuration & jsonObject;
 
-export interface CliConfiguration extends Configuration
-{
-    options?: Options;
-}
-
 export interface Configuration
 {
     inject?: string[];
 }
 
+
+
+export interface CliConfiguration extends Configuration
+{
+    usage?: string;
+    options?: { [key: string]: OptionOptions };
+}
+
+export interface Configurations
+{
+    cli?: jsonObject & CliConfiguration;
+}

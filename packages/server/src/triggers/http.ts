@@ -83,7 +83,8 @@ async function processCommand<T>(container: Container<T>, c: Metadata.Command, i
     });
 }
 
-export const trigger = new Trigger('http', function register<T>(container: Container<T>, router: { router: Router, meta: Metadata.Container } | Router | http.Server | https.Server | http2.Http2SecureServer | http2.Http2Server)
+export const trigger = new Trigger<{ router: Router, meta: Metadata.Container } | Router | http.Server | https.Server | http2.Http2SecureServer | http2.Http2Server, Router>(
+    'http', function register<T>(container: Container<T>, router: { router: Router, meta: Metadata.Container } | Router | http.Server | https.Server | http2.Http2SecureServer | http2.Http2Server)
 {
     let commandRouter: Router = new Router();
 
