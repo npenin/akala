@@ -1,12 +1,13 @@
+import * as cli from "@akala/cli";
+import { CliContext } from "@akala/cli";
 import State from "../state";
-import unparse from 'yargs-unparser';
 
-export default async function config(this: State, name: string, options: unparse.Arguments): Promise<string[] | State['config']>
+export default async function config(this: State, name: string, options: CliContext['options']): Promise<string[] | State['config']>
 {
     // debugger;
     if (options)
     {
-        const args = unparse(options);
+        const args = cli.unparseOptions(options);
         if (args[1] && args[1] == 'set')
         {
             this.config.containers[name] = args.slice(2);

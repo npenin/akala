@@ -2,7 +2,6 @@
 import 'source-map-support/register'
 import * as path from 'path'
 import * as ac from '@akala/commands';
-import yargs from 'yargs-parser'
 import { lstatSync } from 'fs';
 import { IpcAdapter } from './commands/start';
 import debug from 'debug';
