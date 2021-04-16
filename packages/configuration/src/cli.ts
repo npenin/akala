@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 import { Container, Processor, Processors, registerCommands } from '@akala/commands';
 import * as path from 'path'
-import yargs from 'yargs-parser'
 import commander from './commander';
 
 const cliContainer = new Container('cli', {});

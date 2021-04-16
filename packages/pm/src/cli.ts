@@ -9,7 +9,7 @@ import { Readable } from 'stream';
 import { spawnAsync } from './cli-helper';
 import { DiscoveryOptions } from '@akala/commands/dist/processors';
 import State from './state';
-import program, { CliContext, NamespaceMiddleware } from '@akala/cli';
+import program, { CliContext, NamespaceMiddleware, unparse } from '@akala/cli';
 
 const tableChars = {
     'top': '─'
@@ -387,12 +387,7 @@ async function tryLocalProcessing(args: CliContext)
     else
     {
         if (!config.mapping[cmdName].commandable)
-            return spawnAsync(config.mapping[cmdName].path, null, ...Object.entries(args).flatMap((key, value) =>
-            {
-                if (Array.isArray(value))
-                    return ['--' + key, ...value];
-                return ['--' + key, value];
-            }));
+            return spawnAsync(config.mapping[cmdName].path, null, ...unparse(args));
     }
 }
 

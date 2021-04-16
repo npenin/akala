@@ -19,3 +19,18 @@ export function buildCliContextFromProcess<T extends Record<string, string | boo
 {
     return { args: process.argv.slice(2), argv: process.argv, commandPath: process.argv0, options: {} as T, currentWorkingDirectory: process.cwd() }
 }
+
+export function unparseOptions(options: CliContext['options']): string[]
+{
+    return Object.entries(options).flatMap((key, value) =>
+    {
+        if (Array.isArray(value))
+            return ['--' + key, ...value];
+        return ['--' + key, value];
+    });
+}
+
+export function unparse(context: CliContext): string[]
+{
+    return [...context.args, ...unparseOptions(context.options)];
+}
