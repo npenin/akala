@@ -130,7 +130,7 @@ class UsageError extends Error
     }
 }
 
-export class NamespaceMiddleware<TOptions extends Record<string, string | boolean | string[] | number>> extends akala.MiddlewareComposite<[CliContext<TOptions>]> implements akala.Middleware<[context: CliContext]>
+export class NamespaceMiddleware<TOptions extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>> extends akala.MiddlewareComposite<[CliContext<TOptions>]> implements akala.Middleware<[context: CliContext]>
 {
     private _preAction: akala.Middleware<[CliContext<TOptions>]>;
     private _action: akala.Middleware<[CliContext<TOptions>]>;

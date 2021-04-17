@@ -1,4 +1,4 @@
 import { trigger as jsonrpcws } from './jsonrpc'
-import { processTrigger as cli } from './cli'
+import { processTrigger as cli, addOptions as addCliOptions } from './cli'
 
-export { jsonrpcws, cli }
+export { jsonrpcws, cli, addCliOptions }

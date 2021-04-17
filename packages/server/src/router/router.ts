@@ -3,7 +3,7 @@ import * as https from 'https';
 import * as http2 from 'http2';
 import * as akala from '@akala/core';
 import { Socket } from 'net';
-import { MiddlewareComposite, MiddlewarePromise, OptionsResponse, Router, Router2 } from '@akala/core';
+import { Middleware, MiddlewareComposite, MiddlewarePromise, OptionsResponse, Router, Router2 } from '@akala/core';
 import { UpgradeMiddleware } from './upgradeMiddleware';
 import { Request, Response } from './shared';
 import accepts from 'accepts';
@@ -111,4 +111,65 @@ export class HttpRouter extends Router2<Request, Response>
         this.upgradeRouter.useMiddleware(path, new UpgradeMiddleware(upgradeSupport, handler));
         return this;
     }
+}
+
+export interface HttpRouter
+{
+    'checkoutMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'connectMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'copyMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'deleteMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'getMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'headMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'lockMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'mMiddleware-search'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'mergeMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'mkactivityMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'mkcalendarMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'mkcolMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'moveMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'notifyMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'optionsMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'patchMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'postMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'propMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'findMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'proppatchMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'purgeMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'putMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'reportMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'searchMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'subscribeMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'traceMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'unlockMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'unsubscribeMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+
+    'checkout'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'connect'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'copy'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'delete'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'get'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'head'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'lock'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'm-search'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'merge'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'mkactivity'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'mkcalendar'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'mkcol'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'move'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'notify'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'options'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'patch'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'post'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'prop'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'find'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'proppatch'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'purge'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'put'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'report'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'search'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'subscribe'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'trace'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'unlock'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
+    'unsubscribe'(path: string, ...handlers: ((...args: [Request, Response]) => Promise<unknown>)[]): this;
 }
