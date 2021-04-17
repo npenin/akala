@@ -15,14 +15,7 @@ export var processTrigger = new Trigger('cli', async (c, program: NamespaceMiddl
             else
                 var command = program.command(cmd.name.split('.').join(' '));
 
-            cmd.inject.forEach(p =>
-            {
-                if (p.startsWith('option.'))
-                {
-                    const optionName = p.substring('option.'.length);
-                    command.option(optionName, cmd.config.cli.options[optionName])
-                }
-            });
+            addOptions(cmd, command);
 
             command.action(async (context) =>
             {
@@ -36,3 +29,15 @@ export var processTrigger = new Trigger('cli', async (c, program: NamespaceMiddl
 
     return program;
 });
+
+export function addOptions(cmd: Metadata.Command, command: NamespaceMiddleware): void
+{
+    cmd.inject.forEach(p =>
+    {
+        if (p.startsWith('option.'))
+        {
+            const optionName = p.substring('option.'.length);
+            command.option(optionName, cmd.config.cli.options[optionName])
+        }
+    });
+}
