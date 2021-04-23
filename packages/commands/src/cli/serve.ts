@@ -49,7 +49,7 @@ export class NetSocketAdapter implements jsonrpcws.SocketAdapter
 
     }
 
-    get open()
+    get open(): boolean
     {
         return this.socket && (this.socket.readable || this.socket.writable);
     }
@@ -111,15 +111,18 @@ export class NetSocketAdapter implements jsonrpcws.SocketAdapter
 
 export interface ServeOptions
 {
-    port?: number;
-    tcpPort?: number | string;
-    cert?: string;
-    key?: string;
-    _: ('local' | 'http' | 'ws' | 'tcp')[];
+    options: {
+        port?: number;
+        tcpPort?: number | string;
+        cert?: string;
+        key?: string;
+    }
+    args: ('local' | 'http' | 'ws' | 'tcp')[];
 }
 
 export default async function <T = void>(container: Container<T>, options: ServeMetadata)
 {
+    console.log(options);
     const stops: (() => Promise<void>)[] = [];
 
     if (options.socket)
@@ -232,5 +235,3 @@ export default async function <T = void>(container: Container<T>, options: Serve
         return Promise.all(stops.map(i => i()));
     }
 }
-
-exports.default.$inject = ['$container', 'options'];

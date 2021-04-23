@@ -13,7 +13,7 @@ import { StaticFileMiddleware } from "../router/staticFileMiddleware";
 
 const debug = log('akala:server')
 
-export default async function $init(container: Container<State>, options: Record<string, unknown>, pm: Container<void>): Promise<() => void>
+export default async function $init(container: Container<State>, options: Record<string, unknown>, pm: Container<void>): Promise<void>
 {
     container.state.pm = pm;
     // pm.register('$metadata', new CommandProxy(pm.processor, '$metadata'));
@@ -80,7 +80,7 @@ export default async function $init(container: Container<State>, options: Record
             plugins: [
                 // new CleanPlugin(),
                 html,
-                new CssExtractPlugin({ moduleFilename: ({ name }) => `${name.replace('/js/', '/css/')}.css`, })
+                new CssExtractPlugin()
             ],
             devtool: 'source-map',
             mode: container.state.mode || 'development',
@@ -95,51 +95,46 @@ export default async function $init(container: Container<State>, options: Record
 
     init = false;
 
-    container.injectWithName(['$masterRouter'], function (masterRouter: HttpRouter)
+    container.onResolve('$masterRouter', function (masterRouter: HttpRouter)
     {
-        if (masterRouter)
-        {
-            const lateBoundRoutes = router();
-            const preAuthenticatedRouter = router();
-            const authenticationRouter = router();
-            const app = router();
-            container.register('$preAuthenticationRouter', preAuthenticatedRouter);
-            container.register('$authenticationRouter', authenticationRouter);
-            container.register('$router', lateBoundRoutes);
-            masterRouter.useMiddleware(preAuthenticatedRouter);
-            masterRouter.useMiddleware(authenticationRouter);
-            masterRouter.useMiddleware(lateBoundRoutes);
-            masterRouter.useMiddleware(app);
+        debug('router registered, initializing web server...');
+        const lateBoundRoutes = router();
+        const preAuthenticatedRouter = router();
+        const authenticationRouter = router();
+        const app = router();
+        container.register('$preAuthenticationRouter', preAuthenticatedRouter);
+        container.register('$authenticationRouter', authenticationRouter);
+        container.register('$router', lateBoundRoutes);
+        masterRouter.useMiddleware(preAuthenticatedRouter);
+        masterRouter.useMiddleware(authenticationRouter);
+        masterRouter.useMiddleware(lateBoundRoutes);
+        masterRouter.useMiddleware(app);
 
-            container.state.masterRouter = masterRouter
-            container.state.preAuthenticatedRouter = preAuthenticatedRouter;
-            container.state.authenticationRouter = authenticationRouter;
-            container.state.lateBoundRoutes = lateBoundRoutes;
-            container.state.app = app;
+        container.state.masterRouter = masterRouter
+        container.state.preAuthenticatedRouter = preAuthenticatedRouter;
+        container.state.authenticationRouter = authenticationRouter;
+        container.state.lateBoundRoutes = lateBoundRoutes;
+        container.state.app = app;
 
-            preAuthenticatedRouter.useMiddleware('/', new StaticFileMiddleware(null, { root: join(process.cwd(), './build'), fallthrough: true }));
-            masterRouter.use('/api', function (_req, res)
+        preAuthenticatedRouter.useMiddleware('/', new StaticFileMiddleware(null, { root: join(process.cwd(), './build'), fallthrough: true }));
+        // masterRouter.use('/api', function (_req, res)
+        // {
+        //     res.writeHead(404, 'Not found');
+        //     return new Promise((resolve) =>
+        //     {
+        //         res.end(() => resolve(res));
+        //     })
+        // });
+        if (container.state.mode !== 'production')
+            masterRouter.use('/', async function (_req, res)
             {
-                res.writeHead(404, 'Not found');
-                return new Promise((resolve) =>
-                {
-                    res.end(resolve);
-                })
+                res.statusCode = 200;
+
+                fs.createReadStream(html['options'].template.substring(html['options'].template.indexOf('!') + 1), { autoClose: true }).pipe(res);
+                return res;
             });
-            if (container.state.mode !== 'production')
-                masterRouter.use('/', async function (_req, res)
-                {
-                    res.statusCode = 200;
-
-                    fs.createReadStream(html['options'].template.substring(html['options'].template.indexOf('!') + 1), { autoClose: true }).pipe(res);
-                    return res;
-                });
-            else
-                debug('started in production mode');
-        }
         else
-            console.error('there is no router; Working in degraded mode');
-
-    })();
-    return stop;
+            debug('started in production mode');
+    });
+    console.error('there is no router yet; Working in degraded mode');
 }

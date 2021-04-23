@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import * as path from 'path'
-import { Processors, NetSocketAdapter, Metadata, Container, Processor } from '@akala/commands';
+import { Processors, NetSocketAdapter, Metadata, Container, Processor, proxy, Triggers } from '@akala/commands';
 import { Socket } from 'net';
 import { platform, homedir } from 'os';
 import start from './commands/start'
@@ -9,7 +9,8 @@ import { Readable } from 'stream';
 import { spawnAsync } from './cli-helper';
 import { DiscoveryOptions } from '@akala/commands/dist/processors';
 import State from './state';
-import program, { CliContext, NamespaceMiddleware, unparse } from '@akala/cli';
+import program, { buildCliContextFromProcess, CliContext, NamespaceMiddleware, unparse } from '@akala/cli';
+import { InteractError } from '.';
 
 const tableChars = {
     'top': '─'
@@ -41,16 +42,18 @@ if (require.main == module)
         {
             if (typeof c.options.program == 'undefined')
                 c.options.program = 'pm';
-            start.call({} as unknown as State, null, c.options.program, c.options);
-            throw undefined;
+            if (c.options.program === 'pm')
+                start.call({} as unknown as State, null, c.options.program, c.options);
+            else
+                throw undefined;
         });
 
     let socket: Socket;
     let processor: Processors.JsonRpc;
     let metaContainer: Metadata.Container;
-    const handle = new NamespaceMiddleware<CliOptions>(null,);
-    cli.useMiddleware(handle);
-    handle.preAction(async c =>
+    let container: Container<unknown>;
+    const handle = new NamespaceMiddleware<CliOptions>(null);
+    cli.command(null).preAction(async c =>
     {
         process.stdin.pause();
         process.stdin.setEncoding('utf8');
@@ -78,7 +81,7 @@ if (require.main == module)
                 // eslint-disable-next-line @typescript-eslint/no-var-requires
                 const config = require(path.join(homedir(), './.pm.config.json'));
 
-                socket.connect(path.join(config.containers.pm[0], './pm.sock'));
+                socket.connect(config.mapping.pm.connect.socket[0]);
             }
 
             await new Promise<void>((resolve, reject) =>
@@ -107,42 +110,72 @@ if (require.main == module)
             processor = new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(socket)));
         if (!metaContainer)
             metaContainer = await processor.handle('$metadata', { param: [true] }).then(err => { if (err) throw err }, res => res);
-    });
-
-    handle.action(async args =>
-    {
-        try
+        if (!container)
         {
-            const cmdName = args.args[0].toString();
-            if (cmdName == '$metadata')
-                return formatResult(metaContainer, args.options.output);
-            else
-            {
-                const cmd = metaContainer.commands.find(c => c.name === cmdName);
-                await tryRun(processor, cmd, args, false);
-            }
-            await new Promise<void>((resolve) => socket.end(resolve));
+            container = proxy(metaContainer, processor);
+            container.attach(Triggers.cli, handle);
         }
-        catch (e)
+    }).
+        useMiddleware(handle).
+        useError(async (err: InteractError, args) =>
         {
-            if (e.code == 'INTERACT')
+            if (err.code === 'INTERACT')
             {
-                console.log(e.message);
+                console.log(err.message);
                 const value = await readLine();
-                if (e.as)
-                    args.options[e] = value;
+                if (typeof err.as == 'string')
+                    args.options[err.as] = value;
                 else
                     args.args.push(value);
-                return handle.handle(args).then(e => { if (e) throw e }, res => res);
+                return await cli.process(args);
             }
-            if (args.options.verbose)
-                console.log(e);
-            else
-                console.log(e.message)
-            await new Promise<void>((resolve) => socket.end(resolve));
-        }
+        })
+
+    // handle.action(async args =>
+    // {
+    //     try
+    //     {
+    //         const cmdName = args.args[0].toString();
+    //         if (cmdName == '$metadata')
+    //             return formatResult(metaContainer, args.options.output);
+    //         else
+    //         {
+    //             const cmd = metaContainer.commands.find(c => c.name === cmdName);
+    //             await tryRun(processor, cmd, args, false);
+    //         }
+    //         await new Promise<void>((resolve) => socket.end(resolve));
+    //     }
+    //     catch (e)
+    //     {
+    //         if (e.code == 'INTERACT')
+    //         {
+    //             console.log(e.message);
+    //             const value = await readLine();
+    //             if (e.as)
+    //                 args.options[e] = value;
+    //             else
+    //                 args.args.push(value);
+    //             return handle.handle(args).then(e => { if (e) throw e }, res => res);
+    //         }
+    //         if (args.options.verbose)
+    //             console.log(e);
+    //         else
+    //             console.log(e.message)
+    //         await new Promise<void>((resolve) => socket.end(resolve));
+    //     }
+    // });
+    cli.format((result, context) => formatResult(result, context.options.output));
+    program.process(buildCliContextFromProcess()).then(r =>
+    {
+        if (socket)
+            socket.end();
+    }, err =>
+    {
+        debugger;
     });
 }
+
+
 
 function formatResult(result: unknown, outputFormat: string)
 {
@@ -319,12 +352,9 @@ function prepareParam(cmd: Metadata.Command, args: CliContext, standalone?: bool
     if (!cmd.config || !cmd.config.cli || (standalone && !cmd.config.cli.standalone))
         return false;
 
-
-    args.args = args.args.slice(1);
-
     delete args['pm-sock'];
     delete args.options.pmSock;
-    return { options: args.options, param: args.args, _trigger: 'cli', cwd: args.currentWorkingDirectory };
+    return { options: args.options, param: args.args.slice(1), _trigger: 'cli', cwd: args.currentWorkingDirectory, context: args };
 }
 
 async function tryRun(processor: Processor, cmd: Metadata.Command, args: CliContext, localProcessing: boolean)

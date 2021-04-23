@@ -1,20 +1,20 @@
 {
     "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
+    "": {
+        "inject": [
+            "$container",
+            "param.0",
+            "param.1"
+        ]
+    },
     "cli": {
         "options": {
-            "alias": {
-                "wait": [
+            "wait": {
+                "aliases": [
                     "w"
-                ],
-                "verbose": [
-                    "v"
                 ]
             },
-            "boolean": [
-                "inspect",
-                "verbose",
-                "wait"
-            ]
+            "inspect": {}
         },
         "inject": [
             "$container",

@@ -32,8 +32,8 @@ export const container: Promise<commands> = (async function ()
 
     if (require.main == module)
     {
-        cliContainer.attach(Triggers.cli, cli);
-        program.handle(buildCliContextFromProcess());
+        await cliContainer.attach(Triggers.cli, cli);
+        await program.process(buildCliContextFromProcess());
     }
 
     return cliContainer;

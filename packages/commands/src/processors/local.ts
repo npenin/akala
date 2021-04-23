@@ -1,5 +1,5 @@
 import { Command } from '../model/command';
-import { Injector, Injectable, each, MiddlewarePromise } from '@akala/core';
+import { Injector, Injectable, each, MiddlewarePromise, isPromiseLike } from '@akala/core';
 import * as  Metadata from '../metadata';
 import { CommandProcessor, StructuredParameters } from '../model/processor'
 import { Container } from '../model/container';
@@ -27,23 +27,32 @@ export class Local extends CommandProcessor
         return injector.injectWithName(inject, command)(container.state);
     }
 
+    public static handle<T>(cmd: Metadata.Command, command: Injectable<unknown>, container: Container<T>, param: StructuredParameters): MiddlewarePromise
+    {
+        return new Promise((resolve, reject) =>
+        {
+            try
+            {
+                var result = Local.execute<unknown>(cmd, command, container, param);
+                if (isPromiseLike(result))
+                    result.then(reject, resolve);
+                else
+                    reject(result);
+            }
+            catch (e)
+            {
+                resolve(e);
+            }
+        })
+
+    }
+
 
     public handle(command: Command, param: StructuredParameters): MiddlewarePromise
     {
         if (!this.container)
-            assert.fail('container is undefined');
-        else
-            return new Promise((resolve, reject) =>
-            {
-                try
-                {
-                    reject(Local.execute<unknown>(command, command.handler, this.container, param));
-                }
-                catch (e)
-                {
-                    resolve(e);
-                }
-            })
+            return Promise.resolve(new Error('container is undefined'));
+        return Local.handle(command, command.handler, this.container, param);
     }
 
     constructor(container: Container<unknown>)

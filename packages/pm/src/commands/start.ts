@@ -128,12 +128,15 @@ export default async function start(this: State, pm: pmContainer & Container<Sta
                 container = new Container(name, null, processor) as RunningContainer;
 
             if (this.config.mapping[name].commandable)
+            {
                 container.dispatch('$metadata').then((metaContainer: Metadata.Container) =>
                 {
                     // console.log(metaContainer);
                     registerCommands(metaContainer.commands, processor, container as Container<unknown>);
                     pm.register(name, container, true);
                 });
+                pm.register(container);
+            }
             this.processes.push(container);
         }
         container.process = cp;
@@ -198,7 +201,7 @@ export class IpcAdapter implements jsonrpc.SocketAdapter
                 handler();
                 break;
             case 'close':
-                this.cp.once('disconnect', () => handler(new CloseEvent('disconnect') as SocketAdapterEventMap[K]));
+                this.cp.once('disconnect', handler);
                 break;
         }
     }

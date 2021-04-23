@@ -153,9 +153,9 @@ function isIpcConnectOption(options: NetConnectOpts): options is IpcNetConnectOp
     return typeof options['path'] !== 'undefined';
 }
 
-export default function (name: string, options: ServeOptions): ServeMetadata
+export default function (name: string, context: ServeOptions): ServeMetadata
 {
-    let args = options._;
+    let args = context.args;
     if (!args || args.length == 0)
         args = ['local'];
     const metadata: ServeMetadata = {};
@@ -175,46 +175,46 @@ export default function (name: string, options: ServeOptions): ServeMetadata
     {
         if (!metadata['socket'])
             metadata['socket'] = [];
-        if (typeof options.tcpPort == 'string')
+        if (typeof context.options.tcpPort == 'string')
         {
-            const indexOfColon = options.tcpPort.lastIndexOf(':');
+            const indexOfColon = context.options.tcpPort.lastIndexOf(':');
             if (indexOfColon > -1)
             {
-                const host = options.tcpPort.substr(0, indexOfColon);
-                const port = Number(options.tcpPort.substr(indexOfColon + 1))
+                const host = context.options.tcpPort.substr(0, indexOfColon);
+                const port = Number(context.options.tcpPort.substr(indexOfColon + 1))
                 metadata.socket.push({ port, host });
             }
             else
-                metadata.socket.push({ path: options.tcpPort });
+                metadata.socket.push({ path: context.options.tcpPort });
         }
         else
-            metadata.socket.push({ port: options.tcpPort });
+            metadata.socket.push({ port: context.options.tcpPort });
     }
 
     if (args.indexOf('http') > -1 || args.indexOf('ws') > -1)
     {
         let port: number;
-        if (options.port)
-            port = options.port;
+        if (context.options.port)
+            port = context.options.port;
         else
         {
-            if (options.cert && options.key)
+            if (context.options.cert && context.options.key)
                 port = 443
             else
                 port = 80;
         }
-        if (options.cert && options.key)
+        if (context.options.cert && context.options.key)
         {
-            if (args.indexOf('ws'))
-                metadata.wss = { port, cert: options.cert, key: options.key };
-            if (args.indexOf('http'))
-                metadata.https = { port, cert: options.cert, key: options.key };
+            if (~args.indexOf('ws'))
+                metadata.wss = { port, cert: context.options.cert, key: context.options.key };
+            if (~args.indexOf('http'))
+                metadata.https = { port, cert: context.options.cert, key: context.options.key };
         }
         else
         {
-            if (args.indexOf('ws'))
+            if (~args.indexOf('ws'))
                 metadata.ws = { port };
-            if (args.indexOf('http'))
+            if (~args.indexOf('http'))
                 metadata.http = { port };
         }
 
