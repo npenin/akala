@@ -275,17 +275,7 @@ export class FileSystem<T> extends CommandProcessor
         if (!param._trigger)
             param._trigger = this.name;
 
-        return new Promise((resolve, reject) =>
-        {
-            try
-            {
-                reject(Local.execute(command, script.default, this.container, param));
-            }
-            catch (e)
-            {
-                resolve(e);
-            }
-        })
+        return Local.handle(command, script.default, this.container, param);
     }
 
     constructor(container: Container<T>, private root?: string)

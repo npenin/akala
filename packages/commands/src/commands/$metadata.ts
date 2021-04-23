@@ -15,11 +15,18 @@ const $metadata = configure({
         "inject": [
             "$container",
             "options.deep"
-        ]
+        ],
+        "options": {
+            "deep": {
+                "aliases": [
+                    "d"
+                ]
+            }
+        }
     }
 })(function $metadata(container: Container<any>, deep: boolean): meta.Container
 {
-    console.log(container.name);
+    // console.log(container.name);
     return metadata(container, deep);
 });
 export default $metadata;

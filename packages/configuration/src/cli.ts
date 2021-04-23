@@ -17,7 +17,11 @@ export var container: Promise<commander> = (async function ()
     cliContainer.attach(processTrigger, program);
 
     if (require.main == module)
-        program.handle(buildCliContextFromProcess()).then(e => { if (e) throw e }, res => res);
+    {
+        const result = await program.process(buildCliContextFromProcess());
+        if (typeof result !== 'undefined')
+            console.log(result);
+    }
 
     return cliContainer;
 })()

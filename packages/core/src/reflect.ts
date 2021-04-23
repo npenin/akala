@@ -8,7 +8,7 @@ export function getParamNames(func: (...args: unknown[]) => unknown): string[]
     return result;
 }
 
-export function escapeRegExp(str): string
+export function escapeRegExp(str: string): string
 {
-    return str.replace(/[-[]{}()*+?.\\^$|]/g, "\\$&");
+    return str.replace(/[-[\]{}()*+?.\\^$|]/g, "\\$&");
 }

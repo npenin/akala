@@ -22,7 +22,7 @@ async function processCommand<T>(container: Container<T>, c: Metadata.Command, i
     const req = injected.$request;
     const res = injected.$response;
     let bodyParsing: Promise<unknown>;
-    return Local.execute(c, async function (...args)
+    return Local.handle(c, async function (...args)
     {
         args = await mapAsync(args, async el => await el);
         args = args.filter((a, i) => c.inject[i].startsWith('param.'))

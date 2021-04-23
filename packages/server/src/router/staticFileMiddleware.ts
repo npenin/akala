@@ -30,7 +30,8 @@ export class StaticFileMiddleware implements Middleware<[Request, Response]>
 
         // setup options for send
         options.maxAge = options.maxage || options.maxAge || 0
-        options.root = root && resolve(root)
+        if (!options.root)
+            options.root = root && resolve(root)
 
         // construct directory listener
         this.onDirectory = options.redirect
@@ -58,7 +59,7 @@ export class StaticFileMiddleware implements Middleware<[Request, Response]>
 
         let forwardError = !this.options.fallthrough;
 
-        let path = new URL(req.path).pathname;
+        let path = req.path;
 
         // make sure redirect occurs at mount
         if (path === '/' && path.substr(-1) !== '/')
@@ -100,7 +101,7 @@ export class StaticFileMiddleware implements Middleware<[Request, Response]>
             })
 
             // pipe
-            stream.pipe(res).on('close', reject);
+            stream.pipe(res).on('close', () => reject(res));
         })
     }
 }

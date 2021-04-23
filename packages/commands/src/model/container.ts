@@ -8,6 +8,7 @@ import $serve from '../commands/$serve'
 import $attach from '../commands/$attach'
 import $metadata from '../commands/$metadata'
 import { UnknownCommandError } from './error-unknowncommand';
+import * as Metadata from '../metadata'
 
 const log = akala.log('akala:commands');
 
@@ -67,17 +68,17 @@ export class Container<TState> extends akala.Injector
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public dispatch(command: string | Command<TState>, ...param: AsDispatchArgs<unknown[]>): Promise<any>
+    public dispatch(command: string | Metadata.Command, ...param: AsDispatchArgs<unknown[]>): Promise<any>
     {
         if (typeof (param) == 'object' && param !== null && param.length === 1 && typeof (param[0]) == 'object' && param[0] !== null && param[0]['param'] && Array.isArray(param[0]['param']))
         {
-            log(`dispatching ${command}(${JSON.stringify(param[0])})`)
+            // log(`dispatching ${command}(${JSON.stringify(param[0])})`)
             if (this.processor.requiresCommandName)
                 if (typeof command == 'string')
                     return this.processor.handle(command, param[0] as StructuredParameters<unknown[]>).then(err => { throw err }, result => result);
                 else
                     return this.processor.handle(command.name, param[0] as StructuredParameters<unknown[]>).then(err => { throw err }, result => result);
-            let cmd: Command;
+            let cmd: Metadata.Command;
             if (typeof command == 'string')
             {
                 cmd = this.resolve(command);
@@ -90,7 +91,9 @@ export class Container<TState> extends akala.Injector
             }
             else
                 cmd = command;
-            return this.processor.handle(cmd, param[0] as StructuredParameters<unknown[]>).then(err => { throw err }, result => result);
+            return this.processor.handle(cmd, param[0] as StructuredParameters<unknown[]>).then(
+                err => { throw err },
+                async result => await result);
         }
         else
         {

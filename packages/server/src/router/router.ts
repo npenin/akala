@@ -29,6 +29,20 @@ export class HttpRouter extends Router2<Request, Response>
         server.on('request', (msg: http.IncomingMessage, res: Response) =>
         {
             const req = HttpRouter.makeRequest(msg);
+            msg.on('error', function (err)
+            {
+                console.error(err);
+            })
+            res.on('error', function (err)
+            {
+                console.error(err);
+            })
+            // var oldEnd = res.end;
+            // res.end = function (...args)
+            // {
+            //     console.trace(args);
+            //     oldEnd.apply(this, args);
+            // }
 
             if (!res.status)
                 res.status = function (status: number)
@@ -61,14 +75,25 @@ export class HttpRouter extends Router2<Request, Response>
                     res.end();
                     return res;
                 };
-            this.handle(req, res).then((err) => { err && err !== 'break' ? this.formatError(req, res, err) : console.error('deadend'); console.error({ url: req.url, headers: req.headers, ip: req.ip }); res.writeHead(404, 'Not found').end(); },
+            this.handle(req, res).then((err) =>
+            {
+                if (err && err !== 'break')
+                {
+                    this.formatError(req, res, err);
+                    return;
+                }
+                console.error('deadend');
+                console.error({ url: req.url, headers: req.headers, ip: req.ip });
+                res.writeHead(404, 'Not found').end();
+                return res;
+            },
 
                 (result) => result !== res ? this.format(req, res, result) : undefined);
         });
     }
     static makeRequest(msg: http.IncomingMessage): Request
     {
-        const uri = new URL(msg.url);
+        const uri = new URL('http://' + msg.headers.host + msg.url);
 
         return Object.assign(msg, {
             ip: msg.socket.remoteAddress,
@@ -88,10 +113,22 @@ export class HttpRouter extends Router2<Request, Response>
     {
         return this.formatters.handleError(result, req, res, null).then(() =>
         {
-            console.warn(`no valid formatter for ${req.headers.accept} thus sending as text`);
-            const stringify = result.toString()
-            res.writeHead(500, 'Internal Server Error', { contenttype: 'text/plain', contentLength: stringify.length });
-            res.end(stringify);
+            try
+            {
+                console.warn(`no valid error formatter for ${req.headers.accept} thus sending as text`);
+                let stringify = result !== null && result !== undefined ? result.toString() : '';
+                if (result instanceof Error)
+                    stringify = `[${result.name}]: ${result.message}\n${result.stack}`;
+                res.writeHead(500, 'Failed', { 'Content-Type': 'text/plain', 'Content-Length': stringify.length }).
+                    end(stringify);
+            }
+            catch (e)
+            {
+                return e;
+            }
+        }, result =>
+        {
+            console.log(result);
         })
     }
 

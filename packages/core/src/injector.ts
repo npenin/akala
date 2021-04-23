@@ -103,15 +103,15 @@ export class Injector
             handler(value);
             return;
         }
-
-        this.notifier.once(name, (prop: PropertyDescriptor) =>
-        {
-            if (prop.get)
-                handler(prop.get());
-            else
-                handler(prop.value);
-        });
-        if (this.parent)
+        if (!this.parent)
+            this.notifier.once(name, (prop: PropertyDescriptor) =>
+            {
+                if (prop.get)
+                    handler(prop.get());
+                else
+                    handler(prop.value);
+            });
+        else
             this.parent.onResolve(name, handler);
     }
 
@@ -228,7 +228,7 @@ export class Injector
 
     public toJSON(...args: unknown[])
     {
-        console.log(args);
+        // console.log(args);
         const wasBrowsingForJSON = this.browsingForJSON;
         this.browsingForJSON = true;
         if (!wasBrowsingForJSON)
