@@ -13,7 +13,7 @@ type mapReturn = Unpromise<ReturnType<typeof map>>;
 const debug = log('discover');
 
 
-export default async function discover(this: State, packageName: string, folder: string, pm: pmContainer): Promise<mapReturn[] | mapReturn>
+export default async function discover(this: State, packageName: string, folder: string, pm: pmContainer.container): Promise<mapReturn[] | mapReturn>
 {
     // eslint-disable-next-line prefer-rest-params
     debug(arguments);

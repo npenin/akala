@@ -2,8 +2,9 @@ import { connectByPreference, Container, Metadata, NetSocketAdapter, Processors,
 import { Socket } from "net";
 import { module } from "@akala/core";
 
-import pmContainer from './container';
+import definition from './container';
 
+type pmContainer = definition.container
 export { pmContainer as Container };
 
 export class InteractError extends Error

@@ -12,7 +12,7 @@ export interface Asset
     output: string;
 }
 
-export default async function register(this: State, container: Container<State> & description, route: string, path: string, cwd: string): Promise<EntryObject>
+export default async function register(this: State, container: Container<State> & description.container, route: string, path: string, cwd: string): Promise<EntryObject>
 {
     if (typeof route == 'undefined' && typeof path == 'undefined')
         return this.webpack.config.entry as EntryObject;

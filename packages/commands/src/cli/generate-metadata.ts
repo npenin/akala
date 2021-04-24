@@ -9,7 +9,7 @@ import { Writable } from "stream";
 import { outputHelper, write } from "./new";
 
 
-export default async function generate(name?: string, folder?: string, outputFile?: string)
+export default async function generate(name?: string, folder?: string, outputFile?: string, options?: { noContainer?: boolean, noProxy?: boolean })
 {
     folder = folder || process.cwd();
     if (!name)
@@ -42,46 +42,100 @@ export default async function generate(name?: string, folder?: string, outputFil
     }
 
     if (outputFile.endsWith('.d.ts'))
-        await write(output, 'declare ');
+        await write(output, 'declare namespace ' + name);
     else
-        await write(output, 'export ');
-
-    await write(output, `default interface ${name} \n{\n`);
-
-    await core.eachAsync(meta.commands, async function (cmd)
     {
+        await write(output, '// eslint-disable-next-line @typescript-eslint/no-namespace\n');
+        await write(output, 'namespace ' + name);
+    }
+    await write(output, '\n{\n');
 
-        await write(output, `\tdispatch (cmd:'${cmd.name}'`);
-        if (cmd.config.fs)
+    if (!options || !options.noContainer)
+    {
+        await write(output, `\texport interface container \n\t{\n`);
+
+        await core.eachAsync(meta.commands, async function (cmd)
         {
-            const config = cmd.config.fs as jsonObject & FileSystemConfiguration;
-            let filePath = path.relative(outputFolder, config.source || config.path);
-            filePath = path.join(path.dirname(filePath), path.basename(filePath, path.extname(filePath)));
-            filePath = filePath.replace(/\\/g, '/');
-            if (config.inject)
+
+            await write(output, `\t\tdispatch (cmd:'${cmd.name}'`);
+            if (cmd.config.fs)
             {
-                await write(output, ', ...args: [');
-                const args: string[] = [];
-                config.inject.forEach((p, i) =>
+                const config = cmd.config.fs as jsonObject & FileSystemConfiguration;
+                let filePath = path.relative(outputFolder, config.source || config.path);
+                filePath = path.join(path.dirname(filePath), path.basename(filePath, path.extname(filePath)));
+                filePath = filePath.replace(/\\/g, '/');
+                if (config.inject)
                 {
-                    if (p.startsWith('param.'))
-                        args.push(`Argument${i}<typeof import('./${filePath}').default>`)
-                })
-                await write(output, args.join(', '));
-                await write(output, `]): ReturnType<typeof import('./${filePath}').default>\n`);
+                    await write(output, ', ...args: [');
+                    const args: string[] = [];
+                    config.inject.forEach((p, i) =>
+                    {
+                        if (p.startsWith('param.'))
+                            args.push(`Argument${i}<typeof import('./${filePath}').default>`)
+                    })
+                    await write(output, args.join(', '));
+                    await write(output, `]): ReturnType<typeof import('./${filePath}').default>\n`);
+                }
+                else
+                    await write(output, `, ...args: Arguments<typeof import('./${filePath}').default>): ReturnType<typeof import('./${filePath}').default>\n`);
+            }
+            else if (cmd.inject && cmd.inject.length)
+            {
+                await write(output, cmd.inject.filter(p => p.startsWith('param.')).map(p => `any`).join(', '));
+                await write(output, `): unknown\n`);
             }
             else
-                await write(output, `, ...args: Arguments<typeof import('./${filePath}').default>): ReturnType<typeof import('./${filePath}').default>\n`);
-        }
-        else if (cmd.inject && cmd.inject.length)
-        {
-            await write(output, cmd.inject.filter(p => p.startsWith('param.')).map(p => `any`).join(', '));
-            await write(output, `): unknown\n`);
-        }
-        else
-            await write(output, `, ...args: unknown[]): unknown\n`);
+                await write(output, `, ...args: unknown[]): unknown\n`);
 
-    });
+        });
+
+        await write(output, '\t}\n');
+    }
+
+
+    if ((!options || !options.noProxy) && !outputFile.endsWith('.d.ts'))
+    {
+        await write(output, `\texport interface proxy \n\t{\n`);
+
+        await core.eachAsync(meta.commands, async function (cmd)
+        {
+
+            await write(output, `\t\t'${cmd.name}'`);
+            if (cmd.config.fs)
+            {
+                const config = cmd.config.fs as jsonObject & FileSystemConfiguration;
+                let filePath = path.relative(outputFolder, config.source || config.path);
+                filePath = path.join(path.dirname(filePath), path.basename(filePath, path.extname(filePath)));
+                filePath = filePath.replace(/\\/g, '/');
+                if (config.inject)
+                {
+                    await write(output, '(...args: [');
+                    const args: string[] = [];
+                    config.inject.forEach((p, i) =>
+                    {
+                        if (p.startsWith('param.'))
+                            args.push(`Argument${i}<typeof import('./${filePath}').default>`)
+                    })
+                    await write(output, args.join(', '));
+                    await write(output, `]): ReturnType<typeof import('./${filePath}').default>\n`);
+                }
+                else
+                    await write(output, `(...args: Arguments<typeof import('./${filePath}').default>): ReturnType<typeof import('./${filePath}').default>\n`);
+            }
+            else if (cmd.inject && cmd.inject.length)
+            {
+                await write(output, cmd.inject.filter(p => p.startsWith('param.')).map(p => `any`).join(', '));
+                await write(output, `): unknown\n`);
+            }
+            else
+                await write(output, `(...args: unknown[]): unknown\n`);
+
+        });
+
+        await write(output, '\t}\n');
+    }
 
     await write(output, '}\n');
+    await write(output, '\n');
+    await write(output, `export { ${name} as default };`);
 }

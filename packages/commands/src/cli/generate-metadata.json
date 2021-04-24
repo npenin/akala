@@ -3,8 +3,15 @@
     "cli": {
         "inject": [
             "options.name",
-            "param.0",
-            "param.1"
-        ]
+            "options.commandPath",
+            "options.output",
+            "options"
+        ],
+        "usage": "generate-metadata [commandPath] [output]",
+        "options": {
+            "name": {
+                "needsValue": true
+            }
+        }
     }
 }

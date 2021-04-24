@@ -14,7 +14,7 @@ declare module '@akala/pm'
 {
     interface SidecarMap
     {
-        '@akala/server': container & Container<void>;
+        '@akala/server': container.container & Container<void>;
     }
 }
 
@@ -26,7 +26,7 @@ export function connect(options: commands.ServeMetadata, settings: {
     host?: string;
 }, ...orders: (keyof commands.ServeMetadata)[])
     : Promise<{
-        container: container;
+        container: container.container;
         processor: commands.CommandProcessors;
     }>
 {
