@@ -63,7 +63,13 @@ export function sidecar<T extends SidecarMap>(options?: Omit<ConnectionPreferenc
             const orders = options && options[property] && options[property].orders || defaultOrders;
 
             if (noCache || typeof (target[property]) == 'undefined')
-                Object.defineProperty(target, property, { value: connect(property).then(meta => connectByPreference(meta.connect, Object.assign({ container: meta.container }, options, options[property]), ...orders).then(c => c.container)) });
+                Object.defineProperty(target, property, {
+                    value: connect(property).then(async meta => 
+                    {
+                        const c = await connectByPreference(meta.connect, Object.assign({ container: meta.container }, options, options[property]), ...orders);
+                        return c.container;
+                    })
+                });
             return target[property];
         }
     });
@@ -73,6 +79,6 @@ export type Sidecar<T extends SidecarMap> = { [key in keyof T]: Promise<T[key]> 
 
 export interface SidecarMap
 {
-    [key: string]: Container<void>;
-    pm: pmContainer & Container<void>
+    [key: string]: Promise<Container<void>>;
+    pm: Promise<pmContainer & Container<void>>
 }
