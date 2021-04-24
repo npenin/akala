@@ -7,7 +7,6 @@ import start from './commands/start'
 import { Readable } from 'stream';
 
 import { spawnAsync } from './cli-helper';
-import { DiscoveryOptions } from '@akala/commands/dist/processors';
 import State from './state';
 import program, { buildCliContextFromProcess, CliContext, NamespaceMiddleware, unparse } from '@akala/cli';
 import { InteractError } from '.';
@@ -171,7 +170,8 @@ if (require.main == module)
             socket.end();
     }, err =>
     {
-        debugger;
+        console.error(err);
+        process.exit(500);
     });
 }
 
@@ -408,7 +408,7 @@ async function tryLocalProcessing(args: CliContext)
         {
             cmdName = cmdName.substring(indexOfDot + 1);
             const container = new Container('cli-temp', {});
-            const options: DiscoveryOptions = {};
+            const options: Processors.DiscoveryOptions = {};
             await Processors.FileSystem.discoverCommands(config.mapping[containerName].path, container, options);
             const cmd = container.resolve(cmdName);
             return tryRun(options.processor, cmd, args, true);

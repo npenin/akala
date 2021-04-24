@@ -6,7 +6,6 @@ import { NamespaceMiddleware } from '@akala/cli'
 export var processTrigger = new Trigger('cli', async (c, program: NamespaceMiddleware<Record<string, string | boolean | string[] | number>>) =>
 {
     var meta: Metadata.Container = await c.dispatch('$metadata');
-    var containers = {};
     [...meta.commands, c.resolve('$metadata')].forEach(cmd =>
     {
         if (cmd.config?.cli)
@@ -14,27 +13,7 @@ export var processTrigger = new Trigger('cli', async (c, program: NamespaceMiddl
             if (cmd.config.cli.usage)
                 var command = program.command(cmd.config.cli.usage);
             else
-            {
-                // var values = cmd.name.split('.');
-                // var container = program;
-                // var containerName = values[0];
-                // let containersLocal = containers;
-                // while (values.length > 1 && values[1][0] != '<' && values[1][0] != '[')
-                // {
-                //     if (!containersLocal[containerName])
-                //     {
-                //         container = container.command(containerName);
-                //         containersLocal[containerName] = { '': container };
-                //     }
-                //     else
-                //     {
-                //         containersLocal = containersLocal[containerName]
-                //         container = containersLocal[''];
-                //     }
-                //     values.shift();
-                // }
                 var command = program.command(cmd.name.split('.').join(' '));
-            }
 
             addOptions(cmd, command);
 

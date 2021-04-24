@@ -13,3 +13,4 @@ import serveMetadata, { ServeMetadata, connectByPreference, connectWith, Connect
 export { Processors, Triggers, Metadata }
 export { NetSocketAdapter, default as serve, ServeOptions } from './cli/serve'
 export { serveMetadata, ServeMetadata, connectByPreference, connectWith, ConnectionPreference };
+export { Cli } from './cli'

@@ -32,7 +32,7 @@ export async function metadata(container: Container<unknown>, deep?: boolean): P
     return metacontainer;
 }
 
-export default async function (this: State, container: RunningContainer<State> & pmContainer): Promise<void>
+export default async function (this: State, container: RunningContainer<State> & pmContainer.container): Promise<void>
 {
     this.isDaemon = true;
     this.processes = [];
