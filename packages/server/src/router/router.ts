@@ -99,6 +99,7 @@ export class HttpRouter extends Router2<Request, Response>
             ip: msg.socket.remoteAddress,
             path: uri.pathname,
             query: uri.searchParams,
+            params: {},
             body: {
                 json(options?) { return cobody.json(msg, options) },
                 form(options?) { return cobody.form(msg, options) },

@@ -14,7 +14,7 @@ declare module '@akala/pm'
 {
     interface SidecarMap
     {
-        '@akala/server': container.container & Container<void>;
+        '@akala/server': Promise<container.container & Container<void>>;
     }
 }
 
