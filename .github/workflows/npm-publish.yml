@@ -26,6 +26,6 @@ jobs:
       - name: Install Packages
         run: yarn install
       - name: Prepare lerna
-        run: yarn lerna bootstrap -ci
+        run: yarn lerna bootstrap --ci
       - name: Compile
         run: yarn tsc -b packages
