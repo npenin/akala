@@ -1,6 +1,7 @@
 [![build](https://github.com/npenin/akala/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/npenin/akala/actions/workflows/npm-publish.yml)
 [![Known Vulnerabilities](https://snyk.io/test/github/npenin/akala/badge.svg)](https://snyk.io/test/github/npenin/akala)
 [![License](https://badgen.net/github/license/npenin/akala)](https://badgen.net/github/license/npenin/akala)
+![CodeQL](https://github.com/npenin/akala/workflows/CodeQL/badge.svg)
 
 - core: [![Version](https://badgen.net/npm/v/@akala/core)](https://badgen.net/npm/v/@akala/core) [![Size](https://badgen.net/packagephobia/publish/@akala/core)](https://badgen.net/packagephobia/publish/@akala/core)
 - json: [![Version](https://badgen.net/npm/v/@akala/json-rpc-ws)](https://badgen.net/npm/v/@akala/json-rpc-ws) [![Size](https://badgen.net/packagephobia/publish/@akala/json-rpc-ws)](https://badgen.net/packagephobia/publish/@akala/json-rpc-ws)
