@@ -1,7 +1,7 @@
 # This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
 # For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
 
-name: Node.js Package
+name: build
 
 on:
   push:
@@ -26,54 +26,6 @@ jobs:
       - name: Install Packages
         run: yarn install
       - name: Prepare lerna
-        run: yarn lerna exec yarn link
+        run: yarn lerna bootstrap -ci
       - name: Compile
         run: yarn tsc -b packages
-
-  publish-npm:
-    if: 1 == 0
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          registry-url: https://registry.npmjs.org/
-      - name: Install yarn
-        run: |
-          curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-          echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-          sudo apt-get update
-          sudo apt-get install yarn
-      - name: Install Packages
-        run: yarn install
-      - name: publish
-        run: yarn lerna publish --canary -y
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
-
-  publish-gpr:
-    if: 1 == 0
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          registry-url: https://npm.pkg.github.com/
-      - name: Install yarn
-        run: |
-          curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-          echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-          sudo apt-get update
-          sudo apt-get install yarn
-      - name: Install Packages
-        run: yarn install
-      - name: Login to Github packages
-        run: npm login --registry=https://npm.pkg.github.com/npenin --scope=@akala
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      - name: publish
-        run: yarn lerna publish  --canary -y
