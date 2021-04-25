@@ -1,7 +1,7 @@
 import { Trigger, Container, metadata, Metadata } from '@akala/commands';
 import { HttpRouter as Router, Request, Response } from '../router';
 import { log as debug, mapAsync } from '@akala/core';
-import { Local } from '@akala/commands/dist/processors';
+import { Processors } from '@akala/commands';
 import * as http from 'http';
 import * as https from 'https';
 import * as http2 from 'http2';
@@ -22,7 +22,7 @@ async function processCommand<T>(container: Container<T>, c: Metadata.Command, i
     const req = injected.$request;
     const res = injected.$response;
     let bodyParsing: Promise<unknown>;
-    return Local.handle(c, async function (...args)
+    return Processors.Local.handle(c, async function (...args)
     {
         args = await mapAsync(args, async el => await el);
         args = args.filter((a, i) => c.inject[i].startsWith('param.'))

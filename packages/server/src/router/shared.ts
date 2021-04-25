@@ -60,6 +60,7 @@ export interface Request extends http.IncomingMessage, akala.Routable
     injector?: akala.Injector;
     body: RequestBody;
     cookies?: Record<string, string>;
+    params: Record<string, unknown>
 }
 export interface Response extends http.ServerResponse
 {
