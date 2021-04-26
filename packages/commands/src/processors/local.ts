@@ -3,7 +3,7 @@ import { Injector, Injectable, each, MiddlewarePromise, isPromiseLike } from '@a
 import * as  Metadata from '../metadata';
 import { CommandProcessor, StructuredParameters } from '../model/processor'
 import { Container } from '../model/container';
-import assert = require('assert');
+import assert from 'assert';
 
 export class Local extends CommandProcessor
 {

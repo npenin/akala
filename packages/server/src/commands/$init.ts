@@ -5,9 +5,9 @@ import '../triggers/http'
 import { State } from "../state";
 import { Injector, Binding, log } from "@akala/core";
 import { join, resolve } from "path";
-import HtmlPlugin = require('html-webpack-plugin');
+import HtmlPlugin from 'html-webpack-plugin';
 // import { CleanWebpackPlugin as CleanPlugin } from 'clean-webpack-plugin'
-import CssExtractPlugin = require('mini-css-extract-plugin')
+import CssExtractPlugin from 'mini-css-extract-plugin'
 import fs from 'fs';
 import { StaticFileMiddleware } from "../router/staticFileMiddleware";
 

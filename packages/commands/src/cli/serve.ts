@@ -10,6 +10,8 @@ import { Http2SecureServer, Http2Server } from 'http2';
 import { Server as httpServer } from 'http'
 import { Server as httpsServer } from 'https'
 import { ServeMetadata } from '../serve-metadata';
+import https from 'https';
+import http from 'http';
 
 export class NetSocketAdapter implements jsonrpcws.SocketAdapter
 {
@@ -168,7 +170,6 @@ export default async function <T = void>(container: Container<T>, options: Serve
         let port: number;
         if (options.https || options.wss)
         {
-            const https = await import('https');
             server = https.createServer({ cert: options.https.cert || options.wss.cert, key: options.https.key || options.wss.key });
             if (options.https)
             {
@@ -183,7 +184,6 @@ export default async function <T = void>(container: Container<T>, options: Serve
         }
         else
         {
-            const http = await import('http');
             server = http.createServer();
             if (options.http)
             {
