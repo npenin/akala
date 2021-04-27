@@ -63,7 +63,8 @@ export default async function (this: State, container: RunningContainer<State> &
 
     await this.config.save();
     container.name = 'pm';
-    await container.dispatch('map', 'pm', join(__dirname, '../../commands.json'), true);
+    if (!this.config.mapping['pm'])
+        await container.dispatch('map', 'pm', join(__dirname, '../../commands.json'), true);
     const config = container.resolve<Configurations>('$metadata.config');
     container.unregister('$metadata');
     container.register(configure(config)(new Command(metadata, '$metadata', ['$container', 'param.0'])));
@@ -78,7 +79,8 @@ export default async function (this: State, container: RunningContainer<State> &
     }
     catch (e)
     {
-        console.warn(e);
+        if (e.code !== 'ENOENT')
+            console.warn(e);
     }
 
     // var stop = await serve(container as Container<any>, serveMetadata(container.name, options || { _: ['local'] }));
