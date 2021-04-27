@@ -175,7 +175,7 @@ export default function serveMetadata(name: string, context: ServeOptions): Serv
     {
         if (!metadata['socket'])
             metadata['socket'] = [];
-        if (typeof context.options.tcpPort == 'string')
+        if (isNaN(Number(context.options.tcpPort)))
         {
             const indexOfColon = context.options.tcpPort.lastIndexOf(':');
             if (indexOfColon > -1)
@@ -188,7 +188,7 @@ export default function serveMetadata(name: string, context: ServeOptions): Serv
                 metadata.socket.push({ path: context.options.tcpPort });
         }
         else
-            metadata.socket.push({ port: context.options.tcpPort });
+            metadata.socket.push({ port: Number(context.options.tcpPort) });
     }
 
     if (args.indexOf('http') > -1 || args.indexOf('ws') > -1)

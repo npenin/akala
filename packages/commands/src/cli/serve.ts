@@ -115,7 +115,7 @@ export interface ServeOptions
 {
     options: {
         port?: number;
-        tcpPort?: number | string;
+        tcpPort?: string;
         cert?: string;
         key?: string;
     }

@@ -43,7 +43,7 @@ class OptionMiddleware implements akala.Middleware<[context: CliContext]>
             else
                 this.matchers.push({
                     isFull: false,
-                    pattern: new RegExp('^' + parseOptions.flagStart + '([^' + akala.introspect.escapeRegExp(n) + ']*)([' + akala.introspect.escapeRegExp(n) + ']+)', options?.caseSensitive ? 'gi' : 'g')
+                    pattern: new RegExp('^' + parseOptions.flagStart + '([^-' + akala.introspect.escapeRegExp(n) + ']*)([' + akala.introspect.escapeRegExp(n) + ']+)', options?.caseSensitive ? 'gi' : 'g')
                 });
         });
     }

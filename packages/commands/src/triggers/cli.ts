@@ -2,6 +2,7 @@ import * as Metadata from '../metadata/index.js'
 import { Trigger } from '../model/trigger.js';
 import * as Processors from '../processors/index.js';
 import { NamespaceMiddleware } from '@akala/cli'
+import { each } from '@akala/core';
 
 export var processTrigger = new Trigger('cli', async (c, program: NamespaceMiddleware<Record<string, string | boolean | string[] | number>>) =>
 {
@@ -40,4 +41,13 @@ export function addOptions(cmd: Metadata.Command, command: NamespaceMiddleware):
             command.option(optionName, cmd.config.cli.options && cmd.config.cli.options[optionName])
         }
     });
+    if (cmd.config?.cli?.options)
+        each(cmd.config.cli.options, (opt, name) =>
+        {
+            if (typeof name != 'string')
+                return;
+            if (cmd.config.cli.inject.indexOf('options.' + name) > -1)
+                return;
+            command.option(name, opt)
+        })
 }
