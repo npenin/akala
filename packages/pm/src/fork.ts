@@ -114,5 +114,5 @@ program.command<{ sidecar: string }>(null).
     })
     .useMiddleware(initMiddleware);
 
-if (module.require.main == module)
+if (require.main == module)
     program.process(buildCliContextFromProcess());
