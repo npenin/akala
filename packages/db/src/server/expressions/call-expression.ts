@@ -1,7 +1,7 @@
-import { Expression, TypedExpression, Expressions, StrictExpressions } from "./expression";
-import { ExpressionType } from "./expression-type";
-import { MemberExpression } from "./member-expression";
-import { ExpressionVisitor } from "./expression-visitor";
+import { Expression, TypedExpression, Expressions, StrictExpressions } from './expression.js';
+import { ExpressionType } from './expression-type.js';
+import { MemberExpression } from './member-expression.js';
+import { ExpressionVisitor } from './expression-visitor.js';
 
 
 export class CallExpression<T, TMethod extends keyof T> extends Expression
@@ -13,7 +13,7 @@ export class CallExpression<T, TMethod extends keyof T> extends Expression
         super();
         this.arguments = args;
     }
-    public accept(visitor:ExpressionVisitor)
+    public accept(visitor: ExpressionVisitor)
     {
         return visitor.visitCall(this);
     }

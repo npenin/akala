@@ -1,9 +1,9 @@
-import { calculator } from './calculator'
+import { calculator } from './calculator/index.js'
 import * as assert from 'assert'
 import * as jsonrpc from '@akala/json-rpc-ws'
 import * as ws from 'ws'
-import { metadata, proxy, helper } from '../generator';
-import { JsonRpc, LogProcessor } from '../processors';
+import { metadata, proxy, helper } from '../generator.js';
+import { JsonRpc, LogProcessor } from '../processors/index.js';
 
 describe('test jsonrpcws processing', function ()
 {

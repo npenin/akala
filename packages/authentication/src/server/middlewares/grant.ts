@@ -1,7 +1,7 @@
 import { ErrorMiddleware, Middleware, MiddlewareComposite, MiddlewarePromise } from '@akala/core';
 import { Request, Response } from '@akala/server'
 import { Client } from '../../model/client';
-import { AuthenticateMiddleware, BasicAuthenticateMiddleware } from './authenticate';
+import { AuthenticateMiddleware, BasicAuthenticateMiddleware } from './authenticate.js';
 
 export const EINVREQ = 'invalid_request';
 export const EINVCLI = 'invalid_client';

@@ -1,6 +1,6 @@
-import { Expression } from "./expression";
-import { ExpressionType } from "./expression-type";
-import { ExpressionVisitor } from "./expression-visitor";
+import { Expression } from './expression.js';
+import { ExpressionType } from './expression-type.js';
+import { ExpressionVisitor } from './expression-visitor.js';
 
 export class ConstantExpression<T> extends Expression
 {
@@ -9,7 +9,7 @@ export class ConstantExpression<T> extends Expression
     {
         super();
     }
-    public accept(visitor:ExpressionVisitor)
+    public accept(visitor: ExpressionVisitor)
     {
         return visitor.visitConstant(this);
     }

@@ -1,5 +1,5 @@
 import { Middleware, MiddlewarePromise } from '@akala/core'
-import { Request } from './shared'
+import { Request } from './shared.js'
 import cookie from 'cookie'
 
 export class CookieMiddleware implements Middleware<[Request, ...unknown[]]>

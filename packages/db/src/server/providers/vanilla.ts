@@ -1,9 +1,9 @@
-import { PersistenceEngine, dynamicProxy } from "../PersistenceEngine";
-import { StrictExpressions } from "../expressions/expression";
-import { CommandProcessor } from "../commands/command-processor";
-import { Commands, CommandResult } from "../commands/command";
-import { ExpressionExecutor } from "../expression-executor";
-import { ModelDefinition } from "../shared";
+import { PersistenceEngine, dynamicProxy } from '../PersistenceEngine.js';
+import { StrictExpressions } from '../expressions/expression.js';
+import { CommandProcessor } from '../commands/command-processor.js';
+import { Commands, CommandResult } from '../commands/command.js';
+import { ExpressionExecutor } from '../expression-executor.js';
+import { ModelDefinition } from '../shared.js';
 
 export class Vanilla extends PersistenceEngine<any>
 {

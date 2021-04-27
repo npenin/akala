@@ -1,8 +1,8 @@
-import { metadata } from "../generator";
-import { Container } from "../model/container";
-import * as meta from "../metadata";
-import { configure } from "../decorators";
-import { Command } from "../model/command";
+import { metadata } from '../generator.js';
+import { Container } from '../model/container.js';
+import * as meta from '../metadata/index.js';
+import { configure } from '../decorators.js';
+import { Command } from '../model/command.js';
 
 const $metadata = configure({
     "": {

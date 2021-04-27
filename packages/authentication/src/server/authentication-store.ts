@@ -1,8 +1,8 @@
 import { DbSet, StoreDefinition, PersistenceEngine, Store } from '@akala/storage';
-import { AuthorizationCode } from '../model/authorization-code';
-import { AccessToken } from '../model/access-token';
-import { Client } from '../model/client';
-import { User } from '../model/user';
+import { AuthorizationCode } from '../model/authorization-code.js';
+import { AccessToken } from '../model/access-token.js';
+import { Client } from '../model/client.js';
+import { User } from '../model/user.js';
 import * as akala from '@akala/core';
 import { providers } from '@akala/storage';
 

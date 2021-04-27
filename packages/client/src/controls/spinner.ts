@@ -1,8 +1,8 @@
 import * as di from '@akala/core'
-import { control, Control, GenericControlInstance } from './control'
+import { control, Control, GenericControlInstance } from './control.js'
 import { Binding } from '@akala/core'
-import { IScope } from '../scope'
-import { Template } from '../template';
+import { IScope } from '../scope.js'
+import { Template } from '../template.js';
 
 @control('spinner', 50)
 export class Spinner extends GenericControlInstance<any>

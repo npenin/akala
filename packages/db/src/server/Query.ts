@@ -1,15 +1,15 @@
-import { TypedLambdaExpression, LambdaExpression } from "./expressions/lambda-expression";
-import { BinaryOperator } from "./expressions/binary-operator";
-import { Expression, TypedExpression, Predicate, Expressions, Project, Project2, StrictExpressions } from "./expressions/expression";
-import { ApplySymbolExpression } from "./expressions/apply-symbol-expression";
-import { ConstantExpression } from "./expressions/constant-expression";
-import { ModelDefinition } from "./shared";
-import { ParameterExpression } from "./expressions/parameter-expression";
-import { MemberExpression } from "./expressions/member-expression";
-import { NewExpression } from "./expressions/new-expression";
-import { BinaryExpression } from "./expressions/binary-expression";
+import { TypedLambdaExpression, LambdaExpression } from './expressions/lambda-expression.js';
+import { BinaryOperator } from './expressions/binary-operator.js';
+import { Expression, TypedExpression, Predicate, Expressions, Project, Project2, StrictExpressions } from './expressions/expression.js';
+import { ApplySymbolExpression } from './expressions/apply-symbol-expression.js';
+import { ConstantExpression } from './expressions/constant-expression.js';
+import { ModelDefinition } from './shared.js';
+import { ParameterExpression } from './expressions/parameter-expression.js';
+import { MemberExpression } from './expressions/member-expression.js';
+import { NewExpression } from './expressions/new-expression.js';
+import { BinaryExpression } from './expressions/binary-expression.js';
 import * as akala from '@akala/core'
-import { Parser } from "./parser";
+import { Parser } from './parser.js';
 
 export type asyncProxy<T> = { [P in keyof T]: PromiseLike<T[P]> };
 

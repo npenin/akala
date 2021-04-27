@@ -1,7 +1,7 @@
-import { control } from './control'
+import { control } from './control.js'
 import { Binding } from '@akala/core'
 import * as showdown from 'showdown';
-import { Text } from './text'
+import { Text } from './text.js'
 
 @control('markdown')
 export class Markdown extends Text

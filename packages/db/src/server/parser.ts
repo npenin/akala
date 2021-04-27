@@ -1,12 +1,12 @@
-import { BinaryExpression } from "./expressions/binary-expression";
-import { StrictExpressions, StrictTypedExpression } from "./expressions/expression";
-import { BinaryOperator } from "./expressions/binary-operator";
-import { ConstantExpression } from "./expressions/constant-expression";
-import { UnaryExpression } from "./expressions/unary-expression";
-import { UnaryOperator } from "./expressions/unary-operator";
-import { MemberExpression } from "./expressions/member-expression";
-import { ParameterExpression } from "./expressions/parameter-expression";
-import { NewExpression } from "./expressions/new-expression";
+import { BinaryExpression } from './expressions/binary-expression.js';
+import { StrictExpressions, StrictTypedExpression } from './expressions/expression.js';
+import { BinaryOperator } from './expressions/binary-operator.js';
+import { ConstantExpression } from './expressions/constant-expression.js';
+import { UnaryExpression } from './expressions/unary-expression.js';
+import { UnaryOperator } from './expressions/unary-operator.js';
+import { MemberExpression } from './expressions/member-expression.js';
+import { ParameterExpression } from './expressions/parameter-expression.js';
+import { NewExpression } from './expressions/new-expression.js';
 
 
 var jsonKeyRegex = /^ *(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([^: ]+)) *): */;

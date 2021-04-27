@@ -1,7 +1,7 @@
-import { ServerAdapter } from '../server';
+import { ServerAdapter } from '../server.js';
 import * as ws from 'ws';
-import { SocketAdapter } from '../shared-connection';
-import WsSocketAdapter from './ws-socket-adapter';
+import { SocketAdapter } from '../shared-connection.js';
+import WsSocketAdapter from './ws-socket-adapter.js';
 
 export class Adapter implements ServerAdapter
 {

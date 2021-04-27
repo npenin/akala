@@ -1,13 +1,13 @@
-import { Connection as BaseConnection, SerializableObject, PayloadDataType, SerializedBuffer, Payload, SocketAdapter, Deferred, Parent } from './shared-connection';
-import { default as Client } from './shared-client';
-import { default as Errors, Payload as ErrorPayload } from './errors';
+import { Connection as BaseConnection, SerializableObject, PayloadDataType, SerializedBuffer, Payload, SocketAdapter, Deferred, Parent } from './shared-connection.js';
+import { default as Client } from './shared-client.js';
+import { default as Errors, Payload as ErrorPayload } from './errors.js';
 
 
 import debug from 'debug';
 
 const logger = debug('json-rpc-ws');
 
-import * as ws from './ws/browser';
+import * as ws from './ws/browser.js';
 export { ws };
 export { Client, SocketAdapter, Errors, BaseConnection, SerializableObject, Deferred, PayloadDataType, SerializedBuffer, Payload, ErrorPayload };
 

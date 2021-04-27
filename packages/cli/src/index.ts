@@ -1,16 +1,15 @@
 #!/usr/bin/env node
-import 'source-map-support/register'
+import sms from 'source-map-support'
+sms.install();
 // import * as debug from 'debug';
-import { CliContext } from './router';
+import program, { CliContext } from './router/index.js';
 // debug.enable('*,-*:verbose');
 // debug.enable('*,-*:verbose,-router*');
 // import './client';
 // import './plugins';
 // import './helpers/newmodule';
-export * from './router'
-import program from './router';
+export * from './router/index.js'
 export default program;
-
 export function buildCliContext<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>(...args: string[]): CliContext<T>
 {
     return { args: args, argv: args, options: {} as T, currentWorkingDirectory: undefined }

@@ -1,17 +1,17 @@
 import { IpcNetConnectOpts, NetConnectOpts } from 'net';
 import { platform } from 'os';
 import { join } from 'path';
-import { NetSocketAdapter, ServeOptions } from './cli/serve';
-import { registerCommands } from './generator'
-import { CommandProcessors } from './model/processor';
-import { HttpClient, JsonRpc } from './processors';
+import { NetSocketAdapter, ServeOptions } from './cli/serve.js';
+import { registerCommands } from './generator.js'
+import { CommandProcessors } from './model/processor.js';
+import { HttpClient, JsonRpc } from './processors/index.js';
 import net from 'net'
-import WsSocketAdapter from '@akala/json-rpc-ws/lib/ws/ws-socket-adapter';
 import ws from 'ws'
 import { Injector } from '@akala/core';
-import * as Metadata from './metadata';
-import { Container } from './model/container';
+import * as Metadata from './metadata/index.js';
+import { Container } from './model/container.js';
 import { CommonConnectionOptions, connect as tlsconnect, SecureContextOptions, TLSSocket } from 'tls'
+import * as jsonrpc from '@akala/json-rpc-ws';
 
 type TlsConnectOpts = NetConnectOpts & SecureContextOptions & CommonConnectionOptions;
 
@@ -138,7 +138,7 @@ export async function connectWith<T>(options: NetConnectOpts, host: string, medi
                     path = options.path;
                 else
                     path = medium + '://' + (host || options.host || 'localhost') + ':' + options.port;
-                return new JsonRpc(JsonRpc.getConnection(new WsSocketAdapter(new ws(path)), container), true);
+                return new JsonRpc(JsonRpc.getConnection(new jsonrpc.ws.SocketAdapter(new ws(path)), container), true);
             }
         default:
             // eslint-disable-next-line no-case-declarations, @typescript-eslint/no-unused-vars
@@ -153,7 +153,7 @@ function isIpcConnectOption(options: NetConnectOpts): options is IpcNetConnectOp
     return typeof options['path'] !== 'undefined';
 }
 
-export default function (name: string, context: ServeOptions): ServeMetadata
+export default function serveMetadata(name: string, context: ServeOptions): ServeMetadata
 {
     let args = context.args;
     if (!args || args.length == 0)
@@ -222,4 +222,4 @@ export default function (name: string, context: ServeOptions): ServeMetadata
     return metadata;
 }
 
-exports.default.$inject = ['$container', 'options'];
+serveMetadata.$inject = ['$container', 'options'];

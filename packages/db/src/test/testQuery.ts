@@ -1,5 +1,5 @@
-import { Query, File, Store, StoreDefinition, DbSet, expressions, QuerySymbols } from '../server';
-import { ModelTest1 } from './modelTest1';
+import { Query, File, Store, StoreDefinition, DbSet, expressions, QuerySymbols } from '../server/index.js';
+import { ModelTest1 } from './modelTest1.js';
 import * as assert from 'assert';
 import './modelTest1';
 

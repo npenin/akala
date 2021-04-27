@@ -1,4 +1,4 @@
-import program from './router';
+import program from './router/index.js';
 import * as fs from 'fs'
 import { promisify } from 'util'
 import * as akala from '@akala/core'

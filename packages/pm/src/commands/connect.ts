@@ -1,6 +1,6 @@
 import { ServeMetadata, ServeOptions } from "@akala/commands";
 import { serveMetadata } from "@akala/commands";
-import State from "../state";
+import State from '../state.js';
 
 export default async function connect(this: State, name: string): Promise<ServeMetadata>
 export default async function connect(this: State, name: string, options?: ServeOptions): Promise<void>

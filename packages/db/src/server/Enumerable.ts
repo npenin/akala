@@ -1,5 +1,5 @@
-import { Predicate, Project, PredicateAsync } from './expressions/expression';
-import { NotSupportedException } from './exceptions';
+import { Predicate, Project, PredicateAsync } from './expressions/expression.js';
+import { NotSupportedException } from './exceptions.js';
 
 
 export function where<T>(source: Iterable<T>, predicate: Predicate<T>): Iterable<T>

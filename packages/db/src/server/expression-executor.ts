@@ -1,21 +1,21 @@
-import { Expressions, StrictExpressions, TypedExpression, IEnumerable, UnknownExpression } from "./expressions/expression";
-import { ExpressionVisitor, EqualityComparer } from "./expressions/expression-visitor";
-import { ExpressionType } from "./expressions/expression-type";
-import { NewExpression } from "./expressions/new-expression";
-import { ApplySymbolExpression } from "./expressions/apply-symbol-expression";
-import { CallExpression } from "./expressions/call-expression";
-import { MemberExpression } from "./expressions/member-expression";
-import { TypedLambdaExpression, Parameter, LambdaExpression } from "./expressions/lambda-expression";
-import { ConstantExpression } from "./expressions/constant-expression";
-import { ParameterExpression } from "./expressions/parameter-expression";
-import { UnaryExpression } from "./expressions/unary-expression";
-import { BinaryExpression } from "./expressions/binary-expression";
-import { QuerySymbols } from "./Query";
-import { Exception } from "./exceptions";
-import { ModelDefinition } from "./shared";
-import * as  Enumerable from "./Enumerable";
+import { Expressions, StrictExpressions, TypedExpression, IEnumerable, UnknownExpression } from './expressions/expression.js';
+import { ExpressionVisitor, EqualityComparer } from './expressions/expression-visitor.js';
+import { ExpressionType } from './expressions/expression-type.js';
+import { NewExpression } from './expressions/new-expression.js';
+import { ApplySymbolExpression } from './expressions/apply-symbol-expression.js';
+import { CallExpression } from './expressions/call-expression.js';
+import { MemberExpression } from './expressions/member-expression.js';
+import { TypedLambdaExpression, Parameter, LambdaExpression } from './expressions/lambda-expression.js';
+import { ConstantExpression } from './expressions/constant-expression.js';
+import { ParameterExpression } from './expressions/parameter-expression.js';
+import { UnaryExpression } from './expressions/unary-expression.js';
+import { BinaryExpression } from './expressions/binary-expression.js';
+import { QuerySymbols } from './Query.js';
+import { Exception } from './exceptions.js';
+import { ModelDefinition } from './shared.js';
+import * as  Enumerable from './Enumerable.js';
 import { isPromiseLike } from "@akala/core";
-import { BinaryOperator } from "./expressions/binary-operator";
+import { BinaryOperator } from './expressions/binary-operator.js';
 
 
 export class ExpressionExecutor extends ExpressionVisitor

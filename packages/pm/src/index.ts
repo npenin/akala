@@ -2,7 +2,7 @@ import { connectByPreference, Container, Metadata, NetSocketAdapter, Processors,
 import { Socket } from "net";
 import { module } from "@akala/core";
 
-import definition from './container';
+import definition from './container.js';
 
 type pmContainer = definition.container
 export { pmContainer as Container };

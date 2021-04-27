@@ -1,7 +1,7 @@
 import * as di from '@akala/core'
-import { control, BaseControl, GenericControlInstance } from './control'
+import { control, BaseControl, GenericControlInstance } from './control.js'
 import { Promisify, ObservableArray, ObservableArrayEventArgs, Binding } from '@akala/core'
-import { Template } from '../template';
+import { Template } from '../template.js';
 
 function toggleBuilder(element)
 {

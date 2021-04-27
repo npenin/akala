@@ -1,5 +1,5 @@
-import { inject, injectWithName, registerFactory } from './global-injector'
-import { ctorToFunction } from './injector';
+import { inject, injectWithName, registerFactory } from './global-injector.js'
+import { ctorToFunction } from './injector.js';
 
 export function factory(name: string, ...toInject: string[])
 {

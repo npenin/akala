@@ -1,6 +1,6 @@
 import { MiddlewarePromise } from '@akala/core';
-import { CommandNameProcessor, StructuredParameters } from '../model/processor'
-import { Container } from '../model/container';
+import { CommandNameProcessor, StructuredParameters } from '../model/processor.js'
+import { Container } from '../model/container.js';
 import assert from 'assert';
 
 export class Pipe<T> extends CommandNameProcessor

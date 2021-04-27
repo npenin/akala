@@ -3,7 +3,7 @@ import 'source-map-support/register'
 import * as path from 'path'
 import * as ac from '@akala/commands';
 import { lstat } from 'fs/promises';
-import { IpcAdapter } from './commands/start';
+import { IpcAdapter } from './commands/start.js';
 import debug from 'debug';
 import mock from 'mock-require'
 import { Socket } from 'net';
@@ -113,5 +113,5 @@ program.command<{ sidecar: string }>(null).
     })
     .useMiddleware(initMiddleware);
 
-if (require.main == module)
+if (module.require.main == module)
     program.process(buildCliContextFromProcess());

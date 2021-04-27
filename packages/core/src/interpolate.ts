@@ -1,4 +1,4 @@
-import { Binding } from './binder'
+import { Binding } from './binder.js'
 
 export class Interpolate
 {

@@ -1,8 +1,8 @@
-import { Trigger } from '../model/trigger'
-import { Container } from '../model/container';
+import { Trigger } from '../model/trigger.js'
+import { Container } from '../model/container.js';
 import debug from 'debug'
 import { SocketAdapter } from '@akala/json-rpc-ws';
-import { JsonRpc } from '../processors';
+import { JsonRpc } from '../processors/index.js';
 
 
 export const trigger = new Trigger('jsonrpc', function register<T>(container: Container<T>, media: SocketAdapter)
