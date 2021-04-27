@@ -1,8 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('source-map-support').install();
 
-import { Parser } from '../parser';
-import { defaultInjector } from '../injector';
+import { Parser } from '../parser.js';
+import { defaultInjector } from '../injector.js';
 import { BinaryOperator, ParsedBinary, ParsedString } from '..';
 
 

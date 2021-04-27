@@ -1,11 +1,11 @@
-import { DbSet } from "./shared";
-import { Cardinality } from "./cardinality";
-import { Expressions, Expression } from "./expressions/expression";
-import { PersistenceEngine } from "./PersistenceEngine";
-import { Query } from "./Query";
-import { PersistenceEngineQueryProvider } from "./PersistenceQueryProvider";
-import { Update, Delete, Create } from "./commands/command";
-import { ConstantExpression } from "./expressions/constant-expression";
+import { DbSet } from './shared.js';
+import { Cardinality } from './cardinality.js';
+import { Expressions, Expression } from './expressions/expression.js';
+import { PersistenceEngine } from './PersistenceEngine.js';
+import { Query } from './Query.js';
+import { PersistenceEngineQueryProvider } from './PersistenceQueryProvider.js';
+import { Update, Delete, Create } from './commands/command.js';
+import { ConstantExpression } from './expressions/constant-expression.js';
 
 export enum StorageType
 {

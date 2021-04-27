@@ -1,13 +1,13 @@
 import * as akala from '@akala/core'
 import * as web from '@akala/server'
 import * as oauth2orize from 'oauth2orize'
-import { AuthorizationCode } from '../model/authorization-code';
+import { AuthorizationCode } from '../model/authorization-code.js';
 import { expressions } from '@akala/storage';
-import { AuthenticationStore } from './authentication-store'
+import { AuthenticationStore } from './authentication-store.js'
 import * as uuid from 'uuid'
-import { Client } from '../model/client';
-import { User } from '../model/user';
-import { AccessToken } from '../model/access-token';
+import { Client } from '../model/client.js';
+import { User } from '../model/user.js';
+import { AccessToken } from '../model/access-token.js';
 import * as passport from 'passport'
 import { ensureLoggedIn } from 'connect-ensure-login'
 import { promises as fs } from 'fs';
@@ -21,7 +21,7 @@ import '../model/access-token';
 import '../model/client';
 import '../model/user';
 import { Middleware, MiddlewareComposite, MiddlewarePromise, MiddlewareRoute, Routable } from '@akala/core';
-import { BasicAuthenticateMiddleware } from './middlewares/authenticate';
+import { BasicAuthenticateMiddleware } from './middlewares/authenticate.js';
 
 const hash = akala.defaultInjector.injectWithNameAsync(['$config.@akala-modules/authentication.secret'], function (secret)
 {
@@ -47,8 +47,8 @@ declare module '@akala/server'
     }
 }
 
-export * from './middlewares/authenticate'
-export * from './middlewares/authorize'
-export * from './middlewares/Authorize401ChallengeFormatter'
-export * from './middlewares/AuthorizeRedirectFormatter'
-export * from './middlewares/grant'
+export * from './middlewares/authenticate.js'
+export * from './middlewares/authorize.js'
+export * from './middlewares/Authorize401ChallengeFormatter.js'
+export * from './middlewares/AuthorizeRedirectFormatter.js'
+export * from './middlewares/grant.js'

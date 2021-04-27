@@ -1,6 +1,6 @@
-import { getParamNames } from './reflect';
+import { getParamNames } from './reflect.js';
 import debug from 'debug';
-import { isPromiseLike } from './promiseHelpers';
+import { isPromiseLike } from './promiseHelpers.js';
 import { EventEmitter } from 'events';
 import "reflect-metadata";
 

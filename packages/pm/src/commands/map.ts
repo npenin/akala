@@ -1,4 +1,4 @@
-import State from "../state";
+import State from '../state.js';
 import { isAbsolute, resolve } from "path";
 import { serveMetadata } from "@akala/commands";
 

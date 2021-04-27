@@ -1,7 +1,7 @@
 import { Server, Socket } from 'net';
 import { platform } from 'os';
 import * as ws from 'ws'
-import { Container } from '../model/container';
+import { Container } from '../model/container.js';
 import { join } from 'path';
 import * as jsonrpcws from '@akala/json-rpc-ws';
 import { EventEmitter } from 'events';
@@ -9,7 +9,7 @@ import { unlink } from 'fs';
 import { Http2SecureServer, Http2Server } from 'http2';
 import { Server as httpServer } from 'http'
 import { Server as httpsServer } from 'https'
-import { ServeMetadata } from '../serve-metadata';
+import { ServeMetadata } from '../serve-metadata.js';
 import https from 'https';
 import http from 'http';
 

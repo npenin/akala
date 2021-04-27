@@ -1,8 +1,7 @@
 import { InjectableWithTypedThis } from "@akala/core";
-import { Processor } from "./processor";
-import { Container } from "./container";
-import * as metadata from '../metadata'
-import { Configurations } from "../metadata";
+import { Processor } from './processor.js';
+import { Container } from './container.js';
+import * as metadata from '../metadata/index.js'
 
 type Injectable<T, U> = InjectableWithTypedThis<T, U> & { '$inject'?: string[] }
 
@@ -35,7 +34,7 @@ export class Command<T = unknown> implements metadata.Command
     }
 
     public readonly name: string;
-    public config: Configurations = { '': {} };
+    public config: metadata.Configurations = { '': {} };
 
     public $proxy(processor: Processor): Command
     {

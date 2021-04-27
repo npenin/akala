@@ -1,10 +1,10 @@
-import { Module } from './module';
-import { onResolve } from './global-injector'
+import { Module } from './module.js';
+import { onResolve } from './global-injector.js'
 import * as jsonrpc from '@akala/json-rpc-ws'
 export { Module };
-export * from './promiseHelpers';
-export { each as eachAsync, NextFunction, map as mapAsync } from './eachAsync';
-export { each, grep, Proxy, map } from './each';
+export * from './promiseHelpers.js';
+export { each as eachAsync, NextFunction, map as mapAsync } from './eachAsync.js';
+export { each, grep, Proxy, map } from './each.js';
 import log from 'debug';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-empty-function

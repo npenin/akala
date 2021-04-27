@@ -1,10 +1,5 @@
 import { EventEmitter } from 'events'
 import { setTimeout, clearTimeout } from 'timers';
-import { polyfill } from 'es6-promise'
-
-polyfill();
-
-
 
 export function Promisify<T>(o: T | PromiseLike<T>): PromiseLike<T>
 {
@@ -39,10 +34,10 @@ export function whenOrTimeout<T>(promise: PromiseLike<T>, timeoutInMs: number): 
             clearTimeout(timeOut);
             resolve(data);
         }, function (rejection)
-            {
-                clearTimeout(timeOut);
-                reject(rejection);
-            });
+        {
+            clearTimeout(timeOut);
+            reject(rejection);
+        });
     })
 }
 

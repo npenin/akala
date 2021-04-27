@@ -4,16 +4,15 @@ import * as akala from '@akala/core'
 import mock from 'mock-require'
 mock('@akala/core', akala);
 mock('@akala/server', akala);
-import * as db from '../server'
-import { File } from '../server/providers/file';
-import { ModelDefinition, Store, DbSet, StoreDefinition } from '../server';
-import { ModelTest1 } from './modelTest1';
+import * as db from '../server/index.js'
+import { File } from '../server/providers/file.js';
+import { ModelTest1 } from './modelTest1.js';
 import * as assert from 'assert'
 import 'mocha';
 
-interface TestStore extends StoreDefinition
+interface TestStore extends db.StoreDefinition
 {
-    ModelTest1: DbSet<ModelTest1>;
+    ModelTest1: db.DbSet<ModelTest1>;
 }
 
 describe('simple query', function ()
@@ -21,7 +20,7 @@ describe('simple query', function ()
     it('works with simple commands', async function ()
     {
         var fpe = await File.from(__dirname);
-        var store = Store.create<TestStore>(fpe, 'ModelTest1');
+        var store = db.Store.create<TestStore>(fpe, 'ModelTest1');
 
         var obj = await store.ModelTest1.where('s1', db.expressions.BinaryOperator.Equal, 'pwic').firstOrDefault();
         if (obj)
@@ -52,7 +51,7 @@ describe('simple query', function ()
     it('works with query on non key', async function ()
     {
         var fpe = await File.from(__dirname);
-        var store = Store.create<TestStore>(fpe, 'ModelTest1');
+        var store = db.Store.create<TestStore>(fpe, 'ModelTest1');
 
         fpe.beginTransaction();
         debugger;
@@ -87,7 +86,7 @@ describe('simple query', function ()
     it('works with grouped query', async function ()
     {
         var fpe = await File.from(__dirname);
-        var store = Store.create<TestStore>(fpe, 'ModelTest1');
+        var store = db.Store.create<TestStore>(fpe, 'ModelTest1');
 
         fpe.beginTransaction();
         for await (var obj of store.ModelTest1.where('s2', db.expressions.BinaryOperator.Equal, 'pwet'))

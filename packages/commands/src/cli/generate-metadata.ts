@@ -1,12 +1,12 @@
-import * as akala from "../index";
+import * as akala from '../index.js';
 import * as core from '@akala/core'
-import { Container } from "../model/container";
+import { Container } from '../model/container.js';
 import * as path from 'path'
 import * as fs from 'fs';
-import { jsonObject } from "../metadata";
-import { FileSystemConfiguration } from "../processors/fs";
+import { jsonObject } from '../metadata/index.js';
+import { FileSystemConfiguration } from '../processors/fs.js';
 import { Writable } from "stream";
-import { outputHelper, write } from "./new";
+import { outputHelper, write } from './new.js';
 
 
 export default async function generate(name?: string, folder?: string, outputFile?: string, options?: { noContainer?: boolean, noProxy?: boolean })

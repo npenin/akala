@@ -1,9 +1,9 @@
 /* eslint-disable no-debugger */
-import { calculator } from './calculator'
+import { calculator } from './calculator/index.js'
 import * as assert from 'assert'
 import * as http from 'http';
-import { HttpClient, HttpConfiguration } from '../processors/http-client';
-import { metadata, proxy } from '../generator';
+import { HttpClient, HttpConfiguration } from '../processors/http-client.js';
+import { metadata, proxy } from '../generator.js';
 import * as akala from '@akala/core'
 import * as pathRegexp from 'path-to-regexp';
 

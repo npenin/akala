@@ -4,8 +4,8 @@ import * as http2 from 'http2';
 import * as akala from '@akala/core';
 import { Socket } from 'net';
 import { Middleware, MiddlewareComposite, MiddlewarePromise, OptionsResponse, Router, Router2 } from '@akala/core';
-import { UpgradeMiddleware } from './upgradeMiddleware';
-import { Request, Response } from './shared';
+import { UpgradeMiddleware } from './upgradeMiddleware.js';
+import { Request, Response } from './shared.js';
 import accepts from 'accepts';
 import cobody from 'co-body'
 

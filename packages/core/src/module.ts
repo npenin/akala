@@ -1,9 +1,9 @@
-import * as di from './global-injector'
+import * as di from './global-injector.js'
 import orchestrator from 'orchestrator'
-import { Injector, InjectableWithTypedThis, InjectableAsyncWithTypedThis, Injectable } from './injector';
-import { eachAsync } from './helpers';
+import { Injector, InjectableWithTypedThis, InjectableAsyncWithTypedThis, Injectable } from './injector.js';
+import { eachAsync } from './helpers.js';
 import debug from 'debug'
-import { isPromiseLike } from './promiseHelpers';
+import { isPromiseLike } from './promiseHelpers.js';
 
 const orchestratorLog = debug('akala:module:orchestrator');
 

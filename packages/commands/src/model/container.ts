@@ -1,14 +1,14 @@
 import * as akala from '@akala/core'
-import { Command, CommandProxy } from './command';
-import { Trigger } from './trigger';
-import { Processor, CommandNameProcessor, StructuredParameters } from './processor';
-import { Local } from '../processors';
-import { Pipe } from '../processors/pipe';
-import $serve from '../commands/$serve'
-import $attach from '../commands/$attach'
-import $metadata from '../commands/$metadata'
-import { UnknownCommandError } from './error-unknowncommand';
-import * as Metadata from '../metadata'
+import { Command, CommandProxy } from './command.js';
+import { Trigger } from './trigger.js';
+import { Processor, CommandNameProcessor, StructuredParameters } from './processor.js';
+import { Local } from '../processors/index.js';
+import { Pipe } from '../processors/pipe.js';
+import $serve from '../commands/$serve.js'
+import $attach from '../commands/$attach.js'
+import $metadata from '../commands/$metadata.js'
+import { UnknownCommandError } from './error-unknowncommand.js';
+import * as Metadata from '../metadata/index.js'
 
 const log = akala.log('akala:commands');
 

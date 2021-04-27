@@ -1,7 +1,7 @@
 import * as akala from '@akala/core'
-import { control, Control, GenericControlInstance } from './control'
-import { IScope } from '../scope'
-import { Template } from '../template';
+import { control, Control, GenericControlInstance } from './control.js'
+import { IScope } from '../scope.js'
+import { Template } from '../template.js';
 
 export interface OptionsParameter
 {

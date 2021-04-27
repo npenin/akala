@@ -1,8 +1,8 @@
-import { isPromiseLike } from './promiseHelpers';
-import { Binding, PromiseBinding } from './binder';
-import * as formatters from './formatters';
-import { module } from './helpers';
-import { FormatterFactory } from './formatters/common';
+import { isPromiseLike } from './promiseHelpers.js';
+import { Binding, PromiseBinding } from './binder.js';
+import * as formatters from './formatters/index.js';
+import { module } from './helpers.js';
+import { FormatterFactory } from './formatters/common.js';
 
 
 const jsonKeyRegex = /^ *(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([^: ]+)) *): */;

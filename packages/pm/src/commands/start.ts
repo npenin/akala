@@ -1,11 +1,11 @@
 import { Container, Processors, Metadata, registerCommands } from "@akala/commands";
-import State, { RunningContainer } from "../state";
+import State, { RunningContainer } from '../state.js';
 import { spawn, ChildProcess, StdioOptions } from "child_process";
-import pmContainer from "../container";
+import pmContainer from '../container.js';
 import * as jsonrpc from '@akala/json-rpc-ws'
 import debug from "debug";
 import { eachAsync } from "@akala/core";
-import { NewLinePrefixer } from "../new-line-prefixer";
+import { NewLinePrefixer } from "../new-line-prefixer.js";
 import { SocketAdapterEventMap } from "@akala/json-rpc-ws/src/shared-connection";
 
 export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, options?: { inspect?: boolean, verbose?: boolean, wait?: boolean }): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
@@ -226,4 +226,4 @@ export class IpcAdapter implements jsonrpc.SocketAdapter
     // }
 }
 
-exports.default.$inject = ['$container', 'param.0', 'options']
+start.$inject = ['$container', 'param.0', 'options']

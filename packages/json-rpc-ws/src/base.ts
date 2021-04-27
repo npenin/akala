@@ -3,7 +3,7 @@ import debug from 'debug';
 import { v4 as uuid } from 'uuid';
 const logger = debug('json-rpc-ws');
 
-import { Connection, Handler, PayloadDataType, Parent, SocketAdapter } from './shared-connection';
+import { Connection, Handler, PayloadDataType, Parent, SocketAdapter } from './shared-connection.js';
 
 
 

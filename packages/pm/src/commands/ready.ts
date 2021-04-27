@@ -1,4 +1,4 @@
-import State, { RunningContainer } from "../state";
+import State, { RunningContainer } from '../state.js';
 
 export default function ready(this: State, container: RunningContainer): void
 {

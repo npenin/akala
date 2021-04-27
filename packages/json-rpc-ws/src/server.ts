@@ -1,9 +1,9 @@
 'use strict';
 
-import { Base } from './base';
-import { default as Errors } from './errors';
-import { ReplyCallback, PayloadDataType as BasePayloadDataType, SocketAdapter } from './shared-connection';
-import { Connection } from './connection';
+import { Base } from './base.js';
+import { default as Errors } from './errors.js';
+import { ReplyCallback, PayloadDataType as BasePayloadDataType, SocketAdapter } from './shared-connection.js';
+import { Connection } from './connection.js';
 import * as stream from 'stream'
 import debug from 'debug';
 function assert(ok: unknown, message: string): void

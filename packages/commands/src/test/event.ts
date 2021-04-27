@@ -1,8 +1,8 @@
-import { calculator } from './calculator'
+import { calculator } from './calculator/index.js'
 import * as assert from 'assert'
-import { Pipe, EventProcessor } from '../processors';
-import { Container } from '../model/container';
-import { CommandNameProcessor } from '../model/processor';
+import { Pipe, EventProcessor } from '../processors/index.js';
+import { Container } from '../model/container.js';
+import { CommandNameProcessor } from '../model/processor.js';
 
 describe('test event processing', function ()
 {

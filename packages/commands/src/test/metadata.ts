@@ -1,6 +1,6 @@
-import { calculator } from './calculator'
+import { calculator } from './calculator/index.js'
 import * as assert from 'assert'
-import { metadata, proxy, helper, commandList, fromObject } from '../generator';
+import { metadata, proxy, helper, commandList, fromObject } from '../generator.js';
 
 describe('test helpers', function ()
 {

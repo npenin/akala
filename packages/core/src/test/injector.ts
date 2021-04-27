@@ -2,9 +2,9 @@
 require('source-map-support').install();
 
 import { chain } from '..';
-import { defaultInjector, Injector } from '../injector';
+import { defaultInjector, Injector } from '../injector.js';
 import * as assert from 'assert';
-import { useInjector, inject } from '../reflection-injector';
+import { useInjector, inject } from '../reflection-injector.js';
 
 /*var oldProxy = Proxy;
 

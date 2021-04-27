@@ -1,8 +1,8 @@
-import { Container } from "./model/container";
-import * as meta from './metadata'
-import { Command, CommandProxy } from "./model/command";
-import { Processor } from "./model/processor";
-import { configure } from "./decorators";
+import { Container } from "./model/container.js";
+import * as meta from './metadata/index.js'
+import { Command, CommandProxy } from './model/command.js';
+import { Processor } from './model/processor.js';
+import { configure } from './decorators.js';
 
 export const ignoredCommands = ['$serve', '$metadata', '$attach']
 

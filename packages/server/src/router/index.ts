@@ -1,16 +1,16 @@
 import * as http from 'http';
 import * as akala from '@akala/core';
 import * as jsonrpc from '@akala/json-rpc-ws'
-import { HttpRouter } from './router';
-import { requestHandler } from './shared';
+import { HttpRouter } from './router.js';
+import { requestHandler } from './shared.js';
 import { convertToMiddleware, Middleware, MiddlewareComposite } from '@akala/core';
-import { HttpRouteMiddleware } from './route';
-import { Request, Response } from './shared'
+import { HttpRouteMiddleware } from './route.js';
+import { Request, Response } from './shared.js'
 
-export * from './route'
-export * from './router'
-export * from './shared'
-export * from './upgradeMiddleware'
+export * from './route.js'
+export * from './router.js'
+export * from './shared.js'
+export * from './upgradeMiddleware.js'
 
 export interface Callback
 {

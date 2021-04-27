@@ -1,6 +1,6 @@
 import { Deferred } from '@akala/json-rpc-ws';
-import { isArrayLike } from './each';
-import { isPromiseLike } from './helpers'
+import { isArrayLike } from './each.js';
+import { isPromiseLike } from './helpers.js'
 
 export type NextFunction<TError = unknown, T extends unknown[] = [], TReturn = void> = (error?: TError, ...args: T) => TReturn;
 export type SimpleNextFunction<T> = NextFunction<T, [], void | Promise<void>>

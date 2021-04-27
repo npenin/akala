@@ -1,6 +1,6 @@
-import * as Metadata from '../metadata'
-import { Trigger } from '../model/trigger';
-import { Processors } from '..';
+import * as Metadata from '../metadata/index.js'
+import { Trigger } from '../model/trigger.js';
+import * as Processors from '../processors/index.js';
 import { NamespaceMiddleware } from '@akala/cli'
 
 export var processTrigger = new Trigger('cli', async (c, program: NamespaceMiddleware<Record<string, string | boolean | string[] | number>>) =>

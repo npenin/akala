@@ -1,6 +1,6 @@
 import { Container } from "@akala/commands";
-import { State } from "../state";
-import { AuthenticationStore } from "../authentication-store";
+import { State } from '../state.js';
+import { AuthenticationStore } from '../authentication-store.js';
 import { PersistenceEngine, providers } from "@akala/storage";
 
 export default async function (container: Container<State>, providerName: string, options: any)

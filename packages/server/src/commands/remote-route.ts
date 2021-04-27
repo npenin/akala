@@ -1,6 +1,6 @@
-import { State } from "../state";
-import { CallbackResponse, Request as BaseRequest, Response } from "../router";
-import { HttpRouter } from "../router";
+import { State } from '../state.js';
+import { CallbackResponse, Request as BaseRequest, Response } from '../router/index.js';
+import { HttpRouter } from '../router/index.js';
 import { Container } from "@akala/commands";
 import stream from "stream";
 import debug from 'debug';

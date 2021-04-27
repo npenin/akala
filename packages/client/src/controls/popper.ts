@@ -1,7 +1,7 @@
 import * as popper from '@popperjs/core';
-import { BaseControl, control, GenericControlInstance } from './control';
+import { BaseControl, control, GenericControlInstance } from './control.js';
 import * as akala from '@akala/core';
-import { IScope } from '../scope';
+import { IScope } from '../scope.js';
 
 @control('popper', 400)
 export class Popper extends GenericControlInstance<popper.Options>

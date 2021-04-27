@@ -1,8 +1,8 @@
 import debug from 'debug';
-import { Middleware } from './shared';
-import { convertToMiddleware, MiddlewareComposite } from './composite';
-import { MiddlewareRoute, Routable, RouteBuilder, RouteBuilderArguments } from './route';
-import { each } from '../each';
+import { Middleware } from './shared.js';
+import { convertToMiddleware, MiddlewareComposite } from './composite.js';
+import { MiddlewareRoute, Routable, RouteBuilder, RouteBuilderArguments } from './route.js';
+import { each } from '../each.js';
 
 export interface RouterOptions
 {

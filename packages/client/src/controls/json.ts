@@ -1,7 +1,7 @@
 import * as di from '@akala/core'
-import { control, BaseControl } from './control'
+import { control, BaseControl } from './control.js'
 import { Promisify, Binding } from '@akala/core'
-import { Text } from './text'
+import { Text } from './text.js'
 
 @control('json')
 export class Json extends Text
