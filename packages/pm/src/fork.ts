@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-import 'source-map-support/register'
+import sms from 'source-map-support'
+sms.install();
 import * as path from 'path'
 import * as ac from '@akala/commands';
 import { lstat } from 'fs/promises';
