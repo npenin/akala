@@ -62,7 +62,7 @@ export default async function (this: State, container: RunningContainer<State> &
     if (!this.config.externals)
         this.config.externals = [];
 
-    if (!this.config.mapping.pm.connect)
+    if (!this.config.mapping?.pm?.connect)
         await container.dispatch('connect', 'pm', options);
 
     await this.config.save();
