@@ -26,7 +26,21 @@
                     "inject": [
                         "$container",
                         "options"
-                    ]
+                    ],
+                    "options": {
+                        "tcpPort": {
+                            "needsValue": true
+                        },
+                        "port": {
+                            "needsValue": true
+                        },
+                        "key": {
+                            "needsValue": true
+                        },
+                        "cert": {
+                            "needsValue": true
+                        }
+                    }
                 }
             }
         },
@@ -173,19 +187,22 @@
         {
             "name": "install",
             "inject": [
-                "param.0"
+                "param.0",
+                "$container"
             ],
             "config": {
                 "": {
                     "inject": [
-                        "param.0"
+                        "param.0",
+                        "$container"
                     ]
                 },
                 "fs": {
                     "path": "dist/commands/install.js",
                     "source": "src/commands/install.ts",
                     "inject": [
-                        "param.0"
+                        "param.0",
+                        "ignore"
                     ]
                 },
                 "cli": {

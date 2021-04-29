@@ -3,9 +3,10 @@ import { homedir } from 'os';
 import fs from 'fs/promises';
 import { join } from 'path';
 import pmContainer from '../container.js';
-import { Container, Command, Metadata, ignoredCommands, configure } from '@akala/commands';
+import { Container, Command, Metadata, ignoredCommands, configure, ServeOptions } from '@akala/commands';
 import { eachAsync } from '@akala/core';
 import { Configurations } from '@akala/commands/dist/metadata';
+import connect from './connect.js';
 
 export async function metadata(container: Container<unknown>, deep?: boolean): Promise<Metadata.Container>
 {
@@ -32,7 +33,7 @@ export async function metadata(container: Container<unknown>, deep?: boolean): P
     return metacontainer;
 }
 
-export default async function (this: State, container: RunningContainer<State> & pmContainer.container): Promise<void>
+export default async function (this: State, container: RunningContainer<State> & pmContainer.container, options: ServeOptions): Promise<void>
 {
     this.isDaemon = true;
     this.processes = [];
@@ -60,6 +61,9 @@ export default async function (this: State, container: RunningContainer<State> &
 
     if (!this.config.externals)
         this.config.externals = [];
+
+    if (!this.config.mapping.pm.connect)
+        await container.dispatch('connect', 'pm', options);
 
     await this.config.save();
     container.name = 'pm';
