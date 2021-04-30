@@ -158,7 +158,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
         let middleware: NamespaceMiddleware<TOptions & TOptions2>;
         if (name !== null)
         {
-            var cli = /([$_#\w-]+)(?: ([$_#\w-]+))*((?: (?:<\w+>))*(?: (?:\[\w+\]))*)/.exec(name);
+            var cli = /(@?[/$_#\w-]+)(?: ([$_#\w-]+))*((?: (?:<\w+>))*(?: (?:\[\w+\]))*)/.exec(name);
             if (!cli || cli[0].length != name.length)
                 throw new Error(`${name} must match the following syntax: name <mandatoryparameters> [optionparameters].`)
 
