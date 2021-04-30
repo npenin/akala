@@ -61,13 +61,14 @@ export default async function (this: State, container: RunningContainer<State> &
     if (!this.config.externals)
         this.config.externals = [];
 
-    if (!this.config.mapping?.pm?.connect)
+    if (!this.config.mapping['pm'])
+        await container.dispatch('map', 'pm', join(__dirname, '../../commands.json'), true);
+
+    if (options)
         await container.dispatch('connect', 'pm', options);
 
     await this.config.save();
     container.name = 'pm';
-    if (!this.config.mapping['pm'])
-        await container.dispatch('map', 'pm', join(__dirname, '../../commands.json'), true);
     const config = container.resolve<Configurations>('$metadata.config');
     container.unregister('$metadata');
     container.register(configure(config)(new Command(metadata, '$metadata', ['$container', 'param.0'])));
