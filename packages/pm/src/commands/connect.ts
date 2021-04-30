@@ -9,14 +9,16 @@ export default async function connect(this: State, name: string, options?: Serve
     let mapping = this.config.mapping[name];
     if (!mapping)
         mapping = Object.values(this.config.mapping).find(m => m.path === name);
-    if (!mapping)
-        throw new Error(`Mapping ${name} could not be found`);
     console.log(name);
     console.log(mapping);
     console.log(options);
     if (options && options.args.length > 1)
         mapping.connect = serveMetadata(name, options);
     else
+    {
+        if (!mapping)
+            throw new Error(`Mapping ${name} could not be found`);
         return mapping.connect;
+    }
     await this.config.save()
 }
