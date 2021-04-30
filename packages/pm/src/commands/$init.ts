@@ -6,7 +6,6 @@ import pmContainer from '../container.js';
 import { Container, Command, Metadata, ignoredCommands, configure, ServeOptions } from '@akala/commands';
 import { eachAsync } from '@akala/core';
 import { Configurations } from '@akala/commands/dist/metadata';
-import connect from './connect.js';
 
 export async function metadata(container: Container<unknown>, deep?: boolean): Promise<Metadata.Container>
 {
