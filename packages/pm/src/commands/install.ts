@@ -9,11 +9,11 @@ export default async function install(this: State, packageName: string, pm: Cont
     if (process.versions['pnp'] || await hasYarn())
     {
         await yarnHelper.install(packageName);
-        return await pm.dispatch('discover', packageName) as ReturnType<typeof discover>;
+        return await pm.dispatch('discover', packageName, !process.versions['pnp'] && 'node_modules' || undefined);
     }
     else
     {
         await npmHelper.install(packageName);
-        return await pm.dispatch('discover', packageName, 'node_modules') as ReturnType<typeof discover>;
+        return await pm.dispatch('discover', packageName, 'node_modules');
     }
 }
