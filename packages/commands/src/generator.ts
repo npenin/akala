@@ -44,13 +44,18 @@ export function proxy<T = unknown>(metacontainer: meta.Container, processor: Pro
     return container;
 }
 
+export function proxyCommand<T>(cmd: meta.Command, processor: Processor): Command<T>
+{
+    return configure(cmd.config)(new CommandProxy(processor as Processor, cmd.name, cmd.inject))
+}
+
 export function registerCommands<T>(commands: meta.Command[], processor: Processor, container: Container<T>): void
 {
     commands.forEach(cmd =>
     {
         if (cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata')
             return;
-        container.register(configure(cmd.config)(new CommandProxy(processor as Processor, cmd.name, cmd.inject)));
+        container.register(proxyCommand(cmd, processor));
     });
 }
 
