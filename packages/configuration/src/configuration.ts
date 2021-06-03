@@ -2,12 +2,13 @@ import fs from 'fs/promises'
 
 export class Configuration
 {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     constructor(private path: string, private config: any = {})
     {
 
     }
 
-    public static async load(file: string)
+    public static async load(file: string): Promise<Configuration>
     {
         try
         {
@@ -21,7 +22,8 @@ export class Configuration
         }
     }
 
-    public get(key?: string)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    public get<T = any>(key?: string): T
     {
         if (key)
         {
@@ -34,7 +36,7 @@ export class Configuration
             return this.config;
     }
 
-    public set(key: string, newConfig: any)
+    public set<T>(key: string, newConfig: T): void
     {
         const keys = key.split('.');
         keys.reduce(function (config, key, i)
@@ -51,7 +53,7 @@ export class Configuration
         }, this);
     }
 
-    public async commit(file?: string, formatted?: boolean)
+    public async commit(file?: string, formatted?: boolean): Promise<void>
     {
         return fs.writeFile(file || this.path, JSON.stringify(this, null, formatted && 4 || undefined), 'utf8');
     }
