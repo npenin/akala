@@ -2,6 +2,7 @@
 import * as path from 'path'
 import { Processors, NetSocketAdapter, Metadata, Container, Processor, proxy, Triggers } from '@akala/commands';
 import { Socket } from 'net';
+import { TLSSocket } from 'tls';
 import { platform, homedir } from 'os';
 import start from './commands/start.js'
 import { Readable } from 'stream';
@@ -30,9 +31,9 @@ const tableChars = {
 }
 const truncate = '…';
 
-type CliOptions = { output: string, verbose: boolean, pmSock: string | number };
+type CliOptions = { output: string, verbose: boolean, pmSock: string | number, tls: boolean };
 
-const cli = program.options<CliOptions>({ output: { aliases: ['o'] }, verbose: { aliases: ['v'] }, pmSock: { aliases: ['pm-sock'], needsValue: true } });
+const cli = program.options<CliOptions>({ output: { aliases: ['o'] }, verbose: { aliases: ['v'] }, tls: {}, pmSock: { aliases: ['pm-sock'], needsValue: true } });
 cli.command<{ program: string, inspect?: boolean, wait?: boolean }>('start [program]')
     .action(c =>
     {
@@ -56,6 +57,8 @@ cli.command(null).preAction(async c =>
     if (!socket)
     {
         socket = new Socket();
+        if (c.options.tls)
+            socket = new TLSSocket(socket);
 
         if (c.options.pmSock)
         {
