@@ -32,7 +32,7 @@ const truncate = '…';
 
 type CliOptions = { output: string, verbose: boolean, pmSock: string | number };
 
-const cli = program.options<CliOptions>({ output: { aliases: ['o'] }, verbose: { aliases: ['v'] }, pmSock: { aliases: ['pm-sock'] } });
+const cli = program.options<CliOptions>({ output: { aliases: ['o'] }, verbose: { aliases: ['v'] }, pmSock: { aliases: ['pm-sock'], needsValue: true } });
 cli.command<{ program: string, inspect?: boolean, wait?: boolean }>('start [program]')
     .action(c =>
     {
