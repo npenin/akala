@@ -10,7 +10,7 @@ import mock from 'mock-require'
 import { Socket } from 'net';
 import { module as coreModule } from '@akala/core';
 import program, { buildCliContextFromProcess, NamespaceMiddleware } from '@akala/cli';
-import { Stats } from 'node:fs';
+import { Stats } from 'fs';
 import { registerCommands } from '@akala/commands';
 
 mock('@akala/commands', ac);
