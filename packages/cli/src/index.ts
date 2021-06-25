@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import sms from 'source-map-support'
 sms.install();
 // import * as debug from 'debug';

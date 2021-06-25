@@ -1,5 +1,4 @@
 import { EventEmitter } from 'events'
-import { setTimeout, clearTimeout } from 'timers';
 
 export function Promisify<T>(o: T | PromiseLike<T>): PromiseLike<T>
 {

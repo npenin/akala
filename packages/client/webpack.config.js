@@ -14,6 +14,12 @@ module.exports = {
         // Add `.ts` and `.tsx` as a resolvable extension.
         extensions: [".ts", ".tsx", ".js"],
         symlinks: false,
+        fallback: {
+            stream: require.resolve('stream-browserify'),
+            os: require.resolve('os-browserify/browser'),
+            path: require.resolve('path-browserify'),
+            querystring: require.resolve('querystring-es3'),
+        }
     },
     module: {
         rules: [
