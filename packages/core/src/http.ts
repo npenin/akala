@@ -4,17 +4,17 @@ import { each, map, grep } from './each.js';
 import { extend, module } from './helpers.js';
 import { service } from './service.js';
 import { FormatterFactory } from './formatters/common.js';
-import * as uri from 'url';
 import * as qs from 'querystring'
 import 'isomorphic-fetch';
 import http from 'http';
 import https from 'https';
 import { Injected } from './injector.js';
 
+
 export interface HttpOptions
 {
     method?: string;
-    url: string | uri.UrlObject;
+    url: string | URL;
     queryString?: any;
     body?: any;
     headers?: { [key: string]: string | number | Date };
@@ -77,13 +77,16 @@ export class FetchHttp implements Http<Response>
     public call(options: HttpOptions): Promise<Response>
     {
         const init: RequestInit = { method: options.method || 'GET', body: options.body };
+
         if (typeof (options.url) == 'string')
-            options.url = uri.parse(options.url, true);
+            options.url = new URL(options.url);
+
+        const url = options.url;
         if (options.queryString)
         {
             if (typeof (options.queryString) == 'string')
                 options.queryString = qs.parse(options.queryString);
-            options.url.query = extend(options.url.query, options.queryString);
+            each(options.queryString, (value, name) => url.searchParams.append(name.toString(), value));
         }
 
         if (options.headers)
@@ -138,7 +141,7 @@ export class FetchHttp implements Http<Response>
         if (options.agent)
             init['agent'] = options.agent;
 
-        return fetch(uri.format(options.url), init);
+        return fetch(options.url.toString(), init);
     }
 
 
