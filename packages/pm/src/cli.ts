@@ -35,6 +35,8 @@ type CliOptions = { output: string, verbose: boolean, pmSock: string | number, t
 
 const cli = program.options<CliOptions>({ output: { aliases: ['o'] }, verbose: { aliases: ['v'] }, tls: {}, pmSock: { aliases: ['pm-sock'], needsValue: true } });
 cli.command<{ program: string, inspect?: boolean, wait?: boolean }>('start [program]')
+    .option('inspect')
+    .option('wait', { aliases: ['w'] })
     .action(c =>
     {
         if (typeof c.options.program == 'undefined')
@@ -56,35 +58,49 @@ cli.command(null).preAction(async c =>
     process.stdin.setEncoding('utf8');
     if (!socket)
     {
-        socket = new Socket();
+        const netsocket = socket = new Socket();
         if (c.options.tls)
-            socket = new TLSSocket(socket);
-
-        if (c.options.pmSock)
         {
-            if (typeof (c.options.pmSock) == 'string')
-            {
-                const indexOfColon = c.options.pmSock.indexOf(':');
-                if (indexOfColon > -1)
-                    socket.connect(Number(c.options.pmSock.substring(indexOfColon + 1)), c.options.pmSock.substring(0, indexOfColon));
-                else
-                    socket.connect(c.options.pmSock);
-            }
-            else
-                socket.connect(c.options.pmSock as number);
-        }
-        else if (platform() == 'win32')
-            socket.connect('\\\\?\\pipe\\pm')
-        else
-        {
-            // eslint-disable-next-line @typescript-eslint/no-var-requires
-            const config = require(path.join(homedir(), './.pm.config.json'));
-
-            socket.connect(config.mapping.pm.connect.socket[0]);
+            socket = new TLSSocket(socket, {});
         }
 
         await new Promise<void>((resolve, reject) =>
         {
+            if (c.options.pmSock)
+            {
+                if (typeof (c.options.pmSock) == 'string')
+                {
+                    const indexOfColon = c.options.pmSock.indexOf(':');
+                    if (indexOfColon > -1)
+                        netsocket.connect(Number(c.options.pmSock.substring(indexOfColon + 1)), c.options.pmSock.substring(0, indexOfColon));
+                    else
+                        netsocket.connect(c.options.pmSock);
+                }
+                else
+                    netsocket.connect(c.options.pmSock as number);
+            }
+            else if (platform() == 'win32')
+                netsocket.connect('\\\\?\\pipe\\pm')
+            else
+            {
+                // eslint-disable-next-line @typescript-eslint/no-var-requires
+                const config = require(path.join(homedir(), './.pm.config.json'));
+
+                netsocket.connect(config.mapping.pm.connect.socket[0]);
+            }
+            if (c.options.tls)
+            {
+                // socket.on('data', function (e) { console.log(e) });
+                socket.connect({} as any);
+                netsocket.on('error', function (e)
+                {
+                    console.log(e);
+                });
+                socket.on('error', function (e)
+                {
+                    console.log(e);
+                });
+            }
             socket.on('connect', async function ()
             {
                 resolve();
@@ -350,7 +366,6 @@ function prepareParam(cmd: Metadata.Command, args: CliContext, standalone?: bool
     if (!cmd.config || !cmd.config.cli || (standalone && !cmd.config.cli.standalone))
         return false;
 
-    delete args['pm-sock'];
     delete args.options.pmSock;
     return { options: args.options, param: args.args.slice(1), _trigger: 'cli', cwd: args.currentWorkingDirectory, context: args };
 }
