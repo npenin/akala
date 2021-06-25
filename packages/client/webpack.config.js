@@ -1,6 +1,6 @@
 module.exports = {
     entry: {
-        akala: './src/index.ts',
+        akala: './dist/index.js',
     },
     output: {
         path: __dirname,
