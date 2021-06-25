@@ -80,7 +80,11 @@ class OptionMiddleware implements akala.Middleware<[context: CliContext]>
                             index--;
                         }
                         else
+                        {
                             value = true;
+                            context.args.splice(index, 1);
+                            index--;
+                        }
                     }
                     else
                     {

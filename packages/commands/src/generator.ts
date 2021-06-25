@@ -39,6 +39,9 @@ export function proxy<T = unknown>(metacontainer: meta.Container, processor: Pro
         processor = processor(container);
     }
 
+    container.unregister('$metadata');
+    container.register('$metadata', new Command(() => metacontainer));
+
     registerCommands(metacontainer.commands, processor, container);
 
     return container;

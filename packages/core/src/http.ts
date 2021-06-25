@@ -7,7 +7,6 @@ import { FormatterFactory } from './formatters/common.js';
 import * as uri from 'url';
 import * as qs from 'querystring'
 import 'isomorphic-fetch';
-import fetch, { RequestInit, Response } from 'node-fetch'
 import http from 'http';
 import https from 'https';
 import { Injected } from './injector.js';
@@ -137,7 +136,7 @@ export class FetchHttp implements Http<Response>
         }
 
         if (options.agent)
-            init.agent = options.agent;
+            init['agent'] = options.agent;
 
         return fetch(uri.format(options.url), init);
     }
