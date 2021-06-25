@@ -29,8 +29,6 @@ module.exports = {
     mode: 'production',
     optimization: {
         usedExports: true,
-        namedModules: true,
-        namedChunks: true,
         sideEffects: true,
     },
     // externals: {
