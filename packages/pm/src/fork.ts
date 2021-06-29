@@ -106,7 +106,8 @@ program.command<{ sidecar: string }>(null).
                 const serveArgs: ac.ServeMetadata = await pm.dispatch('connect', c.args[0]);
                 const stop = await cliContainer.dispatch('$serve', serveArgs) as (...args: unknown[]) => void;
 
-                await pm.dispatch('ready')
+                if (pm !== cliContainer)
+                    await pm.dispatch('ready')
 
                 if (stop && typeof stop == 'function')
                     process.on('SIGINT', stop);
