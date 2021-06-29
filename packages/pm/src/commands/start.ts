@@ -128,21 +128,24 @@ export default async function start(this: State, pm: pmContainer.container & Con
                 container = new Container(name, null, processor) as RunningContainer;
 
             if (this.config.mapping[name].commandable)
-            {
-                container.dispatch('$metadata').then((metaContainer: Metadata.Container) =>
-                {
-                    // console.log(metaContainer);
-                    registerCommands(metaContainer.commands, processor, container as Container<unknown>);
-                    pm.register(name, container, true);
-                });
                 pm.register(container);
-            }
+
             this.processes.push(container);
         }
         container.process = cp;
         container.path = name;
         container.commandable = this.config.mapping[name].commandable;
         container.ready = new jsonrpc.Deferred();
+        container.ready.then(() =>
+        {
+            container.dispatch('$metadata').then((metaContainer: Metadata.Container) =>
+            {
+                // console.log(metaContainer);
+                registerCommands(metaContainer.commands, container.processor, container as Container<unknown>);
+                pm.register(name, container, true);
+            });
+
+        })
 
         this.config.mapping[name]
         // container.resolve = function (c: string)
