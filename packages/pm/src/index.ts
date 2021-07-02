@@ -47,7 +47,7 @@ export function connect(name: string): Promise<{ connect: ServeMetadata, contain
     {
         var metaContainer = await container.dispatch('$metadata', true) as Metadata.Container;
 
-        return { connect: await container.dispatch('connect', name) as ServeMetadata, container: { name, commands: metaContainer.commands.filter(c => c.name.startsWith(name + '.')).map(c => ({ name: c.name.substring(name.length), inject: c.inject, config: c.config })) } };
+        return { connect: await container.dispatch('connect', name) as ServeMetadata, container: { name, commands: metaContainer.commands.filter(c => c.name.startsWith(name + '.')).map(c => ({ name: c.name.substring(name.length + 1), inject: c.inject, config: c.config })) } };
     })();
 }
 
