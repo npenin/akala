@@ -45,7 +45,9 @@ export function connect(name: string): Promise<{ connect: ServeMetadata, contain
 {
     return module('@akala/pm').injectWithName(['container'], async function (container: Container<void>)
     {
-        return { connect: await container.dispatch('connect', name) as ServeMetadata, container: await container.dispatch(name + '.$metadata') as Metadata.Container };
+        var metaContainer = await container.dispatch('$metadata') as Metadata.Container;
+
+        return { connect: await container.dispatch('connect', name) as ServeMetadata, container: { name, commands: metaContainer.commands.filter(c => c.name.startsWith(name)) } };
     })();
 }
 

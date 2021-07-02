@@ -143,8 +143,6 @@ export default async function start(this: State, pm: pmContainer.container & Con
                 // console.log(metaContainer);
                 registerCommands(metaContainer.commands, container.processor, container as Container<unknown>);
                 pm.register(name, container, true);
-                pm.register(name + '.$metadata', new CommandProxy(container.processor, '$metadata'));
-
             });
 
         })
