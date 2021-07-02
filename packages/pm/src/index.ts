@@ -68,7 +68,7 @@ export function sidecar<T extends SidecarMap>(options?: Omit<ConnectionPreferenc
                 Object.defineProperty(target, property, {
                     value: connect(property).then(async meta => 
                     {
-                        const c = await connectByPreference(meta.connect, Object.assign({ container: meta.container }, options, options[property]), ...orders);
+                        const c = await connectByPreference(meta.connect, Object.assign({ container: meta.container }, options, options && options[property]), ...orders);
                         return c.container;
                     })
                 });
