@@ -74,6 +74,11 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
     while (true);
     if (settings?.container)
         registerCommands(settings.container.commands, processor, container);
+    else
+    {
+        var metaContainer = await container.dispatch('$metadata');
+        registerCommands(metaContainer.commands, processor, container);
+    }
 
     return { container, processor };
 
