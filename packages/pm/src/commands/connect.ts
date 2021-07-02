@@ -12,7 +12,7 @@ export default async function connect(this: State, name: string, options?: Serve
     console.log(name);
     console.log(mapping);
     console.log(options);
-    if (options && options.args.length > 1)
+    if (options && options.args.length > 0)
         mapping.connect = serveMetadata(name, options);
     else
     {
