@@ -1,4 +1,4 @@
-import { Container, Processors, Metadata, registerCommands } from "@akala/commands";
+import { Container, Processors, Metadata, registerCommands, CommandProxy } from "@akala/commands";
 import State, { RunningContainer } from '../state.js';
 import { spawn, ChildProcess, StdioOptions } from "child_process";
 import pmContainer from '../container.js';
@@ -128,7 +128,10 @@ export default async function start(this: State, pm: pmContainer.container & Con
                 container = new Container(name, null, processor) as RunningContainer;
 
             if (this.config.mapping[name].commandable)
+            {
                 pm.register(container);
+                pm.register(name + '.$metadata', new CommandProxy(container.processor, '$metadata'));
+            }
 
             this.processes.push(container);
         }
