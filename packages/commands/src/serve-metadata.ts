@@ -55,7 +55,7 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
     let processor: CommandProcessors;
     do
     {
-        const preferredIndex = orders.findIndex((order) => order);
+        const preferredIndex = orderedOptions.findIndex(options => options);
         if (preferredIndex === -1)
             throw new Error('no matching connection preference was found');
 
