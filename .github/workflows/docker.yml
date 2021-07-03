@@ -1,7 +1,12 @@
 # ref: https://github.com/crazy-max/diun/blob/master/.github/workflows/build.yml
 
 name: Docker
-on: [push,workflow_dispatch]
+on: 
+  push:
+      branches:
+        - master
+  workflow_dispatch:
+  
 jobs:
   build:
     runs-on: ubuntu-18.04
