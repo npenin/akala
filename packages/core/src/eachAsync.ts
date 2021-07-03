@@ -16,10 +16,13 @@ export function array<T, U extends unknown[]>(array: T[] | ArrayLike<T>, body: (
         else
             try
             {
-                const promise = body(array[i], i, function (error?, ...args: U)
+                const promise = body(array[i], i, function (error?: Error, ...args: U)
                 {
                     if (error)
-                        complete(error, ...args);
+                        if (complete)
+                            complete(error, ...args);
+                        else
+                            deferred.reject(error);
                     else
                         setImmediate(loop, i + 1)
                 });
