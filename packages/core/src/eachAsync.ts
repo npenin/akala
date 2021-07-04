@@ -72,7 +72,7 @@ export function each(it: unknown[] | ArrayLike<unknown> | Record<string, unknown
         waitForPrevious = true;
 
 
-    if (typeof complete !== 'boolean')
+    if (typeof complete !== 'boolean' && typeof complete !== 'undefined')
     {
         if (isArrayLike(it))
             return array(it, body, complete, waitForPrevious);
