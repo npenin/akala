@@ -71,9 +71,9 @@ export default async function discover(this: State, packageName: string, folder:
                 if (Array.isArray(packageConfig))
                     throw new Error('commands property must be of type object or string');
 
-                return await Promise.all(Object.keys(packageConfig.commands).map(v => pm.dispatch('map', v, moduleRequire?.resolve(packageConfig.commands[v]), path, true)));
+                return await Promise.all(Object.keys(packageConfig.commands).map(v => pm.dispatch('map', v, moduleRequire?.resolve('./' + packageConfig.commands[v]), path, true)));
             case 'string':
-                return await pm.dispatch('map', packageName, moduleRequire.resolve(packageConfig.commands), path, true);
+                return await pm.dispatch('map', packageName, moduleRequire.resolve('./' + packageConfig.commands), path, true);
             default:
                 throw new Error('commands property must be of type object or string');
         }
@@ -86,9 +86,9 @@ export default async function discover(this: State, packageName: string, folder:
             case 'object':
                 if (Array.isArray(packageConfig))
                     throw new Error('bin property must be of type object or string');
-                return Promise.all(Object.keys(packageConfig.bin).map(v => pm.dispatch('map', v, moduleRequire.resolve(packageConfig.bin[v]), path, false)));
+                return Promise.all(Object.keys(packageConfig.bin).map(v => pm.dispatch('map', v, moduleRequire.resolve('./' + packageConfig.bin[v]), path, false)));
             case 'string':
-                return await pm.dispatch('map', packageName, moduleRequire.resolve(packageConfig.bin), path, false);
+                return await pm.dispatch('map', packageName, moduleRequire.resolve('./' + packageConfig.bin), path, false);
             default:
                 throw new Error('bin property must be of type object or string');
         }
@@ -98,7 +98,7 @@ export default async function discover(this: State, packageName: string, folder:
     if (commandsJsonFile)
         return pm.dispatch('map', packageName, moduleRequire.resolve('./commands.json'), path, true);
 
-    return pm.dispatch('map', packageName, moduleRequire.resolve(packageConfig.main), path, false);
+    return pm.dispatch('map', packageName, moduleRequire.resolve('./' + packageConfig.main), path, false);
 }
 
 exports.default.$inject = ['param.0', 'param.1', '$container']
