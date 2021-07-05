@@ -47,8 +47,7 @@ export class Local extends CommandProcessor
 
     }
 
-
-    public handle(command: Command, param: StructuredParameters): MiddlewarePromise
+    public override handle(command: Command, param: StructuredParameters): MiddlewarePromise
     {
         if (!this.container)
             return Promise.resolve(new Error('container is undefined'));
