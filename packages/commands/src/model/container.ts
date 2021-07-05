@@ -1,7 +1,7 @@
 import * as akala from '@akala/core'
 import { Command, CommandProxy } from './command.js';
 import { Trigger } from './trigger.js';
-import { Processor, CommandNameProcessor, StructuredParameters } from './processor.js';
+import { Processor, CommandNameProcessor, StructuredParameters, CommandProcessors } from './processor.js';
 import { Local } from '../processors/index.js';
 import { Pipe } from '../processors/pipe.js';
 import $serve from '../commands/$serve.js'
@@ -91,9 +91,11 @@ export class Container<TState> extends akala.Injector
             }
             else
                 cmd = command;
-            return this.processor.handle(cmd, param[0] as StructuredParameters<unknown[]>).then(
-                err => { throw err },
-                async result => await result);
+            if (this.processor.requiresCommandName)
+                if (typeof cmd == 'string')
+                    return this.processor.handle(cmd, param[0] as StructuredParameters<unknown[]>).then(err => { throw err }, async result => await result);
+                else
+                    return this.processor.handle(cmd.name, param[0] as StructuredParameters<unknown[]>).then(err => { throw err }, async result => await result);
         }
         else
         {
