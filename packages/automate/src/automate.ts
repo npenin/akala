@@ -35,6 +35,9 @@ export type Runner<TSupportedJobSteps extends JobStepDef<string, any, any>> = {
 export default function run<TSupportedJobSteps extends JobStepDef<string, any, any>>(workflow: Workflow, runner: Runner<TSupportedJobSteps>, stdio?: { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
 {
     const orchestrator = new Orchestrator();
+    orchestrator.on('task_start', (t) => console.log('running ' + t.task));
+    orchestrator.on('task_stop', (t) => console.log(`ran ${t.task} successfully`));
+
     orchestrator.add(workflow.name || 'main', Object.keys(workflow.jobs));
 
     Object.keys(workflow.jobs).forEach(name =>
