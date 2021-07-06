@@ -6,7 +6,7 @@ import * as jsonrpc from '@akala/json-rpc-ws'
 import debug from "debug";
 import { eachAsync } from "@akala/core";
 import { NewLinePrefixer } from "../new-line-prefixer.js";
-import { SocketAdapterEventMap } from "@akala/json-rpc-ws/src/shared-connection";
+import { SocketAdapterEventMap } from "@akala/json-rpc-ws";
 import { CliContext } from "@akala/cli";
 
 export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, options?: CliContext<{ inspect?: boolean, verbose?: boolean, wait?: boolean }>): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
