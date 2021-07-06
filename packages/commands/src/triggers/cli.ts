@@ -1,6 +1,6 @@
-import * as Metadata from '../metadata/index.js'
-import { Trigger } from '../model/trigger.js';
-import * as Processors from '../processors/index.js';
+import * as Metadata from '../metadata/index'
+import { Trigger } from '../model/trigger';
+import * as Processors from '../processors/index';
 import { NamespaceMiddleware } from '@akala/cli'
 import { each } from '@akala/core';
 

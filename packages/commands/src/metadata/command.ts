@@ -1,5 +1,5 @@
 import { OptionOptions } from "@akala/cli";
-import { HttpConfiguration } from '../processors/http-client.js';
+import { HttpConfiguration } from '../processors/http-client';
 
 export type jsonPrimitive = string | number | boolean | undefined;
 export type jsonObject = { [key: string]: jsonPrimitive | jsonPrimitive[] | jsonObject[] | jsonObject };

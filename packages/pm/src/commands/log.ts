@@ -1,5 +1,5 @@
 import { Readable } from "stream";
-import State from '../state.js';
+import State from '../state';
 
 export default function ls(this: State, name: string): Readable
 {

@@ -1,4 +1,4 @@
-import State from '../state.js';
+import State from '../state';
 import { Processors } from "@akala/commands";
 
 export default async function alias(this: State, path: string, options?: { recursive?: boolean }): Promise<void>

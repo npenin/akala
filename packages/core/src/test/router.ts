@@ -1,5 +1,5 @@
 import 'source-map-support/register'
-import * as r from '../router/index.js'
+import * as r from '../router/index'
 import 'mocha'
 import assert from 'assert';
 

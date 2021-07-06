@@ -1,13 +1,13 @@
 import sms from 'source-map-support'
 sms.install();
 // import * as debug from 'debug';
-import program, { CliContext } from './router/index.js';
+import program, { CliContext } from './router/index';
 // debug.enable('*,-*:verbose');
 // debug.enable('*,-*:verbose,-router*');
 // import './client';
 // import './plugins';
 // import './helpers/newmodule';
-export * from './router/index.js'
+export * from './router/index'
 export default program;
 export function buildCliContext<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>(...args: string[]): CliContext<T>
 {

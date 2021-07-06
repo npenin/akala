@@ -1,15 +1,15 @@
 import { IpcNetConnectOpts, NetConnectOpts } from 'net';
 import { platform } from 'os';
 import { join } from 'path';
-import { NetSocketAdapter, ServeOptions } from './cli/serve.js';
-import { registerCommands } from './generator.js'
-import { CommandProcessors } from './model/processor.js';
-import { HttpClient, JsonRpc } from './processors/index.js';
+import { NetSocketAdapter, ServeOptions } from './cli/serve';
+import { registerCommands } from './generator'
+import { CommandProcessors } from './model/processor';
+import { HttpClient, JsonRpc } from './processors/index';
 import net from 'net'
 import ws from 'ws'
 import { Injector } from '@akala/core';
-import * as Metadata from './metadata/index.js';
-import { Container } from './model/container.js';
+import * as Metadata from './metadata/index';
+import { Container } from './model/container';
 import { CommonConnectionOptions, connect as tlsconnect, SecureContextOptions, TLSSocket } from 'tls'
 import * as jsonrpc from '@akala/json-rpc-ws';
 

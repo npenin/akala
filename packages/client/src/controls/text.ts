@@ -1,7 +1,7 @@
 import * as di from '@akala/core'
-import { control, GenericControlInstance, Control } from './control.js'
+import { control, GenericControlInstance, Control } from './control'
 import { Binding, extendInject } from '@akala/core'
-import { IScope } from '../clientify.js';
+import { IScope } from '../clientify';
 
 @control('text', 400)
 export class Text extends GenericControlInstance<string>

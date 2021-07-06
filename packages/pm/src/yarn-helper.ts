@@ -1,7 +1,7 @@
 import { platform } from "os";
 import { stat } from 'fs';
 import { promisify } from 'util';
-import { spawnAsync } from './cli-helper.js';
+import { spawnAsync } from './cli-helper';
 import { join } from 'path';
 
 

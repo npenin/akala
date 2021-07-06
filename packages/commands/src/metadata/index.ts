@@ -1,2 +1,2 @@
-export * from './command.js'
-export * from './container.js'
+export * from './command'
+export * from './container'

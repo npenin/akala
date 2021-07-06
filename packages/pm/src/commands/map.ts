@@ -1,4 +1,4 @@
-import State from '../state.js';
+import State from '../state';
 import { isAbsolute, resolve } from "path";
 
 export default async function map<TName extends string>(this: State, name: TName, targetPath: string, cwd?: string, commandable?: boolean): Promise<State['config']['mapping'][TName]>

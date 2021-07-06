@@ -1,4 +1,4 @@
-import { State } from '../state.js';
+import { State } from '../state';
 
 
 export default function unregister(this: State, route: string, path: string): void

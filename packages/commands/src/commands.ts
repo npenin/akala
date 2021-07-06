@@ -1,5 +1,5 @@
 import { Arguments } from '@akala/core';
-import { AsDispatchArgs } from './model/container.js';
+import { AsDispatchArgs } from './model/container';
 
 type Promisify<T> = T extends Promise<unknown> ? T : Promise<T>;
 

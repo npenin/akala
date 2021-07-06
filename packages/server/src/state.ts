@@ -1,4 +1,4 @@
-import { HttpRouter } from './router/index.js';
+import { HttpRouter } from './router/index';
 import { Injector } from "@akala/core";
 import * as webpack from "webpack";
 import { Container } from "@akala/commands";

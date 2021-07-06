@@ -1,5 +1,5 @@
 import * as akala from '@akala/core'
-import { control, GenericControlInstance } from './control.js'
+import { control, GenericControlInstance } from './control'
 
 export interface ForeachParameter
 {

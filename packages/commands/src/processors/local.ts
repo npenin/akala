@@ -1,8 +1,8 @@
-import { Command } from '../model/command.js';
+import { Command } from '../model/command';
 import { Injector, Injectable, each, MiddlewarePromise, isPromiseLike } from '@akala/core';
-import * as  Metadata from '../metadata/index.js';
-import { CommandProcessor, StructuredParameters } from '../model/processor.js'
-import { Container } from '../model/container.js';
+import * as  Metadata from '../metadata/index';
+import { CommandProcessor, StructuredParameters } from '../model/processor'
+import { Container } from '../model/container';
 import assert from 'assert';
 
 export class Local extends CommandProcessor

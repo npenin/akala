@@ -1,6 +1,6 @@
-import { IQueryableProvider, IQueryable } from './Query.js';
-import { Expressions } from './expressions/expression.js';
-import { PersistenceEngine } from './PersistenceEngine.js';
+import { IQueryableProvider, IQueryable } from './Query';
+import { Expressions } from './expressions/expression';
+import { PersistenceEngine } from './PersistenceEngine';
 
 export class PersistenceEngineQueryProvider implements IQueryableProvider
 {

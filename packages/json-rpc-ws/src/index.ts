@@ -1,8 +1,8 @@
 import { Connection as BaseConnection, SerializableObject, PayloadDataType, SerializedBuffer, Payload, SocketAdapter, Deferred, SocketAdapterEventMap } from './shared-connection';
-import { Connection } from './connection.js'
-import { default as Client } from './shared-client.js';
-import { default as Server, ServerAdapter } from './server.js';
-import { default as Errors, Payload as ErrorPayload } from './errors.js';
+import { Connection } from './connection'
+import { default as Client } from './shared-client';
+import { default as Server, ServerAdapter } from './server';
+import { default as Errors, Payload as ErrorPayload } from './errors';
 
 /**
  * json-rpc-ws: a node.js json-rpc websocket client
@@ -10,6 +10,6 @@ import { default as Errors, Payload as ErrorPayload } from './errors.js';
  * MIT Licensed
  */
 
-import * as ws from './ws/index.js';
+import * as ws from './ws/index';
 export { ws };
 export { Server, Client, ServerAdapter, SocketAdapter, Errors, BaseConnection, Connection, SerializableObject, Deferred, PayloadDataType, SerializedBuffer, Payload, ErrorPayload, SocketAdapterEventMap };

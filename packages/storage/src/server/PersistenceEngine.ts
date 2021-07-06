@@ -1,7 +1,7 @@
-import { Expressions } from './expressions/index.js';
-import { CommandResult, Commands, CommandType, Create, Update, Delete } from './commands/command.js';
-import { CommandProcessor } from './commands/command-processor.js';
-import { ModelDefinition, DbSet } from './shared.js';
+import { Expressions } from './expressions/index';
+import { CommandResult, Commands, CommandType, Create, Update, Delete } from './commands/command';
+import { CommandProcessor } from './commands/command-processor';
+import { ModelDefinition, DbSet } from './shared';
 
 const command = Symbol('command');
 

@@ -1,5 +1,5 @@
 import ws from 'ws';
-import { SocketAdapter, SocketAdapterEventMap } from '../shared-connection.js';
+import { SocketAdapter, SocketAdapterEventMap } from '../shared-connection';
 import { Readable } from 'stream';
 
 /**

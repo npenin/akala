@@ -1,4 +1,4 @@
-import program from '../router/index.js';
+import program from '../router/index';
 import { resolve } from 'path';
 import * as repl from 'repl'
 import { buildCliContext } from '..';

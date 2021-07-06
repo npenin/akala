@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('source-map-support').install();
 
-import { Polymorph } from '../polymorph.js'
+import { Polymorph } from '../polymorph'
 import * as assert from 'assert'
 
 class Test

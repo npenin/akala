@@ -4,11 +4,11 @@ import { Processors, NetSocketAdapter, Metadata, Container, Processor, proxy, Tr
 import { Socket } from 'net';
 import { TLSSocket } from 'tls';
 import { platform, homedir } from 'os';
-import start from './commands/start.js'
+import start from './commands/start'
 import { Readable } from 'stream';
 
-import { spawnAsync } from './cli-helper.js';
-import State from './state.js';
+import { spawnAsync } from './cli-helper';
+import State from './state';
 import program, { buildCliContextFromProcess, CliContext, NamespaceMiddleware, unparse } from '@akala/cli';
 import { InteractError } from '.';
 

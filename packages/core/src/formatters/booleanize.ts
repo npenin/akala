@@ -1,4 +1,4 @@
-import { module } from '../helpers.js';
+import { module } from '../helpers';
 
 export function booleanize(a: any)
 {

@@ -1,5 +1,5 @@
-import { Container } from '../model/container.js';
-import { inject, configure } from '../decorators.js';
+import { Container } from '../model/container';
+import { inject, configure } from '../decorators';
 import * as assert from 'assert'
 
 describe('test decorators', function ()

@@ -1,5 +1,5 @@
-import { Processor } from '../model/processor.js';
-import { EventProcessor } from './event.js';
+import { Processor } from '../model/processor';
+import { EventProcessor } from './event';
 
 export class LogProcessor extends EventProcessor
 {

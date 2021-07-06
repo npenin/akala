@@ -4,7 +4,7 @@ sms.install();
 import * as path from 'path'
 import * as ac from '@akala/commands';
 import { lstat } from 'fs/promises';
-import { IpcAdapter } from './commands/start.js';
+import { IpcAdapter } from './commands/start';
 import debug from 'debug';
 import mock from 'mock-require'
 import { Socket } from 'net';

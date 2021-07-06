@@ -1,5 +1,5 @@
-﻿import { Acl } from './Acl.js';
-import { ProviderCollection } from './ProviderCollection.js';
+﻿import { Acl } from './Acl';
+import { ProviderCollection } from './ProviderCollection';
 
 export interface AclConfiguration 
 {
