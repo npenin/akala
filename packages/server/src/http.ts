@@ -1,5 +1,5 @@
 import { FetchHttp, Http as coreHttp } from '@akala/core';
-import * as xml2js from 'xml'
+import * as xml2js from 'xml2js'
 
 FetchHttp.prototype['getXML'] = function (this: FetchHttp, url: string)
 {
