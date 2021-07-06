@@ -178,7 +178,7 @@ export class IpcAdapter implements jsonrpc.SocketAdapter
         else
             console.warn(`process ${this.cp.pid} does not support send over IPC`);
     }
-    on<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev?: SocketAdapterEventMap[K]) => void): void
+    on<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
     {
         switch (event)
         {
@@ -186,7 +186,7 @@ export class IpcAdapter implements jsonrpc.SocketAdapter
                 this.cp.on('message', handler);
                 break;
             case 'open':
-                handler();
+                handler(null);
                 break;
             case 'close':
                 this.cp.on('disconnect', handler);
@@ -194,7 +194,7 @@ export class IpcAdapter implements jsonrpc.SocketAdapter
         }
     }
 
-    once<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev?: SocketAdapterEventMap[K]) => void): void
+    once<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
     {
         switch (event)
         {
@@ -202,10 +202,10 @@ export class IpcAdapter implements jsonrpc.SocketAdapter
                 this.cp.once('message', handler);
                 break;
             case 'open':
-                handler();
+                handler(null);
                 break;
             case 'close':
-                this.cp.once('disconnect', handler);
+                this.cp.once('disconnect', () => handler(null));
                 break;
         }
     }
