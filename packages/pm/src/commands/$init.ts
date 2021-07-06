@@ -5,7 +5,6 @@ import { join } from 'path';
 import pmContainer from '../container.js';
 import { Container, Command, Metadata, ignoredCommands, configure, ServeOptions } from '@akala/commands';
 import { eachAsync } from '@akala/core';
-import { Configurations } from '@akala/commands/dist/metadata';
 
 export async function metadata(container: Container<unknown>, deep?: boolean): Promise<Metadata.Container>
 {
@@ -69,7 +68,7 @@ export default async function (this: State, container: RunningContainer<State> &
 
     await this.config.save();
     container.name = 'pm';
-    const config = container.resolve<Configurations>('$metadata.config');
+    const config = container.resolve<Metadata.Configurations>('$metadata.config');
     container.unregister('$metadata');
     container.register(configure(config)(new Command(metadata, '$metadata', ['$container', 'param.0'])));
 
