@@ -1,7 +1,7 @@
 import { Container } from "./model/container.js";
 import * as meta from './metadata/index.js'
 import { Command, CommandProxy } from './model/command.js';
-import { Processor } from './model/processor.js';
+import { CommandProcessors } from './model/processor.js';
 import { configure } from './decorators.js';
 
 export const ignoredCommands = ['$serve', '$metadata', '$attach']
@@ -28,9 +28,9 @@ export function metadata(container: Container<any>, deep?: boolean): meta.Contai
     return metacontainer;
 }
 
-export function proxy<T = unknown>(metacontainer: meta.Container, processor: Processor): Container<T>
-export function proxy<T = unknown>(metacontainer: meta.Container, processor: (c: Container<T>) => Processor): Container<T>
-export function proxy<T = unknown>(metacontainer: meta.Container, processor: Processor | ((c: Container<T>) => Processor)): Container<T>
+export function proxy<T = unknown>(metacontainer: meta.Container, processor: CommandProcessors): Container<T>
+export function proxy<T = unknown>(metacontainer: meta.Container, processor: (c: Container<T>) => CommandProcessors): Container<T>
+export function proxy<T = unknown>(metacontainer: meta.Container, processor: CommandProcessors | ((c: Container<T>) => CommandProcessors)): Container<T>
 {
 
     const container = new Container<T>(metacontainer.name, undefined);
@@ -47,12 +47,12 @@ export function proxy<T = unknown>(metacontainer: meta.Container, processor: Pro
     return container;
 }
 
-export function proxyCommand<T>(cmd: meta.Command, processor: Processor): Command<T>
+export function proxyCommand<T>(cmd: meta.Command, processor: CommandProcessors): Command<T>
 {
-    return configure(cmd.config)(new CommandProxy(processor as Processor, cmd.name, cmd.inject))
+    return configure(cmd.config)(new CommandProxy(processor as CommandProcessors, cmd.name, cmd.inject))
 }
 
-export function registerCommands<T>(commands: meta.Command[], processor: Processor, container: Container<T>): void
+export function registerCommands<T>(commands: meta.Command[], processor: CommandProcessors, container: Container<T>): void
 {
     commands.forEach(cmd =>
     {
@@ -62,13 +62,13 @@ export function registerCommands<T>(commands: meta.Command[], processor: Process
     });
 }
 
-export function updateCommands<T>(commands: meta.Command[], processor: Processor, container: Container<T>): void
+export function updateCommands<T>(commands: meta.Command[], processor: CommandProcessors, container: Container<T>): void
 {
     commands.forEach(cmd =>
     {
         if (cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata')
             return;
-        container.register(configure(cmd.config)(new CommandProxy(processor as Processor, cmd.name, cmd.inject)), true);
+        container.register(configure(cmd.config)(new CommandProxy(processor, cmd.name, cmd.inject)), true);
     });
 }
 

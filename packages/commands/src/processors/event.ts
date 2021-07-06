@@ -39,7 +39,7 @@ export class EventProcessor extends EventEmitter implements Processor
             else
                 result = this.processor.handle(command.name, param)
         else if (typeof command !== 'string')
-            result = (this.processor as Processor).handle(command, param)
+            result = (this.processor).handle(command as Command & string, param)
         else
             throw new Error('Command was required but only command name was provided');
         result.then(err =>
