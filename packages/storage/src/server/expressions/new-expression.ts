@@ -1,7 +1,7 @@
-import { Expression, TypedExpression, Expressions } from './expression.js';
-import { ExpressionType } from './expression-type.js';
-import { MemberExpression } from './member-expression.js';
-import { ExpressionVisitor } from './expression-visitor.js';
+import { Expression, TypedExpression, Expressions } from './expression';
+import { ExpressionType } from './expression-type';
+import { MemberExpression } from './member-expression';
+import { ExpressionVisitor } from './expression-visitor';
 
 export class NewExpression<T> extends Expression
 {

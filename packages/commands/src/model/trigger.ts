@@ -1,5 +1,5 @@
 import * as akala from '@akala/core'
-import { Container } from './container.js';
+import { Container } from './container';
 
 const triggers: Trigger<unknown, unknown>[] = akala.module('@akala/commands').register('triggers', [])
 export class Trigger<U, V>

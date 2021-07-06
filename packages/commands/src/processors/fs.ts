@@ -1,15 +1,15 @@
 import * as path from 'path'
 import { promises as fs, existsSync } from 'fs'
 import * as akala from '@akala/core'
-import * as  Metadata from '../metadata/index.js';
-import { CommandProcessor, Processor, CommandNameProcessor } from '../model/processor.js';
-import { Container } from '../model/container.js';
-import { CommandProxy, Command } from '../model/command.js';
-import { configure } from '../decorators.js';
-import { registerCommands } from '../generator.js';
-import { Local } from './local.js';
-import { UnknownCommandError } from '../model/error-unknowncommand.js';
-import { ExtendedConfigurations, jsonObject } from '../metadata/index.js';
+import * as  Metadata from '../metadata/index';
+import { CommandProcessor, Processor, CommandNameProcessor } from '../model/processor';
+import { Container } from '../model/container';
+import { CommandProxy, Command } from '../model/command';
+import { configure } from '../decorators';
+import { registerCommands } from '../generator';
+import { Local } from './local';
+import { UnknownCommandError } from '../model/error-unknowncommand';
+import { ExtendedConfigurations, jsonObject } from '../metadata/index';
 import { MiddlewarePromise } from '@akala/core';
 
 export interface FileSystemConfiguration extends Metadata.Configuration

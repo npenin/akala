@@ -1,10 +1,10 @@
-import { Routable } from './route.js';
-import { Router, RouterOptions } from './router.js';
+import { Routable } from './route';
+import { Router, RouterOptions } from './router';
 
-export * from './shared.js'
-export * from './composite.js'
-export * from './route.js'
-export * from './router.js'
+export * from './shared'
+export * from './composite'
+export * from './route'
+export * from './router'
 
 
 

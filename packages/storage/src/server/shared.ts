@@ -1,14 +1,14 @@
 import * as akala from '@akala/core'
 import "reflect-metadata";
-import { FieldType, StorageFieldType, ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator } from './common.js';
-import { Query } from './Query.js';
-import { PersistenceEngine } from './PersistenceEngine.js';
-import { Update, Create, Delete, CommandResult } from './commands/command.js';
+import { FieldType, StorageFieldType, ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator } from './common';
+import { Query } from './Query';
+import { PersistenceEngine } from './PersistenceEngine';
+import { Update, Create, Delete, CommandResult } from './commands/command';
 import { isDate } from 'util';
 
-export { Cardinality } from './cardinality.js'
+export { Cardinality } from './cardinality'
 export { ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator };
-export { PersistenceEngine } from './PersistenceEngine.js'
+export { PersistenceEngine } from './PersistenceEngine'
 
 export const providers = akala.module('db', '@akala/storage');
 
@@ -79,7 +79,7 @@ export function Model<TObject>(name: string | (new () => TObject), nameInStorage
     }
 }
 
-import * as Enumerable from './Enumerable.js'
+import * as Enumerable from './Enumerable'
 export { Enumerable };
 
 export function Field(type?: FieldType | (() => FieldType), generator?: Generator)
@@ -184,8 +184,8 @@ function member(isKey: boolean, type?: FieldType | (() => FieldType), generator?
 }
 
 
-export { StorageFieldType as Types, FieldType as Type, Field as ModelField } from './common.js'
+export { StorageFieldType as Types, FieldType as Type, Field as ModelField } from './common'
 
-export { File } from './providers/file.js'
-export { Vanilla } from './providers/vanilla.js'
-export * from './expressions/expression.js'
+export { File } from './providers/file'
+export { Vanilla } from './providers/vanilla'
+export * from './expressions/expression'

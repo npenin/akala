@@ -1,9 +1,9 @@
-import { AccessRule, AccessRules } from './access-rule.js';
-import { OrderedList } from './ordered-list.js';
-import IAclProvider, { AclChangedHandler, Event } from './Providers/IAclProvider.js';
-import Allow from './allow.js';
-import Deny from './deny.js';
-import { AclConfiguration } from './Configuration/AclConfiguration.js';
+import { AccessRule, AccessRules } from './access-rule';
+import { OrderedList } from './ordered-list';
+import IAclProvider, { AclChangedHandler, Event } from './Providers/IAclProvider';
+import Allow from './allow';
+import Deny from './deny';
+import { AclConfiguration } from './Configuration/AclConfiguration';
 
 export function provider(name: string)
 {

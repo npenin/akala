@@ -1,12 +1,12 @@
 import './translator';
-export { router, Request, Response, HttpRouter, CallbackResponse } from './router/index.js';
+export { router, Request, Response, HttpRouter, CallbackResponse } from './router/index';
 
 import './http'
-export * from './http.js'
+export * from './http'
 
-import container from './commands.js'
+import container from './commands'
 export { container }
-export { State } from './state.js'
+export { State } from './state'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import * as _pm from '@akala/pm'
@@ -35,4 +35,4 @@ export function connect(options: commands.ServeMetadata, settings: {
     return commands.connectByPreference(options, Object.assign({ container: require('../commands.json') }, settings), ...orders);
 }
 
-export { Logger, logger, log } from './logger.js'
+export { Logger, logger, log } from './logger'

@@ -1,5 +1,5 @@
 import * as di from '@akala/core'
-import { control, BaseControl, GenericControlInstance } from './control.js'
+import { control, BaseControl, GenericControlInstance } from './control'
 
 @control('value', 400)
 export class Value extends GenericControlInstance<string>

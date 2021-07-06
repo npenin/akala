@@ -1,16 +1,16 @@
-import { PersistenceEngine, dynamicProxy } from '../PersistenceEngine.js';
-import { StrictExpressions } from '../expressions/expression.js';
-import { ExpressionExecutor } from '../expression-executor.js';
+import { PersistenceEngine, dynamicProxy } from '../PersistenceEngine';
+import { StrictExpressions } from '../expressions/expression';
+import { ExpressionExecutor } from '../expression-executor';
 import * as fs from "fs";
 import { join } from "path";
-import { CommandProcessor } from '../commands/command-processor.js';
-import { CommandResult, Commands, Create } from '../commands/command.js';
-import { ModelDefinition } from '../shared.js';
+import { CommandProcessor } from '../commands/command-processor';
+import { CommandResult, Commands, Create } from '../commands/command';
+import { ModelDefinition } from '../shared';
 import { promisify } from "util";
-import { ConstantExpression } from '../expressions/constant-expression.js';
-import { Generator } from '../common.js';
+import { ConstantExpression } from '../expressions/constant-expression';
+import { Generator } from '../common';
 import { v4 as uuid } from 'uuid'
-import { NotSupportedException } from '../exceptions.js';
+import { NotSupportedException } from '../exceptions';
 
 
 export class File extends PersistenceEngine<FileOptions>

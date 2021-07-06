@@ -1,5 +1,5 @@
 import { Middleware, MiddlewarePromise } from "@akala/core";
-import { Request } from './shared.js'
+import { Request } from './shared'
 import { Socket } from "net";
 
 export class UpgradeMiddleware implements Middleware<[Request, Socket, Buffer]>

@@ -1,4 +1,4 @@
-import { router } from './router.js';
+import { router } from './router';
 
 // /// <reference types="types-serviceworker" />
 

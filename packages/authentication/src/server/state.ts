@@ -1,4 +1,4 @@
-import { AuthenticationStore } from './authentication-store.js';
+import { AuthenticationStore } from './authentication-store';
 
 export interface State
 {

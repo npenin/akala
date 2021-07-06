@@ -1,8 +1,8 @@
-import State from '../state.js';
-import npmHelper from '../npm-helper.js';
-import yarnHelper, { hasYarn } from '../yarn-helper.js';
+import State from '../state';
+import npmHelper from '../npm-helper';
+import yarnHelper, { hasYarn } from '../yarn-helper';
 import { Container } from "@akala/commands";
-import discover from './discover.js';
+import discover from './discover';
 
 export default async function install(this: State, packageName: string, pm: Container<State>): ReturnType<typeof discover>
 {

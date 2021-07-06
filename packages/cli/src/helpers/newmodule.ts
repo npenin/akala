@@ -1,4 +1,4 @@
-import program from '../router/index.js';
+import program from '../router/index';
 import * as fs from 'fs';
 import { promisify } from 'util';
 import * as path from 'path';

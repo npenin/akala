@@ -1,5 +1,5 @@
 import webpack from 'webpack'
-import { State } from '../state.js'
+import { State } from '../state'
 import { log as debug } from '@akala/core';
 
 let compiler: webpack.Compiler;

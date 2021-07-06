@@ -1,4 +1,4 @@
-import { State } from '../state.js'
+import { State } from '../state'
 import { extend } from '@akala/core'
 import { Configuration } from 'webpack';
 

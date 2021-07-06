@@ -1,5 +1,5 @@
 import { Container } from "@akala/commands";
-import State from '../state.js';
+import State from '../state';
 
 export default async function stop(this: State, name: string, container: Container<State>): Promise<void>
 {

@@ -1,14 +1,14 @@
-import { register, injectWithName } from './global-injector.js';
-import { ParsedAny, Parser } from './parser.js';
-import { each, map, grep } from './each.js';
-import { extend, module } from './helpers.js';
-import { service } from './service.js';
-import { FormatterFactory } from './formatters/common.js';
+import { register, injectWithName } from './global-injector';
+import { ParsedAny, Parser } from './parser';
+import { each, map, grep } from './each';
+import { extend, module } from './helpers';
+import { service } from './service';
+import { FormatterFactory } from './formatters/common';
 import * as qs from 'querystring'
 import 'isomorphic-fetch';
 import http from 'http';
 import https from 'https';
-import { Injected } from './injector.js';
+import { Injected } from './injector';
 
 
 export interface HttpOptions

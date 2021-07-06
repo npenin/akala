@@ -1,13 +1,13 @@
-import * as common from './common.js'
-import * as routing from './router.js'
-import * as location from './locationService.js'
+import * as common from './common'
+import * as routing from './router'
+import * as location from './locationService'
 import * as core from '@akala/core';
-export * from './template.js';
-import * as part from './part.js';
+export * from './template';
+import * as part from './part';
 import './part';
-import * as scope from './scope.js';
-import * as controls from './controls/controls.js';
-export { Control, BaseControl, control } from './controls/controls.js';
+import * as scope from './scope';
+import * as controls from './controls/controls';
+export { Control, BaseControl, control } from './controls/controls';
 
 export const loadScript = load;
 
@@ -22,7 +22,7 @@ export const init = core.Module.prototype.activate;
 
 export { controls };
 
-import HotKeyTrigger from './hotkeytrigger.js'
+import HotKeyTrigger from './hotkeytrigger'
 export { HotKeyTrigger }
 
 common.$$injector['router'] = routing.router

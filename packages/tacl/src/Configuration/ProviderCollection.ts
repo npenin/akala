@@ -1,3 +1,3 @@
-﻿import { ProviderElement } from './ProviderElement.js';
+﻿import { ProviderElement } from './ProviderElement';
 
 export type ProviderCollection = Array<ProviderElement>;

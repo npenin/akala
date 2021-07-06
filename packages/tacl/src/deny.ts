@@ -1,4 +1,4 @@
-﻿import { AccessRule, AccessRules } from './access-rule.js'
+﻿import { AccessRule, AccessRules } from './access-rule'
 
 export default class Deny extends AccessRule
 {

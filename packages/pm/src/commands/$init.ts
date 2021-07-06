@@ -1,8 +1,8 @@
-import State, { RunningContainer } from '../state.js'
+import State, { RunningContainer } from '../state'
 import { homedir } from 'os';
 import fs from 'fs/promises';
 import { join } from 'path';
-import pmContainer from '../container.js';
+import pmContainer from '../container';
 import { Container, Command, Metadata, ignoredCommands, configure, ServeOptions } from '@akala/commands';
 import { eachAsync } from '@akala/core';
 

@@ -1,7 +1,7 @@
 import * as akala from '@akala/core';
-import { IScope } from '../scope.js';
+import { IScope } from '../scope';
 import { useInjector, Injector, inject, isPromiseLike } from '@akala/core';
-import { composer, Template } from '../template.js';
+import { composer, Template } from '../template';
 
 
 export function control<T = any>(name: string, priority?: number, options?: { scope?: boolean })

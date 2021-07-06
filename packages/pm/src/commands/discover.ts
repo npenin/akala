@@ -1,8 +1,8 @@
-import State from '../state.js';
+import State from '../state';
 import { join, isAbsolute, basename, resolve } from "path";
 import { existsSync, promises as fs } from "fs";
-import pmContainer from '../container.js';
-import map from './map.js'
+import pmContainer from '../container';
+import map from './map'
 import { createRequire } from "module";
 import { log } from "@akala/core";
 

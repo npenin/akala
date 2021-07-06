@@ -1,4 +1,4 @@
-import { Commands, CommandResult } from './command.js';
+import { Commands, CommandResult } from './command';
 
 export abstract class CommandProcessor<TOptions = string>
 {

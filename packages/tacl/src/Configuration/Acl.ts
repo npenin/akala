@@ -1,3 +1,3 @@
-﻿import { AccessRule } from '../access-rule.js';
+﻿import { AccessRule } from '../access-rule';
 
 export type Acl = Array<AccessRule & { targetProvider?: string }>;

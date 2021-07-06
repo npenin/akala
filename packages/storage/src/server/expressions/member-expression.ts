@@ -1,8 +1,8 @@
-import { Expression, TypedExpression } from './expression.js';
-import { ExpressionType } from './expression-type.js';
-import { ConstantExpression } from './constant-expression.js';
-import { ParameterExpression } from './parameter-expression.js';
-import { ExpressionVisitor } from './expression-visitor.js';
+import { Expression, TypedExpression } from './expression';
+import { ExpressionType } from './expression-type';
+import { ConstantExpression } from './constant-expression';
+import { ParameterExpression } from './parameter-expression';
+import { ExpressionVisitor } from './expression-visitor';
 
 export class MemberExpression<T, TMember extends keyof T, U extends T[TMember]> extends Expression
 {

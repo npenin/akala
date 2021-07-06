@@ -1,4 +1,4 @@
-import { State } from '../state.js';
+import { State } from '../state';
 
 export default function (this: State): State['mode']
 export default function (this: State, mode?: 'development' | 'production'): void

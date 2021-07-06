@@ -1,5 +1,5 @@
-import { Configuration } from '../configuration.js';
-import revert from './revert.js';
+import { Configuration } from '../configuration';
+import revert from './revert';
 
 export default async function (configPath?: string)
 {

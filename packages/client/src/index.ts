@@ -1,3 +1,3 @@
 
-export * from './common.js'
-export * from './clientify.js'
+export * from './common'
+export * from './clientify'

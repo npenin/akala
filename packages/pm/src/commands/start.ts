@@ -1,7 +1,7 @@
 import { Container, Processors, Metadata, registerCommands, CommandProxy } from "@akala/commands";
-import State, { RunningContainer } from '../state.js';
+import State, { RunningContainer } from '../state';
 import { spawn, ChildProcess, StdioOptions } from "child_process";
-import pmContainer from '../container.js';
+import pmContainer from '../container';
 import * as jsonrpc from '@akala/json-rpc-ws'
 import debug from "debug";
 import { eachAsync } from "@akala/core";

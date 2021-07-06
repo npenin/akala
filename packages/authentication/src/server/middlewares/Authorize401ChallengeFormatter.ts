@@ -1,6 +1,6 @@
 import { ErrorMiddleware, MiddlewarePromise } from "@akala/core";
 import { Request, Response } from "@akala/server";
-import { AuthorizeErrorCode } from './authorize.js';
+import { AuthorizeErrorCode } from './authorize';
 
 
 export class Authorize401ChallengeFormatter implements ErrorMiddleware<[Request, Response]>
