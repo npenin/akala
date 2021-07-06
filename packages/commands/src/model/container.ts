@@ -1,7 +1,7 @@
 import * as akala from '@akala/core'
 import { Command, CommandProxy } from './command.js';
 import { Trigger } from './trigger.js';
-import { Processor, CommandNameProcessor, StructuredParameters, CommandProcessors } from './processor.js';
+import { CommandNameProcessor, StructuredParameters, CommandProcessors } from './processor.js';
 import { Local } from '../processors/index.js';
 import { Pipe } from '../processors/pipe.js';
 import $serve from '../commands/$serve.js'
@@ -29,12 +29,12 @@ export class Container<TState> extends akala.Injector
         return trigger.register(this, server);
     }
 
-    public get processor(): Processor
+    public get processor(): CommandProcessors
     {
         return this._processor;
     }
 
-    private _processor: Processor;
+    private _processor: CommandProcessors;
 
     public get trapProcessor(): CommandNameProcessor
     {
@@ -50,7 +50,7 @@ export class Container<TState> extends akala.Injector
         this._trapProcessor = trapProcessor;
     }
 
-    constructor(public name: string, public state: TState, processor?: Processor)
+    constructor(public name: string, public state: TState, processor?: CommandProcessors)
     {
         super();
         if (typeof state !== 'undefined')
@@ -91,11 +91,8 @@ export class Container<TState> extends akala.Injector
             }
             else
                 cmd = command;
-            if (this.processor.requiresCommandName)
-                if (typeof cmd == 'string')
-                    return this.processor.handle(cmd, param[0] as StructuredParameters<unknown[]>).then(err => { throw err }, async result => await result);
-                else
-                    return this.processor.handle(cmd.name, param[0] as StructuredParameters<unknown[]>).then(err => { throw err }, async result => await result);
+
+            return this.processor.handle(cmd as Command & string, param[0] as StructuredParameters<unknown[]>).then(err => { throw err }, async result => await result);
         }
         else
         {

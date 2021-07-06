@@ -1,0 +1,73 @@
+{
+    "name": "commands",
+    "commands": [
+        {
+            "name": "$init",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/commands/$init.js",
+                    "source": "src/commands/$init.ts",
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "schedule",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/commands/schedule.js",
+                    "source": "src/commands/schedule.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4",
+                        "param.5",
+                        "param.6",
+                        "param.7",
+                        "param.8",
+                        "param.9",
+                        "param.10",
+                        "param.11"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "wait",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/commands/wait.js",
+                    "source": "src/commands/wait.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "inject": [
+                        "options.riseSet",
+                        "options.minutes",
+                        "options.hour",
+                        "options.day",
+                        "options.month",
+                        "options.lat",
+                        "options.lng",
+                        "options.tz"
+                    ]
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+}
