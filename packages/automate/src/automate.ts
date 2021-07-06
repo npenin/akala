@@ -2,7 +2,7 @@ import { SerializableObject } from '@akala/json-rpc-ws'
 import Orchestrator from 'orchestrator';
 import { spawn, StdioNull, StdioPipe, exec, SpawnOptionsWithoutStdio } from 'child_process';
 
-export const simpleRunner = {
+export const simpleRunner: Runner<JobStepRun> = {
     run(cmd: string | string[], step: JobStepRun, stdio?: { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
     {
         if (!Array.isArray(cmd))
@@ -14,7 +14,7 @@ export const simpleRunner = {
                     resolve(stdout);
             }));
         else
-            return new Promise<void>((resolve, reject) => spawn(cmd[0], cmd.slice(1), Object.assign(step, stdio)).on('close', function (code)
+            return new Promise<void>((resolve, reject) => spawn(cmd[0], cmd.slice(1), Object.assign(step.with, stdio)).on('close', function (code)
             {
                 if (code == 0)
                     resolve();
@@ -24,17 +24,15 @@ export const simpleRunner = {
     }
 }
 
-type StepRunner<TStep extends JobStep> = (obj: TStep[TStep['type']],
-    step: JobStep,
-    stdio?: { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe }) => Promise<void>;
+type StepRunner<TStep extends JobStepDef<TType, unknown, unknown>, TType extends string> = (obj: TStep[TType],
+    step: JobStepDef<TType>,
+    stdio?: { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe }) => Promise<void | string>;
 
-export type Runner<TStep extends JobStep = JobStep, TType extends TStep['type'] = 'run' | 'dispatch' | 'uses'> = {
-    [k in JobStep['type']]: (obj: JobStep[TType],
-        step: JobStep,
-        stdio?: { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe }) => Promise<void>
+export type Runner<TSupportedJobSteps extends JobStepDef<string, any, any>> = {
+    [k in TSupportedJobSteps['type']]: StepRunner<JobStepDef<k, unknown, unknown>, k>
 };
 
-export default function run(workflow: Workflow, runner: Runner, stdio?: { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
+export default function run<TSupportedJobSteps extends JobStepDef<string, any, any>>(workflow: Workflow, runner: Runner<TSupportedJobSteps>, stdio?: { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
 {
     const orchestrator = new Orchestrator();
     orchestrator.add(workflow.name || 'main', Object.keys(workflow.jobs));
@@ -94,36 +92,23 @@ export interface Job
 {
     name?: string;
     dependsOn: string[];
-    steps: JobStep[];
+    steps: JobStepDef<string, any, any>[];
 }
 
-export type JobStepDef<T extends string> = {
-    type: T
-    [k in T]: string;
+export type JobStepActor<T extends string, TActor = string> = {
+    [k in T]: TActor;
 }
+
+export type JobStepDef<T extends string, TActor = string, TSettings = SerializableObject> = {
+    type: T;
+    name?: string;
+    with: TSettings;
+} & JobStepActor<T, TActor>;
 
 
 export type JobStep = JobAction | JobStepRun | JobStepDispatch;
 
-export interface JobAction extends JobStepDef<'uses'>
-{
-    type: 'uses';
-    name?: string;
-    uses: string;
-    with: SerializableObject;
-}
+export type JobAction = JobStepDef<'uses'>;
 
-export interface JobStepRun
-{
-    type: 'run';
-    name?: string;
-    run: string | string[];
-    with: SpawnOptionsWithoutStdio;
-}
-export interface JobStepDispatch
-{
-    type: 'dispatch';
-    name?: string;
-    dispatch: string;
-    with: SerializableObject;
-}
+export type JobStepRun = JobStepDef<'run', string | string[], SpawnOptionsWithoutStdio>;
+export type JobStepDispatch = JobStepDef<'dispatch'>;
