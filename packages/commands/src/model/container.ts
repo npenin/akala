@@ -1,7 +1,7 @@
 import * as akala from '@akala/core'
 import { Command, CommandProxy } from './command.js';
 import { Trigger } from './trigger.js';
-import { CommandNameProcessor, StructuredParameters, CommandProcessors } from './processor.js';
+import { CommandNameProcessor, StructuredParameters, CommandProcessors, Processor } from './processor.js';
 import { Local } from '../processors/index.js';
 import { Pipe } from '../processors/pipe.js';
 import $serve from '../commands/$serve.js'
@@ -29,7 +29,7 @@ export class Container<TState> extends akala.Injector
         return trigger.register(this, server);
     }
 
-    public get processor(): CommandProcessors
+    public get processor(): Processor
     {
         return this._processor;
     }

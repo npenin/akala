@@ -32,4 +32,12 @@ export interface ICommandNameProcessor extends akala.Middleware<[cmd: string, pa
     handle(cmd: string, param: StructuredParameters): akala.MiddlewarePromise;
 }
 
+export interface Processor extends akala.Middleware<[cmd: Command | string, param: StructuredParameters]>
+{
+    readonly requiresCommandName: boolean;
+    name: string;
+    handle(cmd: Command | string, param: StructuredParameters): akala.MiddlewarePromise;
+}
+
 export type CommandProcessors = ICommandMetadataProcessor | ICommandNameProcessor;
+
