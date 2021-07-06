@@ -42,7 +42,7 @@ cli.command<{ program: string, inspect?: boolean, wait?: boolean }>('start [prog
         if (typeof c.options.program == 'undefined')
             c.options.program = 'pm';
         if (c.options.program === 'pm')
-            start.call({} as unknown as State, null, c.options.program, c.options);
+            start.call({} as unknown as State, null, c.options.program, c);
         else
             throw undefined;
     });

@@ -7,8 +7,9 @@ import debug from "debug";
 import { eachAsync } from "@akala/core";
 import { NewLinePrefixer } from "../new-line-prefixer.js";
 import { SocketAdapterEventMap } from "@akala/json-rpc-ws/src/shared-connection";
+import { CliContext } from "@akala/cli";
 
-export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, options?: { inspect?: boolean, verbose?: boolean, wait?: boolean }): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
+export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, options?: CliContext<{ inspect?: boolean, verbose?: boolean, wait?: boolean }>): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
 {
     let args: string[];
     if (this.isDaemon)
@@ -36,17 +37,17 @@ export default async function start(this: State, pm: pmContainer.container & Con
         if (name != 'pm')
             throw new Error('this command needs to run through daemon process');
 
-        args = [name];
+        args = [name, ...options.args, ...Object.entries(options.options).map(entries => ['--' + entries[0] + '=' + entries[1]]).flat()];
     }
 
     args.unshift(require.resolve('../fork'))
 
-    if (options && options.inspect)
+    if (options.options && options.options.inspect)
         args.unshift('--inspect-brk');
 
     args.unshift(...process.execArgv);
 
-    if (options && options.verbose)
+    if (options.options && options.options.verbose)
         args.push('-v')
 
     const log = debug('akala:pm:' + name);
@@ -157,7 +158,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
         {
             (container as RunningContainer).running = false;
         });
-        if (options.wait && container.commandable)
+        if (options.options.wait && container.commandable)
             await container.ready;
         return { execPath: process.execPath, args: args, cwd: process.cwd(), stdio: ['inherit', 'inherit', 'inherit', 'ipc'], shell: false, windowsHide: true };
     }
