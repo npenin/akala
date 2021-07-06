@@ -32,17 +32,19 @@ export type Runner<TSupportedJobSteps extends JobStepDef<string, any, any>> = {
     [k in TSupportedJobSteps['type']]: StepRunner<JobStepDef<k, unknown, unknown>, k>
 };
 
-export default function automate<TSupportedJobSteps extends JobStepDef<string, any, any>>(workflow: Workflow, runner: Runner<TSupportedJobSteps>, stdio?: { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
+export default function automate<TSupportedJobSteps extends JobStepDef<string, any, any>>(workflow: Workflow['jobs'], runner: Runner<TSupportedJobSteps>, stdio?: { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
 {
     const orchestrator = new Orchestrator();
     orchestrator.on('task_start', (t) => console.log('running ' + t.task));
     orchestrator.on('task_stop', (t) => console.log(`ran ${t.task} successfully`));
 
-    orchestrator.add(workflow.name || 'main', Object.keys(workflow.jobs));
+    orchestrator.add('#main', Object.keys(workflow));
 
-    Object.keys(workflow.jobs).forEach(name =>
+    ensureDefaults(workflow)
+
+    Object.keys(workflow).forEach(name =>
     {
-        const job = workflow.jobs[name];
+        const job = workflow[name];
         orchestrator.add(name, job.steps.map(s => name + '-' + s.name));
         let previousStepName: string;
         job.steps.forEach(step =>
@@ -57,14 +59,25 @@ export default function automate<TSupportedJobSteps extends JobStepDef<string, a
                 });
         });
     });
+
+    return new Promise<void>((resolve, reject) =>
+    {
+        orchestrator.start('#main', (err) =>
+        {
+            if (err)
+                reject(err);
+            else
+                resolve();
+        });
+    });
 }
 
-export function ensureDefaults(workflow: Workflow)
+export function ensureDefaults(jobs: Workflow['jobs'])
 {
-    workflow.jobs && Object.keys(workflow.jobs).forEach(jobName =>
+    jobs && Object.keys(jobs).forEach(jobName =>
     {
-        workflow.jobs[jobName].name = workflow.jobs[jobName].name || jobName;
-        workflow.jobs[jobName].steps.forEach(step =>
+        jobs[jobName].name = jobs[jobName].name || jobName;
+        jobs[jobName].steps.forEach(step =>
         {
             if (!step.type)
             {
