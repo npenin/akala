@@ -138,9 +138,15 @@ export class HttpRouter extends Router2<Request, Response>
         return this.formatters.handle(req, res, result).then(() =>
         {
             console.warn(`no valid formatter for ${req.headers.accept} thus sending as text`);
-            const stringify = result.toString()
-            res.writeHead(200, 'OK', { contenttype: 'text/plain', contentLength: stringify.length });
-            res.end(stringify);
+            if (typeof (result) !== 'undefined')
+            {
+                const stringify = result.toString();
+                res.writeHead(200, 'OK', { contenttype: 'text/plain', contentLength: stringify.length });
+                res.end(stringify);
+            }
+            else
+                res.writeHead(204, 'OK', { contenttype: 'text/plain', contentLength: 0 }).end();
+
         })
     }
 
