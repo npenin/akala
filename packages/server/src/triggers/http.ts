@@ -22,6 +22,7 @@ async function processCommand<T>(container: Container<T>, c: Metadata.Command, i
     const req = injected.$request;
     const res = injected.$response;
     let bodyParsing: Promise<unknown>;
+    let rawBody: Buffer;
     return Processors.Local.handle(c, async function (...args)
     {
         args = await mapAsync(args, async el => await el);
@@ -29,7 +30,10 @@ async function processCommand<T>(container: Container<T>, c: Metadata.Command, i
         log(args);
         return await container.dispatch(c.name, ...args);
     }, container, {
-        param: [], route: req.params, query: req.query, _trigger: 'http', get body()
+        param: [], route: req.params, query: req.query, _trigger: 'http', get rawBody()
+        {
+            return this.body.then(() => rawBody);
+        }, get body()
         {
             if (bodyParsing)
                 return bodyParsing;
@@ -42,7 +46,12 @@ async function processCommand<T>(container: Container<T>, c: Metadata.Command, i
                     resolve(req['body']);
                 }
                 else
-                    parser.json()(req, res, function (err)
+                    parser.json({
+                        verify(_req, _res, buffer)
+                        {
+                            rawBody = buffer;
+                        }
+                    })(req, res, function (err)
                     {
                         if (err)
                             reject(err);
@@ -52,7 +61,12 @@ async function processCommand<T>(container: Container<T>, c: Metadata.Command, i
                             log(req['body']);
                             resolve(req['body']);
                         }
-                        else parser.urlencoded()(req, res, function (err)
+                        else parser.urlencoded({
+                            verify(_req, res, buffer)
+                            {
+                                rawBody = buffer;
+                            }
+                        })(req, res, function (err)
                         {
                             if (err)
                                 reject(err);
@@ -63,7 +77,12 @@ async function processCommand<T>(container: Container<T>, c: Metadata.Command, i
                                 resolve(req['body']);
                             }
                             else
-                                parser.text()(req, res, function (err)
+                                parser.text({
+                                    verify(_req, res, buffer)
+                                    {
+                                        rawBody = buffer;
+                                    }
+                                })(req, res, function (err)
                                 {
                                     if (err)
                                         reject(err);
