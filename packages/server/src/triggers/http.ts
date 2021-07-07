@@ -32,11 +32,13 @@ async function processCommand<T>(container: Container<T>, c: Metadata.Command, i
     }, container, {
         param: [], route: req.params, query: req.query, _trigger: 'http', get rawBody()
         {
-            bodyParsing = this.body.parse({ returnRawBody: true });
+            if (!bodyParsing)
+                bodyParsing = this.body.parse({ returnRawBody: true });
             return bodyParsing.then(body => body.raw)
         }, get body()
         {
-            bodyParsing = this.body.parse({ returnRawBody: true });
+            if (!bodyParsing)
+                bodyParsing = this.body.parse({ returnRawBody: true });
             return bodyParsing.then(body => body.parsed)
         }, headers: req.headers, ...injected
     });
