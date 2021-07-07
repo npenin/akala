@@ -29,7 +29,7 @@ describe('test http processing', function ()
                 const cmd = calculator.resolve(cmdName);
                 if (cmd && cmd.config && cmd.config.http && cmd.config.http.inject)
                 {
-                    const config = cmd.config.http as any as HttpConfiguration;
+                    const config = cmd.config.http;
                     const keys: pathRegexp.Key[] = [];
                     const regexp = pathRegexp.pathToRegexp(config.route, keys);
                     const match = url.match(regexp)

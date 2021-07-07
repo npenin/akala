@@ -4,7 +4,7 @@ import { Cli } from './index';
 
 (async function ()
 {
-    const cli = await Cli.fromFileSystem(path.resolve(__dirname, './cli'), path.join(__dirname, '../'));
+    const cli = await Cli.fromFileSystem(path.resolve(__dirname, '../commands.json'), path.join(__dirname, '../'));
     cli.program.useError(async (e, c) =>
     {
         if (c.options.verbose)

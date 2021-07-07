@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { promisify } from "util";
 import { CliContext } from "@akala/cli";
+import { Processors } from "..";
 
 export async function outputHelper(outputFile: string | undefined, nameIfFolder: string, force: boolean)
 {
@@ -52,7 +53,7 @@ export async function write(output: Writable, content: string)
 
 export default async function _new(type: string, name: string, options: CliContext<{ force?: boolean }>['options'], destination?: string)
 {
-    // console.error(arguments);
+    console.error(arguments);
     switch (type)
     {
         case 'command':
@@ -66,8 +67,10 @@ export default async function _new(type: string, name: string, options: CliConte
             break;
         case 'cc':
         case 'command-config':
-            var { output } = await outputHelper(destination, name + '.json', options && options.force);
-            await write(output, JSON.stringify({ $schema: "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json", "": { inject: [] } }, null, 4));
+            var cmds = await Processors.FileSystem.discoverMetaCommands(destination, { isDirectory: true, processor: new Processors.FileSystem(null, destination) });
+            const cmd = cmds.find(c => c.name == name);
+            var { output } = await outputHelper(path.resolve(destination, cmd?.config?.fs?.source && path.dirname(cmd?.config?.fs?.source)), name + '.json', options && options.force);
+            await write(output, JSON.stringify({ $schema: "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json", ...cmd.config }, null, 4));
             break;
         default:
             throw new Error(`${type} is not supported`);

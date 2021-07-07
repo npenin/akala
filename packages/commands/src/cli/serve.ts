@@ -137,7 +137,11 @@ export default async function <T = void>(container: Container<T>, options: Serve
                 container.attach('jsonrpc', new NetSocketAdapter(socket));
             });
 
-            server.listen(socketPath);
+            await new Promise<void>((resolve, reject) =>
+            {
+                server.once('error', reject);
+                server.listen(socketPath, resolve);
+            });
             console.log(`listening on ${JSON.stringify(socketPath)}`);
 
             stops.push(() =>
