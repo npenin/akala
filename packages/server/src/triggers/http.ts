@@ -26,7 +26,7 @@ async function processCommand<T>(container: Container<T>, c: Metadata.Command, i
         args = await mapAsync(args, async el => await el);
         args = args.filter((a, i) => c.inject[i].startsWith('param.'))
         log(args);
-        return await container.dispatch(c.name, ...args);
+        return await container.dispatch(c.name, ...args).then(result => { throw result }, err => err);
     }, container, {
         param: [], route: req.params, query: req.query, _trigger: 'http', get rawBody()
         {
