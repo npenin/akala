@@ -21,7 +21,7 @@ async function processCommand<T>(container: Container<T>, c: Metadata.Command, i
 {
     const req = injected.$request;
     const res = injected.$response;
-    let bodyParsing: Promise<unknown>;
+    let bodyParsing: Promise<{ parsed: any, raw: Buffer }>;
     let rawBody: Buffer;
     return Processors.Local.handle(c, async function (...args)
     {
@@ -32,72 +32,12 @@ async function processCommand<T>(container: Container<T>, c: Metadata.Command, i
     }, container, {
         param: [], route: req.params, query: req.query, _trigger: 'http', get rawBody()
         {
-            return this.body.then(() => rawBody);
+            bodyParsing = this.body.parse({ returnRawBody: true });
+            return bodyParsing.then(body => body.raw)
         }, get body()
         {
-            if (bodyParsing)
-                return bodyParsing;
-            return bodyParsing = new Promise((resolve, reject) =>
-            {
-                if (req['body'])
-                {
-                    log('already parsed');
-                    log(req['body']);
-                    resolve(req['body']);
-                }
-                else
-                    parser.json({
-                        verify(_req, _res, buffer)
-                        {
-                            rawBody = buffer;
-                        }
-                    })(req, res, function (err)
-                    {
-                        if (err)
-                            reject(err);
-                        else if (req['body'])
-                        {
-                            log('json');
-                            log(req['body']);
-                            resolve(req['body']);
-                        }
-                        else parser.urlencoded({
-                            verify(_req, res, buffer)
-                            {
-                                rawBody = buffer;
-                            }
-                        })(req, res, function (err)
-                        {
-                            if (err)
-                                reject(err);
-                            else if (req['body'])
-                            {
-                                log('urlencoded');
-                                log(req['body']);
-                                resolve(req['body']);
-                            }
-                            else
-                                parser.text({
-                                    verify(_req, res, buffer)
-                                    {
-                                        rawBody = buffer;
-                                    }
-                                })(req, res, function (err)
-                                {
-                                    if (err)
-                                        reject(err);
-                                    else if (req['body'])
-                                    {
-                                        log('text');
-                                        log(req['body']);
-                                        resolve(req['body']);
-                                    }
-                                    else
-                                        reject(new Error('body format not understood'));
-                                })
-                        })
-                    });
-            })
+            bodyParsing = this.body.parse({ returnRawBody: true });
+            return bodyParsing.then(body => body.parsed)
         }, headers: req.headers, ...injected
     });
 }
