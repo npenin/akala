@@ -11,8 +11,7 @@ export class HttpRouteMiddleware<T extends [Request, Response]> extends Middlewa
 
     public isApplicable = (req: T[0]): boolean =>
     {
-
-        return this.method === req.method || req.method == 'head' || req.method == 'options';
+        return this.method === req.method.toLowerCase() || req.method == 'head' || req.method == 'options';
     }
 
     public handle(...context: T): MiddlewarePromise
