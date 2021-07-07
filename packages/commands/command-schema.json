@@ -44,74 +44,39 @@
                     "type": "object",
                     "title": "The cli Schema",
                     "properties": {
+                        "usage": {
+                            "$id": "#/cli/properties/usage",
+                            "type": "string",
+                            "title": "The cli usage Schema",
+                            "examples": [
+                                "cmd <mandatory> [optional]",
+                                "cmd <mandatory>",
+                                "cmd [optional]"
+                            ]
+                        },
                         "options": {
                             "$id": "#/cli/properties/options",
                             "type": "object",
                             "title": "The cli options Schema",
-                            "properties": {
-                                "alias": {
+                            "patternProperties": {
+                                "^.+$": {
                                     "type": "object",
-                                    "patternProperties": {
-                                        "^.+$": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "string"
-                                            }
-                                        }
-                                    }
-                                },
-                                "array": {
-                                    "oneOf": [
-                                        {
+                                    "properties": {
+                                        "aliases": {
                                             "type": "array",
                                             "items": {
                                                 "type": "string"
                                             }
                                         },
-                                        {
-                                            "type": "object",
-                                            "properties": {
-                                                "key": {
-                                                    "type": "string"
-                                                },
-                                                "boolean": {
-                                                    "type": "boolean"
-                                                },
-                                                "number": {
-                                                    "type": "boolean"
-                                                }
-                                            }
+                                        "needsValue": {
+                                            "type": "boolean"
+                                        },
+                                        "caseSensitive": {
+                                            "type": "boolean"
+                                        },
+                                        "normalize": {
+                                            "type": "boolean"
                                         }
-                                    ]
-                                },
-                                "boolean": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
-                                    }
-                                },
-                                "normalize": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
-                                    }
-                                },
-                                "number": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
-                                    }
-                                },
-                                "string": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
-                                    }
-                                },
-                                "count": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
                                     }
                                 }
                             }

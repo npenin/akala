@@ -13,12 +13,15 @@ export async function metadata(container: Container<unknown>, deep?: boolean): P
     {
         if (key === '$injector' || key === '$state' || key === '$container' || ignoredCommands.indexOf(key) > -1 || key == '$init' || key == '$stop')
             return;
-        const cmd = container.resolve<Command>(key);
+        const cmd = container.resolve<Command | Container<unknown>>(key);
         if (cmd && cmd.name && cmd instanceof Command && ignoredCommands.indexOf(cmd.name) == -1)
             metacontainer.commands.push({ name: cmd.name, inject: cmd.inject || [], config: cmd.config });
         // console.log(deep)
         if (cmd instanceof Container && deep)
         {
+            if (isRunningContainer(cmd) && !cmd.running)
+                return;
+
             const subContainer = await cmd.dispatch('$metadata', deep) as Metadata.Container;
             console.log(subContainer);
             if (subContainer && subContainer.commands)
@@ -29,6 +32,11 @@ export async function metadata(container: Container<unknown>, deep?: boolean): P
         }
     });
     return metacontainer;
+}
+
+export function isRunningContainer(c: Container<any>): c is RunningContainer
+{
+    return 'running' in c;
 }
 
 export default async function (this: State, container: RunningContainer<State> & pmContainer.container, options: ServeOptions): Promise<void>

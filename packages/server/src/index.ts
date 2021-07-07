@@ -4,6 +4,8 @@ export { router, Request, Response, HttpRouter, CallbackResponse } from './route
 import './http'
 export * from './http'
 
+export * from './queue'
+
 import container from './commands'
 export { container }
 export { State } from './state'

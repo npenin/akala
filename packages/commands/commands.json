@@ -128,44 +128,30 @@
         },
         {
             "name": "new",
-            "inject": [
-                "param.0",
-                "param.1",
-                "param.2"
-            ],
+            "inject": [],
             "config": {
                 "": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ]
+                    "inject": []
                 },
                 "fs": {
                     "path": "dist/cli/new.js",
                     "source": "src/cli/new.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ]
+                    "inject": []
                 },
                 "cli": {
+                    "usage": "new <action> <name> [destination]",
                     "options": {
-                        "alias": {
-                            "force": [
+                        "force": {
+                            "aliases": [
                                 "f"
                             ]
-                        },
-                        "boolean": [
-                            "force"
-                        ]
+                        }
                     },
                     "inject": [
-                        "param.0",
-                        "param.1",
+                        "options.action",
+                        "options.name",
                         "options",
-                        "param.2"
+                        "options.destination"
                     ]
                 }
             }

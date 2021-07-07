@@ -8,16 +8,23 @@ import { eachAsync } from "@akala/core";
 import { NewLinePrefixer } from "../new-line-prefixer.js";
 import { SocketAdapterEventMap } from "@akala/json-rpc-ws";
 import { CliContext } from "@akala/cli";
+import getRandomName from "./name";
 
-export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, options?: CliContext<{ inspect?: boolean, verbose?: boolean, wait?: boolean }>): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
+export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, options?: CliContext<{ new?: boolean, name: string, inspect?: boolean, verbose?: boolean, wait?: boolean }>): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
 {
     let args: string[];
+
+    if (!options.options.name && options.options.new)
+        options.options.name = getRandomName();
+    else if (!options.options.name)
+        options.options.name = name;
+
     if (this.isDaemon)
     {
         // eslint-disable-next-line no-var
-        var container = this.processes.find(c => c.name == name);
+        var container = this.processes.find(c => c.name == options.options.name);
         if (container && container.running)
-            throw new Error(name + ' is already started');
+            throw new Error(container.name + ' is already started');
         args = await pm.dispatch('config', name) as string[];
         if (args)
             args = args.slice(0)
@@ -50,7 +57,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
     if (options.options && options.options.verbose)
         args.push('-v')
 
-    const log = debug('akala:pm:' + name);
+    const log = debug('akala:pm:' + options.options.name);
     let cp: ChildProcess;
     if (!this.isDaemon)
     {
@@ -77,17 +84,11 @@ export default async function start(this: State, pm: pmContainer.container & Con
     else
     {
         if (!container && this.config.mapping[name].dependencies?.length)
-        {
-            await eachAsync(this.config.mapping[name].dependencies, async function (dep)
-            {
-                await pm.dispatch('start', dep, { wait: true });
-
-            })
-        }
+            await eachAsync(this.config.mapping[name].dependencies, (dep) => pm.dispatch('start', dep, { wait: true }));
 
         cp = spawn(process.execPath, args, { cwd: process.cwd(), env: Object.assign({ DEBUG_COLORS: true }, process.env), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
-        cp.stderr?.pipe(new NewLinePrefixer(name + ' ', { useColors: true })).pipe(process.stderr);
-        cp.stdout?.pipe(new NewLinePrefixer(name + ' ', { useColors: true })).pipe(process.stdout);
+        cp.stderr?.pipe(new NewLinePrefixer(options.options.name + ' ', { useColors: true })).pipe(process.stderr);
+        cp.stdout?.pipe(new NewLinePrefixer(options.options.name + ' ', { useColors: true })).pipe(process.stdout);
 
         if (!container || !container.running)
         {
@@ -124,9 +125,9 @@ export default async function start(this: State, pm: pmContainer.container & Con
             }), true);
 
             if (container)
-                this.processes.splice(this.processes.indexOf(container), 1, container = new Container(name, null, processor) as RunningContainer);
+                this.processes.splice(this.processes.indexOf(container), 1, container = new Container(options.options.name, null, processor) as RunningContainer);
             else
-                container = new Container(name, null, processor) as RunningContainer;
+                container = new Container(options.options.name, null, processor) as RunningContainer;
 
             if (this.config.mapping[name].commandable)
                 pm.register(container);
@@ -148,11 +149,6 @@ export default async function start(this: State, pm: pmContainer.container & Con
 
         })
 
-        this.config.mapping[name]
-        // container.resolve = function (c: string)
-        // {
-        //     return new CommandProxy<any>((container as RunningContainer).processor, c, ['$param']) as any;
-        // }
         container.running = true;
         cp.on('exit', function ()
         {

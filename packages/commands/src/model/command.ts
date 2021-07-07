@@ -1,7 +1,7 @@
 import { InjectableWithTypedThis } from "@akala/core";
 import { Processor } from './processor';
 import { Container } from './container';
-import * as metadata from '../metadata/index'
+import * as metadata from '../metadata'
 
 type Injectable<T, U> = InjectableWithTypedThis<T, U> & { '$inject'?: string[] }
 

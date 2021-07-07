@@ -33,16 +33,18 @@ const truncate = '…';
 
 type CliOptions = { output: string, verbose: boolean, pmSock: string | number, tls: boolean };
 
-const cli = program.options<CliOptions>({ output: { aliases: ['o'] }, verbose: { aliases: ['v'] }, tls: {}, pmSock: { aliases: ['pm-sock'], needsValue: true } });
-cli.command<{ program: string, inspect?: boolean, wait?: boolean }>('start [program]')
+const cli = program.options<CliOptions>({ output: { aliases: ['o'], needsValue: true }, verbose: { aliases: ['v'] }, tls: {}, pmSock: { aliases: ['pm-sock'], needsValue: true } });
+cli.command<{ program?: string }>('start [program]')
     .option('inspect')
     .option('wait', { aliases: ['w'] })
+    .option('new', { needsValue: false })
+    .option('name', { needsValue: true })
     .action(c =>
     {
         if (typeof c.options.program == 'undefined')
             c.options.program = 'pm';
         if (c.options.program === 'pm')
-            start.call({} as unknown as State, null, c.options.program, c);
+            start.call({} as unknown as State, null, c.options.program, c as any);
         else
             throw undefined;
     });

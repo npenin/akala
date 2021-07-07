@@ -1,21 +1,19 @@
 {
     "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
     "cli": {
+        "usage": "new <action> <name> [destination]",
         "options": {
-            "alias": {
-                "force": [
+            "force": {
+                "aliases": [
                     "f"
                 ]
-            },
-            "boolean": [
-                "force"
-            ]
+            }
         },
         "inject": [
-            "param.0",
-            "param.1",
+            "options.action",
+            "options.name",
             "options",
-            "param.2"
+            "options.destination"
         ]
     }
 }

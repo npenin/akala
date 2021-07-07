@@ -24,21 +24,23 @@ export const simpleRunner: Runner<JobStepRun> = {
     }
 }
 
-type StepRunner<TStep extends JobStepDef<TType, unknown, unknown>, TType extends string> = (obj: TStep[TType],
-    step: JobStepDef<TType>,
+type StepRunner<TStep extends JobStepDef<TType, any, any>, TType extends string> = (obj: TStep[TType],
+    step: TStep,
     stdio?: { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe }) => Promise<void | string>;
 
 export type Runner<TSupportedJobSteps extends JobStepDef<string, any, any>> = {
-    [k in TSupportedJobSteps['type']]: StepRunner<JobStepDef<k, unknown, unknown>, k>
+    [k in TSupportedJobSteps['type']]: StepRunner<TSupportedJobSteps extends JobStepDef<k, infer TActor, infer TSettings> ? TSupportedJobSteps : never, k>
 };
 
-export default function automate<TSupportedJobSteps extends JobStepDef<string, any, any>>(workflow: Workflow['jobs'], runner: Runner<TSupportedJobSteps>, stdio?: { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
+export default function automate<TResult extends object, TSupportedJobSteps extends JobStepDef<string, any, any>>(workflow: Workflow['jobs'], runner: Runner<TSupportedJobSteps>, stdio?: { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
 {
     const orchestrator = new Orchestrator();
     orchestrator.on('task_start', (t) => console.log('running ' + t.task));
     orchestrator.on('task_stop', (t) => console.log(`ran ${t.task} successfully`));
 
     orchestrator.add('#main', Object.keys(workflow));
+
+    const results = {} as unknown as TResult;
 
     ensureDefaults(workflow)
 
@@ -53,21 +55,21 @@ export default function automate<TSupportedJobSteps extends JobStepDef<string, a
                 function ()
                 {
                     if (runner[step.type])
-                        return runner[step.type](step[step.type], step, stdio);
+                        return results[step.name] = runner[step.type](step[step.type], step, stdio);
                     else
                         throw new Error('this runner does not support uses');
                 });
         });
     });
 
-    return new Promise<void>((resolve, reject) =>
+    return new Promise<TResult>((resolve, reject) =>
     {
         orchestrator.start('#main', (err) =>
         {
             if (err)
                 reject(err);
             else
-                resolve();
+                resolve(results);
         });
     });
 }
@@ -111,7 +113,7 @@ export interface Job
     steps: JobStepDef<string, any, any>[];
 }
 
-export type JobStepActor<T extends string, TActor = string> = {
+type JobStepActor<T extends string, TActor = string> = {
     [k in T]: TActor;
 }
 
