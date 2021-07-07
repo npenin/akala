@@ -20,9 +20,7 @@ function wrapHttp<T>(container: Container<T>, command: Metadata.Command)
 async function processCommand<T>(container: Container<T>, c: Metadata.Command, injected: { '$request': Request, '$response': Response, [key: string]: unknown })
 {
     const req = injected.$request;
-    const res = injected.$response;
     let bodyParsing: Promise<{ parsed: any, raw: Buffer }>;
-    let rawBody: Buffer;
     return Processors.Local.handle(c, async function (...args)
     {
         args = await mapAsync(args, async el => await el);
@@ -33,12 +31,12 @@ async function processCommand<T>(container: Container<T>, c: Metadata.Command, i
         param: [], route: req.params, query: req.query, _trigger: 'http', get rawBody()
         {
             if (!bodyParsing)
-                bodyParsing = this.body.parse({ returnRawBody: true });
+                bodyParsing = req.body.parse({ returnRawBody: true });
             return bodyParsing.then(body => body.raw)
         }, get body()
         {
             if (!bodyParsing)
-                bodyParsing = this.body.parse({ returnRawBody: true });
+                bodyParsing = req.body.parse({ returnRawBody: true });
             return bodyParsing.then(body => body.parsed)
         }, headers: req.headers, ...injected
     });
