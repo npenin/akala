@@ -1,0 +1,30 @@
+{
+    "name": "loader",
+    "commands": [
+        {
+            "name": "load",
+            "inject": [
+                "param.0"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "usage": "load [source]",
+                    "inject": [
+                        "options.source"
+                    ],
+                    "options": {
+                        "persist": {
+                            "normalize": true
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+}

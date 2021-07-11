@@ -88,9 +88,12 @@ class OptionMiddleware implements akala.Middleware<[context: CliContext]>
                     }
                     else
                     {
-                        if (match[2])
-                            value += match[2];
-                        else if (this.options?.needsValue)
+                        if (this.options?.needsValue)
+                        {
+                            value += context.args[index + 1 + match[1].length];
+                            context.args.splice(index + 1, 1);
+                        }
+                        else if (match[2])
                             value += match[2].length;
                         else
                             value = true;
@@ -264,7 +267,10 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
             return super.handle(context).then(async err =>
             {
                 if (err)
-                    return err;
+                    if (err === 'break')
+                        return;
+                    else
+                        return this.handleError(err, context);
                 if (this._action)
                     var result = await this._action.handle(context);
                 context.args = args;

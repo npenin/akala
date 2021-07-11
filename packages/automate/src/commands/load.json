@@ -1,0 +1,29 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
+    "": {
+        "inject": [
+            "param.0",
+            "param.1"
+        ]
+    },
+    "fs": {
+        "path": "load.js",
+        "source": "../../src/commands/load.ts",
+        "inject": [
+            "param.0",
+            "param.1"
+        ]
+    },
+    "cli": {
+        "usage": "load <name> <file>",
+        "inject": [
+            "options.name",
+            "options.file"
+        ],
+        "options": {
+            "file": {
+                "normalize": true
+            }
+        }
+    }
+}

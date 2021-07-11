@@ -7,7 +7,7 @@ import debug from "debug";
 import { eachAsync } from "@akala/core";
 import { NewLinePrefixer } from "../new-line-prefixer.js";
 import { SocketAdapterEventMap } from "@akala/json-rpc-ws";
-import { CliContext } from "@akala/cli";
+import { CliContext, ErrorWithStatus } from "@akala/cli";
 import getRandomName from "./name";
 
 export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, options?: CliContext<{ new?: boolean, name: string, inspect?: boolean, verbose?: boolean, wait?: boolean }>): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
@@ -32,7 +32,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
             args = [];
 
         if (!this.config.mapping[name] && name != 'pm')
-            throw new Error(`No mapping was found for ${name}. Did you want to run \`pm install ${name}\` or maybe are you missing the folder to ${name} ?`)
+            throw new ErrorWithStatus(44, `No mapping was found for ${name}. Did you want to run \`pm install ${name}\` or maybe are you missing the folder to ${name} ?`)
 
         if (this.config && this.config.mapping[name] && this.config.mapping[name].path)
             args.unshift(this.config.mapping[name].path);
@@ -42,7 +42,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
     else
     {
         if (name != 'pm')
-            throw new Error('this command needs to run through daemon process');
+            throw new ErrorWithStatus(40, 'this command needs to run through daemon process');
 
         args = [name, ...options.args, ...Object.entries(options.options).map(entries => ['--' + entries[0] + '=' + entries[1]]).flat()];
     }

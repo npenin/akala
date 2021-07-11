@@ -79,7 +79,7 @@ export class MiddlewareComposite<T extends unknown[]> implements Middleware<T>, 
     {
         return new Promise<Error | SpecialNextParam | OptionsResponse>((resolve, reject) =>
         {
-            let failed: boolean = undefined;
+            let failed: boolean = !!error;
             eachAsync(this.stack, (middleware, _i, next) =>
             {
                 if (failed && isErrorMiddleware(middleware))

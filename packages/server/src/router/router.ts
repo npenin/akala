@@ -146,7 +146,6 @@ export class HttpRouter extends Router2<Request, Response>
             }
             else
                 res.writeHead(204, 'OK', { contenttype: 'text/plain', contentLength: 0 }).end();
-
         })
     }
 
@@ -166,7 +165,7 @@ export interface HttpRouter
     'getMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
     'headMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
     'lockMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
-    'mMiddleware-search'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
+    'm-searchMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
     'mergeMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
     'mkactivityMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;
     'mkcalendarMiddleware'(path: string, ...middlewares: Middleware<[Request, Response]>[]): this;

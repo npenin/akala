@@ -25,5 +25,11 @@ mock('@akala/core', require('./index'));
         }
     }
 
-    program.process(buildCliContextFromProcess());
+    program.process(buildCliContextFromProcess()).catch(err =>
+    {
+        if (err.statusCode)
+            process.exit(err.statusCode);
+        else
+            process.exit(500);
+    });
 })();
