@@ -84,3 +84,6 @@ export interface SidecarMap
     [key: string]: Promise<Container<void>>;
     pm: Promise<pmContainer & Container<void>>
 }
+
+import getRandomName from './commands/name';
+export { getRandomName };

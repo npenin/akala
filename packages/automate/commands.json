@@ -1,0 +1,98 @@
+{
+    "name": "commands",
+    "commands": [
+        {
+            "name": "$init",
+            "inject": [
+                "param.0"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "fs": {
+                    "path": "$init.js",
+                    "source": "../../src/commands/$init.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "usage": "$init [persist]",
+                    "inject": [
+                        "options.persist"
+                    ],
+                    "options": {
+                        "persist": {
+                            "normalize": true
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "enqueue",
+            "inject": [
+                "param.0",
+                "param.1",
+                "param.2"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/enqueue.js",
+                    "source": "src/commands/enqueue.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "load",
+            "inject": [
+                "param.0",
+                "param.1"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "fs": {
+                    "path": "load.js",
+                    "source": "../../src/commands/load.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "cli": {
+                    "usage": "load <name> <file>",
+                    "inject": [
+                        "options.name",
+                        "options.file"
+                    ],
+                    "options": {
+                        "file": {
+                            "normalize": true
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+}

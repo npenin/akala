@@ -2,7 +2,7 @@ import { Writable } from "stream";
 import fs from 'fs';
 import path from 'path';
 import { promisify } from "util";
-import { CliContext } from "@akala/cli";
+import { CliContext, ErrorWithStatus } from "@akala/cli";
 import { Processors } from "..";
 
 export async function outputHelper(outputFile: string | undefined, nameIfFolder: string, force: boolean)
@@ -53,7 +53,6 @@ export async function write(output: Writable, content: string)
 
 export default async function _new(type: string, name: string, options: CliContext<{ force?: boolean }>['options'], destination?: string)
 {
-    console.error(arguments);
     switch (type)
     {
         case 'command':
@@ -69,6 +68,8 @@ export default async function _new(type: string, name: string, options: CliConte
         case 'command-config':
             var cmds = await Processors.FileSystem.discoverMetaCommands(destination, { isDirectory: true, processor: new Processors.FileSystem(null, destination) });
             const cmd = cmds.find(c => c.name == name);
+            if (!cmd)
+                throw new ErrorWithStatus(44, `No command with name ${name} could be found in ${destination}`)
             var { output } = await outputHelper(path.resolve(destination, cmd?.config?.fs?.source && path.dirname(cmd?.config?.fs?.source)), name + '.json', options && options.force);
             await write(output, JSON.stringify({ $schema: "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json", ...cmd.config }, null, 4));
             break;

@@ -146,6 +146,7 @@ cli.command(null).preAction(async c =>
                 args.args.push(value);
             return await cli.process(args);
         }
+        throw err;
     })
 
 // handle.action(async args =>
@@ -182,14 +183,22 @@ cli.command(null).preAction(async c =>
 //     }
 // });
 cli.format((result, context) => formatResult(result, context.options.output));
+program.useError((err: Error, context) =>
+{
+    if (context.options.verbose)
+        console.error(err);
+    else
+        console.error('Error: ' + err.message);
+    return Promise.reject(err);
+})
 program.process(buildCliContextFromProcess()).then(r =>
 {
     if (socket)
         socket.end();
 }, err =>
 {
-    console.error(err);
-    process.exit(500);
+    // console.error(err);
+    process.exit(err && err.statusCode || 50);
 });
 
 
