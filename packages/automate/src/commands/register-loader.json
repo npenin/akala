@@ -8,20 +8,13 @@
     },
     "fs": {
         "inject": [
-            "param.0",
-            "param.1"
+            "param.0"
         ]
     },
-    "cli": {
-        "usage": "load <name> <file>",
+    "jsonrpc": {
         "inject": [
-            "options.name",
-            "options.file"
-        ],
-        "options": {
-            "file": {
-                "normalize": true
-            }
-        }
+            "param.0",
+            "connectionAsContainer"
+        ]
     }
 }

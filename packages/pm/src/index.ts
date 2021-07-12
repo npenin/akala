@@ -77,12 +77,17 @@ export function sidecar<T extends SidecarMap>(options?: Omit<ConnectionPreferenc
     });
 }
 
-export type Sidecar<T extends SidecarMap> = { [key in keyof T]: Promise<T[key]> };
+export interface ContainerLite
+{
+    dispatch(cmd: string, ...args: unknown[]): Promise<unknown>;
+}
+
+export type Sidecar<T extends SidecarMap> = { [key in keyof T]: Promise<T[key] & Container<void>> };
 
 export interface SidecarMap
 {
-    [key: string]: Promise<Container<void>>;
-    pm: Promise<pmContainer & Container<void>>
+    [key: string]: ContainerLite;
+    pm: pmContainer
 }
 
 import getRandomName from './commands/name';

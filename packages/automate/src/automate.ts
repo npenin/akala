@@ -1,7 +1,8 @@
 import { SerializableObject } from '@akala/json-rpc-ws'
 import Orchestrator from 'orchestrator';
 import { spawn, StdioNull, StdioPipe, exec, SpawnOptionsWithoutStdio } from 'child_process';
-import workflow from './workflow';
+import commands from './container';
+import { Container } from '@akala/commands';
 
 export const simpleRunner: Runner<JobStepRun> = {
     run(cmd: string | string[], step: JobStepRun, stdio?: { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
@@ -136,6 +137,6 @@ declare module '@akala/pm'
 {
     export interface SidecarMap
     {
-        '@akala/automate': workflow.container;
+        '@akala/automate': commands.container;
     }
 }

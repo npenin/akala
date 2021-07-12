@@ -2,7 +2,7 @@ import { State } from '../state';
 import * as path from 'path'
 import * as akala from '@akala/core'
 
-export default function requireCmd(this: State, injector: akala.Injector, target: string, cwd: string): unknown
+export default async function requireCmd(this: State, injector: akala.Injector, target: string, cwd: string): Promise<unknown>
 {
     // console.log(arguments);
 
