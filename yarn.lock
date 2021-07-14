@@ -9,8 +9,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@akala/authentication@workspace:packages/authentication"
   dependencies:
-    "@akala/server": ^6.1.77
-    "@akala/storage": ^2.1.36
+    "@akala/server": "workspace:packages/server"
+    "@akala/storage": "workspace:packages/storage"
     "@types/co-body": ^5.1.0
     "@types/connect-ensure-login": ^0.1.4
     "@types/debug": ^4.1.6
@@ -34,20 +34,20 @@ __metadata:
     typescript: ^4.3.5
     uuid: ^8.0.0
   peerDependencies:
-    "@akala/server": ^5.1.6
+    "@akala/server": "*"
   languageName: unknown
   linkType: soft
 
-"@akala/automate@^0.0.18, @akala/automate@workspace:packages/automate":
+"@akala/automate@workspace:packages/automate":
   version: 0.0.0-use.local
   resolution: "@akala/automate@workspace:packages/automate"
   dependencies:
-    "@akala/commands": ^1.0.40
-    "@akala/config": ^0.2.45
-    "@akala/core": ^7.0.34
+    "@akala/commands": "workspace:packages/commands"
+    "@akala/config": "workspace:packages/config"
+    "@akala/core": "workspace:packages/core"
     "@akala/json-rpc-ws": ^9.1.44
-    "@akala/pm": ^2.1.69
-    "@akala/server": ^6.1.77
+    "@akala/pm": "workspace:packages/pm"
+    "@akala/server": "workspace:packages/server"
     "@types/assert": ^1.5.4
     "@types/mocha": ^8.2.1
     assert: ^2.0.0
@@ -58,11 +58,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@akala/cli@^1.0.29, @akala/cli@workspace:packages/cli":
+"@akala/cli@workspace:packages/cli":
   version: 0.0.0-use.local
   resolution: "@akala/cli@workspace:packages/cli"
   dependencies:
-    "@akala/core": ^7.0.34
+    "@akala/core": "workspace:packages/core"
     "@types/debug": ^4.1.6
     "@types/mkdirp": ^1.0.0
     "@types/mock-require": ^2.0.0
@@ -76,12 +76,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@akala/client@^5.0.47, @akala/client@workspace:packages/client":
+"@akala/client@workspace:packages/client":
   version: 0.0.0-use.local
   resolution: "@akala/client@workspace:packages/client"
   dependencies:
-    "@akala/commands": ^1.0.40
-    "@akala/core": ^7.0.34
+    "@akala/commands": "workspace:packages/commands"
+    "@akala/core": "workspace:packages/core"
     "@akala/json-rpc-ws": ^9.1.44
     "@popperjs/core": ^2.8.4
     "@types/content-type": ^1.1.3
@@ -111,12 +111,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@akala/commands@^1.0.40, @akala/commands@workspace:packages/commands":
+"@akala/commands@workspace:packages/commands":
   version: 0.0.0-use.local
   resolution: "@akala/commands@workspace:packages/commands"
   dependencies:
-    "@akala/cli": ^1.0.29
-    "@akala/core": ^7.0.34
+    "@akala/cli": "workspace:packages/cli"
+    "@akala/core": "workspace:packages/core"
     "@akala/json-rpc-ws": ^9.1.44
     "@types/debug": ^4.1.6
     "@types/mocha": ^8.2.1
@@ -138,19 +138,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@akala/config@^0.2.45, @akala/config@workspace:packages/config":
+"@akala/config@workspace:packages/config":
   version: 0.0.0-use.local
   resolution: "@akala/config@workspace:packages/config"
   dependencies:
-    "@akala/commands": ^1.0.40
-    "@akala/core": ^7.0.34
+    "@akala/commands": "workspace:packages/commands"
+    "@akala/core": "workspace:packages/core"
+    "@akala/pm": "workspace:packages/pm"
     typescript: ^4.3.5
+  dependenciesMeta:
+    "@akala/pm":
+      optional: true
   bin:
     uci2: ./dist/cli.js
   languageName: unknown
   linkType: soft
 
-"@akala/core@^7.0.34, @akala/core@workspace:packages/core":
+"@akala/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@akala/core@workspace:packages/core"
   dependencies:
@@ -182,7 +186,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@akala/cron@workspace:packages/cron"
   dependencies:
-    "@akala/commands": ^1.0.40
+    "@akala/commands": "workspace:packages/commands"
     "@types/debug": ^4.1.6
     debug: ^4.3.1
   languageName: unknown
@@ -192,9 +196,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@akala/dashboard@workspace:packages/dashboard"
   dependencies:
-    "@akala/client": ^5.0.47
-    "@akala/core": ^7.0.34
-    "@akala/server": ^6.1.77
+    "@akala/client": "workspace:packages/client"
+    "@akala/core": "workspace:packages/core"
+    "@akala/server": "workspace:packages/server"
     "@fortawesome/fontawesome-common-types": ^0.2.19
     "@popperjs/core": ^2.8.4
     "@types/debug": ^4.1.6
@@ -202,7 +206,7 @@ __metadata:
     reflect-metadata: ^0.1.13
     typescript: ^4.3.5
   peerDependencies:
-    "@akala/pages": ^0.0.45
+    "@akala/pages": "*"
   languageName: unknown
   linkType: soft
 
@@ -234,21 +238,21 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@akala/pages@workspace:packages/pages"
   dependencies:
-    "@akala/core": ^7.0.34
-    "@akala/server": ^6.1.77
+    "@akala/core": "workspace:packages/core"
+    "@akala/server": "workspace:packages/server"
     "@types/debug": ^4.1.6
     reflect-metadata: ^0.1.13
     typescript: ^4.3.5
   languageName: unknown
   linkType: soft
 
-"@akala/pm@^2.1.69, @akala/pm@workspace:packages/pm":
+"@akala/pm@workspace:packages/pm":
   version: 0.0.0-use.local
   resolution: "@akala/pm@workspace:packages/pm"
   dependencies:
-    "@akala/cli": ^1.0.29
-    "@akala/commands": ^1.0.40
-    "@akala/core": ^7.0.34
+    "@akala/cli": "workspace:packages/cli"
+    "@akala/commands": "workspace:packages/commands"
+    "@akala/core": "workspace:packages/core"
     "@akala/json-rpc-ws": ^9.1.44
     "@types/debug": ^4.1.6
     "@types/mock-require": ^2.0.0
@@ -265,14 +269,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@akala/server@^6.1.77, @akala/server@workspace:packages/server":
+"@akala/server@workspace:packages/server":
   version: 0.0.0-use.local
   resolution: "@akala/server@workspace:packages/server"
   dependencies:
-    "@akala/commands": ^1.0.40
-    "@akala/core": ^7.0.34
+    "@akala/commands": "workspace:packages/commands"
+    "@akala/core": "workspace:packages/core"
     "@akala/json-rpc-ws": ^9.1.44
-    "@akala/pm": ^2.1.69
+    "@akala/pm": "workspace:packages/pm"
     "@types/co-body": ^5.1.0
     "@types/cookie": ^0.4.0
     "@types/debug": ^4.1.6
@@ -311,11 +315,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@akala/storage@^2.1.36, @akala/storage@workspace:packages/storage":
+"@akala/storage@workspace:packages/storage":
   version: 0.0.0-use.local
   resolution: "@akala/storage@workspace:packages/storage"
   dependencies:
-    "@akala/core": ^7.0.34
+    "@akala/core": "workspace:packages/core"
     "@types/debug": ^4.1.6
     "@types/mocha": ^8.2.1
     "@types/node": ^14.14.31
@@ -3361,7 +3365,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "akala-docker@workspace:packages/docker"
   dependencies:
-    "@akala/pm": ^2.1.69
+    "@akala/pm": "workspace:packages/pm"
     yarn: ^1.22.4
   languageName: unknown
   linkType: soft
@@ -3670,8 +3674,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "automate-yamlloader@workspace:packages/automate-yamlloader"
   dependencies:
-    "@akala/automate": ^0.0.18
-    "@akala/pm": ^2.1.69
+    "@akala/automate": "workspace:packages/automate"
+    "@akala/config": "workspace:packages/config"
+    "@akala/pm": "workspace:packages/pm"
     "@types/node": ^14
   languageName: unknown
   linkType: soft

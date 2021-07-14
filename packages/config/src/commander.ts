@@ -5,7 +5,6 @@ namespace configuration
 {
 	export interface container 
 	{
-		dispatch (cmd:'$init', ...args: [Argument1<typeof import('./commands/$init').default>]): ReturnType<typeof import('./commands/$init').default>
 		dispatch (cmd:'commit', ...args: [Argument1<typeof import('./commands/commit').default>]): ReturnType<typeof import('./commands/commit').default>
 		dispatch (cmd:'get', ...args: [Argument0<typeof import('./commands/get').default>, Argument1<typeof import('./commands/get').default>]): ReturnType<typeof import('./commands/get').default>
 		dispatch (cmd:'revert', ...args: [Argument0<typeof import('./commands/revert').default>]): ReturnType<typeof import('./commands/revert').default>
@@ -13,7 +12,6 @@ namespace configuration
 	}
 	export interface proxy 
 	{
-		'$init'(...args: [Argument1<typeof import('./commands/$init').default>]): ReturnType<typeof import('./commands/$init').default>
 		'commit'(...args: [Argument1<typeof import('./commands/commit').default>]): ReturnType<typeof import('./commands/commit').default>
 		'get'(...args: [Argument0<typeof import('./commands/get').default>, Argument1<typeof import('./commands/get').default>]): ReturnType<typeof import('./commands/get').default>
 		'revert'(...args: [Argument0<typeof import('./commands/revert').default>]): ReturnType<typeof import('./commands/revert').default>
