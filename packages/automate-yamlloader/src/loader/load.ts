@@ -1,8 +1,9 @@
 import { sidecar } from "@akala/pm";
+import { Workflow } from "@akala/automate";
 import yaml from 'yaml';
 import { readFile } from 'fs/promises'
 
-export default async function load(file: string)
+export default async function load(file: string): Promise<Workflow>
 {
-    (await sidecar()['@akala/automate']).dispatch('load', yaml.parse(await readFile(file, 'utf8')))
+    return yaml.parse(await readFile(file, 'utf8'));
 }
