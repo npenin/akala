@@ -1,9 +1,9 @@
 import { sidecar } from '@akala/pm'
-import Configuration from '@akala/config'
+import { Container } from '@akala/commands';
 
-export default async function (config: Configuration)
+export default async function (container: Container<void>)
 {
-    const automate = await sidecar()['@akala/automate'];
+    const automate = await sidecar({ container: container })['@akala/automate'];
     await automate.dispatch('register-loader', '.yml');
     await automate.dispatch('register-loader', '.yaml');
 }

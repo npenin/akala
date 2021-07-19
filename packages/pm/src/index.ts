@@ -53,10 +53,12 @@ export function connect(name: string): Promise<{ connect: ServeMetadata, contain
 
 const defaultOrders: (keyof ServeMetadata)[] = ['ssocket', 'socket', 'wss', 'ws'];
 
-export function sidecar<T extends SidecarMap>(options?: Omit<ConnectionPreference, 'container'> & { [key in keyof T]?: Partial<ConnectionPreference> & { orders?: (keyof ServeMetadata)[] } }, noCache?: boolean): Sidecar<T>
+type SideCarConnectionPreference = { [key in keyof SidecarMap]?: Partial<ConnectionPreference> & { orders?: (keyof ServeMetadata)[] } };
+
+export function sidecar(options?: Omit<ConnectionPreference, 'metadata'> | SideCarConnectionPreference | Omit<ConnectionPreference, 'metadata'> & SideCarConnectionPreference, noCache?: boolean): Sidecar
 {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return new Proxy<Sidecar<T>>({} as any, {
+    return new Proxy<Sidecar>({} as any, {
         get(target, property)
         {
             if (typeof (property) !== 'string')
@@ -68,7 +70,7 @@ export function sidecar<T extends SidecarMap>(options?: Omit<ConnectionPreferenc
                 Object.defineProperty(target, property, {
                     value: connect(property).then(async meta => 
                     {
-                        const c = await connectByPreference(meta.connect, Object.assign({ container: meta.container }, options, options && options[property]), ...orders);
+                        const c = await connectByPreference(meta.connect, Object.assign({ metadata: meta.container }, options, options && options[property]), ...orders);
                         return c.container;
                     })
                 });
@@ -82,7 +84,7 @@ export interface ContainerLite
     dispatch(cmd: string, ...args: unknown[]): Promise<unknown>;
 }
 
-export type Sidecar<T extends SidecarMap> = { [key in keyof T]: Promise<T[key] & Container<void>> };
+export type Sidecar = { [key in keyof SidecarMap]: Promise<SidecarMap[key] & Container<void>> };
 
 export interface SidecarMap
 {

@@ -1,0 +1,33 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
+    "": {
+        "inject": [
+            "param.0",
+            "param.1",
+            "param.2"
+        ]
+    },
+    "cli": {
+        "inject": [
+            "param.0",
+            "context",
+            "options.wait"
+        ],
+        "options": {
+            "wait": {
+                "aliases": [
+                    "w"
+                ]
+            }
+        }
+    },
+    "fs": {
+        "path": "dist/commands/enqueue.js",
+        "source": "src/commands/enqueue.ts",
+        "inject": [
+            "param.0",
+            "param.1",
+            "param.2"
+        ]
+    }
+}

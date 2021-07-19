@@ -92,7 +92,7 @@ export class Container<TState> extends akala.Injector
             else
                 cmd = command;
 
-            return this.processor.handle(cmd as Command & string, param[0] as StructuredParameters<unknown[]>).then(err => { throw err }, async result => await result);
+            return this._processor.handle(cmd as Command & string, param[0] as StructuredParameters<unknown[]>).then(err => { throw err }, async result => await result);
         }
         else
         {
@@ -156,7 +156,7 @@ export class Container<TState> extends akala.Injector
             if (cmd == '$injector' || cmd == '$container')
                 return super.register(cmd, value, override) as unknown as T;
             if (value instanceof Container)
-                return super.register(cmd, value.proxy(), override);
+                return super.register(cmd, value, override);
             if (typeof value != 'undefined')
                 return super.register(cmd, value, override);
             else

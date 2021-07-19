@@ -32,19 +32,23 @@ export default async function start(this: State, pm: pmContainer.container & Con
             args = [];
 
         if (!this.config.mapping[name] && name != 'pm')
-            throw new ErrorWithStatus(44, `No mapping was found for ${name}. Did you want to run \`pm install ${name}\` or maybe are you missing the folder to ${name} ?`)
+        {
+            require.resolve(name);
+            // throw new ErrorWithStatus(44, `No mapping was found for ${name}. Did you want to run \`pm install ${name}\` or maybe are you missing the folder to ${name} ?`)
+        }
 
+        args.unshift(...options.args, ...Object.entries(options.options).filter(e => e[0] != 'program' && e[0] != 'new' && e[0] != 'inspect').map(entries => ['--' + entries[0] + '=' + entries[1]]).flat());
         if (this.config && this.config.mapping[name] && this.config.mapping[name].path)
-            args.unshift(this.config.mapping[name].path);
+            args.unshift('--program=' + this.config.mapping[name].path);
         else
-            args.unshift(name);
+            args.unshift('--program=' + name);
     }
     else
     {
         if (name != 'pm')
             throw new ErrorWithStatus(40, 'this command needs to run through daemon process');
 
-        args = [name, ...options.args, ...Object.entries(options.options).map(entries => ['--' + entries[0] + '=' + entries[1]]).flat()];
+        args = [...options.args, ...Object.entries(options.options).map(entries => ['--' + entries[0] + '=' + entries[1]]).flat()];
     }
 
     args.unshift(require.resolve('../fork'))
@@ -83,7 +87,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
     }
     else
     {
-        if (!container && this.config.mapping[name].dependencies?.length)
+        if (!container && this.config.mapping[name]?.dependencies?.length)
             await eachAsync(this.config.mapping[name].dependencies, (dep) => pm.dispatch('start', dep, { wait: true }));
 
         cp = spawn(process.execPath, args, { cwd: process.cwd(), env: Object.assign({ DEBUG_COLORS: true }, process.env), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
@@ -120,7 +124,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
                 }
                 , disconnected()
                 {
-                    console.warn(`${name} has disconnected`);
+                    console.warn(`${options.options.name} has disconnected`);
                 }
             }), true);
 
@@ -129,7 +133,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
             else
                 container = new Container(options.options.name, null, processor) as RunningContainer;
 
-            if (this.config.mapping[name].commandable)
+            if (this.config.mapping[name]?.commandable)
                 pm.register(container);
 
             this.processes.push(container);

@@ -18,15 +18,13 @@ export class EventProcessor extends EventEmitter implements Processor
 
     public name = 'event';
 
-    public get requiresCommandName(): boolean
-    {
-        return this.processor.requiresCommandName;
-    }
+    public readonly requiresCommandName: boolean;
 
 
-    constructor(private processor: CommandProcessors)
+    constructor(private readonly processor: CommandProcessors)
     {
         super();
+        this.requiresCommandName = this.processor.requiresCommandName;
     }
     handle(command: string | Command, param: StructuredParameters<unknown[]>): MiddlewarePromise
     {
@@ -39,7 +37,7 @@ export class EventProcessor extends EventEmitter implements Processor
             else
                 result = this.processor.handle(command.name, param)
         else if (typeof command !== 'string')
-            result = (this.processor).handle(command as Command & string, param)
+            result = this.processor.handle(command as Command & string, param)
         else
             throw new Error('Command was required but only command name was provided');
         result.then(err =>

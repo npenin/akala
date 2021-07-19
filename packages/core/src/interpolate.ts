@@ -27,6 +27,13 @@ export class Interpolate
 
     public static build(text: string, mustHaveExpression?: boolean, trustedContext?: boolean, allOrNothing?: boolean): (value: any) => string
     {
+        if (typeof text == 'object')
+        {
+            let texts = Object.keys(text);
+            if (texts.length == 1 && text[texts[0]] === null)
+                text = '{' + texts[0] + '}';
+        }
+
         const startSymbolLength = Interpolate._startSymbol.length,
             endSymbolLength = Interpolate._endSymbol.length;
 
@@ -46,7 +53,6 @@ export class Interpolate
         allOrNothing = !!allOrNothing;
         let startIndex,
             endIndex,
-            exp: string,
             index = 0;
         const expressions = [],
             parseFns: ((target: any) => Binding)[] = [],
@@ -63,11 +69,11 @@ export class Interpolate
                 {
                     concat.push(this.unescapeText(text.substring(index, startIndex)));
                 }
-                exp = text.substring(startIndex + startSymbolLength, endIndex);
+                let exp = text.substring(startIndex + startSymbolLength, endIndex);
                 expressions.push(exp);
                 parseFns.push(function (target)
                 {
-                    return new Binding(exp, target);
+                    return new Binding(exp.trim(), target);
                 });
                 index = endIndex + endSymbolLength;
                 expressionPositions.push(concat.length);

@@ -4,6 +4,14 @@ import * as jsonrpc from '@akala/json-rpc-ws'
 import * as ws from 'ws'
 import { metadata, proxy, helper } from '../generator';
 import { JsonRpc, LogProcessor } from '../processors/index';
+import { Container } from '../model/container';
+import { Command } from '../model/command';
+import { configure } from '../decorators';
+import { jsonrpcws } from '../triggers';
+import { NetSocketAdapter } from '../cli/serve';
+import * as net from 'net';
+import { unlink } from 'fs';
+import { promisify } from 'util';
 
 describe('test jsonrpcws processing', function ()
 {
@@ -11,13 +19,14 @@ describe('test jsonrpcws processing', function ()
 
     this.afterAll(function (done)
     {
-        client.disconnect().then(function ()
-        {
-            if (server)
-                server.close(done);
-            else
-                done();
-        }, done);
+        if (client.isConnected())
+            client.disconnect().then(function ()
+            {
+                if (server)
+                    server.close(done);
+                else
+                    done();
+            }, done);
     })
     this.beforeAll(function (done)
     {
@@ -78,4 +87,58 @@ describe('test jsonrpcws processing', function ()
         assert.strictEqual(calculator.state.value, 0);
     })
 
+    it('should be able to call incoming container', async function ()
+    {
+        const socketPath = './' + this.test.title + '.sock';
+        try
+        {
+            const c1 = new Container('c1', {});
+            const c2 = new Container('c2', {});
+            c1.register(configure({ jsonrpc: { inject: ['connectionAsContainer'] } })(new Command(function (container: Container<void>)
+            {
+                return container.dispatch('cmd');
+            }, 'cmd')));
+
+            c2.register(new Command(function ()
+            {
+                return 'x';
+            }, 'cmd'));
+
+            const server = new net.Server().listen({ path: socketPath }).on('connection', (socket) =>
+            {
+                c1.attach(jsonrpcws, new NetSocketAdapter(socket));
+            });
+
+            const socket = new net.Socket();
+            const c1Client = await new Promise<Container<void>>((resolve, reject) =>
+            {
+                socket.connect({ path: socketPath }, function ()
+                {
+                    resolve(proxy(metadata(c1), new JsonRpc(JsonRpc.getConnection(new NetSocketAdapter(socket), c2), true)));
+                });
+            })
+
+            assert.strictEqual(await c1Client.dispatch('cmd'), 'x');
+
+            await promisify(socket.end).bind(socket)()
+
+            await new Promise<void>((resolve, reject) =>
+            {
+                server.close(err =>
+                {
+                    if (err)
+                        reject(err)
+                    else
+                        resolve()
+                });
+            });
+        }
+        finally
+        {
+            await new Promise<void>((resolve) => unlink(socketPath, (err) =>
+            {
+                resolve();
+            }));
+        }
+    })
 })

@@ -6,6 +6,7 @@ import { IDebugger } from 'debug';
 import { Local } from './local';
 import { Readable } from 'stream';
 import { MiddlewarePromise, OptionsResponse, SpecialNextParam } from '@akala/core';
+import { Connection } from '@akala/json-rpc-ws';
 
 type OnlyArray<T> = Extract<T, unknown[]>;
 
@@ -47,7 +48,7 @@ export class JsonRpc extends CommandProcessor
             {
                 if (!container)
                     return null;
-                return async function (params, reply)
+                return async function (this: Connection, params, reply)
                 {
                     try
                     {
@@ -69,7 +70,12 @@ export class JsonRpc extends CommandProcessor
                         if (typeof (params) != 'object' || params instanceof Readable || !params['param'])
                             params = { param: [params] } as unknown as jsonrpcws.SerializableObject;
 
-                        Object.defineProperty(params, 'connectionAsContainer', { enumerable: true, get() { return Container.proxy(container?.name + '-client', new JsonRpc(connection, true) as unknown as CommandNameProcessor) } });
+                        const getProcessor = () =>
+                        {
+                            return new JsonRpc(this, true);
+                        }
+                        Object.defineProperty(params, 'connection', { enumerable: true, get: getProcessor });
+                        Object.defineProperty(params, 'connectionAsContainer', { enumerable: true, get() { return Container.proxy(container?.name + '-client', getProcessor() as unknown as CommandNameProcessor) } });
                         if (typeof (params) == 'object' && !params['_trigger'] || params['_trigger'] == 'proxy')
                             params['_trigger'] = 'jsonrpc';
 
