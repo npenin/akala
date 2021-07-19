@@ -25,8 +25,8 @@ jobs:
       # Next, the node orb's install-packages step will install the dependencies from a package.json.
       # The orb install-packages step will also automatically cache them for faster future runs.
       # If you are using yarn instead npm, remove the line above and uncomment the two lines below.
-      - node/install-packages:
-           pkg-manager: yarn 
+      - run:
+          command: yarn --immutable
       - run:
           name: compile
           command: yarn tsc -b packages
