@@ -1,18 +1,14 @@
 import { Queue } from "@akala/server";
-import automate, { JobStepDispatch, JobStepRun, Runner, simpleRunner } from "../automate";
 import State, { WorkflowInstance } from "../state";
-import { Container } from "@akala/commands";
-import { getRandomName, sidecar } from '@akala/pm'
+import { getRandomName, sidecar, Container as pmContainer } from '@akala/pm'
 import workflow from "../workflow";
 
-export default async function init(this: State, persistTo?: string)
+export default async function init(this: State, pm: pmContainer, persistTo?: string)
 {
-    const pm = await sidecar().pm;
-
     const queueProcessor = (msg: WorkflowInstance, next: (processed: boolean) => void) =>
     {
         const name = getRandomName();
-        pm.dispatch('start', require.resolve('../../workflow.json'), { options: { new: true, name: name, wait: true } }).then(async () =>
+        pm.dispatch('start', '@akala/automate/workflow', { options: { new: true, name: name, wait: true }, args: ['local'], argv: [], currentWorkingDirectory: process.cwd() }).then(async () =>
         {
             const workflow: workflow.container = (await sidecar()[name]);
             await workflow.dispatch('set-config', msg.context);
@@ -20,13 +16,15 @@ export default async function init(this: State, persistTo?: string)
             if (msg.complete)
                 msg.complete.resolve(result);
         })
-            .then((result) =>
+            .then(async (result) =>
             {
+                await pm.dispatch('stop', name);
                 next(true);
                 if (msg.complete)
                     msg.complete.resolve(result);
-            }, (err) =>
+            }, async (err) =>
             {
+                await pm.dispatch('stop', name);
                 console.error(err);
                 next(true);
                 if (msg.complete)
@@ -40,4 +38,5 @@ export default async function init(this: State, persistTo?: string)
         this.queue = new Queue<WorkflowInstance>(queueProcessor, []);
 
     this.workflows = {};
+    this.loaders = {};
 }

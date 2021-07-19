@@ -49,7 +49,7 @@ export function proxy<T = unknown>(metacontainer: meta.Container, processor: Com
 
 export function proxyCommand<T>(cmd: meta.Command, processor: CommandProcessors): Command<T>
 {
-    return configure(cmd.config)(new CommandProxy(processor as CommandProcessors, cmd.name, cmd.inject))
+    return configure(cmd.config)(new CommandProxy(processor, cmd.name, cmd.inject))
 }
 
 export function registerCommands<T>(commands: meta.Command[], processor: CommandProcessors, container: Container<T>): void

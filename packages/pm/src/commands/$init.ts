@@ -39,7 +39,7 @@ export function isRunningContainer(c: Container<any>): c is RunningContainer
     return 'running' in c;
 }
 
-export default async function (this: State, container: RunningContainer<State> & pmContainer.container, options: ServeOptions): Promise<void>
+export default async function (this: State, container: RunningContainer & pmContainer.container, options: ServeOptions): Promise<void>
 {
     this.isDaemon = true;
     this.processes = [];
@@ -71,8 +71,14 @@ export default async function (this: State, container: RunningContainer<State> &
     if (!this.config.mapping['pm'])
         await container.dispatch('map', 'pm', join(__dirname, '../../commands.json'), true);
 
-    if (options)
+    if (options && options.args.length)
         await container.dispatch('connect', 'pm', options);
+    else
+    {
+        const connectOptions = await container.dispatch('connect', 'pm');
+        if (typeof connectOptions == 'undefined')
+            await container.dispatch('connect', 'pm', { args: ['local'] });
+    }
 
     await this.config.save();
     container.name = 'pm';

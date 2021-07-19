@@ -17,17 +17,21 @@ mock('@akala/commands', ac);
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 mock('@akala/pm', require('..'));
 
+var isPm = false;
+
 program.useMiddleware({
     handle: async c =>
     {
-        c.options.sidecar = c.args[0] == 'pm' && path.resolve(__dirname, '../commands.json') || c.args[0];
+        isPm = c.options.program == 'pm';
+        if (isPm)
+            c.options.program = path.resolve(__dirname, '../commands.json');
     }
 });
 let folderOrFile: Stats;
 let cliContainer: ac.Container<unknown>;
 let processor: ac.Processor;
 let log: debug.Debugger;
-const logMiddleware = new NamespaceMiddleware<{ sidecar: string }>(null).option<string, 'verbose'>('verbose', { aliases: ['v',] });
+const logMiddleware = new NamespaceMiddleware<{ program: string, name: string }>(null).option<string, 'verbose'>('verbose', { aliases: ['v',] });
 logMiddleware.preAction(async c =>
 {
     if (c.options.verbose)
@@ -37,32 +41,32 @@ logMiddleware.preAction(async c =>
             return Promise.resolve();
         });
 
-    await ac.Processors.FileSystem.discoverCommands(c.options.sidecar, cliContainer, { processor: processor, isDirectory: folderOrFile.isDirectory() });
+    await ac.Processors.FileSystem.discoverCommands(c.options.program, cliContainer, { processor: processor, isDirectory: folderOrFile.isDirectory() });
 });
-const initMiddleware = new NamespaceMiddleware<{ sidecar: string }>(null);
-program.command<{ sidecar: string }>(null).
+const initMiddleware = new NamespaceMiddleware<{ program: string, name: string }>(null);
+program.option<string, 'program'>('program', { needsValue: true }).option<string, 'name'>('name', { needsValue: true }).
     use(async c => //If pure js file
     {
-        folderOrFile = await lstat(c.options.sidecar);
-        if (!folderOrFile.isFile() || path.extname(c.options.sidecar) !== '.js')
+        folderOrFile = await lstat(c.options.program);
+        if (!folderOrFile.isFile() || path.extname(c.options.program) !== '.js')
             throw undefined;
 
-        return require(c.options.sidecar);
+        return require(c.options.program);
     }).
     useMiddleware({
         handle: async c => //if commandable
         {
-            log = debug(c.options.sidecar);
+            log = debug(c.options.name);
 
             if (folderOrFile.isFile())
-                cliContainer = new ac.Container(path.basename(c.options.sidecar), {});
+                cliContainer = new ac.Container(path.basename(c.options.name), {});
             else
-                cliContainer = new ac.Container(c.options.sidecar, {});
+                cliContainer = new ac.Container(c.options.name, {});
 
             if (folderOrFile.isFile())
-                processor = new ac.Processors.FileSystem(cliContainer, path.dirname(c.options.sidecar));
+                processor = new ac.Processors.FileSystem(cliContainer, path.dirname(c.options.program));
             else
-                processor = new ac.Processors.FileSystem(cliContainer, c.options.sidecar);
+                processor = new ac.Processors.FileSystem(cliContainer, c.options.program);
         }
     }).
     useMiddleware(logMiddleware).
@@ -76,7 +80,7 @@ program.command<{ sidecar: string }>(null).
             initMiddleware.option<string, 'pmSocket'>('pmSocket', { aliases: ['pm-socket'] }).action(async c =>
             {
                 let pm: ac.Container<unknown>;
-                if (c.args[0] != 'pm')
+                if (!isPm)
                 {
                     if (process.connected)
                     {
@@ -103,7 +107,7 @@ program.command<{ sidecar: string }>(null).
                 if (init)
                     await cliContainer.dispatch(init, { options: c.options, param: c.args, _trigger: 'cli', pm: pm, context: c });
 
-                const serveArgs: ac.ServeMetadata = await pm.dispatch('connect', c.args[0]);
+                const serveArgs: ac.ServeMetadata = await pm.dispatch('connect', c.options.name);
                 const stop = await cliContainer.dispatch('$serve', serveArgs) as (...args: unknown[]) => void;
 
                 if (pm !== cliContainer)

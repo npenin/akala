@@ -3,20 +3,21 @@ import Orchestrator from 'orchestrator';
 import { spawn, StdioNull, StdioPipe, exec, SpawnOptionsWithoutStdio } from 'child_process';
 import commands from './container';
 import { Container } from '@akala/commands';
+import { Interpolate } from '@akala/core';
 
 export const simpleRunner: Runner<JobStepRun> = {
     run(cmd: string | string[], step: JobStepRun, stdio?: { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
     {
         if (!Array.isArray(cmd))
-            return new Promise<string>((resolve, reject) => exec(cmd, function (error, stdout)
+            return new Promise<string>((resolve, reject) => exec(Interpolate.build(cmd)({ $: this }), function (error, stdout)
             {
                 if (error)
                     reject(error);
                 else
-                    resolve(stdout);
+                    resolve(stdout.substr(0, stdout.length - 1));
             }));
         else
-            return new Promise<void>((resolve, reject) => spawn(cmd[0], cmd.slice(1), Object.assign(step.with, stdio)).on('close', function (code)
+            return new Promise<void>((resolve, reject) => spawn(cmd[0], cmd.slice(1).map(arg => Interpolate.build(arg)({ $: this })), Object.assign(step.with || {}, stdio)).on('close', function (code)
             {
                 if (code == 0)
                     resolve();
@@ -49,18 +50,23 @@ export default function automate<TResult extends object, TSupportedJobSteps exte
     Object.keys(workflow).forEach(name =>
     {
         const job = workflow[name];
-        orchestrator.add(name, job.steps.map(s => name + '-' + s.name));
-        let previousStepName: string;
+        const deps = [];
+        deps.push(...job.steps.map(s => name + '-' + s.name));
+        orchestrator.add(name + '#prerequisites', job.dependsOn || []);
+        orchestrator.add(name, deps);
+        let previousStepName: string = name + '#prerequisites';
+        results[job.name] = {};
         job.steps.forEach(step =>
         {
             orchestrator.add(name + '-' + step.name, previousStepName && [previousStepName],
-                function ()
+                async function ()
                 {
                     if (runner[step.type])
-                        return results[step.name] = runner[step.type](step[step.type], step, stdio);
+                        results[job.name][step.name] = await runner[step.type].call(results, step[step.type], step, stdio);
                     else
                         throw new Error('this runner does not support uses');
                 });
+            previousStepName = name + '-' + step.name;
         });
     });
 
@@ -81,15 +87,17 @@ export function ensureDefaults(jobs: Workflow['jobs'])
     jobs && Object.keys(jobs).forEach(jobName =>
     {
         jobs[jobName].name = jobs[jobName].name || jobName;
+        if (typeof jobs[jobName].dependsOn == 'string')
+            jobs[jobName].dependsOn = [jobs[jobName].dependsOn as unknown as string];
         jobs[jobName].steps.forEach(step =>
         {
             if (!step.type)
             {
                 if ('run' in step)
                     step.type = 'run';
-                if ('uses' in step)
+                else if ('uses' in step)
                     step.type = 'uses';
-                if ('dispatch' in step)
+                else if ('dispatch' in step)
                     step.type = 'dispatch';
                 else
                     throw new Error(`Invalid step ${JSON.stringify(step)}`);

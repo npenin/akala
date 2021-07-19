@@ -4,7 +4,7 @@ import * as assert from 'assert'
 
 describe('test decorators', function ()
 {
-    it('should cover basics', function ()
+    it('should cover basics', async function ()
     {
         const container = new Container<null>('decorator', null);
 
@@ -14,7 +14,7 @@ describe('test decorators', function ()
             return a;
         })));
 
-        assert.strictEqual(container.dispatch('f', { param: ['test'] }), 'test');
-        assert.strictEqual(container.dispatch('f', 'test'), 'test');
+        assert.strictEqual(await container.dispatch('f', { param: ['test'] }), 'test');
+        assert.strictEqual(await container.dispatch('f', 'test'), 'test');
     })
 });

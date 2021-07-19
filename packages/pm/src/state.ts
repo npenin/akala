@@ -9,16 +9,18 @@ export default interface State
     isDaemon: boolean;
     config: {
         containers: { [key: string]: string[] }
-        mapping: { [key: string]: { path: string, commandable: boolean, dependencies?: string[], connect: ServeMetadata } }
+        mapping: { [key: string]: Pick<RunningContainer, 'path' | 'dependencies' | 'connect' | 'commandable'> }
         save(): Promise<void>
         externals?: string[];
     }
 }
 
-export interface RunningContainer<T = unknown> extends Container<T>
+export interface RunningContainer extends Container<unknown>
 {
     path: string;
     process: ChildProcess;
+    dependencies?: string[];
+    connect?: ServeMetadata;
     running?: boolean;
     commandable?: boolean;
     ready?: Deferred<void>;

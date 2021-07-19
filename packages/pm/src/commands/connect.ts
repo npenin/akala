@@ -9,6 +9,8 @@ export default async function connect(this: State, name: string, options?: Serve
     let mapping = this.config.mapping[name];
     if (!mapping)
         mapping = Object.values(this.config.mapping).find(m => m.path === name);
+    if (!mapping)
+        mapping = this.processes.find(p => p.name == name);
     console.log(name);
     console.log(mapping);
     console.log(options);

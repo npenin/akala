@@ -12,7 +12,14 @@ export var processTrigger = new Trigger('cli', async (c, program: NamespaceMiddl
         if (cmd.config?.cli)
         {
             if (cmd.config.cli.usage)
-                var command = program.command(cmd.config.cli.usage);
+            {
+                if (cmd.name.lastIndexOf('.') > -1)
+                {
+                    var command = program.command(cmd.name.substring(0, cmd.name.lastIndexOf('.')).split('.').join(' ') + ' ' + cmd.config.cli.usage);
+                }
+                else
+                    var command = program.command(cmd.config.cli.usage);
+            }
             else
                 var command = program.command(cmd.name.split('.').join(' '));
 

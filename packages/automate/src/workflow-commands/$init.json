@@ -2,26 +2,25 @@
     "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
     "": {
         "inject": [
+            "param.0",
             "pm",
-            "param.0"
+            "param.1"
         ]
     },
     "cli": {
-        "usage": "$init [persist]",
         "inject": [
+            "options.name",
             "pm",
-            "options.persist"
-        ],
-        "options": {
-            "persist": {
-                "normalize": true
-            }
-        }
+            "context"
+        ]
     },
     "fs": {
+        "path": "dist/workflow-commands/$init.js",
+        "source": "src/workflow-commands/$init.ts",
         "inject": [
+            "param.0",
             "pm",
-            "param.0"
+            "param.1"
         ]
     }
 }

@@ -1,0 +1,12 @@
+jobs:
+  build:
+    steps:
+    - name: echo1
+      run: echo hello
+    - name: echo2
+      run: echo world
+  final:
+    dependsOn: build
+    steps:
+    - name: echo
+      run: echo {{$.build.echo1}} {{$.build.echo2}}

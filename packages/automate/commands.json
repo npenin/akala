@@ -4,11 +4,13 @@
         {
             "name": "$init",
             "inject": [
+                "pm",
                 "param.0"
             ],
             "config": {
                 "": {
                     "inject": [
+                        "pm",
                         "param.0"
                     ]
                 },
@@ -16,12 +18,14 @@
                     "path": "dist/commands/$init.js",
                     "source": "src/commands/$init.ts",
                     "inject": [
+                        "pm",
                         "param.0"
                     ]
                 },
                 "cli": {
                     "usage": "$init [persist]",
                     "inject": [
+                        "pm",
                         "options.persist"
                     ],
                     "options": {
@@ -55,6 +59,37 @@
                         "param.1",
                         "param.2"
                     ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0",
+                        "context",
+                        "options.wait"
+                    ],
+                    "options": {
+                        "wait": {
+                            "aliases": [
+                                "w"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "list",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/commands/list.js",
+                    "source": "src/commands/list.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "inject": []
                 }
             }
         },

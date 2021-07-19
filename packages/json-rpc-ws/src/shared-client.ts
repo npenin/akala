@@ -24,7 +24,7 @@ export default abstract class Client<TStreamable> extends Base<TStreamable>
   public connect(address: string, callback: (err?: Event) => void): void
   {
     logger('Client connect %s', address);
-    if (!this.isConnected())
+    if (this.isConnected())
       throw new Error('Already connected');
     let opened = false;
     const socket = this.socket = this.socketConstructor(address);
@@ -77,7 +77,7 @@ export default abstract class Client<TStreamable> extends Base<TStreamable>
    */
   public disconnect(): Promise<CloseEvent>
   {
-    if (this.isConnected())
+    if (!this.isConnected())
       throw new Error('Not connected');
     const connection = this.getConnection();
     return connection.hangup();

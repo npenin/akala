@@ -29,7 +29,8 @@ export interface ConnectionPreference
 {
     preferRemote?: boolean;
     host?: string;
-    container: Metadata.Container;
+    metadata: Metadata.Container;
+    container?: Container<any>;
 }
 
 export async function connectByPreference<T = unknown>(options: ServeMetadata, settings: ConnectionPreference, ...orders: (keyof ServeMetadata)[]): Promise<{ container: Container<T>, processor: CommandProcessors }>
@@ -51,7 +52,7 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
             return options[order];
         }
     });
-    const container = new Container<T>(settings?.container?.name || 'proxy', undefined);
+    const container = new Container<T>(settings?.metadata?.name || 'proxy', undefined);
     let processor: CommandProcessors;
     do
     {
@@ -61,7 +62,7 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
 
         try
         {
-            processor = await connectWith(orderedOptions[preferredIndex], settings?.host, orders[preferredIndex], container)
+            processor = await connectWith(orderedOptions[preferredIndex], settings?.host, orders[preferredIndex], settings?.container)
             break;
         }
         catch (e)
@@ -72,8 +73,8 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
     }
     // eslint-disable-next-line no-constant-condition
     while (true);
-    if (settings?.container)
-        registerCommands(settings.container.commands, processor, container);
+    if (settings?.metadata)
+        registerCommands(settings.metadata.commands, processor, container);
     else
     {
         var metaContainer = await container.dispatch('$metadata');

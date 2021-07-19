@@ -3,15 +3,34 @@
     "commands": [
         {
             "name": "$init",
-            "inject": [],
+            "inject": [
+                "param.0",
+                "pm",
+                "param.1"
+            ],
             "config": {
                 "": {
-                    "inject": []
+                    "inject": [
+                        "param.0",
+                        "pm",
+                        "param.1"
+                    ]
                 },
                 "fs": {
                     "path": "dist/workflow-commands/$init.js",
                     "source": "src/workflow-commands/$init.ts",
-                    "inject": []
+                    "inject": [
+                        "param.0",
+                        "pm",
+                        "param.1"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "options.name",
+                        "pm",
+                        "context"
+                    ]
                 }
             }
         },

@@ -34,7 +34,7 @@ export function connect(options: commands.ServeMetadata, settings: {
 {
     if (!settings)
         settings = {};
-    return commands.connectByPreference(options, Object.assign({ container: require('../commands.json') }, settings), ...orders);
+    return commands.connectByPreference(options, Object.assign({ metadata: require('../commands.json') }, settings), ...orders);
 }
 
 export { Logger, logger, log } from './logger'

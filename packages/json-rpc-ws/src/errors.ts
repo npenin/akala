@@ -45,8 +45,7 @@ export interface Payload
  */
 export default function getError(type: ErrorTypes, id?: number | string, data?: unknown): Payload
 {
-
-  if (errors[type])
+  if (!errors[type])
     throw new Error('Invalid error type ' + type);
 
   const payload: Payload = {
