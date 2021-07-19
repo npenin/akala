@@ -1,4 +1,4 @@
-[![build](https://github.com/npenin/akala/actions/workflows/build.yml/badge.svg)](https://github.com/npenin/akala/actions/workflows/build.yml)
+[![build](https://github.com/npenin/akala/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/npenin/akala/actions/workflows/npm-publish.yml)
 [![Known Vulnerabilities](https://snyk.io/test/github/npenin/akala/badge.svg)](https://snyk.io/test/github/npenin/akala)
 [![License](https://badgen.net/github/license/npenin/akala)](https://badgen.net/github/license/npenin/akala)
 ![CodeQL](https://github.com/npenin/akala/workflows/CodeQL/badge.svg)
