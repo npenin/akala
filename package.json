@@ -8,13 +8,22 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.28.1",
     "@typescript-eslint/parser": "^4.28.1",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.30.0",
     "lerna": "^4.0.0",
+    "semantic-release": "^17.4.4",
     "snyk": "^1.653.0",
     "typescript": "^4.3.5"
   },
   "scripts": {
     "lint": "eslint . --ext .ts --cache",
-    "test": "snyk test"
+    "test": "snyk test",
+    "commit": "cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
