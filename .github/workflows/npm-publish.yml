@@ -50,3 +50,5 @@ jobs:
         run: yarn tsc -b packages
       - name: Publish
         run: yarn semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
