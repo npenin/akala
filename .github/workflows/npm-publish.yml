@@ -31,7 +31,7 @@ jobs:
       - name: Compile
         run: yarn tsc -b packages
   publish:
-    dependsOn: build
+    needs: build
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
