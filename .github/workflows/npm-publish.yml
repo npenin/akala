@@ -49,7 +49,7 @@ jobs:
       - name: Compile
         run: yarn tsc -b packages
       - name: Publish
-        run: yarn semantic-release
+        run: yarn workspaces foreach --no-private semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
