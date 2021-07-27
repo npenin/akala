@@ -1,43 +1,51 @@
 import { Binding } from './binder'
+import { escapeRegExp } from './reflect';
+
+type EvalFunction<T> = (value: any) => T;
 
 export class Interpolate
 {
-    private static _startSymbol = '{{';
-    private static _endSymbol = '}}';
+    constructor(public readonly startSymbol = '{{', public readonly endSymbol = '}}') { }
 
-    public get startSymbol() { return Interpolate._startSymbol; }
-    public set startSymbol(value: string) { Interpolate._startSymbol = value; }
-    public get endSymbol() { return Interpolate._endSymbol; }
-    public set endSymbol(value: string) { Interpolate._endSymbol = value; }
-
-    private static unescapeText(text)
+    private unescapeText(text)
     {
-        return text.replace(this.escapedStartRegexp, Interpolate._startSymbol).
-            replace(this.escapedEndRegexp, Interpolate._endSymbol);
+        return text.replace(this.escapedStartRegexp, this.startSymbol).
+            replace(this.escapedEndRegexp, this.endSymbol);
     }
 
-    private static escape(ch)
+    private escapedStartRegexp = new RegExp(escapeRegExp(this.startSymbol), 'g');
+    private escapedEndRegexp = new RegExp(escapeRegExp(this.endSymbol), 'g');
+
+    public buildObject<T>(obj: T, mustHaveExpression?: boolean, trustedContext?: boolean, allOrNothing?: boolean): EvalFunction<T>
     {
-        return '\\\\\\' + ch;
-    }
-
-    private static escapedStartRegexp = new RegExp(Interpolate._startSymbol.replace(/./g, Interpolate.escape), 'g');
-    private static escapedEndRegexp = new RegExp(Interpolate._endSymbol.replace(/./g, Interpolate.escape), 'g');
-
-
-    public static build(text: string, mustHaveExpression?: boolean, trustedContext?: boolean, allOrNothing?: boolean): (value: any) => string
-    {
-        if (typeof text == 'object')
+        switch (typeof obj)
         {
-            let texts = Object.keys(text);
-            if (texts.length == 1 && text[texts[0]] === null)
-                text = '{' + texts[0] + '}';
+            case 'object':
+                if (Array.isArray(obj))
+                {
+                    const fns = obj.map((v => this.buildObject(v, mustHaveExpression, trustedContext, allOrNothing)));
+                    return (value) => fns.map(fn => fn(value)) as unknown as T
+                }
+                else if (obj instanceof Object)
+                {
+                    const builder: [string, EvalFunction<unknown>][] = Object.entries(obj).map(kvp => [kvp[0], this.buildObject(kvp[1], mustHaveExpression, trustedContext, allOrNothing)]);
+                    return (value) => Object.fromEntries(builder.map(kvp => [kvp[0], kvp[1](value)])) as unknown as T;
+                }
+                return () => obj;
+            case 'string':
+                return this.build(obj, mustHaveExpression, trustedContext, allOrNothing);
+            default:
+            case 'function':
+                return () => obj;
         }
+    }
 
-        const startSymbolLength = Interpolate._startSymbol.length,
-            endSymbolLength = Interpolate._endSymbol.length;
+    public build<T extends string>(text: T, mustHaveExpression?: boolean, trustedContext?: boolean, allOrNothing?: boolean): EvalFunction<T>
+    {
+        const startSymbolLength = this.startSymbol.length,
+            endSymbolLength = this.endSymbol.length;
 
-        if (!text.length || text.indexOf(Interpolate._startSymbol) === -1)
+        if (!text.length || text.indexOf(this.startSymbol) === -1)
         {
             let constantInterp;
             if (!mustHaveExpression)
@@ -62,8 +70,8 @@ export class Interpolate
 
         while (index < textLength)
         {
-            if (((startIndex = text.indexOf(Interpolate._startSymbol, index)) !== -1) &&
-                ((endIndex = text.indexOf(Interpolate._endSymbol, startIndex + startSymbolLength)) !== -1))
+            if (((startIndex = text.indexOf(this.startSymbol, index)) !== -1) &&
+                ((endIndex = text.indexOf(this.endSymbol, startIndex + startSymbolLength)) !== -1))
             {
                 if (index !== startIndex)
                 {
@@ -97,6 +105,8 @@ export class Interpolate
                     return;
                 concat[expressionPositions[i]] = values[i].getValue();
             }
+            if (concat.length === 1)
+                return concat[0];
             return concat.join('');
         };
 
