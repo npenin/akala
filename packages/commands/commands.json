@@ -2,6 +2,45 @@
     "name": "cli",
     "commands": [
         {
+            "name": "add-script",
+            "inject": [
+                "param.0",
+                "param.1",
+                "param.2"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/cli/add-script.js",
+                    "source": "src/cli/add-script.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "options.name",
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ],
+                    "options": {
+                        "name": {
+                            "needsValue": true
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "generate-declaration",
             "inject": [
                 "param.0",
