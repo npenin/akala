@@ -31,7 +31,7 @@ export class Cli
 
     public static async fromFileSystem(commandsPath: string, relativeTo: string): Promise<Cli>
     {
-        const cliContainer: commands & Container<void> = new Container<void>('cli', undefined);
+        const cliContainer: commands.container & Container<void> = new Container<void>('cli', undefined);
 
         const options: DiscoveryOptions = { processor: new FileSystem(cliContainer, relativeTo), relativeTo };
 
