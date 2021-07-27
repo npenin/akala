@@ -12,7 +12,7 @@ export default async function init(this: State, pm: pmContainer, persistTo?: str
         {
             const workflow: workflow.container = (await sidecar()[name]);
             await workflow.dispatch('set-config', msg.context);
-            const result = await workflow.dispatch('process', msg.workflow);
+            const result = await workflow.dispatch('process', msg.workflow, msg.context);
             if (msg.complete)
                 msg.complete.resolve(result);
         })
