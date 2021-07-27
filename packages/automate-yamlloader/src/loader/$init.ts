@@ -4,6 +4,6 @@ import { Container } from '@akala/commands';
 export default async function (container: Container<void>)
 {
     const automate = await sidecar({ container: container })['@akala/automate'];
-    await automate.dispatch('register-loader', '.yml');
-    await automate.dispatch('register-loader', '.yaml');
+    await automate.dispatch('register-loader', '.yml', container);
+    await automate.dispatch('register-loader', '.yaml', container);
 }
