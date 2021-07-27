@@ -23,116 +23,8 @@ if (MutationObserver && false)
     })
 }
 
-@service('$interpolate')
-export class Interpolate
-{
-    private static _startSymbol = '{{';
-    private static _endSymbol = '}}';
+service('$interpolate')(akala.Interpolate)
 
-    public get startSymbol() { return Interpolate._startSymbol; }
-    public set startSymbol(value: string) { Interpolate._startSymbol = value; }
-    public get endSymbol() { return Interpolate._endSymbol; }
-    public set endSymbol(value: string) { Interpolate._endSymbol = value; }
-
-    private static unescapeText(text)
-    {
-        return text.replace(this.escapedStartRegexp, Interpolate._startSymbol).
-            replace(this.escapedEndRegexp, Interpolate._endSymbol);
-    }
-
-    private static escape(ch)
-    {
-        return '\\\\\\' + ch;
-    }
-
-    private static escapedStartRegexp = new RegExp(Interpolate._startSymbol.replace(/./g, Interpolate.escape), 'g');
-    private static escapedEndRegexp = new RegExp(Interpolate._endSymbol.replace(/./g, Interpolate.escape), 'g');
-
-
-    public static build(text: string, mustHaveExpression?: boolean, trustedContext?: boolean, allOrNothing?: boolean): (obj: any) => string
-    {
-        const startSymbolLength = Interpolate._startSymbol.length,
-            endSymbolLength = Interpolate._endSymbol.length;
-
-        if (!text.length || text.indexOf(Interpolate._startSymbol) === -1)
-        {
-            let constantInterp;
-            if (!mustHaveExpression)
-            {
-                return function (target)
-                {
-                    return text;
-                }
-            }
-            return constantInterp;
-        }
-
-        allOrNothing = !!allOrNothing;
-        let startIndex,
-            endIndex,
-            index = 0,
-            exp;
-        const expressions = [],
-            parseFns: ((target: any) => akala.Binding)[] = [],
-            textLength = text.length,
-            concat = [],
-            expressionPositions = [];
-
-        while (index < textLength)
-        {
-            if (((startIndex = text.indexOf(Interpolate._startSymbol, index)) !== -1) &&
-                ((endIndex = text.indexOf(Interpolate._endSymbol, startIndex + startSymbolLength)) !== -1))
-            {
-                if (index !== startIndex)
-                {
-                    concat.push(this.unescapeText(text.substring(index, startIndex)));
-                }
-                exp = text.substring(startIndex + startSymbolLength, endIndex);
-                expressions.push(exp);
-                parseFns.push(function (target)
-                {
-                    return new akala.Binding(exp, target);
-                });
-                index = endIndex + endSymbolLength;
-                expressionPositions.push(concat.length);
-                concat.push('');
-            } else
-            {
-                // we did not find an interpolation, so we have to add the remainder to the separators array
-                if (index !== textLength)
-                {
-                    concat.push(this.unescapeText(text.substring(index)));
-                }
-                break;
-            }
-        }
-
-        const compute = function (values: akala.Binding[])
-        {
-            for (let i = 0, ii = expressions.length; i < ii; i++)
-            {
-                if (allOrNothing && typeof (values[i]))
-                    return;
-                concat[expressionPositions[i]] = values[i].getValue();
-            }
-            return concat.join('');
-        };
-
-        return function interpolationFn(target)
-        {
-            const bindings: akala.Binding[] = [];
-
-            for (let i = 0; i < expressions.length; i++)
-            {
-                bindings[i] = parseFns[i](target);
-            }
-
-            return compute(bindings);
-        }
-
-    }
-
-}
 export interface templateFunction
 {
     (target: any, parent: HTMLElement): Promise<IControlInstance<any>[]>;
@@ -189,7 +81,7 @@ const cache = new akala.Injector();
 export class Template
 {
     public static composers: Composer[] = [new DataBindComposer()];
-    constructor(private interpolator: Interpolate, private http: akala.Http) { }
+    constructor(private interpolator: akala.Interpolate, private http: akala.Http) { }
 
     public enableHotReplacement: boolean;
 
@@ -206,16 +98,16 @@ export class Template
             return template;
         else if (/</.test(text))
         {
-            template = Template.build(text);
+            template = this.build(text);
             return template;
         }
         else
         {
-            const internalGet = (async function ()
+            const internalGet = (async () =>
             {
                 const response = await http.get(text)
                 const data = await response.text();
-                template = Template.build(data);
+                template = this.build(data);
                 if (registerTemplate)
                     cache.register(text, template, true);
                 if (navigator.serviceWorker)
@@ -240,14 +132,14 @@ export class Template
         return akala.map(root.children, function (el) { return el as HTMLElement });
     }
 
-    public static build(markup: string): templateFunction
+    public build(markup: string): templateFunction
     {
-        let template = Interpolate.build(markup)
+        let template = this.interpolator.build(markup)
         var f: templateFunction = ((data, parent?: HTMLElement) =>
         {
             f.hotReplace = (markup: string) =>
             {
-                template = Interpolate.build(markup);
+                template = this.interpolator.build(markup);
                 const newTemplateInstance = Template.buildElements(template(data));
                 if (parent)
                 {
@@ -273,7 +165,7 @@ export class Template
                     confirm('template has changed, please consider reloading to see updated change');
                 }
                 templateInstance = newTemplateInstance;
-                this.composeAll(templateInstance, data, parent);
+                Template.composeAll(templateInstance, data, parent);
             }
 
             var templateInstance = Template.buildElements(template(data));
@@ -284,11 +176,11 @@ export class Template
                     parent.appendChild(inst);
                 })
             }
-            return this.composeAll(templateInstance, data);
+            return Template.composeAll(templateInstance, data);
         }) as any;
-        f.hotReplace = function (markup: string)
+        f.hotReplace = (markup: string) =>
         {
-            template = Interpolate.build(markup);
+            template = this.interpolator.build(markup);
         }
 
         return f;
