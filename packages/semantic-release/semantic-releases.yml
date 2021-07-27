@@ -1,0 +1,60 @@
+jobs:
+  build:
+    steps:
+      - name: workspaces
+        run:
+          - yarn
+          - workspaces
+          - list
+          - --json
+          - --verbose
+        with:
+          result: stdout
+          format: jsonnd
+      - name: use self
+        uses: ./commands.json
+      - name: semantic-release
+        outputAs: versions
+        foreach: $(build.workspaces)
+        job: ./semantic-release.yml
+        with:
+          package: $($)
+      - name: bumpDependents
+        dispatch: bump-dependents
+        outputAs: bumps
+        with:
+          workspaces: $(build.workspaces)
+          versions: $(build.versions)
+          strategy:
+            major: patch
+            minor: patch
+            patch: patch
+      - name: bump
+        foreach: $(build.bumps)
+        foreach-strategy: wait-for-previous
+        run:
+          - yarn
+          - workspace
+          - $($.name)
+          - version
+          - $($.bump)
+          - --deferred
+    # - name: commits
+    #   foreach: $(build.workspaces)
+    #   run:
+    #     - git
+    #     - log
+    #     - --name-only
+    #     - --
+    #     - $($.location)
+    #   with:
+    #     result: stdout
+    #     format: string
+    # - name: parse-commits
+    #   foreach: $(build.workspaces)
+    #   dispatch: parse
+    #   with:
+    #     commits: $(build.commits[$.name])
+    # - name: analyse-commits
+    #   foreach: $(build.workspaces)
+    #   run:
