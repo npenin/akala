@@ -11,8 +11,3 @@ export default interface State
     workflows: { [key: string]: Workflow };
     loaders: { [key: string]: loader.container }
 }
-
-export interface WorkflowInstanceState
-{
-    cwd: string;
-}

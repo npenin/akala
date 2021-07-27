@@ -1,14 +1,27 @@
+import { CliContext } from "@akala/cli";
 import { Container } from "@akala/commands";
-import automate, { JobStepDispatch, JobStepRun, Runner, simpleRunner, Workflow } from "../automate";
+import automate, { JobStepDispatch, JobStepJob, JobStepRun, Runner, simpleRunner, Workflow, interpolate, JobStepUse } from "../automate";
+import path from 'path'
+import use from './use';
 
-export default async function process<U extends object>(workflow: Workflow)
+export default async function process<U extends object>(this: CliContext<{ file: string }>, workflow: Workflow, inputs: unknown, self: Container<CliContext>)
 {
-    const container = new Container<object>(new Date().toISOString(), {});
-    return automate<U, JobStepDispatch | JobStepRun>(workflow.jobs, Object.assign({
-        dispatch(cmd, step)
+    const context = this;
+    const container = new Container<object>(new Date().toISOString(), this);
+    container.register('loader', self)
+    const runner = Object.assign({
+        async dispatch(cmd, step)
         {
-            return container.dispatch(cmd, { _trigger: 'automate', ...step.with, param: [] });
+            return await container.dispatch(cmd, { _trigger: 'automate', ...interpolate.buildObject(step.with)(this), param: [] });
+        },
+        async job(cmd, step)
+        {
+            return automate((await self.dispatch('load', cmd)), runner, interpolate.buildObject(step.with)(this), 'ignore');
+        },
+        async uses(cmd, step)
+        {
+            await use.call(context, container, step.with?.name, path.join(path.dirname(context.options.file), cmd));
         }
-    } as Runner<JobStepDispatch>, simpleRunner));
-
+    } as Runner<JobStepDispatch | JobStepJob | JobStepUse>, simpleRunner);
+    return automate<U, JobStepDispatch | JobStepRun | JobStepJob>(workflow, runner, Object.assign(this, inputs), 'ignore');
 }
