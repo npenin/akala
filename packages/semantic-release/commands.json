@@ -1,0 +1,111 @@
+{
+    "name": "commands",
+    "commands": [
+        {
+            "name": "analyze",
+            "inject": [
+                "param.0"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/analyze.js",
+                    "source": "src/commands/analyze.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "automate": {
+                    "inject": [
+                        "commits"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "bump-dependents",
+            "inject": [
+                "param.0"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/bump-dependents.js",
+                    "source": "src/commands/bump-dependents.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "automate": {
+                    "inject": [
+                        "workspaces",
+                        "versions"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "parse",
+            "inject": [
+                "param.0"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/parse.js",
+                    "source": "src/commands/parse.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "automate": {
+                    "inject": [
+                        "commits"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "recommend-bump",
+            "inject": [
+                "param.0",
+                "param.1"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/recommend-bump.js",
+                    "source": "src/commands/recommend-bump.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "automate": {
+                    "inject": [
+                        "commits",
+                        "rules"
+                    ]
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+}

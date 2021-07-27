@@ -1,0 +1,52 @@
+parameters:
+  - package
+outputs: $(build.recommendBump)
+jobs:
+  build:
+    steps:
+      - name: tags
+        run: node node_modules/git-semver-tags/cli.js --lerna --package $(package.name) | head -n1
+        with:
+          result: stdout
+          shell: true
+      - name: commits
+        run:
+          - git
+          - log
+          - $(build.tags)..HEAD
+          - --date=iso
+          - --
+          - $(package.location)
+        with:
+          result: stdout
+          format: string
+      - name: parse commits
+        dispatch: parse
+        with:
+          commits: $(build.commits)
+      - name: analyze commits
+        dispatch: analyze
+        with:
+          commits: $(build.parseCommits)
+      - name: recommendBump
+        dispatch: recommend-bump
+        with:
+          commits: $(build.analyzeCommits)
+          rules:
+            build: patch
+            ci: patch
+            docs: patch
+            feat: minor
+            fix: patch
+            perf: minor
+            refactor: minor
+            test: patch
+            deps: patch
+      - name: bump
+        run:
+          - yarn
+          - workspace
+          - $(package.name)
+          - version
+          - $(build.recommendBump)
+          - --deferred

@@ -52,6 +52,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@akala/automate@workspace:packages/automate"
   dependencies:
+    "@akala/cli": "workspace:*"
     "@akala/commands": "workspace:*"
     "@akala/config": "workspace:*"
     "@akala/core": "workspace:*"
@@ -65,6 +66,8 @@ __metadata:
     orchestrator: ^0.3.8
     source-map-support: ^0.5.19
     typescript: ^4.3.5
+  bin:
+    akala-automate-runner: dist/cli.js
   languageName: unknown
   linkType: soft
 
@@ -224,7 +227,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@akala/json-rpc-ws@workspace:packages/json-rpc-ws"
   dependencies:
-    "@types/assert": 1.5.4
+    "@types/assert": 1.5.5
     "@types/debug": 4.1.6
     "@types/node": ^14.14.31
     "@types/uuid": ^8.3.1
@@ -277,6 +280,23 @@ __metadata:
   bin:
     pm: dist/cli.js
     pm-fork: dist/fork.js
+  languageName: unknown
+  linkType: soft
+
+"@akala/semantic-release@workspace:packages/semantic-release":
+  version: 0.0.0-use.local
+  resolution: "@akala/semantic-release@workspace:packages/semantic-release"
+  dependencies:
+    "@akala/commands": "workspace:*"
+    "@types/conventional-recommended-bump": ^6.0.1
+    "@types/debug": ^4.1.6
+    "@yarnpkg/core": ^2.4.0
+    conventional-changelog-angular: ^5.0.12
+    conventional-recommended-bump: ^6.1.0
+    debug: ^4.3.1
+    git-raw-commits: ^2.0.10
+    git-semver-tags: ^4.1.1
+    yarn: ^1.22.10
   languageName: unknown
   linkType: soft
 
@@ -2513,7 +2533,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/assert@npm:1.5.4, @types/assert@npm:^1.5.4":
+"@types/assert@npm:1.5.5":
+  version: 1.5.5
+  resolution: "@types/assert@npm:1.5.5"
+  checksum: 6b4f9cb343393f359b168d39cec513a1bb9a235f480514b441254f8b00544449caac1eb624e9d4eea317817e340fd7deec53796a4a541e8fc18d6c5513645e38
+  languageName: node
+  linkType: hard
+
+"@types/assert@npm:^1.5.4":
   version: 1.5.4
   resolution: "@types/assert@npm:1.5.4"
   checksum: 5376252e740664f71701695d43b2147732d256b447f6fc93d6b1257c1b292f5cdc3fa9d97f26898cda4c9f43c32add0ead3a898fb46da8dcce299c6e606056b6
@@ -2588,6 +2615,50 @@ __metadata:
   version: 1.1.3
   resolution: "@types/content-type@npm:1.1.3"
   checksum: 5cb99767267d4470523baaacebacb6fdcae1b91f169d1c905da394e57a8dc46da5507672e14f9781a4614fde124fe259b3ba873b56f9338bcdbaa77be0058bc1
+  languageName: node
+  linkType: hard
+
+"@types/conventional-changelog-core@npm:*":
+  version: 4.1.2
+  resolution: "@types/conventional-changelog-core@npm:4.1.2"
+  dependencies:
+    "@types/conventional-changelog-writer": "*"
+    "@types/conventional-commits-parser": "*"
+    "@types/conventional-recommended-bump": "*"
+    "@types/git-raw-commits": "*"
+    "@types/node": "*"
+    "@types/normalize-package-data": "*"
+  checksum: 2e64de60f95c0d2dc6b06af6ed501e2aae5d3ddc9ce7ee82d708674195d084222dc7ac61d1c40f31502f23d78bbcc27bff3544ea30ea3fdf1c77e3ddfc260d8c
+  languageName: node
+  linkType: hard
+
+"@types/conventional-changelog-writer@npm:*":
+  version: 4.0.1
+  resolution: "@types/conventional-changelog-writer@npm:4.0.1"
+  dependencies:
+    "@types/conventional-commits-parser": "*"
+    "@types/node": "*"
+  checksum: 10782ed76b8f20e37fc810866ecadf1e588d308c7481e50e85d0442a5c8ef476d07cad842aacbd51841bd734a9bbdcb3b2e818a8ed68961be009d0dcf32183c9
+  languageName: node
+  linkType: hard
+
+"@types/conventional-commits-parser@npm:*":
+  version: 3.0.2
+  resolution: "@types/conventional-commits-parser@npm:3.0.2"
+  dependencies:
+    "@types/node": "*"
+  checksum: 6cf0c39ddbd2add11ce096afe66fa8fc4057d3347d4dfe5d36dd56fff2d8f6323a4b86bd29f0d981818b0e66f40a75e12893a1dd5b9a79ee9af04efd0d256bb7
+  languageName: node
+  linkType: hard
+
+"@types/conventional-recommended-bump@npm:*, @types/conventional-recommended-bump@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "@types/conventional-recommended-bump@npm:6.0.1"
+  dependencies:
+    "@types/conventional-changelog-core": "*"
+    "@types/conventional-changelog-writer": "*"
+    "@types/conventional-commits-parser": "*"
+  checksum: 6da9be5295784cf6884805b5c6d22bde6195acb1ec107c689176499c1884b5689137e54d8ec3e7e770d668c2b0580e37a73147a3b9abeac5ef98eecab2257f0f
   languageName: node
   linkType: hard
 
@@ -2697,6 +2768,15 @@ __metadata:
   version: 2.0.0
   resolution: "@types/flat-cache@npm:2.0.0"
   checksum: a25b24cbd44f83f97dbf4866252461ec5518a89386388d57cfe0a5e0a1a5612dc86f19c791b1a1e4ea99b1e4893c520779be7bf446f2f4732ad155ab487e7eb3
+  languageName: node
+  linkType: hard
+
+"@types/git-raw-commits@npm:*":
+  version: 2.0.1
+  resolution: "@types/git-raw-commits@npm:2.0.1"
+  dependencies:
+    "@types/node": "*"
+  checksum: 456eab4704afd4eda7f899710fc9ca0e51bf000d1924b8ec8ded84fc21e24af6261ad18a9e52c02ec53e974e1c552e36af378784e295c99a7605628aecd13005
   languageName: node
   linkType: hard
 
@@ -2907,6 +2987,13 @@ __metadata:
   version: 13.13.48
   resolution: "@types/node@npm:13.13.48"
   checksum: 9ccf1d1e21b6b5c33bf003e211fe6af8d4255fede5e81c717a5768ce49eba84addcf68d299573179d58274630cd552ff5e124e0db2c55c0a358120e07b0e54ec
+  languageName: node
+  linkType: hard
+
+"@types/normalize-package-data@npm:*":
+  version: 2.4.1
+  resolution: "@types/normalize-package-data@npm:2.4.1"
+  checksum: d7bb5756003a5dbf3ea1ee24ee336c036f3670a7f1ca2c8c840b5ba8fdf4b7063f8d8df16ec0427f622cc97e1c44710f089720d7caa521a5f4ec6f4073c69261
   languageName: node
   linkType: hard
 
@@ -7042,7 +7129,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"git-raw-commits@npm:^2.0.8":
+"git-raw-commits@npm:^2.0.10, git-raw-commits@npm:^2.0.8":
   version: 2.0.10
   resolution: "git-raw-commits@npm:2.0.10"
   dependencies:
@@ -15380,7 +15467,7 @@ typescript@^4.3.5:
   languageName: node
   linkType: hard
 
-"yarn@npm:^1.22.4":
+"yarn@npm:^1.22.10, yarn@npm:^1.22.4":
   version: 1.22.10
   resolution: "yarn@npm:1.22.10"
   bin:
