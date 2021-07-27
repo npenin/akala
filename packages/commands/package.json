@@ -1,63 +1,65 @@
 {
-  "name": "@akala/commands",
-  "version": "2.1.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "repository": "https://github.com/npenin/akala",
-  "homepage": "https://akala.js.org/commands",
-  "author": "npenin",
-  "license": "BSD-3-Clause",
-  "funding": "https://github.com/npenin/akala?sponsor=1",
-  "scripts": {
-    "test": "mocha",
-    "prepublishOnly": "tsc -p .",
-    "build": "tsc -p .",
-    "cli": "node dist/cli.js"
-  },
-  "browser": {
-    "./dist/cli/serve.js": false,
-    "./dist/processors/fs.js": "./dist/processors/fs-browser.js",
-    "./dist/serve-metadata.js": "./dist/serve-metadata.browser.js"
-  },
-  "bin": {
-    "ac": "dist/cli.js"
-  },
-  "mocha": {
-    "require": [
-      "source-map-support/register"
-    ],
-    "spec": [
-      "dist/test/*.js"
-    ],
-    "timeout": 0
-  },
-  "nyc": {
-    "reporter": [
-      "text-summary"
-    ],
-    "instrument": true
-  },
-  "dependencies": {
-    "@akala/cli": "workspace:*",
-    "@akala/core": "workspace:*",
-    "@akala/json-rpc-ws": "^9.2.0",
-    "debug": "^4.1.1",
-    "path-to-regexp": "^6.1.0",
-    "reflect-metadata": "^0.1.13",
-    "ws": "^7.5.1"
-  },
-  "devDependencies": {
-    "@types/debug": "^4.1.6",
-    "@types/mocha": "^8.2.1",
-    "@types/node": "^14.14.31",
-    "@types/split2": "^3.2.0",
-    "@types/uuid": "^8.3.1",
-    "@types/ws": "^7.4.6",
-    "express": "^4.17.1",
-    "mocha": "^9.0.2",
-    "nyc": "^15.1.0",
-    "source-map-support": "^0.5.19",
-    "typescript": "^4.3.5"
-  },
-  "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43"
+    "name": "@akala/commands",
+    "version": "2.1.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "repository": "https://github.com/npenin/akala",
+    "homepage": "https://akala.js.org/commands",
+    "author": "npenin",
+    "license": "BSD-3-Clause",
+    "funding": "https://github.com/npenin/akala?sponsor=1",
+    "scripts": {
+        "test": "mocha",
+        "prepublishOnly": "tsc -p .",
+        "build": "tsc -p .",
+        "cli": "node dist/cli.js",
+        "generate-cli": "ac generate dist/cli commands.json --name cli",
+        "generate-metadata-cli": "ac generate-metadata commands.json src/commands.ts --name cli"
+    },
+    "browser": {
+        "./dist/cli/serve.js": false,
+        "./dist/processors/fs.js": "./dist/processors/fs-browser.js",
+        "./dist/serve-metadata.js": "./dist/serve-metadata.browser.js"
+    },
+    "bin": {
+        "ac": "dist/cli.js"
+    },
+    "mocha": {
+        "require": [
+            "source-map-support/register"
+        ],
+        "spec": [
+            "dist/test/*.js"
+        ],
+        "timeout": 0
+    },
+    "nyc": {
+        "reporter": [
+            "text-summary"
+        ],
+        "instrument": true
+    },
+    "dependencies": {
+        "@akala/cli": "workspace:*",
+        "@akala/core": "workspace:*",
+        "@akala/json-rpc-ws": "^9.2.0",
+        "debug": "^4.1.1",
+        "path-to-regexp": "^6.1.0",
+        "reflect-metadata": "^0.1.13",
+        "ws": "^7.5.1"
+    },
+    "devDependencies": {
+        "@types/debug": "^4.1.6",
+        "@types/mocha": "^8.2.1",
+        "@types/node": "^14.14.31",
+        "@types/split2": "^3.2.0",
+        "@types/uuid": "^8.3.1",
+        "@types/ws": "^7.4.6",
+        "express": "^4.17.1",
+        "mocha": "^9.0.2",
+        "nyc": "^15.1.0",
+        "source-map-support": "^0.5.19",
+        "typescript": "^4.3.5"
+    },
+    "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43"
 }
