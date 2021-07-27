@@ -1,9 +1,15 @@
-import { Container, Processors } from "@akala/commands/dist";
-import { WorkflowInstanceState } from "../state";
+import { CliContext } from "@akala/cli";
+import { Container, Processors } from "@akala/commands";
 
-export default async function use(this: WorkflowInstanceState, self: Container<WorkflowInstanceState>, name: string, pathToCommands: string)
+export default async function use(this: CliContext, self: Container<CliContext>, name: string, pathToCommands: string)
 {
-    var container = new Container(name, this);
-    await Processors.FileSystem.discoverCommands(pathToCommands, container, { relativeTo: this.cwd });
-    self.register(container);
+    if (!name)
+        var container = self;
+    else
+        var container = new Container(name, this);
+    await Processors.FileSystem.discoverCommands(pathToCommands, container);
+    if (self && name)
+        self.register(container);
+    else
+        return container;
 }

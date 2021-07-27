@@ -1,34 +1,44 @@
 {
-  "name": "@akala/automate",
-  "version": "0.1.0",
-  "main": "dist/automate.js",
-  "commands": {
-    "@akala/automate": "commands.json",
-    "@akala/automate/workflow": "workflow.json"
-  },
-  "license": "BSD-3-Clause",
-  "funding": "https://github.com/npenin/akala?sponsor=1",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/npenin/akala.git"
-  },
-  "homepage": "https://akala.js.org/automate",
-  "devDependencies": {
-    "@types/assert": "^1.5.4",
-    "@types/mocha": "^8.2.1",
-    "assert": "^2.0.0",
-    "mocha": "^9.0.2",
-    "source-map-support": "^0.5.19",
-    "typescript": "^4.3.5"
-  },
-  "gitHead": "afe8c192d4975f51ed95b2921da95b767be3879c",
-  "dependencies": {
-    "@akala/commands": "workspace:*",
-    "@akala/config": "workspace:*",
-    "@akala/core": "workspace:*",
-    "@akala/json-rpc-ws": "^9.2.0",
-    "@akala/pm": "workspace:*",
-    "@akala/server": "workspace:*",
-    "orchestrator": "^0.3.8"
-  }
+    "name": "@akala/automate",
+    "version": "0.1.0",
+    "main": "dist/automate.js",
+    "commands": {
+        "@akala/automate": "commands.json",
+        "@akala/automate/workflow": "workflow.json"
+    },
+    "bin": {
+        "akala-automate-runner": "dist/cli.js"
+    },
+    "license": "BSD-3-Clause",
+    "funding": "https://github.com/npenin/akala?sponsor=1",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/npenin/akala.git"
+    },
+    "homepage": "https://akala.js.org/automate",
+    "devDependencies": {
+        "@types/assert": "^1.5.4",
+        "@types/mocha": "^8.2.1",
+        "assert": "^2.0.0",
+        "mocha": "^9.0.2",
+        "source-map-support": "^0.5.19",
+        "typescript": "^4.3.5"
+    },
+    "gitHead": "afe8c192d4975f51ed95b2921da95b767be3879c",
+    "dependencies": {
+        "@akala/cli": "workspace:*",
+        "@akala/commands": "workspace:*",
+        "@akala/config": "workspace:*",
+        "@akala/core": "workspace:*",
+        "@akala/json-rpc-ws": "^9.2.0",
+        "@akala/pm": "workspace:*",
+        "@akala/server": "workspace:*",
+        "orchestrator": "^0.3.8"
+    },
+    "scripts": {
+        "generate": "ac generate dist/commands commands.json --name @akala/automate",
+        "generate-metadata": "ac generate-metadata commands.json src/container.ts",
+        "generate-workflow": "ac generate dist/workflow-commands workflow.json --name workflow",
+        "generate-metadata-workflow": "ac generate-metadata workflow.json src/workflow.ts --name workflow"
+    }
 }

@@ -1,8 +1,13 @@
-import { ServeOptions } from "@akala/commands";
-import { Container } from "@akala/pm";
+import { CliContext } from "@akala/cli";
+import { Container, serve, serveMetadata, ServeOptions } from "@akala/commands";
+import { Container as pmContainer } from "@akala/pm";
+import workflow from "../workflow";
 
-export default async function $init(name: string, pm: Container, options: ServeOptions)
+export default async function $init(this: CliContext, name: string, pm: pmContainer, options: ServeOptions, self: workflow.container & Container<void>)
 {
-    this.cwd = process.cwd();
-    await pm.dispatch('connect', name, options);
+    this.currentWorkingDirectory = process.cwd();
+    if (pm)
+        await pm.dispatch('connect', name, options);
+    else
+        await serve(self, serveMetadata(name, options));
 }

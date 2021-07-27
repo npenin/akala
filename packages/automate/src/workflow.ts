@@ -5,17 +5,17 @@ namespace workflow
 {
 	export interface container 
 	{
-		dispatch (cmd:'$init', ...args: []): ReturnType<typeof import('./workflow-commands/$init').default>
-		dispatch (cmd:'process', ...args: [Argument0<typeof import('./workflow-commands/process').default>]): ReturnType<typeof import('./workflow-commands/process').default>
+		dispatch (cmd:'$init', ...args: [Argument0<typeof import('./workflow-commands/$init').default>, Argument2<typeof import('./workflow-commands/$init').default>]): ReturnType<typeof import('./workflow-commands/$init').default>
+		dispatch (cmd:'process', ...args: [Argument0<typeof import('./workflow-commands/process').default>, Argument1<typeof import('./workflow-commands/process').default>]): ReturnType<typeof import('./workflow-commands/process').default>
 		dispatch (cmd:'set-config', ...args: [Argument0<typeof import('./workflow-commands/set-config').default>]): ReturnType<typeof import('./workflow-commands/set-config').default>
-		dispatch (cmd:'use', ...args: [Argument0<typeof import('./workflow-commands/use').default>, Argument1<typeof import('./workflow-commands/use').default>, Argument2<typeof import('./workflow-commands/use').default>]): ReturnType<typeof import('./workflow-commands/use').default>
+		dispatch (cmd:'use', ...args: [Argument1<typeof import('./workflow-commands/use').default>, Argument2<typeof import('./workflow-commands/use').default>]): ReturnType<typeof import('./workflow-commands/use').default>
 	}
 	export interface proxy 
 	{
-		'$init'(...args: []): ReturnType<typeof import('./workflow-commands/$init').default>
-		'process'(...args: [Argument0<typeof import('./workflow-commands/process').default>]): ReturnType<typeof import('./workflow-commands/process').default>
+		'$init'(...args: [Argument0<typeof import('./workflow-commands/$init').default>, Argument2<typeof import('./workflow-commands/$init').default>]): ReturnType<typeof import('./workflow-commands/$init').default>
+		'process'(...args: [Argument0<typeof import('./workflow-commands/process').default>, Argument1<typeof import('./workflow-commands/process').default>]): ReturnType<typeof import('./workflow-commands/process').default>
 		'set-config'(...args: [Argument0<typeof import('./workflow-commands/set-config').default>]): ReturnType<typeof import('./workflow-commands/set-config').default>
-		'use'(...args: [Argument0<typeof import('./workflow-commands/use').default>, Argument1<typeof import('./workflow-commands/use').default>, Argument2<typeof import('./workflow-commands/use').default>]): ReturnType<typeof import('./workflow-commands/use').default>
+		'use'(...args: [Argument1<typeof import('./workflow-commands/use').default>, Argument2<typeof import('./workflow-commands/use').default>]): ReturnType<typeof import('./workflow-commands/use').default>
 	}
 }
 
