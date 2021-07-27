@@ -71,6 +71,8 @@ export default async function _new(type: string, name: string, options: CliConte
             if (!cmd)
                 throw new ErrorWithStatus(44, `No command with name ${name} could be found in ${destination}`)
             var { output } = await outputHelper(path.resolve(destination, cmd?.config?.fs?.source && path.dirname(cmd?.config?.fs?.source)), name + '.json', options && options.force);
+            delete cmd.config.fs.source;
+            delete cmd.config.fs.path;
             await write(output, JSON.stringify({ $schema: "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json", ...cmd.config }, null, 4));
             break;
         default:

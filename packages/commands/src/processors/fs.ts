@@ -57,11 +57,7 @@ export class FileSystem<T> extends CommandProcessor
 
         let fs: FileSystem<T>;
         if (!options.processor)
-        {
-            if (!options.isDirectory)
-                options.relativeTo = path.dirname(root);
             options.processor = fs = new FileSystem<T>(container, options.relativeTo);
-        }
 
         const commands = await this.discoverMetaCommands(root, options);
 
@@ -265,17 +261,24 @@ export class FileSystem<T> extends CommandProcessor
         else
             filepath = path.resolve(this.root || process.cwd(), command.name);
         // eslint-disable-next-line @typescript-eslint/no-var-requires
-        const script = require(filepath);
-        if (process.env.NODE_ENV !== 'production')
-            delete require.cache[filepath];
+        try
+        {
+            const script = require(filepath);
+            if (process.env.NODE_ENV !== 'production')
+                delete require.cache[filepath];
 
-        if (!this.container)
-            throw new Error('container is undefined');
+            if (!this.container)
+                throw new Error('container is undefined');
 
-        if (!param._trigger)
-            param._trigger = this.name;
+            if (!param._trigger)
+                param._trigger = this.name;
 
-        return Local.handle(command, script.default, this.container, param);
+            return Local.handle(command, script.default, this.container, param);
+        }
+        catch (e)
+        {
+            return e;
+        }
     }
 
     constructor(container: Container<T>, private root?: string)

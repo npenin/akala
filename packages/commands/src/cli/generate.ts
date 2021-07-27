@@ -2,16 +2,15 @@ import * as akala from "../";
 import { Container } from '../model/container';
 import * as path from 'path'
 import * as fs from 'fs';
-import { join } from "path";
 import { Writable } from "stream";
 import { outputHelper } from './new';
 
 export default async function generate(folder?: string, name?: string, outputFile?: string)
 {
     folder = folder || process.cwd();
-    if (!name && fs.existsSync(join(folder, './package.json')))
+    if (!name && fs.existsSync(path.join(folder, './package.json')))
         // eslint-disable-next-line @typescript-eslint/no-var-requires
-        name = require(join(folder, './package.json')).name;
+        name = require(path.join(folder, './package.json')).name;
     if (!name)
         name = path.basename(folder);
     const container = new Container(name, {});
