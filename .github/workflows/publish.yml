@@ -32,7 +32,11 @@ jobs:
       - name: bump version
         run: yarn version apply
       - name: commit
-        run: git commit -a -m "ci Publish" && git push
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git commit -a -m "ci Publish"
+          git push
       - name: Publish
         run: yarn workspaces foreach --no-private npm publish --tolerate-republish
         env:
