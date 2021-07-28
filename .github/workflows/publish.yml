@@ -31,6 +31,8 @@ jobs:
         run: node packages/automate/dist/cli.js --loader packages/automate-yamlloader/ --file packages/semantic-release/semantic-releases.yml
       - name: bump version
         run: yarn version apply
+      - name: commit
+        run: git commit -a -m "ci Publish" && git push
       - name: Publish
         run: yarn workspaces foreach --no-private npm publish --tolerate-republish
         env:
