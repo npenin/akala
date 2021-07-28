@@ -6,10 +6,10 @@ name: publish
 on:
   push:
     branches:
-    - master
+      - master
   pull_request:
     branches:
-    - master
+      - master
   workflow_dispatch:
 
 jobs:
@@ -48,8 +48,12 @@ jobs:
         run: yarn install
       - name: Compile
         run: yarn tsc -b packages
+      - name: prepare version bump
+        run: akala-automate-runner --loader packages/automate-yamlloader/ --file packages/semantic-release/semantic-releases.yml
+      - name: bump version
+        run: yarn version apply
       - name: Publish
-        run: yarn workspaces foreach --no-private semantic-release
+      - name: yarn workspaces --no-private foreach npm publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
