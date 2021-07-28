@@ -53,7 +53,7 @@ jobs:
       - name: bump version
         run: yarn version apply
       - name: Publish
-      - name: yarn workspaces --no-private foreach npm publish
+        run: yarn workspaces --no-private foreach npm publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
