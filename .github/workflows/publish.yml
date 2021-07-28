@@ -49,7 +49,7 @@ jobs:
       - name: Compile
         run: yarn tsc -b packages
       - name: prepare version bump
-        run: akala-automate-runner --loader packages/automate-yamlloader/ --file packages/semantic-release/semantic-releases.yml
+        run: yarn akala-automate-runner --loader packages/automate-yamlloader/ --file packages/semantic-release/semantic-releases.yml
       - name: bump version
         run: yarn version apply
       - name: Publish
