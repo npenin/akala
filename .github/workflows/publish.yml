@@ -46,7 +46,7 @@ jobs:
       - name: Compile
         run: yarn tsc -b packages
       - name: prepare version bump
-        run: node packages/automate/cli.js --loader packages/automate-yamlloader/ --file packages/semantic-release/semantic-releases.yml
+        run: node packages/automate/dist/cli.js --loader packages/automate-yamlloader/ --file packages/semantic-release/semantic-releases.yml
       - name: bump version
         run: yarn version apply
       - name: Publish
