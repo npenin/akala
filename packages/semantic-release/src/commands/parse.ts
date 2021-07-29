@@ -4,7 +4,7 @@ import { merge } from "../../../core/src/global-injector";
 export default async function (commitsString: string)
 {
     const commitIdRE = /^commit ([0-9a-f]{40})$/gm;
-    const authorRE = /^Author:\s+([^<]+) <([^>]+)>$/gm;
+    const authorRE = /^Author:\s+([^<]+) <([^>]*)>$/gm;
     const mergeRE = /^Merge:\s+([0-9a-f]+)\s+([0-9a-f]+)\s*$/gm;
     const dateRE = /^Date:\s+((\d{4})-(\d{2})-(\d{2}) (\d+):(\d+):(\d+) ([+-]\d{4}))$/gm;
     const emptyLineRE = /\n\n|$/g;
