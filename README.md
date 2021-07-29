@@ -15,6 +15,8 @@
 - authentication: [![Version](https://badgen.net/npm/v/@akala/authentication)](https://badgen.net/npm/v/@akala/authentication) [![Size](https://badgen.net/packagephobia/publish/@akala/authentication)](https://badgen.net/packagephobia/publish/@akala/authentication)
 - storage: [![Version](https://badgen.net/npm/v/@akala/storage)](https://badgen.net/npm/v/@akala/storage) [![Size](https://badgen.net/packagephobia/publish/@akala/storage)](https://badgen.net/packagephobia/publish/@akala/storage)
 - tacl: [![Version](https://badgen.net/npm/v/@akala/tacl)](https://badgen.net/npm/v/@akala/tacl) [![Size](https://badgen.net/packagephobia/publish/@akala/tacl)](https://badgen.net/packagephobia/publish/@akala/tacl)
+- automate: [![Version](https://badgen.net/npm/v/@akala/automate)](https://badgen.net/npm/v/@akala/automate) [![Size](https://badgen.net/packagephobia/publish/@akala/automate)](https://badgen.net/packagephobia/publish/@akala/automate)
+- automate-yamlloader: [![Version](https://badgen.net/npm/v/@akala/automate-yamlloader)](https://badgen.net/npm/v/@akala/automate-yamlloader) [![Size](https://badgen.net/packagephobia/publish/@akala/automate-yamlloader)](https://badgen.net/packagephobia/publish/@akala/automate-yamlloader)
 
 # akala
 
