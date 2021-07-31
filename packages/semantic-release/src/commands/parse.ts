@@ -1,15 +1,23 @@
-import { merge } from "../../../core/src/global-injector";
+import conventionalCommitsParser from "conventional-commits-parser";
 
-
-export default async function (commitsString: string)
+export interface Commit
 {
+    author: { name: string, mail: string };
+    hash: string;
+    message: string;
+    date: Date
+}
+
+export default function (commitsString: string)
+{
+    conventionalCommitsParser()
     const commitIdRE = /^commit ([0-9a-f]{40})$/gm;
     const authorRE = /^Author:\s+([^<]+) <([^>]*)>$/gm;
     const mergeRE = /^Merge:\s+([0-9a-f]+)\s+([0-9a-f]+)\s*$/gm;
     const dateRE = /^Date:\s+((\d{4})-(\d{2})-(\d{2}) (\d+):(\d+):(\d+) ([+-]\d{4}))$/gm;
     const emptyLineRE = /\n\n|$/g;
     var commit: RegExpExecArray;
-    const commits = [];
+    const commits: Commit[] = [];
     let mergeMatch = mergeRE.exec(commitsString);
     while (commit = commitIdRE.exec(commitsString))
     {
@@ -40,7 +48,7 @@ export default async function (commitsString: string)
         if (!emptyLineRE.test(commitsString))
             throw new Error(`invalid git format: ${commitsString}`);
 
-        commits.push({ hash: commitId, author: { nickname, mail }, message: commitsString.substring(index, emptyLineRE.lastIndex).replace(/(\n|^)(?:\t| {4})/g, '$1').trimEnd(), date })
+        commits.push({ hash: commitId, author: { name: nickname, mail }, message: commitsString.substring(index, emptyLineRE.lastIndex).replace(/(\n|^)(?:\t| {4})/g, '$1').trimEnd(), date: date })
     }
     return commits;
 }
