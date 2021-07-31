@@ -66,7 +66,7 @@ config.command<{ name: string }>('new <name>')
             "build:js": "tsc -p src",
             "build:js:routes": "browserify -x @akala/client -x @akala/core dist/client/routes.js -o dist/routes.js",
             "build:js:tile": "browserify -x @akala/client -x @akala/core -i @domojs/theme-default/dist/tile dist/client/tile.js -o dist/tile.js",
-            "prepublishOnly": "npm run build",
+            "prepack": "npm run build",
             "build": "npm run build:js && npm run build:js:routes && npm run build:js:tile"
         };
         packagejson.license = "MIT";
