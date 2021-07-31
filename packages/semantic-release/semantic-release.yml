@@ -1,5 +1,6 @@
 parameters:
   - package
+  - changelogPath
 outputs: $(build.recommendBump)
 jobs:
   build:
@@ -42,6 +43,7 @@ jobs:
             refactor: minor
             test: patch
             deps: patch
+            chore: patch
       - name: bump
         run:
           - yarn
@@ -50,3 +52,8 @@ jobs:
           - version
           - $(build.recommendBump)
           - --deferred
+      - name: changelog
+        dispatch: changelog
+        with:
+          commits: $(build.analyzeCommits)
+          file: $(changelogPath)

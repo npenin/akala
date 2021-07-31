@@ -1,0 +1,9 @@
+jobs:
+  build:
+    steps:
+      - name: semantic-release
+        outputAs: releases
+        job: ./semantic-releases.yml
+      - name: publish
+        # foreach: $(build.releases.build)
+        log: $(build.releases.build)

@@ -19,6 +19,7 @@ jobs:
         job: ./semantic-release.yml
         with:
           package: $($)
+          changelogPath: $($.location)/changelog.txt
       - name: bumpDependents
         dispatch: bump-dependents
         outputAs: bumps
@@ -29,6 +30,7 @@ jobs:
             major: patch
             minor: patch
             patch: patch
+          changelog: changelog.txt
       - name: bump
         foreach: $(build.bumps)
         foreach-strategy: wait-for-previous
@@ -39,22 +41,3 @@ jobs:
           - version
           - $($.bump)
           - --deferred
-    # - name: commits
-    #   foreach: $(build.workspaces)
-    #   run:
-    #     - git
-    #     - log
-    #     - --name-only
-    #     - --
-    #     - $($.location)
-    #   with:
-    #     result: stdout
-    #     format: string
-    # - name: parse-commits
-    #   foreach: $(build.workspaces)
-    #   dispatch: parse
-    #   with:
-    #     commits: $(build.commits[$.name])
-    # - name: analyse-commits
-    #   foreach: $(build.workspaces)
-    #   run:
