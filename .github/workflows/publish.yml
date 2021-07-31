@@ -19,6 +19,10 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14
+      - name: setup git
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
       - name: Install yarn
         run: |
           curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
@@ -35,10 +39,8 @@ jobs:
         run: yarn version apply
       - name: commit
         run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
           git commit -a -m "ci Publish"
-          git push
+          git tag -a -m
       - name: Publish
         run: yarn workspaces foreach --no-private npm publish --tolerate-republish
         env:
