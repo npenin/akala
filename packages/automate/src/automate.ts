@@ -8,7 +8,12 @@ import { Stream } from 'stream';
 
 export const interpolate = new Interpolate('$(', ')')
 
-export const simpleRunner: Runner<JobStepRun> = {
+export const simpleRunner: Runner<JobStepRun | JobStepLog> = {
+    log(cmd: string | string[])
+    {
+        console.log(interpolate.buildObject(cmd)(this));
+        return Promise.resolve();
+    },
     run(cmd: string | string[], step: JobStepRun, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
     {
         if (!step.with)
@@ -94,16 +99,16 @@ export type Runner<TSupportedJobSteps extends JobStepDef<string, any, any>> = {
 export default function automate<TResult extends object, TSupportedJobSteps extends JobStepDef<string, any, any>>(workflow: Workflow, runner: Runner<TSupportedJobSteps>, inputs?: unknown, stdio?: Exclude<StdioNull, Stream> | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
 {
     const orchestrator = new Orchestrator();
-    const inputForLog = !inputs && '' || Object.entries(inputs).map(entry => entry[0] + '=' + JSON.stringify(entry[1])).join(", ");
+    const inputForLog = !inputs ? '' : Object.entries(inputs).map(entry => entry[0] + '=' + JSON.stringify(entry[1])).join(", ");
 
-    orchestrator.on('task_start', (t) => console.log('running ' + t.task + ' ' + inputForLog));
-    orchestrator.on('task_stop', (t) => console.log(`ran ${t.task + ' ' + inputForLog} successfully`));
+    // orchestrator.on('task_start', (t) => console.log('running ' + t.task + ' ' + inputForLog));
+    // orchestrator.on('task_stop', (t) => console.log(`ran ${t.task + ' ' + inputForLog} successfully`));
 
     orchestrator.add('#main', Object.keys(workflow.jobs));
 
     const results = Object.assign({} as unknown as TResult, inputs);
 
-    ensureDefaults(workflow.jobs)
+    ensureDefaults(workflow.jobs, runner);
 
     Object.keys(workflow.jobs).forEach(name =>
     {
@@ -163,7 +168,7 @@ export default function automate<TResult extends object, TSupportedJobSteps exte
     });
 }
 
-export function ensureDefaults(jobs: Workflow['jobs'])
+export function ensureDefaults<TSupportedJobSteps extends JobStepDef<string, any, any>>(jobs: Workflow['jobs'], runner: Runner<TSupportedJobSteps>)
 {
     jobs && Object.keys(jobs).forEach(jobName =>
     {
@@ -183,7 +188,12 @@ export function ensureDefaults(jobs: Workflow['jobs'])
                 else if ('job' in step)
                     step.type = 'job';
                 else
-                    throw new Error(`Invalid step ${JSON.stringify(step)}`);
+                {
+                    var types = Object.keys(runner).filter(k => k in step);
+                    if (types.length !== 1)
+                        throw new Error(`Invalid step type ${JSON.stringify(step)}`);
+                    step.type = types[0];
+                }
             }
             if (!step.outputAs && step.name)
                 step.outputAs = step.name.replace(/[^\w](\w)/g, m => m[1].toUpperCase());
@@ -225,10 +235,9 @@ export type JobStepDef<T extends string, TActor = string, TSettings = Serializab
 } & JobStepActor<T, TActor>;
 
 
-export type JobStep = JobStepUse | JobStepRun | JobStepDispatch | JobStepJob;
-
 export type JobStepUse = JobStepDef<'uses'>;
 export type JobStepJob = JobStepDef<'job'>;
+export type JobStepLog = JobStepDef<'log', string, void>;
 
 export type JobStepRun = JobStepDef<'run', string | string[], SpawnOptionsWithoutStdio & { result?: 'stdout' | 'stderr', format?: 'jsonnd' | 'raw' | 'string' | 'json' }>;
 export type JobStepDispatch = JobStepDef<'dispatch'>;
