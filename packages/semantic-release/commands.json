@@ -89,6 +89,25 @@
             }
         },
         {
+            "name": "get-version",
+            "inject": [],
+            "config": {
+                "": {
+                    "inject": []
+                },
+                "fs": {
+                    "path": "dist/commands/get-version.js",
+                    "source": "src/commands/get-version.ts",
+                    "inject": []
+                },
+                "automate": {
+                    "inject": [
+                        "path"
+                    ]
+                }
+            }
+        },
+        {
             "name": "parse",
             "inject": [
                 "param.0"

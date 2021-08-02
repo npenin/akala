@@ -4,6 +4,21 @@ jobs:
       - name: semantic-release
         outputAs: releases
         job: ./semantic-releases.yml
+      - name: versions
+        dispatch: get-version
+        with:
+          path: $($.location)
+        outputAs: versions
+        foreach: $(build.releases.build.workspaces)
+      - name: tag
+        foreach: $(build.versions)
+        run:
+          - git
+          - tag
+          - -a
+          - $($index)@$($)
+      - name: push
+        run: git push origin --tags
       - name: publish
-        # foreach: $(build.releases.build)
-        log: $(build.releases.build)
+        foreach: $(build.versions)
+        run: yarn workspaces foreach --no-private npm publish --tolerate-republish
