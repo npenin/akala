@@ -3,7 +3,7 @@ import Orchestrator from 'orchestrator';
 import { spawn, StdioNull, StdioPipe, exec, SpawnOptionsWithoutStdio } from 'child_process';
 import commands from './container';
 import { Container } from '@akala/commands';
-import { eachAsync, Interpolate } from '@akala/core';
+import { eachAsync, Interpolate, Parser } from '@akala/core';
 import { Stream } from 'stream';
 
 export const interpolate = new Interpolate('$(', ')')
@@ -75,7 +75,7 @@ export const simpleRunner: Runner<JobStepRun | JobStepLog> = {
                     return resolve(undefined);
                 }
                 else
-                    reject();
+                    reject(new Error((cmd as string[]).join(' ') + ' failed with code ' + code));
             });
             if (step.with?.result)
                 cp[step.with.result].on('data', chunk =>
@@ -126,6 +126,11 @@ export default function automate<TResult extends object, TSupportedJobSteps exte
                 {
                     if (runner[step.type])
                     {
+                        if (step.condition)
+                        {
+                            if (!Parser.evalAsFunction(step.condition, false)(results, false))
+                                results[job.name][step.outputAs] = false
+                        }
                         if (step.foreach)
                         {
                             results[job.name][step.outputAs] = {};
@@ -232,6 +237,7 @@ export type JobStepDef<T extends string, TActor = string, TSettings = Serializab
     name?: string;
     with: TSettings;
     foreach: { name: string, [key: string]: unknown }[];
+    condition: string;
     'foreach-strategy': 'wait-for-previous' | 'parallel';
     outputAs: string;
 } & JobStepActor<T, TActor>;
