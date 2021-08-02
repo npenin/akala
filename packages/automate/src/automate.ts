@@ -131,12 +131,14 @@ export default function automate<TResult extends object, TSupportedJobSteps exte
                             results[job.name][step.outputAs] = {};
                             if (typeof step.foreach === 'string')
                                 step.foreach = interpolate.build(step.foreach)(results) as any;
-                            await eachAsync(step.foreach, async item =>
+                            // console.log(step.foreach)
+                            await eachAsync(step.foreach, async (item, index) =>
                             {
-                                if (step.outputAs)
-                                    results[job.name][step.outputAs][item.name] = await runner[step.type].call(Object.assign({ $: item }, results), step[step.type], step, stdio);
-                                else
-                                    await runner[step.type].call(Object.assign({ $: item }, results), step[step.type], step, stdio);
+                                if (item)
+                                    if (step.outputAs)
+                                        results[job.name][step.outputAs][item.name || index] = await runner[step.type].call(Object.assign({ $: item, $index: index }, results), step[step.type], step, stdio);
+                                    else
+                                        await runner[step.type].call(Object.assign({ $: item, $index: index }, results), step[step.type], step, stdio);
                             }, step['foreach-strategy'] == 'wait-for-previous');
                         }
                         else
