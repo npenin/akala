@@ -34,15 +34,7 @@ jobs:
       - name: Compile
         run: yarn tsc -b packages
       - name: prepare version bump
-        run: node packages/automate/dist/cli.js --loader packages/automate-yamlloader/ --file packages/semantic-release/semantic-releases.yml
-      - name: bump version
-        run: yarn version apply
-      - name: commit
-        run: |
-          git commit -a -m "ci Publish"
-          git tag -a -m
-      - name: Publish
-        run: yarn workspaces foreach --no-private npm publish --tolerate-republish
+        run: node packages/automate/dist/cli.js --loader packages/automate-yamlloader/ --file packages/semantic-release/publish.yml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
