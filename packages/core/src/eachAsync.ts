@@ -39,7 +39,10 @@ export function array<T, U extends unknown[]>(array: T[] | ArrayLike<T>, body: (
             }
             catch (e)
             {
-                (complete as SimpleNextFunction<unknown>)(e);
+                if (complete)
+                    (complete as SimpleNextFunction<unknown>)(e);
+                else
+                    deferred.reject(e);
             }
     }
     loop(0);
