@@ -46,5 +46,13 @@ import use from './workflow-commands/use';
     {
         console.log(r);
     });
-    return await program.process(buildCliContextFromProcess());
+    try
+    {
+        return await program.process(buildCliContextFromProcess());
+    }
+    catch (e)
+    {
+        console.error(e);
+        process.exit(1);
+    }
 })();
