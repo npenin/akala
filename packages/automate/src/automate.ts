@@ -39,7 +39,7 @@ export const simpleRunner: Runner<JobStepRun | JobStepLog> = {
 
             cmd = interpolate.buildObject(cmd)(this);
             console.log(cmd.join(' '));
-            var cp = spawn(cmd[0], cmd.slice(1), Object.assign(step.with || {}, stdio, { timeout: step.with.timeout || 3600000 })).on('close', function (code)
+            const cp = spawn(cmd[0], cmd.slice(1), Object.assign(step.with || {}, stdio, { timeout: step.with.timeout || 3600000 })).on('close', function (code)
             {
                 if (code == 0)
                 {
@@ -122,14 +122,18 @@ export default function automate<TResult extends object, TSupportedJobSteps exte
         job.steps.forEach(step =>
         {
             orchestrator.add(name + '-' + step.name, previousStepName && [previousStepName],
-                async function ()
+                async function (): Promise<void>
                 {
                     if (runner[step.type])
                     {
-                        if (step.condition)
+                        if (step.if)
                         {
-                            if (!Parser.evalAsFunction(step.condition, false)(results, false))
-                                results[job.name][step.outputAs] = false
+                            if (!Parser.evalAsFunction(step.if, false)(results, false))
+                            {
+                                if (step.outputAs)
+                                    results[job.name][step.outputAs] = false;
+                                return;
+                            }
                         }
                         if (step.foreach)
                         {
@@ -237,7 +241,7 @@ export type JobStepDef<T extends string, TActor = string, TSettings = Serializab
     name?: string;
     with: TSettings;
     foreach: { name: string, [key: string]: unknown }[];
-    condition: string;
+    if: string;
     'foreach-strategy': 'wait-for-previous' | 'parallel';
     outputAs: string;
 } & JobStepActor<T, TActor>;
