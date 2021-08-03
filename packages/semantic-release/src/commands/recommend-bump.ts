@@ -3,7 +3,7 @@ export enum Levels
     major = 0,
     minor = 1,
     patch = 2,
-    ignore = 3,
+    decline = 3,
 }
 
 export default function <T extends string>(commits: { type: T }[], rules: { [key in T]: keyof Levels }): keyof Levels
@@ -17,5 +17,5 @@ export default function <T extends string>(commits: { type: T }[], rules: { [key
         if (Levels[rules[c.type] as keyof Levels] < previous)
             return Levels[rules[c.type] as keyof Levels];
         return previous;
-    }, Levels.ignore))] as keyof Levels;
+    }, Levels.decline))] as keyof Levels;
 }
