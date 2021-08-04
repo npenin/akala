@@ -30,7 +30,7 @@ jobs:
             major: patch
             minor: patch
             patch: patch
-          changelog: changelog.txt
+          changelog: changelog.md
       - name: bump
         foreach: $(build.bumps)
         foreach-strategy: wait-for-previous
