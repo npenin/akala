@@ -75,7 +75,10 @@ export const simpleRunner: Runner<JobStepRun | JobStepLog> = {
                 }
                 else
                 {
-                    reject(new Error((cmd as string[]).join(' ') + ' failed with code ' + code));
+                    if (step.with && step.with['ignore-failure'])
+                        resolve(undefined);
+                    else
+                        reject(new Error((cmd as string[]).join(' ') + ' failed with code ' + code));
                 }
             });
             if (step.with?.result)
