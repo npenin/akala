@@ -5,24 +5,79 @@ import { isPromiseLike } from './helpers'
 export type NextFunction<TError = unknown, T extends unknown[] = [], TReturn = void> = (error?: TError, ...args: T) => TReturn;
 export type SimpleNextFunction<T> = NextFunction<T, [], void | Promise<void>>
 
-export function array<T, U extends unknown[]>(array: T[] | ArrayLike<T>, body: (element: T, i: number, next: NextFunction<unknown, U>) => void | PromiseLike<void>, complete: NextFunction<unknown, U, void | Promise<void>>, waitForPrevious: boolean): Promise<void> | void
+export class AggregateErrors extends Error
+{
+    constructor(public readonly errors: Error[])
+    {
+        super('One or more errors occurred. Please see errors field for more details');
+    }
+}
+
+export function array<T, U extends unknown[]>(array: T[] | ArrayLike<T>, body: (element: T, i: number, next: NextFunction<unknown, U>) => void | PromiseLike<void>, complete: NextFunction<Error, U, void | Promise<void>>, waitForPrevious: boolean): Promise<void> | void
 {
     const promises: PromiseLike<unknown>[] = [];
     const deferred = new Deferred<void>();
+    if (complete)
+    {
+        const oldComplete = complete;
+        complete = (e: Error, ...args) =>
+        {
+            try
+            {
+                oldComplete(e, ...args);
+                if (e)
+                    deferred.reject(e);
+                else
+                    deferred.resolve();
+            }
+            catch (e)
+            {
+                deferred.reject(e);
+            }
+        };
+    }
+    else
+        complete = (e: Error, ...args) =>
+        {
+            if (e)
+                deferred.reject(e);
+            else
+                deferred.resolve();
+        }
+
+    const errors: Error[] = [];
+
     function loop(i)
     {
         if (i == array.length)
-            return Promise.all(promises).then(() => complete && (complete as SimpleNextFunction<unknown>)()).then((res) => { deferred.resolve(); return res }, err => deferred.reject(err));
+        {
+            Promise.all(promises).then(async (res) =>
+            {
+                try
+                {
+                    if (errors.length > 0)
+                        throw new AggregateErrors(errors);
+
+                    await (complete as SimpleNextFunction<Error>)()
+                    return res;
+                }
+                catch (e)
+                {
+                    (complete as SimpleNextFunction<Error>)(e);
+                }
+            }, err => (complete as SimpleNextFunction<Error>)(err));
+            return;
+        }
         else
             try
             {
                 const promise = body(array[i], i, function (error?: Error, ...args: U)
                 {
                     if (error)
-                        if (complete)
+                        if (waitForPrevious)
                             complete(error, ...args);
                         else
-                            deferred.reject(error);
+                            errors[i] = error;
                     else
                         setImmediate(loop, i + 1)
                 });
@@ -39,10 +94,10 @@ export function array<T, U extends unknown[]>(array: T[] | ArrayLike<T>, body: (
             }
             catch (e)
             {
-                if (complete)
-                    (complete as SimpleNextFunction<unknown>)(e);
+                if (waitForPrevious)
+                    promises.push(Promise.reject(e));
                 else
-                    deferred.reject(e);
+                    (complete as SimpleNextFunction<unknown>)(e);
             }
     }
     loop(0);
