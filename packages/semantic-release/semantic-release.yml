@@ -2,6 +2,9 @@ parameters:
   - package
   - changelogPath
 outputs: $(build.recommendBump)
+on:
+  failure: decline
+
 jobs:
   build:
     steps:

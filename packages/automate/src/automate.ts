@@ -56,7 +56,6 @@ export const simpleRunner: Runner<JobStepRun | JobStepLog> = {
                                 const results = [];
                                 result.reduce((previous, current, index) =>
                                 {
-
                                     if (current === 10 && result[index - 1] == 125)
                                     {
                                         if (previous + 1 === index)
@@ -75,7 +74,9 @@ export const simpleRunner: Runner<JobStepRun | JobStepLog> = {
                     return resolve(undefined);
                 }
                 else
+                {
                     reject(new Error((cmd as string[]).join(' ') + ' failed with code ' + code));
+                }
             });
             if (step.with?.result)
                 cp[step.with.result].on('data', chunk =>
@@ -170,7 +171,10 @@ export default function automate<TResult extends object, TSupportedJobSteps exte
         orchestrator.start('#main', (err) =>
         {
             if (err)
-                reject(err);
+                if (workflow.on && 'failure' in workflow.on)
+                    resolve(interpolate.buildObject(workflow.on.failure)(results) as unknown as TResult);
+                else
+                    reject(err);
             else if (workflow.outputs)
                 resolve(interpolate.buildObject(workflow.outputs)(results) as TResult);
             else
@@ -219,10 +223,15 @@ export function ensureDefaults<TSupportedJobSteps extends JobStepDef<string, any
 export interface Workflow
 {
     name?: string;
-    on: string[];
+    on: { [key in keyof TriggerMap]: TriggerMap[key] };
     outputs: string | object;
     parameters: string[];
     jobs: { [key: string]: Job };
+}
+
+export interface TriggerMap
+{
+    failure: string
 }
 
 export interface Job
