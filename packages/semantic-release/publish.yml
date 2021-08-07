@@ -12,11 +12,14 @@ jobs:
         foreach: $(build.releases.build.workspaces)
       - name: tag
         foreach: $(build.versions)
+        foreach-strategy: wait-for-previous
         run:
           - git
           - tag
           - -a
           - $($index)@$($)
+          - -m
+          - Publish
       - name: push
         run: git push origin --tags
       - name: publish

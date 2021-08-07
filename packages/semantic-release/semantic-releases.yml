@@ -34,10 +34,8 @@ jobs:
       - name: bump
         foreach: $(build.bumps)
         foreach-strategy: wait-for-previous
-        run:
-          - yarn
-          - workspace
-          - $($.name)
-          - version
-          - $($.bump)
-          # - --deferred
+        run: |
+          yarn workspace $($.name) version $($.bump)
+          git add $($.location)/package.json
+          git add $($.location)/changelog.md
+          git commit -m "bumping $($.name)"
