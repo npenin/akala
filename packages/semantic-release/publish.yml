@@ -22,6 +22,8 @@ jobs:
           - Publish
       - name: push
         run: git push origin --tags
+        with:
+          shell: true
       - name: publish
         foreach: $(build.versions)
         run: yarn workspaces foreach --no-private npm publish --tolerate-republish
