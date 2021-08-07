@@ -89,6 +89,31 @@
             }
         },
         {
+            "name": "eliminate-private",
+            "inject": [
+                "param.0"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/eliminate-private.js",
+                    "source": "src/commands/eliminate-private.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "automate": {
+                    "inject": [
+                        "packages"
+                    ]
+                }
+            }
+        },
+        {
             "name": "get-version",
             "inject": [],
             "config": {
