@@ -34,5 +34,5 @@ export default function (workspaces: { location: string, name: string, workspace
         throw new Error('too many loops');
     else
         console.debug(`completed in ${workspaces.length - loopCounts} loops`);
-    return Object.entries(translatedVersions).map(entry => Object.assign({ bump: Levels[entry[1]] }, workspaces.find(w => w.name == entry[0]))).filter(e => e.bump != 'ignore');
+    return Object.entries(translatedVersions).map(entry => Object.assign({ bump: Levels[entry[1]] }, workspaces.find(w => w.name == entry[0]))).filter(e => e.bump != 'decline');
 }
