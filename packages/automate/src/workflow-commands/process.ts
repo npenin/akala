@@ -4,7 +4,7 @@ import automate, { JobStepDispatch, JobStepJob, JobStepRun, Runner, simpleRunner
 import path from 'path'
 import use from './use';
 
-export default async function process<U extends object>(this: CliContext<{ file: string }>, workflow: Workflow, inputs: unknown, self: Container<CliContext>)
+export default function process<U extends object>(this: CliContext<{ file: string }>, workflow: Workflow, inputs: unknown, self: Container<CliContext>)
 {
     const context = this;
     const container = new Container<object>(new Date().toISOString(), this);
@@ -16,7 +16,7 @@ export default async function process<U extends object>(this: CliContext<{ file:
         },
         async job(cmd, step)
         {
-            return automate((await self.dispatch('load', cmd)), runner, interpolate.buildObject(step.with)(this), 'ignore');
+            return await automate((await self.dispatch('load', cmd)), runner, interpolate.buildObject(step.with)(this), 'ignore');
         },
         async uses(cmd, step)
         {

@@ -40,7 +40,7 @@ import use from './workflow-commands/use';
 
         container.register(new Command((file: string) => loader.dispatch('load', path.join(path.dirname(context.options.file), file)), 'load'));
 
-        return container.dispatch('process', workflow);
+        return await container.dispatch('process', workflow);
     });
     program.format(r =>
     {
