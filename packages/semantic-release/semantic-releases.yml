@@ -19,7 +19,7 @@ jobs:
         job: ./semantic-release.yml
         with:
           package: $($)
-          changelogPath: $($.location)/changelog.txt
+          changelogPath: $($.location)/changelog.md
       - name: bumpDependents
         dispatch: bump-dependents
         outputAs: bumps
