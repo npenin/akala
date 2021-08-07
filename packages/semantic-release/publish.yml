@@ -9,7 +9,7 @@ jobs:
         with:
           path: $($.location)
         outputAs: versions
-        foreach: $(build.releases.build.bump)
+        foreach: $(build.releases.build.bumps)
       - name: tag
         foreach: $(build.versions)
         foreach-strategy: wait-for-previous
@@ -25,5 +25,5 @@ jobs:
         with:
           shell: true
       - name: publish
-        foreach: $(build.releases.build.bump)
+        foreach: $(build.releases.build.bumps)
         run: yarn workspace $($.name) npm publish
