@@ -33,7 +33,7 @@ jobs:
         run: yarn install
       - name: Compile
         run: yarn tsc -b packages
-      - name: prepare version bump
+      - name: publish updates
         run: node packages/automate/dist/cli.js --loader packages/automate-yamlloader/ --file packages/semantic-release/publish.yml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
