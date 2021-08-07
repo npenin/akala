@@ -47,14 +47,6 @@ jobs:
             test: patch
             deps: patch
             chore: patch
-      - name: bump
-        run:
-          - yarn
-          - workspace
-          - $(package.name)
-          - version
-          - $(build.recommendBump)
-          - --deferred
       - name: changelog
         dispatch: changelog
         with:
