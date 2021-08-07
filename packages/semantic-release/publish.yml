@@ -10,8 +10,13 @@ jobs:
           path: $($.location)
         outputAs: versions
         foreach: $(build.releases.build.bumps)
+      - name: eliminate private packages
+        dispatch: eliminate-private
+        outputAs: publicPackages
+        with:
+          packages: $(build.versions)
       - name: tag
-        foreach: $(build.versions)
+        foreach: $(build.publicPackages)
         foreach-strategy: wait-for-previous
         run:
           - git
@@ -25,5 +30,5 @@ jobs:
         with:
           shell: true
       - name: publish
-        foreach: $(build.releases.build.bumps)
+        foreach: $(build.publicPackages)
         run: yarn workspace $($.name) npm publish
