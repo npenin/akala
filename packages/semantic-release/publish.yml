@@ -25,5 +25,4 @@ jobs:
         with:
           shell: true
       - name: publish
-        foreach: $(build.versions)
         run: yarn workspaces foreach --no-private npm publish --tolerate-republish
