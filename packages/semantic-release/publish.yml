@@ -14,7 +14,7 @@ jobs:
         dispatch: eliminate-private
         outputAs: publicPackages
         with:
-          packages: $(build.versions)
+          packages: $(build.releases.build.bumps)
       - name: tag
         foreach: $(build.publicPackages)
         foreach-strategy: wait-for-previous
@@ -22,7 +22,7 @@ jobs:
           - git
           - tag
           - -a
-          - $($.name)@$($.version)
+          - $($index)@$($.version)
           - -m
           - Publish
       - name: push
