@@ -32,3 +32,5 @@ jobs:
       - name: publish
         foreach: $(build.publicPackages)
         run: yarn workspace $($.name) npm publish
+        with:
+          shell: true
