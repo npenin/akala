@@ -7,14 +7,14 @@ jobs:
       - name: versions
         dispatch: get-version
         with:
-          path: $($.location)
+          path: $($)
         outputAs: versions
         foreach: $(build.releases.build.bumps)
       - name: eliminate private packages
         dispatch: eliminate-private
         outputAs: publicPackages
         with:
-          packages: $(build.releases.build.bumps)
+          packages: $(build.versions)
       - name: tag
         foreach: $(build.publicPackages)
         foreach-strategy: wait-for-previous
@@ -22,7 +22,7 @@ jobs:
           - git
           - tag
           - -a
-          - $($index)@$($.name)
+          - $($.name)@$($.version)
           - -m
           - Publish
       - name: push
