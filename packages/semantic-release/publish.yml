@@ -24,7 +24,7 @@ jobs:
           - -a
           - $($.name)@$($.version)
           - -m
-          - Publish
+          - tagging $($.name)@$($.version)
       - name: push
         run: git push origin --tags
         with:
