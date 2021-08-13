@@ -1,27 +1,44 @@
 import { CliContext } from "@akala/cli";
 import { Container } from "@akala/commands";
-import automate, { JobStepDispatch, JobStepJob, JobStepRun, Runner, simpleRunner, Workflow, interpolate, JobStepUse } from "../automate";
+import automate, { JobStepDispatch, JobStepJob, JobStepRun, MiddlewareRunner, interpolate, JobStepUse, IfMiddleware, RunMiddleware, LogMiddleware, Workflow, ForeachMiddleware, simpleRunner, TMiddlewareRunner } from "../automate";
 import path from 'path'
 import use from './use';
 
+export function DispatchMiddleware(container: Container<any>): MiddlewareRunner<JobStepDispatch>
+{
+    return new MiddlewareRunner('dispatch', (context, step) => container.dispatch(step.dispatch, { _trigger: 'automate', ...interpolate.buildObject(step.with)(context), param: [] }));
+}
+
+
+export function JobMiddleware(self: Container<any>, runner: TMiddlewareRunner<any>): MiddlewareRunner<JobStepJob>
+{
+    return new MiddlewareRunner('job',
+        async (context, step) =>
+            await automate((await self.dispatch('load', step.job)), runner, interpolate.buildObject(step.with)(context), 'ignore')
+    );
+}
+
+export function UsesMiddleware(container: Container<any>): MiddlewareRunner<JobStepUse>
+{
+    return new MiddlewareRunner('uses', (context: CliContext<{ file: string }>, step) =>
+    {
+        return use.call(context, container, step.with?.name, path.join(path.dirname(context.options.file), step.uses));
+    });
+}
+
+export function runnerMiddleware(container: Container<unknown>, context: CliContext<{ file: string }>, self: Container<CliContext>)
+{
+    const runner = simpleRunner(container.name)
+    runner.useMiddleware(49, UsesMiddleware(container));
+    runner.useMiddleware(100, JobMiddleware(self, runner));
+    runner.useMiddleware(100, DispatchMiddleware(container));
+    return runner;
+}
+
 export default function process<U extends object>(this: CliContext<{ file: string }>, workflow: Workflow, inputs: unknown, self: Container<CliContext>)
 {
-    const context = this;
-    const container = new Container<object>(new Date().toISOString(), this);
-    container.register('loader', self)
-    const runner = Object.assign({
-        async dispatch(cmd, step)
-        {
-            return await container.dispatch(cmd, { _trigger: 'automate', ...interpolate.buildObject(step.with)(this), param: [] });
-        },
-        async job(cmd, step)
-        {
-            return await automate((await self.dispatch('load', cmd)), runner, interpolate.buildObject(step.with)(this), 'ignore');
-        },
-        async uses(cmd, step)
-        {
-            await use.call(context, container, step.with?.name, path.join(path.dirname(context.options.file), cmd));
-        }
-    } as Runner<JobStepDispatch | JobStepJob | JobStepUse>, simpleRunner);
-    return automate<U, JobStepDispatch | JobStepRun | JobStepJob>(workflow, runner, Object.assign(this, inputs), 'ignore');
+    const container = new Container<object>(workflow.name + '-' + new Date().toISOString(), this);
+    container.register('loader', self);
+
+    return automate<U, JobStepDispatch | JobStepRun | JobStepJob>(workflow, runnerMiddleware(container, this, self), Object.assign(this, inputs), 'ignore');
 }

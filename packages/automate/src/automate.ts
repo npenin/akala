@@ -3,18 +3,87 @@ import Orchestrator from 'orchestrator';
 import { spawn, StdioNull, StdioPipe, exec, SpawnOptionsWithoutStdio } from 'child_process';
 import commands from './container';
 import { Container } from '@akala/commands';
-import { eachAsync, Interpolate, Parser } from '@akala/core';
+import { AnyMiddleware, eachAsync, Interpolate, Middleware, MiddlewareCompositeWithPriority, MiddlewarePromise, Parser } from '@akala/core';
 import { Stream } from 'stream';
+import winston from 'winston';
 
 export const interpolate = new Interpolate('$(', ')')
 
-export const simpleRunner: Runner<JobStepRun | JobStepLog> = {
-    log(cmd: string | string[])
+export type TMiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any, any>> = Middleware<[context: object, step: TSupportedJobSteps, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe }]>
+
+export class MiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any, any>> implements TMiddlewareRunner<TSupportedJobSteps>
+{
+    constructor(public readonly support: TSupportedJobSteps['type'], private handler: (...args: [context: object, step: TSupportedJobSteps, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe }]) => Promise<unknown>)
     {
-        console.log(interpolate.buildObject(cmd)(this));
-        return Promise.resolve();
-    },
-    run(cmd: string | string[], step: JobStepRun, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
+    }
+
+    async handle(context: object, step: TSupportedJobSteps, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
+    {
+        if (!step[this.support])
+            return Promise.resolve();
+        try
+        {
+            const result = await this.handler(context, step, stdio);
+            return Promise.reject(result);
+        }
+        catch (e)
+        {
+            return Promise.resolve(e);
+        }
+    }
+}
+
+export const IfMiddleware: TMiddlewareRunner<JobStepIf> = new MiddlewareRunner<JobStepIf>('if',
+    (context, step) =>
+    {
+        if (!step.if)
+            return Promise.resolve();
+        try
+        {
+            if (!Parser.evalAsFunction(step.if, false)(context, false))
+            {
+                if (step.outputAs)
+                    return Promise.reject(false);
+                return Promise.reject();
+            }
+        }
+        catch (e)
+        {
+            return Promise.resolve(e);
+        }
+    }
+);
+export function ForeachMiddleware(runner: TMiddlewareRunner<any>)
+{
+    return new MiddlewareRunner<JobStepDef<'foreach', string | Record<string, unknown> | unknown[], void>>(
+        'foreach', async (context, step, stdio) =>
+    {
+        var each: Record<string, unknown> | unknown[];
+        if (typeof step.foreach === 'string')
+            each = interpolate.build(step.foreach)(context) as any;
+        else
+            each = step.foreach;
+        console.log(each);
+
+        const result = {};
+        await eachAsync(each as any, async (item, index) =>
+        {
+            if (typeof item !== 'undefined')
+                result[item['name'] || index] = await runner.handle(Object.assign({ $: item, $index: index }, context), Object.assign({}, step, { foreach: null }), stdio);
+
+        }, step['foreach-strategy'] === 'wait-for-previous');
+        return result;
+    });
+}
+
+export const LogMiddleware = new MiddlewareRunner<JobStepLog>('log', async (context, step) =>
+{
+    console.log(interpolate.buildObject(step.log)(context));
+}
+);
+
+export const RunMiddleware = new MiddlewareRunner<JobStepRun>('run',
+    async (context, step, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe }) =>
     {
         if (!step.with)
             step.with = {};
@@ -32,12 +101,15 @@ export const simpleRunner: Runner<JobStepRun | JobStepLog> = {
             }
         }
 
-        return new Promise<unknown>((resolve, reject) =>
+        return new Promise((resolve, reject) =>
         {
-            if (!Array.isArray(cmd))
-                cmd = [cmd];
+            var cmd: string[];
+            if (!Array.isArray(step.run))
+                cmd = [step.run];
+            else
+                cmd = step.run;
 
-            cmd = interpolate.buildObject(cmd)(this);
+            cmd = interpolate.buildObject(cmd)(context);
             console.log(cmd.join(' '));
             const cp = spawn(cmd[0], cmd.slice(1), Object.assign(step.with || {}, stdio, { timeout: step.with.timeout || 3600000 })).on('close', function (code)
             {
@@ -90,29 +162,37 @@ export const simpleRunner: Runner<JobStepRun | JobStepLog> = {
                 })
         });
     }
+);
+
+export function simpleRunner(name: string)
+{
+    var runner = new MiddlewareCompositeWithPriority(name);
+    runner.useMiddleware(1, IfMiddleware);
+    runner.useMiddleware(0, ForeachMiddleware(runner));
+    runner.useMiddleware(100, RunMiddleware);
+    runner.useMiddleware(20, LogMiddleware);
+    return runner;
 }
 
-type StepRunner<TStep extends JobStepDef<TType, any, any>, TType extends string> = (obj: TStep[TType],
-    step: TStep,
-    stdio?: { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe }) => Promise<unknown>;
-
-export type Runner<TSupportedJobSteps extends JobStepDef<string, any, any>> = {
-    [k in TSupportedJobSteps['type']]: StepRunner<TSupportedJobSteps extends JobStepDef<k, infer TActor, infer TSettings> ? TSupportedJobSteps : never, k>
-};
-
-export default function automate<TResult extends object, TSupportedJobSteps extends JobStepDef<string, any, any>>(workflow: Workflow, runner: Runner<TSupportedJobSteps>, inputs?: unknown, stdio?: Exclude<StdioNull, Stream> | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
+export default function automate<TResult extends object, TSupportedJobSteps extends JobStepDef<string, any, any>>(workflow: Workflow, runner: TMiddlewareRunner<TSupportedJobSteps>, inputs?: unknown, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
 {
     const orchestrator = new Orchestrator();
     const inputForLog = !inputs ? '' : Object.entries(inputs).map(entry => entry[0] + '=' + JSON.stringify(entry[1])).join(", ");
 
-    // orchestrator.on('task_start', (t) => console.log('running ' + t.task + ' ' + inputForLog));
-    // orchestrator.on('task_stop', (t) => console.log(`ran ${t.task + ' ' + inputForLog} successfully`));
+    orchestrator.on('task_start', (t) =>
+    {
+        winston.info('running %s %s', t.task, inputForLog)
+    });
+    orchestrator.on('task_stop', (t) =>
+    {
+        winston.info('ran %s %s successfully', t.task, inputForLog)
+    });
 
     orchestrator.add('#main', Object.keys(workflow.jobs));
 
     const results = Object.assign({} as unknown as TResult, inputs);
 
-    ensureDefaults(workflow.jobs, runner);
+    ensureDefaults(workflow.jobs);
 
     Object.keys(workflow.jobs).forEach(name =>
     {
@@ -128,42 +208,46 @@ export default function automate<TResult extends object, TSupportedJobSteps exte
             orchestrator.add(name + '-' + step.name, previousStepName && [previousStepName],
                 async function (): Promise<void>
                 {
-                    if (runner[step.type])
+                    const result = await runner.handle(results, step as TSupportedJobSteps, stdio).then(err =>
                     {
-                        if (step.if)
-                        {
-                            if (!Parser.evalAsFunction(step.if, false)(results, false))
-                            {
-                                if (step.outputAs)
-                                    results[job.name][step.outputAs] = false;
-                                return;
-                            }
-                        }
-                        if (step.foreach)
-                        {
-                            results[job.name][step.outputAs] = {};
-                            if (typeof step.foreach === 'string')
-                                step.foreach = interpolate.build(step.foreach)(results) as any;
-                            // console.log(step.foreach)
-                            await eachAsync(step.foreach, async (item, index) =>
-                            {
-                                if (item)
-                                    if (step.outputAs)
-                                        results[job.name][step.outputAs][item.name || index] = await runner[step.type].call(Object.assign({ $: item, $index: index }, results), step[step.type], step, stdio);
-                                    else
-                                        await runner[step.type].call(Object.assign({ $: item, $index: index }, results), step[step.type], step, stdio);
-                            }, step['foreach-strategy'] == 'wait-for-previous');
-                        }
-                        else
-                        {
-                            if (step.outputAs)
-                                results[job.name][step.outputAs] = await runner[step.type].call(results, step[step.type], step, stdio);
-                            else
-                                await runner[step.type].call(results, step[step.type], step, stdio);
-                        }
-                    }
-                    else
-                        throw new Error('this runner does not support uses');
+                        if (typeof err === 'undefined')
+                            throw new Error(`this runner does not support ${step}`);
+                        throw err;
+                    }, result => result);
+                    // if (runner[step.type])
+                    // {
+                    //     if (step.if)
+                    //     {
+                    //         if (!Parser.evalAsFunction(step.if, false)(results, false))
+                    //         {
+                    //             if (step.outputAs)
+                    //                 results[job.name][step.outputAs] = false;
+                    //             return;
+                    //         }
+                    //     }
+                    //     if (step.foreach)
+                    //     {
+                    //         results[job.name][step.outputAs] = {};
+                    //         if (typeof step.foreach === 'string')
+                    //             step.foreach = interpolate.build(step.foreach)(results) as any;
+                    //         // console.log(step.foreach)
+                    //         await eachAsync(step.foreach, async (item, index) =>
+                    //         {
+                    //             if (item)
+                    //                 if (step.outputAs)
+                    //                     results[job.name][step.outputAs][item.name || index] = await runner[step.type].call(Object.assign({ $: item, $index: index }, results), step[step.type], step, stdio);
+                    //                 else
+                    //                     await runner[step.type].call(Object.assign({ $: item, $index: index }, results), step[step.type], step, stdio);
+                    //         }, step['foreach-strategy'] == 'wait-for-previous');
+                    //     }
+                    //     else
+                    //     {
+                    if (typeof result !== 'undefined' && step.outputAs)
+                        results[job.name][step.outputAs] = result
+                    //     }
+                    // }
+                    // else
+                    //     throw new Error('this runner does not support uses');
                 });
             previousStepName = name + '-' + step.name;
         });
@@ -186,7 +270,7 @@ export default function automate<TResult extends object, TSupportedJobSteps exte
     });
 }
 
-export function ensureDefaults<TSupportedJobSteps extends JobStepDef<string, any, any>>(jobs: Workflow['jobs'], runner: Runner<TSupportedJobSteps>)
+export function ensureDefaults<TSupportedJobSteps extends JobStepDef<string, any, any>>(jobs: Workflow['jobs'])
 {
     jobs && Object.keys(jobs).forEach(jobName =>
     {
@@ -195,30 +279,8 @@ export function ensureDefaults<TSupportedJobSteps extends JobStepDef<string, any
             jobs[jobName].dependsOn = [jobs[jobName].dependsOn as unknown as string];
         jobs[jobName].steps.forEach(step =>
         {
-            if (!step.type)
-            {
-                if ('run' in step)
-                    step.type = 'run';
-                else if ('uses' in step)
-                    step.type = 'uses';
-                else if ('dispatch' in step)
-                    step.type = 'dispatch';
-                else if ('job' in step)
-                    step.type = 'job';
-                else
-                {
-                    var types = Object.keys(runner).filter(k => k in step);
-                    if (types.length !== 1)
-                        throw new Error(`Invalid step type ${JSON.stringify(step)}`);
-                    step.type = types[0];
-                }
-            }
             if (!step.outputAs && step.name)
                 step.outputAs = step.name.replace(/[^\w](\w)/g, m => m[1].toUpperCase());
-
-            if (!step.name)
-                step.name = step[step.type].toString();
-
         })
     })
 }
@@ -262,6 +324,8 @@ export type JobStepDef<T extends string, TActor = string, TSettings = Serializab
 export type JobStepUse = JobStepDef<'uses'>;
 export type JobStepJob = JobStepDef<'job'>;
 export type JobStepLog = JobStepDef<'log', string, void>;
+export type JobStepIf = JobStepDef<'if', string, void>;
+export type JobStepForEach = JobStepDef<'foreach', string, void>;
 
 export type JobStepRun = JobStepDef<'run', string | string[], SpawnOptionsWithoutStdio & { result?: 'stdout' | 'stderr', format?: 'jsonnd' | 'raw' | 'string' | 'json' }>;
 export type JobStepDispatch = JobStepDef<'dispatch'>;
