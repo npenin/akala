@@ -61,11 +61,11 @@ import winston from 'winston';
     });
     program.format(r =>
     {
-        console.log(r);
+        console.log('%O', r);
     });
     try
     {
-        return await program.process(buildCliContextFromProcess());
+        await program.process(buildCliContextFromProcess());
     }
     catch (e)
     {
