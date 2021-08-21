@@ -280,7 +280,7 @@ export class Binding
             if (typeof target === 'undefined')
                 return;
             if (typeof target.$$watchers == 'undefined')
-                target.$$watchers = {};
+                Object.defineProperty(target, '$$watchers', { enumerable: false, writable: false, value: {}, configurable: true });
             const watcher = target.$$watchers[parts[0]];
             const setter = Parser.getSetter(parts[0], target);
             if (setter === null)
