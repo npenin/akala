@@ -9,13 +9,14 @@ import $attach from '../commands/$attach'
 import $metadata from '../commands/$metadata'
 import { UnknownCommandError } from './error-unknowncommand';
 import * as Metadata from '../metadata/index'
+import { Middleware, MiddlewarePromise } from '@akala/core';
 
 const log = akala.log('akala:commands');
 
 export type AsDispatchArgs<T extends unknown[]> = T | [StructuredParameters<T>];
 export type AsDispatchArg<T extends unknown[]> = T[0] | StructuredParameters<T>;
 
-export class Container<TState> extends akala.Injector
+export class Container<TState> extends akala.Injector implements Middleware<[cmd: Command | string, params: AsDispatchArgs<unknown[]>]>
 {
     attach<T extends Trigger<unknown, unknown>>(trigger: T, server: T extends Trigger<infer A, unknown> ? A : never): T extends Trigger<unknown, infer B> ? B : never
     attach<TResult>(trigger: string, server: unknown): TResult
@@ -70,14 +71,19 @@ export class Container<TState> extends akala.Injector
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public dispatch(command: string | Metadata.Command, ...param: AsDispatchArgs<unknown[]>): Promise<any>
     {
+        return this.handle(command, ...param).then(err => { throw err }, result => result);
+    }
+
+    public handle(command: string | Metadata.Command, ...param: AsDispatchArgs<unknown[]>): MiddlewarePromise
+    {
         if (typeof (param) == 'object' && param !== null && param.length === 1 && typeof (param[0]) == 'object' && param[0] !== null && param[0]['param'] && Array.isArray(param[0]['param']))
         {
             // log(`dispatching ${command}(${JSON.stringify(param[0])})`)
             if (this.processor.requiresCommandName)
                 if (typeof command == 'string')
-                    return this.processor.handle(command, param[0] as StructuredParameters<unknown[]>).then(err => { throw err }, result => result);
+                    return this.processor.handle(command, param[0] as StructuredParameters<unknown[]>);
                 else
-                    return this.processor.handle(command.name, param[0] as StructuredParameters<unknown[]>).then(err => { throw err }, result => result);
+                    return this.processor.handle(command.name, param[0] as StructuredParameters<unknown[]>);
             let cmd: Metadata.Command;
             if (typeof command == 'string')
             {
@@ -85,20 +91,20 @@ export class Container<TState> extends akala.Injector
                 if (!cmd)
                 {
                     if (this._trapProcessor)
-                        return this._trapProcessor.handle(command, param[0] as StructuredParameters<unknown[]>).then(err => { throw err }, result => result);
+                        return this._trapProcessor.handle(command, param[0] as StructuredParameters<unknown[]>);
                     throw new UnknownCommandError(command)
                 }
             }
             else
                 cmd = command;
 
-            return this._processor.handle(cmd as Command & string, param[0] as StructuredParameters<unknown[]>).then(err => { throw err }, async result => await result);
+            return this._processor.handle(cmd as Command & string, param[0] as StructuredParameters<unknown[]>);
         }
         else
         {
             if (typeof param == 'undefined' || param === null)
                 param = [];
-            return this.dispatch(command, { param: param });
+            return this.handle(command, { param: param });
         }
     }
 
