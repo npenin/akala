@@ -24,8 +24,7 @@ jobs:
         dispatch: bump-dependents
         outputAs: bumps
         with:
-          workspaces: $(build.workspaces)
-          versions: $(build.versions)
+          workspaces: $(build.versions)
           strategy:
             major: patch
             minor: patch
