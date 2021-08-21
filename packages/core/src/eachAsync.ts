@@ -13,7 +13,7 @@ export class AggregateErrors extends Error
     }
 }
 
-export function array<T, U extends unknown[]>(array: T[] | ArrayLike<T>, body: (element: T, i: number, next: NextFunction<unknown, U>) => void | PromiseLike<void>, complete: NextFunction<Error, U, void | Promise<void>>, waitForPrevious: boolean): Promise<void> | void
+export function array<T, U extends unknown[]>(array: T[] | ArrayLike<T>, body: (element: T, i: number, next: NextFunction<unknown, U>) => void | PromiseLike<void>, complete: NextFunction<Error, U, void | Promise<void>>, waitForPrevious: boolean): Promise<void>
 {
     const promises: PromiseLike<unknown>[] = [];
     const deferred = new Deferred<void>();
@@ -139,24 +139,9 @@ export function each(it: unknown[] | ArrayLike<unknown> | Record<string, unknown
     }
     else
     {
-        return new Promise((resolve, reject) =>
-        {
-            if (Array.isArray(it) || isArrayLike(it))
-                return array<unknown, []>(it, body, function (err)
-                {
-                    if (err)
-                        reject(err);
-                    else
-                        resolve();
-                }, waitForPrevious);
-            return object<Record<string, unknown>, []>(it, body, function (err)
-            {
-                if (err)
-                    reject(err);
-                else
-                    resolve();
-            }, waitForPrevious);
-        })
+        if (Array.isArray(it) || isArrayLike(it))
+            return array<unknown, []>(it, body, null, waitForPrevious);
+        return object<Record<string, unknown>, []>(it, body, null, waitForPrevious);
     }
 }
 
@@ -169,6 +154,8 @@ export async function map<U>(it: any, body: (element: any, i: any) => PromiseLik
     const promises: PromiseLike<U>[] = [];
     return each(it, async (el, i) =>
     {
-        promises.push(body(el, i));
+        const promise = body(el, i);
+        promises.push(promise);
+        await promise;
     }, waitForPrevious).then(() => Promise.all(promises))
 }
