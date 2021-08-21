@@ -193,7 +193,7 @@ export default function automate<TResult extends object, TSupportedJobSteps exte
     {
         logger.info('running %s', t.task);
         if (logger.isDebugEnabled())
-            logger.debug('%o', Object.assign({}, inputs, { logger: undefined }));
+            logger.debug('%O', Object.assign({}, inputs, { logger: undefined }));
     });
     orchestrator.on('task_stop', (t) =>
     {
