@@ -29,6 +29,7 @@ export default function (workspaces: Workspace[], rules?: { [key: string]: strin
     }
     while (hasChange && loopCounts > 0);
 
+    console.log(translatedVersions);
     if (loopCounts == 0)
         throw new Error('too many loops');
     else
