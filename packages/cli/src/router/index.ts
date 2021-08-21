@@ -1,5 +1,6 @@
 import * as akala from '@akala/core'
 import * as path from 'path'
+import winston from 'winston';
 
 export interface CliContext<TOptions extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>
 {
@@ -8,6 +9,7 @@ export interface CliContext<TOptions extends Record<string, string | boolean | s
     options: TOptions
     commandPath?: string;
     currentWorkingDirectory: string;
+    logger: winston.Logger
 }
 
 export interface OptionParseOption
