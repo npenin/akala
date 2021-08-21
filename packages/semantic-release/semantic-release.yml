@@ -1,7 +1,10 @@
 parameters:
   - package
   - changelogPath
-outputs: $(build.recommendBump)
+outputs:
+  name: $(package.name)
+  location: $(package.location)
+  bump: $(build.recommendBump)
 on:
   failure: decline
 
