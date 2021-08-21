@@ -6,15 +6,15 @@ import use from './use';
 
 export function DispatchMiddleware(container: Container<any>): MiddlewareRunner<JobStepDispatch>
 {
-    return new MiddlewareRunner('dispatch', (context, step) => container.dispatch(step.dispatch, { _trigger: 'automate', ...interpolate.buildObject(step.with)(context), param: [] }));
+    return new MiddlewareRunner('dispatch', (context, step) => container.dispatch(step.dispatch, { _trigger: 'automate', ...step.with, param: [] }));
 }
 
 
 export function JobMiddleware(self: Container<any>, runner: TMiddlewareRunner<any>): MiddlewareRunner<JobStepJob>
 {
     return new MiddlewareRunner('job',
-        async (context, step) =>
-            await automate((await self.dispatch('load', step.job)), runner, interpolate.buildObject(step.with)(context), 'ignore')
+        async (context, step, stdio) =>
+            await automate((await self.dispatch('load', step.job)), runner, Object.assign({}, context, step.with), stdio)
     );
 }
 

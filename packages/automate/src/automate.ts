@@ -1,19 +1,29 @@
 import { SerializableObject } from '@akala/json-rpc-ws'
 import Orchestrator from 'orchestrator';
-import { spawn, StdioNull, StdioPipe, exec, SpawnOptionsWithoutStdio } from 'child_process';
+import { spawn, StdioNull, StdioPipe, SpawnOptionsWithoutStdio } from 'child_process';
 import commands from './container';
-import { Container } from '@akala/commands';
-import { AnyMiddleware, eachAsync, Interpolate, Middleware, MiddlewareCompositeWithPriority, MiddlewarePromise, Parser } from '@akala/core';
+import { eachAsync, Interpolate, mapAsync, Middleware, MiddlewareCompositeWithPriority, Parser } from '@akala/core';
 import { Stream } from 'stream';
 import winston from 'winston';
 
-export const interpolate = new Interpolate('$(', ')')
+export const logger = winston.createLogger({
+    levels: winston.config.cli.levels,
+    format: winston.format.combine(
+        winston.format.splat(),
+        winston.format.colorize(),
+        winston.format.simple()
+    )
+});
 
-export type TMiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any, any>> = Middleware<[context: object, step: TSupportedJobSteps, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe }]>
+export const interpolate = new Interpolate('$(', ')');
+
+export type MiddlewareSignature<TSupportedJobSteps extends JobStepDef<string, any, any>> = [context: object, step: TSupportedJobSteps, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe }];
+
+export type TMiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any, any>> = Middleware<MiddlewareSignature<TSupportedJobSteps>>;
 
 export class MiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any, any>> implements TMiddlewareRunner<TSupportedJobSteps>
 {
-    constructor(public readonly support: TSupportedJobSteps['type'], private handler: (...args: [context: object, step: TSupportedJobSteps, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe }]) => Promise<unknown>)
+    constructor(public readonly support: TSupportedJobSteps['type'], private handler: (...args: MiddlewareSignature<TSupportedJobSteps>) => Promise<unknown>, private doNotInterpolate?: boolean)
     {
     }
 
@@ -23,6 +33,8 @@ export class MiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any,
             return Promise.resolve();
         try
         {
+            if (!this.doNotInterpolate)
+                step[this.support] = interpolate.buildObject(step[this.support])(context);
             const result = await this.handler(context, step, stdio);
             return Promise.reject(result);
         }
@@ -32,6 +44,11 @@ export class MiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any,
         }
     }
 }
+
+export const WithInterpolater = new MiddlewareRunner('with', () =>
+{
+    return Promise.reject();
+});
 
 export const IfMiddleware: TMiddlewareRunner<JobStepIf> = new MiddlewareRunner<JobStepIf>('if',
     (context, step) =>
@@ -51,34 +68,22 @@ export const IfMiddleware: TMiddlewareRunner<JobStepIf> = new MiddlewareRunner<J
         {
             return Promise.resolve(e);
         }
-    }
-);
-export function ForeachMiddleware(runner: TMiddlewareRunner<any>)
+    }, true);
+
+
+
+export function ForeachMiddleware(runner: MiddlewareCompositeWithPriority<MiddlewareSignature<JobStepDef<string, any, any>>>)
 {
-    return new MiddlewareRunner<JobStepDef<'foreach', string | Record<string, unknown> | unknown[], void>>(
-        'foreach', async (context, step, stdio) =>
-    {
-        var each: Record<string, unknown> | unknown[];
-        if (typeof step.foreach === 'string')
-            each = interpolate.build(step.foreach)(context) as any;
-        else
-            each = step.foreach;
-        console.log(each);
-
-        const result = {};
-        await eachAsync(each as any, async (item, index) =>
+    return new MiddlewareRunner<JobStepForEach>(
+        'foreach', (context, step, stdio) => mapAsync(step.foreach as any, (item, index: string | number) =>
         {
-            if (typeof item !== 'undefined')
-                result[item['name'] || index] = await runner.handle(Object.assign({ $: item, $index: index }, context), Object.assign({}, step, { foreach: null }), stdio);
-
-        }, step['foreach-strategy'] === 'wait-for-previous');
-        return result;
-    });
+            return runner.process(Object.assign({}, context, { $: item, $index: index }), Object.assign({}, step, { foreach: null, name: step.name + '#' + index }), stdio);
+        }, step['foreach-strategy'] === 'wait-for-previous'));
 }
 
 export const LogMiddleware = new MiddlewareRunner<JobStepLog>('log', async (context, step) =>
 {
-    console.log(interpolate.buildObject(step.log)(context));
+    logger.log(step.with && step.with['log-level'] || 'info', step.log);
 }
 );
 
@@ -89,6 +94,7 @@ export const RunMiddleware = new MiddlewareRunner<JobStepRun>('run',
             step.with = {};
         const initialStdIoSetting = stdio && stdio[step.with.result] || stdio;
         const buffers: Buffer[] = [];
+        const errBuffers: Buffer[] = [];
         if (typeof stdio == 'undefined')
             stdio = 'ignore';
         if (typeof (stdio) === 'string')
@@ -109,8 +115,7 @@ export const RunMiddleware = new MiddlewareRunner<JobStepRun>('run',
             else
                 cmd = step.run;
 
-            cmd = interpolate.buildObject(cmd)(context);
-            console.log(cmd.join(' '));
+            logger.debug(cmd.join(' '));
             const cp = spawn(cmd[0], cmd.slice(1), Object.assign(step.with || {}, stdio, { timeout: step.with.timeout || 3600000 })).on('close', function (code)
             {
                 if (code == 0)
@@ -150,7 +155,7 @@ export const RunMiddleware = new MiddlewareRunner<JobStepRun>('run',
                     if (step.with && step.with['ignore-failure'])
                         resolve(undefined);
                     else
-                        reject(new Error((cmd as string[]).join(' ') + ' failed with code ' + code));
+                        reject(new Error((cmd as string[]).join(' ') + ' failed with code ' + code + '\n' + Buffer.concat(errBuffers).toString('utf-8')));
                 }
             });
             if (step.with?.result)
@@ -160,15 +165,20 @@ export const RunMiddleware = new MiddlewareRunner<JobStepRun>('run',
                     if (initialStdIoSetting === 'inherit')
                         process.stdout.write(chunk);
                 })
+            cp.stderr.on('data', chunk =>
+            {
+                errBuffers.push(chunk);
+            })
         });
     }
 );
 
 export function simpleRunner(name: string)
 {
-    var runner = new MiddlewareCompositeWithPriority(name);
-    runner.useMiddleware(1, IfMiddleware);
-    runner.useMiddleware(0, ForeachMiddleware(runner));
+    var runner = new MiddlewareCompositeWithPriority<MiddlewareSignature<JobStepDef<string, any, any>>>(name);
+    runner.useMiddleware(1, ForeachMiddleware(runner));
+    runner.useMiddleware(2, IfMiddleware);
+    runner.useMiddleware(3, WithInterpolater);
     runner.useMiddleware(100, RunMiddleware);
     runner.useMiddleware(20, LogMiddleware);
     return runner;
@@ -177,15 +187,17 @@ export function simpleRunner(name: string)
 export default function automate<TResult extends object, TSupportedJobSteps extends JobStepDef<string, any, any>>(workflow: Workflow, runner: TMiddlewareRunner<TSupportedJobSteps>, inputs?: unknown, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
 {
     const orchestrator = new Orchestrator();
-    const inputForLog = !inputs ? '' : Object.entries(inputs).map(entry => entry[0] + '=' + JSON.stringify(entry[1])).join(", ");
+    // const inputForLog = !inputs ? '' : Object.entries(inputs).filter(e => e[0] !== 'logger').map(entry => entry[0] + '=' + JSON.stringify(entry[1])).join(", ");
 
     orchestrator.on('task_start', (t) =>
     {
-        winston.info('running %s %s', t.task, inputForLog)
+        logger.info('running %s', t.task);
+        if (logger.isDebugEnabled())
+            logger.debug('%o', Object.assign({}, inputs, { logger: undefined }));
     });
     orchestrator.on('task_stop', (t) =>
     {
-        winston.info('ran %s %s successfully', t.task, inputForLog)
+        logger.info('ran %s successfully', t.task)
     });
 
     orchestrator.add('#main', Object.keys(workflow.jobs));
@@ -208,12 +220,20 @@ export default function automate<TResult extends object, TSupportedJobSteps exte
             orchestrator.add(name + '-' + step.name, previousStepName && [previousStepName],
                 async function (): Promise<void>
                 {
-                    const result = await runner.handle(results, step as TSupportedJobSteps, stdio).then(err =>
+                    var err;
+                    try
                     {
-                        if (typeof err === 'undefined')
-                            throw new Error(`this runner does not support ${step}`);
-                        throw err;
-                    }, result => result);
+                        err = await runner.handle(results, step as TSupportedJobSteps, stdio);
+                    }
+                    catch (result)
+                    {
+                        if (typeof result !== 'undefined' && step.outputAs)
+                            results[job.name][step.outputAs] = result
+                        return;
+                    };
+                    if (typeof err === 'undefined')
+                        throw new Error(`this runner does not support ${JSON.stringify(step)}`);
+                    throw err;
                     // if (runner[step.type])
                     // {
                     //     if (step.if)
@@ -242,8 +262,6 @@ export default function automate<TResult extends object, TSupportedJobSteps exte
                     //     }
                     //     else
                     //     {
-                    if (typeof result !== 'undefined' && step.outputAs)
-                        results[job.name][step.outputAs] = result
                     //     }
                     // }
                     // else
@@ -323,11 +341,11 @@ export type JobStepDef<T extends string, TActor = string, TSettings = Serializab
 
 export type JobStepUse = JobStepDef<'uses'>;
 export type JobStepJob = JobStepDef<'job'>;
-export type JobStepLog = JobStepDef<'log', string, void>;
+export type JobStepLog = JobStepDef<'log', string, { 'log-level': Exclude<keyof winston.config.CliConfigSetLevels, number> }>;
 export type JobStepIf = JobStepDef<'if', string, void>;
 export type JobStepForEach = JobStepDef<'foreach', string, void>;
 
-export type JobStepRun = JobStepDef<'run', string | string[], SpawnOptionsWithoutStdio & { result?: 'stdout' | 'stderr', format?: 'jsonnd' | 'raw' | 'string' | 'json' }>;
+export type JobStepRun = JobStepDef<'run', string | string[], SpawnOptionsWithoutStdio & { result?: 'stdout' | 'stderr', format?: 'jsonnd' | 'raw' | 'string' | 'json', timeout?: number }>;
 export type JobStepDispatch = JobStepDef<'dispatch'>;
 
 declare module '@akala/pm'

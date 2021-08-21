@@ -4,17 +4,34 @@ import cli, { buildCliContext, buildCliContextFromProcess, CliContext, Namespace
 import { Command, configure, Container } from '@akala/commands';
 import path from 'path';
 import { object } from '@akala/core/src/each';
-import { Workflow } from './automate';
+import { logger, Workflow } from './automate';
 import workflow from './workflow';
 import use from './workflow-commands/use';
+import winston from 'winston';
 
 (async function ()
 {
+    logger.level = 'warn';
+    logger.add(new winston.transports.Console({ format: winston.format.simple() }));
+    logger['rejections'].handle(new winston.transports.Console({ format: winston.format.simple() }));
+
     const program = cli.option<string>('loader', { needsValue: true, normalize: true }).
         option<string>('runner', { needsValue: true, normalize: true }).
-        option<string>('file', { needsValue: true, normalize: true });
+        option<string>('file', { needsValue: true, normalize: true }).
+        option<string>('verbose', { aliases: ['v'] })
     program.action(async context =>
     {
+        if (context.options.verbose)
+        {
+            if (context.options.verbose in logger.levels)
+                logger.level = context.options.verbose;
+            else
+            {
+                const levelEntry = Object.entries(logger.levels).find((_name, level) => level.toString() == context.options.verbose);
+                if (levelEntry)
+                    logger.level = levelEntry[0];
+            }
+        }
         const container: workflow.container & Container<CliContext> = await use.call(context, null, 'workflow', require.resolve('../workflow.json'));
         var loader: Container<CliContext>;
 
