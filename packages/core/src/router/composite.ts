@@ -75,109 +75,106 @@ export class MiddlewareComposite<T extends unknown[]> implements Middleware<T>, 
         return this.handle(...req).then(x => Promise.reject(x), x => Promise.resolve(x));
     }
 
-    public handleError(error: Error | OptionsResponse, ...req: T): MiddlewarePromise
+
+    public async handleError(error: Error | OptionsResponse, ...req: T): MiddlewarePromise
     {
-        return new Promise<Error | SpecialNextParam | OptionsResponse>((resolve, reject) =>
+        let failed: boolean = !!error;
+        this.stack.sort((a, b) => a[0] - b[0]);
+        try
         {
-            let failed: boolean = !!error;
-            eachAsync(this.stack, (middleware, _i, next) =>
+            await eachAsync(this.stack, async (middleware, _i, next) =>
             {
-                if (failed && isErrorMiddleware(middleware))
-                    middleware.handleError(error as Error, ...req).then(err =>
+                try
+                {
+                    if (failed && isErrorMiddleware(middleware[1]))
                     {
+                        const err = await middleware[1].handleError(error as Error, ...req);
+
                         if (err === 'break')
-                            return next(err);
+                            throw err;
                         if (typeof err != 'string' && typeof err != 'undefined')
                             error = err;
 
                         failed = true;
-                        next();
-                    }, x => next({ success: x }));
-                else
-                    next();
-            }, function (err?: MiddlewareSuccess | SpecialNextParam)
-            {
-                switch (typeof err)
-                {
-                    case 'string':
-                        resolve();
-                        return;
-                    case 'undefined':
-                        resolve(error);
-                        return;
-                    default:
-                        reject(err.success);
-                        return;
+                    }
                 }
-            }, true);
-        });
-
+                catch (x)
+                {
+                    throw { success: x };
+                }
+            }, true)
+        } catch (err)
+        {
+            switch (typeof err)
+            {
+                case 'string':
+                    return;
+                case 'undefined':
+                    return error;
+                default:
+                    throw err.success;
+            }
+        }
     }
 
-    public handle(...req: T): MiddlewarePromise
+    public async handle(...req: T): MiddlewarePromise
     {
-        return new Promise<Error | SpecialNextParam | OptionsResponse>((resolve, reject) =>
+        let error: Error | OptionsResponse = undefined;
+        let failed: boolean = undefined;
+        this.stack.sort((a, b) => a[0] - b[0]);
+        try
         {
-            let error: Error | OptionsResponse = undefined;
-            let failed: boolean = undefined;
-            eachAsync(this.stack, (middleware, _i, next) =>
+            await eachAsync(this.stack, async (middleware, _i) =>
             {
-                if (failed && isErrorMiddleware(middleware))
-                    middleware.handleError(error as Error, ...req).then(err =>
+                try
+                {
+                    if (failed && isErrorMiddleware(middleware[1]))
                     {
+                        const err = await middleware[1].handleError(error as Error, ...req);
+
                         if (err === 'break')
-                            return next(err);
+                            throw err;
                         if (typeof err != 'string' && typeof err != 'undefined')
                             error = err;
 
                         failed = true;
-                        next();
-                    }, x => next({ success: x }));
-                else
-                    try
-                    {
-                        if (!isStandardMiddleware(middleware))
-                            next();
-                        else
-                            middleware.handle(...req).then(err =>
-                            {
-                                if (err === 'break')
-                                    return next(err);
-                                if (typeof err != 'string' && typeof err != 'undefined')
-                                {
-                                    if (err['allow'])
-                                        error['allow'].push(...err['allow']);
-                                    else
-                                        error = err;
-                                }
-                                failed = err instanceof Error;
-                                next();
-                            }, x => next({ success: x })
-                            );
                     }
-                    catch (e)
+                    else if (!failed && isStandardMiddleware(middleware[1]))
                     {
-                        error = e;
-                        failed = true;
-                        next();
+                        const err = await middleware[1].handle(...req);
+                        if (err === 'break')
+                            throw err;
+                        if (typeof err != 'string' && typeof err != 'undefined')
+                        {
+                            if (err['allow'])
+                                error['allow'].push(...err['allow']);
+                            else
+                                error = err;
+                        }
+                        failed = err instanceof Error;
+                        return;
                     }
-
-            }, function (err?: MiddlewareSuccess | SpecialNextParam)
-            {
-                switch (typeof err)
-                {
-                    case 'string':
-                        resolve();
-                        return;
-                    case 'undefined':
-                        resolve(error);
-                        return;
-                    default:
-                        reject(err.success);
-                        return;
                 }
+                catch (e)
+                {
+                    throw { success: e };
+                }
+
             }, true);
-        });
+            return error;
+        }
+        catch (err)
+        {
+            switch (typeof err)
+            {
+                case 'string':
+                    return;
+                case 'undefined':
+                    return error;
+                default:
+                    throw err.success;
+            }
+        }
     }
 }
 
@@ -214,111 +211,105 @@ export class MiddlewareCompositeWithPriority<T extends unknown[]> implements Mid
         return this.handle(...req).then(x => Promise.reject(x), x => Promise.resolve(x));
     }
 
-    public handleError(error: Error | OptionsResponse, ...req: T): MiddlewarePromise
+    public async handleError(error: Error | OptionsResponse, ...req: T): MiddlewarePromise
     {
-        return new Promise<Error | SpecialNextParam | OptionsResponse>((resolve, reject) =>
+        let failed: boolean = !!error;
+        this.stack.sort((a, b) => a[0] - b[0]);
+        try
         {
-            let failed: boolean = !!error;
-            this.stack.sort((a, b) => a[0] - b[0]);
-            eachAsync(this.stack, (middleware, _i, next) =>
+            await eachAsync(this.stack, async (middleware, _i, next) =>
             {
-                if (failed && isErrorMiddleware(middleware[1]))
-                    middleware[1].handleError(error as Error, ...req).then(err =>
+                try
+                {
+                    if (failed && isErrorMiddleware(middleware[1]))
                     {
+                        const err = await middleware[1].handleError(error as Error, ...req);
+
                         if (err === 'break')
-                            return next(err);
+                            throw err;
                         if (typeof err != 'string' && typeof err != 'undefined')
                             error = err;
 
                         failed = true;
-                        next();
-                    }, x => next({ success: x }));
-                else
-                    next();
-            }, function (err?: MiddlewareSuccess | SpecialNextParam)
-            {
-                switch (typeof err)
-                {
-                    case 'string':
-                        resolve();
-                        return;
-                    case 'undefined':
-                        resolve(error);
-                        return;
-                    default:
-                        reject(err.success);
-                        return;
+                    }
                 }
-            }, true);
-        });
-
+                catch (x)
+                {
+                    throw { success: x };
+                }
+            }, true)
+        } catch (err)
+        {
+            switch (typeof err)
+            {
+                case 'string':
+                    return;
+                case 'undefined':
+                    return error;
+                default:
+                    throw err.success;
+            }
+        }
     }
 
-    public handle(...req: T): MiddlewarePromise
+    public async handle(...req: T): MiddlewarePromise
     {
-        return new Promise<Error | SpecialNextParam | OptionsResponse>((resolve, reject) =>
+        let error: Error | OptionsResponse = undefined;
+        let failed: boolean = undefined;
+        this.stack.sort((a, b) => a[0] - b[0]);
+        try
         {
-            let error: Error | OptionsResponse = undefined;
-            let failed: boolean = undefined;
-            this.stack.sort((a, b) => a[0] - b[0]);
-            eachAsync(this.stack, (middleware, _i, next) =>
+            await eachAsync(this.stack, async (middleware, _i) =>
             {
-                if (failed && isErrorMiddleware(middleware[1]))
-                    middleware[1].handleError(error as Error, ...req).then(err =>
+                try
+                {
+                    if (failed && isErrorMiddleware(middleware[1]))
                     {
+                        const err = await middleware[1].handleError(error as Error, ...req);
+
                         if (err === 'break')
-                            return next(err);
+                            throw err;
                         if (typeof err != 'string' && typeof err != 'undefined')
                             error = err;
 
                         failed = true;
-                        next();
-                    }, x => next({ success: x }));
-                else
-                    try
-                    {
-                        if (!isStandardMiddleware(middleware[1]))
-                            next();
-                        else
-                            middleware[1].handle(...req).then(err =>
-                            {
-                                if (err === 'break')
-                                    return next(err);
-                                if (typeof err != 'string' && typeof err != 'undefined')
-                                {
-                                    if (err['allow'])
-                                        error['allow'].push(...err['allow']);
-                                    else
-                                        error = err;
-                                }
-                                failed = err instanceof Error;
-                                next();
-                            }, x => next({ success: x })
-                            );
                     }
-                    catch (e)
+                    else if (!failed && isStandardMiddleware(middleware[1]))
                     {
-                        error = e;
-                        failed = true;
-                        next();
+                        const err = await middleware[1].handle(...req);
+                        if (err === 'break')
+                            throw err;
+                        if (typeof err != 'string' && typeof err != 'undefined')
+                        {
+                            if (err['allow'])
+                                error['allow'].push(...err['allow']);
+                            else
+                                error = err;
+                        }
+                        failed = err instanceof Error;
+                        return;
                     }
-
-            }, function (err?: MiddlewareSuccess | SpecialNextParam)
-            {
-                switch (typeof err)
-                {
-                    case 'string':
-                        resolve();
-                        return;
-                    case 'undefined':
-                        resolve(error);
-                        return;
-                    default:
-                        reject(err.success);
-                        return;
                 }
+                catch (e)
+                {
+                    throw { success: e };
+                }
+
             }, true);
-        });
+            return error;
+        }
+        catch (err)
+        {
+            switch (typeof err)
+            {
+                case 'string':
+                    return;
+                case 'undefined':
+                    return error;
+                default:
+                    throw err.success;
+            }
+        }
     }
 }
 
