@@ -20,7 +20,7 @@ jobs:
         with:
           package: $($)
           changelogPath: $($.location)/changelog.md
-      - name: bumpDependents
+      - name: bump dependents
         dispatch: bump-dependents
         outputAs: bumps
         with:
