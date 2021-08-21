@@ -79,16 +79,15 @@ export class MiddlewareComposite<T extends unknown[]> implements Middleware<T>, 
     public async handleError(error: Error | OptionsResponse, ...req: T): MiddlewarePromise
     {
         let failed: boolean = !!error;
-        this.stack.sort((a, b) => a[0] - b[0]);
         try
         {
             await eachAsync(this.stack, async (middleware, _i, next) =>
             {
                 try
                 {
-                    if (failed && isErrorMiddleware(middleware[1]))
+                    if (failed && isErrorMiddleware(middleware))
                     {
-                        const err = await middleware[1].handleError(error as Error, ...req);
+                        const err = await middleware.handleError(error as Error, ...req);
 
                         if (err === 'break')
                             throw err;
@@ -121,16 +120,15 @@ export class MiddlewareComposite<T extends unknown[]> implements Middleware<T>, 
     {
         let error: Error | OptionsResponse = undefined;
         let failed: boolean = undefined;
-        this.stack.sort((a, b) => a[0] - b[0]);
         try
         {
             await eachAsync(this.stack, async (middleware, _i) =>
             {
                 try
                 {
-                    if (failed && isErrorMiddleware(middleware[1]))
+                    if (failed && isErrorMiddleware(middleware))
                     {
-                        const err = await middleware[1].handleError(error as Error, ...req);
+                        const err = await middleware.handleError(error as Error, ...req);
 
                         if (err === 'break')
                             throw err;
@@ -139,9 +137,9 @@ export class MiddlewareComposite<T extends unknown[]> implements Middleware<T>, 
 
                         failed = true;
                     }
-                    else if (!failed && isStandardMiddleware(middleware[1]))
+                    else if (!failed && isStandardMiddleware(middleware))
                     {
-                        const err = await middleware[1].handle(...req);
+                        const err = await middleware.handle(...req);
                         if (err === 'break')
                             throw err;
                         if (typeof err != 'string' && typeof err != 'undefined')
