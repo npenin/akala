@@ -202,7 +202,7 @@ export default function automate<TResult extends object, TSupportedJobSteps exte
 
     orchestrator.add('#main', Object.keys(workflow.jobs));
 
-    const results = Object.assign({} as unknown as TResult, inputs);
+    const results = Object.assign({} as unknown as TResult);
 
     ensureDefaults(workflow.jobs);
 
@@ -223,14 +223,14 @@ export default function automate<TResult extends object, TSupportedJobSteps exte
                     var err;
                     try
                     {
-                        err = await runner.handle(results, step as TSupportedJobSteps, stdio);
+                        err = await runner.handle(Object.assign({}, inputs, results), step as TSupportedJobSteps, stdio);
                     }
                     catch (result)
                     {
                         if (typeof result !== 'undefined' && step.outputAs)
                             results[job.name][step.outputAs] = result
                         return;
-                    };
+                    }
                     if (typeof err === 'undefined')
                         throw new Error(`this runner does not support ${JSON.stringify(step)}`);
                     throw err;
@@ -277,11 +277,11 @@ export default function automate<TResult extends object, TSupportedJobSteps exte
         {
             if (err)
                 if (workflow.on && 'failure' in workflow.on)
-                    resolve(interpolate.buildObject(workflow.on.failure)(results) as unknown as TResult);
+                    resolve(interpolate.buildObject(workflow.on.failure)(Object.assign({}, inputs, results)) as unknown as TResult);
                 else
                     reject(err);
             else if (workflow.outputs)
-                resolve(interpolate.buildObject(workflow.outputs)(results) as TResult);
+                resolve(interpolate.buildObject(workflow.outputs)(Object.assign({}, inputs, results)) as TResult);
             else
                 resolve(results);
         });
