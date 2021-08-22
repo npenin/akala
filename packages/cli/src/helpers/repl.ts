@@ -88,13 +88,14 @@ program.command('repl')
         }
 
         replStarted = true;
+        const logger = context.logger;
 
         const server = repl.start(Object.assign(context as any || {}, {
             eval: function (input: string, context, file, cb)
             {
                 try
                 {
-                    const result = program.process(buildCliContext(...replEval(input)));
+                    const result = program.process(buildCliContext(logger, ...replEval(input)));
                     if (result && result.then)
                     {
                         result.then(function ()
