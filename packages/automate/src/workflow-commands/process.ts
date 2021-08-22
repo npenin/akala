@@ -40,5 +40,5 @@ export default function process<U extends object>(this: CliContext<{ file: strin
     const container = new Container<object>(workflow.name + '-' + new Date().toISOString(), this);
     container.register('loader', self);
 
-    return automate<U, JobStepDispatch | JobStepRun | JobStepJob>(workflow, runnerMiddleware(container, this, self), Object.assign(this, inputs), 'ignore');
+    return automate<U, JobStepDispatch | JobStepRun | JobStepJob>(workflow, runnerMiddleware(container, this, self), Object.assign({}, this, inputs), 'ignore');
 }
