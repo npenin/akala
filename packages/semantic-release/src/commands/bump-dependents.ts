@@ -10,7 +10,7 @@ export default function (workspaces: Workspace[], rules?: { [key: string]: strin
     var loopCounts = workspaces.length;
     do
     {
-        var hasChange = false
+        var hasChange = false;
         workspaces.forEach(w =>
         {
             var newVersion: Levels = (w.workspaceDependencies.reduce((previous: Levels, c) =>
