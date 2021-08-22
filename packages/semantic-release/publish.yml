@@ -9,12 +9,12 @@ jobs:
         with:
           path: $($)
         outputAs: versions
-        foreach: $(build.releases.build.bumps)
+        foreach: $(build.releases)
       - name: eliminate private packages
         dispatch: eliminate-private
         outputAs: publicPackages
         with:
-          packages: $(build.releases.build.bumps)
+          packages: $(build.releases)
       - name: tag
         foreach: $(build.publicPackages)
         foreach-strategy: wait-for-previous
