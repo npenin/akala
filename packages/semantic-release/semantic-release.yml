@@ -5,6 +5,7 @@ outputs:
   name: $(package.name)
   location: $(package.location)
   bump: $(build.recommendBump)
+  workspaceDependencies: $(package.workspaceDependencies)
 on:
   failure: decline
 
