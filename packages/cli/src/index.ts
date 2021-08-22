@@ -10,9 +10,9 @@ import program, { CliContext } from './router/index';
 // import './helpers/newmodule';
 export * from './router/index'
 export default program;
-export function buildCliContext<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>(...args: string[]): CliContext<T>
+export function buildCliContext<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>(logger: winston.Logger, ...args: string[]): CliContext<T>
 {
-    return { args: args, argv: args, options: {} as T, currentWorkingDirectory: undefined, logger: winston.createLogger({ levels: winston.config.cli.levels }) }
+    return { args: args, argv: args, options: {} as T, currentWorkingDirectory: undefined, logger }
 }
 export function buildCliContextFromProcess<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>(logger?: winston.Logger): CliContext<T>
 {

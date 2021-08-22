@@ -4,13 +4,20 @@ import cli, { buildCliContext, buildCliContextFromProcess, CliContext, Namespace
 import { Command, configure, Container } from '@akala/commands';
 import path from 'path';
 import { object } from '@akala/core/src/each';
-import { logger, Workflow } from './automate';
+import { Workflow } from './automate';
 import workflow from './workflow';
 import use from './workflow-commands/use';
-import winston from 'winston';
+import winston, { createLogger } from 'winston';
 
 (async function ()
 {
+    const logger = createLogger({
+        format: winston.format.combine(
+            winston.format.splat(),
+            winston.format.colorize(),
+            winston.format.simple()
+        )
+    })
     logger.level = 'warn';
     logger.add(new winston.transports.Console({ format: winston.format.simple() }));
     logger['rejections'].handle(new winston.transports.Console({ format: winston.format.simple() }));
@@ -23,13 +30,13 @@ import winston from 'winston';
     {
         if (context.options.verbose)
         {
-            if (context.options.verbose in logger.levels)
-                logger.level = context.options.verbose;
+            if (context.options.verbose in context.logger.levels)
+                context.logger.level = context.options.verbose;
             else
             {
-                const levelEntry = Object.entries(logger.levels).find((_name, level) => level.toString() == context.options.verbose);
+                const levelEntry = Object.entries(context.logger.levels).find((_name, level) => level.toString() == context.options.verbose);
                 if (levelEntry)
-                    logger.level = levelEntry[0];
+                    context.logger.level = levelEntry[0];
             }
         }
         const container: workflow.container & Container<CliContext> = await use.call(context, null, 'workflow', require.resolve('../workflow.json'));
@@ -52,7 +59,7 @@ import winston from 'winston';
             {
                 Object.assign(context.options, ctx.options);
             });
-            await workflowProgram.process(buildCliContext(...context.args));
+            await workflowProgram.process(buildCliContext(context.logger, ...context.args));
         }
 
         container.register(new Command((file: string) => loader.dispatch('load', path.join(path.dirname(context.options.file), file)), 'load'));
@@ -65,7 +72,7 @@ import winston from 'winston';
     });
     try
     {
-        await program.process(buildCliContextFromProcess());
+        await program.process(buildCliContextFromProcess(logger));
     }
     catch (e)
     {
