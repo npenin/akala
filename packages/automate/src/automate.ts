@@ -5,19 +5,19 @@ import commands from './container';
 import { eachAsync, Interpolate, mapAsync, Middleware, MiddlewareCompositeWithPriority, Parser } from '@akala/core';
 import { Stream } from 'stream';
 import winston from 'winston';
+import fs from 'fs'
 
-export const logger = winston.createLogger({
+export const defaultLogger = winston.createLogger({
     levels: winston.config.cli.levels,
     format: winston.format.combine(
         winston.format.splat(),
-        winston.format.colorize(),
         winston.format.simple()
     )
 });
 
 export const interpolate = new Interpolate('$(', ')');
 
-export type MiddlewareSignature<TSupportedJobSteps extends JobStepDef<string, any, any>> = [context: object, step: TSupportedJobSteps, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe }];
+export type MiddlewareSignature<TSupportedJobSteps extends JobStepDef<string, any, any>> = [context: object & { logger: winston.Logger }, step: TSupportedJobSteps, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe }];
 
 export type TMiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any, any>> = Middleware<MiddlewareSignature<TSupportedJobSteps>>;
 
@@ -27,7 +27,7 @@ export class MiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any,
     {
     }
 
-    async handle(context: object, step: TSupportedJobSteps, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
+    async handle(...[context, step, stdio]: MiddlewareSignature<TSupportedJobSteps>)
     {
         if (!step[this.support])
             return Promise.resolve();
@@ -49,6 +49,27 @@ export const WithInterpolater = new MiddlewareRunner('with', () =>
 {
     return Promise.reject();
 });
+
+export const StdioMiddleware = new MiddlewareRunner('with', (...[context, step, stdio]: MiddlewareSignature<JobStepDef<'with', any, any>>) =>
+{
+    if (step.with && step.with.stdio && step.with.stdio !== 'pipe' && step.with.stdio !== 'ignore' && step.with.stdio !== 'inherit')
+    {
+        if (Array.isArray(step.with.stdio))
+        {
+            if (step.with.stdio.length > 0)
+                step.with.stdio = step.with.stdio.map(io =>
+                {
+                    if (io !== 'pipe' && io !== 'ignore' && io !== 'inherit')
+                    {
+                        return fs.createReadStream(io);
+                    }
+                    return io;
+                })
+        }
+    }
+
+    return Promise.reject();
+}, true);
 
 export const IfMiddleware: TMiddlewareRunner<JobStepIf> = new MiddlewareRunner<JobStepIf>('if',
     (context, step) =>
@@ -83,7 +104,10 @@ export function ForeachMiddleware(runner: MiddlewareCompositeWithPriority<Middle
 
 export const LogMiddleware = new MiddlewareRunner<JobStepLog>('log', async (context, step) =>
 {
-    logger.log(step.with && step.with['log-level'] || 'info', step.log);
+    if (Array.isArray(step.log))
+        context.logger.log(step.with && step.with['log-level'] || 'info', ...step.log);
+    else
+        context.logger.log(step.with && step.with['log-level'] || 'info', step.log);
 }
 );
 
@@ -115,7 +139,7 @@ export const RunMiddleware = new MiddlewareRunner<JobStepRun>('run',
             else
                 cmd = step.run;
 
-            logger.debug(cmd.join(' '));
+            context.logger.debug(cmd.join(' '));
             const cp = spawn(cmd[0], cmd.slice(1), Object.assign(step.with || {}, stdio, { timeout: step.with.timeout || 3600000 })).on('close', function (code)
             {
                 if (code == 0)
@@ -179,15 +203,17 @@ export function simpleRunner(name: string)
     runner.useMiddleware(1, ForeachMiddleware(runner));
     runner.useMiddleware(2, IfMiddleware);
     runner.useMiddleware(3, WithInterpolater);
+    runner.useMiddleware(4, StdioMiddleware);
     runner.useMiddleware(100, RunMiddleware);
     runner.useMiddleware(20, LogMiddleware);
     return runner;
 }
 
-export default function automate<TResult extends object, TSupportedJobSteps extends JobStepDef<string, any, any>>(workflow: Workflow, runner: TMiddlewareRunner<TSupportedJobSteps>, inputs?: unknown, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
+export default function automate<TResult extends object, TSupportedJobSteps extends JobStepDef<string, any, any>>(workflow: Workflow, runner: TMiddlewareRunner<TSupportedJobSteps>, inputs?: { logger?: winston.Logger }, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
 {
     const orchestrator = new Orchestrator();
     // const inputForLog = !inputs ? '' : Object.entries(inputs).filter(e => e[0] !== 'logger').map(entry => entry[0] + '=' + JSON.stringify(entry[1])).join(", ");
+    const logger = inputs?.logger || defaultLogger;
 
     orchestrator.on('task_start', (t) =>
     {
@@ -221,9 +247,11 @@ export default function automate<TResult extends object, TSupportedJobSteps exte
                 async function (): Promise<void>
                 {
                     var err;
+                    const context = Object.assign({}, inputs, results);
+                    logger.silly('%O', context);
                     try
                     {
-                        err = await runner.handle(Object.assign({}, inputs, results), step as TSupportedJobSteps, stdio);
+                        err = await runner.handle(context, step as TSupportedJobSteps, stdio);
                     }
                     catch (result)
                     {
@@ -341,7 +369,7 @@ export type JobStepDef<T extends string, TActor = string, TSettings = Serializab
 
 export type JobStepUse = JobStepDef<'uses'>;
 export type JobStepJob = JobStepDef<'job'>;
-export type JobStepLog = JobStepDef<'log', string, { 'log-level': Exclude<keyof winston.config.CliConfigSetLevels, number> }>;
+export type JobStepLog = JobStepDef<'log', string | [string, ...any[]], { 'log-level': Exclude<keyof winston.config.CliConfigSetLevels, number> }>;
 export type JobStepIf = JobStepDef<'if', string, void>;
 export type JobStepForEach = JobStepDef<'foreach', string, void>;
 
