@@ -1,3 +1,5 @@
+outputs: $(build.bumps)
+
 jobs:
   build:
     steps:
@@ -25,7 +27,7 @@ jobs:
         outputAs: bumps
         with:
           workspaces: $(build.versions)
-          strategy:
+          rules:
             major: patch
             minor: patch
             patch: patch
