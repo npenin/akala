@@ -6,6 +6,7 @@ import { eachAsync, Interpolate, mapAsync, Middleware, MiddlewareCompositeWithPr
 import { Stream } from 'stream';
 import winston from 'winston';
 import fs from 'fs'
+import { runnerMiddleware } from './workflow-commands/process';
 
 export const defaultLogger = winston.createLogger({
     levels: winston.config.cli.levels,
@@ -330,6 +331,8 @@ export function ensureDefaults<TSupportedJobSteps extends JobStepDef<string, any
         })
     })
 }
+
+export { runnerMiddleware };
 
 export interface Workflow
 {
