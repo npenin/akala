@@ -26,7 +26,7 @@ export function UsesMiddleware(container: Container<any>): MiddlewareRunner<JobS
     });
 }
 
-export function runnerMiddleware(container: Container<unknown>, context: CliContext<{ file: string }>, self: Container<CliContext>)
+export function runnerMiddleware<T>(container: Container<T>, self: Container<CliContext>)
 {
     const runner = simpleRunner(container.name)
     runner.useMiddleware(49, UsesMiddleware(container));
