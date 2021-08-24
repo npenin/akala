@@ -1,16 +1,16 @@
-#  (2021-08-07)
+#  (2021-08-24)
 
 
 ### Bug Fixes
 
-* **deps:** update dependency ws to v8 321e261
-* **eachAsync:**  better error support 99fb8f5
-* eachAsync in case of failure 47a66a2
+* bindings are less intrusive 3ef2783
+* mapAsync 64a258e
+* middleware copy/paste issue 69757ce
 
 
 ### Features
 
-* Interpolate is instantiable ae9a563
+* add middleware with priority handling 461c1a4
 
 
 
