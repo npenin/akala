@@ -15,6 +15,10 @@ jobs:
         outputAs: publicPackages
         with:
           packages: $(build.releases)
+      - name: push
+        run: git push
+        with:
+          shell: true
       - name: tag
         foreach: $(build.publicPackages)
         foreach-strategy: wait-for-previous
