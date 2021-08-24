@@ -1,9 +1,10 @@
-#  (2021-08-07)
+#  (2021-08-24)
 
 
-### Bug Fixes
+### Features
 
-* package template with better prepack script 691055e
+* added winston as a logger system 065bae0
+* enforce logger on buildCliContext dd636e1
 
 
 
