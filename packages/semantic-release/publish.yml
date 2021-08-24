@@ -15,7 +15,7 @@ jobs:
         outputAs: publicPackages
         with:
           packages: $(build.releases)
-      - name: push
+      - name: push1
         run: git push
         with:
           shell: true
@@ -29,7 +29,7 @@ jobs:
           - $($.name)@$($.version)
           - -m
           - tagging $($.name)@$($.version)
-      - name: push
+      - name: push2
         run: git push origin --tags
         with:
           shell: true
