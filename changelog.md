@@ -1,4 +1,4 @@
-#  (2021-08-24)
+#  (2021-08-26)
 
 
 ### Bug Fixes
@@ -9,11 +9,13 @@
 * bump dependent 5e89235
 * compilation issue 4735be5
 * default version ignore to decline 01cb0f7
+* export AggregateErrors f4285e2
 * git push tags fc8e609
 * improve get-version 2f156a3
 * limited git tag scope 7da0acb
 * log format 403e66b
 * log only enumerable props 3070ee3
+* logger as non enumerable property 43fdcba
 * mapAsync 64a258e
 * middleware copy/paste issue 69757ce
 * output name from inner semantic-releases script 52382c6
@@ -22,6 +24,7 @@
 * push before tagging d980dd0
 * remove duplicate foreach in publish 09d9fe5
 * runnerMiddleware more type friendly 7bf1a25
+* spread is not considering non enumerable properties 394438a
 * update command definition 85c2891
 * variable renaming f825597
 * workflow output 3fca50e
