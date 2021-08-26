@@ -3,7 +3,7 @@ import { onResolve } from './global-injector'
 import * as jsonrpc from '@akala/json-rpc-ws'
 export { Module };
 export * from './promiseHelpers';
-export { each as eachAsync, NextFunction, map as mapAsync } from './eachAsync';
+export { each as eachAsync, NextFunction, map as mapAsync, AggregateErrors } from './eachAsync';
 export { each, grep, Proxy, map } from './each';
 import log from 'debug';
 
