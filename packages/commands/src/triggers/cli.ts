@@ -2,7 +2,7 @@ import * as Metadata from '../metadata/index'
 import { Trigger } from '../model/trigger';
 import * as Processors from '../processors/index';
 import { NamespaceMiddleware } from '@akala/cli'
-import { each } from '@akala/core';
+import { each, MiddlewarePromise } from '@akala/core';
 
 export var processTrigger = new Trigger('cli', async (c, program: NamespaceMiddleware<Record<string, string | boolean | string[] | number>>) =>
 {
@@ -25,12 +25,14 @@ export var processTrigger = new Trigger('cli', async (c, program: NamespaceMiddl
 
             addOptions(cmd, command);
 
-            command.action(async (context) =>
-            {
-                return await Processors.Local.execute(cmd, (...args) =>
+            command.useMiddleware({
+                handle(context)
                 {
-                    return c.dispatch(cmd.name, { param: args, _trigger: 'proxy' });
-                }, c, { context: context, options: context.options, param: context.args, _trigger: 'cli' });
+                    return Processors.Local.execute(cmd, (...args) =>
+                    {
+                        return c.handle(cmd.name, { param: args, _trigger: 'proxy' });
+                    }, c, { context: context, options: context.options, param: context.args, _trigger: 'cli' }) as MiddlewarePromise;
+                }
             });
         }
     });
