@@ -1,10 +1,9 @@
-#  (2021-08-24)
+#  (2021-08-26)
 
 
-### Features
+### Bug Fixes
 
-* added winston as a logger system 065bae0
-* enforce logger on buildCliContext dd636e1
+* logger as non enumerable property 43fdcba
 
 
 
