@@ -7,7 +7,7 @@ import assert from 'assert';
 
 export class Local extends CommandProcessor
 {
-    public static execute<T>(cmd: Metadata.Command, command: Injectable<unknown>, container: Container<T>, param: StructuredParameters): unknown | PromiseLike<unknown>
+    public static execute<T, U>(cmd: Metadata.Command, command: Injectable<U>, container: Container<T>, param: StructuredParameters): U
     {
         if (!container)
             assert.fail('container is undefined');
@@ -27,13 +27,13 @@ export class Local extends CommandProcessor
         return injector.injectWithName(inject, command)(container.state);
     }
 
-    public static handle<T>(cmd: Metadata.Command, command: Injectable<unknown>, container: Container<T>, param: StructuredParameters): MiddlewarePromise
+    public static handle<T, U = unknown | PromiseLike<unknown>>(cmd: Metadata.Command, command: Injectable<U>, container: Container<T>, param: StructuredParameters): MiddlewarePromise
     {
         return new Promise((resolve, reject) =>
         {
             try
             {
-                var result = Local.execute<unknown>(cmd, command, container, param);
+                var result = Local.execute<unknown, U>(cmd, command, container, param);
                 if (isPromiseLike(result))
                     result.then(reject, resolve);
                 else
