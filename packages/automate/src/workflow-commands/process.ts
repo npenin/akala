@@ -6,7 +6,7 @@ import use from './use';
 
 export function DispatchMiddleware(container: Container<any>): MiddlewareRunner<JobStepDispatch>
 {
-    return new MiddlewareRunner('dispatch', (context, step) => container.dispatch(step.dispatch, { _trigger: 'automate', ...step.with, param: [] }));
+    return new MiddlewareRunner('dispatch', (context, step) => container.dispatch(step.dispatch, { _trigger: 'automate', ...step.with, ...context, param: [] }));
 }
 
 
@@ -14,7 +14,7 @@ export function JobMiddleware(self: Container<any>, runner: TMiddlewareRunner<an
 {
     return new MiddlewareRunner('job',
         async (context, step, stdio) =>
-            await automate((await self.dispatch('load', step.job)), runner, Object.assign({}, context, step.with), stdio)
+            await automate((await self.dispatch('load', step.job)), runner, { ...context, ...step.with }, stdio)
     );
 }
 
@@ -35,10 +35,10 @@ export function runnerMiddleware<T>(container: Container<T>, self: Container<Cli
     return runner;
 }
 
-export default function process<U extends object>(this: CliContext<{ file: string }>, workflow: Workflow, inputs: unknown, self: Container<CliContext>)
+export default function process<U extends object>(this: CliContext<{ file: string }>, workflow: Workflow, inputs: object, self: Container<CliContext>)
 {
     const container = new Container<object>(workflow.name + '-' + new Date().toISOString(), this);
     container.register('loader', self);
 
-    return automate<U, JobStepDispatch | JobStepRun | JobStepJob>(workflow, runnerMiddleware(container, self), Object.assign({}, this, inputs), 'ignore');
+    return automate<U, JobStepDispatch | JobStepRun | JobStepJob>(workflow, runnerMiddleware(container, self), { ...this, ...inputs }, 'ignore');
 }
