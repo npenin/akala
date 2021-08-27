@@ -2,7 +2,7 @@ import { SerializableObject } from '@akala/json-rpc-ws'
 import Orchestrator from 'orchestrator';
 import { spawn, StdioNull, StdioPipe, SpawnOptionsWithoutStdio } from 'child_process';
 import commands from './container';
-import { eachAsync, Injector, Interpolate, mapAsync, Middleware, MiddlewareCompositeWithPriority, Parser, AggregateErrors } from '@akala/core';
+import { eachAsync, Injector, Interpolate, mapAsync, Middleware, MiddlewareCompositeWithPriority, Parser, AggregateErrors, MiddlewarePromise } from '@akala/core';
 import { Stream } from 'stream';
 import winston from 'winston';
 import fs from 'fs'
@@ -23,9 +23,9 @@ export type MiddlewareSignature<TSupportedJobSteps extends JobStepDef<string, an
 
 export type TMiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any, any>> = Middleware<MiddlewareSignature<TSupportedJobSteps>>;
 
-export class MiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any, any>> implements TMiddlewareRunner<TSupportedJobSteps>
+export class MiddlewareRunnerMiddleware<TSupportedJobSteps extends JobStepDef<string, any, any>> implements TMiddlewareRunner<TSupportedJobSteps>
 {
-    constructor(public readonly support: TSupportedJobSteps['type'], private handler: (...args: MiddlewareSignature<TSupportedJobSteps>) => Promise<unknown>, private doNotInterpolate?: boolean)
+    constructor(public readonly support: TSupportedJobSteps['type'], private handler: (...args: MiddlewareSignature<TSupportedJobSteps>) => MiddlewarePromise, private doNotInterpolate?: boolean)
     {
     }
 
@@ -33,24 +33,34 @@ export class MiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any,
     {
         if (!step[this.support])
             return Promise.resolve();
-        try
-        {
-            if (!this.doNotInterpolate)
-                step[this.support] = interpolate.buildObject(step[this.support])(context);
-            const result = await this.handler(context, step, stdio);
-            return Promise.reject(result);
-        }
-        catch (e)
-        {
-            return Promise.resolve(e);
-        }
+
+        if (!this.doNotInterpolate)
+            step[this.support] = interpolate.buildObject(step[this.support])(context);
+
+        return this.handler(context, step, stdio);
     }
 }
 
-export const WithInterpolater = new MiddlewareRunner('with', () =>
+export class MiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any, any>> extends MiddlewareRunnerMiddleware<TSupportedJobSteps>
 {
-    return Promise.reject();
-});
+    constructor(support: TSupportedJobSteps['type'], handler: (...args: MiddlewareSignature<TSupportedJobSteps>) => Promise<unknown>, doNotInterpolate?: boolean)
+    {
+        super(support, async (...[context, step, stdio]: MiddlewareSignature<TSupportedJobSteps>) =>
+        {
+            try
+            {
+                const result = await handler(context, step, stdio);
+                return Promise.reject(result);
+            }
+            catch (e)
+            {
+                return Promise.resolve(e);
+            }
+        }, doNotInterpolate);
+    }
+}
+
+export const WithInterpolater = new MiddlewareRunnerMiddleware('with', () => { return Promise.resolve(); });
 
 export class ContainerMiddleware implements Middleware<MiddlewareSignature<JobStepDef<string, any, any>>> {
     constructor(private container: Container<unknown>) { }
@@ -127,8 +137,22 @@ export const LogMiddleware = new MiddlewareRunner<JobStepLog>('log', async (cont
         context.logger.log(step.with && step.with['log-level'] || 'info', ...step.log);
     else
         context.logger.log(step.with && step.with['log-level'] || 'info', step.log);
+});
+
+
+export function RetryMiddleware(runner: MiddlewareCompositeWithPriority<MiddlewareSignature<JobStepDef<string, any, any>>>)
+{
+    return new MiddlewareRunnerMiddleware<JobStepDef<'retries', number, void>>(
+        'retries', async (context, step, stdio) =>
+    {
+        for (let index = 0; index < step.retries; index++)
+        {
+            const err = await runner.handle(context, Object.assign({}, step, { retries: null, name: step.name + '#retry-' + index }), stdio);
+            if (!err)
+                return;
+        }
+    });
 }
-);
 
 export const RunMiddleware = new MiddlewareRunner<JobStepRun>('run',
     async (context, step, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe }) =>
@@ -223,6 +247,7 @@ export function simpleRunner(name: string)
     runner.useMiddleware(2, IfMiddleware);
     runner.useMiddleware(3, WithInterpolater);
     runner.useMiddleware(4, StdioMiddleware);
+    runner.useMiddleware(5, RetryMiddleware(runner));
     runner.useMiddleware(100, RunMiddleware);
     runner.useMiddleware(20, LogMiddleware);
     return runner;
