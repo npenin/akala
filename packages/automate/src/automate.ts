@@ -2,11 +2,12 @@ import { SerializableObject } from '@akala/json-rpc-ws'
 import Orchestrator from 'orchestrator';
 import { spawn, StdioNull, StdioPipe, SpawnOptionsWithoutStdio } from 'child_process';
 import commands from './container';
-import { eachAsync, Interpolate, mapAsync, Middleware, MiddlewareCompositeWithPriority, Parser } from '@akala/core';
+import { eachAsync, Injector, Interpolate, mapAsync, Middleware, MiddlewareCompositeWithPriority, Parser, AggregateErrors } from '@akala/core';
 import { Stream } from 'stream';
 import winston from 'winston';
 import fs from 'fs'
 import { runnerMiddleware } from './workflow-commands/process';
+import { Command, Container } from '@akala/commands';
 
 export const defaultLogger = winston.createLogger({
     levels: winston.config.cli.levels,
@@ -50,6 +51,23 @@ export const WithInterpolater = new MiddlewareRunner('with', () =>
 {
     return Promise.reject();
 });
+
+export class ContainerMiddleware implements Middleware<MiddlewareSignature<JobStepDef<string, any, any>>> {
+    constructor(private container: Container<unknown>) { }
+
+    async handle(...[context, step, stdio]: MiddlewareSignature<JobStepDef<string, any, any>>)
+    {
+        var resolved = Object.keys(step).map(k => [k, this.container.resolve(k)]).filter(k => k[1] instanceof Container) as [string, Container<unknown>][];
+        const errors = (await mapAsync(resolved, k =>
+            this.container.handle(step[k[0]], { _trigger: 'automate', ...context, ...step.with, param: [] })
+        )).filter(err => err && err instanceof Error) as Error[];
+        if (errors.length)
+            if (errors.length === 1)
+                return errors[1];
+            else
+                return new AggregateErrors(errors);
+    }
+}
 
 export const StdioMiddleware = new MiddlewareRunner('with', (...[context, step, stdio]: MiddlewareSignature<JobStepDef<'with', any, any>>) =>
 {
