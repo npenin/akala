@@ -8,6 +8,7 @@
 * avoids workflow leaks in context db4662a
 * bindings are less intrusive 3ef2783
 * bump dependent 5e89235
+* bump dependents proper references f734b61
 * compilation issue 4735be5
 * default version ignore to decline 01cb0f7
 * export AggregateErrors f4285e2
