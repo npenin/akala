@@ -10,11 +10,13 @@
   },
   "homepage": "https://akala.js.org/cron",
   "scripts": {
-    "generate": "ac generate dist/commands commands.json"
+    "generate": "ac generate dist/commands commands.json",
+    "generate-metadata": "ac generate-metadata commands.json src/container.ts"
   },
   "dependencies": {
     "@akala/commands": "workspace:*",
-    "debug": "^4.3.1"
+    "debug": "^4.3.1",
+    "suncalc": "^1.8.0"
   },
   "devDependencies": {
     "@types/debug": "^4.1.6"
