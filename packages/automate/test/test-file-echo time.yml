@@ -1,0 +1,11 @@
+on:
+  cron: "* * * * *"
+
+jobs:
+  test:
+    steps:
+      - run: echo pwet > test.txt
+        with:
+          results: stdout
+          format: string
+          shell: true

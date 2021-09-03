@@ -7,7 +7,8 @@ import { Stream } from 'stream';
 import winston from 'winston';
 import fs from 'fs'
 import { runnerMiddleware } from './workflow-commands/process';
-import { Command, Container } from '@akala/commands';
+import { Container } from '@akala/commands';
+import { DateRequest } from '@akala/cron';
 
 export const defaultLogger = winston.createLogger({
     levels: winston.config.cli.levels,
@@ -389,6 +390,7 @@ export interface Workflow
 export interface TriggerMap
 {
     failure: string
+    cron: string | DateRequest;
 }
 
 export interface Job
