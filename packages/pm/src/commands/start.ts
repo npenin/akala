@@ -1,4 +1,4 @@
-import { Container, Processors, Metadata, registerCommands, CommandProxy } from "@akala/commands";
+import { Container, Processors, Metadata, registerCommands } from "@akala/commands";
 import State, { RunningContainer } from '../state';
 import { spawn, ChildProcess, StdioOptions } from "child_process";
 import pmContainer from '../container';
@@ -147,7 +147,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
             container.dispatch('$metadata').then((metaContainer: Metadata.Container) =>
             {
                 // console.log(metaContainer);
-                registerCommands(metaContainer.commands, container.processor, container as Container<unknown>);
+                registerCommands(metaContainer.commands, null, container);
                 pm.register(name, container, true);
             });
 

@@ -29,7 +29,7 @@ program.useMiddleware({
 });
 let folderOrFile: Stats;
 let cliContainer: ac.Container<unknown>;
-let processor: ac.Processor;
+let processor: ac.CommandProcessor;
 let log: debug.Debugger;
 const logMiddleware = new NamespaceMiddleware<{ program: string, name: string }>(null).option<string, 'verbose'>('verbose', { aliases: ['v',] });
 logMiddleware.preAction(async c =>
@@ -64,9 +64,9 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
                 cliContainer = new ac.Container(c.options.name, {});
 
             if (folderOrFile.isFile())
-                processor = new ac.Processors.FileSystem(cliContainer, path.dirname(c.options.program));
+                processor = new ac.Processors.FileSystem(path.dirname(c.options.program));
             else
-                processor = new ac.Processors.FileSystem(cliContainer, c.options.program);
+                processor = new ac.Processors.FileSystem(c.options.program);
         }
     }).
     useMiddleware(logMiddleware).
