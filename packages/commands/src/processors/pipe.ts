@@ -1,30 +1,21 @@
 import { MiddlewarePromise } from '@akala/core';
-import { CommandNameProcessor, StructuredParameters } from '../model/processor'
+import { CommandProcessor, StructuredParameters } from '../model/processor'
 import { Container } from '../model/container';
 import assert from 'assert';
+import { Command } from '../metadata';
 
-export class Pipe<T> extends CommandNameProcessor
+export class Pipe<T> extends CommandProcessor
 {
-    public async handle(command: string, param: StructuredParameters): MiddlewarePromise
+    public async handle(origin: Container<T>, command: Command, param: StructuredParameters): MiddlewarePromise
     {
         if (!this.container)
-            assert.fail('container is undefined');
-        else
-        {
-            try
-            {
-                var result = await this.container.dispatch(command, param);
-                throw result;
-            }
-            catch (e)
-            {
-                return e;
-            }
-        }
+            return new Error('container is undefined');
+
+        return this.container.handle(origin, command.name, param);
     }
 
-    constructor(container: Container<T>)
+    constructor(private container: Container<T>)
     {
-        super('pipe', container);
+        super('pipe');
     }
 }

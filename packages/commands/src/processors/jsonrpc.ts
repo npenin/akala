@@ -1,5 +1,5 @@
 import * as jsonrpcws from '@akala/json-rpc-ws'
-import { CommandProcessor, CommandNameProcessor, StructuredParameters } from '../model/processor'
+import { CommandProcessor, StructuredParameters } from '../model/processor'
 import { Command } from '../metadata/index';
 import { Container } from '../model/container';
 import { IDebugger } from 'debug';
@@ -41,13 +41,21 @@ export class JsonRpc extends CommandProcessor
                 {
                     const cmd = container.resolve('$disconnect');
                     if (cmd)
-                        Local.execute(cmd, cmd.handler, container, { param: [] });
+                        container.dispatch(cmd);
                 }
             },
             getHandler(method: string)
             {
                 if (!container)
                     return null;
+                const cmd = container.resolve(method);
+                if (!cmd)
+                {
+                    container.inspect();
+                    error.message = `Command with name ${method} could not be found on ${socket.constructor.name}`;
+                    throw error;
+                }
+
                 return async function (this: Connection, params, reply)
                 {
                     try
@@ -55,13 +63,6 @@ export class JsonRpc extends CommandProcessor
                         if (log)
                             log(params);
 
-                        const cmd = container.resolve(method);
-                        if (!cmd)
-                        {
-                            container.inspect();
-                            error.message = `Command with name ${method} could not be found on ${socket.constructor.name}`;
-                            throw error;
-                        }
 
                         if (!params)
                             params = { param: [] };
@@ -75,11 +76,11 @@ export class JsonRpc extends CommandProcessor
                             return new JsonRpc(this, true);
                         }
                         Object.defineProperty(params, 'connection', { enumerable: true, get: getProcessor });
-                        Object.defineProperty(params, 'connectionAsContainer', { enumerable: true, get() { return Container.proxy(container?.name + '-client', getProcessor() as unknown as CommandNameProcessor) } });
+                        Object.defineProperty(params, 'connectionAsContainer', { enumerable: true, get() { return Container.proxy(container?.name + '-client', getProcessor(), 2) } });
                         if (typeof (params) == 'object' && !params['_trigger'] || params['_trigger'] == 'proxy')
                             params['_trigger'] = 'jsonrpc';
 
-                        const result = await Local.execute(cmd, cmd.handler, container, params as StructuredParameters<jsonrpcws.SerializableObject[]>);
+                        const result = await container.dispatch(cmd, params as StructuredParameters<jsonrpcws.SerializableObject[]>);
                         reply(null, result as jsonrpcws.PayloadDataType<Readable>);
                     }
                     catch (error)
@@ -98,7 +99,7 @@ export class JsonRpc extends CommandProcessor
         return connection;
     }
 
-    public handle(command: Command | string, params: StructuredParameters<OnlyArray<jsonrpcws.PayloadDataType<void>>>): MiddlewarePromise
+    public handle(_container: Container<any>, command: Command | string, params: StructuredParameters<OnlyArray<jsonrpcws.PayloadDataType<void>>>): MiddlewarePromise
     {
         return new Promise<Error | SpecialNextParam | OptionsResponse>((resolve, reject) =>
         {

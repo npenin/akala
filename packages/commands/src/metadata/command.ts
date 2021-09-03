@@ -8,7 +8,7 @@ export interface Command
 {
     name: string;
     config: Configurations;
-    inject?: string[];
+    inject: string[];
 }
 
 export type ExtendedConfigurations<TConfiguration extends GenericConfiguration, TKey extends string> = Configurations & { [name in TKey]: TConfiguration }
@@ -20,6 +20,10 @@ export interface Configuration
     inject?: string[];
 }
 
+export function isCommand(x: any): x is Command
+{
+    return typeof (x) == 'object' && x && 'name' in x && 'inject' in x;
+}
 
 
 export interface CliConfiguration extends Configuration

@@ -17,21 +17,21 @@ describe('test helpers', function ()
             const cmd = calculator.resolve(metacmd.name);
             assert.ok(cmd, `command ${metacmd.name} could not be found in ${JSON.stringify(meta.commands)}`);
             assert.strictEqual(metacmd.name, cmd.name);
-            assert.deepStrictEqual(metacmd.inject, cmd.inject || []);
+            assert.deepStrictEqual(metacmd.inject || [], cmd.inject || []);
             assert.deepStrictEqual(metacmd.config, cmd.config);
         })
     })
 
-    it('should generate correct proxy', function ()
+    it('should generate correct proxy', async function ()
     {
         const meta = helper(calculator)
         assert.ok(meta);
         meta.reset();
-        meta.increment();
+        await meta.increment();
         assert.strictEqual(calculator.state.value, 1);
-        meta.decrement();
+        await meta.decrement();
         assert.strictEqual(calculator.state.value, 0);
-        meta.increment(2);
+        await meta.increment(2);
         assert.strictEqual(calculator.state.value, 2);
 
     })

@@ -2,7 +2,7 @@ import { calculator } from './calculator/index'
 import * as assert from 'assert'
 import { Pipe, EventProcessor } from '../processors/index';
 import { Container } from '../model/container';
-import { CommandNameProcessor } from '../model/processor';
+import { metadata, registerCommands } from '../generator';
 
 describe('test event processing', function ()
 {
@@ -10,16 +10,17 @@ describe('test event processing', function ()
     {
         const processor = new EventProcessor(new Pipe(calculator));
         const calculator2 = new Container(calculator.name, calculator.state);
-        calculator2.trap(processor as CommandNameProcessor);
+        calculator2.processor.useMiddleware(3, processor);
+        registerCommands(metadata(calculator).commands, null, calculator2);
         let processingCalled: string | undefined;
         let processedCalled: string | undefined;
-        processor.once('processing', function (cmd)
+        processor.once('processing', function (_container, cmd)
         {
-            processingCalled = cmd;
+            processingCalled = cmd.name;
         })
-        processor.once('processed', function (cmd)
+        processor.once('processed', function (_container, cmd)
         {
-            processedCalled = cmd;
+            processedCalled = cmd.name;
         })
         await calculator2.dispatch('reset');
         assert.strictEqual(processingCalled, 'reset', 'processing was not called')

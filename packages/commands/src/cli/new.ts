@@ -66,7 +66,7 @@ export default async function _new(type: string, name: string, options: CliConte
             break;
         case 'cc':
         case 'command-config':
-            var cmds = await Processors.FileSystem.discoverMetaCommands(destination, { isDirectory: true, processor: new Processors.FileSystem(null, destination) });
+            var cmds = await Processors.FileSystem.discoverMetaCommands(destination, { isDirectory: true, processor: new Processors.FileSystem(destination) });
             const cmd = cmds.find(c => c.name == name);
             if (!cmd)
                 throw new ErrorWithStatus(44, `No command with name ${name} could be found in ${destination}`)

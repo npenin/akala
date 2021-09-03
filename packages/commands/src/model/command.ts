@@ -1,11 +1,15 @@
 import { InjectableWithTypedThis } from "@akala/core";
-import { Processor } from './processor';
-import { Container } from './container';
+import { ICommandProcessor } from './processor';
 import * as metadata from '../metadata'
 
 type Injectable<T, U> = InjectableWithTypedThis<T, U> & { '$inject'?: string[] }
 
-export class Command<T = unknown> implements metadata.Command
+export interface CommandWithProcessorAffinity extends metadata.Command
+{
+    processor: ICommandProcessor;
+}
+
+export class SelfDefinedCommand<T = unknown> implements metadata.Command
 {
     constructor(public readonly handler: Injectable<unknown | PromiseLike<unknown>, T>, name?: string, inject?: string[])
     {
@@ -23,7 +27,7 @@ export class Command<T = unknown> implements metadata.Command
         this.inject = inject;
     }
 
-    public get inject(): string[] | undefined
+    public get inject(): string[] 
     {
         return this.config[''].inject;
     }
@@ -36,51 +40,47 @@ export class Command<T = unknown> implements metadata.Command
     public readonly name: string;
     public config: metadata.Configurations = { '': {} };
 
-    public $proxy(processor: Processor): Command
-    {
-        return new CommandProxy<T>(processor, this.name, this.inject);
-    }
 }
 
-export class CommandProxy<TState = unknown> extends Command<TState>
-{
-    constructor(public processor: Processor, name: string, inject?: string[])
-    {
-        super((...args) =>
-        {
-            if (this.inject && this.inject.length == 1 && this.inject[0] == '$param')
-            {
-                if (processor.requiresCommandName)
-                    return processor.handle(name, args[0]).then(err => { throw err }, result => result);
-                else
-                    return processor.handle(this, args[0]).then(err => { throw err }, result => result);
-            }
+// export class CommandProxy<TState = unknown> extends Command<TState>
+// {
+//     constructor(public processor: Processor, name: string, inject?: string[])
+//     {
+//         super((_trigger, ...args) =>
+//         {
+//             if (this.inject && this.inject.length == 1 && this.inject[0] == '$param')
+//             {
+//                 if (processor.requiresCommandName)
+//                     return processor.handle(name, args[0]).then(err => { throw err }, result => result);
+//                 else
+//                     return processor.handle(this, args[0]).then(err => { throw err }, result => result);
+//             }
 
-            if (processor.requiresCommandName)
-                return processor.handle(name, { param: args }).then(err => { throw err }, result => result);
-            else
-                return processor.handle(this, { _trigger: 'proxy', param: args }).then(err => { throw err }, result => result);
-        }, name, inject);
-    }
+//             if (processor.requiresCommandName)
+//                 return processor.handle(name, { param: args }).then(err => { throw err }, result => result);
+//             else
+//                 return processor.handle(this, { _trigger: 'proxy', param: args }).then(err => { throw err }, result => result);
+//         }, name, inject);
+//     }
 
-    public get inject(): string[]
-    {
-        return super.inject || this.config[this.processor.name] && this.config[this.processor.name]?.inject;
-    }
+//     public get inject(): string[]
+//     {
+//         return super.inject || this.config[this.processor.name] && this.config[this.processor.name]?.inject;
+//     }
 
-    public set inject(value: string[] | undefined)
-    {
-        super.inject = value;
-    }
-}
+//     public set inject(value: string[] | undefined)
+//     {
+//         super.inject = ['_trigger'].concat(value);
+//     }
+// }
 
-export class MapCommand extends Command<unknown>
-{
-    constructor(public container: Container<unknown>, commandToTrigger: string, name: string, inject?: string[])
-    {
-        super(function (...args)
-        {
-            container.dispatch(commandToTrigger, { param: args });
-        }, name, inject);
-    }
-}
+// export class MapCommand extends Command<unknown>
+// {
+//     constructor(public container: Container<unknown>, commandToTrigger: string, name: string, inject?: string[])
+//     {
+//         super(function (...args)
+//         {
+//             container.dispatch(commandToTrigger, { param: args });
+//         }, name, inject);
+//     }
+// }

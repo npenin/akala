@@ -1,13 +1,13 @@
-import { Processor } from '../model/processor';
+import { ICommandProcessor } from '../model/processor';
 import { EventProcessor } from './event';
 
 export class LogProcessor extends EventProcessor
 {
     public name = 'log';
 
-    constructor(processor: Processor,
-        preExecute?: typeof processor.handle,
-        postExecute?: typeof processor.handle)
+    constructor(processor: ICommandProcessor,
+        preExecute?: (...args: Parameters<typeof processor.handle>) => void,
+        postExecute?: (...args: Parameters<typeof processor.handle>) => void)
     {
         super(processor);
         if (preExecute)

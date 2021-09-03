@@ -2,10 +2,9 @@ import * as path from 'path'
 import { promises as fs, existsSync } from 'fs'
 import * as akala from '@akala/core'
 import * as  Metadata from '../metadata/index';
-import { CommandProcessor, Processor, CommandNameProcessor } from '../model/processor';
+import { CommandProcessor } from '../model/processor';
 import { Container } from '../model/container';
-import { CommandProxy, Command } from '../model/command';
-import { configure } from '../decorators';
+// import { configure } from '../decorators';
 import { registerCommands } from '../generator';
 import { Local } from './local';
 import { UnknownCommandError } from '../model/error-unknowncommand';
@@ -23,7 +22,7 @@ export type FSCommand = Metadata.Command & { config?: { fs?: FileSystemConfigura
 export interface DiscoveryOptions
 {
     recursive?: boolean
-    processor?: Processor
+    processor?: CommandProcessor
     isDirectory?: boolean
     ignoreFileWithNoDefaultExport?: boolean
     relativeTo?: string;
@@ -31,33 +30,16 @@ export interface DiscoveryOptions
 
 
 
-export class FileSystem<T> extends CommandProcessor
+export class FileSystem extends CommandProcessor
 {
-    public static async asTrap<T>(container: Container<T>, path?: string): Promise<CommandNameProcessor>
-    {
-        const fs = new FileSystem<T>(container, path);
-        const commands = await FileSystem.discoverMetaCommands(path || process.cwd(), { processor: fs, recursive: true, ignoreFileWithNoDefaultExport: true });
-        throw {
-            handle(cmd, params)
-            {
-                const command = commands.find(c => c.name == cmd);
-                if (!command)
-                    return new UnknownCommandError(cmd);
-                return fs.handle(command as FSCommand, params);
-            },
-            name: fs.name,
-            requiresCommandName: true
-        };
-    }
-
     public static async discoverCommands<T>(root: string, container: Container<T>, options?: DiscoveryOptions): Promise<void>
     {
         if (!options)
             options = {};
 
-        let fs: FileSystem<T>;
+        let fs: FileSystem;
         if (!options.processor)
-            options.processor = fs = new FileSystem<T>(container, options.relativeTo);
+            options.processor = fs = new FileSystem(options.relativeTo);
 
         const commands = await this.discoverMetaCommands(root, options);
 
@@ -135,7 +117,7 @@ export class FileSystem<T> extends CommandProcessor
 
                     if (!options)
                         throw new Error('cannot happen');
-                    let cmd: Command & { config: ExtendedConfigurations<FileSystemConfiguration & jsonObject, 'fs'> } = configure('fs', fsConfig)(new CommandProxy(options.processor as Processor, path.basename(f.name, path.extname(f.name))));
+                    let cmd: Metadata.Command & { config: ExtendedConfigurations<FileSystemConfiguration & jsonObject, 'fs'> } = { name: path.basename(f.name, path.extname(f.name)), config: { fs: fsConfig }, inject: [] };
                     log(cmd.name);
                     if (files.find(file => file.name == f.name + '.map'))
                     {
@@ -151,7 +133,7 @@ export class FileSystem<T> extends CommandProcessor
                         // eslint-disable-next-line @typescript-eslint/no-var-requires
                         const otherConfigs = require(path.resolve(relativeTo, otherConfigsFile));
                         delete otherConfigs.$schema;
-                        cmd = configure(otherConfigs)(cmd);
+                        cmd.config = { ...cmd.config, ...otherConfigs };
                     }
                     let params: string[];
                     if (!cmd.config.fs.inject)
@@ -199,10 +181,10 @@ export class FileSystem<T> extends CommandProcessor
                             else
                                 return;
 
-                        if (func instanceof Command)
-                        {
-                            cmd = configure('fs', fsConfig)(func);
-                        }
+                        // if (func instanceof Command)
+                        // {
+                        //     cmd = configure('fs', fsConfig)(func);
+                        // }
 
                         if (!cmd.config.fs.inject && func.$inject)
                         {
@@ -253,7 +235,7 @@ export class FileSystem<T> extends CommandProcessor
         return commands;
     }
 
-    public async handle(command: FSCommand, param: { param: unknown[], _trigger?: string }): MiddlewarePromise
+    public async handle(origin: Container<any>, command: FSCommand, param: { param: unknown[], _trigger?: string }): MiddlewarePromise
     {
         let filepath: string;
         if (command && command.config && command.config.fs)
@@ -267,13 +249,10 @@ export class FileSystem<T> extends CommandProcessor
             if (process.env.NODE_ENV !== 'production')
                 delete require.cache[filepath];
 
-            if (!this.container)
-                throw new Error('container is undefined');
-
             if (!param._trigger)
                 param._trigger = this.name;
 
-            return Local.handle(command, script.default, this.container, param);
+            return Local.handle(command, script.default, origin, param);
         }
         catch (e)
         {
@@ -281,9 +260,9 @@ export class FileSystem<T> extends CommandProcessor
         }
     }
 
-    constructor(container: Container<T>, private root?: string)
+    constructor(private root?: string)
     {
-        super('fs', container);
+        super('fs');
     }
 }
 
