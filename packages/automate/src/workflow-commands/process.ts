@@ -6,7 +6,7 @@ import use from './use';
 
 export function DispatchMiddleware(container: Container<any>): MiddlewareRunner<JobStepDispatch>
 {
-    return new MiddlewareRunnerMiddleware('dispatch', (context, step) => container.handle(step.dispatch, { _trigger: 'automate', ...step.with, ...context, param: [] }));
+    return new MiddlewareRunnerMiddleware('dispatch', (context, step) => container.handle(container, step.dispatch, { _trigger: 'automate', ...step.with, ...context, param: [] }));
 }
 
 

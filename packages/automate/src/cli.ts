@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 
 import cli, { buildCliContext, buildCliContextFromProcess, CliContext, NamespaceMiddleware } from '@akala/cli'
-import { Command, configure, Container } from '@akala/commands';
+import { Container, SelfDefinedCommand } from '@akala/commands';
 import path from 'path';
-import { object } from '@akala/core/src/each';
 import { Workflow } from './automate';
 import workflow from './workflow';
 import use from './workflow-commands/use';
@@ -47,7 +46,7 @@ import winston, { createLogger } from 'winston';
         else
         {
             loader = new Container('loader', context);
-            loader.register(new Command((path: string) => require(path), 'load'));
+            loader.register(new SelfDefinedCommand((path: string) => require(path), 'load'));
         }
         container.register(loader);
 
@@ -62,7 +61,7 @@ import winston, { createLogger } from 'winston';
             await workflowProgram.process(buildCliContext(context.logger, ...context.args));
         }
 
-        container.register(new Command((file: string) => loader.dispatch('load', path.join(path.dirname(context.options.file), file)), 'load'));
+        container.register(new SelfDefinedCommand((file: string) => loader.dispatch('load', path.join(path.dirname(context.options.file), file)), 'load'));
 
         return await container.dispatch('process', workflow);
     });
