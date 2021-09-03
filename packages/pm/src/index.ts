@@ -1,4 +1,4 @@
-import { connectByPreference, Container, Metadata, NetSocketAdapter, Processors, registerCommands, ServeMetadata, ConnectionPreference } from "@akala/commands";
+import { connectByPreference, Container, Metadata, NetSocketAdapter, Processors, registerCommands, ServeMetadata, ConnectionPreference, Cli } from "@akala/commands";
 import { Socket } from "net";
 import { module } from "@akala/core";
 
@@ -34,7 +34,7 @@ export async function pm(socketPath?: string): Promise<Container<unknown>>
         const pmSocket = new Socket();
         const pm = new Container('pm', null, new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(pmSocket)), true));
         pmSocket.connect(socketPath);
-        const metaContainer: Metadata.Container = await pm.processor.handle('$metadata', { param: [] }).then(err => { throw err }, res => res);
+        const metaContainer: Metadata.Container = await pm.processor.handle(pm, Cli.Metadata, { param: [] }).then(err => { throw err }, res => res);
         registerCommands(metaContainer.commands, pm.processor, pm);
         return pm;
     }

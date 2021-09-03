@@ -3,7 +3,7 @@ import { homedir } from 'os';
 import fs from 'fs/promises';
 import { join } from 'path';
 import pmContainer from '../container';
-import { Container, Command, Metadata, ignoredCommands, configure, ServeOptions } from '@akala/commands';
+import { Container, Metadata, ignoredCommands, configure, ServeOptions, SelfDefinedCommand } from '@akala/commands';
 import { eachAsync } from '@akala/core';
 
 export async function metadata(container: Container<unknown>, deep?: boolean): Promise<Metadata.Container>
@@ -13,8 +13,8 @@ export async function metadata(container: Container<unknown>, deep?: boolean): P
     {
         if (key === '$injector' || key === '$state' || key === '$container' || ignoredCommands.indexOf(key) > -1 || key == '$init' || key == '$stop')
             return;
-        const cmd = container.resolve<Command | Container<unknown>>(key);
-        if (cmd && cmd.name && cmd instanceof Command && ignoredCommands.indexOf(cmd.name) == -1)
+        const cmd = container.resolve<Metadata.Command | Container<unknown>>(key);
+        if (cmd && cmd.name && Metadata.isCommand(cmd) && ignoredCommands.indexOf(cmd.name) == -1)
             metacontainer.commands.push({ name: cmd.name, inject: cmd.inject || [], config: cmd.config });
         // console.log(deep)
         if (cmd instanceof Container && deep)
@@ -84,7 +84,7 @@ export default async function (this: State, container: RunningContainer & pmCont
     container.name = 'pm';
     const config = container.resolve<Metadata.Configurations>('$metadata.config');
     container.unregister('$metadata');
-    container.register(configure(config)(new Command(metadata, '$metadata', ['$container', 'param.0'])));
+    container.register(configure(config)(new SelfDefinedCommand(metadata, '$metadata', ['$container', 'param.0'])));
 
 
     this.processes.push(container);

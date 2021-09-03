@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import * as path from 'path'
-import { Processors, NetSocketAdapter, Metadata, Container, Processor, proxy, Triggers } from '@akala/commands';
+import { Processors, NetSocketAdapter, Metadata, Container, ICommandProcessor, proxy, Triggers, Cli } from '@akala/commands';
 import { Socket } from 'net';
 import { TLSSocket } from 'tls';
 import { platform, homedir } from 'os';
@@ -126,7 +126,7 @@ cli.command(null).preAction(async c =>
     if (!processor)
         processor = new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(socket)));
     if (!metaContainer)
-        metaContainer = await processor.handle('$metadata', { param: [true] }).then(err => { if (err) throw err }, res => res);
+        metaContainer = await processor.handle(null, Cli.Metadata, { param: [true] }).then(err => { if (err) throw err }, res => res);
     if (!container)
     {
         container = proxy(metaContainer, processor);
@@ -381,7 +381,7 @@ function prepareParam(cmd: Metadata.Command, args: CliContext, standalone?: bool
     return { options: args.options, param: args.args.slice(1), _trigger: 'cli', cwd: args.currentWorkingDirectory, context: args };
 }
 
-async function tryRun(processor: Processor, cmd: Metadata.Command, args: CliContext, localProcessing: boolean)
+async function tryRun(processor: ICommandProcessor, cmd: Metadata.Command, args: CliContext, localProcessing: boolean)
 {
     const params = prepareParam(cmd, args, localProcessing);
     if (!params)
@@ -389,8 +389,7 @@ async function tryRun(processor: Processor, cmd: Metadata.Command, args: CliCont
 
     try
     {
-
-        const result = await processor.handle(cmd, params).then(err => { throw err }, res => res);
+        const result = await processor.handle(null, cmd, params).then(err => { throw err }, res => res);
         if (result instanceof Readable)
             result.pipe(process.stdout);
         else
