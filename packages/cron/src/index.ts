@@ -191,7 +191,9 @@ declare module '@akala/pm'
     }
 }
 
-export function getTargets(requests: DateRequest[])
+export function getTargets(requests: DateRequest[], startDate?: Date)
 {
-    return requests.map(d => ({ request: d, target: getTarget(d) })).sort((a, b) => a.target.valueOf() - b.target.valueOf())
+    return requests.map(d => ({ request: d, target: getTarget(d, startDate) })).sort((a, b) => a.target.valueOf() - b.target.valueOf())
 }
+
+export * from './state'
