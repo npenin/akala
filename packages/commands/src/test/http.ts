@@ -52,9 +52,15 @@ describe('test http processing', function ()
                 cmdName = url.substr(1);
             Promise.resolve(calculator.dispatch(cmdName, { param: params })).then(function (result)
             {
-                res.writeHead(200);
                 if (typeof result != 'undefined')
+                {
+                    res.writeHead(200);
                     res.write(JSON.stringify(result).toString());
+                }
+                else
+                {
+                    res.writeHead(204, 'OK', { 'content-length': 0 });
+                }
                 res.end();
             })
         });
@@ -86,14 +92,14 @@ describe('test http processing', function ()
         })
         const container = metadata(calculator);
         const calculatorProxy = proxy(container, new HttpClient(akala.defaultInjector.resolve('$injector')));
-        assert.equal(calculator.state.value, 0)
+        assert.strictEqual(calculator.state.value, 0)
         await calculatorProxy.dispatch('increment');
-        assert.equal(calculator.state.value, 1)
+        assert.strictEqual(calculator.state.value, 1)
         await calculatorProxy.dispatch('increment', 2);
-        assert.equal(calculator.state.value, 3)
+        assert.strictEqual(calculator.state.value, 3)
         await calculatorProxy.dispatch('decrement');
-        assert.equal(calculator.state.value, 2)
+        assert.strictEqual(calculator.state.value, 2)
         await calculatorProxy.dispatch('decrement');
-        assert.equal(calculator.state.value, 1)
+        assert.strictEqual(calculator.state.value, 1)
     })
 })

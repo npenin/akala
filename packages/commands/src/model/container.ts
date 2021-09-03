@@ -1,22 +1,24 @@
 import * as akala from '@akala/core'
-import { Command, CommandProxy } from './command';
 import { Trigger } from './trigger';
-import { CommandNameProcessor, StructuredParameters, CommandProcessors, Processor } from './processor';
-import { Local } from '../processors/index';
+import { StructuredParameters, CommandMetadataProcessorSignature, CommandProcessor } from './processor';
+import { CommandWithAffinityProcessor, Local, Self } from '../processors/index';
 import { Pipe } from '../processors/pipe';
 import $serve from '../commands/$serve'
 import $attach from '../commands/$attach'
 import $metadata from '../commands/$metadata'
 import { UnknownCommandError } from './error-unknowncommand';
 import * as Metadata from '../metadata/index'
-import { Middleware, MiddlewarePromise } from '@akala/core';
+import { Middleware, MiddlewareCompositeWithPriority, MiddlewarePromise } from '@akala/core';
+import { isCommand } from '../metadata/index';
 
 const log = akala.log('akala:commands');
 
 export type AsDispatchArgs<T extends unknown[]> = T | [StructuredParameters<T>];
 export type AsDispatchArg<T extends unknown[]> = T[0] | StructuredParameters<T>;
 
-export class Container<TState> extends akala.Injector implements Middleware<[cmd: Command | string, params: AsDispatchArgs<unknown[]>]>
+export const defaultCommands = new Local({ $attach, $serve });
+
+export class Container<TState> extends akala.Injector implements Middleware<[origin: Container<any>, cmd: Metadata.Command | string, params: AsDispatchArgs<unknown[]>]>
 {
     attach<T extends Trigger<unknown, unknown>>(trigger: T, server: T extends Trigger<infer A, unknown> ? A : never): T extends Trigger<unknown, infer B> ? B : never
     attach<TResult>(trigger: string, server: unknown): TResult
@@ -30,111 +32,71 @@ export class Container<TState> extends akala.Injector implements Middleware<[cmd
         return trigger.register(this, server);
     }
 
-    public get processor(): Processor
-    {
-        return this._processor;
-    }
+    public readonly processor: MiddlewareCompositeWithPriority<CommandMetadataProcessorSignature<TState>>;
 
-    private _processor: CommandProcessors;
-
-    public get trapProcessor(): CommandNameProcessor
-    {
-        return this._trapProcessor;
-    }
-
-    private _trapProcessor?: CommandNameProcessor;
-
-    public trap(trapProcessor: CommandNameProcessor): void
-    {
-        if (this._processor.requiresCommandName)
-            console.warn('You can assign a trap, however, it will never get call with a processor that already need only the command name');
-        this._trapProcessor = trapProcessor;
-    }
-
-    constructor(public name: string, public state: TState, processor?: CommandProcessors)
+    constructor(public name: string, public state: TState, processor?: Middleware<CommandMetadataProcessorSignature<TState>>)
     {
         super();
         if (typeof state !== 'undefined')
             this.register('$state', state);
         this.register('$container', this);
-        this._processor = processor || new Local(this);
-        this.register(new Command($serve, '$serve', $serve.$inject))
-        this.register(new Command($attach, '$attach', $attach.$inject))
+        this.processor = new MiddlewareCompositeWithPriority(name);
+        if (processor)
+            this.processor.useMiddleware(20, processor);
+        this.processor.useMiddleware(49, new Self());
+        this.processor.useMiddleware(1, new CommandWithAffinityProcessor());
+        this.processor.useMiddleware(50, defaultCommands);
+        this.register({ name: '$serve', inject: $serve.$inject, config: null })
+        this.register({ name: '$attach', inject: $attach.$inject, config: null })
         this.register($metadata);
     }
 
-    public pipe(container: Container<TState>): void
+    public pipe(container: Container<TState>, priority: number = 30): void
     {
-        this._processor = new Pipe(container);
+        this.processor.useMiddleware(priority, new Pipe(container));
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public dispatch(command: string | Metadata.Command, ...param: AsDispatchArgs<unknown[]>): Promise<any>
     {
-        return this.handle(command, ...param).then(err => { throw err }, result => result);
+        return this.handle(this, command, ...param).then(err => { throw err }, result => result);
     }
 
-    public handle(command: string | Metadata.Command, ...param: AsDispatchArgs<unknown[]>): MiddlewarePromise
+    public handle(container: Container<TState>, command: string | Metadata.Command, ...param: AsDispatchArgs<unknown[]>): MiddlewarePromise
     {
+        container = container || this;
         if (typeof (param) == 'object' && param !== null && param.length === 1 && typeof (param[0]) == 'object' && param[0] !== null && param[0]['param'] && Array.isArray(param[0]['param']))
         {
             // log(`dispatching ${command}(${JSON.stringify(param[0])})`)
-            if (this.processor.requiresCommandName)
-                if (typeof command == 'string')
-                    return this.processor.handle(command, param[0] as StructuredParameters<unknown[]>);
-                else
-                    return this.processor.handle(command.name, param[0] as StructuredParameters<unknown[]>);
             let cmd: Metadata.Command;
             if (typeof command == 'string')
             {
                 cmd = this.resolve(command);
                 if (!cmd)
-                {
-                    if (this._trapProcessor)
-                        return this._trapProcessor.handle(command, param[0] as StructuredParameters<unknown[]>);
                     throw new UnknownCommandError(command)
-                }
             }
             else
                 cmd = command;
 
-            return this._processor.handle(cmd as Command & string, param[0] as StructuredParameters<unknown[]>);
+            return this.processor.handle(container, cmd, param[0] as StructuredParameters<unknown[]>);
         }
         else
         {
             if (typeof param == 'undefined' || param === null)
                 param = [];
-            return this.handle(command, { param: param });
+            return this.handle(container, command, { param: param });
         }
     }
 
-    public resolve<T = Command<TState>>(name: string): T
+    public resolve<T = Metadata.Command>(name: string): T
     {
         return super.resolve<T>(name);
     }
 
-    public proxy(): Container<void>
+    public static proxy<T = unknown>(name: string, processor: CommandProcessor, priority: number = 50): Container<T>
     {
-        const proxy = new Container<void>('proxy-' + this.name, null, this.processor);
-        proxy.resolve = (name: string) =>
-        {
-            const result = super.resolve(name);
-            if (!result)
-                return new CommandProxy(this.processor, name, ['$param']);
-            return result;
-        }
-        return proxy;
-    }
-
-    public static proxy<T = unknown>(name: string, processor: (container) => CommandNameProcessor): Container<T>
-    public static proxy<T = unknown>(name: string, processor: CommandNameProcessor): Container<T>
-    public static proxy<T = unknown>(name: string, processor: CommandNameProcessor | ((container) => CommandNameProcessor)): Container<T>
-    {
-        const proxy = new Container<T>('proxy-' + name, null, undefined);
-        if (typeof (processor) === 'function')
-            proxy._processor = processor(proxy);
-        else
-            proxy._processor = processor;
+        const proxy = new Container<T>('proxy-' + name, null);
+        proxy.processor.useMiddleware(priority, processor);
         const proxyResolve = proxy.resolve;
         proxy.unregister('$metadata');
         proxy.unregister('$serve');
@@ -142,8 +104,8 @@ export class Container<TState> extends akala.Injector implements Middleware<[cmd
         proxy.resolve = ((name: string) =>
         {
             const result = proxyResolve.call(proxy, name);
-            if (result instanceof Command || !result)
-                return new CommandProxy(proxy.processor, name, ['$param']);
+            if (isCommand(result) || !result)
+                return { processor: processor, name, inject: ['$param'] };
             return result;
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         }) as any;
@@ -151,11 +113,11 @@ export class Container<TState> extends akala.Injector implements Middleware<[cmd
     }
 
     public register<T>(name: string, value: T, override?: boolean): T
-    public register(cmd: Command, override?: boolean): Command<TState>
+    public register<T extends Metadata.Command>(cmd: T, override?: boolean): T
     public register(cmd: Container<unknown>, override?: boolean): Container<unknown>
-    public register<T>(cmd: string | Command<TState> | Container<unknown>, value?: T, override?: boolean): T | Command<TState> | Container<unknown>
+    public register<T>(cmd: string | Metadata.Command | Container<unknown>, value?: T, override?: boolean): T | Metadata.Command | Container<unknown>
     {
-        if (cmd instanceof Container || cmd instanceof Command)
+        if (typeof cmd !== 'string' && 'name' in cmd)
             return this.register(cmd.name, cmd, !!value);
         else 
         {

@@ -1,54 +1,45 @@
-import { Processor, CommandProcessors, StructuredParameters } from '../model/processor';
-import { CommandProxy } from '../model/command';
+import { StructuredParameters, ICommandProcessor, CommandMetadataProcessorSignature } from '../model/processor';
+// import { CommandProxy } from '../model/command';
 import { EventEmitter } from "events";
 import { MiddlewarePromise } from "@akala/core";
 import { Command } from '../metadata/index';
+import { Container } from '../model/container';
 
-export class EventProcessor extends EventEmitter implements Processor
+export class EventProcessor extends EventEmitter implements ICommandProcessor
 {
 
-    public on(event: 'processing', handler: (cmd: CommandProxy<unknown> | string, param: StructuredParameters) => void): this
-    public on(event: 'processing-failed', handler: (cmd: CommandProxy<unknown> | string, param: Error) => void): this
-    public on(event: 'processed', handler: (cmd: CommandProxy<unknown> | string, param: StructuredParameters, result: unknown) => void): this;
+    public on(event: 'processing', handler: (...args: CommandMetadataProcessorSignature<any>) => void): this
+    public on(event: 'processing-failed', handler: (...args: [...CommandMetadataProcessorSignature<any>, Error]) => void): this
+    public on(event: 'processed', handler: (...args: [...CommandMetadataProcessorSignature<any>, unknown]) => void): this;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public on(event: string, handler: (cmd: CommandProxy<unknown> | string, param: any, result?: unknown) => void): this
+    public on(event: string, handler: (...args: [...CommandMetadataProcessorSignature<any>, Error]) => void): this
     {
         return super.on(event, handler);
     }
 
     public name = 'event';
 
-    public readonly requiresCommandName: boolean;
+    public readonly requiresCommandName: false = false;
 
 
-    constructor(private readonly processor: CommandProcessors)
+    constructor(public readonly processor: ICommandProcessor)
     {
         super();
-        this.requiresCommandName = this.processor.requiresCommandName;
     }
-    handle(command: string | Command, param: StructuredParameters<unknown[]>): MiddlewarePromise
-    {
 
-        this.emit('processing', command, param);
-        let result: MiddlewarePromise;
-        if (this.processor.requiresCommandName)
-            if (typeof command === 'string')
-                result = this.processor.handle(command, param)
-            else
-                result = this.processor.handle(command.name, param)
-        else if (typeof command !== 'string')
-            result = this.processor.handle(command as Command & string, param)
-        else
-            throw new Error('Command was required but only command name was provided');
-        result.then(err =>
+    async handle(origin: Container<any>, command: Command, param: StructuredParameters<unknown[]>): MiddlewarePromise
+    {
+        this.emit('processing', origin, command, param);
+        try
         {
-            this.emit('processing-failed', command, param, err);
+            const err = await this.processor.handle(origin, command, param)
+            this.emit('processing-failed', origin, command, param, err);
             return err;
-        }, result =>
+        }
+        catch (result)
         {
-            this.emit('processed', command, param, result);
+            this.emit('processed', origin, command, param, result);
             throw result;
-        })
-        return result;
+        }
     }
 }

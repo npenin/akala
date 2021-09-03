@@ -1,5 +1,5 @@
 import { jsonObject, ExtendedConfigurations, GenericConfiguration } from './metadata/command';
-import { Command as ModelCommand } from "./model/command.js";
+import { SelfDefinedCommand as ModelCommand } from "./model/command.js";
 import { Injectable as baseInjectable } from "@akala/core";
 import { Configuration, Configurations } from './metadata/index';
 import * as akala from '@akala/core'

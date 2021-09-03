@@ -1,11 +1,12 @@
 import { Injector, HttpOptions, each, Http, defaultInjector, MiddlewarePromise } from '@akala/core';
 import * as pathRegexp from 'path-to-regexp';
 import { CommandProcessor } from '../model/processor';
-import { Command, Configuration } from '../metadata/index';
+import { Command, Configuration } from '../metadata';
+import { Container } from '../model/container';
 
 export class HttpClient extends CommandProcessor
 {
-    public handle(command: Command, param: { param: unknown[], [key: string]: unknown }): MiddlewarePromise
+    public handle(origin: Container<unknown>, command: Command, param: { param: unknown[], [key: string]: unknown }): MiddlewarePromise
     {
         if (!command.config)
             throw new Error('no trigger configuration defined');

@@ -5,13 +5,14 @@ import * as ws from 'ws'
 import { metadata, proxy, helper } from '../generator';
 import { JsonRpc, LogProcessor } from '../processors/index';
 import { Container } from '../model/container';
-import { Command } from '../model/command';
+// import { Command } from '../model/command';
 import { configure } from '../decorators';
 import { jsonrpcws } from '../triggers';
 import { NetSocketAdapter } from '../cli/serve';
 import * as net from 'net';
 import { unlink } from 'fs';
 import { promisify } from 'util';
+import { SelfDefinedCommand } from '../model/command';
 
 describe('test jsonrpcws processing', function ()
 {
@@ -41,37 +42,42 @@ describe('test jsonrpcws processing', function ()
 
     const client = jsonrpc.ws.createClient();
 
-    it('should serve commands', function (done)
+    it('should serve commands', async function ()
     {
-        calculator.dispatch('reset')
+        await calculator.dispatch('reset')
         assert.strictEqual(calculator.state.value, 0)
-        client.send('increment', undefined, function (error?)
+        await new Promise<void>((resolve, reject) =>
         {
-            assert.ifError(error);
-            assert.strictEqual(calculator.state.value, 1)
-            client.send('decrement', { param: [2] }, function (error)
+            client.send('increment', undefined, function (error?)
             {
-                done(error)
-            });
+                assert.ifError(error);
+                assert.strictEqual(calculator.state.value, 1)
+                client.send('decrement', { param: [2] }, function (error)
+                {
+                    if (error)
+                        reject(error);
+                    else
+                        resolve()
+                });
+            })
         })
     });
 
     it('should work with proxy commands', async function ()
     {
         const container = metadata(calculator);
-        const calculatorProxy = proxy(container, new LogProcessor(new JsonRpc(client.getConnection()), function (cmd, args)
+        const calculatorProxy = proxy(container, new LogProcessor(new JsonRpc(client.getConnection(), true), function (container, cmd, args)
         {
             console.log(args);
-            return Promise.resolve();
         }));
-        calculator.dispatch('reset');
-        assert.equal(calculator.state.value, 0)
+        await calculator.dispatch('reset');
+        assert.strictEqual(calculator.state.value, 0)
 
         await calculatorProxy.dispatch('increment')
-        assert.equal(calculator.state.value, 1, 'increment failed')
+        assert.strictEqual(calculator.state.value, 1, 'increment failed')
 
         await calculatorProxy.dispatch('decrement', 2)
-        assert.equal(calculator.state.value, -1, 'decrement failed')
+        assert.strictEqual(calculator.state.value, -1, 'decrement failed')
     })
 
 
@@ -94,12 +100,12 @@ describe('test jsonrpcws processing', function ()
         {
             const c1 = new Container('c1', {});
             const c2 = new Container('c2', {});
-            c1.register(configure({ jsonrpc: { inject: ['connectionAsContainer'] } })(new Command(function (container: Container<void>)
+            c1.register(configure({ jsonrpc: { inject: ['connectionAsContainer'] } })(new SelfDefinedCommand(function (container: Container<void>)
             {
                 return container.dispatch('cmd');
             }, 'cmd')));
 
-            c2.register(new Command(function ()
+            c2.register(new SelfDefinedCommand(function ()
             {
                 return 'x';
             }, 'cmd'));

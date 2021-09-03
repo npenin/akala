@@ -1,7 +1,7 @@
 
 
 import * as  Metadata from '../metadata/index';
-import { CommandProcessor, Processor, StructuredParameters } from '../model/processor';
+import { CommandProcessor, StructuredParameters } from '../model/processor';
 import { Container } from '../model/container';
 import { MiddlewarePromise } from '@akala/core';
 
@@ -17,7 +17,7 @@ export type FSCommand = Metadata.Command & { config?: { fs?: FileSystemConfigura
 export interface DiscoveryOptions
 {
     recursive?: boolean
-    processor?: Processor
+    processor?: CommandProcessor
     isDirectory?: boolean
     ignoreFileWithNoDefaultExport?: boolean
     relativeTo?: string;
@@ -31,14 +31,14 @@ export class FileSystem extends CommandProcessor
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    public async handle(command: FSCommand, param: StructuredParameters): MiddlewarePromise
+    public async handle(origin: Container<any>, command: FSCommand, param: StructuredParameters): MiddlewarePromise
     {
         return new Error('this is not supported in a browser')
     }
 
-    constructor(container: Container<unknown>, private root: string | null)
+    constructor(private root: string | null)
     {
-        super('fs', container);
+        super('fs');
         throw new Error('this is not supported in a browser')
     }
 }

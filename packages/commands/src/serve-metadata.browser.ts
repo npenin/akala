@@ -1,9 +1,9 @@
 import { IpcNetConnectOpts, NetConnectOpts } from 'net';
 import { platform } from 'os';
 import { join } from 'path';
-import { NetSocketAdapter, ServeOptions } from './cli/serve';
+import { ServeOptions } from './cli/serve';
 import { registerCommands } from './generator'
-import { CommandProcessors } from './model/processor';
+import { CommandProcessor } from './model/processor';
 import { HttpClient, JsonRpc } from './processors/index';
 import ws from 'ws'
 import { Injector } from '@akala/core';
@@ -31,7 +31,7 @@ export interface ConnectionPreference
     container: Metadata.Container;
 }
 
-export async function connectByPreference<T = unknown>(options: ServeMetadata, settings: ConnectionPreference, ...orders: (keyof ServeMetadata)[]): Promise<{ container: Container<T>, processor: CommandProcessors }>
+export async function connectByPreference<T = unknown>(options: ServeMetadata, settings: ConnectionPreference, ...orders: (keyof ServeMetadata)[]): Promise<{ container: Container<T>, processor: CommandProcessor }>
 {
     if (!orders)
         orders = ['ssocket', 'socket', 'wss', 'ws', 'https', 'http'];
@@ -51,7 +51,7 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
         }
     });
     const container = new Container<T>(settings?.container?.name || 'proxy', undefined);
-    let processor: CommandProcessors;
+    let processor: CommandProcessor;
     do
     {
         const preferredIndex = orders.findIndex((order) => order);
@@ -78,7 +78,7 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
 
 }
 
-export async function connectWith<T>(options: NetConnectOpts, host: string, medium: keyof ServeMetadata, container?: Container<T>): Promise<CommandProcessors>
+export async function connectWith<T>(options: NetConnectOpts, host: string, medium: keyof ServeMetadata, container?: Container<T>): Promise<CommandProcessor>
 {
     switch (medium)
     {

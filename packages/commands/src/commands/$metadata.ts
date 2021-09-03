@@ -2,7 +2,6 @@ import { metadata } from '../generator';
 import { Container } from '../model/container';
 import * as meta from '../metadata/index';
 import { configure } from '../decorators';
-import { Command } from '../model/command';
 
 const $metadata = configure({
     "": {

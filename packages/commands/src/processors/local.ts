@@ -1,13 +1,18 @@
-import { Command } from '../model/command';
 import { Injector, Injectable, each, MiddlewarePromise, isPromiseLike } from '@akala/core';
 import * as  Metadata from '../metadata/index';
 import { CommandProcessor, StructuredParameters } from '../model/processor'
 import { Container } from '../model/container';
 import assert from 'assert';
+import { CommandWithProcessorAffinity, SelfDefinedCommand } from '../model/command';
 
 export class Local extends CommandProcessor
 {
-    public static execute<T, U>(cmd: Metadata.Command, command: Injectable<U>, container: Container<T>, param: StructuredParameters): U
+    static fromObject<T>(o: T): CommandProcessor
+    {
+        return new Local(o as any);
+    }
+
+    public static execute<T, U>(cmd: Metadata.Command, handler: Injectable<U>, container: Container<T>, param: StructuredParameters): U
     {
         if (!container)
             assert.fail('container is undefined');
@@ -24,16 +29,16 @@ export class Local extends CommandProcessor
         if (!inject)
             inject = param.param.map((a, i) => 'param.' + i);
         // console.log(inject);
-        return injector.injectWithName(inject, command)(container.state);
+        return injector.injectWithName(inject, handler)(container.state);
     }
 
-    public static handle<T, U = unknown | PromiseLike<unknown>>(cmd: Metadata.Command, command: Injectable<U>, container: Container<T>, param: StructuredParameters): MiddlewarePromise
+    public static handle<T, U = unknown | PromiseLike<unknown>>(cmd: Metadata.Command, handler: Injectable<U>, container: Container<T>, param: StructuredParameters): MiddlewarePromise
     {
         return new Promise((resolve, reject) =>
         {
             try
             {
-                var result = Local.execute<unknown, U>(cmd, command, container, param);
+                var result = Local.execute<unknown, U>(cmd, handler, container, param);
                 if (isPromiseLike(result))
                     result.then(reject, resolve);
                 else
@@ -44,18 +49,47 @@ export class Local extends CommandProcessor
                 resolve(e);
             }
         })
-
     }
 
-    public override handle(command: Command, param: StructuredParameters): MiddlewarePromise
+    public override handle(container: Container<unknown>, command: Metadata.Command, param: StructuredParameters): MiddlewarePromise
     {
-        if (!this.container)
-            return Promise.resolve(new Error('container is undefined'));
-        return Local.handle(command, command.handler, this.container, param);
+        if (this.handler[command.name] && typeof this.handler[command.name] === 'function')
+            return Local.handle(command, this.handler[command.name], container, param);
+        return Promise.resolve();
     }
 
-    constructor(container: Container<unknown>)
+    constructor(private handler: { [key: string]: (...args: unknown[]) => Promise<unknown> | unknown })
     {
-        super('local', container);
+        super('local');
+    }
+}
+
+export class Self extends CommandProcessor
+{
+    public override handle(container: Container<unknown>, command: Metadata.Command & Partial<SelfDefinedCommand>, param: StructuredParameters): MiddlewarePromise
+    {
+        if ('handler' in command && typeof command.handler == 'function')
+            return Local.handle(command, command.handler, container, param);
+        return Promise.resolve();
+    }
+
+    constructor()
+    {
+        super('self');
+    }
+}
+
+export class CommandWithAffinityProcessor extends CommandProcessor
+{
+    public override handle(container: Container<unknown>, command: Metadata.Command & Partial<CommandWithProcessorAffinity>, param: StructuredParameters): MiddlewarePromise
+    {
+        if ('processor' in command && command.processor)
+            return command.processor.handle(container, command, param);
+        return Promise.resolve();
+    }
+
+    constructor()
+    {
+        super('commandWithAffinity');
     }
 }

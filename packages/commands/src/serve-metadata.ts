@@ -3,7 +3,7 @@ import { platform } from 'os';
 import { join } from 'path';
 import { NetSocketAdapter, ServeOptions } from './cli/serve';
 import { registerCommands } from './generator'
-import { CommandProcessors } from './model/processor';
+import { CommandProcessor, ICommandProcessor } from './model/processor';
 import { HttpClient, JsonRpc } from './processors/index';
 import net from 'net'
 import ws from 'ws'
@@ -33,7 +33,7 @@ export interface ConnectionPreference
     container?: Container<any>;
 }
 
-export async function connectByPreference<T = unknown>(options: ServeMetadata, settings: ConnectionPreference, ...orders: (keyof ServeMetadata)[]): Promise<{ container: Container<T>, processor: CommandProcessors }>
+export async function connectByPreference<T = unknown>(options: ServeMetadata, settings: ConnectionPreference, ...orders: (keyof ServeMetadata)[]): Promise<{ container: Container<T>, processor: ICommandProcessor }>
 {
     if (!orders)
         orders = ['ssocket', 'socket', 'wss', 'ws', 'https', 'http'];
@@ -53,7 +53,7 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
         }
     });
     const container = new Container<T>(settings?.metadata?.name || 'proxy', undefined);
-    let processor: CommandProcessors;
+    let processor: CommandProcessor;
     do
     {
         const preferredIndex = orderedOptions.findIndex(options => options);
@@ -85,7 +85,7 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
 
 }
 
-export async function connectWith<T>(options: NetConnectOpts, host: string, medium: keyof ServeMetadata, container?: Container<T>): Promise<CommandProcessors>
+export async function connectWith<T>(options: NetConnectOpts, host: string, medium: keyof ServeMetadata, container?: Container<T>): Promise<CommandProcessor>
 {
     switch (medium)
     {

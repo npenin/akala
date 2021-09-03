@@ -11,7 +11,7 @@ import * as Metadata from './metadata/index'
 import serveMetadata, { ServeMetadata, connectByPreference, connectWith, ConnectionPreference } from './serve-metadata'
 import program, { buildCliContextFromProcess, NamespaceMiddleware } from '@akala/cli'
 import { Container } from './model/container'
-import { Processor } from './model/processor'
+import { CommandProcessor } from './model/processor'
 import { registerCommands } from './generator'
 import { DiscoveryOptions, FileSystem } from './processors/index'
 // import * as cli from './cli'
@@ -19,11 +19,12 @@ export { Processors, Triggers, Metadata }
 export { NetSocketAdapter, default as serve, ServeOptions } from './cli/serve'
 export { serveMetadata, ServeMetadata, connectByPreference, connectWith, ConnectionPreference };
 import commands from './commands'
+import $metadata from './commands/$metadata'
 export class Cli
 {
     public readonly program: NamespaceMiddleware<{ [key: string]: string | number | boolean | string[]; }>;
 
-    constructor(public readonly cliContainer: Container<void>, commands: Metadata.Command[], processor: Processor, program: NamespaceMiddleware)
+    constructor(public readonly cliContainer: Container<void>, commands: Metadata.Command[], processor: CommandProcessor, program: NamespaceMiddleware)
     {
         registerCommands(commands, processor, cliContainer);
         cliContainer.attach(Triggers.cli, this.program = program.options({ verbose: { aliases: ['v'] } }).command(null));
@@ -33,7 +34,7 @@ export class Cli
     {
         const cliContainer: commands.container & Container<void> = new Container<void>('cli', undefined);
 
-        const options: DiscoveryOptions = { processor: new FileSystem(cliContainer, relativeTo), relativeTo };
+        const options: DiscoveryOptions = { processor: new FileSystem(relativeTo), relativeTo };
 
         const commands = await FileSystem.discoverMetaCommands(commandsPath, options);
         return new Cli(cliContainer, commands, options.processor, program);
@@ -44,4 +45,6 @@ export class Cli
     {
         return this.program.process(buildCliContextFromProcess());
     }
+
+    public static Metadata = $metadata;
 }
