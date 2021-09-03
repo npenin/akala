@@ -21,7 +21,6 @@ declare module '@akala/pm'
 }
 
 import * as commands from '@akala/commands'
-import { Container } from '@akala/commands';
 
 export function connect(options: commands.ServeMetadata, settings: {
     preferRemote?: boolean;
@@ -29,7 +28,7 @@ export function connect(options: commands.ServeMetadata, settings: {
 }, ...orders: (keyof commands.ServeMetadata)[])
     : Promise<{
         container: container.container;
-        processor: commands.CommandProcessors;
+        processor: commands.ICommandProcessor;
     }>
 {
     if (!settings)
