@@ -121,7 +121,7 @@ const emptyCallback = function emptyCallback()
 
 export interface SocketAdapterEventMap
 {
-    message: MessageEvent;
+    message: string | { data: string };
     open: Event;
     error: Event;
     close: CloseEvent;
@@ -461,14 +461,13 @@ export abstract class Connection<TStreamable>
         }
         else if (typeof (data) == 'string')
         {
-
             payload = jsonParse(data);
         }
 
         if (payload === null)
         {
             console.error(data);
-            return Errors('parseError');
+            return this.sendError('parseError', -1);
         }
         //Object or array
         if (payload instanceof Array)
