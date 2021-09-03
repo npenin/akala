@@ -27,12 +27,29 @@ export default class WsSocketAdapter implements SocketAdapter<Readable>
 
     send(data: string): void
     {
-        this.socket.send(data);
+        this.socket.send(data, { binary: false });
     }
 
     public on<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
     {
-        this.socket.on(event, handler);
+        if (event === 'message')
+        {
+            this.socket.on(event, function (data: ws.Data, isBinary: boolean)
+            {
+                if (!isBinary)
+                {
+                    if (Buffer.isBuffer(data))
+                        (handler as (ev: SocketAdapterEventMap['message']) => void).call(this, data.toString('utf8'));
+                    else
+                        (handler as (ev: SocketAdapterEventMap['message']) => void).call(this, data as any);
+                }
+                else
+                    (handler as (ev: SocketAdapterEventMap['message']) => void).call(this, data as any);
+
+            });
+        }
+        else
+            this.socket.on(event, handler);
     }
     public once<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
     {
