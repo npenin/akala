@@ -56,6 +56,7 @@ __metadata:
     "@akala/commands": "workspace:*"
     "@akala/config": "workspace:*"
     "@akala/core": "workspace:*"
+    "@akala/cron": "workspace:*"
     "@akala/json-rpc-ws": "workspace:*"
     "@akala/pm": "workspace:*"
     "@akala/server": "workspace:*"
@@ -197,13 +198,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@akala/cron@workspace:packages/cron":
+"@akala/cron@workspace:*, @akala/cron@workspace:packages/cron":
   version: 0.0.0-use.local
   resolution: "@akala/cron@workspace:packages/cron"
   dependencies:
     "@akala/commands": "workspace:*"
     "@types/debug": ^4.1.6
     debug: ^4.3.1
+    suncalc: ^1.8.0
   languageName: unknown
   linkType: soft
 
@@ -282,6 +284,15 @@ __metadata:
   bin:
     pm: dist/cli.js
     pm-fork: dist/fork.js
+  languageName: unknown
+  linkType: soft
+
+"@akala/pubsub@workspace:packages/pubsub":
+  version: 0.0.0-use.local
+  resolution: "@akala/pubsub@workspace:packages/pubsub"
+  dependencies:
+    "@akala/commands": "workspace:*"
+    "@akala/tacl": "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -368,7 +379,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@akala/tacl@workspace:packages/tacl":
+"@akala/tacl@workspace:*, @akala/tacl@workspace:packages/tacl":
   version: 0.0.0-use.local
   resolution: "@akala/tacl@workspace:packages/tacl"
   dependencies:
@@ -10807,6 +10818,13 @@ __metadata:
   peerDependencies:
     webpack: ^5.0.0
   checksum: 2457cb01f8b4d843aeaf4587eb26584ec9c93832ab892151cde9ce1e1fba558fa6d7b27c68f059b9d76f4e208d692cbfcd23f9461d76fcee19505274dc085fab
+  languageName: node
+  linkType: hard
+
+"suncalc@npm:^1.8.0":
+  version: 1.8.0
+  resolution: "suncalc@npm:1.8.0"
+  checksum: 26313f0864023629541b63fd5f562176b20cfdf74f229ac0a5233aa98eea46d5971c02676cb149d0237b5ff2bd463dae4ce0c691b413358248b706c9e47912b0
   languageName: node
   linkType: hard
 

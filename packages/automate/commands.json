@@ -96,12 +96,14 @@
         {
             "name": "load",
             "inject": [
+                "$container",
                 "param.0",
                 "param.1"
             ],
             "config": {
                 "": {
                     "inject": [
+                        "$container",
                         "param.0",
                         "param.1"
                     ]
@@ -110,6 +112,7 @@
                     "path": "dist/commands/load.js",
                     "source": "src/commands/load.ts",
                     "inject": [
+                        "$container",
                         "param.0",
                         "param.1"
                     ]
@@ -117,6 +120,7 @@
                 "cli": {
                     "usage": "load <name> <file>",
                     "inject": [
+                        "dummy",
                         "options.name",
                         "options.file"
                     ],
@@ -152,6 +156,58 @@
                     "inject": [
                         "param.0",
                         "connectionAsContainer"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "register-trigger",
+            "inject": [
+                "param.0",
+                "param.1"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/register-trigger.js",
+                    "source": "src/commands/register-trigger.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "param.0",
+                        "connectionAsContainer"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "unload",
+            "inject": [
+                "param.0",
+                "param.1"
+            ],
+            "config": {
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "fs": {
+                    "path": "dist/commands/unload.js",
+                    "source": "src/commands/unload.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
                     ]
                 }
             }
