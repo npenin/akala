@@ -1,0 +1,20 @@
+{
+    "name": "@akala/pubsub",
+    "version": "0.0.0",
+    "main": "dist/index.js",
+    "author": "npenin",
+    "license": "BSD-3-Clause",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/npenin/akala.git"
+    },
+    "homepage": "https://akala.js.org/pubsub",
+    "scripts": {
+        "generate": "ac generate dist/commands commands.json --name pubsub",
+        "generate-metadata": "ac generate-metadata commands.json src/container.ts"
+    },
+    "dependencies": {
+        "@akala/commands": "workspace:*",
+        "@akala/pm": "workspace:*"
+    }
+}
