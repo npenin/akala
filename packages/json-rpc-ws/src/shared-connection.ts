@@ -226,7 +226,14 @@ export abstract class Connection<TStreamable>
         const method = payload.method;
         let params = payload.params;
         let result = payload.result;
+
+        if (typeof payload.error == 'object' && payload.error && 'stack' in payload.error && 'message' in payload.error)
+        {
+            const error = new Error();
+            payload.error = Object.assign(error, payload.error);
+        }
         const error = payload.error;
+
         if (version !== '2.0')
         {
             return this.sendError('invalidRequest', id, { info: 'jsonrpc must be exactly "2.0"' });
