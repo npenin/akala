@@ -22,7 +22,12 @@ export interface Configuration
 
 export function isCommand(x: any): x is Command
 {
-    return typeof (x) == 'object' && x && 'name' in x && 'inject' in x;
+    return typeof (x) == 'object' && x && 'name' in x && 'inject' in x && Array.isArray(x.inject);
+}
+
+export function extractCommandMetadata<T extends Command>(x: T): Command
+{
+    return { name: x.name, inject: x.inject, config: x.config };
 }
 
 
