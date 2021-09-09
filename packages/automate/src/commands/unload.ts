@@ -25,7 +25,7 @@ export default async function (this: State, container: Container<any>, name: str
                 }
             }
             else if (triggerName in this.triggers)
-                await this.triggers[triggerName].dispatch('subscribe', value as string, command.name);
+                await this.triggers[triggerName].dispatch('unsubscribe', container, value as string);
         });
     }
 

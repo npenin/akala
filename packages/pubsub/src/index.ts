@@ -15,13 +15,13 @@ declare module '@akala/pm'
 
 export type container = commands.container;
 
-import metaContainer from '../commands.json'
+const metaContainer = require('../commands.json');
 
 export default class PubSubContainer extends Container<State> implements commands.container
 {
     constructor(name: string = 'pubsub')
     {
         super(name, {});
-        registerCommands(metaContainer.commands, new Processors.FileSystem(this, path.join(__dirname, '/commands')), this);
+        registerCommands(metaContainer.commands, new Processors.FileSystem( path.join(__dirname, '/commands')), this);
     }
 }
