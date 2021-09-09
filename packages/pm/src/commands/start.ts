@@ -1,4 +1,4 @@
-import { Container, Processors, Metadata, registerCommands } from "@akala/commands";
+import { Container, Processors, Metadata, registerCommands, Cli } from "@akala/commands";
 import State, { RunningContainer } from '../state';
 import { spawn, ChildProcess, StdioOptions } from "child_process";
 import pmContainer from '../container';
@@ -142,9 +142,14 @@ export default async function start(this: State, pm: pmContainer.container & Con
         container.path = name;
         container.commandable = this.config.mapping[name].commandable;
         container.ready = new jsonrpc.Deferred();
+        if (container.commandable)
+        {
+            container.unregister(Cli.Metadata.name);
+            container.register(Metadata.extractCommandMetadata(Cli.Metadata));
+        }
         container.ready.then(() =>
         {
-            container.dispatch('$metadata').then((metaContainer: Metadata.Container) =>
+            return container.dispatch('$metadata').then((metaContainer: Metadata.Container) =>
             {
                 // console.log(metaContainer);
                 registerCommands(metaContainer.commands, null, container);
