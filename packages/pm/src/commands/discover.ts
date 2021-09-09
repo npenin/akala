@@ -61,7 +61,7 @@ export default async function discover(this: State, packageName: string, folder:
     const moduleRequire = tmpRequire;
 
     const packageConfig = moduleRequire('./package.json');
-    delete moduleRequire.cache['./package.json'];
+    delete moduleRequire.cache[moduleRequire.resolve('./package.json')];
 
     if (packageConfig.commands)
     {
