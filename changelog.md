@@ -1,33 +1,48 @@
-#  (2021-08-27)
+#  (2021-09-09)
 
 
 ### Bug Fixes
 
+* adapt to trigger new definition 8c2d136
 * add missing package required property ba0c9df
 * artificial bump 60cc1c1
 * avoids workflow leaks in context db4662a
 * bindings are less intrusive 3ef2783
 * bump dependent 5e89235
 * bump dependents proper references f734b61
+* code clean up 11726cb
+* compilation issue 6734227
 * compilation issue 4735be5
 * default version ignore to decline 01cb0f7
+* discover implementation 3502bed
 * export AggregateErrors f4285e2
 * git push tags fc8e609
 * improve get-version 2f156a3
+* improve performance of metadata lookup 81cf56a
+* improves command detection ff43e85
+* jsonrpc processor 497616c
 * limited git tag scope 7da0acb
 * log format 403e66b
 * log only enumerable props 3070ee3
 * logger as non enumerable property 43fdcba
 * mapAsync 64a258e
+* metadata lookup eaa12c1
+* metadata lookup on start da0c4d7
 * middleware copy/paste issue 69757ce
 * output name from inner semantic-releases script 52382c6
+* package build dependencies 3f14f37
 * package name tagging cd9de24
 * proper parameter binding for bump-dependents 7459c86
 * push before tagging d980dd0
 * remove duplicate foreach in publish 09d9fe5
 * runnerMiddleware more type friendly 7bf1a25
 * spread is not considering non enumerable properties 394438a
+* trigger signature 28e77a1
 * update command definition 85c2891
+* update to commands  major version 180608a
+* update to commands major version 0631f6e
+* update to new commands major version 5e0bed5
+* update to ws 8.0 ce769f9
 * variable renaming f825597
 * workflow output 3fca50e
 * wrong property name usage fa163c0
@@ -42,11 +57,16 @@
 * add ignore failure support f9929cf
 * add middleware with priority handling 461c1a4
 * add runnerMiddleware as export ff4c95a
+* add support for jobs and schedules (as a SqlAgent) 11927b5
 * add support for shell script failure ignore 4b1dcc1
 * added winston as a logger system 065bae0
 * container can now act as middlewares 9484e39
 * enforce logger on buildCliContext dd636e1
+* errors like are now true errors 954d0a8
+* first pubsub commit 78b31e1
+* leverage suncalc c674f46
 * moved to middleware approach 69d4ba5
+* support for triggers 624ae86
 
 
 
