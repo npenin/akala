@@ -10,7 +10,7 @@ import { Readable } from 'stream';
 import { spawnAsync } from './cli-helper';
 import State from './state';
 import program, { buildCliContextFromProcess, CliContext, NamespaceMiddleware, unparse } from '@akala/cli';
-import { InteractError } from '.';
+import { InteractError, pm } from '.';
 
 const tableChars = {
     'top': '─'
@@ -126,11 +126,15 @@ cli.command(null).preAction(async c =>
     if (!processor)
         processor = new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(socket)));
     if (!metaContainer)
-        metaContainer = await processor.handle(null, Cli.Metadata, { param: [true] }).then(err => { if (err) throw err }, res => res);
+        metaContainer = require('../commands.json');
     if (!container)
     {
         container = proxy(metaContainer, processor);
-        container.attach(Triggers.cli, handle);
+
+        container.unregister(Cli.Metadata.name);
+        container.register(Metadata.extractCommandMetadata(Cli.Metadata));
+
+        await container.attach(Triggers.cli, handle);
     }
 }).
     useMiddleware(handle).
