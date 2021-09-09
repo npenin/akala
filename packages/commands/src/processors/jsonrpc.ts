@@ -105,15 +105,9 @@ export class JsonRpc extends CommandProcessor
         {
             if (!this.passthrough && typeof command != 'string' && command.inject)
             {
-                if (command.inject.length != 1 || command.inject[0] != '$param')
+                if ((command.inject.length != 1 || command.inject[0] != '$param') && params._trigger)
                 {
-                    // console.log(param);
-                    // console.log(command.inject);
-                    const param = command.inject.map((v, i) =>
-                    {
-                        return { name: v, value: params.param[i] }
-                    }).filter(p => p.name.startsWith('param.'));
-                    params.param = param.map(p => p.value) as jsonrpcws.SerializableObject[];
+                    params.param = Local.extractParams(command.config?.jsonrpc?.inject || command.inject)(...params.param);
                 }
             }
             this.client.sendMethod(typeof command == 'string' ? command : command.name, params as unknown as jsonrpcws.PayloadDataType<Readable>, function (err, result)
