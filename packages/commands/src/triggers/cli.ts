@@ -6,7 +6,7 @@ import { each, MiddlewarePromise } from '@akala/core';
 
 export var processTrigger = new Trigger('cli', async (c, program: NamespaceMiddleware<Record<string, string | boolean | string[] | number>>) =>
 {
-    var meta: Metadata.Container = await c.dispatch('$metadata');
+    var meta: Metadata.Container = await c.dispatch('$metadata', true);
     [...meta.commands, c.resolve('$metadata')].forEach(cmd =>
     {
         if (cmd.config?.cli)
