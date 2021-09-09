@@ -59,6 +59,7 @@ __metadata:
     "@akala/cron": "workspace:*"
     "@akala/json-rpc-ws": "workspace:*"
     "@akala/pm": "workspace:*"
+    "@akala/pubsub": "workspace:*"
     "@akala/server": "workspace:*"
     "@types/assert": ^1.5.4
     "@types/mocha": ^9.0.0
@@ -203,6 +204,7 @@ __metadata:
   resolution: "@akala/cron@workspace:packages/cron"
   dependencies:
     "@akala/commands": "workspace:*"
+    "@akala/pubsub": "workspace:*"
     "@types/debug": ^4.1.6
     debug: ^4.3.1
     suncalc: ^1.8.0
@@ -287,12 +289,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@akala/pubsub@workspace:packages/pubsub":
+"@akala/pubsub@workspace:*, @akala/pubsub@workspace:packages/pubsub":
   version: 0.0.0-use.local
   resolution: "@akala/pubsub@workspace:packages/pubsub"
   dependencies:
     "@akala/commands": "workspace:*"
-    "@akala/tacl": "workspace:*"
+    "@akala/pm": "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -379,7 +381,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@akala/tacl@workspace:*, @akala/tacl@workspace:packages/tacl":
+"@akala/tacl@workspace:packages/tacl":
   version: 0.0.0-use.local
   resolution: "@akala/tacl@workspace:packages/tacl"
   dependencies:
