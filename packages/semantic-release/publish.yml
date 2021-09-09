@@ -36,5 +36,6 @@ jobs:
       - name: publish
         foreach: $(build.publicPackages)
         run: yarn workspace $($.name) npm publish
+        retries: 3
         with:
           shell: true
