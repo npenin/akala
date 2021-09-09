@@ -97,7 +97,10 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
                         pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new ac.NetSocketAdapter(pmSocket), cliContainer), true));
                     }
                     // eslint-disable-next-line @typescript-eslint/no-var-requires
-                    registerCommands(require('../commands.json').commands, pm.processor, pm);
+                    registerCommands(require('../commands.json').commands, null, pm);
+                    pm.unregister(ac.Cli.Metadata.name);
+                    pm.register(ac.Metadata.extractCommandMetadata(ac.Cli.Metadata));
+
                 }
                 else
                     pm = cliContainer;
