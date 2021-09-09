@@ -1,4 +1,4 @@
-import { Injector, Injectable, each, MiddlewarePromise, isPromiseLike } from '@akala/core';
+import { Injector, Injectable, each, MiddlewarePromise, isPromiseLike, Parser } from '@akala/core';
 import * as  Metadata from '../metadata/index';
 import { CommandProcessor, StructuredParameters } from '../model/processor'
 import { Container } from '../model/container';
@@ -10,6 +10,44 @@ export class Local extends CommandProcessor
     static fromObject<T>(o: T): CommandProcessor
     {
         return new Local(o as any);
+    }
+
+    public static extractParams(source: string[])
+    {
+        const sourceParams = source.
+            map((i, j) => [i, j] as [string, number]).
+            filter(x => x[0].startsWith('param.')).
+            map(x => [...x, Number(Parser.parseBindable(x[0])[1])] as [string, number, number]).
+            sort((a, b) => a[2] - b[2])
+            ;
+
+        return function (...args)
+        {
+            return sourceParams.map(p => ({ p, value: args[p[1]] })).
+                map(p => p.value);
+        }
+    }
+
+    public static remapArgs(source: string[], destination: string[])
+    {
+        const sourceParams = source.
+            map((i, j) => [i, j] as [string, number]).
+            filter(x => x[0].startsWith('param.')).
+            map(x => [...x, Number(Parser.parseBindable(x[0])[1])] as [string, number, number]).
+            sort((a, b) => a[2] - b[2])
+            ;
+        const destinationParams = destination.
+            map((i, j) => [i, j] as [string, number]).
+            filter(x => x[0].startsWith('param.')).
+            map(x => [...x, Number(Parser.parseBindable(x[0])[1])] as [string, number, number])
+            ;
+
+        return function (...args)
+        {
+            return sourceParams.map(p => ({ p, value: args[p[1]] })).
+                filter(p => destinationParams.find(dp => dp[2] == p.p[2])).
+                map(p => p.value);
+        }
     }
 
     public static execute<T, U>(cmd: Metadata.Command, handler: Injectable<U>, container: Container<T>, param: StructuredParameters): U

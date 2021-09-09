@@ -20,16 +20,16 @@ export const defaultCommands = new Local({ $attach, $serve });
 
 export class Container<TState> extends akala.Injector implements Middleware<[origin: Container<any>, cmd: Metadata.Command | string, params: AsDispatchArgs<unknown[]>]>
 {
-    attach<T extends Trigger<unknown, unknown>>(trigger: T, server: T extends Trigger<infer A, unknown> ? A : never): T extends Trigger<unknown, infer B> ? B : never
-    attach<TResult>(trigger: string, server: unknown): TResult
-    attach<TResult, X, T extends Trigger<X, TResult>>(trigger: T | string, server: X): TResult
+    attach<T extends Trigger<unknown[], unknown>>(trigger: T, ...server: T extends Trigger<infer A, unknown> ? A : never): T extends Trigger<unknown[], infer B> ? B : never
+    attach<TResult>(trigger: string, ...server: unknown[]): TResult
+    attach<TResult, X extends unknown[], T extends Trigger<X, TResult>>(trigger: T | string, ...args: X): TResult
     {
         if (typeof trigger == 'string')
             trigger = Trigger.find<X>(trigger) as T;
         if (!trigger)
             throw new Error(`There is no registered trigger named ${trigger}`);
 
-        return trigger.register(this, server);
+        return trigger.register(this, ...args);
     }
 
     public readonly processor: MiddlewareCompositeWithPriority<CommandMetadataProcessorSignature<TState>>;
@@ -43,7 +43,7 @@ export class Container<TState> extends akala.Injector implements Middleware<[ori
         this.processor = new MiddlewareCompositeWithPriority(name);
         if (processor)
             this.processor.useMiddleware(20, processor);
-        this.processor.useMiddleware(49, new Self());
+        this.processor.useMiddleware(19, new Self());
         this.processor.useMiddleware(1, new CommandWithAffinityProcessor());
         this.processor.useMiddleware(50, defaultCommands);
         this.register({ name: '$serve', inject: $serve.$inject, config: null })

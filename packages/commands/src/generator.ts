@@ -20,7 +20,7 @@ export function metadata(container: Container<any>, deep?: boolean): meta.Contai
         const cmd = container.resolve<meta.Command>(key);
         if (cmd && isCommand(cmd) && ignoredCommands.indexOf(cmd.name) == -1)
             metacontainer.commands.push({ name: cmd.name, inject: cmd.inject, config: cmd.config });
-        if (cmd instanceof Container && deep)
+        else if (cmd instanceof Container && deep)
         {
             // console.log(cmd);
             const subContainer = metadata(cmd as Container<any>, deep);
