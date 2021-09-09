@@ -62,7 +62,7 @@ export default async function (this: State, container: Container<any>, name: str
                 }
             }
             else if (triggerName in this.triggers)
-                await this.triggers[triggerName].dispatch('subscribe', value as string, 'process-' + name);
+                await this.triggers[triggerName].dispatch('subscribe', container, value as string, 'process-' + name);
         }, false);
     }
 
