@@ -238,7 +238,7 @@ export class FileSystem extends CommandProcessor
     public async handle(origin: Container<any>, command: FSCommand, param: { param: unknown[], _trigger?: string }): MiddlewarePromise
     {
         let filepath: string;
-        if (command && command.config && command.config.fs)
+        if (command && command.config && command.config.fs && command.config.fs.path)
             filepath = path.resolve(this.root || process.cwd(), command.config.fs.path);
         else
             filepath = path.resolve(this.root || process.cwd(), command.name);
