@@ -150,7 +150,7 @@ cli.command(null).preAction(async c =>
                 args.args.push(value);
             return await cli.process(args);
         }
-        throw err;
+        throw undefined;
     })
 
 // handle.action(async args =>
@@ -195,8 +195,13 @@ program.useError((err: Error, context) =>
         console.error('Error: ' + err.message);
     return Promise.reject(err);
 })
-program.process(buildCliContextFromProcess()).then(r =>
+program.process(buildCliContextFromProcess()).then(result =>
 {
+    if(result instanceof Readable)
+    {
+        result.pipe(process.stdout);
+        return;
+    }
     if (socket)
         socket.end();
 }, err =>
@@ -210,6 +215,10 @@ function formatResult(result: unknown, outputFormat: string)
 {
     if (typeof result == 'undefined')
         return;
+    if(result instanceof Readable)
+    {
+        return result;
+    }
     switch (outputFormat)
     {
         case 'table':
