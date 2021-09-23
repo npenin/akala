@@ -6,16 +6,11 @@ import * as ac from '@akala/commands';
 import { lstat } from 'fs/promises';
 import { IpcAdapter } from './commands/start';
 import debug from 'debug';
-import mock from 'mock-require'
 import { Socket } from 'net';
 import { module as coreModule } from '@akala/core';
 import program, { buildCliContextFromProcess, NamespaceMiddleware } from '@akala/cli';
 import { Stats } from 'fs';
 import { registerCommands } from '@akala/commands';
-
-mock('@akala/commands', ac);
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-mock('@akala/pm', require('..'));
 
 var isPm = false;
 
@@ -97,7 +92,7 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
                         pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new ac.NetSocketAdapter(pmSocket), cliContainer), true));
                     }
                     // eslint-disable-next-line @typescript-eslint/no-var-requires
-                    registerCommands(require('../commands.json').commands, null, pm);
+                    registerCommands(require('../commands.json').commands.map(ac.Metadata.extractCommandMetadata), null, pm);
                     pm.unregister(ac.Cli.Metadata.name);
                     pm.register(ac.Metadata.extractCommandMetadata(ac.Cli.Metadata));
 
