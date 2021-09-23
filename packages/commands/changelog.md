@@ -1,10 +1,11 @@
-#  (2021-09-09)
+#  (2021-09-23)
 
 
 ### Bug Fixes
 
-* improves command detection ff43e85
-* jsonrpc processor 497616c
+* cli parsing a28c8fe
+* fs middleware after discovery changes d97fcca
+* inject usage after move to full meta cmd 2cbda96
 
 
 
