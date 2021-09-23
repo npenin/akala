@@ -1,13 +1,16 @@
-#  (2021-09-09)
+#  (2021-09-23)
 
 
 ### Bug Fixes
 
-* discover implementation 3502bed
-* improve performance of metadata lookup 81cf56a
-* metadata lookup eaa12c1
-* metadata lookup on start da0c4d7
-* update to new commands major version 5e0bed5
+* discover cli usage 697946b
+* improved logging support 8c81e18
+* removed mock-require usage 448f5be
+
+
+### Features
+
+* cli now supports stream results 155e7ba
 
 
 
