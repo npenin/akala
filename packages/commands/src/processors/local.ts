@@ -54,7 +54,7 @@ export class Local extends CommandProcessor
     {
         if (!container)
             assert.fail('container is undefined');
-        let inject = cmd.inject;
+        let inject = cmd.config && cmd.config['']?.inject || cmd.inject;
         const injector = new Injector(container);
         injector.register('$container', container);
         // console.log(param);
