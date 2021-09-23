@@ -58,14 +58,14 @@ export function array<T, U extends unknown[]>(array: T[] | ArrayLike<T>, body: (
                     if (errors.length > 0)
                         throw new AggregateErrors(errors);
 
-                    await (complete as SimpleNextFunction<Error>)()
+                    await (complete as unknown as SimpleNextFunction<Error>)()
                     return res;
                 }
                 catch (e)
                 {
-                    (complete as SimpleNextFunction<Error>)(e);
+                    (complete as unknown as SimpleNextFunction<Error>)(e);
                 }
-            }, err => (complete as SimpleNextFunction<Error>)(err));
+            }, err => (complete as unknown as SimpleNextFunction<Error>)(err));
             return;
         }
         else
@@ -89,7 +89,7 @@ export function array<T, U extends unknown[]>(array: T[] | ArrayLike<T>, body: (
                         setImmediate(loop, i + 1);
                     }
                     else
-                        promise.then(() => setImmediate(loop, i + 1), complete as SimpleNextFunction<unknown>);
+                        promise.then(() => setImmediate(loop, i + 1), complete as unknown as SimpleNextFunction<unknown>);
                 }
             }
             catch (e)
@@ -97,7 +97,7 @@ export function array<T, U extends unknown[]>(array: T[] | ArrayLike<T>, body: (
                 if (waitForPrevious)
                     promises.push(Promise.reject(e));
                 else
-                    (complete as SimpleNextFunction<unknown>)(e);
+                    (complete as unknown as SimpleNextFunction<unknown>)(e);
             }
     }
     loop(0);
