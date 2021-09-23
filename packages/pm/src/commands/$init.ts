@@ -5,6 +5,8 @@ import { join } from 'path';
 import pmContainer from '../container';
 import { Container, Metadata, ignoredCommands, configure, ServeOptions, SelfDefinedCommand } from '@akala/commands';
 import { eachAsync } from '@akala/core';
+import { PassThrough, Readable } from 'stream';
+import { EventEmitter } from 'events';
 
 export async function metadata(container: Container<unknown>, deep?: boolean): Promise<Metadata.Container>
 {
@@ -42,6 +44,33 @@ export default async function (this: State, container: RunningContainer & pmCont
 {
     this.isDaemon = true;
     this.processes = [];
+    const stderr=process.stderr.write;
+    const stderrPT=new PassThrough();
+    process.stderr.write=function(...args)
+    {
+        stderr.call(process.stderr, ...args);
+        return stderrPT.write(...args as [any, BufferEncoding]);
+    } as any;
+    
+    const stdout=process.stdout.write;
+    const stdoutPT=new PassThrough();
+    process.stdout.write=function(...args)
+    {
+        stdout.call(process.stdout, ...args);
+        return stdoutPT.write(...args as [any, BufferEncoding]);
+    } as any;
+    container.process= Object.assign(new EventEmitter(), {stdout:stdoutPT, stderr:stderrPT, stdio:null, stdin:process.stdin,pid:process.pid, connected:false
+        ,exitCode:undefined
+        ,signalCode:undefined
+        ,spawnargs:process.argv
+        ,spawnfile: null
+        ,kill:process.exit.bind(process)
+        ,send:null
+        ,disconnect:null
+        ,unref:null
+        ,ref:null
+        ,killed:false });
+
     const configPath = join(homedir(), './.pm.config.json');
     try
     {
