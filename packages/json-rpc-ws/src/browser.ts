@@ -134,6 +134,22 @@ class DefaultReader implements ReadableStreamDefaultReader<Uint8Array>
 
 class Readable implements ReadableStream<Uint8Array>
 {
+  forEach(callbackfn: (value: any, key: number, parent: ReadableStream<Uint8Array>) => void, thisArg?: any): void {
+    return this.buffer.forEach((x,i)=>callbackfn(x,i, thisArg || this))
+  }
+  entries(): IterableIterator<[number, any]> {
+    return this.buffer.entries();
+  }
+  keys(): IterableIterator<number> {
+    return this.buffer.keys();
+
+  }
+  values(): IterableIterator<any> {
+    return this.buffer.values();
+  }
+  [Symbol.iterator](): IterableIterator<any> {
+    return this.buffer[Symbol.iterator]();
+  }
   private buffer: (Uint8Array | null)[] = [];
   private _reader?: DefaultReader //| ByobReader;
   private target?: WritableStream<unknown>;
