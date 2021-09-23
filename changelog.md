@@ -1,4 +1,4 @@
-#  (2021-09-09)
+#  (2021-09-23)
 
 
 ### Bug Fixes
@@ -10,16 +10,23 @@
 * bindings are less intrusive 3ef2783
 * bump dependent 5e89235
 * bump dependents proper references f734b61
+* cli parsing a28c8fe
 * code clean up 11726cb
+* compilation after typescript 4.4 upgrade 2828ff9
 * compilation issue 6734227
 * compilation issue 4735be5
 * default version ignore to decline 01cb0f7
+* discover cli usage 697946b
 * discover implementation 3502bed
+* error flow in composite middleware ec36174
 * export AggregateErrors f4285e2
+* fs middleware after discovery changes d97fcca
 * git push tags fc8e609
 * improve get-version 2f156a3
 * improve performance of metadata lookup 81cf56a
+* improved logging support 8c81e18
 * improves command detection ff43e85
+* inject usage after move to full meta cmd 2cbda96
 * jsonrpc processor 497616c
 * limited git tag scope 7da0acb
 * log format 403e66b
@@ -35,6 +42,8 @@
 * proper parameter binding for bump-dependents 7459c86
 * push before tagging d980dd0
 * remove duplicate foreach in publish 09d9fe5
+* removed mock-require usage 99587ba
+* removed mock-require usage 448f5be
 * runnerMiddleware more type friendly 7bf1a25
 * spread is not considering non enumerable properties 394438a
 * trigger signature 28e77a1
@@ -60,6 +69,7 @@
 * add support for jobs and schedules (as a SqlAgent) 11927b5
 * add support for shell script failure ignore 4b1dcc1
 * added winston as a logger system 065bae0
+* cli now supports stream results 155e7ba
 * container can now act as middlewares 9484e39
 * enforce logger on buildCliContext dd636e1
 * errors like are now true errors 954d0a8
