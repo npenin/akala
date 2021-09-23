@@ -2,13 +2,8 @@ import program from './router/index';
 import * as fs from 'fs'
 import { promisify } from 'util'
 import * as akala from '@akala/core'
-import mock from 'mock-require'
 import './helpers/repl';
 import { buildCliContextFromProcess } from '.';
-
-mock('@akala/core', akala);
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-mock('@akala/core', require('./index'));
 
 (async function ()
 {
