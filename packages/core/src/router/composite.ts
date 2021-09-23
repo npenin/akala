@@ -101,7 +101,8 @@ export class MiddlewareComposite<T extends unknown[]> implements Middleware<T>, 
                 {
                     throw { success: x };
                 }
-            }, true)
+            }, true);
+            return error;
         } catch (err)
         {
             switch (typeof err)
@@ -236,6 +237,7 @@ export class MiddlewareCompositeWithPriority<T extends unknown[]> implements Mid
                     throw { success: x };
                 }
             }, true)
+            return error;
         } catch (err)
         {
             switch (typeof err)
