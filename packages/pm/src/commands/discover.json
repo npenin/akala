@@ -8,14 +8,15 @@
         ]
     },
     "cli": {
+        "usage": "discover <name> <folder>",
         "options": {
-            "param.1": {
+            "folder": {
                 "normalize": true
             }
         },
         "inject": [
-            "param.0",
-            "param.1",
+            "options.name",
+            "options.folder",
             "$container"
         ]
     }
