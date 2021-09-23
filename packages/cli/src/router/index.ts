@@ -122,9 +122,11 @@ class OptionMiddleware implements akala.Middleware<[context: CliContext]>
 class OptionsMiddleware<TOptions extends Record<string, string | number | boolean | string[]>> implements akala.Middleware<[context: CliContext]>
 {
     private options = new akala.MiddlewareComposite<[CliContext]>();
+    public config:{[key:string]:OptionOptions}={};
 
     option<TValue extends string | number | boolean | string[], TName extends string>(name: TName, option?: OptionOptions): OptionsMiddleware<TOptions & { [key in TName]: TValue }>
     {
+        this.config[name]=option;
         return this.optionMiddleware(new OptionMiddleware(name, option));
     }
 
@@ -186,6 +188,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
                 else
                     parameters.push({ name: parameter[2], optional: true });
             }
+            
 
             middleware = new NamespaceMiddleware(cli[1], akala.convertToMiddleware(function (context)
             {
@@ -197,6 +200,8 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
                     const parameter = parameters[index];
                     // if (!parameter.optional)
                     context.options[parameter.name] = context.args.shift() as (TOptions & TOptions2)[typeof parameter.name];
+                    if(middleware._option?.config && middleware._option.config[parameter.name as string]?.normalize)
+                        context.options[parameter.name] = path.resolve(context.currentWorkingDirectory, context.options[parameter.name] as string) as (TOptions & TOptions2)[typeof parameter.name];
                     // if (parameter.optional)
                     //     context.options[parameter.name] = context.args.shift() as TOptions2[typeof parameter.name];
                 }
