@@ -90,7 +90,7 @@ export class JsonRpc extends CommandProcessor
                         if (error && typeof error.toJSON == 'function')
                             reply(error.toJSON());
                         else
-                            reply({ message: error.message, stack: error.stack, code: error.code });
+                            reply(error && { message: error.message, stack: error.stack, code: error.code });
                     }
                 }
             }
@@ -103,11 +103,12 @@ export class JsonRpc extends CommandProcessor
     {
         return new Promise<Error | SpecialNextParam | OptionsResponse>((resolve, reject) =>
         {
-            if (!this.passthrough && typeof command != 'string' && command.inject)
+            if (!this.passthrough && typeof command != 'string')
             {
-                if ((command.inject.length != 1 || command.inject[0] != '$param') && params._trigger)
+                const inject = command.config?.['']?.inject || command.inject;
+                if ((inject.length != 1 || inject[0] != '$param') && params._trigger)
                 {
-                    params.param = Local.extractParams(command.config?.jsonrpc?.inject || command.inject)(...params.param);
+                    params.param = Local.extractParams(command.config?.jsonrpc?.inject || inject)(...params.param);
                 }
             }
             this.client.sendMethod(typeof command == 'string' ? command : command.name, params as unknown as jsonrpcws.PayloadDataType<Readable>, function (err, result)
