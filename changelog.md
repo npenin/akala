@@ -13,6 +13,7 @@
 * bump dependents proper references f734b61
 * Cli implementation a6c7103
 * cli parsing a28c8fe
+* client package 4f14fd3
 * code clean up 11726cb
 * compilation after typescript 4.4 upgrade 2828ff9
 * compilation issue 6734227
