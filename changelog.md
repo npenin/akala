@@ -1,4 +1,4 @@
-#  (2021-09-23)
+#  (2021-10-02)
 
 
 ### Bug Fixes
@@ -6,10 +6,12 @@
 * adapt to trigger new definition 8c2d136
 * add missing package required property ba0c9df
 * artificial bump 60cc1c1
+* automate implementation f76a995
 * avoids workflow leaks in context db4662a
 * bindings are less intrusive 3ef2783
 * bump dependent 5e89235
 * bump dependents proper references f734b61
+* Cli implementation a6c7103
 * cli parsing a28c8fe
 * code clean up 11726cb
 * compilation after typescript 4.4 upgrade 2828ff9
@@ -20,6 +22,7 @@
 * discover implementation 3502bed
 * error flow in composite middleware ec36174
 * export AggregateErrors f4285e2
+* fs discovery 0d34eea
 * fs middleware after discovery changes d97fcca
 * git push tags fc8e609
 * improve get-version 2f156a3
@@ -28,6 +31,7 @@
 * improves command detection ff43e85
 * inject usage after move to full meta cmd 2cbda96
 * jsonrpc processor 497616c
+* jsonrpc trigger c95d27f
 * limited git tag scope 7da0acb
 * log format 403e66b
 * log only enumerable props 3070ee3
@@ -36,11 +40,13 @@
 * metadata lookup eaa12c1
 * metadata lookup on start da0c4d7
 * middleware copy/paste issue 69757ce
+* nested container processing 8997869
 * output name from inner semantic-releases script 52382c6
 * package build dependencies 3f14f37
 * package name tagging cd9de24
 * proper parameter binding for bump-dependents 7459c86
 * push before tagging d980dd0
+* regex exec is not iterable ca695eb
 * remove duplicate foreach in publish 09d9fe5
 * removed mock-require usage 99587ba
 * removed mock-require usage 448f5be
@@ -54,6 +60,7 @@
 * update to ws 8.0 ce769f9
 * variable renaming f825597
 * workflow output 3fca50e
+* workflow runner 220953a
 * wrong property name usage fa163c0
 * wrong version b7a5ede
 * wrong version 3ed20ad
