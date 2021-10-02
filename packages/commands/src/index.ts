@@ -35,6 +35,7 @@ export class Cli
         const cliContainer: commands.container & Container<void> = new Container<void>('cli', undefined);
 
         const options: DiscoveryOptions = { processor: new FileSystem(relativeTo), relativeTo };
+        cliContainer.processor.useMiddleware(51, options.processor);
 
         const commands = await FileSystem.discoverMetaCommands(commandsPath, options);
         return new Cli(cliContainer, commands, options.processor, program);
