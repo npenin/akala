@@ -73,7 +73,12 @@ export class Container<TState> extends akala.Injector implements Middleware<[ori
             {
                 cmd = this.resolve(command);
                 if (!cmd)
-                    throw new UnknownCommandError(command)
+                    throw new UnknownCommandError(command);
+                if (cmd.name !== command)
+                {
+                    const proc = this.resolve<Container<TState>>(command.substring(0, command.length - cmd.name.length - 1));
+                    return proc.handle(container, cmd, param[0] as StructuredParameters<unknown[]>);
+                }
             }
             else
                 cmd = command;
@@ -91,6 +96,9 @@ export class Container<TState> extends akala.Injector implements Middleware<[ori
     public resolve<T = Metadata.Command>(name: string): T
     {
         return super.resolve<T>(name);
+        // if (isCommand(c) && c.name !== name)
+        //     return Object.assign({}, c, { name });
+        // return c;
     }
 
     public static proxy<T = unknown>(name: string, processor: CommandProcessor, priority: number = 50): Container<T>
