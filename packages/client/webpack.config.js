@@ -1,3 +1,5 @@
+const { IgnorePlugin } = require("webpack");
+
 module.exports = {
     entry: {
         akala: './dist/index.js',
@@ -19,6 +21,10 @@ module.exports = {
             os: require.resolve('os-browserify/browser'),
             path: require.resolve('path-browserify'),
             querystring: require.resolve('querystring-es3'),
+            fs: false,
+            http: false,
+            https: false,
+            zlib: false,
         }
     },
     module: {
@@ -37,6 +43,9 @@ module.exports = {
         usedExports: true,
         sideEffects: true,
     },
+    plugins: [
+        new IgnorePlugin({ resourceRegExp: /ws/ })
+    ]
     // externals: {
     //     '@popperjs/core': {
     //         commonjs: '@popperjs/core',
