@@ -133,7 +133,9 @@ export class FileSystem extends CommandProcessor
                         // eslint-disable-next-line @typescript-eslint/no-var-requires
                         const otherConfigs = require(path.resolve(relativeTo, otherConfigsFile));
                         delete otherConfigs.$schema;
+                        const fsConfig = cmd.config.fs;
                         cmd.config = { ...cmd.config, ...otherConfigs };
+                        cmd.config.fs = { ...cmd.config.fs, ...fsConfig };
                     }
                     let params: string[];
                     if (!cmd.config.fs.inject)
@@ -256,6 +258,8 @@ export class FileSystem extends CommandProcessor
         }
         catch (e)
         {
+            if (e && e.code == 'MODULE_NOT_FOUND')
+                return undefined;
             return e;
         }
     }
