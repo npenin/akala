@@ -80,7 +80,7 @@ export class JsonRpc extends CommandProcessor
                         if (typeof (params) == 'object' && !params['_trigger'] || params['_trigger'] == 'proxy')
                             params['_trigger'] = 'jsonrpc';
 
-                        const result = await container.dispatch(cmd, params as StructuredParameters<jsonrpcws.SerializableObject[]>);
+                        const result = await container.dispatch(method, params as StructuredParameters<jsonrpcws.SerializableObject[]>);
                         reply(null, result as jsonrpcws.PayloadDataType<Readable>);
                     }
                     catch (error)
