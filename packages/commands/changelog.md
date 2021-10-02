@@ -1,11 +1,12 @@
-#  (2021-09-23)
+#  (2021-10-02)
 
 
 ### Bug Fixes
 
-* cli parsing a28c8fe
-* fs middleware after discovery changes d97fcca
-* inject usage after move to full meta cmd 2cbda96
+* Cli implementation a6c7103
+* fs discovery 0d34eea
+* jsonrpc trigger c95d27f
+* nested container processing 8997869
 
 
 
