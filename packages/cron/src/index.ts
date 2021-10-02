@@ -135,7 +135,12 @@ export function parseCronSyntax(cron: string): DateRequest[]
             return parseCronSyntax('0 0 1 1 *');
     }
 
-    const [__, minute, hours, dayOfMonth, month, dayOfWeek] = cronRegex.exec(cron);
+    const cronRegexResult = cronRegex.exec(cron);
+    const minute = cronRegexResult[1],
+        hours = cronRegexResult[2],
+        dayOfMonth = cronRegexResult[3],
+        month = cronRegexResult[4],
+        dayOfWeek = cronRegexResult[5];
 
     const combination = {
         minutes: parseCronPart(minute, 60),
