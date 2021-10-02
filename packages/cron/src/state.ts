@@ -25,7 +25,7 @@ export class Schedule
 {
     private readonly requests: DateRequest[];
 
-    constructor(...requests: DateRequest[])
+    constructor(requests: DateRequest[])
     {
         this.requests = requests;
     }
