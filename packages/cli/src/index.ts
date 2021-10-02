@@ -1,6 +1,6 @@
-import sms from 'source-map-support'
+// import sms from 'source-map-support'
 import winston from 'winston';
-sms.install();
+// sms.install();
 // import * as debug from 'debug';
 import program, { CliContext } from './router/index';
 // debug.enable('*,-*:verbose');

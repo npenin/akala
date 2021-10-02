@@ -1,15 +1,16 @@
 import { IpcNetConnectOpts, NetConnectOpts } from 'net';
 import { platform } from 'os';
 import { join } from 'path';
-import { ServeOptions } from './cli/serve';
+import { NetSocketAdapter, ServeOptions } from './cli/serve';
 import { registerCommands } from './generator'
-import { CommandProcessor } from './model/processor';
+import { CommandProcessor, ICommandProcessor } from './model/processor';
 import { HttpClient, JsonRpc } from './processors/index';
+import net from 'net'
 import ws from 'ws'
 import { Injector } from '@akala/core';
 import * as Metadata from './metadata/index';
 import { Container } from './model/container';
-import { CommonConnectionOptions, SecureContextOptions } from 'tls'
+import { CommonConnectionOptions, connect as tlsconnect, SecureContextOptions, TLSSocket } from 'tls'
 import * as jsonrpc from '@akala/json-rpc-ws';
 
 type TlsConnectOpts = NetConnectOpts & SecureContextOptions & CommonConnectionOptions;
@@ -28,10 +29,11 @@ export interface ConnectionPreference
 {
     preferRemote?: boolean;
     host?: string;
-    container: Metadata.Container;
+    metadata: Metadata.Container;
+    container?: Container<any>;
 }
 
-export async function connectByPreference<T = unknown>(options: ServeMetadata, settings: ConnectionPreference, ...orders: (keyof ServeMetadata)[]): Promise<{ container: Container<T>, processor: CommandProcessor }>
+export async function connectByPreference<T = unknown>(options: ServeMetadata, settings: ConnectionPreference, ...orders: (keyof ServeMetadata)[]): Promise<{ container: Container<T>, processor: ICommandProcessor }>
 {
     if (!orders)
         orders = ['ssocket', 'socket', 'wss', 'ws', 'https', 'http'];
@@ -50,17 +52,17 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
             return options[order];
         }
     });
-    const container = new Container<T>(settings?.container?.name || 'proxy', undefined);
+    const container = new Container<T>(settings?.metadata?.name || 'proxy', undefined);
     let processor: CommandProcessor;
     do
     {
-        const preferredIndex = orders.findIndex((order) => order);
+        const preferredIndex = orderedOptions.findIndex(options => options);
         if (preferredIndex === -1)
             throw new Error('no matching connection preference was found');
 
         try
         {
-            processor = await connectWith(orderedOptions[preferredIndex], settings?.host, orders[preferredIndex], container)
+            processor = await connectWith(orderedOptions[preferredIndex], settings?.host, orders[preferredIndex], settings?.container)
             break;
         }
         catch (e)
@@ -71,8 +73,13 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
     }
     // eslint-disable-next-line no-constant-condition
     while (true);
-    if (settings?.container)
-        registerCommands(settings.container.commands, processor, container);
+    if (settings?.metadata)
+        registerCommands(settings.metadata.commands, processor, container);
+    else
+    {
+        var metaContainer = await container.dispatch('$metadata');
+        registerCommands(metaContainer.commands, processor, container);
+    }
 
     return { container, processor };
 

@@ -1,6 +1,6 @@
-import * as ac from '@akala/commands'
+import { Container, Trigger } from '@akala/commands'
 
-export default new ac.Trigger<[], void>('keybinding', (container) =>
+export default new Trigger<[], void>('keybinding', (container) =>
 {
     let chord = container;
     document.addEventListener('keydown', (ev) =>
@@ -32,7 +32,7 @@ export default new ac.Trigger<[], void>('keybinding', (container) =>
             console.error('no command matches ' + sequence);
             return;
         }
-        if (cmd instanceof ac.Container)
+        if (cmd instanceof Container)
         {
             chord = cmd;
         }
