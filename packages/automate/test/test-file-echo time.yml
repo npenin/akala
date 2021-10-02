@@ -4,7 +4,7 @@ on:
 jobs:
   test:
     steps:
-      - run: echo pwet > test.txt
+      - run: echo pwet `date` > test.txt
         with:
           results: stdout
           format: string

@@ -39,4 +39,6 @@ export default async function init(this: State, pm: pmContainer, persistTo?: str
 
     this.workflows = {};
     this.loaders = {};
+    this.schedules = {};
+    this.triggers = {};
 }

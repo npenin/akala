@@ -21,7 +21,10 @@ export class JobCommand extends SelfDefinedCommand implements JobLike
 {
     trigger(schedule: Schedule, waitInfo: WaitInfo): void
     {
-        this.handler({ schedule, waitInfo, param: [] });
+        const trigger = { param: [] };
+        Object.defineProperty(trigger, 'waitInfo', { value: waitInfo, enumerable: false, writable: false, configurable: false })
+        Object.defineProperty(trigger, 'schedule', { value: schedule, enumerable: false, writable: false, configurable: false })
+        this.handler(trigger);
     }
 
 }

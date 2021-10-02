@@ -3,20 +3,17 @@
     "commands": [
         {
             "name": "$init",
-            "inject": [
-                "pm",
-                "param.0"
-            ],
+            "inject": [],
             "config": {
-                "": {
+                "fs": {
                     "inject": [
                         "pm",
                         "param.0"
-                    ]
-                },
-                "fs": {
+                    ],
                     "path": "dist/commands/$init.js",
-                    "source": "src/commands/$init.ts",
+                    "source": "src/commands/$init.ts"
+                },
+                "": {
                     "inject": [
                         "pm",
                         "param.0"
@@ -38,22 +35,18 @@
         },
         {
             "name": "enqueue",
-            "inject": [
-                "param.0",
-                "param.1",
-                "param.2"
-            ],
+            "inject": [],
             "config": {
-                "": {
+                "fs": {
+                    "path": "dist/commands/enqueue.js",
+                    "source": "src/commands/enqueue.ts",
                     "inject": [
                         "param.0",
                         "param.1",
                         "param.2"
                     ]
                 },
-                "fs": {
-                    "path": "dist/commands/enqueue.js",
-                    "source": "src/commands/enqueue.ts",
+                "": {
                     "inject": [
                         "param.0",
                         "param.1",
@@ -80,12 +73,12 @@
             "name": "list",
             "inject": [],
             "config": {
-                "": {
-                    "inject": []
-                },
                 "fs": {
                     "path": "dist/commands/list.js",
                     "source": "src/commands/list.ts",
+                    "inject": []
+                },
+                "": {
                     "inject": []
                 },
                 "cli": {
@@ -95,22 +88,18 @@
         },
         {
             "name": "load",
-            "inject": [
-                "$container",
-                "param.0",
-                "param.1"
-            ],
+            "inject": [],
             "config": {
-                "": {
+                "fs": {
                     "inject": [
                         "$container",
                         "param.0",
                         "param.1"
-                    ]
-                },
-                "fs": {
+                    ],
                     "path": "dist/commands/load.js",
-                    "source": "src/commands/load.ts",
+                    "source": "src/commands/load.ts"
+                },
+                "": {
                     "inject": [
                         "$container",
                         "param.0",
@@ -134,22 +123,19 @@
         },
         {
             "name": "register-loader",
-            "inject": [
-                "param.0",
-                "param.1"
-            ],
+            "inject": [],
             "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/commands/register-loader.js",
+                    "source": "src/commands/register-loader.ts"
+                },
                 "": {
                     "inject": [
                         "param.0",
                         "param.1"
-                    ]
-                },
-                "fs": {
-                    "path": "dist/commands/register-loader.js",
-                    "source": "src/commands/register-loader.ts",
-                    "inject": [
-                        "param.0"
                     ]
                 },
                 "jsonrpc": {
@@ -162,20 +148,17 @@
         },
         {
             "name": "register-trigger",
-            "inject": [
-                "param.0",
-                "param.1"
-            ],
+            "inject": [],
             "config": {
-                "": {
+                "fs": {
+                    "path": "dist/commands/register-trigger.js",
+                    "source": "src/commands/register-trigger.ts",
                     "inject": [
                         "param.0",
                         "param.1"
                     ]
                 },
-                "fs": {
-                    "path": "dist/commands/register-trigger.js",
-                    "source": "src/commands/register-trigger.ts",
+                "": {
                     "inject": [
                         "param.0",
                         "param.1"
@@ -191,24 +174,33 @@
         },
         {
             "name": "unload",
-            "inject": [
-                "param.0",
-                "param.1"
-            ],
+            "inject": [],
             "config": {
+                "fs": {
+                    "inject": [
+                        "$container",
+                        "param.0"
+                    ],
+                    "path": "dist/commands/unload.js",
+                    "source": "src/commands/unload.ts"
+                },
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "$container",
+                        "param.0"
                     ]
                 },
-                "fs": {
-                    "path": "dist/commands/unload.js",
-                    "source": "src/commands/unload.ts",
+                "cli": {
+                    "usage": "unload <name>",
                     "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
+                        "dummy",
+                        "options.name"
+                    ],
+                    "options": {
+                        "file": {
+                            "normalize": true
+                        }
+                    }
                 }
             }
         }
