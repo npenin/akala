@@ -1,0 +1,27 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
+    "": {
+        "inject": [
+            "$container",
+            "param.0"
+        ]
+    },
+    "fs": {
+        "inject": [
+            "$container",
+            "param.0"
+        ]
+    },
+    "cli": {
+        "usage": "unload <name>",
+        "inject": [
+            "dummy",
+            "options.name"
+        ],
+        "options": {
+            "file": {
+                "normalize": true
+            }
+        }
+    }
+}

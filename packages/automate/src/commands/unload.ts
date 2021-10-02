@@ -16,13 +16,16 @@ export default async function (this: State, container: Container<any>, name: str
         {
             if (triggerName == 'cron')
             {
+                var stringValue: string;
+
                 if (typeof (value) == 'string')
-                    this.schedules[value].jobs.splice(this.schedules[value].jobs.indexOf(command), 1);
+                    stringValue = value;
                 else
-                {
-                    const stringValue = JSON.stringify(value);
-                    this.schedules[stringValue].jobs.splice(this.schedules[stringValue].jobs.indexOf(command), 1);
-                }
+                    stringValue = JSON.stringify(value);
+                this.schedules[stringValue].jobs.splice(this.schedules[stringValue].jobs.indexOf(command), 1);
+
+                if (this.schedules[stringValue].jobs.length == 0)
+                    this.schedules[stringValue].stop();
             }
             else if (triggerName in this.triggers)
                 await this.triggers[triggerName].dispatch('unsubscribe', container, value as string);

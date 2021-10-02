@@ -11,7 +11,7 @@ namespace commands
 		dispatch (cmd:'load', ...args: [Argument1<typeof import('./commands/load').default>, Argument2<typeof import('./commands/load').default>]): ReturnType<typeof import('./commands/load').default>
 		dispatch (cmd:'register-loader', ...args: [Argument0<typeof import('./commands/register-loader').default>]): ReturnType<typeof import('./commands/register-loader').default>
 		dispatch (cmd:'register-trigger', ...args: [Argument0<typeof import('./commands/register-trigger').default>, Argument1<typeof import('./commands/register-trigger').default>]): ReturnType<typeof import('./commands/register-trigger').default>
-		dispatch (cmd:'unload', ...args: [Argument0<typeof import('./commands/unload').default>, Argument1<typeof import('./commands/unload').default>]): ReturnType<typeof import('./commands/unload').default>
+		dispatch (cmd:'unload', ...args: [Argument1<typeof import('./commands/unload').default>]): ReturnType<typeof import('./commands/unload').default>
 	}
 	export interface proxy 
 	{
@@ -21,7 +21,7 @@ namespace commands
 		'load'(...args: [Argument1<typeof import('./commands/load').default>, Argument2<typeof import('./commands/load').default>]): ReturnType<typeof import('./commands/load').default>
 		'register-loader'(...args: [Argument0<typeof import('./commands/register-loader').default>]): ReturnType<typeof import('./commands/register-loader').default>
 		'register-trigger'(...args: [Argument0<typeof import('./commands/register-trigger').default>, Argument1<typeof import('./commands/register-trigger').default>]): ReturnType<typeof import('./commands/register-trigger').default>
-		'unload'(...args: [Argument0<typeof import('./commands/unload').default>, Argument1<typeof import('./commands/unload').default>]): ReturnType<typeof import('./commands/unload').default>
+		'unload'(...args: [Argument1<typeof import('./commands/unload').default>]): ReturnType<typeof import('./commands/unload').default>
 	}
 }
 
