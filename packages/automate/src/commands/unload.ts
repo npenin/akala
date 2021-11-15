@@ -1,5 +1,6 @@
-import State, { JobCommand } from '../state';
+import State from '../state';
 import { Container } from '@akala/commands';
+import { JobCommand } from '@akala/cron';
 
 export default async function (this: State, container: Container<any>, name: string)
 {

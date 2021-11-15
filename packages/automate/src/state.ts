@@ -16,15 +16,3 @@ export default interface State
     triggers: { [key: string]: trigger.container }
     schedules: { [key: string]: Schedule }
 }
-
-export class JobCommand extends SelfDefinedCommand implements JobLike
-{
-    trigger(schedule: Schedule, waitInfo: WaitInfo): void
-    {
-        const trigger = { param: [] };
-        Object.defineProperty(trigger, 'waitInfo', { value: waitInfo, enumerable: false, writable: false, configurable: false })
-        Object.defineProperty(trigger, 'schedule', { value: schedule, enumerable: false, writable: false, configurable: false })
-        this.handler(trigger);
-    }
-
-}

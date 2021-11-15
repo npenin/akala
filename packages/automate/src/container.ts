@@ -6,7 +6,7 @@ namespace commands
 	export interface container 
 	{
 		dispatch (cmd:'$init', ...args: [Argument1<typeof import('./commands/$init').default>]): ReturnType<typeof import('./commands/$init').default>
-		dispatch (cmd:'enqueue', ...args: [Argument0<typeof import('./commands/enqueue').default>, Argument1<typeof import('./commands/enqueue').default>, Argument2<typeof import('./commands/enqueue').default>]): ReturnType<typeof import('./commands/enqueue').default>
+		dispatch (cmd:'enqueue', ...args: [Argument0<typeof import('./commands/start').default>, Argument1<typeof import('./commands/start').default>, Argument2<typeof import('./commands/start').default>]): ReturnType<typeof import('./commands/start').default>
 		dispatch (cmd:'list', ...args: []): ReturnType<typeof import('./commands/list').default>
 		dispatch (cmd:'load', ...args: [Argument1<typeof import('./commands/load').default>, Argument2<typeof import('./commands/load').default>]): ReturnType<typeof import('./commands/load').default>
 		dispatch (cmd:'register-loader', ...args: [Argument0<typeof import('./commands/register-loader').default>]): ReturnType<typeof import('./commands/register-loader').default>
@@ -16,7 +16,7 @@ namespace commands
 	export interface proxy 
 	{
 		'$init'(...args: [Argument1<typeof import('./commands/$init').default>]): ReturnType<typeof import('./commands/$init').default>
-		'enqueue'(...args: [Argument0<typeof import('./commands/enqueue').default>, Argument1<typeof import('./commands/enqueue').default>, Argument2<typeof import('./commands/enqueue').default>]): ReturnType<typeof import('./commands/enqueue').default>
+		'enqueue'(...args: [Argument0<typeof import('./commands/start').default>, Argument1<typeof import('./commands/start').default>, Argument2<typeof import('./commands/start').default>]): ReturnType<typeof import('./commands/start').default>
 		'list'(...args: []): ReturnType<typeof import('./commands/list').default>
 		'load'(...args: [Argument1<typeof import('./commands/load').default>, Argument2<typeof import('./commands/load').default>]): ReturnType<typeof import('./commands/load').default>
 		'register-loader'(...args: [Argument0<typeof import('./commands/register-loader').default>]): ReturnType<typeof import('./commands/register-loader').default>

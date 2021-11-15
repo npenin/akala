@@ -1,9 +1,9 @@
 import fs from 'fs/promises'
-import State, { JobCommand } from '../state';
+import State from '../state';
 import path from 'path'
 import { TriggerMap, Workflow } from '../automate';
 import { Container } from '@akala/commands';
-import { parseCronSyntax, Schedule } from '@akala/cron';
+import { JobCommand, parseCronSyntax, Schedule } from '@akala/cron';
 import { Deferred } from '@akala/json-rpc-ws';
 import { each, eachAsync } from '@akala/core';
 
@@ -49,14 +49,14 @@ export default async function (this: State, container: Container<any>, name: str
             {
                 if (typeof (value) == 'string')
                 {
-                    this.schedules[value] = this.schedules[value] || new Schedule(parseCronSyntax(value));
+                    this.schedules[value] = this.schedules[value] || new Schedule(value, parseCronSyntax(value));
                     this.schedules[value].jobs.push(command);
                     this.schedules[value].start();
                 }
                 else
                 {
                     const stringValue = JSON.stringify(value);
-                    this.schedules[stringValue] = this.schedules[stringValue] || new Schedule([value]);
+                    this.schedules[stringValue] = this.schedules[stringValue] || new Schedule(stringValue, [value]);
                     this.schedules[stringValue].jobs.push(command);
                     this.schedules[stringValue].start();
                 }
