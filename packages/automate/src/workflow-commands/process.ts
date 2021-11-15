@@ -4,9 +4,9 @@ import automate, { JobStepDispatch, JobStepJob, JobStepRun, MiddlewareRunner, in
 import path from 'path'
 import use from './use';
 
-export function DispatchMiddleware(container: Container<any>): MiddlewareRunner<JobStepDispatch>
+export function DispatchMiddleware(container: Container<any>, runner: TMiddlewareRunner<any>): MiddlewareRunner<JobStepDispatch>
 {
-    return new MiddlewareRunnerMiddleware('dispatch', (context, step) => container.handle(container, step.dispatch, { _trigger: 'automate', ...step.with, ...context, param: [] }));
+    return new MiddlewareRunnerMiddleware('dispatch', (context, step) => container.handle(container, step.dispatch, { _trigger: 'automate', ...step.with, ...context, param: [], runner }));
 }
 
 
@@ -31,7 +31,7 @@ export function runnerMiddleware<T>(container: Container<T>, self: Container<Cli
     const runner = simpleRunner(container.name)
     runner.useMiddleware(49, UsesMiddleware(container));
     runner.useMiddleware(100, JobMiddleware(self, runner));
-    runner.useMiddleware(100, DispatchMiddleware(container));
+    runner.useMiddleware(100, DispatchMiddleware(container, runner));
     return runner;
 }
 
