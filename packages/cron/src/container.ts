@@ -6,13 +6,17 @@ namespace commands
 	export interface container 
 	{
 		dispatch(cmd: '$init', ...args: []): ReturnType<typeof import('./commands/$init').default>
-		dispatch(cmd: 'schedule', ...args: [Argument0<typeof import('./commands/schedule').default>, Argument1<typeof import('./commands/schedule').default>, Argument2<typeof import('./commands/schedule').default>, Argument3<typeof import('./commands/schedule').default>, Argument4<typeof import('./commands/schedule').default>, Argument5<typeof import('./commands/schedule').default>, Argument6<typeof import('./commands/schedule').default>, Argument7<typeof import('./commands/schedule').default>, Argument8<typeof import('./commands/schedule').default>, Argument9<typeof import('./commands/schedule').default>, Argument10<typeof import('./commands/schedule').default>, Argument11<typeof import('./commands/schedule').default>]): ReturnType<typeof import('./commands/schedule').default>
+		dispatch(cmd: 'add-schedule', ...args: [Argument0<typeof import('./commands/add-schedule').default>]): ReturnType<typeof import('./commands/add-schedule').default>
+		dispatch(cmd: 'list-jobs', ...args: []): ReturnType<typeof import('./commands/list-jobs').default>
+		dispatch(cmd: 'list-schedules', ...args: []): ReturnType<typeof import('./commands/list-schedules').default>
 		dispatch(cmd: 'wait', ...args: []): ReturnType<typeof import('./commands/wait').default>
 	}
 	export interface proxy 
 	{
 		'$init'(...args: []): ReturnType<typeof import('./commands/$init').default>
-		'schedule'(...args: [Argument0<typeof import('./commands/schedule').default>, Argument1<typeof import('./commands/schedule').default>, Argument2<typeof import('./commands/schedule').default>, Argument3<typeof import('./commands/schedule').default>, Argument4<typeof import('./commands/schedule').default>, Argument5<typeof import('./commands/schedule').default>, Argument6<typeof import('./commands/schedule').default>, Argument7<typeof import('./commands/schedule').default>, Argument8<typeof import('./commands/schedule').default>, Argument9<typeof import('./commands/schedule').default>, Argument10<typeof import('./commands/schedule').default>, Argument11<typeof import('./commands/schedule').default>]): ReturnType<typeof import('./commands/schedule').default>
+		'add-schedule'(...args: [Argument0<typeof import('./commands/add-schedule').default>]): ReturnType<typeof import('./commands/add-schedule').default>
+		'list-jobs'(...args: []): ReturnType<typeof import('./commands/list-jobs').default>
+		'list-schedules'(...args: []): ReturnType<typeof import('./commands/list-schedules').default>
 		'wait'(...args: []): ReturnType<typeof import('./commands/wait').default>
 	}
 }

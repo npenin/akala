@@ -1,16 +1,60 @@
 {
-    "name": "commands",
+    "name": "@akala/cron",
     "commands": [
         {
             "name": "$init",
             "inject": [],
             "config": {
-                "": {
-                    "inject": []
-                },
                 "fs": {
                     "path": "dist/commands/$init.js",
                     "source": "src/commands/$init.ts",
+                    "inject": []
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "add-schedule",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/add-schedule.js",
+                    "source": "src/commands/add-schedule.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "list-jobs",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/list-jobs.js",
+                    "source": "src/commands/list-jobs.ts",
+                    "inject": []
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "list-schedules",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/list-schedules.js",
+                    "source": "src/commands/list-schedules.ts",
+                    "inject": []
+                },
+                "": {
                     "inject": []
                 }
             }
@@ -19,9 +63,6 @@
             "name": "schedule",
             "inject": [],
             "config": {
-                "": {
-                    "inject": []
-                },
                 "fs": {
                     "path": "dist/commands/schedule.js",
                     "source": "src/commands/schedule.ts",
@@ -35,10 +76,73 @@
                         "param.6",
                         "param.7",
                         "param.8",
-                        "param.9",
-                        "param.10",
-                        "param.11"
+                        "param.9"
                     ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "$connectionAsContainer",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4",
+                        "param.5",
+                        "param.6",
+                        "param.7",
+                        "param.8",
+                        "param.9"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "param.0",
+                        "$connectionAsContainer",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4",
+                        "param.5",
+                        "param.6",
+                        "param.7",
+                        "param.8",
+                        "param.9"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "subscribe",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/subscribe.js",
+                    "source": "src/commands/subscribe.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "unsubscribe",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/unsubscribe.js",
+                    "source": "src/commands/unsubscribe.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": []
                 }
             }
         },
@@ -46,15 +150,16 @@
             "name": "wait",
             "inject": [],
             "config": {
-                "": {
-                    "inject": []
-                },
                 "fs": {
                     "path": "dist/commands/wait.js",
                     "source": "src/commands/wait.ts",
                     "inject": []
                 },
+                "": {
+                    "inject": []
+                },
                 "cli": {
+                    "standalone": true,
                     "inject": [
                         "options.riseSet",
                         "options.minutes",
