@@ -1,11 +1,12 @@
+import { SelfDefinedCommand } from "@akala/commands";
 import { container } from "@akala/pubsub";
 import getTarget, { DateRequest, getTargets } from ".";
 import { Deferred } from "../../json-rpc-ws/lib";
 
 export interface State
 {
-    schedules: Schedule[];
-    jobs: Job[];
+    schedules: { [key: string]: Schedule };
+    jobs: { [key: string]: JobLike };
 }
 
 export interface WaitInfo
@@ -25,7 +26,7 @@ export class Schedule
 {
     private readonly requests: DateRequest[];
 
-    constructor(requests: DateRequest[])
+    constructor(public readonly name: string, requests: DateRequest[])
     {
         this.requests = requests;
     }
@@ -137,5 +138,16 @@ export class Job implements JobLike
         }
         this._skipNext.push(schedule);
         return true;
+    }
+}
+
+export class JobCommand extends SelfDefinedCommand implements JobLike
+{
+    trigger(schedule: Schedule, waitInfo: WaitInfo): void
+    {
+        const trigger = { param: [] };
+        Object.defineProperty(trigger, 'waitInfo', { value: waitInfo, enumerable: false, writable: false, configurable: false })
+        Object.defineProperty(trigger, 'schedule', { value: schedule, enumerable: false, writable: false, configurable: false })
+        this.handler(trigger);
     }
 }

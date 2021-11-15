@@ -1,27 +1,29 @@
 {
-  "name": "@akala/cron",
-  "version": "0.3.3",
-  "main": "dist/index.js",
-  "author": "npenin",
-  "license": "BSD-3-Clause",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/npenin/akala.git"
-  },
-  "commands": "commands.json",
-  "homepage": "https://akala.js.org/cron",
-  "scripts": {
-    "generate": "ac generate dist/commands commands.json",
-    "generate-metadata": "ac generate-metadata commands.json src/container.ts"
-  },
-  "dependencies": {
-    "@akala/commands": "workspace:*",
-    "@akala/pubsub": "workspace:*",
-    "debug": "^4.3.1",
-    "suncalc": "^1.8.0"
-  },
-  "devDependencies": {
-    "@types/debug": "^4.1.6"
-  },
-  "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43"
+    "name": "@akala/cron",
+    "version": "0.3.3",
+    "main": "dist/index.js",
+    "author": "npenin",
+    "license": "BSD-3-Clause",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/npenin/akala.git"
+    },
+    "commands": "commands.json",
+    "homepage": "https://akala.js.org/cron",
+    "scripts": {
+        "generate": "ac generate dist/commands commands.json --name @akala/cron",
+        "generate-metadata": "ac generate-metadata commands.json src/container.ts",
+        "generate-pubsub": "ac generate dist/pubsub pubsub-commands.json --name cron-pubsub",
+        "generate-metadata-pubsub": "ac generate-metadata pubsub-commands.json src/pubsub-container.ts --name cron-pubsub"
+    },
+    "dependencies": {
+        "@akala/commands": "workspace:*",
+        "@akala/pubsub": "workspace:*",
+        "debug": "^4.3.1",
+        "suncalc": "^1.8.0"
+    },
+    "devDependencies": {
+        "@types/debug": "^4.1.6"
+    },
+    "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43"
 }

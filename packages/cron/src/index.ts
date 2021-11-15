@@ -27,9 +27,9 @@ export type DateRequest = {
     day?: number[],
     date?: number | 'last',
     month?: number,
-    lat: number,
-    lng: number,
-    tz: number
+    lat?: number,
+    lng?: number,
+    tz?: number
 };
 
 export default function getTarget(config: DateRequest, target?: Date): Date
@@ -123,16 +123,16 @@ export function parseCronSyntax(cron: string): DateRequest[]
     switch (cron)
     {
         case '@hourly':
-            return parseCronSyntax('0 * * * *');
+            return [{ minutes: 0 }]
         case '@daily':
-            return parseCronSyntax('0 0 * * *');
+            return [{ minutes: 0, hour: 0 }]
         case '@weekly':
-            return parseCronSyntax('0 0 * * 0');
+            return [{ minutes: 0, hour: 0, day: [0] }]
         case '@monthly':
-            return parseCronSyntax('0 0 1 * *');
+            return [{ minutes: 0, hour: 0, date: 1 }];
         case '@yearly':
         case '@annually':
-            return parseCronSyntax('0 0 1 1 *');
+            return [{ minutes: 0, hour: 0, date: 1, month: 1 }];
     }
 
     const cronRegexResult = cronRegex.exec(cron);
@@ -164,7 +164,7 @@ export function parseCronSyntax(cron: string): DateRequest[]
 export function parseCronPart(value: string, steps: number): number[] 
 {
     if (value == null || value === '*')
-        return new Array(steps).fill(0, 0, steps).map((v, i) => i)
+        return undefined;
     return value.split(',').map(value =>
     {
         const part = cronPartRegex.exec(value);
