@@ -1,4 +1,9 @@
-#  (2021-10-02)
+#  (2021-11-15)
+
+
+### Features
+
+* cron complete implementation 40ad48b
 
 
 
