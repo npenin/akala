@@ -11,6 +11,7 @@ import { spawnAsync } from './cli-helper';
 import State from './state';
 import program, { buildCliContextFromProcess, CliContext, NamespaceMiddleware, unparse } from '@akala/cli';
 import { InteractError, pm } from '.';
+import { Binding } from '@akala/core';
 
 const tableChars = {
     'top': '─'
@@ -145,7 +146,14 @@ cli.command(null).preAction(async c =>
             console.log(err.message);
             const value = await readLine();
             if (typeof err.as == 'string')
+            {
+                const indexOfDot = err.as.indexOf('.');
+                if (indexOfDot > 0)
+                {
+                    Binding.getSetter(args.options, err.as)(value);
+                }
                 args.options[err.as] = value;
+            }
             else
                 args.args.push(value);
             return await cli.process(args);
@@ -197,7 +205,7 @@ program.useError((err: Error, context) =>
 })
 program.process(buildCliContextFromProcess()).then(result =>
 {
-    if(result instanceof Readable)
+    if (result instanceof Readable)
     {
         result.pipe(process.stdout);
         return;
@@ -215,7 +223,7 @@ function formatResult(result: unknown, outputFormat: string)
 {
     if (typeof result == 'undefined')
         return;
-    if(result instanceof Readable)
+    if (result instanceof Readable)
     {
         return result;
     }
