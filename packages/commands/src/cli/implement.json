@@ -7,9 +7,21 @@
         ]
     },
     "cli": {
+        "usage": "implement <commands> <destination>",
         "inject": [
-            "param.0",
-            "param.1"
-        ]
+            "options.commands",
+            "options.destination",
+            "options"
+        ],
+        "options": {
+            "destination": {
+                "normalize": true
+            },
+            "force": {
+                "aliases": [
+                    "f"
+                ]
+            }
+        }
     }
 }

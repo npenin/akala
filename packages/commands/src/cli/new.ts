@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { promisify } from "util";
 import { CliContext, ErrorWithStatus } from "@akala/cli";
-import { Processors } from "..";
+import { Metadata, Processors } from "..";
 
 export async function outputHelper(outputFile: string | undefined, nameIfFolder: string, force: boolean)
 {
@@ -51,6 +51,16 @@ export async function write(output: Writable, content: string)
     })
 }
 
+export async function newCommandConfiguration(cmd: Metadata.Command, options: CliContext<{ force?: boolean }>['options'], destination?: string)
+{
+    var { output } = await outputHelper(path.resolve(destination), cmd.name + '.json', options && options.force);
+    if (cmd.config?.fs?.source)
+        delete cmd.config.fs.source;
+    if (cmd.config?.fs?.path)
+        delete cmd.config.fs.path;
+    await write(output, JSON.stringify({ $schema: "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json", ...cmd.config }, null, 4));
+}
+
 export default async function _new(type: string, name: string, options: CliContext<{ force?: boolean }>['options'], destination?: string)
 {
     switch (type)
@@ -70,10 +80,7 @@ export default async function _new(type: string, name: string, options: CliConte
             const cmd = cmds.find(c => c.name == name);
             if (!cmd)
                 throw new ErrorWithStatus(44, `No command with name ${name} could be found in ${destination}`)
-            var { output } = await outputHelper(path.resolve(destination, cmd?.config?.fs?.source && path.dirname(cmd?.config?.fs?.source)), name + '.json', options && options.force);
-            delete cmd.config.fs.source;
-            delete cmd.config.fs.path;
-            await write(output, JSON.stringify({ $schema: "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json", ...cmd.config }, null, 4));
+            await newCommandConfiguration(cmd, options, destination);
             break;
         default:
             throw new Error(`${type} is not supported`);

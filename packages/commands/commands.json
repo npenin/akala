@@ -1,21 +1,10 @@
 {
-    "name": "cli",
+    "name": "@akala/commands",
     "commands": [
         {
             "name": "add-script",
-            "inject": [
-                "param.0",
-                "param.1",
-                "param.2"
-            ],
+            "inject": [],
             "config": {
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ]
-                },
                 "fs": {
                     "path": "dist/cli/add-script.js",
                     "source": "src/cli/add-script.ts",
@@ -37,22 +26,16 @@
                             "needsValue": true
                         }
                     }
+                },
+                "": {
+                    "inject": []
                 }
             }
         },
         {
             "name": "generate-declaration",
-            "inject": [
-                "param.0",
-                "param.1"
-            ],
+            "inject": [],
             "config": {
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
                 "fs": {
                     "path": "dist/cli/generate-declaration.js",
                     "source": "src/cli/generate-declaration.ts",
@@ -67,6 +50,9 @@
                         "param.0",
                         "param.1"
                     ]
+                },
+                "": {
+                    "inject": []
                 }
             }
         },
@@ -74,9 +60,6 @@
             "name": "generate-metadata",
             "inject": [],
             "config": {
-                "": {
-                    "inject": []
-                },
                 "fs": {
                     "path": "dist/cli/generate-metadata.js",
                     "source": "src/cli/generate-metadata.ts",
@@ -95,27 +78,26 @@
                             "needsValue": true
                         }
                     }
+                },
+                "": {
+                    "inject": []
                 }
             }
         },
         {
             "name": "generate",
-            "inject": [
-                "param.0",
-                "param.1",
-                "param.2"
-            ],
+            "inject": [],
             "config": {
-                "": {
+                "fs": {
+                    "path": "dist/cli/generate.js",
+                    "source": "src/cli/generate.ts",
                     "inject": [
                         "param.0",
                         "param.1",
                         "param.2"
                     ]
                 },
-                "fs": {
-                    "path": "dist/cli/generate.js",
-                    "source": "src/cli/generate.ts",
+                "": {
                     "inject": [
                         "param.0",
                         "param.1",
@@ -138,17 +120,8 @@
         },
         {
             "name": "implement",
-            "inject": [
-                "param.0",
-                "param.1"
-            ],
+            "inject": [],
             "config": {
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
                 "fs": {
                     "path": "dist/cli/implement.js",
                     "source": "src/cli/implement.ts",
@@ -157,11 +130,29 @@
                         "param.1"
                     ]
                 },
-                "cli": {
+                "": {
                     "inject": [
                         "param.0",
                         "param.1"
                     ]
+                },
+                "cli": {
+                    "usage": "implement <commands> <destination>",
+                    "inject": [
+                        "options.commands",
+                        "options.destination",
+                        "options"
+                    ],
+                    "options": {
+                        "destination": {
+                            "normalize": true
+                        },
+                        "force": {
+                            "aliases": [
+                                "f"
+                            ]
+                        }
+                    }
                 }
             }
         },
@@ -169,9 +160,6 @@
             "name": "new",
             "inject": [],
             "config": {
-                "": {
-                    "inject": []
-                },
                 "fs": {
                     "path": "dist/cli/new.js",
                     "source": "src/cli/new.ts",
@@ -192,24 +180,16 @@
                         "options",
                         "options.destination"
                     ]
+                },
+                "": {
+                    "inject": []
                 }
             }
         },
         {
             "name": "register",
-            "inject": [
-                "param.0",
-                "param.1",
-                "param.2"
-            ],
+            "inject": [],
             "config": {
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ]
-                },
                 "fs": {
                     "path": "dist/cli/register.js",
                     "source": "src/cli/register.ts",
@@ -218,6 +198,9 @@
                         "param.1",
                         "param.2"
                     ]
+                },
+                "": {
+                    "inject": []
                 }
             }
         },
@@ -225,9 +208,6 @@
             "name": "serve",
             "inject": [],
             "config": {
-                "": {
-                    "inject": []
-                },
                 "fs": {
                     "path": "dist/cli/serve.js",
                     "source": "src/cli/serve.ts",
@@ -238,6 +218,9 @@
                         "$container",
                         "options"
                     ]
+                },
+                "": {
+                    "inject": []
                 }
             }
         }

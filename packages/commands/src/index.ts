@@ -20,6 +20,7 @@ export { NetSocketAdapter, default as serve, ServeOptions } from './cli/serve'
 export { serveMetadata, ServeMetadata, connectByPreference, connectWith, ConnectionPreference };
 import commands from './commands'
 import $metadata from './commands/$metadata'
+export { CommandProcessor };
 export class Cli
 {
     public readonly program: NamespaceMiddleware<{ [key: string]: string | number | boolean | string[]; }>;
