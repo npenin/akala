@@ -1,4 +1,4 @@
-#  (2021-10-02)
+#  (2021-11-15)
 
 
 ### Bug Fixes
@@ -79,9 +79,12 @@
 * added winston as a logger system 065bae0
 * cli now supports stream results 155e7ba
 * container can now act as middlewares 9484e39
+* cron complete implementation 40ad48b
 * enforce logger on buildCliContext dd636e1
 * errors like are now true errors 954d0a8
 * first pubsub commit 78b31e1
+* improved implement command 8a98c02
+* InteractError now using Binding for more possible usecases d9da85f
 * leverage suncalc c674f46
 * moved to middleware approach 69d4ba5
 * support for triggers 624ae86
