@@ -21,9 +21,9 @@ import winston, { createLogger } from 'winston';
     logger.add(new winston.transports.Console({ format: winston.format.simple() }));
     logger['rejections'].handle(new winston.transports.Console({ format: winston.format.simple() }));
 
-    const program = cli.option<string>('loader', { needsValue: true, normalize: true }).
-        option<string>('runner', { needsValue: true, normalize: true }).
-        option<string>('file', { needsValue: true, normalize: true }).
+    const program = cli.option<string>('loader', { needsValue: true, normalize: 'requireMeta' }).
+        option<string>('runner', { needsValue: true, normalize: 'require' }).
+        option<string>('file', { needsValue: true, normalize: 'require' }).
         option<string>('verbose', { aliases: ['v'] })
     program.action(async context =>
     {
