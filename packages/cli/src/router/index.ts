@@ -27,7 +27,7 @@ export interface OptionOptions
     aliases?: string[],
     needsValue?: boolean,
     caseSensitive?: boolean,
-    normalize?: boolean | 'require';
+    normalize?: boolean | 'require' | 'requireMeta';
 }
 
 class OptionMiddleware implements akala.Middleware<[context: CliContext]>
@@ -110,10 +110,32 @@ class OptionMiddleware implements akala.Middleware<[context: CliContext]>
                     if (value)
                         if (this.options?.normalize)
                         {
-                            if (this.options.normalize == 'require')
-                                context.options[this.name] = createRequire(path.resolve(context.currentWorkingDirectory)).resolve(value.toString());
-                            else
-                                context.options[this.name] = path.resolve(context.currentWorkingDirectory, value.toString());
+                            switch (this.options.normalize)
+                            {
+                                case 'require':
+                                    try
+                                    {
+                                        context.options[this.name] = createRequire(path.resolve(context.currentWorkingDirectory) + '/').resolve(value.toString());
+                                    }
+                                    catch (e)
+                                    {
+                                        return e;
+                                    }
+                                    break;
+                                case 'requireMeta':
+                                    try
+                                    {
+                                        context.options[this.name] = createRequire(path.resolve(context.currentWorkingDirectory) + '/').resolve(value.toString() + '/package.json');
+                                    }
+                                    catch (e)
+                                    {
+                                        return e;
+                                    }
+                                    break;
+                                default:
+                                case true:
+                                    context.options[this.name] = path.resolve(context.currentWorkingDirectory, value.toString());
+                            }
                         }
                         else
                             context.options[this.name] = value;

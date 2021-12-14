@@ -1,5 +1,6 @@
 import { CliContext } from "@akala/cli";
 import { Container, Processors } from "@akala/commands";
+import { isAbsolute, basename, resolve } from 'path'
 
 export default async function use(this: CliContext, self: Container<CliContext>, name: string, pathToCommands: string)
 {
@@ -7,8 +8,13 @@ export default async function use(this: CliContext, self: Container<CliContext>,
         var container = self;
     else
         var container = new Container(name, this);
-    if (pathToCommands.startsWith('./'))
-        await Processors.FileSystem.discoverCommands(pathToCommands, container);
+    if (pathToCommands.startsWith('./') || isAbsolute(pathToCommands))
+    {
+        if (basename(pathToCommands) == 'package.json')
+            await Processors.FileSystem.discoverCommands(pathToCommands.substring(0, pathToCommands.length - 'package.json'.length), container);
+        else
+            await Processors.FileSystem.discoverCommands(pathToCommands, container);
+    }
     else
         await Processors.FileSystem.discoverCommands(require.resolve(pathToCommands), container);
     if (self && name)
