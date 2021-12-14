@@ -1,4 +1,4 @@
-#  (2021-12-09)
+#  (2021-12-14)
 
 
 ### Bug Fixes
@@ -23,6 +23,7 @@
 * discover implementation 3502bed
 * error flow in composite middleware ec36174
 * export AggregateErrors f4285e2
+* fix automate runner ae9c216
 * fs discovery 0d34eea
 * fs middleware after discovery changes d97fcca
 * git push tags fc8e609
@@ -88,6 +89,7 @@
 * leverage suncalc c674f46
 * moved to middleware approach 69d4ba5
 * support for triggers 624ae86
+* support normalize require config af16029
 
 
 
