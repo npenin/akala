@@ -1,7 +1,7 @@
 import * as akala from '@akala/core'
 import * as path from 'path'
 import winston from 'winston';
-import { createRequire } from 'module'
+import normalize from '../helpers/normalize';
 
 export interface CliContext<TOptions extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>
 {
@@ -110,31 +110,13 @@ class OptionMiddleware implements akala.Middleware<[context: CliContext]>
                     if (value)
                         if (this.options?.normalize)
                         {
-                            switch (this.options.normalize)
+                            try
                             {
-                                case 'require':
-                                    try
-                                    {
-                                        context.options[this.name] = createRequire(path.resolve(context.currentWorkingDirectory) + '/').resolve(value.toString());
-                                    }
-                                    catch (e)
-                                    {
-                                        return e;
-                                    }
-                                    break;
-                                case 'requireMeta':
-                                    try
-                                    {
-                                        context.options[this.name] = createRequire(path.resolve(context.currentWorkingDirectory) + '/').resolve(value.toString() + '/package.json');
-                                    }
-                                    catch (e)
-                                    {
-                                        return e;
-                                    }
-                                    break;
-                                default:
-                                case true:
-                                    context.options[this.name] = path.resolve(context.currentWorkingDirectory, value.toString());
+                                context.options[this.name] = normalize(this.options.normalize, context.currentWorkingDirectory, value.toString())
+                            }
+                            catch (e)
+                            {
+                                return e;
                             }
                         }
                         else
