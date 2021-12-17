@@ -1,14 +1,9 @@
-#  (2021-12-14)
+#  (2021-12-17)
 
 
 ### Bug Fixes
 
-* fix automate runner ae9c216
-
-
-### Features
-
-* support normalize require config af16029
+* client compilation 4815fd5
 
 
 
