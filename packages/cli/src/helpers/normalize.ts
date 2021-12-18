@@ -8,7 +8,7 @@ export default function normalize(mode: 'require' | 'requireMeta' | true, curren
         case 'require':
             var values = value && value.split('/');
             if (value && (value[0] == '@' && values.length > 2))
-                return path.resolve(path.dirname(normalize('requireMeta', currentWorkingDirectory, values.slice(0, 1).join('/'))), './' + values.slice(2).join('/'))
+                return path.resolve(path.dirname(normalize('requireMeta', currentWorkingDirectory, values.slice(0, 2).join('/'))), './' + values.slice(2).join('/'))
             else if (value && (value[0] != '@' && values.length > 1))
                 return path.resolve(path.dirname(normalize('requireMeta', currentWorkingDirectory, values.shift())), './' + values.join('/'))
             return createRequire(path.resolve(currentWorkingDirectory) + '/').resolve(value);
