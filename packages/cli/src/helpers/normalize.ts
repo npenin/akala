@@ -6,11 +6,16 @@ export default function normalize(mode: 'require' | 'requireMeta' | true, curren
     switch (mode)
     {
         case 'require':
-            return createRequire(path.resolve(currentWorkingDirectory) + '/').resolve(value.toString());
+            var values = value && value.split('/');
+            if (value && (value[0] == '@' && values.length > 2))
+                return path.resolve(path.dirname(normalize('requireMeta', currentWorkingDirectory, values.slice(0, 1).join('/'))), './' + values.slice(2).join('/'))
+            else if (value && (value[0] != '@' && values.length > 1))
+                return path.resolve(path.dirname(normalize('requireMeta', currentWorkingDirectory, values.shift())), './' + values.join('/'))
+            return createRequire(path.resolve(currentWorkingDirectory) + '/').resolve(value);
         case 'requireMeta':
-            return createRequire(path.resolve(currentWorkingDirectory) + '/').resolve(value.toString() + '/package.json');
+            return createRequire(path.resolve(currentWorkingDirectory) + '/').resolve(value + '/package.json');
         default:
         case true:
-            return path.resolve(currentWorkingDirectory, value.toString());
+            return path.resolve(currentWorkingDirectory, value);
     }
 }
