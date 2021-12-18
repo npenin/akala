@@ -1,4 +1,4 @@
-#  (2021-12-17)
+#  (2021-12-18)
 
 
 ### Bug Fixes
@@ -44,6 +44,7 @@
 * metadata lookup on start da0c4d7
 * middleware copy/paste issue 69757ce
 * nested container processing 8997869
+* normalize path 58c9fcd
 * output name from inner semantic-releases script 52382c6
 * package build dependencies 3f14f37
 * package name tagging cd9de24
@@ -55,6 +56,7 @@
 * removed mock-require usage 448f5be
 * runnerMiddleware more type friendly 7bf1a25
 * spread is not considering non enumerable properties 394438a
+* support normalize files in modules 4a34d95
 * trigger signature 28e77a1
 * update command definition 85c2891
 * update to commands  major version 180608a
