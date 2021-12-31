@@ -1,4 +1,4 @@
-#  (2021-12-23)
+#  (2021-12-31)
 
 
 ### Bug Fixes
@@ -58,6 +58,7 @@
 * spread is not considering non enumerable properties 394438a
 * support normalize files in modules 4a34d95
 * trigger signature 28e77a1
+* update all commands 8f54036
 * update command definition 85c2891
 * update to commands  major version 180608a
 * update to commands major version 0631f6e
@@ -75,6 +76,7 @@
 
 ### Features
 
+* add $container to fs inject e766ea3
 * add ignore failure support f9929cf
 * add middleware with priority handling 461c1a4
 * add runnerMiddleware as export ff4c95a
