@@ -142,15 +142,15 @@ export class FileSystem extends CommandProcessor
                     {
                         log(`looking for fs default definition`)
                         params = [];
-                        if (cmd.inject && cmd.inject.length)
+                        if (cmd.config['']?.inject && cmd.config[''].inject.length)
                         {
                             log(cmd.inject);
-                            akala.each(cmd.inject, item =>
+                            akala.each(cmd.config[''].inject, item =>
                             {
-                                if (!item.startsWith('param.'))
-                                    params.push('ignore');
-                                else
+                                if (item.startsWith('param.') || item == '$container')
                                     params.push(item);
+                                else
+                                    params.push('ignore');
                             });
                             cmd.config.fs.inject = params;
                         }
