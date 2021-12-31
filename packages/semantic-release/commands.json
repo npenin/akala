@@ -2,75 +2,18 @@
     "name": "commands",
     "commands": [
         {
-            "name": "analyze",
-            "inject": [
-                "param.0"
-            ],
-            "config": {
-                "": {
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "fs": {
-                    "path": "dist/commands/analyze.js",
-                    "source": "src/commands/analyze.ts",
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "automate": {
-                    "inject": [
-                        "commits"
-                    ]
-                }
-            }
-        },
-        {
-            "name": "bump-dependents",
-            "inject": [
-                "param.0",
-                "param.1"
-            ],
-            "config": {
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "fs": {
-                    "path": "dist/commands/bump-dependents.js",
-                    "source": "src/commands/bump-dependents.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "automate": {
-                    "inject": [
-                        "workspaces",
-                        "rules"
-                    ]
-                }
-            }
-        },
-        {
             "name": "changelog",
-            "inject": [
-                "param.0",
-                "param.1"
-            ],
+            "inject": [],
             "config": {
-                "": {
+                "fs": {
                     "inject": [
                         "param.0",
                         "param.1"
-                    ]
-                },
-                "fs": {
+                    ],
                     "path": "dist/commands/changelog.js",
-                    "source": "src/commands/changelog.ts",
+                    "source": "src/commands/changelog.ts"
+                },
+                "": {
                     "inject": [
                         "param.0",
                         "param.1"
@@ -86,18 +29,16 @@
         },
         {
             "name": "eliminate-private",
-            "inject": [
-                "param.0"
-            ],
+            "inject": [],
             "config": {
-                "": {
+                "fs": {
                     "inject": [
                         "param.0"
-                    ]
-                },
-                "fs": {
+                    ],
                     "path": "dist/commands/eliminate-private.js",
-                    "source": "src/commands/eliminate-private.ts",
+                    "source": "src/commands/eliminate-private.ts"
+                },
+                "": {
                     "inject": [
                         "param.0"
                     ]
@@ -110,38 +51,43 @@
             }
         },
         {
-            "name": "get-version",
+            "name": "bump-dependents",
             "inject": [],
             "config": {
-                "": {
-                    "inject": []
-                },
                 "fs": {
-                    "path": "dist/commands/get-version.js",
-                    "source": "src/commands/get-version.ts",
-                    "inject": []
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/commands/bump-dependents.js",
+                    "source": "src/commands/bump-dependents.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
                 },
                 "automate": {
                     "inject": [
-                        "path"
+                        "workspaces",
+                        "rules"
                     ]
                 }
             }
         },
         {
-            "name": "parse",
-            "inject": [
-                "param.0"
-            ],
+            "name": "analyze",
+            "inject": [],
             "config": {
-                "": {
+                "fs": {
                     "inject": [
                         "param.0"
-                    ]
+                    ],
+                    "path": "dist/commands/analyze.js",
+                    "source": "src/commands/analyze.ts"
                 },
-                "fs": {
-                    "path": "dist/commands/parse.js",
-                    "source": "src/commands/parse.ts",
+                "": {
                     "inject": [
                         "param.0"
                     ]
@@ -154,21 +100,37 @@
             }
         },
         {
-            "name": "recommend-bump",
-            "inject": [
-                "param.0",
-                "param.1"
-            ],
+            "name": "get-version",
+            "inject": [],
             "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/commands/get-version.js",
+                    "source": "src/commands/get-version.ts"
+                },
                 "": {
+                    "inject": []
+                },
+                "automate": {
+                    "inject": [
+                        "path"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "recommend-bump",
+            "inject": [],
+            "config": {
+                "fs": {
                     "inject": [
                         "param.0",
                         "param.1"
-                    ]
-                },
-                "fs": {
+                    ],
                     "path": "dist/commands/recommend-bump.js",
-                    "source": "src/commands/recommend-bump.ts",
+                    "source": "src/commands/recommend-bump.ts"
+                },
+                "": {
                     "inject": [
                         "param.0",
                         "param.1"
@@ -178,6 +140,29 @@
                     "inject": [
                         "commits",
                         "rules"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "parse",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/commands/parse.js",
+                    "source": "src/commands/parse.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "automate": {
+                    "inject": [
+                        "commits"
                     ]
                 }
             }

@@ -34,6 +34,48 @@
             }
         },
         {
+            "name": "disable-schedule",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/disable-schedule.js",
+                    "source": "src/commands/disable-schedule.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "enable-schedule",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/enable-schedule.js",
+                    "source": "src/commands/enable-schedule.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
             "name": "enqueue",
             "inject": [],
             "config": {
@@ -47,25 +89,7 @@
                     ]
                 },
                 "": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "param.0",
-                        "context",
-                        "options.wait"
-                    ],
-                    "options": {
-                        "wait": {
-                            "aliases": [
-                                "w"
-                            ]
-                        }
-                    }
+                    "inject": []
                 }
             }
         },
@@ -169,6 +193,58 @@
                         "param.0",
                         "connectionAsContainer"
                     ]
+                }
+            }
+        },
+        {
+            "name": "start-schedule",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/start-schedule.js",
+                    "source": "src/commands/start-schedule.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "start",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/start.js",
+                    "source": "src/commands/start.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0",
+                        "context",
+                        "options.wait"
+                    ],
+                    "options": {
+                        "wait": {
+                            "aliases": [
+                                "w"
+                            ]
+                        }
+                    }
                 }
             }
         },
