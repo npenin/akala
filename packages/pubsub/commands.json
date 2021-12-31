@@ -2,52 +2,19 @@
     "name": "pubsub",
     "commands": [
         {
-            "name": "publish",
-            "inject": [
-                "param.0",
-                "param.1"
-            ],
-            "config": {
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "fs": {
-                    "path": "dist/commands/publish.js",
-                    "source": "src/commands/publish.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "jsonrpc": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                }
-            }
-        },
-        {
             "name": "subscribe",
-            "inject": [
-                "param.0",
-                "param.1",
-                "param.2"
-            ],
+            "inject": [],
             "config": {
-                "": {
+                "fs": {
+                    "path": "dist/commands/subscribe.js",
+                    "source": "src/commands/subscribe.ts",
                     "inject": [
                         "param.0",
                         "param.1",
                         "param.2"
                     ]
                 },
-                "fs": {
-                    "path": "dist/commands/subscribe.js",
-                    "source": "src/commands/subscribe.ts",
+                "": {
                     "inject": [
                         "param.0",
                         "param.1",
@@ -64,21 +31,44 @@
             }
         },
         {
-            "name": "unsubscribe",
-            "inject": [
-                "param.0",
-                "param.1"
-            ],
+            "name": "publish",
+            "inject": [],
             "config": {
+                "fs": {
+                    "path": "dist/commands/publish.js",
+                    "source": "src/commands/publish.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
                 "": {
                     "inject": [
                         "param.0",
                         "param.1"
                     ]
                 },
+                "jsonrpc": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "unsubscribe",
+            "inject": [],
+            "config": {
                 "fs": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ],
                     "path": "dist/commands/unsubscribe.js",
-                    "source": "src/commands/unsubscribe.ts",
+                    "source": "src/commands/unsubscribe.ts"
+                },
+                "": {
                     "inject": [
                         "param.0",
                         "param.1"

@@ -2,37 +2,6 @@
     "name": "@akala/commands",
     "commands": [
         {
-            "name": "add-script",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/cli/add-script.js",
-                    "source": "src/cli/add-script.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "options.name",
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ],
-                    "options": {
-                        "name": {
-                            "needsValue": true
-                        }
-                    }
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
             "name": "generate-declaration",
             "inject": [],
             "config": {
@@ -57,22 +26,25 @@
             }
         },
         {
-            "name": "generate-metadata",
+            "name": "add-script",
             "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist/cli/generate-metadata.js",
-                    "source": "src/cli/generate-metadata.ts",
-                    "inject": []
+                    "path": "dist/cli/add-script.js",
+                    "source": "src/cli/add-script.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
                 },
                 "cli": {
                     "inject": [
                         "options.name",
-                        "options.commandPath",
-                        "options.output",
-                        "options"
+                        "param.0",
+                        "param.1",
+                        "param.2"
                     ],
-                    "usage": "generate-metadata [commandPath] [output]",
                     "options": {
                         "name": {
                             "needsValue": true
@@ -115,6 +87,34 @@
                             "needsValue": true
                         }
                     }
+                }
+            }
+        },
+        {
+            "name": "generate-metadata",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/generate-metadata.js",
+                    "source": "src/cli/generate-metadata.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "inject": [
+                        "options.name",
+                        "options.commandPath",
+                        "options.output",
+                        "options"
+                    ],
+                    "usage": "generate-metadata [commandPath] [output]",
+                    "options": {
+                        "name": {
+                            "needsValue": true
+                        }
+                    }
+                },
+                "": {
+                    "inject": []
                 }
             }
         },

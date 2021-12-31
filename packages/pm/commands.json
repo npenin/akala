@@ -9,6 +9,7 @@
                     "path": "dist/commands/$init.js",
                     "source": "src/commands/$init.ts",
                     "inject": [
+                        "$container",
                         "param.0"
                     ]
                 },
@@ -142,7 +143,8 @@
                     "source": "src/commands/discover.ts",
                     "inject": [
                         "param.0",
-                        "param.1"
+                        "param.1",
+                        "$container"
                     ]
                 },
                 "": {
@@ -175,7 +177,8 @@
                     "path": "dist/commands/install.js",
                     "source": "src/commands/install.ts",
                     "inject": [
-                        "param.0"
+                        "param.0",
+                        "$container"
                     ]
                 },
                 "": {
@@ -187,34 +190,6 @@
                 "cli": {
                     "inject": [
                         "param.0",
-                        "$container"
-                    ]
-                }
-            }
-        },
-        {
-            "name": "link",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/link.js",
-                    "source": "src/commands/link.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "$container"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
                         "$container"
                     ]
                 }
@@ -239,6 +214,35 @@
                 "cli": {
                     "inject": [
                         "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "link",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/link.js",
+                    "source": "src/commands/link.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "$container"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "$container"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "$container"
                     ]
                 }
             }
@@ -315,7 +319,9 @@
                 "fs": {
                     "path": "dist/commands/ready.js",
                     "source": "src/commands/ready.ts",
-                    "inject": []
+                    "inject": [
+                        "ignore"
+                    ]
                 },
                 "": {
                     "inject": [
@@ -332,6 +338,7 @@
                     "path": "dist/commands/start.js",
                     "source": "src/commands/start.ts",
                     "inject": [
+                        "$container",
                         "param.0",
                         "param.1"
                     ]
@@ -393,7 +400,8 @@
                     "path": "dist/commands/stop.js",
                     "source": "src/commands/stop.ts",
                     "inject": [
-                        "param.0"
+                        "param.0",
+                        "$container"
                     ]
                 },
                 "": {
