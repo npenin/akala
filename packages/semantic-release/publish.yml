@@ -10,8 +10,10 @@ jobs:
           path: $($)
         outputAs: versions
         foreach: $(build.releases)
-      - name: log
-        log: $(build.versions)
+      - name: log versions
+        log:
+          - "%O"
+          - $(build.versions)
       - name: eliminate private packages
         dispatch: eliminate-private
         outputAs: publicPackages
