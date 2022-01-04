@@ -28,6 +28,15 @@ jobs:
         with:
           result: stdout
           format: string
+      - name: untagged commits
+        if: $(!build.commits)
+        outputAs: commits
+        run:
+          - git
+          - log
+          - --date=iso
+          - --
+          - $(package.location)
       - name: parse commits
         dispatch: parse
         with:
