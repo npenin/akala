@@ -1,4 +1,4 @@
-#  (2022-01-01)
+#  (2022-01-04)
 
 
 ### Bug Fixes
@@ -82,6 +82,7 @@
 * add runnerMiddleware as export ff4c95a
 * add support for jobs and schedules (as a SqlAgent) 11927b5
 * add support for shell script failure ignore 4b1dcc1
+* add support for untagged packages (yet) 6fbed9c
 * added winston as a logger system 065bae0
 * cli now supports stream results 155e7ba
 * container can now act as middlewares 9484e39
