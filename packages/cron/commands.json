@@ -2,24 +2,6 @@
     "name": "@akala/cron",
     "commands": [
         {
-            "name": "add-job",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/add-job.js",
-                    "source": "src/commands/add-job.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ]
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
             "name": "$init",
             "inject": [],
             "config": {
@@ -43,6 +25,24 @@
                     "inject": [
                         "param.0",
                         "param.1"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "add-job",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/add-job.js",
+                    "source": "src/commands/add-job.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
                     ]
                 },
                 "": {
@@ -96,6 +96,23 @@
             }
         },
         {
+            "name": "remove-job-schedule",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/remove-job-schedule.js",
+                    "source": "src/commands/remove-job-schedule.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
             "name": "wait",
             "inject": [],
             "config": {
@@ -119,23 +136,6 @@
                         "options.lng",
                         "options.tz"
                     ]
-                }
-            }
-        },
-        {
-            "name": "remove-job-schedule",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/remove-job-schedule.js",
-                    "source": "src/commands/remove-job-schedule.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "": {
-                    "inject": []
                 }
             }
         }

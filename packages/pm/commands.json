@@ -196,29 +196,6 @@
             }
         },
         {
-            "name": "log",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/log.js",
-                    "source": "src/commands/log.ts",
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "param.0"
-                    ]
-                }
-            }
-        },
-        {
             "name": "link",
             "inject": [],
             "config": {
@@ -243,6 +220,29 @@
                         "param.0",
                         "param.1",
                         "$container"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "log",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/log.js",
+                    "source": "src/commands/log.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0"
                     ]
                 }
             }
