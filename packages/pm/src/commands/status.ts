@@ -2,7 +2,7 @@ import State from '../state';
 
 export default function status(this: State, name?: string): { name: string, filter: string, running: boolean, folder: string }[]
 {
-    let processes = this.processes;
+    let processes = Object.values(this.processes);
     if (name)
         processes = processes.filter(p => p.name == name);
 

@@ -5,7 +5,7 @@ import { ServeMetadata } from "@akala/commands";
 
 export default interface State
 {
-    processes: RunningContainer[];
+    processes: { [key: string]: RunningContainer };
     isDaemon: boolean;
     config: {
         containers: { [key: string]: string[] }
