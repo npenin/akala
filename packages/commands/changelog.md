@@ -1,14 +1,9 @@
-#  (2021-12-31)
+#  (2022-01-29)
 
 
 ### Bug Fixes
 
-* update all commands 8f54036
-
-
-### Features
-
-* add $container to fs inject e766ea3
+* made connect and fork more reliable and resilient 6c0c24f
 
 
 
