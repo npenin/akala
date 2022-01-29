@@ -1,4 +1,4 @@
-#  (2022-01-04)
+#  (2022-01-29)
 
 
 ### Bug Fixes
@@ -39,6 +39,7 @@
 * log format 403e66b
 * log only enumerable props 3070ee3
 * logger as non enumerable property 43fdcba
+* made connect and fork more reliable and resilient 6c0c24f
 * mapAsync 64a258e
 * metadata lookup eaa12c1
 * metadata lookup on start da0c4d7
