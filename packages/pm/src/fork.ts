@@ -120,4 +120,8 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
     .useMiddleware(initMiddleware);
 
 if (require.main == module)
-    program.process(buildCliContextFromProcess());
+    program.process(buildCliContextFromProcess()).catch(e =>
+    {
+        console.error(e);
+        process.exit(1);
+    });

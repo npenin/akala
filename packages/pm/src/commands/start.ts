@@ -162,6 +162,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
         cp.on('exit', function ()
         {
             (container as RunningContainer).running = false;
+            pm.unregister(container.name);
         });
         if (options.options.wait && container.commandable)
             await container.ready;

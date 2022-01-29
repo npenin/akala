@@ -2,6 +2,55 @@
     "name": "commands",
     "commands": [
         {
+            "name": "analyze",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/commands/analyze.js",
+                    "source": "src/commands/analyze.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "automate": {
+                    "inject": [
+                        "commits"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "bump-dependents",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/commands/bump-dependents.js",
+                    "source": "src/commands/bump-dependents.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "automate": {
+                    "inject": [
+                        "workspaces",
+                        "rules"
+                    ]
+                }
+            }
+        },
+        {
             "name": "changelog",
             "inject": [],
             "config": {
@@ -51,55 +100,6 @@
             }
         },
         {
-            "name": "bump-dependents",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ],
-                    "path": "dist/commands/bump-dependents.js",
-                    "source": "src/commands/bump-dependents.ts"
-                },
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "automate": {
-                    "inject": [
-                        "workspaces",
-                        "rules"
-                    ]
-                }
-            }
-        },
-        {
-            "name": "analyze",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "inject": [
-                        "param.0"
-                    ],
-                    "path": "dist/commands/analyze.js",
-                    "source": "src/commands/analyze.ts"
-                },
-                "": {
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "automate": {
-                    "inject": [
-                        "commits"
-                    ]
-                }
-            }
-        },
-        {
             "name": "get-version",
             "inject": [],
             "config": {
@@ -114,6 +114,29 @@
                 "automate": {
                     "inject": [
                         "path"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "parse",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/commands/parse.js",
+                    "source": "src/commands/parse.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "automate": {
+                    "inject": [
+                        "commits"
                     ]
                 }
             }
@@ -140,29 +163,6 @@
                     "inject": [
                         "commits",
                         "rules"
-                    ]
-                }
-            }
-        },
-        {
-            "name": "parse",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "inject": [
-                        "param.0"
-                    ],
-                    "path": "dist/commands/parse.js",
-                    "source": "src/commands/parse.ts"
-                },
-                "": {
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "automate": {
-                    "inject": [
-                        "commits"
                     ]
                 }
             }

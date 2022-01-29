@@ -126,44 +126,53 @@ export default async function <T = void>(container: Container<T>, options: Serve
 {
     console.log(options);
     const stops: (() => Promise<void>)[] = [];
+    var failed: Error = null;
 
     if (options.socket)
     {
         for (var socketPath of options.socket)
         {
-            const server = new Server((socket) =>
+            try
             {
-                socket.setDefaultEncoding('utf8');
-                container.attach('jsonrpc', new NetSocketAdapter(socket));
-            });
-
-            await new Promise<void>((resolve, reject) =>
-            {
-                server.once('error', reject);
-                server.listen(socketPath, resolve);
-            });
-            console.log(`listening on ${JSON.stringify(socketPath)}`);
-
-            stops.push(() =>
-            {
-                return new Promise((resolve, reject) =>
+                const server = new Server((socket) =>
                 {
-                    server.close(function (err)
-                    {
-                        if (err)
-                            reject(err);
-                        else
-                            if (socketPath['path'])
-                                unlink(socketPath['path'], function (err)
-                                {
-                                    if (err)
-                                        reject(err);
-                                    else
-                                        resolve();
-                                });
-                    })
+                    socket.setDefaultEncoding('utf8');
+                    container.attach('jsonrpc', new NetSocketAdapter(socket));
                 });
-            });
+
+                await new Promise<void>((resolve, reject) =>
+                {
+                    server.once('error', reject);
+                    server.listen(socketPath, resolve);
+                });
+                console.log(`listening on ${JSON.stringify(socketPath)}`);
+
+                stops.push(() =>
+                {
+                    return new Promise((resolve, reject) =>
+                    {
+                        server.close(function (err)
+                        {
+                            if (err)
+                                reject(err);
+                            else
+                                if (socketPath['path'])
+                                    unlink(socketPath['path'], function (err)
+                                    {
+                                        if (err && err.code !== 'ENOENT')
+                                            reject(err);
+                                        else
+                                            resolve();
+                                    });
+                        })
+                    });
+                });
+            }
+            catch (e)
+            {
+                console.error(e);
+                failed = e;
+            }
         }
     }
 
@@ -213,28 +222,48 @@ export default async function <T = void>(container: Container<T>, options: Serve
                 container.attach('jsonrpc', new jsonrpcws.ws.SocketAdapter(socket));
             })
         }
-        server.listen(port);
-        console.log(message + '0.0.0.0:' + port);
-
-        stops.push(() =>
+        try
         {
-            return new Promise<void>((resolve, reject) =>
+            await new Promise<void>((resolve, reject) =>
             {
-                server.close(function (err)
+                server.once('error', reject);
+                server.listen(port, resolve);
+            });
+
+            console.log(message + '0.0.0.0:' + port);
+
+            stops.push(() =>
+            {
+                return new Promise<void>((resolve, reject) =>
                 {
-                    if (err)
-                        reject(err);
-                    else
-                        resolve();
+                    server.close(function (err)
+                    {
+                        if (err)
+                            reject(err);
+                        else
+                            resolve();
+                    })
                 })
             })
-        })
+        }
+        catch (e)
+        {
+            console.error(e);
+            failed = e;
+        }
     }
 
+    if (failed)
+    {
+        console.log(failed);
+        console.log('exiting...');
+        await Promise.all(stops.map(i => i()));
+        throw failed;
+    }
+    else
+        console.log('server listening');
 
-    console.log('server listening');
-
-    return function ()
+    return function stop()
     {
         return Promise.all(stops.map(i => i()));
     }
