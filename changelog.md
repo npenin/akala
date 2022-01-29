@@ -58,6 +58,7 @@
 * runnerMiddleware more type friendly 7bf1a25
 * spread is not considering non enumerable properties 394438a
 * support normalize files in modules 4a34d95
+* switch processes state to object 5aa41a4
 * trigger signature 28e77a1
 * update all commands 8f54036
 * update command definition 85c2891
