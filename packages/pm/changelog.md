@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* made connect and fork more reliable and resilient 6c0c24f
+* switch processes state to object 5aa41a4
 
 
 
