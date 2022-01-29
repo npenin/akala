@@ -1,9 +1,9 @@
-#  (2021-12-31)
+#  (2022-01-29)
 
 
 ### Bug Fixes
 
-* update all commands 8f54036
+* made connect and fork more reliable and resilient 6c0c24f
 
 
 
