@@ -1,9 +1,9 @@
-#  (2022-01-04)
+#  (2022-01-29)
 
 
-### Features
+### Bug Fixes
 
-* add support for untagged packages (yet) 6fbed9c
+* made connect and fork more reliable and resilient 6c0c24f
 
 
 
