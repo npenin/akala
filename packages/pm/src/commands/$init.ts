@@ -43,33 +43,35 @@ export function isRunningContainer(c: Container<any>): c is RunningContainer
 export default async function (this: State, container: RunningContainer & pmContainer.container, options: ServeOptions): Promise<void>
 {
     this.isDaemon = true;
-    this.processes = [];
-    const stderr=process.stderr.write;
-    const stderrPT=new PassThrough();
-    process.stderr.write=function(...args)
+    this.processes = {};
+    const stderr = process.stderr.write;
+    const stderrPT = new PassThrough();
+    process.stderr.write = function (...args)
     {
         stderr.call(process.stderr, ...args);
         return stderrPT.write(...args as [any, BufferEncoding]);
     } as any;
-    
-    const stdout=process.stdout.write;
-    const stdoutPT=new PassThrough();
-    process.stdout.write=function(...args)
+
+    const stdout = process.stdout.write;
+    const stdoutPT = new PassThrough();
+    process.stdout.write = function (...args)
     {
         stdout.call(process.stdout, ...args);
         return stdoutPT.write(...args as [any, BufferEncoding]);
     } as any;
-    container.process= Object.assign(new EventEmitter(), {stdout:stdoutPT, stderr:stderrPT, stdio:null, stdin:process.stdin,pid:process.pid, connected:false
-        ,exitCode:undefined
-        ,signalCode:undefined
-        ,spawnargs:process.argv
-        ,spawnfile: null
-        ,kill:process.exit.bind(process)
-        ,send:null
-        ,disconnect:null
-        ,unref:null
-        ,ref:null
-        ,killed:false });
+    container.process = Object.assign(new EventEmitter(), {
+        stdout: stdoutPT, stderr: stderrPT, stdio: null, stdin: process.stdin, pid: process.pid, connected: false
+        , exitCode: undefined
+        , signalCode: undefined
+        , spawnargs: process.argv
+        , spawnfile: null
+        , kill: process.exit.bind(process)
+        , send: null
+        , disconnect: null
+        , unref: null
+        , ref: null
+        , killed: false
+    });
 
     const configPath = join(homedir(), './.pm.config.json');
     try
@@ -115,7 +117,7 @@ export default async function (this: State, container: RunningContainer & pmCont
     container.register(configure(config)(new SelfDefinedCommand(metadata, '$metadata', ['$container', 'param.0'])));
 
 
-    this.processes.push(container);
+    this.processes[container.name] = container;
     container.running = true;
 
     try

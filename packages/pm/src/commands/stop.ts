@@ -3,7 +3,7 @@ import State from '../state';
 
 export default async function stop(this: State, name: string, container: Container<State>): Promise<void>
 {
-    await Promise.all(this.processes.filter(p => name == 'pm' || !name || p.name == name && p.process).map(cp =>
+    await Promise.all(Object.values(this.processes).filter(p => name == 'pm' || !name || p.name == name && p.process).map(cp =>
     {
         return new Promise<unknown>((resolve) =>
         {
@@ -27,9 +27,7 @@ export default async function stop(this: State, name: string, container: Contain
                 cp.process.on('exit', (_code, signal) =>
                 {
                     container.unregister(cp.name);
-                    const indexOfContainer = this.processes.indexOf(cp);
-                    if (indexOfContainer > -1)
-                        this.processes.splice(indexOfContainer, 1);
+                    delete this.processes[cp.name];
                     clearTimeout(timeout);
                     resolve(signal);
                 })

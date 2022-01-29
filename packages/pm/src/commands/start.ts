@@ -22,7 +22,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
     if (this.isDaemon)
     {
         // eslint-disable-next-line no-var
-        var container = this.processes.find(c => c.name == options.options.name);
+        var container = this.processes[options.options.name];
         if (container && container.running)
             throw new Error(container.name + ' is already started');
         args = await pm.dispatch('config', name) as string[];
@@ -129,14 +129,14 @@ export default async function start(this: State, pm: pmContainer.container & Con
             }), true);
 
             if (container)
-                this.processes.splice(this.processes.indexOf(container), 1, container = new Container(options.options.name, null, processor) as RunningContainer);
+                container = new Container(options.options.name, null, processor) as RunningContainer;
             else
                 container = new Container(options.options.name, null, processor) as RunningContainer;
 
             if (this.config.mapping[name]?.commandable)
                 pm.register(container);
 
-            this.processes.push(container);
+            this.processes[options.options.name] = container;
         }
         container.process = cp;
         container.path = name;
