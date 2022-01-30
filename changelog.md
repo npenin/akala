@@ -25,6 +25,7 @@
 * discover cli usage 697946b
 * discover implementation 3502bed
 * error flow in composite middleware ec36174
+* error serialization b3156ad
 * export AggregateErrors f4285e2
 * fix automate runner ae9c216
 * fs discovery 0d34eea
