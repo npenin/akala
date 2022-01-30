@@ -9,6 +9,7 @@
 * artificial bump 60cc1c1
 * automate implementation f76a995
 * avoids workflow leaks in context db4662a
+* better support for non-mapped sidecars ec502f8
 * bindings are less intrusive 3ef2783
 * bump dependent 5e89235
 * bump dependents proper references f734b61
