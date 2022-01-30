@@ -230,7 +230,7 @@ export abstract class Connection<TStreamable>
         if (typeof payload.error == 'object' && payload.error && 'stack' in payload.error && 'message' in payload.error)
         {
             const error = new Error();
-            payload.error = Object.assign(error, payload.error);
+            payload.error = Object.assign(error, { stack: error.stack, message: error.message, name: error.name }, payload.error);
         }
         const error = payload.error;
 
