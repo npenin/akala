@@ -87,7 +87,11 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
                         await new Promise<void>((resolve, reject) =>
                         {
                             pmSocket.on('error', reject)
-                            pmSocket.connect(c.options.pmSocket, resolve);
+                            var portNumber = parseInt(c.options.pmSocket);
+                            if (isNaN(portNumber))
+                                pmSocket.connect(c.options.pmSocket, resolve);
+                            else
+                                pmSocket.connect(portNumber, resolve);
                         })
                         pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new ac.NetSocketAdapter(pmSocket), cliContainer), true));
                     }
