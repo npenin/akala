@@ -109,8 +109,18 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
                 if (init)
                     await cliContainer.dispatch(init, { options: c.options, param: c.args, _trigger: 'cli', pm: pm, context: c });
 
-                const serveArgs: ac.ServeMetadata = await pm.dispatch('connect', c.options.name);
-                const stop = await cliContainer.dispatch('$serve', serveArgs) as (...args: unknown[]) => void;
+                let stop: (...args: unknown[]) => Promise<void>;
+                try
+                {
+                    const serveArgs: ac.ServeMetadata = await pm.dispatch('connect', c.options.name);
+                    stop = await cliContainer.dispatch('$serve', serveArgs) as (...args: unknown[]) => Promise<void>;
+                }
+                catch (e)
+                {
+                    if (!e || e.statusCode !== 404)
+                        throw e;
+                    console.warn(e.message);
+                }
 
                 if (pm !== cliContainer)
                     await pm.dispatch('ready')
