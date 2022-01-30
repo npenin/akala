@@ -3,12 +3,7 @@
 
 ### Bug Fixes
 
-* allow for any property on errors a529558
-
-
-### Features
-
-* support for commands through pm 3954c8a
+* honoring preferRemote 6fa76bc
 
 
 
