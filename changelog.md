@@ -1,4 +1,4 @@
-#  (2022-01-29)
+#  (2022-01-30)
 
 
 ### Bug Fixes
@@ -30,6 +30,7 @@
 * git push tags fc8e609
 * improve get-version 2f156a3
 * improve performance of metadata lookup 81cf56a
+* improve remote sidecars defaults eef7b24
 * improved logging support 8c81e18
 * improves command detection ff43e85
 * inject usage after move to full meta cmd 2cbda96
