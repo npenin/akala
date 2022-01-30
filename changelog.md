@@ -55,6 +55,7 @@
 * proper parameter binding for bump-dependents 7459c86
 * push before tagging d980dd0
 * regex exec is not iterable ca695eb
+* remote container command registration f3b0728
 * remote pm proxy 633b1b5
 * remove duplicate foreach in publish 09d9fe5
 * removed mock-require usage 99587ba
