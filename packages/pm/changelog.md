@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* remote container command registration f3b0728
+* better support for non-mapped sidecars ec502f8
 
 
 
