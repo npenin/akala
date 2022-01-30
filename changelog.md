@@ -5,6 +5,7 @@
 
 * adapt to trigger new definition 8c2d136
 * add missing package required property ba0c9df
+* allow for any property on errors a529558
 * artificial bump 60cc1c1
 * automate implementation f76a995
 * avoids workflow leaks in context db4662a
@@ -97,6 +98,7 @@
 * InteractError now using Binding for more possible usecases d9da85f
 * leverage suncalc c674f46
 * moved to middleware approach 69d4ba5
+* support for commands through pm 3954c8a
 * support for triggers 624ae86
 * support normalize require config af16029
 
