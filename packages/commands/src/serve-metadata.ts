@@ -12,6 +12,7 @@ import * as Metadata from './metadata/index';
 import { Container } from './model/container';
 import { CommonConnectionOptions, connect as tlsconnect, SecureContextOptions, TLSSocket } from 'tls'
 import * as jsonrpc from '@akala/json-rpc-ws';
+import { ErrorWithStatus } from '@akala/cli';
 
 type TlsConnectOpts = NetConnectOpts & SecureContextOptions & CommonConnectionOptions;
 
@@ -58,7 +59,7 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
     {
         const preferredIndex = orderedOptions.findIndex(options => options);
         if (preferredIndex === -1)
-            throw new Error('no matching connection preference was found');
+            throw new ErrorWithStatus(404, 'no matching connection preference was found');
 
         try
         {

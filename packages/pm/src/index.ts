@@ -73,8 +73,26 @@ export function sidecar(options?: Omit<ConnectionPreference, 'metadata'> | SideC
                 Object.defineProperty(target, property, {
                     value: connect(property).then(async meta => 
                     {
-                        const c = await connectByPreference(meta.connect, Object.assign({ metadata: meta.container }, options, options && options[property]), ...orders);
-                        return c.container;
+                        try
+                        {
+                            const c = await connectByPreference(meta.connect, Object.assign({ metadata: meta.container }, options, options && options[property]), ...orders);
+                            return c.container;
+                        }
+                        catch (e)
+                        {
+                            if (e && e.statusCode == 404)
+                            {
+                                var c = new Container(meta.container.name, null);
+                                c.processor.useMiddleware(1, {
+                                    handle(origin, cmd, param)
+                                    {
+                                        if (cmd.name.startsWith(meta.container.name + '.'))
+                                            throw undefined;
+                                        return c.processor.handle(origin, Object.assign({}, cmd, { name: meta.container.name + '.' + cmd.name }), param);
+                                    }
+                                });
+                            }
+                        }
                     })
                 });
             return target[property];
