@@ -1,9 +1,9 @@
-#  (2022-01-29)
+#  (2022-01-30)
 
 
 ### Bug Fixes
 
-* switch processes state to object 5aa41a4
+* improve remote sidecars defaults eef7b24
 
 
 
