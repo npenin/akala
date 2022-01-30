@@ -1,9 +1,14 @@
-#  (2022-01-29)
+#  (2022-01-30)
 
 
 ### Bug Fixes
 
-* made connect and fork more reliable and resilient 6c0c24f
+* allow for any property on errors a529558
+
+
+### Features
+
+* support for commands through pm 3954c8a
 
 
 
