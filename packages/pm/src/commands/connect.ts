@@ -1,3 +1,4 @@
+import { ErrorWithStatus } from "@akala/cli";
 import { ServeMetadata, ServeOptions } from "@akala/commands";
 import { serveMetadata } from "@akala/commands";
 import State from '../state';
@@ -19,7 +20,7 @@ export default async function connect(this: State, name: string, options?: Serve
     else
     {
         if (!mapping)
-            throw new Error(`Mapping ${name} could not be found`);
+            throw new ErrorWithStatus(404, `Mapping ${name} could not be found`);
         return mapping.connect;
     }
     await this.config.save()
