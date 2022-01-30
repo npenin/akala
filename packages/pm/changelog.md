@@ -1,9 +1,9 @@
 #  (2022-01-30)
 
 
-### Bug Fixes
+### Features
 
-* improve remote sidecars defaults eef7b24
+* support for commands through pm 3954c8a
 
 
 
