@@ -29,6 +29,7 @@
 * fs discovery 0d34eea
 * fs middleware after discovery changes d97fcca
 * git push tags fc8e609
+* honoring preferRemote 6fa76bc
 * improve get-version 2f156a3
 * improve performance of metadata lookup 81cf56a
 * improve remote sidecars defaults eef7b24
