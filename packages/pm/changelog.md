@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* remote pm proxy 633b1b5
+* remote container command registration f3b0728
 
 
 
