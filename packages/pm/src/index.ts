@@ -65,7 +65,10 @@ export function sidecar(options?: Omit<ConnectionPreference, 'metadata'> | SideC
                 return Reflect.get(target, property);
 
             const orders = options && options[property] && options[property].orders || defaultOrders;
-
+            if (!options)
+                options = {};
+            if (typeof options.preferRemote == 'undefined')
+                options.preferRemote = !process.connected;
             if (noCache || typeof (target[property]) == 'undefined')
                 Object.defineProperty(target, property, {
                     value: connect(property).then(async meta => 
