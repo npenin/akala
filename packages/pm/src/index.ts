@@ -91,7 +91,9 @@ export function sidecar(options?: Omit<ConnectionPreference, 'metadata'> | SideC
                                         return c.processor.handle(origin, Object.assign({}, cmd, { name: meta.container.name + '.' + cmd.name }), param);
                                     }
                                 });
+                                return c;
                             }
+                            throw e;
                         }
                     })
                 });
