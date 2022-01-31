@@ -125,6 +125,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
                 , disconnected()
                 {
                     console.warn(`${options.options.name} has disconnected`);
+                    container.running = null;
                 }
             }), true);
 
