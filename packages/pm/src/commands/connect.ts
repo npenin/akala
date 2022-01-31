@@ -12,9 +12,9 @@ export default async function connect(this: State, name: string, options?: Serve
         mapping = Object.values(this.config.mapping).find(m => m.path === name);
     if (!mapping)
         mapping = this.processes[name];
-    console.log(name);
-    console.log(mapping);
-    console.log(options);
+    // console.log(name);
+    // console.log(mapping);
+    // console.log(options);
     if (options && options.args.length > 0)
         mapping.connect = serveMetadata(name, options);
     else
