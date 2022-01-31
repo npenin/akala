@@ -59,6 +59,7 @@
 * regex exec is not iterable ca695eb
 * remote container command registration f3b0728
 * remote pm proxy 633b1b5
+* remote ready failing dcc0fc1
 * remove duplicate foreach in publish 09d9fe5
 * removed mock-require usage 99587ba
 * removed mock-require usage 448f5be
