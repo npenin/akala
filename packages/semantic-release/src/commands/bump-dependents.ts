@@ -22,7 +22,7 @@ export default function (workspaces: Workspace[], rules?: { [key: string]: strin
                 if (translatedRules[translatedVersions[c]] < previous)
                     return translatedRules[translatedVersions[c]];
                 return previous;
-            }, translatedVersions[w.location]));
+            }, translatedVersions[w.location])) || translatedVersions[w.location];
             if (newVersion < translatedVersions[w.location])
             {
                 hasChange = true;
