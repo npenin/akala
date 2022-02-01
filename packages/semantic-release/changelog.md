@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* support for no workspace dependencies 0703731
+* update workspace parameter binding 6b6b07b
 
 
 
