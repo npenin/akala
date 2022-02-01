@@ -15,7 +15,7 @@ export default function (workspaces: Workspace[], rules?: { [key: string]: strin
         var hasChange = false;
         workspaces.forEach(w =>
         {
-            var newVersion: Levels = (w.workspaceDependencies.reduce((previous: Levels, c) =>
+            var newVersion: Levels = (w.workspaceDependencies && w.workspaceDependencies.reduce((previous: Levels, c) =>
             {
                 console.log(`${c} is ${translatedVersions[c]} and ${w.name} is ${previous}`);
 
