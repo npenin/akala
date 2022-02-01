@@ -5,6 +5,7 @@
 
 * adapt to trigger new definition 8c2d136
 * add missing package required property ba0c9df
+* added missing yaml dependency fa66dd1
 * allow for any property on errors a529558
 * artificial bump 60cc1c1
 * automate implementation f76a995
