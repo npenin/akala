@@ -258,7 +258,7 @@ export class FileSystem extends CommandProcessor
         }
         catch (e)
         {
-            if (e && e.code == 'MODULE_NOT_FOUND')
+            if (e && e.code == 'MODULE_NOT_FOUND' && e.requireStack.indexOf(filepath) == -1)
                 return undefined;
             return e;
         }
