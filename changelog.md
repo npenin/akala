@@ -80,6 +80,7 @@
 * update to commands major version 0631f6e
 * update to new commands major version 5e0bed5
 * update to ws 8.0 ce769f9
+* update workspace parameter binding 6b6b07b
 * variable renaming f825597
 * workflow output 3fca50e
 * workflow runner 220953a
