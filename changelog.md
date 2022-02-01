@@ -55,6 +55,7 @@
 * output name from inner semantic-releases script 52382c6
 * package build dependencies 3f14f37
 * package name tagging cd9de24
+* path to command metadata 4fc8111
 * proper parameter binding for bump-dependents 7459c86
 * push before tagging d980dd0
 * regex exec is not iterable ca695eb
