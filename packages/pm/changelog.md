@@ -1,13 +1,4 @@
-<<<<<<< HEAD
 #  (2022-02-01)
-=======
-#  (2022-01-31)
->>>>>>> 1177bc2b94f0ce7ee3e60e89f03d93855b1238df
-
-
-### Bug Fixes
-
-* health check reliability 98df0c9
 
 
 

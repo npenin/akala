@@ -31,6 +31,7 @@
 * fix automate runner ae9c216
 * fs discovery 0d34eea
 * fs middleware after discovery changes d97fcca
+* fs processor too catchy ccafa48
 * git push tags fc8e609
 * health check reliability 98df0c9
 * honoring preferRemote 6fa76bc
