@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* support for no workspace dependencies 9210550
+* support for no workspace dependencies 0703731
 
 
 
