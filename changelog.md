@@ -69,6 +69,7 @@
 * removed mock-require usage 448f5be
 * runnerMiddleware more type friendly 7bf1a25
 * spread is not considering non enumerable properties 394438a
+* support for no workspace dependencies 0703731
 * support for no workspace dependencies 9210550
 * support normalize files in modules 4a34d95
 * switch processes state to object 5aa41a4
