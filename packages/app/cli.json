@@ -1,0 +1,39 @@
+{
+    "name": "cli",
+    "commands": [
+        {
+            "name": "start",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/cli/start.js",
+                    "source": "src/cli/start.ts"
+                },
+                "cli": {
+                    "usage": "start [config] [remote]",
+                    "inject": [
+                        "options.config"
+                    ],
+                    "options": {
+                        "config": {
+                            "aliases": [
+                                "c"
+                            ],
+                            "normalize": true,
+                            "needsValue": true
+                        }
+                    }
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+}
