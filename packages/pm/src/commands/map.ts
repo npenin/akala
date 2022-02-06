@@ -5,7 +5,7 @@ export default async function map<TName extends string>(this: State, name: TName
 {
     if (!isAbsolute(targetPath))
         targetPath = resolve(cwd || process.cwd(), targetPath);
-    this.config.mapping[name] = { path: targetPath, commandable: !!commandable, connect: {} };
-    await this.config.save();
+    this.config.containers[name] = { path: targetPath, commandable: !!commandable };
+    await this.config.commit();
     return this.config.mapping[name]
 }

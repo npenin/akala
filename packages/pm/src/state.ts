@@ -1,27 +1,42 @@
 import { Container } from "@akala/commands";
 import { ChildProcess } from "child_process";
-import { Deferred } from "@akala/json-rpc-ws";
+import { Deferred, SerializableObject } from "@akala/json-rpc-ws";
 import { ServeMetadata } from "@akala/commands";
+import Configuration, { ProxyConfiguration } from "@akala/config";
 
 export default interface State
 {
     processes: { [key: string]: RunningContainer };
     isDaemon: boolean;
-    config: {
-        containers: { [key: string]: string[] }
-        mapping: { [key: string]: Pick<RunningContainer, 'path' | 'dependencies' | 'connect' | 'commandable'> }
-        save(): Promise<void>
-        externals?: string[];
-    }
+    config: ProxyConfiguration<StateConfiguration>
 }
 
-export interface RunningContainer extends Container<unknown>
+export interface StateConfiguration
+{
+    containers: { [key: string]: SidecarMetadata }
+    mapping: { [key: string]: SidecarConfiguration }
+}
+
+export interface SidecarMetadata
 {
     path: string;
-    process: ChildProcess;
     dependencies?: string[];
+    commandable: boolean;
+    type?: 'nodejs';
+}
+
+export interface SidecarConfiguration<T extends string | SerializableObject = ProxyConfiguration<SerializableObject>>
+{
+    cli?: string[];
+    container: string;
     connect?: ServeMetadata;
+    cwd?: string;
+    config?: T;
+}
+
+export interface RunningContainer<T extends string | SerializableObject = any> extends Container<unknown>, SidecarConfiguration<T>, SidecarMetadata
+{
+    process: ChildProcess;
     running?: boolean;
-    commandable?: boolean;
     ready?: Deferred<void>;
 }

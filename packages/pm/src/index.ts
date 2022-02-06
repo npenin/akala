@@ -7,6 +7,9 @@ import definition from './container';
 type pmContainer = definition.container
 export { pmContainer as Container };
 
+import State from './state'
+export { State }
+
 export class InteractError extends Error
 {
     public readonly code = 'INTERACT';
