@@ -1,11 +1,11 @@
-import Configuration from "..";
+import configuration from "..";
 
-export default async function set(this: Configuration, key: string, newConfig: any, file?: string)
+export default async function set(this: configuration, key: string, newConfig: any, file?: string)
 {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     let config = this;
     if (file)
-        config = await Configuration.load(file);
+        config = await configuration.load(file);
 
     config.set(key, newConfig);
 }

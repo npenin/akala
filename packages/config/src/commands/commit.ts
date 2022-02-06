@@ -1,4 +1,4 @@
-import { Configuration } from '../configuration';
+import Configuration from '../configuration';
 
 export default function (this: Configuration, file?: string, formatted?: boolean)
 {
