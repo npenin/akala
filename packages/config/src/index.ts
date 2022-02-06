@@ -1,17 +1,8 @@
 import commander from './commander';
-import { Configuration } from './configuration'
+import Configuration, { ProxyConfiguration } from './configuration'
 
 export default Configuration;
-export { Configuration };
+export { Configuration as Configuration, ProxyConfiguration };
 
 export type container = commander.container;
 export type containerHelper = commander.proxy;
-
-import { } from '@akala/pm';
-declare module '@akala/pm'
-{
-    export interface SidecarMap
-    {
-        '@akala/config': commander.container;
-    }
-}

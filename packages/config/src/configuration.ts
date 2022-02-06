@@ -1,19 +1,96 @@
+import { isProxy } from '@akala/core';
+import { Serializable, SerializableObject } from '@akala/json-rpc-ws';
 import fs from 'fs/promises'
+import { inspect } from 'util'
 
-export class Configuration
+export type ProxyConfiguration<T = SerializableObject> = Configuration<T> & { [key in keyof T]: T[key] extends SerializableObject ? ProxyConfiguration<T[key]> : T[key] };
+type SerializableConfig<T, TKey extends keyof T> = T[TKey] extends SerializableObject ? Configuration<T[TKey]> : T[TKey]
+
+export default class Configuration<T = SerializableObject>
 {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    constructor(private path: string, private config: any = {})
+    private constructor(private readonly path: string, private readonly config?: T, private readonly rootConfig?: any)
     {
+        if (typeof config == 'undefined')
+            config = {} as unknown as T;
+        if (typeof rootConfig == 'undefined')
+            this.rootConfig = config;
 
+        const desc = Object.getOwnPropertyDescriptor(this, 'rootConfig');
+        desc.enumerable = false
+        Object.defineProperty(this, 'rootConfig', desc);
     }
 
-    public static async load(file: string): Promise<Configuration>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    public static new<T = SerializableObject>(path: string, config?: T, rootConfig?: any): ProxyConfiguration<T>
+    {
+        return new Proxy(new Configuration<T>(path, config, rootConfig), {
+            has(target, key)
+            {
+                if (typeof (key) == 'symbol')
+                {
+                    switch (key)
+                    {
+                        case inspect.custom:
+                            return () => target.config;
+                        case Symbol.toPrimitive:
+                            return target[Symbol.toPrimitive];
+                        case isProxy:
+                            return true;
+                        default:
+                            throw new Error('Not supported');
+                    }
+                }
+                return Reflect.has(target, key);
+            },
+            get(target, key, receiver)
+            {
+                if (typeof (key) == 'symbol')
+                {
+                    switch (key)
+                    {
+                        case inspect.custom:
+                            return () => target.config;
+                        case Symbol.toPrimitive:
+                            return target[Symbol.toPrimitive];
+                        case isProxy:
+                            return true;
+                        default:
+                            throw new Error('Not supported');
+                    }
+                }
+                switch (key)
+                {
+                    case 'then':
+                        return undefined;
+                    case 'toString':
+                        return target.toString.bind(target);
+                    case 'commit':
+                        return target.commit.bind(target);
+                    default:
+                        if (!Reflect.has(target, key) && typeof key == 'string')
+                            return target.get(key);
+                        return Reflect.get(target, key, receiver);
+                }
+            },
+            set(target, p, value, receiver)
+            {
+                if (!Reflect.has(target, p) && typeof p == 'string')
+                {
+                    target.set(p, value);
+                    return true;
+                }
+                return Reflect.set(target, p, value, receiver);
+            }
+        }) as unknown as ProxyConfiguration<T>;
+    }
+
+    public static async load<T = SerializableObject>(file: string): Promise<ProxyConfiguration<T>>
     {
         try
         {
             const content = await fs.readFile(file, 'utf8');
-            return new Configuration(file, JSON.parse(content));
+            return Configuration.new<T>(file, JSON.parse(content));
         }
         catch (e)
         {
@@ -23,20 +100,28 @@ export class Configuration
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public get<T = any>(key?: string): T
+    public get(key?: string): typeof key extends keyof T ? T[typeof key] extends SerializableObject ?
+        SerializableConfig<T, typeof key>
+        : Configuration<SerializableObject> | Exclude<Serializable, SerializableObject>
+        : Configuration<SerializableObject> | Exclude<Serializable, SerializableObject>
     {
         if (key)
         {
-            return key.split('.').reduce(function (config, key)
+            var value = key.split('.').reduce(function (config, key)
             {
                 return config[key];
-            }, this.config)
+            }, this.config);
+            if (typeof value == 'object' && !Array.isArray(value))
+                return Configuration.new(this.path, value as SerializableObject, this.rootConfig) as any;
+            return value as any;
         }
         else
-            return this.config;
+            return this as any;
     }
 
-    public set<T>(key: string, newConfig: T): void
+    public set(key: Exclude<keyof T, symbol | number>, newConfig: T[typeof key]): void
+    public set(key: string, newConfig: Serializable): void
+    public set(key: string | Exclude<keyof T, symbol | number>, newConfig: any): void
     {
         const keys = key.split('.');
         keys.reduce(function (config, key, i)
@@ -44,17 +129,19 @@ export class Configuration
             if (keys.length == i + 1)
             {
                 config[key] = newConfig;
-                console.log(config);
+                // console.log(config);
             }
             else if (typeof (config[key]) == 'undefined')
                 config[key] = {};
 
             return config[key];
-        }, this);
+        }, this.config);
     }
 
-    public async commit(file?: string, formatted?: boolean): Promise<void>
+    public commit(file?: string, formatted?: boolean): Promise<void>
     {
-        return fs.writeFile(file || this.path, JSON.stringify(this, null, formatted && 4 || undefined), 'utf8');
+        if (typeof formatted == 'undefined')
+            formatted = process.env.NODE_ENV !== 'production';
+        return fs.writeFile(file || this.path, JSON.stringify(this.rootConfig, null, formatted && 4 || undefined), 'utf8');
     }
 }
