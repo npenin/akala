@@ -9,7 +9,7 @@ export async function updateConfig(newConfig: unknown, key: string): Promise<voi
         if (keys.length == i + 1)
         {
             config[key] = newConfig;
-            console.log(config);
+            // console.log(config);
         }
         else if (typeof (config[key]) == 'undefined')
             config[key] = {};
