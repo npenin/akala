@@ -56,7 +56,8 @@ class OptionMiddleware implements akala.Middleware<[context: CliContext]>
         for (let index = 0; index < context.args.length; index++)
         {
             let element = context.args[index];
-
+            if (element == '--')
+                break;
             for (let jndex = 0; jndex < this.matchers.length; jndex++)
             {
                 const matcher = this.matchers[jndex];

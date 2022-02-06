@@ -12,7 +12,7 @@ async function updateConfig(newConfig, key)
         if (keys.length == i + 1)
         {
             config[key] = newConfig;
-            console.log(config);
+            // console.log(config);
         }
         else if (typeof (config[key]) == 'undefined')
             config[key] = {};
