@@ -1,5 +1,8 @@
+import { inspect } from "util";
 
 const oldProxy = Proxy;
+
+export const isProxy = Symbol.for('isProxy')
 
 global['Proxy'] = new oldProxy(oldProxy, {
     get: function (target, key)
@@ -8,7 +11,7 @@ global['Proxy'] = new oldProxy(oldProxy, {
         {
             return function (o)
             {
-                return o && o[Symbol.for('isProxy')];
+                return o && o[isProxy];
             }
         }
         return Reflect.get(target, key);
@@ -23,13 +26,13 @@ export function chain<T extends (...args: unknown[]) => unknown>(target: T, keyH
             const keys: string[] = [];
             if (typeof (key) == 'symbol')
             {
-                switch (key.toString())
+                switch (key)
                 {
-                    case 'Symbol(util.inspect.custom)':
+                    case inspect.custom:
                         return () => target;
-                    case 'Symbol(Symbol.toPrimitive)':
+                    case Symbol.toPrimitive:
                         return target[Symbol.toPrimitive];
-                    case 'Symbol(isProxy)':
+                    case isProxy:
                         return true;
                     default:
                         throw new Error('Not supported');
@@ -62,13 +65,13 @@ export function chain<T extends (...args: unknown[]) => unknown>(target: T, keyH
                             {
                                 if (typeof (subKey) == 'symbol')
                                 {
-                                    switch (subKey.toString())
+                                    switch (subKey)
                                     {
-                                        case 'Symbol(util.inspect.custom)':
+                                        case inspect.custom:
                                             return () => target;
-                                        case 'Symbol(Symbol.toPrimitive)':
+                                        case Symbol.toPrimitive:
                                             return target[Symbol.toPrimitive];
-                                        case 'Symbol(isProxy)':
+                                        case isProxy:
                                             return true;
                                         default:
                                             throw new Error('Not supported');
