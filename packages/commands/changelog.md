@@ -1,9 +1,9 @@
-#  (2022-02-02)
+#  (2022-02-06)
 
 
 ### Bug Fixes
 
-* wrong version b12be97
+* update commands cli definition 5b7f8f1
 
 
 
