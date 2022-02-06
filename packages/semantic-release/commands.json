@@ -25,6 +25,29 @@
             }
         },
         {
+            "name": "eliminate-private",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/commands/eliminate-private.js",
+                    "source": "src/commands/eliminate-private.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "automate": {
+                    "inject": [
+                        "packages"
+                    ]
+                }
+            }
+        },
+        {
             "name": "bump-dependents",
             "inject": [],
             "config": {
@@ -72,29 +95,6 @@
                     "inject": [
                         "commits",
                         "file"
-                    ]
-                }
-            }
-        },
-        {
-            "name": "eliminate-private",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "inject": [
-                        "param.0"
-                    ],
-                    "path": "dist/commands/eliminate-private.js",
-                    "source": "src/commands/eliminate-private.ts"
-                },
-                "": {
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "automate": {
-                    "inject": [
-                        "packages"
                     ]
                 }
             }
