@@ -1,4 +1,4 @@
-#  (2022-02-02)
+#  (2022-02-06)
 
 
 ### Bug Fixes
@@ -72,10 +72,12 @@
 * support for no workspace dependencies 0703731
 * support for no workspace dependencies 9210550
 * support normalize files in modules 4a34d95
+* swap build dependencies f7d45dd
 * switch processes state to object 5aa41a4
 * trigger signature 28e77a1
 * update all commands 8f54036
 * update command definition 85c2891
+* update commands cli definition 5b7f8f1
 * update to commands  major version 180608a
 * update to commands major version 0631f6e
 * update to new commands major version 5e0bed5
