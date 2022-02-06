@@ -65,22 +65,6 @@
             }
         },
         {
-            "name": "mode",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/mode.js",
-                    "source": "src/commands/mode.ts",
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
             "name": "remote-container",
             "inject": [],
             "config": {
@@ -106,6 +90,22 @@
                         "param.1",
                         "param.2"
                     ]
+                }
+            }
+        },
+        {
+            "name": "mode",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/mode.js",
+                    "source": "src/commands/mode.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": []
                 }
             }
         },
@@ -219,6 +219,29 @@
             }
         },
         {
+            "name": "webpack-html",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/webpack-html.js",
+                    "source": "src/commands/webpack-html.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ]
+                }
+            }
+        },
+        {
             "name": "webpack-alias",
             "inject": [],
             "config": {
@@ -240,29 +263,6 @@
                     "inject": [
                         "param.0",
                         "param.1"
-                    ]
-                }
-            }
-        },
-        {
-            "name": "webpack-html",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/webpack-html.js",
-                    "source": "src/commands/webpack-html.ts",
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "options"
                     ]
                 }
             }
