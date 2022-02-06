@@ -1,4 +1,4 @@
-import State, { RunningContainer } from '../state'
+import State, { RunningContainer, StateConfiguration } from '../state'
 import { homedir } from 'os';
 import fs from 'fs/promises';
 import { join } from 'path';
@@ -7,6 +7,8 @@ import { Container, Metadata, ignoredCommands, configure, ServeOptions, SelfDefi
 import { eachAsync } from '@akala/core';
 import { PassThrough, Readable } from 'stream';
 import { EventEmitter } from 'events';
+import { CliContext } from '@akala/cli';
+import Configuration, { ProxyConfiguration } from '@akala/config';
 
 export async function metadata(container: Container<unknown>, deep?: boolean): Promise<Metadata.Container>
 {
@@ -40,7 +42,7 @@ export function isRunningContainer(c: Container<any>): c is RunningContainer
     return 'running' in c;
 }
 
-export default async function (this: State, container: RunningContainer & pmContainer.container, options: ServeOptions): Promise<void>
+export default async function (this: State, container: RunningContainer & pmContainer.container, context: CliContext<{ config: string }>): Promise<void>
 {
     this.isDaemon = true;
     this.processes = {};
@@ -73,36 +75,22 @@ export default async function (this: State, container: RunningContainer & pmCont
         , killed: false
     });
 
-    const configPath = join(homedir(), './.pm.config.json');
-    try
+    const configPath = context.options.config || join(homedir(), './.pm.config.json');
+    this.config = await Configuration.load<StateConfiguration>(configPath);
+
+    if (this.config)
     {
-        this.config = JSON.parse(await fs.readFile(configPath, 'utf-8'));
-        process.chdir(this.config.containers.pm[0]);
+        if (this.config.mapping.pm.cwd)
+            process.chdir(this.config.mapping.pm.cwd);
     }
-    catch (e)
-    {
-        if (e.code === 'ENOENT')
-            this.config = {
-                containers: { pm: [process.cwd()] },
-                mapping: {}
-            } as unknown as State['config'];
-        else
-            throw e;
-    }
+    else
+        this.config = Configuration.new<StateConfiguration>(configPath, {
+            containers: { pm: { commandable: true, path: require.resolve('../../commands.json') } },
+            mapping: { pm: { cwd: process.cwd(), container: 'pm' } }
+        }) as State['config'];
 
-    this.config.save = function ()
-    {
-        return fs.writeFile(configPath, JSON.stringify(this, null, 4), 'utf-8').then(() => console.log('config saved'))
-    }
-
-    if (!this.config.externals)
-        this.config.externals = [];
-
-    if (!this.config.mapping['pm'])
-        await container.dispatch('map', 'pm', join(__dirname, '../../commands.json'), true);
-
-    if (options && options.args.length)
-        await container.dispatch('connect', 'pm', options);
+    if (context && context.args.length)
+        await container.dispatch('connect', 'pm', context);
     else
     {
         const connectOptions = await container.dispatch('connect', 'pm');
@@ -110,7 +98,7 @@ export default async function (this: State, container: RunningContainer & pmCont
             await container.dispatch('connect', 'pm', { args: ['local'] });
     }
 
-    await this.config.save();
+    await this.config.commit();
     container.name = 'pm';
     const config = container.resolve<Metadata.Configurations>('$metadata.config');
     container.unregister('$metadata');

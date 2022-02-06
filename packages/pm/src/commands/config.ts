@@ -1,26 +1,30 @@
 import * as cli from "@akala/cli";
 import { CliContext } from "@akala/cli";
 import State from '../state';
+import Configuration from "@akala/config";
 
-export default async function config(this: State, name: string, options: CliContext['options']): Promise<string[] | State['config']>
+export default async function config(this: State, name: string | undefined | void, options: CliContext['options'] | undefined | void): Promise<string[] | State['config'] | State['config']['containers']['']>
 {
     // debugger;
     if (options)
     {
         const args = cli.unparseOptions(options);
-        if (args[1] && args[1] == 'set')
-        {
-            this.config.containers[name] = args.slice(2);
-            await this.config.save();
-        }
 
         if (typeof name == 'undefined')
             return this.config;
 
+        if (args[1] && args[1] == 'set')
+        {
+            this.config.mapping[name].cli = args.slice(2);
+            await this.config.commit();
+        }
+
         return this.config.containers[name];
     }
-    else
+    else if (typeof name !== 'undefined')
         return this.config.containers[name];
+    else
+        return this.config;
 }
 
 exports.default.$inject = ['param.0', 'options']

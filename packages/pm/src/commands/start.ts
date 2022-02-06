@@ -1,5 +1,5 @@
 import { Container, Processors, Metadata, registerCommands, Cli } from "@akala/commands";
-import State, { RunningContainer } from '../state';
+import State, { RunningContainer, SidecarMetadata } from '../state';
 import { spawn, ChildProcess, StdioOptions } from "child_process";
 import pmContainer from '../container';
 import * as jsonrpc from '@akala/json-rpc-ws'
@@ -10,19 +10,26 @@ import { SocketAdapterEventMap } from "@akala/json-rpc-ws";
 import { CliContext, ErrorWithStatus } from "@akala/cli";
 import getRandomName from "./name";
 
-export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, options?: CliContext<{ new?: boolean, name: string, inspect?: boolean, verbose?: boolean, wait?: boolean }>): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
+export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, context?: CliContext<{ new?: boolean, name: string, inspect?: boolean, verbose?: boolean, wait?: boolean }>): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
 {
     let args: string[];
 
-    if (!options.options.name && options.options.new)
-        options.options.name = getRandomName();
-    else if (!options.options.name)
-        options.options.name = name;
+    if (!context.options.name && context.options.new)
+        context.options.name = getRandomName();
+    else if (!context.options.name)
+        context.options.name = name;
+
+    var instanceConfig = this.config.mapping[context.options.name];
+    var def: SidecarMetadata;
+    if (typeof instanceConfig == 'undefined')
+        def = this.config.containers[name];
+    else
+        def = this.config.containers[instanceConfig.container];
 
     if (this.isDaemon)
     {
         // eslint-disable-next-line no-var
-        var container = this.processes[options.options.name];
+        var container = this.processes[context.options.name];
         if (container && container.running)
             throw new Error(container.name + ' is already started');
         args = await pm.dispatch('config', name) as string[];
@@ -31,15 +38,15 @@ export default async function start(this: State, pm: pmContainer.container & Con
         else
             args = [];
 
-        if (!this.config.mapping[name] && name != 'pm')
+        if (!def && name != 'pm')
         {
-            require.resolve(name);
-            // throw new ErrorWithStatus(44, `No mapping was found for ${name}. Did you want to run \`pm install ${name}\` or maybe are you missing the folder to ${name} ?`)
+            // require.resolve(name);
+            throw new ErrorWithStatus(404, `No mapping was found for ${name}. Did you want to run \`pm install ${name}\` or maybe are you missing the folder to ${name} ?`)
         }
 
-        args.unshift(...options.args, ...Object.entries(options.options).filter(e => e[0] != 'program' && e[0] != 'new' && e[0] != 'inspect').map(entries => ['--' + entries[0] + '=' + entries[1]]).flat());
-        if (this.config && this.config.mapping[name] && this.config.mapping[name].path)
-            args.unshift('--program=' + this.config.mapping[name].path);
+        args.unshift(...context.args, ...Object.entries(context.options).filter(e => e[0] != 'program' && e[0] != 'new' && e[0] != 'inspect').map(entries => ['--' + entries[0] + '=' + entries[1]]).flat());
+        if (def && def.path)
+            args.unshift('--program=' + def.path);
         else
             args.unshift('--program=' + name);
     }
@@ -48,20 +55,20 @@ export default async function start(this: State, pm: pmContainer.container & Con
         if (name != 'pm')
             throw new ErrorWithStatus(40, 'this command needs to run through daemon process');
 
-        args = [...options.args, ...Object.entries(options.options).map(entries => ['--' + entries[0] + '=' + entries[1]]).flat()];
+        args = [...context.args, ...Object.entries(context.options).map(entries => ['--' + entries[0] + '=' + entries[1]]).flat()];
     }
 
     args.unshift(require.resolve('../fork'))
 
-    if (options.options && options.options.inspect)
+    if (context.options && context.options.inspect)
         args.unshift('--inspect-brk');
 
     args.unshift(...process.execArgv);
 
-    if (options.options && options.options.verbose)
+    if (context.options && context.options.verbose)
         args.push('-v')
 
-    const log = debug('akala:pm:' + options.options.name);
+    const log = debug('akala:pm:' + context.options.name);
     let cp: ChildProcess;
     if (!this.isDaemon)
     {
@@ -87,12 +94,18 @@ export default async function start(this: State, pm: pmContainer.container & Con
     }
     else
     {
-        if (!container && this.config.mapping[name]?.dependencies?.length)
-            await eachAsync(this.config.mapping[name].dependencies, (dep) => pm.dispatch('start', dep, { wait: true }));
+        if (!container && this.config.containers[name]?.dependencies?.length)
+        {
+            var missingDeps = def.dependencies.filter(d => !this.config.mapping[d]);
+            if (missingDeps.length > 0)
+                throw new ErrorWithStatus(404, `Some dependencies are missing to start ${context.options.name}:\n\t-${missingDeps.join('\n\t-')}`);
+
+            await eachAsync(def.dependencies, (dep) => pm.dispatch('start', dep, { name: context.options.name + '-' + dep, wait: true }));
+        }
 
         cp = spawn(process.execPath, args, { cwd: process.cwd(), env: Object.assign({ DEBUG_COLORS: true }, process.env), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
-        cp.stderr?.pipe(new NewLinePrefixer(options.options.name + ' ', { useColors: true })).pipe(process.stderr);
-        cp.stdout?.pipe(new NewLinePrefixer(options.options.name + ' ', { useColors: true })).pipe(process.stdout);
+        cp.stderr?.pipe(new NewLinePrefixer(context.options.name + ' ', { useColors: true })).pipe(process.stderr);
+        cp.stdout?.pipe(new NewLinePrefixer(context.options.name + ' ', { useColors: true })).pipe(process.stdout);
 
         if (!container || !container.running)
         {
@@ -124,24 +137,23 @@ export default async function start(this: State, pm: pmContainer.container & Con
                 }
                 , disconnected()
                 {
-                    console.warn(`${options.options.name} has disconnected`);
+                    console.warn(`${context.options.name} has disconnected`);
                     container.running = null;
                 }
             }), true);
 
             if (container)
-                container = new Container(options.options.name, null, processor) as RunningContainer;
+                container = new Container(context.options.name, null, processor) as RunningContainer;
             else
-                container = new Container(options.options.name, null, processor) as RunningContainer;
+                container = new Container(context.options.name, null, processor) as RunningContainer;
 
-            if (this.config.mapping[name]?.commandable)
+            if (def?.commandable)
                 pm.register(container);
 
-            this.processes[options.options.name] = container;
+            this.processes[context.options.name] = container;
         }
         container.process = cp;
-        container.path = name;
-        container.commandable = this.config.mapping[name].commandable;
+        Object.assign(container, def, instanceConfig);
         container.ready = new jsonrpc.Deferred();
         if (container.commandable)
         {
@@ -164,8 +176,9 @@ export default async function start(this: State, pm: pmContainer.container & Con
         {
             (container as RunningContainer).running = false;
             pm.unregister(container.name);
+            container.ready.reject(new Error('program stopped'));
         });
-        if (options.options.wait && container.commandable)
+        if (context.options.wait && container.commandable)
             await container.ready;
         return { execPath: process.execPath, args: args, cwd: process.cwd(), stdio: ['inherit', 'inherit', 'inherit', 'ipc'], shell: false, windowsHide: true };
     }

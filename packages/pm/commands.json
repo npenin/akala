@@ -2,6 +2,23 @@
     "name": "commands",
     "commands": [
         {
+            "name": "alias",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/alias.js",
+                    "source": "src/commands/alias.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
             "name": "$init",
             "inject": [],
             "config": {
@@ -24,46 +41,15 @@
                         "$container",
                         "context"
                     ],
+                    "usage": "cmd [config]",
                     "options": {
-                        "tcpPort": {
-                            "needsValue": true
-                        },
-                        "port": {
-                            "needsValue": true
-                        },
-                        "key": {
-                            "needsValue": true
-                        },
-                        "cert": {
-                            "needsValue": true
+                        "config": {
+                            "needsValue": true,
+                            "aliases": [
+                                "c"
+                            ]
                         }
                     }
-                }
-            }
-        },
-        {
-            "name": "alias",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/alias.js",
-                    "source": "src/commands/alias.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "param.0",
-                        "options"
-                    ]
                 }
             }
         },
@@ -196,35 +182,6 @@
             }
         },
         {
-            "name": "link",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/link.js",
-                    "source": "src/commands/link.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "$container"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "$container"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "$container"
-                    ]
-                }
-            }
-        },
-        {
             "name": "log",
             "inject": [],
             "config": {
@@ -265,6 +222,69 @@
             }
         },
         {
+            "name": "link",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/link.js",
+                    "source": "src/commands/link.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "$container"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "$container"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "$container"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "ready",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/ready.js",
+                    "source": "src/commands/ready.ts",
+                    "inject": [
+                        "ignore"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "process"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "name",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/name.js",
+                    "source": "src/commands/name.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
             "name": "map",
             "inject": [],
             "config": {
@@ -297,35 +317,24 @@
             }
         },
         {
-            "name": "name",
+            "name": "status",
             "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist/commands/name.js",
-                    "source": "src/commands/name.ts",
+                    "path": "dist/commands/status.js",
+                    "source": "src/commands/status.ts",
                     "inject": [
                         "param.0"
                     ]
                 },
                 "": {
-                    "inject": []
-                }
-            }
-        },
-        {
-            "name": "ready",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/ready.js",
-                    "source": "src/commands/ready.ts",
                     "inject": [
-                        "ignore"
+                        "param.0"
                     ]
                 },
-                "": {
+                "cli": {
                     "inject": [
-                        "process"
+                        "param.0"
                     ]
                 }
             }
@@ -365,29 +374,6 @@
                         "$container",
                         "param.0",
                         "context"
-                    ]
-                }
-            }
-        },
-        {
-            "name": "status",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/status.js",
-                    "source": "src/commands/status.ts",
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "param.0"
                     ]
                 }
             }
