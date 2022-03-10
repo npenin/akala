@@ -10,6 +10,7 @@ import { Local } from './local';
 import { UnknownCommandError } from '../model/error-unknowncommand';
 import { ExtendedConfigurations, jsonObject } from '../metadata/index';
 import { MiddlewarePromise } from '@akala/core';
+import { createRequire } from 'module';
 
 export interface FileSystemConfiguration extends Metadata.Configuration
 {
@@ -85,9 +86,16 @@ export class FileSystem extends CommandProcessor
         if (!options.isDirectory)
         {
             // eslint-disable-next-line @typescript-eslint/no-var-requires
-            const metacontainer: Metadata.Container = require(path.resolve(root));
-
+            const cmdRequire = createRequire(path.resolve(root));
+            const metacontainer: Metadata.Container & { extends?: string[] } = require(path.resolve(root));
             const commands = metacontainer.commands.filter(cmd => !(cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata'));
+            if (metacontainer.extends && metacontainer.extends.length)
+            {
+                await Promise.all(metacontainer.extends.map(async path =>
+                {
+                    commands.push(...await this.discoverMetaCommands(cmdRequire.resolve(path), { ...options, isDirectory: undefined, relativeTo: undefined }));
+                }));
+            }
             Object.defineProperty(commands, 'name', { enumerable: false, value: metacontainer.name });
             return commands;
         }

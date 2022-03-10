@@ -2,64 +2,6 @@
     "name": "@akala/commands",
     "commands": [
         {
-            "name": "generate",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/cli/generate.js",
-                    "source": "src/cli/generate.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "param.0",
-                        "options.name",
-                        "param.1"
-                    ],
-                    "options": {
-                        "name": {
-                            "needsValue": true
-                        }
-                    }
-                }
-            }
-        },
-        {
-            "name": "generate-declaration",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/cli/generate-declaration.js",
-                    "source": "src/cli/generate-declaration.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "options.name",
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
             "name": "add-script",
             "inject": [],
             "config": {
@@ -91,6 +33,30 @@
             }
         },
         {
+            "name": "generate-declaration",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/generate-declaration.js",
+                    "source": "src/cli/generate-declaration.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "options.name",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
             "name": "generate-metadata",
             "inject": [],
             "config": {
@@ -115,6 +81,40 @@
                 },
                 "": {
                     "inject": []
+                }
+            }
+        },
+        {
+            "name": "generate",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/generate.js",
+                    "source": "src/cli/generate.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0",
+                        "options.name",
+                        "param.1"
+                    ],
+                    "options": {
+                        "name": {
+                            "needsValue": true
+                        }
+                    }
                 }
             }
         },
