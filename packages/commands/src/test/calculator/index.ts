@@ -13,7 +13,6 @@ let cmd = calculator.register(new cmds.SelfDefinedCommand<state>(function increm
 }, 'increment', ['param.0']));
 cmd.config.http = { method: 'post', route: '/increment/:step?', inject: ['route.step'] }
 
-
 cmd = calculator.register(new cmds.SelfDefinedCommand<state>(function reset()
 {
     this.value = 0;

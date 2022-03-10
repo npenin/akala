@@ -21,6 +21,16 @@
             ],
             "pattern": "^(.*)$"
         },
+        "extends": {
+            "$id": "#/properties/commands",
+            "type": "array",
+            "title": "The extension Schema",
+            "description": "This lists all paths to extend this current metadata.",
+            "items": {
+                "type": "string",
+                "description": "path to other commands metadata"
+            }
+        },
         "commands": {
             "$id": "#/properties/commands",
             "type": "array",

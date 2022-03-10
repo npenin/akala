@@ -1,0 +1,40 @@
+{
+    "name": "test",
+    "extends": [
+        "../../commands.json"
+    ],
+    "commands": [
+        {
+            "name": "dummy",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/add-script.js",
+                    "source": "src/cli/add-script.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "options.name",
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ],
+                    "options": {
+                        "name": {
+                            "needsValue": true
+                        }
+                    }
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+}

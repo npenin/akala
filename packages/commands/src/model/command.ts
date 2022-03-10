@@ -24,7 +24,7 @@ export class SelfDefinedCommand<T = unknown> implements metadata.Command
                 inject.push('param.' + i);
             }
         }
-        this.inject = inject;
+        this.inject = inject || [];
     }
 
     public get inject(): string[] 
