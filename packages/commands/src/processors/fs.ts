@@ -11,6 +11,7 @@ import { UnknownCommandError } from '../model/error-unknowncommand';
 import { ExtendedConfigurations, jsonObject } from '../metadata/index';
 import { MiddlewarePromise } from '@akala/core';
 import { createRequire } from 'module';
+import { eachAsync } from '@akala/core';
 
 export interface FileSystemConfiguration extends Metadata.Configuration
 {
@@ -91,10 +92,10 @@ export class FileSystem extends CommandProcessor
             const commands = metacontainer.commands.filter(cmd => !(cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata'));
             if (metacontainer.extends && metacontainer.extends.length)
             {
-                await Promise.all(metacontainer.extends.map(async path =>
+                await eachAsync(metacontainer.extends, async path =>
                 {
                     commands.push(...await this.discoverMetaCommands(cmdRequire.resolve(path), { ...options, isDirectory: undefined, relativeTo: undefined }));
-                }));
+                });
             }
             Object.defineProperty(commands, 'name', { enumerable: false, value: metacontainer.name });
             return commands;
