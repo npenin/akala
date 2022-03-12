@@ -100,10 +100,9 @@ export default class Configuration<T = SerializableObject>
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public get(key?: string): typeof key extends keyof T ? T[typeof key] extends SerializableObject ?
-        SerializableConfig<T, typeof key>
-        : Configuration<SerializableObject> | Exclude<Serializable, SerializableObject>
-        : Configuration<SerializableObject> | Exclude<Serializable, SerializableObject>
+    public get<TResult = string>(key?: string): typeof key extends keyof T ?
+        TResult extends object ? ProxyConfiguration<TResult & T[typeof key]> : Extract<Exclude<Serializable, SerializableObject>, TResult>
+        : never
     {
         if (key)
         {

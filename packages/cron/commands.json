@@ -2,16 +2,13 @@
     "name": "@akala/cron",
     "commands": [
         {
-            "name": "add-schedule",
+            "name": "$init",
             "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist/commands/add-schedule.js",
-                    "source": "src/commands/add-schedule.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
+                    "path": "dist/commands/$init.js",
+                    "source": "src/commands/$init.ts",
+                    "inject": []
                 },
                 "": {
                     "inject": []
@@ -54,12 +51,29 @@
             }
         },
         {
-            "name": "$init",
+            "name": "add-schedule",
             "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist/commands/$init.js",
-                    "source": "src/commands/$init.ts",
+                    "path": "dist/commands/add-schedule.js",
+                    "source": "src/commands/add-schedule.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "list-jobs",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/list-jobs.js",
+                    "source": "src/commands/list-jobs.ts",
                     "inject": []
                 },
                 "": {
@@ -92,20 +106,6 @@
                         "param.0",
                         "param.1"
                     ]
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
-            "name": "list-jobs",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/list-jobs.js",
-                    "source": "src/commands/list-jobs.ts",
-                    "inject": []
                 },
                 "": {
                     "inject": []

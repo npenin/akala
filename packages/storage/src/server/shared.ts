@@ -31,7 +31,7 @@ export type StoreDefinition<T = any> =
 
 export class Store<TStore extends StoreDefinition>
 {
-    public static create<TStore extends StoreDefinition>(engine: PersistenceEngine<any>, ...names: (keyof TStore)[]): StoreDefinition<TStore>
+    public static create<TStore extends StoreDefinition>(engine: PersistenceEngine<any>, ...names: (keyof TStore)[]): StoreDefinition<TStore> & Store<TStore>
     {
         return new Store<TStore>(engine, ...names) as any;
     }

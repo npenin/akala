@@ -22,6 +22,7 @@ export interface SidecarMetadata
     path: string;
     dependencies?: string[];
     commandable: boolean;
+    stateless: boolean;
     type?: 'nodejs';
 }
 

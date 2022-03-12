@@ -5,7 +5,11 @@ type EvalFunction<T> = (value: any) => T;
 
 export class Interpolate
 {
-    constructor(public readonly startSymbol = '{{', public readonly endSymbol = '}}') { }
+    constructor(public readonly startSymbol = '{{', public readonly endSymbol = '}}')
+    {
+        this.escapedStartRegexp = new RegExp(escapeRegExp(this.startSymbol), 'g');
+        this.escapedEndRegexp = new RegExp(escapeRegExp(this.endSymbol), 'g');
+    }
 
     private unescapeText(text)
     {
@@ -13,8 +17,8 @@ export class Interpolate
             replace(this.escapedEndRegexp, this.endSymbol);
     }
 
-    private escapedStartRegexp = new RegExp(escapeRegExp(this.startSymbol), 'g');
-    private escapedEndRegexp = new RegExp(escapeRegExp(this.endSymbol), 'g');
+    private escapedStartRegexp: RegExp;
+    private escapedEndRegexp: RegExp;
 
     public buildObject<T>(obj: T, mustHaveExpression?: boolean, trustedContext?: boolean, allOrNothing?: boolean): EvalFunction<T>
     {

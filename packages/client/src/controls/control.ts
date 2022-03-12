@@ -17,8 +17,6 @@ export function control<T = any>(name: string, priority?: number, options?: { sc
                     this.scope = options?.scope;
                 }
 
-                public scope?: boolean;
-
                 public instanciate(target: any, element: Element, parameter: akala.Binding | T, otherControls: any)
                 {
                     const i = new Injector(Control.injector)
