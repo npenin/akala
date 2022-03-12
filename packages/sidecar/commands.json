@@ -1,16 +1,16 @@
 {
-    "name": "cli",
+    "name": "@akala/sidecar",
     "commands": [
         {
-            "name": "start",
+            "name": "$init",
             "inject": [],
             "config": {
                 "fs": {
                     "inject": [
                         "param.0"
                     ],
-                    "path": "dist/cli/start.js",
-                    "source": "src/cli/start.ts"
+                    "path": "dist/commands/$init.js",
+                    "source": "src/commands/$init.ts"
                 },
                 "cli": {
                     "usage": "start [config] [remote]",
