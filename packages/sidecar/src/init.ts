@@ -6,8 +6,8 @@ import { PersistenceEngine, providers, Store, StoreDefinition } from '@akala/sto
 import MetaPubSub from '@akala/pubsub/commands.json'
 import os from 'os'
 import path from 'path'
-import { CliContext } from '@akala/cli';
 import { Serializable } from '@akala/json-rpc-ws'
+import { Logger } from '@akala/core';
 
 export interface PubSubConfiguration
 {
@@ -30,7 +30,7 @@ export interface Sidecar<T extends StoreDefinition = any>
 
 export type SidecarConfiguration = string | { name: string, program: string };
 
-export default async function <T extends StoreDefinition>(context: CliContext<{}>, config: Configuration | string, remotePm?: string): Promise<Sidecar<T>>
+export default async function <T extends StoreDefinition>(logger: Logger, config: Configuration | string, remotePm?: string): Promise<Sidecar<T>>
 {
     if (typeof config == 'undefined')
         throw new Error('configuration is required');
@@ -39,10 +39,10 @@ export default async function <T extends StoreDefinition>(context: CliContext<{}
     const sidecar: Sidecar<T> = {} as any;
     const pubsubConfig = config.get<string | PubSubConfiguration>('pubsub');
     const stateStoreConfig = config.get<StoreConfiguration>('store');
-    context.logger.debug('connecting to pm...');
+    logger.debug('connecting to pm...');
     var result = await connectByPreference<void>(require(path.join(os.homedir(), './pm.config.json')).mapping.pm.connect, { host: remotePm, metadata: await import('@akala/pm/commands.json') })
     sidecar.pm = result.container as any;
-    context.logger.info('connection established.');
+    logger.info('connection established.');
     var pubSubContainer: PubSubContainer;
     switch (typeof pubsubConfig)
     {
@@ -94,7 +94,7 @@ export default async function <T extends StoreDefinition>(context: CliContext<{}
             throw new Error('Not support configuration type')
     }
 
-    context.logger.help('Your application is now ready !');
+    logger.help('Your application is now ready !');
 
     return sidecar;
 }
