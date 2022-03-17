@@ -30,7 +30,7 @@ export interface Sidecar<T extends StoreDefinition = any>
 
 export type SidecarConfiguration = string | { name: string, program: string };
 
-export default async function <T extends StoreDefinition>(logger: Logger, config: Configuration | string, remotePm?: string): Promise<Sidecar<T>>
+export default async function <T extends StoreDefinition>(logger: Logger, config: Configuration | string, remotePm?: string | (pm & Container<void>)): Promise<Sidecar<T>>
 {
     if (typeof config == 'undefined')
         throw new Error('configuration is required');
@@ -40,8 +40,13 @@ export default async function <T extends StoreDefinition>(logger: Logger, config
     const pubsubConfig = config.get<string | PubSubConfiguration>('pubsub');
     const stateStoreConfig = config.get<StoreConfiguration>('store');
     logger.debug('connecting to pm...');
-    var result = await connectByPreference<void>(require(path.join(os.homedir(), './pm.config.json')).mapping.pm.connect, { host: remotePm, metadata: await import('@akala/pm/commands.json') })
-    sidecar.pm = result.container as any;
+    if (typeof remotePm != 'string' && typeof remotePm != 'number')
+        sidecar.pm = remotePm;
+    else
+    {
+        var result = await connectByPreference<void>(require(path.join(os.homedir(), './pm.config.json')).mapping.pm.connect, { host: remotePm, metadata: await import('@akala/pm/commands.json') })
+        sidecar.pm = result.container as any;
+    }
     logger.info('connection established.');
     var pubSubContainer: PubSubContainer;
     switch (typeof pubsubConfig)
