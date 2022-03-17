@@ -2,25 +2,18 @@ import { SerializableObject } from '@akala/json-rpc-ws'
 import Orchestrator from 'orchestrator';
 import { spawn, StdioNull, StdioPipe, SpawnOptionsWithoutStdio } from 'child_process';
 import commands from './container';
-import { eachAsync, Injector, Interpolate, mapAsync, Middleware, MiddlewareCompositeWithPriority, Parser, AggregateErrors, MiddlewarePromise } from '@akala/core';
+import { eachAsync, Injector, Interpolate, mapAsync, Middleware, MiddlewareCompositeWithPriority, Parser, AggregateErrors, MiddlewarePromise, logger, Logger, LogLevels, ILogger } from '@akala/core';
 import { Stream } from 'stream';
-import winston from 'winston';
 import fs from 'fs'
 import { runnerMiddleware } from './workflow-commands/process';
 import { Container } from '@akala/commands';
 import { DateRequest } from '@akala/cron';
 
-export const defaultLogger = winston.createLogger({
-    levels: winston.config.cli.levels,
-    format: winston.format.combine(
-        winston.format.splat(),
-        winston.format.simple()
-    )
-});
+export const defaultLogger = logger('automate', LogLevels.warn);
 
 export const interpolate = new Interpolate('$(', ')');
 
-export type MiddlewareSignature<TSupportedJobSteps extends JobStepDef<string, any, any>> = [context: object & { logger: winston.Logger }, step: TSupportedJobSteps, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe }];
+export type MiddlewareSignature<TSupportedJobSteps extends JobStepDef<string, any, any>> = [context: object & { logger: Logger }, step: TSupportedJobSteps, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe }];
 
 export type TMiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any, any>> = Middleware<MiddlewareSignature<TSupportedJobSteps>>;
 
@@ -135,9 +128,9 @@ export function ForeachMiddleware(runner: MiddlewareCompositeWithPriority<Middle
 export const LogMiddleware = new MiddlewareRunner<JobStepLog>('log', async (context, step) =>
 {
     if (Array.isArray(step.log))
-        context.logger.log(step.with && step.with['log-level'] || 'info', ...step.log);
+        context.logger[step.with && step.with['log-level'] || 'info'](...step.log);
     else
-        context.logger.log(step.with && step.with['log-level'] || 'info', step.log);
+        context.logger[step.with && step.with['log-level'] || 'info'](step.log);
 });
 
 
@@ -254,7 +247,7 @@ export function simpleRunner(name: string)
     return runner;
 }
 
-export default function automate<TResult extends object, TSupportedJobSteps extends JobStepDef<string, any, any>>(workflow: Workflow, runner: TMiddlewareRunner<TSupportedJobSteps>, inputs?: { logger?: winston.Logger }, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
+export default function automate<TResult extends object, TSupportedJobSteps extends JobStepDef<string, any, any>>(workflow: Workflow, runner: TMiddlewareRunner<TSupportedJobSteps>, inputs?: { logger?: Logger }, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
 {
     const orchestrator = new Orchestrator();
     // const inputForLog = !inputs ? '' : Object.entries(inputs).filter(e => e[0] !== 'logger').map(entry => entry[0] + '=' + JSON.stringify(entry[1])).join(", ");
@@ -263,7 +256,7 @@ export default function automate<TResult extends object, TSupportedJobSteps exte
     orchestrator.on('task_start', (t) =>
     {
         logger.info('running %s', t.task);
-        if (logger.isDebugEnabled())
+        if (logger.debug.enabled)
             logger.debug('%O', Object.assign({}, inputs, { logger: undefined }));
     });
     orchestrator.on('task_stop', (t) =>
@@ -417,7 +410,7 @@ export type JobStepDef<T extends string, TActor = string, TSettings = Serializab
 
 export type JobStepUse = JobStepDef<'uses'>;
 export type JobStepJob = JobStepDef<'job'>;
-export type JobStepLog = JobStepDef<'log', string | [string, ...any[]], { 'log-level': Exclude<keyof winston.config.CliConfigSetLevels, number> }>;
+export type JobStepLog = JobStepDef<'log', string | [string, ...any[]], { 'log-level': keyof ILogger }>;
 export type JobStepIf = JobStepDef<'if', string, void>;
 export type JobStepForEach = JobStepDef<'foreach', string, void>;
 

@@ -1,5 +1,5 @@
 // import sms from 'source-map-support'
-import winston from 'winston';
+import { LogLevels, Logger, logger as LoggerBuilder } from '@akala/core';
 // sms.install();
 // import * as debug from 'debug';
 import program, { CliContext } from './router/index';
@@ -10,23 +10,18 @@ import program, { CliContext } from './router/index';
 // import './helpers/newmodule';
 export * from './router/index'
 export default program;
-export function buildCliContext<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>(logger: winston.Logger, ...args: string[]): CliContext<T>
+export function buildCliContext<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>(logger: Logger, ...args: string[]): CliContext<T>
 {
     const result: CliContext<T> = { args: args, argv: args, options: {} as T, currentWorkingDirectory: undefined } as any;
     Object.defineProperty(result, 'logger', { enumerable: false, value: logger });
     return result;
 }
-export function buildCliContextFromProcess<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>(logger?: winston.Logger): CliContext<T>
+export function buildCliContextFromProcess<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>(logger?: Logger): CliContext<T>
 {
-    logger = logger || winston.createLogger({
-        levels: winston.config.cli.levels,
-        format: winston.format.combine(
-            winston.format.splat(),
-            winston.format.colorize(),
-            winston.format.simple()),
-        level: 'error',
-        transports: [new winston.transports.Console()]
-    });
+    if (process.env.NODE_ENV == 'production')
+        logger = logger || LoggerBuilder(process.argv0, LogLevels.error);
+    else
+        logger = logger || LoggerBuilder(process.argv0, LogLevels.warn);
     const result: CliContext<T> = {
         args: process.argv.slice(2),
         argv: process.argv,

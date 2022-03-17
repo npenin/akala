@@ -8,7 +8,9 @@
     "cli": {
         "usage": "start [config] [remote]",
         "inject": [
-            "options.config"
+            "context.logger",
+            "options.config",
+            "options.remote"
         ],
         "options": {
             "config": {
@@ -16,6 +18,9 @@
                     "c"
                 ],
                 "normalize": true,
+                "needsValue": true
+            },
+            "remote": {
                 "needsValue": true
             }
         }

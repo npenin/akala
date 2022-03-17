@@ -1,3 +1,4 @@
-import app from './init'
+import app, { Sidecar } from './init'
 
 export default app;
+export { Sidecar };

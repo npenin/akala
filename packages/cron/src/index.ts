@@ -1,4 +1,3 @@
-import winston from 'winston';
 import commands from './container';
 import suncalc from 'suncalc'
 
