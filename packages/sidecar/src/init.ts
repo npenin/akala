@@ -1,4 +1,4 @@
-import { connect, Container as pm, Sidecar as pmSidecar, sidecar as pmsidecar } from '@akala/pm'
+import { connect, Container as pm, ContainerLite, Sidecar as pmSidecar, sidecar as pmsidecar } from '@akala/pm'
 import Configuration from '@akala/config'
 import { connectByPreference, Container, helper } from '@akala/commands'
 import PubSubContainer, { ContainerProxy as PubSubProxy } from '@akala/pubsub'
@@ -7,7 +7,7 @@ import MetaPubSub from '@akala/pubsub/commands.json'
 import os from 'os'
 import path from 'path'
 import { Serializable } from '@akala/json-rpc-ws'
-import { Logger, module } from '@akala/core';
+import { eachAsync, Logger, module } from '@akala/core';
 
 export interface PubSubConfiguration
 {
@@ -101,6 +101,37 @@ export default async function <T extends StoreDefinition>(logger: Logger, config
             break;
         default:
             throw new Error('Not support configuration type')
+    }
+
+    const plugins = config.get<{ sidecar: string, optional: true, command: string, parameters: Serializable }[]>('plugins');
+    if (plugins && plugins.length)
+    {
+        var failedSidecars: string[] = [];
+
+        await eachAsync(plugins, async (plugin) =>
+        {
+            if (failedSidecars.indexOf(plugin.sidecar) > -1)
+                return;
+            let sidecarplugin: ContainerLite & Container<void>;
+            try
+            {
+                sidecarplugin = await sidecar.sidecars[plugin.sidecar];
+            }
+            catch (e)
+            {
+                failedSidecars.push(plugin.sidecar);
+                if (!plugin.optional)
+                    throw e;
+            }
+            if (sidecarplugin)
+                await sidecarplugin.dispatch(plugin.command, plugin.parameters);
+
+        });
+
+        if (failedSidecars.length)
+        {
+            failedSidecars.forEach(sidecar => logger.warn(`${sidecar} could not be used. This application might behave inapropriately.`));
+        }
     }
 
     logger.help('Your application is now ready !');
