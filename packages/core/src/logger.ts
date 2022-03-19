@@ -1,9 +1,5 @@
 
 import debug from 'debug';
-import * as beam from 'triple-beam';
-
-const customOutputs = ['error', 'warn', 'verbose', 'debug', 'info']
-
 
 export enum LogLevels
 {
@@ -26,9 +22,11 @@ export type ILogger =
 
 function setLevel(rootNamespace: string, logLevel: LogLevels)
 {
-    Object.keys(beam.configs.cli.levels).forEach(key =>
+    Object.keys(LogLevels).forEach(key =>
     {
-        if (beam.configs.cli.levels[key] <= logLevel && !debug.enabled(key + ':' + rootNamespace))
+        if (typeof (key) == 'number')
+            return;
+        if (LogLevels[key] <= logLevel && !debug.enabled(key + ':' + rootNamespace))
             debug.enable(key + ':' + rootNamespace);
     });
 }
