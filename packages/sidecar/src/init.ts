@@ -1,4 +1,4 @@
-import { connect, Container as pm } from '@akala/pm'
+import { connect, Container as pm, Sidecar as pmSidecar, sidecar as pmsidecar } from '@akala/pm'
 import Configuration from '@akala/config'
 import { connectByPreference, Container, helper } from '@akala/commands'
 import PubSubContainer, { ContainerProxy as PubSubProxy } from '@akala/pubsub'
@@ -7,7 +7,7 @@ import MetaPubSub from '@akala/pubsub/commands.json'
 import os from 'os'
 import path from 'path'
 import { Serializable } from '@akala/json-rpc-ws'
-import { Logger } from '@akala/core';
+import { Logger, module } from '@akala/core';
 
 export interface PubSubConfiguration
 {
@@ -23,6 +23,7 @@ export interface StoreConfiguration
 
 export interface Sidecar<T extends StoreDefinition = any>
 {
+    sidecars: pmSidecar;
     pubsub?: PubSubProxy
     pm: Container<void> & pm;
     store?: Store<T> & T;
@@ -47,6 +48,9 @@ export default async function <T extends StoreDefinition>(logger: Logger, config
         var result = await connectByPreference<void>(require(path.join(os.homedir(), './pm.config.json')).mapping.pm.connect, { host: remotePm, metadata: await import('@akala/pm/commands.json') })
         sidecar.pm = result.container as any;
     }
+
+    module('@akala/pm').register('container', sidecar.pm, true);
+    sidecar.sidecars = pmsidecar();
     logger.info('connection established.');
     var pubSubContainer: PubSubContainer;
     switch (typeof pubsubConfig)
