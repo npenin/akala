@@ -688,10 +688,11 @@ export class Parser
         if (!expression && typeof (expression) != 'string')
             return null;
         const parts = parser.parse(expression, excludeFirstLevelFunction);
-        if (parts instanceof Array)
+        if (Array.isArray(parts))
             return parser.parseFunction(expression) as ParsedFunction;
-
-        return <ParsedFunction>parts;
+        if (typeof parts != 'function')
+            throw new Error(`${expression} could not be parsed as a function`);
+        return parts;
     }
 
     public static eval(expression: string, value: any)
