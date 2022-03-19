@@ -7,6 +7,7 @@ import { object as each, map } from './each'
 import { Formatter } from './formatters/common';
 import { ExtendableEvent } from './module'
 import { Arguments } from './type-helper';
+import { ParsedFunction } from '.';
 export interface IWatched extends Object
 {
     $$watchers?: { [key: string]: Binding };
@@ -78,6 +79,7 @@ export class Binding
     constructor(protected _expression: string, private _target: IWatched, register = true)
     {
         this.formatter = formatters.identity;
+        this.evaluator = Parser.evalAsFunction(_expression);
         this.onChangingEvent = new BindingExtendableEvent(this);
         this.onChangedEvent = new BindingExtendableEvent(this);
         this.onErrorEvent = new BindingExtendableEvent(this);
@@ -93,11 +95,11 @@ export class Binding
 
     public formatter: Formatter<any>;
 
-    public get expression() { return this._expression; }
+    public get expression() { return this.expression; }
     public get target() { return this._target; }
     public set target(value) { this._target = value; this.register() }
 
-    private evaluator = Parser.evalAsFunction(this.expression)
+    private evaluator: ParsedFunction;
 
     public onChanging(handler: (ev: BindingExtendableEvent) => void)
     {
