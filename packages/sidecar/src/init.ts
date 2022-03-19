@@ -19,6 +19,7 @@ export interface StoreConfiguration
 {
     provider: string
     providerOptions?: Serializable;
+    models?: string[];
 }
 
 export interface Sidecar<T extends StoreDefinition = any>
@@ -94,7 +95,7 @@ export default async function <T extends StoreDefinition>(logger: Logger, config
             await providers.injectWithName([stateStoreConfig.provider || 'file'], async (engine: PersistenceEngine<any>) =>
             {
                 await engine.init(stateStoreConfig.providerOptions)
-                sidecar.store = Store.create<T>(engine);
+                sidecar.store = Store.create<T>(engine, ...stateStoreConfig.models);
             })();
             break;
         case 'undefined':
