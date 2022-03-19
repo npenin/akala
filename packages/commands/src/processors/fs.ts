@@ -94,7 +94,8 @@ export class FileSystem extends CommandProcessor
             {
                 await eachAsync(metacontainer.extends, async path =>
                 {
-                    commands.push(...await this.discoverMetaCommands(cmdRequire.resolve(path), { ...options, isDirectory: undefined, relativeTo: undefined }));
+                    var parentCommands = await this.discoverMetaCommands(cmdRequire.resolve(path), { ...options, isDirectory: undefined, relativeTo: undefined });
+                    commands.push(...parentCommands.filter(c => !commands.find(c2 => c.name == c2.name)));
                 });
             }
             Object.defineProperty(commands, 'name', { enumerable: false, value: metacontainer.name });
