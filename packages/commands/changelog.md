@@ -1,9 +1,16 @@
-#  (2022-02-06)
+#  (2022-03-20)
 
 
 ### Bug Fixes
 
+* improve support for extends f6622ee
+* prevent commands override 019f44f
 * update commands cli definition 5b7f8f1
+
+
+### Features
+
+* add extends support df13246
 
 
 
