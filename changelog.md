@@ -1,4 +1,4 @@
-#  (2022-02-06)
+#  (2022-03-20)
 
 
 ### Bug Fixes
@@ -11,6 +11,7 @@
 * automate implementation f76a995
 * avoids workflow leaks in context db4662a
 * better support for non-mapped sidecars ec502f8
+* binding constructor 8294d0f
 * bindings are less intrusive 3ef2783
 * bump dependent 5e89235
 * bump dependents proper references f734b61
@@ -35,9 +36,11 @@
 * git push tags fc8e609
 * health check reliability 98df0c9
 * honoring preferRemote 6fa76bc
+* improve config get return type c40bcd5
 * improve get-version 2f156a3
 * improve performance of metadata lookup 81cf56a
 * improve remote sidecars defaults eef7b24
+* improve support for extends f6622ee
 * improved logging support 8c81e18
 * improves command detection ff43e85
 * inject usage after move to full meta cmd 2cbda96
@@ -57,7 +60,9 @@
 * output name from inner semantic-releases script 52382c6
 * package build dependencies 3f14f37
 * package name tagging cd9de24
+* parser more reliable 5c92e5a
 * path to command metadata 4fc8111
+* prevent commands override 019f44f
 * proper parameter binding for bump-dependents 7459c86
 * push before tagging d980dd0
 * regex exec is not iterable ca695eb
@@ -65,9 +70,11 @@
 * remote pm proxy 633b1b5
 * remote ready failing dcc0fc1
 * remove duplicate foreach in publish 09d9fe5
+* remove triple-beam dependency c44bd2e
 * removed mock-require usage 99587ba
 * removed mock-require usage 448f5be
 * runnerMiddleware more type friendly 7bf1a25
+* sidecar builder 26673b1
 * spread is not considering non enumerable properties 394438a
 * support for no workspace dependencies 0703731
 * support for no workspace dependencies 9210550
@@ -78,6 +85,8 @@
 * update all commands 8f54036
 * update command definition 85c2891
 * update commands cli definition 5b7f8f1
+* update dependencies and regenerate metadata 0c83667
+* update reference to field 471f538
 * update to commands  major version 180608a
 * update to commands major version 0631f6e
 * update to new commands major version 5e0bed5
@@ -112,9 +121,13 @@
 ### Features
 
 * add $container to fs inject e766ea3
+* add extends support df13246
 * add ignore failure support f9929cf
 * add middleware with priority handling 461c1a4
+* add plugins mechanism c9aee01
 * add runnerMiddleware as export ff4c95a
+* add sidecar models to configuration 8389089
+* add sidecars accessor c7792a7
 * add support for jobs and schedules (as a SqlAgent) 11927b5
 * add support for shell script failure ignore 4b1dcc1
 * add support for untagged packages (yet) 6fbed9c
