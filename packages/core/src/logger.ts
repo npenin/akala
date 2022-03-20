@@ -20,14 +20,18 @@ export type ILogger =
         [key in keyof typeof LogLevels]: debug.IDebugger
     }
 
+const namespaces: string[] = [];
 function setLevel(rootNamespace: string, logLevel: LogLevels)
 {
     Object.keys(LogLevels).forEach(key =>
     {
-        if (typeof (key) == 'number')
+        if (!isNaN(Number(key)))
             return;
         if (LogLevels[key] <= logLevel && !debug.enabled(key + ':' + rootNamespace))
-            debug.enable(key + ':' + rootNamespace);
+        {
+            namespaces.push(key + ':' + rootNamespace);
+            debug.enable(namespaces.join(','));
+        }
     });
 }
 
@@ -40,7 +44,7 @@ export interface Logger extends ILogger
 export function logger(rootNamespace: string, logLevel: LogLevels): Logger
 {
     setLevel(rootNamespace, logLevel);
-    const logger = { level: logLevel };
+    const logger = { get level() { return logLevel }, set level(l) { setLevel(rootNamespace, l) } };
     Object.keys(LogLevels).forEach(k =>
     {
         if (typeof k == 'string')
