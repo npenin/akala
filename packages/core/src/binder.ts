@@ -95,7 +95,7 @@ export class Binding
 
     public formatter: Formatter<any>;
 
-    public get expression() { return this.expression; }
+    public get expression() { return this._expression; }
     public get target() { return this._target; }
     public set target(value) { this._target = value; this.register() }
 
