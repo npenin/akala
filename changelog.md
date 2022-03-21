@@ -1,4 +1,4 @@
-#  (2022-03-20)
+#  (2022-03-21)
 
 
 ### Bug Fixes
@@ -37,6 +37,7 @@
 * health check reliability 98df0c9
 * honoring preferRemote 6fa76bc
 * improve config get return type c40bcd5
+* improve error logging 1b4ae07
 * improve get-version 2f156a3
 * improve performance of metadata lookup 81cf56a
 * improve remote sidecars defaults eef7b24
@@ -51,32 +52,42 @@
 * log only enumerable props 3070ee3
 * logger as non enumerable property 43fdcba
 * made connect and fork more reliable and resilient 6c0c24f
+* made cron as non spreadable 34d3f69
 * mapAsync 64a258e
 * metadata lookup eaa12c1
 * metadata lookup on start da0c4d7
 * middleware copy/paste issue 69757ce
 * nested container processing 8997869
 * normalize path 58c9fcd
+* output formatting f747eff
 * output name from inner semantic-releases script 52382c6
 * package build dependencies 3f14f37
 * package name tagging cd9de24
+* package.json to reduce vulnerabilities 2a1cae1
+* packages/docker/Dockerfile to reduce vulnerabilities 7d43d77
+* packages/docker/Dockerfile-arm to reduce vulnerabilities 7fd23ac
+* packages/docker/Dockerfile-arm to reduce vulnerabilities 93d2550
 * parser more reliable 5c92e5a
 * path to command metadata 4fc8111
 * prevent commands override 019f44f
 * proper parameter binding for bump-dependents 7459c86
+* provide proper variable to bumps dependents 82f8ddb
 * push before tagging d980dd0
 * regex exec is not iterable ca695eb
 * remote container command registration f3b0728
 * remote pm proxy 633b1b5
 * remote ready failing dcc0fc1
 * remove duplicate foreach in publish 09d9fe5
+* remove failure masking 7c4ae85
 * remove triple-beam dependency c44bd2e
+* remove winston dependency 3dcad68
 * removed mock-require usage 99587ba
 * removed mock-require usage 448f5be
 * runnerMiddleware more type friendly 7bf1a25
 * set log level for any namespace e1b1025
 * sidecar builder 26673b1
 * spread is not considering non enumerable properties 394438a
+* stop generating loggers for numeric keys 75a1324
 * support for no workspace dependencies 0703731
 * support for no workspace dependencies 9210550
 * support normalize files in modules 4a34d95
@@ -93,6 +104,7 @@
 * update to new commands major version 5e0bed5
 * update to ws 8.0 ce769f9
 * update workspace parameter binding 6b6b07b
+* variable leak adef56b
 * variable renaming f825597
 * workflow output 3fca50e
 * workflow runner 220953a
@@ -117,18 +129,30 @@
 * wrong version 3ed20ad
 * yarn publish will ignore private a176556
 * yarn runs in shell mode e77591a
+* **yarn:** have to use an rc version of the plugin version 107768d
+
+
+### Code Refactoring
+
+* rename app to sidecar e304029
 
 
 ### Features
 
 * add $container to fs inject e766ea3
+* add Configuration getters and setters c5dad91
 * add extends support df13246
 * add ignore failure support f9929cf
 * add middleware with priority handling 461c1a4
+* add MiddlewareRunnerMiddleware d0e9aff
+* add new app package ac81505
 * add plugins mechanism c9aee01
 * add runnerMiddleware as export ff4c95a
 * add sidecar models to configuration 8389089
 * add sidecars accessor c7792a7
+* add stdio middleware 1934e21
+* add support for -- in CLI bf64441
+* add support for breaking change parsing 3ad998a
 * add support for jobs and schedules (as a SqlAgent) 11927b5
 * add support for shell script failure ignore 4b1dcc1
 * add support for untagged packages (yet) 6fbed9c
@@ -136,16 +160,37 @@
 * cli now supports stream results 155e7ba
 * container can now act as middlewares 9484e39
 * cron complete implementation 40ad48b
+* embedded cron implementation in workflow 9c518f0
 * enforce logger on buildCliContext dd636e1
 * errors like are now true errors 954d0a8
 * first pubsub commit 78b31e1
+* improve middleware behaviour 89f0a24
+* improve trigger defintiion 0eecae1
 * improved implement command 8a98c02
 * InteractError now using Binding for more possible usecases d9da85f
 * leverage suncalc c674f46
 * moved to middleware approach 69d4ba5
 * support for commands through pm 3954c8a
 * support for triggers 624ae86
+* support node module when no ./ prefix ad871e3
 * support normalize require config af16029
+* update command behavior 2fb6184
+* update configuration structure 8a395ff
+
+
+### BREAKING CHANGES
+
+* cli does not use winston as a logger anymore
+* rename app to sidecar
+* Configuration structure has been reshaped
+* Configuration is now the default export
+* relative path has to start with ./
+* renamed enqueue command to start
+* triggers first generic parameter is expected to be a args array
+* All command processors require a command metadata.
+* Containers use a composite middleware as processor
+* Command renamed to SelfDefinedCommand (as it is not useful any more)
+* Removed CommandNameProcessor concept
 
 
 
