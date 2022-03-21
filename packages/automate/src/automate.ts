@@ -263,6 +263,11 @@ export default function automate<TResult extends object, TSupportedJobSteps exte
     {
         logger.info('ran %s successfully', t.task)
     });
+    orchestrator.on('task_err', e =>
+    {
+        logger.error('task %s failed with message : %s', e.task, e.message);
+        logger.error(e.err);
+    });
 
     orchestrator.add('#main', Object.keys(workflow.jobs));
 
