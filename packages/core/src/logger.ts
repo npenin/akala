@@ -47,8 +47,10 @@ export function logger(rootNamespace: string, logLevel: LogLevels): Logger
     const logger = { get level() { return logLevel }, set level(l) { setLevel(rootNamespace, l) } };
     Object.keys(LogLevels).forEach(k =>
     {
+        if (!isNaN(Number(k)))
+            return;
         if (typeof k == 'string')
-            logger[k] = debug(k + ':' + rootNamespace);
+            Object.defineProperty(logger, k, { value: debug(k + ':' + rootNamespace), enumerable: false });
     })
     return logger as Logger;
 }
