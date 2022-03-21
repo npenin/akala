@@ -6,8 +6,12 @@ outputs:
   location: $(package.location)
   bump: $(build.recommendBump)
   workspaceDependencies: $(package.workspaceDependencies)
-on:
-  failure: decline
+# on:
+#   failure:
+#     name: $(package.name)
+#     location: $(package.location)
+#     bump: failed
+#     workspaceDependencies: $(package.workspaceDependencies)
 
 jobs:
   build:
@@ -60,6 +64,7 @@ jobs:
             test: patch
             deps: patch
             chore: patch
+            major: major
       - name: changelog
         dispatch: changelog
         with:
