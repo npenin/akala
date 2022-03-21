@@ -74,6 +74,7 @@
 * removed mock-require usage 99587ba
 * removed mock-require usage 448f5be
 * runnerMiddleware more type friendly 7bf1a25
+* set log level for any namespace e1b1025
 * sidecar builder 26673b1
 * spread is not considering non enumerable properties 394438a
 * support for no workspace dependencies 0703731
