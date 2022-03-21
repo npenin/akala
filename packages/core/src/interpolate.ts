@@ -1,3 +1,4 @@
+import { Parser } from '.';
 import { Binding } from './binder'
 import { escapeRegExp } from './reflect';
 
@@ -54,7 +55,7 @@ export class Interpolate
             let constantInterp;
             if (!mustHaveExpression)
             {
-                return function (target)
+                return function ()
                 {
                     return text;
                 }
@@ -67,7 +68,7 @@ export class Interpolate
             endIndex,
             index = 0;
         const expressions = [],
-            parseFns: ((target: any) => Binding)[] = [],
+            parseFns: ((target: any) => string)[] = [],
             textLength = text.length,
             concat = [],
             expressionPositions = [];
@@ -83,10 +84,7 @@ export class Interpolate
                 }
                 let exp = text.substring(startIndex + startSymbolLength, endIndex);
                 expressions.push(exp);
-                parseFns.push(function (target)
-                {
-                    return new Binding(exp.trim(), target);
-                });
+                parseFns.push(Parser.evalAsFunction(exp, false));
                 index = endIndex + endSymbolLength;
                 expressionPositions.push(concat.length);
                 concat.push('');
@@ -101,29 +99,18 @@ export class Interpolate
             }
         }
 
-        const compute = function (values: Binding[])
+        return function interpolationFn(target)
         {
             for (let i = 0, ii = expressions.length; i < ii; i++)
             {
-                if (allOrNothing && typeof (values[i].getValue()))
+                let result = parseFns[i](target);
+                if (allOrNothing && typeof (result) == 'undefined')
                     return;
-                concat[expressionPositions[i]] = values[i].getValue();
+                concat[expressionPositions[i]] = result;
             }
             if (concat.length === 1)
                 return concat[0];
             return concat.join('');
-        };
-
-        return function interpolationFn(target)
-        {
-            const bindings: Binding[] = [];
-
-            for (let i = 0; i < expressions.length; i++)
-            {
-                bindings[i] = parseFns[i](target);
-            }
-
-            return compute(bindings);
         }
 
     }
