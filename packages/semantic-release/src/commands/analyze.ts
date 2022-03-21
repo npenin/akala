@@ -16,7 +16,6 @@ export default async function (commits: Commit[]): Promise<ParserCommit[]>
     {
         const lines = c.message.split('\n').map(l => l.trim());
 
-        var isBody = true;
         const result = { hash: c.hash, notes: [], body: '', merge: '', header: '', footer: '', references: [], mentions: [], revert: null } as unknown as ParserCommit;
         const body: string[] = [];
         const footer: string[] = [];
@@ -26,14 +25,15 @@ export default async function (commits: Commit[]): Promise<ParserCommit[]>
             if (i == 0)
             {
                 result.header = l;
-                const match = headerPattern.exec(c.message);
+                const match = headerPattern.exec(l);
                 if (match)
                     headerCorrespondence.forEach((h, i) => result[h] = match[i + 1]);
 
                 return;
             }
 
-            const notesMatch = c.message.match(noteKeywords);
+            const notesMatch = l.match(noteKeywords);
+            var isBody = true;
             if (notesMatch)
             {
                 isBody = false;
