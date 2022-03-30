@@ -31,7 +31,7 @@ export type StoreDefinition<T = any> =
 
 export class Store<TStore extends StoreDefinition>
 {
-    public static create<TStore extends StoreDefinition>(engine: PersistenceEngine<any>, ...names: (keyof TStore)[]): StoreDefinition<TStore> & Store<TStore>
+    public static create<TStore extends StoreDefinition>(engine: PersistenceEngine<any>, ...names: (keyof TStore)[]): StoreDefinition<TStore> & TStore
     {
         return new Store<TStore>(engine, ...names) as any;
     }
@@ -45,6 +45,26 @@ export class Store<TStore extends StoreDefinition>
     public set<T>(name: keyof TStore & string)
     {
         return this.engine.dbSet<T>(name);
+    }
+}
+
+export class MultiStore<TStore extends StoreDefinition>
+{
+    public static create<TStore extends StoreDefinition>(mapping: Record<string, PersistenceEngine<any>>): StoreDefinition<TStore> & TStore
+    {
+        return new MultiStore<TStore>(mapping) as any;
+    }
+
+    private constructor(private mapping: Record<string, PersistenceEngine<any>>)
+    {
+        for (const name of Object.keys(mapping))
+            Object.defineProperty(this, name, { value: mapping[name].dbSet(name) });
+    }
+
+    public set<T>(name: keyof TStore & string)
+    {
+        if (name in this.mapping)
+            return this.mapping[name].dbSet<T>(name);
     }
 }
 
