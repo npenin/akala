@@ -1,4 +1,4 @@
-#  (2022-03-21)
+#  (2022-03-30)
 
 
 ### Bug Fixes
@@ -145,6 +145,7 @@
 * add ignore failure support f9929cf
 * add middleware with priority handling 461c1a4
 * add MiddlewareRunnerMiddleware d0e9aff
+* add multistore 7d0f562
 * add new app package ac81505
 * add plugins mechanism c9aee01
 * add runnerMiddleware as export ff4c95a
