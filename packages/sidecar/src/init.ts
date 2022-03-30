@@ -2,12 +2,12 @@ import { connect, Container as pm, ContainerLite, Sidecar as pmSidecar, sidecar 
 import Configuration from '@akala/config'
 import { connectByPreference, Container, helper } from '@akala/commands'
 import PubSubContainer, { ContainerProxy as PubSubProxy } from '@akala/pubsub'
-import { PersistenceEngine, providers, Store, StoreDefinition } from '@akala/storage'
+import { ModelDefinition, MultiStore, PersistenceEngine, providers, Store, StoreDefinition } from '@akala/storage'
 import MetaPubSub from '@akala/pubsub/commands.json'
 import os from 'os'
 import path from 'path'
 import { Serializable } from '@akala/json-rpc-ws'
-import { eachAsync, Logger, module } from '@akala/core';
+import { eachAsync, Logger, mapAsync, module } from '@akala/core';
 
 export interface PubSubConfiguration
 {
@@ -19,7 +19,7 @@ export interface StoreConfiguration
 {
     provider: string
     providerOptions?: Serializable;
-    models?: string[];
+    models?: { [key: string]: ModelDefinition<any> };
 }
 
 export interface Sidecar<T extends StoreDefinition = any>
@@ -27,7 +27,7 @@ export interface Sidecar<T extends StoreDefinition = any>
     sidecars: pmSidecar;
     pubsub?: PubSubProxy
     pm: Container<void> & pm;
-    store?: Store<T> & T;
+    store?: StoreDefinition<T> & T;
 }
 
 export type SidecarConfiguration = string | { name: string, program: string };
@@ -40,7 +40,7 @@ export default async function <T extends StoreDefinition>(logger: Logger, config
         config = await Configuration.load(config);
     const sidecar: Sidecar<T> = {} as any;
     const pubsubConfig = config.get<string | PubSubConfiguration>('pubsub');
-    const stateStoreConfig = config.get<StoreConfiguration>('store');
+    const stateStoreConfig = config.get<StoreConfiguration | string | StoreConfiguration[]>('store');
     logger.debug('connecting to pm...');
     if (typeof remotePm != 'string' && typeof remotePm != 'number')
         sidecar.pm = remotePm;
@@ -92,11 +92,23 @@ export default async function <T extends StoreDefinition>(logger: Logger, config
             })();
             break;
         case 'object':
-            await providers.injectWithName([stateStoreConfig.provider || 'file'], async (engine: PersistenceEngine<any>) =>
+            if (Array.isArray(stateStoreConfig))
             {
-                await engine.init(stateStoreConfig.providerOptions)
-                sidecar.store = Store.create<T>(engine, ...stateStoreConfig.models);
-            })();
+                var engines = await mapAsync(stateStoreConfig as StoreConfiguration[], async store => await providers.injectWithName([store.provider || 'file'], async (engine: PersistenceEngine<any>) =>
+                {
+                    await engine.init(store.providerOptions);
+                    return { engine, models: store.models };
+                })());
+                var obj = {};
+                engines.forEach(config => Object.keys(config.models).forEach(model => obj[model] = config.engine));
+                sidecar.store = MultiStore.create(obj);
+            }
+            else
+                await providers.injectWithName([stateStoreConfig.provider || 'file'], async (engine: PersistenceEngine<any>) =>
+                {
+                    await engine.init(stateStoreConfig.providerOptions)
+                    sidecar.store = Store.create<T>(engine, ...Object.keys(stateStoreConfig.models));
+                })();
             break;
         case 'undefined':
             break;
@@ -112,7 +124,10 @@ export default async function <T extends StoreDefinition>(logger: Logger, config
         await eachAsync(plugins, async (plugin) =>
         {
             if (failedSidecars.indexOf(plugin.sidecar) > -1)
-                return;
+                if (plugin.optional)
+                    return;
+                else
+                    throw new Error(`No sidecar ${plugin.sidecar} is available`)
             let sidecarplugin: ContainerLite & Container<void>;
             try
             {
@@ -127,7 +142,7 @@ export default async function <T extends StoreDefinition>(logger: Logger, config
             if (sidecarplugin)
                 await sidecarplugin.dispatch(plugin.command, plugin.parameters);
 
-        });
+        }, true);
 
         if (failedSidecars.length)
         {
