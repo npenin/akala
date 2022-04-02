@@ -19,15 +19,16 @@ export default async function start(this: State, pm: pmContainer.container & Con
     else if (!context.options.name)
         context.options.name = name;
 
-    var instanceConfig = this.config.mapping[context.options.name];
-    var def: SidecarMetadata;
-    if (typeof instanceConfig == 'undefined')
-        def = this.config.containers[name];
-    else
-        def = this.config.containers[instanceConfig.container];
 
     if (this.isDaemon)
     {
+        var instanceConfig = this.config.mapping[context.options.name];
+        var def: SidecarMetadata;
+        if (typeof instanceConfig == 'undefined')
+            def = this.config.containers[name];
+        else
+            def = this.config.containers[instanceConfig.container];
+
         // eslint-disable-next-line no-var
         var container = this.processes[context.options.name];
         if (container && container.running)
