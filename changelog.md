@@ -24,6 +24,7 @@
 * compilation issue 6734227
 * compilation issue 4735be5
 * default version ignore to decline 01cb0f7
+* dependencies d61f681
 * discover cli usage 697946b
 * discover implementation 3502bed
 * error flow in composite middleware ec36174
