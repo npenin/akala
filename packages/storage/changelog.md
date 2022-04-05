@@ -1,9 +1,9 @@
-#  (2022-03-30)
+#  (2022-04-05)
 
 
-### Features
+### Bug Fixes
 
-* add multistore 7d0f562
+* fix model registration and serialization 7236001
 
 
 
