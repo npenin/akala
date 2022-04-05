@@ -1,13 +1,13 @@
 import * as akala from '@akala/core'
 import "reflect-metadata";
-import { FieldType, StorageFieldType, ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator } from './common';
+import { FieldType, StorageFieldType, ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator, SerializableDefinition, SerializedAttribute, SerializedFieldType, SerializedRelationship, SerializedStorageField } from './common';
 import { Query } from './Query';
 import { PersistenceEngine } from './PersistenceEngine';
 import { Update, Create, Delete, CommandResult } from './commands/command';
 import { isDate } from 'util';
 
 export { Cardinality } from './cardinality'
-export { ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator };
+export { ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator, SerializableDefinition, SerializedAttribute, SerializedFieldType, SerializedRelationship, SerializedStorageField };
 export { PersistenceEngine } from './PersistenceEngine'
 
 export const providers = akala.module('db', '@akala/storage');
@@ -94,7 +94,7 @@ export function Model<TObject>(name: string | (new () => TObject), nameInStorage
             model.namespace = namespace || null;
             ModelDefinition.definitions[name_s] = model;
         }
-        model.prototype = cl.prototype;
+        Object.setPrototypeOf(model, cl.prototype);
         // cl.prototype = model;
     }
 }
