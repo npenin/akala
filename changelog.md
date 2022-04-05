@@ -1,4 +1,4 @@
-#  (2022-04-02)
+#  (2022-04-05)
 
 
 ### Bug Fixes
@@ -31,6 +31,7 @@
 * error serialization b3156ad
 * export AggregateErrors f4285e2
 * fix automate runner ae9c216
+* fix model registration and serialization 7236001
 * fs discovery 0d34eea
 * fs middleware after discovery changes d97fcca
 * fs processor too catchy ccafa48
