@@ -8,6 +8,7 @@ import os from 'os'
 import path from 'path'
 import { Serializable } from '@akala/json-rpc-ws'
 import { eachAsync, Logger, mapAsync, module } from '@akala/core';
+import { SerializableDefinition } from '@akala/storage'
 
 export interface PubSubConfiguration
 {
@@ -19,7 +20,7 @@ export interface StoreConfiguration
 {
     provider: string
     providerOptions?: Serializable;
-    models?: { [key: string]: ModelDefinition<any> };
+    models?: { [key: string]: SerializableDefinition<any> };
 }
 
 export interface Sidecar<T extends StoreDefinition = any>
@@ -97,7 +98,7 @@ export default async function <T extends StoreDefinition>(logger: Logger, config
                 var engines = await mapAsync(stateStoreConfig as StoreConfiguration[], async store => await providers.injectWithName([store.provider || 'file'], async (engine: PersistenceEngine<any>) =>
                 {
                     await engine.init(store.providerOptions);
-                    return { engine, models: store.models };
+                    return { engine, models: Object.entries(store.models).map(e => ({ definition: new ModelDefinition(e[0], e[1].nameInStorage, e[1].namespace), model: e[1] })).map(x => x.definition.fromJson(x.model)) };
                 })());
                 var obj = {};
                 engines.forEach(config => Object.keys(config.models).forEach(model => obj[model] = config.engine));
