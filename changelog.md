@@ -1,4 +1,4 @@
-#  (2022-04-05)
+#  (2022-04-09)
 
 
 ### Bug Fixes
@@ -6,10 +6,12 @@
 * adapt to trigger new definition 8c2d136
 * add missing package required property ba0c9df
 * added missing yaml dependency fa66dd1
+* added remote pm socket support 074d6cf
 * allow for any property on errors a529558
 * artificial bump 60cc1c1
 * automate implementation f76a995
 * avoids workflow leaks in context db4662a
+* better file init 1087260
 * better support for non-mapped sidecars ec502f8
 * binding constructor 8294d0f
 * bindings are less intrusive 3ef2783
@@ -86,6 +88,7 @@
 * remove winston dependency 3dcad68
 * removed mock-require usage 99587ba
 * removed mock-require usage 448f5be
+* resolve legacy config lookup 5dceab9
 * runnerMiddleware more type friendly 7bf1a25
 * set log level for any namespace e1b1025
 * sidecar builder 26673b1
@@ -143,6 +146,7 @@
 ### Features
 
 * add $container to fs inject e766ea3
+* add $init function for easier usage 3f4fa32
 * add Configuration getters and setters c5dad91
 * add extends support df13246
 * add ignore failure support f9929cf
