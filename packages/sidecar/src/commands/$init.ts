@@ -1,3 +1,3 @@
-import start from '../init'
+import { $init } from '../init'
 
-export default start;
+export default $init;
