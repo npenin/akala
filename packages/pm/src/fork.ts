@@ -72,7 +72,7 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
             if (init && init.config && init.config.cli && init.config.cli.options)
                 ac.Triggers.addCliOptions(init, initMiddleware);
 
-            initMiddleware.option<string, 'pmSocket'>('pmSocket', { aliases: ['pm-socket'] }).action(async c =>
+            initMiddleware.option<string, 'pmSocket'>('pmSocket', { aliases: ['pm-socket', 'pm-sock'] }).action(async c =>
             {
                 let pm: ac.Container<unknown>;
                 if (!isPm)
@@ -87,11 +87,18 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
                         await new Promise<void>((resolve, reject) =>
                         {
                             pmSocket.on('error', reject)
-                            var portNumber = parseInt(c.options.pmSocket);
-                            if (isNaN(portNumber))
+                            const [_, host, port] = /^(?:([^:]+):)?(\d+)$/.exec(c.options.pmSocket);
+                            if (typeof _ === 'undefined')
+                            {
                                 pmSocket.connect(c.options.pmSocket, resolve);
+                            }
                             else
-                                pmSocket.connect(portNumber, resolve);
+                            {
+                                if (host)
+                                    pmSocket.connect(Number(port), host, resolve);
+                                else
+                                    pmSocket.connect(Number(port), resolve);
+                            }
                         })
                         pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new ac.NetSocketAdapter(pmSocket), cliContainer), true));
                     }
