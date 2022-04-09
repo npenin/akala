@@ -33,11 +33,8 @@ export default async function start(this: State, pm: pmContainer.container & Con
         var container = this.processes[context.options.name];
         if (container && container.running)
             throw new Error(container.name + ' is already started');
-        args = await pm.dispatch('config', name) as string[];
-        if (args)
-            args = args.slice(0)
-        else
-            args = [];
+
+        const args = [];
 
         if (!def && name != 'pm')
         {
