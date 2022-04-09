@@ -33,7 +33,12 @@ export interface Sidecar<T extends StoreDefinition = any>
 
 export type SidecarConfiguration = string | { name: string, program: string };
 
-export default async function <T extends StoreDefinition>(logger: Logger, config: Configuration | string, remotePm?: string | (pm & Container<void>)): Promise<Sidecar<T>>
+export async function $init<T extends StoreDefinition>(logger: Logger, config: Configuration | string, remotePm?: string | (pm & Container<void>)): Promise<void>
+{
+    Object.assign(this, await app<T>(logger, config, remotePm));
+}
+
+export default async function app<T extends StoreDefinition>(logger: Logger, config: Configuration | string, remotePm?: string | (pm & Container<void>)): Promise<Sidecar<T>>
 {
     if (typeof config == 'undefined')
         throw new Error('configuration is required');
