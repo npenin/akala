@@ -22,12 +22,14 @@ export class File extends PersistenceEngine<FileOptions>
         super(new FileCommandProcessor());
     }
 
-    public async init(options?)
+    public async init(options?: { path: string, rootDbName?: string, store?: FileSystemFolder & FileSystemContainer })
     {
         if (!options)
-            options = { path: process.cwd(), rootDbName: '.' };
+            options = { path: process.cwd() };
+        if (!options.rootDbName)
+            options.rootDbName = '.';
         if (!options.store)
-            options.store = await new FolderEntry(options.path, options.rootDbName, undefined);
+            options.store = await new FolderEntry(options.path, options.rootDbName, undefined) as FileSystemFolder & FileSystemContainer;
         this.store = options.store;
         this.processor.init(options);
     }
