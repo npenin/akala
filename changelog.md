@@ -1,4 +1,4 @@
-#  (2022-04-09)
+#  (2022-04-10)
 
 
 ### Bug Fixes
@@ -82,6 +82,7 @@
 * remote container command registration f3b0728
 * remote pm proxy 633b1b5
 * remote ready failing dcc0fc1
+* remove duplicate binary operator 4930340
 * remove duplicate foreach in publish 09d9fe5
 * remove failure masking 7c4ae85
 * remove triple-beam dependency c44bd2e
