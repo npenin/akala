@@ -179,6 +179,7 @@
 * InteractError now using Binding for more possible usecases d9da85f
 * leverage suncalc c674f46
 * moved to middleware approach 69d4ba5
+* releasing sidecar eb0c959
 * support for commands through pm 3954c8a
 * support for triggers 624ae86
 * support node module when no ./ prefix ad871e3
