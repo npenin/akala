@@ -2,6 +2,7 @@ import { Query, File, Store, StoreDefinition, DbSet, expressions, QuerySymbols }
 import { ModelTest1 } from './modelTest1';
 import * as assert from 'assert';
 import './modelTest1';
+import { BinaryOperator } from '@akala/core';
 
 interface TestStore extends StoreDefinition
 {
@@ -29,7 +30,7 @@ describe('where builder', function ()
                 assert.equal(expressions.ExpressionType[where.expression.argument.body.type], expressions.ExpressionType[expressions.ExpressionType.BinaryExpression]);
                 if (where.expression.argument.body.type == expressions.ExpressionType.BinaryExpression)
                 {
-                    assert.equal(where.expression.argument.body.operator, expressions.BinaryOperator.Equal);
+                    assert.equal(where.expression.argument.body.operator, BinaryOperator.Equal);
                     assert.equal(where.expression.argument.body.left.type, expressions.ExpressionType.MemberExpression);
                     assert.equal(where.expression.argument.body.right.type, expressions.ExpressionType.ConstantExpression);
                 }

@@ -14,8 +14,7 @@ import { QuerySymbols } from './Query';
 import { Exception } from './exceptions';
 import { ModelDefinition } from './shared';
 import * as  Enumerable from './Enumerable';
-import { isPromiseLike } from "@akala/core";
-import { BinaryOperator } from './expressions/binary-operator';
+import { BinaryOperator, isPromiseLike } from "@akala/core";
 
 
 export class ExpressionExecutor extends ExpressionVisitor

@@ -1,6 +1,5 @@
 export * from './apply-symbol-expression'
 export * from './binary-expression'
-export * from './binary-operator'
 export * from './call-expression'
 export * from './constant-expression'
 export * from './expression-type'
