@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* sidecar store init 057f271
+* sidecar command definition 69f9b21
 
 
 
