@@ -87,13 +87,15 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
                         await new Promise<void>((resolve, reject) =>
                         {
                             pmSocket.on('error', reject)
-                            const [_, host, port] = /^(?:([^:]+):)?(\d+)$/.exec(c.options.pmSocket);
-                            if (typeof _ === 'undefined')
+                            const remote = /^(?:([^:]+):)?(\d+)$/.exec(c.options.pmSocket);
+                            if (!remote)
                             {
                                 pmSocket.connect(c.options.pmSocket, resolve);
                             }
                             else
                             {
+                                const host = remote[1];
+                                const port = remote[2];
                                 if (host)
                                     pmSocket.connect(Number(port), host, resolve);
                                 else
