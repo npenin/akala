@@ -1,4 +1,4 @@
-#  (2022-04-10)
+#  (2022-04-15)
 
 
 ### Bug Fixes
@@ -26,6 +26,7 @@
 * compilation after typescript 4.4 upgrade 2828ff9
 * compilation issue 6734227
 * compilation issue 4735be5
+* crash on parsing remote bcb17fe
 * default version ignore to decline 01cb0f7
 * dependencies d61f681
 * discover cli usage 697946b
