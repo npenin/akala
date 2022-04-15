@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* sidecar command definition 69f9b21
+* sidecar storage building 7285f5d
 
 
 
