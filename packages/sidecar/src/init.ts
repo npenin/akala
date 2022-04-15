@@ -104,7 +104,7 @@ export default async function app<T extends StoreDefinition>(context: CliContext
             {
                 var engines = await mapAsync(stateStoreConfig as StoreConfiguration[], async store => await providers.injectWithName([store.provider || 'file'], async (engine: PersistenceEngine<any>) =>
                 {
-                    await engine.init(store.providerOptions);
+                    await engine.init(Object.assign({}, store.providerOptions, { path: context.currentWorkingDirectory }));
                     return { engine, models: Object.entries(store.models).map(e => ({ definition: new ModelDefinition(e[0], e[1].nameInStorage, e[1].namespace), model: e[1] })).map(x => x.definition.fromJson(x.model)) };
                 })());
                 var obj = {};
@@ -114,7 +114,7 @@ export default async function app<T extends StoreDefinition>(context: CliContext
             else
                 await providers.injectWithName([stateStoreConfig.provider || 'file'], async (engine: PersistenceEngine<any>) =>
                 {
-                    await engine.init(Object.assign({}, stateStoreConfig.providerOptions, { path: context }));
+                    await engine.init(Object.assign({}, stateStoreConfig.providerOptions, { path: context.currentWorkingDirectory }));
                     sidecar.store = Store.create<T>(engine, ...Object.keys(stateStoreConfig.models));
                 })();
             break;
