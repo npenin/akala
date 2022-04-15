@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* crash on parsing remote bcb17fe
+* sidecar command definition 69f9b21
 
 
 
