@@ -1,10 +1,9 @@
-#  (2022-04-09)
+#  (2022-04-15)
 
 
 ### Bug Fixes
 
-* added remote pm socket support 074d6cf
-* resolve legacy config lookup 5dceab9
+* crash on parsing remote bcb17fe
 
 
 
