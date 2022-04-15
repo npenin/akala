@@ -9,6 +9,7 @@ import path from 'path'
 import { Serializable } from '@akala/json-rpc-ws'
 import { eachAsync, Logger, mapAsync, module } from '@akala/core';
 import { SerializableDefinition } from '@akala/storage'
+import { CliContext } from '@akala/cli'
 
 export interface PubSubConfiguration
 {
@@ -33,12 +34,13 @@ export interface Sidecar<T extends StoreDefinition = any>
 
 export type SidecarConfiguration = string | { name: string, program: string };
 
-export async function $init<T extends StoreDefinition>(logger: Logger, config: Configuration | string, remotePm?: string | (pm & Container<void>)): Promise<void>
+export async function $init<T extends StoreDefinition>(context: CliContext, config: Configuration | string, remotePm?: string | (pm & Container<void>)): Promise<void>
 {
-    Object.assign(this, await app<T>(logger, config, remotePm));
+    Object.assign(this, await app<T>(context, config, remotePm));
+    context.logger.help('Your application is now ready !');
 }
 
-export default async function app<T extends StoreDefinition>(logger: Logger, config: Configuration | string, remotePm?: string | (pm & Container<void>)): Promise<Sidecar<T>>
+export default async function app<T extends StoreDefinition>(context: CliContext, config: Configuration | string, remotePm?: string | (pm & Container<void>)): Promise<Sidecar<T>>
 {
     if (typeof config == 'undefined')
         throw new Error('configuration is required');
@@ -47,7 +49,7 @@ export default async function app<T extends StoreDefinition>(logger: Logger, con
     const sidecar: Sidecar<T> = {} as any;
     const pubsubConfig = config.get<string | PubSubConfiguration>('pubsub');
     const stateStoreConfig = config.get<StoreConfiguration | string | StoreConfiguration[]>('store');
-    logger.debug('connecting to pm...');
+    context.logger.debug('connecting to pm...');
     if (typeof remotePm != 'string' && typeof remotePm != 'number')
         sidecar.pm = remotePm;
     else
@@ -58,7 +60,7 @@ export default async function app<T extends StoreDefinition>(logger: Logger, con
 
     module('@akala/pm').register('container', sidecar.pm, true);
     sidecar.sidecars = pmsidecar();
-    logger.info('connection established.');
+    context.logger.info('connection established.');
     var pubSubContainer: PubSubContainer;
     switch (typeof pubsubConfig)
     {
@@ -112,7 +114,7 @@ export default async function app<T extends StoreDefinition>(logger: Logger, con
             else
                 await providers.injectWithName([stateStoreConfig.provider || 'file'], async (engine: PersistenceEngine<any>) =>
                 {
-                    await engine.init(stateStoreConfig.providerOptions)
+                    await engine.init(Object.assign({}, stateStoreConfig.providerOptions, { path: context }));
                     sidecar.store = Store.create<T>(engine, ...Object.keys(stateStoreConfig.models));
                 })();
             break;
@@ -152,11 +154,10 @@ export default async function app<T extends StoreDefinition>(logger: Logger, con
 
         if (failedSidecars.length)
         {
-            failedSidecars.forEach(sidecar => logger.warn(`${sidecar} could not be used. This application might behave inapropriately.`));
+            failedSidecars.forEach(sidecar => context.logger.warn(`${sidecar} could not be used. This application might behave inapropriately.`));
         }
     }
 
-    logger.help('Your application is now ready !');
 
     return sidecar;
 }
