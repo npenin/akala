@@ -1,4 +1,4 @@
-#  (2022-04-15)
+#  (2022-04-17)
 
 
 ### Bug Fixes
@@ -31,6 +31,7 @@
 * dependencies d61f681
 * discover cli usage 697946b
 * discover implementation 3502bed
+* enumerate on configuration objects a61e720
 * error flow in composite middleware ec36174
 * error serialization b3156ad
 * export AggregateErrors f4285e2
