@@ -43,6 +43,10 @@ export default class Configuration<T = SerializableObject>
                 }
                 return Reflect.has(target, key);
             },
+            ownKeys(target)
+            {
+                return Reflect.ownKeys(target);
+            },
             get(target, key, receiver)
             {
                 if (typeof (key) == 'symbol')
