@@ -1,9 +1,9 @@
-#  (2022-04-17)
+#  (2022-04-18)
 
 
 ### Bug Fixes
 
-* enumerate on configuration objects a61e720
+* hasOwnKeys now returns correct keys 76a062e
 
 
 
