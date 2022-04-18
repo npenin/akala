@@ -1,4 +1,4 @@
-#  (2022-04-17)
+#  (2022-04-18)
 
 
 ### Bug Fixes
@@ -41,6 +41,7 @@
 * fs middleware after discovery changes d97fcca
 * fs processor too catchy ccafa48
 * git push tags fc8e609
+* hasOwnKeys now returns correct keys 76a062e
 * health check reliability 98df0c9
 * honoring preferRemote 6fa76bc
 * improve config get return type c40bcd5
