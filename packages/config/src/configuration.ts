@@ -3,10 +3,10 @@ import { Serializable, SerializableObject } from '@akala/json-rpc-ws';
 import fs from 'fs/promises'
 import { inspect } from 'util'
 
-export type ProxyConfiguration<T = SerializableObject> = Configuration<T> & { [key in keyof T]: T[key] extends SerializableObject ? ProxyConfiguration<T[key]> : T[key] };
+export type ProxyConfiguration<T extends object = SerializableObject> = Configuration<T> & { [key in keyof T]: T[key] extends SerializableObject ? ProxyConfiguration<T[key]> : T[key] };
 type SerializableConfig<T, TKey extends keyof T> = T[TKey] extends SerializableObject ? Configuration<T[TKey]> : T[TKey]
 
-export default class Configuration<T = SerializableObject>
+export default class Configuration<T extends object = SerializableObject>
 {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private constructor(private readonly path: string, private readonly config?: T, private readonly rootConfig?: any)
@@ -22,7 +22,7 @@ export default class Configuration<T = SerializableObject>
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public static new<T = SerializableObject>(path: string, config?: T, rootConfig?: any): ProxyConfiguration<T>
+    public static new<T extends object = SerializableObject>(path: string, config?: T, rootConfig?: any): ProxyConfiguration<T>
     {
         return new Proxy(new Configuration<T>(path, config, rootConfig), {
             has(target, key)
@@ -45,7 +45,7 @@ export default class Configuration<T = SerializableObject>
             },
             ownKeys(target)
             {
-                return Reflect.ownKeys(target);
+                return Reflect.ownKeys(target.config);
             },
             get(target, key, receiver)
             {
@@ -89,7 +89,7 @@ export default class Configuration<T = SerializableObject>
         }) as unknown as ProxyConfiguration<T>;
     }
 
-    public static async load<T = SerializableObject>(file: string): Promise<ProxyConfiguration<T>>
+    public static async load<T extends object = SerializableObject>(file: string): Promise<ProxyConfiguration<T>>
     {
         try
         {
