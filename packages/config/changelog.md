@@ -1,9 +1,9 @@
-#  (2022-04-18)
+#  (2022-04-19)
 
 
 ### Bug Fixes
 
-* hasOwnKeys now returns correct keys 76a062e
+* path can now be retrieved using property 2d3125e
 
 
 
