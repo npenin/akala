@@ -72,9 +72,10 @@ export default class Configuration<T extends object = SerializableObject>
                     case 'commit':
                         return target.commit.bind(target);
                     default:
-                        if (!Reflect.has(target, key) && typeof key == 'string')
-                            return target.get(key);
-                        return Reflect.get(target, key, receiver);
+                        var result = target.get(key);
+                        if (typeof result == 'undefined' && Reflect.has(target, key) && typeof key == 'string')
+                            return Reflect.get(target, key, receiver);
+                        return result;
                 }
             },
             set(target, p, value, receiver)
@@ -124,6 +125,20 @@ export default class Configuration<T extends object = SerializableObject>
         }
         else
             return this as any;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    public has<TResult = string>(key?: string): boolean
+    {
+        if (key)
+        {
+            return typeof (key.split('.').reduce(function (config, key)
+            {
+                return config[key];
+            }, this.config)) != 'undefined';
+        }
+        else
+            return true;
     }
 
     public set(key: Exclude<keyof T, symbol | number>, newConfig: T[typeof key]): void
