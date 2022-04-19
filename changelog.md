@@ -1,4 +1,4 @@
-#  (2022-04-18)
+#  (2022-04-19)
 
 
 ### Bug Fixes
@@ -76,6 +76,7 @@
 * packages/docker/Dockerfile-arm to reduce vulnerabilities 7fd23ac
 * packages/docker/Dockerfile-arm to reduce vulnerabilities 93d2550
 * parser more reliable 5c92e5a
+* path can now be retrieved using property 2d3125e
 * path to command metadata 4fc8111
 * pm start a40a583
 * prevent commands override 019f44f
