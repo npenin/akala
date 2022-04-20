@@ -299,6 +299,8 @@ class FolderEntry implements FileSystemFolder, PromiseLike<PromiseFileSystem>
         this[fspath] = join(path, name);
         this[fsName] = name;
         this[model] = def;
+        if (!def)
+            this[isNew] = true;
         Object.defineProperty(this, 'promise', { enumerable: false, writable: true });
     }
 
@@ -322,7 +324,7 @@ class FolderEntry implements FileSystemFolder, PromiseLike<PromiseFileSystem>
             {
                 this.promise = new Promise<FileSystemFolder & FileSystemContainer>((resolve, reject) =>
                 {
-                    fs.mkdir(this[fspath], (err) =>
+                    fs.mkdir(this[fspath], { recursive: true }, (err) =>
                     {
                         if (err)
                             reject(err);
