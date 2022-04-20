@@ -1,9 +1,9 @@
-#  (2022-04-19)
+#  (2022-04-20)
 
 
 ### Bug Fixes
 
-* path can now be retrieved using property 2d3125e
+* adding getOwnPropertyDescriptor to try to fix Object.assign d969335
 
 
 
