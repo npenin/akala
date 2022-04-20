@@ -299,8 +299,6 @@ class FolderEntry implements FileSystemFolder, PromiseLike<PromiseFileSystem>
         this[fspath] = join(path, name);
         this[fsName] = name;
         this[model] = def;
-        if (!def)
-            this[isNew] = true;
         Object.defineProperty(this, 'promise', { enumerable: false, writable: true });
     }
 
