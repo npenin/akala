@@ -5,6 +5,7 @@
 
 * adapt to trigger new definition 8c2d136
 * add missing package required property ba0c9df
+* add recursive path creation 3f7ffa7
 * added missing yaml dependency fa66dd1
 * added remote pm socket support 074d6cf
 * adding getOwnPropertyDescriptor to try to fix Object.assign d969335
@@ -97,6 +98,7 @@
 * removed mock-require usage 99587ba
 * removed mock-require usage 448f5be
 * resolve legacy config lookup 5dceab9
+* revert last change 1332114
 * runnerMiddleware more type friendly 7bf1a25
 * set log level for any namespace e1b1025
 * sidecar builder 26673b1
