@@ -42,6 +42,7 @@
 * fs middleware after discovery changes d97fcca
 * fs processor too catchy ccafa48
 * git push tags fc8e609
+* handle default init 5482bcb
 * hasOwnKeys now returns correct keys 76a062e
 * health check reliability 98df0c9
 * honoring preferRemote 6fa76bc
