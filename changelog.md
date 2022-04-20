@@ -1,4 +1,4 @@
-#  (2022-04-19)
+#  (2022-04-20)
 
 
 ### Bug Fixes
@@ -7,6 +7,7 @@
 * add missing package required property ba0c9df
 * added missing yaml dependency fa66dd1
 * added remote pm socket support 074d6cf
+* adding getOwnPropertyDescriptor to try to fix Object.assign d969335
 * allow for any property on errors a529558
 * aritificial bump ae0e129
 * artificial bump 60cc1c1
