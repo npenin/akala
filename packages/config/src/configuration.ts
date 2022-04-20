@@ -47,6 +47,10 @@ export default class Configuration<T extends object = SerializableObject>
             {
                 return Reflect.ownKeys(target.config);
             },
+            getOwnPropertyDescriptor(target, name)
+            {
+                return { value: this.get(target, name), configurable: true, enumerable: true };
+            },
             get(target, key, receiver)
             {
                 if (typeof (key) == 'symbol')
