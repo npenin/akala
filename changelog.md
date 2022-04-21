@@ -103,6 +103,7 @@
 * set log level for any namespace e1b1025
 * sidecar builder 26673b1
 * sidecar command definition 69f9b21
+* sidecar init with single store config 5551424
 * sidecar storage building 7285f5d
 * sidecar store init 057f271
 * spread is not considering non enumerable properties 394438a
