@@ -100,7 +100,7 @@ export type SerializedStorageField = {
     nameInStorage: string,
     generator: keyof typeof Generator,
     model: ModelDefinition<any>
-} & FieldType;
+} & SerializedFieldType;
 
 
 export type Attribute<T, TMember extends Extract<keyof T, string>> = { name: TMember, nameInStorage: string, isKey: boolean, mode: ModelMode.Attribute, generator: Generator, model: ModelDefinition<T> } & FieldType;
@@ -211,11 +211,11 @@ export class ModelDefinition<TObject extends { [key: string]: any }>
         const definition = data;
 
         if (definition.fields)
-            Object.keys(definition.fields).map(k => definition.fields && this.defineStorageMember(k, definition.fields[k].isKey, Object.assign({}, definition.members[k].type, { type: StorageFieldType[definition.members[k].type] }) as FieldType, Generator[definition.members[k].generator] as Generator));
+            Object.entries(definition.fields).map(fieldEntry => this.defineStorageMember(fieldEntry[0], fieldEntry[1].isKey, Object.assign({}, fieldEntry[1].type, { type: StorageFieldType[fieldEntry[1].type] }) as FieldType, Generator[fieldEntry[1].generator] as Generator));
         if (definition.relationships)
-            Object.keys(definition.relationships).map(k => definition.relationships && this.defineRelationship(k as Extract<keyof TObject, string>, ModelDefinition.definitions[definition.relationships[k].target], definition.relationships[k].mapping));
+            Object.entries(definition.relationships).map(relationship => this.defineRelationship(relationship[0] as Extract<keyof TObject, string>, ModelDefinition.definitions[relationship[1].target], relationship[1].mapping));
         if (definition.members)
-            Object.keys(definition.members).map(k => definition.members && this.defineMember(k as Extract<keyof TObject, string>, definition.members[k].isKey, Object.assign({}, definition.members[k].type, { type: StorageFieldType[definition.members[k].type] }) as FieldType, Generator[definition.members[k].generator] as Generator));
+            Object.entries(definition.members).map(member => this.defineMember(member[0] as Extract<keyof TObject, string>, member[1].isKey, Object.assign({}, member[1].type, { type: StorageFieldType[member[1].type] }) as FieldType, Generator[member[1].generator] as Generator));
     }
 
     private storageView: StorageView<TObject>;
