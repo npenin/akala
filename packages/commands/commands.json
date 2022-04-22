@@ -61,6 +61,30 @@
             }
         },
         {
+            "name": "generate-declaration",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/generate-declaration.js",
+                    "source": "src/cli/generate-declaration.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "options.name",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
             "name": "generate",
             "inject": [],
             "config": {
@@ -91,30 +115,6 @@
                             "needsValue": true
                         }
                     }
-                }
-            }
-        },
-        {
-            "name": "generate-declaration",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/cli/generate-declaration.js",
-                    "source": "src/cli/generate-declaration.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "options.name",
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "": {
-                    "inject": []
                 }
             }
         },
@@ -157,6 +157,24 @@
             }
         },
         {
+            "name": "register",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/register.js",
+                    "source": "src/cli/register.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
             "name": "new",
             "inject": [],
             "config": {
@@ -179,24 +197,6 @@
                         "options.name",
                         "options",
                         "options.destination"
-                    ]
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
-            "name": "register",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/cli/register.js",
-                    "source": "src/cli/register.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
                     ]
                 },
                 "": {
