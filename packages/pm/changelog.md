@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* force metadata command registration in remote container 840d6dd
+* update ready comment definition ebb8c05
 
 
 
