@@ -1,4 +1,4 @@
-#  (2022-04-20)
+#  (2022-04-21)
 
 
 ### Bug Fixes
@@ -56,6 +56,7 @@
 * improved logging support 8c81e18
 * improves command detection ff43e85
 * inject usage after move to full meta cmd 2cbda96
+* json model definition parsing 0770dab
 * jsonrpc processor 497616c
 * jsonrpc trigger c95d27f
 * limited git tag scope 7da0acb
