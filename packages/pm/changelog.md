@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* improved ready command for remote containers ffd2a17
+* force metadata command registration in remote container 840d6dd
 
 
 
