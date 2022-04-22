@@ -2,32 +2,6 @@
     "name": "commands",
     "commands": [
         {
-            "name": "config",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/config.js",
-                    "source": "src/commands/config.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "param.0",
-                        "options"
-                    ]
-                }
-            }
-        },
-        {
             "name": "connect",
             "inject": [],
             "config": {
@@ -69,41 +43,6 @@
             }
         },
         {
-            "name": "discover",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/discover.js",
-                    "source": "src/commands/discover.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "$container"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "$container"
-                    ]
-                },
-                "cli": {
-                    "usage": "discover <name> <folder>",
-                    "options": {
-                        "folder": {
-                            "normalize": true
-                        }
-                    },
-                    "inject": [
-                        "options.name",
-                        "options.folder",
-                        "$container"
-                    ]
-                }
-            }
-        },
-        {
             "name": "$init",
             "inject": [],
             "config": {
@@ -135,6 +74,67 @@
                             ]
                         }
                     }
+                }
+            }
+        },
+        {
+            "name": "config",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/config.js",
+                    "source": "src/commands/config.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0",
+                        "options"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "discover",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/discover.js",
+                    "source": "src/commands/discover.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "$container"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "$container"
+                    ]
+                },
+                "cli": {
+                    "usage": "discover <name> <folder>",
+                    "options": {
+                        "folder": {
+                            "normalize": true
+                        }
+                    },
+                    "inject": [
+                        "options.name",
+                        "options.folder",
+                        "$container"
+                    ]
                 }
             }
         },
@@ -194,6 +194,46 @@
             }
         },
         {
+            "name": "log",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/log.js",
+                    "source": "src/commands/log.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "ls",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/ls.js",
+                    "source": "src/commands/ls.ts",
+                    "inject": []
+                },
+                "": {
+                    "inject": []
+                },
+                "cli": {
+                    "inject": []
+                }
+            }
+        },
+        {
             "name": "map",
             "inject": [],
             "config": {
@@ -244,46 +284,6 @@
             }
         },
         {
-            "name": "log",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/log.js",
-                    "source": "src/commands/log.ts",
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "param.0"
-                    ]
-                }
-            }
-        },
-        {
-            "name": "ls",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/ls.js",
-                    "source": "src/commands/ls.ts",
-                    "inject": []
-                },
-                "": {
-                    "inject": []
-                },
-                "cli": {
-                    "inject": []
-                }
-            }
-        },
-        {
             "name": "ready",
             "inject": [],
             "config": {
@@ -291,11 +291,19 @@
                     "path": "dist/commands/ready.js",
                     "source": "src/commands/ready.ts",
                     "inject": [
+                        "$container",
                         "ignore"
+                    ]
+                },
+                "jsonrpcws": {
+                    "inject": [
+                        "$container",
+                        "connectionAsContainer"
                     ]
                 },
                 "": {
                     "inject": [
+                        "$container",
                         "process"
                     ]
                 }
@@ -357,6 +365,53 @@
             }
         },
         {
+            "name": "status",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/status.js",
+                    "source": "src/commands/status.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "update",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/update.js",
+                    "source": "src/commands/update.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "$container"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
             "name": "stop",
             "inject": [],
             "config": {
@@ -404,53 +459,6 @@
                     "inject": [
                         "param.0",
                         "param.1"
-                    ]
-                }
-            }
-        },
-        {
-            "name": "update",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/update.js",
-                    "source": "src/commands/update.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "$container"
-                    ]
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
-            "name": "status",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/status.js",
-                    "source": "src/commands/status.ts",
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "param.0"
                     ]
                 }
             }
