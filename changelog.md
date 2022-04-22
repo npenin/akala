@@ -121,6 +121,7 @@
 * update command definition 85c2891
 * update commands cli definition 5b7f8f1
 * update dependencies and regenerate metadata 0c83667
+* update ready comment definition ebb8c05
 * update reference to field 471f538
 * update to commands  major version 180608a
 * update to commands major version 0631f6e
