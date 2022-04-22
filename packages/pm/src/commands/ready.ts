@@ -7,6 +7,7 @@ export default async function ready(this: State, pm: pm.container & Container<St
     if (!container.name && !container.connect && !container.commandable)
     {
         container.commandable = true;
+        container.register<Metadata.Command>({ name: '$metadata', config: {}, inject: [] }, true);
         const metadata: Metadata.Container = await container.dispatch('$metadata');
         container.name = metadata.name;
         registerCommands(metadata.commands, container.processor, container);
