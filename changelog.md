@@ -1,4 +1,4 @@
-#  (2022-04-21)
+#  (2022-04-22)
 
 
 ### Bug Fixes
@@ -54,6 +54,7 @@
 * improve remote sidecars defaults eef7b24
 * improve support for extends f6622ee
 * improved logging support 8c81e18
+* improved ready command for remote containers ffd2a17
 * improves command detection ff43e85
 * inject usage after move to full meta cmd 2cbda96
 * json model definition parsing 0770dab
