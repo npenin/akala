@@ -1,15 +1,8 @@
-// import sms from 'source-map-support'
 import { LogLevels, Logger, logger as LoggerBuilder } from '@akala/core';
-// sms.install();
-// import * as debug from 'debug';
 import program, { CliContext } from './router/index';
-// debug.enable('*,-*:verbose');
-// debug.enable('*,-*:verbose,-router*');
-// import './client';
-// import './plugins';
-// import './helpers/newmodule';
 export * from './router/index'
 export default program;
+
 export function buildCliContext<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>(logger: Logger, ...args: string[]): CliContext<T>
 {
     const result: CliContext<T> = { args: args, argv: args, options: {} as T, currentWorkingDirectory: undefined } as any;

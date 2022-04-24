@@ -3,8 +3,7 @@ import State, { RunningContainer, SidecarMetadata } from '../state';
 import { spawn, ChildProcess, StdioOptions } from "child_process";
 import pmContainer from '../container';
 import * as jsonrpc from '@akala/json-rpc-ws'
-import debug from "debug";
-import { eachAsync } from "@akala/core";
+import { eachAsync, logger } from "@akala/core";
 import { NewLinePrefixer } from "../new-line-prefixer.js";
 import { SocketAdapterEventMap } from "@akala/json-rpc-ws";
 import { CliContext, ErrorWithStatus } from "@akala/cli";
@@ -66,7 +65,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
     if (context.options && context.options.verbose)
         args.push('-v')
 
-    const log = debug('akala:pm:' + context.options.name);
+    const log = logger('akala:pm:' + context.options.name);
     let cp: ChildProcess;
     if (!this.isDaemon)
     {
@@ -110,10 +109,10 @@ export default async function start(this: State, pm: pmContainer.container & Con
             const processor = new Processors.JsonRpc(new jsonrpc.Connection(new IpcAdapter(cp), {
                 type: 'client', getHandler(method: string)
                 {
-                    log(method);
+                    log.debug(method);
                     return async function (params: jsonrpc.SerializableObject, reply)
                     {
-                        log(params);
+                        log.debug(params);
                         try
                         {
                             if (!params)
@@ -123,12 +122,12 @@ export default async function start(this: State, pm: pmContainer.container & Con
                             // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             params.process = container as any;
                             const result = await pm.dispatch(method, params) as jsonrpc.PayloadDataType<void>;
-                            log(result);
+                            log.debug(result);
                             reply(null, result);
                         }
                         catch (error)
                         {
-                            log(error);
+                            log.debug(error);
                             reply(error);
                         }
                     }

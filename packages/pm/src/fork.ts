@@ -5,9 +5,8 @@ import * as path from 'path'
 import * as ac from '@akala/commands';
 import { lstat } from 'fs/promises';
 import { IpcAdapter } from './commands/start';
-import debug from 'debug';
 import { Socket } from 'net';
-import { module as coreModule } from '@akala/core';
+import { logger, Logger, module as coreModule } from '@akala/core';
 import program, { buildCliContextFromProcess, NamespaceMiddleware } from '@akala/cli';
 import { Stats } from 'fs';
 import { registerCommands } from '@akala/commands';
@@ -25,14 +24,14 @@ program.useMiddleware({
 let folderOrFile: Stats;
 let cliContainer: ac.Container<unknown>;
 let processor: ac.CommandProcessor;
-let log: debug.Debugger;
+let log: Logger;
 const logMiddleware = new NamespaceMiddleware<{ program: string, name: string }>(null).option<string, 'verbose'>('verbose', { aliases: ['v',] });
 logMiddleware.preAction(async c =>
 {
     if (c.options.verbose)
         processor = new ac.Processors.LogProcessor(processor, (cmd, params) =>
         {
-            log({ cmd, params });
+            log.verbose({ cmd, params });
             return Promise.resolve();
         });
 
@@ -51,7 +50,7 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
     useMiddleware({
         handle: async c => //if commandable
         {
-            log = debug(c.options.name);
+            log = logger(c.options.name);
 
             if (folderOrFile.isFile())
                 cliContainer = new ac.Container(path.basename(c.options.name), {});

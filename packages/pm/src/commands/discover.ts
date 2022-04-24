@@ -4,23 +4,23 @@ import { existsSync, promises as fs } from "fs";
 import pmContainer from '../container';
 import map from './map'
 import { createRequire } from "module";
-import { log } from "@akala/core";
+import { logger } from "@akala/core";
 
 
 type Unpromise<T> = T extends Promise<infer X> ? X : never;
 type mapReturn = Unpromise<ReturnType<typeof map>>;
 
-const debug = log('discover');
+const log = logger('discover');
 
 
 export default async function discover(this: State, packageName: string, folder: string, pm: pmContainer.container): Promise<mapReturn[] | mapReturn>
 {
     // eslint-disable-next-line prefer-rest-params
-    debug(arguments);
+    log.debug(arguments);
 
     let path = folder || process.cwd();
 
-    debug(path);
+    log.debug(path);
 
     let tmpRequire: ReturnType<typeof createRequire> | undefined = undefined;
     if (existsSync(path))

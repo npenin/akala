@@ -41,9 +41,10 @@ export interface Logger extends ILogger
     level: LogLevels
 }
 
-export function logger(rootNamespace: string, logLevel: LogLevels): Logger
+export function logger(rootNamespace: string, logLevel?: LogLevels): Logger
 {
-    setLevel(rootNamespace, logLevel);
+    if (typeof logLevel !== 'undefined')
+        setLevel(rootNamespace, logLevel);
     const logger = { get level() { return logLevel }, set level(l) { setLevel(rootNamespace, l) } };
     Object.keys(LogLevels).forEach(k =>
     {

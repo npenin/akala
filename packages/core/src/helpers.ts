@@ -5,7 +5,6 @@ export { Module };
 export * from './promiseHelpers';
 export { each as eachAsync, NextFunction, map as mapAsync, AggregateErrors } from './eachAsync';
 export { each, grep, Proxy, map } from './each';
-import log from 'debug';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-empty-function
 export function noop() { }
@@ -35,8 +34,6 @@ export function extend(target: any, ...args)
     });
     return target;
 }
-
-export { log }
 
 export function module(name: string, ...dependencies: string[]): Module
 export function module(name: string, ...dependencies: Module[]): Module

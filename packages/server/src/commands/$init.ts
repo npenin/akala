@@ -3,7 +3,7 @@ import { router } from '../router/index';
 import { HttpRouter } from '../router/index';
 import '../triggers/http'
 import { State } from '../state';
-import { Injector, Binding, log } from "@akala/core";
+import { Injector, Binding, logger } from "@akala/core";
 import { join, resolve } from "path";
 import HtmlPlugin from 'html-webpack-plugin';
 // import { CleanWebpackPlugin as CleanPlugin } from 'clean-webpack-plugin'
@@ -11,7 +11,7 @@ import CssExtractPlugin from 'mini-css-extract-plugin'
 import fs from 'fs';
 import { StaticFileMiddleware } from '../router/staticFileMiddleware';
 
-const debug = log('akala:server')
+const log = logger('akala:server')
 
 export default async function $init(container: Container<State>, options: Record<string, unknown>, pm: Container<void>): Promise<void>
 {
@@ -97,7 +97,7 @@ export default async function $init(container: Container<State>, options: Record
 
     container.onResolve('$masterRouter', function (masterRouter: HttpRouter)
     {
-        debug('router registered, initializing web server...');
+        log.info('router registered, initializing web server...');
         const lateBoundRoutes = router();
         const preAuthenticatedRouter = router();
         const authenticationRouter = router();
@@ -134,7 +134,7 @@ export default async function $init(container: Container<State>, options: Record
                 return res;
             });
         else
-            debug('started in production mode');
+            log.info('started in production mode');
     });
     console.error('there is no router yet; Working in degraded mode');
 }

@@ -2,10 +2,9 @@ import * as jsonrpcws from '@akala/json-rpc-ws'
 import { CommandProcessor, StructuredParameters } from '../model/processor'
 import { Command } from '../metadata/index';
 import { Container } from '../model/container';
-import { IDebugger } from 'debug';
 import { Local } from './local';
 import { Readable } from 'stream';
-import { MiddlewarePromise, OptionsResponse, SpecialNextParam } from '@akala/core';
+import { Logger, MiddlewarePromise, OptionsResponse, SpecialNextParam } from '@akala/core';
 import { Connection } from '@akala/json-rpc-ws';
 
 type OnlyArray<T> = Extract<T, unknown[]>;
@@ -30,7 +29,7 @@ export class JsonRpc extends CommandProcessor
         });
     }
 
-    public static getConnection(socket: jsonrpcws.SocketAdapter, container?: Container<unknown>, log?: IDebugger): jsonrpcws.Connection
+    public static getConnection(socket: jsonrpcws.SocketAdapter, container?: Container<unknown>, log?: Logger): jsonrpcws.Connection
     {
         const error = new Error();
         const connection = new jsonrpcws.Connection(socket, {
@@ -61,7 +60,7 @@ export class JsonRpc extends CommandProcessor
                     try
                     {
                         if (log)
-                            log(params);
+                            log.debug(params);
 
 
                         if (!params)
@@ -86,7 +85,7 @@ export class JsonRpc extends CommandProcessor
                     catch (error)
                     {
                         if (log)
-                            log(error);
+                            log.error(error);
                         if (error && typeof error.toJSON == 'function')
                             reply(error.toJSON());
                         else
