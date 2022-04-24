@@ -1,4 +1,4 @@
-#  (2022-04-22)
+#  (2022-04-24)
 
 
 ### Bug Fixes
@@ -201,6 +201,7 @@
 * support for triggers 624ae86
 * support node module when no ./ prefix ad871e3
 * support normalize require config af16029
+* switched from raw debug to logger from core efef2da
 * update command behavior 2fb6184
 * update configuration structure 8a395ff
 
