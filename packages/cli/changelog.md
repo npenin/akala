@@ -1,20 +1,9 @@
-#  (2022-03-21)
-
-
-### Bug Fixes
-
-* remove winston dependency 3dcad68
-* update dependencies and regenerate metadata 0c83667
+#  (2022-04-24)
 
 
 ### Features
 
-* add support for -- in CLI bf64441
-
-
-### BREAKING CHANGES
-
-* cli does not use winston as a logger anymore
+* switched from raw debug to logger from core efef2da
 
 
 
