@@ -11,8 +11,6 @@ import * as Metadata from '../metadata/index'
 import { Middleware, MiddlewareCompositeWithPriority, MiddlewarePromise } from '@akala/core';
 import { isCommand } from '../metadata/index';
 
-const log = akala.log('akala:commands');
-
 export type AsDispatchArgs<T extends unknown[]> = T | [StructuredParameters<T>];
 export type AsDispatchArg<T extends unknown[]> = T[0] | StructuredParameters<T>;
 

@@ -56,7 +56,7 @@ export class FileSystem extends CommandProcessor
 
     public static async discoverMetaCommands(root: string, options?: DiscoveryOptions): Promise<Metadata.Command[] & { name?: string }>
     {
-        const log = akala.log('commands:fs:discovery');
+        const log = akala.logger('commands:fs:discovery');
 
         if (!options)
             options = {};
@@ -128,7 +128,7 @@ export class FileSystem extends CommandProcessor
                     if (!options)
                         throw new Error('cannot happen');
                     let cmd: Metadata.Command & { config: ExtendedConfigurations<FileSystemConfiguration & jsonObject, 'fs'> } = { name: path.basename(f.name, path.extname(f.name)), config: { fs: fsConfig }, inject: [] };
-                    log(cmd.name);
+                    log.debug(cmd.name);
                     if (files.find(file => file.name == f.name + '.map'))
                     {
                         const sourceMap = JSON.parse(await fs.readFile(path.join(root, path.basename(f.name) + '.map'), 'utf8'));
@@ -139,7 +139,7 @@ export class FileSystem extends CommandProcessor
                     const otherConfigsFile: string = path.join(path.dirname(source), path.basename(source, path.extname(source))) + '.json';
                     if (existsSync(path.resolve(relativeTo, otherConfigsFile)))
                     {
-                        log(`found config file ${otherConfigsFile}`)
+                        log.debug(`found config file ${otherConfigsFile}`)
                         // eslint-disable-next-line @typescript-eslint/no-var-requires
                         const otherConfigs = require(path.resolve(relativeTo, otherConfigsFile));
                         delete otherConfigs.$schema;
@@ -150,11 +150,11 @@ export class FileSystem extends CommandProcessor
                     let params: string[];
                     if (!cmd.config.fs.inject)
                     {
-                        log(`looking for fs default definition`)
+                        log.debug(`looking for fs default definition`)
                         params = [];
                         if (cmd.config['']?.inject && cmd.config[''].inject.length)
                         {
-                            log(cmd.inject);
+                            log.debug(cmd.inject);
                             akala.each(cmd.config[''].inject, item =>
                             {
                                 if (item.startsWith('param.') || item == '$container')
@@ -167,7 +167,7 @@ export class FileSystem extends CommandProcessor
                     }
                     if (!cmd.config.fs.inject)
                     {
-                        log(`looking for fs in any configuration`)
+                        log.debug(`looking for fs in any configuration`)
                         params = [];
                         akala.each(cmd.config, config =>
                         {
@@ -200,12 +200,12 @@ export class FileSystem extends CommandProcessor
 
                         if (!cmd.config.fs.inject && func.$inject)
                         {
-                            log(`taking $inject`)
+                            log.debug(`taking $inject`)
                             cmd.config.fs.inject = func.$inject;
                         }
                         else
                         {
-                            log(`reflection on function arguments`)
+                            log.debug(`reflection on function arguments`)
                             let n = 0;
                             cmd.config.fs.inject = akala.introspect.getParamNames(func).map(v =>
                             {
