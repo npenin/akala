@@ -2,61 +2,6 @@
     "name": "@akala/server",
     "commands": [
         {
-            "name": "$init",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/$init.js",
-                    "source": "src/commands/$init.ts",
-                    "inject": []
-                },
-                "cli": {
-                    "inject": [
-                        "$container",
-                        "options",
-                        "pm"
-                    ],
-                    "options": {
-                        "mode": {
-                            "needsValue": true
-                        }
-                    }
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
-            "name": "remote-container",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "inject": [
-                        "dummy",
-                        "param.1",
-                        "param.2"
-                    ],
-                    "path": "dist/commands/remote-container.js",
-                    "source": "src/commands/remote-container.ts"
-                },
-                "jsonrpc": {
-                    "inject": [
-                        "connectionAsContainer",
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ]
-                }
-            }
-        },
-        {
             "name": "asset",
             "inject": [],
             "config": {
@@ -94,6 +39,32 @@
             }
         },
         {
+            "name": "$init",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/$init.js",
+                    "source": "src/commands/$init.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "inject": [
+                        "$container",
+                        "options",
+                        "pm"
+                    ],
+                    "options": {
+                        "mode": {
+                            "needsValue": true
+                        }
+                    }
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
             "name": "mode",
             "inject": [],
             "config": {
@@ -106,6 +77,35 @@
                 },
                 "": {
                     "inject": []
+                }
+            }
+        },
+        {
+            "name": "remote-container",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "inject": [
+                        "dummy",
+                        "param.1",
+                        "param.2"
+                    ],
+                    "path": "dist/commands/remote-container.js",
+                    "source": "src/commands/remote-container.ts"
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "connectionAsContainer",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
                 }
             }
         },

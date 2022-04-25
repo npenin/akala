@@ -2,27 +2,24 @@
     "name": "commands",
     "commands": [
         {
-            "name": "changelog",
+            "name": "analyze",
             "inject": [],
             "config": {
                 "fs": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "param.0"
                     ],
-                    "path": "dist/commands/changelog.js",
-                    "source": "src/commands/changelog.ts"
+                    "path": "dist/commands/analyze.js",
+                    "source": "src/commands/analyze.ts"
                 },
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "param.0"
                     ]
                 },
                 "automate": {
                     "inject": [
-                        "commits",
-                        "file"
+                        "commits"
                     ]
                 }
             }
@@ -54,24 +51,27 @@
             }
         },
         {
-            "name": "analyze",
+            "name": "changelog",
             "inject": [],
             "config": {
                 "fs": {
                     "inject": [
-                        "param.0"
+                        "param.0",
+                        "param.1"
                     ],
-                    "path": "dist/commands/analyze.js",
-                    "source": "src/commands/analyze.ts"
+                    "path": "dist/commands/changelog.js",
+                    "source": "src/commands/changelog.ts"
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "param.0",
+                        "param.1"
                     ]
                 },
                 "automate": {
                     "inject": [
-                        "commits"
+                        "commits",
+                        "file"
                     ]
                 }
             }
@@ -100,27 +100,20 @@
             }
         },
         {
-            "name": "recommend-bump",
+            "name": "get-version",
             "inject": [],
             "config": {
                 "fs": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ],
-                    "path": "dist/commands/recommend-bump.js",
-                    "source": "src/commands/recommend-bump.ts"
+                    "inject": [],
+                    "path": "dist/commands/get-version.js",
+                    "source": "src/commands/get-version.ts"
                 },
                 "": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
+                    "inject": []
                 },
                 "automate": {
                     "inject": [
-                        "commits",
-                        "rules"
+                        "path"
                     ]
                 }
             }
@@ -149,20 +142,27 @@
             }
         },
         {
-            "name": "get-version",
+            "name": "recommend-bump",
             "inject": [],
             "config": {
                 "fs": {
-                    "inject": [],
-                    "path": "dist/commands/get-version.js",
-                    "source": "src/commands/get-version.ts"
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/commands/recommend-bump.js",
+                    "source": "src/commands/recommend-bump.ts"
                 },
                 "": {
-                    "inject": []
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
                 },
                 "automate": {
                     "inject": [
-                        "path"
+                        "commits",
+                        "rules"
                     ]
                 }
             }

@@ -2,34 +2,6 @@
     "name": "@akala/commands",
     "commands": [
         {
-            "name": "generate-metadata",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/cli/generate-metadata.js",
-                    "source": "src/cli/generate-metadata.ts",
-                    "inject": []
-                },
-                "cli": {
-                    "inject": [
-                        "options.name",
-                        "options.commandPath",
-                        "options.output",
-                        "options"
-                    ],
-                    "usage": "generate-metadata [commandPath] [output]",
-                    "options": {
-                        "name": {
-                            "needsValue": true
-                        }
-                    }
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
             "name": "add-script",
             "inject": [],
             "config": {
@@ -78,6 +50,34 @@
                         "param.0",
                         "param.1"
                     ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "generate-metadata",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/generate-metadata.js",
+                    "source": "src/cli/generate-metadata.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "inject": [
+                        "options.name",
+                        "options.commandPath",
+                        "options.output",
+                        "options"
+                    ],
+                    "usage": "generate-metadata [commandPath] [output]",
+                    "options": {
+                        "name": {
+                            "needsValue": true
+                        }
+                    }
                 },
                 "": {
                     "inject": []
@@ -157,24 +157,6 @@
             }
         },
         {
-            "name": "register",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/cli/register.js",
-                    "source": "src/cli/register.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ]
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
             "name": "new",
             "inject": [],
             "config": {
@@ -197,6 +179,24 @@
                         "options.name",
                         "options",
                         "options.destination"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "register",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/register.js",
+                    "source": "src/cli/register.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
                     ]
                 },
                 "": {
