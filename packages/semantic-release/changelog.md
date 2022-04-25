@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* move dependency from devdep 36139a4
+* update ready command for remote containers 823810d
 
 
 
