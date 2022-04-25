@@ -1,9 +1,10 @@
-#  (2022-04-24)
+#  (2022-04-25)
 
 
 ### Bug Fixes
 
 * adapt to trigger new definition 8c2d136
+* add missing dependency 3d0b4df
 * add missing package required property ba0c9df
 * add recursive path creation 3f7ffa7
 * added missing yaml dependency fa66dd1
@@ -33,6 +34,7 @@
 * dependencies d61f681
 * discover cli usage 697946b
 * discover implementation 3502bed
+* docker build cfdaf4e
 * enumerate on configuration objects a61e720
 * error flow in composite middleware ec36174
 * error serialization b3156ad
