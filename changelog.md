@@ -94,6 +94,7 @@
 * proper parameter binding for bump-dependents 7459c86
 * provide proper variable to bumps dependents 82f8ddb
 * push before tagging d980dd0
+* reduce silly logging 378e856
 * regex exec is not iterable ca695eb
 * remote container command registration f3b0728
 * remote pm proxy 633b1b5
