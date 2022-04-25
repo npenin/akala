@@ -256,8 +256,8 @@ export default function automate<TResult extends object, TSupportedJobSteps exte
     orchestrator.on('task_start', (t) =>
     {
         logger.info('running %s', t.task);
-        if (logger.debug.enabled)
-            logger.debug('%O', Object.assign({}, inputs, { logger: undefined }));
+        if (logger.silly.enabled)
+            logger.silly('%O', Object.assign({}, inputs[workflow.name], { logger: undefined }));
     });
     orchestrator.on('task_stop', (t) =>
     {
