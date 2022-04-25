@@ -1,6 +1,7 @@
 import { Module } from './module';
 import { onResolve } from './global-injector'
 import * as jsonrpc from '@akala/json-rpc-ws'
+import { off } from 'process';
 export { Module };
 export * from './promiseHelpers';
 export { each as eachAsync, NextFunction, map as mapAsync, AggregateErrors } from './eachAsync';
@@ -19,7 +20,7 @@ export function extend(target: any, ...args)
     args.forEach(function (arg)
     {
         if (typeof (arg) == 'object' && arg)
-            Object.keys(arg).forEach(function (key)
+            Object.getOwnPropertyNames(arg).forEach(function (key)
             {
                 switch (typeof (target[key]))
                 {
