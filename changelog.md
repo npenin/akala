@@ -3,6 +3,7 @@
 
 ### Bug Fixes
 
+* #10 6e164e7
 * adapt to trigger new definition 8c2d136
 * add missing dependency 3d0b4df
 * add missing package required property ba0c9df
@@ -83,6 +84,7 @@
 * packages/docker/Dockerfile to reduce vulnerabilities 7d43d77
 * packages/docker/Dockerfile-arm to reduce vulnerabilities 7fd23ac
 * packages/docker/Dockerfile-arm to reduce vulnerabilities 93d2550
+* packages/docker/slim.dockerfile to reduce vulnerabilities 3aeee37
 * parser more reliable 5c92e5a
 * path can now be retrieved using property 2d3125e
 * path to command metadata 4fc8111
