@@ -74,6 +74,7 @@
 * metadata lookup eaa12c1
 * metadata lookup on start da0c4d7
 * middleware copy/paste issue 69757ce
+* move dependency from devdep 36139a4
 * nested container processing 8997869
 * normalize path 58c9fcd
 * output formatting f747eff
