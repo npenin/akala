@@ -263,7 +263,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@akala/pm@workspace:^, @akala/pm@workspace:packages/pm":
+"@akala/pm@^3.1.1, @akala/pm@workspace:^, @akala/pm@workspace:packages/pm":
   version: 0.0.0-use.local
   resolution: "@akala/pm@workspace:packages/pm"
   dependencies:
@@ -306,6 +306,7 @@ __metadata:
     "@yarnpkg/core": ^3.2.0
     conventional-changelog-angular: ^5.0.13
     conventional-changelog-writer: ^5.0.1
+    conventional-commits-parser: ^3.2.4
     conventional-recommended-bump: ^6.1.0
     debug: ^4.3.3
     git-raw-commits: ^2.0.11
@@ -2142,8 +2143,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "akala-docker@workspace:packages/docker"
   dependencies:
-    "@akala/pm": "workspace:^"
-    yarn: ^1.22.17
+    "@akala/pm": ^3.1.1
+    yarn: ^1.22.18
   languageName: unknown
   linkType: soft
 
@@ -3122,6 +3123,22 @@ __metadata:
   bin:
     conventional-commits-parser: cli.js
   checksum: 01b83c625ac3d8f9dca0510a5e21385c9bb410b80bcb60dcfdef20e1fa7fe7fad5a280aa5e1dff8ac32ea0aea5966fa973696557d38f831f8630d4fcf31756d5
+  languageName: node
+  linkType: hard
+
+"conventional-commits-parser@npm:^3.2.4":
+  version: 3.2.4
+  resolution: "conventional-commits-parser@npm:3.2.4"
+  dependencies:
+    JSONStream: ^1.0.4
+    is-text-path: ^1.0.1
+    lodash: ^4.17.15
+    meow: ^8.0.0
+    split2: ^3.0.0
+    through2: ^4.0.0
+  bin:
+    conventional-commits-parser: cli.js
+  checksum: 1627ff203bc9586d89e47a7fe63acecf339aba74903b9114e23d28094f79d4e2d6389bf146ae561461dcba8fc42e7bc228165d2b173f15756c43f1d32bc50bfd
   languageName: node
   linkType: hard
 
@@ -9229,6 +9246,16 @@ typescript@^4.5.5:
     yarn: ./bin/yarn.js
     yarnpkg: ./bin/yarn.js
   checksum: 9d5211477d439a4d7b5632d7c290a3be36d2edc13599b64964bff520d3a3a480db85010f3262293981abb4e618ac92aaafa4c4c54bae50a7713c7b8ec431adac
+  languageName: node
+  linkType: hard
+
+"yarn@npm:^1.22.18":
+  version: 1.22.18
+  resolution: "yarn@npm:1.22.18"
+  bin:
+    yarn: bin/yarn.js
+    yarnpkg: bin/yarn.js
+  checksum: ffd9a4872caa5fce83e914592dd6a40bb978bf992d3dca839bc3853b9e6de951d7596f7e8c4a88bec3af3a049e46097f9139a51740d9074582fd923af8762f7a
   languageName: node
   linkType: hard
 
