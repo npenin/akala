@@ -52,7 +52,7 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
         {
             log = logger(c.options.name);
 
-            cliContainer = new ac.Container(c.options.name, {});
+            cliContainer = new ac.Container('cli', {});
 
             if (folderOrFile.isFile())
                 processor = new ac.Processors.FileSystem(path.dirname(c.options.program));
@@ -64,6 +64,7 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
     useMiddleware({
         handle: async c =>
         {
+            cliContainer.name = c.options.name;
             const init = cliContainer.resolve('$init');
             if (init && init.config && init.config.cli && init.config.cli.options)
                 ac.Triggers.addCliOptions(init, initMiddleware);
