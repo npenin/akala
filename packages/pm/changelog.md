@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* wrong container name on fork 61bc05a
+* correct name assignment in fork 3deb98f
 
 
 
