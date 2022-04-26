@@ -52,10 +52,7 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
         {
             log = logger(c.options.name);
 
-            if (folderOrFile.isFile())
-                cliContainer = new ac.Container(path.basename(c.options.name), {});
-            else
-                cliContainer = new ac.Container(c.options.name, {});
+            cliContainer = new ac.Container(c.options.name, {});
 
             if (folderOrFile.isFile())
                 processor = new ac.Processors.FileSystem(path.dirname(c.options.program));
