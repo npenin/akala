@@ -1,9 +1,9 @@
-#  (2022-04-26)
+#  (2022-04-28)
 
 
-### Bug Fixes
+### Features
 
-* correct name assignment in fork 3deb98f
+* return ProxyConfiguration correct type when strongly typed eeaeee0
 
 
 
