@@ -8,6 +8,7 @@ import { NewLinePrefixer } from "../new-line-prefixer.js";
 import { SocketAdapterEventMap } from "@akala/json-rpc-ws";
 import { CliContext, ErrorWithStatus } from "@akala/cli";
 import getRandomName from "./name";
+import { ProxyConfiguration } from "@akala/config";
 
 export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, context?: CliContext<{ new?: boolean, name: string, inspect?: boolean, verbose?: boolean, wait?: boolean }>): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
 {
@@ -22,7 +23,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
     if (this.isDaemon)
     {
         var instanceConfig = this.config.mapping[context.options.name];
-        var def: SidecarMetadata;
+        var def: ProxyConfiguration<SidecarMetadata>;
         if (typeof instanceConfig == 'undefined')
             def = this.config.containers[name];
         else
@@ -42,8 +43,8 @@ export default async function start(this: State, pm: pmContainer.container & Con
         }
 
         args.unshift(...context.args, ...Object.entries(context.options).filter(e => e[0] != 'program' && e[0] != 'new' && e[0] != 'inspect').map(entries => ['--' + entries[0] + '=' + entries[1]]).flat());
-        if (def && def.path)
-            args.unshift('--program=' + def.path);
+        if (def && def.get('path'))
+            args.unshift('--program=' + def.get('path'));
         else
             args.unshift('--program=' + name);
     }

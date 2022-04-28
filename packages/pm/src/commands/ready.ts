@@ -15,6 +15,7 @@ export default async function ready(this: State, pm: pm.container & Container<St
         {
             container.running = false;
         }));
+
         pm.register(container.name, container, true);
         container.register(new SelfDefinedCommand(() => { pm.unregister(container.name) }, '$disconnect'));
     }

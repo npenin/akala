@@ -15,7 +15,7 @@ export default async function config(this: State, name: string | undefined | voi
 
         if (args[1] && args[1] == 'set')
         {
-            this.config.mapping[name].cli = args.slice(2);
+            this.config.mapping[name].set('cli', args.slice(2));
             await this.config.commit();
         }
 
