@@ -11,7 +11,7 @@ export default interface State
     config: ProxyConfiguration<StateConfiguration>
 }
 
-export interface StateConfiguration
+export interface StateConfiguration 
 {
     containers: { [key: string]: SidecarMetadata }
     mapping: { [key: string]: SidecarConfiguration }
@@ -26,7 +26,7 @@ export interface SidecarMetadata
     type?: 'nodejs';
 }
 
-export interface SidecarConfiguration<T extends string | SerializableObject = ProxyConfiguration<SerializableObject>>
+export interface SidecarConfiguration<T extends string | SerializableObject = SerializableObject>
 {
     cli?: string[];
     container: string;
