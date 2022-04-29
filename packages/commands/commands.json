@@ -2,6 +2,30 @@
     "name": "@akala/commands",
     "commands": [
         {
+            "name": "generate-declaration",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/generate-declaration.js",
+                    "source": "src/cli/generate-declaration.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "options.name",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
             "name": "add-script",
             "inject": [],
             "config": {
@@ -26,30 +50,6 @@
                             "needsValue": true
                         }
                     }
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
-            "name": "generate-declaration",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/cli/generate-declaration.js",
-                    "source": "src/cli/generate-declaration.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "options.name",
-                        "param.0",
-                        "param.1"
-                    ]
                 },
                 "": {
                     "inject": []
