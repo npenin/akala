@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* stdin support 23979ba
+* stdin support 57f5ca7
 
 
 
