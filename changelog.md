@@ -1,4 +1,4 @@
-#  (2022-04-29)
+#  (2022-04-30)
 
 
 ### Bug Fixes
@@ -186,6 +186,7 @@
 * add runnerMiddleware as export ff4c95a
 * add sidecar models to configuration 8389089
 * add sidecars accessor c7792a7
+* add stdin as param f7babf8
 * add stdio middleware 1934e21
 * add support for -- in CLI bf64441
 * add support for breaking change parsing 3ad998a
