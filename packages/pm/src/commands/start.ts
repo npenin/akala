@@ -1,6 +1,7 @@
 import { Container, Processors, Metadata, registerCommands, Cli } from "@akala/commands";
 import State, { RunningContainer, SidecarMetadata } from '../state';
 import { spawn, ChildProcess, StdioOptions } from "child_process";
+import { MessagePort, Worker } from "worker_threads";
 import pmContainer from '../container';
 import * as jsonrpc from '@akala/json-rpc-ws'
 import { eachAsync, logger } from "@akala/core";
@@ -67,7 +68,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
         args.push('-v')
 
     const log = logger('akala:pm:' + context.options.name);
-    let cp: ChildProcess;
+    let cp: ChildProcess | Worker;
     if (!this.isDaemon)
     {
         cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: true, stdio: ['ignore', 'ignore', 'ignore', 'ipc'] });
@@ -78,7 +79,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
         cp.on('message', function (message)
         {
             console.log(message);
-            cp.disconnect();
+            (cp as ChildProcess).disconnect();
         });
         return new Promise<void>((resolve) =>
         {
@@ -101,13 +102,19 @@ export default async function start(this: State, pm: pmContainer.container & Con
             await eachAsync(def.dependencies, (dep) => pm.dispatch('start', dep, { name: context.options.name + '-' + dep, wait: true }));
         }
 
-        cp = spawn(process.execPath, args, { cwd: process.cwd(), env: Object.assign({ DEBUG_COLORS: true }, process.env), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
+        cp = new Worker(args[0], { argv: args, stderr: true, stdout: true });
+        // cp = spawn(process.execPath, args, { cwd: process.cwd(), env: Object.assign({ DEBUG_COLORS: true }, process.env), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
         cp.stderr?.pipe(new NewLinePrefixer(context.options.name + ' ', { useColors: true })).pipe(process.stderr);
         cp.stdout?.pipe(new NewLinePrefixer(context.options.name + ' ', { useColors: true })).pipe(process.stdout);
 
         if (!container || !container.running)
         {
-            const processor = new Processors.JsonRpc(new jsonrpc.Connection(new IpcAdapter(cp), {
+            var adapter: jsonrpc.SocketAdapter;
+            if (cp instanceof Worker)
+                adapter = new MessagePortAdapter(cp);
+            else
+                adapter = new IpcAdapter(cp);
+            const processor = new Processors.JsonRpc(new jsonrpc.Connection(adapter, {
                 type: 'client', getHandler(method: string)
                 {
                     log.debug(method);
@@ -230,6 +237,75 @@ export class IpcAdapter implements jsonrpc.SocketAdapter
 
     constructor(private cp: ChildProcess | NodeJS.Process)
     {
+    }
+
+    // _write(chunk: string | Buffer, encoding: string, callback: (error?: any) => void)
+    // {
+    //     // The underlying source only deals with strings.
+    //     if (Buffer.isBuffer(chunk))
+    //         chunk = chunk.toString('utf8');
+    //     if (this.cp.send)
+    //         this.cp.send(chunk + '\n', callback);
+    //     else
+    //         callback(new Error('there is no send method on this process'));
+    // }
+
+    // _read()
+    // {
+    // }
+}
+
+export class MessagePortAdapter implements jsonrpc.SocketAdapter
+{
+    private isOpen: boolean = true;
+
+    get open(): boolean { return this.isOpen; }
+    close(): void
+    {
+        if (this.cp instanceof Worker)
+            this.cp.terminate();
+        else
+            this.cp.close();
+    }
+    send(data: string): void
+    {
+        this.cp.postMessage(data);
+    }
+    on<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
+    {
+        switch (event)
+        {
+            case 'message':
+                this.cp.on('message', handler);
+                break;
+            case 'open':
+                handler(null);
+                break;
+            case 'close':
+                this.cp.on('disconnect', handler);
+                break;
+        }
+    }
+
+    once<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
+    {
+        switch (event)
+        {
+            case 'message':
+                this.cp.once('message', handler);
+                break;
+            case 'open':
+                handler(null);
+                break;
+            case 'close':
+                this.cp.once('close', () => handler(null));
+                break;
+        }
+    }
+
+    constructor(private cp: MessagePort | Worker)
+    {
+        cp.on('close', () => this.isOpen = false);
     }
 
     // _write(chunk: string | Buffer, encoding: string, callback: (error?: any) => void)

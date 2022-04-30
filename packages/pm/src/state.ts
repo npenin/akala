@@ -3,6 +3,7 @@ import { ChildProcess } from "child_process";
 import { Deferred, SerializableObject } from "@akala/json-rpc-ws";
 import { ServeMetadata } from "@akala/commands";
 import Configuration, { ProxyConfiguration } from "@akala/config";
+import { Worker } from "worker_threads";
 
 export default interface State
 {
@@ -37,7 +38,7 @@ export interface SidecarConfiguration<T extends string | SerializableObject = Se
 
 export interface RunningContainer<T extends string | SerializableObject = any> extends Container<unknown>, SidecarConfiguration<T>, SidecarMetadata
 {
-    process: ChildProcess;
+    process: ChildProcess | Worker;
     running?: boolean;
     ready?: Deferred<void>;
 }
