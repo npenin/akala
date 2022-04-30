@@ -8,6 +8,7 @@
 * add missing dependency 3d0b4df
 * add missing package required property ba0c9df
 * add recursive path creation 3f7ffa7
+* add stdin to pm cli e07437a
 * added missing yaml dependency fa66dd1
 * added remote pm socket support 074d6cf
 * adding getOwnPropertyDescriptor to try to fix Object.assign d969335
