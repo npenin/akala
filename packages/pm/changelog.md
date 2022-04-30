@@ -1,9 +1,9 @@
-#  (2022-04-28)
+#  (2022-04-29)
 
 
-### Features
+### Bug Fixes
 
-* return ProxyConfiguration correct type when strongly typed eeaeee0
+* sidecar to remote containers f795c56
 
 
 
