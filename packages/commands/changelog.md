@@ -1,9 +1,9 @@
 #  (2022-04-30)
 
 
-### Features
+### Bug Fixes
 
-* add stdin as param f7babf8
+* stdin support 23979ba
 
 
 
