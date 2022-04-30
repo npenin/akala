@@ -399,7 +399,17 @@ function prepareParam(cmd: Metadata.Command, args: CliContext, standalone?: bool
         return false;
 
     delete args.options.pmSock;
-    return { options: args.options, param: args.args.slice(1), _trigger: 'cli', cwd: args.currentWorkingDirectory, context: args };
+    return {
+        options: args.options, param: args.args.slice(1), _trigger: 'cli', cwd: args.currentWorkingDirectory, context: args, get stdin()
+        {
+            return new Promise<string>((resolve, reject) =>
+            {
+                const buffers = [];
+                process.stdin.on('data', data => buffers.push(data));
+                process.stdin.on('end', () => resolve(Buffer.concat(buffers).toString('utf8')));
+            })
+        }
+    };
 }
 
 async function tryRun(processor: ICommandProcessor, cmd: Metadata.Command, args: CliContext, localProcessing: boolean)
