@@ -119,6 +119,7 @@
 * sidecar store init 057f271
 * sidecar to remote containers f795c56
 * spread is not considering non enumerable properties 394438a
+* stdin support 57f5ca7
 * stdin support 23979ba
 * stop generating loggers for numeric keys 75a1324
 * support for no workspace dependencies 0703731
