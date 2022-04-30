@@ -3,7 +3,6 @@ import { Trigger } from '../model/trigger';
 import * as Processors from '../processors/index';
 import { NamespaceMiddleware } from '@akala/cli'
 import { each, MiddlewarePromise } from '@akala/core';
-import { buffer } from 'stream/consumers';
 
 export var processTrigger = new Trigger('cli', async (c, program: NamespaceMiddleware<Record<string, string | boolean | string[] | number>>) =>
 {
@@ -26,6 +25,8 @@ export var processTrigger = new Trigger('cli', async (c, program: NamespaceMiddl
 
             addOptions(cmd, command);
 
+            let stdin: Promise<string> | undefined;
+
             command.useMiddleware({
                 handle(context)
                 {
@@ -35,12 +36,14 @@ export var processTrigger = new Trigger('cli', async (c, program: NamespaceMiddl
                     }, c, {
                         context: context, options: context.options, param: context.args, _trigger: 'cli', get stdin()
                         {
-                            return new Promise<string>((resolve, reject) =>
-                            {
-                                const buffers = [];
-                                process.stdin.on('data', data => buffers.push(data));
-                                process.stdin.on('end', () => resolve(Buffer.concat(buffers).toString('utf8')));
-                            })
+                            return stdin || (stdin =
+                                new Promise<string>((resolve, reject) =>
+                                {
+                                    const buffers = [];
+                                    process.stdin.on('data', data => buffers.push(data));
+                                    process.stdin.on('end', () => resolve(buffers.join('')));
+                                    process.stdin.resume();
+                                }));
                         }
                     }) as MiddlewarePromise;
                 }

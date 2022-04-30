@@ -100,6 +100,7 @@ export class JsonRpc extends CommandProcessor
 
     public handle(_container: Container<any>, command: Command | string, params: StructuredParameters<OnlyArray<jsonrpcws.PayloadDataType<void>>>): MiddlewarePromise
     {
+
         return new Promise<Error | SpecialNextParam | OptionsResponse>((resolve, reject) =>
         {
             if (!this.passthrough && typeof command != 'string')
@@ -110,15 +111,16 @@ export class JsonRpc extends CommandProcessor
                     params.param = Local.extractParams(command.config?.jsonrpc?.inject || inject)(...params.param);
                 }
             }
-            this.client.sendMethod(typeof command == 'string' ? command : command.name, params as unknown as jsonrpcws.PayloadDataType<Readable>, function (err, result)
-            {
-                if (err)
+            Promise.all(params.param).then((params) =>
+                this.client.sendMethod(typeof command == 'string' ? command : command.name, Object.assign(params, { param: params }), function (err, result)
                 {
-                    resolve(err as unknown as Error);
-                }
-                else
-                    reject(result);
-            });
+                    if (err)
+                    {
+                        resolve(err as unknown as Error);
+                    }
+                    else
+                        reject(result);
+                }), resolve);
         })
     }
 
