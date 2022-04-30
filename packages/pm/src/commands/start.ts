@@ -1,15 +1,18 @@
 import { Container, Processors, Metadata, Cli, updateCommands } from "@akala/commands";
 import State, { RunningContainer, SidecarMetadata } from '../state.js';
 import { spawn, ChildProcess, StdioOptions } from "child_process";
+import { Worker } from "worker_threads";
 import pmContainer from '../container.js';
-import { Deferred, eachAsync } from "@akala/core";
+import { Deferred, eachAsync, logger } from "@akala/core";
 import { NewLinePrefixer } from "../new-line-prefixer.js";
 import { CliContext } from "@akala/cli";
 import { ErrorWithStatus } from "@akala/core";
 import getRandomName from "./name.js";
 import { ProxyConfiguration } from "@akala/config";
 import { IpcAdapter } from "../ipc-adapter.js";
+import type { SocketAdapter } from "@akala/json-rpc-ws";
 import module from 'module'
+import { MessagePortAdapter } from "../messageport-adapter.js";
 
 const require = module.createRequire(import.meta.url);
 
@@ -69,7 +72,8 @@ export default async function start(this: State, pm: pmContainer.container & Con
     if (context.options && context.options.verbose)
         args.push('-v')
 
-    let cp: ChildProcess;
+    const log = logger('akala:pm:' + context.options.name);
+    let cp: ChildProcess | Worker;
     if (!this.isDaemon)
     {
         if (context.options.keepAttached)
@@ -83,7 +87,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
         cp.on('message', function (message)
         {
             console.log(message);
-            // cp.disconnect();
+            (cp as ChildProcess).disconnect();
         });
         return new Promise<void>((resolve) =>
         {
@@ -110,14 +114,20 @@ export default async function start(this: State, pm: pmContainer.container & Con
         if (def?.type && def.type !== 'nodejs')
             throw new ErrorWithStatus(400, `container with type ${this.config.containers[name]?.type} are not yet supported`);
         cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: !context.options.keepAttached, env: Object.assign({ DEBUG_COLORS: true }, process.env), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
+        cp = new Worker(args[0], { argv: args, stderr: true, stdout: true });
+        // cp = spawn(process.execPath, args, { cwd: process.cwd(), env: Object.assign({ DEBUG_COLORS: true }, process.env), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
         cp.stderr?.pipe(new NewLinePrefixer(context.options.name + ' ', { useColors: true })).pipe(process.stderr);
         cp.stdout?.pipe(new NewLinePrefixer(context.options.name + ' ', { useColors: true })).pipe(process.stdout);
 
         if (!container || !container.running)
         {
-            const socket = new IpcAdapter(cp);
+            var adapter: SocketAdapter;
+            if (cp instanceof Worker)
+                adapter = new MessagePortAdapter(cp);
+            else
+                adapter = new IpcAdapter(cp);
             container = new Container(context.options.name, null) as RunningContainer;
-            const connection = Processors.JsonRpc.getConnection(socket, pm, (params) =>
+            const connection = Processors.JsonRpc.getConnection(adapter, pm, (params) =>
             {
                 params.process = cp;
                 Object.defineProperty(params, 'connectionAsContainer', Object.assign({ value: container }));
@@ -185,5 +195,6 @@ export default async function start(this: State, pm: pmContainer.container & Con
         return { execPath: process.execPath, args: args, cwd: process.cwd(), stdio: ['inherit', 'inherit', 'inherit', 'ipc'], shell: false, windowsHide: true };
     }
 }
+
 
 start.$inject = ['$container', 'param.0', 'options']

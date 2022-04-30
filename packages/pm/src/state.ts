@@ -4,6 +4,7 @@ import { Deferred, SerializableObject } from "@akala/core";
 import { SocketAdapter } from "@akala/json-rpc-ws";
 import { ServeMetadata } from "@akala/commands";
 import { ProxyConfiguration } from "@akala/config";
+import { Worker } from "worker_threads";
 
 export default interface State
 {
@@ -41,7 +42,7 @@ export interface SidecarConfiguration<T extends string | SerializableObject = Se
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface RunningContainer<T extends string | SerializableObject = any> extends Container<unknown>, SidecarConfiguration<T>, SidecarMetadata
 {
-    process: ChildProcess;
+    process: ChildProcess | Worker;
     running?: boolean;
     stateless: boolean;
     ready?: Deferred<void>;
