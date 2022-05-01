@@ -32,6 +32,7 @@
 * compilation after typescript 4.4 upgrade 2828ff9
 * compilation issue 6734227
 * compilation issue 4735be5
+* connect fails when connect on mapping is undefined 16bdd27
 * correct name assignment in fork 3deb98f
 * crash on parsing remote bcb17fe
 * default version ignore to decline 01cb0f7
