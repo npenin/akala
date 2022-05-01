@@ -1,4 +1,4 @@
-#  (2022-04-30)
+#  (2022-05-01)
 
 
 ### Bug Fixes
@@ -181,6 +181,7 @@
 * add Configuration getters and setters c5dad91
 * add extends support df13246
 * add ignore failure support f9929cf
+* add lazy helper 5530746
 * add middleware with priority handling 461c1a4
 * add MiddlewareRunnerMiddleware d0e9aff
 * add multistore 7d0f562
@@ -208,6 +209,7 @@
 * improve trigger defintiion 0eecae1
 * improved implement command 8a98c02
 * InteractError now using Binding for more possible usecases d9da85f
+* jsonrpc disconnect support for server and proxies 5d7128c
 * leverage suncalc c674f46
 * moved to middleware approach 69d4ba5
 * releasing sidecar eb0c959
