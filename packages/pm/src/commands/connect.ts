@@ -27,7 +27,7 @@ export default async function connect(this: State, name: string, context?: Serve
     {
         if (!mapping)
             throw new ErrorWithStatus(404, `Mapping ${name} could not be found`);
-        return mapping.connect.extract();
+        return mapping.connect && mapping.connect.extract();
     }
     await this.config.commit()
 }
