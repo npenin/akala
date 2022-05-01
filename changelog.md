@@ -190,6 +190,7 @@
 * add multistore 7d0f562
 * add new app package ac81505
 * add plugins mechanism c9aee01
+* add possibility for custom file format 0360c2f
 * add runnerMiddleware as export ff4c95a
 * add sidecar models to configuration 8389089
 * add sidecars accessor c7792a7
@@ -229,6 +230,7 @@
 
 ### BREAKING CHANGES
 
+* File.from renamed to File.fromJson
 * extend helper no more is
 * cli does not use winston as a logger anymore
 * rename app to sidecar
