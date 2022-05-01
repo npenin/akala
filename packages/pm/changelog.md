@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* connect fails when connect on mapping is undefined 16bdd27
+* connect should failed if mapping is not found 4392197
 
 
 

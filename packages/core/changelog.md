@@ -3,7 +3,12 @@
 
 ### Features
 
-* add lazy helper 5530746
+* removing problematic extend function 5daa1db
+
+
+### BREAKING CHANGES
+
+* extend helper no more is
 
 
 

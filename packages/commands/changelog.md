@@ -3,7 +3,12 @@
 
 ### Features
 
-* jsonrpc disconnect support for server and proxies 5d7128c
+* removing problematic extend function 5daa1db
+
+
+### BREAKING CHANGES
+
+* extend helper no more is
 
 
 
