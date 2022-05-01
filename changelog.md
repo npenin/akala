@@ -33,6 +33,7 @@
 * compilation issue 6734227
 * compilation issue 4735be5
 * connect fails when connect on mapping is undefined 16bdd27
+* connect should failed if mapping is not found 4392197
 * correct name assignment in fork 3deb98f
 * crash on parsing remote bcb17fe
 * default version ignore to decline 01cb0f7
@@ -215,6 +216,7 @@
 * leverage suncalc c674f46
 * moved to middleware approach 69d4ba5
 * releasing sidecar eb0c959
+* removing problematic extend function 5daa1db
 * return ProxyConfiguration correct type when strongly typed eeaeee0
 * support for commands through pm 3954c8a
 * support for triggers 624ae86
@@ -227,6 +229,7 @@
 
 ### BREAKING CHANGES
 
+* extend helper no more is
 * cli does not use winston as a logger anymore
 * rename app to sidecar
 * Configuration structure has been reshaped
