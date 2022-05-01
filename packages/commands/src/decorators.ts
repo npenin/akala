@@ -33,8 +33,7 @@ export function extend<TCommand extends ModelCommand, TConfiguration extends Con
     else
         cmd = cmdOrInj as ModelCommand;
 
-    akala.extend(cmd.config, config)
-
+    Object.assign(cmd.config, config)
 
     if (cmd.config[''])
         cmd.inject = cmd.config[''].inject;
