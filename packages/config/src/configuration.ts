@@ -126,6 +126,8 @@ export default class Configuration<T extends object = SerializableObject>
         {
             var value = key.split('.').reduce(function (config, key)
             {
+                if (typeof (config) === 'undefined')
+                    return config;
                 return config[key];
             }, this.config);
             if (typeof value == 'object' && !Array.isArray(value))
@@ -143,6 +145,8 @@ export default class Configuration<T extends object = SerializableObject>
         {
             return typeof (key.split('.').reduce(function (config, key)
             {
+                if (typeof (config) === 'undefined')
+                    return config;
                 return config[key];
             }, this.config)) != 'undefined';
         }
