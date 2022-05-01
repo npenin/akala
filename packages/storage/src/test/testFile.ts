@@ -20,7 +20,7 @@ describe('simple query', function ()
 {
     it('works with simple commands', async function ()
     {
-        var fpe = await File.from(__dirname);
+        var fpe = await File.fromJson(__dirname);
         var store = db.Store.create<TestStore>(fpe, 'ModelTest1');
 
         var obj = await store.ModelTest1.where('s1', BinaryOperator.Equal, 'pwic').firstOrDefault();
@@ -51,7 +51,7 @@ describe('simple query', function ()
 
     it('works with query on non key', async function ()
     {
-        var fpe = await File.from(__dirname);
+        var fpe = await File.fromJson(__dirname);
         var store = db.Store.create<TestStore>(fpe, 'ModelTest1');
 
         fpe.beginTransaction();
@@ -86,7 +86,7 @@ describe('simple query', function ()
 
     it('works with grouped query', async function ()
     {
-        var fpe = await File.from(__dirname);
+        var fpe = await File.fromJson(__dirname);
         var store = db.Store.create<TestStore>(fpe, 'ModelTest1');
 
         fpe.beginTransaction();

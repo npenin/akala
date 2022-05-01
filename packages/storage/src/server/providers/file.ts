@@ -17,9 +17,9 @@ export class File extends PersistenceEngine<FileOptions>
 {
     private store: FileSystemFolder & FileSystemContainer;
 
-    constructor()
+    constructor(private fileEntryFactory: (path: string, name: string, def: ModelDefinition<any>) => FileSystemFile)
     {
-        super(new FileCommandProcessor());
+        super(new FileCommandProcessor(fileEntryFactory));
     }
 
     public async init(options?: { path: string, rootDbName?: string, store?: FileSystemFolder & FileSystemContainer })
@@ -29,23 +29,29 @@ export class File extends PersistenceEngine<FileOptions>
         if (!options.rootDbName)
             options.rootDbName = '.';
         if (!options.store)
-            options.store = await new FolderEntry(options.path, options.rootDbName, undefined) as FileSystemFolder & FileSystemContainer;
+            options.store = await new FolderEntry(options.path, options.rootDbName, undefined, this.fileEntryFactory) as FileSystemFolder & FileSystemContainer;
         this.store = options.store;
         this.processor.init(options);
     }
 
-    public static async from(path: string, rootDbName: string = '.')
+    public static async from(path: string, rootDbName: string, fileEntryFactory: (path: string, name: string, def: ModelDefinition<any>) => FileSystemFile)
     {
-        var engine = new File();
+        var engine = new File(fileEntryFactory);
         await engine.init({ path, rootDbName });
         return engine;
     }
 
+    public static async fromJson(path: string, rootDbName: string = '.')
+    {
+        return this.from(path, rootDbName, (path, name, def) => new JsonFileEntry(path, name, def));
+    }
+
     public async load<T>(expression: StrictExpressions): Promise<T>
     {
-        var executor = new ExpressionExecutor();
-        var visitConstant = executor.visitConstant;
-        var store = this.store;
+        const executor = new ExpressionExecutor();
+        const visitConstant = executor.visitConstant;
+        const store = this.store;
+        const fileEntryFactory = this.fileEntryFactory;
         executor.visitConstant = async function <TCte>(this: ExpressionExecutor, cte: ConstantExpression<TCte>)
         {
             if (cte.value instanceof ModelDefinition)
@@ -54,7 +60,7 @@ export class File extends PersistenceEngine<FileOptions>
                 folder = await store[cte.value.namespace || 'db']
                 if (!folder)
                 {
-                    folder = new Proxy(new FolderEntry(store[fspath], cte.value.namespace || 'db', null) as any, proxyHandler);
+                    folder = new Proxy(new FolderEntry(store[fspath], cte.value.namespace || 'db', null, fileEntryFactory) as any, proxyHandler);
                     folder[isNew] = true;
                 }
                 if (folder[isFile])
@@ -62,7 +68,7 @@ export class File extends PersistenceEngine<FileOptions>
 
                 if (!folder[cte.value.nameInStorage])
                 {
-                    folder = new Proxy(new FolderEntry(folder[fspath], cte.value.nameInStorage, cte.value) as any, proxyHandler);
+                    folder = new Proxy(new FolderEntry(folder[fspath], cte.value.nameInStorage, cte.value, fileEntryFactory) as any, proxyHandler);
                     folder[isNew] = true;
                 }
                 else
@@ -100,7 +106,7 @@ interface FileOptions
 
 class FileCommandProcessor extends CommandProcessor<FileOptions>
 {
-    constructor()
+    constructor(private fileEntryFactory: (path: string, name: string, def: ModelDefinition<any>) => FileSystemFile)
     {
         super();
     }
@@ -183,12 +189,12 @@ class FileCommandProcessor extends CommandProcessor<FileOptions>
         await this.store;
         var folder = await this.store[cmd.model.namespace || 'db'];
         if (!folder)
-            folder = await (this.store[cmd.model.namespace || 'db'] = createFolder(this.store[fspath], cmd.model.namespace || 'db', null));
+            folder = await (this.store[cmd.model.namespace || 'db'] = createFolder(this.store[fspath], cmd.model.namespace || 'db', null, this.fileEntryFactory));
         if (!folder || !folder[isDirectory])
             return Promise.reject(new Error(`the path ${join(this.store[fsName], cmd.model.namespace || 'db')} is not a folder`));
 
         if (!await folder[cmd.model.nameInStorage])
-            folder[cmd.model.nameInStorage] = createFolder(folder[fspath], cmd.model.nameInStorage, cmd.model);
+            folder[cmd.model.nameInStorage] = createFolder(folder[fspath], cmd.model.nameInStorage, cmd.model, this.fileEntryFactory);
         folder = await folder[cmd.model.nameInStorage]
         if (!folder || !folder[isDirectory])
             return Promise.reject(new Error(`the path ${join(this.store[fsName], cmd.model.namespace || 'db', cmd.model.nameInStorage)} is not a folder`));
@@ -197,7 +203,7 @@ class FileCommandProcessor extends CommandProcessor<FileOptions>
 
         if (!folder[fileName])
         {
-            folder[fileName] = new Proxy(new FileEntry(folder[fspath], fileName, cmd.model), proxyHandler);
+            folder[fileName] = new Proxy(this.fileEntryFactory(folder[fspath], fileName, cmd.model), proxyHandler);
             folder[fileName][isNew] = true;
         }
         else
@@ -256,9 +262,9 @@ interface FileSystemContainer extends PromiseFileSystem
 
 type FileSystemEntries = FileSystemFile | (FileSystemFolder & FileSystemContainer);
 
-function createFolder(path: string, name: string, model: ModelDefinition<any>): FileSystemFolder & FileSystemContainer
+function createFolder(path: string, name: string, model: ModelDefinition<any>, fileEntryFactory: (path: string, name: string, def: ModelDefinition<any>) => FileSystemFile): FileSystemFolder & FileSystemContainer
 {
-    var folder = new FolderEntry(path, name, model);
+    var folder = new FolderEntry(path, name, model, fileEntryFactory);
     folder[isNew] = true;
     return new Proxy(folder as any, proxyHandler);
 }
@@ -294,7 +300,8 @@ class FolderEntry implements FileSystemFolder, PromiseLike<PromiseFileSystem>
     [fspath]: string;
     [isNew]?: boolean;
     [model]: ModelDefinition<any>
-    constructor(path: string, name: string, def: ModelDefinition<any>)
+
+    constructor(path: string, name: string, def: ModelDefinition<any>, private fileEntryFactory: (path: string, name: string, def: ModelDefinition<any>) => FileSystemFile)
     {
         this[fspath] = join(path, name);
         this[fsName] = name;
@@ -355,9 +362,9 @@ class FolderEntry implements FileSystemFolder, PromiseLike<PromiseFileSystem>
                             result.forEach(e =>
                             {
                                 if (e.isDirectory())
-                                    this[e.name] = new Proxy<FileSystemFolder & FileSystemContainer>(new FolderEntry(this[fspath], e.name, typeof this[model] == 'undefined' && null || ModelDefinition.definitionsAsArray.find(def => def.nameInStorage == e.name)) as any, proxyHandler)
+                                    this[e.name] = new Proxy<FileSystemFolder & FileSystemContainer>(new FolderEntry(this[fspath], e.name, typeof this[model] == 'undefined' && null || ModelDefinition.definitionsAsArray.find(def => def.nameInStorage == e.name), this.fileEntryFactory) as any, proxyHandler)
                                 else if (e.isFile())
-                                    this[e.name] = new Proxy<FileSystemFile>(new FileEntry(this[fspath], e.name, this[model]), proxyHandler)
+                                    this[e.name] = new Proxy<FileSystemFile>(this.fileEntryFactory(this[fspath], e.name, this[model]), proxyHandler)
                             });
                             resolve(this);
                             this.promise = Promise.resolve(new Proxy(this, {
@@ -377,7 +384,7 @@ class FolderEntry implements FileSystemFolder, PromiseLike<PromiseFileSystem>
     }
 }
 
-class FileEntry implements FileSystemFile
+export class JsonFileEntry implements FileSystemFile
 {
     [isFile]: true = true;
     [isDirectory]?: false = false;
