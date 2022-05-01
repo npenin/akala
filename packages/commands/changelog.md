@@ -1,9 +1,9 @@
-#  (2022-04-30)
+#  (2022-05-01)
 
 
-### Bug Fixes
+### Features
 
-* stdin support 57f5ca7
+* jsonrpc disconnect support for server and proxies 5d7128c
 
 
 
