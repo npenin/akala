@@ -45,6 +45,15 @@ export function module(name: string, ...dependencies: (Module | string)[]): Modu
     return new Module(name);
 }
 
+export function lazy<T>(factory: () => T)
+{
+    var instance: T;
+    return function ()
+    {
+        return instance || (instance = factory());
+    }
+}
+
 export interface Translator
 {
     (key: string): string;
