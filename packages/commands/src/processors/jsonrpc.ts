@@ -4,7 +4,7 @@ import { Command } from '../metadata/index';
 import { Container } from '../model/container';
 import { Local } from './local';
 import { Readable } from 'stream';
-import { Logger, MiddlewarePromise, OptionsResponse, SpecialNextParam } from '@akala/core';
+import { lazy, Logger, MiddlewarePromise, OptionsResponse, SpecialNextParam } from '@akala/core';
 import { Connection } from '@akala/json-rpc-ws';
 
 type OnlyArray<T> = Extract<T, unknown[]>;
@@ -32,16 +32,19 @@ export class JsonRpc extends CommandProcessor
     public static getConnection(socket: jsonrpcws.SocketAdapter, container?: Container<unknown>, log?: Logger): jsonrpcws.Connection
     {
         const error = new Error();
+        var containers: Container<unknown>[] = [];
+        if (container)
+            containers.push(container);
         const connection = new jsonrpcws.Connection(socket, {
             type: 'client',
             disconnected()
             {
-                if (container)
+                containers.forEach(c =>
                 {
-                    const cmd = container.resolve('$disconnect');
+                    const cmd = c.resolve('$disconnect');
                     if (cmd)
-                        container.dispatch(cmd);
-                }
+                        c.dispatch(cmd);
+                })
             },
             getHandler(method: string)
             {
@@ -70,12 +73,15 @@ export class JsonRpc extends CommandProcessor
                         if (typeof (params) != 'object' || params instanceof Readable || !params['param'])
                             params = { param: [params] } as unknown as jsonrpcws.SerializableObject;
 
-                        const getProcessor = () =>
+                        const getProcessor = lazy(() => new JsonRpc(this, true));
+                        const getContainer = lazy(() =>
                         {
-                            return new JsonRpc(this, true);
-                        }
+                            const c = Container.proxy(container?.name + '-client', getProcessor(), 2);
+                            containers.push(c);
+                            return c;
+                        });
                         Object.defineProperty(params, 'connection', { enumerable: true, get: getProcessor });
-                        Object.defineProperty(params, 'connectionAsContainer', { enumerable: true, get() { return Container.proxy(container?.name + '-client', getProcessor(), 2) } });
+                        Object.defineProperty(params, 'connectionAsContainer', { enumerable: true, get: getContainer });
                         if (typeof (params) == 'object' && !params['_trigger'] || params['_trigger'] == 'proxy')
                             params['_trigger'] = 'jsonrpc';
 
