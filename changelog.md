@@ -23,6 +23,7 @@
 * bindings are less intrusive 3ef2783
 * bump dependent 5e89235
 * bump dependents proper references f734b61
+* cannot read undefined config object 0cc01be
 * Cli implementation a6c7103
 * cli parsing a28c8fe
 * client compilation 4815fd5
