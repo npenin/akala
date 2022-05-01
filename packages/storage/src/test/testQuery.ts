@@ -14,7 +14,7 @@ describe('where builder', function ()
     it('generates', async function ()
     {
 
-        var fpe = await File.from(__dirname);
+        var fpe = await File.fromJson(__dirname);
         var store = Store.create<TestStore>(fpe, 'ModelTest1');
 
         var where = store.ModelTest1.where('s1=="test"');
