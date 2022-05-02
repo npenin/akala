@@ -9,6 +9,7 @@ import { File } from '../server/providers/file';
 import { ModelTest1 } from './modelTest1';
 import * as assert from 'assert'
 import 'mocha';
+import { BinaryOperator } from '@akala/core';
 
 interface TestStore extends db.StoreDefinition
 {
@@ -19,10 +20,10 @@ describe('simple query', function ()
 {
     it('works with simple commands', async function ()
     {
-        var fpe = await File.from(__dirname);
+        var fpe = await File.fromJson(__dirname);
         var store = db.Store.create<TestStore>(fpe, 'ModelTest1');
 
-        var obj = await store.ModelTest1.where('s1', db.expressions.BinaryOperator.Equal, 'pwic').firstOrDefault();
+        var obj = await store.ModelTest1.where('s1', BinaryOperator.Equal, 'pwic').firstOrDefault();
         if (obj)
         {
             fpe.beginTransaction();
@@ -38,10 +39,10 @@ describe('simple query', function ()
         fpe.addCommand(store.ModelTest1.create(obj));
         await fpe.commitTransaction();
 
-        var cnt = await store.ModelTest1.where('s1', db.expressions.BinaryOperator.Equal, 'pwic').length();
+        var cnt = await store.ModelTest1.where('s1', BinaryOperator.Equal, 'pwic').length();
         assert.notStrictEqual(cnt, 0, 'fount 0 item with s1=pwic');
         assert.equal(cnt, 1, 'found ' + cnt + ' item with s1=pwic');
-        for await (var value of store.ModelTest1.where('s1', db.expressions.BinaryOperator.Equal, 'pwic'))
+        for await (var value of store.ModelTest1.where('s1', BinaryOperator.Equal, 'pwic'))
         {
             assert.equal(await value.s1, 'pwic')
             assert.equal(await value.s2, 'pwet')
@@ -50,12 +51,12 @@ describe('simple query', function ()
 
     it('works with query on non key', async function ()
     {
-        var fpe = await File.from(__dirname);
+        var fpe = await File.fromJson(__dirname);
         var store = db.Store.create<TestStore>(fpe, 'ModelTest1');
 
         fpe.beginTransaction();
         debugger;
-        for await (var obj of store.ModelTest1.where('s2', db.expressions.BinaryOperator.Equal, 'pwet'))
+        for await (var obj of store.ModelTest1.where('s2', BinaryOperator.Equal, 'pwet'))
             fpe.addCommand(store.ModelTest1.delete(obj));
         await fpe.commitTransaction();
 
@@ -73,23 +74,23 @@ describe('simple query', function ()
 
         try
         {
-            var obj = await store.ModelTest1.where('s2', db.expressions.BinaryOperator.Equal, 'pwet').singleOrDefault();
+            var obj = await store.ModelTest1.where('s2', BinaryOperator.Equal, 'pwet').singleOrDefault();
             assert.fail('exception should have been thrown');
         }
         catch (e)
         {
             //normal behaviour
         }
-        assert.equal(await store.ModelTest1.where('s2', db.expressions.BinaryOperator.Equal, 'pwet').length(), 2, 'we should have 2 objects with s2=pwet')
+        assert.equal(await store.ModelTest1.where('s2', BinaryOperator.Equal, 'pwet').length(), 2, 'we should have 2 objects with s2=pwet')
     });
 
     it('works with grouped query', async function ()
     {
-        var fpe = await File.from(__dirname);
+        var fpe = await File.fromJson(__dirname);
         var store = db.Store.create<TestStore>(fpe, 'ModelTest1');
 
         fpe.beginTransaction();
-        for await (var obj of store.ModelTest1.where('s2', db.expressions.BinaryOperator.Equal, 'pwet'))
+        for await (var obj of store.ModelTest1.where('s2', BinaryOperator.Equal, 'pwet'))
             fpe.addCommand(store.ModelTest1.delete(obj));
         await fpe.commitTransaction();
 

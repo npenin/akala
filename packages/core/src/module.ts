@@ -2,10 +2,10 @@ import * as di from './global-injector'
 import orchestrator from 'orchestrator'
 import { Injector, InjectableWithTypedThis, InjectableAsyncWithTypedThis, Injectable } from './injector';
 import { eachAsync } from './helpers';
-import debug from 'debug'
 import { isPromiseLike } from './promiseHelpers';
+import { logger } from './logger';
 
-const orchestratorLog = debug('akala:module:orchestrator');
+const orchestratorLog = logger('akala:module:orchestrator');
 
 process.hrtime = process.hrtime || require('browser-process-hrtime');
 
@@ -268,8 +268,8 @@ export class Module extends Injector
     }
 }
 
-Module['o'].on('task_start', ev => orchestratorLog(ev.message))
-Module['o'].on('task_stop', ev => orchestratorLog(ev.message))
+Module['o'].on('task_start', ev => orchestratorLog.debug(ev.message))
+Module['o'].on('task_stop', ev => orchestratorLog.debug(ev.message))
 
 
 var moduleInjector = di.resolve<Injector>('$modules');

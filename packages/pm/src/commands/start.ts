@@ -3,12 +3,12 @@ import State, { RunningContainer, SidecarMetadata } from '../state';
 import { spawn, ChildProcess, StdioOptions } from "child_process";
 import pmContainer from '../container';
 import * as jsonrpc from '@akala/json-rpc-ws'
-import debug from "debug";
-import { eachAsync } from "@akala/core";
+import { eachAsync, logger } from "@akala/core";
 import { NewLinePrefixer } from "../new-line-prefixer.js";
 import { SocketAdapterEventMap } from "@akala/json-rpc-ws";
 import { CliContext, ErrorWithStatus } from "@akala/cli";
 import getRandomName from "./name";
+import { ProxyConfiguration } from "@akala/config";
 
 export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, context?: CliContext<{ new?: boolean, name: string, inspect?: boolean, verbose?: boolean, wait?: boolean }>): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
 {
@@ -19,24 +19,22 @@ export default async function start(this: State, pm: pmContainer.container & Con
     else if (!context.options.name)
         context.options.name = name;
 
-    var instanceConfig = this.config.mapping[context.options.name];
-    var def: SidecarMetadata;
-    if (typeof instanceConfig == 'undefined')
-        def = this.config.containers[name];
-    else
-        def = this.config.containers[instanceConfig.container];
 
     if (this.isDaemon)
     {
+        var instanceConfig = this.config.mapping[context.options.name];
+        var def: ProxyConfiguration<SidecarMetadata>;
+        if (typeof instanceConfig == 'undefined')
+            def = this.config.containers[name];
+        else
+            def = this.config.containers[instanceConfig.container];
+
         // eslint-disable-next-line no-var
         var container = this.processes[context.options.name];
         if (container && container.running)
             throw new Error(container.name + ' is already started');
-        args = await pm.dispatch('config', name) as string[];
-        if (args)
-            args = args.slice(0)
-        else
-            args = [];
+
+        const args = [];
 
         if (!def && name != 'pm')
         {
@@ -45,8 +43,8 @@ export default async function start(this: State, pm: pmContainer.container & Con
         }
 
         args.unshift(...context.args, ...Object.entries(context.options).filter(e => e[0] != 'program' && e[0] != 'new' && e[0] != 'inspect').map(entries => ['--' + entries[0] + '=' + entries[1]]).flat());
-        if (def && def.path)
-            args.unshift('--program=' + def.path);
+        if (def && def.get('path'))
+            args.unshift('--program=' + def.get('path'));
         else
             args.unshift('--program=' + name);
     }
@@ -68,7 +66,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
     if (context.options && context.options.verbose)
         args.push('-v')
 
-    const log = debug('akala:pm:' + context.options.name);
+    const log = logger('akala:pm:' + context.options.name);
     let cp: ChildProcess;
     if (!this.isDaemon)
     {
@@ -112,10 +110,10 @@ export default async function start(this: State, pm: pmContainer.container & Con
             const processor = new Processors.JsonRpc(new jsonrpc.Connection(new IpcAdapter(cp), {
                 type: 'client', getHandler(method: string)
                 {
-                    log(method);
+                    log.debug(method);
                     return async function (params: jsonrpc.SerializableObject, reply)
                     {
-                        log(params);
+                        log.debug(params);
                         try
                         {
                             if (!params)
@@ -125,12 +123,12 @@ export default async function start(this: State, pm: pmContainer.container & Con
                             // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             params.process = container as any;
                             const result = await pm.dispatch(method, params) as jsonrpc.PayloadDataType<void>;
-                            log(result);
+                            log.debug(result);
                             reply(null, result);
                         }
                         catch (error)
                         {
-                            log(error);
+                            log.debug(error);
                             reply(error);
                         }
                     }

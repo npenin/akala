@@ -1,6 +1,5 @@
 import { SelfDefinedCommand } from "@akala/commands";
-import { container } from "@akala/pubsub";
-import getTarget, { DateRequest, getTargets } from ".";
+import { DateRequest, getTargets } from ".";
 import { Deferred } from "../../json-rpc-ws/lib";
 
 export interface State

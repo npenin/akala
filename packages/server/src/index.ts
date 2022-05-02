@@ -36,4 +36,4 @@ export function connect(options: commands.ServeMetadata, settings: {
     return commands.connectByPreference(options, Object.assign({ metadata: require('../commands.json') }, settings), ...orders);
 }
 
-export { Logger, logger, log } from './logger'
+// export { Logger, logger, log } from '@akala/core/src/logger'

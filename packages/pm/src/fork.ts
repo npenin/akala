@@ -5,9 +5,8 @@ import * as path from 'path'
 import * as ac from '@akala/commands';
 import { lstat } from 'fs/promises';
 import { IpcAdapter } from './commands/start';
-import debug from 'debug';
 import { Socket } from 'net';
-import { module as coreModule } from '@akala/core';
+import { logger, Logger, module as coreModule } from '@akala/core';
 import program, { buildCliContextFromProcess, NamespaceMiddleware } from '@akala/cli';
 import { Stats } from 'fs';
 import { registerCommands } from '@akala/commands';
@@ -25,14 +24,14 @@ program.useMiddleware({
 let folderOrFile: Stats;
 let cliContainer: ac.Container<unknown>;
 let processor: ac.CommandProcessor;
-let log: debug.Debugger;
+let log: Logger;
 const logMiddleware = new NamespaceMiddleware<{ program: string, name: string }>(null).option<string, 'verbose'>('verbose', { aliases: ['v',] });
 logMiddleware.preAction(async c =>
 {
     if (c.options.verbose)
         processor = new ac.Processors.LogProcessor(processor, (cmd, params) =>
         {
-            log({ cmd, params });
+            log.verbose({ cmd, params });
             return Promise.resolve();
         });
 
@@ -51,12 +50,9 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
     useMiddleware({
         handle: async c => //if commandable
         {
-            log = debug(c.options.name);
+            log = logger(c.options.name);
 
-            if (folderOrFile.isFile())
-                cliContainer = new ac.Container(path.basename(c.options.name), {});
-            else
-                cliContainer = new ac.Container(c.options.name, {});
+            cliContainer = new ac.Container('cli', {});
 
             if (folderOrFile.isFile())
                 processor = new ac.Processors.FileSystem(path.dirname(c.options.program));
@@ -68,11 +64,12 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
     useMiddleware({
         handle: async c =>
         {
+            cliContainer.name = c.options.name;
             const init = cliContainer.resolve('$init');
             if (init && init.config && init.config.cli && init.config.cli.options)
                 ac.Triggers.addCliOptions(init, initMiddleware);
 
-            initMiddleware.option<string, 'pmSocket'>('pmSocket', { aliases: ['pm-socket'] }).action(async c =>
+            initMiddleware.option<string, 'pmSocket'>('pmSocket', { aliases: ['pm-socket', 'pm-sock'] }).action(async c =>
             {
                 let pm: ac.Container<unknown>;
                 if (!isPm)
@@ -87,11 +84,20 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
                         await new Promise<void>((resolve, reject) =>
                         {
                             pmSocket.on('error', reject)
-                            var portNumber = parseInt(c.options.pmSocket);
-                            if (isNaN(portNumber))
+                            const remote = /^(?:([^:]+):)?(\d+)$/.exec(c.options.pmSocket);
+                            if (!remote)
+                            {
                                 pmSocket.connect(c.options.pmSocket, resolve);
+                            }
                             else
-                                pmSocket.connect(portNumber, resolve);
+                            {
+                                const host = remote[1];
+                                const port = remote[2];
+                                if (host)
+                                    pmSocket.connect(Number(port), host, resolve);
+                                else
+                                    pmSocket.connect(Number(port), resolve);
+                            }
                         })
                         pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new ac.NetSocketAdapter(pmSocket), cliContainer), true));
                     }

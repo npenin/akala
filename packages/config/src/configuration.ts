@@ -3,10 +3,10 @@ import { Serializable, SerializableObject } from '@akala/json-rpc-ws';
 import fs from 'fs/promises'
 import { inspect } from 'util'
 
-export type ProxyConfiguration<T = SerializableObject> = Configuration<T> & { [key in keyof T]: T[key] extends SerializableObject ? ProxyConfiguration<T[key]> : T[key] };
+export type ProxyConfiguration<T extends object = SerializableObject> = Configuration<T> & { [key in keyof T]: T[key] extends object ? ProxyConfiguration<T[key]> : T[key] };
 type SerializableConfig<T, TKey extends keyof T> = T[TKey] extends SerializableObject ? Configuration<T[TKey]> : T[TKey]
 
-export default class Configuration<T = SerializableObject>
+export default class Configuration<T extends object = SerializableObject>
 {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private constructor(private readonly path: string, private readonly config?: T, private readonly rootConfig?: any)
@@ -22,7 +22,7 @@ export default class Configuration<T = SerializableObject>
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public static new<T = SerializableObject>(path: string, config?: T, rootConfig?: any): ProxyConfiguration<T>
+    public static new<T extends object = SerializableObject>(path: string, config?: T, rootConfig?: any): ProxyConfiguration<T>
     {
         return new Proxy(new Configuration<T>(path, config, rootConfig), {
             has(target, key)
@@ -42,6 +42,14 @@ export default class Configuration<T = SerializableObject>
                     }
                 }
                 return Reflect.has(target, key);
+            },
+            ownKeys(target)
+            {
+                return Reflect.ownKeys(target.config);
+            },
+            getOwnPropertyDescriptor(target, name)
+            {
+                return { value: this.get(target, name), configurable: true, enumerable: true };
             },
             get(target, key, receiver)
             {
@@ -68,9 +76,10 @@ export default class Configuration<T = SerializableObject>
                     case 'commit':
                         return target.commit.bind(target);
                     default:
-                        if (!Reflect.has(target, key) && typeof key == 'string')
-                            return target.get(key);
-                        return Reflect.get(target, key, receiver);
+                        var result = target.get(key);
+                        if (typeof result == 'undefined' && Reflect.has(target, key) && typeof key == 'string')
+                            return Reflect.get(target, key, receiver);
+                        return result;
                 }
             },
             set(target, p, value, receiver)
@@ -85,7 +94,12 @@ export default class Configuration<T = SerializableObject>
         }) as unknown as ProxyConfiguration<T>;
     }
 
-    public static async load<T = SerializableObject>(file: string): Promise<ProxyConfiguration<T>>
+    public extract()
+    {
+        return this.config;
+    }
+
+    public static async load<T extends object = SerializableObject>(file: string): Promise<ProxyConfiguration<T>>
     {
         try
         {
@@ -100,15 +114,20 @@ export default class Configuration<T = SerializableObject>
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public get(key?: string): typeof key extends keyof T ? T[typeof key] extends SerializableObject ?
-        SerializableConfig<T, typeof key>
-        : Configuration<SerializableObject> | Exclude<Serializable, SerializableObject>
-        : Configuration<SerializableObject> | Exclude<Serializable, SerializableObject>
+    public get<TResult = string>(key?: string): typeof key extends keyof T ?
+        TResult extends object ?
+        TResult extends (infer X)[] ?
+        X extends object ? X[] : Extract<Exclude<Serializable, SerializableObject>, TResult>
+        : ProxyConfiguration<TResult & T[typeof key]>
+        : Extract<Exclude<Serializable, SerializableObject>, TResult>
+        : never
     {
         if (key)
         {
             var value = key.split('.').reduce(function (config, key)
             {
+                if (typeof (config) === 'undefined')
+                    return config;
                 return config[key];
             }, this.config);
             if (typeof value == 'object' && !Array.isArray(value))
@@ -119,8 +138,25 @@ export default class Configuration<T = SerializableObject>
             return this as any;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    public has<TResult = string>(key?: string): boolean
+    {
+        if (key)
+        {
+            return typeof (key.split('.').reduce(function (config, key)
+            {
+                if (typeof (config) === 'undefined')
+                    return config;
+                return config[key];
+            }, this.config)) != 'undefined';
+        }
+        else
+            return true;
+    }
+
     public set(key: Exclude<keyof T, symbol | number>, newConfig: T[typeof key]): void
     public set(key: string, newConfig: Serializable): void
+    public set(key: string | Exclude<keyof T, symbol | number>, newConfig: any): void
     public set(key: string | Exclude<keyof T, symbol | number>, newConfig: any): void
     {
         const keys = key.split('.');

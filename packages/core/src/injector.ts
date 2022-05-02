@@ -1,11 +1,10 @@
 import { getParamNames } from './reflect';
-import debug from 'debug';
 import { isPromiseLike } from './promiseHelpers';
 import { EventEmitter } from 'events';
 import "reflect-metadata";
+import { logger } from './logger';
 
-const log = debug('akala:core:injector');
-const verboseLog = log.extend('verbose');
+const log = logger('akala:core:injector');
 
 export type Injected<T> = (instance?: unknown) => T;
 export type Injectable<T> = (...args: unknown[]) => T;
@@ -165,18 +164,19 @@ export class Injector
 
     public resolve<T = any>(param: string): T
     {
-        log('resolving ' + param);
+        log.silly('resolving ' + param);
 
         if (typeof (this.injectables[param]) != 'undefined')
         {
-            log(`resolved ${param}`);
-            if (verboseLog.enabled)
+            if (log.verbose.enabled)
             {
                 if (typeof this.injectables[param].name != 'undefined')
-                    verboseLog(`resolved ${param} to ${this.injectables[param]} with name ${this.injectables[param].name}`);
+                    log.verbose(`resolved ${param} to ${this.injectables[param]} with name ${this.injectables[param].name}`);
                 else
-                    verboseLog(`resolved ${param} to ${this.injectables[param]}`);
+                    log.verbose(`resolved ${param} to %O`, this.injectables[param]);
             }
+            else
+                log.debug(`resolved ${param}`);
             return this.injectables[param];
         }
         const indexOfDot = param.indexOf('.');
@@ -202,7 +202,7 @@ export class Injector
         }
         if (this.parent)
         {
-            log('trying parent injector');
+            log.silly('trying parent injector');
             return this.parent.resolve<T>(param);
         }
         return null;
@@ -372,7 +372,7 @@ export class Injector
 
     public registerDescriptor(name: string | number | symbol, value: PropertyDescriptor, override?: boolean)
     {
-        log('registering ' + name.toString());
+        log.debug('registering ' + name.toString());
         if (!override && typeof (this.injectables[name]) != 'undefined')
             throw new Error('There is already a registered item for ' + name.toString());
         if (typeof (this.injectables[name]) !== 'undefined')

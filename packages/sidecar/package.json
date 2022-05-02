@@ -1,0 +1,18 @@
+{
+    "name": "@akala/sidecar",
+    "packageManager": "yarn@3.2.0",
+    "main": "dist/index.js",
+    "bin": {
+        "akala": "dist/cli.js"
+    },
+    "version": "0.1.9",
+    "dependencies": {
+        "@akala/commands": "workspace:^",
+        "@akala/config": "workspace:^",
+        "@akala/pm": "workspace:^"
+    },
+    "scripts": {
+        "generate": "ac generate dist/commands commands.json --name @akala/sidecar",
+        "generate-metadata": "ac generate-metadata commands.json container.ts"
+    }
+}

@@ -69,17 +69,17 @@ export function updateCommands<T>(commands: meta.Command[], processor: ICommandP
     });
 }
 
-export function helper<TState>(container: Container<TState>, metacontainer?: meta.Container): { [key: string]: (...args: unknown[]) => Promise<unknown> }
+export function helper<TProxy = { [key: string]: (...args: unknown[]) => Promise<unknown> }>(container: Container<unknown>, metacontainer?: meta.Container): TProxy
 {
-    const result: { [key: string]: (...args: unknown[]) => Promise<unknown> } = {};
+    const result: TProxy = {} as any;
     if (!metacontainer)
         metacontainer = metadata(container);
     commandList(metacontainer).forEach(cmd =>
     {
-        result[cmd] = function (...args)
+        result[cmd as keyof TProxy] = function (...args)
         {
             return container.dispatch(cmd, ...args);
-        }
+        } as any;
     });
     return result;
 }

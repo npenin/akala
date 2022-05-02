@@ -1,11 +1,5 @@
-import { getParamNames } from './reflect';
-import debug from 'debug';
-import { isPromiseLike } from './promiseHelpers';
-import { EventEmitter } from 'events';
 import "reflect-metadata";
-import { Injector, InjectedParameter, InjectableConstructor, Injectable, ctorToFunction } from './injector';
-
-const log = debug('akala:core:injector');
+import { Injector, InjectedParameter } from './injector';
 
 export type PropertyInjection = ((i: Injector) => void);
 export type ParameterInjection = ((i: Injector) => InjectedParameter<any>);

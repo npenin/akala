@@ -2,6 +2,35 @@
     "name": "@akala/server",
     "commands": [
         {
+            "name": "remote-container",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "inject": [
+                        "dummy",
+                        "param.1",
+                        "param.2"
+                    ],
+                    "path": "dist/commands/remote-container.js",
+                    "source": "src/commands/remote-container.ts"
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "connectionAsContainer",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                }
+            }
+        },
+        {
             "name": "$init",
             "inject": [],
             "config": {
@@ -21,6 +50,22 @@
                             "needsValue": true
                         }
                     }
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "mode",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/mode.js",
+                    "source": "src/commands/mode.ts",
+                    "inject": [
+                        "param.0"
+                    ]
                 },
                 "": {
                     "inject": []
@@ -65,69 +110,6 @@
             }
         },
         {
-            "name": "remote-container",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "inject": [
-                        "dummy",
-                        "param.1",
-                        "param.2"
-                    ],
-                    "path": "dist/commands/remote-container.js",
-                    "source": "src/commands/remote-container.ts"
-                },
-                "jsonrpc": {
-                    "inject": [
-                        "connectionAsContainer",
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ]
-                }
-            }
-        },
-        {
-            "name": "mode",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/mode.js",
-                    "source": "src/commands/mode.ts",
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
-            "name": "remote-route",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/remote-route.js",
-                    "source": "src/commands/remote-route.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ]
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
             "name": "remove-asset",
             "inject": [],
             "config": {
@@ -141,35 +123,6 @@
                 },
                 "": {
                     "inject": []
-                }
-            }
-        },
-        {
-            "name": "require",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/require.js",
-                    "source": "src/commands/require.ts",
-                    "inject": [
-                        "ignore",
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "$injector",
-                        "param.0",
-                        "cwd"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "$injector",
-                        "param.0",
-                        "param.1"
-                    ]
                 }
             }
         },
@@ -219,6 +172,35 @@
             }
         },
         {
+            "name": "require",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/require.js",
+                    "source": "src/commands/require.ts",
+                    "inject": [
+                        "ignore",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "$injector",
+                        "param.0",
+                        "cwd"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "$injector",
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
             "name": "webpack-html",
             "inject": [],
             "config": {
@@ -242,28 +224,20 @@
             }
         },
         {
-            "name": "webpack-alias",
+            "name": "remote-route",
             "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist/commands/webpack-alias.js",
-                    "source": "src/commands/webpack-alias.ts",
+                    "path": "dist/commands/remote-route.js",
+                    "source": "src/commands/remote-route.ts",
                     "inject": [
                         "param.0",
-                        "param.1"
+                        "param.1",
+                        "param.2"
                     ]
                 },
                 "": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
+                    "inject": []
                 }
             }
         },
@@ -296,6 +270,32 @@
                     "inject": [
                         "param.0",
                         "options.reload"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "webpack-alias",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/webpack-alias.js",
+                    "source": "src/commands/webpack-alias.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
                     ]
                 }
             }

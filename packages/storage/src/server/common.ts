@@ -6,6 +6,8 @@ import { Query } from './Query';
 import { PersistenceEngineQueryProvider } from './PersistenceQueryProvider';
 import { Update, Delete, Create } from './commands/command';
 import { ConstantExpression } from './expressions/constant-expression';
+import { Serializer } from 'v8';
+import { Type } from '.';
 
 export enum StorageType
 {
@@ -46,6 +48,15 @@ export class StorageFieldType
     }
 }
 
+export function parseType(type: string): FieldType
+{
+    switch (type.toLowerCase())
+    {
+        case 'datetime':
+            return StorageFieldType.datetime();
+    }
+}
+
 export interface FieldType
 {
     type: (...args: any) => FieldType,
@@ -63,6 +74,34 @@ export enum Generator
     native,
     uuid
 }
+
+export type SerializedFieldType = keyof StorageFieldType | {
+    type: keyof typeof StorageFieldType,
+    defaultValue?: any,
+    allowNull?: boolean,
+    length?: number,
+    precision?: number,
+    scale?: number,
+};
+export type SerializedAttribute<T, TMember extends Extract<keyof T, string>> = { name: TMember, nameInStorage: string, isKey: boolean, mode: ModelMode.Attribute, generator: keyof typeof Generator } & SerializedFieldType;
+export type SerializedRelationship<T, TMember extends keyof T> = {
+    name: TMember,
+    target: string,
+    mode: ModelMode.Relationship,
+    cardinality: Cardinality,
+    isComposite?: boolean,
+    mapping: {
+        [key: string]: string
+    };
+};
+export type SerializedStorageField = {
+    isKey: boolean,
+    mode: ModelMode.StorageField,
+    nameInStorage: string,
+    generator: keyof typeof Generator,
+    model: ModelDefinition<any>
+} & SerializedFieldType;
+
 
 export type Attribute<T, TMember extends Extract<keyof T, string>> = { name: TMember, nameInStorage: string, isKey: boolean, mode: ModelMode.Attribute, generator: Generator, model: ModelDefinition<T> } & FieldType;
 export type Relationship<T, TMember extends keyof T> = {
@@ -103,10 +142,18 @@ export class StorageView<U extends { [key: string]: any }>
     }
 }
 
+export interface SerializableDefinition<TObject extends Record<string, any>>
+{
+    nameInStorage?: string;
+    namespace?: string;
+    fields?: { [key: string]: SerializedStorageField };
+    members?: { [key: string]: SerializedAttribute<TObject, Extract<keyof TObject, string>> };
+    relationships?: { [key: string]: SerializedRelationship<TObject, Extract<keyof TObject, string>> };
+}
+
 export class ModelDefinition<TObject extends { [key: string]: any }>
 {
     static definitions: { [key: string]: ModelDefinition<any> } = {};
-    prototype: TObject;
     static get definitionsAsArray() { return Object.keys(this.definitions).map((name) => this.definitions[name]); }
     constructor(public name: string, public nameInStorage: string, public namespace: string)
     {
@@ -154,15 +201,21 @@ export class ModelDefinition<TObject extends { [key: string]: any }>
         });
     }
 
-    fromJson(data: any)
+    fromJson(data: string | SerializableDefinition<TObject>)
     {
         if (typeof data == 'string')
             data = JSON.parse(data);
         if (typeof data != 'object')
-            throw new Error(`${data} cannot be read as model ${this.namespace}.${this.name}`)
-        if (this.prototype)
-            Object.setPrototypeOf(data, this.prototype);
-        return data;
+            throw new Error(`${data} cannot be read as model ${this.namespace}.${this.name}`);
+
+        const definition = data;
+
+        if (definition.fields)
+            Object.entries(definition.fields).map(fieldEntry => this.defineStorageMember(fieldEntry[0], fieldEntry[1].isKey, Object.assign({}, fieldEntry[1].type, { type: StorageFieldType[fieldEntry[1].type] }) as FieldType, Generator[fieldEntry[1].generator] as Generator));
+        if (definition.relationships)
+            Object.entries(definition.relationships).map(relationship => this.defineRelationship(relationship[0] as Extract<keyof TObject, string>, ModelDefinition.definitions[relationship[1].target], relationship[1].mapping));
+        if (definition.members)
+            Object.entries(definition.members).map(member => this.defineMember(member[0] as Extract<keyof TObject, string>, member[1].isKey, Object.assign({}, member[1].type, { type: StorageFieldType[member[1].type] }) as FieldType, Generator[member[1].generator] as Generator));
     }
 
     private storageView: StorageView<TObject>;
@@ -202,14 +255,14 @@ export class ModelDefinition<TObject extends { [key: string]: any }>
         return this;
     }
 
-    public defineStorageMember(name: string, isKey: boolean, type: FieldType)
-    public defineStorageMember(name: { name: string, isKey: boolean } & FieldType)
-    public defineStorageMember(name: string | { name: string, isKey: boolean } & FieldType, isKey?: boolean, type?: FieldType)
+    public defineStorageMember(name: string, isKey: boolean, type: FieldType, generator?: Generator)
+    public defineStorageMember(name: StorageField & FieldType)
+    public defineStorageMember(name: string | StorageField & FieldType, isKey?: boolean, type?: FieldType, generator?: Generator)
     {
         if (typeof name == 'string')
-            this.members[name] = Object.assign({ name, isKey, mode: ModelMode.StorageField }, type) as any;
+            this.members[name] = Object.assign({ name, isKey, mode: ModelMode.StorageField, generator }, type) as any;
         else
-            this.members[name.name] = name as any;
+            this.members[name.nameInStorage] = name as any;
         return this;
     }
 
@@ -220,7 +273,7 @@ export class ModelDefinition<TObject extends { [key: string]: any }>
         {
             if (this.members[fk])
                 continue;
-            this.defineStorageMember(Object.assign({}, targetType.members[foreignKeyMapping[fk]], { name: fk, isKey: false }));
+            this.defineStorageMember(Object.assign({}, targetType.members[foreignKeyMapping[fk]], { nameInStorage: fk, isKey: false }) as StorageField & FieldType);
         }
     }
 

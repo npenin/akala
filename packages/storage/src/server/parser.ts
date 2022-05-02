@@ -1,12 +1,12 @@
 import { BinaryExpression } from './expressions/binary-expression';
 import { StrictExpressions, StrictTypedExpression } from './expressions/expression';
-import { BinaryOperator } from './expressions/binary-operator';
 import { ConstantExpression } from './expressions/constant-expression';
 import { UnaryExpression } from './expressions/unary-expression';
 import { UnaryOperator } from './expressions/unary-operator';
 import { MemberExpression } from './expressions/member-expression';
 import { ParameterExpression } from './expressions/parameter-expression';
 import { NewExpression } from './expressions/new-expression';
+import { BinaryOperator } from '@akala/core';
 
 
 var jsonKeyRegex = /^ *(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([^: ]+)) *): */;

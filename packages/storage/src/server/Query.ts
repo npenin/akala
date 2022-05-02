@@ -1,5 +1,4 @@
 import { TypedLambdaExpression, LambdaExpression } from './expressions/lambda-expression';
-import { BinaryOperator } from './expressions/binary-operator';
 import { Expression, TypedExpression, Predicate, Expressions, Project, Project2, StrictExpressions } from './expressions/expression';
 import { ApplySymbolExpression } from './expressions/apply-symbol-expression';
 import { ConstantExpression } from './expressions/constant-expression';
@@ -10,6 +9,7 @@ import { NewExpression } from './expressions/new-expression';
 import { BinaryExpression } from './expressions/binary-expression';
 import * as akala from '@akala/core'
 import { Parser } from './parser';
+import { BinaryOperator } from '@akala/core';
 
 export type asyncProxy<T> = { [P in keyof T]: PromiseLike<T[P]> };
 

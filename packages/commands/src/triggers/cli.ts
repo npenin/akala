@@ -25,13 +25,27 @@ export var processTrigger = new Trigger('cli', async (c, program: NamespaceMiddl
 
             addOptions(cmd, command);
 
+            let stdin: Promise<string> | undefined;
+
             command.useMiddleware({
                 handle(context)
                 {
                     return Processors.Local.execute(cmd, (...args) =>
                     {
                         return c.handle(c, cmd, { param: args, _trigger: 'proxy' });
-                    }, c, { context: context, options: context.options, param: context.args, _trigger: 'cli' }) as MiddlewarePromise;
+                    }, c, {
+                        context: context, options: context.options, param: context.args, _trigger: 'cli', get stdin()
+                        {
+                            return stdin || (stdin =
+                                new Promise<string>((resolve, reject) =>
+                                {
+                                    const buffers = [];
+                                    process.stdin.on('data', data => buffers.push(data));
+                                    process.stdin.on('end', () => resolve(buffers.join('')));
+                                    process.stdin.resume();
+                                }));
+                        }
+                    }) as MiddlewarePromise;
                 }
             });
         }

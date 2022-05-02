@@ -1,13 +1,13 @@
 import * as akala from '@akala/core'
 import "reflect-metadata";
-import { FieldType, StorageFieldType, ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator } from './common';
+import { FieldType, StorageFieldType, ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator, SerializableDefinition, SerializedAttribute, SerializedFieldType, SerializedRelationship, SerializedStorageField } from './common';
 import { Query } from './Query';
 import { PersistenceEngine } from './PersistenceEngine';
 import { Update, Create, Delete, CommandResult } from './commands/command';
 import { isDate } from 'util';
 
 export { Cardinality } from './cardinality'
-export { ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator };
+export { ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator, SerializableDefinition, SerializedAttribute, SerializedFieldType, SerializedRelationship, SerializedStorageField };
 export { PersistenceEngine } from './PersistenceEngine'
 
 export const providers = akala.module('db', '@akala/storage');
@@ -31,7 +31,7 @@ export type StoreDefinition<T = any> =
 
 export class Store<TStore extends StoreDefinition>
 {
-    public static create<TStore extends StoreDefinition>(engine: PersistenceEngine<any>, ...names: (keyof TStore)[]): StoreDefinition<TStore>
+    public static create<TStore extends StoreDefinition>(engine: PersistenceEngine<any>, ...names: (keyof TStore)[]): StoreDefinition<TStore> & TStore
     {
         return new Store<TStore>(engine, ...names) as any;
     }
@@ -45,6 +45,26 @@ export class Store<TStore extends StoreDefinition>
     public set<T>(name: keyof TStore & string)
     {
         return this.engine.dbSet<T>(name);
+    }
+}
+
+export class MultiStore<TStore extends StoreDefinition>
+{
+    public static create<TStore extends StoreDefinition>(mapping: Record<string, PersistenceEngine<any>>): StoreDefinition<TStore> & TStore
+    {
+        return new MultiStore<TStore>(mapping) as any;
+    }
+
+    private constructor(private mapping: Record<string, PersistenceEngine<any>>)
+    {
+        for (const name of Object.keys(mapping))
+            Object.defineProperty(this, name, { value: mapping[name].dbSet(name) });
+    }
+
+    public set<T>(name: keyof TStore & string)
+    {
+        if (name in this.mapping)
+            return this.mapping[name].dbSet<T>(name);
     }
 }
 
@@ -74,7 +94,7 @@ export function Model<TObject>(name: string | (new () => TObject), nameInStorage
             model.namespace = namespace || null;
             ModelDefinition.definitions[name_s] = model;
         }
-        model.prototype = cl.prototype;
+        Object.setPrototypeOf(model, cl.prototype);
         // cl.prototype = model;
     }
 }

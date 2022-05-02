@@ -1,13 +1,12 @@
 import { Trigger, Container, metadata, Metadata } from '@akala/commands';
 import { HttpRouter as Router, Request, Response } from '../router/index';
-import { log as debug, mapAsync } from '@akala/core';
+import { logger, mapAsync } from '@akala/core';
 import { Processors } from '@akala/commands';
 import * as http from 'http';
 import * as https from 'https';
 import * as http2 from 'http2';
-import parser from 'body-parser'
 
-const log = debug('commands:trigger:http')
+const log = logger('commands:trigger:http')
 
 function wrapHttp<T>(container: Container<T>, command: Metadata.Command)
 {
@@ -25,7 +24,7 @@ async function processCommand<T>(container: Container<T>, c: Metadata.Command, i
     {
         args = await mapAsync(args, async el => await el);
         args = args.filter((a, i) => c.inject[i].startsWith('param.'))
-        log(args);
+        log.debug(args);
         return await container.dispatch(c.name, ...args).then(result => { throw result }, err => err);
     }, container, {
         param: [], route: req.params, query: req.query, _trigger: 'http', get rawBody()
@@ -67,7 +66,7 @@ export const trigger = new Trigger<[{ router: Router, meta: Metadata.Container }
 
         const config = command.config.http;
 
-        log(config.method || 'use');
+        log.debug(config.method || 'use');
         if (config.method === 'use' || !config.method)
         {
             if (commandRouter instanceof Router)

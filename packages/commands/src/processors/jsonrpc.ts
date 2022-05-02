@@ -2,10 +2,9 @@ import * as jsonrpcws from '@akala/json-rpc-ws'
 import { CommandProcessor, StructuredParameters } from '../model/processor'
 import { Command } from '../metadata/index';
 import { Container } from '../model/container';
-import { IDebugger } from 'debug';
 import { Local } from './local';
 import { Readable } from 'stream';
-import { MiddlewarePromise, OptionsResponse, SpecialNextParam } from '@akala/core';
+import { lazy, Logger, MiddlewarePromise, OptionsResponse, SpecialNextParam } from '@akala/core';
 import { Connection } from '@akala/json-rpc-ws';
 
 type OnlyArray<T> = Extract<T, unknown[]>;
@@ -30,19 +29,22 @@ export class JsonRpc extends CommandProcessor
         });
     }
 
-    public static getConnection(socket: jsonrpcws.SocketAdapter, container?: Container<unknown>, log?: IDebugger): jsonrpcws.Connection
+    public static getConnection(socket: jsonrpcws.SocketAdapter, container?: Container<unknown>, log?: Logger): jsonrpcws.Connection
     {
         const error = new Error();
+        var containers: Container<unknown>[] = [];
+        if (container)
+            containers.push(container);
         const connection = new jsonrpcws.Connection(socket, {
             type: 'client',
             disconnected()
             {
-                if (container)
+                containers.forEach(c =>
                 {
-                    const cmd = container.resolve('$disconnect');
+                    const cmd = c.resolve('$disconnect');
                     if (cmd)
-                        container.dispatch(cmd);
-                }
+                        c.dispatch(cmd);
+                })
             },
             getHandler(method: string)
             {
@@ -61,7 +63,7 @@ export class JsonRpc extends CommandProcessor
                     try
                     {
                         if (log)
-                            log(params);
+                            log.debug(params);
 
 
                         if (!params)
@@ -71,12 +73,15 @@ export class JsonRpc extends CommandProcessor
                         if (typeof (params) != 'object' || params instanceof Readable || !params['param'])
                             params = { param: [params] } as unknown as jsonrpcws.SerializableObject;
 
-                        const getProcessor = () =>
+                        const getProcessor = lazy(() => new JsonRpc(this, true));
+                        const getContainer = lazy(() =>
                         {
-                            return new JsonRpc(this, true);
-                        }
+                            const c = Container.proxy(container?.name + '-client', getProcessor(), 2);
+                            containers.push(c);
+                            return c;
+                        });
                         Object.defineProperty(params, 'connection', { enumerable: true, get: getProcessor });
-                        Object.defineProperty(params, 'connectionAsContainer', { enumerable: true, get() { return Container.proxy(container?.name + '-client', getProcessor(), 2) } });
+                        Object.defineProperty(params, 'connectionAsContainer', { enumerable: true, get: getContainer });
                         if (typeof (params) == 'object' && !params['_trigger'] || params['_trigger'] == 'proxy')
                             params['_trigger'] = 'jsonrpc';
 
@@ -86,7 +91,7 @@ export class JsonRpc extends CommandProcessor
                     catch (error)
                     {
                         if (log)
-                            log(error);
+                            log.error(error);
                         if (error && typeof error.toJSON == 'function')
                             reply(error.toJSON());
                         else
@@ -101,6 +106,7 @@ export class JsonRpc extends CommandProcessor
 
     public handle(_container: Container<any>, command: Command | string, params: StructuredParameters<OnlyArray<jsonrpcws.PayloadDataType<void>>>): MiddlewarePromise
     {
+
         return new Promise<Error | SpecialNextParam | OptionsResponse>((resolve, reject) =>
         {
             if (!this.passthrough && typeof command != 'string')
@@ -111,15 +117,16 @@ export class JsonRpc extends CommandProcessor
                     params.param = Local.extractParams(command.config?.jsonrpc?.inject || inject)(...params.param);
                 }
             }
-            this.client.sendMethod(typeof command == 'string' ? command : command.name, params as unknown as jsonrpcws.PayloadDataType<Readable>, function (err, result)
-            {
-                if (err)
+            Promise.all(params.param).then((params) =>
+                this.client.sendMethod(typeof command == 'string' ? command : command.name, Object.assign(params, { param: params }), function (err, result)
                 {
-                    resolve(err as unknown as Error);
-                }
-                else
-                    reject(result);
-            });
+                    if (err)
+                    {
+                        resolve(err as unknown as Error);
+                    }
+                    else
+                        reject(result);
+                }), resolve);
         })
     }
 

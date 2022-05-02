@@ -2,24 +2,15 @@
 
 import cli, { buildCliContext, buildCliContextFromProcess, CliContext, NamespaceMiddleware } from '@akala/cli'
 import { Container, SelfDefinedCommand } from '@akala/commands';
+import { logger as LoggerBuilder, LogLevels } from '@akala/core';
 import path from 'path';
 import { Workflow } from './automate';
 import workflow from './workflow';
 import use from './workflow-commands/use';
-import winston, { createLogger } from 'winston';
 
 (async function ()
 {
-    const logger = createLogger({
-        format: winston.format.combine(
-            winston.format.splat(),
-            winston.format.colorize(),
-            winston.format.simple()
-        )
-    })
-    logger.level = 'warn';
-    logger.add(new winston.transports.Console({ format: winston.format.simple() }));
-    logger['rejections'].handle(new winston.transports.Console({ format: winston.format.simple() }));
+    const logger = LoggerBuilder('automate-cli', LogLevels.info)
 
     const program = cli.option<string>('loader', { needsValue: true, normalize: 'requireMeta' }).
         option<string>('runner', { needsValue: true, normalize: 'require' }).
@@ -29,13 +20,16 @@ import winston, { createLogger } from 'winston';
     {
         if (context.options.verbose)
         {
-            if (context.options.verbose in context.logger.levels)
-                context.logger.level = context.options.verbose;
+            if (context.options.verbose in LogLevels)
+                context.logger.level = LogLevels[context.options.verbose];
             else
             {
-                const levelEntry = Object.entries(context.logger.levels).find((_name, level) => level.toString() == context.options.verbose);
+                const levelEntry = Object.entries(LogLevels).find((_name, level) => level.toString() == context.options.verbose);
                 if (levelEntry)
-                    context.logger.level = levelEntry[0];
+                    if (typeof (levelEntry[1]) == 'number')
+                        context.logger.level = levelEntry[1];
+                    else
+                        context.logger.level = LogLevels[levelEntry[0]];
             }
         }
         const container: workflow.container & Container<CliContext> = await use.call(context, null, 'workflow', require.resolve('../workflow.json'));

@@ -6,21 +6,25 @@ namespace commands
 	export interface container 
 	{
 		dispatch (cmd:'$init', ...args: [Argument1<typeof import('./commands/$init').default>]): ReturnType<typeof import('./commands/$init').default>
-		dispatch (cmd:'enqueue', ...args: [Argument0<typeof import('./commands/start').default>, Argument1<typeof import('./commands/start').default>, Argument2<typeof import('./commands/start').default>]): ReturnType<typeof import('./commands/start').default>
+		dispatch (cmd:'disable-schedule', ...args: [Argument0<typeof import('./commands/disable-schedule').default>]): ReturnType<typeof import('./commands/disable-schedule').default>
+		dispatch (cmd:'enable-schedule', ...args: [Argument0<typeof import('./commands/enable-schedule').default>]): ReturnType<typeof import('./commands/enable-schedule').default>
 		dispatch (cmd:'list', ...args: []): ReturnType<typeof import('./commands/list').default>
 		dispatch (cmd:'load', ...args: [Argument1<typeof import('./commands/load').default>, Argument2<typeof import('./commands/load').default>]): ReturnType<typeof import('./commands/load').default>
 		dispatch (cmd:'register-loader', ...args: [Argument0<typeof import('./commands/register-loader').default>]): ReturnType<typeof import('./commands/register-loader').default>
 		dispatch (cmd:'register-trigger', ...args: [Argument0<typeof import('./commands/register-trigger').default>, Argument1<typeof import('./commands/register-trigger').default>]): ReturnType<typeof import('./commands/register-trigger').default>
+		dispatch (cmd:'start', ...args: [Argument0<typeof import('./commands/start').default>, Argument1<typeof import('./commands/start').default>, Argument2<typeof import('./commands/start').default>]): ReturnType<typeof import('./commands/start').default>
 		dispatch (cmd:'unload', ...args: [Argument1<typeof import('./commands/unload').default>]): ReturnType<typeof import('./commands/unload').default>
 	}
 	export interface proxy 
 	{
 		'$init'(...args: [Argument1<typeof import('./commands/$init').default>]): ReturnType<typeof import('./commands/$init').default>
-		'enqueue'(...args: [Argument0<typeof import('./commands/start').default>, Argument1<typeof import('./commands/start').default>, Argument2<typeof import('./commands/start').default>]): ReturnType<typeof import('./commands/start').default>
+		'disable-schedule'(...args: [Argument0<typeof import('./commands/disable-schedule').default>]): ReturnType<typeof import('./commands/disable-schedule').default>
+		'enable-schedule'(...args: [Argument0<typeof import('./commands/enable-schedule').default>]): ReturnType<typeof import('./commands/enable-schedule').default>
 		'list'(...args: []): ReturnType<typeof import('./commands/list').default>
 		'load'(...args: [Argument1<typeof import('./commands/load').default>, Argument2<typeof import('./commands/load').default>]): ReturnType<typeof import('./commands/load').default>
 		'register-loader'(...args: [Argument0<typeof import('./commands/register-loader').default>]): ReturnType<typeof import('./commands/register-loader').default>
 		'register-trigger'(...args: [Argument0<typeof import('./commands/register-trigger').default>, Argument1<typeof import('./commands/register-trigger').default>]): ReturnType<typeof import('./commands/register-trigger').default>
+		'start'(...args: [Argument0<typeof import('./commands/start').default>, Argument1<typeof import('./commands/start').default>, Argument2<typeof import('./commands/start').default>]): ReturnType<typeof import('./commands/start').default>
 		'unload'(...args: [Argument1<typeof import('./commands/unload').default>]): ReturnType<typeof import('./commands/unload').default>
 	}
 }

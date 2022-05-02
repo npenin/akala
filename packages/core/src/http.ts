@@ -1,7 +1,7 @@
 import { register, injectWithName } from './global-injector';
 import { ParsedAny, Parser } from './parser';
 import { each, map, grep } from './each';
-import { extend, module } from './helpers';
+import { module } from './helpers';
 import { service } from './service';
 import { FormatterFactory } from './formatters/common';
 import * as qs from 'querystring'

@@ -1,4 +1,4 @@
-FROM node:14.17.6-alpine3.11
+FROM node:lts-alpine
 ENV NODE_ENV production
 WORKDIR /usr/src/akala
 # RUN npm i -g yarn

@@ -83,7 +83,7 @@ export function sidecar(options?: Omit<ConnectionPreference, 'metadata'> | SideC
                         }
                         catch (e)
                         {
-                            if (e && e.statusCode == 404)
+                            if (e && e.statusCode == 404 || !meta.connect)
                             {
                                 var c = new Container(meta.container.name, null);
                                 c.processor.useMiddleware(1, {

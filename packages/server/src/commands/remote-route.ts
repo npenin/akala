@@ -3,8 +3,8 @@ import { CallbackResponse, Request as BaseRequest, Response } from '../router/in
 import { HttpRouter } from '../router/index';
 import { Container } from "@akala/commands";
 import stream from "stream";
-import debug from 'debug';
-const log = debug('remote-route');
+import { logger } from '@akala/core';
+const log = logger('remote-route');
 
 export default function route(this: State, route: string, target: Container<void>, options: { pre?: boolean, auth?: boolean, app?: boolean, get?: boolean, use?: boolean }): void
 {
@@ -83,12 +83,12 @@ export function handleResponse(res: Response, locationReplacer: (key: string) =>
         {
             if (Buffer.isBuffer(response.data))
             {
-                log('sending buffer');
+                log.silly('sending buffer');
                 res.write(response.data);
             }
             else if (Array.isArray(response.data))
             {
-                log('sending array');
+                log.silly('sending array');
                 response.data.forEach(function (chunk)
                 {
                     res.write(chunk);
@@ -96,7 +96,7 @@ export function handleResponse(res: Response, locationReplacer: (key: string) =>
             }
             else 
             {
-                log('sending object');
+                log.silly('sending object');
                 if (typeof (response.data) !== 'string' && typeof response.data != 'number' && typeof (response.data) !== 'undefined')
                     res.write(JSON.stringify(response.data));
                 else if (typeof (response.data) != 'undefined')

@@ -5,38 +5,9 @@ export { Module };
 export * from './promiseHelpers';
 export { each as eachAsync, NextFunction, map as mapAsync, AggregateErrors } from './eachAsync';
 export { each, grep, Proxy, map } from './each';
-import log from 'debug';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-empty-function
 export function noop() { }
-
-export function extend<T, U>(target: T, other: U): T & U;
-export function extend<T, U, V>(target: T, other1: U, other2: V): T & U & V;
-export function extend<T, U, V, W>(target: T, other1: U, other2: V, other3: W): T & U & V & W;
-export function extend<T, U, V, W, X>(target: T, other1: U, other2: V, other3: W, other43: X): T & U & V & W & X;
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
-export function extend(target: any, ...args)
-{
-    args.forEach(function (arg)
-    {
-        if (typeof (arg) == 'object' && arg)
-            Object.keys(arg).forEach(function (key)
-            {
-                switch (typeof (target[key]))
-                {
-                    case 'object':
-                        extend(target[key], arg[key]);
-                        break;
-                    default:
-                        target[key] = arg[key];
-                        break;
-                }
-            });
-    });
-    return target;
-}
-
-export { log }
 
 export function module(name: string, ...dependencies: string[]): Module
 export function module(name: string, ...dependencies: Module[]): Module
@@ -45,6 +16,15 @@ export function module(name: string, ...dependencies: (Module | string)[]): Modu
     if (dependencies && dependencies.length)
         return new Module(name, dependencies.map(m => typeof (m) == 'string' ? module(m) : m));
     return new Module(name);
+}
+
+export function lazy<T>(factory: () => T)
+{
+    var instance: T;
+    return function ()
+    {
+        return instance || (instance = factory());
+    }
 }
 
 export interface Translator

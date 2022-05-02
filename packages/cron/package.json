@@ -1,6 +1,6 @@
 {
     "name": "@akala/cron",
-    "version": "0.4.20",
+    "version": "1.0.28",
     "main": "dist/index.js",
     "author": "npenin",
     "license": "BSD-3-Clause",
@@ -8,7 +8,7 @@
         "type": "git",
         "url": "git+https://github.com/npenin/akala.git"
     },
-    "commands": "commands.json",
+    "commands": "./commands.json",
     "homepage": "https://akala.js.org/cron",
     "scripts": {
         "generate": "ac generate dist/commands commands.json --name @akala/cron",
@@ -17,10 +17,10 @@
         "generate-metadata-pubsub": "ac generate-metadata pubsub-commands.json src/pubsub-container.ts --name cron-pubsub"
     },
     "dependencies": {
-        "@akala/commands": "workspace:*",
-        "@akala/pubsub": "workspace:*",
-        "debug": "^4.3.3",
-        "suncalc": "^1.8.0"
+        "@akala/commands": "workspace:^",
+        "@akala/pubsub": "workspace:^",
+        "debug": "^4.3.4",
+        "suncalc": "^1.9.0"
     },
     "devDependencies": {
         "@types/debug": "^4.1.7"
