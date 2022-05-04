@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* prevent send on closed socket 85de789
+* jsonrpc prperly send parameters 3f6c761
 
 
 
