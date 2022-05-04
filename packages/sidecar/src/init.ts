@@ -75,7 +75,7 @@ export default async function app<T extends StoreDefinition>(context: CliContext
                     break;
                 default:
                     var tmp = await connect(pubsubConfig);
-                    pubSubContainer = (await connectByPreference(tmp.connect, { metadata: MetaPubSub })).container as PubSubContainer;
+                    pubSubContainer = (await connectByPreference(await tmp.connect, { metadata: MetaPubSub })).container as PubSubContainer;
                     break;
             }
             sidecar.pubsub = helper<PubSubProxy>(pubSubContainer, MetaPubSub)
