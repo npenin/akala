@@ -117,9 +117,9 @@ export class JsonRpc extends CommandProcessor
                     params.param = Local.extractParams(command.config?.jsonrpc?.inject || inject)(...params.param);
                 }
             }
-            Promise.all(params.param).then((params) =>
+            Promise.all(params.param).then((param) =>
                 this.client.socket.open &&
-                this.client.sendMethod(typeof command == 'string' ? command : command.name, Object.assign(params, { param: params }), function (err, result)
+                this.client.sendMethod(typeof command == 'string' ? command : command.name, Object.assign(params, { param }) as jsonrpcws.SerializableObject, function (err, result)
                 {
                     if (err)
                     {
