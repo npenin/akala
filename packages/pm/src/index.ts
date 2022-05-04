@@ -44,13 +44,13 @@ export async function pm(socketPath?: string): Promise<Container<unknown>>
     return new Container('pm', {});
 }
 
-export function connect(name: string): Promise<{ connect: ServeMetadata, container: Metadata.Container }>
+export function connect(name: string): Promise<{ connect: Promise<ServeMetadata>, container: Metadata.Container }>
 {
     return module('@akala/pm').injectWithName(['container'], async function (container: Container<void>)
     {
         var metaContainer = await container.dispatch('$metadata', true) as Metadata.Container;
 
-        return { connect: await container.dispatch('connect', name) as ServeMetadata, container: { name, commands: metaContainer.commands.filter(c => c.name.startsWith(name + '.')).map(c => ({ name: c.name.substring(name.length + 1), inject: c.inject, config: c.config })) } };
+        return { connect: container.dispatch('connect', name) as Promise<ServeMetadata>, container: { name, commands: metaContainer.commands.filter(c => c.name.startsWith(name + '.')).map(c => ({ name: c.name.substring(name.length + 1), inject: c.inject, config: c.config })) } };
     })();
 }
 
@@ -78,7 +78,7 @@ export function sidecar(options?: Omit<ConnectionPreference, 'metadata'> | SideC
                     {
                         try
                         {
-                            const c = await connectByPreference(meta.connect, Object.assign({ metadata: meta.container }, options, options && options[property]), ...orders);
+                            const c = await connectByPreference(await meta.connect, Object.assign({ metadata: meta.container }, options, options && options[property]), ...orders);
                             return c.container;
                         }
                         catch (e)
