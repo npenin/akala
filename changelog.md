@@ -97,6 +97,7 @@
 * path to command metadata 4fc8111
 * pm start a40a583
 * prevent commands override 019f44f
+* prevent send on closed socket 85de789
 * proper parameter binding for bump-dependents 7459c86
 * provide proper variable to bumps dependents 82f8ddb
 * push before tagging d980dd0
