@@ -69,6 +69,7 @@
 * inject usage after move to full meta cmd 2cbda96
 * json model definition parsing 0770dab
 * jsonrpc processor 497616c
+* jsonrpc prperly send parameters 3f6c761
 * jsonrpc trigger c95d27f
 * limited git tag scope 7da0acb
 * log format 403e66b
