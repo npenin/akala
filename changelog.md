@@ -1,4 +1,4 @@
-#  (2022-05-02)
+#  (2022-05-04)
 
 
 ### Bug Fixes
@@ -29,6 +29,7 @@
 * client compilation 4815fd5
 * client package 4f14fd3
 * code clean up 11726cb
+* compilation e63e92e
 * compilation after typescript 4.4 upgrade 2828ff9
 * compilation issue 6734227
 * compilation issue 4735be5
@@ -101,6 +102,7 @@
 * push before tagging d980dd0
 * reduce silly logging 378e856
 * regex exec is not iterable ca695eb
+* remote conect 3f1db76
 * remote container command registration f3b0728
 * remote pm proxy 633b1b5
 * remote ready failing dcc0fc1
