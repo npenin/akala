@@ -118,6 +118,7 @@ export class JsonRpc extends CommandProcessor
                 }
             }
             Promise.all(params.param).then((params) =>
+                this.client.socket.open &&
                 this.client.sendMethod(typeof command == 'string' ? command : command.name, Object.assign(params, { param: params }), function (err, result)
                 {
                     if (err)
