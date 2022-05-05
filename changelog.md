@@ -1,4 +1,4 @@
-#  (2022-05-04)
+#  (2022-05-05)
 
 
 ### Bug Fixes
@@ -97,6 +97,7 @@
 * path can now be retrieved using property 2d3125e
 * path to command metadata 4fc8111
 * pm start a40a583
+* prevent breaks after disconnect 27df465
 * prevent commands override 019f44f
 * prevent send on closed socket 85de789
 * proper parameter binding for bump-dependents 7459c86
