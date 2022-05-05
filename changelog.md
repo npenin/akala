@@ -18,6 +18,7 @@
 * automate implementation f76a995
 * avoids workflow leaks in context db4662a
 * better file init 1087260
+* better support for closed socket requests 9b38a60
 * better support for non-mapped sidecars ec502f8
 * binding constructor 8294d0f
 * bindings are less intrusive 3ef2783
