@@ -6,6 +6,7 @@ import { Local } from './local';
 import { Readable } from 'stream';
 import { lazy, Logger, MiddlewarePromise, OptionsResponse, SpecialNextParam } from '@akala/core';
 import { Connection } from '@akala/json-rpc-ws';
+import { ErrorWithStatus } from '@akala/cli';
 
 type OnlyArray<T> = Extract<T, unknown[]>;
 
@@ -118,16 +119,20 @@ export class JsonRpc extends CommandProcessor
                 }
             }
             Promise.all(params.param).then((param) =>
-                this.client.socket.open &&
-                this.client.sendMethod(typeof command == 'string' ? command : command.name, Object.assign(params, { param }) as jsonrpcws.SerializableObject, function (err, result)
-                {
-                    if (err)
+            {
+                if (this.client.socket.open)
+                    this.client.sendMethod(typeof command == 'string' ? command : command.name, Object.assign(params, { param }) as jsonrpcws.SerializableObject, function (err, result)
                     {
-                        resolve(err as unknown as Error);
-                    }
-                    else
-                        reject(result);
-                }), resolve);
+                        if (err)
+                        {
+                            resolve(err as unknown as Error);
+                        }
+                        else
+                            reject(result);
+                    })
+                else
+                    resolve(new ErrorWithStatus(404, 'socket is closed'));
+            }, resolve);
         })
     }
 
