@@ -127,6 +127,7 @@
 * sidecar storage building 7285f5d
 * sidecar store init 057f271
 * sidecar to remote containers f795c56
+* silent disconnect failures 81d65aa
 * spread is not considering non enumerable properties 394438a
 * stdin support 57f5ca7
 * stdin support 23979ba
