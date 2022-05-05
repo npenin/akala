@@ -159,7 +159,7 @@ export abstract class Connection<TStreamable>
     /**
      *
      */
-    constructor(public socket: SocketAdapter, public parent: Parent<TStreamable, Connection<TStreamable>>)
+    constructor(public readonly socket: SocketAdapter, public parent: Parent<TStreamable, Connection<TStreamable>>)
     {
         if (!this.socket.send)
             throw new Error('socket.send is not defined');
@@ -427,7 +427,7 @@ export abstract class Connection<TStreamable>
             logger('close error %s', error['stack'] || error);
         }
         this.parent.disconnected(this); //Tell parent what went on so it can track connections
-        delete this.socket;
+        // delete this.socket;
     }
 
     /**
