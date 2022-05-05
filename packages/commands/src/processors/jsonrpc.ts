@@ -4,7 +4,7 @@ import { Command } from '../metadata/index';
 import { Container } from '../model/container';
 import { Local } from './local';
 import { Readable } from 'stream';
-import { lazy, Logger, MiddlewarePromise, OptionsResponse, SpecialNextParam } from '@akala/core';
+import { eachAsync, lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam } from '@akala/core';
 import { Connection } from '@akala/json-rpc-ws';
 import { ErrorWithStatus } from '@akala/cli';
 
@@ -40,12 +40,12 @@ export class JsonRpc extends CommandProcessor
             type: 'client',
             disconnected()
             {
-                containers.forEach(c =>
+                eachAsync(containers, c =>
                 {
                     const cmd = c.resolve('$disconnect');
                     if (cmd)
-                        c.dispatch(cmd);
-                })
+                        return c.dispatch(cmd);
+                }, false).then(noop, noop);
             },
             getHandler(method: string)
             {
@@ -131,7 +131,7 @@ export class JsonRpc extends CommandProcessor
                             reject(result);
                     })
                 else
-                    resolve(new ErrorWithStatus(404, 'socket is closed'));
+                    resolve();
             }, resolve);
         })
     }
