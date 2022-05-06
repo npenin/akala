@@ -22,18 +22,26 @@ export async function metadata(container: Container<unknown>, deep?: boolean): P
             metacontainer.commands.push({ name: cmd.name, inject: cmd.inject || [], config: cmd.config });
         else if (cmd instanceof Container && deep)
         {
-            if (isRunningContainer(cmd) && !cmd.running)
+            if (!isRunningContainer(cmd) || !cmd.running)
                 return;
-
-            const subContainer = await cmd.dispatch('$metadata', deep) as Metadata.Container;
-            console.log(subContainer);
-            if (subContainer && subContainer.commands)
+            try
             {
-                subContainer.commands.forEach(c => c.name = key + '.' + c.name)
-                metacontainer.commands.push(...subContainer.commands.filter(c => c.name !== key + '.$init' && c.name !== key + '.$stop'));
+                const subContainer = await cmd.dispatch('$metadata', deep) as Metadata.Container;
+                console.log(subContainer);
+                if (subContainer && subContainer.commands)
+                {
+                    subContainer.commands.forEach(c => c.name = key + '.' + c.name)
+                    metacontainer.commands.push(...subContainer.commands.filter(c => c.name !== key + '.$init' && c.name !== key + '.$stop'));
+                }
+            }
+            catch (e)
+            {
+                if (e && e.statusCode == 404)
+                    return;
+                throw e;
             }
         }
-    });
+    }, false);
     return metacontainer;
 }
 
