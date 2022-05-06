@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* better support for closed socket requests 9b38a60
+* silent disconnect failures 81d65aa
 
 
 
