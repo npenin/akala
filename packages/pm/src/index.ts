@@ -90,7 +90,7 @@ export function sidecar(options?: Omit<ConnectionPreference, 'metadata'> | SideC
                                     handle(origin, cmd, param)
                                     {
                                         if (cmd.name.startsWith(meta.container.name + '.'))
-                                            throw undefined;
+                                            return undefined;
                                         return c.processor.handle(origin, Object.assign({}, cmd, { name: meta.container.name + '.' + cmd.name }), param);
                                     }
                                 });
