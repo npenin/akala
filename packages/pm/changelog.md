@@ -3,12 +3,7 @@
 
 ### Bug Fixes
 
-* remove stateless 2de9622
-
-
-### Features
-
-* add reload-metadata on pm 654247f
+* reload-metadata definition fixed b807fc2
 
 
 
