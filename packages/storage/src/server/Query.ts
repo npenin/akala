@@ -56,6 +56,7 @@ export class Query<T> implements AsyncIterable<T>
     public where<F extends keyof T>(field: F, operator: BinaryOperator, value: T[F]): Query<T>
     public where(expression: string): Query<T>
     public where(expression: TypedLambdaExpression<Predicate<T>>): Query<T>
+    public where(field: string, operator: BinaryOperator, value: any): Query<T>
     public where<F extends keyof T>(fieldOrExpression: F | TypedLambdaExpression<Predicate<T>>, operator?: BinaryOperator, value?: T[F]): Query<T>
     {
         if (typeof fieldOrExpression == 'string')
