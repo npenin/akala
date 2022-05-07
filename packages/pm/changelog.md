@@ -3,9 +3,7 @@
 
 ### Bug Fixes
 
-* cleanup $disconnect registration on ready 4aaf9bd
-* initial pm setup 57f516a
-* sidecar proxy calls bbc414f
+* add pm processor when proxying 3dbeb5e
 
 
 
