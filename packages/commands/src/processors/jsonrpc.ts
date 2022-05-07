@@ -40,12 +40,12 @@ export class JsonRpc extends CommandProcessor
             type: 'client',
             disconnected()
             {
-                eachAsync(containers, c =>
+                Promise.all(containers.map(async c =>
                 {
                     const cmd = c.resolve('$disconnect');
                     if (cmd)
-                        return c.dispatch(cmd);
-                }, false).then(noop, noop);
+                        await c.dispatch(cmd);
+                })).then(noop, noop);
             },
             getHandler(method: string)
             {
@@ -77,7 +77,7 @@ export class JsonRpc extends CommandProcessor
                         const getProcessor = lazy(() => new JsonRpc(this, true));
                         const getContainer = lazy(() =>
                         {
-                            const c = Container.proxy(container?.name + '-client', getProcessor(), 2);
+                            const c = Container.proxy(container?.name + '-client', getProcessor());
                             containers.push(c);
                             return c;
                         });
