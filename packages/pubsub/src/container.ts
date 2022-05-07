@@ -6,14 +6,14 @@ namespace commands
 	export interface container 
 	{
 		dispatch (cmd:'publish', ...args: [Argument0<typeof import('./commands/publish').default>, Argument1<typeof import('./commands/publish').default>]): ReturnType<typeof import('./commands/publish').default>
-		dispatch (cmd:'unsubscribe', ...args: [Argument0<typeof import('./commands/unsubscribe').default>, Argument1<typeof import('./commands/unsubscribe').default>]): ReturnType<typeof import('./commands/unsubscribe').default>
 		dispatch (cmd:'subscribe', ...args: [Argument0<typeof import('./commands/subscribe').default>, Argument1<typeof import('./commands/subscribe').default>, Argument2<typeof import('./commands/subscribe').default>]): ReturnType<typeof import('./commands/subscribe').default>
+		dispatch (cmd:'unsubscribe', ...args: [Argument0<typeof import('./commands/unsubscribe').default>, Argument1<typeof import('./commands/unsubscribe').default>]): ReturnType<typeof import('./commands/unsubscribe').default>
 	}
 	export interface proxy 
 	{
 		'publish'(...args: [Argument0<typeof import('./commands/publish').default>, Argument1<typeof import('./commands/publish').default>]): ReturnType<typeof import('./commands/publish').default>
-		'unsubscribe'(...args: [Argument0<typeof import('./commands/unsubscribe').default>, Argument1<typeof import('./commands/unsubscribe').default>]): ReturnType<typeof import('./commands/unsubscribe').default>
 		'subscribe'(...args: [Argument0<typeof import('./commands/subscribe').default>, Argument1<typeof import('./commands/subscribe').default>, Argument2<typeof import('./commands/subscribe').default>]): ReturnType<typeof import('./commands/subscribe').default>
+		'unsubscribe'(...args: [Argument0<typeof import('./commands/unsubscribe').default>, Argument1<typeof import('./commands/unsubscribe').default>]): ReturnType<typeof import('./commands/unsubscribe').default>
 	}
 }
 
