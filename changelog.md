@@ -112,6 +112,7 @@
 * push before tagging d980dd0
 * reduce silly logging 378e856
 * regex exec is not iterable ca695eb
+* reload-metadata definition fixed b807fc2
 * remote conect 3f1db76
 * remote container command registration f3b0728
 * remote pm proxy 633b1b5
