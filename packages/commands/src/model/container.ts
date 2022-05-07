@@ -103,18 +103,18 @@ export class Container<TState> extends akala.Injector implements Middleware<[ori
     {
         const proxy = new Container<T>('proxy-' + name, null);
         proxy.processor.useMiddleware(priority, processor);
-        const proxyResolve = proxy.resolve;
+        // const proxyResolve = proxy.resolve;
         proxy.unregister('$metadata');
         proxy.unregister('$serve');
         proxy.unregister('$attach');
-        proxy.resolve = ((name: string) =>
-        {
-            const result = proxyResolve.call(proxy, name);
-            if (isCommand(result) || !result)
-                return { processor: processor, name, inject: ['$param'] };
-            return result;
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        }) as any;
+        // proxy.resolve = ((name: string) =>
+        // {
+        //     const result = proxyResolve.call(proxy, name);
+        //     if (isCommand(result) || !result)
+        //         return { processor: processor, name, inject: ['$param'] };
+        //     return result;
+        //     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        // }) as any;
         return proxy;
     }
 
