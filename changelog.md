@@ -74,6 +74,7 @@
 * initial pm setup 57f516a
 * inject usage after move to full meta cmd 2cbda96
 * json model definition parsing 0770dab
+* jsonrpc now breaks with standard jsonrpc error aa06e7c
 * jsonrpc processor 497616c
 * jsonrpc prperly send parameters 3f6c761
 * jsonrpc trigger c95d27f
@@ -115,16 +116,19 @@
 * remote container command registration f3b0728
 * remote pm proxy 633b1b5
 * remote ready failing dcc0fc1
+* remove container.ts in sidecar cc48571
 * remove duplicate binary operator 4930340
 * remove duplicate foreach in publish 09d9fe5
 * remove failure masking 7c4ae85
 * remove over proxyfying bc948b3
 * remove over proxyfying 5da8a29
+* remove stateless 2de9622
 * remove triple-beam dependency c44bd2e
 * remove winston dependency 3dcad68
 * removed mock-require usage 99587ba
 * removed mock-require usage 448f5be
 * resolve legacy config lookup 5dceab9
+* resolve path in new cc 58cb93c
 * revert last change 1332114
 * runnerMiddleware more type friendly 7bf1a25
 * set log level for any namespace e1b1025
@@ -158,6 +162,7 @@
 * update to new commands major version 5e0bed5
 * update to ws 8.0 ce769f9
 * update workspace parameter binding 6b6b07b
+* updateCommands now removes all commands before re-registering 7bc2f3d
 * variable leak adef56b
 * variable renaming f825597
 * workflow output 3fca50e
@@ -207,6 +212,7 @@
 * add plugins mechanism c9aee01
 * add possibility for custom file format 0360c2f
 * add possibility to parse filename 335cc97
+* add reload-metadata on pm 654247f
 * add runnerMiddleware as export ff4c95a
 * add sidecar models to configuration 8389089
 * add sidecars accessor c7792a7
