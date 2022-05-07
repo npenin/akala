@@ -70,6 +70,7 @@
 * improved logging support 8c81e18
 * improved ready command for remote containers ffd2a17
 * improves command detection ff43e85
+* infinite loop a5ae318
 * initial pm setup 57f516a
 * inject usage after move to full meta cmd 2cbda96
 * json model definition parsing 0770dab
@@ -205,6 +206,7 @@
 * add new app package ac81505
 * add plugins mechanism c9aee01
 * add possibility for custom file format 0360c2f
+* add possibility to parse filename 335cc97
 * add runnerMiddleware as export ff4c95a
 * add sidecar models to configuration 8389089
 * add sidecars accessor c7792a7
@@ -215,6 +217,7 @@
 * add support for jobs and schedules (as a SqlAgent) 11927b5
 * add support for shell script failure ignore 4b1dcc1
 * add support for untagged packages (yet) 6fbed9c
+* add where signature for more flexibility a8d0f14
 * added winston as a logger system 065bae0
 * cli now supports stream results 155e7ba
 * container can now act as middlewares 9484e39
