@@ -13,7 +13,7 @@ import Configuration, { ProxyConfiguration } from '@akala/config';
 export async function metadata(container: Container<unknown>, deep?: boolean): Promise<Metadata.Container>
 {
     const metacontainer: Metadata.Container = { name: container.name || 'unnamed', commands: [] };
-    await eachAsync(container.keys(), async key =>
+    await Promise.all(container.keys().map(async key =>
     {
         if (key === '$injector' || key === '$state' || key === '$container' || ignoredCommands.indexOf(key) > -1 || key == '$init' || key == '$stop')
             return;
@@ -36,12 +36,12 @@ export async function metadata(container: Container<unknown>, deep?: boolean): P
             }
             catch (e)
             {
-                if (e && e.statusCode == 404)
+                if (!e || e.statusCode == 404)
                     return;
                 throw e;
             }
         }
-    }, false);
+    }));
     return metacontainer;
 }
 
@@ -101,9 +101,11 @@ export default async function (this: State, container: RunningContainer & pmCont
         await container.dispatch('connect', 'pm', context);
     else
     {
-        const connectOptions = await container.dispatch('connect', 'pm');
-        if (typeof connectOptions == 'undefined')
-            await container.dispatch('connect', 'pm', { args: ['local'] });
+        await container.dispatch('connect', 'pm').catch(async e =>
+        {
+            if (e && e.statusCode == 404)
+                await container.dispatch('connect', 'pm', { args: ['local'] });
+        });
     }
 
     await this.config.commit();
