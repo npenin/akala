@@ -2,6 +2,29 @@
     "name": "commands",
     "commands": [
         {
+            "name": "analyze",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/commands/analyze.js",
+                    "source": "src/commands/analyze.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "automate": {
+                    "inject": [
+                        "commits"
+                    ]
+                }
+            }
+        },
+        {
             "name": "bump-dependents",
             "inject": [],
             "config": {
@@ -23,29 +46,6 @@
                     "inject": [
                         "workspaces",
                         "rules"
-                    ]
-                }
-            }
-        },
-        {
-            "name": "analyze",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "inject": [
-                        "param.0"
-                    ],
-                    "path": "dist/commands/analyze.js",
-                    "source": "src/commands/analyze.ts"
-                },
-                "": {
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "automate": {
-                    "inject": [
-                        "commits"
                     ]
                 }
             }
