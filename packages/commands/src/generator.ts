@@ -61,6 +61,7 @@ export function registerCommands<T>(commands: meta.Command[], processor: IComman
 
 export function updateCommands<T>(commands: meta.Command[], processor: ICommandProcessor, container: Container<T>): void
 {
+    container.keys().map<[string, meta.Command]>(c => [c, container.resolve(c)]).filter(x => isCommand(x[1])).forEach(v => container.unregister(v[0]))
     commands.forEach(cmd =>
     {
         if (cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata')
