@@ -1,9 +1,10 @@
-#  (2022-05-05)
+#  (2022-05-07)
 
 
 ### Bug Fixes
 
-* silent disconnect failures 81d65aa
+* remove over proxyfying bc948b3
+* remove over proxyfying 5da8a29
 
 
 
