@@ -85,7 +85,7 @@ export function sidecar(options?: Omit<ConnectionPreference, 'metadata'> | SideC
                         {
                             if (e && e.statusCode == 404 || !meta.connect)
                             {
-                                var c = new Container(meta.container.name, null);
+                                var c = new Container(meta.container.name, null, module('@akala/pm').resolve('container').processor);
                                 c.processor.useMiddleware(1, {
                                     handle(origin, cmd, param)
                                     {
