@@ -56,7 +56,7 @@ export class JsonRpc extends CommandProcessor
                 {
                     container.inspect();
                     error.message = `Command with name ${method} could not be found on ${socket.constructor.name}`;
-                    throw error;
+                    return null;
                 }
 
                 return async function (this: Connection, params, reply)
