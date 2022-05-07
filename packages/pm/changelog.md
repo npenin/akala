@@ -1,9 +1,11 @@
-#  (2022-05-06)
+#  (2022-05-07)
 
 
 ### Bug Fixes
 
-* better support for metadata on closed remote containers 71ec84d
+* cleanup $disconnect registration on ready 4aaf9bd
+* initial pm setup 57f516a
+* sidecar proxy calls bbc414f
 
 
 

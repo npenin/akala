@@ -1,4 +1,4 @@
-#  (2022-05-06)
+#  (2022-05-07)
 
 
 ### Bug Fixes
@@ -26,6 +26,7 @@
 * bump dependent 5e89235
 * bump dependents proper references f734b61
 * cannot read undefined config object 0cc01be
+* cleanup $disconnect registration on ready 4aaf9bd
 * Cli implementation a6c7103
 * cli parsing a28c8fe
 * client compilation 4815fd5
@@ -68,6 +69,7 @@
 * improved logging support 8c81e18
 * improved ready command for remote containers ffd2a17
 * improves command detection ff43e85
+* initial pm setup 57f516a
 * inject usage after move to full meta cmd 2cbda96
 * json model definition parsing 0770dab
 * jsonrpc processor 497616c
@@ -114,6 +116,8 @@
 * remove duplicate binary operator 4930340
 * remove duplicate foreach in publish 09d9fe5
 * remove failure masking 7c4ae85
+* remove over proxyfying bc948b3
+* remove over proxyfying 5da8a29
 * remove triple-beam dependency c44bd2e
 * remove winston dependency 3dcad68
 * removed mock-require usage 99587ba
@@ -125,6 +129,7 @@
 * sidecar builder 26673b1
 * sidecar command definition 69f9b21
 * sidecar init with single store config 5551424
+* sidecar proxy calls bbc414f
 * sidecar storage building 7285f5d
 * sidecar store init 057f271
 * sidecar to remote containers f795c56
