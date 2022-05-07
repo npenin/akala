@@ -2,7 +2,7 @@ import { PersistenceEngine, dynamicProxy } from '../PersistenceEngine';
 import { StrictExpressions } from '../expressions/expression';
 import { ExpressionExecutor } from '../expression-executor';
 import * as fs from "fs";
-import { join } from "path";
+import { basename, join } from "path";
 import { CommandProcessor } from '../commands/command-processor';
 import { CommandResult, Commands, Create } from '../commands/command';
 import { ModelDefinition } from '../shared';
@@ -229,6 +229,7 @@ const isNew = Symbol('isNew');
 const fileContent = Symbol('fileContent');
 const save = Symbol('save');
 const load = Symbol('load');
+const fileEntryFactoryProperty = Symbol('fileEntryFactory');
 
 interface PromiseFileSystem
 {
@@ -300,8 +301,9 @@ class FolderEntry implements FileSystemFolder, PromiseLike<PromiseFileSystem>
     [fspath]: string;
     [isNew]?: boolean;
     [model]: ModelDefinition<any>
+    [fileEntryFactoryProperty]: (path: string, name: string, def: ModelDefinition<any>) => FileSystemFile;
 
-    constructor(path: string, name: string, def: ModelDefinition<any>, private fileEntryFactory: (path: string, name: string, def: ModelDefinition<any>) => FileSystemFile)
+    constructor(path: string, name: string, def: ModelDefinition<any>, fileEntryFactory: (path: string, name: string, def: ModelDefinition<any>) => FileSystemFile)
     {
         this[fspath] = join(path, name);
         this[fsName] = name;
@@ -309,6 +311,7 @@ class FolderEntry implements FileSystemFolder, PromiseLike<PromiseFileSystem>
         if (!def)
             this[isNew] = true;
         Object.defineProperty(this, 'promise', { enumerable: false, writable: true });
+        this[fileEntryFactoryProperty] = fileEntryFactory;
     }
 
     *[Symbol.iterator]()
@@ -327,17 +330,16 @@ class FolderEntry implements FileSystemFolder, PromiseLike<PromiseFileSystem>
     {
         if (!this.promise)
         {
-            if (this[isNew])
+            this.promise = new Promise<void>((resolve, reject) =>
             {
-                this.promise = new Promise<FileSystemFolder & FileSystemContainer>((resolve, reject) =>
-                {
+                if (this[isNew])
                     fs.mkdir(this[fspath], { recursive: true }, (err) =>
                     {
                         if (err)
                             reject(err);
                         else
                         {
-                            resolve(this)
+                            resolve()
                             this.promise = Promise.resolve(new Proxy(this, {
                                 get(target, name)
                                 {
@@ -348,36 +350,35 @@ class FolderEntry implements FileSystemFolder, PromiseLike<PromiseFileSystem>
                             }));
                         }
                     });
-                })
-            }
-            else
-                this.promise = new Promise((resolve, reject) =>
+                else
+                    resolve();
+            }).then(() => new Promise((resolve, reject) =>
+            {
+                fs.readdir(this[fspath], { withFileTypes: true }, (err, result) =>
                 {
-                    fs.readdir(this[fspath], { withFileTypes: true }, (err, result) =>
+                    if (err)
+                        reject(err);
+                    else
                     {
-                        if (err)
-                            reject(err);
-                        else
+                        result.forEach(e =>
                         {
-                            result.forEach(e =>
+                            if (e.isDirectory())
+                                this[e.name] = new Proxy<FileSystemFolder & FileSystemContainer>(new FolderEntry(this[fspath], e.name, typeof this[model] == 'undefined' && null || ModelDefinition.definitionsAsArray.find(def => def.nameInStorage == e.name), this[fileEntryFactoryProperty]) as any, proxyHandler)
+                            else if (e.isFile())
+                                this[e.name] = new Proxy<FileSystemFile>(this[fileEntryFactoryProperty](this[fspath], e.name, this[model]), proxyHandler)
+                        });
+                        resolve(this);
+                        this.promise = Promise.resolve(new Proxy(this, {
+                            get(target, name)
                             {
-                                if (e.isDirectory())
-                                    this[e.name] = new Proxy<FileSystemFolder & FileSystemContainer>(new FolderEntry(this[fspath], e.name, typeof this[model] == 'undefined' && null || ModelDefinition.definitionsAsArray.find(def => def.nameInStorage == e.name), this.fileEntryFactory) as any, proxyHandler)
-                                else if (e.isFile())
-                                    this[e.name] = new Proxy<FileSystemFile>(this.fileEntryFactory(this[fspath], e.name, this[model]), proxyHandler)
-                            });
-                            resolve(this);
-                            this.promise = Promise.resolve(new Proxy(this, {
-                                get(target, name)
-                                {
-                                    if (name == 'then')
-                                        return undefined;
-                                    return target[name]
-                                }
-                            }));
-                        }
-                    })
+                                if (name == 'then')
+                                    return undefined;
+                                return target[name]
+                            }
+                        }));
+                    }
                 })
+            }));
         }
         return this.promise.then(onfulfilled, onrejected);
 
@@ -397,17 +398,17 @@ export class JsonFileEntry implements FileSystemFile
     }
     async [save](modifiedContent: any): Promise<void>
     {
-        await writeJson(this[fspath], JSON.stringify(modifiedContent), this[isNew], this[model]);
+        await writeJson(this[fspath], JSON.stringify(modifiedContent), this[isNew], this[model], this.multipleKeySeparator);
         this[isNew] = false;
     }
     [load]()
     {
-        return readJson(this[fspath], this[model]);
+        return readJson(this[fspath], this[model], this.multipleKeySeparator);
     }
     [fsName]: string;
     [fspath]: string;
     [isNew]?: boolean;
-    constructor(path: string, name: string, def: ModelDefinition<any>)
+    constructor(path: string, name: string, def: ModelDefinition<any>, private multipleKeySeparator?: string)
     {
         this[fspath] = join(path, name);
         this[fsName] = name;
@@ -425,7 +426,7 @@ var proxyHandler: ProxyHandler<FileSystemEntries> = {
             else if (target[isFile])
                 return function (onfulfilled, onrejected)
                 {
-                    return target[load]().then(onfulfilled, onrejected);
+                    return target[load]().then((x) => onfulfilled(x), onrejected);
                 }
 
         if (target[isFile] && typeof name == 'string')
@@ -479,7 +480,7 @@ var proxyHandler: ProxyHandler<FileSystemEntries> = {
 
 var fileContents: { [path: string]: { lastRead: Date, lastContent: any } } = {};
 
-function readJson<T>(path: string, model: ModelDefinition<T>)
+function readJson<T>(path: string, model: ModelDefinition<T>, multipleKeySeparator?: string)
 {
     return new Promise<T>((resolve, reject) =>
     {
@@ -496,7 +497,7 @@ function readJson<T>(path: string, model: ModelDefinition<T>)
                     else
                     {
                         fileContents[path] = {
-                            lastRead: stats.mtime, lastContent: model.fromJson(data)
+                            lastRead: stats.mtime, lastContent: Object.assign(parse(model, data), parseFileName(model, basename(path), multipleKeySeparator))
                         };
                         resolve(fileContents[path].lastContent);
                     }
@@ -509,7 +510,7 @@ function readJson<T>(path: string, model: ModelDefinition<T>)
 }
 
 
-function writeJson(path: string, json: string, isNew: boolean, model: ModelDefinition<any>)
+function writeJson(path: string, json: string, isNew: boolean, model: ModelDefinition<any>, multipleKeySeparator?: string)
 {
     return new Promise((resolve, reject) =>
     {
@@ -527,11 +528,50 @@ function writeJson(path: string, json: string, isNew: boolean, model: ModelDefin
                         reject(err);
                     else
                     {
-                        fileContents[path] = { lastRead: new Date(), lastContent: model.fromJson(json) };
+                        fileContents[path] = { lastRead: new Date(), lastContent: Object.assign(parse(model, json), parseFileName(model, basename(path), multipleKeySeparator)) };
                         resolve(fileContents[path].lastContent);
                     }
                 })
             }
         })
     })
+}
+
+function parse<T>(model: ModelDefinition<T>, json: string): T
+{
+    var parsedData = JSON.parse(json);
+    return Object.fromEntries(model.membersAsArray.map(f => [f['name'] || f.nameInStorage, parsedData[f.nameInStorage]]));
+}
+
+function parseFileName<T>(model: ModelDefinition<T>, fileName: string, multipleKeySeparator?: string): Partial<T>
+{
+    const record = {};
+    model.key.reduce((fileName, key) =>
+    {
+        if (model.members[key].generator == Generator.uuid || model.members[key].generator == Generator.native)
+        {
+            const length = uuid().length;
+            if (fileName.length > length)
+                record[key] = fileName.substring(0, length);
+            else
+            {
+                record[key] = fileName;
+                return '';
+            }
+            if (multipleKeySeparator && multipleKeySeparator.length == 1 && fileName[length] == multipleKeySeparator)
+                return fileName.substring(length + 1);
+            if (multipleKeySeparator && multipleKeySeparator.length && fileName.substring(length, multipleKeySeparator.length) == multipleKeySeparator)
+                return fileName
+            throw new Error('invalid file name')
+        }
+        else if (model.members[key].length)
+            record[key] = fileName.substring(0, model.members[key].length)
+        else
+        {
+            record[key] = fileName;
+            return '';
+        }
+        return fileName.substring(record[key].length);
+    }, fileName);
+    return record;
 }
