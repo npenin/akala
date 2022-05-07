@@ -53,7 +53,7 @@ export async function write(output: Writable, content: string)
 
 export async function newCommandConfiguration(cmd: Metadata.Command, options: CliContext<{ force?: boolean }>['options'], destination?: string)
 {
-    var { output } = await outputHelper(path.resolve(destination), cmd.name + '.json', options && options.force);
+    var { output } = await outputHelper(path.resolve(destination, cmd.config?.fs?.source && path.dirname(cmd.config.fs.source)), cmd.name + '.json', options && options.force);
     if (cmd.config?.fs?.source)
         delete cmd.config.fs.source;
     if (cmd.config?.fs?.path)
