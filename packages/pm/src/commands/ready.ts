@@ -11,13 +11,13 @@ export default async function ready(this: State, pm: pm.container & Container<St
         remoteContainer.name = metadata.name;
         this.processes[remoteContainer.name] = container = Object.assign(remoteContainer, { process: null, commandable: true, path: '', container: null, stateless: true, running: true });
         registerCommands(metadata.commands, container.processor, container);
-        remoteContainer.register(new SelfDefinedCommand(() =>
-        {
-            container.running = false;
-        }));
 
         pm.register(container.name, container, true);
-        container.register(new SelfDefinedCommand(() => { pm.unregister(container.name) }, '$disconnect'));
+        container.register(new SelfDefinedCommand(() =>
+        {
+            container.running = false;
+            pm.unregister(container.name);
+        }, '$disconnect'));
     }
     container?.ready?.resolve();
 }
