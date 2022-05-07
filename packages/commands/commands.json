@@ -2,6 +2,37 @@
     "name": "@akala/commands",
     "commands": [
         {
+            "name": "add-script",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/add-script.js",
+                    "source": "src/cli/add-script.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "options.name",
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ],
+                    "options": {
+                        "name": {
+                            "needsValue": true
+                        }
+                    }
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
             "name": "generate-declaration",
             "inject": [],
             "config": {
@@ -42,37 +73,6 @@
                         "options"
                     ],
                     "usage": "generate-metadata [commandPath] [output]",
-                    "options": {
-                        "name": {
-                            "needsValue": true
-                        }
-                    }
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
-            "name": "add-script",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/cli/add-script.js",
-                    "source": "src/cli/add-script.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "options.name",
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ],
                     "options": {
                         "name": {
                             "needsValue": true
@@ -157,24 +157,6 @@
             }
         },
         {
-            "name": "register",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/cli/register.js",
-                    "source": "src/cli/register.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ]
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
             "name": "new",
             "inject": [],
             "config": {
@@ -197,6 +179,24 @@
                         "options.name",
                         "options",
                         "options.destination"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "register",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/register.js",
+                    "source": "src/cli/register.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
                     ]
                 },
                 "": {
