@@ -36,6 +36,7 @@ export class JsonRpc extends CommandProcessor
         var containers: Container<unknown>[] = [];
         if (container)
             containers.push(container);
+
         const connection = new jsonrpcws.Connection(socket, {
             type: 'client',
             disconnected()
@@ -74,13 +75,6 @@ export class JsonRpc extends CommandProcessor
                         if (typeof (params) != 'object' || params instanceof Readable || !params['param'])
                             params = { param: [params] } as unknown as jsonrpcws.SerializableObject;
 
-                        const getProcessor = lazy(() => new JsonRpc(this, true));
-                        const getContainer = lazy(() =>
-                        {
-                            const c = Container.proxy(container?.name + '-client', getProcessor());
-                            containers.push(c);
-                            return c;
-                        });
                         Object.defineProperty(params, 'connection', { enumerable: true, get: getProcessor });
                         Object.defineProperty(params, 'connectionAsContainer', { enumerable: true, get: getContainer });
                         if (typeof (params) == 'object' && !params['_trigger'] || params['_trigger'] == 'proxy')
@@ -100,6 +94,13 @@ export class JsonRpc extends CommandProcessor
                     }
                 }
             }
+        });
+        const getProcessor = lazy(() => new JsonRpc(connection, true));
+        const getContainer = lazy(() =>
+        {
+            const c = Container.proxy(container?.name + '-client', getProcessor());
+            containers.push(c);
+            return c;
         });
 
         return connection;
