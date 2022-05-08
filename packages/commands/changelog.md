@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* prevent duplicate containers/procesors on multiple calls per socket 42efc58
+* error support in jsonrpc 82c2f34
 
 
 
