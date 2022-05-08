@@ -140,6 +140,8 @@ export class JsonRpc extends CommandProcessor
         })
     }
 
+    public get connectionId() { return this.client.id }
+
     constructor(private client: jsonrpcws.BaseConnection<Readable>, private passthrough?: boolean)
     {
         super('jsonrpc');
