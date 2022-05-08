@@ -51,6 +51,7 @@
 * error serialization b3156ad
 * error support in jsonrpc 82c2f34
 * export AggregateErrors f4285e2
+* expose jsonrpc client id fd0f873
 * fix automate runner ae9c216
 * fix model registration and serialization 7236001
 * force metadata command registration in remote container 840d6dd
