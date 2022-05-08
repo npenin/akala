@@ -159,7 +159,7 @@ export abstract class Connection<TStreamable>
     /**
      *
      */
-    constructor(public readonly socket: SocketAdapter, public parent: Parent<TStreamable, Connection<TStreamable>>)
+    constructor(public readonly socket: SocketAdapter, public readonly parent: Parent<TStreamable, Connection<TStreamable>>)
     {
         if (!this.socket.send)
             throw new Error('socket.send is not defined');
@@ -192,8 +192,8 @@ export abstract class Connection<TStreamable>
         this.socket.once(event, handler);
     }
 
-    public id = uuid();
-    protected responseHandlers: { [messageId: string]: ReplyCallback<unknown> } = {};
+    public readonly id = uuid();
+    protected readonly responseHandlers: { [messageId: string]: ReplyCallback<unknown> } = {};
 
     /**
      * Send json payload to the socket connection
