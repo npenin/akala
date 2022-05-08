@@ -24,7 +24,7 @@ export function metadata(container: Container<any>, deep?: boolean): meta.Contai
         {
             // console.log(cmd);
             const subContainer = metadata(cmd as Container<any>, deep);
-            subContainer.commands.forEach(c => c.name = cmd.name + '.' + c.name)
+            subContainer.commands.forEach(c => c.name = key + '.' + c.name)
             metacontainer.commands.push(...subContainer.commands);
         }
     });
