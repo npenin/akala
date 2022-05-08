@@ -126,7 +126,10 @@ export class JsonRpc extends CommandProcessor
                     {
                         if (err)
                         {
-                            resolve(err as unknown as Error);
+                            if (!(err instanceof Error))
+                                resolve(Object.assign(new Error(err.message), err));
+                            else
+                                resolve(err);
                         }
                         else
                             reject(result);
