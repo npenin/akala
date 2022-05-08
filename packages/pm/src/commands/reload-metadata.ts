@@ -2,7 +2,7 @@ import { Container, Metadata, updateCommands } from "@akala/commands";
 
 export default async function (remoteContainer: Container<void>)
 {
-    const metadata: Metadata.Container = await remoteContainer.dispatch('$metadata');
+    const metadata: Metadata.Container = await remoteContainer.dispatch('$metadata', true);
     remoteContainer.name = metadata.name;
     updateCommands(metadata.commands, null, remoteContainer);
 }
