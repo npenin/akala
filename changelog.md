@@ -49,6 +49,7 @@
 * enumerate on configuration objects a61e720
 * error flow in composite middleware ec36174
 * error serialization b3156ad
+* error support in jsonrpc 82c2f34
 * export AggregateErrors f4285e2
 * fix automate runner ae9c216
 * fix model registration and serialization 7236001
