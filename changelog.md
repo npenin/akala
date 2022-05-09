@@ -57,6 +57,7 @@
 * fix automate runner ae9c216
 * fix model registration and serialization 7236001
 * force metadata command registration in remote container 840d6dd
+* force socket processor on pm forks 0874275
 * fs discovery 0d34eea
 * fs middleware after discovery changes d97fcca
 * fs processor too catchy ccafa48
