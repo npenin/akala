@@ -1,4 +1,4 @@
-import { connectByPreference, Container, Metadata, NetSocketAdapter, Processors, registerCommands, ServeMetadata, ConnectionPreference, Cli } from "@akala/commands";
+import { Container, Metadata, NetSocketAdapter, Processors, registerCommands, ServeMetadata, ConnectionPreference, Cli } from "@akala/commands";
 import { Socket } from "net";
 import { module } from "@akala/core";
 
@@ -54,57 +54,9 @@ export function connect(name: string): Promise<{ connect: Promise<ServeMetadata>
     })();
 }
 
-const defaultOrders: (keyof ServeMetadata)[] = ['ssocket', 'socket', 'wss', 'ws'];
+export const defaultOrders: (keyof ServeMetadata)[] = ['ssocket', 'socket', 'wss', 'ws'];
 
-type SideCarConnectionPreference = { [key in keyof SidecarMap]?: Partial<ConnectionPreference> & { orders?: (keyof ServeMetadata)[] } };
-
-export function sidecar(options?: Omit<ConnectionPreference, 'metadata'> | SideCarConnectionPreference | Omit<ConnectionPreference, 'metadata'> & SideCarConnectionPreference, noCache?: boolean): Sidecar
-{
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return new Proxy<Sidecar>({} as any, {
-        get(target, property)
-        {
-            if (typeof (property) !== 'string')
-                return Reflect.get(target, property);
-
-            const orders = options && options[property] && options[property].orders || defaultOrders;
-            if (!options)
-                options = {};
-            if (typeof options.preferRemote == 'undefined')
-                options.preferRemote = !process.connected;
-            if (noCache || typeof (target[property]) == 'undefined')
-                Object.defineProperty(target, property, {
-                    value: connect(property).then(async meta => 
-                    {
-                        try
-                        {
-                            const c = await connectByPreference(await meta.connect, Object.assign({ metadata: meta.container }, options, options && options[property]), ...orders);
-                            return c.container;
-                        }
-                        catch (e)
-                        {
-                            if (e && e.statusCode == 404 || !meta.connect)
-                            {
-                                var c = new Container(meta.container.name, null, module('@akala/pm').resolve('container').processor);
-                                c.processor.useMiddleware(0, {
-                                    handle(origin, cmd, param)
-                                    {
-                                        if (cmd.name.startsWith(meta.container.name + '.'))
-                                            return undefined;
-                                        return c.processor.handle(origin, Object.assign({}, cmd, { name: meta.container.name + '.' + cmd.name }), param);
-                                    }
-                                });
-                                meta.container.commands.forEach(cmd => c.register(cmd));
-                                return c;
-                            }
-                            throw e;
-                        }
-                    })
-                });
-            return target[property];
-        }
-    });
-}
+export type SideCarConnectionPreference = { [key in keyof SidecarMap]?: Partial<ConnectionPreference> & { orders?: (keyof ServeMetadata)[] } };
 
 export interface ContainerLite
 {
@@ -119,5 +71,8 @@ export interface SidecarMap
     pm: pmContainer
 }
 
+
 import getRandomName from './commands/name';
+import sidecarSingleton, { sidecar } from "./sidecar";
+export { sidecar, sidecarSingleton };
 export { getRandomName };
