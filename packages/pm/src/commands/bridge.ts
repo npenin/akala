@@ -4,6 +4,6 @@ import State from "../state";
 
 export default function (this: State, connectionId: string, socket: SocketAdapter)
 {
-    this.awaitingConnections[connectionId].pipe(socket);
-    socket.pipe(this.awaitingConnections[connectionId]);
+    this.bridges[connectionId].pipe(socket);
+    socket.pipe(this.bridges[connectionId]);
 } 
