@@ -112,6 +112,7 @@
 * path can now be retrieved using property 2d3125e
 * path to command metadata 4fc8111
 * pm start a40a583
+* preferRemote now also allows less preferred connection 28e50f2
 * prevent breaks after disconnect 27df465
 * prevent commands override 019f44f
 * prevent duplicate containers/procesors on multiple calls per socket 42efc58
