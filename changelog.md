@@ -250,6 +250,7 @@
 * releasing sidecar eb0c959
 * removing problematic extend function 5daa1db
 * return ProxyConfiguration correct type when strongly typed eeaeee0
+* sidecar now fallback to proxy on pm 4ebe153
 * support for commands through pm 3954c8a
 * support for triggers 624ae86
 * support node module when no ./ prefix ad871e3
