@@ -77,6 +77,7 @@ export class JsonRpc extends CommandProcessor
 
                         Object.defineProperty(params, 'connection', { enumerable: true, get: getProcessor });
                         Object.defineProperty(params, 'connectionAsContainer', { enumerable: true, get: getContainer });
+                        Object.defineProperty(params, 'socket', { enumerable: true, value: socket });
                         if (typeof (params) == 'object' && !params['_trigger'] || params['_trigger'] == 'proxy')
                             params['_trigger'] = 'jsonrpc';
 

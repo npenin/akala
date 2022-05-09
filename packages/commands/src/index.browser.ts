@@ -10,7 +10,7 @@ import * as Triggers from './triggers/index'
 import * as Metadata from './metadata/index'
 import serveMetadata, { ServeMetadata, connectByPreference, connectWith, ConnectionPreference } from './serve-metadata'
 export { Processors, Triggers, Metadata }
-export { NetSocketAdapter, default as serve, ServeOptions } from './cli/serve'
+export { default as serve, ServeOptions } from './cli/serve'
 export { serveMetadata, ServeMetadata, connectByPreference, connectWith, ConnectionPreference };
 import $metadata from './commands/$metadata'
 export class Cli

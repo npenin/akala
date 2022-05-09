@@ -16,7 +16,8 @@ import { registerCommands } from './generator'
 import { DiscoveryOptions, FileSystem } from './processors/index'
 // import * as cli from './cli'
 export { Processors, Triggers, Metadata }
-export { NetSocketAdapter, default as serve, ServeOptions } from './cli/serve'
+export { default as serve, ServeOptions } from './cli/serve'
+export { NetSocketAdapter } from './net-socket-adapter'
 export { serveMetadata, ServeMetadata, connectByPreference, connectWith, ConnectionPreference };
 import commands from './commands'
 import $metadata from './commands/$metadata'

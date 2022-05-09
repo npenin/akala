@@ -8,7 +8,7 @@ import { Container } from '../model/container';
 // import { Command } from '../model/command';
 import { configure } from '../decorators';
 import { jsonrpcws } from '../triggers';
-import { NetSocketAdapter } from '../cli/serve';
+import { NetSocketAdapter } from "../net-socket-adapter";
 import * as net from 'net';
 import { unlink } from 'fs';
 import { promisify } from 'util';
