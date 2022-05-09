@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* metadata declaration on fork 9856bd0
+* force socket processor on pm forks 0874275
 
 
 
