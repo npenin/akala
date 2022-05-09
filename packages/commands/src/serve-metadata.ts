@@ -1,7 +1,8 @@
 import { IpcNetConnectOpts, NetConnectOpts } from 'net';
 import { platform } from 'os';
 import { join } from 'path';
-import { NetSocketAdapter, ServeOptions } from './cli/serve';
+import { ServeOptions } from './cli/serve';
+import { NetSocketAdapter } from "./net-socket-adapter";
 import { registerCommands } from './generator'
 import { CommandProcessor, ICommandProcessor } from './model/processor';
 import { HttpClient, JsonRpc } from './processors/index';
@@ -30,7 +31,7 @@ export interface ConnectionPreference
 {
     preferRemote?: boolean;
     host?: string;
-    metadata: Metadata.Container;
+    metadata?: Metadata.Container;
     container?: Container<any>;
 }
 
@@ -155,6 +156,24 @@ export async function connectWith<T>(options: NetConnectOpts, host: string, medi
 function isIpcConnectOption(options: NetConnectOpts): options is IpcNetConnectOpts
 {
     return typeof options['path'] !== 'undefined';
+}
+
+export function parseMetadata(connectionString: string, tls?: boolean): ServeMetadata 
+{
+
+    const remote = /^(?:([^:]+):)?(\d+)$/.exec(connectionString);
+    if (!remote)
+        if (tls)
+            return { ssocket: [{ path: connectionString }] };
+        else
+            return { socket: [{ path: connectionString }] }
+
+    const host = remote[1];
+    const port = remote[2];
+    if (tls)
+        return { ssocket: [{ port: Number(port), host: host }] };
+    else
+        return { socket: [{ port: Number(port), host: host }] };
 }
 
 export default function serveMetadata(name: string, context: ServeOptions): ServeMetadata

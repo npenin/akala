@@ -1,6 +1,6 @@
 import { Container } from "@akala/commands";
 import { ChildProcess } from "child_process";
-import { Deferred, SerializableObject } from "@akala/json-rpc-ws";
+import { Deferred, SerializableObject, SocketAdapter } from "@akala/json-rpc-ws";
 import { ServeMetadata } from "@akala/commands";
 import Configuration, { ProxyConfiguration } from "@akala/config";
 
@@ -9,6 +9,7 @@ export default interface State
     processes: { [key: string]: RunningContainer };
     isDaemon: boolean;
     config: ProxyConfiguration<StateConfiguration>
+    awaitingConnections: { [key: string]: SocketAdapter }
 }
 
 export interface StateConfiguration 

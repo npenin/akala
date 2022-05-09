@@ -121,7 +121,7 @@ const emptyCallback = function emptyCallback()
 
 export interface SocketAdapterEventMap
 {
-    message: string | { data: string };
+    message: string;
     open: Event;
     error: Event;
     close: CloseEvent;
@@ -137,6 +137,8 @@ export interface SocketAdapter<TSocket = unknown>
     on<K extends keyof SocketAdapterEventMap>(event: K, handler: (this: TSocket, ev: SocketAdapterEventMap[K]) => void): void
 
     once<K extends keyof SocketAdapterEventMap>(event: K, handler: (this: TSocket, ev: SocketAdapterEventMap[K]) => void): void;
+
+    pipe(socket: SocketAdapter);
 }
 
 export interface Parent<TStreamable, TConnection extends Connection<TStreamable>>

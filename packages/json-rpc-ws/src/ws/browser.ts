@@ -18,6 +18,12 @@ export class WebSocketAdapter implements SocketAdapter
 
     }
 
+    pipe(socket: SocketAdapter<unknown>)
+    {
+        this.on('message', (message) => socket.send(message));
+        this.on('close', () => socket.close());
+    }
+
     get open(): boolean
     {
         return this.socket.readyState == WebSocket.OPEN;
@@ -35,11 +41,35 @@ export class WebSocketAdapter implements SocketAdapter
 
     public on<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
     {
-        this.socket.addEventListener(event, handler);
+        switch (event)
+        {
+            case 'message':
+                this.socket.addEventListener('message', function (ev) { return handler.call(this, ev.data) });
+                break;
+            case 'close':
+            case 'error':
+            case 'open':
+                this.socket.addEventListener(event, handler as any);
+                break;
+            default:
+                throw new Error(`Unsupported event ${event}`);
+        }
     }
     public once<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
     {
-        this.socket.addEventListener(event, handler, { once: true });
+        switch (event)
+        {
+            case 'message':
+                this.socket.addEventListener('message', function (ev) { return handler.call(this, ev.data) }, { once: true });
+                break;
+            case 'close':
+            case 'error':
+            case 'open':
+                this.socket.addEventListener(event, handler as any, { once: true });
+                break;
+            default:
+                throw new Error(`Unsupported event ${event}`);
+        }
     }
 }
 

@@ -4,12 +4,13 @@ sms.install();
 import * as path from 'path'
 import * as ac from '@akala/commands';
 import { lstat } from 'fs/promises';
-import { IpcAdapter } from './commands/start';
+import { IpcAdapter } from "./ipc-adapter";
 import { Socket } from 'net';
 import { logger, Logger, module as coreModule } from '@akala/core';
 import program, { buildCliContextFromProcess, NamespaceMiddleware } from '@akala/cli';
 import { Stats } from 'fs';
-import { registerCommands } from '@akala/commands';
+import { registerCommands, SelfDefinedCommand } from '@akala/commands';
+import { parseMetadata } from '@akala/commands/src/serve-metadata';
 
 var isPm = false;
 
@@ -25,7 +26,7 @@ let folderOrFile: Stats;
 let cliContainer: ac.Container<unknown>;
 let processor: ac.CommandProcessor;
 let log: Logger;
-const logMiddleware = new NamespaceMiddleware<{ program: string, name: string }>(null).option<string, 'verbose'>('verbose', { aliases: ['v',] });
+const logMiddleware = new NamespaceMiddleware<{ program: string, name: string, tls: boolean }>(null).option<string, 'verbose'>('verbose', { aliases: ['v',] });
 logMiddleware.preAction(async c =>
 {
     if (c.options.verbose)
@@ -37,8 +38,8 @@ logMiddleware.preAction(async c =>
 
     await ac.Processors.FileSystem.discoverCommands(c.options.program, cliContainer, { processor: processor, isDirectory: folderOrFile.isDirectory() });
 });
-const initMiddleware = new NamespaceMiddleware<{ program: string, name: string }>(null);
-program.option<string, 'program'>('program', { needsValue: true }).option<string, 'name'>('name', { needsValue: true }).
+const initMiddleware = new NamespaceMiddleware<{ program: string, name: string, tls: boolean }>(null);
+program.option<string, 'program'>('program', { needsValue: true }).option<string, 'name'>('name', { needsValue: true }).option<boolean, 'tls'>('tls', { needsValue: false }).
     use(async c => //If pure js file
     {
         folderOrFile = await lstat(c.options.program);
@@ -71,7 +72,10 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
 
             initMiddleware.option<string, 'pmSocket'>('pmSocket', { aliases: ['pm-socket', 'pm-sock'] }).action(async c =>
             {
+
                 let pm: ac.Container<unknown>;
+                let pmConnectInfo: ac.ServeMetadata;
+
                 if (!isPm)
                 {
                     if (process.connected)
@@ -81,25 +85,27 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
                     else
                     {
                         const pmSocket = new Socket();
-                        await new Promise<void>((resolve, reject) =>
-                        {
-                            pmSocket.on('error', reject)
-                            const remote = /^(?:([^:]+):)?(\d+)$/.exec(c.options.pmSocket);
-                            if (!remote)
-                            {
-                                pmSocket.connect(c.options.pmSocket, resolve);
-                            }
-                            else
-                            {
-                                const host = remote[1];
-                                const port = remote[2];
-                                if (host)
-                                    pmSocket.connect(Number(port), host, resolve);
-                                else
-                                    pmSocket.connect(Number(port), resolve);
-                            }
-                        })
-                        pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new ac.NetSocketAdapter(pmSocket), cliContainer), true));
+                        const x = await ac.connectByPreference(pmConnectInfo = parseMetadata(c.options.pmSocket, c.options.tls), { container: cliContainer });
+                        pm = x.container;
+                        // await new Promise<void>((resolve, reject) =>
+                        // {
+                        //     pmSocket.on('error', reject)
+                        //     const remote = /^(?:([^:]+):)?(\d+)$/.exec(c.options.pmSocket);
+                        //     if (!remote)
+                        //     {
+                        //         pmSocket.connect(c.options.pmSocket, resolve);
+                        //     }
+                        //     else
+                        //     {
+                        //         const host = remote[1];
+                        //         const port = remote[2];
+                        //         if (host)
+                        //             pmSocket.connect(Number(port), host, resolve);
+                        //         else
+                        //             pmSocket.connect(Number(port), resolve);
+                        //     }
+                        // })
+                        // pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new ac.NetSocketAdapter(pmSocket), cliContainer), true));
                     }
                     // eslint-disable-next-line @typescript-eslint/no-var-requires
                     registerCommands(require('../commands.json').commands.map(ac.Metadata.extractCommandMetadata), null, pm);
@@ -111,6 +117,15 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
                     pm = cliContainer;
 
                 coreModule('@akala/pm').register('container', pm);
+
+                cliContainer.register(new SelfDefinedCommand(async (connectionId: string) =>
+                {
+                    if (!pmConnectInfo)
+                        pmConnectInfo = await pm.dispatch('connect', 'pm');
+                    var pm2 = await ac.connectByPreference(pmConnectInfo, { container: cliContainer });
+                    await pm2.container.dispatch('bridge', connectionId);
+                }, '$bridge'));
+
 
                 if (init)
                     await cliContainer.dispatch(init, { options: c.options, param: c.args, _trigger: 'cli', pm: pm, context: c });

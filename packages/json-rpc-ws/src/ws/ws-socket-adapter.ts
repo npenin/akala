@@ -15,6 +15,12 @@ export default class WsSocketAdapter implements SocketAdapter<Readable>
     {
     }
 
+    pipe(socket: SocketAdapter<unknown>)
+    {
+        this.on('message', (message) => socket.send(message));
+        this.on('close', () => socket.close());
+    }
+
     get open(): boolean
     {
         return this.socket.readyState == ws.OPEN;

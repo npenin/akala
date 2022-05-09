@@ -5,10 +5,10 @@ import pmContainer from '../container';
 import * as jsonrpc from '@akala/json-rpc-ws'
 import { eachAsync, logger } from "@akala/core";
 import { NewLinePrefixer } from "../new-line-prefixer.js";
-import { SocketAdapterEventMap } from "@akala/json-rpc-ws";
 import { CliContext, ErrorWithStatus } from "@akala/cli";
 import getRandomName from "./name";
 import { ProxyConfiguration } from "@akala/config";
+import { IpcAdapter } from "../ipc-adapter";
 
 export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, context?: CliContext<{ new?: boolean, name: string, inspect?: boolean, verbose?: boolean, wait?: boolean }>): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
 {
@@ -180,72 +180,6 @@ export default async function start(this: State, pm: pmContainer.container & Con
             await container.ready;
         return { execPath: process.execPath, args: args, cwd: process.cwd(), stdio: ['inherit', 'inherit', 'inherit', 'ipc'], shell: false, windowsHide: true };
     }
-}
-
-export class IpcAdapter implements jsonrpc.SocketAdapter
-{
-    get open(): boolean { return !!this.cp.pid }
-    close(): void
-    {
-        this.cp.disconnect();
-    }
-    send(data: string): void
-    {
-        if (this.cp.send)
-            this.cp.send(data + '\n');
-        else
-            console.warn(`process ${this.cp.pid} does not support send over IPC`);
-    }
-    on<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
-    {
-        switch (event)
-        {
-            case 'message':
-                this.cp.on('message', handler);
-                break;
-            case 'open':
-                handler(null);
-                break;
-            case 'close':
-                this.cp.on('disconnect', handler);
-                break;
-        }
-    }
-
-    once<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
-    {
-        switch (event)
-        {
-            case 'message':
-                this.cp.once('message', handler);
-                break;
-            case 'open':
-                handler(null);
-                break;
-            case 'close':
-                this.cp.once('disconnect', () => handler(null));
-                break;
-        }
-    }
-
-    constructor(private cp: ChildProcess | NodeJS.Process)
-    {
-    }
-
-    // _write(chunk: string | Buffer, encoding: string, callback: (error?: any) => void)
-    // {
-    //     // The underlying source only deals with strings.
-    //     if (Buffer.isBuffer(chunk))
-    //         chunk = chunk.toString('utf8');
-    //     if (this.cp.send)
-    //         this.cp.send(chunk + '\n', callback);
-    //     else
-    //         callback(new Error('there is no send method on this process'));
-    // }
-
-    // _read()
-    // {
-    // }
 }
 
 start.$inject = ['$container', 'param.0', 'options']
