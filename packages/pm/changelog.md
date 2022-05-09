@@ -1,9 +1,9 @@
 #  (2022-05-09)
 
 
-### Features
+### Bug Fixes
 
-* sidecar now fallback to proxy on pm 4ebe153
+* export parseMetadata 8870389
 
 
 
