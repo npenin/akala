@@ -84,7 +84,7 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
                     else
                     {
                         const pmSocket = new Socket();
-                        const x = await ac.connectByPreference(pmConnectInfo = parseMetadata(c.options.pmSocket, c.options.tls), { container: cliContainer });
+                        const x = await ac.connectByPreference(pmConnectInfo = parseMetadata(c.options.pmSocket, c.options.tls), { metadata: require('../commands.json'), container: cliContainer });
                         pm = x.container;
                         // await new Promise<void>((resolve, reject) =>
                         // {
@@ -107,7 +107,6 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
                         // pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new ac.NetSocketAdapter(pmSocket), cliContainer), true));
                     }
                     // eslint-disable-next-line @typescript-eslint/no-var-requires
-                    registerCommands(require('../commands.json').commands.map(ac.Metadata.extractCommandMetadata), null, pm);
                     pm.unregister(ac.Cli.Metadata.name);
                     pm.register(ac.Metadata.extractCommandMetadata(ac.Cli.Metadata));
 
