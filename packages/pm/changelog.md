@@ -1,9 +1,9 @@
 #  (2022-05-09)
 
 
-### Bug Fixes
+### Features
 
-* add missing proxy command to establish the bridge 9596ae9
+* sidecar now fallback to proxy on pm 4ebe153
 
 
 
