@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* handle empty orders in connectByPreference d35a80b
+* preferRemote now also allows less preferred connection 28e50f2
 
 
 
