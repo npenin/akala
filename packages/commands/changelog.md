@@ -1,9 +1,14 @@
-#  (2022-05-08)
+#  (2022-05-09)
 
 
 ### Bug Fixes
 
-* expose jsonrpc client id fd0f873
+* metadata does not rely on container name, but on key registration dd72fc3
+
+
+### Features
+
+* add bridge support 0e4d6a4
 
 
 

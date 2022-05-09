@@ -1,9 +1,9 @@
-#  (2022-05-08)
+#  (2022-05-09)
 
 
-### Bug Fixes
+### Features
 
-* expose jsonrpc client id fd0f873
+* add bridge support 0e4d6a4
 
 
 
