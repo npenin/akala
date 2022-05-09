@@ -86,6 +86,7 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
                         const pmSocket = new Socket();
                         const x = await ac.connectByPreference(pmConnectInfo = parseMetadata(c.options.pmSocket, c.options.tls), { metadata: require('../commands.json'), container: cliContainer });
                         pm = x.container;
+                        pm.processor.useMiddleware(20, x.processor);
                         // await new Promise<void>((resolve, reject) =>
                         // {
                         //     pmSocket.on('error', reject)
@@ -121,6 +122,8 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
                     if (!pmConnectInfo)
                         pmConnectInfo = await pm.dispatch('connect', 'pm');
                     var pm2 = await ac.connectByPreference(pmConnectInfo, { container: cliContainer });
+                    pm.unregister(ac.Cli.Metadata.name);
+                    pm.register(ac.Metadata.extractCommandMetadata(ac.Cli.Metadata));
                     await pm2.container.dispatch('bridge', connectionId);
                 }, '$bridge'));
 
