@@ -62,6 +62,7 @@
 * fs processor too catchy ccafa48
 * git push tags fc8e609
 * handle default init 5482bcb
+* handle empty orders in connectByPreference d35a80b
 * hasOwnKeys now returns correct keys 76a062e
 * health check reliability 98df0c9
 * honoring preferRemote 6fa76bc
