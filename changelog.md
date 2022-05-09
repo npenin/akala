@@ -1,4 +1,4 @@
-#  (2022-05-08)
+#  (2022-05-09)
 
 
 ### Bug Fixes
@@ -87,6 +87,7 @@
 * made connect and fork more reliable and resilient 6c0c24f
 * made cron as non spreadable 34d3f69
 * mapAsync 64a258e
+* metadata does not rely on container name, but on key registration dd72fc3
 * metadata lookup eaa12c1
 * metadata lookup on start da0c4d7
 * middleware copy/paste issue 69757ce
@@ -115,6 +116,7 @@
 * push before tagging d980dd0
 * reduce silly logging 378e856
 * regex exec is not iterable ca695eb
+* reload metadata now call metadata with deep flag df33263
 * reload-metadata definition fixed b807fc2
 * remote conect 3f1db76
 * remote container command registration f3b0728
@@ -205,6 +207,7 @@
 
 * add $container to fs inject e766ea3
 * add $init function for easier usage 3f4fa32
+* add bridge support 0e4d6a4
 * add Configuration getters and setters c5dad91
 * add extends support df13246
 * add ignore failure support f9929cf
