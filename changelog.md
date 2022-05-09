@@ -7,6 +7,7 @@
 * adapt to trigger new definition 8c2d136
 * add missing dependency 3d0b4df
 * add missing package required property ba0c9df
+* add missing proxy command to establish the bridge 9596ae9
 * add pm processor when proxying 3dbeb5e
 * add recursive path creation 3f7ffa7
 * add stdin to pm cli e07437a
