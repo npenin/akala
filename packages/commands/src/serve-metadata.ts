@@ -45,9 +45,9 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
         {
             if (order === 'socket' || order == 'ssocket')
                 if (settings?.preferRemote)
-                    return options[order].find(s => !isIpcConnectOption(s));
+                    return options[order].find(s => !isIpcConnectOption(s)) || options[order].find(s => isIpcConnectOption(s));
                 else
-                    return options[order].find(s => isIpcConnectOption(s));
+                    return options[order].find(s => isIpcConnectOption(s)) || options[order].find(s => !isIpcConnectOption(s));
             return options[order];
         }
     });
