@@ -55,6 +55,8 @@ export class Container<TState> extends akala.Injector implements Middleware<[ori
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    public dispatch(command: '$metadata', ...param: AsDispatchArgs<unknown[]>): Promise<Metadata.Container>
+    public dispatch(command: string | Metadata.Command, ...param: AsDispatchArgs<unknown[]>): Promise<any>
     public dispatch(command: string | Metadata.Command, ...param: AsDispatchArgs<unknown[]>): Promise<any>
     {
         return this.handle(this, command, ...param).then(err => { throw err }, result => result);
