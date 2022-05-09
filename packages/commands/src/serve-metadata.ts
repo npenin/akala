@@ -37,7 +37,7 @@ export interface ConnectionPreference
 
 export async function connectByPreference<T = unknown>(options: ServeMetadata, settings: ConnectionPreference, ...orders: (keyof ServeMetadata)[]): Promise<{ container: Container<T>, processor: ICommandProcessor }>
 {
-    if (!orders)
+    if (!orders || !orders.length)
         orders = ['ssocket', 'socket', 'wss', 'ws', 'https', 'http'];
     const orderedOptions = orders.map(order =>
     {
