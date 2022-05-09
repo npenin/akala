@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* error support in jsonrpc 82c2f34
+* expose jsonrpc client id fd0f873
 
 
 

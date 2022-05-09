@@ -1,9 +1,9 @@
-#  (2022-05-05)
+#  (2022-05-08)
 
 
 ### Bug Fixes
 
-* prevent breaks after disconnect 27df465
+* expose jsonrpc client id fd0f873
 
 
 
