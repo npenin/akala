@@ -8,7 +8,7 @@ export * from './model/error-unknowncommand'
 import * as Processors from './processors/index'
 import * as Triggers from './triggers/index'
 import * as Metadata from './metadata/index'
-import serveMetadata, { ServeMetadata, connectByPreference, connectWith, ConnectionPreference } from './serve-metadata'
+import serveMetadata, { ServeMetadata, connectByPreference, connectWith, ConnectionPreference, parseMetadata } from './serve-metadata'
 import program, { buildCliContextFromProcess, NamespaceMiddleware } from '@akala/cli'
 import { Container } from './model/container'
 import { CommandProcessor } from './model/processor'
@@ -18,7 +18,7 @@ import { DiscoveryOptions, FileSystem } from './processors/index'
 export { Processors, Triggers, Metadata }
 export { default as serve, ServeOptions } from './cli/serve'
 export { NetSocketAdapter } from './net-socket-adapter'
-export { serveMetadata, ServeMetadata, connectByPreference, connectWith, ConnectionPreference };
+export { serveMetadata, ServeMetadata, connectByPreference, connectWith, ConnectionPreference, parseMetadata };
 import commands from './commands'
 import $metadata from './commands/$metadata'
 export { CommandProcessor };

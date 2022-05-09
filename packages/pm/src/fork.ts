@@ -9,8 +9,7 @@ import { Socket } from 'net';
 import { logger, Logger, module as coreModule } from '@akala/core';
 import program, { buildCliContextFromProcess, NamespaceMiddleware } from '@akala/cli';
 import { Stats } from 'fs';
-import { registerCommands, SelfDefinedCommand } from '@akala/commands';
-import { parseMetadata } from '@akala/commands/src/serve-metadata';
+import { registerCommands, SelfDefinedCommand, parseMetadata } from '@akala/commands';
 
 var isPm = false;
 
