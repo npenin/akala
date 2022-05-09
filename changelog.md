@@ -90,6 +90,7 @@
 * made connect and fork more reliable and resilient 6c0c24f
 * made cron as non spreadable 34d3f69
 * mapAsync 64a258e
+* metadata declaration on fork 9856bd0
 * metadata does not rely on container name, but on key registration dd72fc3
 * metadata lookup eaa12c1
 * metadata lookup on start da0c4d7
