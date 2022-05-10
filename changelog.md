@@ -1,4 +1,4 @@
-#  (2022-05-09)
+#  (2022-05-10)
 
 
 ### Bug Fixes
@@ -40,6 +40,7 @@
 * compilation issue 4735be5
 * connect fails when connect on mapping is undefined 16bdd27
 * connect should failed if mapping is not found 4392197
+* connect when connecting to pm 7494ae0
 * correct name assignment in fork 3deb98f
 * crash on parsing remote bcb17fe
 * default version ignore to decline 01cb0f7
