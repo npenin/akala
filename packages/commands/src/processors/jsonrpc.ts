@@ -86,6 +86,8 @@ export class JsonRpc extends CommandProcessor
                     }
                     catch (error)
                     {
+                        if (typeof error === 'undefined')
+                            return;
                         if (log)
                             log.error(error);
                         if (error && typeof error.toJSON == 'function')
