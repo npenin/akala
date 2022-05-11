@@ -39,12 +39,35 @@ export class WebSocketAdapter implements SocketAdapter
         this.socket.send(data);
     }
 
+    private messageListeners: [Function, Function][] = [];
+
+    public off<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
+    {
+        switch (event)
+        {
+            case 'message':
+                let listeners = this.messageListeners;
+                if (handler)
+                    listeners = listeners.filter(f => f[0] == handler);
+                listeners.forEach(l => this.socket.removeEventListener('message', l[1] as any));
+                break;
+            case 'close':
+            case 'error':
+            case 'open':
+                this.socket.removeEventListener(event, handler as any);
+                break;
+            default:
+                throw new Error(`Unsupported event ${event}`);
+        }
+    }
     public on<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
     {
         switch (event)
         {
             case 'message':
-                this.socket.addEventListener('message', function (ev) { return handler.call(this, ev.data) });
+                const x = function (ev) { return handler.call(this, ev.data) };
+                this.messageListeners.push([handler, x]);
+                this.socket.addEventListener('message', x);
                 break;
             case 'close':
             case 'error':

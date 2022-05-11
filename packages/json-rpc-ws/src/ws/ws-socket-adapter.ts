@@ -36,6 +36,16 @@ export default class WsSocketAdapter implements SocketAdapter<Readable>
         this.socket.send(data, { binary: false });
     }
 
+    public off<K extends keyof SocketAdapterEventMap>(event: K, handler?: (ev: SocketAdapterEventMap[K]) => void): void
+    {
+        if (event === 'message')
+        {
+            this.socket.removeAllListeners(event);
+        }
+        else
+            this.socket.off(event, handler);
+    }
+
     public on<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
     {
         if (event === 'message')

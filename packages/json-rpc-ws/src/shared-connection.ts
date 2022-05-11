@@ -138,6 +138,8 @@ export interface SocketAdapter<TSocket = unknown>
 
     once<K extends keyof SocketAdapterEventMap>(event: K, handler: (this: TSocket, ev: SocketAdapterEventMap[K]) => void): void;
 
+    off<K extends keyof SocketAdapterEventMap>(event: K, handler?: (this: TSocket, ev: SocketAdapterEventMap[K]) => void): void
+
     pipe(socket: SocketAdapter);
 }
 
