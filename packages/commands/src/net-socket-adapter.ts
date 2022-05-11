@@ -10,6 +10,19 @@ export class NetSocketAdapter implements jsonrpcws.SocketAdapter
         socket.setNoDelay(true);
     }
 
+    off<K extends keyof jsonrpcws.SocketAdapterEventMap>(event: K, handler?: (this: unknown, ev: jsonrpcws.SocketAdapterEventMap[K]) => void): void
+    {
+        if (event == 'message')
+            if (handler)
+                this.ee.removeListener(event, handler);
+            else
+                this.ee.removeAllListeners(event);
+        else if (handler)
+            this.socket.removeListener(event, handler);
+        else
+            this.socket.removeAllListeners(event);
+    }
+
     pipe(socket: jsonrpcws.SocketAdapter<unknown>)
     {
         if (socket instanceof NetSocketAdapter)

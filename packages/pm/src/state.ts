@@ -9,7 +9,7 @@ export default interface State
     processes: { [key: string]: RunningContainer };
     isDaemon: boolean;
     config: ProxyConfiguration<StateConfiguration>
-    bridges: { [key: string]: SocketAdapter }
+    bridges: { [key: string]: { left: SocketAdapter, right?: SocketAdapter } }
 }
 
 export interface StateConfiguration 

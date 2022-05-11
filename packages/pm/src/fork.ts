@@ -122,9 +122,12 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
                     if (!pmConnectInfo)
                         pmConnectInfo = await pm.dispatch('connect', 'pm');
                     var pm2 = await ac.connectByPreference(pmConnectInfo, { container: cliContainer });
-                    pm.unregister(ac.Cli.Metadata.name);
-                    pm.register(ac.Metadata.extractCommandMetadata(ac.Cli.Metadata));
-                    await pm2.container.dispatch('bridge', connectionId);
+                    pm2.container.processor.useMiddleware(20, pm2.processor);
+                    pm2.container.unregister(ac.Cli.Metadata.name);
+                    pm2.container.register(ac.Metadata.extractCommandMetadata(ac.Cli.Metadata));
+                    pm2.container.register(ac.Metadata.extractCommandMetadata(pm.resolve('bridge')));
+                    if (await pm2.container.dispatch('bridge', connectionId))
+                        throw undefined;
                 }, '$bridge'));
 
 
