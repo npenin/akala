@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* handle bridges/proxy 69ae6f2
+* proper error serialization support 54a819d
 
 
 
