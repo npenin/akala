@@ -1,9 +1,9 @@
-#  (2022-05-09)
+#  (2022-05-11)
 
 
-### Features
+### Bug Fixes
 
-* add bridge support 0e4d6a4
+* handle bridges/proxy 69ae6f2
 
 
 
