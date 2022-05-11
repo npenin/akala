@@ -93,7 +93,7 @@ export class JsonRpc extends CommandProcessor
                         if (error && typeof error.toJSON == 'function')
                             reply(error.toJSON());
                         else
-                            reply(error && Object.fromEntries(Object.entries(error)) as unknown as jsonrpcws.ErrorPayload['error']);
+                            reply(error);
                     }
                 }
             }
