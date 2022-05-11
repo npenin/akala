@@ -1,9 +1,9 @@
-#  (2022-05-10)
+#  (2022-05-11)
 
 
 ### Bug Fixes
 
-* connect when connecting to pm 7494ae0
+* handle bridges/proxy 69ae6f2
 
 
 

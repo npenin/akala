@@ -1,9 +1,14 @@
-#  (2022-05-09)
+#  (2022-05-11)
 
 
 ### Bug Fixes
 
-* preferRemote now also allows less preferred connection 28e50f2
+* handle bridges/proxy 69ae6f2
+
+
+### Features
+
+* support oneway messages by throwing undefined 6a18260
 
 
 

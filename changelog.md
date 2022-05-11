@@ -1,4 +1,4 @@
-#  (2022-05-10)
+#  (2022-05-11)
 
 
 ### Bug Fixes
@@ -63,6 +63,7 @@
 * fs middleware after discovery changes d97fcca
 * fs processor too catchy ccafa48
 * git push tags fc8e609
+* handle bridges/proxy 69ae6f2
 * handle default init 5482bcb
 * handle empty orders in connectByPreference d35a80b
 * hasOwnKeys now returns correct keys 76a062e
@@ -261,6 +262,7 @@
 * support for triggers 624ae86
 * support node module when no ./ prefix ad871e3
 * support normalize require config af16029
+* support oneway messages by throwing undefined 6a18260
 * switched from raw debug to logger from core efef2da
 * update command behavior 2fb6184
 * update configuration structure 8a395ff
