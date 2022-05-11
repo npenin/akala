@@ -350,6 +350,8 @@ export abstract class Connection<TStreamable>
         }
         else
         {
+            if (error instanceof Error)
+                error = Object.fromEntries([...Object.entries(error), ['message', error.message], ['stack', error.stack]]) as any;
             response.error = error;
         }
 
