@@ -1,4 +1,4 @@
-#  (2022-05-11)
+#  (2022-05-12)
 
 
 ### Bug Fixes
@@ -156,6 +156,7 @@
 * sidecar to remote containers f795c56
 * silent disconnect failures 81d65aa
 * spread is not considering non enumerable properties 394438a
+* start command args scope dd89375
 * stdin support 57f5ca7
 * stdin support 23979ba
 * stop generating loggers for numeric keys 75a1324
