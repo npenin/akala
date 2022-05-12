@@ -119,6 +119,7 @@
 * prevent commands override 019f44f
 * prevent duplicate containers/procesors on multiple calls per socket 42efc58
 * prevent send on closed socket 85de789
+* proper error serialization support 54a819d
 * proper parameter binding for bump-dependents 7459c86
 * provide proper variable to bumps dependents 82f8ddb
 * push before tagging d980dd0
