@@ -34,7 +34,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
         if (container && container.running)
             throw new Error(container.name + ' is already started');
 
-        const args = [];
+        args = [];
 
         if (!def && name != 'pm')
         {
