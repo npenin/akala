@@ -1,4 +1,4 @@
-#  (2022-05-12)
+#  (2022-05-13)
 
 
 ### Bug Fixes
@@ -170,6 +170,7 @@
 * update command definition 85c2891
 * update commands cli definition 5b7f8f1
 * update dependencies and regenerate metadata 0c83667
+* update package publication to public 6d71bdc
 * update ready command for remote containers 823810d
 * update ready comment definition ebb8c05
 * update reference to field 471f538
