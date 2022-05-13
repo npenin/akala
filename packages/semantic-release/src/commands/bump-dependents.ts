@@ -48,15 +48,16 @@ export default function (this: CliContext, workspaces: Workspace[], rules?: { [k
 
 export function sort(workspaces: Workspace[])
 {
-    var result: Workspace[] = [];
-    while (result.length != workspaces.length)
+    var result = [];
+    const scopedWorkspaces = workspaces.map(w => ({ name: w.name, workspaceDependencies: w.workspaceDependencies.filter(w2 => workspaces.findIndex(w3 => w3.name == w2) > -1) }))
+    while (result.length != scopedWorkspaces.length)
     {
-        workspaces.forEach(pivot =>
+        scopedWorkspaces.forEach(pivot =>
         {
             if (!pivot.workspaceDependencies || !pivot.workspaceDependencies.length || pivot.workspaceDependencies.filter(dep => result.findIndex(w => w.name == dep) > -1).length == pivot.workspaceDependencies.length)
                 if (result.indexOf(pivot) === -1)
                     result.push(pivot);
         });
     }
-    return result;
+    return result.map(w => workspaces.find(w2 => w.name == w2.name));
 }
