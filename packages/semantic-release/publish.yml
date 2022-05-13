@@ -37,6 +37,8 @@ jobs:
         run: git push origin --tags
         with:
           shell: true
+      - name: log all
+        log: $(build.publicPackages)
       - name: publish
         foreach: $(build.publicPackages)
         foreach-strategy: wait-for-previous
