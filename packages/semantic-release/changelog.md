@@ -3,7 +3,8 @@
 
 ### Bug Fixes
 
-* update package publication to public 6d71bdc
+* sort excludes non workspace dependencies 0f33d15
+* sort workspaces before publish 01b675e
 
 
 
