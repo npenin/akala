@@ -49,7 +49,7 @@ export default function (this: CliContext, workspaces: Workspace[], rules?: { [k
 export function sort(workspaces: Workspace[])
 {
     var result = [];
-    const scopedWorkspaces = workspaces.map(w => ({ name: w.name, workspaceDependencies: w.workspaceDependencies.filter(w2 => workspaces.findIndex(w3 => w3.name == w2) > -1) }))
+    const scopedWorkspaces = workspaces.map(w => ({ name: w.name, workspaceDependencies: w.workspaceDependencies.map(w2 => workspaces.find(w3 => w3.location == w2)?.name).filter(w => w) }))
     while (result.length != scopedWorkspaces.length)
     {
         scopedWorkspaces.forEach(pivot =>
