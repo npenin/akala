@@ -158,6 +158,7 @@
 * sidecar to remote containers f795c56
 * silent disconnect failures 81d65aa
 * sort excludes non workspace dependencies 0f33d15
+* sort supports correct structure bf17f91
 * sort workspaces before publish 01b675e
 * spread is not considering non enumerable properties 394438a
 * start command args scope dd89375
