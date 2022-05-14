@@ -43,7 +43,11 @@ export default function (this: CliContext, workspaces: Workspace[], rules?: { [k
     else
         this.logger.verbose(`completed in ${workspaces.length - loopCounts} loops`);
 
-    return Object.entries(translatedVersions).filter(e => e[1] != Levels.decline).map(entry => Object.assign(workspaces.find(w => w.location == entry[0]), { bump: Levels[entry[1]] }));
+    return workspaces.filter(w => translatedVersions[w.location] != Levels.decline).map(w =>
+    {
+        w.bump = Levels[translatedVersions[w.location]] as keyof typeof Levels;
+        return w;
+    });
 }
 
 export function sort(workspaces: Workspace[])
