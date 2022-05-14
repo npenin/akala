@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* sort supports correct structure bf17f91
+* sorted workspace is used as an output ab61117
 
 
 
