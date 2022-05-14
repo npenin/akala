@@ -1,4 +1,4 @@
-#  (2022-05-13)
+#  (2022-05-14)
 
 
 ### Bug Fixes
@@ -67,6 +67,7 @@
 * handle bridges/proxy 69ae6f2
 * handle default init 5482bcb
 * handle empty orders in connectByPreference d35a80b
+* handle non-specified pm socket option dfd5212
 * hasOwnKeys now returns correct keys 76a062e
 * health check reliability 98df0c9
 * honoring preferRemote 6fa76bc
