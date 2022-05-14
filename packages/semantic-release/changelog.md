@@ -3,8 +3,7 @@
 
 ### Bug Fixes
 
-* sort excludes non workspace dependencies 0f33d15
-* sort workspaces before publish 01b675e
+* add logs before publish b1b15be
 
 
 
