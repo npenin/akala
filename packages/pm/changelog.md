@@ -1,9 +1,9 @@
-#  (2022-05-12)
+#  (2022-05-14)
 
 
 ### Bug Fixes
 
-* start command args scope dd89375
+* handle non-specified pm socket option dfd5212
 
 
 
