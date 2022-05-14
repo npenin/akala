@@ -84,7 +84,11 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
                     else
                     {
                         const pmSocket = new Socket();
-                        const x = await ac.connectByPreference(pmConnectInfo = parseMetadata(c.options.pmSocket, c.options.tls), { metadata: require('../commands.json'), container: cliContainer });
+                        if (c.options.pmSocket)
+                            pmConnectInfo = parseMetadata(c.options.pmSocket, c.options.tls);
+                        else
+                            pmConnectInfo = ac.serveMetadata('pm', { args: ['local'], options: {} })
+                        const x = await ac.connectByPreference(pmConnectInfo, { metadata: require('../commands.json'), container: cliContainer });
                         pm = x.container;
                         pm.processor.useMiddleware(20, x.processor);
                         // await new Promise<void>((resolve, reject) =>
