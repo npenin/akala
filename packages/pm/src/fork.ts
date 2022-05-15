@@ -77,18 +77,18 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
 
                 if (!isPm)
                 {
+                    const pmMeta = require('../commands.json');
                     if (process.connected)
                     {
                         pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer), true));
                     }
                     else
                     {
-                        const pmSocket = new Socket();
                         if (c.options.pmSocket)
                             pmConnectInfo = parseMetadata(c.options.pmSocket, c.options.tls);
                         else
                             pmConnectInfo = ac.serveMetadata('pm', { args: ['local'], options: {} })
-                        const x = await ac.connectByPreference(pmConnectInfo, { metadata: require('../commands.json'), container: cliContainer });
+                        const x = await ac.connectByPreference(pmConnectInfo, { metadata: pmMeta, container: cliContainer });
                         pm = x.container;
                         pm.processor.useMiddleware(20, x.processor);
                         // await new Promise<void>((resolve, reject) =>
@@ -114,6 +114,7 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
                     // eslint-disable-next-line @typescript-eslint/no-var-requires
                     pm.unregister(ac.Cli.Metadata.name);
                     pm.register(ac.Metadata.extractCommandMetadata(ac.Cli.Metadata));
+                    registerCommands(pmMeta.commands, null, pm);
 
                 }
                 else
