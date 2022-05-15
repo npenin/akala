@@ -1,9 +1,10 @@
-#  (2022-05-14)
+#  (2022-05-15)
 
 
 ### Bug Fixes
 
-* handle non-specified pm socket option dfd5212
+* fork knows about pm metadata ef4ebdc
+* ls lists existing containers 3548afe
 
 
 
