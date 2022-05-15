@@ -160,6 +160,7 @@
 * sort excludes non workspace dependencies 0f33d15
 * sort supports correct structure bf17f91
 * sort workspaces before publish 01b675e
+* sorted workspace is used as an output ab61117
 * spread is not considering non enumerable properties 394438a
 * start command args scope dd89375
 * stdin support 57f5ca7
