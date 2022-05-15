@@ -1,4 +1,4 @@
-#  (2022-05-14)
+#  (2022-05-15)
 
 
 ### Bug Fixes
@@ -60,6 +60,7 @@
 * fix model registration and serialization 7236001
 * force metadata command registration in remote container 840d6dd
 * force socket processor on pm forks 0874275
+* fork knows about pm metadata ef4ebdc
 * fs discovery 0d34eea
 * fs middleware after discovery changes d97fcca
 * fs processor too catchy ccafa48
@@ -92,6 +93,7 @@
 * log format 403e66b
 * log only enumerable props 3070ee3
 * logger as non enumerable property 43fdcba
+* ls lists existing containers 3548afe
 * made connect and fork more reliable and resilient 6c0c24f
 * made cron as non spreadable 34d3f69
 * mapAsync 64a258e
