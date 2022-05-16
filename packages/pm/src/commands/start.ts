@@ -3,7 +3,7 @@ import State, { RunningContainer, SidecarMetadata } from '../state';
 import { spawn, ChildProcess, StdioOptions } from "child_process";
 import pmContainer from '../container';
 import * as jsonrpc from '@akala/json-rpc-ws'
-import { eachAsync, logger } from "@akala/core";
+import { eachAsync, lazy, logger } from "@akala/core";
 import { NewLinePrefixer } from "../new-line-prefixer.js";
 import { CliContext, ErrorWithStatus } from "@akala/cli";
 import getRandomName from "./name";
@@ -107,43 +107,16 @@ export default async function start(this: State, pm: pmContainer.container & Con
 
         if (!container || !container.running)
         {
-            const processor = new Processors.JsonRpc(new jsonrpc.Connection(new IpcAdapter(cp), {
-                type: 'client', getHandler(method: string)
-                {
-                    log.debug(method);
-                    return async function (params: jsonrpc.SerializableObject, reply)
-                    {
-                        log.debug(params);
-                        try
-                        {
-                            if (!params)
-                                params = { param: [] };
-                            if (!params._trigger || params._trigger == 'proxy')
-                                params._trigger = 'jsonrpc';
-                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                            params.process = container as any;
-                            const result = await pm.dispatch(method, params) as jsonrpc.PayloadDataType<void>;
-                            log.debug(result);
-                            reply(null, result);
-                        }
-                        catch (error)
-                        {
-                            log.debug(error);
-                            reply(error);
-                        }
-                    }
-                }
-                , disconnected()
-                {
-                    console.warn(`${context.options.name} has disconnected`);
-                    container.running = null;
-                }
-            }), true);
+            const socket = new IpcAdapter(cp);
+            container = new Container(context.options.name, null) as RunningContainer;
+            const connection = Processors.JsonRpc.getConnection(socket, container);
+            container.processor.useMiddleware(20, new Processors.JsonRpc(connection));
 
-            if (container)
-                container = new Container(context.options.name, null, processor) as RunningContainer;
-            else
-                container = new Container(context.options.name, null, processor) as RunningContainer;
+            connection.on('close', function disconnected()
+            {
+                console.warn(`${context.options.name} has disconnected`);
+                container.running = null;
+            });
 
             if (def?.commandable)
                 pm.register(container);
