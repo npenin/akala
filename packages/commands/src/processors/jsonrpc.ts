@@ -30,7 +30,7 @@ export class JsonRpc extends CommandProcessor
         });
     }
 
-    public static getConnection(socket: jsonrpcws.SocketAdapter, container?: Container<unknown>, log?: Logger): jsonrpcws.Connection
+    public static getConnection(socket: jsonrpcws.SocketAdapter, container?: Container<unknown>, otherInject?: (params: StructuredParameters<jsonrpcws.SerializableObject[]>) => void, log?: Logger): jsonrpcws.Connection
     {
         const error = new Error();
         var containers: Container<unknown>[] = [];
@@ -73,11 +73,13 @@ export class JsonRpc extends CommandProcessor
                         if (Array.isArray(params))
                             params = { param: params };
                         if (typeof (params) != 'object' || params instanceof Readable || !params['param'])
-                            params = { param: [params] } as unknown as jsonrpcws.SerializableObject;
+                            params = { param: [params] } as jsonrpcws.SerializableObject;
 
-                        Object.defineProperty(params, 'connection', { enumerable: true, get: getProcessor });
-                        Object.defineProperty(params, 'connectionAsContainer', { enumerable: true, get: getContainer });
-                        Object.defineProperty(params, 'socket', { enumerable: true, value: socket });
+                        Object.defineProperty(params, 'connection', { configurable: true, enumerable: false, get: getProcessor });
+                        Object.defineProperty(params, 'connectionAsContainer', { configurable: true, enumerable: false, get: getContainer });
+                        Object.defineProperty(params, 'socket', { configurable: true, enumerable: false, value: socket });
+                        if (otherInject)
+                            otherInject(params as StructuredParameters<jsonrpcws.SerializableObject[]>);
                         if (typeof (params) == 'object' && !params['_trigger'] || params['_trigger'] == 'proxy')
                             params['_trigger'] = 'jsonrpc';
 
