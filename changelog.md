@@ -136,6 +136,7 @@
 * remote container command registration f3b0728
 * remote pm proxy 633b1b5
 * remote ready failing dcc0fc1
+* remove _trigger when sending over jsonrpc 9fac492
 * remove container.ts in sidecar cc48571
 * remove duplicate binary operator 4930340
 * remove duplicate foreach in publish 09d9fe5
