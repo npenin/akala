@@ -1,4 +1,4 @@
-#  (2022-05-15)
+#  (2022-05-17)
 
 
 ### Bug Fixes
@@ -138,6 +138,7 @@
 * remove container.ts in sidecar cc48571
 * remove duplicate binary operator 4930340
 * remove duplicate foreach in publish 09d9fe5
+* remove duplicated code in pm start command 3a91342
 * remove failure masking 7c4ae85
 * remove over proxyfying bc948b3
 * remove over proxyfying 5da8a29
@@ -178,6 +179,7 @@
 * update command definition 85c2891
 * update commands cli definition 5b7f8f1
 * update dependencies and regenerate metadata 0c83667
+* update lock file 974b089
 * update package publication to public 6d71bdc
 * update ready command for remote containers 823810d
 * update ready comment definition ebb8c05
