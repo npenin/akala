@@ -119,6 +119,56 @@
             }
         },
         {
+            "name": "new",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/new.js",
+                    "source": "src/cli/new.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "usage": "new <action> <name> [destination]",
+                    "options": {
+                        "force": {
+                            "aliases": [
+                                "f"
+                            ]
+                        }
+                    },
+                    "inject": [
+                        "options.action",
+                        "options.name",
+                        "options",
+                        "options.destination"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "serve",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/serve.js",
+                    "source": "src/cli/serve.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "inject": [
+                        "$container",
+                        "options"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
             "name": "implement",
             "inject": [],
             "config": {
@@ -157,36 +207,6 @@
             }
         },
         {
-            "name": "new",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/cli/new.js",
-                    "source": "src/cli/new.ts",
-                    "inject": []
-                },
-                "cli": {
-                    "usage": "new <action> <name> [destination]",
-                    "options": {
-                        "force": {
-                            "aliases": [
-                                "f"
-                            ]
-                        }
-                    },
-                    "inject": [
-                        "options.action",
-                        "options.name",
-                        "options",
-                        "options.destination"
-                    ]
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
             "name": "register",
             "inject": [],
             "config": {
@@ -197,26 +217,6 @@
                         "param.0",
                         "param.1",
                         "param.2"
-                    ]
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
-            "name": "serve",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/cli/serve.js",
-                    "source": "src/cli/serve.ts",
-                    "inject": []
-                },
-                "cli": {
-                    "inject": [
-                        "$container",
-                        "options"
                     ]
                 },
                 "": {

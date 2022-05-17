@@ -4,7 +4,7 @@ import State, { RunningContainer } from '../state';
 
 export default async function ready(this: State, pm: pm.container & Container<State>, container: RunningContainer, remoteContainer: Container<void>): Promise<void>
 {
-    if (!container)
+    if (remoteContainer)
     {
         remoteContainer.register<Metadata.Command>({ name: '$metadata', config: {}, inject: [] }, true);
         const metadata: Metadata.Container = await remoteContainer.dispatch('$metadata');

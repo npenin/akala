@@ -109,13 +109,17 @@ export default async function start(this: State, pm: pmContainer.container & Con
         {
             const socket = new IpcAdapter(cp);
             container = new Container(context.options.name, null) as RunningContainer;
-            const connection = Processors.JsonRpc.getConnection(socket, container);
+            const connection = Processors.JsonRpc.getConnection(socket, pm, (params) =>
+            {
+                params.process = cp;
+                Object.defineProperty(params, 'connectionAsContainer', Object.assign({ value: container }));
+            });
             container.processor.useMiddleware(20, new Processors.JsonRpc(connection));
 
             connection.on('close', function disconnected()
             {
                 console.warn(`${context.options.name} has disconnected`);
-                container.running = null;
+                container.running = false;
             });
 
             if (def?.commandable)
@@ -139,7 +143,10 @@ export default async function start(this: State, pm: pmContainer.container & Con
                 registerCommands(metaContainer.commands, null, container);
                 pm.register(name, container, true);
             });
-
+        }, () =>
+        {
+            console.warn(`${context.options.name} has disconnected`);
+            container.running = false;
         })
 
         container.running = true;
