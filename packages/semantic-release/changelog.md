@@ -1,9 +1,9 @@
-#  (2022-05-14)
+#  (2022-05-17)
 
 
 ### Bug Fixes
 
-* sorted workspace is used as an output ab61117
+* ready command in pm works in both forks and remote cfb974f
 
 
 
