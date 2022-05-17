@@ -127,6 +127,7 @@
 * proper parameter binding for bump-dependents 7459c86
 * provide proper variable to bumps dependents 82f8ddb
 * push before tagging d980dd0
+* ready command in pm works in both forks and remote cfb974f
 * reduce silly logging 378e856
 * regex exec is not iterable ca695eb
 * reload metadata now call metadata with deep flag df33263
@@ -230,6 +231,7 @@
 * add $init function for easier usage 3f4fa32
 * add bridge support 0e4d6a4
 * add Configuration getters and setters c5dad91
+* add custom inject in jsonrpc processor 4fc1720
 * add extends support df13246
 * add ignore failure support f9929cf
 * add lazy helper 5530746
