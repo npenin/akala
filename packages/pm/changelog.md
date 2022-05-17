@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* remove duplicated code in pm start command 3a91342
+* ready command in pm works in both forks and remote cfb974f
 
 
 
