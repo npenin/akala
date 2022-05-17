@@ -9,6 +9,6 @@ export const trigger = new Trigger('jsonrpc', function register<T>(container: Co
 {
     // assert.ok(media instanceof ws.SocketAdapter, 'to be attached, the media must be an instance of @akala/json-rpc-ws.Connection');
     const log = logger('akala:commands:jsonrpcws:' + container.name)
-    return JsonRpc.getConnection(media, container, log);
+    return JsonRpc.getConnection(media, container, null, log);
 })
 
