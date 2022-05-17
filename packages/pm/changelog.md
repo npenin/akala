@@ -1,10 +1,9 @@
-#  (2022-05-15)
+#  (2022-05-17)
 
 
 ### Bug Fixes
 
-* fork knows about pm metadata ef4ebdc
-* ls lists existing containers 3548afe
+* remove duplicated code in pm start command 3a91342
 
 
 
