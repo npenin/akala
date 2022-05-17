@@ -2,6 +2,23 @@
     "name": "@akala/cron",
     "commands": [
         {
+            "name": "add-job-schedule",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/add-job-schedule.js",
+                    "source": "src/commands/add-job-schedule.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
             "name": "$init",
             "inject": [],
             "config": {
@@ -16,12 +33,12 @@
             }
         },
         {
-            "name": "add-job-schedule",
+            "name": "add-schedule",
             "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist/commands/add-job-schedule.js",
-                    "source": "src/commands/add-job-schedule.ts",
+                    "path": "dist/commands/add-schedule.js",
+                    "source": "src/commands/add-schedule.ts",
                     "inject": [
                         "param.0",
                         "param.1"
@@ -43,23 +60,6 @@
                         "param.0",
                         "param.1",
                         "param.2"
-                    ]
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
-            "name": "add-schedule",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/add-schedule.js",
-                    "source": "src/commands/add-schedule.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1"
                     ]
                 },
                 "": {

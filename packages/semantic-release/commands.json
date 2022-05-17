@@ -25,32 +25,6 @@
             }
         },
         {
-            "name": "bump-dependents",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ],
-                    "path": "dist/commands/bump-dependents.js",
-                    "source": "src/commands/bump-dependents.ts"
-                },
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "automate": {
-                    "inject": [
-                        "workspaces",
-                        "rules"
-                    ]
-                }
-            }
-        },
-        {
             "name": "changelog",
             "inject": [],
             "config": {
@@ -72,6 +46,32 @@
                     "inject": [
                         "commits",
                         "file"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "bump-dependents",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/commands/bump-dependents.js",
+                    "source": "src/commands/bump-dependents.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "automate": {
+                    "inject": [
+                        "workspaces",
+                        "rules"
                     ]
                 }
             }
