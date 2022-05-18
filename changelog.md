@@ -173,6 +173,7 @@
 * stdin support 57f5ca7
 * stdin support 23979ba
 * stop generating loggers for numeric keys 75a1324
+* support for multiple keys 7de775a
 * support for no workspace dependencies 0703731
 * support for no workspace dependencies 9210550
 * support normalize files in modules 4a34d95
