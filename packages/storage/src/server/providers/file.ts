@@ -230,6 +230,7 @@ const fileContent = Symbol('fileContent');
 const save = Symbol('save');
 const load = Symbol('load');
 const fileEntryFactoryProperty = Symbol('fileEntryFactory');
+const multipleKeySeparatorProperty = Symbol('multipleKeySeparator');
 
 interface PromiseFileSystem
 {
@@ -398,21 +399,23 @@ export class JsonFileEntry implements FileSystemFile
     }
     async [save](modifiedContent: any): Promise<void>
     {
-        await writeJson(this[fspath], JSON.stringify(modifiedContent), this[isNew], this[model], this.multipleKeySeparator);
+        await writeJson(this[fspath], JSON.stringify(modifiedContent), this[isNew], this[model], this[multipleKeySeparatorProperty]);
         this[isNew] = false;
     }
     [load]()
     {
-        return readJson(this[fspath], this[model], this.multipleKeySeparator);
+        return readJson(this[fspath], this[model], this[multipleKeySeparatorProperty]);
     }
     [fsName]: string;
     [fspath]: string;
     [isNew]?: boolean;
-    constructor(path: string, name: string, def: ModelDefinition<any>, private multipleKeySeparator?: string)
+    [multipleKeySeparatorProperty]?: string;
+    constructor(path: string, name: string, def: ModelDefinition<any>, multipleKeySeparator?: string)
     {
         this[fspath] = join(path, name);
         this[fsName] = name;
         this[model] = def;
+        this[multipleKeySeparatorProperty] = multipleKeySeparator;
     }
 
 }
