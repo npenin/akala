@@ -1,4 +1,4 @@
-#  (2022-05-17)
+#  (2022-05-18)
 
 
 ### Bug Fixes
@@ -86,6 +86,7 @@
 * inject usage after move to full meta cmd 2cbda96
 * json model definition parsing 0770dab
 * jsonrpc now breaks with standard jsonrpc error aa06e7c
+* jsonrpc process on fork is passthrough e0482ec
 * jsonrpc processor 497616c
 * jsonrpc prperly send parameters 3f6c761
 * jsonrpc trigger c95d27f
@@ -93,6 +94,7 @@
 * log format 403e66b
 * log only enumerable props 3070ee3
 * logger as non enumerable property 43fdcba
+* logging namespace in jsonrpc 54214a8
 * ls lists existing containers 3548afe
 * made connect and fork more reliable and resilient 6c0c24f
 * made cron as non spreadable 34d3f69
