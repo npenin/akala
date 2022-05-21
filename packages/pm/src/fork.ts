@@ -9,7 +9,7 @@ import { Socket } from 'net';
 import { logger, Logger, module as coreModule } from '@akala/core';
 import program, { buildCliContextFromProcess, NamespaceMiddleware } from '@akala/cli';
 import { Stats } from 'fs';
-import { registerCommands, SelfDefinedCommand, parseMetadata } from '@akala/commands';
+import { registerCommands, SelfDefinedCommand, parseMetadata, StructuredParameters } from '@akala/commands';
 
 var isPm = false;
 
@@ -110,12 +110,21 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
                         //     }
                         // })
                         // pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new ac.NetSocketAdapter(pmSocket), cliContainer), true));
+                        const connect = pm.resolve('connect');
+                        pm.unregister('connect');
+                        pm.register(new SelfDefinedCommand((name: string, param: StructuredParameters<unknown[]>) =>
+                        {
+                            if (name == 'pm')
+                                return pmConnectInfo;
+                            return x.processor.handle(pm, connect, param).then(e => { throw e }, r => r);
+                        }, 'connect', [
+                            "param.0",
+                            "$param"
+                        ]));
                     }
                     // eslint-disable-next-line @typescript-eslint/no-var-requires
                     pm.unregister(ac.Cli.Metadata.name);
                     pm.register(ac.Metadata.extractCommandMetadata(ac.Cli.Metadata));
-                    registerCommands(pmMeta.commands, null, pm);
-
                 }
                 else
                     pm = cliContainer;
