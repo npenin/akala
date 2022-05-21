@@ -1,9 +1,9 @@
-#  (2022-05-18)
+#  (2022-05-21)
 
 
 ### Bug Fixes
 
-* jsonrpc process on fork is passthrough e0482ec
+* pm connect when manual forking ed7357e
 
 
 
