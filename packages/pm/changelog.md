@@ -1,9 +1,9 @@
-#  (2022-05-21)
+#  (2022-05-22)
 
 
 ### Bug Fixes
 
-* pm connect when manual forking ed7357e
+* add metadata when using ipc bb26b03
 
 
 
