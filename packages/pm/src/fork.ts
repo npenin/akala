@@ -81,6 +81,7 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
                     if (process.connected)
                     {
                         pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer), true));
+                        registerCommands(pmMeta.commands, null, pm);
                     }
                     else
                     {
@@ -91,25 +92,6 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
                         const x = await ac.connectByPreference(pmConnectInfo, { metadata: pmMeta, container: cliContainer });
                         pm = x.container;
                         pm.processor.useMiddleware(20, x.processor);
-                        // await new Promise<void>((resolve, reject) =>
-                        // {
-                        //     pmSocket.on('error', reject)
-                        //     const remote = /^(?:([^:]+):)?(\d+)$/.exec(c.options.pmSocket);
-                        //     if (!remote)
-                        //     {
-                        //         pmSocket.connect(c.options.pmSocket, resolve);
-                        //     }
-                        //     else
-                        //     {
-                        //         const host = remote[1];
-                        //         const port = remote[2];
-                        //         if (host)
-                        //             pmSocket.connect(Number(port), host, resolve);
-                        //         else
-                        //             pmSocket.connect(Number(port), resolve);
-                        //     }
-                        // })
-                        // pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new ac.NetSocketAdapter(pmSocket), cliContainer), true));
                         const connect = pm.resolve('connect');
                         pm.unregister('connect');
                         pm.register(new SelfDefinedCommand((name: string, param: StructuredParameters<unknown[]>) =>
