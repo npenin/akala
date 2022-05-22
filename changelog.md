@@ -1,4 +1,4 @@
-#  (2022-05-21)
+#  (2022-05-22)
 
 
 ### Bug Fixes
@@ -6,6 +6,7 @@
 * #10 6e164e7
 * adapt to trigger new definition 8c2d136
 * add logs before publish b1b15be
+* add metadata when using ipc bb26b03
 * add missing dependency 3d0b4df
 * add missing package required property ba0c9df
 * add missing proxy command to establish the bridge 9596ae9
