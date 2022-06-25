@@ -1,4 +1,4 @@
-#  (2022-06-12)
+#  (2022-06-25)
 
 
 ### Bug Fixes
@@ -23,6 +23,7 @@
 * avoids workflow leaks in context db4662a
 * better file init 1087260
 * better support for closed socket requests 9b38a60
+* better support for compound keys a571109
 * better support for metadata on closed remote containers 71ec84d
 * better support for non-mapped sidecars ec502f8
 * binding constructor 8294d0f
