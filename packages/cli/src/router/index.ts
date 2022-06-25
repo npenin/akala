@@ -180,12 +180,12 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
         let middleware: NamespaceMiddleware<TOptions & TOptions2>;
         if (name !== null)
         {
-            var cli = /(@?[/$_#\w-]+)(?: ([$_#\w-]+))*((?: (?:<\w+>))*(?: (?:\[\w+\]))*)/.exec(name);
+            var cli = /^((?:@?[/$_#\w-]+)(?: ([@$_#\w-]+))*)((?: (?:<\w+>))*(?: (?:\[\w+\]))*)/.exec(name);
             if (!cli || cli[0].length != name.length)
                 throw new Error(`${name} must match the following syntax: name <mandatoryparameters> [optionparameters].`)
 
             if (cli[2])
-                return this.command(cli[1]).command<TOptions2>(cli[2] + cli[3]);
+                return this.command(cli[1].substring(0, cli[1].length - cli[2].length - 1)).command<TOptions2>(cli[2] + cli[3]);
 
             var args = cli[3];
             var parameters: { name: keyof TOptions2 | keyof TOptions, optional: boolean }[] = [];
@@ -249,7 +249,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
         {
             this.option<T[typeof key], typeof key>(key, o);
         });
-        return this as NamespaceMiddleware<T>;
+        return this as unknown as NamespaceMiddleware<T>;
     }
 
     option<TValue extends string | number | boolean | string[] = string | number | boolean | string[], TName extends string = string>(name: TName, option?: OptionOptions)

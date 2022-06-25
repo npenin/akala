@@ -186,8 +186,9 @@ export class Injector
             const keys = param.split('.')
             return keys.reduce((result, key, i) =>
             {
-                if (result instanceof Proxy)
-                    return result[key];
+                //disabling proxy verification because of node v16
+                // if (result instanceof Proxy)
+                //     return result[key];
                 if (result instanceof Injector)
                     return result.resolve(key);
                 if (isPromiseLike(result))
@@ -372,6 +373,20 @@ export class Injector
 
     public registerDescriptor(name: string | number | symbol, value: PropertyDescriptor, override?: boolean)
     {
+        if (typeof name == 'string')
+        {
+            const indexOfDot = name.indexOf('.');
+            if (~indexOfDot)
+            {
+                let nested = this.resolve(name.substring(0, indexOfDot));
+                if (typeof nested == 'undefined' || nested === null)
+                    this.registerDescriptor(name.substring(0, indexOfDot), { configurable: false, value: nested = new Injector() })
+                if (nested instanceof Injector)
+                    nested.registerDescriptor(name.substring(indexOfDot + 1), value, override);
+                else
+                    throw new Error('compound keys like ' + name + ' can be used only with injector-like as intermediaries')
+            }
+        }
         log.debug('registering ' + name.toString());
         if (!override && typeof (this.injectables[name]) != 'undefined')
             throw new Error('There is already a registered item for ' + name.toString());
