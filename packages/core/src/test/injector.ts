@@ -1,9 +1,8 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('source-map-support').install();
 
-import { chain } from '..';
-import { defaultInjector, Injector } from '../injector';
-import * as assert from 'assert';
+import { Injector } from '../injector';
+import assert from 'assert';
 import { useInjector, inject } from '../reflection-injector';
 
 /*var oldProxy = Proxy;
@@ -98,11 +97,12 @@ class A
         return `${this.vendor} ${action} ${this.otherVendor}`;
     }
 }
+const a = new A();
 
-assert.strictEqual(new A().os, i.resolve('os'), 'named injection does not work');
-assert.strictEqual(new A().vendor, i.resolve('vendor'), 'implicit injection does not work');
-assert.strictEqual(new A().otherVendor, i.resolve('otherVendor'), 'constructor injection does not work');
-assert.strictEqual(new A().do('loves'), 'microsoft loves linux', 'parameter injection does not work');
+assert.strictEqual(a.os, i.resolve('os'), 'named injection does not work');
+assert.strictEqual(a.vendor, i.resolve('vendor'), 'implicit injection does not work');
+assert.strictEqual(a.otherVendor, i.resolve('otherVendor'), 'constructor injection does not work');
+assert.strictEqual(a.do('likes'), `${i.resolve('vendor')} ${i.resolve('action')} ${i.resolve('os')}`, 'parameter injection does not work');
 
 
 class B extends A
@@ -113,8 +113,15 @@ class B extends A
     }
 }
 
-assert.strictEqual(new B().os, i.resolve('os'), 'named injection does not work on inherited classes');
-assert.strictEqual(new B().vendor, i.resolve('vendor'), 'implicit injection does not work on inherited classes');
-assert.strictEqual(new B().do('loves'), 'microsoft loves linux', 'parameter injection does not work on inherited classes');
-assert.strictEqual(new B().doOtherVendor('loves'), 'microsoft loves node', 'parameter injection does not work on inherited classes');
+const b = new B();
 
+assert.strictEqual(b.os, i.resolve('os'), 'named injection does not work on inherited classes');
+assert.strictEqual(b.vendor, i.resolve('vendor'), 'implicit injection does not work on inherited classes');
+assert.strictEqual(b.do('loves'), 'microsoft loves linux', 'parameter injection does not work on inherited classes');
+assert.strictEqual(b.doOtherVendor('loves'), 'microsoft loves node', 'parameter injection does not work on inherited classes');
+
+// nested resolutions
+const i1 = new Injector();
+const i2 = i1.register('a', new Injector());
+i2.register('b.c', 'x');
+assert.strictEqual(i1.resolve('a.b.c'), 'x')

@@ -50,9 +50,9 @@ export function inject(name?: string)
 
 export function applyInjector(injector: Injector, obj: any, prototype?: any)
 {
-    const injections = Reflect.getOwnMetadata(injectSymbol, prototype || obj);
-    if (injections && injections.length)
-        injections.forEach(f => f(injector));
+    const injections: { [key: string]: (PropertyInjection | ParameterInjection)[] } = Reflect.getOwnMetadata(injectSymbol, prototype || obj);
+    // if (injections && injections.length)
+    //     injections.forEach(f => f(injector));
 
     if (prototype !== Object.prototype)
         applyInjector(injector, obj, Reflect.getPrototypeOf(prototype || obj));
@@ -94,15 +94,19 @@ export function applyInjector(injector: Injector, obj: any, prototype?: any)
                 Object.defineProperty(obj, property, {
                     value: function injected(...args: any[]) 
                     {
-                        oldFunction.apply(this, Injector.mergeArrays(injections[property].map(p => p(injector)), ...args));
+                        return oldFunction.apply(this, Injector.mergeArrays(injections[property].map(p => (p as ParameterInjection)(injector)), ...args));
                     }
                 })
+            }
+            else
+            {
+                injections[property].forEach(p => p.call(obj, injector));
             }
         }
     }
 }
 
-export function injectable<TInstance, TClass extends { new(...args: any[]): TInstance }>(ctor: TClass): TClass
+export function injectable<TInstance, TClass extends { new(...args: any[]): TInstance }>(ctor: TClass, injector?: Injector): TClass
 {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-expect-error
@@ -113,26 +117,25 @@ export function injectable<TInstance, TClass extends { new(...args: any[]): TIns
             const injectionObj: { [key: string]: ParameterInjection[] } = Reflect.getOwnMetadata(injectSymbol, ctor);
             if (injectionObj)
                 var injections = injectionObj['undefined'];
-            let injector: Injector = Reflect.getOwnMetadata(injectSymbol, new.target)
             if (!injector)
             {
                 injector = args.shift();
                 if ((!injector || !(injector instanceof Injector)) && injections && injections.length)
                     throw new Error(`No injector was provided while it is required to construct ${ctor}`)
-                if (injector)
-                    Reflect.defineMetadata(injectSymbol, injector, new.target);
+                // if (injector)
+                //     Reflect.defineMetadata(injectSymbol, injector, new.target);
             }
             let injected = injections && injections.map(f => f(injector)) || [];
             injected = injected.filter(p => typeof p.index == 'number');
             super(...Injector.mergeArrays(injected, ...args))
-            Reflect.deleteMetadata(injectSymbol, new.target);
+            // Reflect.deleteMetadata(injectSymbol, new.target);
             // Object.setPrototypeOf(this, Object.create(ctor.prototype));
-            if (new.target == result)
-            {
-                applyInjector(injector, this);
-                if (typeof (this[afterInjectSymbol]) != 'undefined')
-                    this[afterInjectSymbol]();
-            }
+            // if (new.target == result)
+            // {
+            applyInjector(injector, this);
+            if (typeof (this[afterInjectSymbol]) != 'undefined')
+                this[afterInjectSymbol]();
+            // }
         }
     }
 
@@ -150,22 +153,9 @@ export type InjectableClass<T> = T & {
 export function useInjector(injector: Injector)
 {
     // eslint-disable-next-line @typescript-eslint/ban-types
-    return function classInjectorDecorator<TClass extends { new(...args: any[]): object }>(ctor: TClass): InjectableClass<TClass>
+    return function classInjectorDecorator<TClass extends { new(...args: any[]): object }>(ctor: TClass): TClass
     {
-        const result = class InjectedDynamicProxy extends injectable(ctor)
-        {
-            constructor(...args: any[])
-            {
-                Reflect.defineMetadata(injectSymbol, injector, new.target);
-                super(...args);
-            }
-        }
-
-        Object.assign(result, ctor);
-
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        //@ts-expect-error
-        return result;
+        return injectable(ctor, injector);
     }
 }
 
