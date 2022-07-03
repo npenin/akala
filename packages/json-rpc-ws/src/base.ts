@@ -62,7 +62,7 @@ export abstract class Base<TStreamable, TConnection extends Connection<TStreamab
   }
 
   abstract connection(socket: SocketAdapter): Connection<TStreamable>;
-  ;
+
 
   /**
    * Disconnected event handler

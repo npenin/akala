@@ -10,7 +10,7 @@ export class UpdateCommand<T>
 
     public type: CommandType.Update = CommandType.Update;
 
-    public accept(processor: CommandProcessor<any>)
+    public accept(processor: CommandProcessor<unknown>)
     {
         return processor.visitUpdate(this);
     }

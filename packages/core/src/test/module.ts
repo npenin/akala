@@ -4,7 +4,7 @@ require('source-map-support').install();
 import { module } from '..';
 import * as assert from 'assert'
 
-const activate: any = {};
+const activate: { [key: string]: boolean } = {};
 
 module('a').activate([], function ()
 {

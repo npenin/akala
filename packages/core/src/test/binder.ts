@@ -16,7 +16,7 @@ binding.onChanged(ev =>
     changeEventCalled = true;
 }, true);
 
-Binding.getSetter(target, 'foo', undefined)({ baz: { d: 2, e: 'y', f: false } }, undefined).then((v) =>
+Binding.getSetter(target, 'foo', undefined)({ baz: { d: 2, e: 'y', f: false } }, undefined).then(() =>
 {
     assert.ok(changeEventCalled, 'changeEventNotCalled');
     assert.strictEqual(target.foo.bar, undefined);

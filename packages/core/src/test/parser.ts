@@ -20,7 +20,7 @@ console.log(parser.parse("template || '/' + deviceType + '/new.html'", false)({ 
 console.log(parser.parse("template || '/' + deviceType + '/new.html'", false)({ deviceType: 'pioneer' }));
 
 defaultInjector.register('#http', {
-    build: function (formatter)
+    build: function ()
     {
         return function (value)
         {

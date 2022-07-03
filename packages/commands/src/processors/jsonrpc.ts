@@ -4,9 +4,8 @@ import { Command } from '../metadata/index';
 import { Container } from '../model/container';
 import { Local } from './local';
 import { Readable } from 'stream';
-import { eachAsync, lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam } from '@akala/core';
+import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam } from '@akala/core';
 import { Connection } from '@akala/json-rpc-ws';
-import { ErrorWithStatus } from '@akala/cli';
 
 type OnlyArray<T> = Extract<T, unknown[]>;
 
@@ -111,9 +110,8 @@ export class JsonRpc extends CommandProcessor
         return connection;
     }
 
-    public handle(_container: Container<any>, command: Command | string, params: StructuredParameters<OnlyArray<jsonrpcws.PayloadDataType<void>>>): MiddlewarePromise
+    public handle(_container: Container<unknown>, command: Command | string, params: StructuredParameters<OnlyArray<jsonrpcws.PayloadDataType<void>>>): MiddlewarePromise
     {
-
         return new Promise<Error | SpecialNextParam | OptionsResponse>((resolve, reject) =>
         {
             if (!this.passthrough && typeof command != 'string')

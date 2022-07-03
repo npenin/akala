@@ -12,6 +12,7 @@ import { ExpressionVisitor } from './expression-visitor';
 
 export type UnknownExpression = { type: ExpressionType.Unknown, accept(visitor: ExpressionVisitor): Promise<Expressions> };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type StrictTypedExpression<T> = ConstantExpression<T> | ParameterExpression<T> | MemberExpression<any, any, T> | ApplySymbolExpression<any, T> | NewExpression<T>;
 export type TypedExpression<T> = StrictTypedExpression<T> | UnknownExpression;
 
@@ -102,7 +103,7 @@ export abstract class Expression
         return new ApplySymbolExpression<T, U>(source, symbol, arg);
     }*/
 }
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export type StrictExpressions = ApplySymbolExpression<any, any> |
     BinaryExpression<any> |
     CallExpression<any, any> |
@@ -112,5 +113,6 @@ export type StrictExpressions = ApplySymbolExpression<any, any> |
     UnaryExpression |
     ConstantExpression<any> |
     NewExpression<any>;
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
 export type Expressions = StrictExpressions | UnknownExpression;

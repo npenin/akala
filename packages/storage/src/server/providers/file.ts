@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { PersistenceEngine, dynamicProxy } from '../PersistenceEngine';
 import { StrictExpressions } from '../expressions/expression';
 import { ExpressionExecutor } from '../expression-executor';
@@ -12,12 +14,11 @@ import { Generator } from '../common';
 import { v4 as uuid } from 'uuid'
 import { NotSupportedException } from '../exceptions';
 
-
 export class File extends PersistenceEngine<FileOptions>
 {
     private store: FileSystemFolder & FileSystemContainer;
 
-    constructor(private fileEntryFactory: (path: string, name: string, def: ModelDefinition<any>) => FileSystemFile)
+    constructor(private fileEntryFactory: (path: string, name: string, def: ModelDefinition) => FileSystemFile)
     {
         super(new FileCommandProcessor(fileEntryFactory));
     }
@@ -34,7 +35,7 @@ export class File extends PersistenceEngine<FileOptions>
         this.processor.init(options);
     }
 
-    public static async from(path: string, rootDbName: string, fileEntryFactory: (path: string, name: string, def: ModelDefinition<any>) => FileSystemFile)
+    public static async from(path: string, rootDbName: string, fileEntryFactory: (path: string, name: string, def: ModelDefinition) => FileSystemFile)
     {
         var engine = new File(fileEntryFactory);
         await engine.init({ path, rootDbName });
@@ -60,7 +61,7 @@ export class File extends PersistenceEngine<FileOptions>
                 folder = await store[cte.value.namespace || 'db']
                 if (!folder)
                 {
-                    folder = new Proxy(new FolderEntry(store[fspath], cte.value.namespace || 'db', null, fileEntryFactory) as any, proxyHandler);
+                    folder = new Proxy(new FolderEntry(store[fspath], cte.value.namespace || 'db', null, fileEntryFactory), proxyHandler);
                     folder[isNew] = true;
                 }
                 if (folder[isFile])
@@ -68,7 +69,7 @@ export class File extends PersistenceEngine<FileOptions>
 
                 if (!folder[cte.value.nameInStorage])
                 {
-                    folder = new Proxy(new FolderEntry(folder[fspath], cte.value.nameInStorage, cte.value, fileEntryFactory) as any, proxyHandler);
+                    folder = new Proxy(new FolderEntry(folder[fspath], cte.value.nameInStorage, cte.value, fileEntryFactory), proxyHandler);
                     folder[isNew] = true;
                 }
                 else
@@ -77,7 +78,7 @@ export class File extends PersistenceEngine<FileOptions>
                     throw new Error(`found file ${cte.value.nameInStorage} while expecting a folder in ${store[fspath]}`);
 
                 this.result = folder;
-                this.model = cte.value;
+                this.model = cte.value as unknown as ModelDefinition<unknown>;
             }
             else
                 return visitConstant.call(this, cte);
@@ -86,13 +87,13 @@ export class File extends PersistenceEngine<FileOptions>
         {
             if (typeof executor.result == 'object' && executor.model)
                 if (Reflect.has(executor.result, Symbol.iterator) || Reflect.has(executor.result, Symbol.asyncIterator))
-                    return this.dynamicProxy(executor.result, executor.model) as any;
+                    return this.dynamicProxy(executor.result as Iterable<T>, executor.model) as unknown as T;
                 else
-                    return dynamicProxy<T>(executor.result, executor.model);
+                    return dynamicProxy<T>(executor.result as unknown as T, executor.model as ModelDefinition<T>);
             else
                 return executor.result;
 
-        });
+        }) as T;
     }
 }
 
@@ -420,7 +421,7 @@ export class JsonFileEntry implements FileSystemFile
 
 }
 
-var proxyHandler: ProxyHandler<FileSystemEntries> = {
+var proxyHandler: ProxyHandler<FileSystemFile | FileSystemFolder> = {
     get(target, name, receiver)
     {
         if (name === 'then')

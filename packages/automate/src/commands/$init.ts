@@ -5,7 +5,7 @@ import workflow from "../workflow";
 
 export default async function init(this: State, pm: pmContainer, persistTo?: string)
 {
-    const queueProcessor = (msg: WorkflowInstance, next: (processed: boolean) => void) =>
+    const queueProcessor = (msg: WorkflowInstance<object>, next: (processed: boolean) => void) =>
     {
         const name = msg.workflow.name || getRandomName();
         pm.dispatch('start', '@akala/automate/workflow', { options: { new: true, name: name, wait: true }, args: ['local'], argv: [], currentWorkingDirectory: process.cwd(), logger: null }).then(async () =>

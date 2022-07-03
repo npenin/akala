@@ -7,7 +7,7 @@ import MetaPubSub from '@akala/pubsub/commands.json'
 import os from 'os'
 import path from 'path'
 import { Serializable } from '@akala/json-rpc-ws'
-import { eachAsync, Logger, mapAsync, module } from '@akala/core';
+import { eachAsync, mapAsync, module } from '@akala/core';
 import { SerializableDefinition } from '@akala/storage'
 import { CliContext } from '@akala/cli'
 
@@ -21,10 +21,10 @@ export interface StoreConfiguration
 {
     provider: string
     providerOptions?: Serializable;
-    models?: { [key: string]: SerializableDefinition<any> };
+    models?: { [key: string]: SerializableDefinition<unknown> };
 }
 
-export interface Sidecar<T extends StoreDefinition = any>
+export interface Sidecar<T extends StoreDefinition = unknown>
 {
     sidecars: pmSidecar;
     pubsub?: PubSubProxy
@@ -46,7 +46,7 @@ export default async function app<T extends StoreDefinition>(context: CliContext
         throw new Error('configuration is required');
     if (typeof config == 'string')
         config = await Configuration.load(config);
-    const sidecar: Sidecar<T> = {} as any;
+    const sidecar: Sidecar<T> = {} as unknown as Sidecar<T>;
     const pubsubConfig = config.get<string | PubSubConfiguration>('pubsub');
     const stateStoreConfig = config.get<StoreConfiguration | string | StoreConfiguration[]>('store');
     context.logger.debug('connecting to pm...');
@@ -54,8 +54,9 @@ export default async function app<T extends StoreDefinition>(context: CliContext
         sidecar.pm = remotePm;
     else
     {
+        //eslint-disable-next-line @typescript-eslint/no-var-requires
         var result = await connectByPreference<void>(require(path.join(os.homedir(), './pm.config.json')).mapping.pm.connect, { host: remotePm, metadata: await import('@akala/pm/commands.json') })
-        sidecar.pm = result.container as any;
+        sidecar.pm = result.container as Container<void> & pm;
     }
 
     module('@akala/pm').register('container', sidecar.pm, true);
@@ -93,7 +94,7 @@ export default async function app<T extends StoreDefinition>(context: CliContext
     switch (typeof stateStoreConfig)
     {
         case 'string':
-            await providers.injectWithName([stateStoreConfig || 'file'], async (engine: PersistenceEngine<any>) =>
+            await providers.injectWithName([stateStoreConfig || 'file'], async (engine: PersistenceEngine<unknown>) =>
             {
                 await engine.init(null)
                 sidecar.store = Store.create<T>(engine);
@@ -102,7 +103,7 @@ export default async function app<T extends StoreDefinition>(context: CliContext
         case 'object':
             if (Array.isArray(stateStoreConfig))
             {
-                var engines = await mapAsync(stateStoreConfig as StoreConfiguration[], async store => await providers.injectWithName([store.provider || 'file'], async (engine: PersistenceEngine<any>) =>
+                var engines = await mapAsync(stateStoreConfig as StoreConfiguration[], async store => await providers.injectWithName([store.provider || 'file'], async (engine: PersistenceEngine<unknown>) =>
                 {
                     await engine.init(Object.assign({}, store.providerOptions, { path: context.currentWorkingDirectory }));
                     return { engine, models: Object.entries(store.models).map(e => ({ definition: new ModelDefinition(e[0], e[1].nameInStorage, e[1].namespace), model: e[1] })).map(x => x.definition.fromJson(x.model)) };
@@ -112,7 +113,7 @@ export default async function app<T extends StoreDefinition>(context: CliContext
                 sidecar.store = MultiStore.create(obj);
             }
             else
-                await providers.injectWithName([stateStoreConfig.provider || 'file'], async (engine: PersistenceEngine<any>) =>
+                await providers.injectWithName([stateStoreConfig.provider || 'file'], async (engine: PersistenceEngine<unknown>) =>
                 {
                     await engine.init(Object.assign({}, stateStoreConfig.providerOptions, { path: context.currentWorkingDirectory }));
                     Object.entries(stateStoreConfig.models).map(e => ({ definition: new ModelDefinition(e[0], e[1].nameInStorage, e[1].namespace), model: e[1] })).map(x => x.definition.fromJson(x.model.extract()));

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { BinaryExpression } from './expressions/binary-expression';
 import { StrictExpressions, StrictTypedExpression } from './expressions/expression';
 import { ConstantExpression } from './expressions/constant-expression';

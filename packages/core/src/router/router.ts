@@ -1,4 +1,3 @@
-import debug from 'debug';
 import { Middleware } from './shared';
 import { convertToMiddleware, MiddlewareComposite } from './composite';
 import { MiddlewareRoute, Routable, RouteBuilder, RouteBuilderArguments } from './route';

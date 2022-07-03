@@ -8,9 +8,9 @@ import { Container } from '../model/container';
 export class EventProcessor extends EventEmitter implements ICommandProcessor
 {
 
-    public on(event: 'processing', handler: (...args: CommandMetadataProcessorSignature<any>) => void): this
-    public on(event: 'processing-failed', handler: (...args: [...CommandMetadataProcessorSignature<any>, Error]) => void): this
-    public on(event: 'processed', handler: (...args: [...CommandMetadataProcessorSignature<any>, unknown]) => void): this;
+    public on(event: 'processing', handler: (...args: CommandMetadataProcessorSignature<unknown>) => void): this
+    public on(event: 'processing-failed', handler: (...args: [...CommandMetadataProcessorSignature<unknown>, Error]) => void): this
+    public on(event: 'processed', handler: (...args: [...CommandMetadataProcessorSignature<unknown>, unknown]) => void): this;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public on(event: string, handler: (...args: [...CommandMetadataProcessorSignature<any>, Error]) => void): this
     {
@@ -27,7 +27,7 @@ export class EventProcessor extends EventEmitter implements ICommandProcessor
         super();
     }
 
-    async handle(origin: Container<any>, command: Command, param: StructuredParameters<unknown[]>): MiddlewarePromise
+    async handle(origin: Container<unknown>, command: Command, param: StructuredParameters<unknown[]>): MiddlewarePromise
     {
         this.emit('processing', origin, command, param);
         try

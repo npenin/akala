@@ -1,5 +1,5 @@
 import * as di from '@akala/core'
-import { control, BaseControl, GenericControlInstance } from './control'
+import { control, GenericControlInstance } from './control'
 
 @control('value', 400)
 export class Value extends GenericControlInstance<string>
@@ -9,7 +9,7 @@ export class Value extends GenericControlInstance<string>
         super()
     }
 
-    public apply(target: any, element: HTMLElement, parameter: string)
+    public apply(target: unknown, element: HTMLElement, parameter: string)
     {
         switch (element.tagName)
         {
@@ -53,7 +53,7 @@ export class Value extends GenericControlInstance<string>
                         {
                             case 'checkbox':
                             case 'radio':
-                                parameter.setValue((this.element as HTMLInputElement).checked, parameter);
+                                parameter.setValue((this.element as HTMLInputElement).checked as unknown as string, parameter);
                                 break;
                             default:
                                 parameter.setValue((this.element as HTMLInputElement).value, parameter);

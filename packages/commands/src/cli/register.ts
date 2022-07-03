@@ -1,4 +1,3 @@
-import { Writable } from "stream";
 import fs from 'fs';
 import path from 'path';
 import * as os from 'os'
@@ -43,7 +42,7 @@ export default async function register(commandsPath?: string, name?: string, for
             //     console.log('no change to perform; this path is already registered');
             // else
             // {
-            const commands: any = {};
+            const commands: Record<string, string> = {};
             if (packageFile.commands)
                 commands[packageFile.name] = packageFile.commands;
             commands[name] = commandsPath

@@ -2,7 +2,6 @@ import * as akala from '../index';
 import * as core from '@akala/core'
 import { Container } from '../model/container';
 import * as path from 'path'
-import * as fs from 'fs';
 import { jsonObject } from '../metadata/index';
 import { FileSystemConfiguration } from '../processors/fs';
 import { Writable } from "stream";
@@ -81,7 +80,7 @@ export default async function generate(name?: string, folder?: string, outputFil
             }
             else if (cmd.inject && cmd.inject.length)
             {
-                await write(output, cmd.inject.filter(p => p.startsWith('param.')).map(p => `any`).join(', '));
+                await write(output, cmd.inject.filter(p => p.startsWith('param.')).map(() => `any`).join(', '));
                 await write(output, `): unknown\n`);
             }
             else
@@ -124,7 +123,7 @@ export default async function generate(name?: string, folder?: string, outputFil
             }
             else if (cmd.inject && cmd.inject.length)
             {
-                await write(output, cmd.inject.filter(p => p.startsWith('param.')).map(p => `any`).join(', '));
+                await write(output, cmd.inject.filter(p => p.startsWith('param.')).map(() => `any`).join(', '));
                 await write(output, `): unknown\n`);
             }
             else

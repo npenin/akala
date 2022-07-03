@@ -6,45 +6,45 @@ import { service } from './common'
 // eslint-disable-next-line no-constant-condition
 if (MutationObserver && false)
 {
-    const domObserver = new MutationObserver(function (mutations: MutationRecord[])
-    {
-        mutations.forEach(function (mutation)
-        {
-            switch (mutation.type)
-            {
-                case 'characterData':
-                    return;
-                case 'attributes':
-                    break;
-                case 'childList':
-                    break;
-            }
-        })
-    })
+    //     const domObserver = new MutationObserver(function (mutations: MutationRecord[])
+    //     {
+    //         mutations.forEach(function (mutation)
+    //         {
+    //             switch (mutation.type)
+    //             {
+    //                 case 'characterData':
+    //                     return;
+    //                 case 'attributes':
+    //                     break;
+    //                 case 'childList':
+    //                     break;
+    //             }
+    //         })
+    //     })
 }
 
 service('$interpolate')(akala.Interpolate)
 
 export interface templateFunction
 {
-    (target: any, parent: HTMLElement): Promise<IControlInstance<any>[]>;
+    (target: unknown, parent: HTMLElement): Promise<IControlInstance<unknown>[]>;
     hotReplace(markup: string): void;
 }
 
-interface Composer<TOptions = any>
+interface Composer<TOptions = unknown>
 {
     selector: string;
     optionName: string;
-    apply(items: HTMLElement, data, options?: TOptions): Promise<IControlInstance<any>[]>;
+    apply(items: HTMLElement, data, options?: TOptions): Promise<IControlInstance<unknown>[]>;
 }
 
-class DataBindComposer implements Composer<Control<any>[]>
+class DataBindComposer implements Composer<Record<string, unknown>>
 {
     selector = '[data-bind]';
     optionName = 'databind';
-    async apply(item: HTMLElement, data: any, options?: Control<any>[])
+    async apply(item: HTMLElement, data: unknown, options?: Record<string, Control<unknown>>)
     {
-        const instances = await Control.apply(options || akala.Parser.evalAsFunction(item.dataset['bind'], true), item, data);
+        const instances = await Control.apply(options || akala.Parser.evalAsFunction(item.dataset['bind'], true) as Record<string, unknown>, item);
 
         await akala.eachAsync(item.querySelectorAll(this.selector), async (el: HTMLElement) =>
         {
@@ -63,7 +63,7 @@ export function composer(selector: string | Composer | (new () => Composer), opt
     switch (typeof selector)
     {
         case 'string':
-            return function (composingFunction: (items: HTMLElement, data) => Promise<IControlInstance<any>[]>)
+            return function (composingFunction: (items: HTMLElement, data) => Promise<IControlInstance<unknown>[]>)
             {
                 Template.composers.push({ selector: selector, optionName: optionName, apply: composingFunction });
             }
@@ -112,9 +112,10 @@ export class Template
                     cache.register(text, template, true);
                 if (navigator.serviceWorker)
                 {
+                    //eslint-disable-next-line @typescript-eslint/no-unused-vars
                     navigator.serviceWorker.addEventListener('message', function (msg)
+                    //eslint-disable-next-line
                     {
-
                     })
                 }
                 return template;
@@ -177,7 +178,7 @@ export class Template
                 })
             }
             return Template.composeAll(templateInstance, data);
-        }) as any;
+        }) as templateFunction;
         f.hotReplace = (markup: string) =>
         {
             template = this.interpolator.build(markup);
@@ -186,19 +187,19 @@ export class Template
         return f;
     }
 
-    static async composeAll(items: ArrayLike<HTMLElement>, data, root?: Element, options?: { [key: string]: any }): Promise<IControlInstance<any>[]>
+    static async composeAll(items: ArrayLike<HTMLElement>, data, root?: Element, options?: { [key: string]: unknown }): Promise<IControlInstance<unknown>[]>
     {
-        const result: IControlInstance<any>[] = [];
+        const result: IControlInstance<unknown>[] = [];
         return await akala.eachAsync(this.composers, (composer) =>
         {
             return this.compose(composer, items, data, root, options && options[composer.optionName]).then(instances => result.push(...instances));
         }, true).then(() => result);
     }
 
-    static async compose(composer: Composer, items: ArrayLike<HTMLElement>, data, root?: Element, options?: any): Promise<IControlInstance<any>[]>
+    static async compose(composer: Composer, items: ArrayLike<HTMLElement>, data, root?: Element, options?: unknown): Promise<IControlInstance<unknown>[]>
     {
         data.$new = Scope.prototype.$new;
-        const instances: IControlInstance<any>[] = [];
+        const instances: IControlInstance<unknown>[] = [];
         if (filter(items, composer.selector).length == 0)
         {
             await akala.eachAsync(items, async function (el)
@@ -225,7 +226,7 @@ export class Template
                 promises.push(composer.apply(item, data, options).then(c => { instances.push(...c) }));
             }, false);
             if (promises.length)
-                return Promise.all(promises).then(x => instances);
+                return Promise.all(promises).then(() => instances);
             // return element;
         }
 

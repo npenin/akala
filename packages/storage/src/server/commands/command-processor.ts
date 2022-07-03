@@ -2,7 +2,7 @@ import { Commands, CommandResult } from './command';
 
 export abstract class CommandProcessor<TOptions = string>
 {
-    public visitCommands(cmds: Commands<any>[])
+    public visitCommands(cmds: Commands<unknown>[])
     {
         var results: PromiseLike<CommandResult>[] = [];
         for (let i = 0; i < cmds.length; i++)

@@ -1,7 +1,9 @@
 import commands from './container';
 import suncalc from 'suncalc'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { SidecarMap } from '@akala/pm';
 
-function isDST(day, month, dayOfWeek)
+export function isDST(day, month, dayOfWeek)
 {
     //January, february, and december are out.
     if (month < 3 || month > 11)

@@ -1,4 +1,3 @@
-import { createRequire } from 'module'
 import * as path from 'path'
 
 export default function normalize(mode: 'require' | 'requireMeta' | true, currentWorkingDirectory: string, value: string)

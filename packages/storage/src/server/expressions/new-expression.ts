@@ -1,4 +1,6 @@
-import { Expression, TypedExpression, Expressions } from './expression';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { Expression } from './expression';
 import { ExpressionType } from './expression-type';
 import { MemberExpression } from './member-expression';
 import { ExpressionVisitor } from './expression-visitor';

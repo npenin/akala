@@ -1,6 +1,6 @@
 import { module } from '../helpers';
 
-export function negate(a: any)
+export function negate(a: unknown)
 {
     return !a;
 }

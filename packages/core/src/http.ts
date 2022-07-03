@@ -1,22 +1,22 @@
-import { register, injectWithName } from './global-injector';
+import { injectWithName } from './global-injector';
 import { ParsedAny, Parser } from './parser';
-import { each, map, grep } from './each';
+import { each, map } from './each';
 import { module } from './helpers';
 import { service } from './service';
-import { FormatterFactory } from './formatters/common';
-import * as qs from 'querystring'
+import { Formatter, FormatterFactory } from './formatters/common';
 import 'isomorphic-fetch';
 import http from 'http';
 import https from 'https';
 import { Injected } from './injector';
+import { SerializableObject } from '@akala/json-rpc-ws';
 
 
 export interface HttpOptions
 {
     method?: string;
     url: string | URL;
-    queryString?: any;
-    body?: any;
+    queryString?: string | URLSearchParams;
+    body?: BodyInit | SerializableObject;
     headers?: { [key: string]: string | number | Date };
     contentType?: 'json' | 'form';
     type?: 'json' | 'xml' | 'text' | 'raw';
@@ -25,10 +25,10 @@ export interface HttpOptions
 
 export interface Http<TResponse = Response>
 {
-    get(url: string, params?: any): PromiseLike<TResponse>;
-    post(url: string, body?: any): PromiseLike<FormData>;
-    postJSON<T = string>(url: string, body?: any): PromiseLike<T>;
-    getJSON<T>(url: string, params?: any): PromiseLike<T>;
+    get(url: string, params?: string | URLSearchParams): PromiseLike<TResponse>;
+    post(url: string, body?: unknown): PromiseLike<FormData>;
+    postJSON<T = string>(url: string, body?: unknown): PromiseLike<T>;
+    getJSON<T>(url: string, params?: string | URLSearchParams): PromiseLike<T>;
     invokeSOAP(namespace: string, action: string, url: string, params?: { [key: string]: string | number | boolean }): PromiseLike<TResponse>;
     call(options: HttpOptions): PromiseLike<TResponse>;
 }
@@ -36,25 +36,25 @@ export interface Http<TResponse = Response>
 @service('$http')
 export class FetchHttp implements Http<Response>
 {
-    public get(url: string, params?: any)
+    public get(url: string, params?: URLSearchParams)
     {
         return this.call({ url: url, method: 'GET', queryString: params });
     }
-    public post(url: string, body?: any): PromiseLike<FormData>
+    public post(url: string, body?: BodyInit): PromiseLike<FormData>
     {
         return this.call({ method: 'POST', url: url, body: body }).then(r =>
         {
             return (r as unknown as globalThis.Response).formData();
         });
     }
-    public postJSON<T = string>(url: string, body?: any): PromiseLike<T>
+    public postJSON<T = string>(url: string, body?: BodyInit): PromiseLike<T>
     {
         return this.call({ method: 'POST', url: url, body: body, contentType: 'json', type: 'json' }).then((r) =>
         {
             return r.json();
         });
     }
-    public getJSON<T>(url: string, params?: any): PromiseLike<T>
+    public getJSON<T>(url: string, params?: string | URLSearchParams): PromiseLike<T>
     {
         return this.call({ method: 'GET', url: url, queryString: params, type: 'json' }).then((r) =>
         {
@@ -76,7 +76,7 @@ export class FetchHttp implements Http<Response>
 
     public call(options: HttpOptions): Promise<Response>
     {
-        const init: RequestInit = { method: options.method || 'GET', body: options.body };
+        const init: RequestInit = { method: options.method || 'GET', body: options.body as unknown as BodyInit };
 
         if (typeof (options.url) == 'string')
             options.url = new URL(options.url);
@@ -85,8 +85,8 @@ export class FetchHttp implements Http<Response>
         if (options.queryString)
         {
             if (typeof (options.queryString) == 'string')
-                options.queryString = qs.parse(options.queryString);
-            each(options.queryString, (value, name) => url.searchParams.append(name.toString(), value));
+                options.queryString = new URLSearchParams(options.queryString);
+            options.queryString.forEach((value, name) => url.searchParams.append(name.toString(), value));
         }
 
         if (options.headers)
@@ -116,6 +116,8 @@ export class FetchHttp implements Http<Response>
                     break;
                 case 'text':
                     init.headers['Accept'] = 'text/plain';
+                    if (!options.contentType && typeof (init.body) !== 'string')
+                        init.body = init.body.toString();
                     break;
             }
         }
@@ -174,16 +176,16 @@ export class FetchHttp implements Http<Response>
 
 
 
-export class HttpCallFormatterFactory implements FormatterFactory<() => Promise<any>, { method?: keyof Http }>
+export class HttpCallFormatterFactory implements FormatterFactory<Injected<PromiseLike<unknown>>, { method?: keyof Http }>
 {
     public parse(expression: string): { method?: keyof Http } & ParsedAny
     {
         const method = /^ *(\w+)/.exec(expression);
         if (method)
             return { method: <keyof Http>method[1], $$length: method[0].length };
-        return new Parser().parseAny(expression, false);
+        return new Parser().parseAny(expression, false) as { method?: keyof Http } & ParsedAny;
     }
-    public build(formatter, settings: { method: keyof Http }): Injected<any>
+    public build(formatter: Formatter<unknown>, settings: { method: keyof Http }): Formatter<Injected<PromiseLike<unknown>>>
     {
         if (!settings)
             settings = { method: 'getJSON' };
@@ -198,34 +200,38 @@ export class HttpCallFormatterFactory implements FormatterFactory<() => Promise<
             {
                 const formattedValue = formatter(scope);
                 if (typeof (formattedValue) == 'string')
-                    return (http[settingsValue.method || 'getJSON'] as typeof http.getJSON)(formattedValue, grep(settingsValue, function (value, key)
-                    {
-                        return key != 'method';
-                    }));
+                    return (http[settingsValue.method || 'getJSON'] as typeof http.getJSON)(formattedValue, settingsValue.queryString);
 
                 if (Array.isArray(formattedValue))
                 {
                     return (http[settingsValue.method || 'getJSON'] as typeof http.getJSON).apply(http, formattedValue);
                 }
 
-                return (http[settingsValue.method || 'getJSON'] as typeof http.getJSON)(formattedValue);
+                return (http[settingsValue.method || 'getJSON'] as typeof http.call)(formattedValue as HttpOptions);
             });
         }
     }
 }
 
-export class HttpFormatterFactory extends HttpCallFormatterFactory implements FormatterFactory<Promise<any>, { method?: keyof Http }>
+export class HttpFormatterFactory implements FormatterFactory<PromiseLike<unknown>, { method?: keyof Http }>
 {
+    callFactory: HttpCallFormatterFactory;
+
     constructor()
     {
-        super();
+        this.callFactory = module('$formatters').resolve<HttpCallFormatterFactory>('#httpCall');
+    }
+
+    parse(expression: string): { method?: keyof Http; }
+    {
+        return this.callFactory.parse(expression);
     }
 
     public build(formatter, settings: { method: keyof Http })
     {
-        return (value) =>
+        return (value: unknown) =>
         {
-            return super.build(formatter, settings)(value)();
+            return this.callFactory.build(formatter, settings)(value)();
         };
     }
 }

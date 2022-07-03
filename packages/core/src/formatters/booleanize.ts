@@ -1,6 +1,6 @@
 import { module } from '../helpers';
 
-export function booleanize(a: any)
+export function booleanize(a: unknown)
 {
     return !!a;
 }

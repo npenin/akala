@@ -15,7 +15,7 @@ core.defaultInjector.register('$resolveUrl', resolveUrl)
 
 export function service(name, ...toInject: string[])
 {
-    return function (target: new (...args: unknown[]) => any)
+    return function (target: new (...args: unknown[]) => unknown)
     {
         let instance = null;
         if (toInject == null || toInject.length == 0 && target.length > 0)

@@ -4,7 +4,7 @@ import fs from 'fs/promises'
 import { inspect } from 'util'
 
 export type ProxyConfiguration<T extends object = SerializableObject> = Configuration<T> & { [key in keyof T]: T[key] extends object ? ProxyConfiguration<T[key]> : T[key] };
-type SerializableConfig<T, TKey extends keyof T> = T[TKey] extends SerializableObject ? Configuration<T[TKey]> : T[TKey]
+//type SerializableConfig<T, TKey extends keyof T> = T[TKey] extends SerializableObject ? Configuration<T[TKey]> : T[TKey]
 
 export default class Configuration<T extends object = SerializableObject>
 {
@@ -131,15 +131,18 @@ export default class Configuration<T extends object = SerializableObject>
                 return config[key];
             }, this.config);
             if (typeof value == 'object' && !Array.isArray(value))
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 return Configuration.new(this.path, value as SerializableObject, this.rootConfig) as any;
-            return value as any;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            return value as any
+                ;
         }
         else
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             return this as any;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public has<TResult = string>(key?: string): boolean
+    public has(key?: string): boolean
     {
         if (key)
         {
@@ -156,8 +159,8 @@ export default class Configuration<T extends object = SerializableObject>
 
     public set(key: Exclude<keyof T, symbol | number>, newConfig: T[typeof key]): void
     public set(key: string, newConfig: Serializable): void
-    public set(key: string | Exclude<keyof T, symbol | number>, newConfig: any): void
-    public set(key: string | Exclude<keyof T, symbol | number>, newConfig: any): void
+    public set(key: string | Exclude<keyof T, symbol | number>, newConfig: unknown): void
+    public set(key: string | Exclude<keyof T, symbol | number>, newConfig: unknown): void
     {
         const keys = key.split('.');
         keys.reduce(function (config, key, i)

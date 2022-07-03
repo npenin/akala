@@ -1,5 +1,4 @@
 import { sort } from "../commands/bump-dependents";
-import { Levels } from "../commands/recommend-bump";
 
 console.log(sort([
     { name: '@domojs/devices', workspaceDependencies: ['@akala/core'], location: '', bump: 'decline' },

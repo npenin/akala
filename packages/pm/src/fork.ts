@@ -5,7 +5,6 @@ import * as path from 'path'
 import * as ac from '@akala/commands';
 import { lstat } from 'fs/promises';
 import { IpcAdapter } from "./ipc-adapter";
-import { Socket } from 'net';
 import { logger, Logger, module as coreModule } from '@akala/core';
 import program, { buildCliContextFromProcess, NamespaceMiddleware } from '@akala/cli';
 import { Stats } from 'fs';
@@ -77,6 +76,7 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
 
                 if (!isPm)
                 {
+                    //eslint-disable-next-line @typescript-eslint/no-var-requires
                     const pmMeta = require('../commands.json');
                     if (process.connected)
                     {

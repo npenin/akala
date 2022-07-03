@@ -1,13 +1,12 @@
-import { Module } from './module'
 import { Injector, Injectable, Injected, InjectableAsync, defaultInjector, InjectableConstructor } from './injector';
 
-declare let $$defaultInjector;
+// declare let $$defaultInjector;
 
 if (!global['$$defaultInjector'])
     global['$$defaultInjector'] = defaultInjector;
 
 
-export function resolve<T = any>(name: string): T
+export function resolve<T = unknown>(name: string): T
 {
     return defaultInjector.resolve<T>(name);
 }
@@ -54,12 +53,12 @@ export function injectNewWithName<T>(toInject: string[], a: InjectableConstructo
     return defaultInjector.injectNewWithName<T>(toInject, a);
 }
 
-export function resolveAsync<T = any>(name: string)
+export function resolveAsync<T = unknown>(name: string)
 {
     return defaultInjector.resolveAsync<T>(name)
 }
 
-export function onResolve<T = any>(name: string)
+export function onResolve<T = unknown>(name: string)
 {
     return defaultInjector.onResolve<T>(name)
 }

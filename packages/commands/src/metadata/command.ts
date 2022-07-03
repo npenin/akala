@@ -20,9 +20,9 @@ export interface Configuration
     inject?: string[];
 }
 
-export function isCommand(x: any): x is Command
+export function isCommand(x: unknown): x is Command
 {
-    return typeof (x) == 'object' && x && 'name' in x && 'inject' in x && Array.isArray(x.inject);
+    return typeof (x) == 'object' && x && 'name' in x && 'inject' in x && Array.isArray(x['inject']);
 }
 
 export function extractCommandMetadata<T extends Command>(x: T): Command

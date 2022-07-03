@@ -1,10 +1,10 @@
-import { Expressions, TypedExpression, Expression, IEnumerable, StrictExpressions, StrictTypedExpression, UnknownExpression } from './expression';
+import { Expressions, TypedExpression, IEnumerable, StrictExpressions, StrictTypedExpression, UnknownExpression } from './expression';
 import { ExpressionType } from './expression-type';
 import { BinaryExpression } from './binary-expression';
 import { UnaryExpression } from './unary-expression';
 import { ParameterExpression } from './parameter-expression';
 import { ConstantExpression } from './constant-expression';
-import { TypedLambdaExpression, Parameter } from './lambda-expression';
+import { TypedLambdaExpression, Parameters } from './lambda-expression';
 import { MemberExpression } from './member-expression';
 import { CallExpression } from './call-expression';
 import { ApplySymbolExpression } from './apply-symbol-expression';
@@ -19,7 +19,9 @@ export class ExpressionVisitor
     public visit<T>(expression: StrictTypedExpression<T>): Promise<StrictTypedExpression<T>>
     public visit<T>(expression: TypedExpression<T>): Promise<TypedExpression<T>>
     public visit(expression: StrictExpressions): Promise<StrictExpressions>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public visit(expression: IVisitable<this, Promise<any>>): Promise<Expressions>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public visit(expression: IVisitable<this, Promise<any>>): Promise<Expressions>
     {
         return expression.accept(this);
@@ -34,10 +36,10 @@ export class ExpressionVisitor
 
     async visitNew<T>(expression: NewExpression<T>): Promise<Expressions>
     {
-        var members = await this.visitArray(expression.init as any);
+        var members = await this.visitArray(expression.init);
         if (members !== expression.init)
         {
-            return new NewExpression<T>(...members as any);
+            return new NewExpression<T>(...members);
         }
         return expression;
     }
@@ -87,9 +89,9 @@ export class ExpressionVisitor
             source.type == ExpressionType.ApplySymbolExpression ||
             source.type == ExpressionType.NewExpression);
     }
-    async visitLambda<T extends (...args: any[]) => any>(arg0: TypedLambdaExpression<T>): Promise<Expressions>
+    async visitLambda<T extends (...args: unknown[]) => unknown>(arg0: TypedLambdaExpression<T>): Promise<Expressions>
     {
-        var parameters: Parameter<T> = await this.visitArray(arg0.parameters) as any;
+        var parameters = await this.visitArray(arg0.parameters) as unknown as Parameters<T>;
         var body = await this.visit(arg0.body);
         if (body !== arg0.body || parameters !== arg0.parameters)
             return new TypedLambdaExpression<T>(body, arg0.parameters);
@@ -127,11 +129,11 @@ export class ExpressionVisitor
         }, this.visit);
         return result || parameters;
     }
-    async visitConstant(arg0: ConstantExpression<any>): Promise<Expressions>
+    async visitConstant(arg0: ConstantExpression<unknown>): Promise<Expressions>
     {
         return arg0;
     }
-    async visitParameter(arg0: ParameterExpression<any>): Promise<Expressions>
+    async visitParameter(arg0: ParameterExpression<unknown>): Promise<Expressions>
     {
         return arg0;
     }

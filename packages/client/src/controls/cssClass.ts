@@ -1,6 +1,6 @@
 import * as akala from '@akala/core'
-import { control, BaseControl, GenericControlInstance, Control } from './control'
-import { Promisify, ObservableArray, ObservableArrayEventArgs, Binding, ParsedString, isPromiseLike } from '@akala/core'
+import { control, GenericControlInstance, Control, ControlControlParameter } from './control'
+import { ObservableArray, ObservableArrayEventArgs, Binding, ParsedString, isPromiseLike } from '@akala/core'
 
 function removeClass(element: HTMLElement, item: ParsedString | Array<string> | string | { [key: string]: boolean })
 {
@@ -16,13 +16,13 @@ function removeClass(element: HTMLElement, item: ParsedString | Array<string> | 
         return removeClass(element, item.value);
     else if (item instanceof Binding)
     {
-
+        removeClass(element, item.getValue())
     }
 }
 
-type classParamType = Binding | ParsedString | Array<string> | string | { [key: string]: boolean };
+type classParamType = Binding<string> | Binding<string[]> | ParsedString | string[] | string | { [key: string]: boolean };
 
-function addClass(element: HTMLElement, item: classParamType)
+function addClass(element: HTMLElement, item: classParamType): void
 {
     if (typeof (item) == 'undefined')
         return;
@@ -77,17 +77,17 @@ function addClass(element: HTMLElement, item: classParamType)
 }
 
 @control('class', 400)
-export class CssClass extends GenericControlInstance<any>
+export class CssClass extends GenericControlInstance<string[]>
 {
-    constructor(factory: Control<any>, target: any, element: HTMLElement, parameter: any)
+    constructor(factory: Control<unknown>, target: unknown, element: HTMLElement, parameter: ControlControlParameter<CssClass>)
     {
         super();
-        if (parameter instanceof Array)
+        if (Array.isArray(parameter))
         {
             parameter = new ObservableArray(parameter);
         }
         if (parameter instanceof ObservableArray)
-            parameter.on('collectionChanged', function (arg: ObservableArrayEventArgs<any>)
+            parameter.on('collectionChanged', function (arg: ObservableArrayEventArgs<string>)
             {
                 if (arg.newItems)
                     arg.newItems.forEach(function (item)

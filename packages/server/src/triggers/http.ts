@@ -19,7 +19,7 @@ function wrapHttp<T>(container: Container<T>, command: Metadata.Command)
 async function processCommand<T>(container: Container<T>, c: Metadata.Command, injected: { '$request': Request, '$response': Response, [key: string]: unknown })
 {
     const req = injected.$request;
-    let bodyParsing: Promise<{ parsed: any, raw: Buffer }>;
+    let bodyParsing: Promise<{ parsed: unknown, raw: Buffer }>;
     return Processors.Local.handle(c, async function (...args)
     {
         args = await mapAsync(args, async el => await el);

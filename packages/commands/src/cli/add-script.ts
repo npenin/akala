@@ -7,6 +7,7 @@ export default async function addScript(name?: string, folder?: string, metadata
 {
     folder = folder || '';
 
+    //eslint-disable-next-line @typescript-eslint/no-var-requires
     const pkg = require(path.join(process.cwd(), './package.json'));
 
     if (!metadataFile)
@@ -18,11 +19,11 @@ export default async function addScript(name?: string, folder?: string, metadata
     if (!pkg.scripts)
         pkg.scripts = {};
 
-    var scriptNames: [string, string] = [] as any;
+    let scriptNames: [string, string];
     if (name)
-        scriptNames.push('generate-' + name, 'generate-metadata-' + name);
+        scriptNames = ['generate-' + name, 'generate-metadata-' + name];
     else
-        scriptNames.push('generate', 'generate-metadata');
+        scriptNames = ['generate', 'generate-metadata'];
 
     if (pkg.scripts[scriptNames[0]])
         console.warn(`Warn: There is already a script named ${scriptNames[0]}. Overwriting...`)

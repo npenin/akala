@@ -2,7 +2,7 @@
 import { calculator } from './calculator/index'
 import * as assert from 'assert'
 import * as http from 'http';
-import { HttpClient, HttpConfiguration } from '../processors/http-client';
+import { HttpClient } from '../processors/http-client';
 import { metadata, proxy } from '../generator';
 import * as akala from '@akala/core'
 import * as pathRegexp from 'path-to-regexp';

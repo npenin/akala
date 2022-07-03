@@ -25,32 +25,6 @@
             }
         },
         {
-            "name": "changelog",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ],
-                    "path": "dist/commands/changelog.js",
-                    "source": "src/commands/changelog.ts"
-                },
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "automate": {
-                    "inject": [
-                        "commits",
-                        "file"
-                    ]
-                }
-            }
-        },
-        {
             "name": "bump-dependents",
             "inject": [],
             "config": {
@@ -72,6 +46,32 @@
                     "inject": [
                         "workspaces",
                         "rules"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "changelog",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/commands/changelog.js",
+                    "source": "src/commands/changelog.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "automate": {
+                    "inject": [
+                        "commits",
+                        "file"
                     ]
                 }
             }

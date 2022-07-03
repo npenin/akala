@@ -1,6 +1,4 @@
-import { control, Control } from './control'
-import { Promisify, Binding, isPromiseLike } from '@akala/core'
-import { IScope } from '../scope';
+import { control } from './control'
 import { Event } from './event';
 
 @control('click')

@@ -1,16 +1,16 @@
 import { module } from '../helpers';
-import { FormatterFactory } from '../formatters/common';
+import { Formatter, FormatterFactory } from '../formatters/common';
 import { Parser, ParsedString } from '../parser';
 import { injectWithName } from '../global-injector';
 import { Binding } from '../binder';
 
-export class CallFormatterFactory implements FormatterFactory<any, ParsedString>
+export class CallFormatterFactory implements FormatterFactory<unknown, ParsedString>
 {
     public parse(expression: string)
     {
         return new ParsedString(expression.substring(0, new Parser().parseFunction(expression).$$length));
     }
-    public build(formatter, settings: ParsedString)
+    public build(_formatter: Formatter<unknown>, settings: ParsedString)
     {
         function evaluate(x)
         {

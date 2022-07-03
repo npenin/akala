@@ -3,6 +3,7 @@ import * as pathRegexp from 'path-to-regexp';
 import { CommandProcessor } from '../model/processor';
 import { Command, Configuration } from '../metadata';
 import { Container } from '../model/container';
+import { SerializableObject } from '@akala/json-rpc-ws';
 
 export class HttpClient extends CommandProcessor
 {
@@ -16,7 +17,7 @@ export class HttpClient extends CommandProcessor
             throw new Error('no http configuration specified');
 
         const injector = this.injector;
-        return injector.injectWithNameAsync(['$http', '$resolveUrl'], async function (http: Http, resolveUrl)
+        return injector.injectWithNameAsync(['$http', '$resolveUrl'], async function (http: Http, resolveUrl: (url: string) => string)
         {
             const res = await http.call(HttpClient.buildCall(config, resolveUrl, ...param.param));
             switch (config.type)
@@ -62,7 +63,7 @@ export class HttpClient extends CommandProcessor
                             options.contentType = options.type as HttpOptions['contentType'];
                             if (!options.body)
                                 options.body = {};
-                            options.body = param && param[key];
+                            options.body = param && param[key] as BodyInit | SerializableObject;
                         }
                         break;
                     default:
@@ -70,8 +71,8 @@ export class HttpClient extends CommandProcessor
                             const indexOfDot = value.indexOf('.');
                             if (~indexOfDot)
                             {
-                                const subKey = value.substr(indexOfDot + 1);
-                                switch (value.substr(0, indexOfDot))
+                                const subKey = value.substring(indexOfDot + 1);
+                                switch (value.substring(0, indexOfDot))
                                 {
                                     case 'body':
                                         options.contentType = options.type as HttpOptions['contentType'];
@@ -85,8 +86,10 @@ export class HttpClient extends CommandProcessor
                                         break;
                                     case 'query':
                                         if (!options.queryString)
-                                            options.queryString = {};
-                                        options.queryString[subKey] = param && param[key];
+                                            options.queryString = new URLSearchParams();
+                                        if (typeof options.queryString == 'string')
+                                            options.queryString = new URLSearchParams(options.queryString)
+                                        options.queryString.append(subKey, param && param[key] as string);
                                         break;
                                     case 'route':
                                         if (!route)

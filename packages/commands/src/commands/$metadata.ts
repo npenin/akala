@@ -23,7 +23,7 @@ const $metadata = configure({
             }
         }
     }
-})(function $metadata(container: Container<any>, deep: boolean): meta.Container
+})(function $metadata(container: Container<unknown>, deep: boolean): meta.Container
 {
     // console.log(container.name);
     return metadata(container, deep);

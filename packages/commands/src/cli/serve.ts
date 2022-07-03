@@ -1,11 +1,8 @@
 import { Server } from 'net';
-import { platform } from 'os';
 import * as ws from 'ws'
 import { Container } from '../model/container';
-import { join } from 'path';
 import * as jsonrpcws from '@akala/json-rpc-ws';
 import { unlink } from 'fs';
-import { Http2SecureServer, Http2Server } from 'http2';
 import { Server as httpServer } from 'http'
 import { Server as httpsServer } from 'https'
 import { ServeMetadata } from '../serve-metadata';

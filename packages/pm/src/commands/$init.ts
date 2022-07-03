@@ -3,12 +3,11 @@ import { homedir } from 'os';
 import fs from 'fs/promises';
 import { join } from 'path';
 import pmContainer from '../container';
-import { Container, Metadata, ignoredCommands, configure, ServeOptions, SelfDefinedCommand } from '@akala/commands';
-import { eachAsync } from '@akala/core';
-import { PassThrough, Readable } from 'stream';
+import { Container, Metadata, ignoredCommands, configure, SelfDefinedCommand } from '@akala/commands';
+import { PassThrough } from 'stream';
 import { EventEmitter } from 'events';
 import { CliContext } from '@akala/cli';
-import Configuration, { ProxyConfiguration } from '@akala/config';
+import Configuration from '@akala/config';
 
 export async function metadata(container: Container<unknown>, deep?: boolean): Promise<Metadata.Container>
 {
@@ -45,7 +44,7 @@ export async function metadata(container: Container<unknown>, deep?: boolean): P
     return metacontainer;
 }
 
-export function isRunningContainer(c: Container<any>): c is RunningContainer
+export function isRunningContainer(c: Container<unknown>): c is RunningContainer
 {
     return 'running' in c;
 }
@@ -60,16 +59,18 @@ export default async function (this: State, container: RunningContainer & pmCont
     process.stderr.write = function (...args)
     {
         stderr.call(process.stderr, ...args);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return stderrPT.write(...args as [any, BufferEncoding]);
-    } as any;
+    } as typeof process.stderr.write;
 
     const stdout = process.stdout.write;
     const stdoutPT = new PassThrough();
     process.stdout.write = function (...args)
     {
         stdout.call(process.stdout, ...args);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return stdoutPT.write(...args as [any, BufferEncoding]);
-    } as any;
+    } as typeof process.stdout.write;
     container.process = Object.assign(new EventEmitter(), {
         stdout: stdoutPT, stderr: stderrPT, stdio: null, stdin: process.stdin, pid: process.pid, connected: false
         , exitCode: undefined

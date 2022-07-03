@@ -14,7 +14,7 @@ export function where<T>(source: Iterable<T>, predicate: Predicate<T>): Iterable
     };
 }
 
-export function whereAsync<T>(source: Iterable<T>, predicate: PredicateAsync<T>): AsyncIterable<T>
+export function whereAsync<T>(source: Iterable<T> | AsyncIterable<T>, predicate: PredicateAsync<T>): AsyncIterable<T>
 {
     return {
         async *[Symbol.asyncIterator]()
@@ -48,6 +48,7 @@ export function length<T>(source: { length: number; } | Iterable<T>): number
         return source['length'];
 
     let i = 0;
+    //eslint-disable-next-line @typescript-eslint/no-unused-vars
     for (const v of source as Iterable<T>)
     {
         i++;
@@ -61,6 +62,7 @@ export async function lengthAsync<T>(source: { length: number; } | Iterable<T> |
         return source['length'];
 
     let i = 0;
+    //eslint-disable-next-line @typescript-eslint/no-unused-vars
     for await (const v of source as Iterable<T>)
     {
         i++;
@@ -79,7 +81,7 @@ export function select<T, U>(source: Iterable<T>, project: Project<T, U>): Itera
     };
 }
 
-export function selectAsync<T, U>(source: AsyncIterable<T>, project: Project<T, Promise<U>>): AsyncIterable<U>
+export function selectAsync<T, U>(source: Iterable<T> | AsyncIterable<T>, project: Project<T, Promise<U>>): AsyncIterable<U>
 {
     return {
         async *[Symbol.asyncIterator]()

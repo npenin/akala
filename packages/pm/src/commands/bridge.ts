@@ -1,4 +1,3 @@
-import { Container } from "@akala/commands";
 import { SocketAdapter } from "@akala/json-rpc-ws";
 import State from "../state";
 

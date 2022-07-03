@@ -39,21 +39,24 @@ export class WebSocketAdapter implements SocketAdapter
         this.socket.send(data);
     }
 
-    private messageListeners: [Function, Function][] = [];
+    private messageListeners: [(ev: unknown) => void, (ev: unknown) => void][] = [];
 
     public off<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
     {
         switch (event)
         {
-            case 'message':
-                let listeners = this.messageListeners;
-                if (handler)
-                    listeners = listeners.filter(f => f[0] == handler);
-                listeners.forEach(l => this.socket.removeEventListener('message', l[1] as any));
+            case 'message': Function
+                {
+                    let listeners = this.messageListeners;
+                    if (handler)
+                        listeners = listeners.filter(f => f[0] == handler);
+                    listeners.forEach(l => this.socket.removeEventListener('message', l[1]));
+                }
                 break;
             case 'close':
             case 'error':
             case 'open':
+                //eslint-disable-next-line @typescript-eslint/no-explicit-any
                 this.socket.removeEventListener(event, handler as any);
                 break;
             default:
@@ -65,13 +68,16 @@ export class WebSocketAdapter implements SocketAdapter
         switch (event)
         {
             case 'message':
-                const x = function (ev) { return handler.call(this, ev.data) };
-                this.messageListeners.push([handler, x]);
-                this.socket.addEventListener('message', x);
+                {
+                    const x = function (ev) { return handler.call(this, ev.data) };
+                    this.messageListeners.push([handler, x]);
+                    this.socket.addEventListener('message', x);
+                }
                 break;
             case 'close':
             case 'error':
             case 'open':
+                //eslint-disable-next-line @typescript-eslint/no-explicit-any
                 this.socket.addEventListener(event, handler as any);
                 break;
             default:
@@ -88,6 +94,7 @@ export class WebSocketAdapter implements SocketAdapter
             case 'close':
             case 'error':
             case 'open':
+                //eslint-disable-next-line @typescript-eslint/no-explicit-any
                 this.socket.addEventListener(event, handler as any, { once: true });
                 break;
             default:

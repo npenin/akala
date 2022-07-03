@@ -32,7 +32,7 @@ export interface ConnectionPreference
     preferRemote?: boolean;
     host?: string;
     metadata?: Metadata.Container;
-    container?: Container<any>;
+    container?: Container<unknown>;
 }
 
 export async function connectByPreference<T = unknown>(options: ServeMetadata, settings: ConnectionPreference, ...orders: (keyof ServeMetadata)[]): Promise<{ container: Container<T>, processor: ICommandProcessor }>

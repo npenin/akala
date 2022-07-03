@@ -10,7 +10,7 @@ export class DeleteCommand<T>
 
     public type: CommandType.Delete = CommandType.Delete;
 
-    public accept(processor: CommandProcessor<any>)
+    public accept(processor: CommandProcessor<unknown>)
     {
         return processor.visitDelete(this);
     }

@@ -5,6 +5,7 @@ import { Commands, CommandResult } from '../commands/command';
 import { ExpressionExecutor } from '../expression-executor';
 import { ModelDefinition } from '../shared';
 
+//eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class Vanilla extends PersistenceEngine<any>
 {
     constructor()
@@ -40,16 +41,19 @@ export class Vanilla extends PersistenceEngine<any>
         await executor.visit(expression);
         if (executor.model)
             if (Array.isArray(executor.result))
-                return this.dynamicProxy(executor.result, executor.model) as any;
+                return this.dynamicProxy(executor.result, executor.model) as unknown as T;
             else
-                return dynamicProxy<T>(executor.result, executor.model);
+                return dynamicProxy<T>(executor.result as T, executor.model as ModelDefinition<T>);
         else
-            return executor.result;
+            return executor.result as T;
     }
 }
 
 interface VanillaStore
-{ [namespace: string]: { [name: string]: any[] } }
+{
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
+    [namespace: string]: { [name: string]: any[] }
+}
 
 export interface VanillaOptions
 {

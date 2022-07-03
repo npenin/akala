@@ -1,14 +1,13 @@
 import * as akala from '@akala/core'
-import { control, Control, GenericControlInstance } from './control'
-import { IScope } from '../scope'
+import { control, ControlParameter, GenericControlInstance } from './control'
 import { Template } from '../template';
 
 export interface OptionsParameter
 {
-    in: akala.Binding | akala.ObservableArray<any>;
-    text: akala.Binding | string;
-    textvalue: akala.Binding | string;
-    value: akala.Binding | string;
+    in: akala.Binding<unknown[]> | akala.ObservableArray<unknown>;
+    text: akala.Binding<unknown> | string;
+    textvalue: akala.Binding<unknown> | string;
+    value: akala.Binding<unknown> | string;
 }
 
 @control('options', 350)
@@ -20,14 +19,14 @@ export class Options extends GenericControlInstance<OptionsParameter>
     }
 
     @akala.inject('controls')
-    private controls: any;
+    private controls: { value: ControlParameter<unknown> };
 
     public init()
     {
         // eslint-disable-next-line @typescript-eslint/no-this-alias
         const self = this;
-        let value: akala.Binding = this.controls.value;
-        if (this.controls.value instanceof Function)
+        let value = this.controls.value as akala.Binding<unknown>;
+        if (typeof this.controls.value == 'function')
             value = this.controls.value(this.scope, true);
 
         delete this.controls.value;
@@ -35,9 +34,9 @@ export class Options extends GenericControlInstance<OptionsParameter>
             throw new Error('Not Supported');
         const parameter = this.parameter;
         // var newControls;
-        const build = (source: any[] | akala.ObservableArray<any>) =>
+        const build = (source: unknown[] | akala.ObservableArray<unknown>) =>
         {
-            let array: any[];
+            let array: unknown[];
             const element = this.element;
             const target = this.scope;
 
@@ -55,10 +54,10 @@ export class Options extends GenericControlInstance<OptionsParameter>
             {
                 const offset = this.element.childElementCount;
 
-                source.on('collectionChanged', function (this: akala.ObservableArray<any>, args: akala.ObservableArrayEventArgs<any>) 
+                source.on('collectionChanged', function (this: akala.ObservableArray<unknown>, args: akala.ObservableArrayEventArgs<unknown>) 
                 {
-                    const key = -1;
-                    const isAdded = false;
+                    // const key = -1;
+                    // const isAdded = false;
                     switch (args.action)
                     {
                         case 'init':

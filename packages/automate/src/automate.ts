@@ -2,7 +2,7 @@ import { SerializableObject } from '@akala/json-rpc-ws'
 import Orchestrator from 'orchestrator';
 import { spawn, StdioNull, StdioPipe, SpawnOptionsWithoutStdio } from 'child_process';
 import commands from './container';
-import { eachAsync, Injector, Interpolate, mapAsync, Middleware, MiddlewareCompositeWithPriority, Parser, AggregateErrors, MiddlewarePromise, logger, Logger, LogLevels, ILogger } from '@akala/core';
+import { Interpolate, mapAsync, Middleware, MiddlewareCompositeWithPriority, Parser, AggregateErrors, MiddlewarePromise, logger, Logger, LogLevels, ILogger } from '@akala/core';
 import { Stream } from 'stream';
 import fs from 'fs'
 import { runnerMiddleware } from './workflow-commands/process';
@@ -13,10 +13,13 @@ export const defaultLogger = logger('automate', LogLevels.warn);
 
 export const interpolate = new Interpolate('$(', ')');
 
+//eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type MiddlewareSignature<TSupportedJobSteps extends JobStepDef<string, any, any>> = [context: object & { logger: Logger }, step: TSupportedJobSteps, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe }];
 
-export type TMiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any, any>> = Middleware<MiddlewareSignature<TSupportedJobSteps>>;
+//eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type TMiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any, any> = JobStepDef<string, unknown, unknown>> = Middleware<MiddlewareSignature<TSupportedJobSteps>>;
 
+//eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class MiddlewareRunnerMiddleware<TSupportedJobSteps extends JobStepDef<string, any, any>> implements TMiddlewareRunner<TSupportedJobSteps>
 {
     constructor(public readonly support: TSupportedJobSteps['type'], private handler: (...args: MiddlewareSignature<TSupportedJobSteps>) => MiddlewarePromise, private doNotInterpolate?: boolean)
@@ -35,6 +38,7 @@ export class MiddlewareRunnerMiddleware<TSupportedJobSteps extends JobStepDef<st
     }
 }
 
+//eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class MiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any, any>> extends MiddlewareRunnerMiddleware<TSupportedJobSteps>
 {
     constructor(support: TSupportedJobSteps['type'], handler: (...args: MiddlewareSignature<TSupportedJobSteps>) => Promise<unknown>, doNotInterpolate?: boolean)
@@ -56,10 +60,12 @@ export class MiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any,
 
 export const WithInterpolater = new MiddlewareRunnerMiddleware('with', () => { return Promise.resolve(); });
 
+//eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class ContainerMiddleware implements Middleware<MiddlewareSignature<JobStepDef<string, any, any>>> {
     constructor(private container: Container<unknown>) { }
 
-    async handle(...[context, step, stdio]: MiddlewareSignature<JobStepDef<string, any, any>>)
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
+    async handle(...[context, step]: MiddlewareSignature<JobStepDef<string, any, any>>)
     {
         var resolved = Object.keys(step).map(k => [k, this.container.resolve(k)]).filter(k => k[1] instanceof Container) as [string, Container<unknown>][];
         const errors = (await mapAsync(resolved, k =>
@@ -73,6 +79,7 @@ export class ContainerMiddleware implements Middleware<MiddlewareSignature<JobSt
     }
 }
 
+//eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-unused-vars
 export const StdioMiddleware = new MiddlewareRunner('with', (...[context, step, stdio]: MiddlewareSignature<JobStepDef<'with', any, any>>) =>
 {
     if (step.with && step.with.stdio && step.with.stdio !== 'pipe' && step.with.stdio !== 'ignore' && step.with.stdio !== 'inherit')
@@ -116,10 +123,11 @@ export const IfMiddleware: TMiddlewareRunner<JobStepIf> = new MiddlewareRunner<J
 
 
 
+//eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function ForeachMiddleware(runner: MiddlewareCompositeWithPriority<MiddlewareSignature<JobStepDef<string, any, any>>>)
 {
     return new MiddlewareRunner<JobStepForEach>(
-        'foreach', (context, step, stdio) => mapAsync(step.foreach as any, (item, index: string | number) =>
+        'foreach', (context, step, stdio) => mapAsync(step.foreach, (item, index: string | number) =>
         {
             return runner.process(Object.assign({}, context, { $: item, $index: index }), Object.assign({}, step, { foreach: null, name: step.name + '#' + index }), stdio);
         }, step['foreach-strategy'] === 'wait-for-previous'));
@@ -134,6 +142,7 @@ export const LogMiddleware = new MiddlewareRunner<JobStepLog>('log', async (cont
 });
 
 
+//eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function RetryMiddleware(runner: MiddlewareCompositeWithPriority<MiddlewareSignature<JobStepDef<string, any, any>>>)
 {
     return new MiddlewareRunnerMiddleware<JobStepDef<'retries', number, void>>(
@@ -191,19 +200,21 @@ export const RunMiddleware = new MiddlewareRunner<JobStepRun>('run',
                             case 'json':
                                 return resolve(JSON.parse(result.toString('utf-8')));
                             case 'jsonnd':
-                                const results = [];
-                                result.reduce((previous, current, index) =>
                                 {
-                                    if (current === 10 && result[index - 1] == 125)
+                                    const results = [];
+                                    result.reduce((previous, current, index) =>
                                     {
-                                        if (previous + 1 === index)
-                                            return index;
-                                        results.push(JSON.parse(result.toString('utf-8', previous, index).replace(/\n/g, '\\n')));
-                                        return index + 1;
-                                    }
-                                    return previous;
-                                }, 0)
-                                return resolve(results);
+                                        if (current === 10 && result[index - 1] == 125)
+                                        {
+                                            if (previous + 1 === index)
+                                                return index;
+                                            results.push(JSON.parse(result.toString('utf-8', previous, index).replace(/\n/g, '\\n')));
+                                            return index + 1;
+                                        }
+                                        return previous;
+                                    }, 0)
+                                    return resolve(results);
+                                }
                             default:
                             case 'string':
                                 return resolve(result.toString('utf-8', 0, result.length - 1));
@@ -236,6 +247,7 @@ export const RunMiddleware = new MiddlewareRunner<JobStepRun>('run',
 
 export function simpleRunner(name: string)
 {
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     var runner = new MiddlewareCompositeWithPriority<MiddlewareSignature<JobStepDef<string, any, any>>>(name);
     runner.useMiddleware(1, ForeachMiddleware(runner));
     runner.useMiddleware(2, IfMiddleware);
@@ -247,6 +259,7 @@ export function simpleRunner(name: string)
     return runner;
 }
 
+//eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function automate<TResult extends object, TSupportedJobSteps extends JobStepDef<string, any, any>>(workflow: Workflow, runner: TMiddlewareRunner<TSupportedJobSteps>, inputs?: { logger?: Logger }, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe })
 {
     const orchestrator = new Orchestrator();
@@ -359,7 +372,7 @@ export default function automate<TResult extends object, TSupportedJobSteps exte
     });
 }
 
-export function ensureDefaults<TSupportedJobSteps extends JobStepDef<string, any, any>>(jobs: Workflow['jobs'])
+export function ensureDefaults(jobs: Workflow['jobs'])
 {
     jobs && Object.keys(jobs).forEach(jobName =>
     {
@@ -395,6 +408,7 @@ export interface Job
 {
     name?: string;
     dependsOn: string[];
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     steps: JobStepDef<string, any, any>[];
 }
 
@@ -415,7 +429,7 @@ export type JobStepDef<T extends string, TActor = string, TSettings = Serializab
 
 export type JobStepUse = JobStepDef<'uses'>;
 export type JobStepJob = JobStepDef<'job'>;
-export type JobStepLog = JobStepDef<'log', string | [string, ...any[]], { 'log-level': keyof ILogger }>;
+export type JobStepLog = JobStepDef<'log', string | [string, ...unknown[]], { 'log-level': keyof ILogger }>;
 export type JobStepIf = JobStepDef<'if', string, void>;
 export type JobStepForEach = JobStepDef<'foreach', string, void>;
 

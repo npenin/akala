@@ -1,6 +1,4 @@
-import * as di from '@akala/core'
-import { control, BaseControl } from './control'
-import { Promisify, Binding } from '@akala/core'
+import { control } from './control'
 import { Text } from './text'
 
 @control('name', 400)

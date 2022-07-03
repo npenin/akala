@@ -1,50 +1,52 @@
 import { Parser } from './parser';
 import { EventEmitter } from 'events';
-import { Promisify as promisify, isPromiseLike } from './promiseHelpers';
+import { isPromiseLike } from './promiseHelpers';
 import * as formatters from './formatters/index';
-import { array as eachAsync } from './eachAsync'
-import { object as each, map } from './each'
+import { map } from './each'
 import { Formatter } from './formatters/common';
 import { ExtendableEvent } from './module'
 import { Arguments } from './type-helper';
 import { ParsedFunction } from '.';
 export interface IWatched extends Object
 {
-    $$watchers?: { [key: string]: Binding };
+    $$watchers?: { [key: string]: Binding<unknown> };
 }
 
-export interface EventArgs
+export interface EventArgs<T = unknown>
 {
-    source: Binding;
-    error?: any;
+    source: Binding<T>;
+    error?: unknown;
     fieldName: string;
-    value: any;
+    value: T;
 }
 
-export class BindingExtendableEvent extends ExtendableEvent<EventArgs>
+export class BindingExtendableEvent<T> extends ExtendableEvent<EventArgs<T>>
 {
-    constructor(public target: any)
+    constructor(public target: unknown)
     {
         super(false);
     }
 }
 
-interface BindingEventArgs
+interface BindingEventArgs<T = unknown>
 {
-    target: any;
-    eventArgs: EventArgs
+    target: IWatched;
+    eventArgs: EventArgs<T>
 }
 
-export class Binding 
+export type Bound<T> = { [key in keyof T]: Binding<T[key]> }
+export type PossiblyBound<T> = { [key in keyof T]: T[key] | Binding<T[key]> }
+
+export class Binding<T>
 {
-    public static defineProperty(target: any, property: string | symbol, value?: any)
+    public static defineProperty(target: unknown, property: string | symbol, value?: unknown)
     {
         const binding = new Binding(property.toString(), target);
         Object.defineProperty(target, property, {
             get()
             {
                 return value;
-            }, set(newValue: any)
+            }, set(newValue: unknown)
             {
                 value = newValue;
                 binding.setValue(newValue, binding);
@@ -62,14 +64,14 @@ export class Binding
     {
         if (element instanceof Binding)
             return element.getValue();
-        return map(element, function (value, key)
+        return map(element, function (value)
         {
             if (typeof (value) == 'object')
             {
                 if (value instanceof Binding)
                     return value.getValue();
                 else
-                    return Binding.unbindify(value) as any;
+                    return Binding.unbindify(value);
             }
             else
                 return value;
@@ -78,8 +80,8 @@ export class Binding
 
     constructor(protected _expression: string, private _target: IWatched, register = true)
     {
-        this.formatter = formatters.identity;
-        this.evaluator = Parser.evalAsFunction(_expression);
+        this.formatter = formatters.identity as Formatter<T>;
+        this.evaluator = Parser.evalAsFunction(_expression) as ParsedFunction;
         this.onChangingEvent = new BindingExtendableEvent(this);
         this.onChangedEvent = new BindingExtendableEvent(this);
         this.onErrorEvent = new BindingExtendableEvent(this);
@@ -88,12 +90,12 @@ export class Binding
             this.register();
     }
 
-    protected onChangingEvent: BindingExtendableEvent;
-    protected onChangedEvent: BindingExtendableEvent;
-    protected onErrorEvent: BindingExtendableEvent;
+    protected onChangingEvent: BindingExtendableEvent<T>;
+    protected onChangedEvent: BindingExtendableEvent<T>;
+    protected onErrorEvent: BindingExtendableEvent<T>;
     protected onDisposeEvent: ExtendableEvent;
 
-    public formatter: Formatter<any>;
+    public formatter: Formatter<T>;
 
     public get expression() { return this._expression; }
     public get target() { return this._target; }
@@ -101,46 +103,44 @@ export class Binding
 
     private evaluator: ParsedFunction;
 
-    public onChanging(handler: (ev: BindingExtendableEvent) => void)
+    public onChanging(handler: (ev: BindingExtendableEvent<T>) => void)
     {
         return this.onChangingEvent.addHandler(handler);
     }
 
-    public onChanged(handler: (args: BindingExtendableEvent) => void, doNotTriggerHandler?: boolean)
+    public onChanged(handler: (args: BindingEventArgs<T>) => void, doNotTriggerHandler?: boolean)
     {
         const off = this.onChangedEvent.addHandler(handler);
         if (!doNotTriggerHandler)
+        {
             handler({
                 target: this.target,
-                eventArgs: {
-                    fieldName: this.expression,
-                    value: this.getValue(),
-                    source: null
-                }
-            } as BindingEventArgs as any);
+                eventArgs: { fieldName: this.expression, value: this.getValue(), source: null }
+            });
+        }
         return off;
     }
 
-    public onError(handler: (ev: BindingExtendableEvent) => void)
+    public onError(handler: (ev: BindingExtendableEvent<T>) => void)
     {
         return this.onErrorEvent.addHandler(handler);
     }
 
-    private registeredBindings: Binding[] = [];
+    private registeredBindings: Binding<T>[] = [];
 
-    public pipe(binding: Binding)
+    public pipe(binding: Binding<T>)
     {
         if (this.registeredBindings.indexOf(binding) > -1)
             return;
         this.registeredBindings.push(binding);
-        const offChanging = this.onChanging(function (a: BindingExtendableEvent)
+        const offChanging = this.onChanging(function (a: BindingExtendableEvent<T>)
         {
             if (a.eventArgs.source == binding || a.eventArgs.source === null)
                 return;
 
             return binding.onChangingEvent.trigger(Object.assign({}, a.eventArgs, { value: binding.getValue() }));
         });
-        const offChanged = this.onChanged(function (a: BindingExtendableEvent)
+        const offChanged = this.onChanged(function (a: BindingExtendableEvent<T>)
         {
             if (a.eventArgs.source == binding || a.eventArgs.source === null)
                 return;
@@ -154,7 +154,7 @@ export class Binding
 
             return binding.onErrorEvent.trigger(Object.assign({}, a.eventArgs, { value: binding.getValue() }));
         });
-        var offDispose = this.onDisposeEvent.addHandler(async function (a)
+        var offDispose = this.onDisposeEvent.addHandler(async function ()
         {
             await binding.onDisposeEvent.trigger();
             if (offChanged)
@@ -171,7 +171,7 @@ export class Binding
     }
 
     //defined in constructor
-    public getValue(): any
+    public getValue(): T
     {
         return this.formatter(this.evaluator(this.target, false));
     }
@@ -197,7 +197,7 @@ export class Binding
                     }
                 }
 
-                let watcher: Binding = target.$$watchers && target.$$watchers[part];
+                let watcher: Binding<T> = target.$$watchers && target.$$watchers[part] as Binding<T>;
 
                 if (!watcher)
                 {
@@ -207,12 +207,12 @@ export class Binding
                         if (parts.length > 0)
                             subParts += '.' + parts.join('.');
 
-                        watcher = new PromiseBinding(subParts, target);
+                        watcher = new PromiseBinding<T>(subParts, target);
                     }
                     else if (target instanceof ObservableArray)
                     {
                         let initHandled = false;
-                        target.on('collectionChanged', function (args: ObservableArrayEventArgs<any>)
+                        target.on('collectionChanged', function (args: ObservableArrayEventArgs<unknown>)
                         {
                             if (args.action == 'init')
                             {
@@ -253,7 +253,7 @@ export class Binding
         }
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
     public apply(elements, doNotRegisterEvents?: boolean) { }
     /*apply(elements, doNotRegisterEvents)
     {
@@ -268,14 +268,14 @@ export class Binding
         elements.filter(':not(:input))').text(val);
     }*/
 
-    public static getSetter(target: IWatched, expression: string, source?: Binding)
+    public static getSetter<T>(target: IWatched, expression: string, source?: Binding<T>)
     {
         const parts = Parser.parseBindable(expression);
-        return async function (value: any, doNotTriggerEvents?: boolean)
+        return async function (value: T, doNotTriggerEvents?: boolean)
         {
             while (parts.length > 1)
             {
-                if (!target && <any>target !== '')
+                if (!target && target !== '')
                     return;
                 target = target[parts.shift()];
             }
@@ -321,10 +321,9 @@ export class Binding
         };
     }
 
-    public setValue(value: any, source?: Binding, doNotTriggerEvents?: boolean)
+    public setValue(value: T, source?: Binding<T>, doNotTriggerEvents?: boolean)
     {
-        const target = this.target;
-        const setter = Binding.getSetter(this.target, this.expression, source || this);
+        const setter = Binding.getSetter<T>(this.target, this.expression, source || this);
 
         if (setter != null)
             setter(value, doNotTriggerEvents);
@@ -332,12 +331,12 @@ export class Binding
     }
 }
 
-export class PromiseBinding extends Binding
+export class PromiseBinding<T> extends Binding<T>
 {
-    constructor(expression: string, target: PromiseLike<any>)
+    constructor(expression: string, target: PromiseLike<IWatched>)
     {
         super(expression, null, false);
-        const binding = new Binding(expression, null);
+        const binding = new Binding<T>(expression, null);
         binding.pipe(this);
         var callback = (value) =>
         {
@@ -503,15 +502,15 @@ export interface ObservableArrayEventArgs<T>
     oldItems?: T[];
 }
 
-export class WatchBinding extends Binding
+export class WatchBinding<T> extends Binding<T>
 {
-    constructor(expression: string, target: any, interval: number)
+    constructor(expression: string, target: unknown, interval: number)
     {
         super(expression, target, true);
         setInterval(this.check.bind(this), interval);
     }
 
-    private lastValue;
+    private lastValue: T;
 
     private check()
     {

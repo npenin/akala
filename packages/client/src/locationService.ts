@@ -1,5 +1,4 @@
 import { EventEmitter } from 'events';
-import { WatchBinding } from '@akala/core';
 
 
 /**
@@ -7,7 +6,7 @@ import { WatchBinding } from '@akala/core';
  * page exit events.
  */
 
-let prevContext;
+// let prevContext;
 /**
  * Perform initial dispatch.
  */
@@ -19,7 +18,7 @@ let dispatch = true;
  * Decode URL components (query string, pathname, hash).
  * Accommodates both regular percent encoding and x-www-form-urlencoded format.
  */
-let decodeURLComponents = true;
+// let decodeURLComponents = true;
 
 /**
  * Base path.
@@ -191,8 +190,8 @@ export class LocationService extends EventEmitter
         running = true;
         if (false === options.dispatch)
             dispatch = false;
-        if (false === options.decodeURLComponents)
-            decodeURLComponents = false;
+        // if (false === options.decodeURLComponents)
+        //     decodeURLComponents = false;
         if (false !== options.popstate)
             window.addEventListener('popstate', this.onpopstateBound, false);
         if (false !== options.click)
@@ -228,7 +227,7 @@ export class LocationService extends EventEmitter
         this.dispatch(this.current, false);
     }
 
-    public replace(path: string, state?: any, init?: boolean, dispatch?: boolean)
+    public replace(path: string, state?: unknown, init?: boolean, dispatch?: boolean)
     {
         // var ctx = new Context(path, state);
         this.current = path;
@@ -283,7 +282,7 @@ export class LocationService extends EventEmitter
      * @api public
      */
 
-    public show(path: string, state?: any, dispatch?: boolean, push = true)
+    public show(path: string, state?: unknown, dispatch?: boolean, push = true)
     {
         this.current = path;
         if (!dispatch)
@@ -301,7 +300,7 @@ export class LocationService extends EventEmitter
      * @api public
      */
 
-    public back(path: string, state: any)
+    public back(path: string, state: unknown)
     {
         if (this.len > 0)
         {

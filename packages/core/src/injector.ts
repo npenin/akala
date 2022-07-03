@@ -9,9 +9,9 @@ const log = logger('akala:core:injector');
 export type Injected<T> = (instance?: unknown) => T;
 export type Injectable<T> = (...args: unknown[]) => T;
 export type InjectableConstructor<T> = new (...args: unknown[]) => T;
-export type InjectableWithTypedThis<T, U> = (this: U, ...args: any[]) => T;
-export type InjectableAsync<T> = (...args: any[]) => PromiseLike<T>;
-export type InjectableAsyncWithTypedThis<T, U> = (this: U, ...args: any[]) => PromiseLike<T>;
+export type InjectableWithTypedThis<T, U> = (this: U, ...args: unknown[]) => T;
+export type InjectableAsync<T> = (...args: unknown[]) => PromiseLike<T>;
+export type InjectableAsyncWithTypedThis<T, U> = (this: U, ...args: unknown[]) => PromiseLike<T>;
 export type InjectedParameter<T> = { index: number, value: T };
 
 export function ctorToFunction<T extends unknown[], TResult>(ctor: new (...args: T) => TResult): (...parameters: T) => TResult 
@@ -27,7 +27,7 @@ export function ctorToFunction<T extends unknown[], TResult>(ctor: new (...args:
 
 export class Injector
 {
-    public static mergeArrays(resolvedArgs: InjectedParameter<any>[], ...otherArgs: any[])
+    public static mergeArrays(resolvedArgs: InjectedParameter<unknown>[], ...otherArgs: unknown[])
     {
         const args = [];
         let unknownArgIndex = 0;
@@ -42,7 +42,7 @@ export class Injector
         return args.concat(otherArgs.slice(unknownArgIndex));
     }
 
-    protected getArguments(toInject: string[]): InjectedParameter<any>[]
+    protected getArguments(toInject: string[]): InjectedParameter<unknown>[]
     {
         return toInject.map((p, i) => ({ index: i, value: this.resolve(p) }));
     }
@@ -57,7 +57,7 @@ export class Injector
 
     private notifier = new EventEmitter();
 
-    public setInjectables(value: { [key: string]: any })
+    public setInjectables(value: { [key: string]: unknown })
     {
         this.injectables = value;
     }
@@ -76,7 +76,7 @@ export class Injector
         })
     }
 
-    protected notify<T>(name: string, value?: PropertyDescriptor)
+    protected notify(name: string, value?: PropertyDescriptor)
     {
         if (typeof value == 'undefined')
             value = Object.getOwnPropertyDescriptor(this.injectables, name);
@@ -86,17 +86,17 @@ export class Injector
             this.parent.notify(name, value);
     }
 
-    public onResolve<T = any>(name: string): PromiseLike<T>
-    public onResolve<T = any>(name: string, handler: (value: T) => void): void
-    public onResolve<T = any>(name: string, handler?: (value: T) => void)
+    public onResolve<T = unknown>(name: string): PromiseLike<T>
+    public onResolve<T = unknown>(name: string, handler: (value: T) => void): void
+    public onResolve<T = unknown>(name: string, handler?: (value: T) => void)
     {
         if (!handler)
-            return new Promise<T>((resolve, reject) =>
+            return new Promise<T>((resolve) =>
             {
                 this.onResolve(name, resolve);
             })
 
-        const value = this.resolve(name);
+        const value = this.resolve<T>(name);
         if (value !== undefined && value !== null)
         {
             handler(value);
@@ -137,7 +137,7 @@ export class Injector
     }
 
     public injectAsync<T>(a: Injectable<T>)
-    public injectAsync<T>(...a: string[])
+    public injectAsync(...a: string[])
     public injectAsync<T>(a: Injectable<T> | string, ...b: string[])
     {
         if (typeof a == 'function')
@@ -162,7 +162,7 @@ export class Injector
         return this.inject<T>(ctorToFunction(ctor));
     }
 
-    public resolve<T = any>(param: string): T
+    public resolve<T = unknown>(param: string): T
     {
         log.silly('resolving ' + param);
 
@@ -184,11 +184,8 @@ export class Injector
         if (~indexOfDot)
         {
             const keys = param.split('.')
-            return keys.reduce((result, key, i) =>
+            return keys.reduce((result, key) =>
             {
-                //disabling proxy verification because of node v16
-                // if (result instanceof Proxy)
-                //     return result[key];
                 if (result instanceof Injector)
                     return result.resolve(key);
                 if (isPromiseLike(result))
@@ -209,7 +206,7 @@ export class Injector
         return null;
     }
 
-    public resolveAsync<T = any>(name: string): T | PromiseLike<T>
+    public resolveAsync<T = unknown>(name: string): T | PromiseLike<T>
     {
         return this.onResolve<T>(name);
     }
@@ -227,7 +224,7 @@ export class Injector
 
     private browsingForJSON = false;
 
-    public toJSON(...args: unknown[])
+    public toJSON()
     {
         // console.log(args);
         const wasBrowsingForJSON = this.browsingForJSON;
@@ -294,7 +291,7 @@ export class Injector
                     return <Injectable<T>>a;
             }
         }
-        return (instance?: any, ...otherArgs: any[]) =>
+        return (instance?: unknown, ...otherArgs: unknown[]) =>
         {
             return a.apply(instance, Injector.mergeArrays(this.getArguments(toInject), ...otherArgs));
         }
@@ -358,7 +355,7 @@ export class Injector
             override = false;
         }
 
-        return <T>(fact: new (...args: any[]) => T) =>
+        return <T>(fact: new (...args: unknown[]) => T) =>
         {
             this.registerDescriptor(name, {
                 get: () =>
