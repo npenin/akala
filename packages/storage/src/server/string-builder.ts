@@ -27,7 +27,8 @@ export class StringBuilder
     public append(date: Date): this
     public append(number: number): this
     public append(format: TemplateStringsArray, ...rest: string[]): this
-    public append(format: any, ...rest: string[]): this
+    public append(format: string | Date | number | TemplateStringsArray, ...rest: string[]): this
+    public append(format: string | Date | number | TemplateStringsArray, ...rest: string[]): this
     {
         this.renderedString = null;
         switch (typeof format)
@@ -55,7 +56,7 @@ export class StringBuilder
     public appendLine(date: Date): this
     public appendLine(number: number): this
     public appendLine(format: TemplateStringsArray, ...rest: string[]): this
-    public appendLine(format?: any, ...rest: string[]): this
+    public appendLine(format?: string | Date | number | TemplateStringsArray, ...rest: string[]): this
     {
         this.append(format, ...rest);
         this.append('\n');

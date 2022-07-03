@@ -33,6 +33,10 @@ jobs:
         run: yarn install
       - name: Compile
         run: yarn tsc -b packages
+      - name: Linting
+        uses: wearerequired/lint-action@v2
+        with:
+          eslint: true
       - name: publish updates
         run: node packages/automate/dist/cli.js --loader @akala/automate-yamlloader --file @akala/semantic-release/publish.yml --verbose=silly
         env:

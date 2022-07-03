@@ -3,7 +3,7 @@ import State, { RunningContainer, SidecarMetadata } from '../state';
 import { spawn, ChildProcess, StdioOptions } from "child_process";
 import pmContainer from '../container';
 import * as jsonrpc from '@akala/json-rpc-ws'
-import { eachAsync, lazy, logger } from "@akala/core";
+import { eachAsync } from "@akala/core";
 import { NewLinePrefixer } from "../new-line-prefixer.js";
 import { CliContext, ErrorWithStatus } from "@akala/cli";
 import getRandomName from "./name";
@@ -66,7 +66,6 @@ export default async function start(this: State, pm: pmContainer.container & Con
     if (context.options && context.options.verbose)
         args.push('-v')
 
-    const log = logger('akala:pm:' + context.options.name);
     let cp: ChildProcess;
     if (!this.isDaemon)
     {

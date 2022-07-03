@@ -1,6 +1,5 @@
 import { Expression, TypedExpression, Expressions, StrictExpressions } from './expression';
 import { ExpressionType } from './expression-type';
-import { MemberExpression } from './member-expression';
 import { ExpressionVisitor } from './expression-visitor';
 
 

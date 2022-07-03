@@ -1,6 +1,6 @@
 import * as akala from '@akala/core'
-import { control, BaseControl } from './control'
-import { Promisify, Binding } from '@akala/core'
+import { control } from './control'
+import { Binding } from '@akala/core'
 import { Text } from './text'
 
 function setProperty(style, value)

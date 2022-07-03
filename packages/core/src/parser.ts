@@ -13,7 +13,7 @@ export interface ParsedAny
     $$length?: number;
 }
 
-export type ParsedOneOf = ParsedObject | ParsedArray | ParsedFunction | ParsedString | ParsedBoolean | ParsedNumber;
+export type ParsedOneOf = ParsedObject | ParsedArray | ParsedFunction | ParsedString | ParsedBoolean | ParsedNumber | ParsedBinary;
 
 export enum BinaryOperator
 {
@@ -94,7 +94,7 @@ export class ParsedBinary implements ParsedAny
         this.$$length = this.left.$$length + operatorLength(this.operator) + this.right.$$length;
     }
 
-    public evaluate(value: any, asBinding?: boolean)
+    public evaluate(value: unknown, asBinding?: boolean)
     {
         if (asBinding)
         {
@@ -174,7 +174,7 @@ export class ParsedBinary implements ParsedAny
                 right = this.right;
             else if (this.right instanceof Object)
                 right = this.right;
-            return <any>Parser.operate(this.operator, left, right);
+            return <unknown>Parser.operate(this.operator, left, right);
         }
     }
 
@@ -216,19 +216,19 @@ export class ParsedBinary implements ParsedAny
 
 export interface ParsedObject extends ParsedAny
 {
-    [name: string]: any;
+    [name: string]: unknown;
 }
 
 export interface ParsedArray extends ParsedAny, Array<ParsedAny>
 {
 }
 
-export interface ParsedFunction extends ParsedAny
+export interface ParsedFunction<T = unknown> extends ParsedAny
 {
     $$ast?: ParsedBinary;
-    (value: any, asBinding?: false): any;
-    (value: any, asBinding: true): Binding;
-    (value: any, asBinding?: boolean): any;
+    (value: unknown, asBinding?: false): T;
+    (value: unknown, asBinding: true): Binding<T>;
+    (value: unknown, asBinding?: boolean): T;
 }
 
 export class ParsedString implements ParsedAny
@@ -283,7 +283,7 @@ export class Parser
         expression = expression.trim();
         const result = this.parseAny(expression, excludeFirstLevelFunction);
         if (!excludeFirstLevelFunction && result instanceof ParsedBinary)
-            return result.evaluate.bind(result);
+            return result.evaluate.bind(result) as ParsedOneOf;
         return result;
     }
 
@@ -324,7 +324,7 @@ export class Parser
 
     public parseBoolean(expression): ParsedBoolean
     {
-        let formatter: (o: any) => any = formatters.identity;
+        let formatter: (o: unknown) => unknown = formatters.identity;
         if (expression[0] == '!')
         {
             formatter = formatters.negate;
@@ -340,7 +340,7 @@ export class Parser
         {
             const result = new ParsedBoolean(/^true|false|undefined/.exec(expression)[0]);
             if (formatter !== formatters.identity)
-                result.value = formatter(result.value);
+                result.value = formatter(result.value) as boolean;
             return result;
         }
         return null;
@@ -358,7 +358,7 @@ export class Parser
     public parseFunction(expression: string): ParsedFunction | ParsedBinary
     {
         let length = 0;
-        let formatter: (o: any) => any = formatters.identity;
+        let formatter: (o: unknown) => unknown = formatters.identity;
         if (expression[0] == '!')
         {
             formatter = formatters.negate;
@@ -399,7 +399,7 @@ export class Parser
                     value = value[parts[i]];
                     if (isPromiseLike(value))
                     {
-                        var promise: PromiseLike<any>;
+                        var promise: PromiseLike<unknown>;
                         if (i == parts.length - 1)
                             promise = value;
                         else
@@ -420,13 +420,13 @@ export class Parser
     {
         const item = /^ *# *([\w0-9.$]+) */.exec(expression);
         expression = expression.substring(item[0].length);
-        const formatter: FormatterFactory<any, any> = module('$formatters').resolve('#' + item[1]);
+        const formatter: FormatterFactory<unknown, ParsedOneOf> = module('$formatters').resolve('#' + item[1]);
         if (!formatter)
             throw new Error(`filter not found: ${item[1]}`)
         let settings: ParsedObject;
         if (expression[0] == ':')
         {
-            settings = formatter.parse(expression.substring(1));
+            settings = formatter.parse(expression.substring(1)) as ParsedObject;
         }
 
         const result: ParsedFunction = function (value, asBinding?: boolean)
@@ -506,7 +506,7 @@ export class Parser
     {
         const results: ParsedArray = [];
         Object.defineProperty(results, '$$length', { value: 0, enumerable: false, configurable: true, writable: true });
-        const isFunction = false;
+        // const isFunction = false;
         return this.parseCSV(expression, (result) =>
         {
             let item = this.parseAny(result, false);
@@ -516,7 +516,7 @@ export class Parser
             if (item instanceof ParsedBoolean || item instanceof ParsedString || item instanceof ParsedNumber)
                 results.push(item);
             else if (item instanceof ParsedBinary)
-                results.push(item.evaluate.bind(item) as any);
+                results.push(item.evaluate.bind(item) as unknown);
             else
                 results.push(item);
             results.$$length += item.$$length;
@@ -533,10 +533,10 @@ export class Parser
         return this.tryParseOperator(expression.substring(evaluatedRegex[0].length), parsedString);
     }
 
-    public static operate(operator: BinaryOperator, left?: any, right?: any)
+    public static operate(operator: BinaryOperator, left?: unknown, right?: unknown)
     {
         // if (arguments.length == 1)
-        //     return function (left: any, right: any)
+        //     return function (left: unknown, right: unknown)
         //     {
         //         return this.operate(operator, left, right);
         //     }
@@ -559,13 +559,13 @@ export class Parser
             case BinaryOperator.StrictNotEqual:
                 return left !== right;
             case BinaryOperator.Plus:
-                return left + right;
+                return (left as number) + (right as number);
             case BinaryOperator.Minus:
-                return left - right;
+                return (left as number) - (right as number);
             case BinaryOperator.Div:
-                return left / right;
+                return (left as number) / (right as number);
             case BinaryOperator.Times:
-                return left * right;
+                return (left as number) * (right as number);
             case BinaryOperator.Or:
                 return left || right;
             case BinaryOperator.And:
@@ -573,7 +573,7 @@ export class Parser
             case BinaryOperator.Dot:
                 if (right instanceof Function)
                     return right(left);
-                return left[right];
+                return left[right as keyof typeof left];
             default:
                 throw new Error('invalid operator' + operator);
         }
@@ -603,7 +603,7 @@ export class Parser
         while (expression[0] != end);
         output.$$length += end.length;
         // console.log(output.$$length);
-        let result: any;
+        let result: unknown;
         if (output instanceof Array)
             result = [];
         else
@@ -620,7 +620,7 @@ export class Parser
                         result[i] = output[i];
                 }
                 return result;
-            }
+            } as unknown as ParsedFunction;
             f.$$length = output.$$length;
             return f;
         }
@@ -630,7 +630,6 @@ export class Parser
 
     public parseObject(expression: string, excludeFirstLevelFunction?: boolean)
     {
-        let keyMatch: RegExpExecArray;
         const parsedObject: ParsedObject = {};
         Object.defineProperty(parsedObject, '$$length', { value: 0, enumerable: false, writable: true, configurable: true });
         const result = this.parseCSV(expression, (expression) =>
@@ -666,7 +665,7 @@ export class Parser
         return expression.split('.');
     }
 
-    public static getSetter(expression: string, root: any)
+    public static getSetter(expression: string, root: unknown)
     {
         let target = root;
         const parts = Parser.parseBindable(expression);
@@ -682,20 +681,22 @@ export class Parser
         return { expression: parts[0], target: target, set: function (value) { target[parts[0]] = value } };
     }
 
-    public static evalAsFunction(expression: string, excludeFirstLevelFunction?: boolean): ParsedFunction
+    public static evalAsFunction(expression: string, excludeFirstLevelFunction?: true): ParsedOneOf
+    public static evalAsFunction<T>(expression: string, excludeFirstLevelFunction?: false): ParsedFunction<T>
+    public static evalAsFunction<T>(expression: string, excludeFirstLevelFunction?: boolean): ParsedFunction<T>
     {
         const parser = new Parser();
         if (!expression && typeof (expression) != 'string')
             return null;
         const parts = parser.parse(expression, excludeFirstLevelFunction);
         if (Array.isArray(parts))
-            return parser.parseFunction(expression) as ParsedFunction;
+            return parser.parseFunction(expression) as ParsedFunction<T>;
         if (typeof parts != 'function')
             throw new Error(`${expression} could not be parsed as a function`);
-        return parts;
+        return parts as ParsedFunction<T>;
     }
 
-    public static eval(expression: string, value: any)
+    public static eval(expression: string, value: unknown)
     {
         return (this.evalAsFunction(expression, false) as ParsedFunction)(value, false);
     }

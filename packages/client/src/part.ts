@@ -6,10 +6,10 @@ import { Template } from './template'
 import { IScope } from './scope'
 import { service } from './common'
 import { LocationService as Location } from './locationService'
-import { each, Injector, map } from '@akala/core'
+import { Injector, map } from '@akala/core'
 import { IControlInstance } from './controls/control'
 
-export type PartInstance = { scope: any, element: HTMLElement, controlsInPart?: IControlInstance<any>[] };
+export type PartInstance = { scope: IScope<unknown>, element: HTMLElement, controlsInPart?: IControlInstance<unknown>[] };
 
 @service('$part', '$template', '$router', '$location')
 export class Part extends EventEmitter
@@ -51,7 +51,7 @@ export class Part extends EventEmitter
         this.location.refresh();
     }
 
-    public async apply<TScope extends IScope<any>>(partInstance: () => PartInstance, part: PartDefinition<TScope>, params: unknown): Promise<void>
+    public async apply<TScope extends IScope<unknown>>(partInstance: () => PartInstance, part: PartDefinition<TScope>, params: unknown): Promise<void>
     {
         const template = this.template;
         if (part && part.template)
@@ -62,7 +62,7 @@ export class Part extends EventEmitter
         if (!p)
             return;
         if (part && part.controller)
-            await part.controller(p.scope, p.element, params);
+            await part.controller(p.scope as unknown as TScope, p.element, params);
         if (tpl)
         {
             p.element.textContent = '';
@@ -74,9 +74,9 @@ export class Part extends EventEmitter
             return Promise.reject();
     }
 
-    public use<TScope extends IScope<any>>(url: string): Part
-    public use<TScope extends IScope<any>>(url: string, partName: string, part: PartDefinition<TScope>): void
-    public use<TScope extends IScope<any>>(url: string, partName = 'body', part?: PartDefinition<TScope>): Part | void
+    public use(url: string): Part
+    public use<TScope extends IScope<unknown>>(url: string, partName: string, part: PartDefinition<TScope>): void
+    public use<TScope extends IScope<unknown>>(url: string, partName = 'body', part?: PartDefinition<TScope>): Part | void
     {
         if (!part)
         {
@@ -96,7 +96,7 @@ export class Part extends EventEmitter
     }
 }
 
-export interface PartDefinition<TScope extends IScope<any>>
+export interface PartDefinition<TScope extends IScope<unknown>>
 {
     template?: string | Promise<string>;
     controller?(scope: TScope, element: Element, params: unknown): Promise<void>;

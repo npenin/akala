@@ -9,7 +9,7 @@ import { Local } from "./processors/local.js";
 
 export const ignoredCommands = ['$serve', '$metadata', '$attach']
 
-export function metadata(container: Container<any>, deep?: boolean): meta.Container
+export function metadata(container: Container<unknown>, deep?: boolean): meta.Container
 {
     // console.log(deep);
     const metacontainer: meta.Container = { name: container.name || 'unnamed', commands: [] };
@@ -23,7 +23,7 @@ export function metadata(container: Container<any>, deep?: boolean): meta.Contai
         else if (cmd instanceof Container && deep)
         {
             // console.log(cmd);
-            const subContainer = metadata(cmd as Container<any>, deep);
+            const subContainer = metadata(cmd as Container<unknown>, deep);
             subContainer.commands.forEach(c => c.name = key + '.' + c.name)
             metacontainer.commands.push(...subContainer.commands);
         }
@@ -72,7 +72,7 @@ export function updateCommands<T>(commands: meta.Command[], processor: ICommandP
 
 export function helper<TProxy = { [key: string]: (...args: unknown[]) => Promise<unknown> }>(container: Container<unknown>, metacontainer?: meta.Container): TProxy
 {
-    const result: TProxy = {} as any;
+    const result: TProxy = {} as unknown as TProxy;
     if (!metacontainer)
         metacontainer = metadata(container);
     commandList(metacontainer).forEach(cmd =>
@@ -80,7 +80,7 @@ export function helper<TProxy = { [key: string]: (...args: unknown[]) => Promise
         result[cmd as keyof TProxy] = function (...args)
         {
             return container.dispatch(cmd, ...args);
-        } as any;
+        } as unknown as TProxy[keyof TProxy];
     });
     return result;
 }

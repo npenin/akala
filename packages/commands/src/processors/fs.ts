@@ -7,7 +7,6 @@ import { Container } from '../model/container';
 // import { configure } from '../decorators';
 import { registerCommands } from '../generator';
 import { Local } from './local';
-import { UnknownCommandError } from '../model/error-unknowncommand';
 import { ExtendedConfigurations, jsonObject } from '../metadata/index';
 import { MiddlewarePromise } from '@akala/core';
 import { createRequire } from 'module';
@@ -86,8 +85,8 @@ export class FileSystem extends CommandProcessor
         }
         if (!options.isDirectory)
         {
-            // eslint-disable-next-line @typescript-eslint/no-var-requires
             const cmdRequire = createRequire(path.resolve(root));
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
             const metacontainer: Metadata.Container & { extends?: string[] } = require(path.resolve(root));
             const commands = metacontainer.commands.filter(cmd => !(cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata'));
             if (metacontainer.extends && metacontainer.extends.length)
@@ -127,7 +126,7 @@ export class FileSystem extends CommandProcessor
 
                     if (!options)
                         throw new Error('cannot happen');
-                    let cmd: Metadata.Command & { config: ExtendedConfigurations<FileSystemConfiguration & jsonObject, 'fs'> } = { name: path.basename(f.name, path.extname(f.name)), config: { fs: fsConfig }, inject: [] };
+                    const cmd: Metadata.Command & { config: ExtendedConfigurations<FileSystemConfiguration & jsonObject, 'fs'> } = { name: path.basename(f.name, path.extname(f.name)), config: { fs: fsConfig }, inject: [] };
                     log.debug(cmd.name);
                     if (files.find(file => file.name == f.name + '.map'))
                     {
@@ -247,16 +246,16 @@ export class FileSystem extends CommandProcessor
         return commands;
     }
 
-    public async handle(origin: Container<any>, command: FSCommand, param: { param: unknown[], _trigger?: string }): MiddlewarePromise
+    public async handle(origin: Container<unknown>, command: FSCommand, param: { param: unknown[], _trigger?: string }): MiddlewarePromise
     {
         let filepath: string;
         if (command && command.config && command.config.fs && command.config.fs.path)
             filepath = path.resolve(this.root || process.cwd(), command.config.fs.path);
         else
             filepath = path.resolve(this.root || process.cwd(), command.name);
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
         try
         {
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
             const script = require(filepath);
             if (process.env.NODE_ENV !== 'production')
                 delete require.cache[filepath];

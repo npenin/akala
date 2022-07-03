@@ -140,7 +140,7 @@ export interface SocketAdapter<TSocket = unknown>
 
     off<K extends keyof SocketAdapterEventMap>(event: K, handler?: (this: TSocket, ev: SocketAdapterEventMap[K]) => void): void
 
-    pipe(socket: SocketAdapter);
+    pipe(socket: SocketAdapter): void;
 }
 
 export interface Parent<TStreamable, TConnection extends Connection<TStreamable>>
@@ -351,6 +351,7 @@ export abstract class Connection<TStreamable>
         else
         {
             if (error instanceof Error)
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 error = Object.fromEntries([...Object.entries(error), ['message', error.message], ['stack', error.stack]]) as any;
             response.error = error;
         }

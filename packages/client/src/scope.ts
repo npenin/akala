@@ -4,11 +4,11 @@ export interface IScope<T> extends akala.IWatched
 {
     $new<U>(): IScope<U>;
     $set<U extends Exclude<keyof T, number | symbol>>(expression: U, value: T[U]);
-    $set(expression: string, value: any);
-    $set(expression: string, value: any);
-    $watch(expression: string, handler: (value: any) => void);
+    $set(expression: string, value: unknown);
+    $set(expression: string, value: unknown);
+    $watch(expression: string, handler: (value: unknown) => void);
     $inject(f: (...args: unknown[]) => unknown);
-    $bind(expression: string): akala.Binding;
+    $bind(expression: string): akala.Binding<unknown>;
 }
 
 export class Scope<T> implements IScope<T>
@@ -16,7 +16,7 @@ export class Scope<T> implements IScope<T>
     public get $root() { return this; }
 
     private $$resolver: akala.Injector;
-    public $$watchers: { [key: string]: akala.Binding } = {};
+    public $$watchers: Partial<{ [key in keyof T]: akala.Binding<T[key]> }> = {};
 
     public $new<U>(): Scope<U>
     {
@@ -41,12 +41,12 @@ export class Scope<T> implements IScope<T>
         return new newScope();
     }
 
-    public $inject<T>(f: akala.Injectable<T>, params?: { [key: string]: any })
+    public $inject<T>(f: akala.Injectable<T>, params?: { [key: string]: unknown })
     {
         if (!Object.getOwnPropertyDescriptor(this, '$$resolver'))
         {
             this.$$resolver = new akala.Injector();
-            this.$$resolver.setInjectables(this);
+            this.$$resolver.setInjectables(this as unknown as { [key: string]: unknown });
         }
         const inj = new akala.Injector(this.$$resolver);
         if (params)
@@ -59,12 +59,12 @@ export class Scope<T> implements IScope<T>
         return inj.inject(f)(this);
     }
 
-    public $set(expression: string, value: any)
+    public $set(expression: string, value: unknown)
     {
         akala.Binding.getSetter(this, expression)(value);
     }
 
-    public $bind(expression: string): akala.Binding
+    public $bind(expression: string): akala.Binding<unknown>
     {
         let binding = this.$$watchers[expression];
         if (!binding)
@@ -75,7 +75,7 @@ export class Scope<T> implements IScope<T>
         return binding;
     }
 
-    public $watch(expression: string, handler: (value: any) => void)
+    public $watch(expression: string, handler: (value: unknown) => void)
     {
         const binding = this.$bind(expression);
         if (!binding['handlers'])

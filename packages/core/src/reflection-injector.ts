@@ -2,7 +2,7 @@ import "reflect-metadata";
 import { Injector, InjectedParameter } from './injector';
 
 export type PropertyInjection = ((i: Injector) => void);
-export type ParameterInjection = ((i: Injector) => InjectedParameter<any>);
+export type ParameterInjection = ((i: Injector) => InjectedParameter<unknown>);
 
 export const injectSymbol = Symbol('inject');
 export const afterInjectSymbol = Symbol('after-inject');
@@ -14,7 +14,7 @@ export interface InjectableOjbect
 
 export function inject(name?: string)
 {
-    return function (target: any, propertyKey: string, parameterIndex?: number)
+    return function (target: object | (new (...args: unknown[]) => unknown), propertyKey: string, parameterIndex?: number)
     {
         if (typeof parameterIndex == 'number')
         {
@@ -48,7 +48,7 @@ export function inject(name?: string)
     }
 }
 
-export function applyInjector(injector: Injector, obj: any, prototype?: any)
+export function applyInjector(injector: Injector, obj: object, prototype?: object)
 {
     const injections: { [key: string]: (PropertyInjection | ParameterInjection)[] } = Reflect.getOwnMetadata(injectSymbol, prototype || obj);
     // if (injections && injections.length)
@@ -71,7 +71,7 @@ export function applyInjector(injector: Injector, obj: any, prototype?: any)
             if (!descriptor)
             {
                 let valueSet = false;
-                let value: any;
+                let value: unknown;
                 Reflect.defineProperty(obj, property, {
                     get()
                     {
@@ -92,7 +92,7 @@ export function applyInjector(injector: Injector, obj: any, prototype?: any)
             {
                 const oldFunction = descriptor.value;
                 Object.defineProperty(obj, property, {
-                    value: function injected(...args: any[]) 
+                    value: function injected(...args: unknown[]) 
                     {
                         return oldFunction.apply(this, Injector.mergeArrays(injections[property].map(p => (p as ParameterInjection)(injector)), ...args));
                     }
@@ -100,18 +100,19 @@ export function applyInjector(injector: Injector, obj: any, prototype?: any)
             }
             else
             {
-                injections[property].forEach(p => p.call(obj, injector));
+                injections[property].forEach(p => (p as PropertyInjection).call(obj, injector));
             }
         }
     }
 }
 
-export function injectable<TInstance, TClass extends { new(...args: any[]): TInstance }>(ctor: TClass, injector?: Injector): TClass
+export function injectable<TInstance, TClass extends { new(...args: unknown[]): TInstance }>(ctor: TClass, injector?: Injector): TClass
 {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-expect-error
     const result = class DynamicProxy extends ctor
     {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         constructor(...args: any[])
         {
             const injectionObj: { [key: string]: ParameterInjection[] } = Reflect.getOwnMetadata(injectSymbol, ctor);
@@ -152,15 +153,13 @@ export type InjectableClass<T> = T & {
 
 export function useInjector(injector: Injector)
 {
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    return function classInjectorDecorator<TClass extends { new(...args: any[]): object }>(ctor: TClass): TClass
+    return function classInjectorDecorator<TClass extends { new(...args: unknown[]): object }>(ctor: TClass): TClass
     {
         return injectable(ctor, injector);
     }
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export function extendInject<TClass extends { new(...args: any[]): object }>(injector: Injector, constructor: TClass)
+export function extendInject<TClass extends { new(...args: unknown[]): object }>(injector: Injector, constructor: TClass)
 {
     return useInjector(injector)<TClass>(constructor);
 }

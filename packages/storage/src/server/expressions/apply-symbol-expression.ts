@@ -1,8 +1,10 @@
-import { Expression, TypedExpression, StrictExpressions } from './expression';
+import { Expression, TypedExpression, StrictExpressions, Expressions } from './expression';
 import { ExpressionType } from './expression-type';
 import { ExpressionVisitor } from './expression-visitor';
+import { IVisitable } from './visitable';
 
-export class ApplySymbolExpression<T, U> extends Expression
+//eslint-disable-next-line @typescript-eslint/no-unused-vars
+export class ApplySymbolExpression<T, U> extends Expression implements IVisitable<ExpressionVisitor, Promise<Expressions>>
 {
     public get type(): ExpressionType.ApplySymbolExpression { return ExpressionType.ApplySymbolExpression; }
     constructor(public readonly source: TypedExpression<T>, public readonly symbol: symbol, public readonly argument?: StrictExpressions)

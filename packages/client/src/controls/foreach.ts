@@ -1,9 +1,10 @@
 import * as akala from '@akala/core'
+import { ParsedFunction } from '@akala/core';
 import { control, GenericControlInstance } from './control'
 
 export interface ForeachParameter
 {
-    in: akala.ParsedFunction | akala.Binding;
+    in: akala.ParsedFunction | akala.Binding<unknown[]>;
     key: string;
     value: string;
 }
@@ -26,7 +27,7 @@ export class ForEach extends GenericControlInstance<ForeachParameter>
         if (this.parameter instanceof akala.Binding)
             throw new Error('foreach parameter as a binging is not supported');
 
-        let sourceBinding: akala.Binding;
+        let sourceBinding: akala.Binding<unknown>;
         if (this.parameter.in instanceof Function)
             sourceBinding = this.parameter.in(this.scope, true);
         else
@@ -38,7 +39,7 @@ export class ForEach extends GenericControlInstance<ForeachParameter>
             this.element.parentNode.removeChild(this.element);
         const parsedParam = this.parameter as ForeachParameter;
         // var newControls;
-        const build = (source: akala.ObservableArray<any> | any[]) =>
+        const build = (source: akala.ObservableArray<unknown> | unknown[]) =>
         {
             const result: ArrayLike<Element> = [];
 
@@ -118,6 +119,6 @@ export class ForEach extends GenericControlInstance<ForeachParameter>
     protected static parse(exp: string): ForeachParameter
     {
         const result = ForEach.expRegex.exec(exp);
-        return { in: akala.Parser.evalAsFunction(exp.substring(result[0].length)), key: result[2] && result[1], value: result[2] || result[1] }
+        return { in: akala.Parser.evalAsFunction(exp.substring(result[0].length)) as ParsedFunction, key: result[2] && result[1], value: result[2] || result[1] }
     }
 }

@@ -37,7 +37,8 @@ export function array<T, U extends unknown[]>(array: T[] | ArrayLike<T>, body: (
         };
     }
     else
-        complete = (e: Error, ...args) =>
+        //eslint-disable-next-line @typescript-eslint/no-unused-vars
+        complete = (e: Error, ..._args: unknown[]) =>
         {
             if (e)
                 deferred.reject(e);

@@ -1,4 +1,4 @@
-import { ErrorMiddleware, Middleware, MiddlewarePromise } from "@akala/core";
+import { ErrorMiddleware, MiddlewarePromise } from "@akala/core";
 import { Response } from "@akala/server";
 import { AuthorizeErrorCode } from './authorize';
 

@@ -13,8 +13,7 @@ export class AuthenticationStore implements StoreDefinition
     Client: DbSet<Client>;
     User: DbSet<User>;
 
-    [key: string]: DbSet<any>;
-    public static async create(engine?: PersistenceEngine<any>)
+    public static async create(engine?: PersistenceEngine<unknown>)
     {
         if (!engine)
             engine = await provider;
@@ -22,9 +21,9 @@ export class AuthenticationStore implements StoreDefinition
     }
 }
 
-export var provider = akala.defaultInjector.injectWithNameAsync(['$config.@akala-modules/authentication.storage.provider', '$config.@akala-modules/authentication.storage.options'], async function (providerConfig, options)
+export var provider = akala.defaultInjector.injectWithNameAsync(['$config.@akala-modules/authentication.storage.provider', '$config.@akala-modules/authentication.storage.options'], async function (providerConfig: string, options)
 {
-    const provider = new (providers.resolve<new () => PersistenceEngine<any>>(providerConfig));
+    const provider = new (providers.resolve<new () => PersistenceEngine<unknown>>(providerConfig));
     await provider.init(options);
 
     return provider;

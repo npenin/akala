@@ -1,5 +1,5 @@
 import { eachAsync } from '../helpers';
-import { AnyMiddleware, ErrorMiddleware, Middleware, MiddlewareError, MiddlewarePromise, MiddlewareSuccess, OptionsResponse, SpecialNextParam } from './shared';
+import { AnyMiddleware, ErrorMiddleware, Middleware, MiddlewareError, MiddlewarePromise, MiddlewareSuccess, OptionsResponse } from './shared';
 
 
 export function convertToMiddleware<T extends unknown[]>(fn: (...args: T) => Promise<unknown>): Middleware<T>
@@ -81,7 +81,7 @@ export class MiddlewareComposite<T extends unknown[]> implements Middleware<T>, 
         let failed: boolean = !!error;
         try
         {
-            await eachAsync(this.stack, async (middleware, _i, next) =>
+            await eachAsync(this.stack, async (middleware) =>
             {
                 try
                 {
@@ -123,7 +123,7 @@ export class MiddlewareComposite<T extends unknown[]> implements Middleware<T>, 
         let failed: boolean = undefined;
         try
         {
-            await eachAsync(this.stack, async (middleware, _i) =>
+            await eachAsync(this.stack, async (middleware) =>
             {
                 try
                 {
@@ -216,7 +216,7 @@ export class MiddlewareCompositeWithPriority<T extends unknown[]> implements Mid
         this.stack.sort((a, b) => a[0] - b[0]);
         try
         {
-            await eachAsync(this.stack, async (middleware, _i, next) =>
+            await eachAsync(this.stack, async (middleware) =>
             {
                 try
                 {
@@ -259,7 +259,7 @@ export class MiddlewareCompositeWithPriority<T extends unknown[]> implements Mid
         this.stack.sort((a, b) => a[0] - b[0]);
         try
         {
-            await eachAsync(this.stack, async (middleware, _i) =>
+            await eachAsync(this.stack, async (middleware) =>
             {
                 try
                 {

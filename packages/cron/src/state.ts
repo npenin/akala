@@ -33,7 +33,7 @@ export class Schedule
     private plannedExecutions: NodeJS.Timeout;
     public readonly jobs: JobLike[] = [];
     private _nextExecution: Date = null;
-    public get nextExecution() { return this._nextExecution };
+    public get nextExecution() { return this._nextExecution }
 
     public static wait(request: DateRequest[], startDate?: Date): WaitInfo
     {

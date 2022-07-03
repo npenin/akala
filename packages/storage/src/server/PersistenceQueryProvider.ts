@@ -1,4 +1,4 @@
-import { IQueryableProvider, IQueryable } from './Query';
+import { IQueryableProvider } from './Query';
 import { Expressions } from './expressions/expression';
 import { PersistenceEngine } from './PersistenceEngine';
 

@@ -3,9 +3,9 @@ import { ctorToFunction } from './injector';
 
 export function factory(name: string, ...toInject: string[])
 {
-    return function (target: new (...args: unknown[]) => IFactory<any>)
+    return function (target: new (...args: unknown[]) => IFactory<unknown>)
     {
-        let instance: IFactory<any> = null;
+        let instance: IFactory<unknown> = null;
         const ctor = ctorToFunction(target)
         const factory = function (...parameters)
         {

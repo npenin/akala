@@ -9,14 +9,13 @@ import $metadata from '../commands/$metadata'
 import { UnknownCommandError } from './error-unknowncommand';
 import * as Metadata from '../metadata/index'
 import { Middleware, MiddlewareCompositeWithPriority, MiddlewarePromise } from '@akala/core';
-import { isCommand } from '../metadata/index';
 
 export type AsDispatchArgs<T extends unknown[]> = T | [StructuredParameters<T>];
 export type AsDispatchArg<T extends unknown[]> = T[0] | StructuredParameters<T>;
 
 export const defaultCommands = new Local({ $attach, $serve });
 
-export class Container<TState> extends akala.Injector implements Middleware<[origin: Container<any>, cmd: Metadata.Command | string, params: AsDispatchArgs<unknown[]>]>
+export class Container<TState> extends akala.Injector implements Middleware<[origin: Container<unknown>, cmd: Metadata.Command | string, params: AsDispatchArgs<unknown[]>]>
 {
     attach<T extends Trigger<unknown[], unknown>>(trigger: T, ...server: T extends Trigger<infer A, unknown> ? A : never): T extends Trigger<unknown[], infer B> ? B : never
     attach<TResult>(trigger: string, ...server: unknown[]): TResult
@@ -54,9 +53,10 @@ export class Container<TState> extends akala.Injector implements Middleware<[ori
         this.processor.useMiddleware(priority, new Pipe(container));
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public dispatch(command: '$metadata', ...param: AsDispatchArgs<unknown[]>): Promise<Metadata.Container>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public dispatch(command: string | Metadata.Command, ...param: AsDispatchArgs<unknown[]>): Promise<any>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public dispatch(command: string | Metadata.Command, ...param: AsDispatchArgs<unknown[]>): Promise<any>
     {
         return this.handle(this, command, ...param).then(err => { throw err }, result => result);

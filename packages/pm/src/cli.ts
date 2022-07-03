@@ -10,7 +10,7 @@ import { Readable } from 'stream';
 import { spawnAsync } from './cli-helper';
 import State from './state';
 import program, { buildCliContextFromProcess, CliContext, NamespaceMiddleware, unparse } from '@akala/cli';
-import { InteractError, pm } from '.';
+import { InteractError } from '.';
 import { Binding } from '@akala/core';
 
 const tableChars = {
@@ -45,6 +45,7 @@ cli.command<{ program?: string }>('start [program]')
         if (typeof c.options.program == 'undefined')
             c.options.program = 'pm';
         if (c.options.program === 'pm')
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             start.call({} as unknown as State, null, c.options.program, c as any);
         else
             throw undefined;
@@ -402,7 +403,7 @@ function prepareParam(cmd: Metadata.Command, args: CliContext, standalone?: bool
     return {
         options: args.options, param: args.args.slice(1), _trigger: 'cli', cwd: args.currentWorkingDirectory, context: args, get stdin()
         {
-            return new Promise<string>((resolve, reject) =>
+            return new Promise<string>((resolve) =>
             {
                 const buffers = [];
                 process.stdin.on('data', data => buffers.push(data));

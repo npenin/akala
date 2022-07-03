@@ -24,15 +24,19 @@ export interface DbSet<T> extends Query<T>
     createSingle(record: T): PromiseLike<CommandResult>;
 }
 
+//eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type StoreDefinition<T = any> =
     {
-        [key in keyof T]: T[key] extends DbSet<infer Y> ? T[key] : never;
+        //eslint-disable-next-line @typescript-eslint/no-explicit-any
+        [key in keyof T]: T[key] extends DbSet<any> ? T[key] : never;
     }
 
 export class Store<TStore extends StoreDefinition>
 {
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     public static create<TStore extends StoreDefinition>(engine: PersistenceEngine<any>, ...names: (keyof TStore)[]): StoreDefinition<TStore> & TStore
     {
+        //eslint-disable-next-line @typescript-eslint/no-explicit-any
         return new Store<TStore>(engine, ...names) as any;
     }
 
@@ -50,11 +54,14 @@ export class Store<TStore extends StoreDefinition>
 
 export class MultiStore<TStore extends StoreDefinition>
 {
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     public static create<TStore extends StoreDefinition>(mapping: Record<string, PersistenceEngine<any>>): StoreDefinition<TStore> & TStore
     {
+        //eslint-disable-next-line @typescript-eslint/no-explicit-any
         return new MultiStore<TStore>(mapping) as any;
     }
 
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     private constructor(private mapping: Record<string, PersistenceEngine<any>>)
     {
         for (const name of Object.keys(mapping))
@@ -103,6 +110,7 @@ import * as Enumerable from './Enumerable'
 export { Enumerable };
 
 export function Field(type?: FieldType | (() => FieldType), generator?: Generator)
+//eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function Field<T>(target: any, propertyKey: string, descriptor?: TypedPropertyDescriptor<T>)
 export function Field<T>(type?: FieldType | (() => FieldType), propertyKey?: string | Generator, descriptor?: TypedPropertyDescriptor<T>)
 {
@@ -115,6 +123,7 @@ export function Field<T>(type?: FieldType | (() => FieldType), propertyKey?: str
 }
 
 export function Key(type?: FieldType | (() => FieldType), generator?: Generator)
+//eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function Key<T>(target: any, propertyKey: string, descriptor?: TypedPropertyDescriptor<T>)
 export function Key<T>(type?: FieldType | (() => FieldType), propertyKey?: string | Generator, descriptor?: TypedPropertyDescriptor<T>)
 {
@@ -128,6 +137,7 @@ export function Key<T>(type?: FieldType | (() => FieldType), propertyKey?: strin
 
 function member(isKey: boolean, type?: FieldType | (() => FieldType), generator?: Generator)
 {
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     return function <T>(target: any, propertyKey: Extract<keyof T, string>, descriptor?: TypedPropertyDescriptor<T>)
     {
         let model: ModelDefinition<T> = Reflect.getMetadata('db:model', target);

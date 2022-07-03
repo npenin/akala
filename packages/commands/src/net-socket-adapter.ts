@@ -45,7 +45,7 @@ export class NetSocketAdapter implements jsonrpcws.SocketAdapter
             this.dataEventRegistered = true;
             this.socket.on('data', (data) =>
             {
-                let sData: string = data as any;
+                let sData: string = data as unknown as string;
                 if (Buffer.isBuffer(data))
                     sData = data.toString('utf8');
 
@@ -77,10 +77,11 @@ export class NetSocketAdapter implements jsonrpcws.SocketAdapter
     {
         this.socket.write(data + '\n');
     }
-    on(event: "message", handler: (this: any, ev: string) => void): void;
-    on(event: "open", handler: (this: any) => void): void;
-    on(event: "error", handler: (this: any, ev: Event) => void): void;
-    on(event: "close", handler: (this: any, ev: CloseEvent) => void): void;
+    on(event: "message", handler: (this: unknown, ev: string) => void): void;
+    on(event: "open", handler: (this: unknown) => void): void;
+    on(event: "error", handler: (this: unknown, ev: Event) => void): void;
+    on(event: "close", handler: (this: unknown, ev: CloseEvent) => void): void;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     on(event: "message" | "open" | "error" | "close", handler: (ev?: any) => void): void
     {
         switch (event)
@@ -100,10 +101,11 @@ export class NetSocketAdapter implements jsonrpcws.SocketAdapter
                 break;
         }
     }
-    once(event: "message", handler: (this: any, ev: MessageEvent) => void): void;
-    once(event: "open", handler: (this: any) => void): void;
-    once(event: "error", handler: (this: any, ev: Event) => void): void;
-    once(event: "close", handler: (this: any, ev: CloseEvent) => void): void;
+    once(event: "message", handler: (this: unknown, ev: MessageEvent) => void): void;
+    once(event: "open", handler: (this: unknown) => void): void;
+    once(event: "error", handler: (this: unknown, ev: Event) => void): void;
+    once(event: "close", handler: (this: unknown, ev: CloseEvent) => void): void;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     once(event: "message" | "open" | "error" | "close", handler: (ev?: any) => void): void
     {
         switch (event)

@@ -5,18 +5,20 @@ import { TriggerMap, Workflow } from '../automate';
 import { Container } from '@akala/commands';
 import { JobCommand, parseCronSyntax, Schedule } from '@akala/cron';
 import { Deferred } from '@akala/json-rpc-ws';
-import { each, eachAsync } from '@akala/core';
+import { eachAsync } from '@akala/core';
 
-export default async function (this: State, container: Container<any>, name: string, workflowFile: string)
+export default async function (this: State, container: Container<unknown>, name: string, workflowFile: string)
 {
     let workflow: Workflow;
-    console.log(arguments);
+    // console.log(arguments);
     var extension = path.extname(workflowFile);
     switch (extension)
     {
         case '.json':
-            const serializedWorkflow = await fs.readFile(workflowFile, 'utf8');
-            workflow = JSON.parse(serializedWorkflow);
+            {
+                const serializedWorkflow = await fs.readFile(workflowFile, 'utf8');
+                workflow = JSON.parse(serializedWorkflow);
+            }
             break;
         default:
             if (!this.loaders[extension])
@@ -43,7 +45,7 @@ export default async function (this: State, container: Container<any>, name: str
     {
         await eachAsync(workflow.on, async (value: TriggerMap[typeof triggerName], triggerName: keyof TriggerMap) =>
         {
-            console.log(arguments);
+            // console.log(arguments);
 
             if (triggerName == 'cron')
             {

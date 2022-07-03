@@ -10,7 +10,7 @@ export class CreateCommand<T>
 
     public type: CommandType.Create = CommandType.Create;
 
-    public accept(processor: CommandProcessor<any>)
+    public accept(processor: CommandProcessor<unknown>)
     {
         return processor.visitInsert(this);
     }

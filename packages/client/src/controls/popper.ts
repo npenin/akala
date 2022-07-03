@@ -1,10 +1,9 @@
 import * as popper from '@popperjs/core';
-import { BaseControl, control, GenericControlInstance } from './control';
+import { control, GenericControlInstance } from './control';
 import * as akala from '@akala/core';
-import { IScope } from '../scope';
 
 @control('popper', 400)
-export class Popper extends GenericControlInstance<popper.Options>
+export class Popper extends GenericControlInstance<popper.Options & { popper: 'string' }>
 {
     constructor()
     {
@@ -20,7 +19,7 @@ export class Popper extends GenericControlInstance<popper.Options>
             {
                 if (p)
                     p.destroy();
-                p = popper.createPopper(this.element, ev.eventArgs.value)
+                p = popper.createPopper(this.element, this.element.parentElement.querySelector(ev.eventArgs.value.popper), ev.eventArgs.value)
             })
         }
         else

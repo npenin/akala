@@ -1,9 +1,10 @@
 import { control, GenericControlInstance } from './control'
-import { Binding, inject } from '@akala/core'
-import { Part as PartService, PartInstance } from '../part'
+import { Binding, inject, PossiblyBound } from '@akala/core'
+import { Part as PartService, PartDefinition, PartInstance } from '../part'
+import { IScope } from '../scope';
 
 @control('part', 110)
-export class Part extends GenericControlInstance<string | { [property: string]: Binding }>
+export class Part extends GenericControlInstance<string | PartDefinition<IScope<unknown>>>
 {
     constructor()
     {
@@ -18,34 +19,35 @@ export class Part extends GenericControlInstance<string | { [property: string]: 
         const partService = this.partService;
         if (typeof this.parameter != 'string')
         {
-            let nonStringParameter = this.parameter;
+            const nonStringParameter = this.parameter;
             if (nonStringParameter instanceof Binding)
             {
                 nonStringParameter.onChanged(ev =>
                 {
-                    if (ev.eventArgs.source !== null || ev.eventArgs.value)
+                    if ((ev.eventArgs.source !== null || ev.eventArgs.value) && typeof ev.eventArgs.value !== 'string')
                         partService.apply(() => this as unknown as PartInstance, ev.eventArgs.value, {})
                 });
 
             }
             else
-
-                if (nonStringParameter.template instanceof Binding)
-                    nonStringParameter.template.onChanged((ev) =>
+            {
+                const x = nonStringParameter as PossiblyBound<PartDefinition<IScope<unknown>>>;
+                if (x.template instanceof Binding)
+                    x.template.onChanged((ev) =>
                     {
-                        nonStringParameter = (nonStringParameter as { [property: string]: Binding });
-                        if (nonStringParameter.controller instanceof Binding)
-                            partService.apply(() => this as unknown as PartInstance, { controller: nonStringParameter.controller.getValue(), template: ev.eventArgs.value }, {});
+                        if (x.controller instanceof Binding)
+                            partService.apply(() => this as unknown as PartInstance, { controller: x.controller.getValue(), template: ev.eventArgs.value }, {});
                         else
-                            partService.apply(() => this as unknown as PartInstance, { controller: nonStringParameter.controller, template: ev.eventArgs.value }, {});
+                            partService.apply(() => this as unknown as PartInstance, { controller: x.controller, template: ev.eventArgs.value }, {});
                     });
                 else
                 {
-                    if (nonStringParameter.controller instanceof Binding)
-                        partService.apply(() => this as unknown as PartInstance, { controller: nonStringParameter.controller.getValue(), template: nonStringParameter.template }, {});
+                    if (x.controller instanceof Binding)
+                        partService.apply(() => this as unknown as PartInstance, { controller: x.controller.getValue(), template: x.template }, {});
                     else
-                        partService.apply(() => this as unknown as PartInstance, nonStringParameter, {});
+                        partService.apply(() => this as unknown as PartInstance, x as PartDefinition<IScope<unknown>>, {});
                 }
+            }
         }
         else
             partService.register(this.parameter, { scope: this.scope, element: this.element });

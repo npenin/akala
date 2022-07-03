@@ -11,7 +11,7 @@ export default async function (this: State, name: string, socket: SocketAdapter)
     const connectionId = randomUUID();
     this.bridges[connectionId] = { left: socket };
     cp.dispatch('$bridge', connectionId);
-    return new Promise<void>((resolve, reject) =>
+    return new Promise<void>((resolve) =>
     {
         const x = setInterval(() =>
         {

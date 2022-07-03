@@ -5,7 +5,7 @@ export default program;
 
 export function buildCliContext<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>(logger: Logger, ...args: string[]): CliContext<T>
 {
-    const result: CliContext<T> = { args: args, argv: args, options: {} as T, currentWorkingDirectory: undefined } as any;
+    const result: CliContext<T> = { args: args, argv: args, options: {} as T, currentWorkingDirectory: undefined } as unknown as CliContext<T>;
     Object.defineProperty(result, 'logger', { enumerable: false, value: logger });
     return result;
 }
@@ -21,7 +21,7 @@ export function buildCliContextFromProcess<T extends Record<string, string | boo
         commandPath: process.argv0,
         options: {} as T,
         currentWorkingDirectory: process.cwd(),
-    } as any;
+    } as unknown as CliContext<T>;
     Object.defineProperty(result, 'logger', { enumerable: false, value: logger });
     return result;
 }

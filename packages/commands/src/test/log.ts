@@ -1,6 +1,6 @@
 import { calculator } from './calculator/index'
 import * as assert from 'assert'
-import { Local, LogProcessor, Pipe } from '../processors/index';
+import { LogProcessor, Pipe } from '../processors/index';
 import { Container } from '../model/container';
 import { Command } from '../metadata';
 import { registerCommands } from '../generator';

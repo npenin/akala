@@ -1,4 +1,3 @@
-import { sidecar } from "@akala/pm";
 import { Workflow } from "@akala/automate";
 import yaml from 'yaml';
 import { readFile } from 'fs/promises'

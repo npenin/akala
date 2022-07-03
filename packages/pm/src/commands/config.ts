@@ -1,7 +1,6 @@
 import * as cli from "@akala/cli";
 import { CliContext } from "@akala/cli";
 import State from '../state';
-import Configuration from "@akala/config";
 
 export default async function config(this: State, name: string | undefined | void, options: CliContext['options'] | undefined | void): Promise<string[] | State['config'] | State['config']['containers']['']>
 {

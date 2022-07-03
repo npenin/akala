@@ -1,7 +1,5 @@
 import * as di from '@akala/core'
-import { control, BaseControl, GenericControlInstance } from './control'
-import { Promisify, ObservableArray, ObservableArrayEventArgs, Binding } from '@akala/core'
-import { Template } from '../template';
+import { control, GenericControlInstance } from './control'
 
 function toggleBuilder(element)
 {
@@ -27,7 +25,7 @@ export class Hide extends GenericControlInstance<void>
         super();
     }
 
-    public link(target: any, element: HTMLElement, parameter: di.Binding)
+    public link(target: unknown, element: HTMLElement, parameter: di.Binding<boolean>)
     {
         const toggle = toggleBuilder(element);
         parameter.onChanged(function (ev)
@@ -41,14 +39,14 @@ export class Hide extends GenericControlInstance<void>
 }
 
 @control('show', 400)
-export class Show extends GenericControlInstance<di.Binding>
+export class Show extends GenericControlInstance<boolean>
 {
     constructor()
     {
         super()
     }
 
-    public link(target: any, element: HTMLElement, parameter: di.Binding)
+    public link(target: unknown, element: HTMLElement, parameter: di.Binding<boolean>)
     {
         const toggle = toggleBuilder(element);
         parameter.onChanged(function (ev)

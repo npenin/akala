@@ -2,6 +2,32 @@
     "name": "pubsub",
     "commands": [
         {
+            "name": "publish",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/publish.js",
+                    "source": "src/commands/publish.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
             "name": "subscribe",
             "inject": [],
             "config": {
@@ -26,32 +52,6 @@
                         "$connectionAsContainer",
                         "param.1",
                         "param.2"
-                    ]
-                }
-            }
-        },
-        {
-            "name": "publish",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/publish.js",
-                    "source": "src/commands/publish.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "jsonrpc": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
                     ]
                 }
             }

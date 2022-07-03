@@ -9,6 +9,7 @@ type commandable<T> = T & { [command]: Commands<T> };
 
 export class Transaction
 {
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     public readonly commands: Commands<any>[] = [];
 
     public enlist<T>(cmd: Commands<T>)
@@ -46,7 +47,7 @@ export abstract class PersistenceEngine<TOptions = string>
 
     private transaction: Transaction;
 
-    public dbSet<T = any>(name: string): DbSet<T>
+    public dbSet<T = unknown>(name: string): DbSet<T>
     {
         if (!ModelDefinition.definitions[name])
             throw new Error('There is no model for name ' + name)
@@ -93,7 +94,7 @@ export abstract class PersistenceEngine<TOptions = string>
         return result;
     }
 
-    public process(...commands: Commands<any>[]): PromiseLike<CommandResult[]>
+    public process(...commands: Commands<unknown>[]): PromiseLike<CommandResult[]>
     {
         return this.processor.visitCommands(commands);
     }

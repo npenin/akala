@@ -1,6 +1,6 @@
-import { Query, File, Store, StoreDefinition, DbSet, expressions, QuerySymbols } from '../server/index';
+import { File, Store, StoreDefinition, DbSet, expressions, QuerySymbols } from '../server/index';
 import { ModelTest1 } from './modelTest1';
-import * as assert from 'assert';
+import assert from 'assert';
 import './modelTest1';
 import { BinaryOperator } from '@akala/core';
 

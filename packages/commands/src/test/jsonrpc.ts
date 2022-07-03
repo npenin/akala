@@ -116,7 +116,7 @@ describe('test jsonrpcws processing', function ()
             });
 
             const socket = new net.Socket();
-            const c1Client = await new Promise<Container<void>>((resolve, reject) =>
+            const c1Client = await new Promise<Container<void>>((resolve) =>
             {
                 socket.connect({ path: socketPath }, function ()
                 {
@@ -141,7 +141,7 @@ describe('test jsonrpcws processing', function ()
         }
         finally
         {
-            await new Promise<void>((resolve) => unlink(socketPath, (err) =>
+            await new Promise<void>((resolve) => unlink(socketPath, () =>
             {
                 resolve();
             }));

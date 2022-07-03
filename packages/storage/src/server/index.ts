@@ -20,6 +20,6 @@ import { providers } from './shared'
 import { File, JsonFileEntry } from './providers/file';
 import { Vanilla } from './providers/vanilla';
 
-providers.registerFactory('file', () => new File((path: string, name: string, def: ModelDefinition<any>) => new JsonFileEntry(path, name, def)))
+providers.registerFactory('file', () => new File((path: string, name: string, def: ModelDefinition) => new JsonFileEntry(path, name, def)))
 providers.registerFactory('vanilla', () => new Vanilla())
 

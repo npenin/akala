@@ -5,7 +5,7 @@ import loader from './loader';
 import * as trigger from '@akala/pubsub';
 import { Schedule } from '@akala/cron';
 
-export type WorkflowInstance<T = any, TResult = unknown> = { workflow: Workflow, context: T, complete?: Deferred<TResult> };
+export type WorkflowInstance<T = unknown, TResult = unknown> = { workflow: Workflow, context: T, complete?: Deferred<TResult> };
 
 export default interface State
 {

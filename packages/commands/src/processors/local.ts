@@ -7,8 +7,9 @@ import { CommandWithProcessorAffinity, SelfDefinedCommand } from '../model/comma
 
 export class Local extends CommandProcessor
 {
-    static fromObject<T>(o: T): CommandProcessor
+    static fromObject<T extends object>(o: T): CommandProcessor
     {
+        //eslint-disable-next-line @typescript-eslint/no-explicit-any
         return new Local(o as any);
     }
 

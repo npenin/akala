@@ -57,10 +57,10 @@ export default class WsSocketAdapter implements SocketAdapter<Readable>
                     if (Buffer.isBuffer(data))
                         (handler as (ev: SocketAdapterEventMap['message']) => void).call(this, data.toString('utf8'));
                     else
-                        (handler as (ev: SocketAdapterEventMap['message']) => void).call(this, data as any);
+                        (handler as (ev: SocketAdapterEventMap['message']) => void).call(this, data);
                 }
                 else
-                    (handler as (ev: SocketAdapterEventMap['message']) => void).call(this, data as any);
+                    (handler as (ev: SocketAdapterEventMap['message']) => void).call(this, data);
 
             });
         }

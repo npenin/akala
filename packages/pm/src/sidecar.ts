@@ -1,5 +1,4 @@
-import { connectByPreference, Container, ConnectionPreference, registerCommands, updateCommands } from "@akala/commands";
-import { module } from "@akala/core";
+import { connectByPreference, ConnectionPreference, updateCommands } from "@akala/commands";
 import { SideCarConnectionPreference, Sidecar, defaultOrders, connect } from "./index";
 import * as ac from '@akala/commands'
 

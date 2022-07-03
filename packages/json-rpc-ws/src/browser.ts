@@ -134,20 +134,29 @@ class DefaultReader implements ReadableStreamDefaultReader<Uint8Array>
 
 class Readable implements ReadableStream<Uint8Array>
 {
-  forEach(callbackfn: (value: any, key: number, parent: ReadableStream<Uint8Array>) => void, thisArg?: any): void {
-    return this.buffer.forEach((x,i)=>callbackfn(x,i, thisArg || this))
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  forEach(callbackfn: (value: any, key: number, parent: ReadableStream<Uint8Array>) => void, thisArg?: any): void
+  {
+    return this.buffer.forEach((x, i) => callbackfn(x, i, thisArg || this))
   }
-  entries(): IterableIterator<[number, any]> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  entries(): IterableIterator<[number, any]>
+  {
     return this.buffer.entries();
   }
-  keys(): IterableIterator<number> {
+  keys(): IterableIterator<number>
+  {
     return this.buffer.keys();
 
   }
-  values(): IterableIterator<any> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  values(): IterableIterator<any>
+  {
     return this.buffer.values();
   }
-  [Symbol.iterator](): IterableIterator<any> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [Symbol.iterator](): IterableIterator<any>
+  {
     return this.buffer[Symbol.iterator]();
   }
   private buffer: (Uint8Array | null)[] = [];

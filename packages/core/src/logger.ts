@@ -13,7 +13,7 @@ export enum LogLevels
     verbose = 7,
     input = 8,
     silly = 9
-};
+}
 
 export type ILogger =
     {

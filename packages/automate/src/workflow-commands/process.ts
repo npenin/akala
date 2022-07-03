@@ -1,16 +1,16 @@
 import { CliContext } from "@akala/cli";
 import { Container } from "@akala/commands";
-import automate, { JobStepDispatch, JobStepJob, JobStepRun, MiddlewareRunner, interpolate, JobStepUse, IfMiddleware, RunMiddleware, LogMiddleware, Workflow, ForeachMiddleware, simpleRunner, TMiddlewareRunner, MiddlewareRunnerMiddleware } from "../automate";
+import automate, { JobStepDispatch, JobStepJob, JobStepRun, MiddlewareRunner, JobStepUse, Workflow, simpleRunner, TMiddlewareRunner, MiddlewareRunnerMiddleware } from "../automate";
 import path from 'path'
 import use from './use';
 
-export function DispatchMiddleware(container: Container<any>, runner: TMiddlewareRunner<any>): MiddlewareRunner<JobStepDispatch>
+export function DispatchMiddleware(container: Container<unknown>, runner: TMiddlewareRunner): MiddlewareRunner<JobStepDispatch>
 {
     return new MiddlewareRunnerMiddleware('dispatch', (context, step) => container.handle(container, step.dispatch, { _trigger: 'automate', ...step.with, ...context, param: [], runner }));
 }
 
 
-export function JobMiddleware(self: Container<any>, runner: TMiddlewareRunner<any>): MiddlewareRunner<JobStepJob>
+export function JobMiddleware(self: Container<unknown>, runner: TMiddlewareRunner): MiddlewareRunner<JobStepJob>
 {
     return new MiddlewareRunner('job',
         async (context, step, stdio) =>
@@ -18,7 +18,7 @@ export function JobMiddleware(self: Container<any>, runner: TMiddlewareRunner<an
     );
 }
 
-export function UsesMiddleware(container: Container<any>): MiddlewareRunner<JobStepUse>
+export function UsesMiddleware(container: Container<unknown>): MiddlewareRunner<JobStepUse>
 {
     return new MiddlewareRunner('uses', (context: CliContext<{ file: string }>, step) =>
     {

@@ -1,13 +1,11 @@
 import { DbSet } from './shared';
 import { Cardinality } from './cardinality';
-import { Expressions, Expression } from './expressions/expression';
+import { Expressions } from './expressions/expression';
 import { PersistenceEngine } from './PersistenceEngine';
 import { Query } from './Query';
 import { PersistenceEngineQueryProvider } from './PersistenceQueryProvider';
 import { Update, Delete, Create } from './commands/command';
 import { ConstantExpression } from './expressions/constant-expression';
-import { Serializer } from 'v8';
-import { Type } from '.';
 
 export enum StorageType
 {
@@ -59,7 +57,9 @@ export function parseType(type: string): FieldType
 
 export interface FieldType
 {
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     type: (...args: any) => FieldType,
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     defaultValue?: any,
     allowNull?: boolean,
     length?: number,
@@ -77,6 +77,7 @@ export enum Generator
 
 export type SerializedFieldType = keyof StorageFieldType | {
     type: keyof typeof StorageFieldType,
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     defaultValue?: any,
     allowNull?: boolean,
     length?: number,
@@ -99,26 +100,32 @@ export type SerializedStorageField = {
     mode: ModelMode.StorageField,
     nameInStorage: string,
     generator: keyof typeof Generator,
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     model: ModelDefinition<any>
 } & SerializedFieldType;
 
 
-export type Attribute<T, TMember extends Extract<keyof T, string>> = { name: TMember, nameInStorage: string, isKey: boolean, mode: ModelMode.Attribute, generator: Generator, model: ModelDefinition<T> } & FieldType;
-export type Relationship<T, TMember extends keyof T> = {
+export type Attribute<T, TMember extends Extract<keyof T, string> = Extract<keyof T, string>> = { name: TMember, nameInStorage: string, isKey: boolean, mode: ModelMode.Attribute, generator: Generator, model: ModelDefinition<T> } & FieldType;
+export type Relationship<T, TMember extends keyof T = keyof T> = {
     name: TMember,
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     target: ModelDefinition<any>,
     model: ModelDefinition<T>,
     mode: ModelMode.Relationship,
     cardinality: Cardinality,
     isComposite?: boolean,
     mapping: {
+        //eslint-disable-next-line @typescript-eslint/no-explicit-any
         sourceFields: (Attribute<T, any> | StorageField)[], target: ModelDefinition<any>, targetFields: (Attribute<T[TMember], any> | StorageField)[]
     }[]
 };
+//eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type StorageField = { isKey: boolean, mode: ModelMode.StorageField, nameInStorage: string, generator: Generator, model: ModelDefinition<any> } & FieldType;
+//eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Field<T = any> = Attribute<T, any> | StorageField;
 export enum ModelMode { Attribute, Relationship, StorageField }
 
+//eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class StorageView<U extends { [key: string]: any }>
 {
     constructor(public readonly model: ModelDefinition<U>)
@@ -142,6 +149,7 @@ export class StorageView<U extends { [key: string]: any }>
     }
 }
 
+//eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface SerializableDefinition<TObject extends Record<string, any>>
 {
     nameInStorage?: string;
@@ -151,8 +159,10 @@ export interface SerializableDefinition<TObject extends Record<string, any>>
     relationships?: { [key: string]: SerializedRelationship<TObject, Extract<keyof TObject, string>> };
 }
 
-export class ModelDefinition<TObject extends { [key: string]: any }>
+//eslint-disable-next-line @typescript-eslint/no-explicit-any
+export class ModelDefinition<TObject extends { [key: string]: any } = { [key: string]: any }>
 {
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     static definitions: { [key: string]: ModelDefinition<any> } = {};
     static get definitionsAsArray() { return Object.keys(this.definitions).map((name) => this.definitions[name]); }
     constructor(public name: string, public nameInStorage: string, public namespace: string)
@@ -163,6 +173,7 @@ export class ModelDefinition<TObject extends { [key: string]: any }>
             this.nameInStorage = name;
     }
 
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     public dbSet(engine: PersistenceEngine<any>): DbSet<TObject>
     {
         // eslint-disable-next-line @typescript-eslint/no-this-alias
@@ -234,14 +245,14 @@ export class ModelDefinition<TObject extends { [key: string]: any }>
     public readonly members: Partial<{ [k: string]: typeof k extends Extract<keyof TObject, string> ? Attribute<TObject, Extract<keyof TObject, string>> : StorageField }> = {};
     public readonly relationships: Partial<{ [k in keyof TObject]: Relationship<TObject, k> }> = {}
 
-    public get membersAsArray(): (Attribute<TObject, any> | StorageField)[]
+    public get membersAsArray(): (Attribute<TObject> | StorageField)[]
     {
         return Object.keys(this.members).map(k => this.members[k]);
     }
 
-    public get relationshipsAsArray(): Relationship<TObject, any>[]
+    public get relationshipsAsArray(): Relationship<TObject>[]
     {
-        return Object.keys(this.relationships).map(k => this.relationships[k]);
+        return Object.keys(this.relationships).map(k => this.relationships[k]) as Relationship<TObject>[];
     }
 
     public get key()
@@ -251,6 +262,7 @@ export class ModelDefinition<TObject extends { [key: string]: any }>
 
     public defineMember<TKey extends Extract<keyof TObject, string>>(name: TKey, isKey: boolean, type: FieldType, generator: Generator = Generator.business)
     {
+        //eslint-disable-next-line @typescript-eslint/no-explicit-any
         this.members[name] = Object.assign({ name, nameInStorage: name, isKey, mode: ModelMode.Attribute, generator }, type) as any;
         return this;
     }
@@ -260,8 +272,10 @@ export class ModelDefinition<TObject extends { [key: string]: any }>
     public defineStorageMember(name: string | StorageField & FieldType, isKey?: boolean, type?: FieldType, generator?: Generator)
     {
         if (typeof name == 'string')
+            //eslint-disable-next-line @typescript-eslint/no-explicit-any
             this.members[name] = Object.assign({ name, isKey, mode: ModelMode.StorageField, generator }, type) as any;
         else
+            //eslint-disable-next-line @typescript-eslint/no-explicit-any
             this.members[name.nameInStorage] = name as any;
         return this;
     }
@@ -302,18 +316,20 @@ export class ModelDefinition<TObject extends { [key: string]: any }>
 
 export interface Repository<TObject, TKey>
 {
-    init(configuration: any): void;
-    findById(key: TKey): PromiseLike<TObject>;
+    init(configuration: unknown): void;
+    findByKey(key: TKey): PromiseLike<TObject>;
     update(obj: TObject): PromiseLike<void>;
     deleteByKey(key: TKey): PromiseLike<void>;
     delete(obj: TObject): PromiseLike<void>;
 }
 
-export abstract class Model<TObject extends { [key: string]: any }, TKey extends keyof TObject | (keyof TObject)[]> implements Repository<TObject, TKey extends (keyof TObject)[] ? (TObject[TKey[number]])[] : TKey extends keyof TObject ? TObject[TKey] : never>
+export abstract class Model<TObject extends { [key: string]: unknown }, TKey extends keyof TObject | (keyof TObject)[]> implements Repository<TObject, TKey extends (keyof TObject)[] ? (TObject[TKey[number]])[] : TKey extends keyof TObject ? TObject[TKey] : never>
 {
-    abstract init(configuration: any): void;
-    abstract findById(key: TObject[any] | TObject[any][]): PromiseLike<TObject>;
+    abstract init(configuration: unknown): void;
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
+    abstract findByKey(key: TObject[any] | TObject[any][]): PromiseLike<TObject>;
     abstract update(obj: TObject): PromiseLike<void>;
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     abstract deleteByKey(key: TObject[any] | TObject[any][]): PromiseLike<void>;
     delete(obj: TObject): PromiseLike<void>
     {

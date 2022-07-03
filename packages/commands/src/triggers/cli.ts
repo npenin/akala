@@ -37,7 +37,7 @@ export var processTrigger = new Trigger('cli', async (c, program: NamespaceMiddl
                         context: context, options: context.options, param: context.args, _trigger: 'cli', get stdin()
                         {
                             return stdin || (stdin =
-                                new Promise<string>((resolve, reject) =>
+                                new Promise<string>((resolve) =>
                                 {
                                     const buffers = [];
                                     process.stdin.on('data', data => buffers.push(data));
