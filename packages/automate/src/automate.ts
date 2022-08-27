@@ -2,7 +2,7 @@ import { SerializableObject } from '@akala/json-rpc-ws'
 import Orchestrator from 'orchestrator';
 import { spawn, StdioNull, StdioPipe, SpawnOptionsWithoutStdio } from 'child_process';
 import commands from './container';
-import { Interpolate, mapAsync, Middleware, MiddlewareCompositeWithPriority, Parser, AggregateErrors, MiddlewarePromise, logger, Logger, LogLevels, ILogger } from '@akala/core';
+import { Interpolate, mapAsync, Middleware, MiddlewareCompositeWithPriority, Parser, parser, AggregateErrors, MiddlewarePromise, logger, Logger, LogLevels, ILogger } from '@akala/core';
 import { Stream } from 'stream';
 import fs from 'fs'
 import { runnerMiddleware } from './workflow-commands/process';
@@ -108,7 +108,7 @@ export const IfMiddleware: TMiddlewareRunner<JobStepIf> = new MiddlewareRunner<J
             return Promise.resolve();
         try
         {
-            if (!Parser.evalAsFunction(step.if, false)(context, false))
+            if (!new parser.EvaluatorAsFunction().eval(new Parser().parse(step.if))(context))
             {
                 if (step.outputAs)
                     return Promise.reject(false);

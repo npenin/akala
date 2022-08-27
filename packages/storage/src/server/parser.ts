@@ -1,14 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { BinaryExpression } from './expressions/binary-expression';
-import { StrictExpressions, StrictTypedExpression } from './expressions/expression';
-import { ConstantExpression } from './expressions/constant-expression';
-import { UnaryExpression } from './expressions/unary-expression';
-import { UnaryOperator } from './expressions/unary-operator';
-import { MemberExpression } from './expressions/member-expression';
-import { ParameterExpression } from './expressions/parameter-expression';
-import { NewExpression } from './expressions/new-expression';
-import { BinaryOperator } from '@akala/core';
+import { BinaryExpression, BinaryOperator, ConstantExpression, MemberExpression, NewExpression, ParameterExpression, StrictExpressions, StrictTypedExpression, UnaryExpression, UnaryOperator } from '@akala/core/expressions';
 
 
 var jsonKeyRegex = /^ *(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([^: ]+)) *): */;

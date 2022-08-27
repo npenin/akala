@@ -1,7 +1,10 @@
+
 export enum BinaryOperator
 {
     Equal,
+    StrictEqual,
     NotEqual,
+    StrictNotEqual,
     LessThan,
     LessThanOrEqual,
     GreaterThan,
@@ -14,5 +17,7 @@ export enum BinaryOperator
     Div,
     Times,
     Pow,
+    Dot,
+    Format,
     Unknown
 }

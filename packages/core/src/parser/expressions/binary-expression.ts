@@ -1,7 +1,8 @@
+import { BinaryOperator } from './binary-operator';
 import { Expression, Expressions, StrictExpressions } from './expression';
 import { ExpressionType } from './expression-type';
-import { BinaryOperator } from '@akala/core';
 import { ExpressionVisitor } from './expression-visitor';
+
 
 export class BinaryExpression<T extends Expressions = StrictExpressions> extends Expression
 {

@@ -1,4 +1,4 @@
-import { Parser } from './parser';
+import { getSetter, Parser } from './parser/parser';
 import { EventEmitter } from 'events';
 import { isPromiseLike } from './promiseHelpers';
 import * as formatters from './formatters/index';
@@ -6,7 +6,7 @@ import { map } from './each'
 import { Formatter } from './formatters/common';
 import { ExtendableEvent } from './module'
 import { Arguments } from './type-helper';
-import { ParsedFunction } from '.';
+import { EvaluatorAsFunction, ParsedFunction } from './parser/evaluator-as-function';
 export interface IWatched extends Object
 {
     $$watchers?: { [key: string]: Binding<unknown> };
@@ -81,7 +81,7 @@ export class Binding<T>
     constructor(protected _expression: string, private _target: IWatched, register = true)
     {
         this.formatter = formatters.identity as Formatter<T>;
-        this.evaluator = Parser.evalAsFunction(_expression) as ParsedFunction;
+        this.evaluator = new EvaluatorAsFunction().eval<T>(new Parser().parse(_expression));
         this.onChangingEvent = new BindingExtendableEvent(this);
         this.onChangedEvent = new BindingExtendableEvent(this);
         this.onErrorEvent = new BindingExtendableEvent(this);
@@ -101,7 +101,7 @@ export class Binding<T>
     public get target() { return this._target; }
     public set target(value) { this._target = value; this.register() }
 
-    private evaluator: ParsedFunction;
+    private evaluator: ParsedFunction<T>;
 
     public onChanging(handler: (ev: BindingExtendableEvent<T>) => void)
     {
@@ -173,13 +173,13 @@ export class Binding<T>
     //defined in constructor
     public getValue(): T
     {
-        return this.formatter(this.evaluator(this.target, false));
+        return this.formatter(this.evaluator(this.target));
     }
 
     public register()
     {
         let target = this.target;
-        const parts = Parser.parseBindable(this.expression);
+        const parts = this.expression.split('.');
         while (parts.length > 0)
         {
             var part = parts.shift();
@@ -270,21 +270,21 @@ export class Binding<T>
 
     public static getSetter<T>(target: IWatched, expression: string, source?: Binding<T>)
     {
-        const parts = Parser.parseBindable(expression);
+        const parts = expression.split('.');
         return async function (value: T, doNotTriggerEvents?: boolean)
         {
             while (parts.length > 1)
             {
                 if (!target && target !== '')
                     return;
-                target = target[parts.shift()];
+                target = target[parts.shift() as keyof typeof target];
             }
             if (typeof target === 'undefined')
                 return;
             if (typeof target.$$watchers == 'undefined')
                 Object.defineProperty(target, '$$watchers', { enumerable: false, writable: false, value: {}, configurable: true });
             const watcher = target.$$watchers[parts[0]];
-            const setter = Parser.getSetter(parts[0], target);
+            const setter = getSetter(parts[0], target);
             if (setter === null)
                 return;
 

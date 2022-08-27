@@ -36,7 +36,7 @@ export class ExpressionVisitor
 
     async visitNew<T>(expression: NewExpression<T>): Promise<Expressions>
     {
-        var members = await this.visitArray(expression.init);
+        var members: MemberExpression<T, keyof T, T[keyof T]>[] = await this.visitArray(expression.init as any) as any;
         if (members !== expression.init)
         {
             return new NewExpression<T>(...members);
@@ -68,7 +68,7 @@ export class ExpressionVisitor
         }
         return arg0;
     }
-    async visitMember<T, TMember extends keyof T>(arg0: MemberExpression<T, TMember, T[TMember]>): Promise<Expressions>
+    async visitMember<T, TMember extends keyof T>(arg0: MemberExpression<T, TMember, T[TMember]>): Promise<TypedExpression<T[TMember]>>
     {
         var source = await this.visit(arg0.source);
         if (source !== arg0.source)
@@ -103,22 +103,24 @@ export class ExpressionVisitor
         return a === b;
     }
 
-    async visitEnumerable<T>(map: IEnumerable<T>, addToNew: (item: T) => void, visitSingle: (item: T) => PromiseLike<T>, compare?: EqualityComparer<T>): Promise<void>
+    async visitEnumerable<T>(map: IEnumerable<T>, addToNew: (item: T) => void, visitSingle: (item: T, index: number) => PromiseLike<T>, compare?: EqualityComparer<T>): Promise<void>
     {
         if (!compare)
             compare = ExpressionVisitor.defaultComparer;
         var tmp: T[] = [];
+        let i = 0;
         for (var set of map)
         {
-            var newSet = await visitSingle.call(this, set)
-            if (compare(newSet, set))
+            var newSet = await visitSingle.call(this, set, i)
+            if (!compare(newSet, set))
                 tmp.forEach(addToNew);
             else
                 tmp.push(set);
+            i++;
         }
     }
 
-    async visitArray<T extends IVisitable<ExpressionVisitor, Promise<T>>>(parameters: T[]): Promise<T[]>
+    async visitArray<T extends IVisitable<ExpressionVisitor, Promise<U>>, U extends T>(parameters: T[]): Promise<T[]>
     {
         var result: T[] = null;
         await this.visitEnumerable(parameters, function (set)

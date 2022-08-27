@@ -1,4 +1,4 @@
-import { Predicate, Project, PredicateAsync } from './expressions/expression';
+import { Predicate, Project, PredicateAsync } from '@akala/core/expressions';
 import { NotSupportedException } from './exceptions';
 
 

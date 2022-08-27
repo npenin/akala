@@ -1,4 +1,4 @@
-import { Parser, ParsedString } from '../parser';
+import { Parser, ParsedString } from '../parser/parser';
 import { Formatter, FormatterFactory } from './common';
 import { module } from '../helpers';
 
@@ -160,12 +160,11 @@ export class DateFormatter implements FormatterFactory<Date, DateFormatterSettin
             return { format: settings.value };
         return settings as unknown as DateFormatterSettings;
     }
-    public build(formatter: Formatter<unknown>, settings: DateFormatterSettings): Formatter<Date>
+    public build(settings: DateFormatterSettings): Formatter<Date>
     {
         const parser = formatParser(settings && settings.format || 'yyyy-MM-dd');
         return function (value)
         {
-            value = formatter(value);
             if (value instanceof Date)
                 return value;
             if (typeof value != 'string')

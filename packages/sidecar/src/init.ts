@@ -1,6 +1,6 @@
 import { connect, Container as pm, ContainerLite, Sidecar as pmSidecar, sidecar as pmsidecar } from '@akala/pm'
 import Configuration from '@akala/config'
-import { connectByPreference, Container, helper } from '@akala/commands'
+import { connectByPreference, Container, helper, Metadata } from '@akala/commands'
 import PubSubContainer, { ContainerProxy as PubSubProxy } from '@akala/pubsub'
 import { ModelDefinition, MultiStore, PersistenceEngine, providers, Store, StoreDefinition } from '@akala/storage'
 import MetaPubSub from '@akala/pubsub/commands.json'
@@ -55,7 +55,7 @@ export default async function app<T extends StoreDefinition>(context: CliContext
     else
     {
         //eslint-disable-next-line @typescript-eslint/no-var-requires
-        var result = await connectByPreference<void>(require(path.join(os.homedir(), './pm.config.json')).mapping.pm.connect, { host: remotePm, metadata: await import('@akala/pm/commands.json') })
+        var result = await connectByPreference<void>(require(path.join(os.homedir(), './pm.config.json')).mapping.pm.connect, { host: remotePm, metadata: (await import('@akala/pm/commands.json')).default })
         sidecar.pm = result.container as Container<void> & pm;
     }
 

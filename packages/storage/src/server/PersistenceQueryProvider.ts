@@ -1,6 +1,6 @@
 import { IQueryableProvider } from './Query';
-import { Expressions } from './expressions/expression';
 import { PersistenceEngine } from './PersistenceEngine';
+import { Expressions } from '@akala/core/expressions';
 
 export class PersistenceEngineQueryProvider implements IQueryableProvider
 {

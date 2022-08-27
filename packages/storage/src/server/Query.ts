@@ -1,15 +1,14 @@
-import { TypedLambdaExpression, LambdaExpression } from './expressions/lambda-expression';
-import { Expression, TypedExpression, Predicate, Expressions, Project, Project2, StrictExpressions } from './expressions/expression';
-import { ApplySymbolExpression } from './expressions/apply-symbol-expression';
-import { ConstantExpression } from './expressions/constant-expression';
+import { TypedLambdaExpression, LambdaExpression, BinaryOperator } from '@akala/core/expressions';
+import { Expression, TypedExpression, Predicate, Expressions, Project, Project2, StrictExpressions } from '@akala/core/expressions';
+import { ApplySymbolExpression } from '@akala/core/expressions';
+import { ConstantExpression } from '@akala/core/expressions';
 import { ModelDefinition } from './shared';
-import { ParameterExpression } from './expressions/parameter-expression';
-import { MemberExpression } from './expressions/member-expression';
-import { NewExpression } from './expressions/new-expression';
-import { BinaryExpression } from './expressions/binary-expression';
+import { ParameterExpression } from '@akala/core/expressions';
+import { MemberExpression } from '@akala/core/expressions';
+import { NewExpression } from '@akala/core/expressions';
+import { BinaryExpression } from '@akala/core/expressions';
 import * as akala from '@akala/core'
 import { Parser } from './parser';
-import { BinaryOperator } from '@akala/core';
 
 export type asyncProxy<T> = { [P in keyof T]: PromiseLike<T[P]> };
 
@@ -56,8 +55,8 @@ export class Query<T> implements AsyncIterable<T>
     public where<F extends keyof T>(field: F, operator: BinaryOperator, value: T[F]): Query<T>
     public where(expression: string): Query<T>
     public where(expression: TypedLambdaExpression<Predicate<T>>): Query<T>
-    public where(field: string, operator: BinaryOperator, value: unknown): Query<T>
-    public where<F extends keyof T>(fieldOrExpression: F | TypedLambdaExpression<Predicate<T>>, operator?: BinaryOperator, value?: T[F]): Query<T>
+    public where(field: string, operator: akala.expressions.BinaryOperator, value: unknown): Query<T>
+    public where<F extends keyof T>(fieldOrExpression: F | TypedLambdaExpression<Predicate<T>>, operator?: akala.expressions.BinaryOperator, value?: T[F]): Query<T>
     {
         if (typeof fieldOrExpression == 'string')
         {
@@ -124,7 +123,7 @@ export class Query<T> implements AsyncIterable<T>
                 new NewExpression<X>(
                     new MemberExpression<X, typeof selector.first, X[typeof selector.first]>(new MemberExpression(parameterT, fieldT), selector.first),
                     new MemberExpression<X, typeof selector.second, X[typeof selector.second]>(new MemberExpression(parameterU, fieldU), selector.second)),
-                BinaryOperator.Unknown, other.expression),
+                akala.expressions.BinaryOperator.Unknown, other.expression),
             [parameterT, parameterU]);
         // }
         // if (typeof fieldOrExpression == 'symbol' || typeof fieldOrExpression == 'number')

@@ -8,55 +8,56 @@ import debug from 'debug';
 const logger = debug('json-rpc-ws');
 
 import * as ws from './ws/browser';
+import { ReadableStreamDefaultReadResult } from 'stream/web';
 export { ws };
 export { Client, SocketAdapter, Errors, BaseConnection, SerializableObject, Deferred, PayloadDataType, SerializedBuffer, Payload, ErrorPayload };
 
-// class ByobReader implements ReadableStreamBYOBReader
-// {
-//   reader: DefaultReader;
-//   constructor(private stream: Readable)
-//   {
-//     this.reader = new DefaultReader(stream);
-//     this.reader.releaseLock();
-//   }
-//   public emitError(error: any)
-//   {
-//     this.reader.emitError(error);
-//   }
+class ByobReader implements ReadableStreamBYOBReader
+{
+  reader: DefaultReader;
+  constructor(private stream: Readable)
+  {
+    this.reader = new DefaultReader(stream);
+    this.reader.releaseLock();
+  }
+  public emitError(error: any)
+  {
+    this.reader.emitError(error);
+  }
 
-//   get closed(): Promise<void>
-//   {
-//     return this.reader.closed;
-//   }
-//   cancel(reason?: any): Promise<void>
-//   {
-//     return this.reader.cancel(reason);
-//   }
+  get closed(): Promise<undefined>
+  {
+    return this.reader.closed;
+  }
+  cancel(reason?: any): Promise<void>
+  {
+    return this.reader.cancel(reason);
+  }
 
-//   public push(...chunks: (Uint8Array | null)[])
-//   {
-//     this.reader.push(...chunks);
-//   }
+  public push(...chunks: (Uint8Array | null)[])
+  {
+    this.reader.push(...chunks);
+  }
 
-//   read<T extends ArrayBufferView>(view: T): Promise<ReadableStreamDefaultReadResult<T>>
-//   {
-//     return this.reader.read().then(v =>
-//     {
-//       if (!v.done)
-//       {
-//         view.byteOffset = v.value.byteOffset;
-//         view.byteLength = v.value.byteLength;
-//         view.buffer = v.value.buffer;
-//       }
-//       return { done: v.done, value: view };
-//     })
-//   }
-//   releaseLock(): void
-//   {
-//     if (this.stream.reader === this)
-//       this.stream.reader = undefined;
-//   }
-// }
+  read<T extends ArrayBufferView>(view: T): Promise<ReadableStreamDefaultReadResult<T>>
+  {
+    return this.reader.read().then(v =>
+    {
+      if (!v.done)
+      {
+        view.byteOffset = v.value.byteOffset;
+        view.byteLength = v.value.byteLength;
+        view.buffer = v.value.buffer;
+      }
+      return { done: v.done as false, value: view };
+    })
+  }
+  releaseLock(): void
+  {
+    if (this.stream.reader === this.reader)
+      this.stream.reader = undefined;
+  }
+}
 
 
 class DefaultReader implements ReadableStreamDefaultReader<Uint8Array>

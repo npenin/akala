@@ -1,9 +1,10 @@
-import { Injected, ParsedOneOf } from "..";
+import { Injected } from "../injector";
+import { ParsedOneOf } from "../parser/parser";
 
 export type Formatter<TResult> = Injected<TResult>;// (value: unknown) => TResult;
 
 export interface FormatterFactory<TResult, TSettings = ParsedOneOf>
 {
     parse(expression: string): TSettings;
-    build(formatter: Formatter<unknown>, settings: TSettings): Formatter<TResult>;
+    build(settings: TSettings): Formatter<TResult>;
 }

@@ -1,5 +1,5 @@
 import { PersistenceEngine, dynamicProxy } from '../PersistenceEngine';
-import { StrictExpressions } from '../expressions/expression';
+import { StrictExpressions } from '@akala/core/expressions';
 import { CommandProcessor } from '../commands/command-processor';
 import { Commands, CommandResult } from '../commands/command';
 import { ExpressionExecutor } from '../expression-executor';

@@ -218,4 +218,3 @@ export { StorageFieldType as Types, FieldType as Type, Field as ModelField } fro
 
 export { File } from './providers/file'
 export { Vanilla } from './providers/vanilla'
-export * from './expressions/expression'
