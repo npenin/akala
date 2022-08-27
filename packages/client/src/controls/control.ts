@@ -94,17 +94,17 @@ export abstract class Control<T> implements IControl<T>
     {
         if (newControls)
         {
-            const controls: Record<string, unknown> = new akala.Parser().parse(element.dataset['bind'], true) as ParsedObject;
+            const controls = new akala.Parser().parse(element.dataset['bind']) as ParsedObject;
 
             let applicableControls: Control<unknown>[] = [];
 
-            Object.keys(controls).forEach(function (key)
+            controls.init.forEach(function (member)
             {
-                const control: Control<unknown> = Control.injector.resolve(key);
+                const control: Control<unknown> = Control.injector.resolve(member.member);
                 if (control)
                     applicableControls.push(control);
                 else
-                    console.error('missing control ' + key);
+                    console.error('missing control ' + member.member);
             });
 
             applicableControls.sort(function (a, b) { return a.priority - b.priority });

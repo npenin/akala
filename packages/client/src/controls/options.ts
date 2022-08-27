@@ -112,7 +112,7 @@ export class Options extends GenericControlInstance<OptionsParameter>
                 const val = (element as HTMLSelectElement).value;
                 const model = akala.grep(array, (it, i) =>
                 {
-                    return val == akala.Parser.eval(<string>(parameter.textvalue || parameter.value), { $item: it, $key: i });
+                    return val == new akala.parser.EvaluatorAsFunction().eval(new akala.Parser().parse((parameter.textvalue || parameter.value) as string))({ $item: it, $key: i });
                 }, true);
                 if (model.length == 0)
                     value.setValue(val, value);
@@ -124,7 +124,7 @@ export class Options extends GenericControlInstance<OptionsParameter>
             {
                 if (value !== ev.eventArgs.source && typeof array != 'undefined')
                 {
-                    const val = akala.Parser.eval(<string>(parameter.textvalue || parameter.value), { $item: ev.eventArgs.value, $key: array.indexOf(ev.eventArgs.value) });
+                    const val = new akala.parser.EvaluatorAsFunction().eval(new akala.Parser().parse((parameter.textvalue || parameter.value) as string))({ $item: ev.eventArgs.value, $key: array.indexOf(ev.eventArgs.value) });
                     this.element.querySelectorAll('option').forEach((opt, i) =>
                     {
                         opt.selected = val == opt.value;

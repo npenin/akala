@@ -1,4 +1,5 @@
-import { Parser } from '.';
+import { EvaluatorAsFunction } from './parser/evaluator-as-function';
+import { Parser } from './parser/parser';
 import { escapeRegExp } from './reflect';
 
 type EvalFunction<T> = (value: unknown) => T;
@@ -83,7 +84,7 @@ export class Interpolate
                 }
                 const exp = text.substring(startIndex + startSymbolLength, endIndex);
                 expressions.push(exp);
-                parseFns.push(Parser.evalAsFunction<string>(exp, false));
+                parseFns.push(new EvaluatorAsFunction().eval(new Parser().parse(exp)));
                 index = endIndex + endSymbolLength;
                 expressionPositions.push(concat.length);
                 concat.push('');

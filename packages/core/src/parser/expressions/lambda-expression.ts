@@ -19,16 +19,6 @@ export class TypedLambdaExpression<T extends (...args: unknown[]) => unknown> ex
     }
 }
 
-export type Arguments<T extends (...args: unknown[]) => unknown> = T extends () => unknown ? [] :
-    T extends (a: infer T1) => unknown ? [T1] :
-    T extends (a: infer T1, b: infer T2) => unknown ? [T1, T2] :
-    T extends (a: infer T1, b: infer T2, c: infer T3) => unknown ? [T1, T2, T3] :
-    T extends (a: infer T1, b: infer T2, c: infer T3, d: infer T4) => unknown ? [T1, T2, T3, T4] :
-    T extends (a: infer T1, b: infer T2, c: infer T3, d: infer T4, e: infer T5) => unknown ? [T1, T2, T3, T4, T5] :
-    T extends (a: infer T1, b: infer T2, c: infer T3, d: infer T4, e: infer T5, f: infer T6) => unknown ? [T1, T2, T3, T4, T5, T6] :
-    never;
-
-
 export type Parameters<T extends (...args: unknown[]) => unknown> = T extends () => unknown ? [] :
     T extends (a: infer T1) => unknown ? [ParameterExpression<T1>] :
     T extends (a: infer T1, b: infer T2) => unknown ? [ParameterExpression<T1>, ParameterExpression<T2>] :

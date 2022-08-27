@@ -1,4 +1,4 @@
-import { Expressions } from './expressions/index';
+import { Expressions } from '@akala/core/expressions';
 import { CommandResult, Commands, CommandType, Create, Update, Delete } from './commands/command';
 import { CommandProcessor } from './commands/command-processor';
 import { ModelDefinition, DbSet } from './shared';

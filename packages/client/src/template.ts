@@ -44,7 +44,7 @@ class DataBindComposer implements Composer<Record<string, unknown>>
     optionName = 'databind';
     async apply(item: HTMLElement, data: unknown, options?: Record<string, Control<unknown>>)
     {
-        const instances = await Control.apply(options || akala.Parser.evalAsFunction(item.dataset['bind'], true) as Record<string, unknown>, item);
+        const instances = await Control.apply(options || new akala.parser.EvaluatorAsFunction().eval(new akala.Parser().parse(item.dataset['bind']))() as Record<string, unknown>, item);
 
         await akala.eachAsync(item.querySelectorAll(this.selector), async (el: HTMLElement) =>
         {

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { PersistenceEngine, dynamicProxy } from '../PersistenceEngine';
-import { StrictExpressions } from '../expressions/expression';
+import { StrictExpressions, ConstantExpression } from '@akala/core/expressions';
 import { ExpressionExecutor } from '../expression-executor';
 import * as fs from "fs";
 import { basename, join } from "path";
@@ -9,7 +9,6 @@ import { CommandProcessor } from '../commands/command-processor';
 import { CommandResult, Commands, Create } from '../commands/command';
 import { ModelDefinition } from '../shared';
 import { promisify } from "util";
-import { ConstantExpression } from '../expressions/constant-expression';
 import { Generator } from '../common';
 import { v4 as uuid } from 'uuid'
 import { NotSupportedException } from '../exceptions';

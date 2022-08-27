@@ -1,5 +1,5 @@
 import { injectWithName } from './global-injector';
-import { ParsedAny, Parser } from './parser';
+import { ParsedAny, Parser } from './parser/parser';
 import { each, map } from './each';
 import { module } from './helpers';
 import { service } from './service';
@@ -183,9 +183,9 @@ export class HttpCallFormatterFactory implements FormatterFactory<Injected<Promi
         const method = /^ *(\w+)/.exec(expression);
         if (method)
             return { method: <keyof Http>method[1], $$length: method[0].length };
-        return new Parser().parseAny(expression, false) as { method?: keyof Http } & ParsedAny;
+        return new Parser().parseAny(expression) as { method?: keyof Http } & ParsedAny;
     }
-    public build(formatter: Formatter<unknown>, settings: { method: keyof Http }): Formatter<Injected<PromiseLike<unknown>>>
+    public build(settings: { method: keyof Http }): Formatter<Injected<PromiseLike<unknown>>>
     {
         if (!settings)
             settings = { method: 'getJSON' };
@@ -198,7 +198,7 @@ export class HttpCallFormatterFactory implements FormatterFactory<Injected<Promi
 
             return injectWithName(['$http'], function (http: Http)
             {
-                const formattedValue = formatter(scope);
+                const formattedValue = scope;
                 if (typeof (formattedValue) == 'string')
                     return (http[settingsValue.method || 'getJSON'] as typeof http.getJSON)(formattedValue, settingsValue.queryString);
 
@@ -227,11 +227,11 @@ export class HttpFormatterFactory implements FormatterFactory<PromiseLike<unknow
         return this.callFactory.parse(expression);
     }
 
-    public build(formatter, settings: { method: keyof Http })
+    public build(settings: { method: keyof Http })
     {
         return (value: unknown) =>
         {
-            return this.callFactory.build(formatter, settings)(value)();
+            return this.callFactory.build(settings)(value)();
         };
     }
 }

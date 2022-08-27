@@ -10,6 +10,6 @@ export enum ExpressionType
     MemberExpression,
     CallExpression,
     ApplySymbolExpression,
-    NewExpression,  
+    NewExpression,
     Unknown,
 }

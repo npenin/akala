@@ -18,7 +18,7 @@ export class Local extends CommandProcessor
         const sourceParams = source.
             map((i, j) => [i, j] as [string, number]).
             filter(x => x[0].startsWith('param.')).
-            map(x => [...x, Number(Parser.parseBindable(x[0])[1])] as [string, number, number]).
+            map(x => [...x, Number(x[0].substring('param.'.length))] as [string, number, number]).
             sort((a, b) => a[2] - b[2])
             ;
 
@@ -34,13 +34,13 @@ export class Local extends CommandProcessor
         const sourceParams = source.
             map((i, j) => [i, j] as [string, number]).
             filter(x => x[0].startsWith('param.')).
-            map(x => [...x, Number(Parser.parseBindable(x[0])[1])] as [string, number, number]).
+            map(x => [...x, Number(x[0].substring('param.'.length))] as [string, number, number]).
             sort((a, b) => a[2] - b[2])
             ;
         const destinationParams = destination.
             map((i, j) => [i, j] as [string, number]).
             filter(x => x[0].startsWith('param.')).
-            map(x => [...x, Number(Parser.parseBindable(x[0])[1])] as [string, number, number])
+            map(x => [...x, Number(x[0].substring('param.'.length))] as [string, number, number])
             ;
 
         return function (...args)

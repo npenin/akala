@@ -10,9 +10,6 @@ export * from './string-builder'
 export * from './providers/file'
 export * from './providers/vanilla'
 import { ModelDefinition } from './common';
-import * as expressions from './expressions/index'
-
-export { expressions }
 
 akala.module('@akala/storage');
 
