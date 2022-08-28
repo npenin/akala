@@ -162,18 +162,18 @@ export const RunMiddleware = new MiddlewareRunner<JobStepRun>('run',
     {
         if (!step.with)
             step.with = {};
-        const initialStdIoSetting = stdio && stdio[step.with.result] || stdio;
         const buffers: Buffer[] = [];
         const errBuffers: Buffer[] = [];
         if (typeof stdio == 'undefined')
             stdio = 'ignore';
         if (typeof (stdio) === 'string')
             stdio = { stdin: stdio, stderr: stdio, stdout: stdio };
+        const initialStdIoSetting = stdio;
         if (step.with.result && stdio[step.with.result] != 'pipe')
         {
             if (stdio[step.with.result] == 'ignore' || stdio[step.with.result] == 'inherit')
             {
-                stdio[step.with.result] = 'pipe'
+                stdio[step.with.result] = 'pipe';
             }
         }
 
@@ -185,8 +185,7 @@ export const RunMiddleware = new MiddlewareRunner<JobStepRun>('run',
             else
                 cmd = step.run;
 
-            context.logger.debug(cmd.join(' '));
-            const cp = spawn(cmd[0], cmd.slice(1), Object.assign(step.with || {}, stdio, { timeout: step.with.timeout || 3600000 })).on('close', function (code)
+            const cp = spawn(cmd[0], cmd.slice(1), Object.assign(step.with || {}, { stdio: ['stdin', 'stdout', 'stderr'].map(v => stdio[v]) }, { timeout: step.with.timeout || 3600000 })).on('close', function (code)
             {
                 if (code == 0)
                 {
@@ -231,16 +230,20 @@ export const RunMiddleware = new MiddlewareRunner<JobStepRun>('run',
                 }
             });
             if (step.with?.result)
+            {
                 cp[step.with.result].on('data', chunk =>
                 {
                     buffers.push(chunk);
-                    if (initialStdIoSetting === 'inherit')
+
+                    if (initialStdIoSetting[step.with.result] === 'inherit')
                         process.stdout.write(chunk);
                 })
-            cp.stderr.on('data', chunk =>
-            {
-                errBuffers.push(chunk);
-            })
+            }
+            if (initialStdIoSetting.stderr != 'ignore')
+                cp.stderr.on('data', chunk =>
+                {
+                    errBuffers.push(chunk);
+                })
         });
     }
 );

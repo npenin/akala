@@ -30,6 +30,40 @@
             }
         },
         {
+            "name": "generate",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/generate.js",
+                    "source": "src/cli/generate.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0",
+                        "options.name",
+                        "param.1"
+                    ],
+                    "options": {
+                        "name": {
+                            "needsValue": true
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "generate-declaration",
             "inject": [],
             "config": {
@@ -82,36 +116,32 @@
             }
         },
         {
-            "name": "generate",
+            "name": "new",
             "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist/cli/generate.js",
-                    "source": "src/cli/generate.ts",
+                    "path": "dist/cli/new.js",
+                    "source": "src/cli/new.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "usage": "new <action> <name> [destination]",
+                    "options": {
+                        "force": {
+                            "aliases": [
+                                "f"
+                            ]
+                        }
+                    },
                     "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
+                        "options.action",
+                        "options.name",
+                        "options",
+                        "options.destination"
                     ]
                 },
                 "": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "param.0",
-                        "options.name",
-                        "param.1"
-                    ],
-                    "options": {
-                        "name": {
-                            "needsValue": true
-                        }
-                    }
+                    "inject": []
                 }
             }
         },
@@ -154,28 +184,18 @@
             }
         },
         {
-            "name": "new",
+            "name": "serve",
             "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist/cli/new.js",
-                    "source": "src/cli/new.ts",
+                    "path": "dist/cli/serve.js",
+                    "source": "src/cli/serve.ts",
                     "inject": []
                 },
                 "cli": {
-                    "usage": "new <action> <name> [destination]",
-                    "options": {
-                        "force": {
-                            "aliases": [
-                                "f"
-                            ]
-                        }
-                    },
                     "inject": [
-                        "options.action",
-                        "options.name",
-                        "options",
-                        "options.destination"
+                        "$container",
+                        "options"
                     ]
                 },
                 "": {
@@ -194,26 +214,6 @@
                         "param.0",
                         "param.1",
                         "param.2"
-                    ]
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
-            "name": "serve",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/cli/serve.js",
-                    "source": "src/cli/serve.ts",
-                    "inject": []
-                },
-                "cli": {
-                    "inject": [
-                        "$container",
-                        "options"
                     ]
                 },
                 "": {
