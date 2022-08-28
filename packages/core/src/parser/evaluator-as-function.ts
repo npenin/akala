@@ -7,14 +7,15 @@ export type ParsedFunction<T> = (context?: unknown) => T;
 
 export class EvaluatorAsFunction extends ExpressionVisitor
 {
-    private result: unknown;
+    // private result: unknown;
     private requiresContext: boolean = false;
     private functionBody = '';
 
     public eval<T = unknown>(expression: ExpressionsWithLength): ParsedFunction<T>
     {
         this.visit(expression);
-        const f = new Function('$$context', this.functionBody);
+        const f = new Function('$$context', 'return ' + this.functionBody);
+
         if (this.requiresContext)
         {
             return f as (context: unknown) => T;
@@ -32,7 +33,7 @@ export class EvaluatorAsFunction extends ExpressionVisitor
             this.functionBody += '{';
             await this.visitEnumerable(expression.init, noop, async (m, i) =>
             {
-                this.result = null;
+                // this.result = null;
                 const currentBody = this.functionBody;
                 await this.visit(m.source);
                 this.functionBody = currentBody + (i > 0 ? ',' : '') + '"' + m.member.replace('\\', '\\\\').replace('"', '\\"') + '":' + this.functionBody
@@ -42,11 +43,11 @@ export class EvaluatorAsFunction extends ExpressionVisitor
         }
         else if (expression instanceof ParsedArray)
         {
-            const result = [];
+            // const result = [];
             this.functionBody += '{';
             await this.visitEnumerable(expression.init, noop, async (m, i) =>
             {
-                this.result = null;
+                // this.result = null;
                 const currentBody = this.functionBody;
                 await this.visit(m.source);
                 this.functionBody = currentBody + (i > 0 ? ',' : '') + '"' + m.member.replace('\\', '\\\\').replace('"', '\\"') + '":' + this.functionBody
