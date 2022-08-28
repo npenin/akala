@@ -1,9 +1,9 @@
-#  (2022-06-25)
+#  (2022-08-28)
 
 
 ### Bug Fixes
 
-* better support for compound keys a571109
+* **automate:** stdio fc9a326
 
 
 
