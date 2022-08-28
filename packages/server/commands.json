@@ -2,32 +2,6 @@
     "name": "@akala/server",
     "commands": [
         {
-            "name": "$init",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/$init.js",
-                    "source": "src/commands/$init.ts",
-                    "inject": []
-                },
-                "cli": {
-                    "inject": [
-                        "$container",
-                        "options",
-                        "pm"
-                    ],
-                    "options": {
-                        "mode": {
-                            "needsValue": true
-                        }
-                    }
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
             "name": "asset",
             "inject": [],
             "config": {
@@ -81,6 +55,32 @@
             }
         },
         {
+            "name": "$init",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/$init.js",
+                    "source": "src/commands/$init.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "inject": [
+                        "$container",
+                        "options",
+                        "pm"
+                    ],
+                    "options": {
+                        "mode": {
+                            "needsValue": true
+                        }
+                    }
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
             "name": "remote-container",
             "inject": [],
             "config": {
@@ -110,12 +110,12 @@
             }
         },
         {
-            "name": "remote-route",
+            "name": "webpack",
             "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist/commands/remote-route.js",
-                    "source": "src/commands/remote-route.ts",
+                    "path": "dist/commands/webpack.js",
+                    "source": "src/commands/webpack.ts",
                     "inject": [
                         "param.0",
                         "param.1",
@@ -123,24 +123,22 @@
                     ]
                 },
                 "": {
-                    "inject": []
-                }
-            }
-        },
-        {
-            "name": "remove-asset",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/remove-asset.js",
-                    "source": "src/commands/remove-asset.ts",
                     "inject": [
                         "param.0",
-                        "param.1"
+                        "param.1",
+                        "param.2"
                     ]
                 },
-                "": {
-                    "inject": []
+                "cli": {
+                    "options": {
+                        "boolean": [
+                            "reload"
+                        ]
+                    },
+                    "inject": [
+                        "param.0",
+                        "options.reload"
+                    ]
                 }
             }
         },
@@ -169,51 +167,6 @@
                         "$injector",
                         "param.0",
                         "param.1"
-                    ]
-                }
-            }
-        },
-        {
-            "name": "route",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/route.js",
-                    "source": "src/commands/route.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "options",
-                        "cwd"
-                    ],
-                    "options": {
-                        "normalize": [
-                            "param.1",
-                            "root"
-                        ],
-                        "boolean": [
-                            "get",
-                            "use",
-                            "pre",
-                            "auth",
-                            "app"
-                        ]
-                    }
-                },
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3"
                     ]
                 }
             }
@@ -268,12 +221,74 @@
             }
         },
         {
-            "name": "webpack",
+            "name": "route",
             "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist/commands/webpack.js",
-                    "source": "src/commands/webpack.ts",
+                    "path": "dist/commands/route.js",
+                    "source": "src/commands/route.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "options",
+                        "cwd"
+                    ],
+                    "options": {
+                        "normalize": [
+                            "param.1",
+                            "root"
+                        ],
+                        "boolean": [
+                            "get",
+                            "use",
+                            "pre",
+                            "auth",
+                            "app"
+                        ]
+                    }
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "remove-asset",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/remove-asset.js",
+                    "source": "src/commands/remove-asset.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "remote-route",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/remote-route.js",
+                    "source": "src/commands/remote-route.ts",
                     "inject": [
                         "param.0",
                         "param.1",
@@ -281,22 +296,7 @@
                     ]
                 },
                 "": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ]
-                },
-                "cli": {
-                    "options": {
-                        "boolean": [
-                            "reload"
-                        ]
-                    },
-                    "inject": [
-                        "param.0",
-                        "options.reload"
-                    ]
+                    "inject": []
                 }
             }
         }
