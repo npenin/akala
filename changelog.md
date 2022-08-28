@@ -1,4 +1,4 @@
-#  (2022-06-25)
+#  (2022-08-28)
 
 
 ### Bug Fixes
@@ -20,6 +20,7 @@
 * aritificial bump ae0e129
 * artificial bump 60cc1c1
 * automate implementation f76a995
+* **automate:** stdio fc9a326
 * avoids workflow leaks in context db4662a
 * better file init 1087260
 * better support for closed socket requests 9b38a60
@@ -44,6 +45,7 @@
 * connect fails when connect on mapping is undefined 16bdd27
 * connect should failed if mapping is not found 4392197
 * connect when connecting to pm 7494ae0
+* **core:** interpolate miss return f6c87b1
 * correct name assignment in fork 3deb98f
 * crash on parsing remote bcb17fe
 * default version ignore to decline 01cb0f7
