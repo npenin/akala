@@ -110,11 +110,11 @@ export class JsonRpc extends CommandProcessor
         return connection;
     }
 
-    public handle(_container: Container<unknown>, command: Command | string, params: StructuredParameters<OnlyArray<jsonrpcws.PayloadDataType<void>>>): MiddlewarePromise
+    public handle(_container: Container<unknown>, command: Command, params: StructuredParameters<OnlyArray<jsonrpcws.PayloadDataType<void>>>): MiddlewarePromise
     {
         return new Promise<Error | SpecialNextParam | OptionsResponse>((resolve, reject) =>
         {
-            if (!this.passthrough && typeof command != 'string')
+            if (!this.passthrough)
             {
                 const inject = command.config?.['']?.inject || command.inject;
                 if ((inject.length != 1 || inject[0] != '$param') && params._trigger)
