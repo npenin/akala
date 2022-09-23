@@ -9,7 +9,7 @@ import { Readable } from 'stream';
 
 import { spawnAsync } from './cli-helper';
 import State from './state';
-import program, { buildCliContextFromProcess, CliContext, NamespaceMiddleware, unparse } from '@akala/cli';
+import program, { buildCliContextFromProcess, CliContext, ErrorMessage, NamespaceMiddleware, unparse } from '@akala/cli';
 import { InteractError } from '.';
 import { Binding } from '@akala/core';
 
@@ -55,8 +55,8 @@ let socket: Socket;
 let processor: Processors.JsonRpc;
 let metaContainer: Metadata.Container;
 let container: Container<unknown>;
-const handle = new NamespaceMiddleware<CliOptions>(null);
-cli.command(null).preAction(async c =>
+const handle = cli;
+cli.preAction(async c =>
 {
     process.stdin.pause();
     process.stdin.setEncoding('utf8');
@@ -121,6 +121,8 @@ cli.command(null).preAction(async c =>
                 }
                 else if (!c.options.help)
                     reject(e);
+                else
+                    resolve()
             })
         });
     }
@@ -159,7 +161,7 @@ cli.command(null).preAction(async c =>
                 args.args.push(value);
             return await cli.process(args);
         }
-        throw undefined;
+        throw err;
     })
 
 // handle.action(async args =>
@@ -200,6 +202,8 @@ program.useError((err: Error, context) =>
 {
     if (context.options.verbose)
         console.error(err);
+    else if (err instanceof ErrorMessage)
+        console.log(err.message)
     else
         console.error('Error: ' + err.message);
     return Promise.reject(err);
