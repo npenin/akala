@@ -126,6 +126,7 @@
 * parser more reliable 5c92e5a
 * path can now be retrieved using property 2d3125e
 * path to command metadata 4fc8111
+* pm cli command usage a9ff0bf
 * pm connect when manual forking ed7357e
 * pm start a40a583
 * preferRemote now also allows less preferred connection 28e50f2

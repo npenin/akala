@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* add preAction before displaying usage 1316b59
+* pm cli command usage a9ff0bf
 
 
 
