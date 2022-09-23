@@ -2,27 +2,35 @@
     "name": "@akala/commands",
     "commands": [
         {
-            "name": "generate-metadata",
+            "name": "add-script",
             "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist/cli/generate-metadata.js",
-                    "source": "src/cli/generate-metadata.ts",
+                    "path": "dist/cli/add-script.js",
+                    "source": "src/cli/add-script.ts",
                     "inject": []
                 },
                 "cli": {
                     "inject": [
                         "options.name",
-                        "options.commandPath",
-                        "options.output",
-                        "options"
+                        "options.commands",
+                        "options.metadataFile",
+                        "options.typescriptFile"
                     ],
-                    "usage": "generate-metadata [commandPath] [output]",
+                    "usage": "add-script <commands> [typescriptFile] [metadataFile]",
                     "options": {
                         "name": {
                             "needsValue": true
                         }
                     }
+                },
+                "doc": {
+                    "description": "Adds scripts generate (and generate-metadata if `typescriptFile` is present) to the closest package.json\nif `name` is provided, generated scripts names are suffixed with the provided name",
+                    "inject": [
+                        "name of the container to be used",
+                        "path to the folder containing the commands",
+                        "path to the metadata file to get generated"
+                    ]
                 },
                 "": {
                     "inject": []
@@ -54,35 +62,27 @@
             }
         },
         {
-            "name": "add-script",
+            "name": "generate-metadata",
             "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist/cli/add-script.js",
-                    "source": "src/cli/add-script.ts",
+                    "path": "dist/cli/generate-metadata.js",
+                    "source": "src/cli/generate-metadata.ts",
                     "inject": []
                 },
                 "cli": {
                     "inject": [
                         "options.name",
-                        "options.commands",
-                        "options.metadataFile",
-                        "options.typescriptFile"
+                        "options.commandPath",
+                        "options.output",
+                        "options"
                     ],
-                    "usage": "add-script <commands> [typescriptFile] [metadataFile]",
+                    "usage": "generate-metadata [commandPath] [output]",
                     "options": {
                         "name": {
                             "needsValue": true
                         }
                     }
-                },
-                "doc": {
-                    "description": "Adds scripts generate (and generate-metadata if `typescriptFile` is present) to the closest package.json\nif `name` is provided, generated scripts names are suffixed with the provided name",
-                    "inject": [
-                        "name of the container to be used",
-                        "path to the folder containing the commands",
-                        "path to the metadata file to get generated"
-                    ]
                 },
                 "": {
                     "inject": []
@@ -198,7 +198,6 @@
                         }
                     },
                     "inject": [
-                        "options.action",
                         "options.name",
                         "options",
                         "options.destination"
@@ -231,7 +230,6 @@
                         }
                     },
                     "inject": [
-                        "options.action",
                         "options.name",
                         "options",
                         "options.destination"
