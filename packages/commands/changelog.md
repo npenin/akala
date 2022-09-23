@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* update CLI definitions 7281b40
+* remove debugger statement 955f084
 
 
 
