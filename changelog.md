@@ -188,6 +188,7 @@
 * switch processes state to object 5aa41a4
 * trigger signature 28e77a1
 * update all commands 8f54036
+* update CLI definitions 7281b40
 * update command definition 85c2891
 * update commands cli definition 5b7f8f1
 * update dependencies and regenerate metadata 0c83667
