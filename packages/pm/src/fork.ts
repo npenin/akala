@@ -6,13 +6,13 @@ import * as ac from '@akala/commands';
 import { lstat } from 'fs/promises';
 import { IpcAdapter } from "./ipc-adapter";
 import { logger, Logger, MiddlewareComposite, module as coreModule } from '@akala/core';
-import program, { buildCliContextFromProcess, NamespaceMiddleware } from '@akala/cli';
+import program, { buildCliContextFromProcess, ErrorMessage, NamespaceMiddleware } from '@akala/cli';
 import { Stats } from 'fs';
 import { registerCommands, SelfDefinedCommand, parseMetadata, StructuredParameters } from '@akala/commands';
 
 var isPm = false;
 
-program.useMiddleware(null, {
+program.option('help').useMiddleware(null, {
     handle: async c =>
     {
         isPm = c.options.program == 'pm';
@@ -62,9 +62,8 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
                 if (init && init.config && init.config.cli && init.config.cli.options)
                     ac.Triggers.addCliOptions(init, initMiddleware);
 
-                initMiddleware.option<string, 'pmSocket'>('pmSocket', { aliases: ['pm-socket', 'pm-sock'] }).action(async c =>
+                initMiddleware.option<string, 'pmSocket'>('pmSocket', { aliases: ['pm-socket', 'pm-sock'], needsValue: true }).action(async c =>
                 {
-
                     let pm: ac.Container<unknown>;
                     let pmConnectInfo: ac.ServeMetadata;
 
@@ -151,6 +150,9 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
 if (require.main == module)
     program.process(buildCliContextFromProcess()).catch(e =>
     {
-        console.error(e);
+        if (e instanceof ErrorMessage)
+            console.error(e.message);
+        else
+            console.error(e);
         process.exit(1);
     });
