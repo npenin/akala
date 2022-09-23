@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* fix for commands ac new 166c9ee
+* update CLI definitions 7281b40
 
 
 
