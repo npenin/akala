@@ -117,7 +117,6 @@ export class FileSystem extends CommandProcessor
 
         const files = await fs.readdir(root, { withFileTypes: true });
         const relativeTo = options.relativeTo;
-        debugger;
         await akala.eachAsync(files, async f =>
         {
             if (f.isFile())
