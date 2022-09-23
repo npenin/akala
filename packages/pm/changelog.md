@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* display for pmSocket config info c3b908b
+* update CLI definitions 7281b40
 
 
 
