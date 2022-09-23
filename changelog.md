@@ -147,6 +147,7 @@
 * remote ready failing dcc0fc1
 * remove _trigger when sending over jsonrpc 9fac492
 * remove container.ts in sidecar cc48571
+* remove debugger statement 955f084
 * remove duplicate binary operator 4930340
 * remove duplicate foreach in publish 09d9fe5
 * remove duplicated code in pm start command 3a91342
@@ -243,6 +244,7 @@
 * add $init function for easier usage 3f4fa32
 * add bridge support 0e4d6a4
 * add Configuration getters and setters c5dad91
+* add createIfEmpty flag on config load 2a47d59
 * add custom inject in jsonrpc processor 4fc1720
 * add extends support df13246
 * add ignore failure support f9929cf
