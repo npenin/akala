@@ -99,18 +99,21 @@ export default class Configuration<T extends object = SerializableObject>
         return this.config;
     }
 
-    public static async load<T extends object = SerializableObject>(file: string): Promise<ProxyConfiguration<T>>
+    public static async load<T extends object = SerializableObject>(file: string, createIfEmpty?: boolean): Promise<ProxyConfiguration<T>>
     {
+        var content: string;
         try
         {
-            const content = await fs.readFile(file, 'utf8');
-            return Configuration.new<T>(file, JSON.parse(content));
+            content = await fs.readFile(file, 'utf8');
         }
         catch (e)
         {
-            console.error(e);
-            return undefined;
+            if (!createIfEmpty || e.code !== 'ENOENT')
+                throw e;
+
+            await fs.writeFile(file, content = '{}');
         }
+        return Configuration.new<T>(file, JSON.parse(content));
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
