@@ -20,6 +20,19 @@ export interface OptionParseOption
     valueAssign: string;
 }
 
+export class ErrorMessage extends Error
+{
+    constructor(message?: string)
+    {
+        super(message);
+    }
+
+    toString()
+    {
+        return this.message;
+    }
+}
+
 const defaultOptionParseOption: OptionParseOption = { flagStart: '-', fullOptionStart: '--', valueAssign: '=' };
 
 export interface OptionOptions
@@ -197,7 +210,7 @@ class OptionsMiddleware<TOptions extends Record<string, string | number | boolea
     }
 }
 
-class UsageError extends Error
+export class UsageError extends ErrorMessage
 {
     constructor(cli: string)
     {
@@ -243,7 +256,6 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
 
         if (optionUsage)
             usage += '\nOptions:\n' + optionUsage;
-
 
         return usage;
     }
@@ -355,7 +367,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
             if (error)
                 return error;
             if (context.options.help && !this.index[context.args[0]])
-                return this.handleError(new Error(this.usage(context)), context);
+                return this.handleError(new ErrorMessage(this.usage(context)), context);
             if (this._cli)
                 error = await this._cli.handle(context);
             if (error)
