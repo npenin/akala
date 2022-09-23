@@ -1,4 +1,4 @@
-#  (2022-08-28)
+#  (2022-09-23)
 
 
 ### Bug Fixes
@@ -268,6 +268,7 @@
 * container can now act as middlewares 9484e39
 * cron complete implementation 40ad48b
 * embedded cron implementation in workflow 9c518f0
+* enable cli help/documentation c141969
 * enforce logger on buildCliContext dd636e1
 * errors like are now true errors 954d0a8
 * first pubsub commit 78b31e1
