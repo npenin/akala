@@ -37,6 +37,41 @@
             }
         },
         {
+            "name": "discover",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/discover.js",
+                    "source": "src/commands/discover.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "$container"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "$container"
+                    ]
+                },
+                "cli": {
+                    "usage": "discover <name> <folder>",
+                    "options": {
+                        "folder": {
+                            "normalize": true
+                        }
+                    },
+                    "inject": [
+                        "options.name",
+                        "options.folder",
+                        "$container"
+                    ]
+                }
+            }
+        },
+        {
             "name": "bridge",
             "inject": [],
             "config": {
@@ -126,41 +161,6 @@
                             "needsValue": true
                         }
                     }
-                }
-            }
-        },
-        {
-            "name": "discover",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/discover.js",
-                    "source": "src/commands/discover.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "$container"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "$container"
-                    ]
-                },
-                "cli": {
-                    "usage": "discover <name> <folder>",
-                    "options": {
-                        "folder": {
-                            "normalize": true
-                        }
-                    },
-                    "inject": [
-                        "options.name",
-                        "options.folder",
-                        "$container"
-                    ]
                 }
             }
         },
@@ -260,88 +260,6 @@
             }
         },
         {
-            "name": "map",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/map.js",
-                    "source": "src/commands/map.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2",
-                        "param.3"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "cwd",
-                        "options.c"
-                    ],
-                    "options": {
-                        "commandable": {
-                            "aliases": [
-                                "c"
-                            ],
-                            "needsValue": false
-                        }
-                    }
-                }
-            }
-        },
-        {
-            "name": "name",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/name.js",
-                    "source": "src/commands/name.ts",
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
-            "name": "proxy",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/proxy.js",
-                    "source": "src/commands/proxy.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "jsonrpc": {
-                    "inject": [
-                        "param.0",
-                        "socket"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                }
-            }
-        },
-        {
             "name": "ready",
             "inject": [],
             "config": {
@@ -369,24 +287,27 @@
             }
         },
         {
-            "name": "reload-metadata",
+            "name": "proxy",
             "inject": [],
             "config": {
                 "fs": {
+                    "path": "dist/commands/proxy.js",
+                    "source": "src/commands/proxy.ts",
                     "inject": [
-                        "param.0"
-                    ],
-                    "path": "dist/commands/reload-metadata.js",
-                    "source": "src/commands/reload-metadata.ts"
+                        "param.0",
+                        "param.1"
+                    ]
                 },
                 "jsonrpc": {
                     "inject": [
-                        "connectionAsContainer"
+                        "param.0",
+                        "socket"
                     ]
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "param.0",
+                        "param.1"
                     ]
                 }
             }
@@ -470,6 +391,69 @@
             }
         },
         {
+            "name": "map",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/map.js",
+                    "source": "src/commands/map.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "cwd",
+                        "options.c"
+                    ],
+                    "options": {
+                        "commandable": {
+                            "aliases": [
+                                "c"
+                            ],
+                            "needsValue": false
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "reload-metadata",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/commands/reload-metadata.js",
+                    "source": "src/commands/reload-metadata.ts"
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "connectionAsContainer"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
             "name": "status",
             "inject": [],
             "config": {
@@ -519,30 +503,6 @@
             }
         },
         {
-            "name": "update",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/update.js",
-                    "source": "src/commands/update.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "$container"
-                    ]
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
             "name": "version",
             "inject": [],
             "config": {
@@ -565,6 +525,46 @@
                         "param.0",
                         "param.1"
                     ]
+                }
+            }
+        },
+        {
+            "name": "name",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/name.js",
+                    "source": "src/commands/name.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "update",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/update.js",
+                    "source": "src/commands/update.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "$container"
+                    ]
+                },
+                "": {
+                    "inject": []
                 }
             }
         }

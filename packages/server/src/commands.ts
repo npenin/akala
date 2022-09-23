@@ -12,10 +12,10 @@ namespace commands
 		dispatch (cmd:'remote-route', ...args: [Argument0<typeof import('./commands/remote-route').default>, Argument1<typeof import('./commands/remote-route').default>, Argument2<typeof import('./commands/remote-route').default>]): ReturnType<typeof import('./commands/remote-route').default>
 		dispatch (cmd:'remove-asset', ...args: [Argument0<typeof import('./commands/remove-asset').default>, Argument1<typeof import('./commands/remove-asset').default>]): ReturnType<typeof import('./commands/remove-asset').default>
 		dispatch (cmd:'require', ...args: [Argument1<typeof import('./commands/require').default>, Argument2<typeof import('./commands/require').default>]): ReturnType<typeof import('./commands/require').default>
-		dispatch (cmd:'route', ...args: [Argument0<typeof import('./commands/route').default>, Argument1<typeof import('./commands/route').default>, Argument2<typeof import('./commands/route').default>, Argument3<typeof import('./commands/route').default>]): ReturnType<typeof import('./commands/route').default>
 		dispatch (cmd:'webpack-alias', ...args: [Argument0<typeof import('./commands/webpack-alias').default>, Argument1<typeof import('./commands/webpack-alias').default>]): ReturnType<typeof import('./commands/webpack-alias').default>
-		dispatch (cmd:'webpack-html', ...args: [Argument0<typeof import('./commands/webpack-html').default>]): ReturnType<typeof import('./commands/webpack-html').default>
 		dispatch (cmd:'webpack', ...args: [Argument0<typeof import('./commands/webpack').default>, Argument1<typeof import('./commands/webpack').default>, Argument2<typeof import('./commands/webpack').default>]): ReturnType<typeof import('./commands/webpack').default>
+		dispatch (cmd:'webpack-html', ...args: [Argument0<typeof import('./commands/webpack-html').default>]): ReturnType<typeof import('./commands/webpack-html').default>
+		dispatch (cmd:'route', ...args: [Argument0<typeof import('./commands/route').default>, Argument1<typeof import('./commands/route').default>, Argument2<typeof import('./commands/route').default>, Argument3<typeof import('./commands/route').default>]): ReturnType<typeof import('./commands/route').default>
 	}
 	export interface proxy 
 	{
@@ -26,10 +26,10 @@ namespace commands
 		'remote-route'(...args: [Argument0<typeof import('./commands/remote-route').default>, Argument1<typeof import('./commands/remote-route').default>, Argument2<typeof import('./commands/remote-route').default>]): ReturnType<typeof import('./commands/remote-route').default>
 		'remove-asset'(...args: [Argument0<typeof import('./commands/remove-asset').default>, Argument1<typeof import('./commands/remove-asset').default>]): ReturnType<typeof import('./commands/remove-asset').default>
 		'require'(...args: [Argument1<typeof import('./commands/require').default>, Argument2<typeof import('./commands/require').default>]): ReturnType<typeof import('./commands/require').default>
-		'route'(...args: [Argument0<typeof import('./commands/route').default>, Argument1<typeof import('./commands/route').default>, Argument2<typeof import('./commands/route').default>, Argument3<typeof import('./commands/route').default>]): ReturnType<typeof import('./commands/route').default>
 		'webpack-alias'(...args: [Argument0<typeof import('./commands/webpack-alias').default>, Argument1<typeof import('./commands/webpack-alias').default>]): ReturnType<typeof import('./commands/webpack-alias').default>
-		'webpack-html'(...args: [Argument0<typeof import('./commands/webpack-html').default>]): ReturnType<typeof import('./commands/webpack-html').default>
 		'webpack'(...args: [Argument0<typeof import('./commands/webpack').default>, Argument1<typeof import('./commands/webpack').default>, Argument2<typeof import('./commands/webpack').default>]): ReturnType<typeof import('./commands/webpack').default>
+		'webpack-html'(...args: [Argument0<typeof import('./commands/webpack-html').default>]): ReturnType<typeof import('./commands/webpack-html').default>
+		'route'(...args: [Argument0<typeof import('./commands/route').default>, Argument1<typeof import('./commands/route').default>, Argument2<typeof import('./commands/route').default>, Argument3<typeof import('./commands/route').default>]): ReturnType<typeof import('./commands/route').default>
 	}
 }
 

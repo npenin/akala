@@ -174,6 +174,88 @@
             }
         },
         {
+            "name": "webpack-alias",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/webpack-alias.js",
+                    "source": "src/commands/webpack-alias.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "webpack",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/webpack.js",
+                    "source": "src/commands/webpack.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "cli": {
+                    "options": {
+                        "boolean": [
+                            "reload"
+                        ]
+                    },
+                    "inject": [
+                        "param.0",
+                        "options.reload"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "webpack-html",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/webpack-html.js",
+                    "source": "src/commands/webpack-html.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "options"
+                    ]
+                }
+            }
+        },
+        {
             "name": "route",
             "inject": [],
             "config": {
@@ -214,88 +296,6 @@
                         "param.1",
                         "param.2",
                         "param.3"
-                    ]
-                }
-            }
-        },
-        {
-            "name": "webpack-alias",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/webpack-alias.js",
-                    "source": "src/commands/webpack-alias.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                }
-            }
-        },
-        {
-            "name": "webpack-html",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/webpack-html.js",
-                    "source": "src/commands/webpack-html.ts",
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "options"
-                    ]
-                }
-            }
-        },
-        {
-            "name": "webpack",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/webpack.js",
-                    "source": "src/commands/webpack.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ]
-                },
-                "cli": {
-                    "options": {
-                        "boolean": [
-                            "reload"
-                        ]
-                    },
-                    "inject": [
-                        "param.0",
-                        "options.reload"
                     ]
                 }
             }
