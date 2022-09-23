@@ -1,7 +1,7 @@
 import * as Metadata from '../metadata/index'
 import { Trigger } from '../model/trigger';
 import * as Processors from '../processors/index';
-import { NamespaceMiddleware } from '@akala/cli'
+import { NamespaceMiddleware, OptionOptions } from '@akala/cli'
 import { each, MiddlewarePromise } from '@akala/core';
 
 export var processTrigger = new Trigger('cli', async (c, program: NamespaceMiddleware<Record<string, string | boolean | string[] | number>>) =>
@@ -15,10 +15,10 @@ export var processTrigger = new Trigger('cli', async (c, program: NamespaceMiddl
             {
                 if (cmd.name.lastIndexOf('.') > -1)
                 {
-                    var command = program.command(cmd.name.substring(0, cmd.name.lastIndexOf('.')).split('.').join(' ') + ' ' + cmd.config.cli.usage);
+                    var command = program.command(cmd.name.substring(0, cmd.name.lastIndexOf('.')).split('.').join(' ') + ' ' + cmd.config.cli.usage, cmd.config?.doc?.description);
                 }
                 else
-                    var command = program.command(cmd.config.cli.usage);
+                    var command = program.command(cmd.config.cli.usage, cmd.config?.doc?.description);
             }
             else
                 var command = program.command(cmd.name.split('.').join(' '));
@@ -27,7 +27,7 @@ export var processTrigger = new Trigger('cli', async (c, program: NamespaceMiddl
 
             let stdin: Promise<string> | undefined;
 
-            command.useMiddleware({
+            command.useMiddleware(null, {
                 handle(context)
                 {
                     return Processors.Local.execute(cmd, (...args) =>
@@ -51,17 +51,23 @@ export var processTrigger = new Trigger('cli', async (c, program: NamespaceMiddl
         }
     });
 
-    return program;
+    return program.option('help', { needsValue: false, doc: "displays this help message" });
 });
 
 export function addOptions(cmd: Metadata.Command, command: NamespaceMiddleware): void
 {
-    cmd.config?.cli?.inject?.forEach(p =>
+    cmd.config?.cli?.inject?.forEach((p, i) =>
     {
         if (p.startsWith('options.'))
         {
             const optionName = p.substring('options.'.length);
-            command.option(optionName, cmd.config.cli.options && cmd.config.cli.options[optionName])
+            var option = cmd.config.cli.options && cmd.config.cli.options[optionName]
+            if ((!option || !option.doc) && cmd.config.doc && cmd.config.doc.options && cmd.config.doc.options[optionName])
+                option = Object.assign({}, option, { doc: cmd.config.doc.options[optionName] });
+            if ((!option || !option.doc) && cmd.config.doc && cmd.config.doc.inject)
+                option = Object.assign({}, option, { doc: cmd.config.doc.inject[i] });
+
+            command.option(optionName, option)
         }
     });
     if (cmd.config?.cli?.options)
@@ -71,6 +77,9 @@ export function addOptions(cmd: Metadata.Command, command: NamespaceMiddleware):
                 return;
             if (cmd.config.cli.inject.indexOf('options.' + name) > -1)
                 return;
+            if ((!opt || !opt.doc) && cmd.config.doc && cmd.config.doc.options && cmd.config.doc.options[name])
+                opt = Object.assign({}, opt, { doc: cmd.config.doc.options[name] });
+
             command.option(name, opt)
         })
 }

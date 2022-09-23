@@ -5,8 +5,7 @@ export * from './shared'
 export * from './composite'
 export * from './route'
 export * from './router'
-
-
+export * from './indexed'
 
 export class Router1<T extends Routable> extends Router<[T]>
 {

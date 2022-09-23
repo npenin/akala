@@ -29,7 +29,7 @@ export class Cli
     constructor(public readonly cliContainer: Container<void>, commands: Metadata.Command[], processor: CommandProcessor, program: NamespaceMiddleware)
     {
         registerCommands(commands, processor, cliContainer);
-        cliContainer.attach(Triggers.cli, this.program = program.options({ verbose: { aliases: ['v'] } }).command(null));
+        cliContainer.attach(Triggers.cli, this.program = program.command(null).options({ verbose: { aliases: ['v'] }, help: { needsValue: false } }));
     }
 
     public static async fromFileSystem(commandsPath: string, relativeTo: string): Promise<Cli>

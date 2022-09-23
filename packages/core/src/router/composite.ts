@@ -52,6 +52,11 @@ export class MiddlewareComposite<T extends unknown[]> implements Middleware<T>, 
         this.name = name;
     }
 
+    public static new<T extends unknown[]>(...middlewares: AnyMiddleware<T>[])
+    {
+        return new MiddlewareComposite<T>().useMiddleware(...middlewares);
+    }
+
     private readonly stack: AnyMiddleware<T>[] = [];
 
     public useMiddleware(...middlewares: AnyMiddleware<T>[]): this
@@ -314,12 +319,12 @@ export class MiddlewareCompositeWithPriority<T extends unknown[]> implements Mid
 }
 
 
-function isErrorMiddleware<T extends unknown[]>(middleware: AnyMiddleware<T>): middleware is ErrorMiddleware<T>
+export function isErrorMiddleware<T extends unknown[]>(middleware: AnyMiddleware<T>): middleware is ErrorMiddleware<T>
 {
     return middleware && middleware['handleError'];
 }
 
-function isStandardMiddleware<T extends unknown[]>(middleware: AnyMiddleware<T>): middleware is Middleware<T>
+export function isStandardMiddleware<T extends unknown[]>(middleware: AnyMiddleware<T>): middleware is Middleware<T>
 {
     return middleware && middleware['handle'];
 }

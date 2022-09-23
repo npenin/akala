@@ -18,7 +18,9 @@
     "scripts": {
         "lint": "eslint . --ext .ts --cache",
         "test": "snyk test",
-        "commit": "cz"
+        "commit": "cz",
+        "generate": "yarn workspaces foreach -A run generate",
+        "generate-metadata": "yarn workspaces foreach -A run generate-metadata"
     },
     "config": {
         "commitizen": {

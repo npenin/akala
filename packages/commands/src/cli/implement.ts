@@ -2,7 +2,8 @@ import { CliContext } from "@akala/cli";
 import { readFile, mkdir } from "fs/promises";
 import { join } from "path";
 import { Container } from "../metadata";
-import _new, { newCommandConfiguration } from "./new";
+import command from "./new/command";
+import { newCommandConfiguration } from "./new/command-config";
 
 export default async function implement(pathToCommandFile: string, destination: string, options: CliContext<{ force?: boolean }>['options']): Promise<void>
 {
@@ -18,7 +19,7 @@ export default async function implement(pathToCommandFile: string, destination: 
     }
     await Promise.all(metadata.commands.map(async c =>
     {
-        await _new('c', c.name, options, join(destination, metadata.name));
+        await command(c.name, options, join(destination, metadata.name));
         await newCommandConfiguration(c, options, join(destination, metadata.name));
     }
     ));
