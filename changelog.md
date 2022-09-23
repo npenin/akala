@@ -11,6 +11,7 @@
 * add missing package required property ba0c9df
 * add missing proxy command to establish the bridge 9596ae9
 * add pm processor when proxying 3dbeb5e
+* add preAction before displaying usage 1316b59
 * add recursive path creation 3f7ffa7
 * add stdin to pm cli e07437a
 * added missing yaml dependency fa66dd1
