@@ -52,6 +52,7 @@
 * dependencies d61f681
 * discover cli usage 697946b
 * discover implementation 3502bed
+* display for pmSocket config info c3b908b
 * docker build cfdaf4e
 * enumerate on configuration objects a61e720
 * error flow in composite middleware ec36174
@@ -61,6 +62,7 @@
 * export parseMetadata 8870389
 * expose jsonrpc client id fd0f873
 * fix automate runner ae9c216
+* fix for commands ac new 166c9ee
 * fix model registration and serialization 7236001
 * force metadata command registration in remote container 840d6dd
 * force socket processor on pm forks 0874275
