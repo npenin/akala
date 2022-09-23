@@ -1,9 +1,9 @@
-#  (2022-08-28)
+#  (2022-09-23)
 
 
-### Bug Fixes
+### Features
 
-* **automate:** stdio fc9a326
+* enable cli help/documentation c141969
 
 
 
