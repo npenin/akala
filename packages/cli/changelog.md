@@ -1,9 +1,9 @@
 #  (2022-09-23)
 
 
-### Features
+### Bug Fixes
 
-* enable cli help/documentation c141969
+* display for pmSocket config info c3b908b
 
 
 
