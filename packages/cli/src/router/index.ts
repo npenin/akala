@@ -366,14 +366,14 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
             var error = await this._option.handle(context);
             if (error)
                 return error;
-            if (context.options.help && !this.index[context.args[0]])
-                return this.handleError(new ErrorMessage(this.usage(context)), context);
             if (this._cli)
                 error = await this._cli.handle(context);
             if (error)
                 return error;
             if (this._preAction)
                 error = await this._preAction.handle(context)
+            if (context.options.help && !this.index[context.args[0]])
+                return this.handleError(new ErrorMessage(this.usage(context)), context);
             if (error)
                 return error;
             return super.handle(context).then(async err =>
