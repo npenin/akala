@@ -1,9 +1,9 @@
 #  (2022-09-23)
 
 
-### Features
+### Bug Fixes
 
-* enable cli help/documentation c141969
+* pm cli command usage a9ff0bf
 
 
 
