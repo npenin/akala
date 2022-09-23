@@ -36,3 +36,9 @@ export interface CliConfiguration extends Configuration
     usage?: string;
     options?: { [key: string]: OptionOptions };
 }
+
+export interface DocConfiguration extends Configuration
+{
+    description?: string;
+    options?: { [key: string]: string };
+}

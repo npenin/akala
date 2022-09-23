@@ -60,31 +60,3 @@ export async function newCommandConfiguration(cmd: Metadata.Command, options: Cl
         delete cmd.config.fs.path;
     await write(output, JSON.stringify({ $schema: "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json", ...cmd.config }, null, 4));
 }
-
-export default async function _new(type: string, name: string, options: CliContext<{ force?: boolean }>['options'], destination?: string)
-{
-    switch (type)
-    {
-        case 'command':
-        case 'cmd':
-        case 'c':
-            var { output } = await outputHelper(destination, name + '.ts', options && options.force);
-            await write(output, `export default async function ${name}()
-{
-
-}`);
-            break;
-        case 'cc':
-        case 'command-config':
-            {
-                var cmds = await Processors.FileSystem.discoverMetaCommands(destination, { isDirectory: true, processor: new Processors.FileSystem(destination) });
-                const cmd = cmds.find(c => c.name == name);
-                if (!cmd)
-                    throw new ErrorWithStatus(44, `No command with name ${name} could be found in ${destination}`)
-                await newCommandConfiguration(cmd, options, destination);
-            }
-            break;
-        default:
-            throw new Error(`${type} is not supported`);
-    }
-}

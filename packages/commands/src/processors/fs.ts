@@ -117,9 +117,11 @@ export class FileSystem extends CommandProcessor
 
         const files = await fs.readdir(root, { withFileTypes: true });
         const relativeTo = options.relativeTo;
+        debugger;
         await akala.eachAsync(files, async f =>
         {
             if (f.isFile())
+            {
                 if (f.name.endsWith('.js'))
                 {
                     const fsConfig: FileSystemConfiguration & jsonObject = { path: path.relative(relativeTo, path.join(root, f.name).replace(/\\/g, '/')) };
@@ -238,9 +240,10 @@ export class FileSystem extends CommandProcessor
                         commands.push(cmd);
                     }
                 }
-                else
-                    if (f.isDirectory() && options && options.recursive)
-                        commands.push(...await FileSystem.discoverMetaCommands(path.join(root, f.name), options));
+            }
+            else
+                if (f.isDirectory() && options && options.recursive)
+                    commands.push(...await FileSystem.discoverMetaCommands(path.join(root, f.name), options));
         }, null, false);
 
         return commands;

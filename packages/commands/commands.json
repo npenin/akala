@@ -2,6 +2,58 @@
     "name": "@akala/commands",
     "commands": [
         {
+            "name": "generate-metadata",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/generate-metadata.js",
+                    "source": "src/cli/generate-metadata.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "inject": [
+                        "options.name",
+                        "options.commandPath",
+                        "options.output",
+                        "options"
+                    ],
+                    "usage": "generate-metadata [commandPath] [output]",
+                    "options": {
+                        "name": {
+                            "needsValue": true
+                        }
+                    }
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "generate-declaration",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/generate-declaration.js",
+                    "source": "src/cli/generate-declaration.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "options.name",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
             "name": "add-script",
             "inject": [],
             "config": {
@@ -23,6 +75,14 @@
                             "needsValue": true
                         }
                     }
+                },
+                "doc": {
+                    "description": "Adds scripts generate (and generate-metadata if `typescriptFile` is present) to the closest package.json\nif `name` is provided, generated scripts names are suffixed with the provided name",
+                    "inject": [
+                        "name of the container to be used",
+                        "path to the folder containing the commands",
+                        "path to the metadata file to get generated"
+                    ]
                 },
                 "": {
                     "inject": []
@@ -60,88 +120,6 @@
                             "needsValue": true
                         }
                     }
-                }
-            }
-        },
-        {
-            "name": "generate-declaration",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/cli/generate-declaration.js",
-                    "source": "src/cli/generate-declaration.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "options.name",
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
-            "name": "generate-metadata",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/cli/generate-metadata.js",
-                    "source": "src/cli/generate-metadata.ts",
-                    "inject": []
-                },
-                "cli": {
-                    "inject": [
-                        "options.name",
-                        "options.commandPath",
-                        "options.output",
-                        "options"
-                    ],
-                    "usage": "generate-metadata [commandPath] [output]",
-                    "options": {
-                        "name": {
-                            "needsValue": true
-                        }
-                    }
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
-            "name": "new",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/cli/new.js",
-                    "source": "src/cli/new.ts",
-                    "inject": []
-                },
-                "cli": {
-                    "usage": "new <action> <name> [destination]",
-                    "options": {
-                        "force": {
-                            "aliases": [
-                                "f"
-                            ]
-                        }
-                    },
-                    "inject": [
-                        "options.action",
-                        "options.name",
-                        "options",
-                        "options.destination"
-                    ]
-                },
-                "": {
-                    "inject": []
                 }
             }
         },
@@ -184,6 +162,90 @@
             }
         },
         {
+            "name": "register",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/register.js",
+                    "source": "src/cli/register.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "command-config",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/new/command-config.js",
+                    "source": "src/cli/new/command-config.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "usage": "new cc <name> [destination]",
+                    "options": {
+                        "force": {
+                            "aliases": [
+                                "f"
+                            ]
+                        }
+                    },
+                    "inject": [
+                        "options.action",
+                        "options.name",
+                        "options",
+                        "options.destination"
+                    ]
+                },
+                "doc": {
+                    "description": "create a new command configuration (json file) with the given name and destination (if present, cwd otherwise)"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "command",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/new/command.js",
+                    "source": "src/cli/new/command.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "usage": "new cmd <name> [destination]",
+                    "options": {
+                        "force": {
+                            "aliases": [
+                                "f"
+                            ]
+                        }
+                    },
+                    "inject": [
+                        "options.action",
+                        "options.name",
+                        "options",
+                        "options.destination"
+                    ]
+                },
+                "doc": {
+                    "description": "create a new command with the given name and destination (if present, cwd otherwise)"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
             "name": "serve",
             "inject": [],
             "config": {
@@ -196,24 +258,6 @@
                     "inject": [
                         "$container",
                         "options"
-                    ]
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
-            "name": "register",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/cli/register.js",
-                    "source": "src/cli/register.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
                     ]
                 },
                 "": {

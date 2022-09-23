@@ -32,14 +32,14 @@ const tableChars = {
 }
 const truncate = '…';
 
-type CliOptions = { output: string, verbose: boolean, pmSock: string | number, tls: boolean };
+type CliOptions = { output: string, verbose: boolean, pmSock: string | number, tls: boolean, help: boolean };
 
-const cli = program.options<CliOptions>({ output: { aliases: ['o'], needsValue: true }, verbose: { aliases: ['v'] }, tls: {}, pmSock: { aliases: ['pm-sock'], needsValue: true } });
+const cli = program.options<CliOptions>({ output: { aliases: ['o'], needsValue: true, doc: 'output as `table` if array otherwise falls back to standard node output' }, verbose: { aliases: ['v'] }, tls: { doc: "enables tls connection to the `pmSock`" }, pmSock: { aliases: ['pm-sock'], needsValue: true, doc: "path to the unix socket or destination in the form host:port" }, help: { doc: "displays this help message" } });
 cli.command<{ program?: string }>('start [program]')
-    .option('inspect')
-    .option('wait', { aliases: ['w'] })
+    .option('inspect', { doc: "starts the process with --inspect-brk parameter to help debugging" })
+    .option('wait', { aliases: ['w'], doc: "waits for the program to be started before returning, otherwise, returns after the start command is sent to the pm daemon" })
     .option('new', { needsValue: false })
-    .option('name', { needsValue: true })
+    .option('name', { needsValue: true, doc: "name the process as per the given value" })
     .action(c =>
     {
         if (typeof c.options.program == 'undefined')
@@ -119,7 +119,7 @@ cli.command(null).preAction(async c =>
                         console.error('pm is not started');
                     });
                 }
-                else
+                else if (!c.options.help)
                     reject(e);
             })
         });
@@ -139,7 +139,7 @@ cli.command(null).preAction(async c =>
         await container.attach(Triggers.cli, handle);
     }
 }).
-    useMiddleware(handle).
+    useMiddleware(null, handle).
     useError(async (err: InteractError, args) =>
     {
         if (err.code === 'INTERACT')

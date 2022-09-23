@@ -19,6 +19,7 @@ namespace commands
 		dispatch (cmd:'proxy', ...args: [Argument0<typeof import('./commands/proxy').default>, Argument1<typeof import('./commands/proxy').default>]): ReturnType<typeof import('./commands/proxy').default>
 		dispatch (cmd:'ready', ...args: []): ReturnType<typeof import('./commands/ready').default>
 		dispatch (cmd:'reload-metadata', ...args: [Argument0<typeof import('./commands/reload-metadata').default>]): ReturnType<typeof import('./commands/reload-metadata').default>
+		dispatch (cmd:'restart', ...args: [Argument1<typeof import('./commands/restart').default>, Argument2<typeof import('./commands/restart').default>]): ReturnType<typeof import('./commands/restart').default>
 		dispatch (cmd:'start', ...args: [Argument1<typeof import('./commands/start').default>, Argument2<typeof import('./commands/start').default>]): ReturnType<typeof import('./commands/start').default>
 		dispatch (cmd:'status', ...args: [Argument0<typeof import('./commands/status').default>]): ReturnType<typeof import('./commands/status').default>
 		dispatch (cmd:'stop', ...args: [Argument0<typeof import('./commands/stop').default>]): ReturnType<typeof import('./commands/stop').default>
@@ -41,6 +42,7 @@ namespace commands
 		'proxy'(...args: [Argument0<typeof import('./commands/proxy').default>, Argument1<typeof import('./commands/proxy').default>]): ReturnType<typeof import('./commands/proxy').default>
 		'ready'(...args: []): ReturnType<typeof import('./commands/ready').default>
 		'reload-metadata'(...args: [Argument0<typeof import('./commands/reload-metadata').default>]): ReturnType<typeof import('./commands/reload-metadata').default>
+		'restart'(...args: [Argument1<typeof import('./commands/restart').default>, Argument2<typeof import('./commands/restart').default>]): ReturnType<typeof import('./commands/restart').default>
 		'start'(...args: [Argument1<typeof import('./commands/start').default>, Argument2<typeof import('./commands/start').default>]): ReturnType<typeof import('./commands/start').default>
 		'status'(...args: [Argument0<typeof import('./commands/status').default>]): ReturnType<typeof import('./commands/status').default>
 		'stop'(...args: [Argument0<typeof import('./commands/stop').default>]): ReturnType<typeof import('./commands/stop').default>

@@ -8,7 +8,10 @@ export default async function $init(this: CliContext, name: string, pm: pmContai
     this.currentWorkingDirectory = process.cwd();
     this.logger = buildCliContextFromProcess().logger;
     if (pm)
+    {
         await pm.dispatch('connect', name, options);
+        self.register('pm', pm);
+    }
     else
         await serve(self, serveMetadata(name, options));
 }

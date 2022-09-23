@@ -7,7 +7,6 @@ import { buildCliContextFromProcess } from '.';
 
 (async function ()
 {
-
     if (await promisify(fs.exists)('./config.json'))
     {
         const content = JSON.parse(await promisify(fs.readFile)('./config.json', 'utf-8'));

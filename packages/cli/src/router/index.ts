@@ -1,5 +1,5 @@
 import * as akala from '@akala/core'
-import { Logger } from '@akala/core';
+import { each, Logger, map, Middleware, MiddlewarePromise } from '@akala/core';
 import * as path from 'path'
 import normalize from '../helpers/normalize';
 
@@ -28,6 +28,7 @@ export interface OptionOptions
     needsValue?: boolean,
     caseSensitive?: boolean,
     normalize?: boolean | 'require' | 'requireMeta';
+    doc?: string;
 }
 
 class OptionMiddleware implements akala.Middleware<[context: CliContext]>
@@ -130,8 +131,51 @@ class OptionMiddleware implements akala.Middleware<[context: CliContext]>
     }
 }
 
+function formatUsage(obj: Record<string, string>, indent?: number): string
+{
+    indent = indent || 0;
+    var indentS = ''.padStart(indent, ' ');
+    var preparedNames = map(obj, (_option, optionName) =>
+    {
+        if (typeof (optionName) != 'string')
+            return null;
+        return { usage: indentS + optionName, optionName };
+    }, true);
+
+    const nameColumnMaxLength = Math.ceil(preparedNames.reduce((previous, current) => Math.max(previous, current.usage.length), 0)) + 4;
+
+    return preparedNames.filter(v => v)
+        .map(c =>
+        {
+            c.usage = c.usage.padEnd(nameColumnMaxLength, ' ');
+
+            if (obj[c.optionName])
+                return c.usage + obj[c.optionName].split('\n').join('\n' + ''.padStart(nameColumnMaxLength, ' '));
+            return c.usage;
+        }).join('\n');
+}
+
 class OptionsMiddleware<TOptions extends Record<string, string | number | boolean | string[]>> implements akala.Middleware<[context: CliContext]>
 {
+    usage()
+    {
+        return formatUsage(Object.fromEntries(map(this.config, (option, optionName) =>
+        {
+            if (typeof (optionName) != 'string')
+                return null;
+            var usage = (optionName.length == 1 ? defaultOptionParseOption.flagStart : defaultOptionParseOption.fullOptionStart) + optionName;
+            if (option?.aliases?.length > 0)
+            {
+                usage += ',' + option.aliases.map(v => (v.length == 1 ? defaultOptionParseOption.flagStart : defaultOptionParseOption.fullOptionStart) + v).join(', ');
+            }
+
+            if (option?.needsValue)
+                usage += ' value';
+
+            return [usage, option?.doc];
+        }, true)), 4);
+    }
+
     private options = new akala.MiddlewareComposite<[CliContext]>();
     public config: { [key: string]: OptionOptions } = {};
 
@@ -161,31 +205,60 @@ class UsageError extends Error
     }
 }
 
-export class NamespaceMiddleware<TOptions extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>> extends akala.MiddlewareComposite<[CliContext<TOptions>]> implements akala.Middleware<[context: CliContext]>
+export class NamespaceMiddleware<TOptions extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>> extends akala.MiddlewareIndexed<[CliContext<TOptions>], NamespaceMiddleware> implements akala.Middleware<[context: CliContext]>
 {
     private _preAction: akala.Middleware<[CliContext<TOptions>]>;
     private _action: akala.Middleware<[CliContext<TOptions>]>;
     private readonly _option = new OptionsMiddleware();
     private _format: (result: unknown, context: CliContext<TOptions>) => void;
 
-    constructor(name: string, private _cli?: akala.Middleware<[CliContext<TOptions>]>)
+    constructor(name: string, private _doc?: { usage?: string, description?: string }, private _cli?: akala.Middleware<[CliContext<TOptions>]>)
     {
-        super(name);
+        super((context) => context.args[0], name);
         if (name && ~name.indexOf(' '))
             throw new Error('command name cannot contain a space');
     }
 
-    public command<TOptions2 extends Record<string, string | boolean | string[] | number> = TOptions>(name: string): NamespaceMiddleware<TOptions2 & TOptions>
+    public usage(context: CliContext<TOptions>)
+    {
+        var usage = '';
+
+        if (this._doc)
+        {
+            if (this._doc.usage)
+                usage += this._doc.usage + '\n'
+            if (this._doc.description)
+                usage += '\n' + this._doc.description + '\n'
+        }
+
+        const keys = this.getKeys();
+        if (keys.length)
+        {
+            usage += '\nList of commands :\n';
+            usage += formatUsage(Object.fromEntries(keys.filter(k => k[0] != '$').map(k => [k, this.index[k]._doc?.description || (this.index[k].getKeys().length ? 'use `' + k + ' --help` to get more info on this' : '')])), 4);
+            usage += '\n'
+        }
+
+        var optionUsage = this._option.usage();
+
+        if (optionUsage)
+            usage += '\nOptions:\n' + optionUsage;
+
+
+        return usage;
+    }
+
+    public command<TOptions2 extends Record<string, string | boolean | string[] | number> = TOptions>(name: string, description?: string): NamespaceMiddleware<TOptions2 & TOptions>
     {
         let middleware: NamespaceMiddleware<TOptions & TOptions2>;
         if (name !== null)
         {
             var cli = /^((?:@?[/$_#\w-]+)(?: ([@$_#\w-]+))*)((?: (?:<\w+>))*(?: (?:\[\w+\]))*)/.exec(name);
             if (!cli || cli[0].length != name.length)
-                throw new Error(`${name} must match the following syntax: name <mandatoryparameters> [optionparameters].`)
+                throw new Error(`${name} must match the following syntax: name <mandatoryparameters> [optionalparameters].`)
 
             if (cli[2])
-                return this.command(cli[1].substring(0, cli[1].length - cli[2].length - 1)).command<TOptions2>(cli[2] + cli[3]);
+                return this.command(cli[1].substring(0, cli[1].length - cli[2].length - 1)).command<TOptions2>(cli[2] + cli[3], description);
 
             var args = cli[3];
             var parameters: { name: keyof TOptions2 | keyof TOptions, optional: boolean }[] = [];
@@ -200,8 +273,10 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
                     parameters.push({ name: parameter[2], optional: true });
             }
 
+            if (parameters.length == 0 && description == null && this.index[cli[1]])
+                return this.index[cli[1]] as NamespaceMiddleware<TOptions & TOptions2>;
 
-            middleware = new NamespaceMiddleware(cli[1], akala.convertToMiddleware(function (context)
+            middleware = new NamespaceMiddleware(cli[1], { usage: name, description }, akala.convertToMiddleware(function (context)
             {
                 if (context.args.length < (~parameters.findIndex(p => p.optional) || parameters.length))
                     throw new UsageError(name);
@@ -221,7 +296,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
         }
         else
             middleware = new NamespaceMiddleware(null);
-        super.useMiddleware(middleware);
+        super.useMiddleware(cli && cli[1] || name, middleware);
         return middleware;
     }
 
@@ -233,14 +308,19 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
 
     public action(handler: (context: CliContext<TOptions>) => Promise<unknown> | void)
     {
-        this._action = akala.convertToMiddleware((...args) =>
+        this.use(akala.convertToMiddleware((...args) =>
         {
             var result = handler(...args);
             if (result && akala.isPromiseLike(result))
                 return result;
             return Promise.resolve(result);
 
-        });
+        }));
+    }
+
+    public use(handler: Middleware<[CliContext<TOptions>]>)
+    {
+        this._action = handler
     }
 
     options<T extends { [key: string]: string | number | boolean | string[] }>(options: { [key in Exclude<keyof T, number | symbol>]: OptionOptions }) 
@@ -274,6 +354,8 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
             var error = await this._option.handle(context);
             if (error)
                 return error;
+            if (context.options.help && !this.index[context.args[0]])
+                return this.handleError(new Error(this.usage(context)), context);
             if (this._cli)
                 error = await this._cli.handle(context);
             if (error)
