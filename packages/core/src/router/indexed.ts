@@ -9,7 +9,7 @@ export interface ExtendableIndexedMiddleware<T extends unknown[]> { }
 export class MiddlewareIndexed<T extends unknown[], TMiddleware extends AnyMiddleware<T>> implements Middleware<T>, ExtendableIndexedMiddleware<T>
 {
     public readonly name?: string
-    private delegate: Middleware<T>;
+    protected _delegate: Middleware<T>;
 
     constructor(private getIndexKey: (...args: T) => string, name?: string)
     {
@@ -29,7 +29,7 @@ export class MiddlewareIndexed<T extends unknown[], TMiddleware extends AnyMiddl
     public useMiddleware(key: string, middleware: AnyMiddleware<T>): this
     {
         if (key === null)
-            this.delegate = middleware as Middleware<T>;
+            this._delegate = middleware as Middleware<T>;
         else
             this.index[key] = middleware as TMiddleware;
         return this;
@@ -56,8 +56,8 @@ export class MiddlewareIndexed<T extends unknown[], TMiddleware extends AnyMiddl
     {
         var key = this.getIndexKey(...req);
         if (!key || !this.index[key])
-            if (this.delegate)
-                return this.delegate.handle(...req);
+            if (this._delegate)
+                return this._delegate.handle(...req);
             else
                 return Promise.resolve();
 

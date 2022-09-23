@@ -372,10 +372,15 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
                 return error;
             if (this._preAction)
                 error = await this._preAction.handle(context)
-            if (context.options.help && !this.index[context.args[0]])
-                return this.handleError(new ErrorMessage(this.usage(context)), context);
             if (error)
                 return error;
+            if (context.options.help && !this.index[context.args[0]])
+            {
+                var usage = this.usage(context);
+                // if (!usage && this._delegate)
+                //     return this._delegate.handle(context);
+                return this.handleError(new ErrorMessage(usage), context);
+            }
             return super.handle(context).then(async err =>
             {
                 if (err)
