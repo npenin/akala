@@ -6,7 +6,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 0",
         "prepack": "tsc -p .",
-        "snyk-protect": "snyk protect",
+        "snyk-protect": "snyk-protect",
         "prepare": "npm run snyk-protect",
         "generate": "ac generate dist/commands commands.json --name @akala/server",
         "generate-metadata": "ac generate-metadata commands.json src/commands.ts"
@@ -63,6 +63,7 @@
         "send": "^0.18.0",
         "sequencify": "0.0.7",
         "snyk": "^1.992.0",
+        "@snyk/protect": "^1.1012.0",
         "source-map-loader": "^4.0.0",
         "source-map-support": "^0.5.21",
         "style-loader": "^3.3.1",
