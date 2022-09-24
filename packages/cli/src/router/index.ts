@@ -290,18 +290,21 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
 
             middleware = new NamespaceMiddleware(cli[1], { usage: name, description }, akala.convertToMiddleware(function (context)
             {
-                if (context.args.length < (~parameters.findIndex(p => p.optional) || parameters.length))
-                    throw new UsageError(name);
-
-                for (let index = 0; index < parameters.length; index++)
+                if (!context.options.help)
                 {
-                    const parameter = parameters[index];
-                    // if (!parameter.optional)
-                    context.options[parameter.name] = context.args.shift() as (TOptions & TOptions2)[typeof parameter.name];
-                    if (middleware._option?.config && middleware._option.config[parameter.name as string]?.normalize)
-                        context.options[parameter.name] = path.resolve(context.currentWorkingDirectory, context.options[parameter.name] as string) as (TOptions & TOptions2)[typeof parameter.name];
-                    // if (parameter.optional)
-                    //     context.options[parameter.name] = context.args.shift() as TOptions2[typeof parameter.name];
+                    if (context.args.length < (~parameters.findIndex(p => p.optional) || parameters.length))
+                        throw new UsageError(name);
+
+                    for (let index = 0; index < parameters.length; index++)
+                    {
+                        const parameter = parameters[index];
+                        // if (!parameter.optional)
+                        context.options[parameter.name] = context.args.shift() as (TOptions & TOptions2)[typeof parameter.name];
+                        if (middleware._option?.config && middleware._option.config[parameter.name as string]?.normalize)
+                            context.options[parameter.name] = path.resolve(context.currentWorkingDirectory, context.options[parameter.name] as string) as (TOptions & TOptions2)[typeof parameter.name];
+                        // if (parameter.optional)
+                        //     context.options[parameter.name] = context.args.shift() as TOptions2[typeof parameter.name];
+                    }
                 }
                 return Promise.reject();
             }));
