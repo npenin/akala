@@ -114,9 +114,10 @@ cli.preAction(async c =>
             {
                 if (e.code === 'ENOENT')
                 {
-                    tryLocalProcessing(c).catch(() =>
+                    return tryLocalProcessing(c).catch(() =>
                     {
-                        console.error('pm is not started');
+                        if (!c.options.help)
+                            console.error('pm is not started');
                     });
                 }
                 else if (!c.options.help)
@@ -459,10 +460,12 @@ async function tryLocalProcessing(args: CliContext)
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const config = require(path.join(homedir(), './.pm.config.json'));
     let cmdName = args.args.shift();
+    if (!cmdName)
+        throw undefined;
     const indexOfDot = cmdName.indexOf('.');
     if (indexOfDot > -1)
     {
-        const containerName = cmdName.substr(0, indexOfDot);
+        const containerName = cmdName.substring(0, indexOfDot);
         if (config.mapping[containerName] && config.mapping[containerName].commandable)
         {
             cmdName = cmdName.substring(indexOfDot + 1);
