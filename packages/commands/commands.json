@@ -1,5 +1,5 @@
 {
-    "name": "@akala/commands",
+    "name": "cli",
     "commands": [
         {
             "name": "add-script",
@@ -8,7 +8,20 @@
                 "fs": {
                     "path": "dist/cli/add-script.js",
                     "source": "src/cli/add-script.ts",
-                    "inject": []
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3"
+                    ]
                 },
                 "cli": {
                     "inject": [
@@ -31,9 +44,6 @@
                         "path to the folder containing the commands",
                         "path to the metadata file to get generated"
                     ]
-                },
-                "": {
-                    "inject": []
                 }
             }
         },

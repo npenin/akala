@@ -15,7 +15,8 @@
         "cli": "node dist/cli.js",
         "generate-cli": "ac generate dist/cli commands.json --name cli",
         "generate-metadata-cli": "ac generate-metadata commands.json src/commands.ts --name cli",
-        "generate": "ac generate dist/cli commands.json --name @akala/commands"
+        "generate": "yarn run generate-cli",
+        "generate-metadata": "yarn run generate-metadata-cli"
     },
     "browser": {
         "./dist/cli/serve.js": false,
