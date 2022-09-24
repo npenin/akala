@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* help now works where no socket is available 92ecda4
+* update jsdoc 49357c6
 
 
 
