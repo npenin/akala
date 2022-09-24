@@ -1,4 +1,4 @@
-#  (2022-09-23)
+#  (2022-09-24)
 
 
 ### Bug Fixes
@@ -78,6 +78,7 @@
 * handle non-specified pm socket option dfd5212
 * hasOwnKeys now returns correct keys 76a062e
 * health check reliability 98df0c9
+* help now works where no socket is available 92ecda4
 * honoring preferRemote 6fa76bc
 * improve config get return type c40bcd5
 * improve error logging 1b4ae07

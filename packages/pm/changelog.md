@@ -1,9 +1,9 @@
-#  (2022-09-23)
+#  (2022-09-24)
 
 
 ### Bug Fixes
 
-* pm cli command usage a9ff0bf
+* help now works where no socket is available 92ecda4
 
 
 
