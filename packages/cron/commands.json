@@ -16,12 +16,12 @@
             }
         },
         {
-            "name": "add-schedule",
+            "name": "add-job-schedule",
             "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist/commands/add-schedule.js",
-                    "source": "src/commands/add-schedule.ts",
+                    "path": "dist/commands/add-job-schedule.js",
+                    "source": "src/commands/add-job-schedule.ts",
                     "inject": [
                         "param.0",
                         "param.1"
@@ -51,16 +51,30 @@
             }
         },
         {
-            "name": "add-job-schedule",
+            "name": "add-schedule",
             "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist/commands/add-job-schedule.js",
-                    "source": "src/commands/add-job-schedule.ts",
+                    "path": "dist/commands/add-schedule.js",
+                    "source": "src/commands/add-schedule.ts",
                     "inject": [
                         "param.0",
                         "param.1"
                     ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "list-jobs",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/list-jobs.js",
+                    "source": "src/commands/list-jobs.ts",
+                    "inject": []
                 },
                 "": {
                     "inject": []
@@ -82,13 +96,16 @@
             }
         },
         {
-            "name": "list-jobs",
+            "name": "remove-job-schedule",
             "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist/commands/list-jobs.js",
-                    "source": "src/commands/list-jobs.ts",
-                    "inject": []
+                    "path": "dist/commands/remove-job-schedule.js",
+                    "source": "src/commands/remove-job-schedule.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
                 },
                 "": {
                     "inject": []
@@ -119,23 +136,6 @@
                         "options.lng",
                         "options.tz"
                     ]
-                }
-            }
-        },
-        {
-            "name": "remove-job-schedule",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/remove-job-schedule.js",
-                    "source": "src/commands/remove-job-schedule.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "": {
-                    "inject": []
                 }
             }
         }
