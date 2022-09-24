@@ -39,6 +39,7 @@
 * client compilation 4815fd5
 * client package 4f14fd3
 * code clean up 11726cb
+* command help with mandatory positional parameter f6002a8
 * compilation e63e92e
 * compilation after typescript 4.4 upgrade 2828ff9
 * compilation issue 6734227
@@ -196,6 +197,7 @@
 * update command definition 85c2891
 * update commands cli definition 5b7f8f1
 * update dependencies and regenerate metadata 0c83667
+* update jsdoc 49357c6
 * update lock file 974b089
 * update package publication to public 6d71bdc
 * update ready command for remote containers 823810d
@@ -251,6 +253,7 @@
 * add custom inject in jsonrpc processor 4fc1720
 * add extends support df13246
 * add ignore failure support f9929cf
+* add jsdoc a43ab28
 * add lazy helper 5530746
 * add middleware with priority handling 461c1a4
 * add MiddlewareRunnerMiddleware d0e9aff
