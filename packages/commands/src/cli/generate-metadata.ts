@@ -55,6 +55,8 @@ export default async function generate(name?: string, folder?: string, outputFil
 
         await core.eachAsync(meta.commands, async function (cmd)
         {
+            if (cmd.config?.doc)
+                await writeDoc(output, 'args', cmd.config.doc);
 
             await write(output, `\t\tdispatch (cmd:'${cmd.name}'`);
             if (cmd.config.fs)
@@ -98,6 +100,8 @@ export default async function generate(name?: string, folder?: string, outputFil
 
         await core.eachAsync(meta.commands, async function (cmd)
         {
+            if (cmd.config?.doc)
+                await writeDoc(output, 'args', cmd.config.doc);
 
             await write(output, `\t\t'${cmd.name}'`);
             if (cmd.config.fs)
@@ -137,4 +141,19 @@ export default async function generate(name?: string, folder?: string, outputFil
     await write(output, '}\n');
     await write(output, '\n');
     await write(output, `export { ${name} as default };`);
+}
+
+async function writeDoc(output: Writable, argName: string, doc: akala.Metadata.DocConfiguration)
+{
+    await write(output, `\t\t/** 
+\t\t  * ${doc.description.split('\n').join('\n\t\t  * ')}`);
+    if (doc.inject?.length)
+    {
+        for (let i in doc.inject)
+            await write(output, `\n\t\t  * @typedef ${argName}${i} - ${doc.inject[i]}`)
+
+        await write(output, `\n\t\t  * @param {[${doc.inject.map((_, i) => argName + i).join(', ')}]} ${argName}`)
+    }
+
+    await write(output, `\n\t\t  */\n`);
 }
