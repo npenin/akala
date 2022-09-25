@@ -1,4 +1,4 @@
-#  (2022-09-24)
+#  (2022-09-25)
 
 
 ### Bug Fixes
@@ -68,6 +68,7 @@
 * fix model registration and serialization 7236001
 * force metadata command registration in remote container 840d6dd
 * force socket processor on pm forks 0874275
+* fork broken 8a998fc
 * fork knows about pm metadata ef4ebdc
 * fs discovery 0d34eea
 * fs middleware after discovery changes d97fcca
@@ -86,7 +87,9 @@
 * improve get-version 2f156a3
 * improve performance of metadata lookup 81cf56a
 * improve remote sidecars defaults eef7b24
+* improve start/stop doc e4be495
 * improve support for extends f6622ee
+* improve usage with objects 91d1f50
 * improved logging support 8c81e18
 * improved ready command for remote containers ffd2a17
 * improves command detection ff43e85
