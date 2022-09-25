@@ -3,7 +3,7 @@ import State from '../state';
 
 export default async function stop(this: State, name: string, container: Container<State>): Promise<void>
 {
-    await Promise.all(Object.values(this.processes).filter(p => name == 'pm' || !name || p.name == name && p.process).map(cp =>
+    await Promise.all(Object.values(this.processes).filter(p => p.name == name && p.process).map(cp =>
     {
         return new Promise<unknown>((resolve) =>
         {
@@ -42,7 +42,6 @@ export default async function stop(this: State, name: string, container: Contain
         if (name == 'pm' || !name)
         {
             process.emit('SIGINT', 'SIGINT');
-            process.exit();
         }
     });
 }
