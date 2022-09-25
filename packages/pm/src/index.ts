@@ -44,19 +44,17 @@ export async function pm(socketPath?: string): Promise<Container<unknown>>
     return new Container('pm', {});
 }
 
-export function connect(name: string): Promise<{ connect: Promise<ServeMetadata>, container: Metadata.Container }>
+export async function connect(name: string, container?: pmContainer & Container<void>): Promise<{ connect: Promise<ServeMetadata>, container: Metadata.Container }>
 {
-    return module('@akala/pm').injectWithName(['container'], async function (container: Container<void>)
+    container = container || module('@akala/pm').resolve('container');
+    if (name === 'pm')
     {
-        if (name === 'pm')
-        {
-            const metaContainer = await container.dispatch('$metadata') as Metadata.Container;
-            return { connect: container.dispatch('connect', name) as Promise<ServeMetadata>, container: metaContainer };
-        }
-        const metaContainer = await container.dispatch('$metadata', true) as Metadata.Container;
+        const metaContainer = await container.dispatch('$metadata') as Metadata.Container;
+        return { connect: container.dispatch('connect', name) as Promise<ServeMetadata>, container: metaContainer };
+    }
+    const metaContainer = await container.dispatch('$metadata', true) as Metadata.Container;
 
-        return { connect: container.dispatch('connect', name) as Promise<ServeMetadata>, container: { name, commands: metaContainer.commands.filter(c => c.name.startsWith(name + '.')).map(c => ({ name: c.name.substring(name.length + 1), inject: c.inject, config: c.config })) } };
-    })();
+    return { connect: container.dispatch('connect', name) as Promise<ServeMetadata>, container: { name, commands: metaContainer.commands.filter(c => c.name.startsWith(name + '.')).map(c => ({ name: c.name.substring(name.length + 1), inject: c.inject, config: c.config })) } };
 }
 
 export const defaultOrders: (keyof ServeMetadata)[] = ['ssocket', 'socket', 'wss', 'ws'];
