@@ -4,6 +4,7 @@
 ### Bug Fixes
 
 * #10 6e164e7
+* ac new gracefully ends 6647f80
 * adapt to trigger new definition 8c2d136
 * add logs before publish b1b15be
 * add metadata when using ipc bb26b03
