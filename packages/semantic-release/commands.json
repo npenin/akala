@@ -2,29 +2,6 @@
     "name": "commands",
     "commands": [
         {
-            "name": "analyze",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "inject": [
-                        "param.0"
-                    ],
-                    "path": "dist/commands/analyze.js",
-                    "source": "src/commands/analyze.ts"
-                },
-                "": {
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "automate": {
-                    "inject": [
-                        "commits"
-                    ]
-                }
-            }
-        },
-        {
             "name": "bump-dependents",
             "inject": [],
             "config": {
@@ -51,27 +28,24 @@
             }
         },
         {
-            "name": "changelog",
+            "name": "analyze",
             "inject": [],
             "config": {
                 "fs": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "param.0"
                     ],
-                    "path": "dist/commands/changelog.js",
-                    "source": "src/commands/changelog.ts"
+                    "path": "dist/commands/analyze.js",
+                    "source": "src/commands/analyze.ts"
                 },
                 "": {
                     "inject": [
-                        "param.0",
-                        "param.1"
+                        "param.0"
                     ]
                 },
                 "automate": {
                     "inject": [
-                        "commits",
-                        "file"
+                        "commits"
                     ]
                 }
             }
@@ -95,6 +69,32 @@
                 "automate": {
                     "inject": [
                         "packages"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "changelog",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/commands/changelog.js",
+                    "source": "src/commands/changelog.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "automate": {
+                    "inject": [
+                        "commits",
+                        "file"
                     ]
                 }
             }

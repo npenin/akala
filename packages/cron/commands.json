@@ -2,37 +2,6 @@
     "name": "@akala/cron",
     "commands": [
         {
-            "name": "$init",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/$init.js",
-                    "source": "src/commands/$init.ts",
-                    "inject": []
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
-            "name": "add-job-schedule",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/add-job-schedule.js",
-                    "source": "src/commands/add-job-schedule.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
             "name": "add-job",
             "inject": [],
             "config": {
@@ -44,6 +13,20 @@
                         "param.1",
                         "param.2"
                     ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "$init",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/$init.js",
+                    "source": "src/commands/$init.ts",
+                    "inject": []
                 },
                 "": {
                     "inject": []
@@ -68,6 +51,23 @@
             }
         },
         {
+            "name": "add-job-schedule",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/add-job-schedule.js",
+                    "source": "src/commands/add-job-schedule.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
             "name": "list-jobs",
             "inject": [],
             "config": {
@@ -75,37 +75,6 @@
                     "path": "dist/commands/list-jobs.js",
                     "source": "src/commands/list-jobs.ts",
                     "inject": []
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
-            "name": "list-schedules",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/list-schedules.js",
-                    "source": "src/commands/list-schedules.ts",
-                    "inject": []
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
-            "name": "remove-job-schedule",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/remove-job-schedule.js",
-                    "source": "src/commands/remove-job-schedule.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
                 },
                 "": {
                     "inject": []
@@ -136,6 +105,37 @@
                         "options.lng",
                         "options.tz"
                     ]
+                }
+            }
+        },
+        {
+            "name": "remove-job-schedule",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/remove-job-schedule.js",
+                    "source": "src/commands/remove-job-schedule.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "list-schedules",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/list-schedules.js",
+                    "source": "src/commands/list-schedules.ts",
+                    "inject": []
+                },
+                "": {
+                    "inject": []
                 }
             }
         }
