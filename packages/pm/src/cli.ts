@@ -8,7 +8,7 @@ import start from './commands/start'
 import { Readable } from 'stream';
 
 import { spawnAsync } from './cli-helper';
-import State from './state';
+import State, { StateConfiguration } from './state';
 import program, { buildCliContextFromProcess, CliContext, ErrorMessage, NamespaceMiddleware, unparse } from '@akala/cli';
 import { InteractError } from '.';
 import { Binding } from '@akala/core';
@@ -35,27 +35,21 @@ const truncate = '…';
 type CliOptions = { output: string, verbose: boolean, pmSock: string | number, tls: boolean, help: boolean };
 
 const cli = program.options<CliOptions>({ output: { aliases: ['o'], needsValue: true, doc: 'output as `table` if array otherwise falls back to standard node output' }, verbose: { aliases: ['v'] }, tls: { doc: "enables tls connection to the `pmSock`" }, pmSock: { aliases: ['pm-sock'], needsValue: true, doc: "path to the unix socket or destination in the form host:port" }, help: { doc: "displays this help message" } });
-cli.command<{ program?: string }>('start [program]')
+const startpm = cli.command('start pm')
     .option('inspect', { doc: "starts the process with --inspect-brk parameter to help debugging" })
-    .option('wait', { aliases: ['w'], doc: "waits for the program to be started before returning, otherwise, returns after the start command is sent to the pm daemon" })
-    .option('new', { needsValue: false })
-    .option('name', { needsValue: true, doc: "name the process as per the given value" })
     .action(c =>
     {
-        if (typeof c.options.program == 'undefined')
-            c.options.program = 'pm';
-        if (c.options.program === 'pm')
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            start.call({} as unknown as State, null, c.options.program, c as any);
-        else
-            throw undefined;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        c.options['name'] = 'pm'
+        c.options['program'] = require.resolve('../commands.json');
+        return start.call({} as unknown as State, null, 'pm', c as any);
     });
 
 let socket: Socket;
 let processor: Processors.JsonRpc;
 let metaContainer: Metadata.Container;
 let container: Container<unknown>;
-const handle = cli;
+const handle = new NamespaceMiddleware(null);
 cli.preAction(async c =>
 {
     process.stdin.pause();
@@ -110,39 +104,45 @@ cli.preAction(async c =>
                 resolve();
                 socket.setEncoding('utf-8');
             });
-            socket.on('error', (e: Error & { code?: string }) =>
+            socket.on('error', async (e: Error & { code?: string }) =>
             {
-                if (e.code === 'ENOENT')
-                {
-                    return tryLocalProcessing(c).catch(() =>
-                    {
-                        if (!c.options.help)
-                            console.error('pm is not started');
-                    });
-                }
-                else if (!c.options.help)
-                    reject(e);
+                if (c.options.help)
+                    resolve();
                 else
-                    resolve()
-            })
+                {
+                    if (e.code === 'ENOENT')
+                    {
+                        // return tryLocalProcessing(c).catch(() =>
+                        // {
+                        resolve();
+                        // reject(new Error('pm is not started'));
+                        // });
+                    }
+                    else
+                        reject(e);
+                }
+            });
         });
     }
-
-    if (!processor)
-        processor = new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(socket)));
-    if (!metaContainer)
-        metaContainer = require('../commands.json');
-    if (!container)
+    if (socket.readyState == 'open')
     {
-        container = proxy(metaContainer, processor);
+        if (!processor)
+            processor = new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(socket)));
+        if (!metaContainer)
+            metaContainer = require('../commands.json');
+        if (!container)
+        {
+            container = proxy(metaContainer, processor);
 
-        container.unregister(Cli.Metadata.name);
-        container.register(Metadata.extractCommandMetadata(Cli.Metadata));
+            container.unregister(Cli.Metadata.name);
+            container.register(Metadata.extractCommandMetadata(Cli.Metadata));
 
-        await container.attach(Triggers.cli, handle);
+            await container.attach(Triggers.cli, cli);
+        }
     }
 }).
-    useMiddleware(null, handle).
+    // cli.
+    //     useMiddleware(null, handle).
     useError(async (err: InteractError, args) =>
     {
         if (err.code === 'INTERACT')
@@ -458,7 +458,7 @@ async function tryRun(processor: ICommandProcessor, cmd: Metadata.Command, args:
 async function tryLocalProcessing(args: CliContext)
 {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const config = require(path.join(homedir(), './.pm.config.json'));
+    const config: StateConfiguration = require(path.join(homedir(), './.pm.config.json'));
     let cmdName = args.args.shift();
     if (!cmdName)
         throw undefined;
@@ -466,20 +466,20 @@ async function tryLocalProcessing(args: CliContext)
     if (indexOfDot > -1)
     {
         const containerName = cmdName.substring(0, indexOfDot);
-        if (config.mapping[containerName] && config.mapping[containerName].commandable)
+        if (config.containers[containerName] && config.containers[containerName].commandable)
         {
             cmdName = cmdName.substring(indexOfDot + 1);
             const container = new Container('cli-temp', {});
             const options: Processors.DiscoveryOptions = {};
-            await Processors.FileSystem.discoverCommands(config.mapping[containerName].path, container, options);
+            await Processors.FileSystem.discoverCommands(config.containers[containerName].path, container, options);
             const cmd = container.resolve(cmdName);
             return tryRun(options.processor, cmd, args, true);
         }
     }
     else
     {
-        if (!config.mapping[cmdName].commandable)
-            return spawnAsync(config.mapping[cmdName].path, null, ...unparse(args));
+        if (!config.containers[cmdName].commandable)
+            return spawnAsync(config.containers[cmdName].path, null, ...unparse(args));
     }
 }
 

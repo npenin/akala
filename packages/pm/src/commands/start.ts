@@ -77,7 +77,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
         cp.on('message', function (message)
         {
             console.log(message);
-            cp.disconnect();
+            // cp.disconnect();
         });
         return new Promise<void>((resolve) =>
         {

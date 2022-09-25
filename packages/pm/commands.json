@@ -24,7 +24,7 @@
                         "$container",
                         "context"
                     ],
-                    "usage": "cmd [config]",
+                    "usage": "$init [config]",
                     "options": {
                         "config": {
                             "needsValue": true,
@@ -455,17 +455,28 @@
                         "wait": {
                             "aliases": [
                                 "w"
-                            ]
+                            ],
+                            "needsValue": false,
+                            "doc": "waits for the program to be started before returning, otherwise, returns after the start command is sent to the pm daemon"
                         },
-                        "inspect": {},
-                        "new": {},
-                        "name": {}
+                        "inspect": {
+                            "needsValue": false,
+                            "doc": "starts the process with --inspect-brk parameter to help debugging"
+                        },
+                        "new": {
+                            "needsValue": false
+                        },
+                        "name": {
+                            "doc": "name to assign to the process",
+                            "needsValue": true
+                        }
                     },
                     "inject": [
                         "$container",
-                        "param.0",
+                        "program",
                         "context"
-                    ]
+                    ],
+                    "usage": "start <program>"
                 }
             }
         },
@@ -512,9 +523,15 @@
                 },
                 "cli": {
                     "inject": [
-                        "param.0",
+                        "options.process",
                         "$container"
-                    ]
+                    ],
+                    "options": {
+                        "process": {
+                            "doc": "process to stop. Stops all the processes otherwise (including pm)."
+                        }
+                    },
+                    "usage": "stop [process]"
                 }
             }
         },
