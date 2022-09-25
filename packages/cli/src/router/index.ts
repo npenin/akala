@@ -144,6 +144,21 @@ class OptionMiddleware implements akala.Middleware<[context: CliContext]>
     }
 }
 
+function formatUsageObject(usage: UsageObject): string
+{
+    var result = '';
+    if (usage.text)
+        result += usage.text + '\n';
+
+    if (usage.commands)
+        result += '\nList of commands:\n' + formatUsage(usage.commands, 4) + '\n';
+
+    if (usage.options)
+        result += '\nOptions:\n' + formatUsage(usage.options, 4);
+
+    return result;
+}
+
 function formatUsage(obj: Record<string, string>, indent?: number): string
 {
     indent = indent || 0;
@@ -170,9 +185,9 @@ function formatUsage(obj: Record<string, string>, indent?: number): string
 
 class OptionsMiddleware<TOptions extends Record<string, string | number | boolean | string[]>> implements akala.Middleware<[context: CliContext]>
 {
-    usage()
+    usage(): UsageObject['options']
     {
-        return formatUsage(Object.fromEntries(map(this.config, (option, optionName) =>
+        return Object.fromEntries(map(this.config, (option, optionName) =>
         {
             if (typeof (optionName) != 'string')
                 return null;
@@ -186,7 +201,7 @@ class OptionsMiddleware<TOptions extends Record<string, string | number | boolea
                 usage += ' value';
 
             return [usage, option?.doc];
-        }, true)), 4);
+        }, true));
     }
 
     private options = new akala.MiddlewareComposite<[CliContext]>();
@@ -218,6 +233,13 @@ export class UsageError extends ErrorMessage
     }
 }
 
+export interface UsageObject
+{
+    text: string;
+    commands?: Record<string, string>;
+    options?: Record<string, string>;
+}
+
 export class NamespaceMiddleware<TOptions extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>> extends akala.MiddlewareIndexed<[CliContext<TOptions>], NamespaceMiddleware> implements akala.Middleware<[context: CliContext]>
 {
     private _preAction: akala.Middleware<[CliContext<TOptions>]>;
@@ -232,30 +254,38 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
             throw new Error('command name cannot contain a space');
     }
 
-    public usage(context: CliContext<TOptions>)
+    public async usage(context: CliContext<TOptions>): Promise<UsageObject>
     {
-        var usage = '';
+        const usage: UsageObject = { text: '' };
 
         if (this._doc)
         {
             if (this._doc.usage)
-                usage += this._doc.usage + '\n'
+                usage.text = this._doc.usage;
             if (this._doc.description)
-                usage += '\n' + this._doc.description + '\n'
+                usage.text += '\n' + this._doc.description;
         }
 
         const keys = this.getKeys();
         if (keys.length)
+            usage.commands = Object.fromEntries(keys.filter(k => k[0] != '$').map(k => [k, this.index[k]._doc?.description || (this.index[k].getKeys().length ? 'use `' + k + ' --help` to get more info on this' : '')]));
+        usage.options = this._option.usage();
+
+
+        const delegate = this._delegate;
+        if (delegate instanceof NamespaceMiddleware)
         {
-            usage += '\nList of commands :\n';
-            usage += formatUsage(Object.fromEntries(keys.filter(k => k[0] != '$').map(k => [k, this.index[k]._doc?.description || (this.index[k].getKeys().length ? 'use `' + k + ' --help` to get more info on this' : '')])), 4);
-            usage += '\n'
+            const error = await delegate._preAction.handle(context);
+            if (error)
+                return usage;
+            var subUsage = await delegate.usage(context);
+            if (subUsage.commands)
+                Object.assign(usage.commands, subUsage.commands);
+            if (subUsage.options)
+                Object.assign(usage.options, subUsage.options);
+            if (!usage.text)
+                usage.text = subUsage.text;
         }
-
-        var optionUsage = this._option.usage();
-
-        if (optionUsage)
-            usage += '\nOptions:\n' + optionUsage;
 
         return usage;
     }
@@ -379,10 +409,10 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
                 return error;
             if (context.options.help && !this.index[context.args[0]])
             {
-                var usage = this.usage(context);
+                var usage = await this.usage(context);
                 // if (!usage && this._delegate)
                 //     return this._delegate.handle(context);
-                return this.handleError(new ErrorMessage(usage), context);
+                return this.handleError(new ErrorMessage(formatUsageObject(usage)), context);
             }
             return super.handle(context).then(async err =>
             {

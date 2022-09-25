@@ -18,7 +18,7 @@ export class MiddlewareIndexed<T extends unknown[], TMiddleware extends AnyMiddl
 
     protected getKeys(): string[]
     {
-        return Object.keys(this.index).filter(v => v !== null && v !== '');
+        return Object.keys(this.index).filter(v => v !== '');
     }
 
     protected readonly index: Record<string, TMiddleware> & { ''?: ErrorMiddleware<T> } = {};
@@ -63,7 +63,7 @@ export class MiddlewareIndexed<T extends unknown[], TMiddleware extends AnyMiddl
 
         const middleware = this.index[key];
         if (isStandardMiddleware(middleware))
-            return middleware.handle(...req);
+            return middleware.handle(...req).then(e => (typeof e === 'undefined') ? this._delegate.handle(...req) : e);
         return Promise.resolve();
     }
 }
