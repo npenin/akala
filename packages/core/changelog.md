@@ -1,9 +1,9 @@
-#  (2022-09-23)
+#  (2022-09-25)
 
 
 ### Bug Fixes
 
-* pm cli command usage a9ff0bf
+* improve usage with objects 91d1f50
 
 
 
