@@ -12,14 +12,7 @@ import { registerCommands, SelfDefinedCommand, parseMetadata, StructuredParamete
 
 var isPm = false;
 
-program.option('help').useMiddleware(null, {
-    handle: async c =>
-    {
-        isPm = c.options.program == 'pm';
-        if (isPm)
-            c.options.program = path.resolve(__dirname, '../commands.json');
-    }
-});
+program.option('help')
 let folderOrFile: Stats;
 let cliContainer: ac.Container<unknown>;
 let processor: ac.CommandProcessor;
@@ -58,6 +51,7 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
             handle: async c =>
             {
                 cliContainer.name = c.options.name;
+                isPm = c.options.name === 'pm' && c.options.program === require.resolve('../commands.json');
                 const init = cliContainer.resolve('$init');
                 if (init && init.config && init.config.cli && init.config.cli.options)
                     ac.Triggers.addCliOptions(init, initMiddleware);
