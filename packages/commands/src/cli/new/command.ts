@@ -8,4 +8,6 @@ export default async function (name: string, options: CliContext<{ force?: boole
 {
 
 }`);
+    await new Promise(resolve => output.end(resolve));
+
 }
