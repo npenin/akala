@@ -1,14 +1,9 @@
-#  (2022-09-24)
+#  (2022-09-25)
 
 
 ### Bug Fixes
 
-* update jsdoc 49357c6
-
-
-### Features
-
-* add jsdoc a43ab28
+* improve start/stop doc e4be495
 
 
 
