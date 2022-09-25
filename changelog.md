@@ -39,6 +39,7 @@
 * cli parsing a28c8fe
 * client compilation 4815fd5
 * client package 4f14fd3
+* close outputs after generate 1d87b9d
 * code clean up 11726cb
 * command help with mandatory positional parameter f6002a8
 * compilation e63e92e
