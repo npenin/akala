@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* ac new gracefully ends 6647f80
+* close outputs after generate 1d87b9d
 
 
 
