@@ -2,32 +2,6 @@
     "name": "@akala/server",
     "commands": [
         {
-            "name": "$init",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/commands/$init.js",
-                    "source": "src/commands/$init.ts",
-                    "inject": []
-                },
-                "cli": {
-                    "inject": [
-                        "$container",
-                        "options",
-                        "pm"
-                    ],
-                    "options": {
-                        "mode": {
-                            "needsValue": true
-                        }
-                    }
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
             "name": "asset",
             "inject": [],
             "config": {
@@ -61,6 +35,32 @@
                         "param.1",
                         "cwd"
                     ]
+                }
+            }
+        },
+        {
+            "name": "$init",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/commands/$init.js",
+                    "source": "src/commands/$init.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "inject": [
+                        "$container",
+                        "options",
+                        "pm"
+                    ],
+                    "options": {
+                        "mode": {
+                            "needsValue": true
+                        }
+                    }
+                },
+                "": {
+                    "inject": []
                 }
             }
         },

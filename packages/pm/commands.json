@@ -469,11 +469,14 @@
                         "name": {
                             "doc": "name to assign to the process",
                             "needsValue": true
+                        },
+                        "program": {
+                            "doc": "program to start"
                         }
                     },
                     "inject": [
                         "$container",
-                        "program",
+                        "options.program",
                         "context"
                     ],
                     "usage": "start <program>"
