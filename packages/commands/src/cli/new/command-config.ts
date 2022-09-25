@@ -23,5 +23,5 @@ export async function newCommandConfiguration(cmd: Command, options: CliContext<
     if (cmd.config?.fs?.path)
         delete cmd.config.fs.path;
     await write(output, JSON.stringify({ $schema: "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json", ...cmd.config }, null, 4));
-
+    await new Promise(resolve => output.end(resolve));
 }
