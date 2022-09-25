@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* start command 4f924c6
+* optional parameter in connect 606b68b
 
 
 
