@@ -3,7 +3,7 @@ import { Container } from '../model/container';
 import * as path from 'path'
 import * as fs from 'fs';
 import { Writable } from "stream";
-import { outputHelper } from './new';
+import { outputHelper, write } from './new';
 
 export default async function generate(folder?: string, name?: string, outputFile?: string)
 {
@@ -23,10 +23,6 @@ export default async function generate(folder?: string, name?: string, outputFil
 
     const meta: akala.Metadata.Container & { $schema?: string } = akala.metadata(container);
     meta.$schema = 'https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json';
-    output.write(JSON.stringify(meta, null, 4), function (err)
-    {
-        if (err)
-            console.error(err);
-        output.end();
-    });
+    await write(output, JSON.stringify(meta, null, 4));
+    await new Promise(resolve => output.end(resolve));
 }
