@@ -184,6 +184,7 @@
 * sort workspaces before publish 01b675e
 * sorted workspace is used as an output ab61117
 * spread is not considering non enumerable properties 394438a
+* start command 4f924c6
 * start command args scope dd89375
 * stdin support 57f5ca7
 * stdin support 23979ba
