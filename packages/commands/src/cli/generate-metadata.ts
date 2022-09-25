@@ -141,6 +141,7 @@ export default async function generate(name?: string, folder?: string, outputFil
     await write(output, '}\n');
     await write(output, '\n');
     await write(output, `export { ${name} as default };`);
+    await new Promise(resolve => output.end(resolve));
 }
 
 async function writeDoc(output: Writable, argName: string, doc: akala.Metadata.DocConfiguration)
