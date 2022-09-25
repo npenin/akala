@@ -1,9 +1,9 @@
-#  (2022-09-24)
+#  (2022-09-25)
 
 
 ### Bug Fixes
 
-* command help with mandatory positional parameter f6002a8
+* improve usage with objects 91d1f50
 
 
 
