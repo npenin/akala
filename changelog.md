@@ -119,6 +119,7 @@
 * move dependency from devdep 36139a4
 * nested container processing 8997869
 * normalize path 58c9fcd
+* optional parameter in connect 606b68b
 * output formatting f747eff
 * output name from inner semantic-releases script 52382c6
 * package build dependencies 3f14f37
