@@ -290,6 +290,7 @@
 * embedded cron implementation in workflow 9c518f0
 * enable cli help/documentation c141969
 * enforce logger on buildCliContext dd636e1
+* error message is retrieved if wait is specified e93f204
 * errors like are now true errors 954d0a8
 * first pubsub commit 78b31e1
 * improve middleware behaviour 89f0a24
