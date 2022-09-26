@@ -1,4 +1,4 @@
-#  (2022-09-25)
+#  (2022-09-26)
 
 
 ### Bug Fixes
@@ -42,6 +42,7 @@
 * close outputs after generate 1d87b9d
 * code clean up 11726cb
 * command help with mandatory positional parameter f6002a8
+* compilation c7efdb0
 * compilation e63e92e
 * compilation after typescript 4.4 upgrade 2828ff9
 * compilation issue 6734227
@@ -49,6 +50,7 @@
 * connect fails when connect on mapping is undefined 16bdd27
 * connect should failed if mapping is not found 4392197
 * connect when connecting to pm 7494ae0
+* consider pm container from options 56960e4
 * **core:** interpolate miss return f6c87b1
 * correct name assignment in fork 3deb98f
 * crash on parsing remote bcb17fe
