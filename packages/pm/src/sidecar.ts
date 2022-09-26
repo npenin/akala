@@ -1,15 +1,16 @@
-import { connectByPreference, ConnectionPreference, updateCommands } from "@akala/commands";
+import { connectByPreference, ConnectionPreference, Container, updateCommands } from "@akala/commands";
 import { SideCarConnectionPreference, Sidecar, defaultOrders, connect } from "./index";
 import * as ac from '@akala/commands'
+import pm from './container'
 
 let instance: Sidecar;
 
-export default function (options?: Omit<ConnectionPreference, 'metadata'> | SideCarConnectionPreference | Omit<ConnectionPreference, 'metadata'> & SideCarConnectionPreference, noCache?: boolean): Sidecar
+export default function (options?: { pm?: pm.container & Container<void> } & (Omit<ConnectionPreference, 'metadata'> | SideCarConnectionPreference | Omit<ConnectionPreference, 'metadata'> & SideCarConnectionPreference), noCache?: boolean): Sidecar
 {
     return instance || (instance = sidecar(options, noCache));
 }
 
-export function sidecar(options?: Omit<ConnectionPreference, 'metadata'> | SideCarConnectionPreference | Omit<ConnectionPreference, 'metadata'> & SideCarConnectionPreference, noCache?: boolean): Sidecar
+export function sidecar(options?: { pm?: pm.container & Container<void> } & (Omit<ConnectionPreference, 'metadata'> | SideCarConnectionPreference | Omit<ConnectionPreference, 'metadata'> & SideCarConnectionPreference), noCache?: boolean): Sidecar
 {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return new Proxy<Sidecar>({} as any, {
@@ -25,7 +26,7 @@ export function sidecar(options?: Omit<ConnectionPreference, 'metadata'> | SideC
                 options.preferRemote = !process.connected;
             if (noCache || typeof (target[property]) == 'undefined')
                 Object.defineProperty(target, property, {
-                    value: connect(property, options.container).then(async (meta) =>
+                    value: connect(property, options.pm).then(async (meta) =>
                     {
                         try
                         {
