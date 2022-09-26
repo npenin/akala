@@ -25,7 +25,7 @@ export function sidecar(options?: Omit<ConnectionPreference, 'metadata'> | SideC
                 options.preferRemote = !process.connected;
             if (noCache || typeof (target[property]) == 'undefined')
                 Object.defineProperty(target, property, {
-                    value: connect(property).then(async (meta) =>
+                    value: connect(property, options.container).then(async (meta) =>
                     {
                         try
                         {
