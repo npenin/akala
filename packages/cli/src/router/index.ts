@@ -261,7 +261,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
         if (this._doc)
         {
             if (this._doc.usage)
-                usage.text = this._doc.usage;
+                usage.text = this._doc.usage + '\n';
             if (this._doc.description)
                 usage.text += '\n' + this._doc.description;
         }
