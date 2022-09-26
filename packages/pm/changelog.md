@@ -1,10 +1,9 @@
 #  (2022-09-26)
 
 
-### Bug Fixes
+### Features
 
-* compilation c7efdb0
-* consider pm container from options 56960e4
+* error message is retrieved if wait is specified e93f204
 
 
 
