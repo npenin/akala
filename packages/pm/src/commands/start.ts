@@ -127,6 +127,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
             this.processes[context.options.name] = container;
         }
         container.process = cp;
+
         Object.assign(container, def, instanceConfig);
         container.ready = new jsonrpc.Deferred();
         if (container.commandable)
@@ -149,14 +150,26 @@ export default async function start(this: State, pm: pmContainer.container & Con
         })
 
         container.running = true;
+        let buffer = [];
         cp.on('exit', function ()
         {
             (container as RunningContainer).running = false;
             pm.unregister(container.name);
-            container.ready.reject(new Error('program stopped'));
+            container.ready.reject(new Error('program stopped: ' + buffer.join('')));
         });
         if (context.options.wait && container.commandable)
-            await container.ready;
+        {
+            function gather(chunk: string)
+            {
+                buffer.push(chunk);
+            }
+            cp.stderr.on('data', gather);
+            await container.ready.finally(() =>
+            {
+                buffer = null;
+                cp.stderr.off('data', gather);
+            });
+        }
         return { execPath: process.execPath, args: args, cwd: process.cwd(), stdio: ['inherit', 'inherit', 'inherit', 'ipc'], shell: false, windowsHide: true };
     }
 }
