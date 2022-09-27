@@ -48,6 +48,104 @@
             }
         },
         {
+            "name": "command",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/new/command.js",
+                    "source": "src/cli/new/command.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "usage": "new cmd <name> [destination]",
+                    "options": {
+                        "force": {
+                            "aliases": [
+                                "f"
+                            ]
+                        }
+                    },
+                    "inject": [
+                        "options.name",
+                        "options",
+                        "options.destination"
+                    ]
+                },
+                "doc": {
+                    "description": "create a new command with the given name and destination (if present, cwd otherwise)"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "command-config",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/new/command-config.js",
+                    "source": "src/cli/new/command-config.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "usage": "new cc <name> [destination]",
+                    "options": {
+                        "force": {
+                            "aliases": [
+                                "f"
+                            ]
+                        }
+                    },
+                    "inject": [
+                        "options.name",
+                        "options",
+                        "options.destination"
+                    ]
+                },
+                "doc": {
+                    "description": "create a new command configuration (json file) with the given name and destination (if present, cwd otherwise)"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "generate",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "path": "dist/cli/generate.js",
+                    "source": "src/cli/generate.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "param.0",
+                        "options.name",
+                        "param.1"
+                    ],
+                    "options": {
+                        "name": {
+                            "needsValue": true
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "generate-declaration",
             "inject": [],
             "config": {
@@ -96,40 +194,6 @@
                 },
                 "": {
                     "inject": []
-                }
-            }
-        },
-        {
-            "name": "generate",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/cli/generate.js",
-                    "source": "src/cli/generate.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "param.0",
-                        "options.name",
-                        "param.1"
-                    ],
-                    "options": {
-                        "name": {
-                            "needsValue": true
-                        }
-                    }
                 }
             }
         },
@@ -183,70 +247,6 @@
                         "param.1",
                         "param.2"
                     ]
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
-            "name": "command-config",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/cli/new/command-config.js",
-                    "source": "src/cli/new/command-config.ts",
-                    "inject": []
-                },
-                "cli": {
-                    "usage": "new cc <name> [destination]",
-                    "options": {
-                        "force": {
-                            "aliases": [
-                                "f"
-                            ]
-                        }
-                    },
-                    "inject": [
-                        "options.name",
-                        "options",
-                        "options.destination"
-                    ]
-                },
-                "doc": {
-                    "description": "create a new command configuration (json file) with the given name and destination (if present, cwd otherwise)"
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
-            "name": "command",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/cli/new/command.js",
-                    "source": "src/cli/new/command.ts",
-                    "inject": []
-                },
-                "cli": {
-                    "usage": "new cmd <name> [destination]",
-                    "options": {
-                        "force": {
-                            "aliases": [
-                                "f"
-                            ]
-                        }
-                    },
-                    "inject": [
-                        "options.name",
-                        "options",
-                        "options.destination"
-                    ]
-                },
-                "doc": {
-                    "description": "create a new command with the given name and destination (if present, cwd otherwise)"
                 },
                 "": {
                     "inject": []
