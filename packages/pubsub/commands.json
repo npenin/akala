@@ -28,32 +28,6 @@
             }
         },
         {
-            "name": "unsubscribe",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ],
-                    "path": "dist/commands/unsubscribe.js",
-                    "source": "src/commands/unsubscribe.ts"
-                },
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "jsonrpc": {
-                    "inject": [
-                        "connectionAsContainer",
-                        "param.0"
-                    ]
-                }
-            }
-        },
-        {
             "name": "subscribe",
             "inject": [],
             "config": {
@@ -78,6 +52,32 @@
                         "$connectionAsContainer",
                         "param.1",
                         "param.2"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "unsubscribe",
+            "inject": [],
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/commands/unsubscribe.js",
+                    "source": "src/commands/unsubscribe.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "connectionAsContainer",
+                        "param.0"
                     ]
                 }
             }

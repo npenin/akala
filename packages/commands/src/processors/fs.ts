@@ -245,7 +245,12 @@ export class FileSystem extends CommandProcessor
                     commands.push(...await FileSystem.discoverMetaCommands(path.join(root, f.name), options));
         }, null, false);
 
-        return commands;
+        return commands.sort((a, b) =>
+        {
+            if (a.name < b.name) return -1;
+            if (a.name > b.name) return 1;
+            return 0;
+        });
     }
 
     public async handle(origin: Container<unknown>, command: FSCommand, param: { param: unknown[], _trigger?: string }): MiddlewarePromise
