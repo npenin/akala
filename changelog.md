@@ -1,4 +1,4 @@
-#  (2022-09-26)
+#  (2022-09-27)
 
 
 ### Bug Fixes
@@ -42,6 +42,7 @@
 * close outputs after generate 1d87b9d
 * code clean up 11726cb
 * command help with mandatory positional parameter f6002a8
+* commands stay in order c3358c1
 * compilation c7efdb0
 * compilation e63e92e
 * compilation after typescript 4.4 upgrade 2828ff9
