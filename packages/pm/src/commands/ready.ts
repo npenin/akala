@@ -4,6 +4,11 @@ import State, { RunningContainer } from '../state';
 
 export default async function ready(this: State, pm: pm.container & Container<State>, container: RunningContainer, remoteContainer: Container<void>): Promise<void>
 {
+    if (remoteContainer['process'])
+    {
+        container = remoteContainer as RunningContainer;
+        remoteContainer = null;
+    }
     if (remoteContainer)
     {
         remoteContainer.register<Metadata.Command>({ name: '$metadata', config: {}, inject: [] }, true);

@@ -140,7 +140,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
             return container.dispatch('$metadata').then((metaContainer: Metadata.Container) =>
             {
                 // console.log(metaContainer);
-                registerCommands(metaContainer.commands, null, container);
+                // registerCommands(metaContainer.commands, null, container);
                 pm.register(name, container, true);
             });
         }, () =>
@@ -155,7 +155,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
         {
             (container as RunningContainer).running = false;
             pm.unregister(container.name);
-            container.ready.reject(new Error('program stopped: ' + buffer.join('')));
+            container.ready.reject(new Error('program stopped: ' + buffer?.join('')));
         });
         if (context.options.wait && container.commandable)
         {
