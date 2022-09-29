@@ -30,7 +30,7 @@ logMiddleware.preAction(async c =>
     await ac.Processors.FileSystem.discoverCommands(c.options.program, cliContainer, { processor: processor, isDirectory: folderOrFile.isDirectory() });
 });
 const initMiddleware = new NamespaceMiddleware<{ program: string, name: string, tls: boolean }>(null);
-program.option<string, 'program'>('program', { needsValue: true }).option<string, 'name'>('name', { needsValue: true }).option<boolean, 'tls'>('tls', { needsValue: false }).
+program.option<string, 'program'>('program', { needsValue: true, normalize: true }).option<string, 'name'>('name', { needsValue: true }).option<boolean, 'tls'>('tls', { needsValue: false }).
     preAction(async c => //If pure js file
     {
         folderOrFile = await lstat(c.options.program);
@@ -135,7 +135,8 @@ program.option<string, 'program'>('program', { needsValue: true }).option<string
 
                     if (stop && typeof stop == 'function')
                         process.on('SIGINT', stop);
-                    process.on('SIGINT', () => process.exit());
+                    else
+                        process.on('SIGINT', () => process.exit());
                 });
             }
         },
