@@ -1,4 +1,4 @@
-#  (2022-09-27)
+#  (2022-10-01)
 
 
 ### Bug Fixes
@@ -150,6 +150,7 @@
 * provide proper variable to bumps dependents 82f8ddb
 * push before tagging d980dd0
 * ready command in pm works in both forks and remote cfb974f
+* ready command works properly d9b10c2
 * reduce silly logging 378e856
 * regex exec is not iterable ca695eb
 * reload metadata now call metadata with deep flag df33263
@@ -192,6 +193,7 @@
 * spread is not considering non enumerable properties 394438a
 * start command 4f924c6
 * start command args scope dd89375
+* start updates commands 8dc01de
 * stdin support 57f5ca7
 * stdin support 23979ba
 * stop generating loggers for numeric keys 75a1324
