@@ -1,4 +1,4 @@
-import { Container, Processors, Metadata, registerCommands, Cli } from "@akala/commands";
+import { Container, Processors, Metadata, Cli, updateCommands } from "@akala/commands";
 import State, { RunningContainer, SidecarMetadata } from '../state';
 import { spawn, ChildProcess, StdioOptions } from "child_process";
 import pmContainer from '../container';
@@ -12,13 +12,13 @@ import { IpcAdapter } from "../ipc-adapter";
 
 export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, context?: CliContext<{ new?: boolean, name: string, inspect?: boolean, verbose?: boolean, wait?: boolean }>): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
 {
+    debugger;
     let args: string[];
 
     if (!context.options.name && context.options.new)
         context.options.name = getRandomName();
     else if (!context.options.name)
         context.options.name = name;
-
 
     if (this.isDaemon)
     {
@@ -140,7 +140,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
             return container.dispatch('$metadata').then((metaContainer: Metadata.Container) =>
             {
                 // console.log(metaContainer);
-                // registerCommands(metaContainer.commands, null, container);
+                updateCommands(metaContainer.commands, null, container);
                 pm.register(name, container, true);
             });
         }, () =>
