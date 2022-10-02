@@ -42,6 +42,8 @@ export interface OptionOptions
     caseSensitive?: boolean,
     normalize?: boolean | 'require' | 'requireMeta';
     doc?: string;
+    optional?: boolean;
+    positional?: boolean;
 }
 
 class OptionMiddleware implements akala.Middleware<[context: CliContext]>
@@ -271,7 +273,6 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
             usage.commands = Object.fromEntries(keys.filter(k => k[0] != '$').map(k => [k, this.index[k]._doc?.description || (this.index[k].getKeys().length ? 'use `' + k + ' --help` to get more info on this' : '')]));
         usage.options = this._option.usage();
 
-
         const delegate = this._delegate;
         if (delegate instanceof NamespaceMiddleware)
         {
@@ -295,7 +296,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
         let middleware: NamespaceMiddleware<TOptions & TOptions2>;
         if (name !== null)
         {
-            var cli = /^((?:@?[/$_#\w-]+)(?: ([@$_#\w-]+))*)((?: (?:<\w+>))*(?: (?:\[\w+\]))*)/.exec(name);
+            var cli = /^((?:@?[/$_#\w-]+)(?: ([@$_#\w-]+))*)((?: (?:<\w+>))*(?: (?:\[\w+\]))*)(?: \[(?:\.{3})\w+\]))?/.exec(name);
             if (!cli || cli[0].length != name.length)
                 throw new Error(`${name} must match the following syntax: name <mandatoryparameters> [optionalparameters].`)
 
@@ -303,16 +304,18 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
                 return this.command(cli[1].substring(0, cli[1].length - cli[2].length - 1)).command<TOptions2>(cli[2] + cli[3], description);
 
             var args = cli[3];
-            var parameters: { name: keyof TOptions2 | keyof TOptions, optional: boolean }[] = [];
+            var parameters: ({ name: keyof TOptions2 | keyof TOptions, rest?: boolean } & OptionOptions)[] = [];
             var parameter: RegExpExecArray;
-            const parameterParsing = / <(\w+)>| \[(\w+)\]/g;
+            const parameterParsing = / <(\w+)>| \[(\w+)\]| \[(?:\.{3})?(\w+)\]/g;
             // eslint-disable-next-line no-cond-assign
             while (parameter = parameterParsing.exec(args))
             {
                 if (parameter[0][1] == '<')
-                    parameters.push({ name: parameter[1], optional: false })
+                    parameters.push({ name: parameter[1], optional: false, positional: true });
+                else if (parameters[2])
+                    parameters.push({ name: parameter[2], optional: true, positional: true });
                 else
-                    parameters.push({ name: parameter[2], optional: true });
+                    parameters.push({ name: parameter[3], optional: true, positional: true, rest: true });
             }
 
             if (parameters.length == 0 && description == null && this.index[cli[1]])
@@ -334,6 +337,8 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
                             context.options[parameter.name] = path.resolve(context.currentWorkingDirectory, context.options[parameter.name] as string) as (TOptions & TOptions2)[typeof parameter.name];
                         // if (parameter.optional)
                         //     context.options[parameter.name] = context.args.shift() as TOptions2[typeof parameter.name];
+                        if (parameter.rest)
+                            context.options[parameter.name] = context.args.splice(0, context.args.length) as any;
                     }
                 }
                 return Promise.reject();
@@ -368,7 +373,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
         this._action = handler
     }
 
-    options<T extends { [key: string]: string | number | boolean | string[] }>(options: { [key in Exclude<keyof T, number | symbol>]: OptionOptions }) 
+    options<T extends { [key: string]: string | number | boolean | string[] }>(options: { [key in Exclude<keyof T, number | symbol>]: OptionOptions })
     {
         akala.each(options, (o, key) =>
         {

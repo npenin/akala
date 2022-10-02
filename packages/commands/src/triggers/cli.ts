@@ -67,7 +67,8 @@ export function addOptions(cmd: Metadata.Command, command: NamespaceMiddleware):
             if ((!option || !option.doc) && cmd.config.doc && cmd.config.doc.inject)
                 option = Object.assign({}, option, { doc: cmd.config.doc.inject[i] });
 
-            command.option(optionName, option)
+            if (!option.positional)
+                command.option(optionName, option)
         }
     });
     if (cmd.config?.cli?.options)
@@ -80,6 +81,7 @@ export function addOptions(cmd: Metadata.Command, command: NamespaceMiddleware):
             if ((!opt || !opt.doc) && cmd.config.doc && cmd.config.doc.options && cmd.config.doc.options[name])
                 opt = Object.assign({}, opt, { doc: cmd.config.doc.options[name] });
 
-            command.option(name, opt)
+            if (!opt.positional)
+                command.option(name, opt)
         })
 }
