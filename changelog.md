@@ -1,4 +1,4 @@
-#  (2022-10-01)
+#  (2022-10-02)
 
 
 ### Bug Fixes
@@ -24,6 +24,7 @@
 * automate implementation f76a995
 * **automate:** stdio fc9a326
 * avoids workflow leaks in context db4662a
+* bad regex syntax da56074
 * better file init 1087260
 * better support for closed socket requests 9b38a60
 * better support for compound keys a571109
@@ -275,6 +276,7 @@
 * add possibility for custom file format 0360c2f
 * add possibility to parse filename 335cc97
 * add reload-metadata on pm 654247f
+* add rest args on cli e6966a9
 * add runnerMiddleware as export ff4c95a
 * add sidecar models to configuration 8389089
 * add sidecars accessor c7792a7
