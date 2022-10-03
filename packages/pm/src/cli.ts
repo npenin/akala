@@ -37,6 +37,7 @@ type CliOptions = { output: string, verbose: boolean, pmSock: string | number, t
 const cli = program.options<CliOptions>({ output: { aliases: ['o'], needsValue: true, doc: 'output as `table` if array otherwise falls back to standard node output' }, verbose: { aliases: ['v'] }, tls: { doc: "enables tls connection to the `pmSock`" }, pmSock: { aliases: ['pm-sock'], needsValue: true, doc: "path to the unix socket or destination in the form host:port" }, help: { doc: "displays this help message" } });
 const startpm = cli.command('start pm')
     .option('inspect', { doc: "starts the process with --inspect-brk parameter to help debugging" })
+    .option('keepAttached', { doc: "keeps the process attached" })
     .action(c =>
     {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
