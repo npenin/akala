@@ -296,7 +296,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
         let middleware: NamespaceMiddleware<TOptions & TOptions2>;
         if (name !== null)
         {
-            var cli = /^((?:@?[/$_#\w-]+)(?: ([@$_#\w-]+))*)((?: (?:<\w+>))*(?: (?:\[\w+\]))*)(?: \[(?:\.{3})\w+\])?/.exec(name);
+            var cli = /^((?:@?[/$_#\w-]+)(?: ([@$_#\w-]+))*)((?: (?:<\w+>))*(?: (?:\[\w+\]))*(?: \[(?:\.{3})\w+\])?)/.exec(name);
             if (!cli || cli[0].length != name.length)
                 throw new Error(`${name} must match the following syntax: name <mandatoryparameters> [optionalparameters].`)
 
@@ -373,13 +373,13 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
         this._action = handler
     }
 
-    options<T extends { [key: string]: string | number | boolean | string[] }>(options: { [key in Exclude<keyof T, number | symbol>]: OptionOptions })
+    options<T extends { [key: string]: string | number | boolean | string[] }>(options: { [key in Exclude<keyof T, number | symbol>]: OptionOptions }): NamespaceMiddleware<TOptions & T>
     {
         akala.each(options, (o, key) =>
         {
             this.option<T[typeof key], typeof key>(key, o);
         });
-        return this as unknown as NamespaceMiddleware<T>;
+        return this as unknown as NamespaceMiddleware<T & TOptions>;
     }
 
     option<TValue extends string | number | boolean | string[] = string | number | boolean | string[], TName extends string = string>(name: TName, option?: OptionOptions)
