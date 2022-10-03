@@ -136,6 +136,6 @@ export default async function (this: State, container: RunningContainer & pmCont
     {
         if (process.send)
             process.send('disconnecting daemon');
-        process.disconnect();
+        // process.disconnect();
     }
 }

@@ -10,7 +10,7 @@ import getRandomName from "./name";
 import { ProxyConfiguration } from "@akala/config";
 import { IpcAdapter } from "../ipc-adapter";
 
-export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, context?: CliContext<{ new?: boolean, name: string, inspect?: boolean, verbose?: boolean, wait?: boolean }>): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
+export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, context?: CliContext<{ new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: boolean, wait?: boolean }>): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
 {
     let args: string[];
 
@@ -68,7 +68,10 @@ export default async function start(this: State, pm: pmContainer.container & Con
     let cp: ChildProcess;
     if (!this.isDaemon)
     {
-        cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: true, stdio: ['ignore', 'ignore', 'ignore', 'ipc'] });
+        if (context.options.keepAttached)
+            cp = spawn(process.execPath, args, { cwd: process.cwd(), stdio: ['inherit', 'inherit', 'inherit', 'ipc'] });
+        else
+            cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: true, stdio: ['ignore', 'ignore', 'ignore', 'ipc'] });
         cp.on('exit', function (...args: unknown[])
         {
             console.log(args);
@@ -82,7 +85,8 @@ export default async function start(this: State, pm: pmContainer.container & Con
         {
             cp.on('disconnect', function ()
             {
-                cp.unref();
+                if (!context.options.keepAttached)
+                    cp.unref();
                 console.log('pm started');
                 resolve();
             })
@@ -99,7 +103,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
             await eachAsync(def.dependencies, (dep) => pm.dispatch('start', dep, { name: context.options.name + '-' + dep, wait: true }));
         }
 
-        cp = spawn(process.execPath, args, { cwd: process.cwd(), env: Object.assign({ DEBUG_COLORS: true }, process.env), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
+        cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: !context.options.keepAttached, env: Object.assign({ DEBUG_COLORS: true }, process.env), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
         cp.stderr?.pipe(new NewLinePrefixer(context.options.name + ' ', { useColors: true })).pipe(process.stderr);
         cp.stdout?.pipe(new NewLinePrefixer(context.options.name + ' ', { useColors: true })).pipe(process.stdout);
 
