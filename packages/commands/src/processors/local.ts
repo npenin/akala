@@ -122,7 +122,7 @@ export class CommandWithAffinityProcessor extends CommandProcessor
 {
     public override handle(container: Container<unknown>, command: Metadata.Command & Partial<CommandWithProcessorAffinity>, param: StructuredParameters): MiddlewarePromise
     {
-        if ('processor' in command && command.processor)
+        if ('processor' in command && typeof command.processor?.handle == 'undefined')
             return command.processor.handle(container, command, param);
         return Promise.resolve();
     }
