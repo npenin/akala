@@ -30,7 +30,20 @@ logMiddleware.preAction(async c =>
     await ac.Processors.FileSystem.discoverCommands(c.options.program, cliContainer, { processor: processor, isDirectory: folderOrFile.isDirectory() });
 });
 const initMiddleware = new NamespaceMiddleware<{ program: string, name: string, tls: boolean }>(null);
-program.option<string, 'program'>('program', { needsValue: true, normalize: true }).option<string, 'name'>('name', { needsValue: true }).option<boolean, 'tls'>('tls', { needsValue: false }).
+program.option<string, 'program'>('program', { needsValue: true, normalize: true }).
+    option<string, 'name'>('name', { needsValue: true }).
+    option<boolean, 'tls'>('tls', { needsValue: false }).
+    options<{
+        port?: number,
+        tcpPort?: string,
+        cert?: string,
+        key?: string,
+    }>({
+        port: { needsValue: true, doc: 'http/ws port\n(default: 80 if http, 443 is certificate and key are provided)', aliases: ['p'], optional: true, caseSensitive: false },
+        tcpPort: { needsValue: true, doc: 'tcp port', aliases: ['tcp-port'], optional: true, caseSensitive: false },
+        cert: { needsValue: true, doc: 'public certificate', aliases: ['certificate'], optional: true, caseSensitive: false },
+        key: { needsValue: true, doc: 'private certificate key. Requires public certificate', aliases: ['certificate-key'], optional: true, caseSensitive: false }
+    }).
     preAction(async c => //If pure js file
     {
         folderOrFile = await lstat(c.options.program);
