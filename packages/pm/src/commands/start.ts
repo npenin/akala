@@ -12,7 +12,6 @@ import { IpcAdapter } from "../ipc-adapter";
 
 export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, context?: CliContext<{ new?: boolean, name: string, inspect?: boolean, verbose?: boolean, wait?: boolean }>): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
 {
-    debugger;
     let args: string[];
 
     if (!context.options.name && context.options.new)
