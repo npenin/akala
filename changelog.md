@@ -1,4 +1,4 @@
-#  (2022-10-02)
+#  (2022-10-03)
 
 
 ### Bug Fixes
@@ -26,12 +26,14 @@
 * avoids workflow leaks in context db4662a
 * bad regex syntax da56074
 * better file init 1087260
+* better fork description d059b69
 * better support for closed socket requests 9b38a60
 * better support for compound keys a571109
 * better support for metadata on closed remote containers 71ec84d
 * better support for non-mapped sidecars ec502f8
 * binding constructor 8294d0f
 * bindings are less intrusive 3ef2783
+* broken command processor 22afbc0
 * bump dependent 5e89235
 * bump dependents proper references f734b61
 * cannot read undefined config object 0cc01be
@@ -44,6 +46,7 @@
 * code clean up 11726cb
 * command help with mandatory positional parameter f6002a8
 * commands stay in order c3358c1
+* CommandWithAffinityProcessor better detection 9ff4857
 * compilation c7efdb0
 * compilation e63e92e
 * compilation after typescript 4.4 upgrade 2828ff9
@@ -148,11 +151,13 @@
 * prevent send on closed socket 85de789
 * proper error serialization support 54a819d
 * proper parameter binding for bump-dependents 7459c86
+* proper positional option 4b10b61
 * provide proper variable to bumps dependents 82f8ddb
 * push before tagging d980dd0
 * ready command in pm works in both forks and remote cfb974f
 * ready command works properly d9b10c2
 * reduce silly logging 378e856
+* regex broken c50b9b9
 * regex exec is not iterable ca695eb
 * reload metadata now call metadata with deep flag df33263
 * reload-metadata definition fixed b807fc2
@@ -267,6 +272,7 @@
 * add extends support df13246
 * add ignore failure support f9929cf
 * add jsdoc a43ab28
+* add keepAttached for pm start 2bef670
 * add lazy helper 5530746
 * add middleware with priority handling 461c1a4
 * add MiddlewareRunnerMiddleware d0e9aff
