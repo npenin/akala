@@ -1,9 +1,11 @@
-#  (2022-10-02)
+#  (2022-10-03)
 
 
-### Features
+### Bug Fixes
 
-* add rest args on cli e6966a9
+* broken command processor 22afbc0
+* CommandWithAffinityProcessor better detection 9ff4857
+* proper positional option 4b10b61
 
 
 
