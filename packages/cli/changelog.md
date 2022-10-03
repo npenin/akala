@@ -1,14 +1,9 @@
-#  (2022-10-02)
+#  (2022-10-03)
 
 
 ### Bug Fixes
 
-* bad regex syntax da56074
-
-
-### Features
-
-* add rest args on cli e6966a9
+* regex broken c50b9b9
 
 
 
