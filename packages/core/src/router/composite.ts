@@ -264,24 +264,24 @@ export class MiddlewareCompositeWithPriority<T extends unknown[]> implements Mid
         this.stack.sort((a, b) => a[0] - b[0]);
         try
         {
-            await eachAsync(this.stack, async (middleware) =>
+            await eachAsync(this.stack, (middleware) =>
             {
-                try
+                if (failed && isErrorMiddleware(middleware[1]))
                 {
-                    if (failed && isErrorMiddleware(middleware[1]))
+                    return middleware[1].handleError(error as Error, ...req).then(err =>
                     {
-                        const err = await middleware[1].handleError(error as Error, ...req);
-
                         if (err === 'break')
                             throw err;
                         if (typeof err != 'string' && typeof err != 'undefined')
                             error = err;
 
                         failed = true;
-                    }
-                    else if (!failed && isStandardMiddleware(middleware[1]))
+                    }, e => ({ success: e }));
+                }
+                else if (!failed && isStandardMiddleware(middleware[1]))
+                {
+                    return middleware[1].handle(...req).then(err =>
                     {
-                        const err = await middleware[1].handle(...req);
                         if (err === 'break')
                             throw err;
                         if (typeof err != 'string' && typeof err != 'undefined')
@@ -292,14 +292,8 @@ export class MiddlewareCompositeWithPriority<T extends unknown[]> implements Mid
                                 error = err;
                         }
                         failed = err instanceof Error;
-                        return;
-                    }
+                    }, e => ({ success: e }));
                 }
-                catch (e)
-                {
-                    throw { success: e };
-                }
-
             }, true);
             return error;
         }
