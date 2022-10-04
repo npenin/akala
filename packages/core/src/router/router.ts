@@ -80,6 +80,7 @@ export class Router<T extends [{ path: string, params?: Record<string, unknown> 
         {
             const routed = new MiddlewareRoute<T>(route, { end: false });
             routed.use(...middlewares);
+            super.useMiddleware(routed);
             return this;
         }
         else
