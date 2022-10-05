@@ -1,9 +1,9 @@
-#  (2022-10-03)
+#  (2022-10-05)
 
 
 ### Bug Fixes
 
-* regex broken c50b9b9
+* restore broken cli feature 6f563ef
 
 
 
