@@ -40,6 +40,7 @@
 * cleanup $disconnect registration on ready 4aaf9bd
 * Cli implementation a6c7103
 * cli parsing a28c8fe
+* Cli wait fixed bac25a8
 * client compilation 4815fd5
 * client package 4f14fd3
 * close outputs after generate 1d87b9d
