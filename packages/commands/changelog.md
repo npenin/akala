@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* restore broken cli feature 6f563ef
+* Cli wait fixed bac25a8
 
 
 
