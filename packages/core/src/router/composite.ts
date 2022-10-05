@@ -276,7 +276,7 @@ export class MiddlewareCompositeWithPriority<T extends unknown[]> implements Mid
                             error = err;
 
                         failed = true;
-                    }, e => ({ success: e }));
+                    }, e => Promise.reject({ success: e }));
                 }
                 else if (!failed && isStandardMiddleware(middleware[1]))
                 {
@@ -292,7 +292,7 @@ export class MiddlewareCompositeWithPriority<T extends unknown[]> implements Mid
                                 error = err;
                         }
                         failed = err instanceof Error;
-                    }, e => ({ success: e }));
+                    }, e => Promise.reject({ success: e }));
                 }
             }, true);
             return error;

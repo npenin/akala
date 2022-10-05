@@ -49,7 +49,7 @@ export function isRunningContainer(c: Container<unknown>): c is RunningContainer
     return 'running' in c;
 }
 
-export default async function (this: State, container: RunningContainer & pmContainer.container, context: CliContext<{ config: string }>): Promise<void>
+export default async function (this: State, container: RunningContainer & pmContainer.container, context: CliContext<{ config: string, keepAttached: boolean }>): Promise<void>
 {
     this.isDaemon = true;
     this.processes = {};
@@ -136,6 +136,7 @@ export default async function (this: State, container: RunningContainer & pmCont
     {
         if (process.send)
             process.send('disconnecting daemon');
-        // process.disconnect();
+        if (!context.options.keepAttached)
+            process.disconnect();
     }
 }
