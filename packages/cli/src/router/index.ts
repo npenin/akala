@@ -429,7 +429,9 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
                 if (this._action)
                     var result = await this._action.handle(context);
                 context.args = args;
-                throw result;
+                if (this._action)
+                    return result;
+                return err;
             }).catch(result =>
             {
                 if (this._format)

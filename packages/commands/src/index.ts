@@ -22,14 +22,16 @@ export { serveMetadata, ServeMetadata, connectByPreference, connectWith, Connect
 import commands from './commands'
 import $metadata from './commands/$metadata'
 export { CommandProcessor };
+
 export class Cli
 {
     public readonly program: NamespaceMiddleware<{ [key: string]: string | number | boolean | string[]; }>;
+    private promise: Promise<unknown>;
 
     constructor(public readonly cliContainer: Container<void>, commands: Metadata.Command[], processor: CommandProcessor, program: NamespaceMiddleware)
     {
         registerCommands(commands, processor, cliContainer);
-        cliContainer.attach(Triggers.cli, this.program = program.command(null));
+        this.promise = cliContainer.attach(Triggers.cli, this.program = program);
     }
 
     public static async fromFileSystem(commandsPath: string, relativeTo: string): Promise<Cli>
@@ -46,7 +48,8 @@ export class Cli
 
     public async start(): Promise<unknown>
     {
-        return this.program.process(buildCliContextFromProcess());
+        await this.promise;
+        return await this.program.process(buildCliContextFromProcess());
     }
 
     public static Metadata = $metadata;

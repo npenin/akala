@@ -59,8 +59,6 @@ export class MiddlewareRoute<T extends [Routable, ...unknown[]]> extends Middlew
         return Promise.resolve();
     }
 
-
-
     public useMiddleware(route: string | RegExp, ...middlewares: Middleware<T>[]): this
     public useMiddleware(...middlewares: Middleware<T>[]): this
     public useMiddleware(route: string | RegExp | Middleware<T>, ...middlewares: Middleware<T>[]): this
@@ -84,9 +82,8 @@ export class MiddlewareRoute<T extends [Routable, ...unknown[]]> extends Middlew
         {
             const routed = new MiddlewareRoute<T>(route, { end: false });
             routed.use(...middlewares);
-            return this;
+            return super.useMiddleware(routed);
         }
-        else
-            return super.use(route, ...middlewares);
+        return super.use(route, ...middlewares);
     }
 }
