@@ -128,13 +128,13 @@ export class MiddlewareComposite<T extends unknown[]> implements Middleware<T>, 
         let failed: boolean = undefined;
         try
         {
-            await eachAsync(this.stack, async (middleware) =>
+            await eachAsync(this.stack, (middleware) =>
             {
-                try
+                if (failed && isErrorMiddleware(middleware))
                 {
-                    if (failed && isErrorMiddleware(middleware))
+                    return middleware.handleError(error as Error, ...req).then(err =>
                     {
-                        const err = await middleware.handleError(error as Error, ...req);
+
 
                         if (err === 'break')
                             throw err;
@@ -142,10 +142,12 @@ export class MiddlewareComposite<T extends unknown[]> implements Middleware<T>, 
                             error = err;
 
                         failed = true;
-                    }
-                    else if (!failed && isStandardMiddleware(middleware))
+                    })
+                }
+                else if (!failed && isStandardMiddleware(middleware))
+                {
+                    return middleware.handle(...req).then(err =>
                     {
-                        const err = await middleware.handle(...req);
                         if (err === 'break')
                             throw err;
                         if (typeof err != 'string' && typeof err != 'undefined')
@@ -156,14 +158,9 @@ export class MiddlewareComposite<T extends unknown[]> implements Middleware<T>, 
                                 error = err;
                         }
                         failed = err instanceof Error;
-                        return;
-                    }
-                }
-                catch (e)
-                {
-                    throw { success: e };
-                }
 
+                    }).catch(e => Promise.reject({ success: e }))
+                }
             }, true);
             return error;
         }
