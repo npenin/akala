@@ -126,7 +126,6 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
                             throw undefined;
                     }, '$bridge'));
 
-
                     if (init)
                         await cliContainer.dispatch(init, { options: c.options, param: c.args, _trigger: 'cli', pm: pm, context: c });
 
