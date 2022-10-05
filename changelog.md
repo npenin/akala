@@ -1,4 +1,4 @@
-#  (2022-10-03)
+#  (2022-10-05)
 
 
 ### Bug Fixes
@@ -75,6 +75,7 @@
 * fix automate runner ae9c216
 * fix for commands ac new 166c9ee
 * fix model registration and serialization 7236001
+* fix use on router 64f54b9
 * force metadata command registration in remote container 840d6dd
 * force socket processor on pm forks 0874275
 * fork broken 8a998fc
@@ -181,6 +182,7 @@
 * removed mock-require usage 448f5be
 * resolve legacy config lookup 5dceab9
 * resolve path in new cc 58cb93c
+* restore broken cli feature 6f563ef
 * revert last change 1332114
 * runnerMiddleware more type friendly 7bf1a25
 * set log level for any namespace e1b1025
