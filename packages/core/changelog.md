@@ -3,8 +3,7 @@
 
 ### Bug Fixes
 
-* fix use on router 64f54b9
-* restore broken cli feature 6f563ef
+* Cli wait fixed bac25a8
 
 
 
