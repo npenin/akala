@@ -291,6 +291,8 @@ export class MiddlewareCompositeWithPriority<T extends unknown[]> implements Mid
                         failed = err instanceof Error;
                     }, e => Promise.reject({ success: e }));
                 }
+                else
+                    return Promise.resolve();
             }, true);
             return error;
         }

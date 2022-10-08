@@ -312,7 +312,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
             {
                 if (parameter[0][1] == '<')
                     parameters.push({ name: parameter[1], optional: false, positional: true });
-                else if (parameters[2])
+                else if (parameter[2])
                     parameters.push({ name: parameter[2], optional: true, positional: true });
                 else
                     parameters.push({ name: parameter[3], optional: true, positional: true, rest: true });
