@@ -37,7 +37,7 @@ export function sidecar(options?: { pm?: pm.container & Container<void> } & (Omi
                         {
                             if (e && e.statusCode == 404 || !meta.connect)
                             {
-                                return await connect('pm').then(async (meta) =>
+                                return await connect('pm', options.pm).then(async (meta) =>
                                 {
                                     const c = await connectByPreference(await meta.connect, Object.assign({ metadata: meta.container }, options, options && options[property]), ...orders);
                                     await c.container.dispatch('proxy', property);

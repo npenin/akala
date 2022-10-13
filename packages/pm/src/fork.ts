@@ -127,7 +127,11 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
                     }, '$bridge'));
 
                     if (init)
-                        await cliContainer.dispatch(init, { options: c.options, param: c.args, _trigger: 'cli', pm: pm, context: c });
+                    {
+                        var error = await cliContainer.handle(cliContainer, init, { options: c.options, param: c.args, _trigger: 'cli', pm: pm, context: c });
+                        if (error)
+                            throw error;
+                    }
 
                     let stop: (...args: unknown[]) => Promise<void>;
                     try
@@ -161,5 +165,5 @@ if (require.main == module)
             console.error(e.message);
         else
             console.error(e);
-        process.exit(1);
+        setImmediate(process.exit, 1);
     });
