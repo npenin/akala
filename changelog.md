@@ -1,4 +1,4 @@
-#  (2022-10-08)
+#  (2022-10-13)
 
 
 ### Bug Fixes
@@ -195,6 +195,7 @@
 * sidecar storage building 7285f5d
 * sidecar store init 057f271
 * sidecar to remote containers f795c56
+* sidecar use pm when provided bf320f3
 * silent disconnect failures 81d65aa
 * sort excludes non workspace dependencies 0f33d15
 * sort supports correct structure bf17f91
