@@ -1,4 +1,4 @@
-#  (2022-10-05)
+#  (2022-10-08)
 
 
 ### Bug Fixes
@@ -143,6 +143,7 @@
 * parser more reliable 5c92e5a
 * path can now be retrieved using property 2d3125e
 * path to command metadata 4fc8111
+* performance refactor fix 4602906
 * pm cli command usage a9ff0bf
 * pm connect when manual forking ed7357e
 * pm start a40a583
