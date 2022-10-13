@@ -1,9 +1,9 @@
-#  (2022-10-08)
+#  (2022-10-13)
 
 
 ### Bug Fixes
 
-* performance refactor fix 4602906
+* sidecar use pm when provided bf320f3
 
 
 
