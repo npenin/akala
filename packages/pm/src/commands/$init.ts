@@ -8,6 +8,7 @@ import { PassThrough } from 'stream';
 import { EventEmitter } from 'events';
 import { CliContext } from '@akala/cli';
 import Configuration from '@akala/config';
+import { each, grep } from '@akala/core';
 
 export async function metadata(container: Container<unknown>, deep?: boolean): Promise<Metadata.Container>
 {
@@ -21,7 +22,7 @@ export async function metadata(container: Container<unknown>, deep?: boolean): P
             metacontainer.commands.push({ name: cmd.name, inject: cmd.inject || [], config: cmd.config });
         else if (cmd instanceof Container && deep)
         {
-            if (!isRunningContainer(cmd) || !cmd.running)
+            if (!isRunningContainer(cmd) || !cmd.running && !cmd.stateless)
                 return;
             try
             {
@@ -95,7 +96,7 @@ export default async function (this: State, container: RunningContainer & pmCont
     }
     else
         this.config = Configuration.new<StateConfiguration>(configPath, {
-            containers: { pm: { commandable: true, path: require.resolve('../../commands.json') } },
+            containers: { pm: { commandable: true, stateless: false, path: require.resolve('../../commands.json') } },
             mapping: { pm: { cwd: process.cwd(), container: 'pm' } }
         }) as State['config'];
 

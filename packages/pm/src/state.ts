@@ -21,6 +21,7 @@ export interface StateConfiguration
 export interface SidecarMetadata
 {
     path: string;
+    stateless: boolean;
     dependencies?: string[];
     commandable: boolean;
     type?: 'nodejs';
@@ -40,5 +41,6 @@ export interface RunningContainer<T extends string | SerializableObject = any> e
 {
     process: ChildProcess;
     running?: boolean;
+    stateless: boolean;
     ready?: Deferred<void>;
 }

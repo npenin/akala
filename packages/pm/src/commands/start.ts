@@ -55,7 +55,8 @@ export default async function start(this: State, pm: pmContainer.container & Con
         args = [...context.args, ...Object.entries(context.options).filter(p => ['inspect'].indexOf(p[0]) == -1).map(entries => ['--' + entries[0] + '=' + entries[1]]).flat()];
     }
 
-    args.unshift(require.resolve('../fork'))
+    if (def.type && def.type !== 'nodejs')
+        args.unshift(require.resolve('../fork'))
 
     if (context.options && context.options.inspect)
         args.unshift('--inspect-brk');
@@ -94,7 +95,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
     }
     else
     {
-        if (!container && this.config.containers[name]?.dependencies?.length)
+        if (!container && def.dependencies?.length)
         {
             var missingDeps = def.dependencies.filter(d => !this.config.mapping[d]);
             if (missingDeps.length > 0)
@@ -103,6 +104,8 @@ export default async function start(this: State, pm: pmContainer.container & Con
             await eachAsync(def.dependencies, (dep) => pm.dispatch('start', dep, { name: context.options.name + '-' + dep, wait: true }));
         }
 
+        if (def.type && def.type !== 'nodejs')
+            throw new ErrorWithStatus(400, `container with type ${this.config.containers[name]?.type} are not yet supported`);
         cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: !context.options.keepAttached, env: Object.assign({ DEBUG_COLORS: true }, process.env), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
         cp.stderr?.pipe(new NewLinePrefixer(context.options.name + ' ', { useColors: true })).pipe(process.stderr);
         cp.stdout?.pipe(new NewLinePrefixer(context.options.name + ' ', { useColors: true })).pipe(process.stdout);
@@ -118,11 +121,12 @@ export default async function start(this: State, pm: pmContainer.container & Con
             });
             container.processor.useMiddleware(20, new Processors.JsonRpc(connection, true));
 
-            connection.on('close', function disconnected()
-            {
-                console.warn(`${context.options.name} has disconnected`);
-                container.running = false;
-            });
+            if (!container.stateless)
+                connection.on('close', function disconnected()
+                {
+                    console.warn(`${context.options.name} has disconnected`);
+                    container.running = false;
+                });
 
             if (def?.commandable)
                 pm.register(container);
