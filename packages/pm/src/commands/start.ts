@@ -55,7 +55,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
         args = [...context.args, ...Object.entries(context.options).filter(p => ['inspect'].indexOf(p[0]) == -1).map(entries => ['--' + entries[0] + '=' + entries[1]]).flat()];
     }
 
-    if (def.type && def.type !== 'nodejs')
+    if (!def?.type || def.type == 'nodejs')
         args.unshift(require.resolve('../fork'))
 
     if (context.options && context.options.inspect)
@@ -104,7 +104,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
             await eachAsync(def.dependencies, (dep) => pm.dispatch('start', dep, { name: context.options.name + '-' + dep, wait: true }));
         }
 
-        if (def.type && def.type !== 'nodejs')
+        if (def?.type && def.type !== 'nodejs')
             throw new ErrorWithStatus(400, `container with type ${this.config.containers[name]?.type} are not yet supported`);
         cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: !context.options.keepAttached, env: Object.assign({ DEBUG_COLORS: true }, process.env), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
         cp.stderr?.pipe(new NewLinePrefixer(context.options.name + ' ', { useColors: true })).pipe(process.stderr);

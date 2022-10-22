@@ -286,8 +286,8 @@
                 },
                 "cli": {
                     "inject": [
-                        "param.0",
-                        "param.1",
+                        "options.name",
+                        "options.path",
                         "cwd",
                         "options.c"
                     ],
@@ -297,8 +297,15 @@
                                 "c"
                             ],
                             "needsValue": false
+                        },
+                        "stateless": {
+                            "aliases": [
+                                "s"
+                            ],
+                            "needsValue": false
                         }
-                    }
+                    },
+                    "usage": "map <name> <path>"
                 }
             }
         },

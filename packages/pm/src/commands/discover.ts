@@ -50,7 +50,7 @@ export default async function discover(this: State, packageName: string, folder:
     {
         try
         {
-            moduleRequire?.resolve(p)
+            return moduleRequire?.resolve(p)
         }
         catch (e)
         {
@@ -94,9 +94,9 @@ export default async function discover(this: State, packageName: string, folder:
         }
     }
 
-    const commandsJsonFile = tryModuleRequireResolve(join(packageName, './commands.json'));
+    const commandsJsonFile = tryModuleRequireResolve('./commands.json');
     if (commandsJsonFile)
-        return pm.dispatch('map', packageName, moduleRequire.resolve('./commands.json'), path, true);
+        return pm.dispatch('map', packageName, commandsJsonFile, path, true);
 
     return pm.dispatch('map', packageName, moduleRequire.resolve('./' + packageConfig.main), path, false);
 }

@@ -128,9 +128,7 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
 
                     if (init)
                     {
-                        var error = await cliContainer.handle(cliContainer, init, { options: c.options, param: c.args, _trigger: 'cli', pm: pm, context: c });
-                        if (error)
-                            throw error;
+                        await cliContainer.dispatch(init, { options: c.options, param: c.args, _trigger: 'cli', pm: pm, context: c });
                     }
 
                     let stop: (...args: unknown[]) => Promise<void>;
