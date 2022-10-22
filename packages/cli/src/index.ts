@@ -1,5 +1,5 @@
-import { LogLevels, Logger, logger as LoggerBuilder } from '@akala/core';
-import program, { CliContext } from './router/index';
+import { LogLevels, Logger, logger as LoggerBuilder, grep, map, each } from '@akala/core';
+import program, { CliContext, OptionOptions } from './router/index';
 export * from './router/index'
 export default program;
 
@@ -39,6 +39,22 @@ export function unparseOptions(options: CliContext['options']): string[]
 export function unparse(context: CliContext): string[]
 {
     return [...context.args, ...unparseOptions(context.options)];
+}
+export function unparseWithMeta(options: { [key: string]: OptionOptions }, context: CliContext): string[]
+{
+    var positionals = map(grep(options, o => o.positional), (o, name) => ({ name, ...o }), true).sort((a, b) => a.position - b.position);
+    var args = positionals.map(o => context.options[o.name]).filter(f => typeof f !== 'undefined') as string[];
+
+    each(grep(options, o => !o.positional), (option, name) =>
+    {
+        if (typeof (name) !== 'string')
+            return;
+        var optionValue = context.options[name] as string;
+        if (typeof (optionValue !== 'undefined'))
+            args.unshift("--" + name, optionValue);
+    });
+
+    return args.flat();
 }
 
 export class ErrorWithStatus extends Error
