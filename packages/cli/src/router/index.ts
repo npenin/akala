@@ -44,6 +44,7 @@ export interface OptionOptions
     doc?: string;
     optional?: boolean;
     positional?: boolean;
+    position?: number;
 }
 
 class OptionMiddleware implements akala.Middleware<[context: CliContext]>
@@ -307,15 +308,16 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
             var parameters: ({ name: keyof TOptions2 | keyof TOptions, rest?: boolean } & OptionOptions)[] = [];
             var parameter: RegExpExecArray;
             const parameterParsing = / <(\w+)>| \[(\w+)\]| \[(?:\.{3})?(\w+)\]/g;
+            let position = 0;
             // eslint-disable-next-line no-cond-assign
             while (parameter = parameterParsing.exec(args))
             {
                 if (parameter[0][1] == '<')
-                    parameters.push({ name: parameter[1], optional: false, positional: true });
+                    parameters.push({ name: parameter[1], optional: false, positional: true, position: position++ });
                 else if (parameter[2])
-                    parameters.push({ name: parameter[2], optional: true, positional: true });
+                    parameters.push({ name: parameter[2], optional: true, positional: true, position: position++ });
                 else
-                    parameters.push({ name: parameter[3], optional: true, positional: true, rest: true });
+                    parameters.push({ name: parameter[3], optional: true, positional: true, position: position++, rest: true });
             }
 
             if (parameters.length == 0 && description == null && this.index[cli[1]])
