@@ -1,0 +1,92 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json",
+    "name": "yarn",
+    "extends": [
+        "@akala/gateway/commands.json"
+    ],
+    "commands": [
+        {
+            "name": "add",
+            "cli": {
+                "options": {
+                    "json": {
+                        "doc": "Format the output as an NDJSON stream"
+                    },
+                    "exact": {
+                        "aliases": [
+                            "E"
+                        ],
+                        "doc": "Don't use any semver modifier on the resolved range"
+                    },
+                    "tilde": {
+                        "aliases": [
+                            "T"
+                        ],
+                        "doc": "Use the ~ semver modifier on the resolved range"
+                    },
+                    "caret": {
+                        "aliases": [
+                            "C"
+                        ],
+                        "doc": "Use the ^ semver modifier on the resolved range"
+                    },
+                    "dev": {
+                        "aliases": [
+                            "D"
+                        ],
+                        "doc": "Add a package as a dev dependency"
+                    },
+                    "peer": {
+                        "aliases": [
+                            "P"
+                        ],
+                        "doc": "Add a package as a peer dependency"
+                    },
+                    "optional": {
+                        "aliases": [
+                            "O"
+                        ],
+                        "doc": "Add / upgrade a package to an optional regular / peer dependency"
+                    },
+                    "prefer-dev": {
+                        "doc": "Add / upgrade a package to a dev dependency"
+                    },
+                    "interactive": {
+                        "aliases": [
+                            "i"
+                        ],
+                        "doc": "Reuse the specified package from other workspaces in the project"
+                    },
+                    "cached": {
+                        "aliases": [],
+                        "doc": "Reuse the highest version already used somewhere within the project"
+                    },
+                    "mode": {
+                        "needsValue": true,
+                        "doc": "Change what artifacts installs generate"
+                    }
+                }
+            },
+            "inject": [
+                "context"
+            ]
+        },
+        {
+            "name": "bin",
+            "cli": {
+                "options": {
+                    "verbose": {
+                        "aliases": [
+                            "v"
+                        ]
+                    },
+                    "json": {}
+                },
+                "usage": "bin [name]",
+                "inject": [
+                    "context"
+                ]
+            }
+        }
+    ]
+}
