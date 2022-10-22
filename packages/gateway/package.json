@@ -1,0 +1,28 @@
+{
+  "name": "@akala/gateway",
+  "version": "2.4.4",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Nicolas Penin <nicolas.penin@dragon-angel.fr>",
+  "license": "BSD-3-Clause",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/npenin/akala.git"
+  },
+  "dependencies": {
+    "@akala/cli": "workspace:^",
+    "@akala/core": "workspace:^",
+    "@akala/json-rpc-ws": "workspace:^"
+  },
+  "funding": "https://github.com/npenin/akala?sponsor=1",
+  "devDependencies": {
+    "@akala/commands": "workspace:^",
+    "typescript": "^4.8.3"
+  },
+  "preferGlobal": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\"",
+    "generate": "ac generate dist/commands commands.json --name @akala/gateway"
+  },
+  "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43"
+}
