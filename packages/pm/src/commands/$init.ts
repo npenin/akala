@@ -87,9 +87,9 @@ export default async function (this: State, container: RunningContainer & pmCont
     });
 
     const configPath = context.options.config || join(homedir(), './.pm.config.json');
-    this.config = await Configuration.load<StateConfiguration>(configPath);
+    this.config = await Configuration.load<StateConfiguration>(configPath, true);
 
-    if (this.config)
+    if (this.config?.mapping?.pm)
     {
         if (this.config.mapping.pm.cwd)
             process.chdir(this.config.mapping.pm.cwd);
@@ -135,9 +135,11 @@ export default async function (this: State, container: RunningContainer & pmCont
 
     if (process.disconnect)
     {
-        if (process.send)
-            process.send('disconnecting daemon');
         if (!context.options.keepAttached)
+        {
+            if (process.send)
+                process.send('disconnecting daemon');
             process.disconnect();
+        }
     }
 }

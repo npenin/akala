@@ -82,10 +82,24 @@ cli.preAction(async c =>
                 netsocket.connect('\\\\?\\pipe\\pm')
             else
             {
-                // eslint-disable-next-line @typescript-eslint/no-var-requires
-                const config = require(path.join(homedir(), './.pm.config.json'));
+                try
+                {
+                    // eslint-disable-next-line @typescript-eslint/no-var-requires
+                    const config = require(path.join(homedir(), './.pm.config.json'));
 
-                netsocket.connect(config.mapping.pm.connect.socket[0]);
+                    netsocket.connect(config.mapping.pm.connect.socket[0]);
+                }
+                catch (e)
+                {
+                    if (e.code != 'MODULE_NOT_FOUND')
+                        reject(e);
+                    else
+                    {
+                        e.code = 'ENOENT';
+                        socket.destroy(e);
+                    }
+
+                }
             }
             if (c.options.tls)
             {
@@ -221,7 +235,8 @@ program.process(buildCliContextFromProcess()).then(result =>
         socket.end();
 }, err =>
 {
-    // console.error(err);
+    if (err && !(err instanceof ErrorMessage))
+        console.error(err);
     process.exit(err && err.statusCode || 50);
 });
 
