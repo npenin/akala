@@ -1,0 +1,42 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json",
+    "type": "object",
+    "title": "The Config Schema",
+    "description": "This is the container configuration",
+    "required": [
+        "name",
+        "commands"
+    ],
+    "properties": {
+        "name": {
+            "type": "string"
+        },
+        "stateless": {
+            "type": "boolean"
+        },
+        "dependencies": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "commands": {
+            "type": "array",
+            "items": {
+                "allOf": [
+                    {
+                        "$ref": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json"
+                    },
+                    {
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

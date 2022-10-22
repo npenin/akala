@@ -53,7 +53,7 @@ export class FileSystem extends CommandProcessor
             container.name = commands.name;
     }
 
-    public static async discoverMetaCommands(root: string, options?: DiscoveryOptions): Promise<Metadata.Command[] & { name?: string }>
+    public static async discoverMetaCommands(root: string, options?: DiscoveryOptions): Promise<Metadata.Command[] & { name?: string, stateless?: boolean }>
     {
         const log = akala.logger('commands:fs:discovery');
 
@@ -94,6 +94,8 @@ export class FileSystem extends CommandProcessor
                 await eachAsync(metacontainer.extends, async path =>
                 {
                     var parentCommands = await this.discoverMetaCommands(cmdRequire.resolve(path), { ...options, isDirectory: undefined, relativeTo: undefined });
+                    if (parentCommands.stateless)
+                        Object.defineProperty(commands, 'stateless', { enumerable: false, value: parentCommands.stateless });
                     commands.push(...parentCommands.filter(c => !commands.find(c2 => c.name == c2.name)));
                 });
             }
