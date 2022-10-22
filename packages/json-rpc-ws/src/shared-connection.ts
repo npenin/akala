@@ -30,10 +30,10 @@ export interface StreamPayload<T> extends CommonPayload
     stream?: true;
 }
 
-export class Deferred<T> implements PromiseLike<T>
+export class Deferred<T, TError = Error> implements PromiseLike<T>
 {
     private _resolve?: (value?: T | PromiseLike<T> | undefined) => void;
-    private _reject?: (reason?: Error) => void;
+    private _reject?: (reason?: TError) => void;
     promise: Promise<T>;
     resolve(_value?: T | PromiseLike<T> | undefined): void
     {
@@ -42,7 +42,7 @@ export class Deferred<T> implements PromiseLike<T>
 
         this._resolve(_value);
     }
-    reject(_reason?: Error): void
+    reject(_reason?: TError): void
     {
         if (typeof (this._reject) == 'undefined')
             throw new Error('Not Implemented');
