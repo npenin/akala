@@ -38,8 +38,10 @@
         "orchestrator": "^0.3.8"
     },
     "scripts": {
-        "generate": "ac generate dist/commands commands.json --name @akala/automate",
-        "generate-metadata": "ac generate-metadata commands.json src/container.ts",
+        "generate": "yarn generate-automate && yarn generate-workflow",
+        "generate-metadata": "yarn generate-metadata-automate && yarn generate-metadata-workflow",
+        "generate-automate": "ac generate dist/commands commands.json --name @akala/automate",
+        "generate-metadata-automate": "ac generate-metadata commands.json src/container.ts",
         "generate-workflow": "ac generate dist/workflow-commands workflow.json --name workflow",
         "generate-metadata-workflow": "ac generate-metadata workflow.json src/workflow.ts --name workflow"
     }
