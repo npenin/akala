@@ -3,22 +3,18 @@
     "commands": [
         {
             "name": "$init",
-            "inject": [
-                "param.0",
-                "pm",
-                "param.1"
-            ],
+            "inject": [],
             "config": {
-                "": {
+                "fs": {
+                    "path": "dist/workflow-commands/$init.js",
+                    "source": "src/workflow-commands/$init.ts",
                     "inject": [
                         "param.0",
                         "pm",
                         "param.1"
                     ]
                 },
-                "fs": {
-                    "path": "dist/workflow-commands/$init.js",
-                    "source": "src/workflow-commands/$init.ts",
+                "": {
                     "inject": [
                         "param.0",
                         "pm",
@@ -36,22 +32,18 @@
         },
         {
             "name": "process",
-            "inject": [
-                "param.0",
-                "param.1",
-                "$container"
-            ],
+            "inject": [],
             "config": {
-                "": {
+                "fs": {
                     "inject": [
                         "param.0",
                         "param.1",
                         "$container"
-                    ]
-                },
-                "fs": {
+                    ],
                     "path": "dist/workflow-commands/process.js",
-                    "source": "src/workflow-commands/process.ts",
+                    "source": "src/workflow-commands/process.ts"
+                },
+                "": {
                     "inject": [
                         "param.0",
                         "param.1",
@@ -61,49 +53,42 @@
                 "automate": {
                     "inject": [
                         "workflow",
-                        "inputs"
+                        "inputs",
+                        "$container"
                     ]
                 }
             }
         },
         {
             "name": "set-config",
-            "inject": [
-                "param.0"
-            ],
+            "inject": [],
             "config": {
-                "": {
-                    "inject": [
-                        "param.0"
-                    ]
-                },
                 "fs": {
                     "path": "dist/workflow-commands/set-config.js",
                     "source": "src/workflow-commands/set-config.ts",
                     "inject": [
                         "param.0"
                     ]
+                },
+                "": {
+                    "inject": []
                 }
             }
         },
         {
             "name": "use",
-            "inject": [
-                "$container",
-                "param.0",
-                "param.1"
-            ],
+            "inject": [],
             "config": {
-                "": {
+                "fs": {
                     "inject": [
                         "$container",
                         "param.0",
                         "param.1"
-                    ]
-                },
-                "fs": {
+                    ],
                     "path": "dist/workflow-commands/use.js",
-                    "source": "src/workflow-commands/use.ts",
+                    "source": "src/workflow-commands/use.ts"
+                },
+                "": {
                     "inject": [
                         "$container",
                         "param.0",
@@ -113,5 +98,5 @@
             }
         }
     ],
-    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
 }

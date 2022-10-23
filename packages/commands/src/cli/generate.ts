@@ -22,7 +22,7 @@ export default async function generate(folder?: string, name?: string, outputFil
     await akala.Processors.FileSystem.discoverCommands(path.resolve(folder), container, { relativeTo: outputFolder, isDirectory: true, recursive: true, ignoreFileWithNoDefaultExport: true });
 
     const meta: akala.Metadata.Container & { $schema?: string } = akala.metadata(container);
-    meta.$schema = 'https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json';
+    meta.$schema = 'https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json';
     await write(output, JSON.stringify(meta, null, 4));
     await new Promise(resolve => output.end(resolve));
 }
