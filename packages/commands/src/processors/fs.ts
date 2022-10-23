@@ -91,12 +91,21 @@ export class FileSystem extends CommandProcessor
             const commands = metacontainer.commands.filter(cmd => !(cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata'));
             if (metacontainer.extends && metacontainer.extends.length)
             {
-                await eachAsync(metacontainer.extends, async path =>
+                await eachAsync(metacontainer.extends, async subPath =>
                 {
-                    var parentCommands = await this.discoverMetaCommands(cmdRequire.resolve(path), { ...options, isDirectory: undefined, relativeTo: undefined });
+                    var parentCommands = await this.discoverMetaCommands(cmdRequire.resolve(subPath), { ...options, isDirectory: undefined, relativeTo: cmdRequire.resolve(subPath) });
                     if (parentCommands.stateless)
                         Object.defineProperty(commands, 'stateless', { enumerable: false, value: parentCommands.stateless });
-                    commands.push(...parentCommands.filter(c => !commands.find(c2 => c.name == c2.name)));
+                    commands.push(...parentCommands.filter(c =>
+                    {
+                        if (commands.find(c2 => c.name == c2.name))
+                            return false;
+                        if (c.config?.fs?.path)
+                            c.config.fs.path = path.resolve(path.dirname(cmdRequire.resolve(subPath)), c.config.fs.path);
+                        if (c.config?.fs?.source)
+                            c.config.fs.source = path.resolve(path.dirname(cmdRequire.resolve(subPath)), c.config.fs.source);
+                        return true;
+                    }));
                 });
             }
             Object.defineProperty(commands, 'name', { enumerable: false, value: metacontainer.name });

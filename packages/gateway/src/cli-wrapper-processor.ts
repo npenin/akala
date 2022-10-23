@@ -14,9 +14,13 @@ export default class CliGatewayProcessor extends ac.CommandProcessor
 
     public handle(origin: ac.Container<unknown>, cmd: ac.Metadata.Command, param: ac.StructuredParameters<[CliContext]>): MiddlewarePromise
     {
-        var args = unparseWithMeta(cmd.config.cli.options, param.param[0]);
+        var args = unparseWithMeta(cmd.config.cli, param.param[0]);
+        if (cmd.config.cli.usage)
+        {
+            cmd.config.cli.usage
+        }
         var d = new Deferred<MiddlewareResult, unknown>();
-        var cp = spawn(this.bin, args, { stdio: ['inherit', 'pipe', 'pipe'] });
+        var cp = spawn(this.bin, args, { stdio: ['inherit', 'pipe', 'pipe'], shell: true });
         var stdout: Buffer[] = [];
         var stderr: Buffer[] = [];
         cp.stdout.on('data', chunk => stdout.push(chunk))
