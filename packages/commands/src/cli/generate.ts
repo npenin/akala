@@ -13,15 +13,14 @@ export default async function generate(folder?: string, name?: string, outputFil
         name = require(path.join(folder, './package.json')).name;
     if (!name)
         name = path.basename(folder);
-    const container = new Container(name, {});
 
     let output: Writable;
     let outputFolder: string;
     ({ output, outputFile, outputFolder } = await outputHelper(outputFile, 'commands.json', true));
 
-    await akala.Processors.FileSystem.discoverCommands(path.resolve(folder), container, { relativeTo: outputFolder, isDirectory: true, recursive: true, ignoreFileWithNoDefaultExport: true });
+    var commands = await akala.Processors.FileSystem.discoverMetaCommands(path.resolve(folder), { relativeTo: outputFolder, isDirectory: true, recursive: true, ignoreFileWithNoDefaultExport: true });
 
-    const meta: akala.Metadata.Container & { $schema?: string } = akala.metadata(container);
+    const meta: akala.Metadata.Container & { $schema?: string } = { name: commands.name, commands, stateless: commands.stateless };
     meta.$schema = 'https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json';
     await write(output, JSON.stringify(meta, null, 4));
     await new Promise(resolve => output.end(resolve));
