@@ -18,7 +18,7 @@ export default async function generate(folder?: string, name?: string, outputFil
     let outputFolder: string;
     ({ output, outputFile, outputFolder } = await outputHelper(outputFile, 'commands.json', true));
 
-    var commands = await akala.Processors.FileSystem.discoverMetaCommands(path.resolve(folder), { relativeTo: outputFolder, isDirectory: true, recursive: true, ignoreFileWithNoDefaultExport: true });
+    var commands = await akala.Processors.FileSystem.discoverMetaCommands(path.resolve(folder), { relativeTo: outputFolder, isDirectory: true, recursive: true, ignoreFileWithNoDefaultExport: true, processor: new akala.Processors.FileSystem(outputFolder) });
 
     const meta: akala.Metadata.Container & { $schema?: string } = { name: commands.name, commands, stateless: commands.stateless };
     meta.$schema = 'https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json';
