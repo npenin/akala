@@ -255,6 +255,40 @@
             }
         },
         {
+            "name": "module",
+            "config": {
+                "fs": {
+                    "path": "dist/cli/new/module.js",
+                    "source": "src/cli/new/module.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "usage": "new module <name> [destination]",
+                    "options": {
+                        "force": {
+                            "aliases": [
+                                "f"
+                            ]
+                        },
+                        "destination": {
+                            "normalize": true
+                        }
+                    },
+                    "inject": [
+                        "options.name",
+                        "context",
+                        "options.destination"
+                    ]
+                },
+                "doc": {
+                    "description": "create a new module with the given name and destination (if present, cwd otherwise)"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
             "name": "register",
             "config": {
                 "fs": {
