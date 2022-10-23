@@ -121,15 +121,14 @@ export default async function start(this: State, pm: pmContainer.container & Con
             });
             container.processor.useMiddleware(20, new Processors.JsonRpc(connection, true));
 
-            if (!container.stateless)
-                connection.on('close', function disconnected()
-                {
-                    console.warn(`${context.options.name} has disconnected`);
-                    container.running = false;
-                });
+            connection.on('close', function disconnected()
+            {
+                console.warn(`${context.options.name} has disconnected`);
+                container.running = false;
+            });
 
             if (def?.commandable)
-                pm.register(container);
+                pm.register(container, def?.stateless);
 
             this.processes[context.options.name] = container;
         }
@@ -137,7 +136,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
 
         Object.assign(container, def, instanceConfig);
         container.ready = new jsonrpc.Deferred();
-        if (container.commandable)
+        if (container.commandable)// && !container.stateless)
         {
             container.unregister(Cli.Metadata.name);
             container.register(Metadata.extractCommandMetadata(Cli.Metadata));
@@ -154,15 +153,18 @@ export default async function start(this: State, pm: pmContainer.container & Con
         {
             console.warn(`${context.options.name} has disconnected`);
             container.running = false;
-        })
+        });
 
         container.running = true;
         let buffer = [];
         cp.on('exit', function ()
         {
             (container as RunningContainer).running = false;
-            pm.unregister(container.name);
-            container.ready.reject(new Error('program stopped: ' + buffer?.join('')));
+            if (!container.stateless)
+            {
+                pm.unregister(container.name);
+                container.ready.reject(new Error('program stopped: ' + buffer?.join('')));
+            }
         });
         if (context.options.wait && container.commandable)
         {

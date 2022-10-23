@@ -2,19 +2,20 @@ import { Container, Metadata, registerCommands, SelfDefinedCommand } from '@akal
 import pm from '../container';
 import State, { RunningContainer } from '../state';
 
-export default async function ready(this: State, pm: pm.container & Container<State>, container: RunningContainer, remoteContainer: Container<void>): Promise<void>
+export default async function ready(this: State, pm: pm.container & Container<State>, container: RunningContainer, standaloneContainer: Container<void>): Promise<void>
 {
-    if (remoteContainer['process'])
+    if (standaloneContainer['process'])
     {
-        container = remoteContainer as RunningContainer;
-        remoteContainer = null;
+        container = standaloneContainer as RunningContainer;
+        if (!container.stateless)
+            standaloneContainer = null;
     }
-    if (remoteContainer)
+    if (standaloneContainer)
     {
-        remoteContainer.register<Metadata.Command>({ name: '$metadata', config: {}, inject: [] }, true);
-        const metadata: Metadata.Container = await remoteContainer.dispatch('$metadata');
-        remoteContainer.name = metadata.name;
-        this.processes[remoteContainer.name] = container = Object.assign(remoteContainer, { process: null, commandable: true, path: '', container: null, running: true, stateless: false });
+        standaloneContainer.register<Metadata.Command>({ name: '$metadata', config: {}, inject: [] }, true);
+        const metadata: Metadata.Container = await standaloneContainer.dispatch('$metadata');
+        standaloneContainer.name = metadata.name;
+        this.processes[standaloneContainer.name] = container = Object.assign(standaloneContainer, { process: container?.process, commandable: true, path: container?.path, container: container?.container, running: true, stateless: container?.stateless || false });
         registerCommands(metadata.commands, null, container);
 
         pm.register(container.name, container, true);

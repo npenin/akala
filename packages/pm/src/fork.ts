@@ -148,7 +148,21 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
                         await pm.dispatch('ready')
 
                     if (stop && typeof stop == 'function')
+                    {
+                        process.on('unhandledRejection', (x) =>
+                        {
+                            stop();
+                            console.error(x);
+                            process.exit();
+                        });
+                        process.on('uncaughtException', (x) =>
+                        {
+                            stop();
+                            console.error(x);
+                            process.exit();
+                        });
                         process.on('SIGINT', stop);
+                    }
                     else
                         process.on('SIGINT', () => process.exit());
                 });
