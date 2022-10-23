@@ -80,9 +80,9 @@ export default async function generate(name?: string, folder?: string, outputFil
                 else
                     await write(output, `, ...args: Arguments<typeof import('./${filePath}').default>): ReturnType<typeof import('./${filePath}').default>\n`);
             }
-            else if (cmd.inject && cmd.inject.length)
+            else if (cmd.config[""]?.inject && cmd.config[""]?.inject.length)
             {
-                await write(output, cmd.inject.filter(p => p.startsWith('param.')).map(() => `any`).join(', '));
+                await write(output, cmd.config[""]?.inject.filter(p => p.startsWith('param.')).map(() => `any`).join(', '));
                 await write(output, `): unknown\n`);
             }
             else
@@ -125,9 +125,9 @@ export default async function generate(name?: string, folder?: string, outputFil
                 else
                     await write(output, `(...args: Arguments<typeof import('./${filePath}').default>): ReturnType<typeof import('./${filePath}').default>\n`);
             }
-            else if (cmd.inject && cmd.inject.length)
+            else if (cmd.config[""]?.inject && cmd.config[""]?.length)
             {
-                await write(output, cmd.inject.filter(p => p.startsWith('param.')).map(() => `any`).join(', '));
+                await write(output, cmd.config[""]?.inject.filter(p => p.startsWith('param.')).map(() => `any`).join(', '));
                 await write(output, `): unknown\n`);
             }
             else

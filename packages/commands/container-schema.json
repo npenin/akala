@@ -24,18 +24,14 @@
         "commands": {
             "type": "array",
             "items": {
-                "allOf": [
-                    {
-                        "$ref": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json"
+                "properties": {
+                    "name": {
+                        "type": "string"
                     },
-                    {
-                        "properties": {
-                            "name": {
-                                "type": "string"
-                            }
-                        }
+                    "config": {
+                        "$ref": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json"
                     }
-                ]
+                }
             }
         }
     }

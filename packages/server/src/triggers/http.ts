@@ -23,7 +23,7 @@ async function processCommand<T>(container: Container<T>, c: Metadata.Command, i
     return Processors.Local.handle(c, async function (...args)
     {
         args = await mapAsync(args, async el => await el);
-        args = args.filter((a, i) => c.inject[i].startsWith('param.'))
+        args = args.filter((a, i) => c.config[''].inject[i].startsWith('param.'))
         log.debug(args);
         return await container.dispatch(c.name, ...args).then(result => { throw result }, err => err);
     }, container, {

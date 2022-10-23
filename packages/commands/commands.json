@@ -1,9 +1,7 @@
 {
-    "name": "cli",
     "commands": [
         {
             "name": "add-script",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/cli/add-script.js",
@@ -49,7 +47,6 @@
         },
         {
             "name": "command",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/cli/new/command.js",
@@ -81,7 +78,6 @@
         },
         {
             "name": "command-config",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/cli/new/command-config.js",
@@ -113,7 +109,6 @@
         },
         {
             "name": "generate",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/cli/generate.js",
@@ -147,7 +142,6 @@
         },
         {
             "name": "generate-declaration",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/cli/generate-declaration.js",
@@ -171,7 +165,6 @@
         },
         {
             "name": "generate-metadata",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/cli/generate-metadata.js",
@@ -198,8 +191,34 @@
             }
         },
         {
+            "name": "generate-openapi",
+            "config": {
+                "fs": {
+                    "path": "dist/cli/generate-openapi.js",
+                    "source": "src/cli/generate-openapi.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "inject": [
+                        "options.name",
+                        "options.commandPath",
+                        "options.output",
+                        "options"
+                    ],
+                    "usage": "generate-openapi [commandPath] [output]",
+                    "options": {
+                        "name": {
+                            "needsValue": true
+                        }
+                    }
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
             "name": "implement",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/cli/implement.js",
@@ -237,7 +256,6 @@
         },
         {
             "name": "register",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/cli/register.js",
@@ -249,13 +267,16 @@
                     ]
                 },
                 "": {
-                    "inject": []
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
                 }
             }
         },
         {
             "name": "serve",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/cli/serve.js",

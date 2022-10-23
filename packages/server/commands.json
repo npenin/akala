@@ -1,9 +1,7 @@
 {
-    "name": "@akala/server",
     "commands": [
         {
             "name": "$init",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/commands/$init.js",
@@ -29,7 +27,6 @@
         },
         {
             "name": "asset",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/commands/asset.js",
@@ -66,7 +63,6 @@
         },
         {
             "name": "mode",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/commands/mode.js",
@@ -76,13 +72,14 @@
                     ]
                 },
                 "": {
-                    "inject": []
+                    "inject": [
+                        "param.0"
+                    ]
                 }
             }
         },
         {
             "name": "remote-container",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
@@ -111,7 +108,6 @@
         },
         {
             "name": "remote-route",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/commands/remote-route.js",
@@ -123,13 +119,16 @@
                     ]
                 },
                 "": {
-                    "inject": []
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
                 }
             }
         },
         {
             "name": "remove-asset",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/commands/remove-asset.js",
@@ -140,13 +139,15 @@
                     ]
                 },
                 "": {
-                    "inject": []
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
                 }
             }
         },
         {
             "name": "require",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/commands/require.js",
@@ -175,7 +176,6 @@
         },
         {
             "name": "route",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/commands/route.js",
@@ -220,7 +220,6 @@
         },
         {
             "name": "webpack",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/commands/webpack.js",
@@ -253,7 +252,6 @@
         },
         {
             "name": "webpack-alias",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/commands/webpack-alias.js",
@@ -279,7 +277,6 @@
         },
         {
             "name": "webpack-html",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/commands/webpack-html.js",

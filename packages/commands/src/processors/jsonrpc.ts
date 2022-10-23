@@ -116,7 +116,7 @@ export class JsonRpc extends CommandProcessor
         {
             if (!this.passthrough)
             {
-                const inject = command.config?.['']?.inject || command.inject;
+                const inject = command.config?.['']?.inject;
                 if ((inject.length != 1 || inject[0] != '$param') && params._trigger)
                 {
                     params.param = Local.extractParams(command.config?.jsonrpc?.inject || inject)(...params.param);

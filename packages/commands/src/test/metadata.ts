@@ -18,7 +18,7 @@ describe('test helpers', function ()
             const cmd = calculator.resolve(metacmd.name);
             assert.ok(cmd, `command ${metacmd.name} could not be found in ${JSON.stringify(meta.commands)}`);
             assert.strictEqual(metacmd.name, cmd.name);
-            assert.deepStrictEqual(metacmd.inject || [], cmd.inject || []);
+            assert.deepStrictEqual(metacmd.config[''].inject || [], cmd.config[''].inject || []);
             assert.deepStrictEqual(metacmd.config, cmd.config);
         })
     })

@@ -1,9 +1,7 @@
 {
-    "name": "workflow",
     "commands": [
         {
             "name": "$init",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/workflow-commands/$init.js",
@@ -32,7 +30,6 @@
         },
         {
             "name": "process",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
@@ -61,7 +58,6 @@
         },
         {
             "name": "set-config",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/workflow-commands/set-config.js",
@@ -71,13 +67,14 @@
                     ]
                 },
                 "": {
-                    "inject": []
+                    "inject": [
+                        "param.0"
+                    ]
                 }
             }
         },
         {
             "name": "use",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [

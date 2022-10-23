@@ -1,9 +1,7 @@
 {
-    "name": "@akala/cron",
     "commands": [
         {
             "name": "$init",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/commands/$init.js",
@@ -17,7 +15,6 @@
         },
         {
             "name": "add-job",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/commands/add-job.js",
@@ -29,13 +26,16 @@
                     ]
                 },
                 "": {
-                    "inject": []
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
                 }
             }
         },
         {
             "name": "add-job-schedule",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/commands/add-job-schedule.js",
@@ -46,13 +46,15 @@
                     ]
                 },
                 "": {
-                    "inject": []
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
                 }
             }
         },
         {
             "name": "add-schedule",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/commands/add-schedule.js",
@@ -63,13 +65,15 @@
                     ]
                 },
                 "": {
-                    "inject": []
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
                 }
             }
         },
         {
             "name": "list-jobs",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/commands/list-jobs.js",
@@ -83,7 +87,6 @@
         },
         {
             "name": "list-schedules",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/commands/list-schedules.js",
@@ -97,7 +100,6 @@
         },
         {
             "name": "remove-job-schedule",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/commands/remove-job-schedule.js",
@@ -108,13 +110,15 @@
                     ]
                 },
                 "": {
-                    "inject": []
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
                 }
             }
         },
         {
             "name": "wait",
-            "inject": [],
             "config": {
                 "fs": {
                     "path": "dist/commands/wait.js",
