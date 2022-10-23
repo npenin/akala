@@ -19,7 +19,7 @@ export async function metadata(container: Container<unknown>, deep?: boolean): P
             return;
         const cmd = container.resolve<Metadata.Command | Container<unknown>>(key);
         if (cmd && cmd.name && Metadata.isCommand(cmd) && ignoredCommands.indexOf(cmd.name) == -1)
-            metacontainer.commands.push({ name: cmd.name, inject: cmd.inject || [], config: cmd.config });
+            metacontainer.commands.push({ name: cmd.name, config: cmd.config });
         else if (cmd instanceof Container && deep)
         {
             if (!isRunningContainer(cmd) || !cmd.running && !cmd.stateless)

@@ -12,7 +12,7 @@ export default async function ready(this: State, pm: pm.container & Container<St
     }
     if (standaloneContainer)
     {
-        standaloneContainer.register<Metadata.Command>({ name: '$metadata', config: {}, inject: [] }, true);
+        standaloneContainer.register<Metadata.Command>({ name: '$metadata', config: { "": { inject: [] } } }, true);
         const metadata: Metadata.Container = await standaloneContainer.dispatch('$metadata');
         standaloneContainer.name = metadata.name;
         this.processes[standaloneContainer.name] = container = Object.assign(standaloneContainer, { process: container?.process, commandable: true, path: container?.path, container: container?.container, running: true, stateless: container?.stateless || false });

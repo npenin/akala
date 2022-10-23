@@ -19,7 +19,7 @@ export function metadata(container: Container<unknown>, deep?: boolean): meta.Co
             return;
         const cmd = container.resolve<meta.Command>(key);
         if (cmd && isCommand(cmd) && ignoredCommands.indexOf(cmd.name) == -1)
-            metacontainer.commands.push({ name: cmd.name, inject: cmd.inject, config: cmd.config });
+            metacontainer.commands.push({ name: cmd.name, config: cmd.config });
         else if (cmd instanceof Container && deep)
         {
             // console.log(cmd);
@@ -55,7 +55,7 @@ export function registerCommands<T>(commands: meta.Command[], processor: IComman
     {
         if (cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata')
             return;
-        container.register({ name: cmd.name, inject: cmd.inject, config: cmd.config, processor });
+        container.register({ name: cmd.name, config: cmd.config, processor });
     });
 }
 

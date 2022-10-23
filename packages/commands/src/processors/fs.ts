@@ -138,7 +138,7 @@ export class FileSystem extends CommandProcessor
 
                     if (!options)
                         throw new Error('cannot happen');
-                    const cmd: Metadata.Command & { config: ExtendedConfigurations<FileSystemConfiguration & jsonObject, 'fs'> } = { name: path.basename(f.name, path.extname(f.name)), config: { fs: fsConfig }, inject: [] };
+                    const cmd: Metadata.Command & { config: ExtendedConfigurations<FileSystemConfiguration & jsonObject, 'fs'> } = { name: path.basename(f.name, path.extname(f.name)), config: { fs: fsConfig } };
                     log.debug(cmd.name);
                     if (files.find(file => file.name == f.name + '.map'))
                     {
@@ -165,7 +165,6 @@ export class FileSystem extends CommandProcessor
                         params = [];
                         if (cmd.config['']?.inject && cmd.config[''].inject.length)
                         {
-                            log.debug(cmd.inject);
                             akala.each(cmd.config[''].inject, item =>
                             {
                                 if (item.startsWith('param.') || item == '$container')
@@ -226,18 +225,12 @@ export class FileSystem extends CommandProcessor
                             }
                             );
                         }
-                        if (cmd.config.fs.inject && !cmd.inject)
-                        {
-                            cmd.inject = cmd.config.fs.inject;
-                            cmd.config[''] = { inject: cmd.inject };
-                        }
+                        if (cmd.config.fs.inject && !cmd.config[''])
+                            cmd.config[''] = { inject: cmd.config.fs.inject };
                     }
 
                     if (!cmd.config[''])
-                        cmd.config[''] = {};
-
-                    if (!cmd.config[''].inject && cmd.inject)
-                        cmd.config[''].inject = cmd.inject;
+                        cmd.config[''] = { inject: [] };
 
                     commands.push(cmd);
                 }
