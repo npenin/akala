@@ -1,4 +1,4 @@
-#  (2022-10-13)
+#  (2022-10-26)
 
 
 ### Bug Fixes
@@ -6,6 +6,7 @@
 * #10 6e164e7
 * ac new gracefully ends 6647f80
 * adapt to trigger new definition 8c2d136
+* add extends adn dependencies on the container interface 4eedb66
 * add logs before publish b1b15be
 * add metadata when using ipc bb26b03
 * add missing dependency 3d0b4df
@@ -15,9 +16,11 @@
 * add preAction before displaying usage 1316b59
 * add recursive path creation 3f7ffa7
 * add stdin to pm cli e07437a
+* add transaction on dbset 81305d5
 * added missing yaml dependency fa66dd1
 * added remote pm socket support 074d6cf
 * adding getOwnPropertyDescriptor to try to fix Object.assign d969335
+* additional exports to provide better typing on dependent projects 099279c
 * allow for any property on errors a529558
 * aritificial bump ae0e129
 * artificial bump 60cc1c1
@@ -76,6 +79,7 @@
 * fix automate runner ae9c216
 * fix for commands ac new 166c9ee
 * fix model registration and serialization 7236001
+* fix pm startup 9f53b54
 * fix use on router 64f54b9
 * force metadata command registration in remote container 840d6dd
 * force socket processor on pm forks 0874275
@@ -84,6 +88,8 @@
 * fs discovery 0d34eea
 * fs middleware after discovery changes d97fcca
 * fs processor too catchy ccafa48
+* generate command f04839c
+* generate now keeps existing additional meta information (extends and dependencies) 9445157
 * git push tags fc8e609
 * handle bridges/proxy 69ae6f2
 * handle default init 5482bcb
@@ -95,6 +101,7 @@
 * honoring preferRemote 6fa76bc
 * improve config get return type c40bcd5
 * improve error logging 1b4ae07
+* improve generate performance 88f6fee
 * improve get-version 2f156a3
 * improve performance of metadata lookup 81cf56a
 * improve remote sidecars defaults eef7b24
@@ -129,6 +136,7 @@
 * middleware copy/paste issue 69757ce
 * move dependency from devdep 36139a4
 * nested container processing 8997869
+* new cc does not require destination to be a folder 51d1efd
 * normalize path 58c9fcd
 * optional parameter in connect 606b68b
 * output formatting f747eff
@@ -143,6 +151,8 @@
 * parser more reliable 5c92e5a
 * path can now be retrieved using property 2d3125e
 * path to command metadata 4fc8111
+* path to container schema 796e981
+* path to container schema 86b982d
 * performance refactor fix 4602906
 * pm cli command usage a9ff0bf
 * pm connect when manual forking ed7357e
@@ -155,6 +165,7 @@
 * proper error serialization support 54a819d
 * proper parameter binding for bump-dependents 7459c86
 * proper positional option 4b10b61
+* properly generate module from hierarchy dc28cb0
 * provide proper variable to bumps dependents 82f8ddb
 * push before tagging d980dd0
 * ready command in pm works in both forks and remote cfb974f
@@ -169,6 +180,7 @@
 * remote pm proxy 633b1b5
 * remote ready failing dcc0fc1
 * remove _trigger when sending over jsonrpc 9fac492
+* remove confusing inject property on commands 9c45241
 * remove container.ts in sidecar cc48571
 * remove debugger statement 955f084
 * remove duplicate binary operator 4930340
@@ -205,6 +217,7 @@
 * start command 4f924c6
 * start command args scope dd89375
 * start updates commands 8dc01de
+* stateless cli gateway working 17d705f
 * stdin support 57f5ca7
 * stdin support 23979ba
 * stop generating loggers for numeric keys 75a1324
@@ -221,6 +234,7 @@
 * update commands cli definition 5b7f8f1
 * update dependencies and regenerate metadata 0c83667
 * update jsdoc 49357c6
+* update lock and commands.json files eeae419
 * update lock file 974b089
 * update package publication to public 6d71bdc
 * update ready command for remote containers 823810d
@@ -271,8 +285,10 @@
 * add $container to fs inject e766ea3
 * add $init function for easier usage 3f4fa32
 * add bridge support 0e4d6a4
+* add cli gateway af0fd60
 * add Configuration getters and setters c5dad91
 * add createIfEmpty flag on config load 2a47d59
+* add crud package 8d71ea4
 * add custom inject in jsonrpc processor 4fc1720
 * add extends support df13246
 * add ignore failure support f9929cf
@@ -283,7 +299,10 @@
 * add MiddlewareRunnerMiddleware d0e9aff
 * add multistore 7d0f562
 * add new app package ac81505
+* add new module command to build a folder structure 2cc7008
+* add openapi generation d1f7bd3
 * add plugins mechanism c9aee01
+* add position information on positional parameters c8cb21b
 * add possibility for custom file format 0360c2f
 * add possibility to parse filename 335cc97
 * add reload-metadata on pm 654247f
@@ -291,6 +310,7 @@
 * add runnerMiddleware as export ff4c95a
 * add sidecar models to configuration 8389089
 * add sidecars accessor c7792a7
+* add stateless initial support 8605db0
 * add stdin as param f7babf8
 * add stdio middleware 1934e21
 * add support for -- in CLI bf64441
@@ -332,6 +352,7 @@
 
 ### BREAKING CHANGES
 
+* inject property does not exist on commands anymore
 * File.from renamed to File.fromJson
 * extend helper no more is
 * cli does not use winston as a logger anymore
