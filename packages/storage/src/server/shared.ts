@@ -2,16 +2,15 @@ import * as akala from '@akala/core'
 import "reflect-metadata";
 import { FieldType, StorageFieldType, ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator, SerializableDefinition, SerializedAttribute, SerializedFieldType, SerializedRelationship, SerializedStorageField } from './common';
 import { Query } from './Query';
-import { PersistenceEngine } from './PersistenceEngine';
+import { PersistenceEngine, Transaction } from './PersistenceEngine';
 import { Update, Create, Delete, CommandResult } from './commands/command';
-import { isDate } from 'util';
+import { types } from 'util';
 
 export { Cardinality } from './cardinality'
 export { ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator, SerializableDefinition, SerializedAttribute, SerializedFieldType, SerializedRelationship, SerializedStorageField };
 export { PersistenceEngine } from './PersistenceEngine'
 
 export const providers = akala.module('db', '@akala/storage');
-
 
 export interface DbSet<T> extends Query<T>
 {
@@ -49,6 +48,16 @@ export class Store<TStore extends StoreDefinition>
     public set<T>(name: keyof TStore & string)
     {
         return this.engine.dbSet<T>(name);
+    }
+
+    public beginTransaction(transaction?: Transaction): Transaction
+    {
+        return this.engine.beginTransaction(transaction);
+    }
+
+    public commitTransaction(): PromiseLike<CommandResult[]>
+    {
+        return this.engine.commitTransaction();
     }
 }
 
@@ -190,7 +199,7 @@ function member(isKey: boolean, type?: FieldType | (() => FieldType), generator?
                 const set = descriptor.set;
                 descriptor.set = function (value: T)
                 {
-                    if (typeof value != 'object' || !isDate(value) || isNaN(value.getTime()))
+                    if (typeof value != 'object' || !types.isDate(value) || isNaN(value.getTime()))
                         throw new TypeError("Invalid type.");
                     set(value);
                 }
