@@ -1,9 +1,9 @@
 #  (2022-10-26)
 
 
-### Features
+### Bug Fixes
 
-* add name fs discovery 27fe77d
+* implement own resolve to prevent resolving to main 07e3e69
 
 
 
