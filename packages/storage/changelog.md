@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* add transaction on dbset 81305d5
+* implement own resolve to prevent resolving to main 07e3e69
 
 
 
