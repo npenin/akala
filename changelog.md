@@ -299,6 +299,7 @@
 * add middleware with priority handling 461c1a4
 * add MiddlewareRunnerMiddleware d0e9aff
 * add multistore 7d0f562
+* add name fs discovery 27fe77d
 * add new app package ac81505
 * add new module command to build a folder structure 2cc7008
 * add openapi generation d1f7bd3
