@@ -100,6 +100,7 @@
 * health check reliability 98df0c9
 * help now works where no socket is available 92ecda4
 * honoring preferRemote 6fa76bc
+* implement own resolve to prevent resolving to main 07e3e69
 * improve config get return type c40bcd5
 * improve error logging 1b4ae07
 * improve generate performance 88f6fee
