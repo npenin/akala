@@ -1,0 +1,138 @@
+{
+    "name": "@akala/crud",
+    "commands": [
+        {
+            "name": "$init",
+            "config": {
+                "fs": {
+                    "path": "dist/commands/$init.js",
+                    "source": "src/commands/$init.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "create",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/commands/create.js",
+                    "source": "src/commands/create.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "create-single",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/commands/create-single.js",
+                    "source": "src/commands/create-single.ts"
+                },
+                "": {
+                    "inject": [
+                        "db"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "delete",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/commands/delete.js",
+                    "source": "src/commands/delete.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "delete-single",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/commands/delete-single.js",
+                    "source": "src/commands/delete-single.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "read",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/commands/read.js",
+                    "source": "src/commands/read.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "read-single",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/commands/read-single.js",
+                    "source": "src/commands/read-single.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "update",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/commands/update.js",
+                    "source": "src/commands/update.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "update-single",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/commands/update-single.js",
+                    "source": "src/commands/update-single.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        }
+    ],
+    "extends": [
+        "@akala/sidecar"
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
+}
