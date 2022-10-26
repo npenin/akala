@@ -24,12 +24,29 @@
             "name": "create",
             "config": {
                 "fs": {
-                    "inject": [],
+                    "inject": [
+                        "db",
+                        "param.0",
+                        "param.1"
+                    ],
                     "path": "dist/commands/create.js",
                     "source": "src/commands/create.ts"
                 },
                 "": {
-                    "inject": []
+                    "inject": [
+                        "db",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "http": {
+                    "inject": [
+                        "db",
+                        "route.type",
+                        "body"
+                    ],
+                    "route": "/{type}",
+                    "method": "put"
                 }
             }
         },
@@ -37,13 +54,19 @@
             "name": "create-single",
             "config": {
                 "fs": {
-                    "inject": [],
                     "path": "dist/commands/create-single.js",
-                    "source": "src/commands/create-single.ts"
+                    "source": "src/commands/create-single.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
                 },
                 "": {
                     "inject": [
-                        "db"
+                        "param.0",
+                        "param.1",
+                        "param.2"
                     ]
                 }
             }
@@ -65,12 +88,29 @@
             "name": "delete-single",
             "config": {
                 "fs": {
-                    "inject": [],
+                    "inject": [
+                        "db",
+                        "param.0",
+                        "param.1"
+                    ],
                     "path": "dist/commands/delete-single.js",
                     "source": "src/commands/delete-single.ts"
                 },
                 "": {
-                    "inject": []
+                    "inject": [
+                        "db",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "http": {
+                    "inject": [
+                        "db",
+                        "route.type",
+                        "body"
+                    ],
+                    "route": "/{type}",
+                    "method": "put"
                 }
             }
         },
