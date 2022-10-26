@@ -227,7 +227,7 @@ __metadata:
     bufferutil: ^4.0.6
     debug: ^4.3.4
     mocha: ^10.0.0
-    puppeteer: ^18.0.5
+    puppeteer: ^19.1.2
     reflect-metadata: ^0.1.13
     selenium-webdriver: ^4.4.0
     source-map-support: ^0.5.21
@@ -251,7 +251,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@akala/pm@^3.10.1, @akala/pm@workspace:^, @akala/pm@workspace:packages/pm":
+"@akala/pm@^3.10.2, @akala/pm@workspace:^, @akala/pm@workspace:packages/pm":
   version: 0.0.0-use.local
   resolution: "@akala/pm@workspace:packages/pm"
   dependencies:
@@ -2019,7 +2019,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "akala-docker@workspace:packages/docker"
   dependencies:
-    "@akala/pm": ^3.10.1
+    "@akala/pm": ^3.10.2
     yarn: ^1.22.19
   languageName: unknown
   linkType: soft
@@ -3022,7 +3022,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cosmiconfig@npm:^7.0.0":
+"cosmiconfig@npm:7.0.1, cosmiconfig@npm:^7.0.0":
   version: 7.0.1
   resolution: "cosmiconfig@npm:7.0.1"
   dependencies:
@@ -3293,10 +3293,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"devtools-protocol@npm:0.0.1036444":
-  version: 0.0.1036444
-  resolution: "devtools-protocol@npm:0.0.1036444"
-  checksum: 6975c8def95a5e1a4207d6deb05322e335d6a37bdaa3e589cbd5bde40fbbe3ab0df2cfedb1b3ad2785401f208c150fd489a6a065a4624b56e4c0c4c1bfd89172
+"devtools-protocol@npm:0.0.1045489":
+  version: 0.0.1045489
+  resolution: "devtools-protocol@npm:0.0.1045489"
+  checksum: 670b2ecc8e890358b08da3095b4c927ffc5ef846a39e1526ff99aecaa623b339450dfe308e421e64bf94308441832b8e9497ebda97fb02266fef3f455286742f
+  languageName: node
+  linkType: hard
+
+"devtools-protocol@npm:0.0.1056733":
+  version: 0.0.1056733
+  resolution: "devtools-protocol@npm:0.0.1056733"
+  checksum: d81b474d656d5cdfa0ec6afb8725e8707ba8b38ad7fc68abe05e5accdef1967a6bc1a1545744c8b69cb22ec5d3b3e5225d4bc0313b6a017c94a32a43f3d2c3d3
   languageName: node
   linkType: hard
 
@@ -6903,22 +6910,35 @@ __metadata:
   languageName: node
   linkType: hard
 
-"puppeteer@npm:^18.0.5":
-  version: 18.0.5
-  resolution: "puppeteer@npm:18.0.5"
+"puppeteer-core@npm:19.1.1":
+  version: 19.1.1
+  resolution: "puppeteer-core@npm:19.1.1"
   dependencies:
     cross-fetch: 3.1.5
     debug: 4.3.4
-    devtools-protocol: 0.0.1036444
+    devtools-protocol: 0.0.1045489
     extract-zip: 2.0.1
     https-proxy-agent: 5.0.1
-    progress: 2.0.3
     proxy-from-env: 1.1.0
     rimraf: 3.0.2
     tar-fs: 2.1.1
     unbzip2-stream: 1.4.3
-    ws: 8.8.1
-  checksum: 6a6e4225d0da440c1dfa6a00af3f6fa7cadf98b41c7b38e2ad8ea7ef7e978359115ab9699846feb5401fc6b2fa078be4d93a9a46d03d0e007de7d9605a41ec9c
+    ws: 8.9.0
+  checksum: 82e3428f7d3b89dcec0e0274d9c616fdf348f15cda66160524a5457789471503a2ec4cb35deff09f71b36b4411cf7712a4a1754e820dc557a62b36162f932f07
+  languageName: node
+  linkType: hard
+
+"puppeteer@npm:^19.1.2":
+  version: 19.1.2
+  resolution: "puppeteer@npm:19.1.2"
+  dependencies:
+    cosmiconfig: 7.0.1
+    devtools-protocol: 0.0.1056733
+    https-proxy-agent: 5.0.1
+    progress: 2.0.3
+    proxy-from-env: 1.1.0
+    puppeteer-core: 19.1.1
+  checksum: ecd8794a22f72f88dbb6a45bcc6430b7c123df8437c7111854cdf340b4c1c33a49207f8806cca7e0a182c9a918e453c9372054afce757b8a77a46b9641d2f6cd
   languageName: node
   linkType: hard
 
@@ -8755,22 +8775,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ws@npm:8.8.1":
-  version: 8.8.1
-  resolution: "ws@npm:8.8.1"
-  peerDependencies:
-    bufferutil: ^4.0.1
-    utf-8-validate: ^5.0.2
-  peerDependenciesMeta:
-    bufferutil:
-      optional: true
-    utf-8-validate:
-      optional: true
-  checksum: 2152cf862cae0693f3775bc688a6afb2e989d19d626d215e70f5fcd8eb55b1c3b0d3a6a4052905ec320e2d7734e20aeedbf9744496d62f15a26ad79cf4cf7dae
-  languageName: node
-  linkType: hard
-
-"ws@npm:>=8.7.0, ws@npm:^8.9.0":
+"ws@npm:8.9.0, ws@npm:>=8.7.0, ws@npm:^8.9.0":
   version: 8.9.0
   resolution: "ws@npm:8.9.0"
   peerDependencies:
