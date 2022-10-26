@@ -6,8 +6,7 @@ import { outputHelper, write } from "../new";
 
 export default async function (name: string, options: CliContext<{ force?: boolean }>['options'], destination?: string)
 {
-
-    var cmds = await Processors.FileSystem.discoverMetaCommands(destination, { isDirectory: true, processor: new Processors.FileSystem(destination) });
+    var cmds = await Processors.FileSystem.discoverMetaCommands(destination, { processor: new Processors.FileSystem(destination) });
     const cmd = cmds.find(c => c.name == name);
     if (!cmd)
         throw new ErrorWithStatus(44, `No command with name ${name} could be found in ${destination}`)
