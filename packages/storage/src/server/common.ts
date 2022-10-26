@@ -83,11 +83,17 @@ export type SerializedFieldType = keyof StorageFieldType | {
     precision?: number,
     scale?: number,
 };
-export type SerializedAttribute<T, TMember extends Extract<keyof T, string>> = { name: TMember, nameInStorage: string, isKey: boolean, mode: ModelMode.Attribute, generator: keyof typeof Generator } & SerializedFieldType;
+export type SerializedAttribute<T, TMember extends Extract<keyof T, string>> = {
+    name: TMember,
+    nameInStorage: string,
+    isKey: boolean,
+    mode?: ModelMode.Attribute,
+    generator: keyof typeof Generator
+} & SerializedFieldType;
 export type SerializedRelationship<T, TMember extends keyof T> = {
     name: TMember,
     target: string,
-    mode: ModelMode.Relationship,
+    mode?: ModelMode.Relationship,
     cardinality: Cardinality,
     isComposite?: boolean,
     mapping: {
@@ -96,7 +102,7 @@ export type SerializedRelationship<T, TMember extends keyof T> = {
 };
 export type SerializedStorageField = {
     isKey: boolean,
-    mode: ModelMode.StorageField,
+    mode?: ModelMode.StorageField,
     nameInStorage: string,
     generator: keyof typeof Generator,
     //eslint-disable-next-line @typescript-eslint/no-explicit-any

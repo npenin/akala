@@ -29,7 +29,28 @@ export interface DiscoveryOptions
     relativeTo?: string;
 }
 
-
+async function resolveFolder(require: NodeRequire, request: string)
+{
+    var paths = require.resolve.paths(request);
+    var result = null;
+    await eachAsync(paths, async p =>
+    {
+        if (result)
+            return;
+        try
+        {
+            if ((await fs.stat(path.join(p, request), {})).isDirectory())
+                result = path.join(p, request);
+        }
+        catch (e)
+        {
+            if (e.code === 'ENOENT')
+                return;
+            throw e;
+        }
+    }, true)
+    return result;
+}
 
 export class FileSystem extends CommandProcessor
 {
@@ -103,19 +124,28 @@ export class FileSystem extends CommandProcessor
             {
                 await eachAsync(metacontainer.extends, async subPath =>
                 {
-                    var parentCommands = await this.discoverMetaCommands(cmdRequire.resolve(subPath), { ...options, isDirectory: undefined, relativeTo: cmdRequire.resolve(subPath) });
+                    const indexOfColon = subPath.indexOf(':');
+                    if (indexOfColon > 1)
+                    {
+                        var name = subPath.substring(indexOfColon + 1);
+                        subPath = subPath.substring(0, indexOfColon);
+                    }
+                    if (indexOfColon > 1)
+                        var parentCommands = await this.discoverMetaCommands(await resolveFolder(cmdRequire, subPath) + ':' + name, { ...options, isDirectory: undefined, relativeTo: cmdRequire.resolve(subPath) });
+                    else
+                        var parentCommands = await this.discoverMetaCommands(await resolveFolder(cmdRequire, subPath), { ...options, isDirectory: undefined, relativeTo: cmdRequire.resolve(subPath) });
                     if (parentCommands.stateless)
                         Object.defineProperty(commands, 'stateless', { enumerable: false, value: parentCommands.stateless });
-                    commands.push(...parentCommands.filter(c =>
+                    await eachAsync(parentCommands, async c =>
                     {
                         if (commands.find(c2 => c.name == c2.name))
                             return false;
                         if (c.config?.fs?.path)
-                            c.config.fs.path = path.resolve(path.dirname(cmdRequire.resolve(subPath)), c.config.fs.path);
+                            c.config.fs.path = path.resolve(path.dirname(await resolveFolder(cmdRequire, subPath)), c.config.fs.path);
                         if (c.config?.fs?.source)
-                            c.config.fs.source = path.resolve(path.dirname(cmdRequire.resolve(subPath)), c.config.fs.source);
-                        return true;
-                    }));
+                            c.config.fs.source = path.resolve(path.dirname(await resolveFolder(cmdRequire, subPath)), c.config.fs.source);
+                        commands.push(c);
+                    });
                 });
             }
             Object.defineProperty(commands, 'name', { enumerable: false, value: metacontainer.name });
