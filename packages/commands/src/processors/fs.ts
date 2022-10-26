@@ -59,6 +59,14 @@ export class FileSystem extends CommandProcessor
 
         if (!options)
             options = {};
+
+        const indexOfColon = root.indexOf(':');
+        if (indexOfColon > 1)
+        {
+            var name = root.substring(indexOfColon + 1);
+            root = root.substring(0, indexOfColon);
+        }
+
         if (typeof options.isDirectory == 'undefined')
         {
             try
@@ -70,6 +78,8 @@ export class FileSystem extends CommandProcessor
             {
                 if (e.code == 'ENOENT')
                 {
+                    if (indexOfColon > 1)
+                        return this.discoverMetaCommands(require.resolve(root) + ':' + name, options);
                     return this.discoverMetaCommands(require.resolve(root), options);
                 }
                 throw e;
@@ -111,16 +121,20 @@ export class FileSystem extends CommandProcessor
             Object.defineProperty(commands, 'name', { enumerable: false, value: metacontainer.name });
             return commands;
         }
-        else if (existsSync(path.join(root, 'commands.json')))
-            return this.discoverMetaCommands(path.join(root, 'commands.json'), { processor: options.processor, isDirectory: false });
-
         else if (existsSync(path.join(root, 'package.json')))
         {
             // eslint-disable-next-line @typescript-eslint/no-var-requires
             const packageDef = require(path.join(root, 'package.json'));
-            if (packageDef.commands && typeof (packageDef.commands) == 'string')
-                return this.discoverMetaCommands(path.join(root, packageDef.commands), { processor: options.processor });
+            if (packageDef.commands)
+                if (typeof (packageDef.commands) == 'string')
+                    return this.discoverMetaCommands(path.join(root, packageDef.commands), { processor: options.processor });
+                else
+                    return this.discoverMetaCommands(path.join(root, packageDef.commands[name]), { processor: options.processor });
+
         }
+        else if (existsSync(path.join(root, 'commands.json')))
+            return this.discoverMetaCommands(path.join(root, 'commands.json'), { processor: options.processor, isDirectory: false });
+
         if (!options.processor)
             throw new Error('Processor not defined');
 
