@@ -1,11 +1,14 @@
 {
+    "name": "@akala/sidecar",
     "commands": [
         {
             "name": "$init",
             "config": {
                 "fs": {
                     "inject": [
-                        "param.0"
+                        "param.0",
+                        "param.1",
+                        "param.2"
                     ],
                     "path": "dist/commands/$init.js",
                     "source": "src/commands/$init.ts"
@@ -32,7 +35,9 @@
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "param.0",
+                        "param.1",
+                        "param.2"
                     ]
                 }
             }
