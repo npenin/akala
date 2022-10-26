@@ -91,6 +91,57 @@
                 }
             ]
         },
+        "http": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/inject"
+                },
+                {
+                    "$id": "#/http",
+                    "type": "object",
+                    "title": "The http Schema",
+                    "required": [
+                        "method",
+                        "route"
+                    ],
+                    "properties": {
+                        "method": {
+                            "$id": "#/http/properties/method",
+                            "type": "string",
+                            "title": "The http method Schema",
+                            "examples": [
+                                "get",
+                                "post",
+                                "put",
+                                "delete"
+                            ]
+                        },
+                        "route": {
+                            "$id": "#/http/properties/route",
+                            "type": "string",
+                            "title": "The http route Schema",
+                            "examples": [
+                                "/",
+                                "/value",
+                                "/{param}",
+                                "/{optionalParam}?"
+                            ]
+                        },
+                        "type": {
+                            "$id": "#/http/properties/type",
+                            "type": "string",
+                            "enum": [
+                                "json",
+                                "xml",
+                                "text",
+                                "raw"
+                            ],
+                            "title": "The http type Schema"
+                        }
+                    }
+                }
+            ]
+        },
         "fs": {
             "allOf": [
                 {
