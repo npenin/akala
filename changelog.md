@@ -64,6 +64,7 @@
 * correct name assignment in fork 3deb98f
 * crash on parsing remote bcb17fe
 * default version ignore to decline 01cb0f7
+* define commands in sidecar c71d334
 * dependencies d61f681
 * discover cli usage 697946b
 * discover implementation 3502bed
