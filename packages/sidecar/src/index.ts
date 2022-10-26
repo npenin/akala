@@ -1,4 +1,4 @@
-import app, { Sidecar } from './init'
+import app, { Sidecar, SidecarConfiguration, StoreConfiguration } from './init'
 
 export default app;
-export { Sidecar };
+export { Sidecar, StoreConfiguration, SidecarConfiguration };
