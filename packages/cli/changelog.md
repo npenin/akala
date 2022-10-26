@@ -1,9 +1,14 @@
-#  (2022-10-08)
+#  (2022-10-26)
 
 
 ### Bug Fixes
 
-* performance refactor fix 4602906
+* stateless cli gateway working 17d705f
+
+
+### Features
+
+* add position information on positional parameters c8cb21b
 
 
 
