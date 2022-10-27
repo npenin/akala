@@ -163,7 +163,7 @@ export class Query<T> implements AsyncIterable<T>
     {
         if (expression)
             return this.where(expression).any();
-        return this.provider.execute<boolean>(new ApplySymbolExpression<T, T>(this.expression, QuerySymbols.any)).then(values => values[0]);
+        return this.provider.execute<boolean>(new ApplySymbolExpression<T, T>(this.expression, QuerySymbols.any)).then(values => !!values);
     }
 
     public async length(expression?: TypedLambdaExpression<Predicate<T>>): Promise<number>
