@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* **storage:** any works properly 84f3b5e
+* ensure vanilla leverages generators 0aedf98
 
 
 
