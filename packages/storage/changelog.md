@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* proper typing on store create 83caee7
+* **storage:** any works properly 84f3b5e
 
 
 
