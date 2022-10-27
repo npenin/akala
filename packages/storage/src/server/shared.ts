@@ -33,7 +33,7 @@ export type StoreDefinition<T = any> =
 export class Store<TStore extends StoreDefinition>
 {
     //eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public static create<TStore extends StoreDefinition>(engine: PersistenceEngine<any>, ...names: (keyof TStore)[]): StoreDefinition<TStore> & TStore
+    public static create<TStore extends StoreDefinition>(engine: PersistenceEngine<any>, ...names: (keyof TStore)[]): Store<TStore> & StoreDefinition<TStore> & TStore
     {
         //eslint-disable-next-line @typescript-eslint/no-explicit-any
         return new Store<TStore>(engine, ...names) as any;
