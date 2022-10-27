@@ -127,7 +127,7 @@ class FileCommandProcessor extends CommandProcessor<FileOptions>
         {
             if (fileName)
                 fileName += this.engineOptions.multipleKeySeparator || '-'
-            if (model.members[key].generator == Generator.uuid || model.members[key].generator == Generator.native)
+            if (model.members[key].generator)
                 record[key] = uuid();
             fileName += await record[key];
         }

@@ -3,7 +3,8 @@ import { StrictExpressions } from '@akala/core/expressions';
 import { CommandProcessor } from '../commands/command-processor';
 import { Commands, CommandResult } from '../commands/command';
 import { ExpressionExecutor } from '../expression-executor';
-import { ModelDefinition } from '../shared';
+import { ModelDefinition, Generator } from '../shared';
+import { v4 as uuid } from 'uuid'
 
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class Vanilla extends PersistenceEngine<any>
@@ -114,6 +115,19 @@ export class VanillaCommandProcessor extends CommandProcessor<VanillaOptions>
         this.store[cmd.model.namespace] = this.store[cmd.model.namespace] || {};
         this.store[cmd.model.namespace][cmd.model.nameInStorage] = this.store[cmd.model.namespace][cmd.model.nameInStorage] || [];
         this.store[cmd.model.namespace][cmd.model.nameInStorage].push(cmd.record);
+        cmd.model.key.forEach(k =>
+        {
+            if (cmd.model.members[k].generator)
+            {
+                switch (cmd.model.members[k].generator)
+                {
+                    case Generator.native:
+                    case Generator.uuid:
+                        cmd.record[k] = uuid();
+                        break;
+                }
+            }
+        })
         return { recordsAffected: 1 };
     }
     init(options: VanillaOptions): void
