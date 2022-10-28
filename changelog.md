@@ -82,6 +82,7 @@
 * fix for commands ac new 166c9ee
 * fix model registration and serialization 7236001
 * fix pm startup 9f53b54
+* fix the pubsub path 77cdd2f
 * fix use on router 64f54b9
 * force metadata command registration in remote container 840d6dd
 * force socket processor on pm forks 0874275
