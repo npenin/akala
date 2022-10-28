@@ -1,4 +1,4 @@
-#  (2022-10-27)
+#  (2022-10-28)
 
 
 ### Bug Fixes
@@ -168,6 +168,7 @@
 * proper error serialization support 54a819d
 * proper parameter binding for bump-dependents 7459c86
 * proper positional option 4b10b61
+* proper pubsub container 7978b92
 * proper typing on store create 83caee7
 * properly generate module from hierarchy dc28cb0
 * provide proper variable to bumps dependents 82f8ddb
