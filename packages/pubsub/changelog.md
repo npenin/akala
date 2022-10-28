@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* proper pubsub container 7978b92
+* fix the pubsub path 77cdd2f
 
 
 
