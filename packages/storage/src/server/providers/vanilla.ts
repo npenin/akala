@@ -117,15 +117,12 @@ export class VanillaCommandProcessor extends CommandProcessor<VanillaOptions>
         this.store[cmd.model.namespace][cmd.model.nameInStorage].push(cmd.record);
         cmd.model.key.forEach(k =>
         {
-            if (cmd.model.members[k].generator)
+            switch (cmd.model.members[k].generator)
             {
-                switch (cmd.model.members[k].generator)
-                {
-                    case Generator.native:
-                    case Generator.uuid:
-                        cmd.record[k] = uuid();
-                        break;
-                }
+                case Generator.native:
+                case Generator.uuid:
+                    cmd.record[k] = uuid();
+                    break;
             }
         })
         return { recordsAffected: 1 };
@@ -135,6 +132,4 @@ export class VanillaCommandProcessor extends CommandProcessor<VanillaOptions>
         this.store = options.store;
         this.engineOptions = options;
     }
-
-
 }
