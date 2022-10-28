@@ -70,6 +70,7 @@
 * discover implementation 3502bed
 * display for pmSocket config info c3b908b
 * docker build cfdaf4e
+* ensure vanilla leverages generators 0aedf98
 * enumerate on configuration objects a61e720
 * error flow in composite middleware ec36174
 * error serialization b3156ad
