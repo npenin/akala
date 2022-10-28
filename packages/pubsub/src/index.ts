@@ -25,6 +25,6 @@ export default class PubSubContainer extends BaseContainer<State> implements com
     constructor(name: string = 'pubsub')
     {
         super(name, {});
-        registerCommands(metaContainer.commands, new Processors.FileSystem(__dirname), this);
+        registerCommands(metaContainer.commands, new Processors.FileSystem(path.join(__dirname, '../')), this);
     }
 }
