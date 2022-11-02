@@ -1,4 +1,4 @@
-#  (2022-10-28)
+#  (2022-11-02)
 
 
 ### Bug Fixes
@@ -343,6 +343,7 @@
 * InteractError now using Binding for more possible usecases d9da85f
 * jsonrpc disconnect support for server and proxies 5d7128c
 * leverage suncalc c674f46
+* move to serve with AbortSignal 53d811d
 * moved to middleware approach 69d4ba5
 * releasing sidecar eb0c959
 * removing problematic extend function 5daa1db
