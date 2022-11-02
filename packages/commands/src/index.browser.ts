@@ -8,11 +8,14 @@ export * from './model/error-unknowncommand'
 import * as Processors from './processors/index'
 import * as Triggers from './triggers/index'
 import * as Metadata from './metadata/index'
-import serveMetadata, { ServeMetadata, connectByPreference, connectWith, ConnectionPreference } from './serve-metadata'
+import serveMetadata, { ServeMetadata, ServeMetadataWithSignal, connectByPreference, connectWith, ConnectionPreference, parseMetadata } from './serve-metadata'
+import { CommandProcessor } from './model/processor'
 export { Processors, Triggers, Metadata }
-export { default as serve, ServeOptions } from './cli/serve'
-export { serveMetadata, ServeMetadata, connectByPreference, connectWith, ConnectionPreference };
+export { default as serve, ServeOptions, serverHandlers, ServerHandler, getOrCreateServerAndListen, getOrCreateSecureServerAndListen } from './cli/serve'
+export { serveMetadata, ServeMetadata, ServeMetadataWithSignal, connectByPreference, connectWith, ConnectionPreference, parseMetadata };
 import $metadata from './commands/$metadata'
+export { CommandProcessor };
+
 export class Cli
 {
     public static Metadata = $metadata;

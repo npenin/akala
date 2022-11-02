@@ -16,6 +16,7 @@ export interface StateConfiguration
 {
     containers: { [key: string]: SidecarMetadata }
     mapping: { [key: string]: SidecarConfiguration }
+    plugins: string[];
 }
 
 export interface SidecarMetadata

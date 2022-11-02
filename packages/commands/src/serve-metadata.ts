@@ -17,14 +17,21 @@ import { ErrorWithStatus } from '@akala/cli';
 
 type TlsConnectOpts = NetConnectOpts & SecureContextOptions & CommonConnectionOptions;
 
-export interface ServeMetadata
+export interface ServeMetadataWithSignal extends ServeMetadata
 {
-    socket?: (NetConnectOpts)[];
-    ssocket?: (TlsConnectOpts)[];
-    https?: { port: number, cert: string, key: string };
-    http?: { port: number };
-    ws?: { port: number };
-    wss?: { port: number, cert: string, key: string };
+    signal: AbortSignal;
+}
+
+export type ServeMetadata = { [key in keyof ServeMetadataMap]?: ServeMetadataMap[key][] }
+
+export interface ServeMetadataMap
+{
+    socket: NetConnectOpts;
+    ssocket: NetConnectOpts & TlsConnectOpts;
+    https: NetConnectOpts & TlsConnectOpts;
+    http: NetConnectOpts;
+    wss: NetConnectOpts & TlsConnectOpts;
+    ws: NetConnectOpts;
 }
 
 export interface ConnectionPreference
@@ -61,7 +68,7 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
 
         try
         {
-            processor = await connectWith(orderedOptions[preferredIndex], settings?.host, orders[preferredIndex], settings?.container)
+            processor = await connectWith(orderedOptions[preferredIndex][0], settings?.host, orders[preferredIndex], settings?.container)
             break;
         }
         catch (e)
@@ -198,7 +205,7 @@ export default function serveMetadata(name: string, context: ServeOptions): Serv
     {
         if (!metadata['socket'])
             metadata['socket'] = [];
-        if (isNaN(Number(context.options.tcpPort)))
+        if (isNaN(Number(context.options.tcpPort)) && context.options.tcpPort)
         {
             const indexOfColon = context.options.tcpPort.lastIndexOf(':');
             if (indexOfColon > -1)
@@ -229,16 +236,16 @@ export default function serveMetadata(name: string, context: ServeOptions): Serv
         if (context.options.cert && context.options.key)
         {
             if (~args.indexOf('ws'))
-                metadata.wss = { port, cert: context.options.cert, key: context.options.key };
+                metadata.wss = [{ port, cert: context.options.cert, key: context.options.key }];
             if (~args.indexOf('http'))
-                metadata.https = { port, cert: context.options.cert, key: context.options.key };
+                metadata.https = [{ port, cert: context.options.cert, key: context.options.key }];
         }
         else
         {
             if (~args.indexOf('ws'))
-                metadata.ws = { port };
+                metadata.ws = [{ port }];
             if (~args.indexOf('http'))
-                metadata.http = { port };
+                metadata.http = [{ port }];
         }
 
     }

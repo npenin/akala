@@ -2,6 +2,7 @@ import './translator';
 export { router, Request, Response, HttpRouter, CallbackResponse } from './router/index';
 
 import './http'
+import './handlers'
 export * from './http'
 
 export * from './queue'

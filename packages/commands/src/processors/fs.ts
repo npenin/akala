@@ -270,7 +270,9 @@ export class FileSystem extends CommandProcessor
                             );
                         }
                         if (cmd.config.fs.inject && !cmd.config[''])
-                            cmd.config[''] = { inject: cmd.config.fs.inject };
+                            cmd.config[''] = {};
+                        if (cmd.config.fs.inject && !cmd.config[''].inject)
+                            cmd.config[''].inject = cmd.config.fs.inject;
                     }
 
                     if (!cmd.config[''])
