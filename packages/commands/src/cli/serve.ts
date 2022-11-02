@@ -1,14 +1,11 @@
-import { Server } from 'net';
-import * as ws from 'ws'
+import { NetConnectOpts, Server } from 'net';
 import { Container } from '../model/container';
-import * as jsonrpcws from '@akala/json-rpc-ws';
 import { unlink } from 'fs';
-import { Server as httpServer } from 'http'
-import { Server as httpsServer } from 'https'
-import { ServeMetadata } from '../serve-metadata';
-import https from 'https';
-import http from 'http';
+import { ServeMetadataWithSignal } from '../serve-metadata';
 import { NetSocketAdapter } from '../net-socket-adapter';
+import { eachAsync, Injector, noop } from '@akala/core';
+import { trigger } from '../triggers/jsonrpc';
+import tls, { SecureContextOptions } from 'tls';
 
 export interface ServeOptions
 {
@@ -21,149 +18,110 @@ export interface ServeOptions
     args: ('local' | 'http' | 'ws' | 'tcp')[];
 }
 
-export default async function <T = void>(container: Container<T>, options: ServeMetadata)
+export const serverHandlers = new Injector();
+
+export type ServerHandler<T = { signal: AbortSignal }> = (container: Container<unknown>, options: T) => Promise<void>
+
+function getOrCreateServer(connectionString: string, container: Container<unknown>)
+{
+    var sockets = container.resolve<Record<string, Server>>('$sockets');
+    if (!sockets)
+        sockets = container.register('$sockets', {});
+    if (connectionString in sockets)
+        return sockets[connectionString];
+    return sockets[connectionString] = new Server();
+}
+
+function getOrCreateSecureServer(options: NetConnectOpts & SecureContextOptions, container: Container<unknown>)
+{
+    var sockets = container.resolve<Record<string, tls.Server>>('$ssockets');
+    if (!sockets)
+        sockets = container.register('$ssockets', {});
+    const connectionString = getConnectionString(options);
+    if (connectionString in sockets)
+        return sockets[connectionString];
+    return sockets[connectionString] = new tls.Server();
+}
+
+export async function getOrCreateServerAndListen(options: NetConnectOpts, container: Container<unknown>)
+{
+    const connectionString = getConnectionString(options);
+    const server = getOrCreateServer(connectionString, container);
+
+    options.signal.addEventListener('abort', () =>
+    {
+        if ('path' in options)
+            unlink(options.path, noop)
+    });
+
+    await new Promise<void>((resolve, reject) =>
+    {
+        server.once('error', reject);
+        server.listen(options, resolve);
+        console.log(`listening on ${connectionString}`);
+    });
+
+    return server;
+}
+
+
+export async function getOrCreateSecureServerAndListen(options: NetConnectOpts, container: Container<unknown>)
+{
+    const server = getOrCreateSecureServer(options, container);
+
+    await new Promise<void>((resolve, reject) =>
+    {
+        server.once('error', reject);
+        server.listen(options, resolve);
+        const connectionString = getConnectionString(options);
+        console.log(`listening on ${connectionString}`);
+    });
+
+    return server;
+}
+
+function getConnectionString(options: NetConnectOpts): string
+{
+    if ('port' in options)
+        return (options.host || '0.0.0.0') + ':' + options.port;
+    if ('path' in options)
+        return options.path;
+    return options;
+}
+
+serverHandlers.register<ServerHandler<NetConnectOpts>>('socket', async (container, options) =>
+{
+    const server = await getOrCreateServerAndListen(options, container);
+    server.addListener('connection', (socket) =>
+    {
+        socket.setDefaultEncoding('utf8');
+        container.attach(trigger, new NetSocketAdapter(socket));
+    });
+});
+
+export default async function <T = void>(container: Container<T>, options: ServeMetadataWithSignal)
 {
     console.log(options);
-    const stops: (() => Promise<void>)[] = [];
     var failed: Error = null;
 
-    if (options.socket)
+    await eachAsync(options, (opt, name) =>
     {
-        for (var socketPath of options.socket)
+        if (Array.isArray(opt))
         {
-            try
-            {
-                const server = new Server((socket) =>
-                {
-                    socket.setDefaultEncoding('utf8');
-                    container.attach('jsonrpc', new NetSocketAdapter(socket));
-                });
-
-                await new Promise<void>((resolve, reject) =>
-                {
-                    server.once('error', reject);
-                    server.listen(socketPath, resolve);
-                });
-                console.log(`listening on ${JSON.stringify(socketPath)}`);
-
-                stops.push(() =>
-                {
-                    return new Promise((resolve, reject) =>
-                    {
-                        server.close(function (err)
-                        {
-                            if (err)
-                                reject(err);
-                            else
-                                if (socketPath['path'])
-                                    unlink(socketPath['path'], function (err)
-                                    {
-                                        if (err && err.code !== 'ENOENT')
-                                            reject(err);
-                                        else
-                                            resolve();
-                                    });
-                        })
-                    });
-                });
-            }
-            catch (e)
-            {
-                console.error(e);
-                failed = e;
-            }
+            const handler = serverHandlers.resolve<ServerHandler<NetConnectOpts>>(name);
+            if (!handler)
+                return Promise.reject(new Error('no such handler ' + name + ' is known'))
+            return eachAsync(opt, (opt) => handler(container, { signal: options.signal, ...opt }), true);
         }
-    }
-
-    if (options.http || options.https || options.ws || options.wss)
-    {
-        let server: httpServer | httpsServer;// | Http2SecureServer | Http2Server;
-        let message = 'listening on ';
-        let port: number;
-        if (options.https || options.wss)
-        {
-            server = https.createServer({ cert: options.https.cert || options.wss.cert, key: options.https.key || options.wss.key });
-            if (options.https)
-            {
-                message += 'https://';
-                port = options.https.port;
-            }
-            else
-            {
-                message += 'wss://';
-                port = options.wss.port;
-            }
-        }
-        else
-        {
-            server = http.createServer();
-            if (options.http)
-            {
-                message += 'http://';
-                port = options.http.port;
-            }
-            else
-            {
-                message += 'ws://';
-                port = options.http.port;
-            }
-        }
-        container.register('$webServer', server);
-
-        if (options.http || options.https)
-            container.register('$masterRouter', container.attach('http', server));
-        if (options.ws || options.wss)
-        {
-            const wsServer = new ws.Server({ server });
-            container.register('$wsServer', wsServer);
-            wsServer.on('connection', (socket: ws) =>
-            {
-                container.attach('jsonrpc', new jsonrpcws.ws.SocketAdapter(socket));
-            })
-        }
-        try
-        {
-            await new Promise<void>((resolve, reject) =>
-            {
-                server.once('error', reject);
-                server.listen(port, resolve);
-            });
-
-            console.log(message + '0.0.0.0:' + port);
-
-            stops.push(() =>
-            {
-                return new Promise<void>((resolve, reject) =>
-                {
-                    server.close(function (err)
-                    {
-                        if (err)
-                            reject(err);
-                        else
-                            resolve();
-                    })
-                })
-            })
-        }
-        catch (e)
-        {
-            console.error(e);
-            failed = e;
-        }
-    }
+        return Promise.resolve();
+    }, true)
 
     if (failed)
     {
         console.log(failed);
         console.log('exiting...');
-        await Promise.all(stops.map(i => i()));
         throw failed;
     }
     else
-        console.log('server listening');
-
-    return function stop()
-    {
-        return Promise.all(stops.map(i => i()));
-    }
+        console.log('server ready');
 }

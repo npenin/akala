@@ -2,25 +2,6 @@
     "name": "@akala/crud",
     "commands": [
         {
-            "name": "$init",
-            "config": {
-                "fs": {
-                    "path": "dist/commands/$init.js",
-                    "source": "src/commands/$init.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                }
-            }
-        },
-        {
             "name": "create",
             "config": {
                 "fs": {
@@ -47,27 +28,6 @@
                     ],
                     "route": "/{type}",
                     "method": "put"
-                }
-            }
-        },
-        {
-            "name": "create-single",
-            "config": {
-                "fs": {
-                    "path": "dist/commands/create-single.js",
-                    "source": "src/commands/create-single.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0",
-                        "param.1",
-                        "param.2"
-                    ]
                 }
             }
         },

@@ -39,6 +39,34 @@
             }
         },
         {
+            "name": "add",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/commands/plugin/add.js",
+                    "source": "src/commands/plugin/add.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "usage": "plugin add <plugin>",
+                    "inject": [
+                        "options.plugin"
+                    ],
+                    "options": {
+                        "plugin": {
+                            "normalize": true
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "bridge",
             "config": {
                 "fs": {
@@ -386,6 +414,34 @@
                     "inject": [
                         "param.0"
                     ]
+                }
+            }
+        },
+        {
+            "name": "remove",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/commands/plugin/remove.js",
+                    "source": "src/commands/plugin/remove.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "usage": "plugin remove <plugin>",
+                    "inject": [
+                        "options.plugin"
+                    ],
+                    "options": {
+                        "plugin": {
+                            "normalize": true
+                        }
+                    }
                 }
             }
         },

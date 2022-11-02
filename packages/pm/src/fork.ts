@@ -4,6 +4,7 @@ sms.install();
 import * as path from 'path'
 import * as ac from '@akala/commands';
 import { lstat } from 'fs/promises';
+import pmDef from './container';
 import { IpcAdapter } from "./ipc-adapter";
 import { logger, Logger, MiddlewareComposite, module as coreModule } from '@akala/core';
 import program, { buildCliContextFromProcess, ErrorMessage, NamespaceMiddleware } from '@akala/cli';
@@ -30,6 +31,8 @@ logMiddleware.preAction(async c =>
     await ac.Processors.FileSystem.discoverCommands(c.options.program, cliContainer, { processor: processor, isDirectory: folderOrFile.isDirectory() });
 });
 const initMiddleware = new NamespaceMiddleware<{ program: string, name: string, tls: boolean }>(null);
+const controller = new AbortController();
+
 program.option<string, 'program'>('program', { needsValue: true, normalize: true }).
     option<string, 'name'>('name', { needsValue: true }).
     option<boolean, 'tls'>('tls', { needsValue: false }).
@@ -69,9 +72,21 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
                 if (init && init.config && init.config.cli && init.config.cli.options)
                     ac.Triggers.addCliOptions(init, initMiddleware);
 
+                process.on('unhandledRejection', (x) =>
+                {
+                    controller.abort(x)
+                    return false;
+                });
+                process.on('uncaughtException', (x) =>
+                {
+                    controller.abort(x)
+                    return false;
+                });
+                process.on('SIGINT', () => controller.abort(null));
+
                 initMiddleware.option<string, 'pmSocket'>('pmSocket', { aliases: ['pm-socket', 'pm-sock'], needsValue: true }).action(async c =>
                 {
-                    let pm: ac.Container<unknown>;
+                    let pm: ac.Container<unknown> & pmDef.container;
                     let pmConnectInfo: ac.ServeMetadata;
 
                     if (!isPm)
@@ -80,7 +95,7 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
                         const pmMeta = require('../commands.json');
                         if (process.connected)
                         {
-                            pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer), true));
+                            pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer), true)) as ac.Container<unknown> & pmDef.container;
                             registerCommands(pmMeta.commands, null, pm);
                         }
                         else
@@ -90,7 +105,7 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
                             else
                                 pmConnectInfo = ac.serveMetadata('pm', { args: ['local'], options: {} })
                             const x = await ac.connectByPreference(pmConnectInfo, { metadata: pmMeta, container: cliContainer });
-                            pm = x.container;
+                            pm = x.container as ac.Container<unknown> & pmDef.container;
                             pm.processor.useMiddleware(20, x.processor);
                             const connect = pm.resolve('connect');
                             pm.unregister('connect');
@@ -109,7 +124,7 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
                         pm.register(ac.Metadata.extractCommandMetadata(ac.Cli.Metadata));
                     }
                     else
-                        pm = cliContainer;
+                        pm = cliContainer as pmDef.container & ac.Container<unknown>;
 
                     coreModule('@akala/pm').register('container', pm);
 
@@ -131,11 +146,12 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
                         await cliContainer.dispatch(init, { options: c.options, param: c.args, _trigger: 'cli', pm: pm, context: c });
                     }
 
-                    let stop: (...args: unknown[]) => Promise<void>;
+
                     try
                     {
-                        const serveArgs: ac.ServeMetadata = await pm.dispatch('connect', c.options.name);
-                        stop = await cliContainer.dispatch('$serve', serveArgs) as (...args: unknown[]) => Promise<void>;
+                        const serveArgs: ac.ServeMetadataWithSignal = await pm.dispatch('connect', c.options.name);
+                        serveArgs.signal = controller.signal;
+                        await cliContainer.dispatch('$serve', serveArgs);
                     }
                     catch (e)
                     {
@@ -146,36 +162,25 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
 
                     if (pm !== cliContainer)
                         await pm.dispatch('ready')
-
-                    if (stop && typeof stop == 'function')
-                    {
-                        process.on('unhandledRejection', (x) =>
-                        {
-                            stop();
-                            console.error(x);
-                            process.exit();
-                        });
-                        process.on('uncaughtException', (x) =>
-                        {
-                            stop();
-                            console.error(x);
-                            process.exit();
-                        });
-                        process.on('SIGINT', stop);
-                    }
-                    else
-                        process.on('SIGINT', () => process.exit());
                 });
             }
         },
         initMiddleware));
 
+controller.signal.addEventListener('abort', function () 
+{
+    if (this.reason)
+    {
+        process.exitCode = 1;
+        if (this.reason instanceof ErrorMessage)
+            console.error(this.reason.message);
+        else
+            console.error(this.reason);
+    }
+})
+
 if (require.main == module)
     program.process(buildCliContextFromProcess()).catch(e =>
     {
-        if (e instanceof ErrorMessage)
-            console.error(e.message);
-        else
-            console.error(e);
-        setImmediate(process.exit, 1);
+        setImmediate(() => controller.abort(e));
     });
