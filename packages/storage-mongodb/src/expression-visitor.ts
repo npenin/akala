@@ -52,7 +52,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
                         await this.visitApplySymbol(new ApplySymbolExpression(null, QuerySymbols.where, arg0.argument));
                 }
 
-                this.pipelines.push({ $group: { _id: null } }, { $project: { _id: 0 } });
+                this.pipelines.push({ $project: { _id: null } });
                 this.model = null;
                 break;
             case QuerySymbols.count:
@@ -67,10 +67,8 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 this.model = null;
                 break;
             case QuerySymbols.groupby:
-                throw new Error('Not supported');
-                // result = this.result as unknown[];
-                // if (!arg0.argument)
-                //     throw new Exception('group by is missing the group criteria');
+                if (!arg0.argument)
+                    throw new Exception('group by is missing the group criteria');
 
                 // this.result = Enumerable.groupByAsync(this.result as AsyncIterable<unknown>, async (value) =>
                 // {
@@ -78,6 +76,14 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 //     await this.visit(arg0.argument);
                 //     return this.result as string | number;
                 // });
+                if (arg0.argument)
+                {
+                    result = [];
+                    if (arg0.argument)
+                        await this.visitApplySymbol(new ApplySymbolExpression(null, QuerySymbols.where, arg0.argument));
+                }
+
+                this.pipelines.push({ $group: { ...this.pipeline, _id: null } });
                 this.model = null;
                 break;
             case QuerySymbols.select:
