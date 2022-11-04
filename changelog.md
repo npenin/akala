@@ -1,4 +1,4 @@
-#  (2022-11-02)
+#  (2022-11-04)
 
 
 ### Bug Fixes
@@ -304,6 +304,7 @@
 * add lazy helper 5530746
 * add middleware with priority handling 461c1a4
 * add MiddlewareRunnerMiddleware d0e9aff
+* add mongodb support b51751a
 * add multistore 7d0f562
 * add name fs discovery 27fe77d
 * add new app package ac81505
