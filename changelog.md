@@ -6,6 +6,7 @@
 * #10 6e164e7
 * ac new gracefully ends 6647f80
 * adapt to trigger new definition 8c2d136
+* add exports to mongo 9c6d18a
 * add extends adn dependencies on the container interface 4eedb66
 * add logs before publish b1b15be
 * add metadata when using ipc bb26b03
