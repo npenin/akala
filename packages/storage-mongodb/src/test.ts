@@ -38,7 +38,7 @@ describe('query', () =>
             await translator.visit(
                 new ApplySymbolExpression(pe.dbSet<ModelType>(model.name).where('prop2', BinaryOperator.Equal, true).expression, QuerySymbols.count)
             )
-            assert.strictEqual(JSON.stringify(translator.pipelines), JSON.stringify([{ $match: { $expr: { $eq: [{ $getField: 'prop2' }, true] } } }, { $count: 'result' }]));
+            assert.strictEqual(JSON.stringify(translator.pipelines, null, 4), JSON.stringify([{ $match: { $expr: { $eq: [{ $getField: 'prop2' }, true] } } }, { $group: { result: { $sum: 1 }, _id: null } }, { $project: { _id: 0 } }], null, 4));
 
             assert.strictEqual(await pe.dbSet<ModelType>(model.name).where('prop2', BinaryOperator.Equal, true).length(), 2);
         }
