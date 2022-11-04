@@ -23,6 +23,7 @@
 * adding getOwnPropertyDescriptor to try to fix Object.assign d969335
 * additional exports to provide better typing on dependent projects 099279c
 * allow for any property on errors a529558
+* any implementation fixed 3302fc0
 * aritificial bump ae0e129
 * artificial bump 60cc1c1
 * automate implementation f76a995
