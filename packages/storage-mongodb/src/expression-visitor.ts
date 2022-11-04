@@ -45,7 +45,14 @@ export default class MongoDbTranslator extends ExpressionVisitor
         switch (arg0.symbol)
         {
             case QuerySymbols.any:
-                this.result = (this.result as Collection).estimatedDocumentCount()
+                if (arg0.argument)
+                {
+                    result = [];
+                    if (arg0.argument)
+                        await this.visitApplySymbol(new ApplySymbolExpression(null, QuerySymbols.where, arg0.argument));
+                }
+
+                this.pipelines.push({ $group: { _id: null } }, { $project: { _id: 0 } });
                 this.model = null;
                 break;
             case QuerySymbols.count:
@@ -56,7 +63,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
                         await this.visitApplySymbol(new ApplySymbolExpression(null, QuerySymbols.where, arg0.argument));
                 }
 
-                this.pipelines.push({ $count: 'result' });
+                this.pipelines.push({ $group: { result: { $sum: 1 }, _id: null } }, { $project: { _id: 0 } });
                 this.model = null;
                 break;
             case QuerySymbols.groupby:
