@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* add exports to mongo 9c6d18a
+* count and any pipelines d38a6c6
 
 
 
