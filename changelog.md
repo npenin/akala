@@ -63,6 +63,7 @@
 * consider pm container from options 56960e4
 * **core:** interpolate miss return f6c87b1
 * correct name assignment in fork 3deb98f
+* count and any pipelines d38a6c6
 * crash on parsing remote bcb17fe
 * default version ignore to decline 01cb0f7
 * define commands in sidecar c71d334
