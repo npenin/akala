@@ -8,7 +8,7 @@ import { types } from 'util';
 
 export { Cardinality } from './cardinality'
 export { ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator, SerializableDefinition, SerializedAttribute, SerializedFieldType, SerializedRelationship, SerializedStorageField };
-export { PersistenceEngine } from './PersistenceEngine'
+export { PersistenceEngine, dynamicProxy } from './PersistenceEngine'
 
 export const providers = akala.module('db', '@akala/storage');
 
