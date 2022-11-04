@@ -1,5 +1,5 @@
 import { CommandProcessor, CommandResult, Commands } from "@akala/storage";
-import { Collection, Db, MongoClient } from "mongodb";
+import { Db } from "mongodb";
 
 export default class extends CommandProcessor<Db>
 {
