@@ -52,7 +52,8 @@ export default class MongoDbTranslator extends ExpressionVisitor
                         await this.visitApplySymbol(new ApplySymbolExpression(null, QuerySymbols.where, arg0.argument));
                 }
 
-                this.pipelines.push({ $project: { _id: null } });
+                this.pipelines.push({ $addFields: { result: true } },
+                    { $project: { result: 1, _id: 0 } });
                 this.model = null;
                 break;
             case QuerySymbols.count:
