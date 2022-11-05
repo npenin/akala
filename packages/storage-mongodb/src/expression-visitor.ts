@@ -1,6 +1,6 @@
 import { expressions, isPromiseLike } from "@akala/core";
 import { ApplySymbolExpression, BinaryExpression, CallExpression, ConstantExpression, EqualityComparer, Expressions, ExpressionType, ExpressionVisitor, IEnumerable, LambdaExpression, MemberExpression, NewExpression, ParameterExpression, StrictExpressions, TypedExpression, TypedLambdaExpression, UnaryExpression, UnknownExpression } from "@akala/core/expressions";
-import { Enumerable, Exception, ModelDefinition, NotSupportedException, QuerySymbols } from "@akala/storage";
+import { Enumerable, Exception, ModelDefinition, NotSupportedException, QuerySymbols, Relationship } from "@akala/storage";
 import { AggregationCursor, Collection, Db, Document, FindCursor } from "mongodb";
 
 export default class MongoDbTranslator extends ExpressionVisitor
@@ -191,10 +191,21 @@ export default class MongoDbTranslator extends ExpressionVisitor
     async visitMember<T, TMember extends keyof T>(arg0: MemberExpression<T, TMember, T[TMember]>)
     {
         await this.visit(arg0.source);
+        var member = arg0.member as string;
+        if (this.model)
+        {
+            member = this.model.members[member].nameInStorage;
+            if (member == null)
+            {
+                member = (this.model.relationships[member] as Relationship<T, TMember>).name.toString();
+                this.model = (this.model.relationships[member] as Relationship<T, TMember>).target;
+            }
+        }
+
         if (isPromiseLike(this.evaluating))
-            this.evaluating = await this.evaluating.then(v => `${this.evaluating}.${arg0.member.toString()}`);
+            this.evaluating = await this.evaluating.then(v => `${this.evaluating}.${member}`);
         else
-            this.evaluating = arg0.member.toString();
+            this.evaluating = member;
         this.result = null;
 
         return arg0;
