@@ -1,4 +1,4 @@
-#  (2022-11-04)
+#  (2022-11-05)
 
 
 ### Bug Fixes
@@ -24,6 +24,7 @@
 * additional exports to provide better typing on dependent projects 099279c
 * allow for any property on errors a529558
 * any implementation fixed 3302fc0
+* any on mongodb efa6f5d
 * aritificial bump ae0e129
 * artificial bump 60cc1c1
 * automate implementation f76a995
