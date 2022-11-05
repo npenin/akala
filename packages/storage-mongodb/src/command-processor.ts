@@ -1,4 +1,5 @@
 import { CommandProcessor, CommandResult, Commands } from "@akala/storage";
+import { ModelMode } from "@akala/storage/dist/server/common";
 import { Db } from "mongodb";
 
 export default class extends CommandProcessor<Db>
@@ -21,7 +22,11 @@ export default class extends CommandProcessor<Db>
     {
         return this.client.collection(cmd.model.nameInStorage)
             .insertOne(cmd.record)
-            .then(r => ({ recordsAffected: 1, ...r }));
+            .then(r =>
+            {
+                cmd.model.membersAsArray.filter(m => m.nameInStorage == '_id').forEach(m => m.mode == ModelMode.Attribute && (cmd.record[m.name] = r.insertedId as any));
+                return { recordsAffected: 1, ...r }
+            });
     }
     init(options: Db): void
     {
