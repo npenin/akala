@@ -227,11 +227,11 @@ export class ModelDefinition<TObject extends { [key: string]: any } = { [key: st
         const definition = data;
 
         if (definition.fields)
-            Object.entries(definition.fields).map(fieldEntry => this.defineStorageMember(fieldEntry[0], fieldEntry[1].isKey, Object.assign({}, fieldEntry[1].type, { type: StorageFieldType[fieldEntry[1].type] }) as FieldType, Generator[fieldEntry[1].generator] as Generator));
+            Object.entries(definition.fields).forEach(fieldEntry => this.defineStorageMember(fieldEntry[0], fieldEntry[1].isKey, Object.assign({}, fieldEntry[1].type, { type: StorageFieldType[fieldEntry[1].type] }) as FieldType, Generator[fieldEntry[1].generator] as Generator));
         if (definition.relationships)
-            Object.entries(definition.relationships).map(relationship => this.defineRelationship(relationship[0] as Extract<keyof TObject, string>, ModelDefinition.definitions[relationship[1].target], relationship[1].mapping));
+            Object.entries(definition.relationships).forEach(relationship => this.defineRelationship(relationship[0] as Extract<keyof TObject, string>, ModelDefinition.definitions[relationship[1].target], relationship[1].mapping));
         if (definition.members)
-            Object.entries(definition.members).map(member => this.defineMember(member[0] as Extract<keyof TObject, string>, member[1].isKey, Object.assign({}, member[1].type, { type: StorageFieldType[member[1].type] }) as FieldType, Generator[member[1].generator] as Generator));
+            Object.entries(definition.members).forEach(member => this.defineMember(member[0] as Extract<keyof TObject, string>, member[1].isKey, Object.assign({}, member[1].type, { type: StorageFieldType[member[1].type] }) as FieldType, Generator[member[1].generator] as Generator, member[1].nameInStorage));
     }
 
     private storageView: StorageView<TObject>;
@@ -265,10 +265,10 @@ export class ModelDefinition<TObject extends { [key: string]: any } = { [key: st
         return this.membersAsArray.filter((attr) => (attr.mode == ModelMode.Attribute || attr.mode == ModelMode.StorageField) && attr.isKey).map(attr => attr.nameInStorage);
     }
 
-    public defineMember<TKey extends Extract<keyof TObject, string>>(name: TKey, isKey: boolean, type: FieldType, generator: Generator = Generator.business)
+    public defineMember<TKey extends Extract<keyof TObject, string>>(name: TKey, isKey: boolean, type: FieldType, generator: Generator = Generator.business, nameInStorage: string = null)
     {
         //eslint-disable-next-line @typescript-eslint/no-explicit-any
-        this.members[name] = Object.assign({ name, nameInStorage: name, isKey, mode: ModelMode.Attribute, generator }, type) as any;
+        this.members[name] = Object.assign({ name, nameInStorage: nameInStorage || name, isKey, mode: ModelMode.Attribute, generator }, type) as any;
         return this;
     }
 
