@@ -1,5 +1,5 @@
 import { CommandProcessor, CommandResult, Commands } from "@akala/storage";
-import { ModelMode } from "@akala/storage/dist/server/common";
+import { Generator, ModelMode } from "@akala/storage/dist/server/common";
 import { Db } from "mongodb";
 
 export default class extends CommandProcessor<Db>
@@ -9,7 +9,7 @@ export default class extends CommandProcessor<Db>
     visitUpdate<T>(cmd: Commands<T>): PromiseLike<CommandResult>
     {
         return this.client.collection(cmd.model.nameInStorage)
-            .updateMany(cmd.model.getKeys(cmd.record), { $set: cmd.record })
+            .updateMany(cmd.model.getKeys(cmd.record), { $set: Object.fromEntries(Object.entries(cmd.record).filter(e => cmd.model.members[e[0]]?.generator !== Generator.native && cmd.model.members[e[0]]?.generator !== Generator.uuid)) })
             .then(r => ({ recordsAffected: r.matchedCount, ...r }));
     }
     visitDelete<T>(cmd: Commands<T>): PromiseLike<CommandResult>
