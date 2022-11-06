@@ -179,6 +179,7 @@
 * proper typing on store create 83caee7
 * properly generate module from hierarchy dc28cb0
 * provide proper variable to bumps dependents 82f8ddb
+* proxy handling of properties update 47f6102
 * push before tagging d980dd0
 * ready command in pm works in both forks and remote cfb974f
 * ready command works properly d9b10c2
