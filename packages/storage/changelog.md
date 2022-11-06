@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* **storage:** add nameInStorage support 5b863d1
+* proxy handling of properties update 47f6102
 
 
 
