@@ -1,4 +1,4 @@
-#  (2022-11-05)
+#  (2022-11-06)
 
 
 ### Bug Fixes
@@ -232,6 +232,7 @@
 * stdin support 57f5ca7
 * stdin support 23979ba
 * stop generating loggers for numeric keys 75a1324
+* **storage:** add nameInStorage support 5b863d1
 * **storage:** any works properly 84f3b5e
 * support for multiple keys 7de775a
 * support for no workspace dependencies 0703731
