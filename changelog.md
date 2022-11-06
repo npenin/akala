@@ -143,6 +143,7 @@
 * metadata lookup eaa12c1
 * metadata lookup on start da0c4d7
 * middleware copy/paste issue 69757ce
+* **mongodb:** exclude generated field from being updated 1785a29
 * move dependency from devdep 36139a4
 * nested container processing 8997869
 * new cc does not require destination to be a folder 51d1efd
