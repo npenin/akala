@@ -1,9 +1,9 @@
 #  (2022-11-05)
 
 
-### Features
+### Bug Fixes
 
-* support for nested object mapping affb3e2
+* assign id after insert ce42919
 
 
 
