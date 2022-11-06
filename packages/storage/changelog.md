@@ -1,9 +1,9 @@
-#  (2022-11-04)
+#  (2022-11-06)
 
 
-### Features
+### Bug Fixes
 
-* add mongodb support b51751a
+* **storage:** add nameInStorage support 5b863d1
 
 
 
