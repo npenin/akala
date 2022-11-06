@@ -105,11 +105,11 @@ export var dynamicProxy = function <T extends Object>(target: T, model: ModelDef
 {
     var updateCommand: Update<T> = null;
     return new Proxy<T>(target, {
-        set(target, property, value, receiver)
+        set(target, property, value)
         {
             if (!updateCommand)
                 updateCommand = new Update(target, model);
-            receiver[property] = value;
+            target[property] = value;
             return true;
         },
         get(target, property)
