@@ -1,9 +1,9 @@
-#  (2022-11-02)
+#  (2022-11-08)
 
 
-### Features
+### Bug Fixes
 
-* move to serve with AbortSignal 53d811d
+* improve typing for errorMiddlewares 2b7047f
 
 
 
