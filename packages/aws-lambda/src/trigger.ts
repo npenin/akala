@@ -1,14 +1,9 @@
-import aws from 'aws-sdk';
 import { Metadata, Processors, Trigger } from '@akala/commands'
 import { Injector, mapAsync } from '@akala/core';
 import { HttpRouter, trigger as httpTrigger } from '@akala/server';
 import { APIGatewayEvent, APIGatewayProxyResult, Context } from 'aws-lambda'
 import http from 'http'
 
-aws.config.apiVersions = {
-    lambda: '2015-03-31',
-    // other service API versions
-};
 
 export const trigger = new Trigger('aws', (container, config: { [key: string]: string } | string) =>
 {
