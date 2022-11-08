@@ -1,5 +1,5 @@
 import { eachAsync } from '../helpers';
-import { AnyMiddleware, ErrorMiddleware, Middleware, MiddlewareError, MiddlewarePromise, MiddlewareSuccess, OptionsResponse } from './shared';
+import { AnyMiddleware, ErrorMiddleware, Middleware, MiddlewareError, MiddlewarePromise, MiddlewareResult, MiddlewareSuccess, OptionsResponse } from './shared';
 
 
 export function convertToMiddleware<T extends unknown[]>(fn: (...args: T) => Promise<unknown>): Middleware<T>
@@ -81,7 +81,7 @@ export class MiddlewareComposite<T extends unknown[]> implements Middleware<T>, 
     }
 
 
-    public async handleError(error: Error | OptionsResponse, ...req: T): MiddlewarePromise
+    public async handleError(error: MiddlewareResult, ...req: T): MiddlewarePromise
     {
         let failed: boolean = !!error;
         try
