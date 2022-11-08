@@ -3,20 +3,39 @@ import * as https from 'https';
 import * as http2 from 'http2';
 import * as akala from '@akala/core';
 import { Socket } from 'net';
-import { Middleware, MiddlewareComposite, MiddlewarePromise, OptionsResponse, Router, Router2 } from '@akala/core';
+import { Middleware, MiddlewareComposite, MiddlewarePromise, MiddlewareResult, OptionsResponse, Router, Router2 } from '@akala/core';
 import { UpgradeMiddleware } from './upgradeMiddleware';
 import { Request, Response } from './shared';
 import accepts from 'accepts';
 import cobody from 'co-body'
+import mime from 'mime-types'
+
 
 export class HttpRouter extends Router2<Request, Response>
 {
     private upgradeRouter = new Router<[Request, Socket, Buffer]>();
-    private formatters = new MiddlewareComposite<[Request, Response, unknown]>();
+    public readonly formatters = new MiddlewareComposite<[Request, Response, unknown]>();
 
     constructor(options?: akala.RouterOptions)
     {
         super(options);
+    }
+
+    public registerJsonFormatter()
+    {
+        this.formatters.useMiddleware({
+            handle(req, res, result)
+            {
+                if (!res.headersSent || mime.extension(res.getHeader('content-type') as string) !== 'json')
+                    return Promise.resolve();
+                if (!res.headersSent && req.accepts.type('json'))
+                    res.setHeader('content-type', mime.contentType('json') as string);
+                result = JSON.stringify(result);
+                res.write(result);
+                res.end();
+                return Promise.reject();
+            }
+        })
     }
 
     public attachTo(server: http.Server | https.Server | http2.Http2Server | http2.Http2SecureServer): void
@@ -44,38 +63,7 @@ export class HttpRouter extends Router2<Request, Response>
             //     oldEnd.apply(this, args);
             // }
 
-            if (!res.status)
-                res.status = function (status: number)
-                {
-                    res.statusCode = status;
-                    return res;
-                };
-
-            if (!res.sendStatus)
-                res.sendStatus = function (status: number)
-                {
-                    res.status(status).end();
-                    return res;
-                };
-
-            if (!res.json)
-                res.json = function (content: unknown)
-                {
-                    if (typeof (content) != 'undefined')
-                        content = JSON.stringify(content);
-                    res.write(content);
-                    res.end();
-                    return res;
-                };
-
-            if (!res.redirect)
-                res.redirect = function (uri, code: number)
-                {
-                    res.writeHead(code || 302, 'redirect', { location: uri });
-                    res.end();
-                    return res;
-                };
-            this.handle(req, res).then((err) =>
+            this.handle(req, HttpRouter.extendResponse(res)).then((err) =>
             {
                 if (err && err !== 'break')
                 {
@@ -91,6 +79,46 @@ export class HttpRouter extends Router2<Request, Response>
                 (result) => result !== res ? this.format(req, res, result) : undefined);
         });
     }
+
+    public static extendResponse<T extends object>(res: T & Partial<Response>): Response & T
+    {
+        if (!res.status)
+            res.status = function (status: number)
+            {
+                res.statusCode = status;
+                return res as Response;
+            };
+
+        if (!res.sendStatus)
+            res.sendStatus = function (status: number)
+            {
+                res.status(status).end();
+                return res as Response;
+            };
+
+        if (!res.json)
+            res.json = function (content: unknown)
+            {
+                if (!res.headersSent)
+                    res.setHeader('content-type', 'application/json');
+                if (typeof (content) != 'undefined')
+                    content = JSON.stringify(content);
+                res.write(content);
+                res.end();
+                return res as Response;
+            };
+
+        if (!res.redirect)
+            res.redirect = function (uri, code: number)
+            {
+                res.writeHead(code || 302, 'redirect', { location: uri });
+                res.end();
+                return res as Response;
+            };
+
+        return res as T & Response;
+    }
+
     static makeRequest(msg: http.IncomingMessage): Request
     {
         const uri = new URL('http://' + msg.headers.host + msg.url);
@@ -110,14 +138,14 @@ export class HttpRouter extends Router2<Request, Response>
         });
     }
 
-    formatError(req: Request, res: Response, result: Error | OptionsResponse): MiddlewarePromise
+    formatError(req: Request, res: Response, result: MiddlewareResult): MiddlewarePromise
     {
         return this.formatters.handleError(result, req, res, null).then(() =>
         {
             try
             {
                 console.warn(`no valid error formatter for ${req.headers.accept} thus sending as text`);
-                let stringify = result !== null && result !== undefined ? result.toString() : '';
+                let stringify = result !== null && result !== undefined ? result && result.toString() : '';
                 if (result instanceof Error)
                     stringify = `[${result.name}]: ${result.message}\n${result.stack}`;
                 res.writeHead(500, 'Failed', { 'Content-Type': 'text/plain', 'Content-Length': stringify.length }).
@@ -146,7 +174,7 @@ export class HttpRouter extends Router2<Request, Response>
             }
             else
                 res.writeHead(204, 'OK', { contenttype: 'text/plain', contentLength: 0 }).end();
-        })
+        }, () => { });
     }
 
     public upgrade(path: string, upgradeSupport: string, handler: ((request: Request, socket: Socket, head: Buffer) => Promise<unknown>)): this

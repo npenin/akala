@@ -21,6 +21,8 @@ declare module '@akala/pm'
     }
 }
 
+export { trigger } from './triggers/http'
+
 import * as commands from '@akala/commands'
 
 export function connect(options: commands.ServeMetadata, settings: {
