@@ -1,4 +1,4 @@
-#  (2022-11-06)
+#  (2022-11-08)
 
 
 ### Bug Fixes
@@ -112,10 +112,12 @@
 * improve error logging 1b4ae07
 * improve generate performance 88f6fee
 * improve get-version 2f156a3
+* improve http implementation 9e55419
 * improve performance of metadata lookup 81cf56a
 * improve remote sidecars defaults eef7b24
 * improve start/stop doc e4be495
 * improve support for extends f6622ee
+* improve typing for errorMiddlewares 2b7047f
 * improve usage with objects 91d1f50
 * improved logging support 8c81e18
 * improved ready command for remote containers ffd2a17
@@ -354,6 +356,7 @@
 * leverage suncalc c674f46
 * move to serve with AbortSignal 53d811d
 * moved to middleware approach 69d4ba5
+* new aws-lambda module 97806aa
 * releasing sidecar eb0c959
 * removing problematic extend function 5daa1db
 * return ProxyConfiguration correct type when strongly typed eeaeee0
