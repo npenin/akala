@@ -5,6 +5,7 @@ import { Processors } from '@akala/commands';
 import * as http from 'http';
 import * as https from 'https';
 import * as http2 from 'http2';
+import mime from 'mime'
 
 const log = logger('commands:trigger:http')
 
@@ -12,7 +13,22 @@ function wrapHttp<T>(container: Container<T>, command: Metadata.Command)
 {
     return function (req: Request, res: Response): Promise<unknown>
     {
-        return processCommand(container, command, { $request: req, $response: res })
+        return processCommand(container, command, { $request: req, $response: res }).then(result =>
+        {
+            if (res.closed)
+                return;
+            if (res.headersSent)
+            {
+                const contentType = res.getHeaders()['content-type'];
+                if (typeof contentType == 'string')
+                    switch (mime.getExtension(contentType))
+                    {
+                        case 'json':
+                            res.json(result);
+                            break;
+                    }
+            }
+        })
     }
 }
 
@@ -20,12 +36,12 @@ async function processCommand<T>(container: Container<T>, c: Metadata.Command, i
 {
     const req = injected.$request;
     let bodyParsing: Promise<{ parsed: unknown, raw: Buffer }>;
-    return Processors.Local.handle(c, async function (...args)
+    return Processors.Local.execute(c, async function (...args)
     {
         args = await mapAsync(args, async el => await el);
         args = args.filter((a, i) => c.config[''].inject[i].startsWith('param.'))
         log.debug(args);
-        return await container.dispatch(c.name, ...args).then(result => { throw result }, err => err);
+        return await container.dispatch(c.name, ...args);
     }, container, {
         param: [], route: req.params, query: req.query, _trigger: 'http', get rawBody()
         {
