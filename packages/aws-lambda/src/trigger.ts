@@ -9,10 +9,10 @@ export const trigger = new Trigger('aws', (container, config: { [key: string]: s
 {
     return (event: { Records: { eventSource: string }[] } | APIGatewayEvent, context: Context) =>
     {
+        const ctxInjector = new Injector();
+        ctxInjector.register('context', context);
         if ('Records' in event)
         {
-            const ctxInjector = new Injector();
-            ctxInjector.register('context', context);
             return mapAsync(event.Records, async (record) =>
             {
                 var cmdInjector = new Injector(ctxInjector);
@@ -34,7 +34,8 @@ export const trigger = new Trigger('aws', (container, config: { [key: string]: s
         }
         else if ('path' in event)
         {
-            const router = container.attach(httpTrigger, new HttpRouter());
+            ctxInjector.register('event', event);
+            const router = container.attach(httpTrigger, { router: new HttpRouter(), injector: ctxInjector });
             router.formatters.useMiddleware({
                 handle(_req, res, result)
                 {
