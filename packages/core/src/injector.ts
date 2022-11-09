@@ -394,4 +394,4 @@ export class Injector
     }
 }
 
-export var defaultInjector = new Injector();
+export var defaultInjector = new Injector(null);
