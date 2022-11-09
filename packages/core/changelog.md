@@ -1,9 +1,9 @@
-#  (2022-11-08)
+#  (2022-11-09)
 
 
 ### Bug Fixes
 
-* improve typing for errorMiddlewares 2b7047f
+* injector inheritance fa3f724
 
 
 
