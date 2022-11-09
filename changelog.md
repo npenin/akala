@@ -126,6 +126,7 @@
 * infinite loop a5ae318
 * initial pm setup 57f516a
 * inject usage after move to full meta cmd 2cbda96
+* injector inheritance fa3f724
 * json model definition parsing 0770dab
 * jsonrpc now breaks with standard jsonrpc error aa06e7c
 * jsonrpc process on fork is passthrough e0482ec
