@@ -33,6 +33,7 @@
 * **automate:** stdio fc9a326
 * avoids workflow leaks in context db4662a
 * aws take from environment 357d1e7
+* **aws:** fix trigger handler 7c6e57f
 * bad regex syntax da56074
 * better file init 1087260
 * better fork description d059b69
