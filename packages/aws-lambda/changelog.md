@@ -1,9 +1,9 @@
 #  (2022-11-09)
 
 
-### Bug Fixes
+### Features
 
-* **aws:** fix trigger handler 7c6e57f
+* add env to get command name b744175
 
 
 
