@@ -191,6 +191,7 @@
 * push before tagging d980dd0
 * ready command in pm works in both forks and remote cfb974f
 * ready command works properly d9b10c2
+* record event on aws 4fd90b3
 * reduce silly logging 378e856
 * regex broken c50b9b9
 * regex exec is not iterable ca695eb
