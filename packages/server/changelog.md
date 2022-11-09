@@ -1,9 +1,9 @@
-#  (2022-11-08)
+#  (2022-11-09)
 
 
 ### Bug Fixes
 
-* improve http implementation 9e55419
+* http to support custom injector 12a25f8
 
 
 
