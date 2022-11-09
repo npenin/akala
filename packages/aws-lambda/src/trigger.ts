@@ -19,13 +19,15 @@ export const trigger = new Trigger('aws', (container, config: { [key: string]: s
                 cmdInjector.register('event', record);
                 console.log(config);
                 console.log(cmdInjector.resolve(typeof config == 'string' ? config : config[record.eventSource]));
-                const cmd: Metadata.Command | void = cmdInjector.inject((cmdName: string) => container.resolve(cmdName), typeof config == 'string' ? config : config[record.eventSource])(this);
+                // container.inspect();
+                const cmd: Metadata.Command | void = cmdInjector.injectWithName([typeof config == 'string' ? config : config[record.eventSource]],
+                    (cmdName: string) => container.resolve(cmdName.replace(/:/g, '.')))(this);
 
                 if (!cmd)
                     return Promise.reject(new Error('command not found'));
 
                 if (cmd.config[record.eventSource])
-                    return Processors.Local.execute(cmd, (...args) => container.dispatch(cmd, { _trigger: record.eventSource, context, event, param: args }), container, { context, event, param: [], _trigger: record.eventSource })
+                    return Processors.Local.execute(cmd, (...args) => container.dispatch(cmd, { _trigger: record.eventSource, context, event: record, param: args }), container, { context, event, param: [], _trigger: record.eventSource })
 
                 if (cmd.config.aws)
                     return Processors.Local.execute(cmd, (...args) => container.dispatch(cmd, { _trigger: 'aws', context, event, param: args }), container, { context, event, param: [], _trigger: 'aws' })
