@@ -58,6 +58,8 @@ export class Local extends CommandProcessor
         let inject = cmd.config && cmd.config['']?.inject;
         const injector = new Injector(container);
         injector.register('$container', container);
+        if (param.injector)
+            injector.merge(param.injector as Injector);
         // console.log(param);
         if (param._trigger === 'proxy')
             inject = undefined;
