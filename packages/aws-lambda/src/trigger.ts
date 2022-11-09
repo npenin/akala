@@ -17,6 +17,8 @@ export const trigger = new Trigger('aws', (container, config: { [key: string]: s
             {
                 var cmdInjector = new Injector(ctxInjector);
                 cmdInjector.register('event', record);
+                console.log(config);
+                console.log(cmdInjector.resolve(typeof config == 'string' ? config : config[record.eventSource]));
                 const cmd: Metadata.Command | void = cmdInjector.inject((cmdName: string) => container.resolve(cmdName), typeof config == 'string' ? config : config[record.eventSource])(this);
 
                 if (!cmd)
