@@ -1,9 +1,9 @@
 #  (2022-11-09)
 
 
-### Features
+### Bug Fixes
 
-* add env to get command name b744175
+* record event on aws 4fd90b3
 
 
 
