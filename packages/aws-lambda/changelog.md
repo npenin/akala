@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* add logs 39b7a0b
+* **aws:** fix trigger handler 7c6e57f
 
 
 
