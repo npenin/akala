@@ -8,6 +8,7 @@
 * adapt to trigger new definition 8c2d136
 * add exports to mongo 9c6d18a
 * add extends adn dependencies on the container interface 4eedb66
+* add logs 39b7a0b
 * add logs before publish b1b15be
 * add metadata when using ipc bb26b03
 * add missing dependency 3d0b4df
