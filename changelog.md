@@ -31,6 +31,7 @@
 * automate implementation f76a995
 * **automate:** stdio fc9a326
 * avoids workflow leaks in context db4662a
+* aws take from environment 357d1e7
 * bad regex syntax da56074
 * better file init 1087260
 * better fork description d059b69
