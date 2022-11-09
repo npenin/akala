@@ -9,7 +9,7 @@ export const trigger = new Trigger('aws', (container, config: { [key: string]: s
 {
     return (event: { Records: { eventSource: string }[] } | APIGatewayEvent, context: Context) =>
     {
-        const ctxInjector = new Injector();
+        const ctxInjector = new Injector(null);
         ctxInjector.register('context', context);
         if ('Records' in event)
         {

@@ -49,7 +49,7 @@ export class Injector
 
     constructor(protected parent?: Injector)
     {
-        if (this.parent == null)
+        if (typeof this.parent === 'undefined')
             this.parent = defaultInjector;
 
         this.register('$injector', this);
