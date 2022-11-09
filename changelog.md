@@ -1,4 +1,4 @@
-#  (2022-11-08)
+#  (2022-11-09)
 
 
 ### Bug Fixes
@@ -107,6 +107,7 @@
 * health check reliability 98df0c9
 * help now works where no socket is available 92ecda4
 * honoring preferRemote 6fa76bc
+* http to support custom injector 12a25f8
 * implement own resolve to prevent resolving to main 07e3e69
 * improve config get return type c40bcd5
 * improve error logging 1b4ae07
@@ -182,6 +183,7 @@
 * properly generate module from hierarchy dc28cb0
 * provide proper variable to bumps dependents 82f8ddb
 * proxy handling of properties update 47f6102
+* publish new version f9f4db9
 * push before tagging d980dd0
 * ready command in pm works in both forks and remote cfb974f
 * ready command works properly d9b10c2
