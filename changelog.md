@@ -314,6 +314,7 @@
 * add createIfEmpty flag on config load 2a47d59
 * add crud package 8d71ea4
 * add custom inject in jsonrpc processor 4fc1720
+* add env to get command name b744175
 * add extends support df13246
 * add ignore failure support f9929cf
 * add jsdoc a43ab28
