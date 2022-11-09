@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* aws take from environment 357d1e7
+* add logs 39b7a0b
 
 
 
