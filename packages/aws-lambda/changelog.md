@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* injector inheritance fa3f724
+* aws take from environment 357d1e7
 
 
 
