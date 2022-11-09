@@ -11,6 +11,7 @@ export const trigger = new Trigger('aws', (container, config: { [key: string]: s
     {
         const ctxInjector = new Injector(null);
         ctxInjector.register('context', context);
+        ctxInjector.register('env', process.env);
         if ('Records' in event)
         {
             return mapAsync(event.Records, async (record) =>
