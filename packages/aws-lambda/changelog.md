@@ -1,9 +1,9 @@
-#  (2022-11-09)
+#  (2022-11-11)
 
 
-### Bug Fixes
+### Features
 
-* record event on aws 4fd90b3
+* add init command 4ca928f
 
 
 
