@@ -1,4 +1,4 @@
-#  (2022-11-10)
+#  (2022-11-11)
 
 
 ### Bug Fixes
@@ -318,6 +318,7 @@
 * add env to get command name b744175
 * add extends support df13246
 * add ignore failure support f9929cf
+* add init command 4ca928f
 * add jsdoc a43ab28
 * add keepAttached for pm start 2bef670
 * add lazy helper 5530746
