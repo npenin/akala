@@ -12,9 +12,9 @@ import { buildCliContextFromProcess } from '.';
         const content = JSON.parse(await promisify(fs.readFile)('./config.json', 'utf-8'));
         if (content.plugins)
         {
-            akala.each(content.plugins, function (plugin)
+            await akala.eachAsync(content.plugins, async function (plugin)
             {
-                require(plugin);
+                await import(plugin);
             });
         }
     }
