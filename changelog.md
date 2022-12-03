@@ -1,4 +1,4 @@
-#  (2022-11-11)
+#  (2022-12-03)
 
 
 ### Bug Fixes
@@ -246,6 +246,7 @@
 * stop generating loggers for numeric keys 75a1324
 * **storage:** add nameInStorage support 5b863d1
 * **storage:** any works properly 84f3b5e
+* support for async imports in cli plugins c5687da
 * support for multiple keys 7de775a
 * support for no workspace dependencies 0703731
 * support for no workspace dependencies 9210550
@@ -358,6 +359,7 @@
 * error message is retrieved if wait is specified e93f204
 * errors like are now true errors 954d0a8
 * first pubsub commit 78b31e1
+* implement support typings 4c5d3e4
 * improve middleware behaviour 89f0a24
 * improve trigger defintiion 0eecae1
 * improved implement command 8a98c02
