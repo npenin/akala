@@ -69,6 +69,22 @@ export const trigger = new Trigger('aws', (container, config: { [key: string]: s
             },
                 (result) => result !== res ? router.format(req, res, result).then(e => router.formatError(req, res, e), x => x) : res);
         }
-        throw new Error('Not supported')
+        else
+        {
+            ctxInjector.register('event', event);
+            console.log(config);
+            // console.log(ctxInjector.resolve(typeof config == 'string' ? config : config[record.eventSource]));
+            // container.inspect();
+            const cmd: Metadata.Command | void = ctxInjector.injectWithName([typeof config == 'string' ? config : config.aws],
+                (cmdName: string) => container.resolve(cmdName.replace(/:/g, '.')))(this);
+
+            if (!cmd)
+                return Promise.reject(new Error('command not found'));
+
+            if (cmd.config.aws)
+                return Processors.Local.execute(cmd, (...args) => container.dispatch(cmd, { _trigger: 'aws', context, event: event, param: args }), container, { context, event, param: [], _trigger: 'aws' })
+
+            return Promise.reject(new Error('AWS command mapping not found for command ' + cmd.name));
+        }
     }
 });
