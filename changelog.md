@@ -1,4 +1,4 @@
-#  (2022-12-03)
+#  (2022-12-07)
 
 
 ### Bug Fixes
@@ -104,6 +104,7 @@
 * git push tags fc8e609
 * handle bridges/proxy 69ae6f2
 * handle default init 5482bcb
+* handle direct invokes f4a524e
 * handle empty orders in connectByPreference d35a80b
 * handle non-specified pm socket option dfd5212
 * hasOwnKeys now returns correct keys 76a062e
