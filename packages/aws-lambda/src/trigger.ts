@@ -82,7 +82,7 @@ export const trigger = new Trigger('aws', (container, config: { [key: string]: s
                 return Promise.reject(new Error('command not found'));
 
             if (cmd.config.aws)
-                return Processors.Local.execute(cmd, (...args) => container.dispatch(cmd, { _trigger: 'aws', context, event, param: args }), container, { context, event, param: [], _trigger: 'aws' })
+                return Promise.resolve(Processors.Local.execute(cmd, (...args) => container.dispatch(cmd, { _trigger: 'aws', context, event, param: args }), container, { context, event, param: [], _trigger: 'aws' }))
 
             return Promise.reject(new Error('AWS command mapping not found for command ' + cmd.name));
         }
