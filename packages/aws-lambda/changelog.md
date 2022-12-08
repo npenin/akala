@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* add more logs 02b939a
+* trying to add promise to solve "handled" lambda 62bad72
 
 
 
