@@ -1,9 +1,9 @@
-#  (2022-12-07)
+#  (2022-12-08)
 
 
 ### Bug Fixes
 
-* handle direct invokes f4a524e
+* add more logs 02b939a
 
 
 
