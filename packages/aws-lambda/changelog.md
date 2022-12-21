@@ -1,9 +1,9 @@
-#  (2022-12-08)
+#  (2022-12-21)
 
 
-### Bug Fixes
+### Features
 
-* trying to add promise to solve "handled" lambda 62bad72
+* support for potential callback 54c6554
 
 
 
