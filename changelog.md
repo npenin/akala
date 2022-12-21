@@ -1,4 +1,4 @@
-#  (2022-12-08)
+#  (2022-12-21)
 
 
 ### Bug Fixes
@@ -378,6 +378,7 @@
 * sidecar now fallback to proxy on pm 4ebe153
 * support for commands through pm 3954c8a
 * support for nested object mapping affb3e2
+* support for potential callback 54c6554
 * support for triggers 624ae86
 * support node module when no ./ prefix ad871e3
 * support normalize require config af16029
