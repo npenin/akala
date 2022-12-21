@@ -256,6 +256,7 @@
 * swap build dependencies f7d45dd
 * switch processes state to object 5aa41a4
 * trigger signature 28e77a1
+* trying to add promise to solve "handled" lambda 62bad72
 * update all commands 8f54036
 * update CLI definitions 7281b40
 * update command definition 85c2891
