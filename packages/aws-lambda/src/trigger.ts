@@ -1,6 +1,6 @@
 import { Metadata, Processors, Trigger } from '@akala/commands'
 import { Injector, mapAsync } from '@akala/core';
-import { HttpRouter, trigger as httpTrigger } from '@akala/server';
+// import { HttpRouter, trigger as httpTrigger } from '@akala/server';
 import { APIGatewayEvent, APIGatewayProxyResult, Context } from 'aws-lambda'
 import http from 'http'
 
@@ -36,38 +36,6 @@ export const trigger = new Trigger('aws', (container, config: { [key: string]: s
                 return Promise.reject(new Error('AWS command mapping not found for command ' + cmd.name));
 
             }, false)
-        }
-        else if ('path' in event)
-        {
-            ctxInjector.register('event', event);
-            const router = container.attach(httpTrigger, { router: new HttpRouter(), injector: ctxInjector });
-            router.formatters.useMiddleware({
-                handle(_req, res, result)
-                {
-                    return Promise.reject({ statusCode: res.statusCode || 200, body: JSON.stringify(result) })
-                },
-                handleError(err, req, res, result)
-                {
-                    return Promise.reject({ statusCode: 500, body: err && err.toString() || 'An unexpected error occurred' });
-                }
-            });
-            const req = HttpRouter.makeRequest(event as unknown as http.IncomingMessage);
-            const res = HttpRouter.extendResponse<Partial<APIGatewayProxyResult>>({});
-            return router.handle(req, res).then((err) =>
-            {
-                if (err && err !== 'break')
-                {
-                    router.formatError(req, res, err);
-                    return;
-                }
-                console.error('deadend');
-                console.error({ url: req.url, headers: req.headers, ip: req.ip });
-                res.statusCode = 404;
-                res.statusMessage = 'Not Found';
-                res.body = 'Not Found';
-                return res;
-            },
-                (result) => result !== res ? router.format(req, res, result).then(e => router.formatError(req, res, e), x => x) : res);
         }
         else
         {
