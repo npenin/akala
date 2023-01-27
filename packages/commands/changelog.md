@@ -1,9 +1,10 @@
-#  (2022-12-03)
+#  (2023-01-27)
 
 
-### Features
+### Bug Fixes
 
-* implement support typings 4c5d3e4
+* move from require to import to support esm 6ee5ce4
+* support improved for esm 2a0a627
 
 
 
