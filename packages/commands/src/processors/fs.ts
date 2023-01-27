@@ -312,13 +312,15 @@ export class FileSystem extends CommandProcessor
             filepath = path.resolve(this.root || process.cwd(), command.name);
         try
         {
-            const script = await import(filepath);
+            let script = await import(filepath);
             if (process.env.NODE_ENV !== 'production')
                 delete require.cache[filepath];
 
             if (!param._trigger)
                 param._trigger = this.name;
 
+            if (script.default.__esModule)
+                script = script.default;
             return Local.handle(command, script.default, origin, param);
         }
         catch (e)
