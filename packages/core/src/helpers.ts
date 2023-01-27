@@ -3,6 +3,8 @@ import { onResolve } from './global-injector'
 import * as jsonrpc from '@akala/json-rpc-ws'
 export { Module };
 export * from './promiseHelpers';
+export * from './distinct';
+export * as base64 from './base64';
 export { each as eachAsync, NextFunction, map as mapAsync, AggregateErrors } from './eachAsync';
 export { each, grep, Proxy, map } from './each';
 
@@ -54,3 +56,4 @@ export async function createSocket(namespace: string)
         });
     });
 }
+
