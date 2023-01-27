@@ -1,4 +1,4 @@
-#  (2022-12-21)
+#  (2023-01-27)
 
 
 ### Bug Fixes
@@ -17,6 +17,7 @@
 * add more logs 02b939a
 * add pm processor when proxying 3dbeb5e
 * add preAction before displaying usage 1316b59
+* add processCommand as exported function 6f3e8d6
 * add recursive path creation 3f7ffa7
 * add stdin to pm cli e07437a
 * add transaction on dbset 81305d5
@@ -154,6 +155,7 @@
 * middleware copy/paste issue 69757ce
 * **mongodb:** exclude generated field from being updated 1785a29
 * move dependency from devdep 36139a4
+* move from require to import to support esm 6ee5ce4
 * nested container processing 8997869
 * new cc does not require destination to be a folder 51d1efd
 * normalize path 58c9fcd
@@ -211,6 +213,7 @@
 * remove duplicate foreach in publish 09d9fe5
 * remove duplicated code in pm start command 3a91342
 * remove failure masking 7c4ae85
+* remove http routing f9f43de
 * remove over proxyfying bc948b3
 * remove over proxyfying 5da8a29
 * remove stateless 2de9622
@@ -252,6 +255,7 @@
 * support for multiple keys 7de775a
 * support for no workspace dependencies 0703731
 * support for no workspace dependencies 9210550
+* support improved for esm 2a0a627
 * support normalize files in modules 4a34d95
 * swap build dependencies f7d45dd
 * switch processes state to object 5aa41a4
@@ -265,6 +269,7 @@
 * update jsdoc 49357c6
 * update lock and commands.json files eeae419
 * update lock file 974b089
+* update lockfile 5eda712
 * update package publication to public 6d71bdc
 * update ready command for remote containers 823810d
 * update ready comment definition ebb8c05
@@ -313,12 +318,14 @@
 
 * add $container to fs inject e766ea3
 * add $init function for easier usage 3f4fa32
+* add base64 converter to be runtime agnostic 990891d
 * add bridge support 0e4d6a4
 * add cli gateway af0fd60
 * add Configuration getters and setters c5dad91
 * add createIfEmpty flag on config load 2a47d59
 * add crud package 8d71ea4
 * add custom inject in jsonrpc processor 4fc1720
+* add distinct helpers dda8544
 * add env to get command name b744175
 * add extends support df13246
 * add ignore failure support f9929cf
@@ -338,6 +345,7 @@
 * add position information on positional parameters c8cb21b
 * add possibility for custom file format 0360c2f
 * add possibility to parse filename 335cc97
+* add processing with lambda 650c4f5
 * add reload-metadata on pm 654247f
 * add rest args on cli e6966a9
 * add runnerMiddleware as export ff4c95a
