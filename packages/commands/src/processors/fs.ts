@@ -312,8 +312,7 @@ export class FileSystem extends CommandProcessor
             filepath = path.resolve(this.root || process.cwd(), command.name);
         try
         {
-            // eslint-disable-next-line @typescript-eslint/no-var-requires
-            const script = require(filepath);
+            const script = await import(filepath);
             if (process.env.NODE_ENV !== 'production')
                 delete require.cache[filepath];
 
