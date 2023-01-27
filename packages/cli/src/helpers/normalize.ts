@@ -16,6 +16,9 @@ export default function normalize(mode: 'require' | 'requireMeta' | true, curren
             return createRequire(path.resolve(currentWorkingDirectory) + '/').resolve(value + '/package.json');
         default:
         case true:
+            const url = new URL(value);
+            if (url.protocol)
+                return value;
             return path.resolve(currentWorkingDirectory, value);
     }
 }
