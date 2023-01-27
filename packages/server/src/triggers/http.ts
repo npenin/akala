@@ -32,7 +32,7 @@ function wrapHttp<T>(container: Container<T>, command: Metadata.Command, injecto
     }
 }
 
-async function processCommand<T>(container: Container<T>, c: Metadata.Command, injected: { '$request': Request, '$response': Response, injector?: Injector, [key: string]: unknown })
+export async function processCommand<T>(container: Container<T>, c: Metadata.Command, injected: { '$request': Request, '$response': Response, injector?: Injector, [key: string]: unknown })
 {
     const req = injected.$request;
     let bodyParsing: Promise<{ parsed: unknown, raw: Buffer }>;
