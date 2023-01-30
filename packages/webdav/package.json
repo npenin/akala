@@ -1,13 +1,18 @@
 {
     "name": "@akala/webdav",
     "version": "0.0.0",
+    "private": true,
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
-        "test": "echo \"Error: no test specified\""
+        "test": "echo \"Error: no test specified\"",
+        "generate": "ac generate dist/commands commands.json --name @akala/webdav"
     },
     "dependencies": {
         "@akala/core": "workspace:^",
         "fast-xml-parser": "^4.0.15"
+    },
+    "devDependencies": {
+        "@akala/commands": "workspace:^"
     }
 }
