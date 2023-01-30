@@ -161,14 +161,14 @@ class Readable implements ReadableStream<Uint8Array>
     return this.buffer[Symbol.iterator]();
   }
   private buffer: (Uint8Array | null)[] = [];
-  private _reader?: DefaultReader //| ByobReader;
+  private _reader?: DefaultReader | ByobReader;
   private target?: WritableStream<unknown>;
-  public get reader(): DefaultReader /*| ByobReader*/ | undefined
+  public get reader(): DefaultReader | ByobReader | undefined
   {
     return this._reader;
   }
 
-  public set reader(reader: DefaultReader /* | ByobReader*/ | undefined)
+  public set reader(reader: DefaultReader | ByobReader | undefined)
   {
     this._reader = reader;
     if (reader && this.buffer.length)
@@ -208,17 +208,17 @@ class Readable implements ReadableStream<Uint8Array>
       this.reader.push(chunk);
   }
 
-  // getReader(options: { mode: "byob"; }): ReadableStreamBYOBReader;
+  getReader(options: { mode: "byob" }): ReadableStreamBYOBReader;
   getReader(): ReadableStreamDefaultReader<Uint8Array>;
-  getReader(): ReadableStreamReader<Uint8Array>
+  getReader(options?: ReadableStreamGetReaderOptions): ReadableStreamReader<Uint8Array>
   {
     if (this.locked)
       throw new Error('stream is already locked');
 
-    // if (options && options.mode === 'byob')
-    // {
-    //   return this.reader = new ByobReader(this);
-    // }
+    if (options && options.mode === 'byob')
+    {
+      return this.reader = new ByobReader(this);
+    }
     return this.reader = new DefaultReader(this);
   }
   pipeThrough<T>({ writable, readable }: { writable: WritableStream<Uint8Array>; readable: ReadableStream<T>; }, options?: StreamPipeOptions | undefined): ReadableStream<T>

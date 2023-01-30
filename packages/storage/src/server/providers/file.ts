@@ -340,7 +340,6 @@ class FolderEntry implements FileSystemFolder, PromiseLike<PromiseFileSystem>
                             reject(err);
                         else
                         {
-                            resolve()
                             this.promise = Promise.resolve(new Proxy(this, {
                                 get(target, name)
                                 {
@@ -348,7 +347,8 @@ class FolderEntry implements FileSystemFolder, PromiseLike<PromiseFileSystem>
                                         return undefined;
                                     return target[name]
                                 }
-                            }));
+                            })) as any;
+                            resolve()
                         }
                     });
                 else
@@ -376,7 +376,7 @@ class FolderEntry implements FileSystemFolder, PromiseLike<PromiseFileSystem>
                                     return undefined;
                                 return target[name]
                             }
-                        }));
+                        })) as any;
                     }
                 })
             }));

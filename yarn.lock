@@ -72,7 +72,8 @@ __metadata:
   resolution: "@akala/aws-lambda@workspace:packages/aws-lambda"
   dependencies:
     "@akala/commands": "workspace:^"
-    "@aws-sdk/client-lambda": ^3.259.0
+    "@aws-sdk/client-lambda": ^3.257.0
+    "@aws-sdk/types": ^3.257.0
     "@types/aws-lambda": ^8.10.110
   languageName: unknown
   linkType: soft
@@ -107,7 +108,7 @@ __metadata:
     "@types/showdown": ^2.0.0
     "@types/webpack-env": ^1.18.0
     "@types/ws": ^8.5.4
-    content-type: ^1.0.4
+    content-type: ^1.0.5
     mime: ^3.0.0
     orchestrator: ^0.3.8
     os-browserify: ^0.3.0
@@ -260,7 +261,7 @@ __metadata:
     bufferutil: ^4.0.7
     debug: ^4.3.4
     mocha: ^10.2.0
-    puppeteer: ^19.6.1
+    puppeteer: ^19.6.2
     reflect-metadata: ^0.1.13
     selenium-webdriver: ^4.8.0
     source-map-support: ^0.5.21
@@ -649,7 +650,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/client-lambda@npm:^3.259.0":
+"@aws-sdk/client-lambda@npm:^3.257.0":
   version: 3.259.0
   resolution: "@aws-sdk/client-lambda@npm:3.259.0"
   dependencies:
@@ -1732,7 +1733,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/types@npm:3.257.0":
+"@aws-sdk/types@npm:3.257.0, @aws-sdk/types@npm:^3.257.0":
   version: 3.257.0
   resolution: "@aws-sdk/types@npm:3.257.0"
   dependencies:
@@ -3762,7 +3763,7 @@ __metadata:
     "@typescript-eslint/parser": ^5.49.0
     commitizen: ^4.3.0
     cz-conventional-changelog: ^3.3.0
-    eslint: ^8.32.0
+    eslint: ^8.33.0
     snyk: ^1.1091.0
     typescript: ^4.9.4
     why-is-node-still-running: ^1.0.0
@@ -4659,7 +4660,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"content-type@npm:^1.0.4, content-type@npm:~1.0.4":
+"content-type@npm:^1.0.5":
+  version: 1.0.5
+  resolution: "content-type@npm:1.0.5"
+  checksum: 566271e0a251642254cde0f845f9dd4f9856e52d988f4eb0d0dcffbb7a1f8ec98de7a5215fc628f3bce30fe2fb6fd2bc064b562d721658c59b544e2d34ea2766
+  languageName: node
+  linkType: hard
+
+"content-type@npm:~1.0.4":
   version: 1.0.4
   resolution: "content-type@npm:1.0.4"
   checksum: 3d93585fda985d1554eca5ebd251994327608d2e200978fdbfba21c0c679914d5faf266d17027de44b34a72c7b0745b18584ecccaa7e1fdfb6a68ac7114f12e0
@@ -5447,9 +5455,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.32.0":
-  version: 8.32.0
-  resolution: "eslint@npm:8.32.0"
+"eslint@npm:^8.33.0":
+  version: 8.33.0
+  resolution: "eslint@npm:8.33.0"
   dependencies:
     "@eslint/eslintrc": ^1.4.1
     "@humanwhocodes/config-array": ^0.11.8
@@ -5492,7 +5500,7 @@ __metadata:
     text-table: ^0.2.0
   bin:
     eslint: bin/eslint.js
-  checksum: 23c8fb3c57291eecd9c1448faf603226a8f885022a2cd96e303459bf72e39b7f54987c6fb948f0f9eecaf7085600e6eb0663482a35ea83da12e9f9141a22b91e
+  checksum: 727e63ab8b7acf281442323c5971f6afdd5b656fbcebc4476cf54e35af51b2f180617433fc5e1952f0449ca3f43a905527f9407ea4b8a7ea7562fc9c3f278d4c
   languageName: node
   linkType: hard
 
@@ -8777,9 +8785,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"puppeteer-core@npm:19.6.1":
-  version: 19.6.1
-  resolution: "puppeteer-core@npm:19.6.1"
+"puppeteer-core@npm:19.6.2":
+  version: 19.6.2
+  resolution: "puppeteer-core@npm:19.6.2"
   dependencies:
     cross-fetch: 3.1.5
     debug: 4.3.4
@@ -8791,20 +8799,20 @@ __metadata:
     tar-fs: 2.1.1
     unbzip2-stream: 1.4.3
     ws: 8.11.0
-  checksum: 6235d81ddb2cb5116eff8f3c3b4e45e12f778ed673885bdf308327cb20b98eac5a0ecaea16d2582dcae51c495d5650376a99e384ffdca7dce1084e1cc9503bd5
+  checksum: 92325f78de3e468a2444136012806ad9b0b1c694b3647022e71aa3f04b776781a9241b9b7984e5c7800acc4c9cfc3176752da37bcca7cb2a8c92e6e3e6c65be4
   languageName: node
   linkType: hard
 
-"puppeteer@npm:^19.6.1":
-  version: 19.6.1
-  resolution: "puppeteer@npm:19.6.1"
+"puppeteer@npm:^19.6.2":
+  version: 19.6.2
+  resolution: "puppeteer@npm:19.6.2"
   dependencies:
     cosmiconfig: 8.0.0
     https-proxy-agent: 5.0.1
     progress: 2.0.3
     proxy-from-env: 1.1.0
-    puppeteer-core: 19.6.1
-  checksum: acdf750da962ac089e30d5688f260b5164fcd9f4447e1e5daa237633a492a69da2cd2859e732688cdb725c2b4393196674d7fedd66a008cbfaa945a00001b0cf
+    puppeteer-core: 19.6.2
+  checksum: 7ed12a8be7d243d82d4569e3f30fe376b96515b88562cbd6dca60e9fc052b232669db736666c9212d4d23366ed30764e3f5a6633e1195cf0709cba49771a8fa2
   languageName: node
   linkType: hard
 
