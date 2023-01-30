@@ -8,6 +8,7 @@
 * adapt to trigger new definition 8c2d136
 * add exports to mongo 9c6d18a
 * add extends adn dependencies on the container interface 4eedb66
+* add generate script 5fd0dff
 * add logs 39b7a0b
 * add logs before publish b1b15be
 * add metadata when using ipc bb26b03
@@ -19,6 +20,7 @@
 * add preAction before displaying usage 1316b59
 * add processCommand as exported function 6f3e8d6
 * add recursive path creation 3f7ffa7
+* add remote type (for async ops) edd9b3b
 * add stdin to pm cli e07437a
 * add transaction on dbset 81305d5
 * added missing yaml dependency fa66dd1
@@ -160,6 +162,7 @@
 * move from require to import to support esm 6ee5ce4
 * nested container processing 8997869
 * new cc does not require destination to be a folder 51d1efd
+* normalize causes issue if not URL 4879fb0
 * normalize path 58c9fcd
 * optional parameter in connect 606b68b
 * output formatting f747eff
@@ -218,6 +221,7 @@
 * remove duplicated code in pm start command 3a91342
 * remove failure masking 7c4ae85
 * remove http routing f9f43de
+* remove import of removed dependency 8a11cef
 * remove over proxyfying bc948b3
 * remove over proxyfying 5da8a29
 * remove stateless 2de9622
@@ -382,6 +386,7 @@
 * InteractError now using Binding for more possible usecases d9da85f
 * jsonrpc disconnect support for server and proxies 5d7128c
 * leverage suncalc c674f46
+* move ErrorWithStatus to core f3de950
 * move to serve with AbortSignal 53d811d
 * moved to middleware approach 69d4ba5
 * new aws-lambda module 97806aa
