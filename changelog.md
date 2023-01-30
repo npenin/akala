@@ -1,4 +1,4 @@
-#  (2023-01-27)
+#  (2023-01-30)
 
 
 ### Bug Fixes
@@ -68,6 +68,7 @@
 * connect fails when connect on mapping is undefined 16bdd27
 * connect should failed if mapping is not found 4392197
 * connect when connecting to pm 7494ae0
+* connectByPreference not working with sockets bc8a5e1
 * consider pm container from options 56960e4
 * **core:** interpolate miss return f6c87b1
 * correct name assignment in fork 3deb98f
@@ -85,6 +86,7 @@
 * error flow in composite middleware ec36174
 * error serialization b3156ad
 * error support in jsonrpc 82c2f34
+* exclude urls from normalization a4915c9
 * export AggregateErrors f4285e2
 * export parseMetadata 8870389
 * expose jsonrpc client id fd0f873
@@ -168,6 +170,7 @@
 * packages/docker/Dockerfile to reduce vulnerabilities 7d43d77
 * packages/docker/Dockerfile-arm to reduce vulnerabilities 7fd23ac
 * packages/docker/Dockerfile-arm to reduce vulnerabilities 93d2550
+* packages/docker/slim.dockerfile to reduce vulnerabilities e52f865
 * packages/docker/slim.dockerfile to reduce vulnerabilities 3aeee37
 * parser more reliable 5c92e5a
 * path can now be retrieved using property 2d3125e
@@ -182,6 +185,7 @@
 * prevent breaks after disconnect 27df465
 * prevent commands override 019f44f
 * prevent duplicate containers/procesors on multiple calls per socket 42efc58
+* prevent inifinite loop when no matching option can be found 3912b94
 * prevent send on closed socket 85de789
 * proper error serialization support 54a819d
 * proper parameter binding for bump-dependents 7459c86
@@ -268,6 +272,7 @@
 * update dependencies and regenerate metadata 0c83667
 * update jsdoc 49357c6
 * update lock and commands.json files eeae419
+* update lock file f142c2b
 * update lock file 974b089
 * update lockfile 5eda712
 * update package publication to public 6d71bdc
@@ -384,6 +389,7 @@
 * removing problematic extend function 5daa1db
 * return ProxyConfiguration correct type when strongly typed eeaeee0
 * sidecar now fallback to proxy on pm 4ebe153
+* started webdav module c663dba
 * support for commands through pm 3954c8a
 * support for nested object mapping affb3e2
 * support for potential callback 54c6554
