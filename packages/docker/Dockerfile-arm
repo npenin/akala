@@ -1,8 +1,8 @@
-FROM node:16.13.1-alpine3.13 as builder
+FROM node:17.3.0-alpine3.13 as builder
 ADD https://github.com/balena-io/qemu/releases/download/v3.0.0%2Bresin/qemu-3.0.0+resin-aarch64.tar.gz /usr/qemu/qemu.tar.gz
 RUN tar -zxvf /usr/qemu/qemu.tar.gz -C /usr/qemu 
 
-FROM --platform=arm64 node:16.13.1-alpine3.13 as release
+FROM --platform=arm64 node:17.3.0-alpine3.13 as release
 COPY --from=builder /usr/qemu/qemu-3.0.0+resin-aarch64/qemu-aarch64-static /usr/bin
 
 ENV NODE_ENV production
