@@ -4,7 +4,6 @@ import { each, map } from './each';
 import { module } from './helpers';
 import { service } from './service';
 import { Formatter, FormatterFactory } from './formatters/common';
-import 'isomorphic-fetch';
 import http from 'http';
 import https from 'https';
 import { Injected } from './injector';
