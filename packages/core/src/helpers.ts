@@ -8,6 +8,8 @@ export * as base64 from './base64';
 export { each as eachAsync, NextFunction, map as mapAsync, AggregateErrors } from './eachAsync';
 export { each, grep, Proxy, map } from './each';
 
+export type Remote<T> = { [key in keyof T]: T[key] extends (...args) => infer X ? X extends Promise<infer Y> ? X : Promise<X> : (T[key] | undefined) }
+
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-empty-function
 export function noop() { }
 
