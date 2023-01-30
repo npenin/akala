@@ -1,10 +1,10 @@
-#  (2023-01-27)
+#  (2023-01-30)
 
 
 ### Bug Fixes
 
-* move from require to import to support esm 6ee5ce4
-* support improved for esm 2a0a627
+* connectByPreference not working with sockets bc8a5e1
+* prevent inifinite loop when no matching option can be found 3912b94
 
 
 
