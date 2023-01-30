@@ -1,10 +1,9 @@
 #  (2023-01-30)
 
 
-### Bug Fixes
+### Features
 
-* connectByPreference not working with sockets bc8a5e1
-* prevent inifinite loop when no matching option can be found 3912b94
+* move ErrorWithStatus to core f3de950
 
 
 
