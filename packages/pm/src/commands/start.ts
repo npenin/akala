@@ -5,7 +5,8 @@ import pmContainer from '../container';
 import * as jsonrpc from '@akala/json-rpc-ws'
 import { eachAsync } from "@akala/core";
 import { NewLinePrefixer } from "../new-line-prefixer.js";
-import { CliContext, ErrorWithStatus } from "@akala/cli";
+import { CliContext } from "@akala/cli";
+import { ErrorWithStatus } from "@akala/core";
 import getRandomName from "./name";
 import { ProxyConfiguration } from "@akala/config";
 import { IpcAdapter } from "../ipc-adapter";

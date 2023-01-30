@@ -1,4 +1,4 @@
-import { ErrorWithStatus } from "@akala/cli";
+import { ErrorWithStatus } from "@akala/core";
 import { serveMetadata, ServeMetadata, ServeOptions } from "@akala/commands";
 import Configuration from "@akala/config";
 import State, { SidecarConfiguration } from '../state';
