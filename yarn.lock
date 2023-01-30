@@ -180,11 +180,9 @@ __metadata:
     "@types/debug": ^4.1.7
     "@types/mock-require": ^2.0.1
     "@types/node": ^18.11.18
-    "@types/node-fetch": ^2.6.2
     "@types/orchestrator": 0.3.3
     "@types/ws": ^8.5.4
     debug: ^4.3.4
-    isomorphic-fetch: ^3.0.0
     merge2: ^1.4.1
     mocha: ^10.2.0
     orchestrator: ^0.3.8
@@ -285,7 +283,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@akala/pm@^4.1.6, @akala/pm@workspace:^, @akala/pm@workspace:packages/pm":
+"@akala/pm@^4.1.7, @akala/pm@workspace:^, @akala/pm@workspace:packages/pm":
   version: 0.0.0-use.local
   resolution: "@akala/pm@workspace:packages/pm"
   dependencies:
@@ -441,6 +439,8 @@ __metadata:
 "@akala/webdav@workspace:packages/webdav":
   version: 0.0.0-use.local
   resolution: "@akala/webdav@workspace:packages/webdav"
+  dependencies:
+    "@akala/core": "workspace:^"
   languageName: unknown
   linkType: soft
 
@@ -2924,16 +2924,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node-fetch@npm:^2.6.2":
-  version: 2.6.2
-  resolution: "@types/node-fetch@npm:2.6.2"
-  dependencies:
-    "@types/node": "*"
-    form-data: ^3.0.0
-  checksum: 6f73b1470000d303d25a6fb92875ea837a216656cb7474f66cdd67bb014aa81a5a11e7ac9c21fe19bee9ecb2ef87c1962bceeaec31386119d1ac86e4c30ad7a6
-  languageName: node
-  linkType: hard
-
 "@types/node@npm:*":
   version: 18.8.1
   resolution: "@types/node@npm:18.8.1"
@@ -3750,7 +3740,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "akala-docker@workspace:packages/docker"
   dependencies:
-    "@akala/pm": ^4.1.6
+    "@akala/pm": ^4.1.7
     yarn: ^1.22.19
   languageName: unknown
   linkType: soft
@@ -4512,7 +4502,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"combined-stream@npm:^1.0.6, combined-stream@npm:^1.0.8":
+"combined-stream@npm:^1.0.6":
   version: 1.0.8
   resolution: "combined-stream@npm:1.0.8"
   dependencies:
@@ -5894,17 +5884,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"form-data@npm:^3.0.0":
-  version: 3.0.1
-  resolution: "form-data@npm:3.0.1"
-  dependencies:
-    asynckit: ^0.4.0
-    combined-stream: ^1.0.8
-    mime-types: ^2.1.12
-  checksum: b019e8d35c8afc14a2bd8a7a92fa4f525a4726b6d5a9740e8d2623c30e308fbb58dc8469f90415a856698933c8479b01646a9dff33c87cc4e76d72aedbbf860d
-  languageName: node
-  linkType: hard
-
 "forwarded@npm:0.2.0":
   version: 0.2.0
   resolution: "forwarded@npm:0.2.0"
@@ -7035,16 +7014,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isomorphic-fetch@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "isomorphic-fetch@npm:3.0.0"
-  dependencies:
-    node-fetch: ^2.6.1
-    whatwg-fetch: ^3.4.1
-  checksum: e5ab79a56ce5af6ddd21265f59312ad9a4bc5a72cebc98b54797b42cb30441d5c5f8d17c5cd84a99e18101c8af6f90c081ecb8d12fd79e332be1778d58486d75
-  languageName: node
-  linkType: hard
-
 "istanbul-lib-coverage@npm:^3.0.0, istanbul-lib-coverage@npm:^3.2.0":
   version: 3.2.0
   resolution: "istanbul-lib-coverage@npm:3.2.0"
@@ -7965,7 +7934,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:2.6.7, node-fetch@npm:^2.6.1":
+"node-fetch@npm:2.6.7":
   version: 2.6.7
   resolution: "node-fetch@npm:2.6.7"
   dependencies:
@@ -10564,13 +10533,6 @@ __metadata:
   bin:
     webpack: bin/webpack.js
   checksum: 2bcc5f3c195f375944e8af2f00bf2feea39cb9fda5f763b0d1b00077f1c51783db25c94d3fae96a07dead9fa085e6ae7474417e5ab31719c9776ea5969ceb83a
-  languageName: node
-  linkType: hard
-
-"whatwg-fetch@npm:^3.4.1":
-  version: 3.6.2
-  resolution: "whatwg-fetch@npm:3.6.2"
-  checksum: ee976b7249e7791edb0d0a62cd806b29006ad7ec3a3d89145921ad8c00a3a67e4be8f3fb3ec6bc7b58498724fd568d11aeeeea1f7827e7e1e5eae6c8a275afed
   languageName: node
   linkType: hard
 
