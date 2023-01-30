@@ -3,7 +3,12 @@
 
 ### Bug Fixes
 
-* exclude urls from normalization a4915c9
+* normalize causes issue if not URL 4879fb0
+
+
+### Features
+
+* move ErrorWithStatus to core f3de950
 
 
 
