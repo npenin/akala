@@ -8,12 +8,11 @@ import { CommandProcessor, ICommandProcessor } from './model/processor';
 import { HttpClient, JsonRpc } from './processors/index';
 import net from 'net'
 import ws from 'ws'
-import { Injector } from '@akala/core';
+import { Injector, ErrorWithStatus } from '@akala/core';
 import * as Metadata from './metadata/index';
 import { Container } from './model/container';
 import { CommonConnectionOptions, connect as tlsconnect, SecureContextOptions, TLSSocket } from 'tls'
 import * as jsonrpc from '@akala/json-rpc-ws';
-import { ErrorWithStatus } from '@akala/cli';
 
 type TlsConnectOpts = NetConnectOpts & SecureContextOptions & CommonConnectionOptions;
 

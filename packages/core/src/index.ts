@@ -26,3 +26,5 @@ export { introspect };
 export * from './chain';
 export * from './polymorph';
 export * from './logger'
+import ErrorWithStatus from './errorWithStatus'
+export { ErrorWithStatus }

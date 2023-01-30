@@ -1,4 +1,4 @@
-import { ErrorWithStatus } from "@akala/cli";
+import { ErrorWithStatus } from "@akala/core";
 import { SocketAdapter } from "@akala/json-rpc-ws";
 import { randomUUID } from "crypto";
 import State from "../state";

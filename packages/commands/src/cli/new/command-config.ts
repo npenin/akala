@@ -1,4 +1,5 @@
-import { CliContext, ErrorWithStatus } from "@akala/cli";
+import { CliContext } from "@akala/cli";
+import { ErrorWithStatus } from "@akala/core";
 import path from "path";
 import { Processors } from "../../index";
 import { Command } from "../../metadata/command";
