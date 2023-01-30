@@ -68,6 +68,8 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
 
         try
         {
+            if (orders.length == 0)
+                throw new ErrorWithStatus(404, 'No valid connection option could be found')
             processor = await connectWith(orderedOptions[preferredIndex][0], settings?.host, orders[preferredIndex], settings?.container)
             break;
         }
