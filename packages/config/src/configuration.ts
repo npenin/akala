@@ -1,5 +1,5 @@
 import { isProxy } from '@akala/core';
-import { Serializable, SerializableObject } from '@akala/json-rpc-ws';
+import { Serializable, SerializableObject } from '@akala/core';
 import fs from 'fs/promises'
 import { inspect } from 'util'
 

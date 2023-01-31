@@ -1,9 +1,8 @@
-import { Injector, HttpOptions, each, Http, defaultInjector, MiddlewarePromise } from '@akala/core';
+import { Injector, HttpOptions, each, Http, defaultInjector, MiddlewarePromise, SerializableObject } from '@akala/core';
 import * as pathRegexp from 'path-to-regexp';
 import { CommandProcessor } from '../model/processor';
 import { Command, Configuration } from '../metadata';
 import { Container } from '../model/container';
-import { SerializableObject } from '@akala/json-rpc-ws';
 
 export class HttpClient extends CommandProcessor
 {

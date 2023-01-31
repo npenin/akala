@@ -1,7 +1,7 @@
-import { Connection as BaseConnection, SerializableObject, PayloadDataType, SerializedBuffer, Payload, SocketAdapter, Deferred, Parent } from './shared-connection';
+import { Connection as BaseConnection, PayloadDataType, SerializedBuffer, Payload, SocketAdapter, Parent } from './shared-connection';
 import { default as Client } from './shared-client';
 import { default as Errors, Payload as ErrorPayload } from './errors';
-
+import { Deferred, SerializableObject } from '@akala/core'
 
 import debug from 'debug';
 
@@ -10,7 +10,7 @@ const logger = debug('json-rpc-ws');
 import * as ws from './ws/browser';
 import { ReadableStreamDefaultReadResult } from 'stream/web';
 export { ws };
-export { Client, SocketAdapter, Errors, BaseConnection, SerializableObject, Deferred, PayloadDataType, SerializedBuffer, Payload, ErrorPayload };
+export { Client, SocketAdapter, Errors, BaseConnection, SerializableObject, PayloadDataType, SerializedBuffer, Payload, ErrorPayload };
 
 class ByobReader implements ReadableStreamBYOBReader
 {

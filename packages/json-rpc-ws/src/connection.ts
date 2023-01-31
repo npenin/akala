@@ -1,7 +1,8 @@
 
+import { SerializableObject } from '@akala/core';
 import debug from 'debug';
 import * as stream from 'stream';
-import { Connection as BaseConnection, PayloadDataType, SerializableObject, SerializedBuffer, SocketAdapter, Parent } from './shared-connection'
+import { Connection as BaseConnection, PayloadDataType, SerializedBuffer, SocketAdapter, Parent } from './shared-connection'
 const logger = debug('json-rpc-ws');
 
 

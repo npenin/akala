@@ -2,8 +2,7 @@ import { Container, Processors, Metadata, Cli, updateCommands } from "@akala/com
 import State, { RunningContainer, SidecarMetadata } from '../state';
 import { spawn, ChildProcess, StdioOptions } from "child_process";
 import pmContainer from '../container';
-import * as jsonrpc from '@akala/json-rpc-ws'
-import { eachAsync } from "@akala/core";
+import { Deferred, eachAsync } from "@akala/core";
 import { NewLinePrefixer } from "../new-line-prefixer.js";
 import { CliContext } from "@akala/cli";
 import { ErrorWithStatus } from "@akala/core";
@@ -136,7 +135,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
         container.process = cp;
 
         Object.assign(container, def, instanceConfig);
-        container.ready = new jsonrpc.Deferred();
+        container.ready = new Deferred();
         if (container.commandable)// && !container.stateless)
         {
             container.unregister(Cli.Metadata.name);
