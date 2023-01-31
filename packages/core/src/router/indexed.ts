@@ -63,7 +63,7 @@ export class MiddlewareIndexed<T extends unknown[], TMiddleware extends AnyMiddl
 
         const middleware = this.index[key];
         if (isStandardMiddleware(middleware))
-            return middleware.handle(...req).then(e => (typeof e === 'undefined') ? this._delegate.handle(...req) : e);
+            return middleware.handle(...req).then(e => (typeof e === 'undefined') && this._delegate ? this._delegate.handle(...req) : e);
         return Promise.resolve();
     }
 }
