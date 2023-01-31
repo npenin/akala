@@ -1,14 +1,9 @@
-#  (2023-01-30)
+#  (2023-01-31)
 
 
 ### Bug Fixes
 
-* normalize causes issue if not URL 4879fb0
-
-
-### Features
-
-* move ErrorWithStatus to core f3de950
+* normalization and edge cases in cli 874a97f
 
 
 
