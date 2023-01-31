@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* normalization and edge cases in cli 874a97f
+* remove http imports to support treeshaking for browsers a0d87cb
 
 
 

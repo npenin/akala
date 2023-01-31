@@ -221,6 +221,7 @@
 * remove duplicate foreach in publish 09d9fe5
 * remove duplicated code in pm start command 3a91342
 * remove failure masking 7c4ae85
+* remove http imports to support treeshaking for browsers a0d87cb
 * remove http routing f9f43de
 * remove import of removed dependency 8a11cef
 * remove over proxyfying bc948b3
@@ -329,6 +330,7 @@
 * add $container to fs inject e766ea3
 * add $init function for easier usage 3f4fa32
 * add base64 converter to be runtime agnostic 990891d
+* add bin in webdav 563472b
 * add bridge support 0e4d6a4
 * add cli gateway af0fd60
 * add Configuration getters and setters c5dad91
