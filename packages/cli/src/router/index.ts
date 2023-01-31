@@ -208,7 +208,7 @@ class OptionsMiddleware<TOptions extends Record<string, string | number | boolea
     }
 
     private options = new akala.MiddlewareComposite<[CliContext]>();
-    public config: { [key: string]: OptionOptions } = {};
+    public config: { [key in keyof TOptions]?: OptionOptions } = {};
 
     option<TValue extends string | number | boolean | string[], TName extends string>(name: TName, option?: OptionOptions): OptionsMiddleware<TOptions & { [key in TName]: TValue }>
     {
@@ -250,7 +250,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
 {
     private _preAction: akala.Middleware<[CliContext<TOptions>]>;
     private _action: akala.Middleware<[CliContext<TOptions>]>;
-    private readonly _option = new OptionsMiddleware();
+    private readonly _option = new OptionsMiddleware<TOptions>();
     private _format: (result: unknown, context: CliContext<TOptions>) => void;
 
     constructor(name: string, private _doc?: { usage?: string, description?: string }, private _cli?: akala.Middleware<[CliContext<TOptions>]>)
@@ -336,10 +336,11 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
                     for (let index = 0; index < parameters.length; index++)
                     {
                         const parameter = parameters[index];
+                        const paramName = parameter.name;
                         // if (!parameter.optional)
-                        context.options[parameter.name] = context.args.shift() as (TOptions & TOptions2)[typeof parameter.name];
-                        if (middleware._option?.config && middleware._option.config[parameter.name as string]?.normalize)
-                            context.options[parameter.name] = path.resolve(context.currentWorkingDirectory, context.options[parameter.name] as string) as (TOptions & TOptions2)[typeof parameter.name];
+                        context.options[paramName] = context.args.shift() as (TOptions & TOptions2)[typeof paramName];
+                        if (middleware._option?.config && middleware._option.config[paramName]?.normalize)
+                            context.options[parameter.name] = normalize(middleware._option.config[parameter.name as string]?.normalize, context.currentWorkingDirectory, context.options[parameter.name] as string);// as (TOptions & TOptions2)[typeof parameter.name];
                         // if (parameter.optional)
                         //     context.options[parameter.name] = context.args.shift() as TOptions2[typeof parameter.name];
                         if (parameter.rest)
