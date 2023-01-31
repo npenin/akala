@@ -1,4 +1,4 @@
-#  (2023-01-30)
+#  (2023-01-31)
 
 
 ### Bug Fixes
@@ -162,6 +162,7 @@
 * move from require to import to support esm 6ee5ce4
 * nested container processing 8997869
 * new cc does not require destination to be a folder 51d1efd
+* normalization and edge cases in cli 874a97f
 * normalize causes issue if not URL 4879fb0
 * normalize path 58c9fcd
 * optional parameter in connect 606b68b
