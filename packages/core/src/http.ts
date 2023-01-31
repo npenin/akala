@@ -4,8 +4,8 @@ import { each, map } from './each';
 import { module } from './helpers';
 import { service } from './service';
 import { Formatter, FormatterFactory } from './formatters/common';
-import http from 'http';
-import https from 'https';
+// import http from 'http';
+// import https from 'https';
 import { Injected } from './injector';
 import { SerializableObject } from '@akala/json-rpc-ws';
 
@@ -19,7 +19,7 @@ export interface HttpOptions
     headers?: { [key: string]: string | number | Date };
     contentType?: 'json' | 'form';
     type?: 'json' | 'xml' | 'text' | 'raw';
-    agent?: http.Agent | https.Agent;
+    // agent?: http.Agent | https.Agent;
 }
 
 export interface Http<TResponse = Response>
@@ -139,8 +139,8 @@ export class FetchHttp implements Http<Response>
             }
         }
 
-        if (options.agent)
-            init['agent'] = options.agent;
+        // if (options.agent)
+        //     init['agent'] = options.agent;
 
         return fetch(options.url.toString(), init);
     }
