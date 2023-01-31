@@ -4,8 +4,7 @@ import { Command } from '../metadata/index';
 import { Container } from '../model/container';
 import { Local } from './local';
 import { Readable } from 'stream';
-import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam } from '@akala/core';
-import { Connection } from '@akala/json-rpc-ws';
+import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam, SerializableObject } from '@akala/core';
 
 type OnlyArray<T> = Extract<T, unknown[]>;
 
@@ -29,7 +28,7 @@ export class JsonRpc extends CommandProcessor
         });
     }
 
-    public static getConnection(socket: jsonrpcws.SocketAdapter, container?: Container<unknown>, otherInject?: (params: StructuredParameters<jsonrpcws.SerializableObject[]>) => void, log?: Logger): jsonrpcws.Connection
+    public static getConnection(socket: jsonrpcws.SocketAdapter, container?: Container<unknown>, otherInject?: (params: StructuredParameters<SerializableObject[]>) => void, log?: Logger): jsonrpcws.Connection
     {
         const error = new Error();
         var containers: Container<unknown>[] = [];
@@ -59,7 +58,7 @@ export class JsonRpc extends CommandProcessor
                     return null;
                 }
 
-                return async function (this: Connection, params, reply)
+                return async function (this: jsonrpcws.Connection, params, reply)
                 {
                     try
                     {
@@ -72,17 +71,17 @@ export class JsonRpc extends CommandProcessor
                         if (Array.isArray(params))
                             params = { param: params };
                         if (typeof (params) != 'object' || params instanceof Readable || !params['param'])
-                            params = { param: [params] } as jsonrpcws.SerializableObject;
+                            params = { param: [params] } as SerializableObject;
 
                         Object.defineProperty(params, 'connection', { configurable: true, enumerable: false, get: getProcessor });
                         Object.defineProperty(params, 'connectionAsContainer', { configurable: true, enumerable: false, get: getContainer });
                         Object.defineProperty(params, 'socket', { configurable: true, enumerable: false, value: socket });
                         if (otherInject)
-                            otherInject(params as StructuredParameters<jsonrpcws.SerializableObject[]>);
+                            otherInject(params as StructuredParameters<SerializableObject[]>);
                         if (typeof (params) == 'object' && !params['_trigger'] || params['_trigger'] == 'proxy')
                             params['_trigger'] = 'jsonrpc';
 
-                        const result = await container.dispatch(method, params as StructuredParameters<jsonrpcws.SerializableObject[]>);
+                        const result = await container.dispatch(method, params as StructuredParameters<SerializableObject[]>);
                         reply(null, result as jsonrpcws.PayloadDataType<Readable>);
                     }
                     catch (error)
@@ -125,7 +124,7 @@ export class JsonRpc extends CommandProcessor
             Promise.all(params.param).then((param) =>
             {
                 if (this.client.socket.open)
-                    this.client.sendMethod(typeof command == 'string' ? command : command.name, Object.assign(params, { param, _trigger: undefined }) as jsonrpcws.SerializableObject, function (err, result)
+                    this.client.sendMethod(typeof command == 'string' ? command : command.name, Object.assign(params, { param, _trigger: undefined }) as SerializableObject, function (err, result)
                     {
                         if (err)
                         {

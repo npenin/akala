@@ -6,8 +6,7 @@ import { ModelDefinition, MultiStore, PersistenceEngine, providers, Store, Store
 import MetaPubSub from '@akala/pubsub/commands.json'
 import os from 'os'
 import path from 'path'
-import { Serializable } from '@akala/json-rpc-ws'
-import { eachAsync, mapAsync, module } from '@akala/core';
+import { Serializable, eachAsync, mapAsync, module } from '@akala/core';
 import { SerializableDefinition } from '@akala/storage'
 import { CliContext } from '@akala/cli'
 

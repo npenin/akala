@@ -1,4 +1,4 @@
-import { Deferred } from "@akala/json-rpc-ws";
+import { Deferred } from "@akala/core";
 import { Workflow } from "../automate";
 import State, { WorkflowInstance } from "../state";
 

@@ -1,10 +1,9 @@
 import { v4 as uuid } from 'uuid';
 import debug from 'debug';
 import { default as Errors, Error as ConnectionError, ErrorTypes } from './errors';
+import { SerializableObject } from '@akala/core';
 const logger = debug('json-rpc-ws');
 
-export type Serializable = string | number | string[] | number[] | boolean | boolean[] | SerializableObject | SerializableObject[];
-export type SerializableObject = { [key: string]: Serializable };
 export type PayloadDataType<T> = number | SerializableObject | SerializableObject[] | boolean | boolean[] | number[] | string | string[] | null | undefined | void | { event: string, isBuffer: boolean, data: string | SerializedBuffer } | T;
 export type SerializedBuffer = { type: 'Buffer', data: Uint8Array | number[] };
 
@@ -28,57 +27,6 @@ export interface StreamPayload<T> extends CommonPayload
     params?: T;
     result?: PayloadDataType<T>;
     stream?: true;
-}
-
-export class Deferred<T, TError = Error> implements PromiseLike<T>
-{
-    private _resolve?: (value?: T | PromiseLike<T> | undefined) => void;
-    private _reject?: (reason?: TError) => void;
-    promise: Promise<T>;
-    resolve(_value?: T | PromiseLike<T> | undefined): void
-    {
-        if (typeof (this._resolve) == 'undefined')
-            throw new Error('Not Implemented');
-
-        this._resolve(_value);
-    }
-    reject(_reason?: TError): void
-    {
-        if (typeof (this._reject) == 'undefined')
-            throw new Error('Not Implemented');
-
-        this._reject(_reason);
-    }
-    constructor()
-    {
-        let _resolve;
-        let _reject;
-        this.promise = new Promise<T>((resolve, reject) =>
-        {
-            _resolve = resolve;
-            _reject = reject;
-        });
-        this._resolve = _resolve;
-        this._reject = _reject;
-    }
-
-    public then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: Error) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>
-    {
-        return this.promise.then(onfulfilled, onrejected);
-    }
-    public catch<TResult = never>(onrejected?: ((reason: Error) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>
-    {
-        return this.promise.catch(onrejected);
-    }
-    public finally(onfinally?: (() => void) | undefined | null): Promise<T>
-    {
-        return this.promise.finally(onfinally);
-    }
-
-    public get [Symbol.toStringTag](): string
-    {
-        return this.promise[Symbol.toStringTag];
-    }
 }
 
 export type Handler<TConnection extends Connection<TStreamable>, TStreamable, ParamType extends PayloadDataType<TStreamable>, ParamCallbackType extends PayloadDataType<TStreamable>> = (this: TConnection, params: ParamType, reply: ReplyCallback<ParamCallbackType>) => void;

@@ -1,6 +1,5 @@
 import { Workflow } from './automate'
-import { Queue } from '@akala/core'
-import { Deferred } from '@akala/json-rpc-ws'
+import { Deferred, Queue } from '@akala/core'
 import loader from './loader';
 import * as trigger from '@akala/pubsub';
 import { Schedule } from '@akala/cron';

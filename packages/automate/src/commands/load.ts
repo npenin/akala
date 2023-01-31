@@ -4,8 +4,7 @@ import path from 'path'
 import { TriggerMap, Workflow } from '../automate';
 import { Container } from '@akala/commands';
 import { JobCommand, parseCronSyntax, Schedule } from '@akala/cron';
-import { Deferred } from '@akala/json-rpc-ws';
-import { eachAsync } from '@akala/core';
+import { Deferred, eachAsync } from '@akala/core';
 
 export default async function (this: State, container: Container<unknown>, name: string, workflowFile: string)
 {

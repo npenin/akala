@@ -1,4 +1,4 @@
-import { Connection as BaseConnection, SerializableObject, Serializable, PayloadDataType, SerializedBuffer, Payload, SocketAdapter, Deferred, SocketAdapterEventMap } from './shared-connection';
+import { Connection as BaseConnection, PayloadDataType, SerializedBuffer, Payload, SocketAdapter, SocketAdapterEventMap } from './shared-connection';
 import { Connection } from './connection'
 import { default as Client } from './shared-client';
 import { default as Server, ServerAdapter } from './server';
@@ -12,4 +12,4 @@ import { default as Errors, Payload as ErrorPayload } from './errors';
 
 import * as ws from './ws/index';
 export { ws };
-export { Server, Client, ServerAdapter, SocketAdapter, Errors, BaseConnection, Connection, Serializable, SerializableObject, Deferred, PayloadDataType, SerializedBuffer, Payload, ErrorPayload, SocketAdapterEventMap };
+export { Server, Client, ServerAdapter, SocketAdapter, Errors, BaseConnection, Connection, PayloadDataType, SerializedBuffer, Payload, ErrorPayload, SocketAdapterEventMap };
