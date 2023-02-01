@@ -10,7 +10,7 @@ export default async function generate(folder?: string, name?: string, outputFil
     folder = folder || process.cwd();
     if (!name && fs.existsSync(path.join(folder, './package.json')))
         // eslint-disable-next-line @typescript-eslint/no-var-requires
-        name = require(path.join(folder, './package.json')).name;
+        name = (await import(path.join(folder, './package.json'))).name;
     if (!name)
         name = path.basename(folder);
 
@@ -21,8 +21,9 @@ export default async function generate(folder?: string, name?: string, outputFil
     const meta: akala.Metadata.Container & { $schema?: string } = { name: name, commands: [] };
     if (exists)
     {
-        var existing: akala.Metadata.Container = require(path.resolve(process.cwd(), outputFile));
-        delete require.cache[path.resolve(process.cwd(), outputFile)];
+        var existing: akala.Metadata.Container = await import(path.resolve(process.cwd(), outputFile));
+        if (require && require.cache)
+            delete require.cache[path.resolve(process.cwd(), outputFile)];
         meta.extends = existing.extends;
         meta.dependencies = existing.dependencies;
     }

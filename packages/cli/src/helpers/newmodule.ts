@@ -58,7 +58,7 @@ config.command<{ name: string }>('new <name>')
             await npm('init', '-y');
 
         // eslint-disable-next-line @typescript-eslint/no-var-requires
-        const packagejson = require(process.cwd() + '/' + context.options.name + '/package.json');
+        const packagejson = await import(process.cwd() + '/' + context.options.name + '/package.json');
         packagejson.main = 'dist/server/index.js';
         packagejson.types = 'dist/server/index.d.ts';
         packagejson.scripts = {

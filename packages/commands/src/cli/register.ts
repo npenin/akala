@@ -32,7 +32,7 @@ export default async function register(commandsPath?: string, name?: string, for
     }
 
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const packageFile = require(path.join(process.cwd(), packagePath));
+    const packageFile = await import(path.join(process.cwd(), packagePath));
     let dirty = false;
     if (typeof (name) != 'undefined' && name !== packageFile.name)
     {
