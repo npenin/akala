@@ -7,7 +7,7 @@ import { logger } from './logger';
 
 const orchestratorLog = logger('akala:module:orchestrator');
 
-process.hrtime = process.hrtime || require('browser-process-hrtime');
+// process.hrtime = process.hrtime || require('browser-process-hrtime');
 
 export class ExtendableEvent<T = void>
 {
