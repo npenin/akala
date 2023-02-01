@@ -1,6 +1,6 @@
-import { CommandProcessor } from './command-processor';
-import { CommandType } from './command';
-import { ModelDefinition } from '../shared';
+import { CommandProcessor } from './command-processor.js';
+import { CommandType } from './command.js';
+import { ModelDefinition } from '../shared.js';
 
 export class UpdateCommand<T>
 {

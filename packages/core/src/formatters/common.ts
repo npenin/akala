@@ -1,5 +1,5 @@
-import { Injected } from "../injector";
-import { ParsedOneOf } from "../parser/parser";
+import { Injected } from "../injector.js";
+import { ParsedOneOf } from "../parser/parser.js";
 
 export type Formatter<TResult> = Injected<TResult>;// (value: unknown) => TResult;
 

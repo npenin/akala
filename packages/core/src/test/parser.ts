@@ -1,10 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('source-map-support').install();
 
-import { Parser, ParsedBinary, ParsedString } from '../parser/parser';
-import { defaultInjector } from '../injector';
-import { BinaryOperator } from '../parser/expressions/binary-operator';
-import { EvaluatorAsFunction } from '../parser/evaluator-as-function';
+import { Parser, ParsedBinary, ParsedString } from '../parser/parser.js';
+import { defaultInjector } from '../injector.js';
+import { BinaryOperator } from '../parser/expressions/binary-operator.js';
+import { EvaluatorAsFunction } from '../parser/evaluator-as-function.js';
 
 
 //b*(c+d) ==> (b*c)+d

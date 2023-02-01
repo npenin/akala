@@ -1,5 +1,5 @@
 import { Trigger, Container, metadata, Metadata } from '@akala/commands';
-import { HttpRouter as Router, Request, Response } from '../router/index';
+import { HttpRouter as Router, Request, Response } from '../router/index.js';
 import { Injector, logger, mapAsync } from '@akala/core';
 import { Processors } from '@akala/commands';
 import * as http from 'http';

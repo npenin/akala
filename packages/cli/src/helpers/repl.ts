@@ -1,6 +1,6 @@
-import program from '../router/index';
+import program from '../router/index.js';
 import * as repl from 'repl'
-import { buildCliContext } from '..';
+import { buildCliContext } from '../index.js';
 
 export function replEval(input: string): string[]
 {

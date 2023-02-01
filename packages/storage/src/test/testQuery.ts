@@ -1,7 +1,7 @@
-import { File, Store, StoreDefinition, DbSet, QuerySymbols } from '../server/index';
-import { ModelTest1 } from './modelTest1';
+import { File, Store, StoreDefinition, DbSet, QuerySymbols } from '../server/index.js';
+import { ModelTest1 } from './modelTest1.js';
 import assert from 'assert';
-import './modelTest1';
+import './modelTest1.js';
 import { expressions } from '@akala/core';
 
 interface TestStore extends StoreDefinition

@@ -1,7 +1,7 @@
 import * as akala from '@akala/core'
 import { each, Logger, map, Middleware, MiddlewarePromise } from '@akala/core';
 import * as path from 'path'
-import normalize from '../helpers/normalize';
+import normalize from '../helpers/normalize.js';
 
 export interface CliContext<TOptions extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>
 {

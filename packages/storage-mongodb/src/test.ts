@@ -1,9 +1,9 @@
 import { ApplySymbolExpression, BinaryOperator } from "@akala/core/expressions";
 import { ModelDefinition, Query, QuerySymbols, Types } from "@akala/storage";
 import { MongoClient } from "mongodb";
-import { MongoDb } from "./persistenceengine";
+import { MongoDb } from "./persistenceengine.js";
 import assert from 'assert'
-import MongoDbTranslator from "./expression-visitor";
+import MongoDbTranslator from "./expression-visitor.js";
 
 describe('query', () =>
 {

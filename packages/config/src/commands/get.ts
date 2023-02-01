@@ -1,4 +1,4 @@
-import Configuration from '../configuration';
+import Configuration from '../configuration.js';
 
 export default async function get(this: Configuration, key: string, file?: string)
 {

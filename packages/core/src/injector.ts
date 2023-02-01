@@ -1,8 +1,8 @@
-import { getParamNames } from './reflect';
-import { isPromiseLike } from './promiseHelpers';
+import { getParamNames } from './reflect.js';
+import { isPromiseLike } from './promiseHelpers.js';
 import { EventEmitter } from 'events';
-import "reflect-metadata";
-import { logger } from './logger';
+import "reflect-metadata.js";
+import { logger } from './logger.js';
 
 const log = logger('akala:core:injector');
 

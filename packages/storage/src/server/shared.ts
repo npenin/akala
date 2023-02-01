@@ -1,14 +1,14 @@
 import * as akala from '@akala/core'
 import "reflect-metadata";
-import { FieldType, StorageFieldType, ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator, SerializableDefinition, SerializedAttribute, SerializedFieldType, SerializedRelationship, SerializedStorageField } from './common';
-import { Query } from './Query';
-import { PersistenceEngine, Transaction } from './PersistenceEngine';
-import { Update, Create, Delete, CommandResult } from './commands/command';
+import { FieldType, StorageFieldType, ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator, SerializableDefinition, SerializedAttribute, SerializedFieldType, SerializedRelationship, SerializedStorageField } from './common.js';
+import { Query } from './Query.js';
+import { PersistenceEngine, Transaction } from './PersistenceEngine.js';
+import { Update, Create, Delete, CommandResult } from './commands/command.js';
 import { types } from 'util';
 
-export { Cardinality } from './cardinality'
+export { Cardinality } from './cardinality.js'
 export { ModelDefinition, Relationship, Attribute, StorageField, StorageView, Generator, SerializableDefinition, SerializedAttribute, SerializedFieldType, SerializedRelationship, SerializedStorageField };
-export { PersistenceEngine, dynamicProxy } from './PersistenceEngine'
+export { PersistenceEngine, dynamicProxy } from './PersistenceEngine.js'
 
 export const providers = akala.module('db', '@akala/storage');
 
@@ -115,7 +115,7 @@ export function Model<TObject>(name: string | (new () => TObject), nameInStorage
     }
 }
 
-import * as Enumerable from './Enumerable'
+import * as Enumerable from './Enumerable.js'
 export { Enumerable };
 
 export function Field(type?: FieldType | (() => FieldType), generator?: Generator)
@@ -223,7 +223,4 @@ function member(isKey: boolean, type?: FieldType | (() => FieldType), generator?
 }
 
 
-export { StorageFieldType as Types, FieldType as Type, Field as ModelField } from './common'
-
-export { File } from './providers/file'
-export { Vanilla } from './providers/vanilla'
+export { StorageFieldType as Types, FieldType as Type, Field as ModelField } from './common.js'

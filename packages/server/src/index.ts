@@ -1,15 +1,15 @@
 import './translator';
-export { router, Request, Response, HttpRouter, CallbackResponse } from './router/index';
+export { router, Request, Response, HttpRouter, CallbackResponse } from './router/index.js';
 
 import './http'
 import './handlers'
-export * from './http'
+export * from './http.js'
 
-export * from './queue'
+export * from './queue.js'
 
-import container from './commands'
+import container from './commands.js'
 export { container }
-export { State } from './state'
+export { State } from './state.js'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import * as _pm from '@akala/pm'
@@ -21,7 +21,7 @@ declare module '@akala/pm'
     }
 }
 
-export { trigger } from './triggers/http'
+export { trigger } from './triggers/http.js'
 
 import * as commands from '@akala/commands'
 

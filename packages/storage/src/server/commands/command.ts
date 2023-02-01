@@ -1,6 +1,6 @@
-import { CreateCommand as Create } from './create-command';
-import { UpdateCommand as Update } from './update-command';
-import { DeleteCommand as Delete } from './delete-command';
+import { CreateCommand as Create } from './create-command.js';
+import { UpdateCommand as Update } from './update-command.js';
+import { DeleteCommand as Delete } from './delete-command.js';
 export { Create, Update, Delete }
 
 export enum CommandType

@@ -1,5 +1,5 @@
-import { DateRequest, parseCronSyntax } from "..";
-import { Schedule } from '../state';
+import { DateRequest, parseCronSyntax } from "../index.js";
+import { Schedule } from '../state.js';
 
 export default function wait(date: DateRequest | string)
 {

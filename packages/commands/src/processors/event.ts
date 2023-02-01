@@ -1,9 +1,9 @@
-import { StructuredParameters, ICommandProcessor, CommandMetadataProcessorSignature } from '../model/processor';
+import { StructuredParameters, ICommandProcessor, CommandMetadataProcessorSignature } from '../model/processor.js';
 // import { CommandProxy } from '../model/command';
 import { EventEmitter } from "events";
 import { MiddlewarePromise } from "@akala/core";
-import { Command } from '../metadata/index';
-import { Container } from '../model/container';
+import { Command } from '../metadata/index.js';
+import { Container } from '../model/container.js';
 
 export class EventProcessor extends EventEmitter implements ICommandProcessor
 {

@@ -1,7 +1,7 @@
 import changelog = require('conventional-changelog-angular');
 import { Commit as ParserCommit } from 'conventional-commits-parser';
-import regex from 'conventional-commits-parser/lib/regex';
-import { Commit } from './parse';
+import regex from 'conventional-commits-parser/lib/regex.js';
+import { Commit } from './parse.js';
 
 
 export default async function (commits: Commit[]): Promise<ParserCommit[]>

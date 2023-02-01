@@ -1,9 +1,9 @@
 
-import SocketAdapter from './ws-socket-adapter';
-import { Adapter as ServerAdapter } from './server';
-import Server from '../server';
-import { Connection } from '../connection';
-import Client from './client';
+import SocketAdapter from './ws-socket-adapter.js';
+import { Adapter as ServerAdapter } from './server.js';
+import Server from '../server.js';
+import { Connection } from '../connection.js';
+import Client from './client.js';
 export { SocketAdapter, ServerAdapter }
 import debug from 'debug';
 import * as ws from 'ws';

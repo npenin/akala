@@ -6,7 +6,7 @@ import { Triggers } from '@akala/commands';
 
 import https from 'https';
 import http from 'http';
-import { trigger } from "./triggers/http";
+import { trigger } from "./triggers/http.js";
 import { SecureContextOptions } from "tls";
 
 serverHandlers.register<ServerHandler<NetConnectOpts>>('http', async (container, options) =>
@@ -49,9 +49,9 @@ serverHandlers.register<ServerHandler<NetConnectOpts>>('ws', async (container, o
         server = container.resolve('$webServer');
     }
 
-    const wsServer = new ws.Server({ server });
+    const wsServer = new ws.WebSocketServer({ server });
     container.register('$wsServer', wsServer);
-    wsServer.on('connection', (socket: ws) =>
+    wsServer.on('connection', (socket: ws.WebSocket) =>
     {
         container.attach(Triggers.jsonrpcws, new jsonrpcws.ws.SocketAdapter(socket));
     })
@@ -71,9 +71,9 @@ serverHandlers.register<ServerHandler<NetConnectOpts>>('wss', async (container, 
         server = container.resolve('$webServer');
     }
 
-    const wsServer = new ws.Server({ server });
+    const wsServer = new ws.WebSocketServer({ server });
     container.register('$wssServer', wsServer);
-    wsServer.on('connection', (socket: ws) =>
+    wsServer.on('connection', (socket: ws.WebSocket) =>
     {
         container.attach(Triggers.jsonrpcws, new jsonrpcws.ws.SocketAdapter(socket));
     })

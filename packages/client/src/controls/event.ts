@@ -1,5 +1,5 @@
 import * as akala from '@akala/core'
-import { control, GenericControlInstance, Control } from './control'
+import { control, GenericControlInstance, Control } from './control.js'
 import { Binding, isPromiseLike, inject, Injector } from '@akala/core'
 
 export type HTMLElementEventHandlerMap = { [P in keyof Partial<HTMLElementEventMap>]: (this: HTMLElement, ev: HTMLElementEventMap[P]) => void | boolean };

@@ -1,7 +1,7 @@
-import '../model/authorization-code';
-import '../model/access-token';
-import '../model/client';
-import '../model/user';
+import '../model/authorization-code.js';
+import '../model/access-token.js';
+import '../model/client.js';
+import '../model/user.js';
 
 // const hash = akala.defaultInjector.injectWithNameAsync(['$config.@akala-modules/authentication.secret'], function (secret: string)
 // {
@@ -27,8 +27,8 @@ declare module '@akala/server'
     }
 }
 
-export * from './middlewares/authenticate'
-export * from './middlewares/authorize'
-export * from './middlewares/Authorize401ChallengeFormatter'
-export * from './middlewares/AuthorizeRedirectFormatter'
-export * from './middlewares/grant'
+export * from './middlewares/authenticate.js'
+export * from './middlewares/authorize.js'
+export * from './middlewares/Authorize401ChallengeFormatter.js'
+export * from './middlewares/AuthorizeRedirectFormatter.js'
+export * from './middlewares/grant.js'

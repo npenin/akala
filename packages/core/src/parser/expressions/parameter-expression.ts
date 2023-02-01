@@ -1,6 +1,6 @@
-import { Expression } from './expression';
-import { ExpressionType } from './expression-type';
-import { ExpressionVisitor } from './expression-visitor';
+import { Expression } from './expression.js';
+import { ExpressionType } from './expression-type.js';
+import { ExpressionVisitor } from './expression-visitor.js';
 
 //eslint-disable-next-line @typescript-eslint/no-unused-vars
 export class ParameterExpression<T> extends Expression

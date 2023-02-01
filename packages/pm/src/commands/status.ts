@@ -1,4 +1,4 @@
-import State from '../state';
+import State from '../state.js';
 
 export default function status(this: State, name?: string): { name: string, filter: string, running: boolean, folder: string }[]
 {

@@ -1,6 +1,6 @@
 import { LogLevels, Logger, logger as LoggerBuilder, grep, map, each } from '@akala/core';
-import program, { CliContext, OptionOptions, usageParser } from './router/index';
-export * from './router/index'
+import program, { CliContext, OptionOptions, usageParser } from './router/index.js';
+export * from './router/index.js'
 export default program;
 
 export function buildCliContext<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>(logger: Logger, ...args: string[]): CliContext<T>

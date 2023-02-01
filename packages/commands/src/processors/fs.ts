@@ -1,13 +1,13 @@
 import * as path from 'path'
 import { promises as fs, existsSync } from 'fs'
 import * as akala from '@akala/core'
-import * as  Metadata from '../metadata/index';
-import { CommandProcessor } from '../model/processor';
-import { Container } from '../model/container';
+import * as  Metadata from '../metadata/index.js';
+import { CommandProcessor } from '../model/processor.js';
+import { Container } from '../model/container.js';
 // import { configure } from '../decorators';
-import { registerCommands } from '../generator';
-import { Local } from './local';
-import { ExtendedConfigurations, jsonObject } from '../metadata/index';
+import { registerCommands } from '../generator.js';
+import { Local } from './local.js';
+import { ExtendedConfigurations, jsonObject } from '../metadata/index.js';
 import { MiddlewarePromise } from '@akala/core';
 import { createRequire } from 'module';
 import { eachAsync } from '@akala/core';

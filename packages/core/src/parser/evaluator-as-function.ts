@@ -1,7 +1,7 @@
-import { lazy, noop } from "../helpers";
-import { BinaryExpression, Expressions, ExpressionVisitor, MemberExpression, NewExpression, TypedExpression } from "./expressions";
-import { BinaryOperator } from "./expressions/binary-operator";
-import { ExpressionsWithLength, ParsedArray, ParsedObject } from "./parser";
+import { lazy, noop } from "../helpers.js";
+import { BinaryExpression, Expressions, ExpressionVisitor, MemberExpression, NewExpression, TypedExpression } from "./expressions/index.js";
+import { BinaryOperator } from "./expressions/binary-operator.js";
+import { ExpressionsWithLength, ParsedArray, ParsedObject } from "./parser.js";
 
 export type ParsedFunction<T> = (context?: unknown) => T;
 

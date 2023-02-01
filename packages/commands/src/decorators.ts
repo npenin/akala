@@ -1,7 +1,7 @@
-import { jsonObject, ExtendedConfigurations, GenericConfiguration } from './metadata/command';
+import { jsonObject, ExtendedConfigurations, GenericConfiguration } from './metadata/command.js';
 import { SelfDefinedCommand as ModelCommand } from "./model/command.js";
 import { Injectable as baseInjectable } from "@akala/core";
-import { Configuration, Configurations } from './metadata/index';
+import { Configuration, Configurations } from './metadata/index.js';
 
 type Injectable<T> = baseInjectable<T> & { '$inject'?: string[] };
 

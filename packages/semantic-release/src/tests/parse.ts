@@ -1,4 +1,4 @@
-import parse from '../commands/parse'
+import parse from '../commands/parse.js'
 import fs from 'fs/promises'
 import path from 'path'
 

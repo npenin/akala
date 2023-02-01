@@ -1,6 +1,6 @@
-import { EvaluatorAsFunction } from './parser/evaluator-as-function';
-import { Parser } from './parser/parser';
-import { escapeRegExp } from './reflect';
+import { EvaluatorAsFunction } from './parser/evaluator-as-function.js';
+import { Parser } from './parser/parser.js';
+import { escapeRegExp } from './reflect.js';
 
 type EvalFunction<T> = (value: unknown) => T;
 

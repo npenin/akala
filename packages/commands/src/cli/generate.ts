@@ -1,9 +1,9 @@
-import * as akala from "../";
-import { Container } from '../model/container';
+import * as akala from "../index.js";
+import { Container } from '../model/container.js';
 import * as path from 'path'
 import * as fs from 'fs';
 import { Writable } from "stream";
-import { outputHelper, write } from './new';
+import { outputHelper, write } from './new.js';
 
 export default async function generate(folder?: string, name?: string, outputFile?: string)
 {

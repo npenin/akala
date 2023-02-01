@@ -1,5 +1,5 @@
 import { mapAsync } from '@akala/core';
-import { State } from "../state";
+import { State } from "../state.js";
 
 export default function publish(this: State, topic: string, data: unknown)
 {

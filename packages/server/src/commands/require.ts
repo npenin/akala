@@ -1,4 +1,4 @@
-import { State } from '../state';
+import { State } from '../state.js';
 import * as path from 'path'
 import * as akala from '@akala/core'
 

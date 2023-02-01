@@ -1,5 +1,5 @@
 import { CommandProcessor, CommandResult, Commands } from "@akala/storage";
-import { Generator, ModelMode } from "@akala/storage/dist/server/common";
+import { Generator, ModelMode } from "@akala/storage";
 import { Db } from "mongodb";
 
 export default class extends CommandProcessor<Db>

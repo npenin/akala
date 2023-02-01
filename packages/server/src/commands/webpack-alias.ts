@@ -1,4 +1,4 @@
-import { State } from '../state'
+import { State } from '../state.js'
 import { Configuration } from 'webpack';
 
 export default function alias(this: State, name: string, path: string): Promise<Configuration['resolve']['alias']>

@@ -1,5 +1,5 @@
 import * as di from '@akala/core'
-import { control, GenericControlInstance } from './control'
+import { control, GenericControlInstance } from './control.js'
 import { Binding } from '@akala/core'
 
 @control('text', 400)

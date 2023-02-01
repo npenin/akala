@@ -1,6 +1,6 @@
 import { ErrorMiddleware, MiddlewarePromise } from "@akala/core";
 import { Request, Response } from "@akala/server";
-import { AuthorizeErrorCode } from './authorize';
+import { AuthorizeErrorCode } from './authorize.js';
 
 
 export class Authorize401ChallengeFormatter implements ErrorMiddleware<[Request, Response]>
@@ -13,7 +13,7 @@ export class Authorize401ChallengeFormatter implements ErrorMiddleware<[Request,
     {
         if (error && error.code === AuthorizeErrorCode)
         {
-            res.writeHead(401, "Unothorized", { 'www-authenticate': this.authenticateChallenges });
+            res.writeHead(401, "Unauthorized", { 'www-authenticate': this.authenticateChallenges });
             res.end();
             return Promise.reject(res);
         }

@@ -1,13 +1,13 @@
-import { Connection as BaseConnection, PayloadDataType, SerializedBuffer, Payload, SocketAdapter, Parent } from './shared-connection';
-import { default as Client } from './shared-client';
-import { default as Errors, Payload as ErrorPayload } from './errors';
+import { Connection as BaseConnection, PayloadDataType, SerializedBuffer, Payload, SocketAdapter, Parent } from './shared-connection.js';
+import { default as Client } from './shared-client.js';
+import { default as Errors, Payload as ErrorPayload } from './errors.js';
 import { Deferred, SerializableObject } from '@akala/core'
 
 import debug from 'debug';
 
 const logger = debug('json-rpc-ws');
 
-import * as ws from './ws/browser';
+import * as ws from './ws/browser.js';
 import { ReadableStreamDefaultReadResult } from 'stream/web';
 export { ws };
 export { Client, SocketAdapter, Errors, BaseConnection, SerializableObject, PayloadDataType, SerializedBuffer, Payload, ErrorPayload };

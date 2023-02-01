@@ -1,6 +1,6 @@
 import { Middleware, MiddlewarePromise } from "@akala/core";
 import accept from 'accepts'
-import { Response } from './shared';
+import { Response } from './shared.js';
 
 export class MimeMiddleware<T extends [{ accepts: accept.Accepts, isLocal: boolean }, Response, unknown]> implements Middleware<T>
 {

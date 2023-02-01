@@ -1,4 +1,4 @@
-import { module } from '../helpers';
+import { module } from '../helpers.js';
 
 export function negate(a: unknown)
 {

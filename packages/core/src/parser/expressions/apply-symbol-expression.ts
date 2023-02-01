@@ -1,7 +1,7 @@
-import { Expression, TypedExpression, StrictExpressions, Expressions } from './expression';
-import { ExpressionType } from './expression-type';
-import { ExpressionVisitor } from './expression-visitor';
-import { IVisitable } from './visitable';
+import { Expression, TypedExpression, StrictExpressions, Expressions } from './expression.js';
+import { ExpressionType } from './expression-type.js';
+import { ExpressionVisitor } from './expression-visitor.js';
+import { IVisitable } from './visitable.js';
 
 //eslint-disable-next-line @typescript-eslint/no-unused-vars
 export class ApplySymbolExpression<T, U> extends Expression implements IVisitable<ExpressionVisitor, Promise<Expressions>>

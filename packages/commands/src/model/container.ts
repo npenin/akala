@@ -1,13 +1,13 @@
 import * as akala from '@akala/core'
-import { Trigger } from './trigger';
-import { StructuredParameters, CommandMetadataProcessorSignature, CommandProcessor } from './processor';
-import { CommandWithAffinityProcessor, Local, Self } from '../processors/index';
-import { Pipe } from '../processors/pipe';
-import $serve from '../commands/$serve'
-import $attach from '../commands/$attach'
-import $metadata from '../commands/$metadata'
-import { UnknownCommandError } from './error-unknowncommand';
-import * as Metadata from '../metadata/index'
+import { Trigger } from './trigger.js';
+import { StructuredParameters, CommandMetadataProcessorSignature, CommandProcessor } from './processor.js';
+import { CommandWithAffinityProcessor, Local, Self } from '../processors/index.js';
+import { Pipe } from '../processors/pipe.js';
+import $serve from '../commands/$serve.js'
+import $attach from '../commands/$attach.js'
+import $metadata from '../commands/$metadata.js'
+import { UnknownCommandError } from './error-unknowncommand.js';
+import * as Metadata from '../metadata/index.js'
 import { Middleware, MiddlewareCompositeWithPriority, MiddlewarePromise } from '@akala/core';
 
 export type AsDispatchArgs<T extends unknown[]> = T | [StructuredParameters<T>];

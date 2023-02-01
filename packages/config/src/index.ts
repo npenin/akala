@@ -1,5 +1,5 @@
-import commander from './commander';
-import Configuration, { ProxyConfiguration } from './configuration'
+import commander from './commander.js';
+import Configuration, { ProxyConfiguration } from './configuration.js'
 
 export default Configuration;
 export { Configuration as Configuration, ProxyConfiguration };

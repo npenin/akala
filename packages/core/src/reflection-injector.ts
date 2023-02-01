@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { Injector, InjectedParameter } from './injector';
+import { Injector, InjectedParameter } from './injector.js';
 
 export type PropertyInjection = ((i: Injector) => void);
 export type ParameterInjection = ((i: Injector) => InjectedParameter<unknown>);

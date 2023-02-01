@@ -1,6 +1,6 @@
 import * as akala from '@akala/core'
-import { control, ControlParameter, GenericControlInstance } from './control'
-import { Template } from '../template';
+import { control, ControlParameter, GenericControlInstance } from './control.js'
+import { Template } from '../template.js';
 
 export interface OptionsParameter
 {

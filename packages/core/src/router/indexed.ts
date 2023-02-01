@@ -1,6 +1,5 @@
-import { eachAsync } from '../helpers';
-import { convertToErrorMiddleware, convertToMiddleware, MiddlewareComposite, isStandardMiddleware, isErrorMiddleware } from './composite';
-import { AnyMiddleware, ErrorMiddleware, Middleware, MiddlewareError, MiddlewarePromise, MiddlewareSuccess, OptionsResponse } from './shared';
+import { convertToErrorMiddleware, isStandardMiddleware, isErrorMiddleware } from './composite.js';
+import { AnyMiddleware, ErrorMiddleware, Middleware, MiddlewarePromise, OptionsResponse } from './shared.js';
 
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-unused-vars

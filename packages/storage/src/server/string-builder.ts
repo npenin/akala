@@ -1,4 +1,4 @@
-import { NotSupportedException } from './exceptions'
+import { NotSupportedException } from './exceptions.js'
 
 export class StringBuilder
 {

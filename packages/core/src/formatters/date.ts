@@ -1,6 +1,6 @@
-import { Parser, ParsedString } from '../parser/parser';
-import { Formatter, FormatterFactory } from './common';
-import { module } from '../helpers';
+import { Parser, ParsedString } from '../parser/parser.js';
+import { Formatter, FormatterFactory } from './common.js';
+import { module } from '../helpers.js';
 
 export interface DateFormatterSettings
 {

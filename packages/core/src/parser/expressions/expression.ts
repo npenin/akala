@@ -1,14 +1,14 @@
-import { ExpressionType } from './expression-type';
-import { TypedLambdaExpression } from './lambda-expression';
-import { BinaryExpression } from './binary-expression';
-import { UnaryExpression } from './unary-expression';
-import { MemberExpression } from './member-expression';
-import { ConstantExpression } from './constant-expression';
-import { ParameterExpression } from './parameter-expression';
-import { CallExpression } from './call-expression';
-import { ApplySymbolExpression } from './apply-symbol-expression';
-import { NewExpression } from './new-expression';
-import { ExpressionVisitor } from './expression-visitor';
+import { ExpressionType } from './expression-type.js';
+import { TypedLambdaExpression } from './lambda-expression.js';
+import { BinaryExpression } from './binary-expression.js';
+import { UnaryExpression } from './unary-expression.js';
+import { MemberExpression } from './member-expression.js';
+import { ConstantExpression } from './constant-expression.js';
+import { ParameterExpression } from './parameter-expression.js';
+import { CallExpression } from './call-expression.js';
+import { ApplySymbolExpression } from './apply-symbol-expression.js';
+import { NewExpression } from './new-expression.js';
+import { ExpressionVisitor } from './expression-visitor.js';
 
 export type UnknownExpression = { type: ExpressionType.Unknown, accept(visitor: ExpressionVisitor): Promise<Expressions> };
 

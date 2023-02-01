@@ -1,3 +1,3 @@
-export * from './command'
-export * from './container'
-export * from './configurations'
+export * from './command.js'
+export * from './container.js'
+export * from './configurations.js'

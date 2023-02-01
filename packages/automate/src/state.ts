@@ -1,6 +1,6 @@
-import { Workflow } from './automate'
+import { Workflow } from './automate.js'
 import { Deferred, Queue } from '@akala/core'
-import loader from './loader';
+import loader from './loader.js';
 import * as trigger from '@akala/pubsub';
 import { Schedule } from '@akala/cron';
 

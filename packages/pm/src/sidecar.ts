@@ -1,7 +1,7 @@
 import { connectByPreference, ConnectionPreference, Container, updateCommands } from "@akala/commands";
-import { SideCarConnectionPreference, Sidecar, defaultOrders, connect } from "./index";
+import { SideCarConnectionPreference, Sidecar, defaultOrders, connect } from "./index.js";
 import * as ac from '@akala/commands'
-import pm from './container'
+import pm from './container.js'
 
 let instance: Sidecar;
 

@@ -1,8 +1,8 @@
 import { CliContext } from "@akala/cli";
 import { Container } from "@akala/commands";
-import automate, { JobStepDispatch, JobStepJob, JobStepRun, MiddlewareRunner, JobStepUse, Workflow, simpleRunner, TMiddlewareRunner, MiddlewareRunnerMiddleware } from "../automate";
+import automate, { JobStepDispatch, JobStepJob, JobStepRun, MiddlewareRunner, JobStepUse, Workflow, simpleRunner, TMiddlewareRunner, MiddlewareRunnerMiddleware } from "../automate.js";
 import path from 'path'
-import use from './use';
+import use from './use.js';
 
 export function DispatchMiddleware(container: Container<unknown>, runner: TMiddlewareRunner): MiddlewareRunner<JobStepDispatch>
 {

@@ -1,8 +1,8 @@
 import { Expressions } from '@akala/core/expressions';
 import { ModelDefinition, PersistenceEngine, dynamicProxy } from '@akala/storage'
 import { Collection, Db, MongoClient, MongoClientOptions } from 'mongodb';
-import CommandProcessor from './command-processor';
-import MongoDbTranslator from './expression-visitor';
+import CommandProcessor from './command-processor.js';
+import MongoDbTranslator from './expression-visitor.js';
 
 
 export class MongoDb extends PersistenceEngine<Db>

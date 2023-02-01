@@ -1,10 +1,10 @@
-import { module } from '../helpers';
-import { FormatterFactory } from '../formatters/common';
-import { BinaryOperator } from './expressions/binary-operator';
-import { BinaryExpression, ConstantExpression, Expression, Expressions, ExpressionType, ExpressionVisitor, MemberExpression, NewExpression, TypedExpression, UnaryExpression, UnaryOperator } from './expressions';
-import { identity } from '../formatters/identity';
-import { negate } from '../formatters/negate';
-import { booleanize } from '../formatters/booleanize';
+import { module } from '../helpers.js';
+import { FormatterFactory } from '../formatters/common.js';
+import { BinaryOperator } from './expressions/binary-operator.js';
+import { BinaryExpression, ConstantExpression, Expression, Expressions, ExpressionType, ExpressionVisitor, MemberExpression, NewExpression, TypedExpression, UnaryExpression, UnaryOperator } from './expressions/index.js';
+import { identity } from '../formatters/identity.js';
+import { negate } from '../formatters/negate.js';
+import { booleanize } from '../formatters/booleanize.js';
 
 
 const jsonKeyRegex = /^ *(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([^: ]+)) *): */;

@@ -1,9 +1,9 @@
-import { calculator } from './calculator/index'
+import { calculator } from './calculator/index.js'
 import * as assert from 'assert'
-import { LogProcessor, Pipe } from '../processors/index';
-import { Container } from '../model/container';
-import { Command } from '../metadata';
-import { registerCommands } from '../generator';
+import { LogProcessor, Pipe } from '../processors/index.js';
+import { Container } from '../model/container.js';
+import { Command } from '../metadata/index.js';
+import { registerCommands } from '../generator.js';
 
 describe('test log processing', function ()
 {

@@ -1,4 +1,4 @@
-import { calculator } from './calculator/index'
+import { calculator } from './calculator/index.js'
 import * as assert from 'assert'
 
 describe('test local processing', function ()

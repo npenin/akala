@@ -1,7 +1,7 @@
 import * as akala from '@akala/core';
-import { Control, IControlInstance } from './controls/controls'
-import { Scope } from './scope'
-import { service } from './common'
+import { Control, IControlInstance } from './controls/controls.js'
+import { Scope } from './scope.js'
+import { service } from './common.js'
 
 // eslint-disable-next-line no-constant-condition
 if (MutationObserver && false)
