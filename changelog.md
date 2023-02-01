@@ -1,4 +1,4 @@
-#  (2023-01-31)
+#  (2023-02-01)
 
 
 ### Bug Fixes
@@ -389,6 +389,7 @@
 * InteractError now using Binding for more possible usecases d9da85f
 * jsonrpc disconnect support for server and proxies 5d7128c
 * leverage suncalc c674f46
+* move Deferred and Serializable(Object) to core 6507e1d
 * move ErrorWithStatus to core f3de950
 * move to serve with AbortSignal 53d811d
 * moved to middleware approach 69d4ba5
@@ -412,6 +413,8 @@
 
 ### BREAKING CHANGES
 
+* Deferred and Serializable(Object) moved to core instead of json-rpc-ws causing dependencies break.
+* core and json-rpc-ws dependencies swapped because of afore mentioned breaking change
 * inject property does not exist on commands anymore
 * File.from renamed to File.fromJson
 * extend helper no more is
