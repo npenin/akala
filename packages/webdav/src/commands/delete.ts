@@ -1,4 +1,4 @@
-export default async function delete()
+export default async function ()
 {
 
 }
