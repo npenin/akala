@@ -7,6 +7,9 @@ import path from 'path';
 import { Workflow } from './automate.js';
 import workflow from './workflow.js';
 import use from './workflow-commands/use.js';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 
 (async function ()
 {
@@ -40,7 +43,7 @@ import use from './workflow-commands/use.js';
         else
         {
             loader = new Container('loader', context);
-            loader.register(new SelfDefinedCommand((path: string) => require(path), 'load'));
+            loader.register(new SelfDefinedCommand((path: string) => import(path), 'load'));
         }
         container.register(loader);
 

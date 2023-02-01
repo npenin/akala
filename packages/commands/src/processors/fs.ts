@@ -9,8 +9,10 @@ import { registerCommands } from '../generator.js';
 import { Local } from './local.js';
 import { ExtendedConfigurations, jsonObject } from '../metadata/index.js';
 import { MiddlewarePromise } from '@akala/core';
-import { createRequire } from 'module';
 import { eachAsync } from '@akala/core';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 
 export interface FileSystemConfiguration extends Metadata.Configuration
 {

@@ -1,4 +1,4 @@
-import changelog = require('conventional-changelog-angular');
+import changelog from 'conventional-changelog-angular';
 import { Commit as ParserCommit } from 'conventional-commits-parser';
 import regex from 'conventional-commits-parser/lib/regex.js';
 import { Commit } from './parse.js';

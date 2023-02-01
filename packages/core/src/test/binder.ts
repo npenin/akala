@@ -1,8 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-require('source-map-support').install();
-
 import { Binding } from '../binder.js';
 import * as assert from 'assert';
+import 'source-map-support/register'
 
 const target = {
     foo: { bar: { a: 1, b: 'x', c: true } }
