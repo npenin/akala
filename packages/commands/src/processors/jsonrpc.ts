@@ -1,8 +1,8 @@
 import * as jsonrpcws from '@akala/json-rpc-ws'
-import { CommandProcessor, StructuredParameters } from '../model/processor'
-import { Command } from '../metadata/index';
-import { Container } from '../model/container';
-import { Local } from './local';
+import { CommandProcessor, StructuredParameters } from '../model/processor.js'
+import { Command } from '../metadata/index.js';
+import { Container } from '../model/container.js';
+import { Local } from './local.js';
 import { Readable } from 'stream';
 import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam, SerializableObject } from '@akala/core';
 

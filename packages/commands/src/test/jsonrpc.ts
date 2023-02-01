@@ -1,22 +1,22 @@
-import { calculator } from './calculator/index'
+import { calculator } from './calculator/index.js'
 import * as assert from 'assert'
 import * as jsonrpc from '@akala/json-rpc-ws'
 import * as ws from 'ws'
-import { metadata, proxy, helper } from '../generator';
-import { JsonRpc, LogProcessor } from '../processors/index';
-import { Container } from '../model/container';
+import { metadata, proxy, helper } from '../generator.js';
+import { JsonRpc, LogProcessor } from '../processors/index.js';
+import { Container } from '../model/container.js';
 // import { Command } from '../model/command';
-import { configure } from '../decorators';
-import { jsonrpcws } from '../triggers';
-import { NetSocketAdapter } from "../net-socket-adapter";
+import { configure } from '../decorators.js';
+import { jsonrpcws } from '../triggers/index.js';
+import { NetSocketAdapter } from "../net-socket-adapter.js";
 import * as net from 'net';
 import { unlink } from 'fs';
 import { promisify } from 'util';
-import { SelfDefinedCommand } from '../model/command';
+import { SelfDefinedCommand } from '../model/command.js';
 
 describe('test jsonrpcws processing', function ()
 {
-    let server: ws.Server;
+    let server: ws.WebSocketServer;
 
     this.afterAll(function (done)
     {
@@ -31,13 +31,13 @@ describe('test jsonrpcws processing', function ()
     })
     this.beforeAll(function (done)
     {
-        server = new ws.Server({ port: 8888 }, function ()
+        server = new ws.WebSocketServer({ port: 8888 }, function ()
         {
             if (!server)
                 throw new Error('server is not assigned');
             client.connect('ws://localhost:' + server.options.port, done);
         });
-        server.on('connection', (socket: ws) => calculator.attach('jsonrpc', new jsonrpc.ws.SocketAdapter(socket)));
+        server.on('connection', (socket: ws.WebSocket) => calculator.attach('jsonrpc', new jsonrpc.ws.SocketAdapter(socket)));
     })
 
     const client = jsonrpc.ws.createClient();

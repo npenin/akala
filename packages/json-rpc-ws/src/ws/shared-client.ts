@@ -1,6 +1,6 @@
-import ClientBase from '../shared-client';
 import debug from 'debug';
-import { SocketAdapter } from '../shared-connection';
+import ClientBase from '../shared-client.js';
+import { SocketAdapter } from '../shared-connection.js';
 
 const logger = debug('json-rpc-ws');
 

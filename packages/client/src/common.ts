@@ -31,5 +31,5 @@ export function service(name, ...toInject: string[])
     };
 }
 
-import component from './component';
+import component from './component.js';
 export { component };

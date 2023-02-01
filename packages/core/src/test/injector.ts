@@ -1,9 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('source-map-support').install();
 
-import { Injector } from '../injector';
+import { Injector } from '../injector.js';
 import assert from 'assert';
-import { useInjector, inject } from '../reflection-injector';
+import { useInjector, inject } from '../reflection-injector.js';
 
 /*var oldProxy = Proxy;
 

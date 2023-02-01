@@ -1,6 +1,6 @@
-﻿import { AccessRule } from '../access-rule';
-import { provider } from '../acl-manager';
-import IAclProvider, { AclChangedHandler, Event } from './IAclProvider';
+﻿import { AccessRule } from '../access-rule.js';
+import { provider } from '../acl-manager.js';
+import IAclProvider, { AclChangedHandler, Event } from './IAclProvider.js';
 
 @provider('hub')
 export default class HubSecurityProvider implements IAclProvider

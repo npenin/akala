@@ -1,7 +1,7 @@
-import { calculator } from './calculator/index'
+import { calculator } from './calculator/index.js'
 import * as assert from 'assert'
-import { metadata, helper, commandList, fromObject } from '../generator';
-import { FileSystem } from '../processors';
+import { metadata, helper, commandList, fromObject } from '../generator.js';
+import { FileSystem } from '../processors/index.js';
 
 describe('test helpers', function ()
 {

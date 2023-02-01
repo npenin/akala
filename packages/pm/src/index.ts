@@ -2,12 +2,12 @@ import { Container, Metadata, NetSocketAdapter, Processors, registerCommands, Se
 import { Socket } from "net";
 import { module } from "@akala/core";
 
-import definition from './container';
+import definition from './container.js';
 
 type pmContainer = definition.container
 export { pmContainer as Container };
 
-import State from './state'
+import State from './state.js'
 export { State }
 
 export class InteractError extends Error
@@ -75,7 +75,7 @@ export interface SidecarMap
 }
 
 
-import getRandomName from './commands/name';
-import sidecarSingleton, { sidecar } from "./sidecar";
+import getRandomName from './commands/name.js';
+import sidecarSingleton, { sidecar } from "./sidecar.js";
 export { sidecar, sidecarSingleton };
 export { getRandomName };

@@ -1,8 +1,8 @@
-import { module } from '../helpers';
-import { FormatterFactory } from '../formatters/common';
-import { Parser, ParsedString } from '../parser/parser';
-import { injectWithName } from '../global-injector';
-import { Binding } from '../binder';
+import { module } from '../helpers.js';
+import { FormatterFactory } from '../formatters/common.js';
+import { Parser, ParsedString } from '../parser/parser.js';
+import { injectWithName } from '../global-injector.js';
+import { Binding } from '../binder.js';
 
 export class CallFormatterFactory implements FormatterFactory<unknown, ParsedString>
 {

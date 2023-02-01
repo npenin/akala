@@ -1,7 +1,7 @@
-import { Trigger } from '../model/trigger'
-import { Container } from '../model/container';
+import { Trigger } from '../model/trigger.js'
+import { Container } from '../model/container.js';
 import { SocketAdapter } from '@akala/json-rpc-ws';
-import { JsonRpc } from '../processors/index';
+import { JsonRpc } from '../processors/index.js';
 import { logger } from '@akala/core';
 
 

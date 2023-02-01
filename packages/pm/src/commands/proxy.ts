@@ -1,7 +1,7 @@
 import { ErrorWithStatus } from "@akala/core";
 import { SocketAdapter } from "@akala/json-rpc-ws";
 import { randomUUID } from "crypto";
-import State from "../state";
+import State from "../state.js";
 
 export default async function (this: State, name: string, socket: SocketAdapter)
 {

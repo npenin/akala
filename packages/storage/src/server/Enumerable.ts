@@ -1,5 +1,5 @@
 import { Predicate, Project, PredicateAsync } from '@akala/core/expressions';
-import { NotSupportedException } from './exceptions';
+import { NotSupportedException } from './exceptions.js';
 
 
 export function where<T>(source: Iterable<T>, predicate: Predicate<T>): Iterable<T>

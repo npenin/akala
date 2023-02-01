@@ -1,5 +1,5 @@
 import { Container } from "@akala/commands";
-import { State } from "../state";
+import { State } from "../state.js";
 
 export default function unsubscribe(this: State, container: Container<unknown>, topic: string)
 {

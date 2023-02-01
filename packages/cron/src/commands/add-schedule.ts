@@ -1,5 +1,5 @@
-import { DateRequest, parseCronSyntax } from "..";
-import { Schedule, State } from "../state";
+import { DateRequest, parseCronSyntax } from "../index.js";
+import { Schedule, State } from "../state.js";
 
 export default function add(this: State, name: string, request?: DateRequest | string)
 {

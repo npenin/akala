@@ -1,7 +1,7 @@
-import { BinaryOperator } from './binary-operator';
-import { Expression, Expressions, StrictExpressions } from './expression';
-import { ExpressionType } from './expression-type';
-import { ExpressionVisitor } from './expression-visitor';
+import { BinaryOperator } from './binary-operator.js';
+import { Expression, Expressions, StrictExpressions } from './expression.js';
+import { ExpressionType } from './expression-type.js';
+import { ExpressionVisitor } from './expression-visitor.js';
 
 
 export class BinaryExpression<T extends Expressions = StrictExpressions> extends Expression

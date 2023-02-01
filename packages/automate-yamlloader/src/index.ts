@@ -1,3 +1,3 @@
-import load from "./loader/load";
+import load from "./loader/load.js";
 
 export { load };

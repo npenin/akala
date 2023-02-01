@@ -1,5 +1,5 @@
-import loader from '../loader'
-import State from '../state'
+import loader from '../loader.js'
+import State from '../state.js'
 
 export default async function registerLoader(this: State, extension: string, loader: loader.container)
 {

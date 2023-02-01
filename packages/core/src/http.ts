@@ -1,12 +1,12 @@
-import { injectWithName } from './global-injector';
-import { ParsedAny, Parser } from './parser/parser';
-import { each, map } from './each';
-import { module, SerializableObject } from './helpers';
-import { service } from './service';
-import { Formatter, FormatterFactory } from './formatters/common';
+import { injectWithName } from './global-injector.js';
+import { ParsedAny, Parser } from './parser/parser.js';
+import { each, map } from './each.js';
+import { module, SerializableObject } from './helpers.js';
+import { service } from './service.js';
+import { Formatter, FormatterFactory } from './formatters/common.js';
 // import http from 'http';
 // import https from 'https';
-import { Injected } from './injector';
+import { Injected } from './injector.js';
 
 
 export interface HttpOptions

@@ -1,10 +1,10 @@
-﻿import { AccessRule, AccessRules } from '../access-rule';
-import AclManager, { provider } from '../acl-manager';
-import Allow from '../allow';
-import { AclConfiguration } from '../Configuration/AclConfiguration';
-import Deny from '../deny';
-import { OrderedList } from '../ordered-list';
-import IAclProvider, { AclChangedHandler, Event } from './IAclProvider';
+﻿import { AccessRule, AccessRules } from '../access-rule.js';
+import AclManager, { provider } from '../acl-manager.js';
+import Allow from '../allow.js';
+import { AclConfiguration } from '../Configuration/AclConfiguration.js';
+import Deny from '../deny.js';
+import { OrderedList } from '../ordered-list.js';
+import IAclProvider, { AclChangedHandler, Event } from './IAclProvider.js';
 
 @provider('router')
 export default class RouterProvider implements IAclProvider

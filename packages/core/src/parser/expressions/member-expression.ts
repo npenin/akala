@@ -1,7 +1,7 @@
-import { Expression, TypedExpression } from './expression';
-import { ExpressionType } from './expression-type';
-import { ExpressionVisitor } from './expression-visitor';
-import { IVisitable } from './visitable';
+import { Expression, TypedExpression } from './expression.js';
+import { ExpressionType } from './expression-type.js';
+import { ExpressionVisitor } from './expression-visitor.js';
+import { IVisitable } from './visitable.js';
 
 export class MemberExpression<T, TMember extends keyof T, U extends T[TMember]> extends Expression
     implements IVisitable<ExpressionVisitor, Promise<TypedExpression<U>>>

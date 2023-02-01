@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Expression } from './expression';
-import { ExpressionType } from './expression-type';
-import { MemberExpression } from './member-expression';
-import { ExpressionVisitor } from './expression-visitor';
+import { Expression } from './expression.js';
+import { ExpressionType } from './expression-type.js';
+import { MemberExpression } from './member-expression.js';
+import { ExpressionVisitor } from './expression-visitor.js';
 
 export class NewExpression<T> extends Expression
 {

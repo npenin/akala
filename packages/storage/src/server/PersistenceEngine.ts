@@ -1,7 +1,7 @@
 import { Expressions } from '@akala/core/expressions';
-import { CommandResult, Commands, CommandType, Create, Update, Delete } from './commands/command';
-import { CommandProcessor } from './commands/command-processor';
-import { ModelDefinition, DbSet } from './shared';
+import { CommandResult, Commands, CommandType, Create, Update, Delete } from './commands/command.js';
+import { CommandProcessor } from './commands/command-processor.js';
+import { ModelDefinition, DbSet } from './shared.js';
 
 const command = Symbol('command');
 

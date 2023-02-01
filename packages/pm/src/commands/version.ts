@@ -1,4 +1,4 @@
-import State from '../state';
+import State from '../state.js';
 import { join } from "path";
 
 

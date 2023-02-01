@@ -1,9 +1,9 @@
 import { Container } from "./model/container.js";
-import * as meta from './metadata/index'
+import * as meta from './metadata/index.js'
 // import { Command, CommandProxy } from './model/command';
-import { CommandProcessor, ICommandProcessor } from './model/processor';
+import { CommandProcessor, ICommandProcessor } from './model/processor.js';
 import { SelfDefinedCommand } from "./model/command.js";
-import { isCommand } from "./metadata/index";
+import { isCommand } from "./metadata/index.js";
 import { Local } from "./processors/local.js";
 // import { configure } from './decorators';
 

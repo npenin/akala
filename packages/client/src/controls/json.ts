@@ -1,5 +1,5 @@
-import { control } from './control'
-import { Text } from './text'
+import { control } from './control.js'
+import { Text } from './text.js'
 
 @control('json')
 export class Json extends Text

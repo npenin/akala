@@ -1,4 +1,4 @@
-import configuration from "..";
+import configuration from "../index.js";
 
 export default async function set(this: configuration, key: string, newConfig: unknown, file?: string)
 {

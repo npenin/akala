@@ -1,7 +1,7 @@
-import commands from "./container";
+import commands from "./container.js";
 //eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { SidecarMap } from '@akala/pm'
-import { State } from "./state";
+import { State } from "./state.js";
 import { Container as BaseContainer, Processors, registerCommands } from "@akala/commands";
 import path from 'path';
 export { State };

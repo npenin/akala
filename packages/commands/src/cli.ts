@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import * as path from 'path'
-import { Cli } from './index';
+import { Cli } from './index.js';
 
 (async function ()
 {

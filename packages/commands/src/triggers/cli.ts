@@ -1,55 +1,59 @@
-import * as Metadata from '../metadata/index'
-import { Trigger } from '../model/trigger';
-import * as Processors from '../processors/index';
+import * as Metadata from '../metadata/index.js'
+import { Trigger } from '../model/trigger.js';
+import * as Processors from '../processors/index.js';
 import { NamespaceMiddleware, OptionOptions } from '@akala/cli'
 import { each, MiddlewarePromise } from '@akala/core';
+import { Container } from '../model/container.js'
+
+export function registerCommand<TState>(cmd: Metadata.Command, c: Container<TState>, program: NamespaceMiddleware)
+{
+    if (cmd.config?.cli)
+    {
+        if (cmd.config.cli.usage)
+        {
+            if (cmd.name.lastIndexOf('.') > -1)
+            {
+                var command = program.command(cmd.name.substring(0, cmd.name.lastIndexOf('.')).split('.').join(' ') + ' ' + cmd.config.cli.usage, cmd.config?.doc?.description);
+            }
+            else
+                var command = program.command(cmd.config.cli.usage, cmd.config?.doc?.description);
+        }
+        else
+            var command = program.command(cmd.name.split('.').join(' '));
+
+        addOptions(cmd, command);
+
+        let stdin: Promise<string> | undefined;
+
+        command.useMiddleware(null, {
+            handle(context)
+            {
+                return Processors.Local.execute(cmd, (...args) =>
+                {
+                    return c.handle(c, cmd, { param: args, _trigger: 'proxy' });
+                }, c, {
+                    context: context, options: context.options, param: context.args, _trigger: 'cli', get stdin()
+                    {
+                        return stdin || (stdin =
+                            new Promise<string>((resolve) =>
+                            {
+                                const buffers = [];
+                                process.stdin.on('data', data => buffers.push(data));
+                                process.stdin.on('end', () => resolve(buffers.join('')));
+                                process.stdin.resume();
+                            }));
+                    }
+                }) as MiddlewarePromise;
+            }
+        });
+    }
+
+}
 
 export var processTrigger = new Trigger('cli', async (c, program: NamespaceMiddleware<Record<string, string | boolean | string[] | number>>) =>
 {
     var meta: Metadata.Container = await c.dispatch('$metadata', true);
-    [...meta.commands, c.resolve('$metadata')].forEach(cmd =>
-    {
-        if (cmd.config?.cli)
-        {
-            if (cmd.config.cli.usage)
-            {
-                if (cmd.name.lastIndexOf('.') > -1)
-                {
-                    var command = program.command(cmd.name.substring(0, cmd.name.lastIndexOf('.')).split('.').join(' ') + ' ' + cmd.config.cli.usage, cmd.config?.doc?.description);
-                }
-                else
-                    var command = program.command(cmd.config.cli.usage, cmd.config?.doc?.description);
-            }
-            else
-                var command = program.command(cmd.name.split('.').join(' '));
-
-            addOptions(cmd, command);
-
-            let stdin: Promise<string> | undefined;
-
-            command.useMiddleware(null, {
-                handle(context)
-                {
-                    return Processors.Local.execute(cmd, (...args) =>
-                    {
-                        return c.handle(c, cmd, { param: args, _trigger: 'proxy' });
-                    }, c, {
-                        context: context, options: context.options, param: context.args, _trigger: 'cli', get stdin()
-                        {
-                            return stdin || (stdin =
-                                new Promise<string>((resolve) =>
-                                {
-                                    const buffers = [];
-                                    process.stdin.on('data', data => buffers.push(data));
-                                    process.stdin.on('end', () => resolve(buffers.join('')));
-                                    process.stdin.resume();
-                                }));
-                        }
-                    }) as MiddlewarePromise;
-                }
-            });
-        }
-    });
+    [...meta.commands, c.resolve('$metadata')].forEach(cmd => registerCommand(cmd, c, program));
 
     return program.option('help', { needsValue: false, doc: "displays this help message" });
 });

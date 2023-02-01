@@ -1,4 +1,4 @@
-import generateMetadata from './generate-metadata';
+import generateMetadata from './generate-metadata.js';
 
 export default function generate(name?: string, folder?: string, outputFile?: string)
 {

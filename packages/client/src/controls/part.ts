@@ -1,7 +1,7 @@
-import { control, GenericControlInstance } from './control'
+import { control, GenericControlInstance } from './control.js'
 import { Binding, inject, PossiblyBound } from '@akala/core'
-import { Part as PartService, PartDefinition, PartInstance } from '../part'
-import { IScope } from '../scope';
+import { Part as PartService, PartDefinition, PartInstance } from '../part.js'
+import { IScope } from '../scope.js';
 
 @control('part', 110)
 export class Part extends GenericControlInstance<string | PartDefinition<IScope<unknown>>>

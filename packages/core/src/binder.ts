@@ -1,12 +1,12 @@
-import { getSetter, Parser } from './parser/parser';
+import { getSetter, Parser } from './parser/parser.js';
 import { EventEmitter } from 'events';
-import { isPromiseLike } from './promiseHelpers';
-import * as formatters from './formatters/index';
-import { map } from './each'
-import { Formatter } from './formatters/common';
-import { ExtendableEvent } from './module'
-import { Arguments } from './type-helper';
-import { EvaluatorAsFunction, ParsedFunction } from './parser/evaluator-as-function';
+import { isPromiseLike } from './promiseHelpers.js';
+import * as formatters from './formatters/index.js';
+import { map } from './each.js'
+import { Formatter } from './formatters/common.js';
+import { ExtendableEvent } from './module.js'
+import { Arguments } from './type-helper.js';
+import { EvaluatorAsFunction, ParsedFunction } from './parser/evaluator-as-function.js';
 export interface IWatched extends Object
 {
     $$watchers?: { [key: string]: Binding<unknown> };

@@ -4,8 +4,8 @@ sms.install();
 import * as path from 'path'
 import * as ac from '@akala/commands';
 import { lstat } from 'fs/promises';
-import pmDef from './container';
-import { IpcAdapter } from "./ipc-adapter";
+import pmDef from './container.js';
+import { IpcAdapter } from "./ipc-adapter.js";
 import { logger, Logger, MiddlewareComposite, module as coreModule } from '@akala/core';
 import program, { buildCliContextFromProcess, ErrorMessage, NamespaceMiddleware } from '@akala/cli';
 import { Stats } from 'fs';
@@ -30,7 +30,7 @@ logMiddleware.preAction(async c =>
 
     await ac.Processors.FileSystem.discoverCommands(c.options.program, cliContainer, { processor: processor, isDirectory: folderOrFile.isDirectory() });
 });
-const initMiddleware = new NamespaceMiddleware<{ program: string, name: string, tls: boolean }>(null);
+let initMiddleware = new NamespaceMiddleware<{ program: string, name: string, tls: boolean }>(null);
 const controller = new AbortController();
 
 program.option<string, 'program'>('program', { needsValue: true, normalize: true }).
@@ -70,7 +70,11 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
                 isPm = c.options.name === 'pm' && c.options.program === require.resolve('../commands.json');
                 const init = cliContainer.resolve('$init');
                 if (init && init.config && init.config.cli && init.config.cli.options)
+                {
+                    if (init.config.cli.usage)
+                        initMiddleware = initMiddleware.command(init.config.cli.usage, init.config?.doc?.description)
                     ac.Triggers.addCliOptions(init, initMiddleware);
+                }
 
                 process.on('unhandledRejection', (x) =>
                 {
@@ -143,7 +147,7 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
 
                     if (init)
                     {
-                        await cliContainer.dispatch(init, { options: c.options, param: c.args, _trigger: 'cli', pm: pm, context: c });
+                        await cliContainer.dispatch(init, { options: c.options, param: c.args, _trigger: 'cli', pm: pm, context: c, signal: controller.signal });
                     }
 
 

@@ -1,10 +1,10 @@
 import { NetConnectOpts, Server } from 'net';
-import { Container } from '../model/container';
+import { Container } from '../model/container.js';
 import { unlink } from 'fs';
-import { ServeMetadataWithSignal } from '../serve-metadata';
-import { NetSocketAdapter } from '../net-socket-adapter';
+import { ServeMetadataWithSignal } from '../serve-metadata.js';
+import { NetSocketAdapter } from '../net-socket-adapter.js';
 import { eachAsync, Injector, noop } from '@akala/core';
-import { trigger } from '../triggers/jsonrpc';
+import { trigger } from '../triggers/jsonrpc.js';
 import tls, { SecureContextOptions } from 'tls';
 
 export interface ServeOptions

@@ -1,14 +1,14 @@
 import { Container, Processors, Metadata, Cli, updateCommands } from "@akala/commands";
-import State, { RunningContainer, SidecarMetadata } from '../state';
+import State, { RunningContainer, SidecarMetadata } from '../state.js';
 import { spawn, ChildProcess, StdioOptions } from "child_process";
-import pmContainer from '../container';
+import pmContainer from '../container.js';
 import { Deferred, eachAsync } from "@akala/core";
 import { NewLinePrefixer } from "../new-line-prefixer.js";
 import { CliContext } from "@akala/cli";
 import { ErrorWithStatus } from "@akala/core";
-import getRandomName from "./name";
+import getRandomName from "./name.js";
 import { ProxyConfiguration } from "@akala/config";
-import { IpcAdapter } from "../ipc-adapter";
+import { IpcAdapter } from "../ipc-adapter.js";
 
 export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, context?: CliContext<{ new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: boolean, wait?: boolean }>): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
 {

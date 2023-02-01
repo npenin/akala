@@ -1,6 +1,6 @@
 import * as akala from '@akala/core'
-import { control } from './control'
-import { Text } from './text'
+import { control } from './control.js'
+import { Text } from './text.js'
 
 
 akala.defaultInjector.registerFactory('$translator', akala.defaultInjector.injectWithName(['$translations'], function (translations): akala.Translator

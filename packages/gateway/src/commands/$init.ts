@@ -1,5 +1,5 @@
 import { Container } from "@akala/commands";
-import CliGatewayProcessor from "../cli-wrapper-processor";
+import CliGatewayProcessor from "../cli-wrapper-processor.js";
 
 export default async function $init(container: Container<void>, bin: string)
 {

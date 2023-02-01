@@ -1,5 +1,5 @@
 import * as popper from '@popperjs/core';
-import { control, GenericControlInstance } from './control';
+import { control, GenericControlInstance } from './control.js';
 import * as akala from '@akala/core';
 
 @control('popper', 400)

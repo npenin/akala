@@ -1,7 +1,7 @@
 import * as di from '@akala/core'
-import { control, GenericControlInstance } from './control'
+import { control, GenericControlInstance } from './control.js'
 import { Binding } from '@akala/core'
-import { Template } from '../template';
+import { Template } from '../template.js';
 
 type Settings = { promise: unknown, classes: string[] };
 

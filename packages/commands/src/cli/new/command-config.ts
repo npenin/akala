@@ -1,9 +1,9 @@
 import { CliContext } from "@akala/cli";
 import { ErrorWithStatus } from "@akala/core";
 import path from "path";
-import { Processors } from "../../index";
-import { Command } from "../../metadata/command";
-import { outputHelper, write } from "../new";
+import { Processors } from "../../index.js";
+import { Command } from "../../metadata/command.js";
+import { outputHelper, write } from "../new.js";
 
 export default async function (name: string, options: CliContext<{ force?: boolean }>['options'], destination?: string)
 {

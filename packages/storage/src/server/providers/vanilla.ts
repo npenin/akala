@@ -1,9 +1,9 @@
-import { PersistenceEngine, dynamicProxy } from '../PersistenceEngine';
+import { PersistenceEngine, dynamicProxy } from '../PersistenceEngine.js';
 import { StrictExpressions } from '@akala/core/expressions';
-import { CommandProcessor } from '../commands/command-processor';
-import { Commands, CommandResult } from '../commands/command';
-import { ExpressionExecutor } from '../expression-executor';
-import { ModelDefinition, Generator } from '../shared';
+import { CommandProcessor } from '../commands/command-processor.js';
+import { Commands, CommandResult } from '../commands/command.js';
+import { ExpressionExecutor } from '../expression-executor.js';
+import { ModelDefinition, Generator } from '../shared.js';
 import { v4 as uuid } from 'uuid'
 
 //eslint-disable-next-line @typescript-eslint/no-explicit-any

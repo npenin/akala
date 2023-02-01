@@ -1,6 +1,5 @@
-import { CliContext, unparse, unparseWithMeta } from '@akala/cli';
+import { CliContext, unparseWithMeta } from '@akala/cli';
 import * as ac from '@akala/commands'
-import { Local } from '@akala/commands/src/processors/local';
 import { MiddlewarePromise, MiddlewareResult } from '@akala/core';
 import { Deferred } from '@akala/core';
 import { spawn } from 'child_process'

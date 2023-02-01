@@ -1,10 +1,10 @@
 // /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Expressions, StrictExpressions, TypedExpression, IEnumerable, UnknownExpression, ExpressionVisitor, NewExpression, ApplySymbolExpression, LambdaExpression, BinaryExpression, CallExpression, EqualityComparer, MemberExpression, TypedLambdaExpression, ExpressionType, ConstantExpression, ParameterExpression, UnaryExpression } from '@akala/core/expressions';
-import { QuerySymbols } from './Query';
-import { Exception } from './exceptions';
-import { ModelDefinition } from './shared';
-import * as  Enumerable from './Enumerable';
+import { QuerySymbols } from './Query.js';
+import { Exception } from './exceptions.js';
+import { ModelDefinition } from './shared.js';
+import * as  Enumerable from './Enumerable.js';
 import { isPromiseLike, expressions } from "@akala/core";
 
 type Result = Iterable<unknown> | AsyncIterable<unknown>;

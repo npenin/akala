@@ -1,7 +1,7 @@
-import { Expression, Expressions, TypedExpression } from './expression';
-import { ExpressionType } from './expression-type';
-import { ParameterExpression } from './parameter-expression';
-import { ExpressionVisitor } from './expression-visitor';
+import { Expression, Expressions, TypedExpression } from './expression.js';
+import { ExpressionType } from './expression-type.js';
+import { ParameterExpression } from './parameter-expression.js';
+import { ExpressionVisitor } from './expression-visitor.js';
 
 
 export class TypedLambdaExpression<T extends (...args: unknown[]) => unknown> extends Expression

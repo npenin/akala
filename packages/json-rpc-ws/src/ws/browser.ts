@@ -1,8 +1,8 @@
 'use strict';
 
-import { default as ClientBase } from './shared-client';
-import { SocketAdapter, SocketAdapterEventMap } from '../shared-connection';
-import { Connection } from '../browser'
+import { default as ClientBase } from './shared-client.js';
+import { SocketAdapter, SocketAdapterEventMap } from '../shared-connection.js';
+import { Connection } from '../browser.js'
 /**
  * json-rpc-ws connection
  *

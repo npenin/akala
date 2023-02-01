@@ -1,6 +1,6 @@
-import { Expression, TypedExpression, Expressions, StrictExpressions } from './expression';
-import { ExpressionType } from './expression-type';
-import { ExpressionVisitor } from './expression-visitor';
+import { Expression, TypedExpression, Expressions, StrictExpressions } from './expression.js';
+import { ExpressionType } from './expression-type.js';
+import { ExpressionVisitor } from './expression-visitor.js';
 
 
 export class CallExpression<T, TMethod extends keyof T> extends Expression

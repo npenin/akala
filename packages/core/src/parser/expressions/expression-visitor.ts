@@ -1,15 +1,15 @@
-import { Expressions, TypedExpression, IEnumerable, StrictExpressions, StrictTypedExpression, UnknownExpression } from './expression';
-import { ExpressionType } from './expression-type';
-import { BinaryExpression } from './binary-expression';
-import { UnaryExpression } from './unary-expression';
-import { ParameterExpression } from './parameter-expression';
-import { ConstantExpression } from './constant-expression';
-import { TypedLambdaExpression, Parameters } from './lambda-expression';
-import { MemberExpression } from './member-expression';
-import { CallExpression } from './call-expression';
-import { ApplySymbolExpression } from './apply-symbol-expression';
-import { NewExpression } from './new-expression';
-import { IVisitable } from './visitable';
+import { Expressions, TypedExpression, IEnumerable, StrictExpressions, StrictTypedExpression, UnknownExpression } from './expression.js';
+import { ExpressionType } from './expression-type.js';
+import { BinaryExpression } from './binary-expression.js';
+import { UnaryExpression } from './unary-expression.js';
+import { ParameterExpression } from './parameter-expression.js';
+import { ConstantExpression } from './constant-expression.js';
+import { TypedLambdaExpression, Parameters } from './lambda-expression.js';
+import { MemberExpression } from './member-expression.js';
+import { CallExpression } from './call-expression.js';
+import { ApplySymbolExpression } from './apply-symbol-expression.js';
+import { NewExpression } from './new-expression.js';
+import { IVisitable } from './visitable.js';
 
 
 export type EqualityComparer<T> = (a: T, b: T) => boolean;

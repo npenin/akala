@@ -1,5 +1,5 @@
 import * as akala from '@akala/core'
-import { control, GenericControlInstance, Control, ControlControlParameter } from './control'
+import { control, GenericControlInstance, Control, ControlControlParameter } from './control.js'
 import { ObservableArray, ObservableArrayEventArgs, Binding, ParsedString, isPromiseLike } from '@akala/core'
 
 function removeClass(element: HTMLElement, item: ParsedString | Array<string> | string | { [key: string]: boolean })

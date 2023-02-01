@@ -1,6 +1,6 @@
 import { Container, Metadata, registerCommands, SelfDefinedCommand } from '@akala/commands';
-import pm from '../container';
-import State, { RunningContainer } from '../state';
+import pm from '../container.js';
+import State, { RunningContainer } from '../state.js';
 
 export default async function ready(this: State, pm: pm.container & Container<State>, container: RunningContainer, standaloneContainer: Container<void>): Promise<void>
 {

@@ -4,13 +4,13 @@ import { Processors, NetSocketAdapter, Metadata, Container, ICommandProcessor, p
 import { Socket } from 'net';
 import { TLSSocket } from 'tls';
 import { platform, homedir } from 'os';
-import start from './commands/start'
+import start from './commands/start.js'
 import { Readable } from 'stream';
 
-import { spawnAsync } from './cli-helper';
-import State, { StateConfiguration } from './state';
+import { spawnAsync } from './cli-helper.js';
+import State, { StateConfiguration } from './state.js';
 import program, { buildCliContextFromProcess, CliContext, ErrorMessage, NamespaceMiddleware, unparse } from '@akala/cli';
-import { InteractError } from '.';
+import { InteractError } from './index.js';
 import { Binding } from '@akala/core';
 
 const tableChars = {

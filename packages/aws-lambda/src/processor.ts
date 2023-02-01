@@ -1,5 +1,5 @@
 import { CommandProcessor, Container, StructuredParameters } from '@akala/commands';
-import { Command } from '@akala/commands/src/metadata/command';
+import { Metadata } from '@akala/commands';
 import { MiddlewarePromise } from '@akala/core';
 import { LambdaClient, InvokeCommand, LambdaClientConfig } from '@aws-sdk/client-lambda';
 
@@ -12,7 +12,7 @@ export class Processor extends CommandProcessor
         this.client = new LambdaClient(config);
     }
 
-    public handle(origin: Container<unknown>, cmd: Command, param: StructuredParameters<unknown[]>): MiddlewarePromise
+    public handle(origin: Container<unknown>, cmd: Metadata.Command, param: StructuredParameters<unknown[]>): MiddlewarePromise
     {
         return this.client.send(new InvokeCommand({
             FunctionName: cmd.name,

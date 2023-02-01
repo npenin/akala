@@ -1,13 +1,13 @@
 import * as akala from '@akala/core'
-import { Router, RouterRequest as Request } from './router'
+import { Router, RouterRequest as Request } from './router.js'
 import { EventEmitter } from 'events'
 import './controls/part'
-import { Template } from './template'
-import { IScope } from './scope'
-import { service } from './common'
-import { LocationService as Location } from './locationService'
+import { Template } from './template.js'
+import { IScope } from './scope.js'
+import { service } from './common.js'
+import { LocationService as Location } from './locationService.js'
 import { Injector, map } from '@akala/core'
-import { IControlInstance } from './controls/control'
+import { IControlInstance } from './controls/control.js'
 
 export type PartInstance = { scope: IScope<unknown>, element: HTMLElement, controlsInPart?: IControlInstance<unknown>[] };
 

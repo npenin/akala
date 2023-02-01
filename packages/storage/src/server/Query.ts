@@ -2,13 +2,13 @@ import { TypedLambdaExpression, LambdaExpression, BinaryOperator } from '@akala/
 import { Expression, TypedExpression, Predicate, Expressions, Project, Project2, StrictExpressions } from '@akala/core/expressions';
 import { ApplySymbolExpression } from '@akala/core/expressions';
 import { ConstantExpression } from '@akala/core/expressions';
-import { ModelDefinition } from './shared';
+import { ModelDefinition } from './shared.js';
 import { ParameterExpression } from '@akala/core/expressions';
 import { MemberExpression } from '@akala/core/expressions';
 import { NewExpression } from '@akala/core/expressions';
 import { BinaryExpression } from '@akala/core/expressions';
 import * as akala from '@akala/core'
-import { Parser } from './parser';
+import { Parser } from './parser.js';
 
 export type asyncProxy<T> = { [P in keyof T]: PromiseLike<T[P]> };
 

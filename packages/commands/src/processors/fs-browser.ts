@@ -1,6 +1,6 @@
-import * as  Metadata from '../metadata/index';
-import { CommandProcessor, StructuredParameters } from '../model/processor';
-import { Container } from '../model/container';
+import * as  Metadata from '../metadata/index.js';
+import { CommandProcessor, StructuredParameters } from '../model/processor.js';
+import { Container } from '../model/container.js';
 import { MiddlewarePromise } from '@akala/core';
 
 export interface FileSystemConfiguration extends Metadata.Configuration

@@ -1,10 +1,10 @@
-import { DbSet } from './shared';
-import { Cardinality } from './cardinality';
+import { DbSet } from './shared.js';
+import { Cardinality } from './cardinality.js';
 import { Expressions, ConstantExpression } from '@akala/core/expressions';
-import { PersistenceEngine } from './PersistenceEngine';
-import { Query } from './Query';
-import { PersistenceEngineQueryProvider } from './PersistenceQueryProvider';
-import { Update, Delete, Create } from './commands/command';
+import { PersistenceEngine } from './PersistenceEngine.js';
+import { Query } from './Query.js';
+import { PersistenceEngineQueryProvider } from './PersistenceQueryProvider.js';
+import { Update, Delete, Create } from './commands/command.js';
 
 export enum StorageType
 {

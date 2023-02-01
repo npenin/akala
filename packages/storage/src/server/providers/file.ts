@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { PersistenceEngine, dynamicProxy } from '../PersistenceEngine';
 import { StrictExpressions, ConstantExpression } from '@akala/core/expressions';
-import { ExpressionExecutor } from '../expression-executor';
+import { PersistenceEngine, dynamicProxy } from '../PersistenceEngine.js';
+import { ExpressionExecutor } from '../expression-executor.js';
 import * as fs from "fs";
 import { basename, join } from "path";
-import { CommandProcessor } from '../commands/command-processor';
-import { CommandResult, Commands, Create } from '../commands/command';
-import { ModelDefinition } from '../shared';
+import { CommandProcessor } from '../commands/command-processor.js';
+import { CommandResult, Commands, Create } from '../commands/command.js';
+import { ModelDefinition } from '../shared.js';
 import { promisify } from "util";
-import { Generator } from '../common';
+import { Generator } from '../common.js';
 import { v4 as uuid } from 'uuid'
-import { NotSupportedException } from '../exceptions';
+import { NotSupportedException } from '../exceptions.js';
 
 export class File extends PersistenceEngine<FileOptions>
 {

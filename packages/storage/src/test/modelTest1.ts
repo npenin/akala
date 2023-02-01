@@ -1,4 +1,4 @@
-import * as db from '../server/index'
+import * as db from '../server/index.js'
 import 'reflect-metadata'
 
 @db.Model

@@ -1,6 +1,6 @@
 import { Deferred } from "@akala/core";
-import { Workflow } from "../automate";
-import State, { WorkflowInstance } from "../state";
+import { Workflow } from "../automate.js";
+import State, { WorkflowInstance } from "../state.js";
 
 export default async function <T>(this: State, workflow: Workflow | string, context: T, wait?: boolean)
 {

@@ -1,6 +1,6 @@
 import * as assert from 'assert'
 import 'source-map-support/register'
-import normalize from '../helpers/normalize';
+import normalize from '../helpers/normalize.js';
 import path from 'path'
 
 assert.strictEqual(normalize('require', process.cwd(), '@akala/cli'), require.resolve('@akala/cli'));

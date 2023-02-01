@@ -1,7 +1,7 @@
 import * as akala from '@akala/core';
-import { IScope } from '../scope';
+import { IScope } from '../scope.js';
 import { Injector, inject, ObservableArray, ParsedObject } from '@akala/core';
-import { Template } from '../template';
+import { Template } from '../template.js';
 import { Binding } from '@akala/core'
 
 

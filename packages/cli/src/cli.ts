@@ -1,9 +1,9 @@
-import program from './router/index';
+import program from './router/index.js';
 import * as fs from 'fs'
 import { promisify } from 'util'
 import * as akala from '@akala/core'
 import './helpers/repl';
-import { buildCliContextFromProcess } from '.';
+import { buildCliContextFromProcess } from './index.js';
 
 (async function ()
 {

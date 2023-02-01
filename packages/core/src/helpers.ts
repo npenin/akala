@@ -1,11 +1,10 @@
-import { Module } from './module';
-import { onResolve } from './global-injector'
+import { Module } from './module.js';
 export { Module };
-export * from './promiseHelpers';
-export * from './distinct';
-export * as base64 from './base64';
-export { each as eachAsync, NextFunction, map as mapAsync, AggregateErrors } from './eachAsync';
-export { each, grep, Proxy, map } from './each';
+export * from './promiseHelpers.js';
+export * from './distinct.js';
+export * as base64 from './base64.js';
+export { each as eachAsync, NextFunction, map as mapAsync, AggregateErrors } from './eachAsync.js';
+export { each, grep, Proxy, map } from './each.js';
 
 export type Remote<T> = { [key in keyof T]: T[key] extends (...args) => infer X ? X extends Promise<infer Y> ? X : Promise<X> : (T[key] | undefined) }
 export type Serializable = string | number | string[] | number[] | boolean | boolean[] | SerializableObject | SerializableObject[];

@@ -1,5 +1,5 @@
 import { SocketAdapter } from "@akala/json-rpc-ws";
-import State from "../state";
+import State from "../state.js";
 
 export default function (this: State, connectionId: string, socket: SocketAdapter)
 {

@@ -1,9 +1,9 @@
 import { CliContext } from "@akala/cli";
 import { readFile, mkdir } from "fs/promises";
 import { join } from "path";
-import { Container } from "../metadata";
-import command from "./new/command";
-import { newCommandConfiguration } from "./new/command-config";
+import { Container } from "../metadata/index.js";
+import command from "./new/command.js";
+import { newCommandConfiguration } from "./new/command-config.js";
 
 export default async function implement(pathToCommandFile: string, destination: string, options: CliContext<{ force?: boolean }>['options']): Promise<void>
 {

@@ -1,4 +1,4 @@
-import { Injector, Injectable, Injected, InjectableAsync, defaultInjector, InjectableConstructor } from './injector';
+import { Injector, Injectable, Injected, InjectableAsync, defaultInjector, InjectableConstructor } from './injector.js';
 
 // declare let $$defaultInjector;
 

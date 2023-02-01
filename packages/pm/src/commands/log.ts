@@ -1,6 +1,6 @@
 import { PassThrough } from "stream";
 import { Readable } from "stream";
-import State from '../state';
+import State from '../state.js';
 
 export default function log(this: State, name: string): Readable
 {

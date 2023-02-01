@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid';
 import debug from 'debug';
-import { default as Errors, Error as ConnectionError, ErrorTypes } from './errors';
+import { default as Errors, Error as ConnectionError, ErrorTypes } from './errors.js';
 import { SerializableObject } from '@akala/core';
 const logger = debug('json-rpc-ws');
 
