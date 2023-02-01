@@ -222,6 +222,7 @@
 * remove duplicate foreach in publish 09d9fe5
 * remove duplicated code in pm start command 3a91342
 * remove failure masking 7c4ae85
+* remove hrtime dependency f85fb22
 * remove http imports to support treeshaking for browsers a0d87cb
 * remove http routing f9f43de
 * remove import of removed dependency 8a11cef
