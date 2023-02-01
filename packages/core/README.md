@@ -10,5 +10,5 @@ This library provides the core features to be expanded by akala-server and akala
 - promise helpers
 - dependency injection
 - two way data binding
-- restricted set of jaascript parsing
+- restricted set of javascript parsing
 - modules
