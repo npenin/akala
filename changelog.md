@@ -4,6 +4,7 @@
 ### Bug Fixes
 
 * #10 6e164e7
+* #988 3b5ade8
 * ac new gracefully ends 6647f80
 * adapt to trigger new definition 8c2d136
 * add exports to mongo 9c6d18a
@@ -99,6 +100,7 @@
 * fix pm startup 9f53b54
 * fix the pubsub path 77cdd2f
 * fix use on router 64f54b9
+* fix wrong update on import 2bd50cc
 * force metadata command registration in remote container 840d6dd
 * force socket processor on pm forks 0874275
 * fork broken 8a998fc
@@ -161,6 +163,7 @@
 * **mongodb:** exclude generated field from being updated 1785a29
 * move dependency from devdep 36139a4
 * move from require to import to support esm 6ee5ce4
+* move to ESM 6ef0335
 * nested container processing 8997869
 * new cc does not require destination to be a folder 51d1efd
 * normalization and edge cases in cli 874a97f
@@ -234,6 +237,7 @@
 * removed mock-require usage 99587ba
 * removed mock-require usage 448f5be
 * rename package 87b433b
+* require dependent packages broken 66a3877
 * resolve legacy config lookup 5dceab9
 * resolve path in new cc 58cb93c
 * restore broken cli feature 6f563ef
@@ -393,6 +397,7 @@
 * leverage suncalc c674f46
 * move Deferred and Serializable(Object) to core 6507e1d
 * move ErrorWithStatus to core f3de950
+* move to ESM c7365f4
 * move to serve with AbortSignal 53d811d
 * moved to middleware approach 69d4ba5
 * new aws-lambda module 97806aa
@@ -411,10 +416,12 @@
 * switched from raw debug to logger from core efef2da
 * update command behavior 2fb6184
 * update configuration structure 8a395ff
+* update to ESM 87800a0
 
 
 ### BREAKING CHANGES
 
+* move to ESM to support tree shaking
 * Deferred and Serializable(Object) moved to core instead of json-rpc-ws causing dependencies break.
 * core and json-rpc-ws dependencies swapped because of afore mentioned breaking change
 * inject property does not exist on commands anymore
