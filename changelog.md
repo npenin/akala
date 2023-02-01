@@ -76,6 +76,7 @@
 * correct name assignment in fork 3deb98f
 * count and any pipelines d38a6c6
 * crash on parsing remote bcb17fe
+* CVE-2022-25881 #988 11a4e2a
 * default version ignore to decline 01cb0f7
 * define commands in sidecar c71d334
 * dependencies d61f681
