@@ -1,8 +1,8 @@
 {
     "name": "@akala/pages",
     "version": "0.77.0",
-    "main": "dist/server/index.js",
-    "types": "dist/server/index.d.ts",
+    "main": "dist/cjs/index.js",
+    "types": "dist/esm/index.d.ts",
     "author": "npenin <nicolas.penin@dragon-angel.fr>",
     "license": "BSD-3-Clause",
     "private": true,
@@ -23,7 +23,7 @@
         "typescript": "^4.9.4"
     },
     "scripts": {
-        "prepack": "tsc -p ."
+        "prepack": "tsc -p tsconfig.esm.json"
     },
     "exports": {
         ".": {
@@ -32,5 +32,5 @@
             "default": "./dist/cjs/index.js"
         }
     },
-    "module": "dist/server/index.js"
+    "module": "dist/esm/index.js"
 }

@@ -6,7 +6,7 @@
     "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 0",
-        "prepack": "tsc -p .",
+        "prepack": "tsc -p tsconfig.esm.json",
         "snyk-protect": "snyk-protect",
         "prepare": "npm run snyk-protect",
         "generate": "ac generate dist/esm/commands commands.json --name @akala/server",
