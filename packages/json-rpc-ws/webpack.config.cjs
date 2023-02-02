@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-undef
 module.exports = {
     entry: {
-        browser: './lib/browser.js',
+        browser: './dist/esm/browser.js',
         browser_test: './test/browser_test._js',
         // popper: './src/controls/popper.ts',
         // markdown: './src/controls/markdown.ts',
