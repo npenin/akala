@@ -1,40 +1,46 @@
 {
-  "name": "@akala/authentication",
-  "peerDependencies": {
-    "@akala/server": "*"
-  },
-  "dependencies": {
-    "@akala/storage": "workspace:^",
-    "co-body": "^6.1.0",
-    "connect-ensure-login": "^0.1.1",
-    "oauth2orize": "^1.11.1",
-    "passport": "^0.6.0",
-    "passport-http": "^0.3.0",
-    "passport-http-bearer": "^1.0.1",
-    "passport-local": "^1.0.0",
-    "passport-oauth2-client-password": "^0.1.2",
-    "reflect-metadata": "^0.1.13",
-    "uuid": "^9.0.0"
-  },
-  "funding": "https://github.com/npenin/akala?sponsor=1",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/npenin/akala.git"
-  },
-  "homepage": "https://akala.js.org/authentication",
-  "main": "dist/server/index.js",
-  "type": "module",
-  "devDependencies": {
-    "@akala/server": "workspace:^",
-    "@types/co-body": "^6.1.0",
-    "@types/debug": "^4.1.7",
-    "@types/node": "^18.11.18",
-    "@types/uuid": "^9.0.0",
-    "typescript": "^4.9.4"
-  },
-  "version": "0.7.1",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0"
-  },
-  "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43"
+    "name": "@akala/authentication",
+    "peerDependencies": {
+        "@akala/server": "*"
+    },
+    "dependencies": {
+        "@akala/storage": "workspace:^",
+        "co-body": "^6.1.0",
+        "connect-ensure-login": "^0.1.1",
+        "oauth2orize": "^1.11.1",
+        "passport": "^0.6.0",
+        "passport-http": "^0.3.0",
+        "passport-http-bearer": "^1.0.1",
+        "passport-local": "^1.0.0",
+        "passport-oauth2-client-password": "^0.1.2",
+        "reflect-metadata": "^0.1.13",
+        "uuid": "^9.0.0"
+    },
+    "funding": "https://github.com/npenin/akala?sponsor=1",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/npenin/akala.git"
+    },
+    "homepage": "https://akala.js.org/authentication",
+    "main": "dist/server/index.js",
+    "type": "module",
+    "devDependencies": {
+        "@akala/server": "workspace:^",
+        "@types/co-body": "^6.1.0",
+        "@types/debug": "^4.1.7",
+        "@types/node": "^18.11.18",
+        "@types/uuid": "^9.0.0",
+        "typescript": "^4.9.4"
+    },
+    "version": "0.7.1",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 0"
+    },
+    "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
+    "exports": {
+        ".": {
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js"
+        }
+    }
 }

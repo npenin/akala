@@ -1,0 +1,11 @@
+import SocketAdapter from './ws-socket-adapter.js';
+import { Adapter as ServerAdapter } from './server.js';
+import Server from '../server.js';
+import { Connection } from '../connection.js';
+import Client from './client.js';
+export { SocketAdapter, ServerAdapter };
+import * as ws from 'ws';
+export declare function createClient(): Client;
+export declare function createServer<TConnection extends Connection = Connection>(options?: ws.ServerOptions): Server<TConnection>;
+export { Client };
+export declare const connect: typeof Client.connect;

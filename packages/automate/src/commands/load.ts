@@ -1,7 +1,7 @@
 import fs from 'fs/promises'
 import State from '../state.js';
 import path from 'path'
-import { TriggerMap, Workflow } from '../automate.js';
+import { TriggerMap, Workflow } from '../index.js';
 import { Container } from '@akala/commands';
 import { JobCommand, parseCronSyntax, Schedule } from '@akala/cron';
 import { Deferred, eachAsync } from '@akala/core';

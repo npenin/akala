@@ -4,7 +4,7 @@ import cli, { buildCliContext, buildCliContextFromProcess, CliContext, Namespace
 import { Container, SelfDefinedCommand } from '@akala/commands';
 import { logger as LoggerBuilder, LogLevels } from '@akala/core';
 import path from 'path';
-import { Workflow } from './automate.js';
+import { Workflow } from './index.js';
 import workflow from './workflow.js';
 import use from './workflow-commands/use.js';
 import { createRequire } from 'module';

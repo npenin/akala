@@ -4,8 +4,8 @@ import * as akala from '@akala/core'
 import mock from 'mock-require'
 mock('@akala/core', akala);
 mock('@akala/server', akala);
-import * as db from '../server/index.js'
-import { File } from '../server/providers/file.js';
+import * as db from '../index.js'
+import { File } from '../providers/file.js';
 import { ModelTest1 } from './modelTest1.js';
 import * as assert from 'assert'
 import 'mocha';

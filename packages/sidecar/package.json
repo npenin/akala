@@ -12,5 +12,11 @@
     },
     "scripts": {
         "generate": "ac generate dist/commands commands.json --name @akala/sidecar"
+    },
+    "exports": {
+        ".": {
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js"
+        }
     }
 }

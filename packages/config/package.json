@@ -1,38 +1,44 @@
 {
-  "name": "@akala/config",
-  "version": "2.1.1",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "author": "Nicolas Penin <nicolas.penin@dragon-angel.fr>",
-  "license": "BSD-3-Clause",
-  "funding": "https://github.com/npenin/akala?sponsor=1",
-  "type": "module",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/npenin/akala.git"
-  },
-  "homepage": "https://akala.js.org/config",
-  "peerDependencies": {
-    "@akala/pm": "*"
-  },
-  "peerDependenciesMeta": {
-    "@akala/pm": {
-      "optional": true
+    "name": "@akala/config",
+    "version": "2.1.1",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "author": "Nicolas Penin <nicolas.penin@dragon-angel.fr>",
+    "license": "BSD-3-Clause",
+    "funding": "https://github.com/npenin/akala?sponsor=1",
+    "type": "module",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/npenin/akala.git"
+    },
+    "homepage": "https://akala.js.org/config",
+    "peerDependencies": {
+        "@akala/pm": "*"
+    },
+    "peerDependenciesMeta": {
+        "@akala/pm": {
+            "optional": true
+        }
+    },
+    "dependencies": {
+        "@akala/commands": "workspace:^",
+        "@akala/core": "workspace:^"
+    },
+    "devDependencies": {
+        "typescript": "^4.9.4"
+    },
+    "bin": {
+        "uci2": "./dist/cli.js"
+    },
+    "preferGlobal": true,
+    "scripts": {
+        "test": "echo \"Error: no test specified\""
+    },
+    "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
+    "exports": {
+        ".": {
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js"
+        }
     }
-  },
-  "dependencies": {
-    "@akala/commands": "workspace:^",
-    "@akala/core": "workspace:^"
-  },
-  "devDependencies": {
-    "typescript": "^4.9.4"
-  },
-  "bin": {
-    "uci2": "./dist/cli.js"
-  },
-  "preferGlobal": true,
-  "scripts": {
-    "test": "echo \"Error: no test specified\""
-  },
-  "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43"
 }

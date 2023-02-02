@@ -1,7 +1,6 @@
 {
     "name": "@akala/aws-lambda",
     "version": "0.5.1",
-    "main": "dist/index.mjs",
     "type": "module",
     "types": "dist/index.d.mts",
     "scripts": {
@@ -14,5 +13,10 @@
     "devDependencies": {
         "@aws-sdk/types": "^3.257.0",
         "@types/aws-lambda": "^8.10.110"
+    },
+    "exports": {
+        ".": {
+            "import": "./dist/esm/index.mjs"
+        }
     }
 }

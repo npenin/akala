@@ -1,34 +1,40 @@
 {
-  "name": "@akala/semantic-release",
-  "version": "1.1.1",
-  "main": "dist/index.js",
-  "author": "npenin",
-  "license": "BSD-3-Clause",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/npenin/akala.git"
-  },
-  "homepage": "https://akala.js.org/semantic-release",
-  "type": "module",
-  "scripts": {
-    "generate": "ac generate dist/commands commands.json"
-  },
-  "dependencies": {
-    "@akala/commands": "workspace:^",
-    "@yarnpkg/core": "^3.3.1",
-    "conventional-changelog-angular": "^5.0.13",
-    "conventional-changelog-writer": "^5.0.1",
-    "conventional-commits-parser": "^3.2.4",
-    "conventional-recommended-bump": "^6.1.0",
-    "debug": "^4.3.4",
-    "git-semver-tags": "^4.1.1",
-    "yarn": "^1.22.19"
-  },
-  "devDependencies": {
-    "@types/conventional-recommended-bump": "^6.1.0",
-    "@types/debug": "^4.1.7",
-    "@types/node": "^18.11.18",
-    "git-raw-commits": "^2.0.11"
-  },
-  "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43"
+    "name": "@akala/semantic-release",
+    "version": "1.1.1",
+    "main": "dist/index.js",
+    "author": "npenin",
+    "license": "BSD-3-Clause",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/npenin/akala.git"
+    },
+    "homepage": "https://akala.js.org/semantic-release",
+    "type": "module",
+    "scripts": {
+        "generate": "ac generate dist/commands commands.json"
+    },
+    "dependencies": {
+        "@akala/commands": "workspace:^",
+        "@yarnpkg/core": "^3.3.1",
+        "conventional-changelog-angular": "^5.0.13",
+        "conventional-changelog-writer": "^5.0.1",
+        "conventional-commits-parser": "^3.2.4",
+        "conventional-recommended-bump": "^6.1.0",
+        "debug": "^4.3.4",
+        "git-semver-tags": "^4.1.1",
+        "yarn": "^1.22.19"
+    },
+    "devDependencies": {
+        "@types/conventional-recommended-bump": "^6.1.0",
+        "@types/debug": "^4.1.7",
+        "@types/node": "^18.11.18",
+        "git-raw-commits": "^2.0.11"
+    },
+    "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
+    "exports": {
+        ".": {
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js"
+        }
+    }
 }

@@ -1,56 +1,62 @@
 {
-  "name": "@akala/json-rpc-ws",
-  "version": "10.1.1",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/npenin/akala.git"
-  },
-  "homepage": "https://akala.js.org/jsonrpc",
-  "funding": "https://github.com/npenin/akala?sponsor=1",
-  "description": "json-rpc websocket transport",
-  "main": "./lib/index.js",
-  "typings": "./lib/index.d.ts",
-  "type": "module",
-  "scripts": {
-    "test": "mocha --require source-map-support/register",
-    "validate": "npm ls",
-    "jsdoc": "jsdoc",
-    "docs": "jsdoc index.js lib -d docs",
-    "prepack": "tsc -p . && webpack"
-  },
-  "keywords": [
-    "json-rpc",
-    "websocket"
-  ],
-  "author": "Nicolas Penin <akala@dragon-angel.fr>",
-  "license": "BSD-3-Clause",
-  "dependencies": {
-    "@akala/core": "workspace:^",
-    "debug": "^4.3.4",
-    "reflect-metadata": "^0.1.13",
-    "uuid": "^9.0.0",
-    "ws": "^8.12.0"
-  },
-  "pre-commit": [
-    "validate",
-    "lint",
-    "test"
-  ],
-  "browser": "./browser.js",
-  "devDependencies": {
-    "@types/assert": "1.5.6",
-    "@types/debug": "4.1.7",
-    "@types/node": "^18.11.18",
-    "@types/uuid": "^9.0.0",
-    "@types/ws": "^8.5.4",
-    "bufferutil": "^4.0.7",
-    "mocha": "^10.2.0",
-    "puppeteer": "^19.6.2",
-    "selenium-webdriver": "^4.8.0",
-    "source-map-support": "^0.5.21",
-    "typescript": "^4.9.4",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
-  },
-  "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43"
+    "name": "@akala/json-rpc-ws",
+    "version": "10.1.1",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/npenin/akala.git"
+    },
+    "homepage": "https://akala.js.org/jsonrpc",
+    "funding": "https://github.com/npenin/akala?sponsor=1",
+    "description": "json-rpc websocket transport",
+    "main": "./lib/index.js",
+    "typings": "./lib/index.d.ts",
+    "type": "module",
+    "scripts": {
+        "test": "mocha --require source-map-support/register",
+        "validate": "npm ls",
+        "jsdoc": "jsdoc",
+        "docs": "jsdoc index.js lib -d docs",
+        "prepack": "tsc -p . && webpack"
+    },
+    "keywords": [
+        "json-rpc",
+        "websocket"
+    ],
+    "author": "Nicolas Penin <akala@dragon-angel.fr>",
+    "license": "BSD-3-Clause",
+    "dependencies": {
+        "@akala/core": "workspace:^",
+        "debug": "^4.3.4",
+        "reflect-metadata": "^0.1.13",
+        "uuid": "^9.0.0",
+        "ws": "^8.12.0"
+    },
+    "pre-commit": [
+        "validate",
+        "lint",
+        "test"
+    ],
+    "browser": "./browser.js",
+    "devDependencies": {
+        "@types/assert": "1.5.6",
+        "@types/debug": "4.1.7",
+        "@types/node": "^18.11.18",
+        "@types/uuid": "^9.0.0",
+        "@types/ws": "^8.5.4",
+        "bufferutil": "^4.0.7",
+        "mocha": "^10.2.0",
+        "puppeteer": "^19.6.2",
+        "selenium-webdriver": "^4.8.0",
+        "source-map-support": "^0.5.21",
+        "typescript": "^4.9.4",
+        "webpack": "^5.75.0",
+        "webpack-cli": "^5.0.1"
+    },
+    "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
+    "exports": {
+        ".": {
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js"
+        }
+    }
 }
