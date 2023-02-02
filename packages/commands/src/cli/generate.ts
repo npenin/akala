@@ -1,5 +1,4 @@
 import * as akala from "../index.js";
-import { Container } from '../model/container.js';
 import * as path from 'path'
 import * as fs from 'fs';
 import { Writable } from "stream";
@@ -21,12 +20,14 @@ export default async function generate(folder?: string, name?: string, outputFil
     const meta: akala.Metadata.Container & { $schema?: string } = { name: name, commands: [] };
     if (exists)
     {
-        var existing: akala.Metadata.Container = await import(path.resolve(process.cwd(), outputFile));
-        if (require && require.cache)
-            delete require.cache[path.resolve(process.cwd(), outputFile)];
+        var existing: akala.Metadata.Container = await import(path.resolve(process.cwd(), outputFile), { assert: { type: 'json' } });
+        // if (require && require.cache)
+        //     delete require.cache[path.resolve(process.cwd(), outputFile)];
         meta.extends = existing.extends;
         meta.dependencies = existing.dependencies;
     }
+    if (!output)
+        output = fs.createWriteStream(outputFile);
 
     var commands = await akala.Processors.FileSystem.discoverMetaCommands(path.resolve(folder), { relativeTo: outputFolder, isDirectory: true, recursive: true, ignoreFileWithNoDefaultExport: true, processor: new akala.Processors.FileSystem(outputFolder) });
     meta.commands = commands;

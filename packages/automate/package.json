@@ -41,9 +41,9 @@
     "scripts": {
         "generate": "yarn generate-automate && yarn generate-workflow",
         "generate-metadata": "yarn generate-metadata-automate && yarn generate-metadata-workflow",
-        "generate-automate": "ac generate dist/commands commands.json --name @akala/automate",
+        "generate-automate": "ac generate dist/esm/commands commands.json --name @akala/automate",
         "generate-metadata-automate": "ac generate-metadata commands.json src/container.ts",
-        "generate-workflow": "ac generate dist/workflow-commands workflow.json --name workflow",
+        "generate-workflow": "ac generate dist/esm/workflow-commands workflow.json --name workflow",
         "generate-metadata-workflow": "ac generate-metadata workflow.json src/workflow.ts --name workflow"
     },
     "exports": {
@@ -51,7 +51,10 @@
             "require": "./dist/cjs/index.js",
             "import": "./dist/esm/index.js",
             "default": "./dist/cjs/index.js"
-        }
+        },
+        "./loader.json": "./loader.json",
+        "./trigger.json": "./trigger.json",
+        "./workflow.json": "./workflow.json"
     },
     "module": "dist/automate.js"
 }

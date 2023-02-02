@@ -22,11 +22,17 @@ export class Cli
         this.promise = cliContainer.attach(Triggers.cli, this.program = program);
     }
 
-    public static async fromFileSystem(commandsPath: string, relativeTo: string): Promise<Cli>
+    public static async fromFileSystem(commandsPath: string, options: string | DiscoveryOptions): Promise<Cli>
     {
         const cliContainer: commands.container & Container<void> = new Container<void>('cli', undefined);
 
-        const options: DiscoveryOptions = { processor: new FileSystem(relativeTo), relativeTo };
+        if (!options)
+            options = {};
+        if (typeof options === 'string')
+            options = { relativeTo: options };
+        if (!options.processor)
+            options.processor = new FileSystem(options.relativeTo);
+
         cliContainer.processor.useMiddleware(51, options.processor);
 
         const commands = await FileSystem.discoverMetaCommands(commandsPath, options);

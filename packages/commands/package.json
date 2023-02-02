@@ -1,8 +1,8 @@
 {
     "name": "@akala/commands",
     "version": "5.1.1",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "main": "dist/cjs/index.js",
+    "types": "dist/cjs/index.d.ts",
     "repository": "https://github.com/npenin/akala",
     "homepage": "https://akala.js.org/commands",
     "author": "npenin",
@@ -14,18 +14,18 @@
         "prepack": "tsc -p .",
         "build": "tsc -p .",
         "cli": "node dist/cli.js",
-        "generate-cli": "ac generate dist/cli commands.json --name cli",
+        "generate-cli": "ac generate dist/esm/cli commands.json --name cli",
         "generate-metadata-cli": "ac generate-metadata commands.json src/commands.ts --name cli",
         "generate": "yarn run generate-cli",
         "generate-metadata": "yarn run generate-metadata-cli"
     },
     "browser": {
-        "./dist/cli/serve.js": false,
-        "./dist/processors/fs.js": "./dist/processors/fs-browser.js",
-        "./dist/serve-metadata.js": "./dist/serve-metadata.browser.js"
+        "./dist/esm/cli/serve.js": false,
+        "./dist/esm/processors/fs.js": "./dist/esm/processors/fs-browser.js",
+        "./dist/esm/serve-metadata.js": "./dist/esm/serve-metadata.browser.js"
     },
     "bin": {
-        "ac": "dist/cjs/cli.js"
+        "ac": "dist/esm/cli.mjs"
     },
     "mocha": {
         "require": [
@@ -71,5 +71,5 @@
             "default": "./dist/cjs/index.js"
         }
     },
-    "module": "dist/index.js"
+    "module": "dist/cjs/index.js"
 }

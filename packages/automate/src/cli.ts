@@ -35,7 +35,7 @@ const require = createRequire(import.meta.url);
                         context.logger.level = LogLevels[levelEntry[0]];
             }
         }
-        const container: workflow.container & Container<CliContext> = await use.call(context, null, 'workflow', require.resolve('../workflow.json'));
+        const container: workflow.container & Container<CliContext> = await use.call(context, null, 'workflow', require.resolve('../../workflow.json'));
         var loader: Container<CliContext>;
 
         if (context.options.loader)

@@ -54,7 +54,7 @@ export default async function app<T extends StoreDefinition>(context: CliContext
     else
     {
         //eslint-disable-next-line @typescript-eslint/no-var-requires
-        var result = await connectByPreference<void>(require(path.join(os.homedir(), './pm.config.json')).mapping.pm.connect, { host: remotePm, metadata: (await import('@akala/pm/commands.json')).default })
+        var result = await connectByPreference<void>(require(path.join(os.homedir(), './pm.config.json')).mapping.pm.connect, { host: remotePm, metadata: (await import('@akala/pm/commands.json', { assert: { type: 'json' } })).default })
         sidecar.pm = result.container as Container<void> & pm;
     }
 
