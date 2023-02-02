@@ -1,20 +1,17 @@
 {
-    "name": "loader",
+    "name": "@akala/automate-yamlloader",
     "commands": [
         {
             "name": "$init",
-            "inject": [
-                "$container"
-            ],
             "config": {
-                "": {
+                "fs": {
+                    "path": "dist/esm/loader/$init.js",
+                    "source": "src/loader/$init.ts",
                     "inject": [
                         "$container"
                     ]
                 },
-                "fs": {
-                    "path": "dist/loader/$init.js",
-                    "source": "src/loader/$init.ts",
+                "": {
                     "inject": [
                         "$container"
                     ]
@@ -23,18 +20,15 @@
         },
         {
             "name": "load",
-            "inject": [
-                "param.0"
-            ],
             "config": {
-                "": {
+                "fs": {
+                    "path": "dist/esm/loader/load.js",
+                    "source": "src/loader/load.ts",
                     "inject": [
                         "param.0"
                     ]
                 },
-                "fs": {
-                    "path": "dist/loader/load.js",
-                    "source": "src/loader/load.ts",
+                "": {
                     "inject": [
                         "param.0"
                     ]
@@ -42,5 +36,5 @@
             }
         }
     ],
-    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
 }
