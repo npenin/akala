@@ -1,4 +1,4 @@
-#  (2023-02-01)
+#  (2023-02-02)
 
 
 ### Bug Fixes
@@ -24,6 +24,7 @@
 * add remote type (for async ops) edd9b3b
 * add stdin to pm cli e07437a
 * add transaction on dbset 81305d5
+* add-script and yamlloader 7dd85c7
 * added missing yaml dependency fa66dd1
 * added remote pm socket support 074d6cf
 * adding getOwnPropertyDescriptor to try to fix Object.assign d969335
@@ -96,6 +97,7 @@
 * expose jsonrpc client id fd0f873
 * fix automate runner ae9c216
 * fix for commands ac new 166c9ee
+* fix generate and tsconfig files b44bd4c
 * fix model registration and serialization 7236001
 * fix pm startup 9f53b54
 * fix the pubsub path 77cdd2f
@@ -169,6 +171,7 @@
 * normalization and edge cases in cli 874a97f
 * normalize causes issue if not URL 4879fb0
 * normalize path 58c9fcd
+* normalized modules to work in esm and cjs 88ffcca
 * optional parameter in connect 606b68b
 * output formatting f747eff
 * output name from inner semantic-releases script 52382c6
@@ -182,6 +185,7 @@
 * packages/docker/slim.dockerfile to reduce vulnerabilities 3aeee37
 * parser more reliable 5c92e5a
 * path can now be retrieved using property 2d3125e
+* path to bins 11cfa04
 * path to command metadata 4fc8111
 * path to container schema 796e981
 * path to container schema 86b982d
@@ -388,6 +392,7 @@
 * error message is retrieved if wait is specified e93f204
 * errors like are now true errors 954d0a8
 * first pubsub commit 78b31e1
+* have both CJS and ESM at once cecd11a
 * implement support typings 4c5d3e4
 * improve middleware behaviour 89f0a24
 * improve trigger defintiion 0eecae1
