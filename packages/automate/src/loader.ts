@@ -1,4 +1,4 @@
-import { Workflow } from "./automate.js";
+import { Workflow } from "./index.js";
 
 // eslint-disable-next-line @typescript-eslint/no-namespace
 namespace loader

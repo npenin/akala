@@ -17,5 +17,14 @@
     "dependencies": {
         "@akala/commands": "workspace:^",
         "@akala/pm": "workspace:^"
+    },
+    "exports": {
+        ".": {
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js"
+        },
+        "./commands.json": {
+            "default": "./commands.json"
+        }
     }
 }

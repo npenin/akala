@@ -16,5 +16,11 @@
     },
     "devDependencies": {
         "@akala/commands": "workspace:^"
+    },
+    "exports": {
+        ".": {
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js"
+        }
     }
 }

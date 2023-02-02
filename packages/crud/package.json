@@ -14,5 +14,11 @@
         "@akala/config": "workspace:^",
         "@akala/sidecar": "workspace:^",
         "@akala/storage": "workspace:^"
+    },
+    "exports": {
+        ".": {
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js"
+        }
     }
 }

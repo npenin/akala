@@ -1,37 +1,43 @@
 {
-  "name": "@akala/cli",
-  "version": "2.7.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "author": "Nicolas Penin <nicolas.penin@dragon-angel.fr>",
-  "type": "module",
-  "license": "BSD-3-Clause",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/npenin/akala.git"
-  },
-  "homepage": "https://akala.js.org/cli",
-  "dependencies": {
-    "@akala/core": "workspace:^",
-    "reflect-metadata": "^0.1.13"
-  },
-  "browser": {
-    "./dist/helpers/normalize.js": "./dist/helpers/normalize.browser.js"
-  },
-  "funding": "https://github.com/npenin/akala?sponsor=1",
-  "devDependencies": {
-    "@types/debug": "^4.1.7",
-    "@types/mkdirp": "^1.0.2",
-    "@types/ws": "^8.5.4",
-    "source-map-support": "^0.5.21",
-    "typescript": "^4.9.4"
-  },
-  "bin": {
-    "akala": "./dist/cli.js"
-  },
-  "preferGlobal": true,
-  "scripts": {
-    "test": "echo \"Error: no test specified\""
-  },
-  "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43"
+    "name": "@akala/cli",
+    "version": "2.7.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "author": "Nicolas Penin <nicolas.penin@dragon-angel.fr>",
+    "type": "module",
+    "license": "BSD-3-Clause",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/npenin/akala.git"
+    },
+    "homepage": "https://akala.js.org/cli",
+    "dependencies": {
+        "@akala/core": "workspace:^",
+        "reflect-metadata": "^0.1.13"
+    },
+    "browser": {
+        "./dist/helpers/normalize.js": "./dist/helpers/normalize.browser.js"
+    },
+    "funding": "https://github.com/npenin/akala?sponsor=1",
+    "devDependencies": {
+        "@types/debug": "^4.1.7",
+        "@types/mkdirp": "^1.0.2",
+        "@types/ws": "^8.5.4",
+        "source-map-support": "^0.5.21",
+        "typescript": "^4.9.4"
+    },
+    "bin": {
+        "akala": "./dist/cli.js"
+    },
+    "preferGlobal": true,
+    "scripts": {
+        "test": "echo \"Error: no test specified\""
+    },
+    "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
+    "exports": {
+        ".": {
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js"
+        }
+    }
 }

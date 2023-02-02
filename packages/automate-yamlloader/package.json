@@ -1,24 +1,30 @@
 {
-  "name": "@akala/automate-yamlloader",
-  "version": "1.2.1",
-  "description": "> TODO: description",
-  "author": "npenin <nicolas.penin@dragon-angel.fr>",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/npenin/akala.git"
-  },
-  "homepage": "https://akala.js.org/automate-loaders",
-  "type": "module",
-  "license": "BSD-3-Clause",
-  "main": "dist/index.js",
-  "commands": "./commands.json",
-  "bugs": {
-    "url": "https://github.com/npenin/akala/issues"
-  },
-  "dependencies": {
-    "@akala/automate": "workspace:^",
-    "@akala/config": "workspace:^",
-    "@akala/pm": "workspace:^",
-    "yaml": "^2.2.1"
-  }
+    "name": "@akala/automate-yamlloader",
+    "version": "1.2.1",
+    "description": "> TODO: description",
+    "author": "npenin <nicolas.penin@dragon-angel.fr>",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/npenin/akala.git"
+    },
+    "homepage": "https://akala.js.org/automate-loaders",
+    "type": "module",
+    "license": "BSD-3-Clause",
+    "main": "dist/index.js",
+    "commands": "./commands.json",
+    "bugs": {
+        "url": "https://github.com/npenin/akala/issues"
+    },
+    "dependencies": {
+        "@akala/automate": "workspace:^",
+        "@akala/config": "workspace:^",
+        "@akala/pm": "workspace:^",
+        "yaml": "^2.2.1"
+    },
+    "exports": {
+        ".": {
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js"
+        }
+    }
 }

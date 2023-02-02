@@ -1,50 +1,56 @@
 {
-  "name": "@akala/client",
-  "version": "6.1.1",
-  "description": "",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0",
-    "prepack": "yarn tsc -p . && webpack"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/npenin/akala.git"
-  },
-  "homepage": "https://akala.js.org/client",
-  "funding": "https://github.com/npenin/akala?sponsor=1",
-  "author": "npenin",
-  "license": "BSD-3-Clause",
-  "devDependencies": {
-    "@akala/commands": "workspace:^",
-    "@akala/core": "workspace:^",
-    "@akala/json-rpc-ws": "workspace:^",
-    "@types/content-type": "^1.1.5",
-    "@types/mime": "^3.0.1",
-    "@types/orchestrator": "0.3.3",
-    "@types/showdown": "^2.0.0",
-    "@types/webpack-env": "^1.18.0",
-    "@types/ws": "^8.5.4",
-    "content-type": "^1.0.5",
-    "mime": "^3.0.0",
-    "orchestrator": "^0.3.8",
-    "os-browserify": "^0.3.0",
-    "path-browserify": "^1.0.1",
-    "querystring-es3": "^0.2.1",
-    "stream-browserify": "^3.0.0",
-    "ts-loader": "^9.4.2",
-    "typescript": "^4.9.4",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
-  },
-  "optionalDependencies": {
-    "@popperjs/core": "^2.11.6",
-    "showdown": "^2.1.0"
-  },
-  "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
-  "dependencies": {
-    "reflect-metadata": "^0.1.13"
-  }
+    "name": "@akala/client",
+    "version": "6.1.1",
+    "description": "",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 0",
+        "prepack": "yarn tsc -p . && webpack"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/npenin/akala.git"
+    },
+    "homepage": "https://akala.js.org/client",
+    "funding": "https://github.com/npenin/akala?sponsor=1",
+    "author": "npenin",
+    "license": "BSD-3-Clause",
+    "devDependencies": {
+        "@akala/commands": "workspace:^",
+        "@akala/core": "workspace:^",
+        "@akala/json-rpc-ws": "workspace:^",
+        "@types/content-type": "^1.1.5",
+        "@types/mime": "^3.0.1",
+        "@types/orchestrator": "0.3.3",
+        "@types/showdown": "^2.0.0",
+        "@types/webpack-env": "^1.18.0",
+        "@types/ws": "^8.5.4",
+        "content-type": "^1.0.5",
+        "mime": "^3.0.0",
+        "orchestrator": "^0.3.8",
+        "os-browserify": "^0.3.0",
+        "path-browserify": "^1.0.1",
+        "querystring-es3": "^0.2.1",
+        "stream-browserify": "^3.0.0",
+        "ts-loader": "^9.4.2",
+        "typescript": "^4.9.4",
+        "webpack": "^5.75.0",
+        "webpack-cli": "^5.0.1"
+    },
+    "optionalDependencies": {
+        "@popperjs/core": "^2.11.6",
+        "showdown": "^2.1.0"
+    },
+    "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
+    "dependencies": {
+        "reflect-metadata": "^0.1.13"
+    },
+    "exports": {
+        ".": {
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js"
+        }
+    }
 }

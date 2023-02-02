@@ -1,0 +1,94 @@
+import debug from 'debug';
+import * as stream from 'stream';
+import { Connection as BaseConnection } from './shared-connection.js';
+const logger = debug('json-rpc-ws');
+function isBuffer(obj) {
+    return obj && obj instanceof Uint8Array;
+}
+export class Connection extends BaseConnection {
+    constructor(socket, parent) {
+        super(socket, parent);
+    }
+    isStream(result) {
+        return result instanceof stream.Readable;
+    }
+    sendStream(id, params) {
+        const pt = new stream.PassThrough({ highWaterMark: 128 });
+        params.pipe(pt);
+        pt.on('data', (chunk) => {
+            if (this.socket && this.socket.open)
+                if (isBuffer(chunk)) {
+                    if (Buffer.isBuffer(chunk))
+                        this.sendRaw({ id: id, result: { event: 'data', isBuffer: true, data: chunk.toJSON() } });
+                    else
+                        this.sendRaw({ id: id, result: { event: 'data', isBuffer: true, data: { type: 'Buffer', data: chunk } } });
+                }
+                else
+                    this.sendRaw({ id: id, result: { event: 'data', isBuffer: false, data: chunk.toString() } });
+            else {
+                logger('socket was closed before endof stream');
+                params.unpipe(pt);
+            }
+        });
+        pt.on('end', () => {
+            if (this.socket.open)
+                this.sendRaw({ id: id, result: { event: 'end' }, stream: true });
+            else
+                logger('socket was closed before end of stream');
+        });
+    }
+    buildStream(id, result) {
+        const data = [];
+        let canPush = true;
+        class temp extends stream.Readable {
+            constructor() {
+                super({
+                    read: () => {
+                        if (data.length) {
+                            while (canPush)
+                                canPush = s.push(data.shift());
+                        }
+                        canPush = true;
+                    }
+                });
+                const src = result;
+                Object.getOwnPropertyNames(src).forEach((p) => {
+                    if (Object.getOwnPropertyDescriptor(this, p) == null) {
+                        if (src && src[p])
+                            this[p] = src[p];
+                    }
+                });
+            }
+        }
+        const s = result = new temp();
+        const f = this.responseHandlers[id] = (error, result) => {
+            if (error)
+                s.emit('error', error);
+            else
+                switch (result.event) {
+                    case 'data':
+                        if (result.data) {
+                            let d = undefined;
+                            if (typeof (result.data) == 'string')
+                                d = result.data;
+                            else
+                                d = Uint8Array.from(result.data.data);
+                            if (canPush)
+                                s.push(d);
+                            else
+                                data.push(d);
+                        }
+                        this.responseHandlers[id] = f;
+                        break;
+                    case 'end':
+                        if (canPush)
+                            s.push(null);
+                        else
+                            data.push(null);
+                        break;
+                }
+        };
+        return s;
+    }
+}
+//# sourceMappingURL=connection.js.map
