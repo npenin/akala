@@ -25,9 +25,6 @@ export async function outputHelper(outputFile: string | undefined, nameIfFolder:
             throw new Error(`${outputFile} already exists. Use -f to force overwrite.`);
     }
 
-    if (typeof output == 'undefined')
-        output = fs.createWriteStream(outputFile);
-
     const outputFolder = path.dirname(outputFile);
 
 
