@@ -11,9 +11,9 @@
     "funding": "https://github.com/npenin/akala?sponsor=1",
     "scripts": {
         "test": "mocha",
-        "prepack": "tsc -p .",
-        "build": "tsc -p .",
-        "cli": "node dist/cli.js",
+        "prepack": "tsc -p tsconfig.esm.json",
+        "build": "tsc -p tsconfig.esm.json",
+        "cli": "node dist/esm/cli.js",
         "generate-cli": "ac generate dist/esm/cli commands.json --name cli",
         "generate-metadata-cli": "ac generate-metadata commands.json src/commands.ts --name cli",
         "generate": "yarn run generate-cli",
@@ -71,5 +71,5 @@
             "default": "./dist/cjs/index.js"
         }
     },
-    "module": "dist/cjs/index.js"
+    "module": "dist/esm/index.js"
 }
