@@ -26,6 +26,8 @@ async function x(type, tsconfigPath, packageConfig)
             pkg.exports['.'].require = `./dist/${type}/index.js`
             break;
         case 'esm':
+            if (pkg.main)
+                pkg.module = pkg.main.replace('/cjs', '/esm');
             if (pkg.exports.import)
                 delete pkg.exports.import;
             pkg.exports['.'].import = `./dist/${type}/index.js`
@@ -33,6 +35,8 @@ async function x(type, tsconfigPath, packageConfig)
         default:
             throw new Error('Not supported type ' + type);
     }
+    delete pkg.exports['.'].default;
+    pkg.exports['.'].default = pkg.exports['.'].require;
 
     await fs.writeFile(packageConfig, JSON.stringify(pkg, null, 4));
 }
