@@ -1,16 +1,14 @@
-#  (2023-02-01)
+#  (2023-02-02)
 
 
 ### Bug Fixes
 
-* fix wrong update on import 2bd50cc
-* move to ESM 6ef0335
-* require dependent packages broken 66a3877
+* normalized modules to work in esm and cjs 88ffcca
 
 
 ### Features
 
-* update to ESM 87800a0
+* have both CJS and ESM at once cecd11a
 
 
 
