@@ -8,7 +8,7 @@ export default async function addScript(name?: string, folder?: string, metadata
     folder = folder || '';
 
     //eslint-disable-next-line @typescript-eslint/no-var-requires
-    const pkg = await import(path.join(process.cwd(), './package.json'));
+    const pkg = (await import(path.join(process.cwd(), './package.json'), { assert: { type: 'json' } })).default;
 
     if (!metadataFile)
         metadataFile = 'commands.json';

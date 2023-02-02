@@ -10,7 +10,7 @@
     "homepage": "https://akala.js.org/automate-loaders",
     "type": "module",
     "license": "BSD-3-Clause",
-    "main": "dist/index.js",
+    "main": "dist/cjs/index.js",
     "commands": "./commands.json",
     "bugs": {
         "url": "https://github.com/npenin/akala/issues"
@@ -21,6 +21,9 @@
         "@akala/pm": "workspace:^",
         "yaml": "^2.2.1"
     },
+    "devDependencies": {
+        "@akala/commands": "workspace:^"
+    },
     "exports": {
         ".": {
             "require": "./dist/cjs/index.js",
@@ -29,5 +32,8 @@
         },
         "./package.json": "./package.json"
     },
-    "module": "dist/index.js"
+    "module": "dist/esm/index.js",
+    "scripts": {
+        "generate": "ac generate dist/esm/loader commands.json --name @akala/automate-yamlloader"
+    }
 }
