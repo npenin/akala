@@ -10,13 +10,13 @@
     "type": "module",
     "exports": {
         ".": {
-            "types": "./dist/index.d.ts",
+            "types": "./dist/esm/index.d.ts",
             "require": "./dist/cjs/index.js",
             "import": "./dist/esm/index.js",
             "default": "./dist/cjs/index.js"
         },
         "./expressions": {
-            "types": "./dist/parser/expressions/index.d.ts",
+            "types": "./dist/esm/parser/expressions/index.d.ts",
             "import": "./dist/esm/parser/expressions/index.js",
             "require": "./dist/cjs/parser/expressions/index.js",
             "default": "./dist/cjs/parser/expressions/index.js"
@@ -41,7 +41,7 @@
         "source-map-support": "^0.5.21",
         "typescript": "^4.9.4"
     },
-    "types": "dist/index.d.ts",
+    "types": "dist/esm/index.d.ts",
     "dependencies": {
         "debug": "^4.3.4",
         "orchestrator": "^0.3.8",
