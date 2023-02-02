@@ -4,6 +4,7 @@
 ### Bug Fixes
 
 * omit client package for now 6f16b17
+* typing 8851307
 
 
 
