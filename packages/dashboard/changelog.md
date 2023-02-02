@@ -5,6 +5,7 @@
 
 * move to ESM 6ef0335
 * normalized modules to work in esm and cjs 88ffcca
+* typing 8851307
 * update dependencies and regenerate metadata 0c83667
 
 
