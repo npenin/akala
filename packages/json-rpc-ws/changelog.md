@@ -3,13 +3,7 @@
 
 ### Bug Fixes
 
-* fix generate and tsconfig files b44bd4c
-* normalized modules to work in esm and cjs 88ffcca
-
-
-### Features
-
-* have both CJS and ESM at once cecd11a
+* omit client package for now 6f16b17
 
 
 
