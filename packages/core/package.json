@@ -12,15 +12,18 @@
         ".": {
             "types": "./dist/index.d.ts",
             "require": "./dist/cjs/index.js",
-            "import": "./dist/esm/index.js"
+            "import": "./dist/esm/index.js",
+            "default": "./dist/cjs/index.js"
         },
         "./expressions": {
             "types": "./dist/parser/expressions/index.d.ts",
             "import": "./dist/esm/parser/expressions/index.js",
-            "require": "./dist/cjs/parser/expressions/index.js"
+            "require": "./dist/cjs/parser/expressions/index.js",
+            "default": "./dist/cjs/parser/expressions/index.js"
         }
     },
-    "main": "dist/index.js",
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.js",
     "funding": "https://github.com/npenin/akala?sponsor=1",
     "repository": {
         "type": "git",

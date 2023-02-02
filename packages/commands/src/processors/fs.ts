@@ -12,7 +12,7 @@ import { MiddlewarePromise } from '@akala/core';
 import { eachAsync } from '@akala/core';
 import { createRequire } from 'module';
 
-const require = createRequire(import.meta.url);
+// const require = createRequire(import.meta.url);
 
 export interface FileSystemConfiguration extends Metadata.Configuration
 {
