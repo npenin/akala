@@ -24,6 +24,7 @@ async function x(type, tsconfigPath, packageConfig)
             if (pkg.exports.require)
                 delete pkg.exports.require;
             pkg.exports['.'].require = `./dist/${type}/index.js`
+            pkg.exports['.'].node = pkg.exports['.'].require;
             break;
         case 'esm':
             if (pkg.main)
