@@ -1,7 +1,7 @@
 export * from './index.browser.js'
 import * as Triggers from './triggers/index.js'
 import * as Metadata from './metadata/index.js'
-import program, { buildCliContextFromProcess, NamespaceMiddleware } from '@akala/cli'
+import program, { buildCliContext, buildCliContextFromProcess, NamespaceMiddleware } from '@akala/cli'
 import { Container } from './model/container.js'
 import { CommandProcessor } from './model/processor.js'
 import { registerCommands } from './generator.js'
@@ -10,6 +10,9 @@ import { DiscoveryOptions, FileSystem } from './processors/index.js'
 export { NetSocketAdapter } from './net-socket-adapter.js'
 import commands from './commands.js'
 import $metadata from './commands/$metadata.js'
+import { stat } from 'fs/promises'
+import { dirname } from 'path'
+import { Logger, logger as LoggerBuilder, LogLevels } from '@akala/core'
 
 export class Cli
 {
@@ -22,16 +25,30 @@ export class Cli
         this.promise = cliContainer.attach(Triggers.cli, this.program = program);
     }
 
-    public static async fromFileSystem(commandsPath: string, options: string | DiscoveryOptions): Promise<Cli>
+    public static async fromFileSystem(commandsPath: string, options?: string | DiscoveryOptions): Promise<Cli>
     {
         const cliContainer: commands.container & Container<void> = new Container<void>('cli', undefined);
 
         if (!options)
-            options = {};
+            options = { ignoreFileWithNoDefaultExport: true };
         if (typeof options === 'string')
             options = { relativeTo: options };
+
         if (!options.processor)
+        {
+            if (!options.relativeTo)
+            {
+                const stats = await stat(commandsPath);
+                options.isDirectory = stats.isDirectory();
+
+                if (!options.isDirectory)
+                    options.relativeTo = dirname(commandsPath);
+                else
+                    options.relativeTo = commandsPath;
+            }
+
             options.processor = new FileSystem(options.relativeTo);
+        }
 
         cliContainer.processor.useMiddleware(51, options.processor);
 
@@ -40,9 +57,18 @@ export class Cli
 
     }
 
-    public async start(): Promise<unknown>
+    public async start(logger?: Logger, args?: string[]): Promise<unknown>
     {
         await this.promise;
+        if (args)
+        {
+            if (process.env.NODE_ENV == 'production')
+                logger = logger || LoggerBuilder(process.argv0, LogLevels.error);
+            else
+                logger = logger || LoggerBuilder(process.argv0, LogLevels.warn);
+
+            return await this.program.process(Object.assign(buildCliContext(logger, ...args), { currentWorkingDirectory: process.cwd() }));
+        }
         return await this.program.process(buildCliContextFromProcess());
     }
 

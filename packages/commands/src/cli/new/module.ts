@@ -40,8 +40,15 @@ test`},
             name: 'package.json', content: JSON.stringify({
                 "name": name,
                 "version": "0.0.0",
-                "main": "dist/index.js",
-                "types": "dist/index.d.ts",
+                "main": "dist/cjs/index.js",
+                "types": "dist/cjs/index.d.ts",
+                "exports": {
+                    "types": "./dist/esm/index.d.ts",
+                    "import": "./dist/esm/index.js",
+                    "require": "./dist/cjs/index.js",
+                    "node": "./dist/cjs/index.js",
+                    "default": "./dist/cjs/index.js"
+                },
                 "scripts": {
                     "test": "echo \"Error: no test specified\""
                 },
@@ -50,6 +57,26 @@ test`},
         {
             name: 'tsconfig.json', content: JSON.stringify({
                 "extends": "../tsconfig.settings.json",
+                "compileOnSave": true,
+                "compilerOptions": {
+                    "rootDir": "src",
+                    "outDir": "dist"
+                },
+                "references": []
+            })
+        }, {
+            name: 'tsconfig.cjs.json', content: JSON.stringify({
+                "extends": "../tsconfig.cjs.settings.json",
+                "compileOnSave": true,
+                "compilerOptions": {
+                    "rootDir": "src",
+                    "outDir": "dist"
+                },
+                "references": []
+            })
+        }, {
+            name: 'tsconfig.esm.json', content: JSON.stringify({
+                "extends": "../tsconfig.esm.settings.json",
                 "compileOnSave": true,
                 "compilerOptions": {
                     "rootDir": "src",

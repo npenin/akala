@@ -338,13 +338,16 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
                         const parameter = parameters[index];
                         const paramName = parameter.name;
                         // if (!parameter.optional)
-                        context.options[paramName] = context.args.shift() as (TOptions & TOptions2)[typeof paramName];
-                        if (middleware._option?.config && middleware._option.config[paramName]?.normalize)
-                            context.options[parameter.name] = normalize(middleware._option.config[parameter.name as string]?.normalize, context.currentWorkingDirectory, context.options[parameter.name] as string);// as (TOptions & TOptions2)[typeof parameter.name];
+                        if (!parameter.rest)
+                        {
+                            context.options[paramName] = context.args.shift() as (TOptions & TOptions2)[typeof paramName];
+                            if (middleware._option?.config && middleware._option.config[paramName]?.normalize)
+                                context.options[paramName] = normalize(middleware._option.config[parameter.name as string]?.normalize, context.currentWorkingDirectory, context.options[parameter.name] as string);// as (TOptions & TOptions2)[typeof parameter.name];
+                        }
                         // if (parameter.optional)
                         //     context.options[parameter.name] = context.args.shift() as TOptions2[typeof parameter.name];
-                        if (parameter.rest)
-                            context.options[parameter.name] = context.args.splice(0, context.args.length) as any;
+                        else
+                            context.options[paramName] = context.args.splice(0, context.args.length) as any;
                     }
                 }
                 return Promise.reject();

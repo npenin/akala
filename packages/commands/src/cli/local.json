@@ -1,0 +1,26 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
+    "fs": {
+        "inject": [
+            "param.0"
+        ]
+    },
+    "": {
+        "inject": [
+            "param.0"
+        ]
+    },
+    "cli": {
+        "inject": [
+            "context.logger",
+            "options.path",
+            "options.args"
+        ],
+        "usage": "local <path> [...args]",
+        "options": {
+            "path": {
+                "normalize": true
+            }
+        }
+    }
+}

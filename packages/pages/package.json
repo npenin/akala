@@ -1,8 +1,8 @@
 {
     "name": "@akala/pages",
     "version": "0.79.0",
-    "main": "dist/cjs/index.js",
-    "types": "dist/esm/index.d.ts",
+    "main": "./dist/cjs/index.js",
+    "types": "./dist/cjs/index.d.ts",
     "author": "npenin <nicolas.penin@dragon-angel.fr>",
     "license": "BSD-3-Clause",
     "private": true,
@@ -27,11 +27,12 @@
     },
     "exports": {
         ".": {
-            "require": "./dist/cjs/index.js",
+            "types": "./dist/esm/index.d.ts",
             "import": "./dist/esm/index.js",
+            "require": "./dist/cjs/index.js",
             "node": "./dist/cjs/index.js",
             "default": "./dist/cjs/index.js"
         }
     },
-    "module": "dist/esm/index.js"
+    "module": "./dist/esm/index.js"
 }

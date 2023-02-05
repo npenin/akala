@@ -1,6 +1,8 @@
 import fs from 'fs/promises'
 import path from 'path'
 
+const exportOrder = ['types', 'node', 'import', 'require', 'default'];
+
 async function x(type, tsconfigPath, packageConfig)
 {
     const config = (await import(tsconfigPath, { assert: { type: 'json' } })).default;
@@ -21,23 +23,23 @@ async function x(type, tsconfigPath, packageConfig)
     switch (type)
     {
         case 'cjs':
-            if (pkg.exports.require)
-                delete pkg.exports.require;
             pkg.exports['.'].require = `./dist/${type}/index.js`
-            pkg.exports['.'].node = pkg.exports['.'].require;
+            pkg.main = pkg.exports['.'].node = pkg.exports['.'].require;
+            pkg.types = pkg.exports['.'].require.replace(/\.js$/, '.d.ts');
             break;
         case 'esm':
             if (pkg.main)
                 pkg.module = pkg.main.replace('/cjs', '/esm');
-            if (pkg.exports.import)
-                delete pkg.exports.import;
             pkg.exports['.'].import = `./dist/${type}/index.js`
+            pkg.exports['.'].types = `./dist/${type}/index.d.ts`
             break;
         default:
             throw new Error('Not supported type ' + type);
     }
-    delete pkg.exports['.'].default;
     pkg.exports['.'].default = pkg.exports['.'].require;
+    if (pkg.types && !pkg.exports['.'].types)
+        pkg.exports['.'].types = pkg.types;
+    pkg.exports['.'] = Object.fromEntries(exportOrder.map(k => [k, pkg.exports['.'][k]]));
 
     await fs.writeFile(packageConfig, JSON.stringify(pkg, null, 4));
 }

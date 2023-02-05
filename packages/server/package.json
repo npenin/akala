@@ -2,7 +2,7 @@
     "name": "@akala/server",
     "version": "9.3.2",
     "description": "",
-    "main": "dist/index.js",
+    "main": "./dist/cjs/index.js",
     "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 0",
@@ -80,11 +80,13 @@
     "snyk": true,
     "exports": {
         ".": {
-            "require": "./dist/cjs/index.js",
+            "types": "./dist/esm/index.d.ts",
             "import": "./dist/esm/index.js",
+            "require": "./dist/cjs/index.js",
             "node": "./dist/cjs/index.js",
             "default": "./dist/cjs/index.js"
         }
     },
-    "module": "dist/index.js"
+    "module": "./dist/esm/index.js",
+    "types": "./dist/cjs/index.d.ts"
 }
