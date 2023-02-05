@@ -2,8 +2,8 @@
     "name": "@akala/client",
     "version": "6.2.2",
     "description": "",
-    "main": "dist/esm/index.js",
-    "types": "dist/esm/index.d.ts",
+    "main": "./dist/cjs/index.js",
+    "types": "./dist/cjs/index.d.ts",
     "type": "module",
     "private": true,
     "scripts": {
@@ -50,11 +50,12 @@
     },
     "exports": {
         ".": {
-            "require": "./dist/cjs/index.js",
+            "types": "./dist/esm/index.d.ts",
             "import": "./dist/esm/index.js",
+            "require": "./dist/cjs/index.js",
             "node": "./dist/cjs/index.js",
             "default": "./dist/cjs/index.js"
         }
     },
-    "module": "dist/esm/index.js"
+    "module": "./dist/esm/index.js"
 }

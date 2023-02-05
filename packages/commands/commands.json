@@ -256,6 +256,36 @@
             }
         },
         {
+            "name": "local",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/esm/cli/local.js",
+                    "source": "src/cli/local.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "context.logger",
+                        "options.path",
+                        "options.args"
+                    ],
+                    "usage": "local <path> [...args]",
+                    "options": {
+                        "path": {
+                            "normalize": true
+                        }
+                    }
+                }
+            }
+        },
+        {
             "name": "module",
             "config": {
                 "fs": {

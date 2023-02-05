@@ -16,9 +16,12 @@ export type entry =
         resourcetype?: 'collection';
     }
 
-export default async function propfind(this: State, http: Http, route: string, properties: (keyof entry)[], depth?: number): Promise<entry[]>
+export default async function propfind(this: State, route: string, body: string, depth?: number): Promise<entry[]>
 {
     const cwd = await fs.stat(path.join(this.root, route));
+
+    const obj = new XMLParser({}).parse(body);
+
     if (cwd.isDirectory())
     {
         return mapAsync(await fs.readdir(path.join(this.root, route), { withFileTypes: true }), async p =>

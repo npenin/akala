@@ -1,8 +1,8 @@
 {
     "name": "@akala/config",
     "version": "2.2.2",
-    "main": "dist/index.js",
-    "types": "dist/esm/index.d.ts",
+    "main": "./dist/cjs/index.js",
+    "types": "./dist/cjs/index.d.ts",
     "author": "Nicolas Penin <nicolas.penin@dragon-angel.fr>",
     "license": "BSD-3-Clause",
     "funding": "https://github.com/npenin/akala?sponsor=1",
@@ -37,11 +37,12 @@
     "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
     "exports": {
         ".": {
-            "require": "./dist/cjs/index.js",
+            "types": "./dist/esm/index.d.ts",
             "import": "./dist/esm/index.js",
+            "require": "./dist/cjs/index.js",
             "node": "./dist/cjs/index.js",
             "default": "./dist/cjs/index.js"
         }
     },
-    "module": "dist/index.js"
+    "module": "./dist/esm/index.js"
 }

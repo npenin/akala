@@ -1,8 +1,8 @@
 {
     "name": "@akala/commands",
     "version": "5.2.2",
-    "main": "dist/cjs/index.js",
-    "types": "dist/esm/index.d.ts",
+    "main": "./dist/cjs/index.js",
+    "types": "./dist/cjs/index.d.ts",
     "repository": "https://github.com/npenin/akala",
     "homepage": "https://akala.js.org/commands",
     "author": "npenin",
@@ -66,11 +66,12 @@
     "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
     "exports": {
         ".": {
-            "require": "./dist/cjs/index.js",
+            "types": "./dist/esm/index.d.ts",
             "import": "./dist/esm/index.js",
+            "require": "./dist/cjs/index.js",
             "node": "./dist/cjs/index.js",
             "default": "./dist/cjs/index.js"
         }
     },
-    "module": "dist/esm/index.js"
+    "module": "./dist/esm/index.js"
 }

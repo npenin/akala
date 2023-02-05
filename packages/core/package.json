@@ -11,9 +11,9 @@
     "exports": {
         ".": {
             "types": "./dist/esm/index.d.ts",
+            "import": "./dist/esm/index.js",
             "require": "./dist/cjs/index.js",
             "node": "./dist/cjs/index.js",
-            "import": "./dist/esm/index.js",
             "default": "./dist/cjs/index.js"
         },
         "./expressions": {
@@ -24,8 +24,8 @@
             "default": "./dist/cjs/parser/expressions/index.js"
         }
     },
-    "main": "dist/cjs/index.js",
-    "module": "dist/esm/index.js",
+    "main": "./dist/cjs/index.js",
+    "module": "./dist/esm/index.js",
     "funding": "https://github.com/npenin/akala?sponsor=1",
     "repository": {
         "type": "git",
@@ -43,7 +43,7 @@
         "source-map-support": "^0.5.21",
         "typescript": "^4.9.4"
     },
-    "types": "dist/esm/index.d.ts",
+    "types": "./dist/cjs/index.d.ts",
     "dependencies": {
         "debug": "^4.3.4",
         "orchestrator": "^0.3.8",
