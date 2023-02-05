@@ -1,4 +1,4 @@
-#  (2023-02-03)
+#  (2023-02-05)
 
 
 ### Bug Fixes
@@ -6,6 +6,7 @@
 * add node as an export condition 4aa41a8
 * move to ESM 6ef0335
 * normalized modules to work in esm and cjs 88ffcca
+* update package definitions 300a978
 
 
 ### Features
