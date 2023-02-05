@@ -1,4 +1,4 @@
-#  (2023-02-02)
+#  (2023-02-03)
 
 
 ### Bug Fixes
@@ -17,6 +17,7 @@
 * add missing package required property ba0c9df
 * add missing proxy command to establish the bridge 9596ae9
 * add more logs 02b939a
+* add node as an export condition 4aa41a8
 * add pm processor when proxying 3dbeb5e
 * add preAction before displaying usage 1316b59
 * add processCommand as exported function 6f3e8d6
