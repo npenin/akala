@@ -1,4 +1,4 @@
-#  (2023-02-03)
+#  (2023-02-05)
 
 
 ### Bug Fixes
@@ -8,6 +8,7 @@
 * normalized modules to work in esm and cjs 88ffcca
 * typing 8851307
 * update dependencies and regenerate metadata 0c83667
+* update package definitions 300a978
 
 
 ### Features
