@@ -23,22 +23,21 @@ async function x(type, tsconfigPath, packageConfig)
     switch (type)
     {
         case 'cjs':
-            pkg.exports['.'].require = `./dist/${type}/index.js`
+            pkg.exports['.'].require = pkg.main;
             pkg.main = pkg.exports['.'].node = pkg.exports['.'].require;
-            pkg.types = pkg.exports['.'].require.replace(/\.js$/, '.d.ts');
+            pkg.types = pkg.main.replace(/\.js$/, '.d.ts')
             break;
         case 'esm':
             if (pkg.main)
                 pkg.module = pkg.main.replace('/cjs', '/esm');
             pkg.exports['.'].import = `./dist/${type}/index.js`
-            pkg.exports['.'].types = `./dist/${type}/index.d.ts`
+            pkg.exports['.'].types = pkg.exports['.'].import.replace(/\.js/, '.d.ts');
             break;
         default:
             throw new Error('Not supported type ' + type);
     }
     pkg.exports['.'].default = pkg.exports['.'].require;
-    if (pkg.types && !pkg.exports['.'].types)
-        pkg.exports['.'].types = pkg.types;
+    // if (pkg.types && !pkg.exports['.'].types)
     pkg.exports['.'] = Object.fromEntries(exportOrder.map(k => [k, pkg.exports['.'][k]]));
 
     await fs.writeFile(packageConfig, JSON.stringify(pkg, null, 4));
