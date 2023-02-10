@@ -1,4 +1,4 @@
-#  (2023-02-05)
+#  (2023-02-10)
 
 
 ### Bug Fixes
@@ -54,6 +54,7 @@
 * bump dependent 5e89235
 * bump dependents proper references f734b61
 * cannot read undefined config object 0cc01be
+* cjs build d3e9a4e
 * cleanup $disconnect registration on ready 4aaf9bd
 * Cli implementation a6c7103
 * cli parsing a28c8fe
@@ -87,6 +88,8 @@
 * discover implementation 3502bed
 * display for pmSocket config info c3b908b
 * docker build cfdaf4e
+* embrace esm even more 3e7d10a
+* embrace esm even more b3b8e9d
 * ensure vanilla leverages generators 0aedf98
 * enumerate on configuration objects a61e720
 * error flow in composite middleware ec36174
@@ -237,6 +240,7 @@
 * remove import of removed dependency 8a11cef
 * remove over proxyfying bc948b3
 * remove over proxyfying 5da8a29
+* remove require call 6f09130
 * remove stateless 2de9622
 * remove triple-beam dependency c44bd2e
 * remove winston dependency 3dcad68
@@ -353,6 +357,7 @@
 * add custom inject in jsonrpc processor 4fc1720
 * add distinct helpers dda8544
 * add env to get command name b744175
+* add env to injectables 59915ab
 * add extends support df13246
 * add ignore failure support f9929cf
 * add init command 4ca928f
