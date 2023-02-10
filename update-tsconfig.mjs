@@ -24,23 +24,30 @@ async function x(type, tsconfigPath, packageConfig)
     {
         case 'cjs':
             pkg.exports['.'].require = pkg.main;
-            pkg.main = pkg.exports['.'].node = pkg.exports['.'].require;
-            pkg.types = pkg.main.replace(/\.js$/, '.d.ts')
+            pkg.main = pkg.exports['.'].require;
+            pkg.types = pkg.typings = pkg.main.replace(/\.js$/, '.d.ts')
+            delete pkg.exports['.'].node;
             break;
         case 'esm':
             if (pkg.main)
                 pkg.module = pkg.main.replace('/cjs', '/esm');
             pkg.exports['.'].import = `./dist/${type}/index.js`
             pkg.exports['.'].types = pkg.exports['.'].import.replace(/\.js/, '.d.ts');
+            // pkg.exports['.'].types = pkg.exports['.'].import.replace(/\.js/, '.d.ts');
             break;
         default:
             throw new Error('Not supported type ' + type);
     }
     pkg.exports['.'].default = pkg.exports['.'].require;
     // if (pkg.types && !pkg.exports['.'].types)
+    pkg.type = 'module';
     pkg.exports['.'] = Object.fromEntries(exportOrder.map(k => [k, pkg.exports['.'][k]]));
-
     await fs.writeFile(packageConfig, JSON.stringify(pkg, null, 4));
+    await fs.mkdir(path.join(path.dirname(tsconfigPath), config.compilerOptions.outDir), { recursive: true });
+    // if (type == 'esm')
+    //     await fs.writeFile(path.join(path.dirname(tsconfigPath), config.compilerOptions.outDir, "package.json"), JSON.stringify({ type: 'module' }, null, 4))
+    // else
+    //     await fs.writeFile(path.join(path.dirname(tsconfigPath), config.compilerOptions.outDir, "package.json"), JSON.stringify({ type: 'commonjs' }, null, 4))
 }
 
 const cjs = await import('./packages/tsconfig.cjs.json', { assert: { type: 'json' } });
