@@ -40,7 +40,7 @@ jobs:
         with:
           eslint: true
       - name: publish updates
-        run: node packages/automate/dist/cjs/cli.js --loader @akala/automate-yamlloader --file @akala/semantic-release/publish.yml --verbose=silly
+        run: node packages/automate/dist/esm/cli.js --loader @akala/automate-yamlloader --file @akala/semantic-release/publish.yml --verbose=silly
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
