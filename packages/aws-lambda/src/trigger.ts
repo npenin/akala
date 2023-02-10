@@ -28,10 +28,10 @@ export const trigger = new Trigger('aws', (container, config: { [key: string]: s
                     return Promise.reject(new Error('command not found'));
 
                 if (cmd.config[record.eventSource])
-                    return Processors.Local.execute(cmd, (...args) => container.dispatch(cmd, { _trigger: record.eventSource, context, event: record, param: args }), container, { context, event, param: args, _trigger: record.eventSource })
+                    return Processors.Local.execute(cmd, (...args) => container.dispatch(cmd, { _trigger: record.eventSource, context, env: process.env, event: record, param: args }), container, { context, event, param: args, _trigger: record.eventSource })
 
                 if (cmd.config.aws)
-                    return Processors.Local.execute(cmd, (...args) => container.dispatch(cmd, { _trigger: 'aws', context, event: record, param: args }), container, { context, event, param: args, _trigger: 'aws' })
+                    return Processors.Local.execute(cmd, (...args) => container.dispatch(cmd, { _trigger: 'aws', context, env: process.env, event: record, param: args }), container, { context, event, param: args, _trigger: 'aws' })
 
                 return Promise.reject(new Error('AWS command mapping not found for command ' + cmd.name));
 
@@ -50,7 +50,7 @@ export const trigger = new Trigger('aws', (container, config: { [key: string]: s
                 return Promise.reject(new Error('command not found'));
 
             if (cmd.config.aws)
-                return Promise.resolve(Processors.Local.execute(cmd, (...args) => container.dispatch(cmd, { _trigger: 'aws', context, event, param: args }), container, { context, event, param: args, _trigger: 'aws' }))
+                return Promise.resolve(Processors.Local.execute(cmd, (...args) => container.dispatch(cmd, { _trigger: 'aws', context, env: process.env, event, param: args }), container, { context, event, param: args, _trigger: 'aws' }))
 
             return Promise.reject(new Error('AWS command mapping not found for command ' + cmd.name));
         }
