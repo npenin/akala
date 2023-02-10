@@ -31,8 +31,8 @@ jobs:
           sudo apt-get install yarn
       - name: Install Packages
         run: yarn install
-      # - name: Compile CJS
-      #   run: yarn tsc -b packages/tsconfig.cjs.json
+      - name: Compile CJS
+        run: yarn tsc -b packages/tsconfig.cjs.json
       - name: Compile ESM
         run: yarn tsc -b packages/tsconfig.esm.json
       - name: Linting
