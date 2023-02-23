@@ -12,4 +12,4 @@ Up to here, all previously mentioned layers are usable from either client or ser
 - [server](server): node layer. It basically supports server side command triggers like http (This permits to have commands being served by http).
 - [client](client): browser layer heavily inspired from angularjs and angular from a concept perspective, but with a radically different usage approach. 
 
-![Architecture Diagram](architecture.png)
+![Architecture Diagram](architecture.svg)
