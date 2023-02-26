@@ -1,16 +1,33 @@
 {
     "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
+    "": {
+        "inject": [
+            "param.0",
+            "param.1",
+            "param.2",
+            "param.3"
+        ]
+    },
     "cli": {
         "inject": [
             "options.name",
-            "param.0",
-            "param.1",
-            "param.2"
+            "options.commands",
+            "options.metadataFile",
+            "options.typescriptFile"
         ],
+        "usage": "add-script <commands> [typescriptFile] [metadataFile]",
         "options": {
             "name": {
                 "needsValue": true
             }
         }
+    },
+    "doc": {
+        "description": "Adds scripts generate (and generate-metadata if `typescriptFile` is present) to the closest package.json\nif `name` is provided, generated scripts names are suffixed with the provided name",
+        "inject": [
+            "name of the container to be used",
+            "path to the folder containing the commands",
+            "path to the metadata file to get generated"
+        ]
     }
 }

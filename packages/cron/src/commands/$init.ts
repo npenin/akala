@@ -1,6 +1,4 @@
-import { sidecar } from '@akala/pm'
-import PubSubContainer from '@akala/pubsub'
-import { State } from '../state'
+import { State } from '../state.js'
 
 export default async function (this: State)
 {

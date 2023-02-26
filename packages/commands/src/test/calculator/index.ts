@@ -1,5 +1,5 @@
-import * as cmds from "../../index";
-import { configure } from "../../decorators";
+import * as cmds from "../../index.js";
+import { configure } from "../../decorators.js";
 
 export type state = { value: number };
 

@@ -6,14 +6,15 @@
 			"args": [
 				"tsc",
 				"-b",
-				"packages/tsconfig.json",
+				"packages/tsconfig.esm.json",
 				"--watch"
 			],
 			"problemMatcher": [
 				"$tsc-watch"
 			],
 			"group": "build",
-			"label": "yarn tsc: watch - packages/tsconfig.json"
+			"isBackground": true,
+			"label": "yarn tsc: watch - packages/tsconfig.esm.json"
 		},
 		{
 			"command": "yarn",
@@ -41,13 +42,13 @@
 		},
 		{
 			"type": "typescript",
-			"tsconfig": "packages/tsconfig.json",
+			"tsconfig": "packages/tsconfig.esm.json",
 			"option": "watch",
 			"problemMatcher": [
 				"$tsc-watch"
 			],
 			"group": "build",
-			"label": "tsc: watch - packages/tsconfig.json"
+			"label": "tsc: watch - packages/tsconfig.esm.json"
 		}
 	]
 }

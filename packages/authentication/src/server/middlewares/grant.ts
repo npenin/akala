@@ -1,7 +1,7 @@
 import { ErrorMiddleware, Middleware, MiddlewareComposite, MiddlewarePromise } from '@akala/core';
 import { Request, Response } from '@akala/server'
-import { Client } from '../../model/client';
-import { AuthenticateMiddleware, BasicAuthenticateMiddleware } from './authenticate';
+import { Client } from '../../model/client.js';
+import { AuthenticateMiddleware, BasicAuthenticateMiddleware } from './authenticate.js';
 
 export const EINVREQ = 'invalid_request';
 export const EINVCLI = 'invalid_client';
@@ -22,7 +22,21 @@ export class OAuthError extends Error
     }
 }
 
-export interface TokenResponse
+export interface QueryExchangeResponse<T>
+{
+    query: T
+}
+
+export interface FragmentExchangeResponse<T>
+{
+    fragment: T
+}
+export interface FormPostExchangeResponse<T>
+{
+    body: T
+}
+
+export interface AccessTokenResponse
 {
     access_token: string;
     token_type: string;
@@ -31,6 +45,10 @@ export interface TokenResponse
     scope: string[];
 }
 
+export interface CodeResponse
+{
+
+}
 
 export class OAuthErrorFormatter implements ErrorMiddleware<[unknown, Response]>
 {
@@ -59,20 +77,20 @@ export class ExchangeMiddleware implements Middleware<[Request, Response]>
 {
     basicAuthenticator: AuthenticateMiddleware<Client>;
 
-    constructor(private clientValidator: (clientId, clientSecret) => Promise<Client>)
+    constructor(private clientValidator: (clientId: string, clientSecret: string) => Promise<Client>)
     {
         this.basicAuthenticator = new BasicAuthenticateMiddleware(clientValidator);
     }
 
     static grants: { [key: string]: MiddlewareComposite<[string, string, Request]> };
-    public static register(grantType: string, codeValidator: (code: string, clientId: string, req: Request) => Promise<void>, tokenBuilder: (clientId: string) => Promise<TokenResponse>): void
+    public static register(grantType: string, codeValidator: (code: string, clientId: string, req: Request) => Promise<void>, tokenBuilder: (code: string, clientId: string, req: Request) => Promise<AccessTokenResponse>): void
     {
         this.grants[grantType] = this.grants[grantType] || new MiddlewareComposite<[string, string, Request]>(grantType);
         this.grants[grantType].useMiddleware({
-            handle: (_code, _clientId, req) =>
+            handle: (code, clientId, req) =>
             {
-                return codeValidator(_code, _clientId, req).then(() =>
-                    tokenBuilder(_clientId).then(
+                return codeValidator(code, clientId, req).then(() =>
+                    tokenBuilder(code, clientId, req).then(
                         token => Promise.reject(token),
                         (err) => Promise.resolve(err)
                     ),
@@ -85,7 +103,7 @@ export class ExchangeMiddleware implements Middleware<[Request, Response]>
     {
         const grantType = req.query.get('grant_type');
         if (!ExchangeMiddleware.grants[grantType])
-            throw new OAuthError(ENOGRANT);
+            return new OAuthError(ENOGRANT);
         return this.basicAuthenticator.validate(req).catch((err) =>
         {
             if (err)

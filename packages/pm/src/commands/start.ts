@@ -1,17 +1,18 @@
-import { Container, Processors, Metadata, registerCommands, Cli } from "@akala/commands";
-import State, { RunningContainer, SidecarMetadata } from '../state';
+import { Container, Processors, Metadata, Cli, updateCommands } from "@akala/commands";
+import State, { RunningContainer, SidecarMetadata } from '../state.js';
 import { spawn, ChildProcess, StdioOptions } from "child_process";
 import { MessagePort, Worker } from "worker_threads";
-import pmContainer from '../container';
+import pmContainer from '../container.js';
 import * as jsonrpc from '@akala/json-rpc-ws'
 import { eachAsync, logger } from "@akala/core";
 import { NewLinePrefixer } from "../new-line-prefixer.js";
-import { SocketAdapterEventMap } from "@akala/json-rpc-ws";
-import { CliContext, ErrorWithStatus } from "@akala/cli";
-import getRandomName from "./name";
+import { CliContext } from "@akala/cli";
+import { ErrorWithStatus } from "@akala/core";
+import getRandomName from "./name.js";
 import { ProxyConfiguration } from "@akala/config";
+import { IpcAdapter } from "../ipc-adapter.js";
 
-export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, context?: CliContext<{ new?: boolean, name: string, inspect?: boolean, verbose?: boolean, wait?: boolean }>): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
+export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, context?: CliContext<{ new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: boolean, wait?: boolean }>): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
 {
     let args: string[];
 
@@ -19,7 +20,6 @@ export default async function start(this: State, pm: pmContainer.container & Con
         context.options.name = getRandomName();
     else if (!context.options.name)
         context.options.name = name;
-
 
     if (this.isDaemon)
     {
@@ -35,7 +35,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
         if (container && container.running)
             throw new Error(container.name + ' is already started');
 
-        const args = [];
+        args = [];
 
         if (!def && name != 'pm')
         {
@@ -54,10 +54,11 @@ export default async function start(this: State, pm: pmContainer.container & Con
         if (name != 'pm')
             throw new ErrorWithStatus(40, 'this command needs to run through daemon process');
 
-        args = [...context.args, ...Object.entries(context.options).map(entries => ['--' + entries[0] + '=' + entries[1]]).flat()];
+        args = [...context.args, ...Object.entries(context.options).filter(p => ['inspect'].indexOf(p[0]) == -1).map(entries => ['--' + entries[0] + '=' + entries[1]]).flat()];
     }
 
-    args.unshift(require.resolve('../fork'))
+    if (!def?.type || def.type == 'nodejs')
+        args.unshift(require.resolve('../fork'))
 
     if (context.options && context.options.inspect)
         args.unshift('--inspect-brk');
@@ -71,7 +72,10 @@ export default async function start(this: State, pm: pmContainer.container & Con
     let cp: ChildProcess | Worker;
     if (!this.isDaemon)
     {
-        cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: true, stdio: ['ignore', 'ignore', 'ignore', 'ipc'] });
+        if (context.options.keepAttached)
+            cp = spawn(process.execPath, args, { cwd: process.cwd(), stdio: ['inherit', 'inherit', 'inherit', 'ipc'] });
+        else
+            cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: true, stdio: ['ignore', 'ignore', 'ignore', 'ipc'] });
         cp.on('exit', function (...args: unknown[])
         {
             console.log(args);
@@ -85,7 +89,8 @@ export default async function start(this: State, pm: pmContainer.container & Con
         {
             cp.on('disconnect', function ()
             {
-                cp.unref();
+                if (!context.options.keepAttached)
+                    cp.unref();
                 console.log('pm started');
                 resolve();
             })
@@ -93,7 +98,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
     }
     else
     {
-        if (!container && this.config.containers[name]?.dependencies?.length)
+        if (!container && def.dependencies?.length)
         {
             var missingDeps = def.dependencies.filter(d => !this.config.mapping[d]);
             if (missingDeps.length > 0)
@@ -102,65 +107,62 @@ export default async function start(this: State, pm: pmContainer.container & Con
             await eachAsync(def.dependencies, (dep) => pm.dispatch('start', dep, { name: context.options.name + '-' + dep, wait: true }));
         }
 
-        cp = new Worker(args[0], { argv: args, stderr: true, stdout: true });
         // cp = spawn(process.execPath, args, { cwd: process.cwd(), env: Object.assign({ DEBUG_COLORS: true }, process.env), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
+        switch (def?.type)
+        {
+            default:
+                throw new ErrorWithStatus(400, `container with type ${this.config.containers[name]?.type} are not yet supported`);
+            case 'worker':
+                cp = new Worker(args[0], { argv: args, stderr: true, stdout: true });
+                break;
+            case 'nodejs':
+                cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: !context.options.keepAttached, env: Object.assign({ DEBUG_COLORS: true }, process.env), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
+                break;
+        }
+        // cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: !context.options.keepAttached, env: Object.assign({ DEBUG_COLORS: true }, process.env), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
         cp.stderr?.pipe(new NewLinePrefixer(context.options.name + ' ', { useColors: true })).pipe(process.stderr);
         cp.stdout?.pipe(new NewLinePrefixer(context.options.name + ' ', { useColors: true })).pipe(process.stdout);
 
         if (!container || !container.running)
         {
             var adapter: jsonrpc.SocketAdapter;
-            if (cp instanceof Worker)
-                adapter = new MessagePortAdapter(cp);
-            else
-                adapter = new IpcAdapter(cp);
-            const processor = new Processors.JsonRpc(new jsonrpc.Connection(adapter, {
-                type: 'client', getHandler(method: string)
-                {
-                    log.debug(method);
-                    return async function (params: jsonrpc.SerializableObject, reply)
-                    {
-                        log.debug(params);
-                        try
-                        {
-                            if (!params)
-                                params = { param: [] };
-                            if (!params._trigger || params._trigger == 'proxy')
-                                params._trigger = 'jsonrpc';
-                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                            params.process = container as any;
-                            const result = await pm.dispatch(method, params) as jsonrpc.PayloadDataType<void>;
-                            log.debug(result);
-                            reply(null, result);
-                        }
-                        catch (error)
-                        {
-                            log.debug(error);
-                            reply(error);
-                        }
-                    }
-                }
-                , disconnected()
-                {
-                    console.warn(`${context.options.name} has disconnected`);
-                    container.running = null;
-                }
-            }), true);
+            switch (def.type)
+            {
+                case 'worker':
+                    adapter = new MessagePortAdapter(cp as Worker);
+                    break;
+                case 'nodejs':
+                    adapter = new IpcAdapter(cp as ChildProcess);
+                    break;
+            }
 
-            if (container)
-                container = new Container(context.options.name, null, processor) as RunningContainer;
-            else
-                container = new Container(context.options.name, null, processor) as RunningContainer;
+            const connection = Processors.JsonRpc.getConnection(adapter, pm, (params) =>
+            {
+                params.process = cp;
+                Object.defineProperty(params, 'connectionAsContainer', Object.assign({ value: container }));
+            });
+            const processor = new Processors.JsonRpc(connection, true);
+
+            container = new Container(context.options.name, null) as RunningContainer;
+
+            container.processor.useMiddleware(20, new Processors.JsonRpc(connection, true));
+
+            connection.on('close', function disconnected()
+            {
+                console.warn(`${context.options.name} has disconnected`);
+                container.running = false;
+            });
 
             if (def?.commandable)
-                pm.register(container);
+                pm.register(container, def?.stateless);
 
             this.processes[context.options.name] = container;
         }
         container.process = cp;
+
         Object.assign(container, def, instanceConfig);
-        container.ready = new jsonrpc.Deferred();
-        if (container.commandable)
+        container.ready = new Deferred();
+        if (container.commandable)// && !container.stateless)
         {
             container.unregister(Cli.Metadata.name);
             container.register(Metadata.extractCommandMetadata(Cli.Metadata));
@@ -170,89 +172,41 @@ export default async function start(this: State, pm: pmContainer.container & Con
             return container.dispatch('$metadata').then((metaContainer: Metadata.Container) =>
             {
                 // console.log(metaContainer);
-                registerCommands(metaContainer.commands, null, container);
+                updateCommands(metaContainer.commands, null, container);
                 pm.register(name, container, true);
             });
-
-        })
+        }, () =>
+        {
+            console.warn(`${context.options.name} has disconnected`);
+            container.running = false;
+        });
 
         container.running = true;
+        let buffer = [];
         cp.on('exit', function ()
         {
             (container as RunningContainer).running = false;
-            pm.unregister(container.name);
-            container.ready.reject(new Error('program stopped'));
+            if (!container.stateless)
+            {
+                pm.unregister(container.name);
+                container.ready.reject(new Error('program stopped: ' + buffer?.join('')));
+            }
         });
         if (context.options.wait && container.commandable)
-            await container.ready;
+        {
+            function gather(chunk: string)
+            {
+                buffer.push(chunk);
+            }
+            cp.stderr.on('data', gather);
+            await container.ready.finally(() =>
+            {
+                buffer = null;
+                cp.stderr.off('data', gather);
+            });
+        }
         return { execPath: process.execPath, args: args, cwd: process.cwd(), stdio: ['inherit', 'inherit', 'inherit', 'ipc'], shell: false, windowsHide: true };
     }
-}
-
-export class IpcAdapter implements jsonrpc.SocketAdapter
-{
-    get open(): boolean { return !!this.cp.pid }
-    close(): void
-    {
-        this.cp.disconnect();
-    }
-    send(data: string): void
-    {
-        if (this.cp.send)
-            this.cp.send(data + '\n');
-        else
-            console.warn(`process ${this.cp.pid} does not support send over IPC`);
-    }
-    on<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
-    {
-        switch (event)
-        {
-            case 'message':
-                this.cp.on('message', handler);
-                break;
-            case 'open':
-                handler(null);
-                break;
-            case 'close':
-                this.cp.on('disconnect', handler);
-                break;
-        }
-    }
-
-    once<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
-    {
-        switch (event)
-        {
-            case 'message':
-                this.cp.once('message', handler);
-                break;
-            case 'open':
-                handler(null);
-                break;
-            case 'close':
-                this.cp.once('disconnect', () => handler(null));
-                break;
-        }
-    }
-
-    constructor(private cp: ChildProcess | NodeJS.Process)
-    {
-    }
-
-    // _write(chunk: string | Buffer, encoding: string, callback: (error?: any) => void)
-    // {
-    //     // The underlying source only deals with strings.
-    //     if (Buffer.isBuffer(chunk))
-    //         chunk = chunk.toString('utf8');
-    //     if (this.cp.send)
-    //         this.cp.send(chunk + '\n', callback);
-    //     else
-    //         callback(new Error('there is no send method on this process'));
-    // }
-
-    // _read()
-    // {
-    // }
 }
 
 export class MessagePortAdapter implements jsonrpc.SocketAdapter

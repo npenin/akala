@@ -1,6 +1,6 @@
 import { Container } from "@akala/commands";
-import { DateRequest, Job, JobCommand, JobLike, parseCronSyntax } from "..";
-import { Schedule, State } from "../state";
+import { Job } from "../index.js";
+import { State } from "../state.js";
 
 export default function add(this: State, name: string, container: Container<void>, cmdNameToTrigger: string)
 {

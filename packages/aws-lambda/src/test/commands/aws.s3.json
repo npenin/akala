@@ -1,0 +1,23 @@
+{
+    "": {
+        "inject": [
+            "event",
+            "context"
+        ]
+    },
+    "http": {
+        "route": "/",
+        "method": "get",
+        "inject": [
+            "event",
+            "context"
+        ]
+    },
+    "aws:s3": {
+        "inject": [
+            "event",
+            "context"
+        ]
+    },
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json"
+}

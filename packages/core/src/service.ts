@@ -1,8 +1,8 @@
-import { injectWithName, registerFactory } from './global-injector'
+import { injectWithName, registerFactory } from './global-injector.js'
 
 export function service(name: string, ...toInject: string[])
 {
-    return function (target: any)
+    return function (target: new (...args: unknown[]) => unknown)
     {
         let instance = null;
         if (toInject == null || toInject.length == 0 && target.length > 0)

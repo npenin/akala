@@ -1,0 +1,30 @@
+{
+    "name": "@akala/webdav",
+    "version": "0.0.14",
+    "private": true,
+    "main": "./dist/cjs/index.js",
+    "types": "./dist/cjs/index.d.ts",
+    "bin": "./dist/cjs/cli.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\"",
+        "generate": "ac generate dist/esm/commands commands.json --name @akala/webdav"
+    },
+    "dependencies": {
+        "@akala/core": "workspace:^",
+        "fast-xml-parser": "^4.0.15"
+    },
+    "devDependencies": {
+        "@akala/commands": "workspace:^"
+    },
+    "exports": {
+        ".": {
+            "types": "./dist/esm/index.d.ts",
+            "import": "./dist/esm/index.js",
+            "require": "./dist/cjs/index.js",
+            "default": "./dist/cjs/index.js"
+        }
+    },
+    "module": "./dist/esm/index.js",
+    "typings": "./dist/cjs/index.d.ts"
+}

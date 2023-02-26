@@ -1,45 +1,54 @@
 {
-  "name": "@akala/core",
-  "version": "8.1.2",
-  "description": "",
-  "main": "dist/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0",
-    "prepack": "tsc -p .",
-    "build": "tsc -p ."
-  },
-  "funding": "https://github.com/npenin/akala?sponsor=1",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/npenin/akala.git"
-  },
-  "homepage": "https://akala.js.org/core",
-  "author": "npenin",
-  "license": "BSD-3-Clause",
-  "devDependencies": {
-    "@types/debug": "^4.1.7",
-    "@types/mock-require": "^2.0.1",
-    "@types/node": "^16.11.28",
-    "@types/node-fetch": "^2.6.1",
-    "@types/orchestrator": "0.3.3",
-    "@types/ws": "^8.5.3",
-    "express": "^4.17.3",
-    "merge2": "^1.4.1",
-    "mocha": "^9.2.2",
-    "source-map-support": "^0.5.21",
-    "typescript": "^4.6.3"
-  },
-  "types": "dist/index.d.ts",
-  "dependencies": {
-    "@akala/json-rpc-ws": "workspace:^",
-    "browser-process-hrtime": "^1.0.0",
-    "debug": "^4.3.4",
-    "isomorphic-fetch": "^3.0.0",
-    "mock-require": "^3.0.3",
-    "orchestrator": "^0.3.8",
-    "path-to-regexp": "^6.2.0",
-    "reflect-metadata": "^0.1.13",
-    "ws": "^8.5.0"
-  },
-  "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43"
+    "name": "@akala/core",
+    "version": "10.2.6",
+    "description": "",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 0",
+        "prepack": "tsc -p tsconfig.esm.json",
+        "build": "tsc -p tsconfig.esm.json"
+    },
+    "type": "module",
+    "exports": {
+        ".": {
+            "types": "./dist/esm/index.d.ts",
+            "import": "./dist/esm/index.js",
+            "require": "./dist/cjs/index.js",
+            "default": "./dist/cjs/index.js"
+        },
+        "./expressions": {
+            "types": "./dist/cjs/parser/expressions/index.d.ts",
+            "node": "./dist/cjs/parser/expressions/index.js",
+            "import": "./dist/esm/parser/expressions/index.js",
+            "require": "./dist/cjs/parser/expressions/index.js",
+            "default": "./dist/cjs/parser/expressions/index.js"
+        }
+    },
+    "main": "./dist/cjs/index.js",
+    "module": "./dist/esm/index.js",
+    "funding": "https://github.com/npenin/akala?sponsor=1",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/npenin/akala.git"
+    },
+    "homepage": "https://akala.js.org/core",
+    "author": "npenin",
+    "license": "BSD-3-Clause",
+    "devDependencies": {
+        "@types/debug": "^4.1.7",
+        "@types/node": "^18.11.18",
+        "@types/orchestrator": "0.3.3",
+        "merge2": "^1.4.1",
+        "mocha": "^10.2.0",
+        "source-map-support": "^0.5.21",
+        "typescript": "^4.9.4"
+    },
+    "types": "./dist/cjs/index.d.ts",
+    "dependencies": {
+        "debug": "^4.3.4",
+        "orchestrator": "^0.3.8",
+        "path-to-regexp": "^6.2.1",
+        "reflect-metadata": "^0.1.13"
+    },
+    "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
+    "typings": "./dist/cjs/index.d.ts"
 }

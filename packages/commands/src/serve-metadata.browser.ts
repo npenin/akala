@@ -1,16 +1,15 @@
 import { IpcNetConnectOpts, NetConnectOpts } from 'net';
 import { platform } from 'os';
 import { join } from 'path';
-import { NetSocketAdapter, ServeOptions } from './cli/serve';
-import { registerCommands } from './generator'
-import { CommandProcessor, ICommandProcessor } from './model/processor';
-import { HttpClient, JsonRpc } from './processors/index';
-import net from 'net'
+import { ServeOptions } from './cli/serve.js';
+import { registerCommands } from './generator.js'
+import { CommandProcessor, ICommandProcessor } from './model/processor.js';
+import { HttpClient, JsonRpc } from './processors/index.js';
 import ws from 'ws'
 import { Injector } from '@akala/core';
-import * as Metadata from './metadata/index';
-import { Container } from './model/container';
-import { CommonConnectionOptions, connect as tlsconnect, SecureContextOptions, TLSSocket } from 'tls'
+import * as Metadata from './metadata/index.js';
+import { Container } from './model/container.js';
+import { CommonConnectionOptions, SecureContextOptions } from 'tls'
 import * as jsonrpc from '@akala/json-rpc-ws';
 
 type TlsConnectOpts = NetConnectOpts & SecureContextOptions & CommonConnectionOptions;
@@ -30,7 +29,7 @@ export interface ConnectionPreference
     preferRemote?: boolean;
     host?: string;
     metadata: Metadata.Container;
-    container?: Container<any>;
+    container?: Container<unknown>;
 }
 
 export async function connectByPreference<T = unknown>(options: ServeMetadata, settings: ConnectionPreference, ...orders: (keyof ServeMetadata)[]): Promise<{ container: Container<T>, processor: ICommandProcessor }>

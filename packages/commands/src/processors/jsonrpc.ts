@@ -1,11 +1,10 @@
 import * as jsonrpcws from '@akala/json-rpc-ws'
-import { CommandProcessor, StructuredParameters } from '../model/processor'
-import { Command } from '../metadata/index';
-import { Container } from '../model/container';
-import { Local } from './local';
+import { CommandProcessor, StructuredParameters } from '../model/processor.js'
+import { Command } from '../metadata/index.js';
+import { Container } from '../model/container.js';
+import { Local } from './local.js';
 import { Readable } from 'stream';
-import { Logger, MiddlewarePromise, OptionsResponse, SpecialNextParam } from '@akala/core';
-import { Connection } from '@akala/json-rpc-ws';
+import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam, SerializableObject } from '@akala/core';
 
 type OnlyArray<T> = Extract<T, unknown[]>;
 
@@ -29,19 +28,23 @@ export class JsonRpc extends CommandProcessor
         });
     }
 
-    public static getConnection(socket: jsonrpcws.SocketAdapter, container?: Container<unknown>, log?: Logger): jsonrpcws.Connection
+    public static getConnection(socket: jsonrpcws.SocketAdapter, container?: Container<unknown>, otherInject?: (params: StructuredParameters<SerializableObject[]>) => void, log?: Logger): jsonrpcws.Connection
     {
         const error = new Error();
+        var containers: Container<unknown>[] = [];
+        if (container)
+            containers.push(container);
+
         const connection = new jsonrpcws.Connection(socket, {
             type: 'client',
             disconnected()
             {
-                if (container)
+                Promise.all(containers.map(async c =>
                 {
-                    const cmd = container.resolve('$disconnect');
+                    const cmd = c.resolve('$disconnect');
                     if (cmd)
-                        container.dispatch(cmd);
-                }
+                        await c.dispatch(cmd);
+                })).then(noop, noop);
             },
             getHandler(method: string)
             {
@@ -52,10 +55,10 @@ export class JsonRpc extends CommandProcessor
                 {
                     container.inspect();
                     error.message = `Command with name ${method} could not be found on ${socket.constructor.name}`;
-                    throw error;
+                    return null;
                 }
 
-                return async function (this: Connection, params, reply)
+                return async function (this: jsonrpcws.Connection, params, reply)
                 {
                     try
                     {
@@ -68,59 +71,78 @@ export class JsonRpc extends CommandProcessor
                         if (Array.isArray(params))
                             params = { param: params };
                         if (typeof (params) != 'object' || params instanceof Readable || !params['param'])
-                            params = { param: [params] } as unknown as jsonrpcws.SerializableObject;
+                            params = { param: [params] } as SerializableObject;
 
-                        const getProcessor = () =>
-                        {
-                            return new JsonRpc(this, true);
-                        }
-                        Object.defineProperty(params, 'connection', { enumerable: true, get: getProcessor });
-                        Object.defineProperty(params, 'connectionAsContainer', { enumerable: true, get() { return Container.proxy(container?.name + '-client', getProcessor(), 2) } });
+                        Object.defineProperty(params, 'connection', { configurable: true, enumerable: false, get: getProcessor });
+                        Object.defineProperty(params, 'connectionAsContainer', { configurable: true, enumerable: false, get: getContainer });
+                        Object.defineProperty(params, 'socket', { configurable: true, enumerable: false, value: socket });
+                        if (otherInject)
+                            otherInject(params as StructuredParameters<SerializableObject[]>);
                         if (typeof (params) == 'object' && !params['_trigger'] || params['_trigger'] == 'proxy')
                             params['_trigger'] = 'jsonrpc';
 
-                        const result = await container.dispatch(method, params as StructuredParameters<jsonrpcws.SerializableObject[]>);
+                        const result = await container.dispatch(method, params as StructuredParameters<SerializableObject[]>);
                         reply(null, result as jsonrpcws.PayloadDataType<Readable>);
                     }
                     catch (error)
                     {
+                        if (typeof error === 'undefined')
+                            return;
                         if (log)
                             log.error(error);
                         if (error && typeof error.toJSON == 'function')
                             reply(error.toJSON());
                         else
-                            reply(error && Object.fromEntries(Object.entries(error)) as unknown as jsonrpcws.ErrorPayload['error']);
+                            reply(error);
                     }
                 }
             }
+        });
+        const getProcessor = lazy(() => new JsonRpc(connection, true));
+        const getContainer = lazy(() =>
+        {
+            const c = Container.proxy(container?.name + '-client', getProcessor());
+            containers.push(c);
+            return c;
         });
 
         return connection;
     }
 
-    public handle(_container: Container<any>, command: Command | string, params: StructuredParameters<OnlyArray<jsonrpcws.PayloadDataType<void>>>): MiddlewarePromise
+    public handle(_container: Container<unknown>, command: Command, params: StructuredParameters<OnlyArray<jsonrpcws.PayloadDataType<void>>>): MiddlewarePromise
     {
         return new Promise<Error | SpecialNextParam | OptionsResponse>((resolve, reject) =>
         {
-            if (!this.passthrough && typeof command != 'string')
+            if (!this.passthrough)
             {
-                const inject = command.config?.['']?.inject || command.inject;
+                const inject = command.config?.['']?.inject;
                 if ((inject.length != 1 || inject[0] != '$param') && params._trigger)
                 {
                     params.param = Local.extractParams(command.config?.jsonrpc?.inject || inject)(...params.param);
                 }
             }
-            this.client.sendMethod(typeof command == 'string' ? command : command.name, params as unknown as jsonrpcws.PayloadDataType<Readable>, function (err, result)
+            Promise.all(params.param).then((param) =>
             {
-                if (err)
-                {
-                    resolve(err as unknown as Error);
-                }
+                if (this.client.socket.open)
+                    this.client.sendMethod(typeof command == 'string' ? command : command.name, Object.assign(params, { param, _trigger: undefined }) as SerializableObject, function (err, result)
+                    {
+                        if (err)
+                        {
+                            if (!(err instanceof Error))
+                                resolve(Object.assign(new Error(err.message), err));
+                            else
+                                resolve(err);
+                        }
+                        else
+                            reject(result);
+                    })
                 else
-                    reject(result);
-            });
+                    resolve();
+            }, resolve);
         })
     }
+
+    public get connectionId() { return this.client.id }
 
     constructor(private client: jsonrpcws.BaseConnection<Readable>, private passthrough?: boolean)
     {

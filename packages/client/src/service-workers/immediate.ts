@@ -8,7 +8,7 @@ self.addEventListener('install', function (evt)
     evt.waitUntil(self.skipWaiting());
 })
 
-self.addEventListener('activate', function (evt)
+self.addEventListener('activate', function ()
 {
     self.clients.claim();
 })

@@ -1,8 +1,8 @@
-import { Base } from './base';
+import { Base } from './base.js';
 import debug from 'debug';
 const logger = debug('json-rpc-ws');
-import { SocketAdapter, PayloadDataType, Connection } from './shared-connection';
-import { Error as MyError } from './errors'
+import { SocketAdapter, PayloadDataType, Connection } from './shared-connection.js';
+import { Error as MyError } from './errors.js'
 
 export default abstract class Client<TStreamable> extends Base<TStreamable>
 {

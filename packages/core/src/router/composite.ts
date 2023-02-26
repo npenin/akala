@@ -1,5 +1,5 @@
-import { eachAsync } from '../helpers';
-import { AnyMiddleware, ErrorMiddleware, Middleware, MiddlewareError, MiddlewarePromise, MiddlewareSuccess, OptionsResponse, SpecialNextParam } from './shared';
+import { eachAsync } from '../helpers.js';
+import { AnyMiddleware, ErrorMiddleware, Middleware, MiddlewareError, MiddlewarePromise, MiddlewareResult, MiddlewareSuccess, OptionsResponse } from './shared.js';
 
 
 export function convertToMiddleware<T extends unknown[]>(fn: (...args: T) => Promise<unknown>): Middleware<T>
@@ -52,6 +52,11 @@ export class MiddlewareComposite<T extends unknown[]> implements Middleware<T>, 
         this.name = name;
     }
 
+    public static new<T extends unknown[]>(...middlewares: AnyMiddleware<T>[])
+    {
+        return new MiddlewareComposite<T>().useMiddleware(...middlewares);
+    }
+
     private readonly stack: AnyMiddleware<T>[] = [];
 
     public useMiddleware(...middlewares: AnyMiddleware<T>[]): this
@@ -76,12 +81,12 @@ export class MiddlewareComposite<T extends unknown[]> implements Middleware<T>, 
     }
 
 
-    public async handleError(error: Error | OptionsResponse, ...req: T): MiddlewarePromise
+    public async handleError(error: MiddlewareResult, ...req: T): MiddlewarePromise
     {
         let failed: boolean = !!error;
         try
         {
-            await eachAsync(this.stack, async (middleware, _i, next) =>
+            await eachAsync(this.stack, async (middleware) =>
             {
                 try
                 {
@@ -123,13 +128,13 @@ export class MiddlewareComposite<T extends unknown[]> implements Middleware<T>, 
         let failed: boolean = undefined;
         try
         {
-            await eachAsync(this.stack, async (middleware, _i) =>
+            await eachAsync(this.stack, (middleware) =>
             {
-                try
+                if (failed && isErrorMiddleware(middleware))
                 {
-                    if (failed && isErrorMiddleware(middleware))
+                    return middleware.handleError(error as Error, ...req).then(err =>
                     {
-                        const err = await middleware.handleError(error as Error, ...req);
+
 
                         if (err === 'break')
                             throw err;
@@ -137,10 +142,12 @@ export class MiddlewareComposite<T extends unknown[]> implements Middleware<T>, 
                             error = err;
 
                         failed = true;
-                    }
-                    else if (!failed && isStandardMiddleware(middleware))
+                    })
+                }
+                else if (!failed && isStandardMiddleware(middleware))
+                {
+                    return middleware.handle(...req).then(err =>
                     {
-                        const err = await middleware.handle(...req);
                         if (err === 'break')
                             throw err;
                         if (typeof err != 'string' && typeof err != 'undefined')
@@ -151,14 +158,9 @@ export class MiddlewareComposite<T extends unknown[]> implements Middleware<T>, 
                                 error = err;
                         }
                         failed = err instanceof Error;
-                        return;
-                    }
-                }
-                catch (e)
-                {
-                    throw { success: e };
-                }
 
+                    }).catch(e => Promise.reject({ success: e }))
+                }
             }, true);
             return error;
         }
@@ -216,7 +218,7 @@ export class MiddlewareCompositeWithPriority<T extends unknown[]> implements Mid
         this.stack.sort((a, b) => a[0] - b[0]);
         try
         {
-            await eachAsync(this.stack, async (middleware, _i, next) =>
+            await eachAsync(this.stack, async (middleware) =>
             {
                 try
                 {
@@ -259,24 +261,24 @@ export class MiddlewareCompositeWithPriority<T extends unknown[]> implements Mid
         this.stack.sort((a, b) => a[0] - b[0]);
         try
         {
-            await eachAsync(this.stack, async (middleware, _i) =>
+            await eachAsync(this.stack, (middleware) =>
             {
-                try
+                if (failed && isErrorMiddleware(middleware[1]))
                 {
-                    if (failed && isErrorMiddleware(middleware[1]))
+                    return middleware[1].handleError(error as Error, ...req).then(err =>
                     {
-                        const err = await middleware[1].handleError(error as Error, ...req);
-
                         if (err === 'break')
                             throw err;
                         if (typeof err != 'string' && typeof err != 'undefined')
                             error = err;
 
                         failed = true;
-                    }
-                    else if (!failed && isStandardMiddleware(middleware[1]))
+                    }, e => Promise.reject({ success: e }));
+                }
+                else if (!failed && isStandardMiddleware(middleware[1]))
+                {
+                    return middleware[1].handle(...req).then(err =>
                     {
-                        const err = await middleware[1].handle(...req);
                         if (err === 'break')
                             throw err;
                         if (typeof err != 'string' && typeof err != 'undefined')
@@ -287,14 +289,10 @@ export class MiddlewareCompositeWithPriority<T extends unknown[]> implements Mid
                                 error = err;
                         }
                         failed = err instanceof Error;
-                        return;
-                    }
+                    }, e => Promise.reject({ success: e }));
                 }
-                catch (e)
-                {
-                    throw { success: e };
-                }
-
+                else
+                    return Promise.resolve();
             }, true);
             return error;
         }
@@ -314,12 +312,12 @@ export class MiddlewareCompositeWithPriority<T extends unknown[]> implements Mid
 }
 
 
-function isErrorMiddleware<T extends unknown[]>(middleware: AnyMiddleware<T>): middleware is ErrorMiddleware<T>
+export function isErrorMiddleware<T extends unknown[]>(middleware: AnyMiddleware<T>): middleware is ErrorMiddleware<T>
 {
     return middleware && middleware['handleError'];
 }
 
-function isStandardMiddleware<T extends unknown[]>(middleware: AnyMiddleware<T>): middleware is Middleware<T>
+export function isStandardMiddleware<T extends unknown[]>(middleware: AnyMiddleware<T>): middleware is Middleware<T>
 {
     return middleware && middleware['handle'];
 }

@@ -1,0 +1,30 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
+    "fs": {
+        "inject": [
+            "http",
+            "param.1",
+            "param.2",
+            "param.3"
+        ]
+    },
+    "": {
+        "inject": [
+            "http",
+            "param.1",
+            "param.2",
+            "param.3"
+        ]
+    },
+    "http": {
+        "method": "PROPFIND",
+        "type": "xml",
+        "route": "/.*",
+        "inject": [
+            "http",
+            "route",
+            "body",
+            "headers.depth"
+        ]
+    }
+}

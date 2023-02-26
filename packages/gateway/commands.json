@@ -1,0 +1,26 @@
+{
+    "name": "@akala/gateway",
+    "commands": [
+        {
+            "name": "$init",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/esm/commands/$init.js",
+                    "source": "src/commands/$init.ts"
+                },
+                "": {
+                    "inject": []
+                },
+                "cli": {
+                    "usage": "$init <bin>",
+                    "inject": [
+                        "$container",
+                        "options.bin"
+                    ]
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
+}

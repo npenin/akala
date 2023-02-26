@@ -1,8 +1,6 @@
-
-
-import * as  Metadata from '../metadata/index';
-import { CommandProcessor, StructuredParameters } from '../model/processor';
-import { Container } from '../model/container';
+import * as  Metadata from '../metadata/index.js';
+import { CommandProcessor, StructuredParameters } from '../model/processor.js';
+import { Container } from '../model/container.js';
 import { MiddlewarePromise } from '@akala/core';
 
 export interface FileSystemConfiguration extends Metadata.Configuration
@@ -31,7 +29,7 @@ export class FileSystem extends CommandProcessor
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    public async handle(origin: Container<any>, command: FSCommand, param: StructuredParameters): MiddlewarePromise
+    public async handle(origin: Container<unknown>, command: FSCommand, param: StructuredParameters): MiddlewarePromise
     {
         return new Error('this is not supported in a browser')
     }

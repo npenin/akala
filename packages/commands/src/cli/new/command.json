@@ -1,0 +1,21 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
+    "cli": {
+        "usage": "new cmd <name> [destination]",
+        "options": {
+            "force": {
+                "aliases": [
+                    "f"
+                ]
+            }
+        },
+        "inject": [
+            "options.name",
+            "options",
+            "options.destination"
+        ]
+    },
+    "doc": {
+        "description": "create a new command with the given name and destination (if present, cwd otherwise)"
+    }
+}

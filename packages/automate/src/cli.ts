@@ -4,9 +4,12 @@ import cli, { buildCliContext, buildCliContextFromProcess, CliContext, Namespace
 import { Container, SelfDefinedCommand } from '@akala/commands';
 import { logger as LoggerBuilder, LogLevels } from '@akala/core';
 import path from 'path';
-import { Workflow } from './automate';
-import workflow from './workflow';
-import use from './workflow-commands/use';
+import { Workflow } from './index.js';
+import workflow from './workflow.js';
+import use from './workflow-commands/use.js';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 
 (async function ()
 {
@@ -32,7 +35,7 @@ import use from './workflow-commands/use';
                         context.logger.level = LogLevels[levelEntry[0]];
             }
         }
-        const container: workflow.container & Container<CliContext> = await use.call(context, null, 'workflow', require.resolve('../workflow.json'));
+        const container: workflow.container & Container<CliContext> = await use.call(context, null, 'workflow', require.resolve('../../workflow.json'));
         var loader: Container<CliContext>;
 
         if (context.options.loader)
@@ -40,7 +43,7 @@ import use from './workflow-commands/use';
         else
         {
             loader = new Container('loader', context);
-            loader.register(new SelfDefinedCommand((path: string) => require(path), 'load'));
+            loader.register(new SelfDefinedCommand((path: string) => import(path), 'load'));
         }
         container.register(loader);
 

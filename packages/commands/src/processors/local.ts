@@ -1,14 +1,15 @@
 import { Injector, Injectable, each, MiddlewarePromise, isPromiseLike, Parser } from '@akala/core';
-import * as  Metadata from '../metadata/index';
-import { CommandProcessor, StructuredParameters } from '../model/processor'
-import { Container } from '../model/container';
+import * as  Metadata from '../metadata/index.js';
+import { CommandProcessor, StructuredParameters } from '../model/processor.js'
+import { Container } from '../model/container.js';
 import assert from 'assert';
-import { CommandWithProcessorAffinity, SelfDefinedCommand } from '../model/command';
+import { CommandWithProcessorAffinity, SelfDefinedCommand } from '../model/command.js';
 
 export class Local extends CommandProcessor
 {
-    static fromObject<T>(o: T): CommandProcessor
+    static fromObject<T extends object>(o: T): CommandProcessor
     {
+        //eslint-disable-next-line @typescript-eslint/no-explicit-any
         return new Local(o as any);
     }
 
@@ -17,7 +18,7 @@ export class Local extends CommandProcessor
         const sourceParams = source.
             map((i, j) => [i, j] as [string, number]).
             filter(x => x[0].startsWith('param.')).
-            map(x => [...x, Number(Parser.parseBindable(x[0])[1])] as [string, number, number]).
+            map(x => [...x, Number(x[0].substring('param.'.length))] as [string, number, number]).
             sort((a, b) => a[2] - b[2])
             ;
 
@@ -33,13 +34,13 @@ export class Local extends CommandProcessor
         const sourceParams = source.
             map((i, j) => [i, j] as [string, number]).
             filter(x => x[0].startsWith('param.')).
-            map(x => [...x, Number(Parser.parseBindable(x[0])[1])] as [string, number, number]).
+            map(x => [...x, Number(x[0].substring('param.'.length))] as [string, number, number]).
             sort((a, b) => a[2] - b[2])
             ;
         const destinationParams = destination.
             map((i, j) => [i, j] as [string, number]).
             filter(x => x[0].startsWith('param.')).
-            map(x => [...x, Number(Parser.parseBindable(x[0])[1])] as [string, number, number])
+            map(x => [...x, Number(x[0].substring('param.'.length))] as [string, number, number])
             ;
 
         return function (...args)
@@ -54,9 +55,11 @@ export class Local extends CommandProcessor
     {
         if (!container)
             assert.fail('container is undefined');
-        let inject = cmd.config && cmd.config['']?.inject || cmd.inject;
+        let inject = cmd.config && cmd.config['']?.inject;
         const injector = new Injector(container);
         injector.register('$container', container);
+        if (param.injector)
+            injector.merge(param.injector as Injector);
         // console.log(param);
         if (param._trigger === 'proxy')
             inject = undefined;
@@ -121,7 +124,7 @@ export class CommandWithAffinityProcessor extends CommandProcessor
 {
     public override handle(container: Container<unknown>, command: Metadata.Command & Partial<CommandWithProcessorAffinity>, param: StructuredParameters): MiddlewarePromise
     {
-        if ('processor' in command && command.processor)
+        if ('processor' in command && typeof command.processor?.handle == 'function')
             return command.processor.handle(container, command, param);
         return Promise.resolve();
     }

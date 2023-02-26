@@ -1,7 +1,6 @@
-import program from '../router/index';
-import { resolve } from 'path';
+import program from '../router/index.js';
 import * as repl from 'repl'
-import { buildCliContext } from '..';
+import { buildCliContext } from '../index.js';
 
 export function replEval(input: string): string[]
 {
@@ -90,7 +89,7 @@ program.command('repl')
         replStarted = true;
         const logger = context.logger;
 
-        const server = repl.start(Object.assign(context as any || {}, {
+        repl.start(Object.assign(context as repl.ReplOptions || {}, {
             eval: function (input: string, context, file, cb)
             {
                 try

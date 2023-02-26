@@ -1,6 +1,6 @@
 import * as akala from '@akala/core'
-import { Command } from '../metadata/index';
-import { Container } from './container';
+import { Command } from '../metadata/index.js';
+import { Container } from './container.js';
 
 export type StructuredParameters<T extends unknown[] = unknown[]> = { param: T, [key: string]: unknown, _trigger?: string }
 

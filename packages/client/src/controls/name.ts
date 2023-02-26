@@ -1,7 +1,5 @@
-import * as di from '@akala/core'
-import { control, BaseControl } from './control'
-import { Promisify, Binding } from '@akala/core'
-import { Text } from './text'
+import { control } from './control.js'
+import { Text } from './text.js'
 
 @control('name', 400)
 export class Href extends Text

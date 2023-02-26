@@ -8,8 +8,14 @@
     },
     "cli": {
         "inject": [
-            "param.0",
+            "options.process",
             "$container"
-        ]
+        ],
+        "options": {
+            "process": {
+                "doc": "process to stop. Stops all the processes otherwise (including pm)."
+            }
+        },
+        "usage": "stop [process]"
     }
 }

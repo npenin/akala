@@ -1,4 +1,4 @@
-﻿import { AccessRule } from '../access-rule';
+﻿import { AccessRule } from '../access-rule.js';
 
 export default interface IAclProvider
 {

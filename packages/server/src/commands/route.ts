@@ -1,8 +1,8 @@
-import { State } from '../state';
+import { State } from '../state.js';
 import { SendOptions } from "send";
 import * as path from 'path'
-import { HttpRouter } from '../router/index';
-import { StaticFileMiddleware } from '../router/staticFileMiddleware';
+import { HttpRouter } from '../router/index.js';
+import { StaticFileMiddleware } from '../router/staticFileMiddleware.js';
 
 export default function route(this: State, route: string, target: string, options: { pre?: boolean, auth?: boolean, app?: boolean, get?: boolean, use?: boolean } & SendOptions, cwd: string): void
 {

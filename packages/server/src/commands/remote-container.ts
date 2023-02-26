@@ -1,6 +1,6 @@
-import { State } from '../state';
+import { State } from '../state.js';
 import { Container, Metadata } from "@akala/commands";
-import { HttpRouter } from '../router/index';
+import { HttpRouter } from '../router/index.js';
 
 export default async function route(this: State, target: Container<void>, route: string, metaContainer?: Metadata.Container): Promise<void>
 {

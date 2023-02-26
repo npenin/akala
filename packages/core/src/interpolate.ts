@@ -1,8 +1,8 @@
-import { Parser } from '.';
-import { Binding } from './binder'
-import { escapeRegExp } from './reflect';
+import { EvaluatorAsFunction } from './parser/evaluator-as-function.js';
+import { Parser } from './parser/parser.js';
+import { escapeRegExp } from './reflect.js';
 
-type EvalFunction<T> = (value: any) => T;
+type EvalFunction<T> = (value: unknown) => T;
 
 export class Interpolate
 {
@@ -68,7 +68,7 @@ export class Interpolate
             endIndex,
             index = 0;
         const expressions = [],
-            parseFns: ((target: any) => string)[] = [],
+            parseFns: ((target: unknown) => string)[] = [],
             textLength = text.length,
             concat = [],
             expressionPositions = [];
@@ -82,9 +82,9 @@ export class Interpolate
                 {
                     concat.push(this.unescapeText(text.substring(index, startIndex)));
                 }
-                let exp = text.substring(startIndex + startSymbolLength, endIndex);
+                const exp = text.substring(startIndex + startSymbolLength, endIndex);
                 expressions.push(exp);
-                parseFns.push(Parser.evalAsFunction(exp, false));
+                parseFns.push(new EvaluatorAsFunction().eval(new Parser().parse(exp)));
                 index = endIndex + endSymbolLength;
                 expressionPositions.push(concat.length);
                 concat.push('');
@@ -103,7 +103,7 @@ export class Interpolate
         {
             for (let i = 0, ii = expressions.length; i < ii; i++)
             {
-                let result = parseFns[i](target);
+                const result = parseFns[i](target);
                 if (allOrNothing && typeof (result) == 'undefined')
                     return;
                 concat[expressionPositions[i]] = result;

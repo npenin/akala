@@ -1,29 +1,31 @@
 {
     "name": "@akala/commands",
-    "version": "2.12.0",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "version": "5.2.6",
+    "main": "./dist/cjs/index.js",
+    "types": "./dist/cjs/index.d.ts",
     "repository": "https://github.com/npenin/akala",
     "homepage": "https://akala.js.org/commands",
     "author": "npenin",
     "license": "BSD-3-Clause",
+    "type": "module",
     "funding": "https://github.com/npenin/akala?sponsor=1",
     "scripts": {
         "test": "mocha",
-        "prepack": "tsc -p .",
-        "build": "tsc -p .",
-        "cli": "node dist/cli.js",
-        "generate-cli": "ac generate dist/cli commands.json --name cli",
+        "prepack": "tsc -p tsconfig.esm.json",
+        "build": "tsc -p tsconfig.esm.json",
+        "cli": "node dist/esm/cli.js",
+        "generate-cli": "ac generate dist/esm/cli commands.json --name cli",
         "generate-metadata-cli": "ac generate-metadata commands.json src/commands.ts --name cli",
-        "generate": "ac generate dist/cli commands.json --name @akala/commands"
+        "generate": "yarn run generate-cli",
+        "generate-metadata": "yarn run generate-metadata-cli"
     },
     "browser": {
-        "./dist/cli/serve.js": false,
-        "./dist/processors/fs.js": "./dist/processors/fs-browser.js",
-        "./dist/serve-metadata.js": "./dist/serve-metadata.browser.js"
+        "./dist/esm/cli/serve.js": false,
+        "./dist/esm/processors/fs.js": "./dist/esm/processors/fs-browser.js",
+        "./dist/esm/serve-metadata.js": "./dist/esm/serve-metadata.browser.js"
     },
     "bin": {
-        "ac": "dist/cli.js"
+        "ac": "dist/esm/cli.mjs"
     },
     "mocha": {
         "require": [
@@ -45,22 +47,31 @@
         "@akala/core": "workspace:^",
         "@akala/json-rpc-ws": "workspace:^",
         "debug": "^4.3.4",
-        "path-to-regexp": "^6.2.0",
+        "path-to-regexp": "^6.2.1",
         "reflect-metadata": "^0.1.13",
-        "ws": "^8.5.0"
+        "ws": "^8.12.0"
     },
     "devDependencies": {
         "@types/debug": "^4.1.7",
-        "@types/mocha": "^9.1.1",
-        "@types/node": "^16.11.28",
+        "@types/mocha": "^10.0.1",
+        "@types/node": "^18.11.18",
         "@types/split2": "^3.2.1",
-        "@types/uuid": "^8.3.4",
-        "@types/ws": "^8.5.3",
-        "express": "^4.17.3",
-        "mocha": "^9.2.2",
+        "@types/uuid": "^9.0.0",
+        "@types/ws": "^8.5.4",
+        "mocha": "^10.2.0",
         "nyc": "^15.1.0",
         "source-map-support": "^0.5.21",
-        "typescript": "^4.6.3"
+        "typescript": "^4.9.4"
     },
-    "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43"
+    "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
+    "exports": {
+        ".": {
+            "types": "./dist/esm/index.d.ts",
+            "import": "./dist/esm/index.js",
+            "require": "./dist/cjs/index.js",
+            "default": "./dist/cjs/index.js"
+        }
+    },
+    "module": "./dist/esm/index.js",
+    "typings": "./dist/cjs/index.d.ts"
 }

@@ -1,4 +1,4 @@
-import program from '../router/index';
+import program from '../router/index.js';
 import * as fs from 'fs';
 import { promisify } from 'util';
 import * as akala from '@akala/core'
@@ -100,9 +100,9 @@ function getConfig()
     return promisify(fs.readFile)('./config.json', 'utf8').then(function (content)
     {
         return JSON.parse(content);
-    }, function (err)
+    }, function ()
     {
-        writeConfig({}).then(function (config)
+        writeConfig({}).then(function ()
         {
             return {};
         })
@@ -119,5 +119,5 @@ config.command('set <key> [value]')
 config.command('get [key]')
     .action(function (context)
     {
-        return akala.defaultInjector.resolve('$getConfig')(context.options.key);
+        return akala.defaultInjector.resolve<typeof getConfigWithKey>('$getConfig')(context.options.key as string);
     });

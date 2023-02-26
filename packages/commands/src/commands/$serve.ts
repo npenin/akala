@@ -1,8 +1,8 @@
-import serve, { ServeOptions } from '../cli/serve';
-import serveMetadata, { ServeMetadata } from '../serve-metadata';
-import { Container } from '../model/container';
+import serve from '../cli/serve.js';
+import { ServeMetadataWithSignal } from '../serve-metadata.js';
+import { Container } from '../model/container.js';
 
-export default function $serve(container: Container<any>, options: ServeMetadata)
+export default function $serve(container: Container<unknown>, options: ServeMetadataWithSignal)
 {
     return serve(container, options);
 }

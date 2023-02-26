@@ -1,0 +1,289 @@
+{
+    "name": "@akala/webdav",
+    "commands": [
+        {
+            "name": "$init",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/esm/commands/$init.js",
+                    "source": "src/commands/$init.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "options.root"
+                    ],
+                    "options": {
+                        "root": {
+                            "normalize": true
+                        }
+                    },
+                    "usage": "$init [root]"
+                }
+            }
+        },
+        {
+            "name": "bcopy",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/esm/commands/bcopy.js",
+                    "source": "src/commands/bcopy.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "bdelete",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/esm/commands/bdelete.js",
+                    "source": "src/commands/bdelete.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "bmove",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/esm/commands/bmove.js",
+                    "source": "src/commands/bmove.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "bpropfind",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/esm/commands/bpropfind.js",
+                    "source": "src/commands/bpropfind.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "bproppatch",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/esm/commands/bproppatch.js",
+                    "source": "src/commands/bproppatch.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "copy",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/esm/commands/copy.js",
+                    "source": "src/commands/copy.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "delete",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/esm/commands/delete.js",
+                    "source": "src/commands/delete.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "lock",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/esm/commands/lock.js",
+                    "source": "src/commands/lock.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "mkcol",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/esm/commands/mkcol.js",
+                    "source": "src/commands/mkcol.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "move",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/esm/commands/move.js",
+                    "source": "src/commands/move.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "notify",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/esm/commands/notify.js",
+                    "source": "src/commands/notify.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "poll",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/esm/commands/poll.js",
+                    "source": "src/commands/poll.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "propfind",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "http",
+                        "param.1",
+                        "param.2",
+                        "param.3"
+                    ],
+                    "path": "dist/esm/commands/propfind.js",
+                    "source": "src/commands/propfind.ts"
+                },
+                "": {
+                    "inject": [
+                        "http",
+                        "param.1",
+                        "param.2",
+                        "param.3"
+                    ]
+                },
+                "http": {
+                    "method": "PROPFIND",
+                    "type": "xml",
+                    "route": "/.*",
+                    "inject": [
+                        "http",
+                        "route",
+                        "body",
+                        "headers.depth"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "proppatch",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/esm/commands/proppatch.js",
+                    "source": "src/commands/proppatch.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "search",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/esm/commands/search.js",
+                    "source": "src/commands/search.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "subscribe",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/esm/commands/subscribe.js",
+                    "source": "src/commands/subscribe.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "unlock",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/esm/commands/unlock.js",
+                    "source": "src/commands/unlock.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "unsubscribe",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/esm/commands/unsubscribe.js",
+                    "source": "src/commands/unsubscribe.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
+}

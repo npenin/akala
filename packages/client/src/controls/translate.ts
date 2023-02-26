@@ -1,11 +1,11 @@
 import * as akala from '@akala/core'
-import { control, BaseControl } from './control'
-import { Text } from './text'
+import { control } from './control.js'
+import { Text } from './text.js'
 
 
 akala.defaultInjector.registerFactory('$translator', akala.defaultInjector.injectWithName(['$translations'], function (translations): akala.Translator
 {
-    return function (key: string, ...parameters: any[])
+    return function (key: string, ...parameters: unknown[])
     {
         if (!parameters)
             return translations && translations[key] || key;

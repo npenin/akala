@@ -1,22 +1,21 @@
 import * as akala from '@akala/core'
-import { Trigger } from './trigger';
-import { StructuredParameters, CommandMetadataProcessorSignature, CommandProcessor } from './processor';
-import { CommandWithAffinityProcessor, Local, Self } from '../processors/index';
-import { Pipe } from '../processors/pipe';
-import $serve from '../commands/$serve'
-import $attach from '../commands/$attach'
-import $metadata from '../commands/$metadata'
-import { UnknownCommandError } from './error-unknowncommand';
-import * as Metadata from '../metadata/index'
+import { Trigger } from './trigger.js';
+import { StructuredParameters, CommandMetadataProcessorSignature, CommandProcessor } from './processor.js';
+import { CommandWithAffinityProcessor, Local, Self } from '../processors/index.js';
+import { Pipe } from '../processors/pipe.js';
+import $serve from '../commands/$serve.js'
+import $attach from '../commands/$attach.js'
+import $metadata from '../commands/$metadata.js'
+import { UnknownCommandError } from './error-unknowncommand.js';
+import * as Metadata from '../metadata/index.js'
 import { Middleware, MiddlewareCompositeWithPriority, MiddlewarePromise } from '@akala/core';
-import { isCommand } from '../metadata/index';
 
 export type AsDispatchArgs<T extends unknown[]> = T | [StructuredParameters<T>];
 export type AsDispatchArg<T extends unknown[]> = T[0] | StructuredParameters<T>;
 
 export const defaultCommands = new Local({ $attach, $serve });
 
-export class Container<TState> extends akala.Injector implements Middleware<[origin: Container<any>, cmd: Metadata.Command | string, params: AsDispatchArgs<unknown[]>]>
+export class Container<TState> extends akala.Injector implements Middleware<[origin: Container<unknown>, cmd: Metadata.Command | string, params: AsDispatchArgs<unknown[]>]>
 {
     attach<T extends Trigger<unknown[], unknown>>(trigger: T, ...server: T extends Trigger<infer A, unknown> ? A : never): T extends Trigger<unknown[], infer B> ? B : never
     attach<TResult>(trigger: string, ...server: unknown[]): TResult
@@ -44,8 +43,8 @@ export class Container<TState> extends akala.Injector implements Middleware<[ori
         this.processor.useMiddleware(19, new Self());
         this.processor.useMiddleware(1, new CommandWithAffinityProcessor());
         this.processor.useMiddleware(50, defaultCommands);
-        this.register({ name: '$serve', inject: $serve.$inject, config: null })
-        this.register({ name: '$attach', inject: $attach.$inject, config: null })
+        this.register({ name: '$serve', config: { '': { inject: $serve.$inject } } })
+        this.register({ name: '$attach', config: { '': { inject: $attach.$inject } } })
         this.register($metadata);
     }
 
@@ -54,6 +53,9 @@ export class Container<TState> extends akala.Injector implements Middleware<[ori
         this.processor.useMiddleware(priority, new Pipe(container));
     }
 
+    public dispatch(command: '$metadata', ...param: AsDispatchArgs<unknown[]>): Promise<Metadata.Container>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    public dispatch(command: string | Metadata.Command, ...param: AsDispatchArgs<unknown[]>): Promise<any>
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public dispatch(command: string | Metadata.Command, ...param: AsDispatchArgs<unknown[]>): Promise<any>
     {
@@ -103,18 +105,18 @@ export class Container<TState> extends akala.Injector implements Middleware<[ori
     {
         const proxy = new Container<T>('proxy-' + name, null);
         proxy.processor.useMiddleware(priority, processor);
-        const proxyResolve = proxy.resolve;
+        // const proxyResolve = proxy.resolve;
         proxy.unregister('$metadata');
         proxy.unregister('$serve');
         proxy.unregister('$attach');
-        proxy.resolve = ((name: string) =>
-        {
-            const result = proxyResolve.call(proxy, name);
-            if (isCommand(result) || !result)
-                return { processor: processor, name, inject: ['$param'] };
-            return result;
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        }) as any;
+        // proxy.resolve = ((name: string) =>
+        // {
+        //     const result = proxyResolve.call(proxy, name);
+        //     if (isCommand(result) || !result)
+        //         return { processor: processor, name, inject: ['$param'] };
+        //     return result;
+        //     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        // }) as any;
         return proxy;
     }
 

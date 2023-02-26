@@ -1,7 +1,9 @@
-import commands from './container';
+import commands from './container.js';
 import suncalc from 'suncalc'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { SidecarMap } from '@akala/pm';
 
-function isDST(day, month, dayOfWeek)
+export function isDST(day, month, dayOfWeek)
 {
     //January, february, and december are out.
     if (month < 3 || month > 11)
@@ -187,17 +189,17 @@ export function parseCronPart(value: string, steps: number): number[]
 type container = commands.container;
 export { container };
 
-declare module '@akala/pm'
-{
-    export interface SidecarMap
-    {
-        '@akala/cron': commands.container
-    }
-}
+// declare module '@akala/pm'
+// {
+//     export interface SidecarMap
+//     {
+//         '@akala/cron': container
+//     }
+// }
 
 export function getTargets(requests: DateRequest[], startDate?: Date)
 {
     return requests.map(d => ({ request: d, target: getTarget(d, startDate) })).sort((a, b) => a.target.valueOf() - b.target.valueOf())
 }
 
-export * from './state'
+export * from './state.js'

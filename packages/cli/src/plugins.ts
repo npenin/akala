@@ -1,4 +1,4 @@
-import program from './router/index';
+import program from './router/index.js';
 import { resolve } from 'path';
 
 

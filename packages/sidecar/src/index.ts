@@ -1,4 +1,4 @@
-import app, { Sidecar } from './init'
+import app, { Sidecar, SidecarConfiguration, StoreConfiguration } from './init.js'
 
 export default app;
-export { Sidecar };
+export { Sidecar, StoreConfiguration, SidecarConfiguration };

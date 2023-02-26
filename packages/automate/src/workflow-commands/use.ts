@@ -1,6 +1,6 @@
 import { CliContext } from "@akala/cli";
 import { Container, Processors } from "@akala/commands";
-import { isAbsolute, basename, resolve } from 'path'
+import { isAbsolute, basename } from 'path'
 
 export default async function use(this: CliContext, self: Container<CliContext>, name: string, pathToCommands: string)
 {

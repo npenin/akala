@@ -1,11 +1,11 @@
-import { inject, injectWithName, registerFactory } from './global-injector'
-import { ctorToFunction } from './injector';
+import { inject, injectWithName, registerFactory } from './global-injector.js'
+import { ctorToFunction } from './injector.js';
 
 export function factory(name: string, ...toInject: string[])
 {
-    return function (target: new (...args: unknown[]) => IFactory<any>)
+    return function (target: new (...args: unknown[]) => IFactory<unknown>)
     {
-        let instance: IFactory<any> = null;
+        let instance: IFactory<unknown> = null;
         const ctor = ctorToFunction(target)
         const factory = function (...parameters)
         {

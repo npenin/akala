@@ -1,4 +1,4 @@
-import interact from "..";
+import interact from "../index.js";
 
 export default async function pwet(a: string): Promise<void>
 {

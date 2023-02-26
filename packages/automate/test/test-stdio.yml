@@ -1,7 +1,8 @@
 jobs:
   test:
     steps:
-      - run: echo pwet
+      - run: ["echo", "pwet"]
         with:
-          results: stdout
+          result: stdout
           format: string
+          stdio: inherit

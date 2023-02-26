@@ -16,9 +16,10 @@ export default function (commitsString: string)
     const mergeRE = /^Merge:\s+([0-9a-f]+)\s+([0-9a-f]+)\s*$/gm;
     const dateRE = /^Date:\s+((\d{4})-(\d{2})-(\d{2}) (\d+):(\d+):(\d+) ([+-]\d{4}))$/gm;
     const emptyLineRE = /\n\n|$/g;
-    var commit: RegExpExecArray;
+    let commit: RegExpExecArray;
     const commits: Commit[] = [];
     let mergeMatch = mergeRE.exec(commitsString);
+    //eslint-disable-next-line no-cond-assign
     while (commit = commitIdRE.exec(commitsString))
     {
         const commitId = commit[1];
@@ -36,6 +37,7 @@ export default function (commitsString: string)
             if (authorMatch.index != commit.index + commit[0].length + 1)
                 throw new Error('invalid git format: unable to parse Author\n' + commitsString.substring(Math.max(commitIdRE.lastIndex - 50, 0), Math.min(commitIdRE.lastIndex + 50, commitsString.length)));
         }
+        //eslint-disable-next-line @typescript-eslint/no-unused-vars
         const [_, nickname, mail] = authorMatch;
         const dateMatch = dateRE.exec(commitsString);
         if (dateMatch.index != authorMatch.index + authorMatch[0].length + 1)

@@ -1,8 +1,8 @@
-import State from '../state';
+import State from '../state.js';
 import { Container } from '@akala/commands';
 import { JobCommand } from '@akala/cron';
 
-export default async function (this: State, container: Container<any>, name: string)
+export default async function (this: State, container: Container<unknown>, name: string)
 {
     const workflow = this.workflows[name];
     if (typeof workflow == 'undefined')

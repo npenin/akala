@@ -1,8 +1,8 @@
-import State from '../state';
+import State from '../state.js';
 import { join, isAbsolute, basename, resolve } from "path";
 import { existsSync, promises as fs } from "fs";
-import pmContainer from '../container';
-import map from './map'
+import pmContainer from '../container.js';
+import map from './map.js'
 import { createRequire } from "module";
 import { logger } from "@akala/core";
 
@@ -50,7 +50,7 @@ export default async function discover(this: State, packageName: string, folder:
     {
         try
         {
-            moduleRequire?.resolve(p)
+            return moduleRequire?.resolve(p)
         }
         catch (e)
         {
@@ -71,9 +71,9 @@ export default async function discover(this: State, packageName: string, folder:
                 if (Array.isArray(packageConfig))
                     throw new Error('commands property must be of type object or string');
 
-                return await Promise.all(Object.keys(packageConfig.commands).map(v => pm.dispatch('map', v, moduleRequire?.resolve('./' + packageConfig.commands[v]), path, true)));
+                return await Promise.all(Object.keys(packageConfig.commands).map(v => pm.dispatch('map', v, moduleRequire?.resolve('./' + packageConfig.commands[v]), path, { commandable: true })));
             case 'string':
-                return await pm.dispatch('map', packageName, moduleRequire.resolve('./' + packageConfig.commands), path, true);
+                return await pm.dispatch('map', packageName, moduleRequire.resolve('./' + packageConfig.commands), path, { commandable: true });
             default:
                 throw new Error('commands property must be of type object or string');
         }
@@ -86,19 +86,19 @@ export default async function discover(this: State, packageName: string, folder:
             case 'object':
                 if (Array.isArray(packageConfig))
                     throw new Error('bin property must be of type object or string');
-                return Promise.all(Object.keys(packageConfig.bin).map(v => pm.dispatch('map', v, moduleRequire.resolve('./' + packageConfig.bin[v]), path, false)));
+                return Promise.all(Object.keys(packageConfig.bin).map(v => pm.dispatch('map', v, moduleRequire.resolve('./' + packageConfig.bin[v]), path, { commandable: false })));
             case 'string':
-                return await pm.dispatch('map', packageName, moduleRequire.resolve('./' + packageConfig.bin), path, false);
+                return await pm.dispatch('map', packageName, moduleRequire.resolve('./' + packageConfig.bin), path, { commandable: false });
             default:
                 throw new Error('bin property must be of type object or string');
         }
     }
 
-    const commandsJsonFile = tryModuleRequireResolve(join(packageName, './commands.json'));
+    const commandsJsonFile = tryModuleRequireResolve('./commands.json');
     if (commandsJsonFile)
-        return pm.dispatch('map', packageName, moduleRequire.resolve('./commands.json'), path, true);
+        return pm.dispatch('map', packageName, commandsJsonFile, path, { commandable: true });
 
-    return pm.dispatch('map', packageName, moduleRequire.resolve('./' + packageConfig.main), path, false);
+    return pm.dispatch('map', packageName, moduleRequire.resolve('./' + packageConfig.main), path, { commandable: false });
 }
 
 exports.default.$inject = ['param.0', 'param.1', '$container']

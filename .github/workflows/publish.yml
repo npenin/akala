@@ -18,7 +18,7 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 18
       - name: setup git
         run: |
           git config user.name "GitHub Actions Bot"
@@ -31,10 +31,16 @@ jobs:
           sudo apt-get install yarn
       - name: Install Packages
         run: yarn install
-      - name: Compile
-        run: yarn tsc -b packages
+      - name: Compile CJS
+        run: yarn tsc -b packages/tsconfig.cjs.json
+      - name: Compile ESM
+        run: yarn tsc -b packages/tsconfig.esm.json
+      - name: Linting
+        uses: wearerequired/lint-action@v2
+        with:
+          eslint: true
       - name: publish updates
-        run: node packages/automate/dist/cli.js --loader @akala/automate-yamlloader --file @akala/semantic-release/publish.yml --verbose=silly
+        run: node packages/automate/dist/esm/cli.js --loader @akala/automate-yamlloader --file @akala/semantic-release/publish.yml --verbose=silly
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

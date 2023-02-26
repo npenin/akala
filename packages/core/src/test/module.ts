@@ -1,10 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-require('source-map-support').install();
+import 'source-map-support/register'
 
-import { module } from '..';
+import { module } from '../index.js';
 import * as assert from 'assert'
 
-const activate: any = {};
+const activate: { [key: string]: boolean } = {};
 
 module('a').activate([], function ()
 {

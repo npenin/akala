@@ -1,6 +1,6 @@
 import { SelfDefinedCommand } from "@akala/commands";
-import { DateRequest, getTargets } from ".";
-import { Deferred } from "../../json-rpc-ws/lib";
+import { DateRequest, getTargets } from "./index.js";
+import { Deferred } from "@akala/core";
 
 export interface State
 {
@@ -33,7 +33,7 @@ export class Schedule
     private plannedExecutions: NodeJS.Timeout;
     public readonly jobs: JobLike[] = [];
     private _nextExecution: Date = null;
-    public get nextExecution() { return this._nextExecution };
+    public get nextExecution() { return this._nextExecution }
 
     public static wait(request: DateRequest[], startDate?: Date): WaitInfo
     {

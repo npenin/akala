@@ -1,11 +1,11 @@
 import { Queue } from "@akala/server";
-import State, { WorkflowInstance } from "../state";
+import State, { WorkflowInstance } from "../state.js";
 import { getRandomName, sidecar, Container as pmContainer } from '@akala/pm'
-import workflow from "../workflow";
+import workflow from "../workflow.js";
 
 export default async function init(this: State, pm: pmContainer, persistTo?: string)
 {
-    const queueProcessor = (msg: WorkflowInstance, next: (processed: boolean) => void) =>
+    const queueProcessor = (msg: WorkflowInstance<object>, next: (processed: boolean) => void) =>
     {
         const name = msg.workflow.name || getRandomName();
         pm.dispatch('start', '@akala/automate/workflow', { options: { new: true, name: name, wait: true }, args: ['local'], argv: [], currentWorkingDirectory: process.cwd(), logger: null }).then(async () =>

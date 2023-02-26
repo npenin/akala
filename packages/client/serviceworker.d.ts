@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // ///<reference types="lib.dom.d.ts" />
 
 /**
@@ -97,7 +98,7 @@ interface Response extends Body
 }
 
 // Notification API
-
+//eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface NotificationAction
 {
 }

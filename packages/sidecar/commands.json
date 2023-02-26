@@ -3,13 +3,14 @@
     "commands": [
         {
             "name": "$init",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
-                        "param.0"
+                        "param.0",
+                        "param.1",
+                        "param.2"
                     ],
-                    "path": "dist/commands/$init.js",
+                    "path": "dist/esm/commands/$init.js",
                     "source": "src/commands/$init.ts"
                 },
                 "cli": {
@@ -34,11 +35,13 @@
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "param.0",
+                        "param.1",
+                        "param.2"
                     ]
                 }
             }
         }
     ],
-    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
 }

@@ -1,8 +1,8 @@
-import { State } from '../state';
+import { State } from '../state.js';
 import { Container } from "@akala/commands";
 import { isAbsolute, resolve } from "path";
 import { FSWatcher } from 'chokidar'
-import description from '../commands';
+import description from '../commands.js';
 import { EntryObject } from "webpack";
 
 export const targetWatchers: { [key: string]: FSWatcher } = {};

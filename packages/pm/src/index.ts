@@ -1,13 +1,13 @@
-import { connectByPreference, Container, Metadata, NetSocketAdapter, Processors, registerCommands, ServeMetadata, ConnectionPreference, Cli } from "@akala/commands";
+import { Container, Metadata, NetSocketAdapter, Processors, registerCommands, ServeMetadata, ConnectionPreference, Cli } from "@akala/commands";
 import { Socket } from "net";
 import { module } from "@akala/core";
 
-import definition from './container';
+import definition from './container.js';
 
 type pmContainer = definition.container
 export { pmContainer as Container };
 
-import State from './state'
+import State from './state.js'
 export { State }
 
 export class InteractError extends Error
@@ -44,67 +44,22 @@ export async function pm(socketPath?: string): Promise<Container<unknown>>
     return new Container('pm', {});
 }
 
-export function connect(name: string): Promise<{ connect: ServeMetadata, container: Metadata.Container }>
+export async function connect(name: string, container?: pmContainer & Container<void>): Promise<{ connect: Promise<ServeMetadata>, container: Metadata.Container }>
 {
-    return module('@akala/pm').injectWithName(['container'], async function (container: Container<void>)
+    container = container || module('@akala/pm').resolve('container');
+    if (name === 'pm')
     {
-        var metaContainer = await container.dispatch('$metadata', true) as Metadata.Container;
+        const metaContainer = await container.dispatch('$metadata') as Metadata.Container;
+        return { connect: container.dispatch('connect', name) as Promise<ServeMetadata>, container: metaContainer };
+    }
+    const metaContainer = await container.dispatch('$metadata', true) as Metadata.Container;
 
-        return { connect: await container.dispatch('connect', name) as ServeMetadata, container: { name, commands: metaContainer.commands.filter(c => c.name.startsWith(name + '.')).map(c => ({ name: c.name.substring(name.length + 1), inject: c.inject, config: c.config })) } };
-    })();
+    return { connect: container.dispatch('connect', name) as Promise<ServeMetadata>, container: { name, commands: metaContainer.commands.filter(c => c.name.startsWith(name + '.')).map(c => ({ name: c.name.substring(name.length + 1), config: c.config })) } };
 }
 
-const defaultOrders: (keyof ServeMetadata)[] = ['ssocket', 'socket', 'wss', 'ws'];
+export const defaultOrders: (keyof ServeMetadata)[] = ['ssocket', 'socket', 'wss', 'ws'];
 
-type SideCarConnectionPreference = { [key in keyof SidecarMap]?: Partial<ConnectionPreference> & { orders?: (keyof ServeMetadata)[] } };
-
-export function sidecar(options?: Omit<ConnectionPreference, 'metadata'> | SideCarConnectionPreference | Omit<ConnectionPreference, 'metadata'> & SideCarConnectionPreference, noCache?: boolean): Sidecar
-{
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return new Proxy<Sidecar>({} as any, {
-        get(target, property)
-        {
-            if (typeof (property) !== 'string')
-                return Reflect.get(target, property);
-
-            const orders = options && options[property] && options[property].orders || defaultOrders;
-            if (!options)
-                options = {};
-            if (typeof options.preferRemote == 'undefined')
-                options.preferRemote = !process.connected;
-            if (noCache || typeof (target[property]) == 'undefined')
-                Object.defineProperty(target, property, {
-                    value: connect(property).then(async meta => 
-                    {
-                        try
-                        {
-                            const c = await connectByPreference(meta.connect, Object.assign({ metadata: meta.container }, options, options && options[property]), ...orders);
-                            return c.container;
-                        }
-                        catch (e)
-                        {
-                            if (e && e.statusCode == 404 || !meta.connect)
-                            {
-                                var c = new Container(meta.container.name, null);
-                                c.processor.useMiddleware(1, {
-                                    handle(origin, cmd, param)
-                                    {
-                                        if (cmd.name.startsWith(meta.container.name + '.'))
-                                            throw undefined;
-                                        return c.processor.handle(origin, Object.assign({}, cmd, { name: meta.container.name + '.' + cmd.name }), param);
-                                    }
-                                });
-                                meta.container.commands.forEach(cmd => c.register(cmd));
-                                return c;
-                            }
-                            throw e;
-                        }
-                    })
-                });
-            return target[property];
-        }
-    });
-}
+export type SideCarConnectionPreference = { [key in keyof SidecarMap]?: Partial<ConnectionPreference> & { orders?: (keyof ServeMetadata)[] } };
 
 export interface ContainerLite
 {
@@ -119,5 +74,8 @@ export interface SidecarMap
     pm: pmContainer
 }
 
-import getRandomName from './commands/name';
+
+import getRandomName from './commands/name.js';
+import sidecarSingleton, { sidecar } from "./sidecar.js";
+export { sidecar, sidecarSingleton };
 export { getRandomName };

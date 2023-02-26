@@ -1,7 +1,7 @@
 import { createRequire } from 'module'
 import * as path from 'path'
 
-export default function normalize(mode: 'require' | 'requireMeta' | true, currentWorkingDirectory: string, value: string)
+export default function normalize(mode: 'require' | 'requireMeta' | boolean, currentWorkingDirectory: string, value: string)
 {
     switch (mode)
     {
@@ -14,8 +14,18 @@ export default function normalize(mode: 'require' | 'requireMeta' | true, curren
             return createRequire(path.resolve(currentWorkingDirectory) + '/').resolve(value);
         case 'requireMeta':
             return createRequire(path.resolve(currentWorkingDirectory) + '/').resolve(value + '/package.json');
+        case false:
+            return value;
         default:
         case true:
-            return path.resolve(currentWorkingDirectory, value);
+            try
+            {
+                const url = new URL(value);
+                return value;
+            }
+            catch (e)
+            {
+                return path.resolve(currentWorkingDirectory, value);
+            }
     }
 }

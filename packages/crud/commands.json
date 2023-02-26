@@ -1,0 +1,135 @@
+{
+    "name": "@akala/crud",
+    "commands": [
+        {
+            "name": "create",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "db",
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/esm/commands/create.js",
+                    "source": "src/commands/create.ts"
+                },
+                "": {
+                    "inject": [
+                        "db",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "http": {
+                    "inject": [
+                        "db",
+                        "route.type",
+                        "body"
+                    ],
+                    "route": "/{type}",
+                    "method": "put"
+                }
+            }
+        },
+        {
+            "name": "delete",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/esm/commands/delete.js",
+                    "source": "src/commands/delete.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "delete-single",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "db",
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/esm/commands/delete-single.js",
+                    "source": "src/commands/delete-single.ts"
+                },
+                "": {
+                    "inject": [
+                        "db",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "http": {
+                    "inject": [
+                        "db",
+                        "route.type",
+                        "body"
+                    ],
+                    "route": "/{type}",
+                    "method": "put"
+                }
+            }
+        },
+        {
+            "name": "read",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/esm/commands/read.js",
+                    "source": "src/commands/read.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "read-single",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/esm/commands/read-single.js",
+                    "source": "src/commands/read-single.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "update",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/esm/commands/update.js",
+                    "source": "src/commands/update.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "update-single",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/esm/commands/update-single.js",
+                    "source": "src/commands/update-single.ts"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
+}

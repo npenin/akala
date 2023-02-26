@@ -1,0 +1,28 @@
+{
+    "name": "@akala/crud",
+    "version": "0.0.33",
+    "main": "./dist/cjs/index.js",
+    "types": "./dist/cjs/index.d.ts",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\"",
+        "generate": "ac generate dist/esm/commands commands.json --name @akala/crud"
+    },
+    "dependencies": {
+        "@akala/commands": "workspace:^",
+        "@akala/config": "workspace:^",
+        "@akala/sidecar": "workspace:^",
+        "@akala/storage": "workspace:^"
+    },
+    "exports": {
+        ".": {
+            "types": "./dist/esm/index.d.ts",
+            "import": "./dist/esm/index.js",
+            "require": "./dist/cjs/index.js",
+            "default": "./dist/cjs/index.js"
+        }
+    },
+    "module": "./dist/esm/index.js",
+    "typings": "./dist/cjs/index.d.ts"
+}

@@ -1,8 +1,6 @@
 import { Middleware, MiddlewarePromise } from '@akala/core';
 import { Request, Response } from '@akala/server'
-import { User } from '../../model/user';
-
-
+import { User } from '../../model/user.js';
 
 export abstract class AuthenticateMiddleware<T> implements Middleware<[Request, Response]>
 {
@@ -12,7 +10,6 @@ export abstract class AuthenticateMiddleware<T> implements Middleware<[Request, 
     {
         return this.validate(req).then((user) => { req.user = user; return Promise.resolve(); }, x => Promise.resolve(x));
     }
-
 }
 
 export class HeaderAuthenticateMiddleware<T> extends AuthenticateMiddleware<T>

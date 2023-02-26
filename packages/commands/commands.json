@@ -1,55 +1,76 @@
 {
-    "name": "@akala/commands",
+    "name": "cli",
     "commands": [
         {
-            "name": "generate-declaration",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "path": "dist/cli/generate-declaration.js",
-                    "source": "src/cli/generate-declaration.ts",
-                    "inject": [
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "cli": {
-                    "inject": [
-                        "options.name",
-                        "param.0",
-                        "param.1"
-                    ]
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
             "name": "add-script",
-            "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist/cli/add-script.js",
+                    "path": "dist/esm/cli/add-script.js",
                     "source": "src/cli/add-script.ts",
                     "inject": [
                         "param.0",
                         "param.1",
-                        "param.2"
+                        "param.2",
+                        "param.3"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3"
                     ]
                 },
                 "cli": {
                     "inject": [
                         "options.name",
-                        "param.0",
-                        "param.1",
-                        "param.2"
+                        "options.commands",
+                        "options.metadataFile",
+                        "options.typescriptFile"
                     ],
+                    "usage": "add-script <commands> [typescriptFile] [metadataFile]",
                     "options": {
                         "name": {
                             "needsValue": true
                         }
                     }
+                },
+                "doc": {
+                    "description": "Adds scripts generate (and generate-metadata if `typescriptFile` is present) to the closest package.json\nif `name` is provided, generated scripts names are suffixed with the provided name",
+                    "inject": [
+                        "name of the container to be used",
+                        "path to the folder containing the commands",
+                        "path to the metadata file to get generated"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "command",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/cli/new/command.js",
+                    "source": "src/cli/new/command.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "usage": "new cmd <name> [destination]",
+                    "options": {
+                        "force": {
+                            "aliases": [
+                                "f"
+                            ]
+                        }
+                    },
+                    "inject": [
+                        "options.name",
+                        "options",
+                        "options.destination"
+                    ]
+                },
+                "doc": {
+                    "description": "create a new command with the given name and destination (if present, cwd otherwise)"
                 },
                 "": {
                     "inject": []
@@ -57,27 +78,30 @@
             }
         },
         {
-            "name": "generate-metadata",
-            "inject": [],
+            "name": "command-config",
             "config": {
                 "fs": {
-                    "path": "dist/cli/generate-metadata.js",
-                    "source": "src/cli/generate-metadata.ts",
+                    "path": "dist/esm/cli/new/command-config.js",
+                    "source": "src/cli/new/command-config.ts",
                     "inject": []
                 },
                 "cli": {
+                    "usage": "new cc <name> [destination]",
+                    "options": {
+                        "force": {
+                            "aliases": [
+                                "f"
+                            ]
+                        }
+                    },
                     "inject": [
                         "options.name",
-                        "options.commandPath",
-                        "options.output",
-                        "options"
-                    ],
-                    "usage": "generate-metadata [commandPath] [output]",
-                    "options": {
-                        "name": {
-                            "needsValue": true
-                        }
-                    }
+                        "options",
+                        "options.destination"
+                    ]
+                },
+                "doc": {
+                    "description": "create a new command configuration (json file) with the given name and destination (if present, cwd otherwise)"
                 },
                 "": {
                     "inject": []
@@ -86,10 +110,9 @@
         },
         {
             "name": "generate",
-            "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist/cli/generate.js",
+                    "path": "dist/esm/cli/generate.js",
                     "source": "src/cli/generate.ts",
                     "inject": [
                         "param.0",
@@ -119,11 +142,87 @@
             }
         },
         {
-            "name": "implement",
-            "inject": [],
+            "name": "generate-declaration",
             "config": {
                 "fs": {
-                    "path": "dist/cli/implement.js",
+                    "path": "dist/esm/cli/generate-declaration.js",
+                    "source": "src/cli/generate-declaration.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "options.name",
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "generate-metadata",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/cli/generate-metadata.js",
+                    "source": "src/cli/generate-metadata.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "inject": [
+                        "options.name",
+                        "options.commandPath",
+                        "options.output",
+                        "options"
+                    ],
+                    "usage": "generate-metadata [commandPath] [output]",
+                    "options": {
+                        "name": {
+                            "needsValue": true
+                        }
+                    }
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "generate-openapi",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/cli/generate-openapi.js",
+                    "source": "src/cli/generate-openapi.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "inject": [
+                        "options.name",
+                        "options.commandPath",
+                        "options.output",
+                        "options"
+                    ],
+                    "usage": "generate-openapi [commandPath] [output]",
+                    "options": {
+                        "name": {
+                            "needsValue": true
+                        }
+                    }
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "implement",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/cli/implement.js",
                     "source": "src/cli/implement.ts",
                     "inject": [
                         "param.0",
@@ -157,29 +256,63 @@
             }
         },
         {
-            "name": "new",
-            "inject": [],
+            "name": "local",
             "config": {
                 "fs": {
-                    "path": "dist/cli/new.js",
-                    "source": "src/cli/new.ts",
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/esm/cli/local.js",
+                    "source": "src/cli/local.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "context.logger",
+                        "options.path",
+                        "options.args"
+                    ],
+                    "usage": "local <path> [...args]",
+                    "options": {
+                        "path": {
+                            "normalize": true
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "module",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/cli/new/module.js",
+                    "source": "src/cli/new/module.ts",
                     "inject": []
                 },
                 "cli": {
-                    "usage": "new <action> <name> [destination]",
+                    "usage": "new module <name> [destination]",
                     "options": {
                         "force": {
                             "aliases": [
                                 "f"
                             ]
+                        },
+                        "destination": {
+                            "normalize": true
                         }
                     },
                     "inject": [
-                        "options.action",
                         "options.name",
-                        "options",
+                        "context",
                         "options.destination"
                     ]
+                },
+                "doc": {
+                    "description": "create a new module with the given name and destination (if present, cwd otherwise)"
                 },
                 "": {
                     "inject": []
@@ -187,11 +320,27 @@
             }
         },
         {
-            "name": "register",
-            "inject": [],
+            "name": "openapi",
             "config": {
                 "fs": {
-                    "path": "dist/cli/register.js",
+                    "path": "dist/esm/cli/openapi.js",
+                    "source": "src/cli/openapi.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "register",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/cli/register.js",
                     "source": "src/cli/register.ts",
                     "inject": [
                         "param.0",
@@ -200,16 +349,19 @@
                     ]
                 },
                 "": {
-                    "inject": []
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
                 }
             }
         },
         {
             "name": "serve",
-            "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist/cli/serve.js",
+                    "path": "dist/esm/cli/serve.js",
                     "source": "src/cli/serve.ts",
                     "inject": []
                 },
@@ -225,5 +377,5 @@
             }
         }
     ],
-    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
 }

@@ -1,5 +1,5 @@
 import { Middleware, MiddlewarePromise } from "@akala/core";
-import { Request, Response } from './shared'
+import { Request, Response } from './shared.js'
 import { resolve } from 'path'
 import send from 'send'
 import escapeHtml from 'escape-html';

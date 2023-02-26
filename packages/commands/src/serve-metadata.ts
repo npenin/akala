@@ -1,42 +1,49 @@
 import { IpcNetConnectOpts, NetConnectOpts } from 'net';
 import { platform } from 'os';
 import { join } from 'path';
-import { NetSocketAdapter, ServeOptions } from './cli/serve';
-import { registerCommands } from './generator'
-import { CommandProcessor, ICommandProcessor } from './model/processor';
-import { HttpClient, JsonRpc } from './processors/index';
+import { ServeOptions } from './cli/serve.js';
+import { NetSocketAdapter } from "./net-socket-adapter.js";
+import { registerCommands } from './generator.js'
+import { CommandProcessor, ICommandProcessor } from './model/processor.js';
+import { HttpClient, JsonRpc } from './processors/index.js';
 import net from 'net'
 import ws from 'ws'
-import { Injector } from '@akala/core';
-import * as Metadata from './metadata/index';
-import { Container } from './model/container';
+import { Injector, ErrorWithStatus } from '@akala/core';
+import * as Metadata from './metadata/index.js';
+import { Container } from './model/container.js';
 import { CommonConnectionOptions, connect as tlsconnect, SecureContextOptions, TLSSocket } from 'tls'
 import * as jsonrpc from '@akala/json-rpc-ws';
-import { ErrorWithStatus } from '@akala/cli';
 
 type TlsConnectOpts = NetConnectOpts & SecureContextOptions & CommonConnectionOptions;
 
-export interface ServeMetadata
+export interface ServeMetadataWithSignal extends ServeMetadata
 {
-    socket?: (NetConnectOpts)[];
-    ssocket?: (TlsConnectOpts)[];
-    https?: { port: number, cert: string, key: string };
-    http?: { port: number };
-    ws?: { port: number };
-    wss?: { port: number, cert: string, key: string };
+    signal: AbortSignal;
+}
+
+export type ServeMetadata = { [key in keyof ServeMetadataMap]?: ServeMetadataMap[key][] }
+
+export interface ServeMetadataMap
+{
+    socket: NetConnectOpts;
+    ssocket: NetConnectOpts & TlsConnectOpts;
+    https: NetConnectOpts & TlsConnectOpts;
+    http: NetConnectOpts;
+    wss: NetConnectOpts & TlsConnectOpts;
+    ws: NetConnectOpts;
 }
 
 export interface ConnectionPreference
 {
     preferRemote?: boolean;
     host?: string;
-    metadata: Metadata.Container;
-    container?: Container<any>;
+    metadata?: Metadata.Container;
+    container?: Container<unknown>;
 }
 
 export async function connectByPreference<T = unknown>(options: ServeMetadata, settings: ConnectionPreference, ...orders: (keyof ServeMetadata)[]): Promise<{ container: Container<T>, processor: ICommandProcessor }>
 {
-    if (!orders)
+    if (!orders || !orders.length)
         orders = ['ssocket', 'socket', 'wss', 'ws', 'https', 'http'];
     const orderedOptions = orders.map(order =>
     {
@@ -44,9 +51,9 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
         {
             if (order === 'socket' || order == 'ssocket')
                 if (settings?.preferRemote)
-                    return options[order].find(s => !isIpcConnectOption(s));
+                    return options[order].filter(s => !isIpcConnectOption(s)) || options[order].find(s => isIpcConnectOption(s));
                 else
-                    return options[order].find(s => isIpcConnectOption(s));
+                    return options[order].filter(s => isIpcConnectOption(s)) || options[order].find(s => !isIpcConnectOption(s));
             return options[order];
         }
     });
@@ -60,7 +67,9 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
 
         try
         {
-            processor = await connectWith(orderedOptions[preferredIndex], settings?.host, orders[preferredIndex], settings?.container)
+            if (orders.length == 0)
+                throw new ErrorWithStatus(404, 'No valid connection option could be found')
+            processor = await connectWith(orderedOptions[preferredIndex][0], settings?.host, orders[preferredIndex], settings?.container)
             break;
         }
         catch (e)
@@ -157,6 +166,24 @@ function isIpcConnectOption(options: NetConnectOpts): options is IpcNetConnectOp
     return typeof options['path'] !== 'undefined';
 }
 
+export function parseMetadata(connectionString: string, tls?: boolean): ServeMetadata 
+{
+
+    const remote = /^(?:([^:]+):)?(\d+)$/.exec(connectionString);
+    if (!remote)
+        if (tls)
+            return { ssocket: [{ path: connectionString }] };
+        else
+            return { socket: [{ path: connectionString }] }
+
+    const host = remote[1];
+    const port = remote[2];
+    if (tls)
+        return { ssocket: [{ port: Number(port), host: host }] };
+    else
+        return { socket: [{ port: Number(port), host: host }] };
+}
+
 export default function serveMetadata(name: string, context: ServeOptions): ServeMetadata
 {
     let args = context.args;
@@ -179,7 +206,7 @@ export default function serveMetadata(name: string, context: ServeOptions): Serv
     {
         if (!metadata['socket'])
             metadata['socket'] = [];
-        if (isNaN(Number(context.options.tcpPort)))
+        if (isNaN(Number(context.options.tcpPort)) && context.options.tcpPort)
         {
             const indexOfColon = context.options.tcpPort.lastIndexOf(':');
             if (indexOfColon > -1)
@@ -210,16 +237,16 @@ export default function serveMetadata(name: string, context: ServeOptions): Serv
         if (context.options.cert && context.options.key)
         {
             if (~args.indexOf('ws'))
-                metadata.wss = { port, cert: context.options.cert, key: context.options.key };
+                metadata.wss = [{ port, cert: context.options.cert, key: context.options.key }];
             if (~args.indexOf('http'))
-                metadata.https = { port, cert: context.options.cert, key: context.options.key };
+                metadata.https = [{ port, cert: context.options.cert, key: context.options.key }];
         }
         else
         {
             if (~args.indexOf('ws'))
-                metadata.ws = { port };
+                metadata.ws = [{ port }];
             if (~args.indexOf('http'))
-                metadata.http = { port };
+                metadata.http = [{ port }];
         }
 
     }

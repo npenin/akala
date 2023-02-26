@@ -1,6 +1,5 @@
-import { Deferred } from '@akala/json-rpc-ws';
-import { isArrayLike } from './each';
-import { isPromiseLike } from './helpers'
+import { isArrayLike } from './each.js';
+import { Deferred, isPromiseLike } from './helpers.js'
 
 export type NextFunction<TError = unknown, T extends unknown[] = [], TReturn = void> = (error?: TError, ...args: T) => TReturn;
 export type SimpleNextFunction<T> = NextFunction<T, [], void | Promise<void>>
@@ -37,7 +36,8 @@ export function array<T, U extends unknown[]>(array: T[] | ArrayLike<T>, body: (
         };
     }
     else
-        complete = (e: Error, ...args) =>
+        //eslint-disable-next-line @typescript-eslint/no-unused-vars
+        complete = (e: Error, ..._args: unknown[]) =>
         {
             if (e)
                 deferred.reject(e);
@@ -116,7 +116,7 @@ export function each<T, TError, U extends unknown[]>(array: T[] | ArrayLike<T>, 
 export function each<T, TError, U extends unknown[]>(array: T[] | ArrayLike<T>, body: (element: T, i: number, next: NextFunction<TError, U>) => void, complete: NextFunction, waitForPrevious?: boolean): void
 export function each<TError, U extends unknown[]>(o: Record<string, unknown>, body: (element: unknown, i: string, next: NextFunction<TError, U>) => void, complete: NextFunction, waitForPrevious?: boolean): void
 export function each<T, TError, U extends unknown[]>(array: T[] | ArrayLike<T>, body: (element: T, i: number, next: NextFunction<TError, U>) => void, waitForPrevious?: boolean): PromiseLike<void>
-export function each<TError, U extends unknown[]>(o: Record<string, unknown>, body: (element: unknown, i: string, next: NextFunction<TError, U>) => void, waitForPrevious?: boolean): PromiseLike<void>
+export function each<TError, U extends unknown[], T = Record<string, unknown>>(o: T, body: (element: T[typeof i], i: keyof T, next: NextFunction<TError, U>) => void, waitForPrevious?: boolean): PromiseLike<void>
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function each(it: unknown[] | ArrayLike<unknown> | Record<string, unknown>, body: <TError, U extends unknown[]>(element: unknown, i: any, next: NextFunction<TError, U>) => void, complete?: NextFunction | boolean, waitForPrevious?: boolean): void | PromiseLike<void>
 {

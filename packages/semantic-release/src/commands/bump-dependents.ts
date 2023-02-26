@@ -1,7 +1,7 @@
 import { CliContext } from "@akala/cli";
-import { Levels } from "./recommend-bump";
+import { Levels } from "./recommend-bump.js";
 
-type Workspace = { location: string, name: string, workspaceDependencies: string[], bump: keyof Levels };
+type Workspace = { location: string, name: string, workspaceDependencies: string[], bump: keyof typeof Levels };
 
 export default function (this: CliContext, workspaces: Workspace[], rules?: { [key: string]: string })
 {
@@ -11,6 +11,9 @@ export default function (this: CliContext, workspaces: Workspace[], rules?: { [k
     this.logger.debug(translatedRules)
     this.logger.debug(translatedVersions)
     var loopCounts = workspaces.length;
+
+    workspaces = sort(workspaces);
+
     do
     {
         var hasChange = false;
@@ -39,5 +42,26 @@ export default function (this: CliContext, workspaces: Workspace[], rules?: { [k
         throw new Error('too many loops');
     else
         this.logger.verbose(`completed in ${workspaces.length - loopCounts} loops`);
-    return Object.entries(translatedVersions).filter(e => e[1] != Levels.decline).map(entry => Object.assign(workspaces.find(w => w.location == entry[0]), { bump: Levels[entry[1]] }));
+
+    return workspaces.filter(w => translatedVersions[w.location] != Levels.decline).map(w =>
+    {
+        w.bump = Levels[translatedVersions[w.location]] as keyof typeof Levels;
+        return w;
+    });
+}
+
+export function sort(workspaces: Workspace[])
+{
+    var result = [];
+    const scopedWorkspaces = workspaces.map(w => ({ name: w.name, workspaceDependencies: w.workspaceDependencies.map(w2 => workspaces.find(w3 => w3.location == w2)?.name).filter(w => w) }))
+    while (result.length != scopedWorkspaces.length)
+    {
+        scopedWorkspaces.forEach(pivot =>
+        {
+            if (!pivot.workspaceDependencies || !pivot.workspaceDependencies.length || pivot.workspaceDependencies.filter(dep => result.findIndex(w => w.name == dep) > -1).length == pivot.workspaceDependencies.length)
+                if (result.indexOf(pivot) === -1)
+                    result.push(pivot);
+        });
+    }
+    return result.map(w => workspaces.find(w2 => w.name == w2.name));
 }

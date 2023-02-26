@@ -3,7 +3,7 @@ import "../../serviceworker.d.ts"
 
 declare var self: ServiceWorkerGlobalScope;
 
-self.addEventListener('install', function (evt)
+self.addEventListener('install', function ()
 {
     caches.open('akala').then(cache => cache.add('/'));
 })

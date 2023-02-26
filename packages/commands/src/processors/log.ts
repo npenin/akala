@@ -1,5 +1,5 @@
-import { ICommandProcessor } from '../model/processor';
-import { EventProcessor } from './event';
+import { ICommandProcessor } from '../model/processor.js';
+import { EventProcessor } from './event.js';
 
 export class LogProcessor extends EventProcessor
 {

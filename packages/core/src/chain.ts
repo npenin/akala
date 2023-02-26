@@ -18,7 +18,7 @@ global['Proxy'] = new oldProxy(oldProxy, {
     }
 });
 
-export function chain<T extends (...args: unknown[]) => unknown>(target: T, keyHandler: (keys: string[], ...args) => any[])
+export function chain<T extends (...args: unknown[]) => unknown>(target: T, keyHandler: (keys: string[], ...args) => unknown[])
 {
     const configProxyGetter = {
         get: function chain(target: T, key)

@@ -1,4 +1,4 @@
-import { replEval } from '../helpers/repl'
+import { replEval } from '../helpers/repl.js'
 import * as assert from 'assert'
 import 'source-map-support/register'
 

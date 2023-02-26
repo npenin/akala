@@ -1,38 +1,54 @@
 {
-  "name": "@akala/pm",
-  "bin": {
-    "pm": "dist/cli.js",
-    "pm-fork": "dist/fork.js"
-  },
-  "version": "3.2.2",
-  "scripts": {
-    "test": "echo 1",
-    "generate": "ac generate dist/commands commands.json",
-    "prepack": "tsc -p ."
-  },
-  "funding": "https://github.com/npenin/akala?sponsor=1",
-  "main": "dist/index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/npenin/akala.git"
-  },
-  "homepage": "https://akala.js.org/pm",
-  "dependencies": {
-    "@akala/cli": "workspace:^",
-    "@akala/commands": "workspace:^",
-    "@akala/config": "workspace:^",
-    "@akala/core": "workspace:^",
-    "@akala/json-rpc-ws": "workspace:^",
-    "reflect-metadata": "^0.1.13",
-    "source-map-support": "^0.5.21"
-  },
-  "devDependencies": {
-    "@types/debug": "^4.1.7",
-    "@types/mock-require": "^2.0.1",
-    "@types/node": "^16.11.28",
-    "@types/source-map-support": "^0.5.4",
-    "@types/ws": "^8.5.3",
-    "typescript": "^4.6.3"
-  },
-  "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43"
+    "name": "@akala/pm",
+    "bin": {
+        "pm": "dist/cjs/cli.js",
+        "pm-fork": "dist/cjs/fork.js"
+    },
+    "version": "5.2.6",
+    "scripts": {
+        "test": "echo 1",
+        "generate": "ac generate dist/esm/commands commands.json",
+        "generate-metadata": "ac generate-metadata commands.json src/container.ts",
+        "prepack": "tsc -p tsconfig.esm.json"
+    },
+    "funding": "https://github.com/npenin/akala?sponsor=1",
+    "main": "./dist/cjs/index.js",
+    "module": "./dist/esm/index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/npenin/akala.git"
+    },
+    "homepage": "https://akala.js.org/pm",
+    "type": "module",
+    "dependencies": {
+        "@akala/cli": "workspace:^",
+        "@akala/commands": "workspace:^",
+        "@akala/config": "workspace:^",
+        "@akala/core": "workspace:^",
+        "@akala/json-rpc-ws": "workspace:^",
+        "reflect-metadata": "^0.1.13",
+        "source-map-support": "^0.5.21"
+    },
+    "devDependencies": {
+        "@types/debug": "^4.1.7",
+        "@types/mock-require": "^2.0.1",
+        "@types/node": "^18.11.18",
+        "@types/source-map-support": "^0.5.6",
+        "@types/ws": "^8.5.4",
+        "typescript": "^4.9.4"
+    },
+    "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
+    "exports": {
+        ".": {
+            "types": "./dist/esm/index.d.ts",
+            "import": "./dist/esm/index.js",
+            "require": "./dist/cjs/index.js",
+            "default": "./dist/cjs/index.js"
+        },
+        "./commands.json": {
+            "default": "./commands.json"
+        }
+    },
+    "types": "./dist/cjs/index.d.ts",
+    "typings": "./dist/cjs/index.d.ts"
 }

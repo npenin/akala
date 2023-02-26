@@ -3,14 +3,13 @@
     "commands": [
         {
             "name": "$init",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
                         "pm",
                         "param.0"
                     ],
-                    "path": "dist/commands/$init.js",
+                    "path": "dist/esm/commands/$init.js",
                     "source": "src/commands/$init.ts"
                 },
                 "": {
@@ -35,10 +34,9 @@
         },
         {
             "name": "disable-schedule",
-            "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist/commands/disable-schedule.js",
+                    "path": "dist/esm/commands/disable-schedule.js",
                     "source": "src/commands/disable-schedule.ts",
                     "inject": [
                         "param.0"
@@ -56,10 +54,9 @@
         },
         {
             "name": "enable-schedule",
-            "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist/commands/enable-schedule.js",
+                    "path": "dist/esm/commands/enable-schedule.js",
                     "source": "src/commands/enable-schedule.ts",
                     "inject": [
                         "param.0"
@@ -77,10 +74,9 @@
         },
         {
             "name": "list",
-            "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist/commands/list.js",
+                    "path": "dist/esm/commands/list.js",
                     "source": "src/commands/list.ts",
                     "inject": []
                 },
@@ -94,7 +90,6 @@
         },
         {
             "name": "load",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
@@ -102,7 +97,7 @@
                         "param.0",
                         "param.1"
                     ],
-                    "path": "dist/commands/load.js",
+                    "path": "dist/esm/commands/load.js",
                     "source": "src/commands/load.ts"
                 },
                 "": {
@@ -129,13 +124,12 @@
         },
         {
             "name": "register-loader",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
                         "param.0"
                     ],
-                    "path": "dist/commands/register-loader.js",
+                    "path": "dist/esm/commands/register-loader.js",
                     "source": "src/commands/register-loader.ts"
                 },
                 "": {
@@ -154,10 +148,9 @@
         },
         {
             "name": "register-trigger",
-            "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist/commands/register-trigger.js",
+                    "path": "dist/esm/commands/register-trigger.js",
                     "source": "src/commands/register-trigger.ts",
                     "inject": [
                         "param.0",
@@ -180,10 +173,9 @@
         },
         {
             "name": "start",
-            "inject": [],
             "config": {
                 "fs": {
-                    "path": "dist/commands/start.js",
+                    "path": "dist/esm/commands/start.js",
                     "source": "src/commands/start.ts",
                     "inject": [
                         "param.0",
@@ -216,14 +208,13 @@
         },
         {
             "name": "unload",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
                         "$container",
                         "param.0"
                     ],
-                    "path": "dist/commands/unload.js",
+                    "path": "dist/esm/commands/unload.js",
                     "source": "src/commands/unload.ts"
                 },
                 "": {
@@ -247,5 +238,5 @@
             }
         }
     ],
-    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
 }

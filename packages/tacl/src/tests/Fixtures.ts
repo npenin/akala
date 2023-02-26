@@ -1,4 +1,4 @@
-﻿import { AclManager, MemoryProvider, RouterProvider, Deny, Allow, IAclProvider } from "..";
+﻿import { AclManager, MemoryProvider, RouterProvider, Deny, Allow, IAclProvider } from "../index.js";
 import assert from 'assert';
 
 describe('general', function ()

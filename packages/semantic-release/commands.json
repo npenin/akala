@@ -2,15 +2,36 @@
     "name": "commands",
     "commands": [
         {
+            "name": "analyze",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/esm/commands/analyze.js",
+                    "source": "src/commands/analyze.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "automate": {
+                    "inject": [
+                        "commits"
+                    ]
+                }
+            }
+        },
+        {
             "name": "bump-dependents",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
                         "param.0",
                         "param.1"
                     ],
-                    "path": "dist/commands/bump-dependents.js",
+                    "path": "dist/esm/commands/bump-dependents.js",
                     "source": "src/commands/bump-dependents.ts"
                 },
                 "": {
@@ -28,38 +49,14 @@
             }
         },
         {
-            "name": "analyze",
-            "inject": [],
-            "config": {
-                "fs": {
-                    "inject": [
-                        "param.0"
-                    ],
-                    "path": "dist/commands/analyze.js",
-                    "source": "src/commands/analyze.ts"
-                },
-                "": {
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "automate": {
-                    "inject": [
-                        "commits"
-                    ]
-                }
-            }
-        },
-        {
             "name": "changelog",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
                         "param.0",
                         "param.1"
                     ],
-                    "path": "dist/commands/changelog.js",
+                    "path": "dist/esm/commands/changelog.js",
                     "source": "src/commands/changelog.ts"
                 },
                 "": {
@@ -78,13 +75,12 @@
         },
         {
             "name": "eliminate-private",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
                         "param.0"
                     ],
-                    "path": "dist/commands/eliminate-private.js",
+                    "path": "dist/esm/commands/eliminate-private.js",
                     "source": "src/commands/eliminate-private.ts"
                 },
                 "": {
@@ -101,11 +97,10 @@
         },
         {
             "name": "get-version",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [],
-                    "path": "dist/commands/get-version.js",
+                    "path": "dist/esm/commands/get-version.js",
                     "source": "src/commands/get-version.ts"
                 },
                 "": {
@@ -120,13 +115,12 @@
         },
         {
             "name": "parse",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
                         "param.0"
                     ],
-                    "path": "dist/commands/parse.js",
+                    "path": "dist/esm/commands/parse.js",
                     "source": "src/commands/parse.ts"
                 },
                 "": {
@@ -143,14 +137,13 @@
         },
         {
             "name": "recommend-bump",
-            "inject": [],
             "config": {
                 "fs": {
                     "inject": [
                         "param.0",
                         "param.1"
                     ],
-                    "path": "dist/commands/recommend-bump.js",
+                    "path": "dist/esm/commands/recommend-bump.js",
                     "source": "src/commands/recommend-bump.ts"
                 },
                 "": {
@@ -168,5 +161,5 @@
             }
         }
     ],
-    "$schema": "https://raw.githubusercontent.com/npenin/akala-commands/master/schema.json"
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
 }

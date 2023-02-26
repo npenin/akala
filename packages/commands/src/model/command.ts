@@ -1,6 +1,6 @@
 import { InjectableWithTypedThis } from "@akala/core";
-import { ICommandProcessor } from './processor';
-import * as metadata from '../metadata'
+import { ICommandProcessor } from './processor.js';
+import * as metadata from '../metadata/index.js'
 
 type Injectable<T, U> = InjectableWithTypedThis<T, U> & { '$inject'?: string[] }
 

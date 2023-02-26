@@ -1,15 +1,14 @@
 import { Container } from "@akala/commands";
-import { router } from '../router/index';
-import { HttpRouter } from '../router/index';
+import { router, HttpRouter } from '../router/index.js';
 import '../triggers/http'
-import { State } from '../state';
+import { State } from '../state.js';
 import { Injector, Binding, logger } from "@akala/core";
 import { join, resolve } from "path";
 import HtmlPlugin from 'html-webpack-plugin';
 // import { CleanWebpackPlugin as CleanPlugin } from 'clean-webpack-plugin'
 import CssExtractPlugin from 'mini-css-extract-plugin'
 import fs from 'fs';
-import { StaticFileMiddleware } from '../router/staticFileMiddleware';
+import { StaticFileMiddleware } from '../router/staticFileMiddleware.js';
 
 const log = logger('akala:server')
 

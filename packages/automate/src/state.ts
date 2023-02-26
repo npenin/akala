@@ -1,11 +1,10 @@
-import { Workflow } from './automate'
-import { Queue } from '@akala/core'
-import { Deferred } from '@akala/json-rpc-ws'
-import loader from './loader';
+import { Workflow } from './index.js'
+import { Deferred, Queue } from '@akala/core'
+import loader from './loader.js';
 import * as trigger from '@akala/pubsub';
 import { Schedule } from '@akala/cron';
 
-export type WorkflowInstance<T = any, TResult = unknown> = { workflow: Workflow, context: T, complete?: Deferred<TResult> };
+export type WorkflowInstance<T = unknown, TResult = unknown> = { workflow: Workflow, context: T, complete?: Deferred<TResult> };
 
 export default interface State
 {

@@ -1,6 +1,8 @@
-/// A middleware promise is the opposite of a promise which will fail when there is a result 
-/// and which will succeed as long as there is no middleware that handled the context
-export type MiddlewarePromise = Promise<Error | SpecialNextParam | OptionsResponse>;
+/* A middleware promise is the opposite of a promise which will fail when there is a result 
+ * and which will succeed as long as there is no middleware that handled the context
+ */
+export type MiddlewarePromise = Promise<MiddlewareResult>;
+export type MiddlewareResult = Error | SpecialNextParam | OptionsResponse;
 
 export interface Middleware<T extends unknown[]> 
 {

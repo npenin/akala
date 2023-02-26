@@ -1,11 +1,12 @@
 {
     "name": "@akala/storage",
-    "version": "2.4.9",
+    "version": "3.6.6",
     "description": "",
-    "main": "dist/server/index.js",
+    "main": "./dist/cjs/index.js",
+    "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\"",
-        "build:js": "tsc -p .",
+        "build:js": "tsc -p tsconfig.esm.json",
         "build:js:routes": "browserify -x @akala/client -x @akala/core dist/client/routes.js -o dist/routes.js",
         "build:js:tile": "browserify -x @akala/client -x @akala/core -i @domojs/theme-default/dist/tile dist/client/tile.js -o dist/tile.js",
         "build": "npm run build:js"
@@ -20,21 +21,31 @@
     "keywords": [],
     "author": "",
     "license": "BSD-3-Clause",
-    "types": "dist/server/index.d.ts",
+    "types": "./dist/cjs/index.d.ts",
     "dependencies": {
         "@akala/core": "workspace:^",
         "reflect-metadata": "^0.1.13",
-        "uuid": "^8.3.2"
+        "uuid": "^9.0.0"
     },
     "devDependencies": {
         "@types/debug": "^4.1.7",
-        "@types/mocha": "^9.1.1",
-        "@types/node": "^16.11.28",
-        "@types/uuid": "^8.3.4",
-        "mocha": "^9.2.2",
+        "@types/mocha": "^10.0.1",
+        "@types/node": "^18.11.18",
+        "@types/uuid": "^9.0.0",
+        "mocha": "^10.2.0",
         "mock-require": "^3.0.3",
         "source-map-support": "^0.5.21",
-        "typescript": "^4.6.3"
+        "typescript": "^4.9.4"
     },
-    "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43"
+    "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
+    "exports": {
+        ".": {
+            "types": "./dist/esm/index.d.ts",
+            "import": "./dist/esm/index.js",
+            "require": "./dist/cjs/index.js",
+            "default": "./dist/cjs/index.js"
+        }
+    },
+    "module": "./dist/esm/index.js",
+    "typings": "./dist/cjs/index.d.ts"
 }

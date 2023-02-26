@@ -11,7 +11,7 @@ export interface Tile
     url?: string | PromiseLike<string>,
     cmd?: string,
     color?: BlockColors;
-    click?(...args: any[]): boolean | void;
+    click?(...args: unknown[]): boolean | void;
 }
 
 export enum BlockColors
@@ -29,7 +29,7 @@ export enum BlockColors
     viridian,
 }
 
-type TileCallback = (Tile) => void;
+// type TileCallback = (Tile) => void;
 export type TileDef = Tile | PromiseLike<Tile>;
 
 (function ()
@@ -44,6 +44,7 @@ export type TileDef = Tile | PromiseLike<Tile>;
     }
 
     @client.control('color')
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     class BlockColor extends client.controls.GenericControlInstance<string>
     {
         constructor()
@@ -51,7 +52,7 @@ export type TileDef = Tile | PromiseLike<Tile>;
             super();
         }
 
-        public apply(target: any, element: Element, parameter: string): any
+        public apply(target: unknown, element: Element, parameter: string): void
         {
             if (typeof parameter == 'undefined')
                 parameter = BlockColors[Math.floor(Math.random() * Object.keys(BlockColors).length / 2)];

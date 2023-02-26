@@ -1,5 +1,3 @@
-import * as fs from 'fs';
-
 export class Queue<T>
 {
     protected pending: T[];

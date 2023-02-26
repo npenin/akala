@@ -1,20 +1,20 @@
-import { ServerAdapter } from '../server';
+import { ServerAdapter } from '../server.js';
 import * as ws from 'ws';
-import { SocketAdapter } from '../shared-connection';
-import WsSocketAdapter from './ws-socket-adapter';
+import { SocketAdapter } from '../shared-connection.js';
+import WsSocketAdapter from './ws-socket-adapter.js';
 
 export class Adapter implements ServerAdapter
 {
-  public server?: ws.Server;
+  public server?: ws.WebSocketServer;
 
   close(): void
   {
     this.server?.close();
   }
 
-  onConnection(handler: (socket: SocketAdapter<ws>) => void): void
+  onConnection(handler: (socket: SocketAdapter<ws.WebSocket>) => void): void
   {
-    this.server?.on('connection', function (socket: ws)
+    this.server?.on('connection', function (socket: ws.WebSocket)
     {
       handler(new WsSocketAdapter(socket));
     });
@@ -27,7 +27,7 @@ export class Adapter implements ServerAdapter
 
   start(): void
   {
-    this.server = new ws.Server(this.options);
+    this.server = new ws.WebSocketServer(this.options);
   }
 
   /**

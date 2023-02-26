@@ -5,17 +5,15 @@
             "param.0",
             "param.1",
             "param.2",
-            "param.3",
-            "param.4"
+            "param.3"
         ]
     },
     "cli": {
         "inject": [
-            "param.0",
-            "param.1",
+            "options.name",
+            "options.path",
             "cwd",
-            "options.c",
-            "options.s"
+            "options"
         ],
         "options": {
             "commandable": {
@@ -26,11 +24,11 @@
             },
             "stateless": {
                 "aliases": [
-                    "s",
-                    "state-less"
+                    "s"
                 ],
                 "needsValue": false
             }
-        }
+        },
+        "usage": "map <name> <path>"
     }
 }

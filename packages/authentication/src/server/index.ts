@@ -1,6 +1,6 @@
 import * as akala from '@akala/core';
 import * as server from '@akala/server';
-import { AuthorizeMiddleware } from './middlewares/authorize';
+import { AuthorizeMiddleware } from './middlewares/authorize.js';
 
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires

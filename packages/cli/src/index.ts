@@ -1,11 +1,11 @@
-import { LogLevels, Logger, logger as LoggerBuilder } from '@akala/core';
-import program, { CliContext } from './router/index';
-export * from './router/index'
+import { LogLevels, Logger, logger as LoggerBuilder, grep, map, each } from '@akala/core';
+import program, { CliContext, OptionOptions, usageParser } from './router/index.js';
+export * from './router/index.js'
 export default program;
 
 export function buildCliContext<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>(logger: Logger, ...args: string[]): CliContext<T>
 {
-    const result: CliContext<T> = { args: args, argv: args, options: {} as T, currentWorkingDirectory: undefined } as any;
+    const result: CliContext<T> = { args: args, argv: args, options: {} as T, currentWorkingDirectory: undefined } as unknown as CliContext<T>;
     Object.defineProperty(result, 'logger', { enumerable: false, value: logger });
     return result;
 }
@@ -21,7 +21,7 @@ export function buildCliContextFromProcess<T extends Record<string, string | boo
         commandPath: process.argv0,
         options: {} as T,
         currentWorkingDirectory: process.cwd(),
-    } as any;
+    } as unknown as CliContext<T>;
     Object.defineProperty(result, 'logger', { enumerable: false, value: logger });
     return result;
 }
@@ -41,10 +41,25 @@ export function unparse(context: CliContext): string[]
     return [...context.args, ...unparseOptions(context.options)];
 }
 
-export class ErrorWithStatus extends Error
+export function unparseWithMeta(definition: { usage?: string, options?: { [key: string]: OptionOptions } }, context: CliContext): string[]
 {
-    constructor(public readonly statusCode: number, message?: string)
+    var positionals = map(grep(definition.options, o => o.positional), (o, name) => ({ name, ...o }), true).sort((a, b) => a.position - b.position);
+    var args = positionals.map(o => context.options[o.name]).filter(f => typeof f !== 'undefined') as string[];
+
+    each(grep(definition.options, o => !o.positional), (option, name) =>
     {
-        super(message);
-    }
+        if (typeof (name) !== 'string')
+            return;
+        var optionValue = context.options[name] as string;
+        if (typeof (optionValue) !== 'undefined')
+            if (typeof optionValue == 'boolean' && optionValue)
+                args.unshift("--" + name);
+            else
+                args.unshift("--" + name, optionValue);
+    });
+
+    if (definition.usage)
+        args.unshift(usageParser.exec(definition.usage)[1]);
+
+    return args.flat();
 }

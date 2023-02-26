@@ -1,0 +1,26 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
+    "fs": {
+        "inject": [
+            "db",
+            "param.0",
+            "param.1"
+        ]
+    },
+    "": {
+        "inject": [
+            "db",
+            "param.0",
+            "param.1"
+        ]
+    },
+    "http": {
+        "inject": [
+            "db",
+            "route.type",
+            "body"
+        ],
+        "route": "/{type}",
+        "method": "put"
+    }
+}

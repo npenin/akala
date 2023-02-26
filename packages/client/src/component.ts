@@ -1,8 +1,8 @@
-import { Module, InjectableConstructor, injectable } from "@akala/core";
+import { Module, injectable } from "@akala/core";
 
 export default function (module: Module)
 {
-    return function <TInstance, TClass extends { new(...args: any[]): TInstance }>(ctor: TClass): TClass
+    return function <TInstance, TClass extends { new(...args: unknown[]): TInstance }>(ctor: TClass): TClass
     {
         const cl = injectable(ctor);
         module.activateNew('$injector')(cl);

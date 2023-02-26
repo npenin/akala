@@ -1,6 +1,6 @@
 import * as akala from '@akala/core'
 import { MiddlewareComposite } from '@akala/core';
-import { MethodMiddleware, simpleRequest } from '../router';
+import { MethodMiddleware, simpleRequest } from '../router.js';
 
 export type workerHandler = (req: simpleRequest, ev: FetchEvent) => Promise<unknown>;
 

@@ -1,62 +1,63 @@
-import { Connection as BaseConnection, SerializableObject, PayloadDataType, SerializedBuffer, Payload, SocketAdapter, Deferred, Parent } from './shared-connection';
-import { default as Client } from './shared-client';
-import { default as Errors, Payload as ErrorPayload } from './errors';
-
+import { Connection as BaseConnection, PayloadDataType, SerializedBuffer, Payload, SocketAdapter, Parent } from './shared-connection.js';
+import { default as Client } from './shared-client.js';
+import { default as Errors, Payload as ErrorPayload } from './errors.js';
+import { Deferred, SerializableObject } from '@akala/core'
 
 import debug from 'debug';
 
 const logger = debug('json-rpc-ws');
 
-import * as ws from './ws/browser';
+import * as ws from './ws/browser.js';
+import { ReadableStreamDefaultReadResult } from 'stream/web';
 export { ws };
-export { Client, SocketAdapter, Errors, BaseConnection, SerializableObject, Deferred, PayloadDataType, SerializedBuffer, Payload, ErrorPayload };
+export { Client, SocketAdapter, Errors, BaseConnection, SerializableObject, PayloadDataType, SerializedBuffer, Payload, ErrorPayload };
 
-// class ByobReader implements ReadableStreamBYOBReader
-// {
-//   reader: DefaultReader;
-//   constructor(private stream: Readable)
-//   {
-//     this.reader = new DefaultReader(stream);
-//     this.reader.releaseLock();
-//   }
-//   public emitError(error: any)
-//   {
-//     this.reader.emitError(error);
-//   }
+class ByobReader implements ReadableStreamBYOBReader
+{
+  reader: DefaultReader;
+  constructor(private stream: Readable)
+  {
+    this.reader = new DefaultReader(stream);
+    this.reader.releaseLock();
+  }
+  public emitError(error: any)
+  {
+    this.reader.emitError(error);
+  }
 
-//   get closed(): Promise<void>
-//   {
-//     return this.reader.closed;
-//   }
-//   cancel(reason?: any): Promise<void>
-//   {
-//     return this.reader.cancel(reason);
-//   }
+  get closed(): Promise<undefined>
+  {
+    return this.reader.closed;
+  }
+  cancel(reason?: any): Promise<void>
+  {
+    return this.reader.cancel(reason);
+  }
 
-//   public push(...chunks: (Uint8Array | null)[])
-//   {
-//     this.reader.push(...chunks);
-//   }
+  public push(...chunks: (Uint8Array | null)[])
+  {
+    this.reader.push(...chunks);
+  }
 
-//   read<T extends ArrayBufferView>(view: T): Promise<ReadableStreamDefaultReadResult<T>>
-//   {
-//     return this.reader.read().then(v =>
-//     {
-//       if (!v.done)
-//       {
-//         view.byteOffset = v.value.byteOffset;
-//         view.byteLength = v.value.byteLength;
-//         view.buffer = v.value.buffer;
-//       }
-//       return { done: v.done, value: view };
-//     })
-//   }
-//   releaseLock(): void
-//   {
-//     if (this.stream.reader === this)
-//       this.stream.reader = undefined;
-//   }
-// }
+  read<T extends ArrayBufferView>(view: T): Promise<ReadableStreamDefaultReadResult<T>>
+  {
+    return this.reader.read().then(v =>
+    {
+      if (!v.done)
+      {
+        view.byteOffset = v.value.byteOffset;
+        view.byteLength = v.value.byteLength;
+        view.buffer = v.value.buffer;
+      }
+      return { done: v.done as false, value: view };
+    })
+  }
+  releaseLock(): void
+  {
+    if (this.stream.reader === this.reader)
+      this.stream.reader = undefined;
+  }
+}
 
 
 class DefaultReader implements ReadableStreamDefaultReader<Uint8Array>
@@ -134,31 +135,40 @@ class DefaultReader implements ReadableStreamDefaultReader<Uint8Array>
 
 class Readable implements ReadableStream<Uint8Array>
 {
-  forEach(callbackfn: (value: any, key: number, parent: ReadableStream<Uint8Array>) => void, thisArg?: any): void {
-    return this.buffer.forEach((x,i)=>callbackfn(x,i, thisArg || this))
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  forEach(callbackfn: (value: any, key: number, parent: ReadableStream<Uint8Array>) => void, thisArg?: any): void
+  {
+    return this.buffer.forEach((x, i) => callbackfn(x, i, thisArg || this))
   }
-  entries(): IterableIterator<[number, any]> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  entries(): IterableIterator<[number, any]>
+  {
     return this.buffer.entries();
   }
-  keys(): IterableIterator<number> {
+  keys(): IterableIterator<number>
+  {
     return this.buffer.keys();
 
   }
-  values(): IterableIterator<any> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  values(): IterableIterator<any>
+  {
     return this.buffer.values();
   }
-  [Symbol.iterator](): IterableIterator<any> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [Symbol.iterator](): IterableIterator<any>
+  {
     return this.buffer[Symbol.iterator]();
   }
   private buffer: (Uint8Array | null)[] = [];
-  private _reader?: DefaultReader //| ByobReader;
+  private _reader?: DefaultReader | ByobReader;
   private target?: WritableStream<unknown>;
-  public get reader(): DefaultReader /*| ByobReader*/ | undefined
+  public get reader(): DefaultReader | ByobReader | undefined
   {
     return this._reader;
   }
 
-  public set reader(reader: DefaultReader /* | ByobReader*/ | undefined)
+  public set reader(reader: DefaultReader | ByobReader | undefined)
   {
     this._reader = reader;
     if (reader && this.buffer.length)
@@ -198,17 +208,17 @@ class Readable implements ReadableStream<Uint8Array>
       this.reader.push(chunk);
   }
 
-  // getReader(options: { mode: "byob"; }): ReadableStreamBYOBReader;
+  getReader(options: { mode: "byob" }): ReadableStreamBYOBReader;
   getReader(): ReadableStreamDefaultReader<Uint8Array>;
-  getReader(): ReadableStreamReader<Uint8Array>
+  getReader(options?: ReadableStreamGetReaderOptions): ReadableStreamReader<Uint8Array>
   {
     if (this.locked)
       throw new Error('stream is already locked');
 
-    // if (options && options.mode === 'byob')
-    // {
-    //   return this.reader = new ByobReader(this);
-    // }
+    if (options && options.mode === 'byob')
+    {
+      return this.reader = new ByobReader(this);
+    }
     return this.reader = new DefaultReader(this);
   }
   pipeThrough<T>({ writable, readable }: { writable: WritableStream<Uint8Array>; readable: ReadableStream<T>; }, options?: StreamPipeOptions | undefined): ReadableStream<T>

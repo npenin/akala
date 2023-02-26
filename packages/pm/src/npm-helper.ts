@@ -1,5 +1,5 @@
 import { platform } from "os";
-import { spawnAsync } from './cli-helper';
+import { spawnAsync } from './cli-helper.js';
 
 
 // if (typeof (process.versions.pnp) != 'undefined')

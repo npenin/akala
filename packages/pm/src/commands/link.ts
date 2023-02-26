@@ -1,8 +1,8 @@
-import State from '../state';
-import npmHelper from '../npm-helper';
+import State from '../state.js';
+import npmHelper from '../npm-helper.js';
 import { Container } from "@akala/commands";
-import yarnHelper, { hasYarn } from '../yarn-helper';
-import discover from './discover';
+import yarnHelper, { hasYarn } from '../yarn-helper.js';
+import discover from './discover.js';
 
 export default async function link(this: State, packageName: string, folder: string, pm: Container<State>): ReturnType<typeof discover>
 {
