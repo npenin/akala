@@ -4,7 +4,7 @@ import { spawn, ChildProcess, StdioOptions } from "child_process";
 import { MessagePort, Worker } from "worker_threads";
 import pmContainer from '../container.js';
 import * as jsonrpc from '@akala/json-rpc-ws'
-import { eachAsync, logger } from "@akala/core";
+import { Deferred, eachAsync, logger } from "@akala/core";
 import { NewLinePrefixer } from "../new-line-prefixer.js";
 import { CliContext } from "@akala/cli";
 import { ErrorWithStatus } from "@akala/core";
@@ -225,7 +225,7 @@ export class MessagePortAdapter implements jsonrpc.SocketAdapter
     {
         this.cp.postMessage(data);
     }
-    on<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
+    on<K extends keyof jsonrpc.SocketAdapterEventMap>(event: K, handler: (ev: jsonrpc.SocketAdapterEventMap[K]) => void): void
     {
         switch (event)
         {
@@ -241,7 +241,7 @@ export class MessagePortAdapter implements jsonrpc.SocketAdapter
         }
     }
 
-    once<K extends keyof SocketAdapterEventMap>(event: K, handler: (ev: SocketAdapterEventMap[K]) => void): void
+    once<K extends keyof jsonrpc.SocketAdapterEventMap>(event: K, handler: (ev: jsonrpc.SocketAdapterEventMap[K]) => void): void
     {
         switch (event)
         {
@@ -260,6 +260,16 @@ export class MessagePortAdapter implements jsonrpc.SocketAdapter
     constructor(private cp: MessagePort | Worker)
     {
         cp.on('close', () => this.isOpen = false);
+    }
+    off<K extends keyof jsonrpc.SocketAdapterEventMap>(event: K, handler?: (this: unknown, ev: jsonrpc.SocketAdapterEventMap[K]) => void): void
+    {
+        this.cp.off(event, handler);
+    }
+
+    pipe(socket: jsonrpc.SocketAdapter<unknown>)
+    {
+        this.on('message', (message) => socket.send(message));
+        this.on('close', () => socket.close());
     }
 
     // _write(chunk: string | Buffer, encoding: string, callback: (error?: any) => void)
