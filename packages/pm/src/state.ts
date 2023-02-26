@@ -27,7 +27,7 @@ export interface SidecarMetadata
     stateless: boolean;
     dependencies?: string[];
     commandable: boolean;
-    type?: 'nodejs';
+    type?: 'nodejs' | 'worker';
 }
 
 export interface SidecarConfiguration<T extends string | SerializableObject = SerializableObject>
