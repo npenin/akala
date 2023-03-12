@@ -9,6 +9,7 @@ import { EventEmitter } from 'events';
 import { CliContext } from '@akala/cli';
 import Configuration from '@akala/config';
 import { each, grep } from '@akala/core';
+import Process from '../runtimes/process.js';
 
 export async function metadata(container: Container<unknown>, deep?: boolean): Promise<Metadata.Container>
 {
@@ -72,19 +73,7 @@ export default async function (this: State, container: RunningContainer & pmCont
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return stdoutPT.write(...args as [any, BufferEncoding]);
     } as typeof process.stdout.write;
-    container.process = Object.assign(new EventEmitter(), {
-        stdout: stdoutPT, stderr: stderrPT, stdio: null, stdin: process.stdin, pid: process.pid, connected: false
-        , exitCode: undefined
-        , signalCode: undefined
-        , spawnargs: process.argv
-        , spawnfile: null
-        , kill: process.exit.bind(process)
-        , send: null
-        , disconnect: null
-        , unref: null
-        , ref: null
-        , killed: false
-    });
+    container.process = new Process({ stdout: stdoutPT, stderr: stderrPT, stdin: process.stdin });
 
     const configPath = context.options.config || join(homedir(), './.pm.config.json');
     this.config = await Configuration.load<StateConfiguration>(configPath, true);

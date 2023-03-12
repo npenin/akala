@@ -1,7 +1,5 @@
 import { Container, Processors, Metadata, Cli, updateCommands } from "@akala/commands";
 import State, { RunningContainer, SidecarMetadata } from '../state.js';
-import { spawn, ChildProcess, StdioOptions } from "child_process";
-import { Worker } from "worker_threads";
 import pmContainer from '../container.js';
 import { Deferred, eachAsync, logger } from "@akala/core";
 import { NewLinePrefixer } from "../new-line-prefixer.js";
@@ -9,12 +7,12 @@ import { CliContext } from "@akala/cli";
 import { ErrorWithStatus } from "@akala/core";
 import getRandomName from "./name.js";
 import { ProxyConfiguration } from "@akala/config";
-import { IpcAdapter } from "../ipc-adapter.js";
 import type { SocketAdapter } from "@akala/json-rpc-ws";
-import module from 'module'
-import { MessagePortAdapter } from "../messageport-adapter.js";
+import ChildProcess from '../runtimes/child_process.js'
+import Worker from '../runtimes/worker.js'
+import { RuntimeInstance } from "../runtimes/runtime.js";
+import { StdioOptions } from "child_process";
 
-const require = module.createRequire(import.meta.url);
 
 export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, context?: CliContext<{ new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: boolean, wait?: boolean }>): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
 {
@@ -64,34 +62,21 @@ export default async function start(this: State, pm: pmContainer.container & Con
     if (!def?.type || def.type == 'nodejs')
         args.unshift(require.resolve('../fork'))
 
-    if (context.options && context.options.inspect)
-        args.unshift('--inspect-brk');
-
-    args.unshift(...process.execArgv);
 
     if (context.options && context.options.verbose)
         args.push('-v')
 
     const log = logger('akala:pm:' + context.options.name);
-    let cp: ChildProcess | Worker;
     if (!this.isDaemon)
     {
-        if (context.options.keepAttached)
-            cp = spawn(process.execPath, args, { cwd: process.cwd(), stdio: ['inherit', 'inherit', 'inherit', 'ipc'] });
-        else
-            cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: true, stdio: ['ignore', 'ignore', 'ignore', 'ipc'] });
+        const cp = ChildProcess.build(args, context.options)
         cp.on('exit', function (...args: unknown[])
         {
             console.log(args);
         })
-        cp.on('message', function (message)
-        {
-            console.log(message);
-            (cp as ChildProcess).disconnect();
-        });
         return new Promise<void>((resolve) =>
         {
-            cp.on('disconnect', function ()
+            cp.on('runningChanged', () =>
             {
                 if (!context.options.keepAttached)
                     cp.unref();
@@ -102,6 +87,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
     }
     else
     {
+        let cp: RuntimeInstance;
         if (!container && def.dependencies?.length)
         {
             var missingDeps = def.dependencies.filter(d => !this.config.mapping[d]);
@@ -117,10 +103,10 @@ export default async function start(this: State, pm: pmContainer.container & Con
             default:
                 throw new ErrorWithStatus(400, `container with type ${this.config.containers[name]?.type} are not yet supported`);
             case 'worker':
-                cp = new Worker(args[0], { argv: args, stderr: true, stdout: true });
+                cp = Worker.build(args, context.options);
                 break;
             case 'nodejs':
-                cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: !context.options.keepAttached, env: Object.assign({ DEBUG_COLORS: true }, process.env), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
+                cp = ChildProcess.build(args, context.options);
                 break;
         }
         // cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: !context.options.keepAttached, env: Object.assign({ DEBUG_COLORS: true }, process.env), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
@@ -129,23 +115,13 @@ export default async function start(this: State, pm: pmContainer.container & Con
 
         if (!container || !container.running)
         {
-            var adapter: SocketAdapter;
-            switch (def.type)
-            {
-                case 'worker':
-                    adapter = new MessagePortAdapter(cp as Worker);
-                    break;
-                case 'nodejs':
-                    adapter = new IpcAdapter(cp as ChildProcess);
-                    break;
-            }
+            var adapter: SocketAdapter = cp.adapter;
 
             const connection = Processors.JsonRpc.getConnection(adapter, pm, (params) =>
             {
                 params.process = cp;
                 Object.defineProperty(params, 'connectionAsContainer', Object.assign({ value: container }));
             });
-            const processor = new Processors.JsonRpc(connection, true);
 
             container = new Container(context.options.name, null) as RunningContainer;
 

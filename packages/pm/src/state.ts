@@ -5,6 +5,7 @@ import { SocketAdapter } from "@akala/json-rpc-ws";
 import { ServeMetadata } from "@akala/commands";
 import { ProxyConfiguration } from "@akala/config";
 import { Worker } from "worker_threads";
+import { RuntimeInstance } from "./runtimes/runtime.js";
 
 export default interface State
 {
@@ -42,7 +43,7 @@ export interface SidecarConfiguration<T extends string | SerializableObject = Se
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface RunningContainer<T extends string | SerializableObject = any> extends Container<unknown>, SidecarConfiguration<T>, SidecarMetadata
 {
-    process: ChildProcess | Worker;
+    process: RuntimeInstance;
     running?: boolean;
     stateless: boolean;
     ready?: Deferred<void>;
