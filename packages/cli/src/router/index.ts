@@ -3,13 +3,14 @@ import { each, Logger, map, Middleware, MiddlewarePromise } from '@akala/core';
 import * as path from 'path'
 import normalize from '../helpers/normalize.js';
 
-export interface CliContext<TOptions extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>
+export interface CliContext<TOptions extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>, TState = unknown>
 {
     args: string[];
     argv: string[];
     options: TOptions
     commandPath?: string;
     currentWorkingDirectory: string;
+    state?: TState;
     logger: Logger
 }
 
@@ -246,14 +247,14 @@ export interface UsageObject
 export const usageParser = /^((?:@?[/$_#\w-]+)(?: ([@$_#\w-]+))*)((?: (?:<\w+>))*(?: (?:\[\w+\]))*(?: \[(?:\.{3})\w+\])?)/;
 
 
-export class NamespaceMiddleware<TOptions extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>> extends akala.MiddlewareIndexed<[CliContext<TOptions>], NamespaceMiddleware> implements akala.Middleware<[context: CliContext]>
+export class NamespaceMiddleware<TOptions extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>, TState = unknown> extends akala.MiddlewareIndexed<[CliContext<TOptions>], NamespaceMiddleware> implements akala.Middleware<[context: CliContext<TOptions, TState>]>
 {
-    private _preAction: akala.Middleware<[CliContext<TOptions>]>;
-    private _action: akala.Middleware<[CliContext<TOptions>]>;
+    private _preAction = new akala.MiddlewareComposite<[CliContext<TOptions, TState>]>();
+    private _action: akala.Middleware<[CliContext<TOptions, TState>]>;
     private readonly _option = new OptionsMiddleware<TOptions>();
-    private _format: (result: unknown, context: CliContext<TOptions>) => void;
+    private _format: (result: unknown, context: CliContext<TOptions, TState>) => void;
 
-    constructor(name: string, private _doc?: { usage?: string, description?: string }, private _cli?: akala.Middleware<[CliContext<TOptions>]>)
+    constructor(name: string, private _doc?: { usage?: string, description?: string }, private _cli?: akala.Middleware<[CliContext<TOptions, TState>]>)
     {
         super((context) => context.args[0], name);
         if (name && ~name.indexOf(' '))
@@ -295,9 +296,9 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
         return usage;
     }
 
-    public command<TOptions2 extends Record<string, string | boolean | string[] | number> = TOptions>(name: string, description?: string): NamespaceMiddleware<TOptions2 & TOptions>
+    public command<TOptions2 extends Record<string, string | boolean | string[] | number> = TOptions>(name: string, description?: string): NamespaceMiddleware<TOptions2 & TOptions, TState>
     {
-        let middleware: NamespaceMiddleware<TOptions & TOptions2>;
+        let middleware: NamespaceMiddleware<TOptions & TOptions2, TState>;
         if (name !== null)
         {
             var cli = usageParser.exec(name);
@@ -324,7 +325,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
             }
 
             if (parameters.length == 0 && description == null && this.index[cli[1]])
-                return this.index[cli[1]] as NamespaceMiddleware<TOptions & TOptions2>;
+                return this.index[cli[1]] as NamespaceMiddleware<TOptions & TOptions2, TState>;
 
             middleware = new NamespaceMiddleware(cli[1], { usage: name, description }, akala.convertToMiddleware(function (context)
             {
@@ -359,13 +360,22 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
         return middleware;
     }
 
-    public preAction(handler: (context: CliContext<TOptions>) => Promise<void>): this
+    public state<TState>(): NamespaceMiddleware<TOptions, TState>
     {
-        this._preAction = { async handle(c) { try { await handler(c) } catch (e) { return e } } };
+        return this as any;
+    }
+
+    public preAction(handler: (context: CliContext<TOptions, TState>) => Promise<void>): this
+    {
+        this._preAction.use(async (ctx) =>
+        {
+            await handler(ctx);
+            throw undefined
+        });
         return this;
     }
 
-    public action(handler: (context: CliContext<TOptions>) => Promise<unknown> | void)
+    public action(handler: (context: CliContext<TOptions, TState>) => Promise<unknown> | void)
     {
         this.use(akala.convertToMiddleware((...args) =>
         {
@@ -377,33 +387,33 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
         }));
     }
 
-    public use(handler: Middleware<[CliContext<TOptions>]>)
+    public use(handler: Middleware<[CliContext<TOptions, TState>]>)
     {
         this._action = handler
     }
 
-    options<T extends { [key: string]: string | number | boolean | string[] }>(options: { [key in Exclude<keyof T, number | symbol>]: OptionOptions }): NamespaceMiddleware<TOptions & T>
+    options<T extends { [key: string]: string | number | boolean | string[] }>(options: { [key in Exclude<keyof T, number | symbol>]: OptionOptions }): NamespaceMiddleware<TOptions & T, TState>
     {
         akala.each(options, (o, key) =>
         {
             this.option<T[typeof key], typeof key>(key, o);
         });
-        return this as unknown as NamespaceMiddleware<T & TOptions>;
+        return this as unknown as NamespaceMiddleware<T & TOptions, TState>;
     }
 
     option<TValue extends string | number | boolean | string[] = string | number | boolean | string[], TName extends string = string>(name: TName, option?: OptionOptions)
         : NamespaceMiddleware<TOptions & { [key in TName]: TValue }>
     {
         this._option.option<TValue, TName>(name, option);
-        return this as unknown as NamespaceMiddleware<TOptions & { [key in TName]: TValue }>;
+        return this as unknown as NamespaceMiddleware<TOptions & { [key in TName]: TValue }, TState>;
     }
 
-    format(handler: (result: unknown, context: CliContext<TOptions>) => void): void
+    format(handler: (result: unknown, context: CliContext<TOptions, TState>) => void): void
     {
         this._format = handler;
     }
 
-    async handle(context: CliContext<TOptions>): akala.MiddlewarePromise
+    async handle(context: CliContext<TOptions, TState>): akala.MiddlewarePromise
     {
         var args = context.args.slice(0);
         if (this.name === null || context.args[0] == this.name)
@@ -423,6 +433,8 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
                 return error;
             if (context.options.help && !this.index[context.args[0]])
             {
+                if (this._delegate && context.args[0] && (this._delegate as NamespaceMiddleware).index[context.args[0]])
+                    return this._delegate.handle(context);
                 var usage = await this.usage(context);
                 // if (!usage && this._delegate)
                 //     return this._delegate.handle(context);

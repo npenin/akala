@@ -91,7 +91,7 @@ __metadata:
     source-map-support: ^0.5.21
     typescript: ^4.9.4
   bin:
-    akala: ./dist/cjs/cli.js
+    akala: ./dist/esm/cli.js
   languageName: unknown
   linkType: soft
 
@@ -160,6 +160,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@akala/config@workspace:packages/config"
   dependencies:
+    "@akala/cli": "workspace:^"
     "@akala/commands": "workspace:^"
     "@akala/core": "workspace:^"
     typescript: ^4.9.4
@@ -282,7 +283,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@akala/pm@^5.2.5, @akala/pm@workspace:^, @akala/pm@workspace:packages/pm":
+"@akala/pm@^5.2.6, @akala/pm@workspace:^, @akala/pm@workspace:packages/pm":
   version: 0.0.0-use.local
   resolution: "@akala/pm@workspace:packages/pm"
   dependencies:
@@ -3743,7 +3744,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "akala-docker@workspace:packages/docker"
   dependencies:
-    "@akala/pm": ^5.2.5
+    "@akala/pm": ^5.2.6
     yarn: ^1.22.19
   languageName: unknown
   linkType: soft

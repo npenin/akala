@@ -1,6 +1,6 @@
-import program from '../router/index.js';
+import program, { ErrorMessage } from '../router/index.js';
 import * as repl from 'repl'
-import { buildCliContext } from '../index.js';
+import { buildCliContextFromContext } from '../index.js';
 
 export function replEval(input: string): string[]
 {
@@ -74,41 +74,41 @@ export function replEval(input: string): string[]
     return args;
 }
 
-let replStarted = false;
+export default function (_config, mainprogram)
+{
+    let replStarted = false;
 
-program.command('repl')
-    .action(function (context)
-    {
-
-        if (replStarted)
+    program.command('repl')
+        .action(function (context)
         {
-            console.log('repl is already started');
-            return Promise.resolve(null);
-        }
-
-        replStarted = true;
-        const logger = context.logger;
-
-        repl.start(Object.assign(context as repl.ReplOptions || {}, {
-            eval: function (input: string, context, file, cb)
+            if (replStarted)
             {
-                try
-                {
-                    const result = program.process(buildCliContext(logger, ...replEval(input)));
-                    if (result && result.then)
-                    {
-                        result.then(function ()
-                        {
-                            cb();
-                        }, cb);
-                    }
-                    else
-                        cb();
-                }
-                catch (e)
-                {
-                    cb(e);
-                }
+                console.log('repl is already started');
+                return Promise.resolve(null);
             }
-        }));
-    })
+
+            replStarted = true;
+            const logger = context.logger;
+
+            repl.start(Object.assign(context as repl.ReplOptions || {}, {
+                eval: async function (input: string, _context, file, cb)
+                {
+                    try
+                    {
+                        const result = await mainprogram.process(buildCliContextFromContext(context, ...replEval(input.trim())));
+                        cb(null, result);
+                    }
+                    catch (e)
+                    {
+                        if (e instanceof ErrorMessage)
+                        {
+                            console.log(e.message);
+                            cb();
+                        }
+                        else
+                            cb(e);
+                    }
+                }
+            }));
+        })
+}
