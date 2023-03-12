@@ -111,27 +111,44 @@ export default async function start(this: State, pm: pmContainer.container & Con
             await eachAsync(def.dependencies, (dep) => pm.dispatch('start', dep, { name: context.options.name + '-' + dep, wait: true }));
         }
 
-        if (def?.type && def.type !== 'nodejs')
-            throw new ErrorWithStatus(400, `container with type ${this.config.containers[name]?.type} are not yet supported`);
-        cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: !context.options.keepAttached, env: Object.assign({ DEBUG_COLORS: true }, process.env), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
-        cp = new Worker(args[0], { argv: args, stderr: true, stdout: true });
         // cp = spawn(process.execPath, args, { cwd: process.cwd(), env: Object.assign({ DEBUG_COLORS: true }, process.env), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
+        switch (def?.type)
+        {
+            default:
+                throw new ErrorWithStatus(400, `container with type ${this.config.containers[name]?.type} are not yet supported`);
+            case 'worker':
+                cp = new Worker(args[0], { argv: args, stderr: true, stdout: true });
+                break;
+            case 'nodejs':
+                cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: !context.options.keepAttached, env: Object.assign({ DEBUG_COLORS: true }, process.env), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
+                break;
+        }
+        // cp = spawn(process.execPath, args, { cwd: process.cwd(), detached: !context.options.keepAttached, env: Object.assign({ DEBUG_COLORS: true }, process.env), stdio: ['ignore', 'pipe', 'pipe', 'ipc'], shell: false, windowsHide: true });
         cp.stderr?.pipe(new NewLinePrefixer(context.options.name + ' ', { useColors: true })).pipe(process.stderr);
         cp.stdout?.pipe(new NewLinePrefixer(context.options.name + ' ', { useColors: true })).pipe(process.stdout);
 
         if (!container || !container.running)
         {
             var adapter: SocketAdapter;
-            if (cp instanceof Worker)
-                adapter = new MessagePortAdapter(cp);
-            else
-                adapter = new IpcAdapter(cp);
-            container = new Container(context.options.name, null) as RunningContainer;
+            switch (def.type)
+            {
+                case 'worker':
+                    adapter = new MessagePortAdapter(cp as Worker);
+                    break;
+                case 'nodejs':
+                    adapter = new IpcAdapter(cp as ChildProcess);
+                    break;
+            }
+
             const connection = Processors.JsonRpc.getConnection(adapter, pm, (params) =>
             {
                 params.process = cp;
                 Object.defineProperty(params, 'connectionAsContainer', Object.assign({ value: container }));
             });
+            const processor = new Processors.JsonRpc(connection, true);
+
+            container = new Container(context.options.name, null) as RunningContainer;
+
             container.processor.useMiddleware(20, new Processors.JsonRpc(connection, true));
 
             connection.on('close', function disconnected()
