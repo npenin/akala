@@ -9,7 +9,13 @@ export function buildCliContext<T extends Record<string, string | boolean | stri
     Object.defineProperty(result, 'logger', { enumerable: false, value: logger });
     return result;
 }
-export function buildCliContextFromProcess<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>(logger?: Logger): CliContext<T>
+export function buildCliContextFromContext<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>(context: CliContext<T>, ...args: string[]): CliContext<T>
+{
+    const result: CliContext<T> = { args: args, argv: context.argv, options: {} as T, currentWorkingDirectory: context.currentWorkingDirectory, state: context.state } as unknown as CliContext<T>;
+    Object.defineProperty(result, 'logger', { enumerable: false, value: context.logger });
+    return result;
+}
+export function buildCliContextFromProcess<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>, TState = unknown>(logger?: Logger, state?: TState): CliContext<T>
 {
     if (process.env.NODE_ENV == 'production')
         logger = logger || LoggerBuilder(process.argv0, LogLevels.error);
@@ -20,6 +26,7 @@ export function buildCliContextFromProcess<T extends Record<string, string | boo
         argv: process.argv,
         commandPath: process.argv0,
         options: {} as T,
+        state,
         currentWorkingDirectory: process.cwd(),
     } as unknown as CliContext<T>;
     Object.defineProperty(result, 'logger', { enumerable: false, value: logger });
