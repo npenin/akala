@@ -47,7 +47,7 @@ export class Injector
         return toInject.map((p, i) => ({ index: i, value: this.resolve(p) }));
     }
 
-    constructor(protected parent?: Injector)
+    constructor(protected parent?: Injector | null)
     {
         if (typeof this.parent === 'undefined')
             this.parent = defaultInjector;

@@ -22,7 +22,7 @@ export const trigger = new Trigger('aws', (container, config: { [key: string]: s
                 console.log(cmdInjector.resolve(typeof config == 'string' ? config : config[record.eventSource]));
                 // container.inspect();
                 const cmd: Metadata.Command | void = cmdInjector.injectWithName([typeof config == 'string' ? config : config[record.eventSource]],
-                    (cmdName: string) => container.resolve(cmdName.replace(/:/g, '.')))(this);
+                    cmdName => container.resolve((cmdName as string).replace(/:/g, '.')))(this);
 
                 if (!cmd)
                     return Promise.reject(new Error('command not found'));
