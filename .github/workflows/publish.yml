@@ -30,7 +30,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install yarn
       - name: Install Packages
-        run: yarn install
+        run: yarn install --ignore-scripts
       - name: Compile CJS
         run: yarn tsc -b packages/tsconfig.cjs.json
       - name: Compile ESM
