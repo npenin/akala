@@ -9,6 +9,9 @@ import { ErrorWithStatus } from "@akala/core";
 import getRandomName from "./name.js";
 import { ProxyConfiguration } from "@akala/config";
 import { IpcAdapter } from "../ipc-adapter.js";
+import module from 'module'
+
+const require = module.createRequire(import.meta.url);
 
 export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, context?: CliContext<{ new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: boolean, wait?: boolean }>): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
 {

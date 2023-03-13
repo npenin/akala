@@ -4,12 +4,13 @@
         "pm": "dist/cjs/cli.js",
         "pm-fork": "dist/cjs/fork.js"
     },
-    "version": "5.2.6",
+    "version": "5.2.7",
     "scripts": {
         "test": "echo 1",
         "generate": "ac generate dist/esm/commands commands.json",
         "generate-metadata": "ac generate-metadata commands.json src/container.ts",
-        "prepack": "tsc -p tsconfig.esm.json"
+        "prepack": "tsc -p tsconfig.esm.json",
+        "akala-install": "akala plugins add dist/esm/akala.mjs"
     },
     "funding": "https://github.com/npenin/akala?sponsor=1",
     "main": "./dist/cjs/index.js",
