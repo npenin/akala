@@ -1,6 +1,6 @@
 {
     "name": "@akala/commands",
-    "version": "5.2.6",
+    "version": "5.2.7",
     "main": "./dist/cjs/index.js",
     "types": "./dist/cjs/index.d.ts",
     "repository": "https://github.com/npenin/akala",
@@ -17,7 +17,8 @@
         "generate-cli": "ac generate dist/esm/cli commands.json --name cli",
         "generate-metadata-cli": "ac generate-metadata commands.json src/commands.ts --name cli",
         "generate": "yarn run generate-cli",
-        "generate-metadata": "yarn run generate-metadata-cli"
+        "generate-metadata": "yarn run generate-metadata-cli",
+        "akala-install": "akala plugins add dist/esm/akala.mjs && akala commands add meta commands.json"
     },
     "browser": {
         "./dist/esm/cli/serve.js": false,

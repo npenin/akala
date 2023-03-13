@@ -1,4 +1,4 @@
-#  (2023-02-10)
+#  (2023-03-13)
 
 
 ### Bug Fixes
@@ -30,6 +30,7 @@
 * added remote pm socket support 074d6cf
 * adding getOwnPropertyDescriptor to try to fix Object.assign d969335
 * additional exports to provide better typing on dependent projects 099279c
+* akala cli 36766df
 * allow for any property on errors a529558
 * any implementation fixed 3302fc0
 * any on mongodb efa6f5d

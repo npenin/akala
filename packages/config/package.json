@@ -1,6 +1,6 @@
 {
     "name": "@akala/config",
-    "version": "2.2.6",
+    "version": "2.2.7",
     "main": "./dist/cjs/index.js",
     "types": "./dist/cjs/index.d.ts",
     "author": "Nicolas Penin <nicolas.penin@dragon-angel.fr>",
@@ -25,6 +25,7 @@
         "@akala/core": "workspace:^"
     },
     "devDependencies": {
+        "@akala/cli": "workspace:^",
         "typescript": "^4.9.4"
     },
     "bin": {
@@ -32,7 +33,8 @@
     },
     "preferGlobal": true,
     "scripts": {
-        "test": "echo \"Error: no test specified\""
+        "test": "echo \"Error: no test specified\"",
+        "akala-install": "akala plugins add dist/esm/akala.mjs"
     },
     "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
     "exports": {
