@@ -1,14 +1,10 @@
 import program from '../router/index.js';
-import * as fs from 'fs';
-import { promisify } from 'util';
+import * as fs from 'fs/promises';
 import * as path from 'path';
-import mkdirp from 'mkdirp';
 import { spawn as spawnOld, SpawnOptions } from 'child_process';
 
-
-
-const writeFile = promisify(fs.writeFile);
-const copyFile = promisify(fs.copyFile);
+const writeFile = fs.writeFile;
+const copyFile = fs.copyFile;
 
 function spawn(cmd: string, args: string[], options: SpawnOptions)
 {
@@ -38,10 +34,10 @@ config.command<{ name: string }>('new <name>')
             return spawn(/^win/.test(process.platform) ? 'yarn.cmd' : 'yarn', args, { stdio: 'inherit', cwd: context.options.name });
         }
 
-        await mkdirp(context.options.name);
-        await mkdirp(context.options.name + '/src');
-        await mkdirp(context.options.name + '/src/server');
-        await mkdirp(context.options.name + '/src/client');
+        await fs.mkdir(context.options.name, { recursive: true });
+        await fs.mkdir(context.options.name + '/src', { recursive: true });
+        await fs.mkdir(context.options.name + '/src/server', { recursive: true });
+        await fs.mkdir(context.options.name + '/src/client', { recursive: true });
 
         await spawn('git', ['init'], { stdio: 'inherit', cwd: context.options.name });
 
