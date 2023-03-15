@@ -19,6 +19,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+          cache: "yarn"
       - name: setup git
         run: |
           git config user.name "GitHub Actions Bot"
@@ -30,7 +31,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install yarn
       - name: Install Packages
-        run: yarn install
+        run: yarn
       - name: Compile CJS
         run: yarn tsc -b packages/tsconfig.cjs.json
       - name: Compile ESM
