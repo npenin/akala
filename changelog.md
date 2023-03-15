@@ -196,6 +196,7 @@
 * path to command metadata 4fc8111
 * path to container schema 796e981
 * path to container schema 86b982d
+* path to handler 8ee4c94
 * performance refactor fix 4602906
 * pm cli command usage a9ff0bf
 * pm connect when manual forking ed7357e
