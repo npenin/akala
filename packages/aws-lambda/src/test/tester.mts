@@ -1,7 +1,7 @@
 process.chdir('./packages/aws-lambda/dist/test/commands');
 
-const lambda = import('../index.mjs');
-(await import(process.cwd() + '/../index.mjs')).handler({
+const lambda = import('../handler.js');
+(await import(process.cwd() + '/../handler.mjs')).handler({
     "Records": [
         {
             "eventVersion": "2.0",

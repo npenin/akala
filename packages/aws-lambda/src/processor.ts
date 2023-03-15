@@ -6,7 +6,7 @@ import { LambdaClient, InvokeCommand, LambdaClientConfig } from '@aws-sdk/client
 export class Processor extends CommandProcessor
 {
     client: LambdaClient;
-    constructor(config: LambdaClientConfig)
+    constructor(config: LambdaClientConfig, private prefix?: string)
     {
         super('aws:lambda');
         this.client = new LambdaClient(config);
@@ -15,7 +15,7 @@ export class Processor extends CommandProcessor
     public handle(origin: Container<unknown>, cmd: Metadata.Command, param: StructuredParameters<unknown[]>): MiddlewarePromise
     {
         return this.client.send(new InvokeCommand({
-            FunctionName: cmd.name,
+            FunctionName: `${this.prefix}${cmd.name}`,
             Payload: new TextEncoder().encode(JSON.stringify(param.param && param.param[0]))
         })).then(r =>
         {
