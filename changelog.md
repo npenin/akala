@@ -1,4 +1,4 @@
-#  (2023-03-14)
+#  (2023-03-15)
 
 
 ### Bug Fixes
@@ -402,6 +402,7 @@
 * enforce logger on buildCliContext dd636e1
 * error message is retrieved if wait is specified e93f204
 * errors like are now true errors 954d0a8
+* export processor 528d2ad
 * first pubsub commit 78b31e1
 * have both CJS and ESM at once cecd11a
 * implement support typings 4c5d3e4
@@ -437,6 +438,7 @@
 
 ### BREAKING CHANGES
 
+* index.mts moved to handler.ts
 * move to ESM to support tree shaking
 * Deferred and Serializable(Object) moved to core instead of json-rpc-ws causing dependencies break.
 * core and json-rpc-ws dependencies swapped because of afore mentioned breaking change
