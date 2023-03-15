@@ -1,4 +1,4 @@
-const lambda = import('../../index.mjs');
+const lambda = import('../../handler.js');
 
 export default async function (...args: any[]) 
 {
