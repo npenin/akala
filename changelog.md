@@ -72,6 +72,7 @@
 * compilation after typescript 4.4 upgrade 2828ff9
 * compilation issue 6734227
 * compilation issue 4735be5
+* config file save fallback f1a3db7
 * connect fails when connect on mapping is undefined 16bdd27
 * connect should failed if mapping is not found 4392197
 * connect when connecting to pm 7494ae0
