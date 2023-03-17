@@ -1,4 +1,4 @@
-#  (2023-03-15)
+#  (2023-03-17)
 
 
 ### Bug Fixes
@@ -257,6 +257,7 @@
 * revert last change 1332114
 * runnerMiddleware more type friendly 7bf1a25
 * set log level for any namespace e1b1025
+* shebang on akala CLI e893277
 * sidecar builder 26673b1
 * sidecar command definition 69f9b21
 * sidecar init with single store config 5551424
@@ -286,8 +287,10 @@
 * support for no workspace dependencies 9210550
 * support improved for esm 2a0a627
 * support normalize files in modules 4a34d95
+* support when @akala/config is not loaded 511f427
 * swap build dependencies f7d45dd
 * switch processes state to object 5aa41a4
+* testing the backtick replacement 14bd2fb
 * trigger signature 28e77a1
 * trying to add promise to solve "handled" lambda 62bad72
 * typing 8851307
@@ -419,6 +422,7 @@
 * move to serve with AbortSignal 53d811d
 * moved to middleware approach 69d4ba5
 * new aws-lambda module 97806aa
+* options usage now replaces parameters in backticks b4ab80b
 * releasing sidecar eb0c959
 * removing problematic extend function 5daa1db
 * return ProxyConfiguration correct type when strongly typed eeaeee0
