@@ -1,4 +1,4 @@
-#!/bin/env node
+#!/usr/bin/env node
 import program, { ErrorMessage } from './router/index.js';
 import fs from 'fs/promises'
 import path from 'path'
