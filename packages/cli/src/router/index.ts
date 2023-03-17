@@ -187,9 +187,9 @@ function formatUsage(obj: Record<string, string>, indent?: number): string
         }).join('\n');
 }
 
-class OptionsMiddleware<TOptions extends Record<string, string | number | boolean | string[]>> implements akala.Middleware<[context: CliContext]>
+class OptionsMiddleware<TOptions extends Record<string, string | number | boolean | string[]>> implements akala.Middleware<[context: CliContext<TOptions>]>
 {
-    usage(): UsageObject['options']
+    usage(context: CliContext<TOptions>): UsageObject['options']
     {
         return Object.fromEntries(map(this.config, (option, optionName) =>
         {
@@ -200,11 +200,14 @@ class OptionsMiddleware<TOptions extends Record<string, string | number | boolea
             {
                 usage += ',' + option.aliases.map(v => (v.length == 1 ? defaultOptionParseOption.flagStart : defaultOptionParseOption.fullOptionStart) + v).join(', ');
             }
-
-            if (option?.needsValue)
+            if (optionName in context.options && typeof (context.options[optionName]) !== 'undefined')
+            {
+                usage += ` \`${context.options[optionName]}\``
+            }
+            else if (option?.needsValue)
                 usage += ' value';
 
-            return [usage, option?.doc];
+            return [usage, Object.keys(this.config).reduce((previous, optionName) => previous?.replace(new RegExp('`' + akala.introspect.escapeRegExp(optionName) + '`', 'm'), `\`${context.options[optionName]}\``), option?.doc)];
         }, true));
     }
 
@@ -276,7 +279,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
         const keys = this.getKeys();
         if (keys.length)
             usage.commands = Object.fromEntries(keys.filter(k => k[0] != '$').map(k => [k, this.index[k]._doc?.description || (this.index[k].getKeys().length ? 'use `' + k + ' --help` to get more info on this' : '')]));
-        usage.options = this._option.usage();
+        usage.options = this._option.usage(context);
 
         const delegate = this._delegate;
         if (delegate instanceof NamespaceMiddleware)
@@ -329,7 +332,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
 
             middleware = new NamespaceMiddleware(cli[1], { usage: name, description }, akala.convertToMiddleware(function (context)
             {
-                if (!context.options.help)
+                // if (!context.options.help)
                 {
                     if (context.args.length < (~parameters.findIndex(p => p.optional) || parameters.length))
                         throw new UsageError(name);
@@ -342,8 +345,8 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
                         if (!parameter.rest)
                         {
                             context.options[paramName] = context.args.shift() as (TOptions & TOptions2)[typeof paramName];
-                            if (middleware._option?.config && middleware._option.config[paramName]?.normalize)
-                                context.options[paramName] = normalize(middleware._option.config[parameter.name as string]?.normalize, context.currentWorkingDirectory, context.options[parameter.name] as string);// as (TOptions & TOptions2)[typeof parameter.name];
+                            if (middleware._option?.config && middleware._option.config[paramName]?.normalize && context.options[paramName])
+                                context.options[paramName] = normalize(middleware._option.config[paramName]?.normalize, context.currentWorkingDirectory, context.options[paramName] as string);// as (TOptions & TOptions2)[typeof parameter.name];
                         }
                         // if (parameter.optional)
                         //     context.options[parameter.name] = context.args.shift() as TOptions2[typeof parameter.name];
@@ -433,7 +436,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
                 return error;
             if (context.options.help && !this.index[context.args[0]])
             {
-                if (this._delegate && context.args[0] && (this._delegate as NamespaceMiddleware).index[context.args[0]])
+                if (this._delegate instanceof NamespaceMiddleware && context.args[0] && this._delegate.index[context.args[0]])
                     return this._delegate.handle(context);
                 var usage = await this.usage(context);
                 // if (!usage && this._delegate)
