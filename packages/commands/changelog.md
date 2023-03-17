@@ -3,8 +3,7 @@
 
 ### Bug Fixes
 
-* support when @akala/config is not loaded 511f427
-* testing the backtick replacement 14bd2fb
+* config file save fallback f1a3db7
 
 
 
