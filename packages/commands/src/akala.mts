@@ -7,7 +7,7 @@ import { Cli } from "./index.js";
 import { Container } from "./model/container.js";
 import FileSystem, { DiscoveryOptions } from "./processors/fs.js";
 
-export default function (config, program: NamespaceMiddleware<{ configPath: string }>)
+export default function (config, program: NamespaceMiddleware<{ configFile: string }>)
 {
     root.state<{ commands?: Record<string, string> & { extract?: () => Record<string, string> } }>().preAction(async (context) =>
     {
@@ -59,20 +59,13 @@ export default function (config, program: NamespaceMiddleware<{ configPath: stri
         if (!context.state.commands)
             context.state.commands = {};
         context.state.commands[context.options.name] = context.options.path;
-        if (typeof context.state.commit === 'function')
-            return context.state.commit();
-        else
-            return writeFile(context.options['configPath'], JSON.stringify(context.state));
+        return context.state.commit();
     })
 
     commands.command('remove <name>').options<{ name: string, path: string }>({ name: {}, path: { normalize: true } }).action(context =>
     {
         delete context.state.commands[context.options.name];
-        if (typeof context.state.commit === 'function')
-            return context.state.commit();
-        else
-            return writeFile(context.options['configPath'], JSON.stringify(context.state));
-
+        return context.state.commit();
     })
 
 

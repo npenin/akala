@@ -30,7 +30,7 @@ process.emit = function (name, data, ...args)
 {
     const mainProgram = program.command(null).option('help');
     const plugins = ['./helpers/repl.js', './plugins.js'];
-    let config: { plugins: string[] } = { plugins: [] };
+    let config: { plugins: string[], commit?: () => Promise<void> } = { plugins: [] };
     let loadedConfig: { plugins: string[] };
     program.option<string>('configFile', { aliases: ['c', 'config-file'], needsValue: true }).preAction(async context =>
     {
@@ -107,6 +107,8 @@ process.emit = function (name, data, ...args)
             }
             else
                 context.logger.info(`no plugin to load ? odd...`);
+            if (!('commit' in context.state && typeof context.state.commit === 'function'))
+                context.state.commit = () => fs.writeFile(context.options.configFile, JSON.stringify(context.state));
         })
 
 
