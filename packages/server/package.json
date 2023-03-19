@@ -7,8 +7,6 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 0",
         "prepack": "tsc -p tsconfig.esm.json",
-        "snyk-protect": "snyk-protect",
-        "prepare": "npm run snyk-protect",
         "generate": "ac generate dist/esm/commands commands.json --name @akala/server",
         "generate-metadata": "ac generate-metadata commands.json src/commands.ts"
     },
@@ -48,7 +46,6 @@
         "@akala/core": "workspace:^",
         "@akala/json-rpc-ws": "workspace:^",
         "@akala/pm": "workspace:^",
-        "@snyk/protect": "^1.1118.0",
         "chokidar": "^3.5.3",
         "co-body": "^6.1.0",
         "cookie": "^0.5.0",
@@ -67,7 +64,6 @@
         "sass-loader": "^13.2.0",
         "send": "^0.18.0",
         "sequencify": "0.0.7",
-        "snyk": "^1.1118.0",
         "source-map-loader": "^4.0.1",
         "source-map-support": "^0.5.21",
         "style-loader": "^3.3.1",
@@ -77,7 +73,6 @@
     },
     "commands": "./commands.json",
     "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
-    "snyk": true,
     "exports": {
         ".": {
             "types": "./dist/esm/index.d.ts",

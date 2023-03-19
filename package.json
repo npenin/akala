@@ -12,13 +12,11 @@
         "commitizen": "^4.3.0",
         "cz-conventional-changelog": "^3.3.0",
         "eslint": "^8.36.0",
-        "snyk": "^1.1118.0",
         "typescript": "^4.9.5",
         "why-is-node-still-running": "^1.0.0"
     },
     "scripts": {
         "lint": "eslint . --ext .ts --cache",
-        "test": "snyk test",
         "commit": "cz",
         "generate": "yarn workspaces foreach -A run generate",
         "generate-metadata": "yarn workspaces foreach -A run generate-metadata",
@@ -30,5 +28,5 @@
             "path": "./node_modules/cz-conventional-changelog"
         }
     },
-    "packageManager": "yarn@3.3.1"
+    "packageManager": "yarn@3.5.0"
 }

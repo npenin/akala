@@ -1,5 +1,5 @@
 import * as di from './global-injector.js'
-import orchestrator from 'orchestrator'
+import orchestrator from './orchestrator.js'
 import { Injector, InjectableWithTypedThis, InjectableAsyncWithTypedThis, Injectable } from './injector.js';
 import { eachAsync } from './helpers.js';
 import { isPromiseLike } from './promiseHelpers.js';
