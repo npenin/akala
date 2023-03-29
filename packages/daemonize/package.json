@@ -5,12 +5,17 @@
     "module": "dist/esm/index.js",
     "types": "dist/esm/index.d.ts",
     "private": true,
+    "type": "module",
+    "source": "src/index.ts",
     "exports": {
         "types": "./dist/esm/index.d.ts",
         "import": "./dist/esm/index.js",
         "require": "./dist/cjs/index.js",
         "node": "./dist/esm/index.js",
         "default": "./dist/cjs/index.js"
+    },
+    "devDependencies": {
+        "@types/node": "^18.0.0"
     },
     "scripts": {
         "test": "echo \"Error: no test specified\""

@@ -263,19 +263,19 @@ export class ExpressionExecutor extends ExpressionVisitor
                 break;
             case expressions.BinaryOperator.LessThan:
                 var right = await (this as ExpressionVisitor).visit(expression.right);
-                this.result = leftResult < this.result;
+                this.result = leftResult < (this.result as number);
                 break;
             case expressions.BinaryOperator.LessThanOrEqual:
                 var right = await (this as ExpressionVisitor).visit(expression.right);
-                this.result = leftResult <= this.result;
+                this.result = leftResult <= (this.result as number);
                 break;
             case expressions.BinaryOperator.GreaterThan:
                 var right = await (this as ExpressionVisitor).visit(expression.right);
-                this.result = leftResult > this.result;
+                this.result = leftResult > (this.result as number);
                 break;
             case expressions.BinaryOperator.GreaterThanOrEqual:
                 var right = await (this as ExpressionVisitor).visit(expression.right);
-                this.result = leftResult >= this.result;
+                this.result = leftResult >= (this.result as number);
                 break;
             case expressions.BinaryOperator.And:
                 if (leftResult)
