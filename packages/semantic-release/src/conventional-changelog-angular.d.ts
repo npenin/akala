@@ -5,5 +5,5 @@ declare module 'conventional-changelog-angular'
 
     const x: Promise<{ parserOpts: ParserOptions, writerOpts: WriterOptions }>;
 
-    export = x;
+    export default x;
 }

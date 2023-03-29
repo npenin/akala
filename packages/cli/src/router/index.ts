@@ -214,7 +214,7 @@ class OptionsMiddleware<TOptions extends Record<string, string | number | boolea
     private options = new akala.MiddlewareComposite<[CliContext]>();
     public config: { [key in keyof TOptions]?: OptionOptions } = {};
 
-    option<TValue extends string | number | boolean | string[], TName extends string>(name: TName, option?: OptionOptions): OptionsMiddleware<TOptions & { [key in TName]: TValue }>
+    option<TValue extends string | number | boolean | string[], const TName extends string>(name: TName, option?: OptionOptions): OptionsMiddleware<TOptions & { [key in TName]: TValue }>
     {
         this.config[name] = option;
         return this.optionMiddleware(new OptionMiddleware(name, option));
