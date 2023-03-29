@@ -1,4 +1,4 @@
-#  (2023-03-17)
+#  (2023-03-29)
 
 
 ### Bug Fixes
@@ -234,6 +234,7 @@
 * remove confusing inject property on commands 9c45241
 * remove container.ts in sidecar cc48571
 * remove debugger statement 955f084
+* remove dependency to orchestrator 6892977
 * remove duplicate binary operator 4930340
 * remove duplicate foreach in publish 09d9fe5
 * remove duplicated code in pm start command 3a91342
@@ -354,6 +355,7 @@
 
 * add $container to fs inject e766ea3
 * add $init function for easier usage 3f4fa32
+* add autotmate as an akala plugin d8ebbdc
 * add base64 converter to be runtime agnostic 990891d
 * add bin in webdav 563472b
 * add bridge support 0e4d6a4
@@ -401,6 +403,7 @@
 * added winston as a logger system 065bae0
 * cli now supports stream results 155e7ba
 * container can now act as middlewares 9484e39
+* continued daemonize impl 82694f1
 * cron complete implementation 40ad48b
 * embedded cron implementation in workflow 9c518f0
 * enable cli help/documentation c141969
