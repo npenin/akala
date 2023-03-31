@@ -13,6 +13,8 @@ import $metadata from './commands/$metadata.js'
 import { stat } from 'fs/promises'
 import { dirname } from 'path'
 import { Logger, logger as LoggerBuilder, LogLevels } from '@akala/core'
+export { default as serve, ServeOptions, serverHandlers, ServerHandler, getOrCreateServerAndListen, getOrCreateSecureServerAndListen } from './cli/serve.js'
+
 
 export class Cli
 {
