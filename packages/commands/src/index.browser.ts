@@ -11,7 +11,6 @@ import * as Metadata from './metadata/index.js'
 import serveMetadata, { ServeMetadata, ServeMetadataWithSignal, connectByPreference, connectWith, ConnectionPreference, parseMetadata } from './serve-metadata.js'
 import { CommandProcessor } from './model/processor.js'
 export { Processors, Triggers, Metadata }
-export { default as serve, ServeOptions, serverHandlers, ServerHandler, getOrCreateServerAndListen, getOrCreateSecureServerAndListen } from './cli/serve.js'
 export { serveMetadata, ServeMetadata, ServeMetadataWithSignal, connectByPreference, connectWith, ConnectionPreference, parseMetadata };
 import $metadata from './commands/$metadata.js'
 export { CommandProcessor };

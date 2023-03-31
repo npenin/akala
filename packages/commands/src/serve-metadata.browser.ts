@@ -1,16 +1,14 @@
-import { IpcNetConnectOpts, NetConnectOpts } from 'net';
+import type { IpcNetConnectOpts, NetConnectOpts } from 'net';
 import { platform } from 'os';
 import { join } from 'path';
 import { ServeOptions } from './cli/serve.js';
 import { registerCommands } from './generator.js'
 import { CommandProcessor, ICommandProcessor } from './model/processor.js';
-import { HttpClient, JsonRpc } from './processors/index.js';
-import ws from 'ws'
+import { HttpClient } from './processors/index.js';
 import { Injector } from '@akala/core';
 import * as Metadata from './metadata/index.js';
 import { Container } from './model/container.js';
-import { CommonConnectionOptions, SecureContextOptions } from 'tls'
-import * as jsonrpc from '@akala/json-rpc-ws';
+import type { CommonConnectionOptions, SecureContextOptions } from 'tls'
 
 type TlsConnectOpts = NetConnectOpts & SecureContextOptions & CommonConnectionOptions;
 
@@ -106,12 +104,13 @@ export async function connectWith<T>(options: NetConnectOpts, host: string, medi
         case 'ws':
         case 'wss':
             {
-                let path: string;
-                if (isIpcConnectOption(options))
-                    path = options.path;
-                else
-                    path = medium + '://' + (host || options.host || 'localhost') + ':' + options.port;
-                return new JsonRpc(JsonRpc.getConnection(new jsonrpc.ws.SocketAdapter(new ws(path)), container), true);
+                throw new Error('WebSocket are not yet supported');
+                // let path: string;
+                // if (isIpcConnectOption(options))
+                //     path = options.path;
+                // else
+                //     path = medium + '://' + (host || options.host || 'localhost') + ':' + options.port;
+                // return new JsonRpc(JsonRpc.getConnection(new jsonrpc.ws.SocketAdapter(new ws(path)), container), true);
             }
         default:
             // eslint-disable-next-line no-case-declarations, @typescript-eslint/no-unused-vars

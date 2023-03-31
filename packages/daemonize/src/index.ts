@@ -58,7 +58,7 @@ export interface SystemDService
 }
 
 
-export interface openRCService
+export interface OpenRCService
 {
     /* declares a hard dependency - net always needs to be started before this service does */
     need: string[]
@@ -85,8 +85,10 @@ export interface openRCService
 
 export interface ServiceMap
 {
-    'linux': SystemDService;
+    'linux': { systemd?: Partial<SystemDService>, openrc?: Partial<OpenRCService> } & Partial<CoreService>;
 }
+
+
 
 export interface Service extends Partial<CoreService>
 {
@@ -116,10 +118,40 @@ function spawnAsync(...args: Parameters<typeof spawn>)
     }
 }
 
+function flatTree(o: object): [string, unknown][]
+{
+    const result: [string, unknown][] = [];
+    for (var e of Object.entries(o))
+    {
+        switch (typeof e[1])
+        {
+            case 'object':
+                if (Array.isArray(e[1]))
+                    result.push(e);
+                else if (e[1] instanceof Date)
+                    result.push(e);
+                else
+                    flatTree(e[1] as Record<string, unknown>).forEach(e2 => result.push([`${e[0]}_${e2[0]}`, e2[1]]));
+                break;
+            case 'function':
+                break;
+            case 'bigint':
+            case 'boolean':
+            case 'number':
+            case 'string':
+            case 'symbol':
+            case 'undefined':
+                result.push(e);
+                break;
+        }
+    }
+    return result;
+}
+
 export default async function install(service: Service)
 {
     let promise: Promise<void>;
-    const svc = Object.assign({}, service, service.platformSpecific[os.platform()]) as Service;
+    const svc = Object.assign({}, service, service.platformSpecific[os.platform()]) as CoreService;
     if (!svc.name)
         throw new Error('service name not specified');
     if (!svc.binPath)
@@ -136,7 +168,7 @@ export default async function install(service: Service)
             if (hasSystemD)
             {
                 const otherCP = spawnAsync(require.resolve('../systemd.sh'), [service.name, service.binPath], {
-                    env: Object.fromEntries(Object.entries(svc).map(([k, v]) => ['DAEMON_' + k, Array.isArray(v) ? v.join(' ') : v])),
+                    env: Object.fromEntries(flatTree(svc).map(([k, v]) => ['DAEMON_' + k.replace('platformSpecific_linux_', ''), Array.isArray(v) ? v.join(' ') : v.toString()])),
                     shell: true,
                     stdio: 'inherit'
                 })
@@ -148,7 +180,7 @@ export default async function install(service: Service)
                 if (hasOpenRC)
                 {
                     const otherCP = spawnAsync(require.resolve('../openrc.sh'), [service.name, service.binPath], {
-                        env: Object.fromEntries(Object.entries(svc).map(([k, v]) => ['DAEMON_' + k, Array.isArray(v) ? v.join(' ') : v])),
+                        env: Object.fromEntries(flatTree(svc).map(([k, v]) => ['DAEMON_' + k.replace('platformSpecific_linux_', ''), Array.isArray(v) ? v.join(' ') : v.toString()])),
                         shell: true,
                         stdio: 'inherit'
                     })
@@ -157,7 +189,7 @@ export default async function install(service: Service)
                 else
                 {
                     const otherCP = spawnAsync(require.resolve('../initv.sh'), [service.name, service.binPath], {
-                        env: Object.fromEntries(Object.entries(svc).map(([k, v]) => ['DAEMON_' + k, Array.isArray(v) ? v.join(' ') : v])),
+                        env: Object.fromEntries(flatTree(svc).map(([k, v]) => ['DAEMON_' + k.replace('platformSpecific_linux_', ''), Array.isArray(v) ? v.join(' ') : v.toString()])),
                         shell: true,
                         stdio: 'inherit'
                     })
