@@ -6,6 +6,7 @@
 * add node as an export condition 4aa41a8
 * embrace esm even more 3e7d10a
 * embrace esm even more b3b8e9d
+* improve browser usage 05dd7ea
 * move to ESM 6ef0335
 * normalized modules to work in esm and cjs 88ffcca
 * typing 8851307
