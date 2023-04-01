@@ -12,7 +12,7 @@ export { container }
 export { State } from './state.js'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import * as _pm from '@akala/pm'
+import type * as _pm from '@akala/pm'
 declare module '@akala/pm'
 {
     interface SidecarMap

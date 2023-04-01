@@ -30,7 +30,7 @@ function sequence(tasks: Tasks, names: string[], results: string[], missing: str
         }
         results.push(name);
     });
-};
+}
 
 // tasks: object with keys as task names
 // names: array of task names
@@ -52,4 +52,4 @@ export default function sequencify(tasks: Tasks, names: string[])
         missingTasks: missing,
         recursiveDependencies: recursive
     };
-};
+}

@@ -88,7 +88,6 @@ export default function (_config, mainprogram)
             }
 
             replStarted = true;
-            const logger = context.logger;
 
             repl.start(Object.assign(context as repl.ReplOptions || {}, {
                 eval: async function (input: string, _context, file, cb)

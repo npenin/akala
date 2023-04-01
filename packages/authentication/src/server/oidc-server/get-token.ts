@@ -24,9 +24,9 @@ type JWT = {
 
 type Request<TQuery extends Record<string, string> = Record<string, string>, THeaders extends Record<string, string> = Record<string, string>, TBody extends Record<string, string> = Record<string, string>> = {
     endpoint: URL,
-    query?: Record<string, string>,
-    headers?: Record<string, string>,
-    body?: Record<string, string>
+    query?: TQuery,
+    headers?: THeaders,
+    body?: TBody
 }
 
 

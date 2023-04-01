@@ -20,6 +20,8 @@ export class Queue<T>
     }
 
     private processing = false;
+    //eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore 6133
     private current: T;
 
     public process()

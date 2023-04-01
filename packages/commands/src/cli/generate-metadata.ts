@@ -6,6 +6,7 @@ import { jsonObject } from '../metadata/index.js';
 import { FileSystemConfiguration } from '../processors/fs.js';
 import { Writable } from "stream";
 import { outputHelper, write } from './new.js';
+import { createWriteStream } from 'fs';
 
 
 export default async function generate(name?: string, folder?: string, outputFile?: string, options?: { noContainer?: boolean, noProxy?: boolean })
@@ -19,6 +20,9 @@ export default async function generate(name?: string, folder?: string, outputFil
     let outputFolder: string;
 
     ({ output, outputFolder, outputFile } = await outputHelper(outputFile, 'commands.ts', true));
+
+    if (!output)
+        output = createWriteStream(outputFile);
 
     await akala.Processors.FileSystem.discoverCommands(folder, container);
 
@@ -36,7 +40,7 @@ export default async function generate(name?: string, folder?: string, outputFil
 
     if (hasFs)
     {
-        await write(output, '/* eslint-disable @typescript-eslint/no-unused-vars */\n');
+        await write(output, '//eslint-disable-next-line @typescript-eslint/no-unused-vars\n');
         await write(output, 'import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argument5, Argument6, Argument7, Argument8, Argument9, Argument10, Argument11, Argument12, Argument13, Argument14, Argument15, Argument16, Argument17 } from \'@akala/core\';\n')
     }
 
@@ -65,6 +69,7 @@ export default async function generate(name?: string, folder?: string, outputFil
                 let filePath = path.relative(outputFolder, config.source || config.path);
                 filePath = path.join(path.dirname(filePath), path.basename(filePath, path.extname(filePath)));
                 filePath = filePath.replace(/\\/g, '/');
+                filePath += '.js'
                 if (config.inject)
                 {
                     await write(output, ', ...args: [');
@@ -110,6 +115,7 @@ export default async function generate(name?: string, folder?: string, outputFil
                 let filePath = path.relative(outputFolder, config.source || config.path);
                 filePath = path.join(path.dirname(filePath), path.basename(filePath, path.extname(filePath)));
                 filePath = filePath.replace(/\\/g, '/');
+                filePath += '.js';
                 if (config.inject)
                 {
                     await write(output, '(...args: [');
@@ -150,7 +156,7 @@ async function writeDoc(output: Writable, argName: string, doc: akala.Metadata.D
 \t\t  * ${doc.description.split('\n').join('\n\t\t  * ')}`);
     if (doc.inject?.length)
     {
-        for (let i in doc.inject)
+        for (const i in doc.inject)
             await write(output, `\n\t\t  * @typedef ${argName}${i} - ${doc.inject[i]}`)
 
         await write(output, `\n\t\t  * @param {[${doc.inject.map((_, i) => argName + i).join(', ')}]} ${argName}`)

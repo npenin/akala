@@ -24,6 +24,7 @@ export default class extends CommandProcessor<Db>
             .insertOne(cmd.record)
             .then(r =>
             {
+                //eslint-disable-next-line @typescript-eslint/no-explicit-any
                 cmd.model.membersAsArray.filter(m => m.nameInStorage == '_id').forEach(m => m.mode == ModelMode.Attribute && (cmd.record[m.name] = r.insertedId as any));
                 return { recordsAffected: 1, ...r }
             });

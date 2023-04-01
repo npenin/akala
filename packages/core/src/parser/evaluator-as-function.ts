@@ -86,7 +86,7 @@ export class EvaluatorAsFunction extends ExpressionVisitor
 
     async visitBinary(expression: BinaryExpression<ExpressionsWithLength>): Promise<typeof expression>
     {
-        const currentBody = this.functionBody;
+        // const currentBody = this.functionBody;
         this.functionBody = '';
         await this.visit(expression.left);
         const left = this.functionBody;

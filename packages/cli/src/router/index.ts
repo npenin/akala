@@ -1,6 +1,5 @@
 import * as akala from '@akala/core'
-import { each, Logger, map, Middleware, MiddlewarePromise } from '@akala/core';
-import * as path from 'path'
+import { Logger, map, Middleware } from '@akala/core';
 import normalize from '../helpers/normalize.js';
 
 export interface CliContext<TOptions extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>, TState = unknown>
@@ -351,6 +350,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
                         // if (parameter.optional)
                         //     context.options[parameter.name] = context.args.shift() as TOptions2[typeof parameter.name];
                         else
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             context.options[paramName] = context.args.splice(0, context.args.length) as any;
                     }
                 }
@@ -365,6 +365,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
 
     public state<TState>(): NamespaceMiddleware<TOptions, TState>
     {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return this as any;
     }
 

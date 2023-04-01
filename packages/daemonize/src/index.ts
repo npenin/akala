@@ -1,5 +1,5 @@
 import os from 'os'
-import { spawn, ChildProcess } from 'child_process'
+import { spawn } from 'child_process'
 
 export interface CoreService
 {
@@ -9,7 +9,7 @@ export interface CoreService
     args: string[]
 }
 
-type SystemDBoolean = 'yes' | 'no'
+// type SystemDBoolean = 'yes' | 'no'
 
 export interface SystemDService
 {
@@ -101,7 +101,7 @@ function spawnAsync(...args: Parameters<typeof spawn>)
     return {
         cp, promise: new Promise<void>((resolve, reject) =>
         {
-            cp.on('exit', (code, signal) =>
+            cp.on('exit', (code) =>
             {
                 if (os.platform() === 'win32')
                     if (code !== 0)
@@ -159,27 +159,18 @@ export default async function install(service: Service)
     switch (os.platform())
     {
         case 'win32':
-            const winCP = spawnAsync(require.resolve('../powershell.ps1'), [svc.name, svc.binPath], { shell: true, stdio: ['pipe', 'inherit', 'inherit'] });
-            promise = winCP.promise;
-            winCP.cp.stdin.write(JSON.stringify(svc));
+            {
+                const winCP = spawnAsync(require.resolve('../powershell.ps1'), [svc.name, svc.binPath], { shell: true, stdio: ['pipe', 'inherit', 'inherit'] });
+                promise = winCP.promise;
+                winCP.cp.stdin.write(JSON.stringify(svc));
+            }
             break;
         default:
-            const hasSystemD = await spawnAsync('systemctl', ['--version'], { stdio: 'ignore', shell: true }).promise.then(() => true, () => false);
-            if (hasSystemD)
             {
-                const otherCP = spawnAsync(require.resolve('../systemd.sh'), [service.name, service.binPath], {
-                    env: Object.fromEntries(flatTree(svc).map(([k, v]) => ['DAEMON_' + k.replace('platformSpecific_linux_', ''), Array.isArray(v) ? v.join(' ') : v.toString()])),
-                    shell: true,
-                    stdio: 'inherit'
-                })
-                promise = otherCP.promise;
-            }
-            else
-            {
-                const hasOpenRC = await spawnAsync('rc-service', ['--version'], { stdio: 'ignore', shell: true }).promise.then(() => true, () => false);
-                if (hasOpenRC)
+                const hasSystemD = await spawnAsync('systemctl', ['--version'], { stdio: 'ignore', shell: true }).promise.then(() => true, () => false);
+                if (hasSystemD)
                 {
-                    const otherCP = spawnAsync(require.resolve('../openrc.sh'), [service.name, service.binPath], {
+                    const otherCP = spawnAsync(require.resolve('../systemd.sh'), [service.name, service.binPath], {
                         env: Object.fromEntries(flatTree(svc).map(([k, v]) => ['DAEMON_' + k.replace('platformSpecific_linux_', ''), Array.isArray(v) ? v.join(' ') : v.toString()])),
                         shell: true,
                         stdio: 'inherit'
@@ -188,12 +179,25 @@ export default async function install(service: Service)
                 }
                 else
                 {
-                    const otherCP = spawnAsync(require.resolve('../initv.sh'), [service.name, service.binPath], {
-                        env: Object.fromEntries(flatTree(svc).map(([k, v]) => ['DAEMON_' + k.replace('platformSpecific_linux_', ''), Array.isArray(v) ? v.join(' ') : v.toString()])),
-                        shell: true,
-                        stdio: 'inherit'
-                    })
-                    promise = otherCP.promise;
+                    const hasOpenRC = await spawnAsync('rc-service', ['--version'], { stdio: 'ignore', shell: true }).promise.then(() => true, () => false);
+                    if (hasOpenRC)
+                    {
+                        const otherCP = spawnAsync(require.resolve('../openrc.sh'), [service.name, service.binPath], {
+                            env: Object.fromEntries(flatTree(svc).map(([k, v]) => ['DAEMON_' + k.replace('platformSpecific_linux_', ''), Array.isArray(v) ? v.join(' ') : v.toString()])),
+                            shell: true,
+                            stdio: 'inherit'
+                        })
+                        promise = otherCP.promise;
+                    }
+                    else
+                    {
+                        const otherCP = spawnAsync(require.resolve('../initv.sh'), [service.name, service.binPath], {
+                            env: Object.fromEntries(flatTree(svc).map(([k, v]) => ['DAEMON_' + k.replace('platformSpecific_linux_', ''), Array.isArray(v) ? v.join(' ') : v.toString()])),
+                            shell: true,
+                            stdio: 'inherit'
+                        })
+                        promise = otherCP.promise;
+                    }
                 }
             }
             break;

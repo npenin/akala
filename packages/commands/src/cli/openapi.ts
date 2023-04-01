@@ -1,6 +1,5 @@
 import fs from 'fs/promises'
 import https from 'https'
-import { resolve } from 'path';
 
 export default async function (pathToOpenApiFile: string | URL)
 {
@@ -15,6 +14,7 @@ export default async function (pathToOpenApiFile: string | URL)
     {
         case 'file:':
             content = await fs.readFile(pathToOpenApiFile.pathname, { encoding: 'utf8' });
+            break;
         case 'https:':
             content = await new Promise((resolve, reject) =>
             {
@@ -26,11 +26,13 @@ export default async function (pathToOpenApiFile: string | URL)
                     res.on('error', reject);
                 }).on('error', reject);
             });
+            break;
         default:
             throw new Error('Unsupported URL scheme');
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const openApi = JSON.parse(content);
 
-    
+
 }

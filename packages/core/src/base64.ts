@@ -148,7 +148,6 @@ export function UTF8ArrToStr(aBytes: Uint8Array): string
 
 export function strToUTF8Arr(sDOMStr: string): Uint8Array
 {
-    let aBytes;
     let nChr;
     const nStrLen = sDOMStr.length;
     let nArrLen = 0;
@@ -177,7 +176,7 @@ export function strToUTF8Arr(sDOMStr: string): Uint8Array
                                 : 6;
     }
 
-    aBytes = new Uint8Array(nArrLen);
+    const aBytes = new Uint8Array(nArrLen);
 
     /* transcription… */
     let nIdx = 0;

@@ -11,16 +11,16 @@ import { SecureContextOptions } from "tls";
 
 serverHandlers.register<ServerHandler<NetConnectOpts>>('http', async (container, options) =>
 {
-    let server: http.Server | https.Server;// | Http2SecureServer | Http2Server;
-    server = http.createServer();
+    const server: http.Server | https.Server // | Http2SecureServer | Http2Server;
+        = http.createServer();
 
     container.register('$webServer', server);
     container.register('$masterRouter', container.attach(trigger, server));
 
-    await new Promise<void>(async (resolve, reject) =>
+    await new Promise<void>((resolve, reject) =>
     {
         server.once('error', reject);
-        server.listen(await getOrCreateServerAndListen(options, container), resolve);
+        getOrCreateServerAndListen(options, container).then(result => server.listen(result, resolve), reject);
     });
 });
 

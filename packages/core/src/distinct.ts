@@ -1,3 +1,4 @@
+//eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function distinct<T>(array: T[], distinctKey?: (item: T) => any | number | bigint): T[]
 {
     if (distinctKey)
