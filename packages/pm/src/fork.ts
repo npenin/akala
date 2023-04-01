@@ -11,6 +11,10 @@ import program, { buildCliContextFromProcess, ErrorMessage, NamespaceMiddleware 
 import { Stats } from 'fs';
 import { registerCommands, SelfDefinedCommand, parseMetadata, StructuredParameters } from '@akala/commands';
 
+import module from 'module'
+
+const require = module.createRequire(import.meta.url.substring('file://'.length));
+
 var isPm = false;
 
 program.option('help')
@@ -183,8 +187,7 @@ controller.signal.addEventListener('abort', function ()
     }
 })
 
-if (require.main == module)
-    program.process(buildCliContextFromProcess()).catch(e =>
-    {
-        setImmediate(() => controller.abort(e));
-    });
+program.process(buildCliContextFromProcess()).catch(e =>
+{
+    setImmediate(() => controller.abort(e));
+});
