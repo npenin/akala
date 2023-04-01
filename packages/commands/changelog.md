@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* improve usage in browser be570f3
+* improve usage in browser 8c69317
 
 
 
