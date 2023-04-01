@@ -1,5 +1,5 @@
 FROM npenin/akala as build
-FROM node:current-alpine3.12
+FROM node:current-alpine
 
 COPY --from=build /usr/src/akala /usr/src/akala
 ENTRYPOINT ["yarn" ,"pm-fork", "pm"]
