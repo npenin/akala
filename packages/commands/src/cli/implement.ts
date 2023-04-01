@@ -27,6 +27,7 @@ export default async function implement(pathToCommandFile: string, destination: 
 
         await command(c.name, options, join(destination, metadata.name), paramConfig);
         if (!c.config.fs)
+            //eslint-disable-next-line @typescript-eslint/no-explicit-any
             c.config.fs = { inject: c.config[""]?.inject || [] } as any;
         c.config.fs.path = join(destination, metadata.name, c.name + '.ts');
         c.config.fs.source = join(destination, metadata.name, c.name + '.ts');

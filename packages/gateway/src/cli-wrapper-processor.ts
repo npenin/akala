@@ -11,7 +11,7 @@ export default class CliGatewayProcessor extends ac.CommandProcessor
         super("cli-gateway");
     }
 
-    public handle(origin: ac.Container<unknown>, cmd: ac.Metadata.Command, param: ac.StructuredParameters<[CliContext]>): MiddlewarePromise
+    public handle(_origin: ac.Container<unknown>, cmd: ac.Metadata.Command, param: ac.StructuredParameters<[CliContext]>): MiddlewarePromise
     {
         var args = unparseWithMeta(cmd.config.cli, param.param[0]);
         if (cmd.config.cli.usage)
@@ -24,7 +24,7 @@ export default class CliGatewayProcessor extends ac.CommandProcessor
         var stderr: Buffer[] = [];
         cp.stdout.on('data', chunk => stdout.push(chunk))
         cp.stderr.on('data', chunk => stderr.push(chunk))
-        cp.on('exit', (code, signal) =>
+        cp.on('exit', (code) =>
         {
             if (code > 0)
                 d.resolve(new Error(Buffer.concat(stderr).toString()));

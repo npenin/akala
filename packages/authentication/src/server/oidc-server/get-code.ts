@@ -1,8 +1,5 @@
-import { base64 } from "@akala/core";
-import { BinaryOperator } from "@akala/core/expressions";
-import { OIDCResponseType, providers } from "../../client/oidc-state.js";
+import { OIDCResponseType } from "../../client/oidc-state.js";
 import { AuthenticationStore } from "../authentication-store.js";
-import { ExchangeMiddleware } from "../master.js";
 
 type X = {
     endpoint: URL;

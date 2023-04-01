@@ -296,7 +296,9 @@ function createFolder(path: string, name: string, model: ModelDefinition<any>, f
 // }
 class FolderEntry implements FileSystemFolder, PromiseLike<PromiseFileSystem>
 {
+    //eslint-disable-next-line @typescript-eslint/prefer-as-const
     [isFile]?: false = false;
+    //eslint-disable-next-line @typescript-eslint/prefer-as-const
     [isDirectory]: true = true;
     [fsName]: string;
     [fspath]: string;
@@ -388,7 +390,9 @@ class FolderEntry implements FileSystemFolder, PromiseLike<PromiseFileSystem>
 
 export class JsonFileEntry implements FileSystemFile
 {
+    //eslint-disable-next-line @typescript-eslint/prefer-as-const
     [isFile]: true = true;
+    //eslint-disable-next-line @typescript-eslint/prefer-as-const
     [isDirectory]?: false = false;
     [model]: ModelDefinition<any>;
     get [fileContent]() { return fileContents[this[fspath]].lastContent; }

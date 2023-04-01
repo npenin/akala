@@ -20,7 +20,7 @@ class ByobReader implements ReadableStreamBYOBReader
     this.reader = new DefaultReader(stream);
     this.reader.releaseLock();
   }
-  public emitError(error: any)
+  public emitError(error: Error)
   {
     this.reader.emitError(error);
   }
@@ -29,7 +29,7 @@ class ByobReader implements ReadableStreamBYOBReader
   {
     return this.reader.closed;
   }
-  cancel(reason?: any): Promise<void>
+  cancel(reason?: Error): Promise<void>
   {
     return this.reader.cancel(reason);
   }

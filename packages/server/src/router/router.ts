@@ -3,7 +3,7 @@ import * as https from 'https';
 import * as http2 from 'http2';
 import * as akala from '@akala/core';
 import { Socket } from 'net';
-import { Middleware, MiddlewareComposite, MiddlewarePromise, MiddlewareResult, OptionsResponse, Router, Router2 } from '@akala/core';
+import { Middleware, MiddlewareComposite, MiddlewarePromise, MiddlewareResult, Router, Router2 } from '@akala/core';
 import { UpgradeMiddleware } from './upgradeMiddleware.js';
 import { Request, Response } from './shared.js';
 import accepts from 'accepts';
@@ -174,6 +174,7 @@ export class HttpRouter extends Router2<Request, Response>
             }
             else
                 res.writeHead(204, 'OK', { contenttype: 'text/plain', contentLength: 0 }).end();
+            //eslint-disable-next-line @typescript-eslint/no-empty-function
         }, () => { });
     }
 

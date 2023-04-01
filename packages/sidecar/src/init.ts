@@ -1,6 +1,6 @@
 import { connect, Container as pm, ContainerLite, Sidecar as pmSidecar, sidecar as pmsidecar } from '@akala/pm'
 import Configuration from '@akala/config'
-import { connectByPreference, Container, helper, Metadata } from '@akala/commands'
+import { connectByPreference, Container, helper } from '@akala/commands'
 import PubSubContainer, { ContainerProxy as PubSubProxy } from '@akala/pubsub'
 import { ModelDefinition, MultiStore, PersistenceEngine, providers, Store, StoreDefinition } from '@akala/storage'
 import MetaPubSub from '@akala/pubsub/commands.json'

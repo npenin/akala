@@ -8,7 +8,6 @@ import { PassThrough } from 'stream';
 import { EventEmitter } from 'events';
 import { CliContext } from '@akala/cli';
 import Configuration from '@akala/config';
-import { each, grep } from '@akala/core';
 
 export async function metadata(container: Container<unknown>, deep?: boolean): Promise<Metadata.Container>
 {

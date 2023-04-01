@@ -160,6 +160,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
 
         container.running = true;
         let buffer = [];
+
         cp.on('exit', function ()
         {
             (container as RunningContainer).running = false;
@@ -171,6 +172,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
         });
         if (context.options.wait && container.commandable)
         {
+            //eslint-disable-next-line no-inner-declarations
             function gather(chunk: string)
             {
                 buffer.push(chunk);

@@ -30,7 +30,7 @@ process.emit = function (name, data, ...args)
 {
     const mainProgram = program.command(null).option('help');
     const plugins = ['./helpers/repl.js', './plugins.js'];
-    let config: { plugins: string[], commit?: () => Promise<void> } = { plugins: [] };
+    const config: { plugins: string[], commit?: () => Promise<void> } = { plugins: [] };
     let loadedConfig: { plugins: string[] };
     program.option<string>('configFile', { aliases: ['c', 'config-file'], needsValue: true }).preAction(async context =>
     {
@@ -40,7 +40,6 @@ process.emit = function (name, data, ...args)
             const stats = await fs.lstat(context.options.configFile);
             if (stats.isFile())
             {
-                context.options.configFile = context.options.configFile;
                 loadedConfig = JSON.parse(await fs.readFile(context.options.configFile, 'utf-8'));
                 context.logger.debug('config file loaded')
             }

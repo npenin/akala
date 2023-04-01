@@ -4,6 +4,11 @@ module.exports = {
     plugins: [
         '@typescript-eslint',
     ],
+    ignorePatterns: [
+        "packages/webdav/**/*.ts",
+        "packages/crud/**/*.ts",
+        "packages/authentication/**/*.ts",
+    ],
     rules: {
         "@typescript-eslint/no-inferrable-types": "off",
         "no-var": "off",

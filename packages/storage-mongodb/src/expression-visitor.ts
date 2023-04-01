@@ -1,7 +1,7 @@
 import { expressions, isPromiseLike } from "@akala/core";
-import { ApplySymbolExpression, BinaryExpression, CallExpression, ConstantExpression, EqualityComparer, Expressions, ExpressionType, ExpressionVisitor, IEnumerable, LambdaExpression, MemberExpression, NewExpression, ParameterExpression, StrictExpressions, TypedExpression, TypedLambdaExpression, UnaryExpression, UnknownExpression } from "@akala/core/expressions";
-import { Enumerable, Exception, ModelDefinition, NotSupportedException, QuerySymbols, Relationship } from "@akala/storage";
-import { AggregationCursor, Collection, Db, Document, FindCursor } from "mongodb";
+import { ApplySymbolExpression, BinaryExpression, CallExpression, ConstantExpression, Expressions, ExpressionVisitor, LambdaExpression, MemberExpression, NewExpression, ParameterExpression, StrictExpressions, UnaryExpression, UnknownExpression } from "@akala/core/expressions";
+import { Exception, ModelDefinition, NotSupportedException, QuerySymbols, Relationship } from "@akala/storage";
+import { Db, Document } from "mongodb";
 
 export default class MongoDbTranslator extends ExpressionVisitor
 {
@@ -40,14 +40,12 @@ export default class MongoDbTranslator extends ExpressionVisitor
 
     async visitApplySymbol<T, U>(arg0: ApplySymbolExpression<T, U>)
     {
-        let result: Iterable<unknown> | AsyncIterable<unknown>;
         await this.visit(arg0.source);
         switch (arg0.symbol)
         {
             case QuerySymbols.any:
                 if (arg0.argument)
                 {
-                    result = [];
                     if (arg0.argument)
                         await this.visitApplySymbol(new ApplySymbolExpression(null, QuerySymbols.where, arg0.argument));
                 }
@@ -59,7 +57,6 @@ export default class MongoDbTranslator extends ExpressionVisitor
             case QuerySymbols.count:
                 if (arg0.argument)
                 {
-                    result = [];
                     if (arg0.argument)
                         await this.visitApplySymbol(new ApplySymbolExpression(null, QuerySymbols.where, arg0.argument));
                 }
@@ -79,7 +76,6 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 // });
                 if (arg0.argument)
                 {
-                    result = [];
                     if (arg0.argument)
                         await this.visitApplySymbol(new ApplySymbolExpression(null, QuerySymbols.where, arg0.argument));
                 }
@@ -98,32 +94,32 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 //     await this.visit(arg0.argument);
                 //     return this.result;
                 // });
-                this.model = null;
+                // this.model = null;
                 break;
             case QuerySymbols.where:
-                const oldResult = this.result;
-                await this.visit(arg0.argument);
+                {
+                    const oldResult = this.result;
+                    await this.visit(arg0.argument);
 
-                this.pipelines.push(this.pipeline);
-                this.result = oldResult;
+                    this.pipelines.push(this.pipeline);
+                    this.result = oldResult;
 
-                // result = [];
-                // if (!arg0.argument)
-                //     throw new Exception('select is missing the select criteria');
+                    // result = [];
+                    // if (!arg0.argument)
+                    //     throw new Exception('select is missing the select criteria');
 
-                // this.result = await Enumerable.whereAsync(this.result, async (value) =>
-                // {
-                //     this.result = value;
-                //     if (isPromiseLike(value))
-                //         this.result = await value;
-                //     await this.visit(arg0.argument);
-                //     return this.result as boolean;
-                // });
+                    // this.result = await Enumerable.whereAsync(this.result, async (value) =>
+                    // {
+                    //     this.result = value;
+                    //     if (isPromiseLike(value))
+                    //         this.result = await value;
+                    //     await this.visit(arg0.argument);
+                    //     return this.result as boolean;
+                    // });
 
-                break;
+                    break;
+                }
             case QuerySymbols.orderby:
-
-                result = [];
                 if (!arg0.argument)
                     throw new Exception('select is missing the select criteria');
 
@@ -141,8 +137,6 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 });
                 break;
             case QuerySymbols.orderbyDesc:
-
-                result = [];
                 if (!arg0.argument)
                     throw new Exception('select is missing the select criteria');
 
@@ -203,7 +197,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
         }
 
         if (isPromiseLike(this.evaluating))
-            this.evaluating = await this.evaluating.then(v => `${this.evaluating}.${member}`);
+            this.evaluating = await this.evaluating.then(v => `${v}.${member}`);
         else
             this.evaluating = member;
         this.result = null;
@@ -479,6 +473,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
                     this.pipeline = pipeline;
                     this.result = null;
                 }
+                break;
             case expressions.BinaryOperator.Unknown:
                 throw new Error(`${expression.operator} is not supported`);
         }

@@ -6,7 +6,7 @@ export * as base64 from './base64.js';
 export { each as eachAsync, NextFunction, map as mapAsync, AggregateErrors } from './eachAsync.js';
 export { each, grep, Proxy, map } from './each.js';
 
-export type Remote<T> = { [key in keyof T]: T[key] extends (...args) => infer X ? X extends Promise<infer Y> ? X : Promise<X> : (T[key] | undefined) }
+export type Remote<T> = { [key in keyof T]: T[key] extends (...args) => infer X ? X extends Promise<unknown> ? X : Promise<X> : (T[key] | undefined) }
 export type Serializable = string | number | string[] | number[] | boolean | boolean[] | SerializableObject | SerializableObject[];
 export type SerializableObject = { [key: string]: Serializable };
 

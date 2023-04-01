@@ -125,7 +125,8 @@ function isIpcConnectOption(options: NetConnectOpts): options is IpcNetConnectOp
     return typeof options['path'] !== 'undefined';
 }
 
-export default function serveMetadata(name: string, context: ServeOptions): ServeMetadata
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export default function serveMetadata(_name: string, _context: ServeOptions): ServeMetadata
 {
     throw new Error('you cannot serve anything from the browser');
 }

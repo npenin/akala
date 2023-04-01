@@ -19,6 +19,7 @@ export class EventProcessor extends EventEmitter implements ICommandProcessor
 
     public name = 'event';
 
+    //eslint-disable-next-line @typescript-eslint/prefer-as-const
     public readonly requiresCommandName: false = false;
 
 

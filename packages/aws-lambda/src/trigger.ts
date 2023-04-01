@@ -1,9 +1,7 @@
 import { Metadata, Processors, Trigger } from '@akala/commands'
 import { Injector, mapAsync } from '@akala/core';
 // import { HttpRouter, trigger as httpTrigger } from '@akala/server';
-import { APIGatewayEvent, APIGatewayProxyResult, Context } from 'aws-lambda'
-import http from 'http'
-
+import { APIGatewayEvent, Context } from 'aws-lambda'
 
 export const trigger = new Trigger('aws', (container, config: { [key: string]: string } | string) =>
 {

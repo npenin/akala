@@ -209,12 +209,11 @@ export class ExpressionExecutor extends ExpressionVisitor
     }
     async visitLambda<T extends (...args: unknown[]) => unknown>(arg0: TypedLambdaExpression<T>)
     {
-        const parameters = await this.visitArray(arg0.parameters) as Parameters<T>;
+        const parameters = await this.visitArray(arg0.parameters) as TypedLambdaExpression<T>['parameters'];
         const wasEvaluating = this.evaluating;
         this.evaluating = this.result;
         const body = await (this as ExpressionVisitor).visit(arg0.body);
         this.evaluating = wasEvaluating;
-        //@ts-ignore2367
         if (body !== arg0.body || parameters !== arg0.parameters)
             return new TypedLambdaExpression<T>(body, arg0.parameters);
         return arg0;

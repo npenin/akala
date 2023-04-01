@@ -308,6 +308,7 @@ export class Parser
         const item = /^[\w0-9.$]*/.exec(expression)[0];
         length += item.length;
 
+        //eslint-disable-next-line @typescript-eslint/no-explicit-any
         let result: ExpressionsWithLength = item.split('.').reduce((previous, current) => new MemberExpression(previous, current), null as TypedExpression<any>)
         result.$$length = length;
         if (typeof operator != 'undefined')
@@ -372,6 +373,7 @@ export class Parser
             return item;
         }, ']');
 
+        //eslint-disable-next-line @typescript-eslint/no-explicit-any
         return new ParsedArray(length, ...results.map((v, i) => new MemberExpression<any, number, any>(v as TypedExpression<any>, i)));
     }
 
@@ -434,13 +436,13 @@ export class Parser
     {
         expression = expression.substring(1);
         let length = 1;
-        let isFunction = false;
+        // let isFunction = false;
         do
         {
             const item = parseItem(expression);
 
-            if (item instanceof Function || item instanceof ParsedBinary)
-                isFunction = true;
+            // if (item instanceof Function || item instanceof ParsedBinary)
+            //     isFunction = true;
 
             expression = expression.substring(item.$$length);
             const next = /^ *, */.exec(expression);
@@ -487,6 +489,7 @@ export class Parser
             return item;
         }, '}');
 
+        //eslint-disable-next-line @typescript-eslint/no-explicit-any
         return this.tryParseOperator(expression.substring(result), new ParsedObject(result, ...parsedObject.map(v => new MemberExpression<any, string, any>(v.value as TypedExpression<any>, v.key))))
     }
 }

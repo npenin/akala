@@ -20,7 +20,7 @@ export default function normalize(mode: 'require' | 'requireMeta' | boolean, cur
         case true:
             try
             {
-                const url = new URL(value);
+                new URL(value);
                 return value;
             }
             catch (e)

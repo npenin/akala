@@ -1,4 +1,4 @@
-import { Injector, Injectable, each, MiddlewarePromise, isPromiseLike, Parser } from '@akala/core';
+import { Injector, Injectable, each, MiddlewarePromise, isPromiseLike } from '@akala/core';
 import * as  Metadata from '../metadata/index.js';
 import { CommandProcessor, StructuredParameters } from '../model/processor.js'
 import { Container } from '../model/container.js';

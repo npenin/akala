@@ -36,6 +36,7 @@ export class ExpressionVisitor
 
     async visitNew<T>(expression: NewExpression<T>): Promise<Expressions>
     {
+        //eslint-disable-next-line @typescript-eslint/no-explicit-any
         var members: MemberExpression<T, keyof T, T[keyof T]>[] = await this.visitArray(expression.init as any) as any;
         if (members !== expression.init)
         {

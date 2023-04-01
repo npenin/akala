@@ -1,5 +1,4 @@
 import * as akala from "../index.js";
-import { Container } from '../model/container.js';
 import * as path from 'path'
 import * as fs from 'fs';
 import { Writable } from "stream";
