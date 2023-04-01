@@ -9,6 +9,6 @@ WORKDIR /usr/src/akala
 RUN ["yarn", "set", "version", "berry"]
 RUN ["yarn", "config", "set", "nodeLinker", "node-modules"]
 RUN ["yarn"]
-ENTRYPOINT ["yarn" ,"pm-fork", "pm"]
+ENTRYPOINT ["yarn" ,"pm-fork", "start", "pm"]
 CMD ["local", "tcp", "--tcpPort=31416"]
 EXPOSE 31416

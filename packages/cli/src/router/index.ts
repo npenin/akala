@@ -211,11 +211,28 @@ class OptionsMiddleware<TOptions extends Record<string, string | number | boolea
     }
 
     private options = new akala.MiddlewareComposite<[CliContext]>();
+    private positionalArgs = new akala.MiddlewareCompositeWithPriority<[CliContext]>();
     public config: { [key in keyof TOptions]?: OptionOptions } = {};
+
 
     option<TValue extends string | number | boolean | string[], const TName extends string>(name: TName, option?: OptionOptions): OptionsMiddleware<TOptions & { [key in TName]: TValue }>
     {
         this.config[name] = option;
+        if (option?.positional)
+        {
+            if (isNaN(Number(option.position)))
+                throw new Error(`The option ${name} must have a position if it is meant to be positional`)
+            this.positionalArgs.useMiddleware(option.position, {
+                handle: context =>
+                {
+                    if (!option.optional || context.args.length > 0)
+                        context.options[name] = context.args.shift();
+                    if (option.normalize)
+                        context.options[name] = normalize(option.normalize, context.currentWorkingDirectory, context.options[name] as string);
+                    return Promise.resolve();
+                }
+            });
+        }
         return this.optionMiddleware(new OptionMiddleware(name, option));
     }
 
@@ -227,7 +244,7 @@ class OptionsMiddleware<TOptions extends Record<string, string | number | boolea
 
     handle(context: CliContext<TOptions>): akala.MiddlewarePromise
     {
-        return this.options.handle(context);
+        return this.options.handle(context).then(p => typeof p == 'undefined' ? this.positionalArgs.handle(context) : p);
     }
 }
 
@@ -354,6 +371,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
                             context.options[paramName] = context.args.splice(0, context.args.length) as any;
                     }
                 }
+
                 return Promise.reject();
             }));
         }
@@ -405,7 +423,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
         return this as unknown as NamespaceMiddleware<T & TOptions, TState>;
     }
 
-    option<TValue extends string | number | boolean | string[] = string | number | boolean | string[], TName extends string = string>(name: TName, option?: OptionOptions)
+    option<TValue extends string | number | boolean | string[] = string | number | boolean | string[], const TName extends string = string>(name: TName, option?: OptionOptions)
         : NamespaceMiddleware<TOptions & { [key in TName]: TValue }>
     {
         this._option.option<TValue, TName>(name, option);
