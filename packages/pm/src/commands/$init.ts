@@ -95,7 +95,7 @@ export default async function (this: State, container: RunningContainer & pmCont
     }
     else
         this.config = Configuration.new<StateConfiguration>(configPath, {
-            containers: { pm: { commandable: true, stateless: false, path: require.resolve('../../commands.json') } },
+            containers: { pm: { commandable: true, stateless: false, path: await import(new URL('../../../commands.json', import.meta.url).toString(), { assert: { type: 'json' } }) } },
             mapping: { pm: { cwd: process.cwd(), container: 'pm' } },
             plugins: []
         }) as State['config'];

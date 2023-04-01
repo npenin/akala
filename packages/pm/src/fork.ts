@@ -11,9 +11,9 @@ import program, { buildCliContextFromProcess, ErrorMessage, NamespaceMiddleware 
 import { Stats } from 'fs';
 import { registerCommands, SelfDefinedCommand, parseMetadata, StructuredParameters } from '@akala/commands';
 
-import module from 'module'
+// import module from 'module'
 
-const require = module.createRequire(import.meta.url.substring('file://'.length));
+// const require = module.createRequire(import.meta.url.substring('file://'.length));
 
 var isPm = false;
 
@@ -37,8 +37,8 @@ logMiddleware.preAction(async c =>
 let initMiddleware = new NamespaceMiddleware<{ program: string, name: string, tls: boolean }>(null);
 const controller = new AbortController();
 
-program.option<string, 'program'>('program', { needsValue: true, normalize: true }).
-    option<string, 'name'>('name', { needsValue: true }).
+program.option<string, 'program'>('program', { needsValue: true, normalize: true, positional: true, position: 0 }).
+    option<string, 'name'>('name', { needsValue: true, positional: true, position: 1, optional: true }).
     option<boolean, 'tls'>('tls', { needsValue: false }).
     options<{
         port?: number,
@@ -71,16 +71,19 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
             handle: async c =>
             {
                 cliContainer.name = c.options.name;
-                isPm = c.options.name === 'pm' && c.options.program === require.resolve('../commands.json');
+                isPm = c.options.name === 'pm' && 'file://' + c.options.program === new URL('../../commands.json', import.meta.url).toString();
                 const init = cliContainer.resolve('$init');
                 if (init && init.config && init.config.cli && init.config.cli.options)
                 {
                     if (init.config.cli.usage)
+                    {
                         initMiddleware = initMiddleware.command(init.config.cli.usage, init.config?.doc?.description)
+                        c.args.unshift('$init');
+                    }
                     ac.Triggers.addCliOptions(init, initMiddleware);
                 }
 
-                process.on('unhandledRejection', (x) =>
+                process.on('unhandledRejection', (x, p) =>
                 {
                     controller.abort(x)
                     return false;
@@ -100,7 +103,7 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
                     if (!isPm)
                     {
                         //eslint-disable-next-line @typescript-eslint/no-var-requires
-                        const pmMeta = require('../commands.json');
+                        const pmMeta = await import(new URL('../../commands.json', import.meta.url).toString());
                         if (process.connected)
                         {
                             pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer), true)) as ac.Container<unknown> & pmDef.container;
