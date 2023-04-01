@@ -1,7 +1,7 @@
 import { IpcNetConnectOpts, NetConnectOpts } from 'net';
 import { platform } from 'os';
 import { join } from 'path';
-import { ServeOptions } from './cli/serve.js';
+import type { ServeOptions } from './cli/serve.js';
 import { NetSocketAdapter } from "./net-socket-adapter.js";
 import { registerCommands } from './generator.js'
 import { CommandProcessor, ICommandProcessor } from './model/processor.js';

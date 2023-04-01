@@ -1,7 +1,5 @@
 import type { IpcNetConnectOpts, NetConnectOpts } from 'net';
-import { platform } from 'os';
-import { join } from 'path';
-import { ServeOptions } from './cli/serve.js';
+import type { ServeOptions as ServerServeOptions } from './cli/serve.js';
 import { registerCommands } from './generator.js'
 import { CommandProcessor, ICommandProcessor } from './model/processor.js';
 import { HttpClient } from './processors/index.js';
@@ -11,6 +9,8 @@ import { Container } from './model/container.js';
 import type { CommonConnectionOptions, SecureContextOptions } from 'tls'
 
 type TlsConnectOpts = NetConnectOpts & SecureContextOptions & CommonConnectionOptions;
+
+type ServeOptions = Omit<ServerServeOptions, 'args'> & { args: ('http' | 'ws')[] }
 
 export interface ServeMetadata
 {
@@ -127,71 +127,7 @@ function isIpcConnectOption(options: NetConnectOpts): options is IpcNetConnectOp
 
 export default function serveMetadata(name: string, context: ServeOptions): ServeMetadata
 {
-    let args = context.args;
-    if (!args || args.length == 0)
-        args = ['local'];
-    const metadata: ServeMetadata = {};
-
-    if (args.indexOf('local') > -1)
-    {
-        let socketPath: string;
-        if (platform() == 'win32')
-            socketPath = '\\\\?\\pipe\\' + name.replace(/\//g, '\\');
-        else
-            socketPath = join(process.cwd(), name.replace(/\//g, '-').replace(/^@/g, '') + '.sock');
-        metadata.socket = [{ path: socketPath }];
-    }
-
-
-    if (args.indexOf('tcp') > -1)
-    {
-        if (!metadata['socket'])
-            metadata['socket'] = [];
-        if (isNaN(Number(context.options.tcpPort)))
-        {
-            const indexOfColon = context.options.tcpPort.lastIndexOf(':');
-            if (indexOfColon > -1)
-            {
-                const host = context.options.tcpPort.substr(0, indexOfColon);
-                const port = Number(context.options.tcpPort.substr(indexOfColon + 1))
-                metadata.socket.push({ port, host });
-            }
-            else
-                metadata.socket.push({ path: context.options.tcpPort });
-        }
-        else
-            metadata.socket.push({ port: Number(context.options.tcpPort) });
-    }
-
-    if (args.indexOf('http') > -1 || args.indexOf('ws') > -1)
-    {
-        let port: number;
-        if (context.options.port)
-            port = context.options.port;
-        else
-        {
-            if (context.options.cert && context.options.key)
-                port = 443
-            else
-                port = 80;
-        }
-        if (context.options.cert && context.options.key)
-        {
-            if (~args.indexOf('ws'))
-                metadata.wss = { port, cert: context.options.cert, key: context.options.key };
-            if (~args.indexOf('http'))
-                metadata.https = { port, cert: context.options.cert, key: context.options.key };
-        }
-        else
-        {
-            if (~args.indexOf('ws'))
-                metadata.ws = { port };
-            if (~args.indexOf('http'))
-                metadata.http = { port };
-        }
-
-    }
-    return metadata;
+    throw new Error('you cannot serve anything from the browser');
 }
 
 serveMetadata.$inject = ['$container', 'options'];
