@@ -141,6 +141,7 @@
 * improve start/stop doc e4be495
 * improve support for extends f6622ee
 * improve typing for errorMiddlewares 2b7047f
+* improve usage in browser 8c69317
 * improve usage in browser be570f3
 * improve usage with objects 91d1f50
 * improved logging support 8c81e18
