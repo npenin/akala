@@ -5,7 +5,7 @@ import { ServeMetadataWithSignal } from '../serve-metadata.js';
 import { NetSocketAdapter } from '../net-socket-adapter.js';
 import { eachAsync, Injector, noop } from '@akala/core';
 import { trigger } from '../triggers/jsonrpc.js';
-import tls, { SecureContextOptions } from 'tls';
+import { SecureContextOptions, Server as tlsServer } from 'tls';
 
 export interface ServeOptions
 {
@@ -34,13 +34,13 @@ function getOrCreateServer(connectionString: string, container: Container<unknow
 
 function getOrCreateSecureServer(options: NetConnectOpts & SecureContextOptions, container: Container<unknown>)
 {
-    var sockets = container.resolve<Record<string, tls.Server>>('$ssockets');
+    var sockets = container.resolve<Record<string, tlsServer>>('$ssockets');
     if (!sockets)
         sockets = container.register('$ssockets', {});
     const connectionString = getConnectionString(options);
     if (connectionString in sockets)
         return sockets[connectionString];
-    return sockets[connectionString] = new tls.Server();
+    return sockets[connectionString] = new tlsServer();
 }
 
 export async function getOrCreateServerAndListen(options: NetConnectOpts, container: Container<unknown>)
