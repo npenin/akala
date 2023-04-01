@@ -298,6 +298,7 @@
 * testing the backtick replacement 14bd2fb
 * trigger signature 28e77a1
 * trying to add promise to solve "handled" lambda 62bad72
+* trying to fix docker files 2b8ce52
 * typing 8851307
 * update all commands 8f54036
 * update CLI definitions 7281b40
