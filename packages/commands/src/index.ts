@@ -11,6 +11,7 @@ import { registerCommands } from './generator.js'
 import { DiscoveryOptions, FileSystem } from './processors/index.js'
 import * as Processors from './processors/index.js'
 export { Processors }
+export { Triggers };
 
 // import * as cli from './cli'
 export { NetSocketAdapter } from './net-socket-adapter.js'
