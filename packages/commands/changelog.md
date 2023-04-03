@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* remove triggers from browser 85ce5a8
+* remove assert dependency 2a90cb2
 
 
 
