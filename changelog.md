@@ -257,6 +257,7 @@
 * remove over proxyfying 5da8a29
 * remove require call 6f09130
 * remove stateless 2de9622
+* remove triggers from browser 85ce5a8
 * remove triple-beam dependency c44bd2e
 * remove winston dependency 3dcad68
 * removed mock-require usage 99587ba
