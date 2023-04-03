@@ -13,7 +13,7 @@ export function spawnAsync(program: string, options: cp.SpawnOptions, ...args: s
             {
                 if (code == 0)
                     resolve()
-                reject(new Error('yarn exited with error code ' + code + '\n' + err))
+                reject(new Error(program + ' exited with error code ' + code + '\n' + err))
             }).stderr.on('data', (chunk) =>
             {
                 err += chunk;
