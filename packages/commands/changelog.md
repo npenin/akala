@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* improve module resolution af07cf8
+* reference to jsonrpc on browser condition 4af11a3
 
 
 
