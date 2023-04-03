@@ -1,4 +1,4 @@
-#  (2023-04-01)
+#  (2023-04-03)
 
 
 ### Bug Fixes
@@ -65,6 +65,7 @@
 * close outputs after generate 1d87b9d
 * code clean up 11726cb
 * command help with mandatory positional parameter f6002a8
+* commands default path 0bb1723
 * commands stay in order c3358c1
 * CommandWithAffinityProcessor better detection 9ff4857
 * compilation c7efdb0
@@ -172,7 +173,9 @@
 * metadata lookup eaa12c1
 * metadata lookup on start da0c4d7
 * middleware copy/paste issue 69757ce
+* missing import assertion e29c18a
 * **mongodb:** exclude generated field from being updated 1785a29
+* move cli to esm 3f28f3a
 * move dependency from devdep 36139a4
 * move from require to import to support esm 6ee5ce4
 * move to ESM 6ef0335
