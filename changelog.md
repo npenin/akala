@@ -230,6 +230,7 @@
 * ready command works properly d9b10c2
 * record event on aws 4fd90b3
 * reduce silly logging 378e856
+* reference to jsonrpc on browser condition 4af11a3
 * regex broken c50b9b9
 * regex exec is not iterable ca695eb
 * reload metadata now call metadata with deep flag df33263
