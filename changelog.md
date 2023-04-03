@@ -241,6 +241,7 @@
 * remote pm proxy 633b1b5
 * remote ready failing dcc0fc1
 * remove _trigger when sending over jsonrpc 9fac492
+* remove assert dependency 2a90cb2
 * remove confusing inject property on commands 9c45241
 * remove container.ts in sidecar cc48571
 * remove debugger statement 955f084
