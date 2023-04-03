@@ -2,7 +2,6 @@ import { Injector, Injectable, each, MiddlewarePromise, isPromiseLike } from '@a
 import * as  Metadata from '../metadata/index.js';
 import { CommandProcessor, StructuredParameters } from '../model/processor.js'
 import { Container } from '../model/container.js';
-import assert from 'assert';
 import { CommandWithProcessorAffinity, SelfDefinedCommand } from '../model/command.js';
 
 export class Local extends CommandProcessor
@@ -54,7 +53,7 @@ export class Local extends CommandProcessor
     public static execute<T, U>(cmd: Metadata.Command, handler: Injectable<U>, container: Container<T>, param: StructuredParameters): U
     {
         if (!container)
-            assert.fail('container is undefined');
+            throw new Error('container is undefined');
         let inject = cmd.config && cmd.config['']?.inject;
         const injector = new Injector(container);
         injector.register('$container', container);
