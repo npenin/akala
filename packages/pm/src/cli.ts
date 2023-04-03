@@ -40,7 +40,7 @@ cli.command('start pm')
     .action(c =>
     {
         c.options['name'] = 'pm'
-        c.options['program'] = require.resolve('../commands.json');
+        c.options['program'] = new URL('../../commands.json', import.meta.url).toString();
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return start.call({} as unknown as State, null, 'pm', c as any);
     });
@@ -59,7 +59,7 @@ cli.preAction(async c =>
         const netsocket = socket = new Socket();
         if (c.options.tls)
         {
-            socket = new TLSSocket(socket, {});
+            socket = new TLSSocket(netsocket, {});
         }
 
         await new Promise<void>((resolve, reject) =>
@@ -84,9 +84,9 @@ cli.preAction(async c =>
                 try
                 {
                     // eslint-disable-next-line @typescript-eslint/no-var-requires
-                    const config = require(path.join(homedir(), './.pm.config.json'));
-
-                    netsocket.connect(config.mapping.pm.connect.socket[0]);
+                    import(path.join(homedir(), './.pm.config.json'), { assert: { type: 'json' } }).then(config =>
+                        netsocket.connect(config.default.mapping.pm.connect.socket[0])
+                    );
                 }
                 catch (e)
                 {
@@ -144,7 +144,7 @@ cli.preAction(async c =>
         if (!processor)
             processor = new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(socket)));
         if (!metaContainer)
-            metaContainer = require('../commands.json');
+            metaContainer = (await import(new URL('../../commands.json', import.meta.url).toString(), { assert: { type: 'json' } })).default;
         if (!container)
         {
             container = proxy(metaContainer, processor);
