@@ -52,6 +52,7 @@
 * binding constructor 8294d0f
 * bindings are less intrusive 3ef2783
 * broken command processor 22afbc0
+* browser exports 8888cc6
 * bump dependent 5e89235
 * bump dependents proper references f734b61
 * cannot read undefined config object 0cc01be
