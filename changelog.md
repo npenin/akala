@@ -138,6 +138,7 @@
 * improve generate performance 88f6fee
 * improve get-version 2f156a3
 * improve http implementation 9e55419
+* improve module resolution af07cf8
 * improve performance of metadata lookup 81cf56a
 * improve remote sidecars defaults eef7b24
 * improve start/stop doc e4be495
