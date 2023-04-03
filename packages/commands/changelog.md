@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* commands default path 0bb1723
+* improve module resolution af07cf8
 
 
 
