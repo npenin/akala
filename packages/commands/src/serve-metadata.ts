@@ -13,6 +13,7 @@ import * as Metadata from './metadata/index.js';
 import { Container } from './model/container.js';
 import { CommonConnectionOptions, connect as tlsconnect, SecureContextOptions, TLSSocket } from 'tls'
 import * as jsonrpc from '@akala/json-rpc-ws';
+import { ConnectionPreference } from './serve-metadata.browser.js';
 
 type TlsConnectOpts = NetConnectOpts & SecureContextOptions & CommonConnectionOptions;
 
@@ -31,14 +32,6 @@ export interface ServeMetadataMap
     http: NetConnectOpts;
     wss: NetConnectOpts & TlsConnectOpts;
     ws: NetConnectOpts;
-}
-
-export interface ConnectionPreference
-{
-    preferRemote?: boolean;
-    host?: string;
-    metadata?: Metadata.Container;
-    container?: Container<unknown>;
 }
 
 export async function connectByPreference<T = unknown>(options: ServeMetadata, settings: ConnectionPreference, ...orders: (keyof ServeMetadata)[]): Promise<{ container: Container<T>, processor: ICommandProcessor }>
@@ -168,7 +161,6 @@ function isIpcConnectOption(options: NetConnectOpts): options is IpcNetConnectOp
 
 export function parseMetadata(connectionString: string, tls?: boolean): ServeMetadata 
 {
-
     const remote = /^(?:([^:]+):)?(\d+)$/.exec(connectionString);
     if (!remote)
         if (tls)

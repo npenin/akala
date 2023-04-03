@@ -1,4 +1,7 @@
 export * from './index.browser.js'
+export * from './serve-metadata.js'
+import serveMetadata, { ServeMetadata, connectByPreference, connectWith } from './serve-metadata.js'
+export { ServeMetadata, connectByPreference, connectWith, serveMetadata };
 import * as Triggers from './triggers/index.js'
 import * as Metadata from './metadata/index.js'
 import program, { buildCliContext, buildCliContextFromProcess, NamespaceMiddleware } from '@akala/cli'

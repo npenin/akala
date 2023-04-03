@@ -8,10 +8,10 @@ export * from './model/error-unknowncommand.js'
 import * as Processors from './processors/index.js'
 import * as Triggers from './triggers/index.js'
 import * as Metadata from './metadata/index.js'
-import serveMetadata, { ServeMetadata, ServeMetadataWithSignal, connectByPreference, connectWith, ConnectionPreference, parseMetadata } from './serve-metadata.js'
+import { ServeMetadata, connectByPreference, connectWith, ConnectionPreference } from './serve-metadata.browser.js'
 import { CommandProcessor } from './model/processor.js'
 export { Processors, Triggers, Metadata }
-export { serveMetadata, ServeMetadata, ServeMetadataWithSignal, connectByPreference, connectWith, ConnectionPreference, parseMetadata };
+export { ServeMetadata, connectByPreference, connectWith, ConnectionPreference };
 import $metadata from './commands/$metadata.js'
 export { CommandProcessor };
 

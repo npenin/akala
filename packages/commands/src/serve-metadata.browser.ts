@@ -1,21 +1,13 @@
 import type { IpcNetConnectOpts, NetConnectOpts } from 'net';
-import type { ServeOptions as ServerServeOptions } from './cli/serve.js';
 import { registerCommands } from './generator.js'
 import { CommandProcessor, ICommandProcessor } from './model/processor.js';
 import { HttpClient } from './processors/index.js';
 import { Injector } from '@akala/core';
 import * as Metadata from './metadata/index.js';
 import { Container } from './model/container.js';
-import type { CommonConnectionOptions, SecureContextOptions } from 'tls'
-
-type TlsConnectOpts = NetConnectOpts & SecureContextOptions & CommonConnectionOptions;
-
-type ServeOptions = Omit<ServerServeOptions, 'args'> & { args: ('http' | 'ws')[] }
 
 export interface ServeMetadata
 {
-    socket?: (NetConnectOpts)[];
-    ssocket?: (TlsConnectOpts)[];
     https?: { port: number, cert: string, key: string };
     http?: { port: number };
     ws?: { port: number };
@@ -33,21 +25,11 @@ export interface ConnectionPreference
 export async function connectByPreference<T = unknown>(options: ServeMetadata, settings: ConnectionPreference, ...orders: (keyof ServeMetadata)[]): Promise<{ container: Container<T>, processor: ICommandProcessor }>
 {
     if (!orders)
-        orders = ['ssocket', 'socket', 'wss', 'ws', 'https', 'http'];
+        orders = ['wss', 'ws', 'https', 'http'];
     const orderedOptions = orders.map(order =>
     {
         if (options[order])
-        {
-            if (order === 'socket' || order == 'ssocket')
-                if (options[order].length > 1)
-                    if (settings?.preferRemote)
-                        return options[order].find(s => !isIpcConnectOption(s));
-                    else
-                        return options[order].find(s => isIpcConnectOption(s));
-                else
-                    return options[order][0];
             return options[order];
-        }
     });
     const container = new Container<T>(settings?.metadata?.name || 'proxy', undefined);
     let processor: CommandProcessor;
@@ -86,9 +68,6 @@ export async function connectWith<T>(options: NetConnectOpts, host: string, medi
 {
     switch (medium)
     {
-        case 'socket':
-        case 'ssocket':
-            throw new Error('not supported in browser')
         case 'http':
         case 'https':
             {
@@ -124,11 +103,3 @@ function isIpcConnectOption(options: NetConnectOpts): options is IpcNetConnectOp
 {
     return typeof options['path'] !== 'undefined';
 }
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default function serveMetadata(_name: string, _context: ServeOptions): ServeMetadata
-{
-    throw new Error('you cannot serve anything from the browser');
-}
-
-serveMetadata.$inject = ['$container', 'options'];
