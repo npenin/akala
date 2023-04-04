@@ -11,7 +11,7 @@
     "funding": "https://github.com/npenin/akala?sponsor=1",
     "scripts": {
         "test": "mocha",
-        "prepack": "tsc -p tsconfig.esm.json",
+        "prepack": "../../makeCjs.sh",
         "build": "tsc -p tsconfig.esm.json",
         "cli": "node dist/esm/cli.js",
         "generate-cli": "ac generate dist/esm/cli commands.json --name cli",

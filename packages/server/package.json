@@ -6,7 +6,7 @@
     "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 0",
-        "prepack": "tsc -p tsconfig.esm.json",
+        "prepack": "../../makeCjs.sh",
         "generate": "ac generate dist/esm/commands commands.json --name @akala/server",
         "generate-metadata": "ac generate-metadata commands.json src/commands.ts"
     },
