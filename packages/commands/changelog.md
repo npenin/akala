@@ -1,9 +1,9 @@
-#  (2023-04-03)
+#  (2023-04-04)
 
 
 ### Bug Fixes
 
-* remove assert dependency 2a90cb2
+* add more files to the browser field 21d7d48
 
 
 
