@@ -1,4 +1,4 @@
-#  (2023-04-03)
+#  (2023-04-04)
 
 
 ### Bug Fixes
@@ -16,6 +16,7 @@
 * add missing dependency 3d0b4df
 * add missing package required property ba0c9df
 * add missing proxy command to establish the bridge 9596ae9
+* add more files to the browser field 21d7d48
 * add more logs 02b939a
 * add node as an export condition 4aa41a8
 * add pm processor when proxying 3dbeb5e
