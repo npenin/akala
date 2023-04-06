@@ -58,14 +58,26 @@
     },
     "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
     "exports": {
-        ".": {
-            "types": "./dist/esm/index.d.ts",
-            "node": {
-                "import": "./dist/esm/index.js",
-                "require": "./dist/cjs/index.js"
+        "node": {
+            "require": {
+                "types": "./dist/cjs/index.d.ts",
+                "default": "./dist/cjs/index.js"
             },
+            "import": {
+                "types": "./dist/esm/index.d.ts",
+                "default": "./dist/esm/index.js"
+            }
+        },
+        "require": {
+            "types": "./dist/cjs/browser.d.ts",
+            "default": "./dist/cjs/browser.js"
+        },
+        "import": {
+            "types": "./dist/esm/browser.d.ts",
             "default": "./dist/esm/browser.js"
-        }
+        },
+        "types": "./dist/cjs/browser.d.ts",
+        "default": "./dist/cjs/browser.js"
     },
     "module": "./dist/esm/index.js",
     "types": "./dist/esm/index.d.ts"
