@@ -3,31 +3,34 @@ import * as path from 'path'
 import * as fs from 'fs';
 import { Writable } from "stream";
 import { outputHelper, write } from './new.js';
+import module from "module";
+
+
 
 export default async function generate(folder?: string, name?: string, outputFile?: string)
 {
     folder = folder || process.cwd();
+    const folderRequire = module.createRequire(folder);
     if (!name && fs.existsSync(path.join(folder, './package.json')))
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
-        name = (await import(path.join(folder, './package.json'))).name;
+        name = folderRequire('./package.json').name;
     if (!name)
         name = path.basename(folder);
 
     let output: Writable;
     let outputFolder: string;
     let exists: boolean;
-    ({ output, outputFile, outputFolder, exists } = await outputHelper(outputFile, 'commands.json', true));
     const meta: akala.Metadata.Container & { $schema?: string } = { name: name, commands: [] };
-    if (exists)
+    ({ output, outputFile, outputFolder, exists } = await outputHelper(outputFile, 'commands.json', true, (exists) =>
     {
-        var existing: akala.Metadata.Container = await import(path.resolve(process.cwd(), outputFile), { assert: { type: 'json' } });
-        // if (require && require.cache)
-        //     delete require.cache[path.resolve(process.cwd(), outputFile)];
-        meta.extends = existing.extends;
-        meta.dependencies = existing.dependencies;
-    }
-    if (!output)
-        output = fs.createWriteStream(outputFile);
+        if (exists)
+        {
+            var existing: akala.Metadata.Container = folderRequire(path.resolve(process.cwd(), outputFile));
+            if (folderRequire.cache)
+                delete folderRequire.cache[path.resolve(process.cwd(), outputFile)];
+            meta.extends = existing.extends;
+            meta.dependencies = existing.dependencies;
+        }
+    }));
 
     var commands = await akala.Processors.FileSystem.discoverMetaCommands(path.resolve(folder), { relativeTo: outputFolder, isDirectory: true, recursive: true, ignoreFileWithNoDefaultExport: true, processor: new akala.Processors.FileSystem(outputFolder) });
     meta.commands = commands;

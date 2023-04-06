@@ -20,7 +20,7 @@ export type ContainerProxy = commands.proxy;
 //eslint-disable-next-line @typescript-eslint/no-var-requires
 const metaContainer = require('../commands.json');
 
-export default class PubSubContainer extends BaseContainer<State> implements commands.container
+export class PubSubContainer extends BaseContainer<State> implements commands.container
 {
     constructor(name: string = 'pubsub')
     {
@@ -28,3 +28,4 @@ export default class PubSubContainer extends BaseContainer<State> implements com
         registerCommands(metaContainer.commands, new Processors.FileSystem(path.join(__dirname, '../')), this);
     }
 }
+export default PubSubContainer;

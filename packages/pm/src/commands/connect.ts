@@ -1,6 +1,6 @@
 import { ErrorWithStatus } from "@akala/core";
 import { serveMetadata, ServeMetadata, ServeOptions } from "@akala/commands";
-import Configuration from "@akala/config";
+import { Configuration } from "@akala/config";
 import State, { SidecarConfiguration } from '../state.js';
 
 export default async function connect(this: State, name: string): Promise<ServeMetadata>

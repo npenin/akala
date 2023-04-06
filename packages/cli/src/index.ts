@@ -2,6 +2,7 @@ import { LogLevels, Logger, logger as LoggerBuilder, grep, map, each } from '@ak
 import program, { CliContext, OptionOptions, usageParser } from './router/index.js';
 export * from './router/index.js'
 export default program;
+export { program };
 
 export function buildCliContext<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>(logger: Logger, ...args: string[]): CliContext<T>
 {

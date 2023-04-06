@@ -1,6 +1,7 @@
 import { CliContext } from "@akala/cli";
 import { Container, Processors } from "@akala/commands";
 import { isAbsolute, basename } from 'path'
+import { pathToFileURL, fileURLToPath } from 'url'
 
 export default async function use(this: CliContext, self: Container<CliContext>, name: string, pathToCommands: string)
 {
@@ -16,7 +17,7 @@ export default async function use(this: CliContext, self: Container<CliContext>,
             await Processors.FileSystem.discoverCommands(pathToCommands, container);
     }
     else
-        await Processors.FileSystem.discoverCommands(require.resolve(pathToCommands), container);
+        await Processors.FileSystem.discoverCommands(fileURLToPath(new URL(pathToCommands, pathToFileURL(process.cwd()))), container);
     if (self && name)
         self.register(container);
     else

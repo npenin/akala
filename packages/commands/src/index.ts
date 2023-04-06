@@ -4,7 +4,7 @@ import serveMetadata, { ServeMetadata, connectByPreference, connectWith } from '
 export { ServeMetadata, connectByPreference, connectWith, serveMetadata };
 import * as Triggers from './triggers/index.js'
 import * as Metadata from './metadata/index.js'
-import program, { buildCliContext, buildCliContextFromProcess, NamespaceMiddleware } from '@akala/cli'
+import { program, buildCliContext, buildCliContextFromProcess, NamespaceMiddleware } from '@akala/cli'
 import { Container } from './model/container.js'
 import { CommandProcessor } from './model/processor.js'
 import { registerCommands } from './generator.js'

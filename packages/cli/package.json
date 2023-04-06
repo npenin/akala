@@ -2,7 +2,7 @@
     "name": "@akala/cli",
     "version": "2.9.8",
     "main": "./dist/cjs/index.js",
-    "types": "./dist/esm/index.d.ts",
+    "types": "./dist/cjs/index.d.ts",
     "author": "Nicolas Penin <github@dragon-angel.fr>",
     "type": "module",
     "license": "BSD-3-Clause",
@@ -31,17 +31,19 @@
     },
     "preferGlobal": true,
     "scripts": {
+        "prepack": "../../makeCjs.sh",
         "test": "echo \"Error: no test specified\""
     },
     "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
     "exports": {
-        ".": {
+        "import": {
             "types": "./dist/esm/index.d.ts",
-            "import": "./dist/esm/index.js",
-            "require": "./dist/cjs/index.js",
+            "default": "./dist/esm/index.js"
+        },
+        "require": {
+            "types": "./dist/cjs/index.d.ts",
             "default": "./dist/cjs/index.js"
-        }
-    },
-    "module": "./dist/esm/index.js",
-    "typings": "./dist/esm/index.d.ts"
+        },
+        "default": "./dist/cjs/index.js"
+    }
 }

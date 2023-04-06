@@ -4,10 +4,7 @@ import { createWriteStream } from "fs";
 
 export default async function (name: string, options: CliContext<{ force?: boolean }>['options'], destination?: string, args?: { name: string, type?: string }[])
 {
-    var { output, outputFile } = await outputHelper(destination, name + '.ts', options && options.force);
-
-    if (!output)
-        output = createWriteStream(outputFile);
+    var { output } = await outputHelper(destination, name + '.ts', options && options.force);
 
     await write(output, `export default async function ${name}(${args?.map(a => a.type ? a.name + ': ' + a.type : a.name)?.join(', ') || ''})
 {

@@ -7,13 +7,9 @@ import { lstat } from 'fs/promises';
 import pmDef from './container.js';
 import { IpcAdapter } from "./ipc-adapter.js";
 import { logger, Logger, MiddlewareComposite, module as coreModule } from '@akala/core';
-import program, { buildCliContextFromProcess, ErrorMessage, NamespaceMiddleware } from '@akala/cli';
+import { program, buildCliContextFromProcess, ErrorMessage, NamespaceMiddleware } from '@akala/cli';
 import { Stats } from 'fs';
 import { registerCommands, SelfDefinedCommand, parseMetadata, StructuredParameters } from '@akala/commands';
-
-// import module from 'module'
-
-// const require = module.createRequire(import.meta.url.substring('file://'.length));
 
 var isPm = false;
 
