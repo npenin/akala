@@ -1,4 +1,4 @@
-#  (2023-04-04)
+#  (2023-04-06)
 
 
 ### Bug Fixes
@@ -94,6 +94,9 @@
 * display for pmSocket config info c3b908b
 * distinct implementation fix 9381907
 * docker build cfdaf4e
+* downgrade all packages to support both cjs and mjs 991c494
+* downgrade all packages to support both cjs and mjs 56f6136
+* downgrade all packages to support both cjs and mjs 5c64966
 * embrace esm even more 3e7d10a
 * embrace esm even more b3b8e9d
 * ensure vanilla leverages generators 0aedf98
@@ -270,6 +273,7 @@
 * resolve path in new cc 58cb93c
 * restore broken cli feature 6f563ef
 * revert last change 1332114
+* revert some changes to fix build 77b19cf
 * runnerMiddleware more type friendly 7bf1a25
 * set log level for any namespace e1b1025
 * shebang on akala CLI e893277
