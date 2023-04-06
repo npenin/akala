@@ -1,4 +1,4 @@
-import root, { CliContext, NamespaceMiddleware } from "@akala/cli";
+import { program as root, CliContext, NamespaceMiddleware } from "@akala/cli";
 import path from 'path'
 import Configuration from "./configuration.js";
 

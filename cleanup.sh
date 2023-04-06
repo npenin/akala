@@ -5,3 +5,4 @@ find packages -name dist -exec rm -R {} \;
 find packages -name lib -exec rm -R {} \;
 find packages -name tsconfig.esm.tsbuildinfo -exec rm -R {} \;
 find packages -name tsconfig.cjs.tsbuildinfo -exec rm -R {} \;
+yarn workspaces foreach -A exec ../../makeCjs.sh

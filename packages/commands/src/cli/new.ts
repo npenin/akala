@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { promisify } from "util";
 
-export async function outputHelper(outputFile: string | undefined, nameIfFolder: string, force: boolean)
+export async function outputHelper(outputFile: string | undefined, nameIfFolder: string, force: boolean, actionIfExists?: (exists: boolean) => void | Promise<void>)
 {
     let output: Writable = undefined;
     let exists = false;
@@ -26,6 +26,12 @@ export async function outputHelper(outputFile: string | undefined, nameIfFolder:
     }
 
     const outputFolder = path.dirname(outputFile);
+
+    if (actionIfExists)
+        await actionIfExists(exists);
+
+    if (!output)
+        output = fs.createWriteStream(outputFile);
 
 
     return { output, outputFolder, outputFile, exists };

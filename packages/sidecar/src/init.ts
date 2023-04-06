@@ -1,7 +1,7 @@
 import { connect, Container as pm, ContainerLite, Sidecar as pmSidecar, sidecar as pmsidecar } from '@akala/pm'
-import Configuration from '@akala/config'
+import { Configuration } from '@akala/config'
 import { connectByPreference, Container, helper } from '@akala/commands'
-import PubSubContainer, { ContainerProxy as PubSubProxy } from '@akala/pubsub'
+import { PubSubContainer, ContainerProxy as PubSubProxy } from '@akala/pubsub'
 import { ModelDefinition, MultiStore, PersistenceEngine, providers, Store, StoreDefinition } from '@akala/storage'
 import MetaPubSub from '@akala/pubsub/commands.json'
 import os from 'os'
@@ -9,6 +9,17 @@ import path from 'path'
 import { Serializable, eachAsync, mapAsync, module } from '@akala/core';
 import { SerializableDefinition } from '@akala/storage'
 import { CliContext } from '@akala/cli'
+
+declare var require: NodeRequire | undefined;
+
+function requireOrImportJson<T = any>(path: string): Promise<T>
+{
+    if (require)
+        return Promise.resolve(require(path));
+    else
+        //@ts-ignore
+        return import(path, { assert: { type: 'json' } }).then(i => i.default)
+}
 
 export interface PubSubConfiguration
 {
@@ -48,13 +59,14 @@ export default async function app<T extends StoreDefinition>(context: CliContext
     const sidecar: Sidecar<T> = {} as unknown as Sidecar<T>;
     const pubsubConfig = config.get<string | PubSubConfiguration>('pubsub');
     const stateStoreConfig = config.get<StoreConfiguration | string | StoreConfiguration[]>('store');
+
     context.logger.debug('connecting to pm...');
     if (typeof remotePm != 'string' && typeof remotePm != 'number')
         sidecar.pm = remotePm;
     else
     {
         //eslint-disable-next-line @typescript-eslint/no-var-requires
-        var result = await connectByPreference<void>(require(path.join(os.homedir(), './pm.config.json')).mapping.pm.connect, { host: remotePm, metadata: (await import('@akala/pm/commands.json', { assert: { type: 'json' } })).default })
+        var result = await connectByPreference<void>(require(path.join(os.homedir(), './pm.config.json')).mapping.pm.connect, { host: remotePm, metadata: await requireOrImportJson('@akala/pm/commands.json') })
         sidecar.pm = result.container as Container<void> & pm;
     }
 

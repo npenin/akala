@@ -1,15 +1,16 @@
 #!/usr/bin/env node
 
-import cli, { buildCliContext, buildCliContextFromProcess, CliContext, NamespaceMiddleware } from '@akala/cli'
+import { program as cli, buildCliContext, buildCliContextFromProcess, CliContext, NamespaceMiddleware } from '@akala/cli'
 import { Container, SelfDefinedCommand } from '@akala/commands';
 import { logger as LoggerBuilder, LogLevels } from '@akala/core';
 import path from 'path';
 import { Workflow } from './index.js';
 import workflow from './workflow.js';
 import use from './workflow-commands/use.js';
-import { createRequire } from 'module';
+import { fileURLToPath } from 'url'
 
-const require = createRequire(import.meta.url);
+//@ts-ignore
+const metaUrl = import.meta?.url || new URL(__filename, 'file:///');
 
 (async function ()
 {
@@ -35,7 +36,7 @@ const require = createRequire(import.meta.url);
                         context.logger.level = LogLevels[levelEntry[0]];
             }
         }
-        const container: workflow.container & Container<CliContext> = await use.call(context, null, 'workflow', require.resolve('../../workflow.json'));
+        const container: workflow.container & Container<CliContext> = await use.call(context, null, 'workflow', fileURLToPath(new URL('../../workflow.json', metaUrl)));
         var loader: Container<CliContext>;
 
         if (context.options.loader)

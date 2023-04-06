@@ -5,7 +5,7 @@ import * as path from 'path'
 import * as ac from '@akala/commands';
 import { lstat } from 'fs/promises';
 import { logger, Logger, MiddlewareComposite } from '@akala/core';
-import program, { buildCliContextFromProcess, ErrorMessage, NamespaceMiddleware } from '@akala/cli';
+import { program, buildCliContextFromProcess, ErrorMessage, NamespaceMiddleware } from '@akala/cli';
 import { Stats } from 'fs';
 
 program.option('help')

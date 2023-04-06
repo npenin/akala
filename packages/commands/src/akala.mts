@@ -1,4 +1,4 @@
-import root, { buildCliContextFromContext, ErrorMessage, NamespaceMiddleware } from "@akala/cli"
+import { program as root, ErrorMessage, NamespaceMiddleware } from "@akala/cli"
 import { eachAsync } from "@akala/core"
 import { stat, writeFile } from "fs/promises";
 import { dirname } from "path";

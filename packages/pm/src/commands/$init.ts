@@ -7,7 +7,7 @@ import { Container, Metadata, ignoredCommands, configure, SelfDefinedCommand } f
 import { PassThrough } from 'stream';
 import { EventEmitter } from 'events';
 import { CliContext } from '@akala/cli';
-import Configuration from '@akala/config';
+import { Configuration } from '@akala/config';
 
 export async function metadata(container: Container<unknown>, deep?: boolean): Promise<Metadata.Container>
 {
@@ -47,6 +47,16 @@ export async function metadata(container: Container<unknown>, deep?: boolean): P
 export function isRunningContainer(c: Container<unknown>): c is RunningContainer
 {
     return 'running' in c;
+}
+declare var require: NodeRequire | undefined;
+
+function requireOrImportJson<T = any>(path: string): Promise<T>
+{
+    if (require)
+        return Promise.resolve(require(path));
+    else
+        //@ts-ignore
+        return import(path, { assert: { type: 'json' } }).then(i => i.default)
 }
 
 export default async function (this: State, container: RunningContainer & pmContainer.container, context: CliContext<{ config: string, keepAttached: boolean }>): Promise<void>
@@ -95,7 +105,7 @@ export default async function (this: State, container: RunningContainer & pmCont
     }
     else
         this.config = Configuration.new<StateConfiguration>(configPath, {
-            containers: { pm: { commandable: true, stateless: false, path: await import(new URL('../../../commands.json', import.meta.url).toString(), { assert: { type: 'json' } }) } },
+            containers: { pm: { commandable: true, stateless: false, path: await requireOrImportJson('../../../commands.json') } },
             mapping: { pm: { cwd: process.cwd(), container: 'pm' } },
             plugins: []
         }) as State['config'];

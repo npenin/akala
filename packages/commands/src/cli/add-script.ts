@@ -3,11 +3,16 @@ import * as path from 'path'
 
 const scopedRE = /^(@[^/]+\/).+$/
 
+//@ts-ignore
+const _dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url))
+
+
 export default async function addScript(name?: string, folder?: string, metadataFile?: string, typescriptFile?: string)
 {
     folder = folder || '';
 
     //eslint-disable-next-line @typescript-eslint/no-var-requires
+    //@ts-ignore
     const pkg = (await import(path.join(process.cwd(), './package.json'), { assert: { type: 'json' } })).default;
 
     if (!metadataFile)

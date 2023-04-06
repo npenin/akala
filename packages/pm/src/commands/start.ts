@@ -9,9 +9,11 @@ import { ErrorWithStatus } from "@akala/core";
 import getRandomName from "./name.js";
 import { ProxyConfiguration } from "@akala/config";
 import { IpcAdapter } from "../ipc-adapter.js";
-import module from 'module'
+import path from 'path'
+import { fileURLToPath } from 'url'
 
-const require = module.createRequire(import.meta.url);
+//@ts-ignore
+const _dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url))
 
 export default async function start(this: State, pm: pmContainer.container & Container<State>, name: string, context?: CliContext<{ new?: boolean, name: string, keepAttached?: boolean, inspect?: boolean, verbose?: boolean, wait?: boolean }>): Promise<void | { execPath: string, args: string[], cwd: string, stdio: StdioOptions, shell: boolean, windowsHide: boolean }>
 {
@@ -59,7 +61,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
     }
 
     if (!def?.type || def.type == 'nodejs')
-        args.unshift(require.resolve('../fork'))
+        args.unshift(path.resolve(_dirname, '../fork'))
 
     if (context.options && context.options.inspect)
         args.unshift('--inspect-brk');

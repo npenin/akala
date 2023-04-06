@@ -2,14 +2,22 @@
 import * as path from 'path'
 import { Cli } from './index.js';
 
-const __dirname = path.dirname(import.meta.url).substring('file:'.length) + '/';
+declare var __dirname: string | undefined;
+let dirname: string;
+if (__dirname)
+    dirname = __dirname;
+else //@ts-ignore
+    dirname = path.dirname(import.meta.url).substring('file:'.length) + '/';
 
-const cli = await Cli.fromFileSystem(path.resolve(__dirname, '../../commands.json'));
-cli.program.useError(async (e, c) =>
+(async function (dirname)
 {
-    if (c.options.verbose)
-        console.error(e);
-    else
-        console.error(e['message'] || e);
-});
-await cli.start();
+    const cli = await Cli.fromFileSystem(path.resolve(dirname, '../../commands.json'));
+    cli.program.useError(async (e, c) =>
+    {
+        if (c.options.verbose)
+            console.error(e);
+        else
+            console.error(e['message'] || e);
+    });
+    await cli.start();
+})(dirname);
