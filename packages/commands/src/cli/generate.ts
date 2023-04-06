@@ -10,9 +10,9 @@ import module from "module";
 export default async function generate(folder?: string, name?: string, outputFile?: string)
 {
     folder = folder || process.cwd();
-    const folderRequire = module.createRequire(folder);
+
     if (!name && fs.existsSync(path.join(folder, './package.json')))
-        name = folderRequire('./package.json').name;
+        name = (await import(path.join(folder, './package.json'), { assert: { type: 'json' } })).name;
     if (!name)
         name = path.basename(folder);
 
@@ -20,13 +20,12 @@ export default async function generate(folder?: string, name?: string, outputFil
     let outputFolder: string;
     let exists: boolean;
     const meta: akala.Metadata.Container & { $schema?: string } = { name: name, commands: [] };
-    ({ output, outputFile, outputFolder, exists } = await outputHelper(outputFile, 'commands.json', true, (exists) =>
+    ({ output, outputFile, outputFolder, exists } = await outputHelper(outputFile, 'commands.json', true, async (exists) =>
     {
         if (exists)
         {
-            var existing: akala.Metadata.Container = folderRequire(path.resolve(process.cwd(), outputFile));
-            if (folderRequire.cache)
-                delete folderRequire.cache[path.resolve(process.cwd(), outputFile)];
+            var existing: akala.Metadata.Container = await import(path.resolve(process.cwd(), outputFile), { assert: { type: 'json' } });
+
             meta.extends = existing.extends;
             meta.dependencies = existing.dependencies;
         }
