@@ -10,17 +10,25 @@
     "type": "module",
     "exports": {
         ".": {
-            "types": "./dist/esm/index.d.ts",
-            "import": "./dist/esm/index.js",
-            "require": "./dist/cjs/index.js",
+            "import": {
+                "types": "./dist/esm/index.d.ts",
+                "default": "./dist/esm/index.js"
+            },
+            "require": {
+                "types": "./dist/cjs/index.d.ts",
+                "default": "./dist/cjs/index.js"
+            },
             "default": "./dist/cjs/index.js"
         },
         "./expressions": {
-            "types": "./dist/esm/parser/expressions/index.d.ts",
-            "node": "./dist/esm/parser/expressions/index.js",
-            "import": "./dist/esm/parser/expressions/index.js",
-            "require": "./dist/cjs/parser/expressions/index.js",
-            "default": "./dist/cjs/parser/expressions/index.js"
+            "import": {
+                "types": "./dist/esm/parser/expressions/index.d.ts",
+                "default": "./dist/esm/parser/expressions/index.js"
+            },
+            "require": {
+                "types": "./dist/cjs/parser/expressions/index.d.ts",
+                "default": "./dist/cjs/parser/expressions/index.js"
+            }
         }
     },
     "main": "./dist/cjs/index.js",
