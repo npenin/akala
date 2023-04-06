@@ -2,12 +2,7 @@
 import * as path from 'path'
 import { Cli } from './index.js';
 
-declare var __dirname: string | undefined;
-let dirname: string;
-if (__dirname)
-    dirname = __dirname;
-else //@ts-ignore
-    dirname = path.dirname(import.meta.url).substring('file:'.length) + '/';
+const dirname = path.dirname(import.meta.url).substring('file:'.length) + '/';
 
 (async function (dirname)
 {
