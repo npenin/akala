@@ -18,6 +18,11 @@ export interface FileSystemConfiguration extends Metadata.Configuration
     source?: string;
 }
 
+function importJson(path: string)
+{
+    return fs.readFile(path, { encoding: 'utf-8', flag: 'r' }).then(JSON.parse)
+}
+
 export type FSCommand = Metadata.Command & { config?: { fs?: FileSystemConfiguration } };
 
 export interface DiscoveryOptions
@@ -118,7 +123,7 @@ export class FileSystem extends CommandProcessor
         {
             const cmdRequire = createRequire(path.resolve(root));
             // eslint-disable-next-line @typescript-eslint/no-var-requires
-            const metacontainer: Metadata.Container & { extends?: string[] } = (await import(path.resolve(root), { assert: { type: 'json' } })).default;
+            const metacontainer: Metadata.Container & { extends?: string[] } = await importJson(path.resolve(root));
             const commands = metacontainer.commands.filter(cmd => !(cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata'));
             if (metacontainer.extends && metacontainer.extends.length)
             {
@@ -154,7 +159,7 @@ export class FileSystem extends CommandProcessor
         else if (existsSync(path.join(root, 'package.json')))
         {
             // eslint-disable-next-line @typescript-eslint/no-var-requires
-            const packageDef = (await import(path.join(root, 'package.json'), { assert: { type: 'json' } })).default;
+            const packageDef = await importJson(path.join(root, 'package.json'))
             if (packageDef.commands)
                 if (typeof (packageDef.commands) == 'string')
                     return this.discoverMetaCommands(path.join(root, packageDef.commands), { processor: options.processor });
@@ -195,7 +200,7 @@ export class FileSystem extends CommandProcessor
                     if (existsSync(path.resolve(relativeTo, otherConfigsFile)))
                     {
                         log.debug(`found config file ${otherConfigsFile}`)
-                        const otherConfigs = (await import(path.resolve(relativeTo, otherConfigsFile), { assert: { type: 'json' } })).default;
+                        const otherConfigs = await importJson(path.resolve(relativeTo, otherConfigsFile));
                         delete otherConfigs.$schema;
                         const fsConfig = cmd.config.fs;
                         cmd.config = { ...cmd.config, ...otherConfigs };
@@ -284,7 +289,7 @@ export class FileSystem extends CommandProcessor
                     if (!files.find(file => file.name == path.basename(f.name, '.json') + '.js'))
                     {
                         // eslint-disable-next-line @typescript-eslint/no-var-requires
-                        const cmd: FSCommand = (await import(path.resolve(path.join(root, f.name)), { assert: { type: 'json' } })).default;
+                        const cmd: FSCommand = await importJson(path.resolve(path.join(root, f.name)));
                         commands.push(cmd);
                     }
                 }
