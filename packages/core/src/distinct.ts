@@ -28,7 +28,8 @@ export function distinctWithCompareFn<T>(array: T[], compare?: (a: T, b: T) => n
         result.sort(compare);
     else
         result.sort();
-    for (let i = 1; i < result.length - 1; i++)
+
+    for (let i = 1; i <= result.length - 1; i++)
     {
         if (result[i] == result[i - 1])
         {
