@@ -32,16 +32,6 @@ const tableChars = {
 const truncate = '…';
 
 type CliOptions = { output: string, verbose: boolean, pmSock: string | number, tls: boolean, help: boolean };
-declare var require: NodeRequire | undefined;
-
-function requireOrImportJson<T = any>(path: string): Promise<T>
-{
-    if (require)
-        return Promise.resolve(require(path));
-    else
-        //@ts-ignore
-        return import(path, { assert: { type: 'json' } }).then(i => i.default)
-}
 
 const cli = program.options<CliOptions>({ output: { aliases: ['o'], needsValue: true, doc: 'output as `table` if array otherwise falls back to standard node output' }, verbose: { aliases: ['v'] }, tls: { doc: "enables tls connection to the `pmSock`" }, pmSock: { aliases: ['pm-sock'], needsValue: true, doc: "path to the unix socket or destination in the form host:port" }, help: { doc: "displays this help message" } });
 cli.command('start pm')

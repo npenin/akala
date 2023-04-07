@@ -3,9 +3,6 @@ import * as path from 'path'
 import * as fs from 'fs';
 import { Writable } from "stream";
 import { outputHelper, write } from './new.js';
-import module from "module";
-
-
 
 export default async function generate(folder?: string, name?: string, outputFile?: string)
 {
@@ -18,9 +15,8 @@ export default async function generate(folder?: string, name?: string, outputFil
 
     let output: Writable;
     let outputFolder: string;
-    let exists: boolean;
     const meta: akala.Metadata.Container & { $schema?: string } = { name: name, commands: [] };
-    ({ output, outputFile, outputFolder, exists } = await outputHelper(outputFile, 'commands.json', true, async (exists) =>
+    ({ output, outputFile, outputFolder } = await outputHelper(outputFile, 'commands.json', true, async (exists) =>
     {
         if (exists)
         {

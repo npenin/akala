@@ -12,19 +12,6 @@ import { MiddlewarePromise } from '@akala/core';
 import { eachAsync } from '@akala/core';
 import { createRequire } from 'module';
 
-declare var require: NodeRequire | undefined;
-
-function requireOrImportJson<T = any>(path: string): Promise<T>
-{
-    if (require)
-        return Promise.resolve(require(path));
-    else
-        //@ts-ignore
-        return import(path, { assert: { type: 'json' } }).then(i => i.default)
-}
-
-// const require = createRequire(import.meta.url);
-
 export interface FileSystemConfiguration extends Metadata.Configuration
 {
     path: string;

@@ -24,11 +24,6 @@ type F = (...args: unknown[]) => unknown;
 
 export class EventEmitter
 {
-
-    constructor()
-    {
-    }
-
     private _events?: Record<string, F | (F[])>;
     private _eventsCount = 0;
     private _maxListeners?: number;
@@ -161,7 +156,7 @@ export class EventEmitter
             }
 
             // Check for listener leak
-            let m = this.getMaxListeners();
+            const m = this.getMaxListeners();
             if (m > 0 && existing.length > m && !existing['warned'])
             {
                 existing['warned'] = true;
@@ -197,7 +192,7 @@ export class EventEmitter
         }
         this.on(type, X);
         return this;
-    };
+    }
 
     public prependOnceListener(type: string, listener: F)
     {
@@ -209,7 +204,7 @@ export class EventEmitter
         }
         this.prependListener(type, X);
         return this;
-    };
+    }
 
     public off(type: string, listener: F)
     {
@@ -267,7 +262,7 @@ export class EventEmitter
         }
 
         return this;
-    };
+    }
 
     public removeAllListeners(type: string)
     {
@@ -325,8 +320,7 @@ export class EventEmitter
         }
 
         return this;
-    };
-
+    }
 
     public listeners(type: string)
     {
@@ -365,8 +359,7 @@ export class EventEmitter
     public eventNames()
     {
         return this._eventsCount > 0 ? Object.getOwnPropertyNames(this._events) : [];
-    };
-
+    }
 }
 
 

@@ -12,11 +12,13 @@ import { CliContext } from '@akala/cli'
 
 declare var require: NodeRequire | undefined;
 
+//eslint-disable-next-line @typescript-eslint/no-explicit-any
 function requireOrImportJson<T = any>(path: string): Promise<T>
 {
     if (require)
         return Promise.resolve(require(path));
     else
+        //eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
         return import(path, { assert: { type: 'json' } }).then(i => i.default)
 }
