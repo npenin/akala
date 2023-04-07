@@ -1,11 +1,9 @@
-#  (2023-04-06)
+#  (2023-04-07)
 
 
 ### Bug Fixes
 
-* downgrade all packages to support both cjs and mjs 991c494
-* downgrade all packages to support both cjs and mjs 56f6136
-* downgrade all packages to support both cjs and mjs 5c64966
+* imported event class from node d8bbc36
 
 
 
