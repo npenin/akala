@@ -97,6 +97,7 @@
 * downgrade all packages to support both cjs and mjs 991c494
 * downgrade all packages to support both cjs and mjs 56f6136
 * downgrade all packages to support both cjs and mjs 5c64966
+* edge case with distinct 6cfd43b
 * embrace esm even more 3e7d10a
 * embrace esm even more b3b8e9d
 * ensure vanilla leverages generators 0aedf98
