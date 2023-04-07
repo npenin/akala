@@ -1,4 +1,4 @@
-#  (2023-04-06)
+#  (2023-04-07)
 
 
 ### Bug Fixes
@@ -137,6 +137,7 @@
 * honoring preferRemote 6fa76bc
 * http to support custom injector 12a25f8
 * implement own resolve to prevent resolving to main 07e3e69
+* imported event class from node d8bbc36
 * improve browser usage 05dd7ea
 * improve config get return type c40bcd5
 * improve error logging 1b4ae07
