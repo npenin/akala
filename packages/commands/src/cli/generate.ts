@@ -4,12 +4,17 @@ import * as fs from 'fs';
 import { Writable } from "stream";
 import { outputHelper, write } from './new.js';
 
+function importJson(path: string)
+{
+    return fs.promises.readFile(path, { encoding: 'utf-8', flag: 'r' }).then(JSON.parse)
+}
+
 export default async function generate(folder?: string, name?: string, outputFile?: string)
 {
     folder = folder || process.cwd();
 
     if (!name && fs.existsSync(path.join(folder, './package.json')))
-        name = (await import(path.join(folder, './package.json'), { assert: { type: 'json' } })).name;
+        name = (await importJson(path.join(folder, './package.json'))).name;
     if (!name)
         name = path.basename(folder);
 
@@ -20,7 +25,7 @@ export default async function generate(folder?: string, name?: string, outputFil
     {
         if (exists)
         {
-            var existing: akala.Metadata.Container = await import(path.resolve(process.cwd(), outputFile), { assert: { type: 'json' } });
+            var existing: akala.Metadata.Container = await importJson(path.resolve(process.cwd(), outputFile));
 
             meta.extends = existing.extends;
             meta.dependencies = existing.dependencies;
