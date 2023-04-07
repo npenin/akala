@@ -1,6 +1,5 @@
 import { CliContext } from "@akala/cli";
 import { ErrorWithStatus } from "@akala/core";
-import { createWriteStream } from "fs";
 import path from "path";
 import { Processors } from "../../index.js";
 import { Command } from "../../metadata/command.js";

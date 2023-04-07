@@ -12,6 +12,7 @@ import { IpcAdapter } from "../ipc-adapter.js";
 import path from 'path'
 import { fileURLToPath } from 'url'
 
+//eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
 const _dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url))
 

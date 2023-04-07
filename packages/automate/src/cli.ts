@@ -9,6 +9,7 @@ import workflow from './workflow.js';
 import use from './workflow-commands/use.js';
 import { fileURLToPath } from 'url'
 
+//eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
 const metaUrl = import.meta?.url || new URL(__filename, 'file:///');
 

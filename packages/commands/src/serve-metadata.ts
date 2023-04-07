@@ -9,7 +9,6 @@ import { HttpClient, JsonRpc } from './processors/index.js';
 import net from 'net'
 import ws from 'ws'
 import { Injector, ErrorWithStatus } from '@akala/core';
-import * as Metadata from './metadata/index.js';
 import { Container } from './model/container.js';
 import { CommonConnectionOptions, connect as tlsconnect, SecureContextOptions, TLSSocket } from 'tls'
 import * as jsonrpc from '@akala/json-rpc-ws';

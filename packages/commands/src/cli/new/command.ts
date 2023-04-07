@@ -1,6 +1,5 @@
 import { CliContext } from "@akala/cli";
 import { outputHelper, write } from "../new.js";
-import { createWriteStream } from "fs";
 
 export default async function (name: string, options: CliContext<{ force?: boolean }>['options'], destination?: string, args?: { name: string, type?: string }[])
 {

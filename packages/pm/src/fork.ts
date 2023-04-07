@@ -79,7 +79,7 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
                     ac.Triggers.addCliOptions(init, initMiddleware);
                 }
 
-                process.on('unhandledRejection', (x, p) =>
+                process.on('unhandledRejection', (x) =>
                 {
                     controller.abort(x)
                     return false;
