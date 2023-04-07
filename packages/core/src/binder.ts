@@ -1,9 +1,8 @@
 import { getSetter, Parser } from './parser/parser.js';
-import { EventEmitter } from 'events';
+import { EventEmitter } from './events.js';
 import { isPromiseLike } from './promiseHelpers.js';
 import * as formatters from './formatters/index.js';
 import { map } from './each.js'
-import { Formatter } from './formatters/common.js';
 import { ExtendableEvent } from './module.js'
 import { Arguments } from './type-helper.js';
 import { EvaluatorAsFunction, ParsedFunction } from './parser/evaluator-as-function.js';
@@ -80,7 +79,7 @@ export class Binding<T>
 
     constructor(protected _expression: string, private _target: IWatched, register = true)
     {
-        this.formatter = formatters.identity as Formatter<T>;
+        this.formatter = formatters.identity as formatters.Formatter<T>;
         this.evaluator = new EvaluatorAsFunction().eval<T>(new Parser().parse(_expression));
         this.onChangingEvent = new BindingExtendableEvent(this);
         this.onChangedEvent = new BindingExtendableEvent(this);
@@ -95,7 +94,7 @@ export class Binding<T>
     protected onErrorEvent: BindingExtendableEvent<T>;
     protected onDisposeEvent: ExtendableEvent;
 
-    public formatter: Formatter<T>;
+    public formatter: formatters.Formatter<T>;
 
     public get expression() { return this._expression; }
     public get target() { return this._target; }
@@ -400,7 +399,6 @@ export type ObservableArrayReplaceEvent<T> =
 export type ObservableArrayInitEvent<T> =
     {
         action: 'init';
-        oldItems: T[];
         newItems: T[];
     }
 
@@ -409,7 +407,7 @@ export type ObservableArrayEventMap<T> = ObservableArrayPopEvent<T> | Observable
 
 export class ObservableArray<T> extends EventEmitter
 {
-    constructor(public array: Array<T>)
+    constructor(public readonly array: Array<T>)
     {
         super();
     }
@@ -419,13 +417,18 @@ export class ObservableArray<T> extends EventEmitter
         return super.on(event, handler);
     }
 
+    public emit(event: 'collectionChanged', data: ObservableArrayEventMap<T>)
+    {
+        return super.emit(event, data);
+    }
+
     public get length() { return this.array.length; }
     public set length(value: number)
     {
         const oldItems = this.array.slice(value);
         this.emit('collectionChanged', {
             action: 'pop',
-            newItems: oldItems
+            oldItems: oldItems
         });
         this.array.length = value;
     }
@@ -479,7 +482,7 @@ export class ObservableArray<T> extends EventEmitter
     {
         this.emit('collectionChanged', {
             action: 'init',
-            newItems: this.array.slice(0)
+            newItems: this.array.slice(0),
         });
     }
 
