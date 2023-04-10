@@ -20,11 +20,20 @@
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-type F = (...args: unknown[]) => unknown;
-
-export class EventEmitter
+type F<TArgs extends unknown[] = unknown[]> = (...args: TArgs) => unknown;
+interface BaseEventMap extends Record<string, unknown[]>
 {
-    private _events?: Record<string, F | (F[])>;
+    newListener: [eventName: string, handler: F];
+    removeListener: [eventName: string, handler: F];
+}
+
+type Handlers<TEventMap extends Record<string, unknown[]>> = { [key in keyof TEventMap]: F<TEventMap[key]> | F<TEventMap[key]>[] }
+
+type EventMap<T> = T extends BaseEventMap ? T : T & BaseEventMap
+
+export class EventEmitter<TEventMap extends Record<string, unknown[]> = Record<string, unknown[]>>
+{
+    private _events?: Partial<Handlers<EventMap<TEventMap>>>;
     private _eventsCount = 0;
     private _maxListeners?: number;
 
@@ -58,7 +67,9 @@ export class EventEmitter
         return this._maxListeners;
     }
 
-    public emit(type: string, ...args: unknown[])
+    public emit<TEvent extends keyof BaseEventMap>(type: TEvent, ...args: BaseEventMap[TEvent]): boolean
+    public emit<TEvent extends keyof TEventMap>(type: TEvent, ...args: TEventMap[TEvent]): boolean
+    public emit<TEvent extends keyof EventMap<TEventMap>>(type: TEvent, ...args: EventMap<TEventMap>[TEvent])
     {
         var doError = (type === 'error');
 
@@ -106,7 +117,7 @@ export class EventEmitter
     }
 
 
-    public on(type: string, listener: F, prepend?: boolean): this
+    public on(type: Exclude<keyof TEventMap, number | symbol>, listener: F<TEventMap[typeof type]>, prepend?: boolean): this
     {
         var events: typeof this._events;
         var existing: (F) | (F)[];
@@ -177,12 +188,12 @@ export class EventEmitter
         return this;
     }
 
-    public prependListener(type: string, listener: F)
+    public prependListener<TKey extends Exclude<keyof TEventMap, number | symbol>>(type: TKey, listener: F<TEventMap[TKey]>)
     {
         return this.on(type, listener, true)
     }
 
-    public once(type: string, listener: F)
+    public once<TKey extends Exclude<keyof TEventMap, number | symbol>>(type: TKey, listener: F<TEventMap[TKey]>)
     {
         checkListener(listener);
         function X(...args: unknown[])
@@ -194,7 +205,7 @@ export class EventEmitter
         return this;
     }
 
-    public prependOnceListener(type: string, listener: F)
+    public prependOnceListener<TKey extends Exclude<keyof TEventMap, number | symbol>>(type: TKey, listener: F<TEventMap[TKey]>)
     {
         checkListener(listener);
         function X(...args: unknown[])
@@ -206,9 +217,9 @@ export class EventEmitter
         return this;
     }
 
-    public off(type: string, listener: F)
+    public off<TEvent extends Exclude<keyof EventMap<TEventMap>, number | symbol>>(type: TEvent, listener: F<EventMap<TEventMap>[TEvent]>)
     {
-        var list, events, position: number, originalListener;
+        var list, events: typeof this._events, position: number, originalListener;
 
         checkListener(listener);
 
@@ -264,7 +275,7 @@ export class EventEmitter
         return this;
     }
 
-    public removeAllListeners(type: string)
+    public removeAllListeners<TEvent extends Exclude<keyof EventMap<TEventMap>, symbol | number>>(type: TEvent)
     {
         var listeners: F | F[], events: typeof this._events;
 
@@ -292,14 +303,14 @@ export class EventEmitter
         // emit removeListener for all listeners on all events
         if (typeof type == 'undefined')
         {
-            const keys = Object.keys(events);
+            const keys = Object.keys(events) as (Exclude<keyof TEventMap, number | symbol>)[];
             for (let i = 0; i < keys.length; ++i)
             {
                 const key = keys[i];
                 if (key === 'removeListener') continue;
                 this.removeAllListeners(key);
             }
-            this.removeAllListeners('removeListener');
+            this.removeAllListeners('removeListener' as Exclude<keyof EventMap<TEventMap>, number | symbol>);
             this._events = Object.create(null);
             this._eventsCount = 0;
             return this;
@@ -322,7 +333,7 @@ export class EventEmitter
         return this;
     }
 
-    public listeners(type: string)
+    public listeners<TKey extends Exclude<keyof TEventMap, number | symbol>>(type: TKey)
     {
         var events = this._events;
 
@@ -339,7 +350,7 @@ export class EventEmitter
         return evlistener.slice(0);
     }
 
-    public listenerCount(type: string)
+    public listenerCount<TKey extends Exclude<keyof TEventMap, number | symbol>>(type: TKey)
     {
         var events = this._events;
 

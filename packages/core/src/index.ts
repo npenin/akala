@@ -6,6 +6,7 @@ export * from './factory.js';
 export * from './http.js';
 export * from './service.js';
 export * from './binder.js';
+export * from './events.js';
 export * from './parser/parser.js';
 export * from './type-helper.js'
 export * from './helpers.js'
