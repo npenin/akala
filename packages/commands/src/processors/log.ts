@@ -1,4 +1,4 @@
-import { ICommandProcessor } from '../model/processor.js';
+import { CommandMetadataProcessorSignature, ICommandProcessor } from '../model/processor.js';
 import { EventProcessor } from './event.js';
 
 export class LogProcessor extends EventProcessor
@@ -6,8 +6,8 @@ export class LogProcessor extends EventProcessor
     public name = 'log';
 
     constructor(processor: ICommandProcessor,
-        preExecute?: (...args: Parameters<typeof processor.handle>) => void,
-        postExecute?: (...args: Parameters<typeof processor.handle>) => void)
+        preExecute?: (...args: CommandMetadataProcessorSignature<unknown>) => void,
+        postExecute?: (...args: [...CommandMetadataProcessorSignature<unknown>, unknown]) => void)
     {
         super(processor);
         if (preExecute)
