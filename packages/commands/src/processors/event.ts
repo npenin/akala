@@ -1,22 +1,15 @@
 import { StructuredParameters, ICommandProcessor, CommandMetadataProcessorSignature } from '../model/processor.js';
 // import { CommandProxy } from '../model/command';
-import { EventEmitter } from "events";
-import { MiddlewarePromise } from "@akala/core";
+import { MiddlewarePromise, EventEmitter } from "@akala/core";
 import { Command } from '../metadata/index.js';
 import { Container } from '../model/container.js';
 
-export class EventProcessor extends EventEmitter implements ICommandProcessor
+export class EventProcessor extends EventEmitter<{
+    processing: CommandMetadataProcessorSignature<unknown>,
+    'processing-failed': [...CommandMetadataProcessorSignature<unknown>, Error],
+    processed: [...CommandMetadataProcessorSignature<unknown>, unknown],
+}> implements ICommandProcessor
 {
-
-    public on(event: 'processing', handler: (...args: CommandMetadataProcessorSignature<unknown>) => void): this
-    public on(event: 'processing-failed', handler: (...args: [...CommandMetadataProcessorSignature<unknown>, Error]) => void): this
-    public on(event: 'processed', handler: (...args: [...CommandMetadataProcessorSignature<unknown>, unknown]) => void): this;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public on(event: string, handler: (...args: [...CommandMetadataProcessorSignature<any>, Error]) => void): this
-    {
-        return super.on(event, handler);
-    }
-
     public name = 'event';
 
     //eslint-disable-next-line @typescript-eslint/prefer-as-const
