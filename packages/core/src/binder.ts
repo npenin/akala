@@ -405,7 +405,7 @@ export type ObservableArrayInitEvent<T> =
 export type ObservableArrayEventMap<T> = ObservableArrayPopEvent<T> | ObservableArrayPushEvent<T> | ObservableArrayShiftEvent<T> | ObservableArrayUnshiftEvent<T> | ObservableArrayReplaceEvent<T> | ObservableArrayInitEvent<T>;
 
 
-export class ObservableArray<T> extends EventEmitter
+export class ObservableArray<T> extends EventEmitter<{ collectionChanged: [ObservableArrayEventMap<T>] }>
 {
     constructor(public readonly array: Array<T>)
     {
