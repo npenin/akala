@@ -1,4 +1,4 @@
-#  (2023-04-07)
+#  (2023-04-10)
 
 
 ### Bug Fixes
@@ -136,6 +136,7 @@
 * hasOwnKeys now returns correct keys 76a062e
 * health check reliability 98df0c9
 * help now works where no socket is available 92ecda4
+* helps compile under angular 330ae98
 * honoring preferRemote 6fa76bc
 * http to support custom injector 12a25f8
 * implement own resolve to prevent resolving to main 07e3e69
