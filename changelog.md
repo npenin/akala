@@ -7,6 +7,7 @@
 * #988 3b5ade8
 * ac new gracefully ends 6647f80
 * adapt to trigger new definition 8c2d136
+* add browser export condition 6113968
 * add exports to mongo 9c6d18a
 * add extends adn dependencies on the container interface 4eedb66
 * add generate script 5fd0dff
@@ -189,6 +190,7 @@
 * move dependency from devdep 36139a4
 * move from require to import to support esm 6ee5ce4
 * move to ESM 6ef0335
+* moved commands to internal event emitter bea79a2
 * nested container processing 8997869
 * new cc does not require destination to be a folder 51d1efd
 * normalization and edge cases in cli 874a97f
@@ -432,6 +434,7 @@
 * enforce logger on buildCliContext dd636e1
 * error message is retrieved if wait is specified e93f204
 * errors like are now true errors 954d0a8
+* export event emitter 750ac11
 * export processor 528d2ad
 * first pubsub commit 78b31e1
 * have both CJS and ESM at once cecd11a
