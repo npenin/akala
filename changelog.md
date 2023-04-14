@@ -51,6 +51,7 @@
 * better support for compound keys a571109
 * better support for metadata on closed remote containers 71ec84d
 * better support for non-mapped sidecars ec502f8
+* better support for processor eb55667
 * binding constructor 8294d0f
 * bindings are less intrusive 3ef2783
 * broken command processor 22afbc0
