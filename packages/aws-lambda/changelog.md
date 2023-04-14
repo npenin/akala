@@ -3,8 +3,7 @@
 
 ### Bug Fixes
 
-* make peer dependency as mandatory fd097ef
-* move aws-sdk to optional peer dependency 6e177a5
+* better support for processor eb55667
 
 
 
