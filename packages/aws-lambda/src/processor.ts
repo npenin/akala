@@ -12,11 +12,30 @@ export class Processor extends CommandProcessor
         this.client = new LambdaClient(config);
     }
 
-    public handle(origin: Container<unknown>, cmd: Metadata.Command, param: StructuredParameters<unknown[]>): MiddlewarePromise
+    public handle(origin: Container<unknown>, cmd: Metadata.Command, params: StructuredParameters<unknown[]>): MiddlewarePromise
     {
+        let param = params.param && params.param[0];
+        if (cmd.config.aws)
+        {
+            const indexOfEvent = cmd.config.aws.inject?.indexOf('event');
+            if (typeof indexOfEvent !== 'undefined' && indexOfEvent > -1)
+                param = params.param && params.param[indexOfEvent];
+            else
+            {
+                const indexOfEventDot = cmd.config.aws.inject?.indexOf('event.');
+                if (typeof indexOfEventDot !== 'undefined' && indexOfEventDot > -1)
+                {
+                    param = {};
+                    for (let i = indexOfEventDot; i < (cmd.config.aws.inject?.length || 0); i++)
+                    {
+                        (param as Record<string, unknown>)[cmd.config.aws.inject![i].substring('event.'.length)] = params[i];
+                    }
+                }
+            }
+        }
         return this.client.send(new InvokeCommand({
             FunctionName: `${this.prefix}${cmd.name}`,
-            Payload: new TextEncoder().encode(JSON.stringify(param.param && param.param[0]))
+            Payload: new TextEncoder().encode(JSON.stringify(param))
         })).then(r =>
         {
             if (r.FunctionError)
