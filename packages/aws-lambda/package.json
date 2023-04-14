@@ -10,8 +10,15 @@
         "src/handler.ts"
     ],
     "dependencies": {
-        "@akala/commands": "workspace:^",
+        "@akala/commands": "workspace:^"
+    },
+    "peerDependencies": {
         "@aws-sdk/client-lambda": "^3.306.0"
+    },
+    "peerDependenciesMeta": {
+        "@aws-sdk/client-lambda": {
+            "optional": true
+        }
     },
     "devDependencies": {
         "@aws-sdk/types": "^3.306.0",
