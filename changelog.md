@@ -1,4 +1,4 @@
-#  (2023-04-11)
+#  (2023-04-14)
 
 
 ### Bug Fixes
@@ -137,6 +137,7 @@
 * hasOwnKeys now returns correct keys 76a062e
 * health check reliability 98df0c9
 * help now works where no socket is available 92ecda4
+* helps compile under angular 28383e6
 * helps compile under angular 330ae98
 * honoring preferRemote 6fa76bc
 * http to support custom injector 12a25f8
@@ -178,6 +179,7 @@
 * ls lists existing containers 3548afe
 * made connect and fork more reliable and resilient 6c0c24f
 * made cron as non spreadable 34d3f69
+* make peer dependency as mandatory fd097ef
 * mapAsync 64a258e
 * metadata declaration on fork 9856bd0
 * metadata does not rely on container name, but on key registration dd72fc3
@@ -186,6 +188,7 @@
 * middleware copy/paste issue 69757ce
 * missing import assertion e29c18a
 * **mongodb:** exclude generated field from being updated 1785a29
+* move aws-sdk to optional peer dependency 6e177a5
 * move cli to esm 3f28f3a
 * move dependency from devdep 36139a4
 * move from require to import to support esm 6ee5ce4
