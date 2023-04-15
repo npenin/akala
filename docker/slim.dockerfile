@@ -9,5 +9,5 @@ VOLUME ["/usr/src/akala/build"]
 WORKDIR /usr/src/akala
 RUN ["yarn"]
 ENTRYPOINT ["yarn" ,"pm-fork", "pm"]
-CMD ["local", "tcp", "--tcpPort=31416"]
+CMD ["tcp", "--tcpPort=31416"]
 EXPOSE 31416
