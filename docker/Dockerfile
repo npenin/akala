@@ -13,5 +13,5 @@ ENV PATH=/usr/src/akala/node_modules/.bin:${PATH}
 ENV NODE_ENV=production
 ENV DEBUG=*
 ENTRYPOINT ["yarn" ,"pm-fork", "node_modules/@akala/pm/commands.json", "pm"]
-CMD ["local", "tcp", "--tcpPort=31416"]
+CMD [ "tcp", "--tcpPort=31416"]
 EXPOSE 31416
