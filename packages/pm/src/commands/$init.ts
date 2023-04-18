@@ -8,6 +8,7 @@ import { PassThrough } from 'stream';
 import { EventEmitter } from 'events';
 import { CliContext } from '@akala/cli';
 import { Configuration } from '@akala/config';
+import { fileURLToPath } from 'url';
 
 export async function metadata(container: Container<unknown>, deep?: boolean): Promise<Metadata.Container>
 {
@@ -47,18 +48,6 @@ export async function metadata(container: Container<unknown>, deep?: boolean): P
 export function isRunningContainer(c: Container<unknown>): c is RunningContainer
 {
     return 'running' in c;
-}
-declare var require: NodeRequire | undefined;
-
-//eslint-disable-next-line @typescript-eslint/no-explicit-any
-function requireOrImportJson<T = any>(path: string): Promise<T>
-{
-    if (require)
-        return Promise.resolve(require(path));
-    else
-        //eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        //@ts-ignore
-        return import(path, { assert: { type: 'json' } }).then(i => i.default)
 }
 
 export default async function (this: State, container: RunningContainer & pmContainer.container, context: CliContext<{ config: string, keepAttached: boolean }>): Promise<void>
@@ -107,7 +96,7 @@ export default async function (this: State, container: RunningContainer & pmCont
     }
     else
         this.config = Configuration.new<StateConfiguration>(configPath, {
-            containers: { pm: { commandable: true, stateless: false, path: await requireOrImportJson('../../../commands.json') } },
+            containers: { pm: { commandable: true, stateless: false, path: fileURLToPath(new URL('../../../commands.json', import.meta.url)) } },
             mapping: { pm: { cwd: process.cwd(), container: 'pm' } },
             plugins: []
         }) as State['config'];

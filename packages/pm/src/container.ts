@@ -7,7 +7,6 @@ namespace commands
 {
 	export interface container 
 	{
-		dispatch (cmd:'$init', ...args: [Argument1<typeof import('./commands/$init.js').default>]): ReturnType<typeof import('./commands/$init.js').default>
 		dispatch (cmd:'add', ...args: [Argument0<typeof import('./commands/plugin/add.js').default>]): ReturnType<typeof import('./commands/plugin/add.js').default>
 		dispatch (cmd:'bridge', ...args: [Argument0<typeof import('./commands/bridge.js').default>, Argument1<typeof import('./commands/bridge.js').default>]): ReturnType<typeof import('./commands/bridge.js').default>
 		dispatch (cmd:'config', ...args: [Argument0<typeof import('./commands/config.js').default>, Argument1<typeof import('./commands/config.js').default>]): ReturnType<typeof import('./commands/config.js').default>
@@ -32,7 +31,6 @@ namespace commands
 	}
 	export interface proxy 
 	{
-		'$init'(...args: [Argument1<typeof import('./commands/$init.js').default>]): ReturnType<typeof import('./commands/$init.js').default>
 		'add'(...args: [Argument0<typeof import('./commands/plugin/add.js').default>]): ReturnType<typeof import('./commands/plugin/add.js').default>
 		'bridge'(...args: [Argument0<typeof import('./commands/bridge.js').default>, Argument1<typeof import('./commands/bridge.js').default>]): ReturnType<typeof import('./commands/bridge.js').default>
 		'config'(...args: [Argument0<typeof import('./commands/config.js').default>, Argument1<typeof import('./commands/config.js').default>]): ReturnType<typeof import('./commands/config.js').default>
