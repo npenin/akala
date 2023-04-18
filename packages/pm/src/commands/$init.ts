@@ -3,7 +3,7 @@ import { homedir } from 'os';
 import fs from 'fs/promises';
 import { join } from 'path';
 import pmContainer from '../container.js';
-import { Container, Metadata, ignoredCommands, configure, SelfDefinedCommand } from '@akala/commands';
+import { Container, Metadata, ignoredCommands, configure, SelfDefinedCommand, serveMetadata, ServeOptions } from '@akala/commands';
 import { PassThrough } from 'stream';
 import { EventEmitter } from 'events';
 import { CliContext } from '@akala/cli';
@@ -50,7 +50,7 @@ export function isRunningContainer(c: Container<unknown>): c is RunningContainer
     return 'running' in c;
 }
 
-export default async function (this: State, container: RunningContainer & pmContainer.container, context: CliContext<{ config: string, keepAttached: boolean }>): Promise<void>
+export default async function (this: State, container: RunningContainer & pmContainer.container, context: CliContext<{ config: string, keepAttached: boolean, args: string[] }>): Promise<void>
 {
     this.isDaemon = true;
     this.processes = {};
@@ -100,6 +100,8 @@ export default async function (this: State, container: RunningContainer & pmCont
             mapping: { pm: { cwd: process.cwd(), container: 'pm' } },
             plugins: []
         }) as State['config'];
+
+    this.config.mapping['pm'].set('connect', serveMetadata('pm', { options: context.options, args: context.options.args } as unknown as ServeOptions));
 
     if (context && context.args.length)
         await container.dispatch('connect', 'pm', context);
