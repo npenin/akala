@@ -24,7 +24,7 @@ export default async function generate(name?: string, folder?: string, outputFil
     const meta = akala.metadata(container);
 
     let hasFs = false;
-    await core.eachAsync(meta.commands, async function (cmd)
+    core.each(meta.commands, function (cmd)
     {
         if (cmd.config.fs)
         {
@@ -60,6 +60,9 @@ import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argume
             if (cmd.config?.doc)
                 await writeDoc(output, 'args', cmd.config.doc);
 
+            if (cmd.config.fs && cmd.config.fs.disabled)
+                return;
+
             await write(output, `\t\tdispatch (cmd:'${cmd.name}'`);
             if (cmd.config.fs)
             {
@@ -85,7 +88,7 @@ import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argume
             }
             else if (cmd.config[""]?.inject && cmd.config[""]?.inject.length)
             {
-                await write(output, cmd.config[""]?.inject.filter(p => p.startsWith('param.')).map(() => `any`).join(', '));
+                await write(output, cmd.config[""]?.inject.filter(p => p.startsWith('param.')).map(() => `, unknown`).join(''));
                 await write(output, `): unknown\n`);
             }
             else
@@ -105,6 +108,9 @@ import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argume
         {
             if (cmd.config?.doc)
                 await writeDoc(output, 'args', cmd.config.doc);
+
+            if (cmd.config.fs && cmd.config.fs.disabled)
+                return;
 
             await write(output, `\t\t'${cmd.name}'`);
             if (cmd.config.fs)

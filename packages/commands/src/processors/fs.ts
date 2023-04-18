@@ -16,6 +16,7 @@ export interface FileSystemConfiguration extends Metadata.Configuration
 {
     path: string;
     source?: string;
+    disabled?: boolean;
 }
 
 function importJson(path: string)
