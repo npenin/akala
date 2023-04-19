@@ -1,4 +1,4 @@
-#  (2023-04-15)
+#  (2023-04-18)
 
 
 ### Bug Fixes
@@ -164,6 +164,7 @@
 * improved ready command for remote containers ffd2a17
 * improves command detection ff43e85
 * infinite loop a5ae318
+* init leverage ESM 557af46
 * initial pm setup 57f516a
 * inject usage after move to full meta cmd 2cbda96
 * injector inheritance fa3f724
@@ -182,6 +183,7 @@
 * made connect and fork more reliable and resilient 6c0c24f
 * made cron as non spreadable 34d3f69
 * make peer dependency as mandatory fd097ef
+* make pm work with connect args ec5e1fc
 * mapAsync 64a258e
 * metadata declaration on fork 9856bd0
 * metadata does not rely on container name, but on key registration dd72fc3
@@ -393,6 +395,7 @@
 * add createIfEmpty flag on config load 2a47d59
 * add crud package 8d71ea4
 * add custom inject in jsonrpc processor 4fc1720
+* add disabled option on fs 14bb609
 * add distinct helpers dda8544
 * add env to get command name b744175
 * add env to injectables 59915ab
