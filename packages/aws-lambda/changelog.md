@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* lambda processor generate proper call 63b997b
+* lambda processor 3d01ca7
 
 
 
