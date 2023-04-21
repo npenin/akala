@@ -174,6 +174,7 @@
 * jsonrpc processor 497616c
 * jsonrpc prperly send parameters 3f6c761
 * jsonrpc trigger c95d27f
+* lambda processor 4636a42
 * lambda processor 3d01ca7
 * lambda processor generate proper call 63b997b
 * limited git tag scope 7da0acb
