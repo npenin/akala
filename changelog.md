@@ -1,4 +1,4 @@
-#  (2023-04-18)
+#  (2023-04-21)
 
 
 ### Bug Fixes
@@ -174,6 +174,7 @@
 * jsonrpc processor 497616c
 * jsonrpc prperly send parameters 3f6c761
 * jsonrpc trigger c95d27f
+* lambda processor generate proper call 63b997b
 * limited git tag scope 7da0acb
 * log format 403e66b
 * log only enumerable props 3070ee3
