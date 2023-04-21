@@ -22,7 +22,7 @@ export class Processor extends CommandProcessor
                 param = params.param && params.param[indexOfEvent];
             else
             {
-                const indexOfEventDot = cmd.config.aws.inject?.indexOf('event.');
+                const indexOfEventDot = cmd.config.aws.inject?.findIndex(v => v.indexOf('event.'));
                 if (typeof indexOfEventDot !== 'undefined' && indexOfEventDot > -1)
                 {
                     param = {};
