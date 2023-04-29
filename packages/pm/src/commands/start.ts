@@ -4,7 +4,7 @@ import { spawn, ChildProcess, StdioOptions } from "child_process";
 import pmContainer from '../container.js';
 import { Deferred, eachAsync } from "@akala/core";
 import { NewLinePrefixer } from "../new-line-prefixer.js";
-import { CliContext } from "@akala/cli";
+import { CliContext, unparseOptions } from "@akala/cli";
 import { ErrorWithStatus } from "@akala/core";
 import getRandomName from "./name.js";
 import { ProxyConfiguration } from "@akala/config";
@@ -58,7 +58,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
         if (name != 'pm')
             throw new ErrorWithStatus(40, 'this command needs to run through daemon process');
 
-        args = [...context.args, ...Object.entries(context.options).filter(p => ['inspect'].indexOf(p[0]) == -1).map(entries => ['--' + entries[0] + '=' + entries[1]]).flat()];
+        args = [...context.args, ...unparseOptions({ ...context.options, inspect: undefined })];
     }
 
     if (!def?.type || def.type == 'nodejs')
