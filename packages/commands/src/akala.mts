@@ -11,7 +11,6 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
 {
     root.state<{ commands?: Record<string, string> & { extract?: () => Record<string, string> } }>().preAction(async (context) =>
     {
-        debugger;
         let commands = context.state?.commands;
         if (commands && 'extract' in commands && typeof (commands.extract) == 'function')
             commands = commands.extract();
