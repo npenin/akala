@@ -99,9 +99,18 @@ export default class Configuration<T extends object = SerializableObject>
         return this.config;
     }
 
-    public static async load<T extends object = SerializableObject>(file: string, createIfEmpty?: boolean): Promise<ProxyConfiguration<T>>
+    public static async load<T extends object = SerializableObject>(file: string, createIfEmpty?: boolean, needle?: string): Promise<ProxyConfiguration<T>>
     {
         var content: string;
+        if (!needle)
+        {
+            const indexOfHash = file.indexOf('#');
+            if (indexOfHash > 0)
+            {
+                needle = file.substring(indexOfHash + 1);
+                file = file.substring(0, indexOfHash);
+            }
+        }
         try
         {
             content = await fs.readFile(file, 'utf8');
@@ -113,7 +122,16 @@ export default class Configuration<T extends object = SerializableObject>
 
             await fs.writeFile(file, content = '{}');
         }
-        return Configuration.new<T>(file, JSON.parse(content));
+        const config = Configuration.new(file, JSON.parse(content));
+        if (needle)
+        {
+            const needleConfig = config.get<T>(needle);
+            if (needleConfig)
+                return needleConfig;
+            config.set(needle, {});
+            return config.get<T>(needle);
+        }
+        return config as ProxyConfiguration<T>;
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
