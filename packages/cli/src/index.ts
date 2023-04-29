@@ -34,13 +34,15 @@ export function buildCliContextFromProcess<T extends Record<string, string | boo
     return result;
 }
 
-export function unparseOptions(options: CliContext['options']): string[]
+export function unparseOptions(options: CliContext['options'], settings: { ignoreUndefined: boolean } = { ignoreUndefined: true }): string[]
 {
-    return Object.entries(options).flatMap((key, value) =>
+    return Object.entries(options).flatMap(entry =>
     {
-        if (Array.isArray(value))
-            return ['--' + key, ...value];
-        return ['--' + key, value];
+        if (settings.ignoreUndefined && typeof entry[1] === 'undefined')
+            return [];
+        if (Array.isArray(entry[1]))
+            return entry[1].map(v => '--' + entry[0] + '=' + v?.toString());
+        return ['--' + entry[0] + '=' + entry[1]?.toString()];
     });
 }
 
