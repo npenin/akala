@@ -8,7 +8,7 @@ import { Readable } from 'stream';
 
 import { spawnAsync } from './cli-helper.js';
 import State, { StateConfiguration } from './state.js';
-import program, { buildCliContextFromProcess, CliContext, ErrorMessage, NamespaceMiddleware, unparse } from '@akala/cli';
+import { CliContext, ErrorMessage, NamespaceMiddleware, unparse } from '@akala/cli';
 import { InteractError } from './index.js';
 import { Binding } from '@akala/core';
 import module from 'module'
@@ -37,8 +37,12 @@ const truncate = '…';
 type CliOptions = { output: string, verbose: boolean, pmSock: string | number, tls: boolean, help: boolean };
 export default function (_config, program: NamespaceMiddleware)
 {
-
-    const cli = program.command('pm').state<{ pm?: StateConfiguration }>().options<CliOptions>({ output: { aliases: ['o'], needsValue: true, doc: 'output as `table` if array otherwise falls back to standard node output' }, verbose: { aliases: ['v'] }, tls: { doc: "enables tls connection to the `pmSock`" }, pmSock: { aliases: ['pm-sock'], needsValue: true, doc: "path to the unix socket or destination in the form host:port" }, help: { doc: "displays this help message" } });
+    const cli = program.command('pm').state<{ pm?: StateConfiguration }>().options<CliOptions>({
+        output: { aliases: ['o'], needsValue: true, doc: 'output as `table` if array otherwise falls back to standard node output' },
+        verbose: { aliases: ['v'] }, tls: { doc: "enables tls connection to the `pmSock`" },
+        pmSock: { aliases: ['pm-sock'], needsValue: true, doc: "path to the unix socket or destination in the form host:port" },
+        help: { doc: "displays this help message" }
+    });
     cli.command('start pm')
         .option('inspect', { doc: "starts the process with --inspect-brk parameter to help debugging" })
         .option('keepAttached', { doc: "keeps the process attached" })
@@ -47,6 +51,7 @@ export default function (_config, program: NamespaceMiddleware)
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             c.options['name'] = 'pm'
             c.options['program'] = require.resolve('../../commands.json');
+            c.options['configFile'] += '#pm';
             return start.call({} as unknown as State, null, 'pm', c as any);
         });
 

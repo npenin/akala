@@ -50,7 +50,7 @@ export function isRunningContainer(c: Container<unknown>): c is RunningContainer
     return 'running' in c;
 }
 
-export default async function (this: State, container: RunningContainer & pmContainer.container, context: CliContext<{ config: string, keepAttached: boolean, args: string[] }>): Promise<void>
+export default async function (this: State, container: RunningContainer & pmContainer.container, context: CliContext<{ configFile: string, keepAttached: boolean, args: string[] }>): Promise<void>
 {
     this.isDaemon = true;
     this.processes = {};
@@ -86,7 +86,7 @@ export default async function (this: State, container: RunningContainer & pmCont
         , killed: false
     });
 
-    const configPath = context.options.config || join(homedir(), './.pm.config.json');
+    const configPath = context.options.configFile || join(homedir(), './.pm.config.json');
     this.config = await Configuration.load<StateConfiguration>(configPath, true);
 
     if (this.config?.mapping?.pm)
@@ -95,11 +95,11 @@ export default async function (this: State, container: RunningContainer & pmCont
             process.chdir(this.config.mapping.pm.cwd);
     }
     else
-        this.config = Configuration.new<StateConfiguration>(configPath, {
-            containers: { pm: { commandable: true, stateless: false, path: fileURLToPath(new URL('../../../commands.json', import.meta.url)) } },
-            mapping: { pm: { cwd: process.cwd(), container: 'pm' } },
-            plugins: []
-        }) as State['config'];
+    {
+        this.config.set('containers', { pm: { commandable: true, stateless: false, path: fileURLToPath(new URL('../../../commands.json', import.meta.url)) } });
+        this.config.set('mapping', { pm: { cwd: process.cwd(), container: 'pm' } })
+        this.config.set('plugins', [])
+    }
 
     this.config.mapping['pm'].set('connect', serveMetadata('pm', { options: context.options, args: context.options.args } as unknown as ServeOptions));
 

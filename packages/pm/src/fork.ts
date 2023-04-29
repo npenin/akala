@@ -36,6 +36,7 @@ const controller = new AbortController();
 program.option<string, 'program'>('program', { needsValue: true, normalize: true, positional: true, position: 0 }).
     option<string, 'name'>('name', { needsValue: true, positional: true, position: 1, optional: true }).
     option<boolean, 'tls'>('tls', { needsValue: false }).
+    option<string, 'configFile'>('configFile', { needsValue: false }).
     options<{
         port?: number,
         tcpPort?: string,
