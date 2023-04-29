@@ -225,7 +225,7 @@ class OptionsMiddleware<TOptions extends Record<string, string | number | boolea
             this.positionalArgs.useMiddleware(option.position, {
                 handle: context =>
                 {
-                    if (!option.optional || context.args.length > 0)
+                    if (!context.options[name] && (!option.optional || context.args.length > 0))
                         context.options[name] = context.args.shift();
                     if (option.normalize)
                         context.options[name] = normalize(option.normalize, context.currentWorkingDirectory, context.options[name] as string);
