@@ -350,7 +350,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
             {
                 // if (!context.options.help)
                 {
-                    if (context.args.length < (~parameters.findIndex(p => p.optional) || parameters.length))
+                    if (!context.options.help && context.args.length < (~parameters.findIndex(p => p.optional) || parameters.length))
                         throw new UsageError(name);
 
                     for (let index = 0; index < parameters.length; index++)
