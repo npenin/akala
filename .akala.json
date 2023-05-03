@@ -3,5 +3,37 @@
         "/home/nicolas/dev/akala/packages/config/dist/esm/akala.mjs",
         "/home/nicolas/dev/akala/packages/commands/dist/esm/akala.mjs",
         "/home/nicolas/dev/akala/packages/pm/dist/esm/akala.mjs"
-    ]
+    ],
+    "pm": {
+        "containers": {
+            "pm": {
+                "commandable": true,
+                "stateless": false,
+                "path": "/home/nicolas/dev/akala/packages/pm/commands.json"
+            },
+            "server": {
+                "path": "/home/nicolas/dev/akala/packages/server/commands.json",
+                "commandable": true,
+                "stateless": false
+            }
+        },
+        "mapping": {
+            "pm": {
+                "cwd": "/home/nicolas/dev/akala",
+                "container": "pm",
+                "connect": {
+                    "socket": [
+                        {
+                            "port": 31416
+                        }
+                    ],
+                    "signal": {}
+                }
+            }
+        },
+        "plugins": []
+    },
+    "commands": {
+        "meta": "/home/nicolas/dev/akala/packages/commands/commands.json"
+    }
 }
