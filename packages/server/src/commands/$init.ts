@@ -17,8 +17,8 @@ export default async function $init(container: Container<State>, options: Record
     let init = true;
     Binding.defineProperty(container.state, 'mode', options.mode || process.env.NODE_ENV).onChanged(function ()
     {
-        if (!init)
-            container.dispatch('webpack', undefined, true);
+        // if (!init)
+        //     container.dispatch('webpack', undefined, true);
     });
 
     let indexHtmlPath: string;
