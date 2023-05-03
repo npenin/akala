@@ -15,9 +15,6 @@ namespace commands
 		dispatch (cmd:'remove-asset', ...args: [Argument0<typeof import('./commands/remove-asset.js').default>, Argument1<typeof import('./commands/remove-asset.js').default>]): ReturnType<typeof import('./commands/remove-asset.js').default>
 		dispatch (cmd:'require', ...args: [Argument1<typeof import('./commands/require.js').default>, Argument2<typeof import('./commands/require.js').default>]): ReturnType<typeof import('./commands/require.js').default>
 		dispatch (cmd:'route', ...args: [Argument0<typeof import('./commands/route.js').default>, Argument1<typeof import('./commands/route.js').default>, Argument2<typeof import('./commands/route.js').default>, Argument3<typeof import('./commands/route.js').default>]): ReturnType<typeof import('./commands/route.js').default>
-		dispatch (cmd:'webpack', ...args: [Argument0<typeof import('./commands/webpack.js').default>, Argument1<typeof import('./commands/webpack.js').default>, Argument2<typeof import('./commands/webpack.js').default>]): ReturnType<typeof import('./commands/webpack.js').default>
-		dispatch (cmd:'webpack-alias', ...args: [Argument0<typeof import('./commands/webpack-alias.js').default>, Argument1<typeof import('./commands/webpack-alias.js').default>]): ReturnType<typeof import('./commands/webpack-alias.js').default>
-		dispatch (cmd:'webpack-html', ...args: [Argument0<typeof import('./commands/webpack-html.js').default>]): ReturnType<typeof import('./commands/webpack-html.js').default>
 	}
 	export interface proxy 
 	{
@@ -29,9 +26,6 @@ namespace commands
 		'remove-asset'(...args: [Argument0<typeof import('./commands/remove-asset.js').default>, Argument1<typeof import('./commands/remove-asset.js').default>]): ReturnType<typeof import('./commands/remove-asset.js').default>
 		'require'(...args: [Argument1<typeof import('./commands/require.js').default>, Argument2<typeof import('./commands/require.js').default>]): ReturnType<typeof import('./commands/require.js').default>
 		'route'(...args: [Argument0<typeof import('./commands/route.js').default>, Argument1<typeof import('./commands/route.js').default>, Argument2<typeof import('./commands/route.js').default>, Argument3<typeof import('./commands/route.js').default>]): ReturnType<typeof import('./commands/route.js').default>
-		'webpack'(...args: [Argument0<typeof import('./commands/webpack.js').default>, Argument1<typeof import('./commands/webpack.js').default>, Argument2<typeof import('./commands/webpack.js').default>]): ReturnType<typeof import('./commands/webpack.js').default>
-		'webpack-alias'(...args: [Argument0<typeof import('./commands/webpack-alias.js').default>, Argument1<typeof import('./commands/webpack-alias.js').default>]): ReturnType<typeof import('./commands/webpack-alias.js').default>
-		'webpack-html'(...args: [Argument0<typeof import('./commands/webpack-html.js').default>]): ReturnType<typeof import('./commands/webpack-html.js').default>
 	}
 }
 
