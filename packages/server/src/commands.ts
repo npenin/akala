@@ -8,7 +8,6 @@ namespace commands
 	export interface container 
 	{
 		dispatch (cmd:'$init', ...args: []): ReturnType<typeof import('./commands/$init.js').default>
-		dispatch (cmd:'asset', ...args: [Argument1<typeof import('./commands/asset.js').default>, Argument2<typeof import('./commands/asset.js').default>]): ReturnType<typeof import('./commands/asset.js').default>
 		dispatch (cmd:'mode', ...args: [Argument0<typeof import('./commands/mode.js').default>]): ReturnType<typeof import('./commands/mode.js').default>
 		dispatch (cmd:'remote-container', ...args: [Argument1<typeof import('./commands/remote-container.js').default>, Argument2<typeof import('./commands/remote-container.js').default>]): ReturnType<typeof import('./commands/remote-container.js').default>
 		dispatch (cmd:'remote-route', ...args: [Argument0<typeof import('./commands/remote-route.js').default>, Argument1<typeof import('./commands/remote-route.js').default>, Argument2<typeof import('./commands/remote-route.js').default>]): ReturnType<typeof import('./commands/remote-route.js').default>
@@ -19,7 +18,6 @@ namespace commands
 	export interface proxy 
 	{
 		'$init'(...args: []): ReturnType<typeof import('./commands/$init.js').default>
-		'asset'(...args: [Argument1<typeof import('./commands/asset.js').default>, Argument2<typeof import('./commands/asset.js').default>]): ReturnType<typeof import('./commands/asset.js').default>
 		'mode'(...args: [Argument0<typeof import('./commands/mode.js').default>]): ReturnType<typeof import('./commands/mode.js').default>
 		'remote-container'(...args: [Argument1<typeof import('./commands/remote-container.js').default>, Argument2<typeof import('./commands/remote-container.js').default>]): ReturnType<typeof import('./commands/remote-container.js').default>
 		'remote-route'(...args: [Argument0<typeof import('./commands/remote-route.js').default>, Argument1<typeof import('./commands/remote-route.js').default>, Argument2<typeof import('./commands/remote-route.js').default>]): ReturnType<typeof import('./commands/remote-route.js').default>
