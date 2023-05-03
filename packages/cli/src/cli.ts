@@ -115,7 +115,8 @@ process.emit = function (name, data, ...args)
         result =>
         {
             if (typeof result != 'undefined')
-                console.log(result)
+                console.log(result);
+            process.exit(0);
         },
         err =>
         {
