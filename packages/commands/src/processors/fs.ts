@@ -1,5 +1,5 @@
 import * as path from 'path'
-import { promises as fs, existsSync } from 'fs'
+import { promises as fs, existsSync, open } from 'fs'
 import * as akala from '@akala/core'
 import * as  Metadata from '../metadata/index.js';
 import { CommandProcessor } from '../model/processor.js';
@@ -150,7 +150,17 @@ export class FileSystem extends CommandProcessor
                             c.config.fs.path = path.resolve(path.dirname(await resolveFolder(cmdRequire, subPath)), c.config.fs.path);
                         if (c.config?.fs?.source)
                             c.config.fs.source = path.resolve(path.dirname(await resolveFolder(cmdRequire, subPath)), c.config.fs.source);
-                        commands.push(c);
+                        try
+                        {
+                            const f = await fs.open(c.config.fs.source);
+                            commands.push(c);
+                            await f.close()
+                        }
+                        catch (e)
+                        {
+                            if (e.code == 'ENOENT')
+                                console.warn(`The file ${c.config.fs.source} does not exist (thus ignoring ${c.name}). It could be that you deleted the source file, but the transpiled file is still around.`)
+                        }
                     });
                 });
             }
@@ -197,7 +207,21 @@ export class FileSystem extends CommandProcessor
                             cmd.config.fs.source = path.join(path.relative(relativeTo, root), sourceMap.sources[0]).replace(/\\/g, '/');
                     }
                     const source = cmd.config.fs.source || cmd.config.fs.path;
+                    try
+                    {
+                        const f = await fs.open(cmd.config.fs.source);
+                        await f.close()
+                    }
+                    catch (e)
+                    {
+                        if (e.code == 'ENOENT')
+                            console.warn(`The file ${cmd.config.fs.source} does not exist (thus ignoring ${cmd.name}). It could be that you deleted the source file, but the transpiled file is still around.`)
+                        else
+                            console.error(e);
+                        return;
+                    }
                     const otherConfigsFile: string = path.join(path.dirname(source), path.basename(source, path.extname(source))) + '.json';
+
                     if (existsSync(path.resolve(relativeTo, otherConfigsFile)))
                     {
                         log.debug(`found config file ${otherConfigsFile}`)
