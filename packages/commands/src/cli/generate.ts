@@ -26,9 +26,7 @@ export default async function generate(folder?: string, name?: string, outputFil
         if (exists)
         {
             var existing: akala.Metadata.Container = await importJson(path.resolve(process.cwd(), outputFile));
-
-            meta.extends = existing.extends;
-            meta.dependencies = existing.dependencies;
+            Object.assign(meta, { ...existing, name: meta.name || existing.name, commands: meta.commands || existing.commands })
         }
     }));
 
