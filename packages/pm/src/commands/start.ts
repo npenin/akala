@@ -47,7 +47,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
             throw new ErrorWithStatus(404, `No mapping was found for ${name}. Did you want to run \`pm install ${name}\` or maybe are you missing the folder to ${name} ?`)
         }
 
-        args.unshift(...context.args, ...Object.entries(context.options).filter(e => e[0] != 'program' && e[0] != 'new' && e[0] != 'inspect').map(entries => ['--' + entries[0] + '=' + entries[1]]).flat());
+        args.unshift(...context.args, ...unparseOptions({ ...context.options, program: undefined, new: undefined, inspect: undefined }, { ignoreUndefined: true }));
         if (def && def.get('path'))
             args.unshift('--program=' + def.get('path'));
         else
@@ -62,7 +62,10 @@ export default async function start(this: State, pm: pmContainer.container & Con
     }
 
     if (!def?.type || def.type == 'nodejs')
+    {
+
         args.unshift(path.resolve(_dirname, '../fork'))
+    }
 
     if (context.options && context.options.inspect)
         args.unshift('--inspect-brk');
@@ -153,6 +156,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
             {
                 // console.log(metaContainer);
                 updateCommands(metaContainer.commands, null, container);
+                container.stateless = metaContainer.stateless;
                 pm.register(name, container, true);
             });
         }, () =>
