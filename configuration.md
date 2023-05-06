@@ -17,4 +17,4 @@ If you want to use the configuration module the same way as uci, you may just us
 
 Alternatively, you may imported to the `akala` cli with the following line:
 
-`akala plugins add @akala/config/dist/esm/akala.mts`
+`akala plugins add @akala/config/akala`
