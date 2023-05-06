@@ -74,24 +74,27 @@
     },
     "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
     "exports": {
-        "node": {
+        ".": {
+            "node": {
+                "import": {
+                    "types": "./dist/esm/index.d.ts",
+                    "default": "./dist/esm/index.js"
+                },
+                "require": {
+                    "types": "./dist/cjs/index.d.ts",
+                    "default": "./dist/cjs/index.js"
+                }
+            },
             "import": {
-                "types": "./dist/esm/index.d.ts",
-                "default": "./dist/esm/index.js"
+                "types": "./dist/esm/index.browser.d.ts",
+                "default": "./dist/esm/index.browser.js"
             },
             "require": {
-                "types": "./dist/cjs/index.d.ts",
-                "default": "./dist/cjs/index.js"
+                "types": "./dist/cjs/index.browser.d.ts",
+                "default": "./dist/cjs/index.browser.js"
             }
         },
-        "import": {
-            "types": "./dist/esm/index.browser.d.ts",
-            "default": "./dist/esm/index.browser.js"
-        },
-        "require": {
-            "types": "./dist/cjs/index.browser.d.ts",
-            "default": "./dist/cjs/index.browser.js"
-        }
+        "./akala": "./dist/esm/akala.mjs"
     },
     "types": "./dist/esm/index.browser.d.ts",
     "module": "./dist/esm/index.browser.js"
