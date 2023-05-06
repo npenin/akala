@@ -8,3 +8,13 @@ Typescript is preferred, but not mandatory.
 # History
 
 The configuration idea came from what [uci provides on openwrt](https://openwrt.org/docs/guide-user/base-system/uci)
+
+Its purpose is to support configurations (and nested configurations).
+
+# Setup
+
+If you want to use the configuration module the same way as uci, you may just use `uci2`. 
+
+Alternatively, you may imported to the `akala` cli with the following line:
+
+`akala plugins add @akala/config/dist/esm/akala.mts`
