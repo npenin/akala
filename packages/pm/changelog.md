@@ -1,10 +1,17 @@
-#  (2023-04-18)
+#  (2023-05-06)
 
 
 ### Bug Fixes
 
-* init leverage ESM 557af46
-* make pm work with connect args ec5e1fc
+* add akala as export ff84fdc
+* better stateless detection d236456
+* config file option name 3068006
+* update commands file 6365b5d
+
+
+### BREAKING CHANGES
+
+* config option renamed to configFile
 
 
 
