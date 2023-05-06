@@ -1,4 +1,4 @@
-#  (2023-04-21)
+#  (2023-05-06)
 
 
 ### Bug Fixes
@@ -7,6 +7,7 @@
 * #988 3b5ade8
 * ac new gracefully ends 6647f80
 * adapt to trigger new definition 8c2d136
+* add akala as export ff84fdc
 * add browser export condition 6113968
 * add exports to mongo 9c6d18a
 * add extends adn dependencies on the container interface 4eedb66
@@ -47,6 +48,7 @@
 * bad regex syntax da56074
 * better file init 1087260
 * better fork description d059b69
+* better stateless detection d236456
 * better support for closed socket requests 9b38a60
 * better support for compound keys a571109
 * better support for metadata on closed remote containers 71ec84d
@@ -61,6 +63,7 @@
 * cannot read undefined config object 0cc01be
 * cjs build d3e9a4e
 * cleanup $disconnect registration on ready 4aaf9bd
+* cli args parsing 6db1a80
 * Cli implementation a6c7103
 * cli parsing a28c8fe
 * Cli wait fixed bac25a8
@@ -77,6 +80,7 @@
 * compilation after typescript 4.4 upgrade 2828ff9
 * compilation issue 6734227
 * compilation issue 4735be5
+* config file option name 3068006
 * config file save fallback f1a3db7
 * connect fails when connect on mapping is undefined 16bdd27
 * connect should failed if mapping is not found 4392197
@@ -100,6 +104,7 @@
 * downgrade all packages to support both cjs and mjs 991c494
 * downgrade all packages to support both cjs and mjs 56f6136
 * downgrade all packages to support both cjs and mjs 5c64966
+* edge case cli implementation 9b91c43
 * edge case with distinct 6cfd43b
 * embrace esm even more 3e7d10a
 * embrace esm even more b3b8e9d
@@ -129,6 +134,7 @@
 * fs middleware after discovery changes d97fcca
 * fs processor too catchy ccafa48
 * generate command f04839c
+* generate keeps all extra fields bcda761
 * generate now keeps existing additional meta information (extends and dependencies) 9445157
 * git push tags fc8e609
 * handle bridges/proxy 69ae6f2
@@ -143,6 +149,7 @@
 * helps compile under angular 330ae98
 * honoring preferRemote 6fa76bc
 * http to support custom injector 12a25f8
+* ignore commands without source dfce88b
 * implement own resolve to prevent resolving to main 07e3e69
 * imported event class from node d8bbc36
 * improve browser usage 05dd7ea
@@ -263,6 +270,7 @@
 * remote ready failing dcc0fc1
 * remove _trigger when sending over jsonrpc 9fac492
 * remove assert dependency 2a90cb2
+* remove asset command depending on webpack 9c81e0a
 * remove confusing inject property on commands 9c45241
 * remove container.ts in sidecar cc48571
 * remove debugger statement 955f084
@@ -281,6 +289,7 @@
 * remove stateless 2de9622
 * remove triggers from browser 85ce5a8
 * remove triple-beam dependency c44bd2e
+* remove webpack dependencies f51db45
 * remove winston dependency 3dcad68
 * removed mock-require usage 99587ba
 * removed mock-require usage 448f5be
@@ -331,10 +340,12 @@
 * trying to add promise to solve "handled" lambda 62bad72
 * trying to fix docker files 2b8ce52
 * typing 8851307
+* unparse options eed10c8
 * update all commands 8f54036
 * update CLI definitions 7281b40
 * update command definition 85c2891
 * update commands cli definition 5b7f8f1
+* update commands file 6365b5d
 * update dependencies and regenerate metadata 0c83667
 * update jsdoc 49357c6
 * update lock and commands.json files eeae419
@@ -470,6 +481,7 @@
 * sidecar now fallback to proxy on pm 4ebe153
 * started webdav module c663dba
 * support for commands through pm 3954c8a
+* support for config file path with needle 1243d91
 * support for nested object mapping affb3e2
 * support for potential callback 54c6554
 * support for triggers 624ae86
@@ -484,6 +496,7 @@
 
 ### BREAKING CHANGES
 
+* config option renamed to configFile
 * index.mts moved to handler.ts
 * move to ESM to support tree shaking
 * Deferred and Serializable(Object) moved to core instead of json-rpc-ws causing dependencies break.
