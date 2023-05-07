@@ -136,6 +136,6 @@ process.emit = function (name, data, ...args)
             else if (typeof process.exitCode != 'undefined')
                 process.exit();
             else
-                process.exit(500);
+                process.exit(50);
         });
 })();
