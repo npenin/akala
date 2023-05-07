@@ -11,7 +11,7 @@ export default function normalize(mode: 'require' | 'requireMeta' | boolean, cur
                 return path.resolve(path.dirname(normalize('requireMeta', currentWorkingDirectory, values.slice(0, 2).join('/'))), './' + values.slice(2).join('/'))
             else if (value && (value[0] != '@' && values.length > 1))
                 return path.resolve(path.dirname(normalize('requireMeta', currentWorkingDirectory, values.shift())), './' + values.join('/'))
-            return createRequire(path.resolve(currentWorkingDirectory) + '/').resolve(value);
+            return createRequire(path.resolve(currentWorkingDirectory) + '/')(value);
         case 'requireMeta':
             return createRequire(path.resolve(currentWorkingDirectory) + '/').resolve(value + '/package.json');
         case false:
