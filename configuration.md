@@ -15,6 +15,6 @@ Its purpose is to support configurations (and nested configurations).
 
 If you want to use the configuration module the same way as uci, you may just use `uci2`. 
 
-Alternatively, you may imported to the `akala` cli with the following line:
+Alternatively, you may imported to the `akala` cli with the following line and then be guided with the help
 
 `akala plugins add @akala/config/akala`
