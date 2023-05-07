@@ -215,6 +215,7 @@
 * normalize causes issue if not URL 4879fb0
 * normalize path 58c9fcd
 * normalize require properly imports packages ea8e772
+* normalize support for custom conditions 6d876fd
 * normalized modules to work in esm and cjs 88ffcca
 * omit client package for now 6f16b17
 * optional parameter in connect 606b68b
