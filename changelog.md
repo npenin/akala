@@ -1,4 +1,4 @@
-#  (2023-05-06)
+#  (2023-05-07)
 
 
 ### Bug Fixes
@@ -214,6 +214,7 @@
 * normalization and edge cases in cli 874a97f
 * normalize causes issue if not URL 4879fb0
 * normalize path 58c9fcd
+* normalize require properly imports packages ea8e772
 * normalized modules to work in esm and cjs 88ffcca
 * omit client package for now 6f16b17
 * optional parameter in connect 606b68b
@@ -246,10 +247,13 @@
 * prevent inifinite loop when no matching option can be found 3912b94
 * prevent send on closed socket 85de789
 * proper error serialization support 54a819d
+* proper exit code on help ad8e0ad
+* proper exit code on help c13524e
 * proper parameter binding for bump-dependents 7459c86
 * proper positional option 4b10b61
 * proper pubsub container 7978b92
 * proper typing on store create 83caee7
+* proper use of normalize for plugins 130102e
 * properly generate module from hierarchy dc28cb0
 * provide proper variable to bumps dependents 82f8ddb
 * proxy handling of properties update 47f6102
