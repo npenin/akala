@@ -362,7 +362,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
                         {
                             context.options[paramName] = context.args.shift() as (TOptions & TOptions2)[typeof paramName];
                             if (middleware._option?.config && middleware._option.config[paramName]?.normalize && context.options[paramName])
-                                context.options[paramName] = normalize(middleware._option.config[paramName]?.normalize, context.currentWorkingDirectory, context.options[paramName] as string);// as (TOptions & TOptions2)[typeof parameter.name];
+                                context.options[paramName] = normalize(middleware._option.config[paramName]?.normalize, context.currentWorkingDirectory, context.options[paramName] as string) as (TOptions & TOptions2)[typeof parameter.name];
                         }
                         // if (parameter.optional)
                         //     context.options[parameter.name] = context.args.shift() as TOptions2[typeof parameter.name];
