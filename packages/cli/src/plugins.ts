@@ -6,7 +6,7 @@ export default function (config, program: NamespaceMiddleware)
     const plugins = program.command('plugins');
 
     plugins.command('add <path>')
-        .option<string>('path', { normalize: true })
+        .option<string>('path', { normalize: 'require' })
         .action(async function (context)
         {
             const indexOfPath = config.plugins.indexOf(context.options.path);
