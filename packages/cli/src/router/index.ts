@@ -22,7 +22,7 @@ export interface OptionParseOption
 
 export class ErrorMessage extends Error
 {
-    constructor(message?: string)
+    constructor(message?: string, public statusCode: number = 500)
     {
         super(message);
     }
@@ -460,7 +460,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
                 var usage = await this.usage(context);
                 // if (!usage && this._delegate)
                 //     return this._delegate.handle(context);
-                return this.handleError(new ErrorMessage(formatUsageObject(usage)), context);
+                return this.handleError(new ErrorMessage(formatUsageObject(usage), 200), context);
             }
             return super.handle(context).then(async err =>
             {

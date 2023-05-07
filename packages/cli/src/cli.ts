@@ -126,8 +126,15 @@ process.emit = function (name, data, ...args)
                 console.error(err);
             else
                 console.error('There is no such command. Try the --help flag to get help on usage');
-            if (err && err.statusCode)
-                process.exit(err.statusCode);
+            if (err && typeof err.statusCode != 'undefined')
+            {
+                if (Math.floor(err.statusCode / 100) > 3)
+                    process.exit(err.statusCode / 10);
+                else
+                    process.exit(0);
+            }
+            else if (typeof process.exitCode != 'undefined')
+                process.exit();
             else
                 process.exit(500);
         });
