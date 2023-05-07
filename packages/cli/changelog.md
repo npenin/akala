@@ -1,11 +1,12 @@
-#  (2023-05-06)
+#  (2023-05-07)
 
 
 ### Bug Fixes
 
-* cli args parsing 6db1a80
-* edge case cli implementation 9b91c43
-* unparse options eed10c8
+* normalize require properly imports packages ea8e772
+* proper exit code on help ad8e0ad
+* proper exit code on help c13524e
+* proper use of normalize for plugins 130102e
 
 
 
