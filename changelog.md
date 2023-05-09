@@ -1,4 +1,4 @@
-#  (2023-05-07)
+#  (2023-05-09)
 
 
 ### Bug Fixes
@@ -451,6 +451,7 @@
 * add support for jobs and schedules (as a SqlAgent) 11927b5
 * add support for shell script failure ignore 4b1dcc1
 * add support for untagged packages (yet) 6fbed9c
+* add typed variant fcdd604
 * add where signature for more flexibility a8d0f14
 * added winston as a logger system 065bae0
 * cli now supports stream results 155e7ba
