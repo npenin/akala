@@ -1,4 +1,9 @@
-#  (2023-04-11)
+#  (2023-05-09)
+
+
+### Features
+
+* add typed variant fcdd604
 
 
 
