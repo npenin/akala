@@ -4,7 +4,7 @@ import { Command } from '../metadata/index.js';
 import { Container } from '../model/container.js';
 import { Local } from './local.js';
 import { Readable } from 'stream';
-import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam, SerializableObject } from '@akala/core';
+import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam, SerializableObject, TypedSerializableObject } from '@akala/core';
 
 type OnlyArray<T> = Extract<T, unknown[]>;
 
@@ -28,7 +28,7 @@ export class JsonRpc extends CommandProcessor
         });
     }
 
-    public static getConnection(socket: jsonrpcws.SocketAdapter, container?: Container<unknown>, otherInject?: (params: StructuredParameters<SerializableObject[]>) => void, log?: Logger): jsonrpcws.Connection
+    public static getConnection(socket: jsonrpcws.SocketAdapter, container?: Container<unknown>, otherInject?: (params: StructuredParameters<TypedSerializableObject<unknown>[]>) => void, log?: Logger): jsonrpcws.Connection
     {
         const error = new Error();
         var containers: Container<unknown>[] = [];
@@ -67,7 +67,7 @@ export class JsonRpc extends CommandProcessor
 
 
                         if (!params)
-                            params = { param: [] };
+                            params = { param: [] as string[] };
                         if (Array.isArray(params))
                             params = { param: params };
                         if (typeof (params) != 'object' || params instanceof Readable || !params['param'])

@@ -1,7 +1,7 @@
 import { injectWithName } from './global-injector.js';
 import { ParsedAny, Parser } from './parser/parser.js';
 import { each, map } from './each.js';
-import { module, SerializableObject } from './helpers.js';
+import { module, TypedSerializableObject } from './helpers.js';
 import { service } from './service.js';
 import { Formatter, FormatterFactory } from './formatters/common.js';
 // import http from 'http';
@@ -9,12 +9,12 @@ import { Formatter, FormatterFactory } from './formatters/common.js';
 import { Injected } from './injector.js';
 
 
-export interface HttpOptions
+export interface HttpOptions<T>
 {
     method?: string;
     url: string | URL;
     queryString?: string | URLSearchParams;
-    body?: BodyInit | SerializableObject;
+    body?: BodyInit | TypedSerializableObject<T>;
     headers?: { [key: string]: string | number | Date };
     contentType?: 'json' | 'form';
     type?: 'json' | 'xml' | 'text' | 'raw';
@@ -28,7 +28,7 @@ export interface Http<TResponse = Response>
     postJSON<T = string>(url: string, body?: unknown): PromiseLike<T>;
     getJSON<T>(url: string, params?: string | URLSearchParams): PromiseLike<T>;
     invokeSOAP(namespace: string, action: string, url: string, params?: { [key: string]: string | number | boolean }): PromiseLike<TResponse>;
-    call(options: HttpOptions): PromiseLike<TResponse>;
+    call<T>(options: HttpOptions<T>): PromiseLike<TResponse>;
 }
 
 @service('$http')
@@ -72,7 +72,7 @@ export class FetchHttp implements Http<Response>
         return this.call({ method: 'POST', url: url, type: 'xml', headers: { SOAPAction: namespace + '#' + action }, body: body });
     }
 
-    public call(options: HttpOptions): Promise<Response>
+    public call<T>(options: HttpOptions<T>): Promise<Response>
     {
         const init: RequestInit = { method: options.method || 'GET', body: options.body as unknown as BodyInit };
 
@@ -190,7 +190,7 @@ export class HttpCallFormatterFactory implements FormatterFactory<Injected<Promi
 
         return function (scope)
         {
-            let settingsValue = settings as HttpOptions & { method?: keyof Http };
+            let settingsValue = settings as HttpOptions<void> & { method?: keyof Http };
             if (settings instanceof Function)
                 settingsValue = settings(scope);
 
@@ -205,7 +205,7 @@ export class HttpCallFormatterFactory implements FormatterFactory<Injected<Promi
                     return (http[settingsValue.method || 'getJSON'] as typeof http.getJSON).apply(http, formattedValue);
                 }
 
-                return (http[settingsValue.method || 'getJSON'] as typeof http.call)(formattedValue as HttpOptions);
+                return (http[settingsValue.method || 'getJSON'] as typeof http.call)(formattedValue as HttpOptions<void>);
             });
         }
     }

@@ -34,7 +34,7 @@ export class HttpClient extends CommandProcessor
         }).then(result => { throw result }, err => err);
     }
 
-    public static buildCall(config: HttpConfiguration, resolveUrl: (s: string) => string, ...param: unknown[]): HttpOptions
+    public static buildCall(config: HttpConfiguration, resolveUrl: (s: string) => string, ...param: unknown[]): HttpOptions<unknown>
     {
         let url = config.route;
         if (url[0] == '/')
@@ -45,7 +45,7 @@ export class HttpClient extends CommandProcessor
             config = Object.assign({}, config);
             config.type = undefined;
         }
-        const options: HttpOptions = { method: config.method, url: '', type: config.type };
+        const options: HttpOptions<unknown> = { method: config.method, url: '', type: config.type };
         if (config.inject)
             each(config.inject, function (value, key)
             {
@@ -54,12 +54,12 @@ export class HttpClient extends CommandProcessor
                     case 'body':
                         if (typeof (param[key]) == 'object')
                         {
-                            options.contentType = options.type as HttpOptions['contentType'];
+                            options.contentType = options.type as HttpOptions<unknown>['contentType'];
                             options.body = Object.assign(options.body || {}, param && param[key]);
                         }
                         else
                         {
-                            options.contentType = options.type as HttpOptions['contentType'];
+                            options.contentType = options.type as HttpOptions<unknown>['contentType'];
                             if (!options.body)
                                 options.body = {};
                             options.body = param && param[key] as BodyInit | SerializableObject;
@@ -74,7 +74,7 @@ export class HttpClient extends CommandProcessor
                                 switch (value.substring(0, indexOfDot))
                                 {
                                     case 'body':
-                                        options.contentType = options.type as HttpOptions['contentType'];
+                                        options.contentType = options.type as HttpOptions<unknown>['contentType'];
                                         options.body = options.body || {};
                                         options.body[subKey] = param && param[key];
                                         break;

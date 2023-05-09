@@ -43,11 +43,16 @@ test`},
                 "main": "dist/cjs/index.js",
                 "types": "dist/cjs/index.d.ts",
                 "exports": {
-                    "types": "./dist/esm/index.d.ts",
-                    "import": "./dist/esm/index.js",
-                    "require": "./dist/cjs/index.js",
-                    "node": "./dist/cjs/index.js",
-                    "default": "./dist/cjs/index.js"
+                    ".": {
+                        "import": {
+                            "types": "./dist/esm/index.d.ts",
+                            "default": "./dist/esm/index.js"
+                        },
+                        "require": {
+                            "types": "./dist/cjs/index.d.ts",
+                            "default": "./dist/cjs/index.js"
+                        }
+                    }
                 },
                 "scripts": {
                     "test": "echo \"Error: no test specified\""
