@@ -192,7 +192,7 @@ export class FileSystem extends CommandProcessor
         {
             if (f.isFile())
             {
-                if (f.name.endsWith('.js'))
+                if (f.name.endsWith('.js') || f.name.endsWith('.mjs') || f.name.endsWith('.cjs'))
                 {
                     const fsConfig: FileSystemConfiguration & jsonObject = { path: path.relative(relativeTo, path.join(root, f.name).replace(/\\/g, '/')) };
 
@@ -311,7 +311,7 @@ export class FileSystem extends CommandProcessor
                 }
                 else if (f.name.endsWith('.json'))
                 {
-                    if (!files.find(file => file.name == path.basename(f.name, '.json') + '.js'))
+                    if (!files.find(file => file.name == path.basename(f.name, '.json') + '.js' || file.name == path.basename(f.name, '.json') + '.mjs' || file.name == path.basename(f.name, '.json') + '.cjs'))
                     {
                         // eslint-disable-next-line @typescript-eslint/no-var-requires
                         const cmd: FSCommand = await importJson(path.resolve(path.join(root, f.name)));
