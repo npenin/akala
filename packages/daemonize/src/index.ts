@@ -83,6 +83,8 @@ export interface OpenRCService
     procname: string;
 }
 
+type ArrayItemType<T> = T extends Array<infer U> ? U : never;
+
 export interface ServiceMap
 {
     'linux': { systemd?: Partial<SystemDService>, openrc?: Partial<OpenRCService> } & Partial<CoreService>;
@@ -160,9 +162,25 @@ export default async function install(service: Service)
     {
         case 'win32':
             {
-                const winCP = spawnAsync(require.resolve('../powershell.ps1'), [svc.name, svc.binPath], { shell: true, stdio: ['pipe', 'inherit', 'inherit'] });
+
+                const winCP = spawnAsync(require.resolve('../powershell.ps1'), [svc.name, svc.binPath], { shell: 'powershell', stdio: ['pipe', 'inherit', 'inherit'] });
                 promise = winCP.promise;
-                winCP.cp.stdin.write(JSON.stringify(svc));
+                const validArgs = ['name', 'binPath', 'args', 'DisplayName', 'Description', 'SecurityDescriptorSddl', 'StartupType', 'Credential', 'DependsOn', 'WhatIf', 'Confirm'] as const;
+                const args = Object.fromEntries(flatTree(svc).filter(e => validArgs.indexOf(e[0] as ArrayItemType<typeof validArgs>) > -1))
+                let cmd = `New-Service -Name ${args.name}
+                -BinaryPathName "${args.binPath} ${args.args}"`;
+                Object.entries(args).forEach(e =>
+                {
+                    if (e[0] !== 'name' && e[0] !== 'binPath' && e[0] !== 'args')
+                        cmd += ` -${e[0]} ${e[1]}`;
+                });
+                winCP.cp.stdin.write(cmd, (err) =>
+                {
+                    if (err)
+                        console.error(err);
+                });
+                winCP.cp.stdin.end();
+
             }
             break;
         default:
