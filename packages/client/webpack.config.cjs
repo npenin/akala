@@ -2,7 +2,7 @@ const { IgnorePlugin } = require("webpack");
 
 module.exports = {
     entry: {
-        akala: './dist/index.js',
+        akala: './dist/esm/index.js',
     },
     output: {
         path: __dirname,

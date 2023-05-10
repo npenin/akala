@@ -4,7 +4,7 @@ import * as location from './locationService.js'
 import * as core from '@akala/core';
 export * from './template.js';
 import * as part from './part.js';
-import './part';
+import './part.js';
 import * as scope from './scope.js';
 import * as controls from './controls/controls.js';
 export { Control, BaseControl, control } from './controls/controls.js';
