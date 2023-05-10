@@ -1,4 +1,4 @@
-#  (2023-05-09)
+#  (2023-05-10)
 
 
 ### Bug Fixes
@@ -12,6 +12,11 @@
 * omit client package for now 6f16b17
 * typing 8851307
 * update package definitions 300a978
+
+
+### Features
+
+* re-enable client publish 87a0f62
 
 
 
