@@ -321,7 +321,7 @@ export class FileSystem extends CommandProcessor
             }
             else
                 if (f.isDirectory() && options && options.recursive)
-                    commands.push(...await FileSystem.discoverMetaCommands(path.join(root, f.name), options));
+                    commands.push(...(await FileSystem.discoverMetaCommands(path.join(root, f.name), options)).map(c => ({ name: f.name + '.' + c.name, config: c.config })));
         }, null, false);
 
         return commands.sort((a, b) =>
