@@ -1,7 +1,7 @@
 import * as akala from '@akala/core'
 import { Router, RouterRequest as Request } from './router.js'
 import { EventEmitter } from 'events'
-import './controls/part'
+import './controls/part.js'
 import { Template } from './template.js'
 import { IScope } from './scope.js'
 import { service } from './common.js'

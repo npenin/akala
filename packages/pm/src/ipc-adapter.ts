@@ -2,7 +2,6 @@ import { ChildProcess } from "child_process";
 import * as jsonrpc from '@akala/json-rpc-ws';
 import { SocketAdapterEventMap } from "@akala/json-rpc-ws";
 
-
 export class IpcAdapter implements jsonrpc.SocketAdapter
 {
     get open(): boolean { return !!this.cp.pid; }
@@ -73,7 +72,7 @@ export class IpcAdapter implements jsonrpc.SocketAdapter
         }
     }
 
-    constructor(private cp: ChildProcess | NodeJS.Process)
+    constructor(private cp: ChildProcess | typeof process)
     {
     }
 
