@@ -41,7 +41,7 @@ jobs:
         with:
           eslint: true
       - name: Ensure CJS
-        run: yarn workspaces foreach -Ap --no-private exec "echo '{"'"type":"commonjs"}'"' > dist/cjs/package.json"
+        run: yarn workspaces foreach -Ap --no-private --exclude @akala/aws-lambda exec "echo '{"'"type":"commonjs"}'"' > dist/cjs/package.json"
       - name: publish updates
         run: node packages/automate/dist/esm/cli.js --loader @akala/automate-yamlloader --file @akala/semantic-release/publish.yml --verbose=silly
         env:
