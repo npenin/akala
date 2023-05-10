@@ -74,7 +74,7 @@ export class FetchHttp implements Http<Response>
 
     public call<T>(options: HttpOptions<T>): Promise<Response>
     {
-        const init: RequestInit = { method: options.method || 'GET', body: options.body as unknown as BodyInit };
+        const init: RequestInit = { method: options.method || 'GET', body: options.body as unknown as BodyInit, redirect: 'manual' };
 
         if (typeof (options.url) == 'string')
             options.url = new URL(options.url);
@@ -141,7 +141,17 @@ export class FetchHttp implements Http<Response>
         // if (options.agent)
         //     init['agent'] = options.agent;
 
-        return fetch(options.url.toString(), init);
+        return fetch(options.url.toString(), init).then(r =>
+        {
+            if (r.status == 302 || r.status == 301)
+            {
+                if (!init.headers)
+                    init.headers = {};
+                init.headers['cookie'] = r.headers.get('set-cookie');
+                return fetch(r.headers.get('Location'), init);
+            }
+            return r;
+        });
     }
 
 
