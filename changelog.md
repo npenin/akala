@@ -473,6 +473,7 @@
 * export event emitter 750ac11
 * export processor 528d2ad
 * first pubsub commit 78b31e1
+* handle cookies on redirect fb6e2ab
 * have both CJS and ESM at once cecd11a
 * implement support typings 4c5d3e4
 * improve middleware behaviour 89f0a24
