@@ -41,7 +41,7 @@ export class Container<TState> extends akala.Injector implements Middleware<[ori
         if (processor)
             this.processor.useMiddleware(20, processor);
         this.processor.useMiddleware(19, new Self());
-        this.processor.useMiddleware(1, new CommandWithAffinityProcessor());
+        this.processor.useMiddleware(10, new CommandWithAffinityProcessor());
         this.processor.useMiddleware(50, defaultCommands);
         this.register({ name: '$serve', config: { '': { inject: $serve.$inject } } })
         this.register({ name: '$attach', config: { '': { inject: $attach.$inject } } })
