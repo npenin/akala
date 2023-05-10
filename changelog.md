@@ -488,6 +488,7 @@
 * open api generator considers schema if available b7736d6
 * options usage now replaces parameters in backticks b4ab80b
 * re-enable client publish 87a0f62
+* re-publish client 25bff4a
 * releasing sidecar eb0c959
 * removing problematic extend function 5daa1db
 * return ProxyConfiguration correct type when strongly typed eeaeee0
