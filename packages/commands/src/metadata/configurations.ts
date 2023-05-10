@@ -1,4 +1,4 @@
-import { FileSystemConfiguration, HttpConfiguration } from '../processors/index.js'
+import { FileSystemConfiguration, HttpConfiguration, SchemaConfiguration } from '../processors/index.js'
 import { CliConfiguration, Configuration, DocConfiguration, jsonObject } from './command.js'
 
 export interface Configurations
@@ -9,4 +9,5 @@ export interface Configurations
     fs?: jsonObject & FileSystemConfiguration;
     cli?: jsonObject & CliConfiguration;
     doc?: jsonObject & DocConfiguration;
+    schema?: jsonObject & SchemaConfiguration
 }
