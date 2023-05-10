@@ -182,6 +182,30 @@
         },
         "": {
             "$ref": "#/definitions/inject"
+        },
+        "schema": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/inject"
+                },
+                {
+                    "$id": "#/schema",
+                    "type": "object",
+                    "title": "The schema Schema",
+                    "properties": {
+                        "schema": {
+                            "$id": "#/schema/properties/schema",
+                            "type": "object",
+                            "title": "The schema Schema",
+                            "patternProperties": {
+                                "^.+$": {
+                                    "$ref": "http://json-schema.org/draft-07/schema#"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
         }
     }
 }
