@@ -17,6 +17,7 @@
 ### Features
 
 * re-enable client publish 87a0f62
+* re-publish client 25bff4a
 
 
 
