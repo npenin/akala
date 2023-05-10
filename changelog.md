@@ -1,4 +1,4 @@
-#  (2023-05-09)
+#  (2023-05-10)
 
 
 ### Bug Fixes
@@ -349,6 +349,7 @@
 * update all commands 8f54036
 * update CLI definitions 7281b40
 * update command definition 85c2891
+* update command with affinity priority 03f05f2
 * update commands cli definition 5b7f8f1
 * update commands file 6365b5d
 * update dependencies and regenerate metadata 0c83667
@@ -393,6 +394,7 @@
 * wrong version b7a5ede
 * wrong version 3ed20ad
 * yarn publish will ignore private a176556
+* yarn reshuffle deps 8a982e5
 * yarn runs in shell mode e77591a
 * **yarn:** have to use an rc version of the plugin version 107768d
 
@@ -441,6 +443,7 @@
 * add reload-metadata on pm 654247f
 * add rest args on cli e6966a9
 * add runnerMiddleware as export ff4c95a
+* add schema validation e1d2b41
 * add sidecar models to configuration 8389089
 * add sidecars accessor c7792a7
 * add stateless initial support 8605db0
@@ -449,10 +452,12 @@
 * add support for -- in CLI bf64441
 * add support for breaking change parsing 3ad998a
 * add support for jobs and schedules (as a SqlAgent) 11927b5
+* add support for mjs and cjs files discovery dc3c17a
 * add support for shell script failure ignore 4b1dcc1
 * add support for untagged packages (yet) 6fbed9c
 * add typed variant fcdd604
 * add where signature for more flexibility a8d0f14
+* add windows service install support 3b9af3a
 * added winston as a logger system 065bae0
 * cli now supports stream results 155e7ba
 * container can now act as middlewares 9484e39
@@ -480,7 +485,9 @@
 * move to serve with AbortSignal 53d811d
 * moved to middleware approach 69d4ba5
 * new aws-lambda module 97806aa
+* open api generator considers schema if available b7736d6
 * options usage now replaces parameters in backticks b4ab80b
+* re-enable client publish 87a0f62
 * releasing sidecar eb0c959
 * removing problematic extend function 5daa1db
 * return ProxyConfiguration correct type when strongly typed eeaeee0
