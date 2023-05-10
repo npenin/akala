@@ -75,10 +75,10 @@ export default async function generate(folder?: string, name?: string, outputFil
                         action.content = { 'text/json': content }
                         break;
                 }
-                commands[i].config.http.inject.forEach(p =>
+                commands[i].config.http.inject.forEach((p, i) =>
                 {
                     if (p.startsWith('body.'))
-                        content.schema.properties[p.substring('body.'.length)] = {};
+                        content.schema.properties[p.substring('body.'.length)] = commands[i].config.schema?.inject[i] ? commands[i].config.schema?.schema[commands[i].config.schema?.inject[i]] : {};
                 });
             }
         }
