@@ -1,9 +1,9 @@
-#  (2023-05-10)
+#  (2023-05-11)
 
 
-### Features
+### Bug Fixes
 
-* handle cookies on redirect fb6e2ab
+* redirect also allows relative url 74c6118
 
 
 
