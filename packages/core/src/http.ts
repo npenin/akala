@@ -148,7 +148,7 @@ export class FetchHttp implements Http<Response>
                 if (!init.headers)
                     init.headers = {};
                 init.headers['cookie'] = r.headers.get('set-cookie');
-                return fetch(r.headers.get('Location'), init);
+                return fetch(new URL(r.headers.get('Location'), url), init);
             }
             return r;
         });
