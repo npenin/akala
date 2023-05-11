@@ -1,4 +1,4 @@
-#  (2023-05-10)
+#  (2023-05-11)
 
 
 ### Bug Fixes
@@ -265,6 +265,7 @@
 * ready command works properly d9b10c2
 * record event on aws 4fd90b3
 * recursive commands named according to folder 5609fbc
+* redirect also allows relative url 74c6118
 * reduce silly logging 378e856
 * reference to jsonrpc on browser condition 4af11a3
 * regex broken c50b9b9
