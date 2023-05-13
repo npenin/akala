@@ -25,5 +25,6 @@ export class Queue<T> extends core.Queue<T>
                 console.error(err);
                 throw err;
             });
+        return super.save(true)
     }
 }
