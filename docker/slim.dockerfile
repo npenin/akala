@@ -1,4 +1,4 @@
-FROM alpine:3.15
+FROM alpine:3.18
 ENV NODE_ENV production
 RUN apk add --update nodejs nodejs-npm
 USER 1000:1000
