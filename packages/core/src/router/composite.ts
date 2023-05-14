@@ -161,6 +161,7 @@ export class MiddlewareComposite<T extends unknown[]> implements Middleware<T>, 
 
                     }).catch(e => Promise.reject({ success: e }))
                 }
+                return Promise.resolve();
             }, true);
             return error;
         }
