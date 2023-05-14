@@ -1,9 +1,9 @@
-#  (2023-05-11)
+#  (2023-05-14)
 
 
 ### Bug Fixes
 
-* redirect also allows relative url 74c6118
+* handle case when middleware failed but continues a623d8e
 
 
 
