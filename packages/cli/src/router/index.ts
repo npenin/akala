@@ -134,7 +134,7 @@ class OptionMiddleware implements akala.Middleware<[context: CliContext]>
                             }
                             catch (e)
                             {
-                                return e;
+                                return Promise.resolve(e);
                             }
                         }
                         else
