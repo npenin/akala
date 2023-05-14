@@ -1,4 +1,9 @@
-#  (2023-05-11)
+#  (2023-05-14)
+
+
+### Bug Fixes
+
+* wrong error handling in options cdf92b0
 
 
 
