@@ -3,7 +3,7 @@ import { Configuration } from '@akala/config'
 import { connectByPreference, Container, helper } from '@akala/commands'
 import { PubSubContainer, ContainerProxy as PubSubProxy } from '@akala/pubsub'
 import { ModelDefinition, MultiStore, PersistenceEngine, providers, Store, StoreDefinition } from '@akala/storage'
-import MetaPubSub from '@akala/pubsub/commands.json' assert {type: 'json'}
+import MetaPubSub from '@akala/pubsub/commands.json'
 import os from 'os'
 import path from 'path'
 import { Serializable, eachAsync, mapAsync, module } from '@akala/core';
