@@ -47,68 +47,6 @@
             }
         },
         {
-            "name": "command",
-            "config": {
-                "fs": {
-                    "path": "dist/esm/cli/new/command.js",
-                    "source": "src/cli/new/command.ts",
-                    "inject": []
-                },
-                "cli": {
-                    "usage": "new cmd <name> [destination]",
-                    "options": {
-                        "force": {
-                            "aliases": [
-                                "f"
-                            ]
-                        }
-                    },
-                    "inject": [
-                        "options.name",
-                        "options",
-                        "options.destination"
-                    ]
-                },
-                "doc": {
-                    "description": "create a new command with the given name and destination (if present, cwd otherwise)"
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
-            "name": "command-config",
-            "config": {
-                "fs": {
-                    "path": "dist/esm/cli/new/command-config.js",
-                    "source": "src/cli/new/command-config.ts",
-                    "inject": []
-                },
-                "cli": {
-                    "usage": "new cc <name> [destination]",
-                    "options": {
-                        "force": {
-                            "aliases": [
-                                "f"
-                            ]
-                        }
-                    },
-                    "inject": [
-                        "options.name",
-                        "options",
-                        "options.destination"
-                    ]
-                },
-                "doc": {
-                    "description": "create a new command configuration (json file) with the given name and destination (if present, cwd otherwise)"
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
             "name": "generate",
             "config": {
                 "fs": {
@@ -117,18 +55,21 @@
                     "inject": [
                         "param.0",
                         "param.1",
-                        "param.2"
+                        "param.2",
+                        "param.3"
                     ]
                 },
                 "": {
                     "inject": [
                         "param.0",
                         "param.1",
-                        "param.2"
+                        "param.2",
+                        "param.3"
                     ]
                 },
                 "cli": {
                     "inject": [
+                        "options",
                         "param.0",
                         "options.name",
                         "param.1"
@@ -136,6 +77,18 @@
                     "options": {
                         "name": {
                             "needsValue": true
+                        },
+                        "recursive": {
+                            "aliases": [
+                                "R"
+                            ],
+                            "doc": "instructs the discovery process to analyze sub folders"
+                        },
+                        "flatten": {
+                            "aliases": [
+                                "f"
+                            ],
+                            "doc": "instructs the discovery process to ignore sub folder _names_ when generating commands"
                         }
                     }
                 }
@@ -286,7 +239,69 @@
             }
         },
         {
-            "name": "module",
+            "name": "new.command",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/cli/new/command.js",
+                    "source": "src/cli/new/command.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "usage": "new cmd <name> [destination]",
+                    "options": {
+                        "force": {
+                            "aliases": [
+                                "f"
+                            ]
+                        }
+                    },
+                    "inject": [
+                        "options.name",
+                        "options",
+                        "options.destination"
+                    ]
+                },
+                "doc": {
+                    "description": "create a new command with the given name and destination (if present, cwd otherwise)"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "new.command-config",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/cli/new/command-config.js",
+                    "source": "src/cli/new/command-config.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "usage": "new cc <name> [destination]",
+                    "options": {
+                        "force": {
+                            "aliases": [
+                                "f"
+                            ]
+                        }
+                    },
+                    "inject": [
+                        "options.name",
+                        "options",
+                        "options.destination"
+                    ]
+                },
+                "doc": {
+                    "description": "create a new command configuration (json file) with the given name and destination (if present, cwd otherwise)"
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "new.module",
             "config": {
                 "fs": {
                     "path": "dist/esm/cli/new/module.js",
