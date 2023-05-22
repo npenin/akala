@@ -1,4 +1,4 @@
-#  (2023-05-14)
+#  (2023-05-22)
 
 
 ### Bug Fixes
@@ -262,6 +262,7 @@
 * provide proper variable to bumps dependents 82f8ddb
 * proxy handling of properties update 47f6102
 * publish new version f9f4db9
+* pubsub import assert b4584a8
 * push before tagging d980dd0
 * ready command in pm works in both forks and remote cfb974f
 * ready command works properly d9b10c2
@@ -338,6 +339,7 @@
 * **storage:** any works properly 84f3b5e
 * support for async imports in cli plugins c5687da
 * support for multiple keys 7de775a
+* support for nested commands 564e4e7
 * support for no workspace dependencies 0703731
 * support for no workspace dependencies 9210550
 * support improved for esm 2a0a627
@@ -441,6 +443,7 @@
 * add new app package ac81505
 * add new module command to build a folder structure 2cc7008
 * add openapi generation d1f7bd3
+* add options to generate bae28ed
 * add plugins mechanism c9aee01
 * add position information on positional parameters c8cb21b
 * add possibility for custom file format 0360c2f
