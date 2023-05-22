@@ -3,13 +3,14 @@ import * as path from 'path'
 import * as fs from 'fs';
 import { Writable } from "stream";
 import { outputHelper, write } from './new.js';
+import { DiscoveryOptions } from "../processors/fs.js";
 
 function importJson(path: string)
 {
     return fs.promises.readFile(path, { encoding: 'utf-8', flag: 'r' }).then(JSON.parse)
 }
 
-export default async function generate(folder?: string, name?: string, outputFile?: string)
+export default async function generate(options: Partial<DiscoveryOptions>, folder?: string, name?: string, outputFile?: string)
 {
     folder = folder || process.cwd();
 
@@ -30,7 +31,7 @@ export default async function generate(folder?: string, name?: string, outputFil
         }
     }));
 
-    var commands = await akala.Processors.FileSystem.discoverMetaCommands(path.resolve(folder), { relativeTo: outputFolder, isDirectory: true, recursive: true, ignoreFileWithNoDefaultExport: true, processor: new akala.Processors.FileSystem(outputFolder) });
+    var commands = await akala.Processors.FileSystem.discoverMetaCommands(path.resolve(folder), Object.assign({ relativeTo: outputFolder, isDirectory: true, recursive: true, ignoreFileWithNoDefaultExport: true, processor: new akala.Processors.FileSystem(outputFolder) }, options));
     meta.commands = commands;
     if (commands.name)
         meta.name = commands.name;

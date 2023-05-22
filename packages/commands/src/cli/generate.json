@@ -4,11 +4,13 @@
         "inject": [
             "param.0",
             "param.1",
-            "param.2"
+            "param.2",
+            "param.3"
         ]
     },
     "cli": {
         "inject": [
+            "options",
             "param.0",
             "options.name",
             "param.1"
@@ -16,6 +18,18 @@
         "options": {
             "name": {
                 "needsValue": true
+            },
+            "recursive": {
+                "aliases": [
+                    "R"
+                ],
+                "doc": "instructs the discovery process to analyze sub folders"
+            },
+            "flatten": {
+                "aliases": [
+                    "f"
+                ],
+                "doc": "instructs the discovery process to ignore sub folder _names_ when generating commands"
             }
         }
     }

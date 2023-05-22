@@ -28,6 +28,7 @@ export type FSCommand = Metadata.Command & { config?: { fs?: FileSystemConfigura
 
 export interface DiscoveryOptions
 {
+    flatten?: boolean
     recursive?: boolean
     processor?: CommandProcessor
     isDirectory?: boolean
@@ -321,7 +322,7 @@ export class FileSystem extends CommandProcessor
             }
             else
                 if (f.isDirectory() && options && options.recursive)
-                    commands.push(...(await FileSystem.discoverMetaCommands(path.join(root, f.name), options)).map(c => ({ name: f.name + '.' + c.name, config: c.config })));
+                    commands.push(...(await FileSystem.discoverMetaCommands(path.join(root, f.name), options)).map(c => ({ name: (options.flatten ? '' : (f.name + '.')) + c.name, config: c.config })));
         }, null, false);
 
         return commands.sort((a, b) =>
