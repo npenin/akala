@@ -34,7 +34,7 @@ export class Processor extends CommandProcessor
             }
         }
         return this.client.send(new InvokeCommand({
-            FunctionName: `${this.prefix}${cmd.name}`,
+            FunctionName: `${this.prefix}${cmd.name.replace(/\./g, '-')}`,
             Payload: new TextEncoder().encode(JSON.stringify(param))
         })).then(r =>
         {
