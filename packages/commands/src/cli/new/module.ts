@@ -71,7 +71,7 @@ test`},
             })
         }, {
             name: 'tsconfig.cjs.json', content: JSON.stringify({
-                "extends": "../tsconfig.cjs.settings.json",
+                "extends": "../tsconfig.settings.cjs.json",
                 "compileOnSave": true,
                 "compilerOptions": {
                     "rootDir": "src",
@@ -81,7 +81,7 @@ test`},
             })
         }, {
             name: 'tsconfig.esm.json', content: JSON.stringify({
-                "extends": "../tsconfig.esm.settings.json",
+                "extends": "../tsconfig.settings.esm.json",
                 "compileOnSave": true,
                 "compilerOptions": {
                     "rootDir": "src",
