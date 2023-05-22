@@ -1,9 +1,9 @@
 #  (2023-05-22)
 
 
-### Features
+### Bug Fixes
 
-* add options to generate bae28ed
+* update command definitions 594a29a
 
 
 
