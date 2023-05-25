@@ -356,6 +356,7 @@
 * update all commands 8f54036
 * update CLI definitions 7281b40
 * update command definition 85c2891
+* update command definitions 594a29a
 * update command with affinity priority 03f05f2
 * update commands cli definition 5b7f8f1
 * update commands file 6365b5d
