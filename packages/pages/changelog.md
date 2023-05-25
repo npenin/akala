@@ -1,9 +1,10 @@
-#  (2023-05-22)
+#  (2023-05-25)
 
 
 ### Bug Fixes
 
 * add node as an export condition 4aa41a8
+* compilation c760ee3
 * downgrade all packages to support both cjs and mjs 56f6136
 * downgrade all packages to support both cjs and mjs 5c64966
 * embrace esm even more 3e7d10a
@@ -17,6 +18,7 @@
 ### Features
 
 * have both CJS and ESM at once cecd11a
+* start implementation of page builder 45f08c0
 * update to ESM 87800a0
 
 
