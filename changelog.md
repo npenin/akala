@@ -1,4 +1,4 @@
-#  (2023-05-22)
+#  (2023-05-25)
 
 
 ### Bug Fixes
@@ -77,6 +77,7 @@
 * commands default path 0bb1723
 * commands stay in order c3358c1
 * CommandWithAffinityProcessor better detection 9ff4857
+* compilation c760ee3
 * compilation c7efdb0
 * compilation e63e92e
 * compilation after typescript 4.4 upgrade 2828ff9
@@ -184,6 +185,7 @@
 * jsonrpc processor 497616c
 * jsonrpc prperly send parameters 3f6c761
 * jsonrpc trigger c95d27f
+* lambda indexes not respected 481cdc5
 * lambda processor 8aac501
 * lambda processor 4636a42
 * lambda processor 3d01ca7
@@ -504,6 +506,7 @@
 * removing problematic extend function 5daa1db
 * return ProxyConfiguration correct type when strongly typed eeaeee0
 * sidecar now fallback to proxy on pm 4ebe153
+* start implementation of page builder 45f08c0
 * started webdav module c663dba
 * support for commands through pm 3954c8a
 * support for config file path with needle 1243d91
