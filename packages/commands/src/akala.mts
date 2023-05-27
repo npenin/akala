@@ -68,7 +68,7 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
     })
 
 
-    commands.command('ls').options<{ name: string, path: string }>({ name: {}, path: { normalize: true } }).action(context =>
+    commands.command('ls').action(context =>
     {
         return Promise.resolve(context.state.commands)
     })
