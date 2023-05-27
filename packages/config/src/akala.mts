@@ -9,6 +9,13 @@ export default async function (_config, program: NamespaceMiddleware)
         context.state = Configuration.new(context.options['configFile'] as string, _config)
     });
 
+    program.format(r =>
+    {
+        if (r instanceof Configuration)
+            return r.extract();
+        return r;
+    })
+
     const config = program.command('config').state<Configuration>();
     config.command('set <key> [value]')
         .action(async function (context)

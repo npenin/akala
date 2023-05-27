@@ -222,7 +222,7 @@ export default function (_config, program: NamespaceMiddleware)
     //         await new Promise<void>((resolve) => socket.end(resolve));
     //     }
     // });
-    cli.format((result, context) =>
+    cli.format(async (result, context) =>
     {
         if (result instanceof Readable)
         {
@@ -232,7 +232,7 @@ export default function (_config, program: NamespaceMiddleware)
         if (socket)
             socket.end();
 
-        formatResult(result, context.options.output);
+        return formatResult(result, context.options.output);
     });
     program.useError((err: Error, context) =>
     {
