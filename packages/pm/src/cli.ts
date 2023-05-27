@@ -213,7 +213,7 @@ cli.preAction(async c =>
 //         await new Promise<void>((resolve) => socket.end(resolve));
 //     }
 // });
-cli.format((result, context) => formatResult(result, context.options.output));
+cli.format(async (result, context) => formatResult(result, context.options.output));
 program.useError((err: Error, context) =>
 {
     if (context.options.verbose)
