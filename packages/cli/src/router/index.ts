@@ -268,10 +268,10 @@ export const usageParser = /^((?:@?[/$_#\w-]+)(?: ([@$_#\w-]+))*)((?: (?:<\w+>))
 
 export class NamespaceMiddleware<TOptions extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>, TState = unknown> extends akala.MiddlewareIndexed<[CliContext<TOptions>], NamespaceMiddleware> implements akala.Middleware<[context: CliContext<TOptions, TState>]>
 {
-    private _preAction = new akala.MiddlewareComposite<[CliContext<TOptions, TState>]>();
+    private readonly _preAction = new akala.MiddlewareComposite<[CliContext<TOptions, TState>]>();
     private _action: akala.Middleware<[CliContext<TOptions, TState>]>;
     private readonly _option = new OptionsMiddleware<TOptions>();
-    private _format: (result: unknown, context: CliContext<TOptions, TState>) => void;
+    private readonly _format = new akala.MiddlewareComposite<[result: unknown, context: CliContext<TOptions, TState>]>();
 
     constructor(name: string, private _doc?: { usage?: string, description?: string }, private _cli?: akala.Middleware<[CliContext<TOptions, TState>]>)
     {
@@ -430,9 +430,9 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
         return this as unknown as NamespaceMiddleware<TOptions & { [key in TName]: TValue }, TState>;
     }
 
-    format(handler: (result: unknown, context: CliContext<TOptions, TState>) => void): void
+    format(handler: (result: unknown, context: CliContext<TOptions, TState>) => Promise<unknown>): void
     {
-        this._format = handler;
+        this._format.use(handler);
     }
 
     async handle(context: CliContext<TOptions, TState>): akala.MiddlewarePromise
@@ -478,7 +478,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
             }).catch(result =>
             {
                 if (this._format)
-                    throw this._format(result, context);
+                    throw this._format.process(result, context);
                 throw result;
             })
         }
