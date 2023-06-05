@@ -64,7 +64,7 @@ const metaUrl = import.meta?.url || new URL(__filename, 'file:///');
 
         return await container.dispatch('process', workflow);
     });
-    program.format(r =>
+    program.format(async r =>
     {
         console.log('%O', r);
     });

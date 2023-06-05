@@ -57,7 +57,7 @@ export default function (config, cli: NamespaceMiddleware)
 
         return await container.dispatch('process', workflow);
     });
-    program.format(r =>
+    program.format(async r =>
     {
         console.log('%O', r);
     });

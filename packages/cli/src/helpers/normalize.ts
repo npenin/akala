@@ -1,10 +1,12 @@
 import { createRequire } from 'module'
 import * as path from 'path'
 
-export default function normalize(mode: 'require' | 'requireMeta' | boolean, currentWorkingDirectory: string, value: string)
+export default function normalize(mode: 'import' | 'require' | 'requireMeta' | boolean, currentWorkingDirectory: string, value: string)
 {
     switch (mode)
     {
+        case 'import':
+            return new URL(value, 'file://' + currentWorkingDirectory + '/').toString();
         case 'require':
             // var values = value && value.split('/');
             // if (value && (value[0] == '@' && values.length > 2))

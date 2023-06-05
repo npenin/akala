@@ -51,7 +51,7 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
     });
 
     const commands = program.command('commands').state<{ commands: Record<string, string>, commit(): Promise<void> }>();
-    commands.command('add <name> <path>').options<{ name: string, path: string }>({ name: {}, path: { normalize: true } }).action(context =>
+    commands.command('add <name> <path>').options<{ name: string, path: string }>({ name: {}, path: {} }).action(context =>
     {
         if (!context.options.name)
             throw new ErrorMessage('the mandatory name was not provided. Please try again with a non-empty name.')
