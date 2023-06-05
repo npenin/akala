@@ -1,4 +1,4 @@
-#  (2023-05-25)
+#  (2023-06-05)
 
 
 ### Bug Fixes
@@ -90,6 +90,7 @@
 * connect when connecting to pm 7494ae0
 * connectByPreference not working with sockets bc8a5e1
 * consider pm container from options 56960e4
+* copy paste issue 45cc227
 * **core:** interpolate miss return f6c87b1
 * correct name assignment in fork 3deb98f
 * count and any pipelines d38a6c6
@@ -379,6 +380,7 @@
 * update to ws 8.0 ce769f9
 * update workspace parameter binding 6b6b07b
 * updateCommands now removes all commands before re-registering 7bc2f3d
+* upgrade to latest commands 2801d27
 * variable leak adef56b
 * variable renaming f825597
 * workflow output 3fca50e
@@ -471,6 +473,7 @@
 * add where signature for more flexibility a8d0f14
 * add windows service install support 3b9af3a
 * added winston as a logger system 065bae0
+* allow for relative path in cli bcccff1
 * cli now supports stream results 155e7ba
 * container can now act as middlewares 9484e39
 * continued daemonize impl 82694f1
@@ -483,6 +486,7 @@
 * export event emitter 750ac11
 * export processor 528d2ad
 * first pubsub commit 78b31e1
+* fix sidecar f1705d6
 * handle cookies on redirect fb6e2ab
 * have both CJS and ESM at once cecd11a
 * implement support typings 4c5d3e4
@@ -492,6 +496,7 @@
 * InteractError now using Binding for more possible usecases d9da85f
 * jsonrpc disconnect support for server and proxies 5d7128c
 * leverage suncalc c674f46
+* make format a middleware 8e8ec9a
 * move Deferred and Serializable(Object) to core 6507e1d
 * move ErrorWithStatus to core f3de950
 * move to ESM c7365f4
@@ -524,6 +529,7 @@
 
 ### BREAKING CHANGES
 
+* can only work with ESM now
 * config option renamed to configFile
 * index.mts moved to handler.ts
 * move to ESM to support tree shaking
