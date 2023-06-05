@@ -1,9 +1,13 @@
 #!/usr/bin/env node
 import program, { ErrorMessage } from './router/index.js';
 import fs from 'fs/promises'
+import { fileURLToPath, pathToFileURL } from 'url'
 import path from 'path'
 import * as akala from '@akala/core'
 import { buildCliContextFromProcess } from './index.js';
+import normalize from './helpers/normalize.js';
+
+
 
 function isRoot(indexOfSep: number): boolean
 {
@@ -29,7 +33,7 @@ process.emit = function (name, data, ...args)
 (async function ()
 {
     const mainProgram = program.command(null).option('help');
-    const plugins = ['./helpers/repl.js', './plugins.js'];
+    const plugins = [new URL('./helpers/repl.js', import.meta.url).toString(), new URL('./plugins.js', import.meta.url).toString()];
     const config: { plugins: string[], commit?: () => Promise<void> } = { plugins: [] };
     let loadedConfig: { plugins: string[] };
     program.option<string>('configFile', { aliases: ['c', 'config-file'], needsValue: true }).preAction(async context =>
@@ -100,7 +104,7 @@ process.emit = function (name, data, ...args)
                 await akala.eachAsync(plugins, async function (plugin)
                 {
                     context.logger.silly(`loading ${plugin}...`);
-                    (await import(plugin)).default(context.state, mainProgram);
+                    (await import(fileURLToPath(normalize('import', context.currentWorkingDirectory, plugin)))).default(context.state, mainProgram);
                 });
                 context.logger.debug(`plugins loaded`);
             }
