@@ -1,9 +1,14 @@
-#  (2023-05-22)
+#  (2023-06-05)
 
 
 ### Bug Fixes
 
-* update command definitions 594a29a
+* copy paste issue 45cc227
+
+
+### Features
+
+* allow for relative path in cli bcccff1
 
 
 
