@@ -3,25 +3,12 @@ import { Configuration } from '@akala/config'
 import { connectByPreference, Container, helper } from '@akala/commands'
 import { PubSubContainer, ContainerProxy as PubSubProxy } from '@akala/pubsub'
 import { ModelDefinition, MultiStore, PersistenceEngine, providers, Store, StoreDefinition } from '@akala/storage'
-import MetaPubSub from '@akala/pubsub/commands.json'
 import os from 'os'
 import path from 'path'
 import { Serializable, eachAsync, mapAsync, module } from '@akala/core';
 import { SerializableDefinition } from '@akala/storage'
 import { CliContext } from '@akala/cli'
-
-declare var require: NodeRequire | undefined;
-
-//eslint-disable-next-line @typescript-eslint/no-explicit-any
-function requireOrImportJson<T = any>(path: string): Promise<T>
-{
-    if (require)
-        return Promise.resolve(require(path));
-    else
-        //eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        //@ts-ignore
-        return import(path, { assert: { type: 'json' } }).then(i => i.default)
-}
+import MetaPubSub from '@akala/pubsub/commands.json' assert {type: 'json'}
 
 export interface PubSubConfiguration
 {
@@ -68,7 +55,7 @@ export default async function app<T extends StoreDefinition>(context: CliContext
     else
     {
         //eslint-disable-next-line @typescript-eslint/no-var-requires
-        var result = await connectByPreference<void>(require(path.join(os.homedir(), './pm.config.json')).mapping.pm.connect, { host: remotePm, metadata: await requireOrImportJson('@akala/pm/commands.json') })
+        var result = await connectByPreference<void>(require(path.join(os.homedir(), './pm.config.json')).mapping.pm.connect, { host: remotePm, metadata: (await import('@akala/pm/commands.json', { assert: { type: 'json' } })).default })
         sidecar.pm = result.container as Container<void> & pm;
     }
 
