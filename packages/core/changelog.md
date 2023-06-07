@@ -1,9 +1,9 @@
-#  (2023-06-05)
+#  (2023-06-07)
 
 
 ### Bug Fixes
 
-* upgrade to latest commands 2801d27
+* cli crashing when succeeding 4e7d4bb
 
 
 
