@@ -41,7 +41,7 @@ export class MiddlewareIndexed<T extends unknown[], TMiddleware extends AnyMiddl
 
     public process<X = unknown>(...req: T): Promise<X>
     {
-        return this.handle(...req).then(x => Promise.reject(x), x => Promise.resolve(x));
+        return this.handle(...req).then(x => typeof x !== 'undefined' ? Promise.reject(x) : Promise.resolve(x), x => Promise.resolve(x));
     }
 
     public async handleError(error: Error | OptionsResponse, ...req: T): MiddlewarePromise
