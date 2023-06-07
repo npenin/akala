@@ -478,7 +478,9 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
             }).catch(result =>
             {
                 if (this._format)
-                    throw this._format.process(result, context);
+                {
+                    return this._format.handle(result, context);
+                }
                 throw result;
             })
         }
