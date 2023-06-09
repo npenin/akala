@@ -1,4 +1,4 @@
-#  (2023-06-07)
+#  (2023-06-09)
 
 
 ### Bug Fixes
@@ -148,6 +148,7 @@
 * handle direct invokes f4a524e
 * handle empty orders in connectByPreference d35a80b
 * handle non-specified pm socket option dfd5212
+* handle result properly 373a7a9
 * hasOwnKeys now returns correct keys 76a062e
 * health check reliability 98df0c9
 * help now works where no socket is available 92ecda4
