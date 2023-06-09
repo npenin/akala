@@ -479,7 +479,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
             {
                 if (this._format)
                 {
-                    return this._format.handle(result, context);
+                    return this._format.handle(result, context).then((e) => { if (typeof e === 'undefined') throw result; return e; });
                 }
                 throw result;
             })
