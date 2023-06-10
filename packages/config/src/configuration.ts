@@ -95,7 +95,7 @@ export default class Configuration<T extends object = SerializableObject>
             {
                 if (!Reflect.has(target, p) && typeof p == 'string')
                 {
-                    target.set(p, null);
+                    target.delete(p);
                     return true;
                 }
                 return Reflect.deleteProperty(target, p);
@@ -203,6 +203,26 @@ export default class Configuration<T extends object = SerializableObject>
             }
             else if (typeof (config[key]) == 'undefined')
                 config[key] = {};
+
+            return config[key];
+        }, this.config);
+    }
+
+    public delete(key: Exclude<keyof T, symbol | number>): void
+    public delete(key: string): void
+    public delete(key: string | Exclude<keyof T, symbol | number>): void
+    public delete(key: string | Exclude<keyof T, symbol | number>): void
+    {
+        const keys = key.split('.');
+        keys.reduce(function (config, key, i)
+        {
+            if (typeof config === 'undefined')
+                return;
+            if (typeof config[key] !== 'undefined' && keys.length == i + 1)
+            {
+                delete config[key];
+                // console.log(config);
+            }
 
             return config[key];
         }, this.config);
