@@ -36,8 +36,15 @@ export interface CliConfiguration extends Configuration
     options?: { [key: string]: OptionOptions };
 }
 
-export interface DocConfiguration extends Configuration
+export interface DocConfiguration extends Configuration, SimpleDocConfiguration
+{
+    translations?: Record<string, SimpleDocConfiguration>
+}
+
+interface SimpleDocConfiguration
 {
     description?: string;
     options?: { [key: string]: string };
 }
+
+
