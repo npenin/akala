@@ -90,7 +90,17 @@ export default class Configuration<T extends object = SerializableObject>
                     return true;
                 }
                 return Reflect.set(target, p, value, receiver);
-            }
+            },
+            deleteProperty(target, p)
+            {
+                if (!Reflect.has(target, p) && typeof p == 'string')
+                {
+                    target.set(p, null);
+                    return true;
+                }
+                return Reflect.deleteProperty(target, p);
+
+            },
         }) as unknown as ProxyConfiguration<T>;
     }
 
