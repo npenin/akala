@@ -2,15 +2,16 @@
     "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
     "doc": {
         "inject": [
-            "$container",
+            "container",
             "options",
             "args"
         ],
         "options": {
-            "$container": "The to-be-served container",
+            "container": "The to-be-served container",
             "options": "The serve options",
-            "args": "The transports used to serve the container"
-        }
+            "args": "The transports used to serve the container (default available transports are http, tcp, local, ws).\nws, http and tcp have they secured counterparts available if cert and key options are provided."
+        },
+        "description": "Serves the `container` with different transports based on the provided options. \n\nDefault available transports are http, tcp, local, ws).\n  ws, http and tcp have they secured counterparts available if cert and key options are provided."
     },
     "cli": {
         "inject": [
