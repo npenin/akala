@@ -215,6 +215,7 @@
 * move cli to esm 3f28f3a
 * move dependency from devdep 36139a4
 * move from require to import to support esm 6ee5ce4
+* move socket name as part of socket options 97dd422
 * move to ESM 6ef0335
 * moved commands to internal event emitter bea79a2
 * nested container processing 8997869
@@ -423,6 +424,7 @@
 
 * add $container to fs inject e766ea3
 * add $init function for easier usage 3f4fa32
+* add abort signal on CliContext 7e11e23
 * add autotmate as an akala plugin d8ebbdc
 * add base64 converter to be runtime agnostic 990891d
 * add bin in webdav 563472b
@@ -472,6 +474,7 @@
 * add support for mjs and cjs files discovery dc3c17a
 * add support for shell script failure ignore 4b1dcc1
 * add support for untagged packages (yet) 6fbed9c
+* add translation support on documentation 168cbbf
 * add typed variant fcdd604
 * add where signature for more flexibility a8d0f14
 * add windows service install support 3b9af3a
@@ -532,6 +535,7 @@
 
 ### BREAKING CHANGES
 
+* serveMetadata signature change
 * can only work with ESM now
 * config option renamed to configFile
 * index.mts moved to handler.ts
