@@ -147,7 +147,7 @@ export function each(it: unknown[] | ArrayLike<unknown> | Record<string, unknown
 
 
 export async function map<T, U>(array: T[] | ArrayLike<T>, body: (element: T, i?: number) => PromiseLike<U>, waitForPrevious?: boolean): Promise<U[]>
-export async function map<T extends Record<string, unknown>, U>(o: T, body: (element: unknown, i: keyof T) => PromiseLike<U>, waitForPrevious?: boolean): Promise<U[]>
+export async function map<T extends Record<string, unknown>, U>(o: T, body: (element: T[keyof T], i: keyof T) => PromiseLike<U>, waitForPrevious?: boolean): Promise<U[]>
 // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
 export async function map<U>(it: any, body: (element: any, i: any) => PromiseLike<U>, waitForPrevious?: boolean): Promise<U[]>
 {
