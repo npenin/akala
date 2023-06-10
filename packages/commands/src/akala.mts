@@ -61,7 +61,7 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
         return context.state.commit();
     })
 
-    commands.command('remove <name>').options<{ name: string, path: string }>({ name: {}, path: { normalize: true } }).action(context =>
+    commands.command('remove <name>').options<{ name: string }>({ name: {} }).action(context =>
     {
         delete context.state.commands[context.options.name];
         return context.state.commit();
