@@ -111,7 +111,7 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
                             if (c.options.pmSocket)
                                 pmConnectInfo = parseMetadata(c.options.pmSocket, c.options.tls);
                             else
-                                pmConnectInfo = ac.serveMetadata('pm', { args: ['local'], options: {} })
+                                pmConnectInfo = ac.serveMetadata({ args: ['local'], options: { socketName: 'pm' } })
                             const x = await ac.connectByPreference(pmConnectInfo, { metadata: pmMeta, container: cliContainer });
                             pm = x.container as ac.Container<unknown> & pmDef.container;
                             pm.processor.useMiddleware(20, x.processor);

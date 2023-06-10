@@ -101,7 +101,7 @@ export default async function (this: State, container: RunningContainer & pmCont
         this.config.set('plugins', [])
     }
 
-    this.config.mapping['pm'].set('connect', serveMetadata('pm', { options: context.options, args: context.options.args } as unknown as ServeOptions));
+    this.config.mapping['pm'].set('connect', serveMetadata({ options: { ...context.options, socketName: 'pm' }, args: context.options.args as ServeOptions['args'] }));
 
     if (context && context.args.length)
         await container.dispatch('connect', 'pm', context);

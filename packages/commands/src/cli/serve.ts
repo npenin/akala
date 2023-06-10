@@ -1,11 +1,11 @@
-import { NetConnectOpts, Server } from 'net';
+import { NetConnectOpts, Server } from 'node:net';
 import { Container } from '../model/container.js';
 import { unlink } from 'fs';
-import { ServeMetadataWithSignal } from '../serve-metadata.js';
 import { NetSocketAdapter } from '../net-socket-adapter.js';
 import { eachAsync, Injector, noop } from '@akala/core';
 import { trigger } from '../triggers/jsonrpc.js';
 import { SecureContextOptions, Server as tlsServer } from 'tls';
+import { ServeMetadataWithSignal } from '../serve-metadata.js';
 
 export interface ServeOptions
 {
@@ -14,6 +14,7 @@ export interface ServeOptions
         tcpPort?: string;
         cert?: string;
         key?: string;
+        socketName: string
     }
     args: ('local' | 'http' | 'ws' | 'tcp')[];
 }

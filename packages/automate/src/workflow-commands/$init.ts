@@ -14,6 +14,6 @@ export default async function $init(this: CliContext, name: string, pm: pmContai
     }
     else
     {
-        await serve(self, { signal, ...serveMetadata(name, options) });
+        await serve(self, { signal, ...serveMetadata({ args: options.args, options: { ...options.options, socketName: options.options.socketName || name } }) });
     }
 }
