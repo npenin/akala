@@ -1,4 +1,4 @@
-#  (2023-06-09)
+#  (2023-06-10)
 
 
 ### Bug Fixes
@@ -465,6 +465,7 @@
 * add stateless initial support 8605db0
 * add stdin as param f7babf8
 * add stdio middleware 1934e21
+* add support config property deletion f44cfab
 * add support for -- in CLI bf64441
 * add support for breaking change parsing 3ad998a
 * add support for jobs and schedules (as a SqlAgent) 11927b5
