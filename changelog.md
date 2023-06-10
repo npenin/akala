@@ -99,6 +99,7 @@
 * CVE-2022-25881 #988 11a4e2a
 * default version ignore to decline 01cb0f7
 * define commands in sidecar c71d334
+* delete config property 3a15cc7
 * dependencies d61f681
 * discover cli usage 697946b
 * discover implementation 3502bed
@@ -215,6 +216,7 @@
 * move aws-sdk to optional peer dependency 6e177a5
 * move cli to esm 3f28f3a
 * move dependency from devdep 36139a4
+* move from abortsignal to abortcontroller c2849a6
 * move from require to import to support esm 6ee5ce4
 * move socket name as part of socket options 97dd422
 * move to ESM 6ef0335
@@ -496,6 +498,7 @@
 * fix sidecar f1705d6
 * handle cookies on redirect fb6e2ab
 * have both CJS and ESM at once cecd11a
+* implement serve in cli 1decbb4
 * implement support typings 4c5d3e4
 * improve middleware behaviour 89f0a24
 * improve trigger defintiion 0eecae1
