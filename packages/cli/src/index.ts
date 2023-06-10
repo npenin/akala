@@ -6,13 +6,13 @@ export { program };
 
 export function buildCliContext<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>(logger: Logger, ...args: string[]): CliContext<T>
 {
-    const result: Omit<CliContext<T>, 'logger'> = { signal: new AbortSignal(), args: args, argv: args, options: {} as T, currentWorkingDirectory: undefined };
+    const result: Omit<CliContext<T>, 'logger'> = { abort: new AbortController(), args: args, argv: args, options: {} as T, currentWorkingDirectory: undefined };
     Object.defineProperty(result, 'logger', { enumerable: false, value: logger });
     return result as CliContext<T>;
 }
 export function buildCliContextFromContext<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>(context: CliContext<T>, ...args: string[]): CliContext<T>
 {
-    const result: Omit<CliContext<T>, 'logger'> = { signal: new AbortSignal(), args: args, argv: context.argv, options: {} as T, currentWorkingDirectory: context.currentWorkingDirectory, state: context.state };
+    const result: Omit<CliContext<T>, 'logger'> = { abort: context.abort, args: args, argv: context.argv, options: {} as T, currentWorkingDirectory: context.currentWorkingDirectory, state: context.state };
     Object.defineProperty(result, 'logger', { enumerable: false, value: context.logger });
     return result as CliContext<T>;
 }
@@ -28,6 +28,7 @@ export function buildCliContextFromProcess<T extends Record<string, string | boo
         commandPath: process.argv0,
         options: {} as T,
         state,
+        abort: new AbortController(),
         currentWorkingDirectory: process.cwd(),
     } as unknown as CliContext<T>;
     Object.defineProperty(result, 'logger', { enumerable: false, value: logger });
