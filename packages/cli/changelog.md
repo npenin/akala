@@ -1,9 +1,9 @@
-#  (2023-06-07)
+#  (2023-06-09)
 
 
 ### Bug Fixes
 
-* cli crashing when succeeding 4e7d4bb
+* handle result properly 373a7a9
 
 
 
