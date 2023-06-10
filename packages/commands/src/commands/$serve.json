@@ -1,6 +1,17 @@
 {
     "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
-    "doc": {},
+    "doc": {
+        "inject": [
+            "$container",
+            "options",
+            "args"
+        ],
+        "options": {
+            "$container": "The to-be-served container",
+            "options": "The serve options",
+            "args": "The transports used to serve the container"
+        }
+    },
     "cli": {
         "inject": [
             "$container",
