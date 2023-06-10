@@ -14,7 +14,7 @@ export interface ServeOptions
         tcpPort?: string;
         cert?: string;
         key?: string;
-        socketName: string
+        socketName?: string
     }
     args: ('local' | 'http' | 'ws' | 'tcp')[];
 }
@@ -102,7 +102,6 @@ serverHandlers.register<ServerHandler<NetConnectOpts>>('socket', async (containe
 
 export default async function <T = void>(container: Container<T>, options: ServeMetadataWithSignal)
 {
-    console.log(options);
     var failed: Error = null;
 
     await eachAsync(options, (opt, name) =>
