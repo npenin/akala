@@ -23,6 +23,29 @@
                     }
                 }
             }
+        },
+        "doc": {
+            "$id": "#/doc",
+            "type": "object",
+            "title": "the doc Schema",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "title": "The command description",
+                    "description": "Decribe what your command is doing. Ideally in markdown format."
+                },
+                "options": {
+                    "type": "object",
+                    "title": "The options schema",
+                    "description": "Decribe each parameter of your command. Ideally in markdown format.",
+                    "patternProperties": {
+                        "^.+$": {
+                            "type": "string",
+                            "description": "Decribe the parameter your command. Ideally in markdown format."
+                        }
+                    }
+                }
+            }
         }
     },
     "$schema": "http://json-schema.org/draft-07/schema#",
@@ -189,27 +212,7 @@
                     "$ref": "#/definitions/inject"
                 },
                 {
-                    "$id": "#/doc",
-                    "type": "object",
-                    "title": "the doc Schema",
-                    "properties": {
-                        "description": {
-                            "type": "string",
-                            "title": "The command description",
-                            "description": "Decribe what your command is doing. Ideally in markdown format."
-                        },
-                        "options": {
-                            "type": "object",
-                            "title": "The options schema",
-                            "description": "Decribe each parameter of your command. Ideally in markdown format.",
-                            "patternProperties": {
-                                "^.+$": {
-                                    "type": "string",
-                                    "description": "Decribe the parameter your command. Ideally in markdown format."
-                                }
-                            }
-                        }
-                    }
+                    "$ref": "#/definitions/doc"
                 },
                 {
                     "$id": "#/doc-translation",
@@ -220,7 +223,7 @@
                             "type": "object",
                             "patternProperties": {
                                 "^[a-z]{2}-[A-Z]{2}$": {
-                                    "$ref": "#/doc"
+                                    "$ref": "#/definitions/doc"
                                 }
                             }
                         }
