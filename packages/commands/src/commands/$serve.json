@@ -1,0 +1,40 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
+    "doc": {},
+    "cli": {
+        "inject": [
+            "$container",
+            "options",
+            "context.args"
+        ],
+        "options": {
+            "tcpPort": {
+                "needsValue": true,
+                "aliases": [
+                    "tcp-port"
+                ],
+                "doc": "port used to serve json rpc over websocket. "
+            },
+            "port": {
+                "needsValue": true,
+                "doc": "port used to serve through http or https"
+            },
+            "key": {
+                "needsValue": true,
+                "normalize": true,
+                "doc": "certificate private key. Works in pair with `--cert`. If the certificate is not provided, the key is ignored."
+            },
+            "cert": {
+                "needsValue": true,
+                "doc": "certificate to be used to serve secured server. Works in pair with `--key`. If the key is not provided, the certificate is ignored."
+            },
+            "socketName": {
+                "needsValue": true,
+                "aliases": [
+                    "socket-name"
+                ],
+                "doc": "name of the unix-socket / windows named pipe. This option is used only in case when local is provided as an argument"
+            }
+        }
+    }
+}

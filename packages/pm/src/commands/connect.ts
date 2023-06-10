@@ -18,9 +18,9 @@ export default async function connect(this: State, name: string, context?: Serve
     if (context && context.args.length > 0)
     {
         if (!mapping)
-            this.config.mapping.set(`${name}.connect`, serveMetadata(name, context));
+            this.config.mapping.set(`${name}.connect`, serveMetadata({ args: context.args, options: { ...context.options, socketName: context.options.socketName || name } }));
         else
-            mapping.set('connect', serveMetadata(name, context));
+            mapping.set('connect', serveMetadata({ args: context.args, options: { ...context.options, socketName: context.options.socketName || name } }));
     }
     else
     {

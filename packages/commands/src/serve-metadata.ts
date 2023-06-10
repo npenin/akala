@@ -175,7 +175,7 @@ export function parseMetadata(connectionString: string, tls?: boolean): ServeMet
         return { socket: [{ port: Number(port), host: host }] };
 }
 
-export default function serveMetadata(name: string, context: ServeOptions): ServeMetadata
+export default function serveMetadata(context: ServeOptions): ServeMetadata
 {
     let args = context.args;
     if (!args || args.length == 0)
@@ -186,9 +186,9 @@ export default function serveMetadata(name: string, context: ServeOptions): Serv
     {
         let socketPath: string;
         if (platform() == 'win32')
-            socketPath = '\\\\?\\pipe\\' + name.replace(/\//g, '\\');
+            socketPath = '\\\\?\\pipe\\' + context.options.socketName.replace(/\//g, '\\');
         else
-            socketPath = join(process.cwd(), name.replace(/\//g, '-').replace(/^@/g, '') + '.sock');
+            socketPath = join(process.cwd(), context.options.socketName.replace(/\//g, '-').replace(/^@/g, '') + '.sock');
         metadata.socket = [{ path: socketPath }];
     }
 

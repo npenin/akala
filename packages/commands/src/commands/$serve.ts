@@ -1,10 +1,11 @@
 import serve from '../cli/serve.js';
-import { ServeMetadataWithSignal } from '../serve-metadata.js';
+import serveMetadata from '../serve-metadata.js';
 import { Container } from '../model/container.js';
+import { ServeOptions } from '../index.js';
 
-export default function $serve(container: Container<unknown>, options: ServeMetadataWithSignal)
+export default function $serve(container: Container<unknown>, options: ServeOptions)
 {
-    return serve(container, options);
+    return serve(container, { ...serveMetadata(options), signal: new AbortSignal() });
 }
 
 $serve.$inject = ['$container', 'param.0'];
