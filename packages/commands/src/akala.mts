@@ -1,21 +1,26 @@
 import { program as root, ErrorMessage, NamespaceMiddleware } from "@akala/cli"
-import { eachAsync } from "@akala/core"
+import { eachAsync, mapAsync } from "@akala/core"
 import { stat, writeFile } from "fs/promises";
 import { dirname } from "path";
 import commands from "./commands.js";
-import { Cli } from "./index.js";
+import { Cli, ServeOptions } from "./index.js";
 import { Container } from "./model/container.js";
 import FileSystem, { DiscoveryOptions } from "./processors/fs.js";
+import $serve from "./commands/$serve.js";
+import { Configurations } from "./metadata/configurations.js";
+const serveDefinition: Configurations = await import('../' + '../src/commands/$serve.json', { assert: { type: 'json' } }).then(x => x.default)
 
 export default function (config, program: NamespaceMiddleware<{ configFile: string }>)
 {
+    let containers: Record<string, Container<unknown>>;
+
     root.state<{ commands?: Record<string, string> & { extract?: () => Record<string, string> } }>().preAction(async (context) =>
     {
         let commands = context.state?.commands;
         if (commands && 'extract' in commands && typeof (commands.extract) == 'function')
             commands = commands.extract();
         if (commands)
-            await eachAsync(commands, async (path, name) =>
+            containers = Object.fromEntries(await mapAsync(commands, async (path, name) =>
             {
                 const cliContainer: commands.container & Container<void> = new Container<void>('cli', undefined);
 
@@ -46,8 +51,9 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
                 //     return subprogram.process(c);
                 // });
                 // p.usage = (c) => subprogram.usage(c);
-                return new Cli(cliContainer, commands, options.processor, program.command(name));
-            })
+                new Cli(cliContainer, commands, options.processor, program.command(name));
+                return [name, cliContainer]
+            }))
     });
 
     const commands = program.command('commands').state<{ commands: Record<string, string>, commit(): Promise<void> }>();
@@ -71,5 +77,11 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
     commands.command('ls').action(context =>
     {
         return Promise.resolve(context.state.commands)
+    })
+
+    commands.command<{ name: string }>('serve <name>', serveDefinition.doc.description).options(serveDefinition.cli.options).action(context =>
+    {
+        process.on('SIGINT', () => context.abort.abort())
+        return $serve(containers[context.options.name], { args: context.args as ServeOptions['args'], options: { ...context.options, socketName: context.options.name } }, context.abort.signal);
     })
 }
