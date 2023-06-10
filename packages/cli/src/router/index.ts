@@ -10,7 +10,8 @@ export interface CliContext<TOptions extends Record<string, string | boolean | s
     commandPath?: string;
     currentWorkingDirectory: string;
     state?: TState;
-    logger: Logger
+    logger: Logger;
+    signal: AbortSignal;
 }
 
 export interface OptionParseOption

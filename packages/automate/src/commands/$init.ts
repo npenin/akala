@@ -8,7 +8,7 @@ export default async function init(this: State, pm: pmContainer, persistTo?: str
     const queueProcessor = (msg: WorkflowInstance<object>, next: (processed: boolean) => void) =>
     {
         const name = msg.workflow.name || getRandomName();
-        pm.dispatch('start', '@akala/automate/workflow', { options: { new: true, name: name, wait: true }, args: ['local'], argv: [], currentWorkingDirectory: process.cwd(), logger: null }).then(async () =>
+        pm.dispatch('start', '@akala/automate/workflow', { signal: new AbortSignal(), options: { new: true, name: name, wait: true }, args: ['local'], argv: [], currentWorkingDirectory: process.cwd(), logger: null }).then(async () =>
         {
             const workflow: workflow.container = (await sidecar()[name]);
             await workflow.dispatch('set-config', msg.context);
