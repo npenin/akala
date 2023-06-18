@@ -1,13 +1,11 @@
 import { program as root, ErrorMessage, NamespaceMiddleware } from "@akala/cli"
-import { eachAsync, mapAsync } from "@akala/core"
-import { stat, writeFile } from "fs/promises";
-import { dirname } from "path";
+import { mapAsync } from "@akala/core"
 import commands from "./commands.js";
-import { Cli, ServeOptions } from "./index.js";
+import { Cli, ServeOptions, registerCommands } from "./index.js";
 import { Container } from "./model/container.js";
-import FileSystem, { DiscoveryOptions } from "./processors/fs.js";
 import $serve from "./commands/$serve.js";
 import { Configurations } from "./metadata/configurations.js";
+import getHandler from "./protocol-handler.js";
 const serveDefinition: Configurations = await import('../' + '../src/commands/$serve.json', { assert: { type: 'json' } }).then(x => x.default)
 
 export default function (config, program: NamespaceMiddleware<{ configFile: string }>)
@@ -24,46 +22,35 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
             {
                 const cliContainer: commands.container & Container<void> = new Container<void>('cli', undefined);
 
-                let options: DiscoveryOptions = { ignoreFileWithNoDefaultExport: true };
-                const stats = await stat(path);
-                options.isDirectory = stats.isDirectory();
+                let uri: URL;
+                try
+                {
+                    uri = new URL(path);
+                }
+                catch (e)
+                {
+                    if (e.message == 'Invalid URL')
+                        uri = new URL('file://' + path);
+                }
+                const handler = await getHandler(uri.protocol, uri)
 
-                if (!options.isDirectory)
-                    options.relativeTo = dirname(path);
-                else
-                    options.relativeTo = path;
+                cliContainer.processor.useMiddleware(51, handler.processor);
 
-                options.processor = new FileSystem(options.relativeTo);
+                const commands = await handler.getMetadata();
 
-                cliContainer.processor.useMiddleware(51, options.processor);
-
-                const commands = await FileSystem.discoverMetaCommands(path, options);
-                // const subprogram = new NamespaceMiddleware(name);
-                // const p = program.command(name); p.action(c =>
-                // {
-                //     c = buildCliContextFromContext(c, ...c.args);
-                //     if (c.state)
-                //     {
-                //         if (!c.state[name])
-                //             c.state[name] = {};
-                //         c.state = c.state[name];
-                //     }
-                //     return subprogram.process(c);
-                // });
-                // p.usage = (c) => subprogram.usage(c);
-                new Cli(cliContainer, commands, options.processor, program.command(name));
+                new Cli(cliContainer, commands, handler.processor, program.command(name));
                 return [name, cliContainer]
             }))
     });
 
     const commands = program.command('commands').state<{ commands: Record<string, string>, commit(): Promise<void> }>();
-    commands.command('add <name> <path>').options<{ name: string, path: string }>({ name: {}, path: {} }).action(context =>
+    commands.command<{ name: string, uri: string }>('add <name> <path|uri>').action(context =>
     {
         if (!context.options.name)
             throw new ErrorMessage('the mandatory name was not provided. Please try again with a non-empty name.')
         if (!context.state.commands)
             context.state.commands = {};
-        context.state.commands[context.options.name] = context.options.path;
+        context.state.commands[context.options.name] = context.options.uri;
         return context.state.commit();
     })
 

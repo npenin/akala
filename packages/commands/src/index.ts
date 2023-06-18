@@ -6,7 +6,7 @@ import * as Triggers from './triggers/index.js'
 import * as Metadata from './metadata/index.js'
 import { program, buildCliContext, buildCliContextFromProcess, NamespaceMiddleware } from '@akala/cli'
 import { Container } from './model/container.js'
-import { CommandProcessor } from './model/processor.js'
+import { ICommandProcessor } from './model/processor.js'
 import { registerCommands } from './generator.js'
 import { DiscoveryOptions, FileSystem } from './processors/index.js'
 import * as Processors from './processors/index.js'
@@ -28,7 +28,7 @@ export class Cli
     public readonly program: NamespaceMiddleware<{ [key: string]: string | number | boolean | string[]; }>;
     private promise: Promise<unknown>;
 
-    constructor(public readonly cliContainer: Container<void>, commands: Metadata.Command[], processor: CommandProcessor, program: NamespaceMiddleware)
+    constructor(public readonly cliContainer: Container<void>, commands: Metadata.Command[], processor: ICommandProcessor, program: NamespaceMiddleware)
     {
         registerCommands(commands, processor, cliContainer);
         this.promise = cliContainer.attach(Triggers.cli, this.program = program);

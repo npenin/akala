@@ -1,4 +1,5 @@
 import { CommandMetadataProcessorSignature, ICommandProcessor } from '../model/processor.js';
+import { addHandler } from '../protocol-handler.js';
 import { EventProcessor } from './event.js';
 
 export class LogProcessor extends EventProcessor
@@ -16,3 +17,8 @@ export class LogProcessor extends EventProcessor
             this.on('processed', postExecute);
     }
 }
+
+addHandler('log', (_url, inner) =>
+{
+    return Promise.resolve({ processor: new LogProcessor(inner.processor, (...args) => console.log(args), (...args) => console.log(args)), getMetadata: inner.getMetadata });
+})
