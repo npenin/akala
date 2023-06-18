@@ -23,7 +23,7 @@ process.emit = function (name, data, ...args)
         name === `warning` &&
         typeof data === `object` &&
         data.name === `ExperimentalWarning` &&
-        (data.message.includes(`Importing JSON modules`))
+        (data.message.includes(`Importing JSON modules`) || data.message.includes(`Import assertions`))
     )
         return false;
 
