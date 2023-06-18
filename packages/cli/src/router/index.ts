@@ -264,7 +264,7 @@ export interface UsageObject
     options?: Record<string, string>;
 }
 
-export const usageParser = /^((?:@?[/$_#\w-]+)(?: ([@$_#\w-]+))*)((?: (?:<\w+>))*(?: (?:\[\w+\]))*(?: \[(?:\.{3})\w+\])?)/;
+export const usageParser = /^((?:@?[/$_#\w-]+)(?: ([@$_#\w-]+))*)((?: (?:<[-\w])+>))*(?: (?:\[[-\w]+\]))*(?: \[(?:\.{3})[-\w]+\])?)/;
 
 
 export class NamespaceMiddleware<TOptions extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>, TState = unknown> extends akala.MiddlewareIndexed<[CliContext<TOptions>], NamespaceMiddleware> implements akala.Middleware<[context: CliContext<TOptions, TState>]>
@@ -331,7 +331,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
             var args = cli[3];
             var parameters: ({ name: keyof TOptions2 | keyof TOptions, rest?: boolean } & OptionOptions)[] = [];
             var parameter: RegExpExecArray;
-            const parameterParsing = / <(\w+)>| \[(\w+)\]| \[(?:\.{3})?(\w+)\]/g;
+            const parameterParsing = / <([-\w]+)>| \[([-\w]+)\]| \[(?:\.{3})?([-\w]+)\]/g;
             let position = 0;
             // eslint-disable-next-line no-cond-assign
             while (parameter = parameterParsing.exec(args))
