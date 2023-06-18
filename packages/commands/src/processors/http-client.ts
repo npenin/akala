@@ -3,9 +3,29 @@ import * as pathRegexp from 'path-to-regexp';
 import { CommandProcessor } from '../model/processor.js';
 import { Command, Configuration } from '../metadata/index.js';
 import { Container } from '../model/container.js';
+import { HandlerResult, addHandler } from '../protocol-handler.js';
 
 export class HttpClient extends CommandProcessor
 {
+
+    public static handler(protocol: 'http' | 'https'): (url: URL) => Promise<HandlerResult<HttpClient>>
+    {
+        const injector = new Injector();
+        return function (url)
+        {
+            url = new URL(url);
+            url.protocol = protocol;
+            const resolveUrl = (s: string) => new URL(s, url).toString();
+            injector.register('$resolveUrl', resolveUrl);
+            return Promise.resolve({
+                processor: new HttpClient(injector), getMetadata()
+                {
+                    return injector.injectWithName(['$http'], async (http: Http) => (await http.call(HttpClient.buildCall({ method: 'GET', route: '$metadata' }, resolveUrl))).json())(this)
+                }
+            })
+        }
+    }
+
     public handle(origin: Container<unknown>, command: Command, param: { param: unknown[], [key: string]: unknown }): MiddlewarePromise
     {
         if (!command.config)
@@ -118,6 +138,9 @@ export class HttpClient extends CommandProcessor
         this.injector = injector || defaultInjector;
     }
 }
+
+addHandler('http', HttpClient.handler('http'));
+addHandler('https', HttpClient.handler('https'));
 
 export interface HttpConfiguration extends Configuration
 {

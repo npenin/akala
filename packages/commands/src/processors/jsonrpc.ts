@@ -1,13 +1,35 @@
 import * as jsonrpcws from '@akala/json-rpc-ws'
 import { CommandProcessor, StructuredParameters } from '../model/processor.js'
-import { Command } from '../metadata/index.js';
+import { Command, Container as MetaContainer } from '../metadata/index.js';
 import { Container } from '../model/container.js';
 import { Local } from './local.js';
 import { Readable } from 'stream';
 import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam, SerializableObject, TypedSerializableObject } from '@akala/core';
+import { HandlerResult, addHandler } from '../protocol-handler.js';
 
 type OnlyArray<T> = Extract<T, unknown[]>;
 
+async function handler(url): Promise<HandlerResult<JsonRpc>>
+{
+    const socket = await new Promise<jsonrpcws.SocketAdapter>((resolve) =>
+    {
+        const socket = jsonrpcws.ws.connect(url.toString());
+        socket.on('open', function ()
+        {
+            resolve(socket);
+        });
+    });
+    const connection = JsonRpc.getConnection(socket);
+
+    return {
+        processor: new JsonRpc(connection, true), getMetadata: () => new Promise<Command[]>((resolve, reject) => connection.sendMethod<any, any>('$metadata', undefined, (err, metadata) =>
+            typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
+        ))
+    };
+}
+
+addHandler('ws', handler);
+addHandler('wss', handler);
 
 export class JsonRpc extends CommandProcessor
 {

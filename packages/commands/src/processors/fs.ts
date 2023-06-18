@@ -4,13 +4,42 @@ import * as akala from '@akala/core'
 import * as  Metadata from '../metadata/index.js';
 import { CommandProcessor } from '../model/processor.js';
 import { Container } from '../model/container.js';
-// import { configure } from '../decorators';
 import { registerCommands } from '../generator.js';
 import { Local } from './local.js';
 import { ExtendedConfigurations, jsonObject } from '../metadata/index.js';
 import { MiddlewarePromise } from '@akala/core';
 import { eachAsync } from '@akala/core';
 import { createRequire } from 'module';
+import { addHandler, parseQueryString } from '../protocol-handler.js';
+import { stat } from 'fs/promises';
+
+async function protocolHandler(url: URL)
+{
+    let options: DiscoveryOptions = parseQueryString(url);
+    if (url.searchParams.has('ignoreFileWithNoDefaultExport'))
+        options.ignoreFileWithNoDefaultExport = !!url.searchParams.get('ignoreFileWithNoDefaultExport') && url.searchParams.get('ignoreFileWithNoDefaultExport').toLocaleLowerCase() !== 'false';
+    else
+        options.ignoreFileWithNoDefaultExport = true;
+
+    const p: string = url.host + url.pathname;
+
+    if (typeof (options.isDirectory) === 'undefined')
+    {
+        const stats = await stat(p);
+        options.isDirectory = stats.isDirectory();
+    }
+    if (typeof (options.relativeTo) === 'undefined')
+        if (!options.isDirectory)
+            options.relativeTo = path.dirname(p);
+        else
+            options.relativeTo = p;
+
+    return { processor: new FileSystem(options.relativeTo), getMetadata: () => FileSystem.discoverMetaCommands(p, options) }
+}
+
+addHandler('fs', protocolHandler);
+addHandler('file', protocolHandler);
+
 
 export interface FileSystemConfiguration extends Metadata.Configuration
 {
@@ -181,9 +210,6 @@ export class FileSystem extends CommandProcessor
         }
         else if (existsSync(path.join(root, 'commands.json')))
             return this.discoverMetaCommands(path.join(root, 'commands.json'), { processor: options.processor, isDirectory: false });
-
-        if (!options.processor)
-            throw new Error('Processor not defined');
 
         const commands: Metadata.Command[] = [];
 
