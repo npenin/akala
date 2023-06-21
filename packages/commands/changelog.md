@@ -1,10 +1,9 @@
 #  (2023-06-21)
 
 
-### Features
+### Bug Fixes
 
-* add parent injector as container constructor parameter ab40186
-* enable env on cli containers 88cbdbe
+* tree shaking issue c239808
 
 
 
