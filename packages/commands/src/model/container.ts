@@ -31,9 +31,9 @@ export class Container<TState> extends akala.Injector implements Middleware<[ori
 
     public readonly processor: MiddlewareCompositeWithPriority<CommandMetadataProcessorSignature<TState>>;
 
-    constructor(public name: string, public state: TState, processor?: Middleware<CommandMetadataProcessorSignature<TState>>)
+    constructor(public name: string, public state: TState, processor?: Middleware<CommandMetadataProcessorSignature<TState>>, parent?: akala.Injector)
     {
-        super();
+        super(parent);
         if (typeof state !== 'undefined')
             this.register('$state', state);
         this.register('$container', this);
