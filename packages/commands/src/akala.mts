@@ -5,7 +5,7 @@ import { Cli, ServeOptions, registerCommands } from "./index.js";
 import { Container } from "./model/container.js";
 import $serve from "./commands/$serve.js";
 import { Configurations } from "./metadata/configurations.js";
-import getHandler from "./protocol-handler.js";
+import getHandler, { getHandlers } from "./protocol-handler.js";
 const serveDefinition: Configurations = await import('../' + '../src/commands/$serve.json', { assert: { type: 'json' } }).then(x => x.default)
 
 export default function (config, program: NamespaceMiddleware<{ configFile: string }>)
@@ -44,13 +44,21 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
     });
 
     const commands = program.command('commands').state<{ commands: Record<string, string>, commit(): Promise<void> }>();
-    commands.command<{ name: string, uri: string }>('add <name> <path|uri>').action(context =>
+    commands.command<{ name: string, path: string }>('add <name> <path|uri>').action(context =>
     {
         if (!context.options.name)
             throw new ErrorMessage('the mandatory name was not provided. Please try again with a non-empty name.')
         if (!context.state.commands)
             context.state.commands = {};
-        context.state.commands[context.options.name] = context.options.uri;
+        try
+        {
+            const url = new URL(context.options.path);
+            getHandlers(url.protocol.substring(0, url.protocol.length - 1))
+        }
+        catch (e)
+        {
+        }
+        context.state.commands[context.options.name] = context.options.path;
         return context.state.commit();
     })
 
@@ -66,9 +74,9 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
         return Promise.resolve(context.state.commands)
     })
 
-    commands.command<{ name: string }>('serve <name>', serveDefinition.doc.description).options(serveDefinition.cli.options).action(context =>
+    commands.command<{ container: string }>('serve <container>', serveDefinition.doc.description).options(serveDefinition.cli.options).action(context =>
     {
         process.on('SIGINT', () => context.abort.abort())
-        return $serve(containers[context.options.name], { args: context.args as ServeOptions['args'], options: { ...context.options, socketName: context.options.name } }, context.abort.signal);
+        return $serve(containers[context.options.container], { args: context.args as ServeOptions['args'], options: { ...context.options, socketName: context.options.container } }, context.abort.signal);
     })
 }
