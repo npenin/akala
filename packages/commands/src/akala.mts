@@ -1,5 +1,5 @@
 import { program as root, ErrorMessage, NamespaceMiddleware } from "@akala/cli"
-import { mapAsync } from "@akala/core"
+import { Injector, mapAsync } from "@akala/core"
 import commands from "./commands.js";
 import { Cli, ServeOptions, registerCommands } from "./index.js";
 import { Container } from "./model/container.js";
@@ -14,13 +14,15 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
 
     root.state<{ commands?: Record<string, string> & { extract?: () => Record<string, string> } }>().preAction(async (context) =>
     {
+        const sharedInjector = new Injector();
+        sharedInjector.register('env', process.env);
         let commands = context.state?.commands;
         if (commands && 'extract' in commands && typeof (commands.extract) == 'function')
             commands = commands.extract();
         if (commands)
             containers = Object.fromEntries(await mapAsync(commands, async (path, name) =>
             {
-                const cliContainer: commands.container & Container<void> = new Container<void>('cli', undefined);
+                const cliContainer: commands.container & Container<void> = new Container<void>('cli', undefined, undefined, sharedInjector);
 
                 let uri: URL;
                 try
