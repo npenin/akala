@@ -1,7 +1,65 @@
 import { Socket } from 'net';
+import { TLSSocket, connect as tlsconnect } from 'tls'
 import * as jsonrpcws from '@akala/json-rpc-ws';
 import { EventEmitter } from 'events';
+import { addHandler } from './protocol-handler.js';
+import { JsonRpc } from './processors/jsonrpc.js';
+import { Command } from './metadata/command.js';
 
+addHandler('tcp', async (url) =>
+{
+    const socket = new Socket();
+    await new Promise<void>(resolve => socket.connect({ port: url.port && Number(url.port) || 31416, host: url.hostname }, resolve));
+
+    const connection = JsonRpc.getConnection(new NetSocketAdapter(socket));
+
+    return {
+        processor: new JsonRpc(connection, true), getMetadata: () => new Promise<Command[]>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
+            typeof (err) == 'undefined' ? resolve(metadata.commands) : reject(err)
+        ))
+    };
+});
+
+addHandler('tcps', async (url) =>
+{
+    const socket = await new Promise<TLSSocket>(resolve => { const socket = tlsconnect({ port: url.port && Number(url.port) || 31416, host: url.hostname, servername: url.hostname }, () => resolve(socket)) });
+
+    const connection = JsonRpc.getConnection(new NetSocketAdapter(socket));
+
+    return {
+        processor: new JsonRpc(connection, true), getMetadata: () => new Promise<Command[]>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
+            typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
+        ))
+    };
+});
+
+addHandler('unix', async (url) =>
+{
+    const socket = new Socket();
+    await new Promise<void>(resolve => socket.connect({ path: url.hostname + url.pathname }, resolve));
+
+    const connection = JsonRpc.getConnection(new NetSocketAdapter(socket));
+
+    return {
+        processor: new JsonRpc(connection, true), getMetadata: () => new Promise<Command[]>((resolve, reject) => connection.sendMethod<any, any>('$metadata', undefined, (err, metadata) =>
+            typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
+        ))
+    };
+});
+
+
+addHandler('unixs', async (url) =>
+{
+    const socket = await new Promise<TLSSocket>(resolve => { const socket = tlsconnect({ path: url.hostname + url.pathname }, () => resolve(socket)) });
+
+    const connection = JsonRpc.getConnection(new NetSocketAdapter(socket));
+
+    return {
+        processor: new JsonRpc(connection, true), getMetadata: () => new Promise<Command[]>((resolve, reject) => connection.sendMethod<any, any>('$metadata', undefined, (err, metadata) =>
+            typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
+        ))
+    };
+});
 
 export class NetSocketAdapter implements jsonrpcws.SocketAdapter
 {
