@@ -460,6 +460,7 @@
 * add new module command to build a folder structure 2cc7008
 * add openapi generation d1f7bd3
 * add options to generate bae28ed
+* add parent injector as container constructor parameter ab40186
 * add plugins mechanism c9aee01
 * add position information on positional parameters c8cb21b
 * add possibility for custom file format 0360c2f
@@ -497,6 +498,7 @@
 * cron complete implementation 40ad48b
 * embedded cron implementation in workflow 9c518f0
 * enable cli help/documentation c141969
+* enable env on cli containers 88cbdbe
 * enforce logger on buildCliContext dd636e1
 * error message is retrieved if wait is specified e93f204
 * errors like are now true errors 954d0a8
