@@ -1,9 +1,10 @@
 #  (2023-06-21)
 
 
-### Bug Fixes
+### Features
 
-* enable jsonrpc on clients 0adf62b
+* add parent injector as container constructor parameter ab40186
+* enable env on cli containers 88cbdbe
 
 
 
