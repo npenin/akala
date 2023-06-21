@@ -360,6 +360,7 @@
 * swap build dependencies f7d45dd
 * switch processes state to object 5aa41a4
 * testing the backtick replacement 14bd2fb
+* tree shaking issue c239808
 * trigger signature 28e77a1
 * trying to add promise to solve "handled" lambda 62bad72
 * trying to fix docker files 2b8ce52
