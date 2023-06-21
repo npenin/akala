@@ -103,3 +103,9 @@ function isIpcConnectOption(options: NetConnectOpts): options is IpcNetConnectOp
 {
     return typeof options['path'] !== 'undefined';
 }
+
+
+export default function serveMetadata(context): ServeMetadata
+{
+    throw new Error('Not supported in browser');
+}
