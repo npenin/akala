@@ -1,4 +1,4 @@
-#  (2023-06-10)
+#  (2023-06-21)
 
 
 ### Bug Fixes
@@ -67,6 +67,7 @@
 * cli args parsing 6db1a80
 * cli crashing when succeeding 4e7d4bb
 * Cli implementation a6c7103
+* cli parsing 0736bf7
 * cli parsing a28c8fe
 * Cli wait fixed bac25a8
 * client compilation 4815fd5
@@ -168,6 +169,7 @@
 * improve http implementation 9e55419
 * improve module resolution af07cf8
 * improve performance of metadata lookup 81cf56a
+* improve reliability on commands 9e25e0b
 * improve remote sidecars defaults eef7b24
 * improve start/stop doc e4be495
 * improve support for extends f6622ee
@@ -452,6 +454,7 @@
 * add mongodb support b51751a
 * add multistore 7d0f562
 * add name fs discovery 27fe77d
+* add name variations 166ab73
 * add new app package ac81505
 * add new module command to build a folder structure 2cc7008
 * add openapi generation d1f7bd3
@@ -461,10 +464,12 @@
 * add possibility for custom file format 0360c2f
 * add possibility to parse filename 335cc97
 * add processing with lambda 650c4f5
+* add protocol handlers dc6c1b6
 * add reload-metadata on pm 654247f
 * add rest args on cli e6966a9
 * add runnerMiddleware as export ff4c95a
 * add schema validation e1d2b41
+* add serve cli dc82fc9
 * add sidecar models to configuration 8389089
 * add sidecars accessor c7792a7
 * add stateless initial support 8605db0
@@ -473,10 +478,12 @@
 * add support config property deletion f44cfab
 * add support for -- in CLI bf64441
 * add support for breaking change parsing 3ad998a
+* add support for dashes for command args 26955b9
 * add support for jobs and schedules (as a SqlAgent) 11927b5
 * add support for mjs and cjs files discovery dc3c17a
 * add support for shell script failure ignore 4b1dcc1
 * add support for untagged packages (yet) 6fbed9c
+* add tcp remote protocol handler 9d5dbfb
 * add translation support on documentation 168cbbf
 * add typed variant fcdd604
 * add where signature for more flexibility a8d0f14
