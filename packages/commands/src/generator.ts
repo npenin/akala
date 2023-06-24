@@ -51,23 +51,23 @@ export function proxy<T = unknown>(metacontainer: meta.Container, processor: Com
 
 export function registerCommands<T>(commands: meta.Command[], processor: ICommandProcessor, container: Container<T>): void
 {
-    commands.forEach(cmd =>
+    for (var cmd of commands)
     {
         if (cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata')
             return;
-        container.register({ name: cmd.name, config: cmd.config, processor });
-    });
+        container.register(cmd.name, { name: cmd.name, config: cmd.config, processor });
+    }
 }
 
 export function updateCommands<T>(commands: meta.Command[], processor: ICommandProcessor, container: Container<T>): void
 {
     container.keys().map<[string, meta.Command]>(c => [c, container.resolve(c)]).filter(x => isCommand(x[1] && x[0] != '$metadata')).forEach(v => container.unregister(v[0]))
-    commands.forEach(cmd =>
+    for (var cmd of commands)
     {
         if (cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata')
             return;
-        container.register({ ...cmd, processor }, true);
-    });
+        container.register(cmd.name, { ...cmd, processor }, true);
+    }
 }
 
 export function helper<TProxy = { [key: string]: (...args: unknown[]) => Promise<unknown> }>(container: Container<unknown>, metacontainer?: meta.Container): TProxy
