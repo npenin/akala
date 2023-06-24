@@ -123,21 +123,27 @@ export class Container<TState> extends akala.Injector implements Middleware<[ori
     public register<T>(name: string, value: T, override?: boolean): T
     public register<T extends Metadata.Command>(cmd: T, override?: boolean): T
     public register(cmd: Container<unknown>, override?: boolean): Container<unknown>
-    public register<T>(cmd: string | Metadata.Command | Container<unknown>, value?: T, override?: boolean): T | Metadata.Command | Container<unknown>
+    public register<T>(cmd: string | (T & { name: string }), value?: T, override?: boolean): T
     {
-        if (typeof cmd !== 'string' && 'name' in cmd)
-            return this.register(cmd.name, cmd, !!value);
-        else 
+        if (typeof cmd !== 'string')
         {
-            if (cmd == '$injector' || cmd == '$container')
-                return super.register(cmd, value, override) as unknown as T;
-            if (value instanceof Container)
-                return super.register(cmd, value, override);
-            if (typeof value != 'undefined')
-                return super.register(cmd, value, override);
+            if ('name' in cmd)
+            {
+                override == !!value;
+                value = cmd;
+                cmd = cmd.name;
+            }
             else
-                throw new Error('value cannot be undefined');
+                throw new akala.ErrorWithStatus(400, 'The provided item cannot be registered as it does not have a name property. Please provide a name as the first parameter or provide an object with a name property');
         }
+        if (cmd == '$injector' || cmd == '$container')
+            return super.register(cmd, value, override) as unknown as T;
+        if (value instanceof Container)
+            return super.register(cmd, value, override);
+        if (typeof value != 'undefined')
+            return super.register(cmd, value, override);
+        else
+            throw new Error('value cannot be undefined');
     }
 }
 
