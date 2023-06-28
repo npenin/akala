@@ -7,10 +7,16 @@ const page: dom.Document = {
     type: 'html',
     head: { title: 'pwet', meta: { 'og:product': 'totot' } },
     body: [
-        { type: '', content: 'coucou' }
+        {
+            type: '',
+            content: 'coucou',
+            render(n, t, prefix?)
+            {
+                if (typeof n == 'string')
+                    return n + prefix + 'pwetpwet'
+            },
+        }
     ]
 }
-
-
 
 console.log(renderOuter(page, '\n'));

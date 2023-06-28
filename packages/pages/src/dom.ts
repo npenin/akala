@@ -9,6 +9,11 @@ export interface Tag<T, TAttributes extends Record<string, string> = Record<stri
     type: T
     classes?: string[]
     attributes?: TAttributes
+    event?: { [key: string]: EventListenerOrEventListenerObject };
+    render?(n: Node, t: Tag<T, TAttributes>): void
+    render?(n: string, t: Tag<T, TAttributes>, prefix: string): string
+    renderWithChildren?(n: Node, t: Tag<T, TAttributes>): void
+    renderWithChildren?(n: string, t: Tag<T, TAttributes>, prefix: string): string
 }
 
 export interface TextTag<T, TAttributes extends Record<string, string> = Record<string, string>> extends Tag<T, TAttributes>

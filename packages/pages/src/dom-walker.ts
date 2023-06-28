@@ -58,7 +58,15 @@ export function renderOuter(tag: Tag<any> | CompositeTag<Exclude<any, 'html'>> |
     {
         case '':
             if ('content' in tag && typeof (tag.content) === 'string')
-                return prefix + tag.content;
+            {
+                let result: string = '';
+                if (tag.render)
+                    result = tag.render(result, tag, prefix) || result;
+                result += prefix + tag.content;
+                if (tag.renderWithChildren)
+                    result = tag.renderWithChildren(result, tag, prefix) || result;
+                return result;
+            }
         case 'html':
             let head = ''
             const html = tag as Document;
@@ -66,7 +74,7 @@ export function renderOuter(tag: Tag<any> | CompositeTag<Exclude<any, 'html'>> |
             {
                 prefix = indent(prefix);
                 if (html.head.title)
-                    head += renderOuter({ type: 'title', content: html.head.title }, prefix)
+                    head += prefix + renderOuter({ type: 'title', content: html.head.title }, '')
                 if (html.head.meta)
                     head += Object.entries(html.head.meta).map(meta => renderOuter({ type: 'meta', attributes: { name: meta[0], content: meta[1] } }, prefix))
                 if (html.head.links)
@@ -78,12 +86,25 @@ export function renderOuter(tag: Tag<any> | CompositeTag<Exclude<any, 'html'>> |
             return `<${tag.type}${renderAttributes(tag.attributes)}>${prefix}<head>${head}${prefix}</head>${prefix}<body>${html.body.map(v => renderOuter(v, indent(prefix))).join('')}${prefix}<body>${prefix}</${tag.type}>`;
 
         default:
+            let result: string;
+            if ('classes' in tag && tag.classes?.length)
+                result = `${prefix}<${tag.type}${renderAttributes({ 'class': tag.classes.join(' '), ...tag.attributes })}>`;
+            result = `${prefix}<${tag.type}${renderAttributes(tag.attributes)}>`
+            if (tag.render)
+                result = tag.render(result, tag, prefix) || result;
+
+
             let inner = renderInner(tag, indent(prefix));
             if (inner && prefix)
                 inner += prefix;
-            if ('classes' in tag && tag.classes?.length)
-                return `${prefix}<${tag.type}${renderAttributes({ 'class': tag.classes.join(' '), ...tag.attributes })}>${inner}</${tag.type}>`;
-            return `${prefix}<${tag.type}${renderAttributes(tag.attributes)}>${inner}</${tag.type}>`;
+            result += inner;
+
+            result += `</${tag.type}>`;
+
+            if (tag.event?.renderWithChildren)
+                return tag.renderWithChildren(result, tag, prefix) || result;
+
+            return result;
     }
 }
 
@@ -93,7 +114,12 @@ export function renderOuterWithDomAPI(tag: CompositeTag<Exclude<any, 'html'>> | 
     {
         case '':
             if ('content' in tag && typeof (tag.content) === 'string')
-                return document.createTextNode(tag.content);
+            {
+                let result = document.createTextNode(tag.content);
+                if (tag.event)
+                    Object.entries(tag.event).forEach(att => result.addEventListener(att[0], att[1]));
+                return result;
+            }
         case 'html':
             const doc = document.createElement('html');
             const html = tag as Document;
@@ -119,7 +145,10 @@ export function renderOuterWithDomAPI(tag: CompositeTag<Exclude<any, 'html'>> | 
                 self.classList.add(...tag.classes);
             if (tag.attributes)
                 Object.entries(tag.attributes).forEach(att => self.setAttribute(att[0], att[1]));
-
+            if (tag.event)
+                Object.entries(tag.event).forEach(att => self.addEventListener(att[0], att[1]));
+            if (tag.event?.render)
+                tag.render(self, tag);
             if ('content' in tag)
                 if (typeof (tag.content) === 'string')
                 {
@@ -128,7 +157,8 @@ export function renderOuterWithDomAPI(tag: CompositeTag<Exclude<any, 'html'>> | 
                 }
                 else
                     tag.content.map((v: Tag<any>) => self.appendChild(renderOuterWithDomAPI(v)));
-
+            if (tag.event?.renderWithChildren)
+                tag.renderWithChildren(self, tag);
             return self;
     }
 }
