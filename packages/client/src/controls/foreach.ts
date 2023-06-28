@@ -9,9 +9,10 @@ export interface ForeachParameter
 }
 
 @control('each', 100, { scope: true })
+@akala.injectClass(['parameter', '$injector'])
 export class ForEach extends GenericControlInstance<ForeachParameter>
 {
-    constructor(@akala.inject('parameter') parameter: ForeachParameter | string, @akala.inject('$injector') injector: akala.Injector)
+    constructor(parameter: ForeachParameter | string, injector: akala.Injector)
     {
         if (typeof (parameter) == 'string')
         {
@@ -19,6 +20,7 @@ export class ForEach extends GenericControlInstance<ForeachParameter>
             injector.register('parameter', parameter, true);
         }
         super();
+        this.parameter = parameter;
     }
 
     public init()

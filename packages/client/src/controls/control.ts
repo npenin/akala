@@ -7,7 +7,7 @@ import { Binding } from '@akala/core'
 
 export function control<T = unknown>(name: string, priority?: number, options?: { scope?: boolean })
 {
-    return function <TClass extends { new(...args: unknown[]): TInstance }, TInstance extends IControlInstance<T>>(ctrl: TClass)
+    return function <TClass extends { new(...args: unknown[]): TInstance }, TInstance extends IControlInstance<T>>(ctrl: TClass, _context: ClassDecoratorContext<TClass>)
     {
         Control.injector.activateNew()(
             class extends Control<T> {
@@ -149,7 +149,7 @@ export abstract class BaseControl<T> extends Control<T>
 export type ControlControlParameter<T> = T extends GenericControlInstance<infer TParameter> ? ControlParameter<TParameter> : never;
 export type ControlParameter<TParameter> = Binding<TParameter> | (TParameter extends (infer X)[] ? ObservableArray<X> | TParameter : TParameter);
 
-@akala.injectable
+@akala.injectClass([])
 export class GenericControlInstance<TParameter, TScope extends IScope<unknown> = IScope<unknown>> implements IControlInstance<TParameter>
 {
     protected stopWatches: (() => (void | Promise<void>))[] = [];

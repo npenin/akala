@@ -1,10 +1,11 @@
 import "reflect-metadata";
-import { Injector, InjectedParameter } from './injector.js';
+import { Injector, InjectedParameter, Injected } from './injector.js';
 
 export type PropertyInjection = ((i: Injector) => void);
 export type ParameterInjection = ((i: Injector) => InjectedParameter<unknown>);
 
 export const injectSymbol = Symbol('inject');
+export const injectorSymbol = Symbol('injector');
 export const afterInjectSymbol = Symbol('after-inject');
 
 export interface InjectableOjbect
@@ -12,40 +13,95 @@ export interface InjectableOjbect
     [injectSymbol]: ((i: Injector) => void)[];
 }
 
-export function inject(name?: string)
+export function injectField(name?: string)
 {
-    return function (target: object | (new (...args: unknown[]) => unknown), propertyKey: string, parameterIndex?: number)
+    return function (target: undefined, context: ClassFieldDecoratorContext)
     {
-        if (typeof parameterIndex == 'number')
+        const injections: { [key: string | symbol]: (PropertyInjection)[] } = Reflect.getOwnMetadata(injectSymbol, this) || { [context.name]: [] };
+        if (!injections[context.name])
         {
-            if (!name)
-                throw new Error('name is required as parameter names are not available in reflection');
-            const injections: { [key: string]: (PropertyInjection | ParameterInjection)[] } = Reflect.getOwnMetadata(injectSymbol, target) || { [propertyKey]: [] };
-            if (!injections[propertyKey])
-                injections[propertyKey] = [];
-            injections[propertyKey].push(function (injector: Injector)
-            {
-                const resolved = injector.resolve(name);
-                return { index: parameterIndex, value: resolved };
-            });
-            if (propertyKey)
-                Reflect.defineMetadata(injectSymbol, injections[propertyKey], target[propertyKey]);
-            Reflect.defineMetadata(injectSymbol, injections, target)
+            injections[context.name] = [];
+            Reflect.defineMetadata(injectSymbol, injections, this)
         }
-        else
+
+        injections[context.name].push(function (injector: Injector)
         {
-            const injections: { [key: string]: (PropertyInjection | ParameterInjection)[] } = Reflect.getOwnMetadata(injectSymbol, target) || { [propertyKey]: [] };
-            if (!injections[propertyKey])
-                injections[propertyKey] = [];
-            injections[propertyKey].push(function (injector: Injector)
-            {
-                this[propertyKey] = injector.resolve(name || propertyKey);
-            });
+            context.access.set(this, injector.resolve(name as string || context.name));
+        });
 
-            Reflect.defineMetadata(injectSymbol, injections, target)
+    }
+}
 
+export function injectClassMethod(name: string[])
+{
+    return function <T, U extends unknown[]>(target: ((...args: U) => T), context: ClassMethodDecoratorContext)
+    {
+        let cache: Injected<T, unknown[]>;
+        return function (...args: unknown[]): T
+        {
+            const injector: Injector = Reflect.getOwnMetadata(injectorSymbol, this)
+            if (!cache)
+                cache = injector.injectWithName(name, target);
+            return cache(this, ...args);
         }
     }
+}
+
+export function injectClass(name: string[])
+{
+    return function <T, U extends unknown[]>(target: (new (...args: U) => T), context: ClassDecoratorContext<(new (...args: U) => T)>)
+    {
+        return injectable(target);
+    }
+}
+
+export type ClassDecorator = <T, This, U extends unknown[]>(target: (new (...args: U) => T), context: ClassDecoratorContext<typeof target>) => (new (...args: U) => T) | void
+export type ClassMethodDecorator = <T, This, U extends unknown[]>(target: ((this: This, ...args: U) => T), context: ClassMethodDecoratorContext<This, typeof target>) => ((...args: U) => T) | void
+export type ClassFieldDecorator = <This>(target: undefined, context: ClassFieldDecoratorContext<This>) => ((this: This) => void) | void
+
+export interface Decorator
+{
+    <T, This, U extends unknown[]>(target: (new (...args: U) => T), context: ClassDecoratorContext<typeof target>): (new (...args: U) => T) | void
+    <T, This, U extends unknown[]>(target: ((this: This, ...args: U) => T), context: ClassMethodDecoratorContext<This, typeof target>): ((...args: U) => T) | void
+    <T, This>(target: undefined, context: ClassFieldDecoratorContext<This, T>): ((this: This, value: T) => T) | void
+}
+
+export function inject(name?: string | string[]): Decorator
+{
+    return function <T, This, U extends unknown[]>(target: undefined | (new (...args: U) => T) | ((...args: U) => T), context: ClassFieldDecoratorContext<This> | ClassDecoratorContext<(new (...args: U) => T)> | ClassMethodDecoratorContext<This, (...args: U) => T>)
+    {
+        // if (typeof parameterIndex == 'number')
+        // {
+        //     if (!name)
+        //         throw new Error('name is required as parameter names are not available in reflection');
+        //     const injections: { [key: string]: (PropertyInjection | ParameterInjection)[] } = Reflect.getOwnMetadata(injectSymbol, target) || { [propertyKey]: [] };
+        //     if (!injections[propertyKey])
+        //         injections[propertyKey] = [];
+        //     injections[propertyKey].push(function (injector: Injector)
+        //     {
+        //         const resolved = injector.resolve(name);
+        //         return { index: parameterIndex, value: resolved };
+        //     });
+        //     if (propertyKey)
+        //         Reflect.defineMetadata(injectSymbol, injections[propertyKey], target[propertyKey]);
+        //     Reflect.defineMetadata(injectSymbol, injections, target)
+        // }
+        // else
+        // {
+        switch (context.kind)
+        {
+            case "field":
+                return injectField(name as string).call(this, target as undefined, context);
+
+            case "class":
+                return injectable(target as (new (...args: U) => T));
+
+            case "method":
+                return injectClassMethod(name as string[]).call(this, target as ((...args: U) => T), context);
+        }
+
+        //     }
+    } as any
 }
 
 export function applyInjector(injector: Injector, obj: object, prototype?: object)
@@ -106,7 +162,9 @@ export function applyInjector(injector: Injector, obj: object, prototype?: objec
     }
 }
 
-export function injectable<TInstance, TClass extends { new(...args: unknown[]): TInstance }>(ctor: TClass, injector?: Injector): TClass
+type Constructor<T, U extends unknown[] = unknown[]> = (new (...args: U) => T)
+
+export function injectable<TInstance, TClass extends Constructor<TInstance>>(ctor: TClass, injector?: Injector): Exclude<TClass, Constructor<TInstance>> & { new(...args: unknown[]): TInstance } 
 {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-expect-error
@@ -144,7 +202,7 @@ export function injectable<TInstance, TClass extends { new(...args: unknown[]): 
 
     Object.assign(result, ctor);
 
-    return result;
+    return result as any;
 }
 
 export type InjectableClass<T> = T & {
@@ -153,15 +211,15 @@ export type InjectableClass<T> = T & {
 
 export function useInjector(injector: Injector)
 {
-    return function classInjectorDecorator<TClass extends { new(...args: unknown[]): object }>(ctor: TClass): TClass
+    return function classInjectorDecorator<TClass extends { new(...args: unknown[]): object }>(ctor: TClass, context: ClassDecoratorContext): TClass
     {
         return injectable(ctor, injector);
     }
 }
 
-export function extendInject<TClass extends { new(...args: unknown[]): object }>(injector: Injector, constructor: TClass)
+export function extendInject<TClass extends { new(...args: unknown[]): object }>(injector: Injector, constructor: TClass, context: ClassDecoratorContext)
 {
-    return useInjector(injector)<TClass>(constructor);
+    return useInjector(injector)<TClass>(constructor, context);
 }
 
 
