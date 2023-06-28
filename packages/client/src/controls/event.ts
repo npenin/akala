@@ -15,7 +15,8 @@ export class Events extends GenericControlInstance<Partial<HTMLElementEventHandl
         super();
     }
 
-    public init(@inject('$injector') injector?: Injector)
+    @inject(['$injector'])
+    public init(injector?: Injector)
     {
         let value: Partial<HTMLElementEventHandlerMap> | PromiseLike<Partial<HTMLElementEventHandlerMap>>;
         if (this.parameter instanceof Binding)

@@ -19,9 +19,12 @@ akala.defaultInjector.registerFactory('$translator', akala.defaultInjector.injec
 @control('translate')
 export class Translate extends Text
 {
-    constructor(@akala.inject('$translator') private translator: akala.Translator)
+    @akala.inject('$translator') private translator: akala.Translator
+
+    constructor(translator: akala.Translator)
     {
         super()
+        this.translator = translator;
     }
 
     protected setValue(element: Element, value)

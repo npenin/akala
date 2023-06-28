@@ -84,14 +84,14 @@ export class MultiStore<TStore extends StoreDefinition>
     }
 }
 
-export function Model<TObject>(name: (new () => TObject)): void
-export function Model<TObject>(name: string, nameInStorage?: string, namespace?: string): (ctor: new () => TObject) => void
-export function Model<TObject>(name: string | (new () => TObject), nameInStorage?: string, namespace?: string): void | ((ctor: new () => TObject) => void)
+export function Model<TObject>(name: (new () => TObject), context: ClassDecoratorContext): void
+export function Model<TObject>(name: string, nameInStorage?: string, namespace?: string): ((name: (new () => TObject), context: ClassDecoratorContext) => void)
+export function Model<TObject>(name: string | (new () => TObject), nameInStorage?: string | ClassDecoratorContext, namespace?: string): ((name: (new () => TObject), context: ClassDecoratorContext) => void) | void
 {
     if (typeof name !== 'string')
-        return Model<TObject>(name.name)(name);
+        return Model<TObject>(name.name)(name, nameInStorage as ClassDecoratorContext);
     var name_s = name;
-    return function <TObject>(cl: (new () => TObject))
+    return function <TObject>(cl: (new () => TObject), _context: ClassDecoratorContext)
     {
         var model: ModelDefinition<TObject> = Reflect.getMetadata('db:model', cl.prototype)
         if (typeof model == 'undefined')
@@ -100,13 +100,13 @@ export function Model<TObject>(name: string | (new () => TObject), nameInStorage
                 throw new Error('Model name is not defined');
             if (!name_s)
                 name_s = cl.name;
-            model = new ModelDefinition<TObject>(name_s, nameInStorage || name_s, namespace || null);
+            model = new ModelDefinition<TObject>(name_s, nameInStorage as string || name_s, namespace || null);
             Reflect.metadata('db:model', model)(cl.prototype);
         }
         else
         {
             model.name = name_s;
-            model.nameInStorage = nameInStorage || name_s;
+            model.nameInStorage = nameInStorage as string || name_s;
             model.namespace = namespace || null;
             ModelDefinition.definitions[name_s] = model;
         }
@@ -120,15 +120,15 @@ export { Enumerable };
 
 export function Field(type?: FieldType | (() => FieldType), generator?: Generator)
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function Field<T>(target: any, propertyKey: string, descriptor?: TypedPropertyDescriptor<T>)
-export function Field<T>(type?: FieldType | (() => FieldType), propertyKey?: string | Generator, descriptor?: TypedPropertyDescriptor<T>)
+export function Field<T>(target: unknown, context: ClassSetterDecoratorContext | ClassFieldDecoratorContext | ClassGetterDecoratorContext)
+export function Field<T>(type?: FieldType | (() => FieldType), context?: ClassSetterDecoratorContext | Generator | ClassFieldDecoratorContext | ClassGetterDecoratorContext)
 {
-    if (typeof propertyKey != 'undefined' && typeof propertyKey != 'number')
+    if (typeof context != 'undefined' && typeof context != 'number')
     {
-        return Field()(type, propertyKey, descriptor);
+        return Field()(type, context);
     }
 
-    return member(false, type, propertyKey);
+    return member(false, type, context);
 }
 
 export function Key(type?: FieldType | (() => FieldType), generator?: Generator)
