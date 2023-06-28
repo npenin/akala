@@ -104,7 +104,16 @@ process.emit = function (name, data, ...args)
                 await akala.eachAsync(plugins, async function (plugin)
                 {
                     context.logger.silly(`loading ${plugin}...`);
-                    (await import(fileURLToPath(normalize('import', context.currentWorkingDirectory, plugin)))).default(context.state, mainProgram);
+                    let packageName: string;
+                    try
+                    {
+                        packageName = fileURLToPath(normalize({ mode: 'import', relativeTo: '.' }, context.currentWorkingDirectory, plugin));
+                    }
+                    catch (e)
+                    {
+                        packageName = plugin;
+                    }
+                    (await import(packageName)).default(context.state, mainProgram);
                 });
                 context.logger.debug(`plugins loaded`);
             }

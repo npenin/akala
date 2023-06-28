@@ -41,7 +41,7 @@ export interface OptionOptions
     aliases?: string[],
     needsValue?: boolean,
     caseSensitive?: boolean,
-    normalize?: boolean | 'import' | 'require' | 'requireMeta';
+    normalize?: boolean | 'import' | 'require' | 'requireMeta' | { mode: 'path' | 'import' | 'require' | 'requireMeta', relativeTo?: string };
     doc?: string;
     optional?: boolean;
     positional?: boolean;
