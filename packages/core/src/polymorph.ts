@@ -31,8 +31,8 @@ export function Polymorph(...types: ('string' | 'number' | 'boolean' | 'function
 {
     const readyToPolymorph = polymorph(...types);
 
-    return function <T extends (...args: unknown[]) => unknown>(target: T, context: ClassMethodDecoratorContext)
+    return function <T extends (...args: unknown[]) => unknown>(target: new (...args: unknown[]) => unknown, propertyKey?: string, descriptor?: TypedPropertyDescriptor<T>)
     {
-        return readyToPolymorph(target)
+        descriptor.value = readyToPolymorph(descriptor.value)
     };
 }

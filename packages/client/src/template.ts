@@ -23,7 +23,7 @@ if (MutationObserver && false)
     //     })
 }
 
-service('$interpolate')(akala.Interpolate, null)
+service('$interpolate')(akala.Interpolate)
 
 export interface templateFunction
 {

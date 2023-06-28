@@ -1,6 +1,6 @@
 
 export * from './injector.js';
-export { InjectableOjbect, ParameterInjection, PropertyInjection, useInjector, extendInject, inject, injectSymbol, afterInjectSymbol, injectable, injectClass } from './reflection-injector.js';
+export { InjectableOjbect, ParameterInjection, PropertyInjection, useInjector, extendInject, inject, injectSymbol, afterInjectSymbol, injectable } from './reflection-injector.js';
 // export * from './global-injector';
 export * from './factory.js';
 export * from './http.js';
