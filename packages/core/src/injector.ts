@@ -6,7 +6,7 @@ import { logger } from './logger.js';
 
 const log = logger('akala:core:injector');
 
-export type Injected<T, U extends unknown[] = unknown[], V = unknown> = (instance?: V, ...args: U) => T;
+export type Injected<T> = (instance?: unknown) => T;
 export type Injectable<T> = (...args: unknown[]) => T;
 export type InjectableConstructor<T> = new (...args: unknown[]) => T;
 export type InjectableWithTypedThis<T, U> = (this: U, ...args: unknown[]) => T;
@@ -86,9 +86,9 @@ export class Injector
             this.parent.notify(name, value);
     }
 
-    public onResolve<T = unknown>(name: string | symbol): PromiseLike<T>
-    public onResolve<T = unknown>(name: string | symbol, handler: (value: T) => void): void
-    public onResolve<T = unknown>(name: string | symbol, handler?: (value: T) => void)
+    public onResolve<T = unknown>(name: string): PromiseLike<T>
+    public onResolve<T = unknown>(name: string, handler: (value: T) => void): void
+    public onResolve<T = unknown>(name: string, handler?: (value: T) => void)
     {
         if (!handler)
             return new Promise<T>((resolve) =>
@@ -162,29 +162,28 @@ export class Injector
         return this.inject<T>(ctorToFunction(ctor));
     }
 
-    public resolve<T = unknown>(param: string | symbol): T
+    public resolve<T = unknown>(param: string): T
     {
-        log.silly('resolving ' + param.toString());
+        log.silly('resolving ' + param);
 
         if (typeof (this.injectables[param]) != 'undefined')
         {
             if (log.verbose.enabled)
             {
                 if (typeof this.injectables[param].name != 'undefined')
-                    log.verbose(`resolved ${param.toString()} to ${this.injectables[param]} with name ${this.injectables[param].name}`);
+                    log.verbose(`resolved ${param} to ${this.injectables[param]} with name ${this.injectables[param].name}`);
                 else
-                    log.verbose(`resolved ${param.toString()} to %O`, this.injectables[param]);
+                    log.verbose(`resolved ${param} to %O`, this.injectables[param]);
             }
             else
-                log.debug(`resolved ${param.toString()}`);
+                log.debug(`resolved ${param}`);
             return this.injectables[param];
         }
-
-        const indexOfDot = typeof param == 'string' ? param.indexOf('.') : -1;
+        const indexOfDot = param.indexOf('.');
 
         if (~indexOfDot)
         {
-            const keys = (param as string).split('.')
+            const keys = param.split('.')
             return keys.reduce((result, key) =>
             {
                 if (result instanceof Injector)
@@ -207,7 +206,7 @@ export class Injector
         return null;
     }
 
-    public resolveAsync<T = unknown>(name: string | symbol): T | PromiseLike<T>
+    public resolveAsync<T = unknown>(name: string): T | PromiseLike<T>
     {
         return this.onResolve<T>(name);
     }
@@ -306,7 +305,7 @@ export class Injector
         }
     }
 
-    private injectables: Record<string | symbol, any> = {};
+    private injectables = {};
 
     public unregister(name: string)
     {

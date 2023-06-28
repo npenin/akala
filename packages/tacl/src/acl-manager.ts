@@ -7,7 +7,7 @@ import { AclConfiguration } from './Configuration/AclConfiguration.js';
 
 export function provider(name: string)
 {
-    return function (ctor: new (...args: unknown[]) => IAclProvider, _context: ClassDecoratorContext): void
+    return function (ctor: new (...args: unknown[]) => IAclProvider): void
     {
         AclManager.registeredProviders[name] = ctor;
     }

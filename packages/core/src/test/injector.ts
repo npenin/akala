@@ -2,8 +2,7 @@ import 'source-map-support/register.js';
 
 import { Injector } from '../injector.js';
 import assert from 'assert';
-import { useInjector, inject, injectField, injectClassMethod, injectClass } from '../reflection-injector.js';
-import { injectWithName } from '../global-injector.js';
+import { useInjector, inject } from '../reflection-injector.js';
 
 /*var oldProxy = Proxy;
 
@@ -72,30 +71,27 @@ i.register('otherVendor', 'node')
 
 const subI = new Injector(i);
 @useInjector(subI)
-@injectClass(['otherVendor'])
 class A
 {
-    @injectField('os')
+    @inject('os')
     public os: string;
 
-    @injectField()
+    @inject()
     public vendor: string;
 
     public otherVendor: string;
 
-    constructor(otherVendor?: string)
+    constructor(@inject('otherVendor') otherVendor?: string)
     {
         this.otherVendor = otherVendor;
     }
 
-    @injectClassMethod(['action'])
-    public do(action: string)
+    public do(@inject('action') action: string)
     {
         return `${this.vendor} ${action} ${this.os}`;
     }
 
-    @injectClassMethod(['action'])
-    public doOtherVendor(action: string)
+    public doOtherVendor(@inject('action') action: string)
     {
         return `${this.vendor} ${action} ${this.otherVendor}`;
     }
