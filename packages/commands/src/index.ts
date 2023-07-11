@@ -26,7 +26,7 @@ export { default as serve, ServeOptions, serverHandlers, ServerHandler, getOrCre
 export class Cli
 {
     public readonly program: NamespaceMiddleware<{ [key: string]: string | number | boolean | string[]; }>;
-    private promise: Promise<unknown>;
+    public readonly promise: Promise<unknown>;
 
     constructor(public readonly cliContainer: Container<void>, commands: Metadata.Command[], processor: ICommandProcessor, program: NamespaceMiddleware)
     {
