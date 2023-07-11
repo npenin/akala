@@ -6,6 +6,7 @@ import { Container } from "./model/container.js";
 import $serve from "./commands/$serve.js";
 import { Configurations } from "./metadata/configurations.js";
 import getHandler, { getHandlers } from "./protocol-handler.js";
+import { dirname, isAbsolute, resolve } from "node:path";
 const serveDefinition: Configurations = await import('../' + '../src/commands/$serve.json', { assert: { type: 'json' } }).then(x => x.default)
 
 export default function (config, program: NamespaceMiddleware<{ configFile: string }>)
@@ -32,7 +33,11 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
                 catch (e)
                 {
                     if (e.message == 'Invalid URL')
+                    {
+                        if (!isAbsolute(path))
+                            path = resolve(dirname(context.options.configFile as string), path)
                         uri = new URL('file://' + path);
+                    }
                 }
                 const handler = await getHandler(uri.protocol, uri)
 
@@ -40,7 +45,7 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
 
                 const commands = await handler.getMetadata();
 
-                new Cli(cliContainer, commands, handler.processor, program.command(name));
+                await new Cli(cliContainer, commands, handler.processor, program.command(name)).promise;
                 return [name, cliContainer]
             }))
     });
