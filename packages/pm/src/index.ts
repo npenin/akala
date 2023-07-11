@@ -2,6 +2,8 @@ import { Container, Metadata, NetSocketAdapter, Processors, registerCommands, Se
 import { Socket } from "net";
 import { module } from "@akala/core";
 
+export { spawnAsync } from './cli-helper.js'
+
 import definition from './container.js';
 
 type pmContainer = definition.container
