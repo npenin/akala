@@ -368,8 +368,12 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
                         // if (parameter.optional)
                         //     context.options[parameter.name] = context.args.shift() as TOptions2[typeof parameter.name];
                         else
+                        {
                             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                            context.options[paramName] = context.args.splice(0, context.args.length) as any;
+                            context.options[paramName] = context.args.splice(0, context.args.length) as (TOptions & TOptions2)[typeof paramName];;
+                            if (middleware._option?.config && middleware._option.config[paramName]?.normalize && context.options[paramName])
+                                context.options[paramName] = (context.options[paramName] as string[]).map(param => normalize(middleware._option.config[paramName]?.normalize, context.currentWorkingDirectory, param)) as (TOptions & TOptions2)[typeof paramName];
+                        }
                     }
                 }
 
