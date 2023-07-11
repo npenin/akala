@@ -6,7 +6,7 @@ function renderAttributes(attributes: Tag<any>['attributes'])
 {
     if (!attributes)
         return '';
-    const result = Object.entries(attributes).map(e => `${e[0]}="${e[1].replace(/"/g, '&quot;')}"`).join(' ')
+    const result = Object.entries(attributes).map(e => `${e[0]}="${e[1].value.replace(/"/g, '&quot;')}"`).join(' ')
     if (result)
         return ' ' + result;
     return '';
@@ -76,7 +76,7 @@ export function renderOuter(tag: Tag<any> | CompositeTag<Exclude<any, 'html'>> |
                 if (html.head.title)
                     head += prefix + renderOuter({ type: 'title', content: html.head.title }, '')
                 if (html.head.meta)
-                    head += Object.entries(html.head.meta).map(meta => renderOuter({ type: 'meta', attributes: { name: meta[0], content: meta[1] } }, prefix))
+                    head += Object.entries(html.head.meta).map(meta => renderOuter({ type: 'meta', attributes: { name: { value: meta[0] }, content: meta[1] } }, prefix))
                 if (html.head.links)
                     head += html.head.links.map(link => renderOuter({ type: 'link', attributes: { rel: link.rel, href: link.src } }, prefix)).join('')
                 if (html.head.jsInit)
@@ -88,7 +88,7 @@ export function renderOuter(tag: Tag<any> | CompositeTag<Exclude<any, 'html'>> |
         default:
             let result: string;
             if ('classes' in tag && tag.classes?.length)
-                result = `${prefix}<${tag.type}${renderAttributes({ 'class': tag.classes.join(' '), ...tag.attributes })}>`;
+                result = `${prefix}<${tag.type}${renderAttributes({ 'class': { value: tag.classes.join(' '), ...tag.attributes } })}>`;
             result = `${prefix}<${tag.type}${renderAttributes(tag.attributes)}>`
             if (tag.render)
                 result = tag.render(result, tag, prefix) || result;
@@ -131,7 +131,7 @@ export function renderOuterWithDomAPI(tag: CompositeTag<Exclude<any, 'html'>> | 
                 if (html.head.title)
                     head.appendChild(renderOuterWithDomAPI({ type: 'title', content: html.head.title }))
                 if (html.head.meta)
-                    Object.entries(html.head.meta).map(meta => head.appendChild(renderOuterWithDomAPI({ type: 'meta', attributes: { name: meta[0], content: meta[1] } })))
+                    Object.entries(html.head.meta).map(meta => head.appendChild(renderOuterWithDomAPI({ type: 'meta', attributes: { name: { value: meta[0] }, content: meta[1] } })))
                 if (html.head.links)
                     html.head.links.map(link => head.appendChild(renderOuter({ type: 'link', attributes: { rel: link.rel, href: link.src } }, prefix)))
                 if (html.head.jsInit)
@@ -144,7 +144,7 @@ export function renderOuterWithDomAPI(tag: CompositeTag<Exclude<any, 'html'>> | 
             if ('classes' in tag && tag.classes?.length)
                 self.classList.add(...tag.classes);
             if (tag.attributes)
-                Object.entries(tag.attributes).forEach(att => self.setAttribute(att[0], att[1]));
+                Object.entries(tag.attributes).forEach(att => self.setAttribute(att[0], att[1].value));
             if (tag.event)
                 Object.entries(tag.event).forEach(att => self.addEventListener(att[0], att[1]));
             if (tag.event?.render)

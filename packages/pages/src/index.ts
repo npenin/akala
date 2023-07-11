@@ -5,7 +5,7 @@ export { renderOuter, renderOuterWithDomAPI } from './dom-walker.js'
 
 const page: dom.Document = {
     type: 'html',
-    head: { title: 'pwet', meta: { 'og:product': 'totot' } },
+    head: { title: 'pwet', meta: { 'og:product': { value: 'totot' } } },
     body: [
         {
             type: '',
@@ -18,5 +18,3 @@ const page: dom.Document = {
         }
     ]
 }
-
-console.log(renderOuter(page, '\n'));
