@@ -7,7 +7,7 @@ import { outputHelper, write } from "../new.js";
 
 export default async function (name: string, options: CliContext<{ force?: boolean }>['options'], destination?: string)
 {
-    var cmds = await Processors.FileSystem.discoverMetaCommands(destination, { processor: new Processors.FileSystem(destination), ignoreFileWithNoDefaultExport: true });
+    var cmds = await Processors.FileSystem.discoverMetaCommands(destination, { relativeTo: process.cwd(), processor: new Processors.FileSystem(destination), ignoreFileWithNoDefaultExport: true });
     const cmd = cmds.find(c => c.name == name);
     if (!cmd)
         throw new ErrorWithStatus(44, `No command with name ${name} could be found in ${destination}`)
@@ -17,7 +17,7 @@ export default async function (name: string, options: CliContext<{ force?: boole
 
 export async function newCommandConfiguration(cmd: Command, options: CliContext<{ force?: boolean }>['options'], destination?: string)
 {
-    var { output } = await outputHelper(path.resolve(destination, cmd.config?.fs?.source && path.dirname(cmd.config.fs.source)), cmd.name + '.json', options && options.force);
+    var { output } = await outputHelper(cmd.config?.fs?.source && path.dirname(cmd.config.fs.source) || destination, cmd.name + '.json', options && options.force);
 
     if (cmd.config?.fs?.source)
         delete cmd.config.fs.source;
