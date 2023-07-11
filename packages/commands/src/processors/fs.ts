@@ -21,7 +21,7 @@ async function protocolHandler(url: URL)
     else
         options.ignoreFileWithNoDefaultExport = true;
 
-    const p: string = url.host + url.pathname;
+    let p: string = url.host + url.pathname;
 
     if (typeof (options.isDirectory) === 'undefined')
     {
@@ -231,7 +231,7 @@ export class FileSystem extends CommandProcessor
                     {
                         const sourceMap = JSON.parse(await fs.readFile(path.join(root, path.basename(f.name) + '.map'), 'utf8'));
                         if (cmd.config.fs)
-                            cmd.config.fs.source = path.join(path.relative(relativeTo, root), sourceMap.sources[0]).replace(/\\/g, '/');
+                            cmd.config.fs.source = path.relative(relativeTo, path.join(root, sourceMap.sources[0])).replace(/\\/g, '/');
                     }
                     const source = cmd.config.fs.source || cmd.config.fs.path;
                     try
