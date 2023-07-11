@@ -13,24 +13,13 @@
     },
     "homepage": "https://akala.js.org/pages",
     "type": "module",
-    "source": "src/server/index.ts",
-    "dependencies": {
-        "@akala/core": "workspace:^",
-        "@akala/server": "workspace:^",
-        "reflect-metadata": "^0.1.13"
-    },
-    "devDependencies": {
-        "@types/debug": "^4.1.7",
-        "typescript": "^5.0.4"
-    },
+    "source": "src/index.ts",
     "exports": {
-        "import": {
-            "types": "./dist/esm/index.d.ts",
-            "default": "./dist/esm/index.js"
-        },
-        "require": {
-            "types": "./dist/cjs/index.d.ts",
-            "default": "./dist/cjs/index.js"
+        ".": {
+            "import": {
+                "types": "./dist/esm/index.d.ts",
+                "default": "./dist/esm/index.js"
+            }
         }
     },
     "module": "./dist/esm/index.js",
