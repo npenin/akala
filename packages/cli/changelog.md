@@ -3,7 +3,8 @@
 
 ### Bug Fixes
 
-* relative to config file cli imports 2257c34
+* fixing config plugins loading ab30ee8
+* normalize behavior with relativeTo 30021e6
 
 
 
