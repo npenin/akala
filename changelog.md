@@ -292,6 +292,7 @@
 * reference to jsonrpc on browser condition 4af11a3
 * regex broken c50b9b9
 * regex exec is not iterable ca695eb
+* relative to config file cli imports 2257c34
 * reload metadata now call metadata with deep flag df33263
 * reload-metadata definition fixed b807fc2
 * remote conect 3f1db76
