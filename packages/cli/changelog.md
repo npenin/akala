@@ -3,8 +3,7 @@
 
 ### Bug Fixes
 
-* handle normalize on rest parameters 2a0b6a4
-* improve path normalization 928d77b
+* relative to config file cli imports 2257c34
 
 
 
