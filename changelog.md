@@ -1,4 +1,4 @@
-#  (2023-06-21)
+#  (2023-07-14)
 
 
 ### Bug Fixes
@@ -40,6 +40,7 @@
 * aritificial bump ae0e129
 * artificial bump 60cc1c1
 * assign id after insert ce42919
+* async CLI init 484a0b4
 * automate fixed d357937
 * automate implementation f76a995
 * **automate:** stdio fc9a326
@@ -75,6 +76,8 @@
 * client prepack 6bcd1b9
 * close outputs after generate 1d87b9d
 * code clean up 11726cb
+* command config resolution 4df15f2
+* command configuration path resolution 5bf471e
 * command help with mandatory positional parameter f6002a8
 * commands default path 0bb1723
 * commands stay in order c3358c1
@@ -151,6 +154,7 @@
 * handle direct invokes f4a524e
 * handle empty orders in connectByPreference d35a80b
 * handle non-specified pm socket option dfd5212
+* handle normalize on rest parameters 2a0b6a4
 * handle result properly 373a7a9
 * hasOwnKeys now returns correct keys 76a062e
 * health check reliability 98df0c9
@@ -169,9 +173,11 @@
 * improve get-version 2f156a3
 * improve http implementation 9e55419
 * improve module resolution af07cf8
+* improve path normalization 928d77b
 * improve performance of metadata lookup 81cf56a
 * improve reliability on commands 9e25e0b
 * improve remote sidecars defaults eef7b24
+* improve spanasync resilience 7c1b792
 * improve start/stop doc e4be495
 * improve support for extends f6622ee
 * improve typing for errorMiddlewares 2b7047f
@@ -226,6 +232,7 @@
 * moved commands to internal event emitter bea79a2
 * nested container processing 8997869
 * new cc does not require destination to be a folder 51d1efd
+* new considered as part of the folder name a37810f
 * normalization and edge cases in cli 874a97f
 * normalize causes issue if not URL 4879fb0
 * normalize path 58c9fcd
@@ -386,6 +393,7 @@
 * update reference to field 471f538
 * update to commands  major version 180608a
 * update to commands major version 0631f6e
+* update to latest pages types 48e1683
 * update to new commands major version 5e0bed5
 * update to ws 8.0 ce769f9
 * update workspace parameter binding 6b6b07b
@@ -475,6 +483,7 @@
 * add serve cli dc82fc9
 * add sidecar models to configuration 8389089
 * add sidecars accessor c7792a7
+* add sourmap optional support f6b0275
 * add stateless initial support 8605db0
 * add stdin as param f7babf8
 * add stdio middleware 1934e21
@@ -484,6 +493,7 @@
 * add support for dashes for command args 26955b9
 * add support for jobs and schedules (as a SqlAgent) 11927b5
 * add support for mjs and cjs files discovery dc3c17a
+* add support for render functions 7d24d00
 * add support for shell script failure ignore 4b1dcc1
 * add support for untagged packages (yet) 6fbed9c
 * add tcp remote protocol handler 9d5dbfb
@@ -505,6 +515,7 @@
 * errors like are now true errors 954d0a8
 * export event emitter 750ac11
 * export processor 528d2ad
+* export spanAsync 93a722d
 * first pubsub commit 78b31e1
 * fix sidecar f1705d6
 * handle cookies on redirect fb6e2ab
@@ -542,6 +553,7 @@
 * support node module when no ./ prefix ad871e3
 * support normalize require config af16029
 * support oneway messages by throwing undefined 6a18260
+* switch to ESM decorators 19762ba
 * switched from raw debug to logger from core efef2da
 * update command behavior 2fb6184
 * update configuration structure 8a395ff
@@ -550,6 +562,7 @@
 
 ### BREAKING CHANGES
 
+* ESM decorators are not compatible with legacy decorators
 * serveMetadata signature change
 * can only work with ESM now
 * config option renamed to configFile
