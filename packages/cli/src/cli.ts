@@ -107,7 +107,7 @@ process.emit = function (name, data, ...args)
                     let packageName: string;
                     try
                     {
-                        packageName = fileURLToPath(normalize({ mode: 'import', relativeTo: '.' }, context.currentWorkingDirectory, plugin));
+                        packageName = fileURLToPath(normalize({ mode: 'import', relativeTo: context.options.configFile }, context.currentWorkingDirectory, plugin));
                     }
                     catch (e)
                     {
