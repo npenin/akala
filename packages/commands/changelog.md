@@ -1,9 +1,12 @@
-#  (2023-06-21)
+#  (2023-07-14)
 
 
 ### Bug Fixes
 
-* tree shaking issue c239808
+* async CLI init 484a0b4
+* command config resolution 4df15f2
+* command configuration path resolution 5bf471e
+* new considered as part of the folder name a37810f
 
 
 
