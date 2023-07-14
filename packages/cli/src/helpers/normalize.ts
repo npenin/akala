@@ -6,7 +6,7 @@ export default function normalize(mode: 'import' | 'require' | 'requireMeta' | b
 {
     if (typeof (mode) == 'object')
     {
-        const absolute = normalize(mode.mode == 'path' || mode.mode, currentWorkingDirectory, value);
+        const absolute = normalize(mode.mode == 'path' || mode.mode, mode.relativeTo && path.resolve(mode.relativeTo, currentWorkingDirectory) || currentWorkingDirectory, value);
         if (mode.relativeTo)
         {
             try
