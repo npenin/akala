@@ -1,4 +1,4 @@
-#  (2023-06-21)
+#  (2023-07-14)
 
 
 ### Bug Fixes
@@ -17,6 +17,8 @@
 
 ### Features
 
+* add sourmap optional support f6b0275
+* add support for render functions 7d24d00
 * have both CJS and ESM at once cecd11a
 * start implementation of page builder 45f08c0
 * update to ESM 87800a0
