@@ -1,4 +1,4 @@
-#  (2023-07-14)
+#  (2023-07-23)
 
 
 ### Bug Fixes
@@ -210,6 +210,7 @@
 * log only enumerable props 3070ee3
 * logger as non enumerable property 43fdcba
 * logging namespace in jsonrpc 54214a8
+* lookup on windows 0108f6b
 * ls lists existing containers 3548afe
 * made connect and fork more reliable and resilient 6c0c24f
 * made cron as non spreadable 34d3f69
