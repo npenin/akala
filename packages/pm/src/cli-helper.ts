@@ -3,7 +3,8 @@ import * as child_process from 'child_process'
 export function spawnAsync(program: string, options: child_process.SpawnOptions, ...args: string[]): Promise<void>
 {
     options = Object.assign({ stdio: ['ignore', 'ignore', 'pipe'], shell: false, windowsHide: true }, options);
-
+    if (typeof options.stdio == 'string')
+        options.stdio = [options.stdio, options.stdio, options.stdio]
     const stderrInherit = options.stdio[2] == 'inherit';
     if (stderrInherit)
         options.stdio = [options.stdio[0], options.stdio[1], 'pipe', ...options.stdio.slice(3)] as child_process.StdioOptions;
