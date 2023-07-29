@@ -1,0 +1,25 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
+    "fs": {
+        "inject": [
+            "param"
+        ]
+    },
+    "": {
+        "inject": [
+            "param"
+        ]
+    },
+    "cli": {
+        "usage": "compile [...entrypoints]",
+        "inject": [
+            "context.state",
+            "options.entrypoints"
+        ],
+        "options": {
+            "entrypoints": {
+                "normalize": true
+            }
+        }
+    }
+}
