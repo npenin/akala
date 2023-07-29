@@ -1,0 +1,30 @@
+{
+  "name": "@akala/protocol-parser",
+  "version": "2.6.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "test": "mocha --require source-map-support/register dist/test",
+    "prepublishOnly": "tsc -p .",
+    "build": "tsc -p ."
+  },
+  "author": "npenin",
+  "license": "MIT",
+  "dependencies": {
+    "debug": "^4.3.4"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.8",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.16.19",
+    "mocha": "^10.2.0",
+    "source-map-support": "0.5.21",
+    "typescript": "5.1.6"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "0753bdd964281fd06c89ea8a751ed1605dfd5ee8"
+}
