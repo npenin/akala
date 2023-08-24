@@ -12,6 +12,7 @@ import { eachAsync } from '@akala/core';
 import { createRequire } from 'module';
 import { addHandler, parseQueryString } from '../protocol-handler.js';
 import { stat } from 'fs/promises';
+import os from 'node:os'
 
 async function protocolHandler(url: URL)
 {
@@ -21,7 +22,11 @@ async function protocolHandler(url: URL)
     else
         options.ignoreFileWithNoDefaultExport = true;
 
-    let p: string = url.host + url.pathname;
+    let p: string = url.host;
+    if (os.platform() == 'win32')
+        p += url.pathname.substring(1);
+    else
+        p += url.pathname;
 
     if (typeof (options.isDirectory) === 'undefined')
     {
