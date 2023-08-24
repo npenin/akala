@@ -1,4 +1,4 @@
-#  (2023-07-14)
+#  (2023-07-23)
 
 
 ### Bug Fixes
@@ -137,6 +137,7 @@
 * fix the pubsub path 77cdd2f
 * fix use on router 64f54b9
 * fix wrong update on import 2bd50cc
+* fixing config plugins loading ab30ee8
 * force metadata command registration in remote container 840d6dd
 * force socket processor on pm forks 0874275
 * fork broken 8a998fc
@@ -209,6 +210,7 @@
 * log only enumerable props 3070ee3
 * logger as non enumerable property 43fdcba
 * logging namespace in jsonrpc 54214a8
+* lookup on windows 0108f6b
 * ls lists existing containers 3548afe
 * made connect and fork more reliable and resilient 6c0c24f
 * made cron as non spreadable 34d3f69
@@ -234,6 +236,7 @@
 * new cc does not require destination to be a folder 51d1efd
 * new considered as part of the folder name a37810f
 * normalization and edge cases in cli 874a97f
+* normalize behavior with relativeTo 30021e6
 * normalize causes issue if not URL 4879fb0
 * normalize path 58c9fcd
 * normalize require properly imports packages ea8e772
