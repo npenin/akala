@@ -31,16 +31,43 @@ export type AnyParser<T, TMessage> = Parsers<T> | ParsersWithMessage<T, TMessage
 
 export class Cursor
 {
+    constructor(private parent?: Cursor, public readonly limit?: number)
+    {
+
+    }
+
+    public sub(max?: number)
+    {
+        const cursor = new Cursor(this, typeof this.limit == 'undefined' ? max : Math.min(max, this.limit));
+        cursor._offset = this._offset;
+        cursor._floorOffset = this._floorOffset
+        cursor._subByteOffset = this._subByteOffset;
+        return cursor;
+    }
+
     private _offset: number = 0;
     private _floorOffset: number = 0;
     private _subByteOffset: number = 0;
     get offset(): number { return this._offset; };
     set offset(value: number)
     {
+        if (value > this.limit)
+            throw new Error('Trying to access out of limit offset');
         this._offset = value;
         this._floorOffset = Math.floor(value);
         this._subByteOffset = (value - this._floorOffset) * 8;
     };
+
+    complete()
+    {
+        if (this.parent)
+        {
+            this.parent._offset = this._offset;
+            this.parent._floorOffset = this._floorOffset
+            this.parent._subByteOffset = this._subByteOffset;
+        }
+    }
+
     get floorOffset(): number { return this._floorOffset };
     get subByteOffset(): number { return this._subByteOffset };
 
@@ -61,8 +88,8 @@ export function hasUnknownLength<T, TMessage = unknown>(p: AnyParser<T, TMessage
     return p.length == -1;
 }
 
-export function parserWrite<T, TMessage = unknown>(parser: AnyParser<T, TMessage>, buffer: Buffer, cursor: Cursor, value: T, message?: TMessage): void
 export function parserWrite<T, TMessage = unknown>(parser: AnyParser<T, TMessage>, value: T, message?: TMessage): Buffer[]
+export function parserWrite<T, TMessage = unknown>(parser: AnyParser<T, TMessage>, buffer: Buffer, cursor: Cursor, value: T, message?: TMessage): void
 export function parserWrite<T, TMessage = unknown>(parser: AnyParser<T, TMessage>, buffer: Buffer | T, cursor: Cursor | TMessage, value?: T, message?: TMessage): Buffer[] | void
 export function parserWrite<T, TMessage = unknown>(parser: AnyParser<T, TMessage>, buffer: Buffer | T, cursor: Cursor | TMessage, value?: T, message?: TMessage): Buffer[] | void
 {

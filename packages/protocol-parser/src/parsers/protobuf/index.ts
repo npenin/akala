@@ -11,7 +11,7 @@ import { Sub } from './sub.js';
 import Varint from './varint.js';
 import { ZeroOrOne } from "../zero-or-one.js";
 
-export const varint = new Varint();
+export const varint = new Varint<number>(4);
 export const raw: PrefixedBuffer & { wireType: WireType } = Object.assign(new PrefixedBuffer(varint), { wireType: 'length-delimited' } as { wireType: 'length-delimited' });
 export const int32: Uint32 & { wireType: WireType } = Object.assign(new Uint32(), { wireType: '32-bit' } as { wireType: WireType });
 export const int64: Uint64 & { wireType: WireType } = Object.assign(new Uint64(), { wireType: '64-bit' } as { wireType: WireType });

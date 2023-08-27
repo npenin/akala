@@ -1,19 +1,18 @@
-import { Cursor, ParserWithoutKnownLength } from "../_common.js";
-import Uint8 from "../uint8.js";
-import Uint7 from "../uint7.js";
-import Uint32LE from "../uint32LE.js";
-import { WireType } from './field.js';
-import { uint8 } from "../../core.js";
-import { Uint64LE } from "../index.js";
+import { Cursor, ParserWithoutKnownLength } from "./_common.js";
+import Uint8 from "./uint8.js";
+import Uint7 from "./uint7.js";
+import Uint32LE from "./uint32LE.js";
+import { uint8 } from "../core.js";
+import { Int32LE, Int64LE, Uint64LE } from "./index.js";
+import Int8 from "./int8.js";
+import Int7 from "./int7.js";
 
-export default class Varint<T extends number | bigint> implements ParserWithoutKnownLength<T>
+export default class UnsignedLEB128<T extends number | bigint> implements ParserWithoutKnownLength<T>
 {
     constructor(private maxBytes: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 = 8)
     {
 
     }
-
-    wireType: WireType = 'varint'
 
     length: -1 = -1;
 
@@ -23,7 +22,7 @@ export default class Varint<T extends number | bigint> implements ParserWithoutK
         let value: number;
         let tmpOffset = 0;
         var innerCursor = new Cursor();
-        while (tmpOffset < 4 && (value = Uint8.prototype.read(buffer, cursor)) > 0x80)
+        while (tmpOffset < 4 && (value = Uint8.prototype.read(buffer, cursor)) >= 0x80)
             Uint7.prototype.write(tmpBuffer, innerCursor, value & 0x7f);
         Uint7.prototype.write(tmpBuffer, innerCursor, value & 0x7f);
         switch (Math.ceil(innerCursor.offset))
@@ -39,7 +38,7 @@ export default class Varint<T extends number | bigint> implements ParserWithoutK
             case 6:
             case 7:
             case 8:
-                return tmpBuffer.readBigInt64LE(0) as T;
+                return tmpBuffer.readBigUInt64LE(0) as T;
         }
     }
 
@@ -48,7 +47,7 @@ export default class Varint<T extends number | bigint> implements ParserWithoutK
         if (typeof value == 'undefined')
             return null;
         const buffer = Buffer.alloc(this.maxBytes + 1);
-        if (value <= 0x7f)
+        if (value <= 0x7f && value >= -64)
         {
             Uint8.prototype.write(buffer, new Cursor(), Number(value));
             return [buffer.slice(0, 1)];
@@ -67,16 +66,16 @@ export default class Varint<T extends number | bigint> implements ParserWithoutK
                         Uint64LE.prototype.write(tmpBuffer, innerCursor, value);
                     else
                         Uint64LE.prototype.write(tmpBuffer, innerCursor, BigInt(value));
-                else if (typeof value == 'number')
-                    Uint32LE.prototype.write(tmpBuffer, innerCursor, value);
                 else
-                    Uint32LE.prototype.write(tmpBuffer, innerCursor, Number(value));
+                    if (typeof value == 'number')
+                        Uint32LE.prototype.write(tmpBuffer, innerCursor, value);
+                    else
+                        Int32LE.prototype.write(tmpBuffer, innerCursor, Number(value));
                 innerCursor = new Cursor();
                 for (var i = 16; i <= maxBits; i += 8)
                 {
                     if (value <= (1n << BigInt(i)))
                     {
-
                         for (var j = i / 8; j > 0; j--)
                         {
                             tmpValue = Uint7.prototype.read(tmpBuffer, innerCursor);

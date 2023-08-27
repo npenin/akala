@@ -23,8 +23,9 @@ export class Sub<TResult, TMessage> implements ParserWithMessageWithoutKnownLeng
             cursor.offset = initialOffset;
             return null;
         }
-        var result = this.inner.read(buffer.slice(cursor.offset, cursor.offset + length), new Cursor(), message);
-        cursor.offset += length;
+        const sub = cursor.sub(cursor.offset + length);
+        var result = this.inner.read(buffer, sub, message);
+        sub.complete();
         return result;
     }
 

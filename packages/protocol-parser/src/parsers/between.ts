@@ -11,9 +11,9 @@ export default class Between<TMessage> extends Series<TMessage> implements Parse
 
     read(buffer: Buffer, cursor: Cursor, message: TMessage): TMessage
     {
-        const newCursor = new Cursor();
         this.parsers[0].read(buffer, cursor, message);
-        this.parsers[1].read(buffer.slice(cursor.offset, buffer.length - this.parsers[2].length), newCursor, message);
+        const newCursor = cursor.sub(cursor.limit - cursor.offset - this.parsers[2].length);
+        this.parsers[1].read(buffer, newCursor, message);
         cursor.offset += newCursor.offset;
         this.parsers[2].read(buffer, cursor, message);
 

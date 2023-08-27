@@ -39,8 +39,11 @@ export default class Uint24 implements Parser<number>
         }
         else
         {
-            buffer.writeUInt32BE(value, cursor.offset);
-            cursor.offset += length;
+            let tmpBuffer = Buffer.alloc(4);
+            tmpBuffer.writeUInt32BE(value, 0);
+            Uint8.prototype.write(buffer, cursor, tmpBuffer.readUInt8(0));
+            Uint8.prototype.write(buffer, cursor, tmpBuffer.readUInt8(1));
+            Uint8.prototype.write(buffer, cursor, tmpBuffer.readUInt8(2));
         }
     }
 }

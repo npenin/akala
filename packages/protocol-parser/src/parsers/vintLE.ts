@@ -1,7 +1,8 @@
 import { Cursor, ParserWithoutKnownLength } from './_common.js';
-import Uint16 from './uint16.js';
-import Uint24 from './uint24.js';
-import Uint32 from './uint32.js';
+import Int16LE from './int16LE.js';
+import Int24LE from './int24LE.js';
+import Int32LE from './int32LE.js';
+import Int8 from './int8.js';
 import Uint8 from './uint8.js';
 
 export default class Vuint implements ParserWithoutKnownLength<number>
@@ -23,42 +24,43 @@ export default class Vuint implements ParserWithoutKnownLength<number>
         switch (tmpOffset)
         {
             case 1:
-                return tmpBuffer.readUInt8(0);
+                return tmpBuffer.readInt8(0);
             case 2:
-                return tmpBuffer.readUInt16BE(0);
+                return tmpBuffer.readInt16LE(0);
             case 3:
-                return tmpBuffer.readUInt8(0) << 16 + tmpBuffer.readUInt16BE(1);
+                return tmpBuffer.readInt8(2) << 16 + tmpBuffer.readInt16LE(0);
             case 4:
-                return tmpBuffer.readUInt32BE(0);
+                return tmpBuffer.readInt32LE(0);
         }
-        return value;
     }
 
     public write(value: number)
     {
-        if (value <= 0x7f)
+        if (value <= 0x3f && value >= -0x3f)
         {
             const buffer = Buffer.alloc(1);
-            Uint8.prototype.write(buffer, new Cursor(), value);
+            Int8.prototype.write(buffer, new Cursor(), value);
             return [buffer];
         }
-        else if (value <= 0xff7f)
+        else if (value <= 0x7f7f && value >= -0x7f7f)
         {
             const buffer = Buffer.alloc(2);
-            Uint16.prototype.write(buffer, new Cursor(), value);
+            Int16LE.prototype.write(buffer, new Cursor(), value);
             return [buffer];
-        } else if (value <= 0xffff7f)
+        }
+        else if (value <= 0x7fff7f && value >= -0x7fff7f)
         {
             const buffer = Buffer.alloc(3);
-            Uint24.prototype.write(buffer, new Cursor(), value);
+            Int24LE.prototype.write(buffer, new Cursor(), value);
             return [buffer];
-        } else if (value <= 0xffffffff)
+        }
+        else if (value <= 0x7fffff7f && value >= -0x7fffff7f)
         {
             const buffer = Buffer.alloc(4);
-            Uint32.prototype.write(buffer, new Cursor(), value);
+            Int32LE.prototype.write(buffer, new Cursor(), value);
             return [buffer];
         }
         else
-            throw new Error(`invalid value '${value}' for vuint`);
+            throw new Error('invalid value for vint');
     }
 }

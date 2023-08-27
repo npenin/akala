@@ -8,7 +8,7 @@ import Uint6 from './uint6.js';
 
 const length = .875;
 
-export default class Uint7 implements Parser<number>
+export default class Int7 implements Parser<number>
 {
     constructor()
     {
@@ -19,7 +19,7 @@ export default class Uint7 implements Parser<number>
 
     public read(buffer: Buffer, cursor: Cursor): number
     {
-        var currentValue = buffer.readUInt8(cursor.floorOffset);
+        var currentValue = buffer.readInt8(cursor.floorOffset);
         var value: number;
 
         switch (cursor.subByteOffset)
@@ -33,7 +33,7 @@ export default class Uint7 implements Parser<number>
             case 2:
                 value = (currentValue & 0b11111100) >> cursor.subByteOffset;
                 if (cursor.floorOffset < buffer.length - 1)
-                    currentValue = buffer.readUInt8(cursor.floorOffset + 1);
+                    currentValue = buffer.readInt8(cursor.floorOffset + 1);
                 else
                     currentValue = 0;
                 value = value | ((currentValue & 0b00000001) << (8 - cursor.subByteOffset));
@@ -41,7 +41,7 @@ export default class Uint7 implements Parser<number>
             case 3:
                 value = (currentValue & 0b11111000) >> cursor.subByteOffset;
                 if (cursor.floorOffset < buffer.length - 1)
-                    currentValue = buffer.readUInt8(cursor.floorOffset + 1);
+                    currentValue = buffer.readInt8(cursor.floorOffset + 1);
                 else
                     currentValue = 0;
                 value = value | ((currentValue & 0b00000011) << (8 - cursor.subByteOffset));
@@ -49,7 +49,7 @@ export default class Uint7 implements Parser<number>
             case 4:
                 value = (currentValue & 0b11110000) >> cursor.subByteOffset;
                 if (cursor.floorOffset < buffer.length - 1)
-                    currentValue = buffer.readUInt8(cursor.floorOffset + 1);
+                    currentValue = buffer.readInt8(cursor.floorOffset + 1);
                 else
                     currentValue = 0;
                 value = value | ((currentValue & 0b00000111) << (8 - cursor.subByteOffset));
@@ -57,7 +57,7 @@ export default class Uint7 implements Parser<number>
             case 5:
                 value = (currentValue & 0b11100000) >> cursor.subByteOffset;
                 if (cursor.floorOffset < buffer.length - 1)
-                    currentValue = buffer.readUInt8(cursor.floorOffset + 1);
+                    currentValue = buffer.readInt8(cursor.floorOffset + 1);
                 else
                     currentValue = 0;
                 value = value | ((currentValue & 0b00001111) << (8 - cursor.subByteOffset));
@@ -65,7 +65,7 @@ export default class Uint7 implements Parser<number>
             case 6:
                 value = (currentValue & 0b11000000) >> cursor.subByteOffset;
                 if (cursor.floorOffset < buffer.length - 1)
-                    currentValue = buffer.readUInt8(cursor.floorOffset + 1);
+                    currentValue = buffer.readInt8(cursor.floorOffset + 1);
                 else
                     currentValue = 0;
                 value = value | ((currentValue & 0b00011111) << (8 - cursor.subByteOffset));
@@ -73,7 +73,7 @@ export default class Uint7 implements Parser<number>
             case 7:
                 value = (currentValue & 0b10000000) >> cursor.subByteOffset;
                 if (cursor.floorOffset < buffer.length - 1)
-                    currentValue = buffer.readUInt8(cursor.floorOffset + 1);
+                    currentValue = buffer.readInt8(cursor.floorOffset + 1);
                 else
                     currentValue = 0;
                 value = value | ((currentValue & 0b00111111) << (8 - cursor.subByteOffset));
@@ -91,7 +91,7 @@ export default class Uint7 implements Parser<number>
         {
             case 0:
             case 1:
-                var currentValue = buffer.readUInt8(cursor.floorOffset);
+                var currentValue = buffer.readInt8(cursor.floorOffset);
                 value = (value & 0b1111111) << cursor.subByteOffset;
                 buffer.writeUInt8(currentValue | value, cursor.floorOffset);
                 cursor.offset += length;

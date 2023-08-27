@@ -19,6 +19,8 @@ export default class ObjectParser<T extends object> extends Series<T> implements
 
     write(buffer: Buffer | T, cursor: Cursor | Partial<T>, value?: T, message?: Partial<T>)
     {
+        if (!(cursor instanceof Cursor))
+            return super.write(buffer, buffer as T, value, message)
         return super.write(buffer, cursor, value, message)
     }
 

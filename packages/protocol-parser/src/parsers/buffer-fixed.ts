@@ -14,8 +14,9 @@ export default class FixedBuffer implements Parser<Buffer>
 
         if (this.length == -1)
         {
-            cursor.offset += buffer.length;
-            return buffer;
+            const result = buffer.slice(cursor.offset, cursor.limit);
+            cursor.offset = cursor.limit;
+            return result;
         }
 
         return buffer.slice(cursor.offset, cursor.offset += this.length);
@@ -23,6 +24,9 @@ export default class FixedBuffer implements Parser<Buffer>
 
     write(buffer: Buffer, cursor: Cursor, value: Buffer)
     {
-        value.copy(buffer, cursor.offset, 0, this.length);
+        if (this.length === -1)
+            return [buffer];
+        else
+            value.copy(buffer, cursor.offset, 0, this.length);
     }
 }
