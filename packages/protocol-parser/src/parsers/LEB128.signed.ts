@@ -19,9 +19,9 @@ export default class SignedLEB128<T extends number | bigint> implements ParserWi
         let tmpBuffer = Buffer.alloc(4);
         let value: number;
         var innerCursor = new Cursor();
-        if ((value = Uint8.prototype.read(buffer, cursor)) >= 0x3f)
+        if ((value = Uint8.prototype.read(buffer, cursor)) >= 0x7f)
         {
-            Uint7.prototype.write(tmpBuffer, innerCursor, value & 0x3f);
+            Uint7.prototype.write(tmpBuffer, innerCursor, value & 0x7f);
             while ((value = Uint8.prototype.read(buffer, cursor)) >= 0x80)
                 Uint7.prototype.write(tmpBuffer, innerCursor, value & 0x7f);
         }

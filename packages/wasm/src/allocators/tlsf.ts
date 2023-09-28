@@ -8,7 +8,7 @@ import { func } from "../helpers/func.js";
 import { i32 } from "../helpers/i32.js";
 import { i64 } from "../helpers/i64.js";
 import { local } from "../helpers/local.js";
-import { memory, usize } from "../helpers/memory.js";
+import { memarg, memory, usize } from "../helpers/memory.js";
 import { Module } from "../helpers/module.js";
 import { mergeUInt8Arrays } from "../helpers/types.js";
 import { indexes } from "../helpers/wasmtype.js";
@@ -106,7 +106,7 @@ export default function tlsf<TNative extends bigint | u32>(module: Module<TNativ
     }
     setSize(value: usize<TNative>)
     {
-      return value.shr_u(i32.const(2)).shl(i32.const(2)).or(this.isFree()).or(this.isLast().shl(i32.const(1))).store(blocks, this.address);
+      return value.shr_u(i32.const(2)).shl(i32.const(2)).or(toSize(this.isFree())).or(toSize(this.isLast().shl(i32.const(1)))).store(blocks, this.address);
     }
 
 
@@ -163,9 +163,7 @@ export default function tlsf<TNative extends bigint | u32>(module: Module<TNativ
     isFree()
     {
       const result = arch.address.load(blocks, this.address).and(arch.address.const(1))
-      if (i32guard(result))
-        return result;
-      return (result as i64).wrap();
+      return toi32(result);
     }
 
     static maxSize = arch.address.max_u.shr_u(i32.const(2)).shl(i32.const(2));
@@ -183,14 +181,12 @@ export default function tlsf<TNative extends bigint | u32>(module: Module<TNativ
     isLast()
     {
       const result = arch.address.load(blocks, this.address).and(arch.address.const(2));
-      if (i32guard(result))
-        return result;
-      return (result as i64).wrap();
+      return toi32(result);
     }
 
     setLast(value: i32)
     {
-      return arch.address.load(blocks, this.address).and(arch.address.max_u.sub(arch.address.const(2)).or(value.shl(i32.const(1)))).store(blocks, this.address); //set last flag on the block
+      return arch.address.load(blocks, this.address).and(arch.address.max_u.sub(arch.address.const(2)).or(toSize(value.shl(i32.const(1))))).store(blocks, this.address); //set last flag on the block
     }
 
     isPrevPhysicalFree()
@@ -216,11 +212,11 @@ export default function tlsf<TNative extends bigint | u32>(module: Module<TNativ
       return [
         ...this.setBusy(),
         ...control.ifelse(undefined, toi32(this.getNextFreeAddress()),
-          this.getNextFree().address.store(blocks, head_list_address(fl, sl)),
+          this.getNextFree().address.store(head, head_list_address(fl, sl)),
           mergeUInt8Arrays(
-            storeSl(sl, loadSl(sl).and(arch.address.const(1).shl(sl).xor(arch.address.max_u))),
-            control.if(undefined, loadSl(sl).eqz(),
-              fl_bitmap.and(i32.const(1).shl(fl).xor(i32.max_u)).store(root, arch.address.const(0))
+            storeSl(sl, loadSl(toSize(sl)).and(arch.address.const(1).shl(sl).xor(arch.address.max_u))),
+            control.if(undefined, loadSl(toSize(sl)).eqz(),
+              fl_bitmap.and(arch.address.const(1).shl(fl).xor(arch.address.max_u)).store(root, arch.address.const(0))
             ).toOpCodes()
           )
         ).toOpCodes(),
@@ -230,16 +226,16 @@ export default function tlsf<TNative extends bigint | u32>(module: Module<TNativ
     insert(fl: i32, sl: i32)
     {
       return [
-        ...control.if(undefined, toi32(arch.address.load(blocks, head_list_address(fl, sl))),
+        ...control.if(undefined, toi32(arch.address.load(head, head_list_address(fl, sl))),
           mergeUInt8Arrays(
             this.setNextFree(new Block(head_list_address(fl, sl))),
             this.getNextFree().setPrevFree(this)
           )
         ).toOpCodes(),
-        ...this.address.store(blocks, head_list_address(fl, sl)),
+        ...this.address.store(head, head_list_address(fl, sl)),
         ...this.setFree(),
-        ...fl_bitmap.or(i32.const(1).shl(fl)).store(root, arch.address.const(0)),
-        ...storeSl(fl, loadSl(fl).or(arch.address.const(1).shl(sl)))
+        ...fl_bitmap.or(arch.address.const(1).shl(fl)).store(root, arch.address.const(0)),
+        ...storeSl(fl, loadSl(toSize(fl)).or(arch.address.const(1).shl(sl)))
       ]
     }
 
@@ -267,7 +263,7 @@ export default function tlsf<TNative extends bigint | u32>(module: Module<TNativ
       case 5:
         if (arch.address === offset.type)
           return arch.address.load(root, offset);
-        return i64.load32_u(sl_bitmap, offset as any) as usize<TNative>;
+        return i64.load32_u(sl_bitmap, offset as any) as unknown as usize<TNative>;
       case 6:
         return arch.address.load(sl_bitmap, offset);
     }
@@ -275,20 +271,18 @@ export default function tlsf<TNative extends bigint | u32>(module: Module<TNativ
 
   function storeSl(offset: usize<TNative> | i32, value: usize<TNative>): Uint8Array
   {
-    if (arch.address !== offset.type)
-      offset = (offset as i32).extend_u() as usize<TNative>;
     switch (j)
     {
       case 3:
-        return value.store8(root, offset as usize<TNative>);
+        return value.store8(sl_bitmap, offset as usize<TNative>);
       case 4:
-        return value.store16(root, offset as usize<TNative>)
+        return value.store16(sl_bitmap, offset as usize<TNative>)
       case 5:
         if (arch.address === offset.type)
-          return value.store(root, offset as usize<TNative>)
-        return (value as i64).store32(root, offset as usize<TNative>);
+          return value.store(sl_bitmap, offset as usize<TNative>)
+        return (value as unknown as i64).store32(root, offset as usize<TNative>);
       case 6:
-        return value.store(root, offset as usize<TNative>)
+        return value.store(sl_bitmap, offset as usize<TNative>)
     }
   }
 
@@ -301,7 +295,7 @@ export default function tlsf<TNative extends bigint | u32>(module: Module<TNativ
     module.addFunc((function ()
     {
       const l = new local(0, i32);
-      return func.new([l], [i32], [], ffs(l.get()).toOpCodes())
+      return func.new([l], [i32], [], ffs(toSize(l.get())).toOpCodes())
     })()).func
   );
 
@@ -313,7 +307,7 @@ export default function tlsf<TNative extends bigint | u32>(module: Module<TNativ
   module.export('fls',
     module.addFunc((function ()
     {
-      const l = new local(0, i32);
+      const l = new local(0, arch.address);
       return func.new([l], [i32], [], fls(l.get()).toOpCodes())
     })()).func
   );
@@ -324,15 +318,15 @@ export default function tlsf<TNative extends bigint | u32>(module: Module<TNativ
   const jpow = Math.pow(2, j);
 
   const log2usize = Math.log2(arch.address.size);
-  const head = arch.memarg(Number(root.offset) + (arch.address.size - log2splitSizeThreshold) * jpow / 8 + arch.address.size / 8);
-  const blocks = arch.memarg(Number(head.offset) + (arch.address.size - log2splitSizeThreshold) * jpow * arch.address.size / 8);
+  const head = arch.memarg(Number(root.offset.asconst()) + (arch.address.size - log2splitSizeThreshold) * jpow / 8 + arch.address.size / 8);
+  const blocks = arch.memarg(Number(head.offset.asconst()) + (arch.address.size - log2splitSizeThreshold) * jpow * arch.address.size / 8);
   console.log(head);
   console.log(blocks);
   const J = i32.const(j);
   const Jsize = arch.address.const(j);
-  const Jpow = i32.const(jpow);
+  const Jpow = arch.address.const(jpow);
   const fl_bitmap = arch.address.load(root, arch.address.const(0));
-  const sl_bitmap = arch.memarg(Number(root.offset) + 1, j - 3);
+  const sl_bitmap = arch.memarg(Number(root.offset.asconst()) + 1, j - 3);
   // const sl_bitmap = (index: number) => loadJLength(arch.address.const(index + 1));
 
   /** returns sl then fl */
@@ -367,16 +361,25 @@ export default function tlsf<TNative extends bigint | u32>(module: Module<TNativ
   module.addFunc(mapping_search);
   module.export('mapping_search', mapping_search);
 
-  function toi32(value: usize<TNative>)
+
+  function toSize(arg0: i32): usize<TNative>
+  {
+    if (arch.address.type == i32.type)
+      return arg0 as usize<number> as usize<TNative>;
+    else
+      return arg0.extend_u() as usize<bigint> as usize<TNative>
+  }
+
+  function toi32(value: usize<TNative>): i32
   {
     if (i32guard(value))
       return value;
-    return (value as i64).wrap();
+    return (value as unknown as i64).wrap();
   }
 
-  function i32guard(v: usize<TNative>): v is i32
+  function i32guard(v: usize<number> | usize<bigint> | usize<TNative>): v is i32
   {
-    return v.type === i32;
+    return v.type.type === i32.type;
   }
 
   /** returns address */
@@ -390,13 +393,13 @@ export default function tlsf<TNative extends bigint | u32>(module: Module<TNativ
       mergeUInt8Arrays(
         control.ifelse(
           undefined,
-          bitmap_tmp.tee(arch.address.load(sl_bitmap, fl.get()).and(arch.address.max_u.shl(toi32(sl.get())))).eqz(),
-          sl.set(ffs(arch.address.load(sl_bitmap, fl.tee(
+          bitmap_tmp.tee(arch.address.load(sl_bitmap, toSize(fl.get())).and(arch.address.max_u.shl(sl.get()))).eqz(),
+          sl.set(ffs(arch.address.load(sl_bitmap, toSize(fl.tee(
             ffs(
               bitmap_tmp.tee(
                 arch.address.load(root, arch.address.const(0)).and(arch.address.max_u.shl(fl.get().add(i32.const(1)))))
             )
-          )))),
+          ))))),
           sl.set(ffs(bitmap_tmp.get()))
         ).toOpCodes(),
         head_list(fl.get(), sl.get()).toOpCodes(),
@@ -412,7 +415,7 @@ export default function tlsf<TNative extends bigint | u32>(module: Module<TNativ
   module.export('sl_bitmap', module.addFunc((function ()
   {
     const l = new local(0, i32);
-    return func.new([l], [i32], [], arch.address.load(sl_bitmap, l.get()).toOpCodes());
+    return func.new([l], [i32], [], arch.address.load(sl_bitmap, toSize(l.get())).toOpCodes());
   })()).func);
 
 
@@ -426,7 +429,11 @@ export default function tlsf<TNative extends bigint | u32>(module: Module<TNativ
 
   function head_list_address(fl: i32, sl: i32): usize<TNative>
   {
-    return fl.sub(log2_split_size_threshold).shl(J).add(sl).shl(i32.const(Math.log2(arch.address.size / 8) + 1));
+    // if (arch.address.type == i32.type)
+    // {
+    //   return fl.sub(log2_split_size_threshold).shl(J).add(sl).shl(i32.const(Math.log2(arch.address.size / 8) + 1)) as usize<number> as usize<TNative>;
+    // }
+    return toSize(fl.sub(log2_split_size_threshold)).shl(J).add(toSize(sl)).shl(i32.const(Math.log2(arch.address.size / 8) + 1));
   };
 
   /** returns address */
@@ -438,7 +445,7 @@ export default function tlsf<TNative extends bigint | u32>(module: Module<TNativ
     const sl = new local(3, i32);
     const remaining_block = new Block(4);
 
-    return func.new([r], [i32], [freeBlock.local, fl, sl, remaining_block.local],
+    return func.new([r], [arch.address], [freeBlock.local, fl, sl, remaining_block.local],
       mergeUInt8Arrays(
         module.call(mapping_search, [r.get()], [
           (slResult) => sl.set(slResult),
@@ -448,7 +455,7 @@ export default function tlsf<TNative extends bigint | u32>(module: Module<TNativ
         module.call(find_suitable_block, [r.get(), fl.get(), sl.get()], [
           (fb) => control.if(undefined, freeBlock.local.tee(fb).eqz(), mergeUInt8Arrays(i32.const(0).toOpCodes(), [control.transpiler.return])).toOpCodes()]),
         freeBlock.remove_head(),
-        control.if(undefined, freeBlock.size().sub(r.get()).gt_u(split_size_threshold),
+        control.if(undefined, freeBlock.size().sub(r.get()).gt_u(toSize(split_size_threshold)),
           mergeUInt8Arrays(freeBlock.split(r.get(), remaining_block),
             module.call(mapping_insert, [remaining_block.size()], [slResult => sl.set(slResult), flResult => fl.set(flResult)]),
             remaining_block.insert(fl.get(), sl.get())
@@ -542,11 +549,11 @@ export default function tlsf<TNative extends bigint | u32>(module: Module<TNativ
     const block = new Block(0);
     const fl = new local(1, i32);
     const sl = new local(2, i32);
-    console.log(head.offset as number + ((arch.address.size - log2splitSizeThreshold) * jpow) * log2usize);
+    console.log(head.offset.asconst() as number + ((arch.address.size - log2splitSizeThreshold) * jpow) * log2usize);
     return func.new([], [], [block.local, fl, sl],
       mergeUInt8Arrays(
         block.local.set(arch.address.const(0)),
-        block.setSize(new arch.address(memory.transpiler.size).mul(arch.address.const(65536)).sub(arch.address.const(blocks.offset))),
+        block.setSize(new arch.address(memory.transpiler.size).mul(arch.address.const(65536)).sub(blocks.offset)),
         module.call(mapping_insert, [block.size()], [slResult => sl.set(slResult), flResult => fl.set(flResult)]),
         block.insert(fl.get(), sl.get())
       )
@@ -556,7 +563,7 @@ export default function tlsf<TNative extends bigint | u32>(module: Module<TNativ
 
   module.addFunc(init);
 
-  return { mapping_insert, mapping_search, find_suitable_block, merge_prev, merge_next, free, init };
+  return { mapping_insert, mapping_search, find_suitable_block, merge_prev, merge_next, free, init, malloc, head };
 }
 
 export class Tlsf<TNative extends bigint | number> implements Allocator<TNative>
@@ -566,6 +573,8 @@ export class Tlsf<TNative extends bigint | number> implements Allocator<TNative>
   constructor(private module: Module<TNative>, private arch: memory<TNative>, private j: number = 3 | 4 | 5 | 6, private splitSizeThreshold: number = 32)
   {
   }
+
+  get memory_start(): memarg<number | bigint> { return this.tlsf.head }
 
   init()
   {
@@ -578,10 +587,8 @@ export class Tlsf<TNative extends bigint | number> implements Allocator<TNative>
     return this.module.call(this.tlsf.init, [], []);
   }
 
-  malloc(size: TNative): usize<TNative>
+  malloc(size: usize<TNative>): usize<TNative>
   {
-    throw new Error('not implemented')
-    // return new this.arch.address(this.module.call(this.tlsf.malloc, [this.arch.address.const(size)], []));
+    return new this.arch.address(this.module.call(this.tlsf.malloc, [size], []));
   }
-
 }

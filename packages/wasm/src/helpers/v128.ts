@@ -113,21 +113,21 @@ export namespace v128
             return new i8(new Uint8Array());
         }
 
-        public static load<TNative extends bigint | number>(m: memarg<TNative>) { return new i8(transpiler.load(m)); }
+        public static load<TNative extends bigint | number>(m: memarg<TNative>) { return new i8(mergeUInt8Arrays(transpiler.load, m.toOpCodes(8))); }
         public static fromLocal(index: indexes.local) { return new i8(new Uint8Array([local.get, index])); }
         public teeLocal(index: indexes.local) { return new i8(new Uint8Array([local.tee, index])); }
         public static fromGlobal(index: indexes.global) { return new i8(new Uint8Array([global.get, index])); }
 
-        public static const(values: uint8[]) { return new i8(transpiler.const(values)); }
+        public static const(values: uint8[] | Uint8Array) { return new i8(mergeUInt8Arrays(transpiler.const, values)); }
 
-        public static load_s<TNative extends bigint | number>(m: memarg<TNative>) { return new i8(transpiler.i8.load_s(m)) }
-        public static load_u<TNative extends bigint | number>(m: memarg<TNative>) { return new i8(transpiler.i8.load_u(m)) }
-        public static load_splat<TNative extends bigint | number>(m: memarg<TNative>) { return new i8(transpiler.i8.load_splat(m)) }
-        public static load_lane<TNative extends bigint | number>(m: memarg<TNative>, l: indexes.lane) { return new i8(transpiler.i8.load_lane(m, l)) }
+        public static load_s<TNative extends bigint | number>(m: memarg<TNative>) { return new i8(mergeUInt8Arrays(transpiler.i8.load_s, m.toOpCodes(8))); }
+        public static load_u<TNative extends bigint | number>(m: memarg<TNative>) { return new i8(mergeUInt8Arrays(transpiler.i8.load_u, m.toOpCodes(8))); }
+        public static load_splat<TNative extends bigint | number>(m: memarg<TNative>) { return new i8(mergeUInt8Arrays(transpiler.i8.load_splat, m.toOpCodes(8))); }
+        public static load_lane<TNative extends bigint | number>(m: memarg<TNative>, l: indexes.lane) { return new i8(mergeUInt8Arrays(transpiler.i8.load_lane, m.toOpCodes(8), [l])) }
         public store_lane<TNative extends bigint | number>(m: memarg<TNative>, l: indexes.lane)
         {
-            return [
-                this.initialOp, transpiler.i8.store_lane(m, l)]
+            return mergeUInt8Arrays(
+                this.initialOp, transpiler.i8.store_lane, m.toOpCodes(8), [l]);
         }
         public extract_lane_s(l: indexes.lane)
         {
@@ -366,18 +366,18 @@ export namespace v128
             return new i16(new Uint8Array());
         }
 
-        public static load<TNative extends bigint | number>(m: memarg<TNative>) { return new i16(transpiler.load(m)); }
+        public static load<TNative extends bigint | number>(m: memarg<TNative>) { return new i16(mergeUInt8Arrays(transpiler.load, m.toOpCodes(8))); }
         public static fromLocal(index: indexes.local) { return new i16(new Uint8Array([local.get, index])); }
         public teeLocal(index: indexes.local) { return new i16(new Uint8Array([local.tee, index])); }
         public static fromGlobal(index: indexes.global) { return new i16(new Uint8Array([global.get, index])); }
 
-        public static const(values: uint8[]) { return new i16(transpiler.const(values)); }
+        public static const(values: uint8[]) { return new i16(mergeUInt8Arrays(transpiler.const, values)); }
 
-        public static load_s<TNative extends bigint | number>(m: memarg<TNative>) { return new i16(transpiler.i16.load_s(m)); }
-        public static load_u<TNative extends bigint | number>(m: memarg<TNative>) { return new i16(transpiler.i16.load_u(m)); }
-        public static load_splat<TNative extends bigint | number>(m: memarg<TNative>) { return new i16(transpiler.i16.load_splat(m)); }
-        public load_lane<TNative extends bigint | number>(m: memarg<TNative>, l: indexes.lane) { return new i16(transpiler.i16.load_lane(m, l)); }
-        public store_lane<TNative extends bigint | number>(m: memarg<TNative>, l: indexes.lane) { return new i16(transpiler.i16.store_lane(m, l)); }
+        public static load_s<TNative extends bigint | number>(m: memarg<TNative>) { return new i16(mergeUInt8Arrays(transpiler.i16.load_s, m.toOpCodes(8))); }
+        public static load_u<TNative extends bigint | number>(m: memarg<TNative>) { return new i16(mergeUInt8Arrays(transpiler.i16.load_u, m.toOpCodes(8))); }
+        public static load_splat<TNative extends bigint | number>(m: memarg<TNative>) { return new i16(mergeUInt8Arrays(transpiler.i16.load_splat, m.toOpCodes(8))); }
+        public load_lane<TNative extends bigint | number>(m: memarg<TNative>, l: indexes.lane) { return new i16(mergeUInt8Arrays(transpiler.i16.load_lane, m.toOpCodes(8), [l])); }
+        public store_lane<TNative extends bigint | number>(m: memarg<TNative>, l: indexes.lane) { return new i16(mergeUInt8Arrays(transpiler.i16.store_lane, m.toOpCodes(8), [l])); }
         public extract_lane_s(l: indexes.lane)
         {
             return new ni32(mergeUInt8Arrays(this.initialOp,
@@ -725,18 +725,18 @@ export namespace v128
             return new i32(new Uint8Array());
         }
 
-        public static load<TNative extends bigint | number>(m: memarg<TNative>) { return new i32(transpiler.load(m)); }
+        public static load<TNative extends bigint | number>(m: memarg<TNative>) { return new i32(mergeUInt8Arrays(transpiler.load, m.toOpCodes(8))); }
         public static fromLocal(index: indexes.local) { return new i32(new Uint8Array([local.get, index])); }
         public teeLocal(index: indexes.local) { return new i32(new Uint8Array([local.tee, index])); }
         public static fromGlobal(index: indexes.global) { return new i32(new Uint8Array([global.get, index])); }
 
-        public static const(values: uint8[]) { return new i8(transpiler.const(values)); }
-        public static load_s<TNative extends bigint | number>(m: memarg<TNative>) { return new i32(transpiler.i32.load_s(m)); }
-        public static load_u<TNative extends bigint | number>(m: memarg<TNative>) { return new i32(transpiler.i32.load_u(m)); }
-        public static load_splat<TNative extends bigint | number>(m: memarg<TNative>) { return new i32(transpiler.i32.load_splat(m)); }
-        public static load_zero<TNative extends bigint | number>(m: memarg<TNative>) { return new i32(transpiler.i32.load_zero(m)); }
-        public load_lane<TNative extends bigint | number>(m: memarg<TNative>, l: indexes.lane) { return new i32(transpiler.i32.load_lane(m, l)) }
-        public store_lane<TNative extends bigint | number>(m: memarg<TNative>, l: indexes.lane) { return new i32(transpiler.i32.store_lane(m, l)) }
+        public static const(values: uint8[]) { return new i8(mergeUInt8Arrays(transpiler.const, values)); }
+        public static load_s<TNative extends bigint | number>(m: memarg<TNative>) { return new i32(mergeUInt8Arrays(transpiler.i32.load_s, m.toOpCodes(8))); }
+        public static load_u<TNative extends bigint | number>(m: memarg<TNative>) { return new i32(mergeUInt8Arrays(transpiler.i32.load_u, m.toOpCodes(8))); }
+        public static load_splat<TNative extends bigint | number>(m: memarg<TNative>) { return new i32(mergeUInt8Arrays(transpiler.i32.load_splat, m.toOpCodes(8))); }
+        public static load_zero<TNative extends bigint | number>(m: memarg<TNative>) { return new i32(mergeUInt8Arrays(transpiler.i32.load_zero, m.toOpCodes(8))); }
+        public load_lane<TNative extends bigint | number>(m: memarg<TNative>, l: indexes.lane) { return new i32(mergeUInt8Arrays(transpiler.i32.load_lane, m.toOpCodes(8), [l])) }
+        public store_lane<TNative extends bigint | number>(m: memarg<TNative>, l: indexes.lane) { return new i32(mergeUInt8Arrays(transpiler.i32.store_lane, m.toOpCodes(8), [l])) }
         public extract_lane(l: indexes.lane)
         {
             return new ni32(mergeUInt8Arrays(this.initialOp,
@@ -1073,15 +1073,15 @@ export namespace v128
             return new i64(new Uint8Array());
         }
 
-        public static load<TNative extends bigint | number>(m: memarg<TNative>) { return new i64(transpiler.load(m)); }
+        public static load<TNative extends bigint | number>(m: memarg<TNative>) { return new i64(mergeUInt8Arrays(transpiler.load, m.toOpCodes(8))); }
         public static fromLocal(index: indexes.local) { return new i64(new Uint8Array([local.get, index])); }
         public teeLocal(index: indexes.local) { return new i64(new Uint8Array([local.tee, index])); }
         public static fromGlobal(index: indexes.global) { return new i64(new Uint8Array([global.get, index])); }
 
-        public static load_splat<TNative extends bigint | number>(m: memarg<TNative>) { return new i64(transpiler.i64.load_splat(m)); }
-        public static load_zero<TNative extends bigint | number>(m: memarg<TNative>) { return new i64(transpiler.i64.load_zero(m)); }
-        public load_lane<TNative extends bigint | number>(m: memarg<TNative>, l: indexes.lane) { return new i64(transpiler.i64.load_lane(m, l)) }
-        public store_lane<TNative extends bigint | number>(m: memarg<TNative>, l: indexes.lane) { return new i64(transpiler.i64.store_lane(m, l)) }
+        public static load_splat<TNative extends bigint | number>(m: memarg<TNative>) { return new i64(mergeUInt8Arrays(transpiler.i64.load_splat, m.toOpCodes(8))); }
+        public static load_zero<TNative extends bigint | number>(m: memarg<TNative>) { return new i64(mergeUInt8Arrays(transpiler.i64.load_zero, m.toOpCodes(8))); }
+        public load_lane<TNative extends bigint | number>(m: memarg<TNative>, l: indexes.lane) { return new i64(mergeUInt8Arrays(transpiler.i64.load_lane, m.toOpCodes(8), [l])) }
+        public store_lane<TNative extends bigint | number>(m: memarg<TNative>, l: indexes.lane) { return new i64(mergeUInt8Arrays(transpiler.i64.store_lane, m.toOpCodes(8), [l])) }
         public extract_lane(l: indexes.lane)
         {
             return new ni64(mergeUInt8Arrays(this.initialOp,
@@ -1295,7 +1295,7 @@ export namespace v128
         {
             return new f32(new Uint8Array());
         }
-        public static load<TNative extends bigint | number>(m: memarg<TNative>) { return new f32(transpiler.load(m)); }
+        public static load<TNative extends bigint | number>(m: memarg<TNative>) { return new f32(mergeUInt8Arrays(transpiler.load, m.toOpCodes(8))); }
         public static fromLocal(index: indexes.local) { return new f32(new Uint8Array([local.get, index])); }
         public teeLocal(index: indexes.local) { return new f32(new Uint8Array([local.tee, index])); }
         public static fromGlobal(index: indexes.global) { return new f32(new Uint8Array([global.get, index])); }
@@ -1514,7 +1514,7 @@ export namespace v128
         {
             return new f64(new Uint8Array());
         }
-        public static load<TNative extends bigint | number>(m: memarg<TNative>) { return new f64(transpiler.load(m)); }
+        public static load<TNative extends bigint | number>(m: memarg<TNative>) { return new f64(mergeUInt8Arrays(transpiler.load, m.toOpCodes(8))); }
         public static fromLocal(index: indexes.local) { return new f64(new Uint8Array([local.get, index])); }
         public teeLocal(index: indexes.local) { return new f64(new Uint8Array([local.tee, index])); }
         public static fromGlobal(index: indexes.global) { return new f64(new Uint8Array([global.get, index])); }

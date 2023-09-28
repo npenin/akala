@@ -1,5 +1,5 @@
 import { i32 } from './i32.js';
-import { memory as memarg } from '../transpilers/memory.js';
+import { memarg } from '../helpers/memory.js';
 import { indexes, wasmtypeInstance } from './wasmtype.js'
 import { f32 as transpiler } from '../transpilers/f32.js'
 import { i64 } from './i64.js';
@@ -39,7 +39,7 @@ export class f32 implements wasmtypeInstance<f32>
     }
 
     public static load<TNative extends bigint | u32>(m: memarg<TNative>, offset: usize<TNative>) { return new f32(mergeUInt8Arrays(offset.toOpCodes(), [transpiler.load], m.toOpCodes(2))); }
-    public store<TNative extends bigint | u32>(m: memarg<TNative>, offset: usize<TNative>) { return mergeUInt8Arrays(this.initialOp, offset.toOpCodes(), [transpiler.store], m.toOpCodes(2)); }
+    public store<TNative extends bigint | u32>(m: memarg<TNative>, offset: usize<TNative>) { return mergeUInt8Arrays(offset.toOpCodes(), this.initialOp, [transpiler.store], m.toOpCodes(2)); }
 
     public eq(rhs: f32)
     {

@@ -7,7 +7,7 @@ import { Runtime } from "./runtime.js";
 
 type ESString = StringConstructor['prototype'];
 
-export class String implements ESString
+export class CharStringConstructor implements ESString
 {
     constructor(private runtime: Runtime, private address: usize<bigint | number>)
     {
@@ -17,9 +17,8 @@ export class String implements ESString
     private static CharAt = (() =>
     {
         {
-            const address = new local(0, i32);
-            const pos = new local(1, i32);
-            const i = new local(2, address.type)
+            const char = new local(0, i32);
+            const pos = new local(1, address.type)
             return func.new([address, pos], [i32], [i], mergeUInt8Arrays(
                 control.for(i.set(address.type.const(0)), i.get().lt_u(this.byteLength), i.set(i.get().add(this.address.type.const(1))),
                     mergeUInt8Arrays(

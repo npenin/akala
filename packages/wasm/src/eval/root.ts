@@ -4,8 +4,8 @@ import { control as ControlTranspiler, control } from "../transpilers/control.js
 import { i32 } from "../transpilers/i32.js";
 import { local } from "../transpilers/local.js";
 import { memory } from "../transpilers/memory.js";
-import { CodeSection } from "../structure.js";
 import { u32 } from "../transpilers/wasmtype.js";
+import { i32 as hi32 } from '../helpers/i32.js'
 
 export default function evaluate<TNative extends number | bigint>(module: Module<TNative>, code: { expr?: Uint8Array, offset?: u32 }, cursor: Cursor, mem: Buffer, stack: (number | bigint)[] = [])
 {
@@ -71,48 +71,48 @@ export default function evaluate<TNative extends number | bigint>(module: Module
             case control.drop:
                 stack.pop();
             case i32.const:
-                stack.push(parsers.signedLEB128.read(buffer, cursor));
+                stack.push(hi32.parser.read(buffer, cursor));
                 break;
             case i32.load:
                 memarg.align = opCodes[cursor.offset++];
-                memarg.offset = parsers.signedLEB128.read(buffer, cursor);
+                memarg.offset = hi32.parser.read(buffer, cursor);
                 stack.push(mem.readUint32LE(Number(stack.pop()) + memarg.offset))
                 break;
             case i32.load8_s:
                 memarg.align = opCodes[cursor.offset++];
-                memarg.offset = parsers.signedLEB128.read(buffer, cursor);
+                memarg.offset = hi32.parser.read(buffer, cursor);
                 stack.push(mem.readInt8(Number(stack.pop()) + memarg.offset))
                 break;
             case i32.load8_u:
                 memarg.align = opCodes[cursor.offset++];
-                memarg.offset = parsers.signedLEB128.read(buffer, cursor);
+                memarg.offset = hi32.parser.read(buffer, cursor);
                 stack.push(mem.readUint8(Number(stack.pop()) + memarg.offset))
                 break;
             case i32.load16_s:
                 memarg.align = opCodes[cursor.offset++];
-                memarg.offset = parsers.signedLEB128.read(buffer, cursor);
+                memarg.offset = hi32.parser.read(buffer, cursor);
                 stack.push(mem.readInt16LE(Number(stack.pop()) + memarg.offset))
                 break;
             case i32.load16_u:
                 memarg.align = opCodes[cursor.offset++];
-                memarg.offset = parsers.signedLEB128.read(buffer, cursor);
+                memarg.offset = hi32.parser.read(buffer, cursor);
                 stack.push(mem.readUint16LE(Number(stack.pop()) + memarg.offset))
                 break;
             case i32.store:
                 memarg.align = opCodes[cursor.offset++];
-                memarg.offset = parsers.signedLEB128.read(buffer, cursor);
+                memarg.offset = hi32.parser.read(buffer, cursor);
                 memarg.offset += Number(stack.pop())
                 mem.writeUint32LE(Number(stack.pop()), memarg.offset)
                 break;
             case i32.store8:
                 memarg.align = opCodes[cursor.offset++];
-                memarg.offset = parsers.signedLEB128.read(buffer, cursor);
+                memarg.offset = hi32.parser.read(buffer, cursor);
                 memarg.offset += Number(stack.pop())
                 mem.writeUint8(Number(stack.pop()), memarg.offset)
                 break;
             case i32.store16:
                 memarg.align = opCodes[cursor.offset++];
-                memarg.offset = parsers.signedLEB128.read(buffer, cursor);
+                memarg.offset = hi32.parser.read(buffer, cursor);
                 memarg.offset += Number(stack.pop())
                 mem.writeUint16LE(Number(stack.pop()), memarg.offset)
                 break;

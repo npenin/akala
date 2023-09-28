@@ -58,7 +58,8 @@ class ExprParser extends parsers.FixedBuffer implements parsers.ParserWithMessag
 
 }
 
-const vuint = parsers.signedLEB128;
+const vuint = parsers.cache(parsers.signedLEB128);
+i32.parser = vuint;
 
 const x = parsers.array(-1,
     parsers.object<ModuleSections>(
@@ -106,11 +107,28 @@ export const module = parsers.prepare((m) => { m.magic = m.magic || '\0asm', m.v
     parsers.property('sections', parsers.emancipate(x))
 ));
 
+// const m1 = new ModuleInstance<number>();
+// m1.needMemory(1);
+// const f1 = (function ()
+// {
+//     const offset = 929;
+//     const i1 = new local(0, i32)
+//     return func.new([i1], [i32], [],
+//         mergeUInt8Arrays(
+//             i32.load(memory.wasm32.memarg(offset), i1.get()).add(i32.const(171084)).store(memory.wasm32.memarg(offset), i1.get()),
+//             i32.load(memory.wasm32.memarg(offset), i1.get()).toOpCodes()
+//         )
+//     )
+// })();
+// m1.addFunc(f1);
+// m1.export('_start', f1);
+
 const rt = new Runtime(memory.wasm32);
+
 // const print = rt.importFunc('env', '_debug', [i32, i32], [i32])
 rt.allocator.init();
 rt.onStart(rt.allocator.start());
-rt.onStart(rt.call((rt.allocator as Tlsf<number>).tlsf.mapping_insert, [i32.const(74)], [r => new Uint8Array([control.drop]), r => new Uint8Array([control.drop])]))
+// rt.onStart(rt.call((rt.allocator as Tlsf<number>).tlsf.mapping_insert, [i32.const(74)], [r => new Uint8Array([control.drop]), r => new Uint8Array([control.drop])]))
 // rt.addFunc(func.new([], []))
 
 // const a = new local(0, i32);

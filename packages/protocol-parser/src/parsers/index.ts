@@ -173,6 +173,10 @@ export function boolean(parser?: Parser<number>): Parser<boolean>
 {
     return new Boolean(parser || bit);
 }
+export function cache<T extends number | string | symbol>(parser: Parser<T>): Parser<T>
+export function cache<T extends number | string | symbol>(parser: ParserWithoutKnownLength<T>): ParserWithoutKnownLength<T>
+export function cache<T extends number | string | symbol, TMessage>(parser: ParserWithMessage<T, TMessage>): ParserWithMessage<T, TMessage>
+export function cache<T extends number | string | symbol, TMessage>(parser: ParserWithMessageWithoutKnownLength<T, TMessage>): ParserWithMessageWithoutKnownLength<T, TMessage>
 export function cache<T extends number | string | symbol, TMessage>(parser: AnyParser<T, TMessage>): AnyParser<T, TMessage>
 {
     return new Cache(parser);

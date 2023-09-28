@@ -1,11 +1,26 @@
 import { i32 } from './i32.js';
 import { i64 } from './i64.js';
-import { indexes, wasmtype, wasmtypeInstance } from './wasmtype.js'
-import { memory as memarg } from '../transpilers/memory.js'
+import { memory as transpiler } from '../transpilers/memory.js';
+import { wasmtype, wasmtypeInstance } from './wasmtype.js'
 import { Module } from './module.js';
 import { u32, u8 } from '../transpilers/wasmtype.js';
+import { mergeUInt8Arrays } from './types.js';
 
-export { memarg }
+export class memarg<TNative extends bigint | u32>
+{
+    constructor(public readonly offset: usize<TNative>, private readonly align?: u8)
+    {
+
+    }
+
+    toOpCodes(defaultAlign: u8): Uint8Array
+    {
+        if (typeof this.offset == 'undefined')
+            return new Uint8Array([this.align || defaultAlign, 0])
+        else
+            return mergeUInt8Arrays([this.align || defaultAlign], this.offset.toOpCodes().slice(1))
+    }
+}
 
 export class memory<TNative extends bigint | u32>
 {
@@ -27,33 +42,38 @@ export class memory<TNative extends bigint | u32>
 
     public static readonly wasm32 = new memory<u32>(i32 as usizeType<u32>);
 
-    public static readonly wasm64 = new memory<bigint>(i64 as usizeType<bigint>);
+    public static readonly wasm64 = new memory<bigint>(i64);
 
-    public memarg(offset: bigint | u32, align?: u8): memarg<TNative>
+    public memarg(offset: usize<TNative> | TNative | u32, align?: u8): memarg<TNative>
     {
-        if (this.address === i32)
-            if (typeof offset == 'bigint')
-                return memarg.memarg(Number(offset) as TNative, align);
-            else
-                return memarg.memarg(offset as TNative, align);
-        if (typeof offset == 'bigint')
-            return memarg.memarg(offset as TNative, align);
-        else
-            return memarg.memarg(BigInt(offset) as TNative, align);
+        switch (typeof offset)
+        {
+            case 'bigint':
+                if (this.address.type === i32.type)
+                    return new memarg(this.address.const(Number(BigInt.asUintN(32, offset))) as usize<TNative>, align);
+                else
+                    return new memarg(this.address.const(offset) as usize<TNative>, align);
+            case 'number':
+                return new memarg(this.address.const(offset), align);
+            default:
+                return new memarg(offset, align);
+        }
     }
 
-    public static readonly transpiler = memarg;
+    public static readonly transpiler = transpiler;
 
-    // public static readonly size = [0x3f, 0x00];
-    // public static readonly grow = [0x40, 0x00];
+    public size() { return new this.address(transpiler.size); }
+    public grow(delta: i32) { return new this.address(mergeUInt8Arrays(transpiler.grow, delta.toOpCodes())); }
+    public copy(dest: usize<TNative>, source: usize<TNative>, length: usize<TNative>) { return new this.address(mergeUInt8Arrays(dest.toOpCodes(), source.toOpCodes(), length.toOpCodes(), transpiler.grow)); }
+    public fill(dest: usize<TNative>, value: usize<TNative>, length: usize<TNative>) { return new this.address(mergeUInt8Arrays(dest.toOpCodes(), value.toOpCodes(), length.toOpCodes(), transpiler.fill)); }
+
     // public static init(x: indexes.data) { return [0xfc, 8, x, 0x00] }
     // public static data_drop(x: indexes.data) { return [0xfc, 9, x, 0x00] }
-    // public static readonly copy = [0xfc, 10, 0x00, 0x00];
-    // public static readonly fill = [0xfc, 11, 0x00];
 }
 
 export interface usize<TNative extends bigint | number> extends wasmtypeInstance<usize<TNative>>
 {
+    asconst(): TNative extends bigint ? bigint : u32;
     clz(): i32;
     ctz(): i32;
     sub(v: usize<TNative>): usize<TNative>;

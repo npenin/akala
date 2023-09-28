@@ -1,6 +1,6 @@
 import { local } from '../transpilers/local.js';
 import { global } from '../transpilers/global.js';
-import { memory as memarg } from '../transpilers/memory.js';
+import { memarg } from '../helpers/memory.js';
 import { indexes, wasmtypeInstance } from './wasmtype.js'
 import { i64 as transpiler } from '../transpilers/i64.js'
 import { f32 } from './f32.js';
@@ -8,10 +8,10 @@ import { i32 } from './i32.js';
 import { f64, mergeUInt8Arrays } from './types.js';
 import { usize } from './memory.js';
 import { u32 } from '../transpilers/wasmtype.js';
-import { parsers } from '@akala/protocol-parser';
+import { Cursor, parsers } from '@akala/protocol-parser';
 
 
-export class i64 implements wasmtypeInstance<i64>
+export class i64 implements wasmtypeInstance<i64>, usize<bigint>
 {
     public constructor(private initialOp: Uint8Array) { }
 
@@ -42,14 +42,19 @@ export class i64 implements wasmtypeInstance<i64>
     public teeLocal(index: indexes.local) { return new i64(new Uint8Array([local.tee, index])); }
     public static fromGlobal(index: indexes.global) { return new i64(new Uint8Array([global.get, index])); }
 
-    private static signedParser = new parsers.SignedLEB128(8);
+    public static parser = new parsers.SignedLEB128(8);
 
     public static const(value: bigint | u32)
     {
-        if (!this.signedParser) this.signedParser = new parsers.SignedLEB128(8);
+        if (!this.parser) this.parser = new parsers.SignedLEB128(8);
         // if (value >= 0)
         //     return new i64(mergeUInt8Arrays([0x42], ...this.unsignedParser.write(value)));
-        return new i64(mergeUInt8Arrays([0x42], ...this.signedParser.write(value)));
+        return new i64(mergeUInt8Arrays([0x42], ...this.parser.write(value)));
+    }
+
+    public asconst()
+    {
+        return BigInt(i64.parser.read(Buffer.from(this.initialOp), new Cursor()));
     }
 
     public static load<TNative extends bigint | u32>(m: memarg<TNative>, offset: usize<TNative>) { return new i64(mergeUInt8Arrays(offset.toOpCodes(), [transpiler.load], m.toOpCodes(3))); }
@@ -60,10 +65,10 @@ export class i64 implements wasmtypeInstance<i64>
     public static load32_s<TNative extends bigint | u32>(m: memarg<TNative>, offset: usize<TNative>) { return new i64(mergeUInt8Arrays(offset.toOpCodes(), [transpiler.load32_s], m.toOpCodes(3))); }
     public static load32_u<TNative extends bigint | u32>(m: memarg<TNative>, offset: usize<TNative>) { return new i64(mergeUInt8Arrays(offset.toOpCodes(), [transpiler.load32_u], m.toOpCodes(3))); }
 
-    public store<TNative extends bigint | u32>(m: memarg<TNative>, offset: usize<TNative>) { return mergeUInt8Arrays(this.initialOp, offset.toOpCodes(), [transpiler.store], m.toOpCodes(3)); }
-    public store8<TNative extends bigint | u32>(m: memarg<TNative>, offset: usize<TNative>) { return mergeUInt8Arrays(this.initialOp, offset.toOpCodes(), [transpiler.store8], m.toOpCodes(3)); }
-    public store16<TNative extends bigint | u32>(m: memarg<TNative>, offset: usize<TNative>) { return mergeUInt8Arrays(this.initialOp, offset.toOpCodes(), [transpiler.store16], m.toOpCodes(3)); }
-    public store32<TNative extends bigint | u32>(m: memarg<TNative>, offset: usize<TNative>) { return mergeUInt8Arrays(this.initialOp, offset.toOpCodes(), [transpiler.store32], m.toOpCodes(3)); }
+    public store<TNative extends bigint | u32>(m: memarg<TNative>, offset: usize<TNative>) { return mergeUInt8Arrays(offset.toOpCodes(), this.initialOp, [transpiler.store], m.toOpCodes(3)); }
+    public store8<TNative extends bigint | u32>(m: memarg<TNative>, offset: usize<TNative>) { return mergeUInt8Arrays(offset.toOpCodes(), this.initialOp, [transpiler.store8], m.toOpCodes(3)); }
+    public store16<TNative extends bigint | u32>(m: memarg<TNative>, offset: usize<TNative>) { return mergeUInt8Arrays(offset.toOpCodes(), this.initialOp, [transpiler.store16], m.toOpCodes(3)); }
+    public store32<TNative extends bigint | u32>(m: memarg<TNative>, offset: usize<TNative>) { return mergeUInt8Arrays(offset.toOpCodes(), this.initialOp, [transpiler.store32], m.toOpCodes(3)); }
 
     public wrap() { return new i32(mergeUInt8Arrays(this.initialOp, [i32.transpiler.wrap_i64])) }
 

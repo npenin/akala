@@ -10,11 +10,11 @@ export class v128
 
     public static readonly type = 0x7b
 
-    public static load<TNative extends bigint | number>(m: memory<TNative>) { return mergeUInt8Arrays([0xfd, 0], m.toOpCodes(4)); }
-    public static store<TNative extends bigint | number>(m: memory<TNative>) { return mergeUInt8Arrays([0xfd, 11], m.toOpCodes(4)); }
+    public static readonly load = [0xfd, 0];
+    public static readonly store = [0xfd, 11];
 
-    public static const(values: uint8[]) { return mergeUInt8Arrays([0xfd, 12], values); }
-    public static shuffle(values: indexes.lane[]) { return mergeUInt8Arrays([0xfd, 13], values); }
+    public static readonly const = [0xfd, 12]
+    public static readonly shuffle = [0xfd, 13];
 
     public static readonly not = new Uint8Array([0xfd, 77]);
     public static readonly and = new Uint8Array([0xfd, 78]);
@@ -33,11 +33,11 @@ export namespace v128
 {
     export class i8
     {
-        public static load_s<TNative extends bigint | number>(m: memory<TNative>) { return mergeUInt8Arrays([0xfd, 1], m.toOpCodes(3)); }
-        public static load_u<TNative extends bigint | number>(m: memory<TNative>) { return mergeUInt8Arrays([0xfd, 2], m.toOpCodes(3)); }
-        public static load_splat<TNative extends bigint | number>(m: memory<TNative>) { return mergeUInt8Arrays([0xfd, 7], m.toOpCodes(3)); }
-        public static load_lane<TNative extends bigint | number>(m: memory<TNative>, l: indexes.lane) { return mergeUInt8Arrays([0xfd, 84], m.toOpCodes(3), [l]); }
-        public static store_lane<TNative extends bigint | number>(m: memory<TNative>, l: indexes.lane) { return mergeUInt8Arrays([0xfd, 88], m.toOpCodes(3), [l]); }
+        public static load_s = [0xfd, 1];
+        public static load_u = [0xfd, 2];
+        public static load_splat = [0xfd, 7];
+        public static load_lane = [0xfd, 84];
+        public static store_lane = [0xfd, 88];
         public static extract_lane_s(l: indexes.lane) { return new Uint8Array([0xfd, 21, l]); }
         public static extract_lane_u(l: indexes.lane) { return new Uint8Array([0xfd, 22, l]); }
         public static replace_lane(l: indexes.lane) { return new Uint8Array([0xfd, 23, l]); }
@@ -82,11 +82,11 @@ export namespace v128
 
     export class i16
     {
-        public static load_s<TNative extends bigint | number>(m: memory<TNative>) { return mergeUInt8Arrays([0xfd, 3], m.toOpCodes(4)); }
-        public static load_u<TNative extends bigint | number>(m: memory<TNative>) { return mergeUInt8Arrays([0xfd, 4], m.toOpCodes(4)); }
-        public static load_splat<TNative extends bigint | number>(m: memory<TNative>) { return mergeUInt8Arrays([0xfd, 8], m.toOpCodes(4)); }
-        public static load_lane<TNative extends bigint | number>(m: memory<TNative>, l: indexes.lane) { return mergeUInt8Arrays([0xfd, 85], m.toOpCodes(4), [l]); }
-        public static store_lane<TNative extends bigint | number>(m: memory<TNative>, l: indexes.lane) { return mergeUInt8Arrays([0xfd, 89], m.toOpCodes(4), [l]); }
+        public static load_s = [0xfd, 3];
+        public static load_u = [0xfd, 4];
+        public static load_splat = [0xfd, 8];
+        public static load_lane = [0xfd, 85];
+        public static store_lane = [0xfd, 89];
         public static extract_lane_s(l: indexes.lane) { return new Uint8Array([0xfd, 24, l]); }
         public static extract_lane_u(l: indexes.lane) { return new Uint8Array([0xfd, 25, l]); }
         public static replace_lane(l: indexes.lane) { return new Uint8Array([0xfd, 26, l]); }
@@ -140,12 +140,12 @@ export namespace v128
 
     export class i32
     {
-        public static load_s<TNative extends bigint | number>(m: memory<TNative>) { return mergeUInt8Arrays([0xfd, 5], m.toOpCodes(2)); }
-        public static load_u<TNative extends bigint | number>(m: memory<TNative>) { return mergeUInt8Arrays([0xfd, 6], m.toOpCodes(2)); }
-        public static load_splat<TNative extends bigint | number>(m: memory<TNative>) { return mergeUInt8Arrays([0xfd, 9], m.toOpCodes(2)); }
-        public static load_zero<TNative extends bigint | number>(m: memory<TNative>) { return mergeUInt8Arrays([0xfd, 92], m.toOpCodes(2)); }
-        public static load_lane<TNative extends bigint | number>(m: memory<TNative>, l: indexes.lane) { return mergeUInt8Arrays([0xfd, 86], m.toOpCodes(2), [l]); }
-        public static store_lane<TNative extends bigint | number>(m: memory<TNative>, l: indexes.lane) { return mergeUInt8Arrays([0xfd, 90], m.toOpCodes(2), [l]); }
+        public static load_s = [0xfd, 5];
+        public static load_u = [0xfd, 6];
+        public static load_splat = [0xfd, 9];
+        public static load_zero = [0xfd, 92];
+        public static load_lane = [0xfd, 86];
+        public static store_lane = [0xfd, 90];
         public static extract_lane(l: indexes.lane) { return new Uint8Array([0xfd, 27, l]); }
         public static replace_lane(l: indexes.lane) { return new Uint8Array([0xfd, 28, l]); }
 
@@ -198,10 +198,10 @@ export namespace v128
 
     export class i64
     {
-        public static load_splat<TNative extends bigint | number>(m: memory<TNative>) { return mergeUInt8Arrays([0xfd, 10], m.toOpCodes(6)); }
-        public static load_zero<TNative extends bigint | number>(m: memory<TNative>) { return mergeUInt8Arrays([0xfd, 93], m.toOpCodes(6)); }
-        public static load_lane<TNative extends bigint | number>(m: memory<TNative>, l: indexes.lane) { return mergeUInt8Arrays([0xfd, 87], m.toOpCodes(6), [l]); }
-        public static store_lane<TNative extends bigint | number>(m: memory<TNative>, l: indexes.lane) { return mergeUInt8Arrays([0xfd, 91], m.toOpCodes(6), [l]); }
+        public static load_splat = [0xfd, 10];
+        public static load_zero = [0xfd, 93];
+        public static load_lane = [0xfd, 87];
+        public static store_lane = [0xfd, 91];
         public static extract_lane(l: indexes.lane) { return new Uint8Array([0xfd, 29, l]); }
         public static replace_lane(l: indexes.lane) { return new Uint8Array([0xfd, 30, l]); }
 
