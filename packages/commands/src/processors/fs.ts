@@ -13,6 +13,7 @@ import { createRequire } from 'module';
 import { addHandler, parseQueryString } from '../protocol-handler.js';
 import { stat } from 'fs/promises';
 import os from 'node:os'
+import { fileURLToPath, pathToFileURL } from 'url';
 
 async function protocolHandler(url: URL)
 {
@@ -226,7 +227,7 @@ export class FileSystem extends CommandProcessor
             {
                 if (f.name.endsWith('.js') || f.name.endsWith('.mjs') || f.name.endsWith('.cjs'))
                 {
-                    const fsConfig: FileSystemConfiguration & jsonObject = { path: path.relative(relativeTo, path.join(root, f.name).replace(/\\/g, '/')) };
+                    const fsConfig: FileSystemConfiguration & jsonObject = { path: path.relative(relativeTo, path.join(root, f.name)).replace(/\\/g, '/') };
 
                     if (!options)
                         throw new Error('cannot happen');
@@ -301,7 +302,7 @@ export class FileSystem extends CommandProcessor
                     if (!cmd.config.fs.inject)
                     {
                         // eslint-disable-next-line @typescript-eslint/no-var-requires
-                        const func = (await import(path.resolve(relativeTo, cmd.config.fs.path))).default;
+                        const func = (await import(pathToFileURL(path.resolve(relativeTo, cmd.config.fs.path)).toString())).default;
                         if (!func)
                             if (!options.ignoreFileWithNoDefaultExport)
                                 throw new Error(`No default export is mentioned in ${path.resolve(relativeTo, cmd.config.fs.path)}`)
@@ -373,6 +374,7 @@ export class FileSystem extends CommandProcessor
             filepath = path.resolve(this.root || process.cwd(), command.name);
         try
         {
+            filepath = pathToFileURL(filepath).toString();
             let script;
             if (process.env.NODE_ENV !== 'production')
                 script = await import(filepath + '?_=' + new Date().valueOf());
