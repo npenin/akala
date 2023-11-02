@@ -1,4 +1,4 @@
-#  (2023-07-23)
+#  (2023-11-02)
 
 
 ### Bug Fixes
@@ -449,6 +449,7 @@
 * add bin in webdav 563472b
 * add bridge support 0e4d6a4
 * add cli gateway af0fd60
+* add client early sdk 4f77893
 * add Configuration getters and setters c5dad91
 * add createIfEmpty flag on config load 2a47d59
 * add crud package 8d71ea4
@@ -480,6 +481,7 @@
 * add possibility to parse filename 335cc97
 * add processing with lambda 650c4f5
 * add protocol handlers dc6c1b6
+* add protocol parser from domojs 9c50b37
 * add reload-metadata on pm 654247f
 * add rest args on cli e6966a9
 * add runnerMiddleware as export ff4c95a
