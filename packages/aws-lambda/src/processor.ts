@@ -28,6 +28,8 @@ export class Processor extends CommandProcessor
                     param = {};
                     for (let i = indexOfEventDot, j = 0; i < (cmd.config.aws.inject?.length || 0); i++, j++)
                     {
+                        if (cmd.config.aws.inject![i].indexOf('event.') == -1)
+                            continue;
                         (param as Record<string, unknown>)[cmd.config.aws.inject![i].substring('event.'.length)] = params.param[j];
                     }
                 }
