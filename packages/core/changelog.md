@@ -1,14 +1,9 @@
-#  (2023-07-14)
+#  (2023-11-02)
 
 
-### Features
+### Bug Fixes
 
-* switch to ESM decorators 19762ba
-
-
-### BREAKING CHANGES
-
-* ESM decorators are not compatible with legacy decorators
+* bump version 0457468
 
 
 
