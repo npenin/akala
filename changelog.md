@@ -62,6 +62,7 @@
 * browser exports 8888cc6
 * bump dependent 5e89235
 * bump dependents proper references f734b61
+* bump version b88263c
 * cannot read undefined config object 0cc01be
 * cjs build d3e9a4e
 * cleanup $disconnect registration on ready 4aaf9bd
