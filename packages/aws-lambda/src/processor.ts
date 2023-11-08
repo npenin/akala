@@ -35,6 +35,9 @@ export class Processor extends CommandProcessor
                 }
             }
         }
+
+        const error: Error & { cause?: unknown } = new Error('LambdaInvocationError');
+
         return this.client.send(new InvokeCommand({
             FunctionName: `${this.prefix}${cmd.name.replace(/\./g, '-')}`,
             Payload: new TextEncoder().encode(JSON.stringify(param))
@@ -43,6 +46,6 @@ export class Processor extends CommandProcessor
             if (r.FunctionError)
                 return Object.assign(new Error(), JSON.parse(new TextDecoder().decode(r.Payload)));
             throw JSON.parse(new TextDecoder().decode(r.Payload));
-        }, err => err)
+        }, err => { error.cause = err; throw error; })
     }
 }
