@@ -62,6 +62,7 @@
 * browser exports 8888cc6
 * bump dependent 5e89235
 * bump dependents proper references f734b61
+* bump lambda version 41d34c2
 * bump version 0457468
 * bump version b88263c
 * cannot read undefined config object 0cc01be
