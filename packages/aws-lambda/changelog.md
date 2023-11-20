@@ -1,9 +1,9 @@
-#  (2023-11-08)
+#  (2023-11-20)
 
 
 ### Bug Fixes
 
-* bump lambda version 41d34c2
+* proper lambda error handling df396e4
 
 
 
