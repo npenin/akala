@@ -1,0 +1,136 @@
+@use 'colors.scss';
+@use 'layout.scss';
+@use 'sass:map';
+
+@mixin buttons($colorName, $config, $filled: false, $colorScheme) {
+
+    border-radius: var(--border-radius);
+    --border-width: 1px;
+    border: none;
+
+    @content($config);
+
+    border-color: var(--border-color);
+    box-shadow: inset 0 0 0px var(--border-width) var(--border-color);
+
+    --border-color: var(--color);
+    color: var(--color);
+
+    @include colors.colorPalette('main-color', $colorName, $config);
+
+    @if not $filled {
+
+        @if $colorScheme=='light' {
+            --background-color: var(--main-color-lightest);
+        }
+
+        @else {
+            --background-color: var(--main-color-darkest);
+        }
+
+        --color: var(--main-color);
+    }
+
+    @else {
+        @if $colorScheme=='light' {
+
+            --background-color: var(--main-color);
+        }
+
+        @else {
+            --background-color: var(--main-color-darker);
+
+        }
+
+        --border-color: var(--background-color);
+        --color: var(--main-color-max-contrast);
+    }
+
+
+    background-color: var(--background-color);
+    color: var(--color);
+
+    &:hover:not(.disabled, :disabled),
+    &.hovered:not(.disabled, :disabled) {
+        @if not $filled {
+            --border-width: 2px;
+            // --color: var(--interact-darker);
+        }
+
+        @else {
+            @if $colorScheme=='light' {
+                --background-color: var(--main-color-lighter);
+            }
+
+            @else {
+                --background-color: var(--main-color);
+            }
+
+            --border-color: var(--background-color);
+            // --color: var(--main-color);
+        }
+
+    }
+
+    &:active:not(.disabled, :disabled),
+    &.active:not(.disabled, :disabled),
+    &:focus-visible {
+        @if $colorScheme=='light' {
+            --background-color: var(--main-color-lighter);
+        }
+
+        @else {
+            --background-color: var(--main-color-darker);
+        }
+
+        --color: var(--main-color);
+
+        @if not $filled {
+            --border-color: var(--color);
+            --color: var(--main-color);
+        }
+
+        @else {
+            --border-color: var(--background-color);
+
+        }
+    }
+
+    &:focus-visible {
+        outline: none;
+    }
+
+    &.disabled,
+    &:disabled {
+
+        @if not $filled {
+            --border-color: var(--color);
+        }
+
+        @else {
+            --background-color: var(--disabled-darker);
+
+        }
+
+        --color: var(--disabled);
+
+        // @if $colorScheme=='light' {
+        //     --color: var(--disabled-contract);
+        // }
+
+        // @else {
+        //     --color: var(--disabled-darker);
+        // }
+    }
+
+    &.borderless:not(.disabled, :disabled),
+    &.borderless.primary:not(.disabled, :disabled) {
+        background: none;
+        box-shadow: none;
+        color: var(--main-color);
+
+        &:hover {
+            color: var(--main-color);
+        }
+    }
+}

@@ -1,0 +1,295 @@
+@use 'sass:color';
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:meta';
+@use 'sass:list';
+@use 'sass:selector';
+@use 'sass:string';
+
+
+@mixin text-color($colorName) {
+    color: $colorName;
+}
+
+@function valuekey($map) {
+    $result: (
+    );
+
+@each $key, $value in $map {
+    $results: map.set($result, $value, $key);
+}
+
+@return $result;
+}
+
+@function reduce($list, $compare) {
+    $result: null;
+    $lastMinIndex: 0;
+
+    @for $i from 1 through list.length($list) {
+        @if($result==null) {
+            $result: $value;
+            $lastMinIndex: 1;
+        }
+
+        @else if(meta.call($compare, $result, list.nth($i))) {
+            $result: $value;
+            $lastMinIndex: $i;
+        }
+    }
+
+    @return $result $lastMinIndex;
+}
+
+@function isMin($v1, $v2) {
+    @return $v1<$v2;
+}
+
+@function minMap($v1, $v2) {
+    @return isMin(list.nth($v1, 1), list.nth($v2, 1));
+}
+
+@function isMax($v1, $v2) {
+    @return $v1>$v2;
+}
+
+@function maxMap($v1, $v2) {
+    @return isMax(list.nth($v1, 1), list.nth($v2, 1));
+}
+
+@mixin colorPalette($variableName, $colorName, $config) {
+
+    @if($variableName==$colorName) {
+        #{"--"+$variableName}: map.get($config, colors, $colorName);
+    }
+
+    @else {
+        #{"--"+$variableName}: string.unquote("var(--" + $colorName+")");
+    }
+
+    @each $variation, $name in map.get($config, 'allColors', $colorName) {
+        @if(type-of($name) !=bool) {
+            #{"--"+$variableName+"-"+$variation}: string.unquote("var(--" + $name+")");
+        }
+    }
+}
+
+@function lightnesses($colorName, $lightnesses) {
+    $variants-original: map.get($lightnesses, $colorName);
+
+    @if($variants-original==null) {
+        $variants-original: map.get($lightnesses, default);
+    }
+
+    $variants: [];
+
+    $defaultVariationInserted: false;
+
+    // @debug $variants-original;
+
+    @each $variation, $lightness in $variants-original {
+        @if($lightness>0 and not $defaultVariationInserted) {
+            $variants: map.set($variants, "", 0);
+            $defaultVariationInserted: true;
+        }
+
+        @if($variation=="" and $lightness==0 and not $defaultVariationInserted) {
+            $variants: map.set($variants, "", 0);
+            $defaultVariationInserted: true;
+        }
+
+        @else {
+            $variants: map.set($variants, '-' + $variation, $lightness);
+        }
+    }
+
+
+    @return $variants;
+}
+
+
+@function wacg($color) {
+    @return round((color.red($color) * 299) + (color.green($color) * 587) + (color.blue($color) * 114) / 1000);
+}
+
+@function wacg-contrast-pass($color1, $color2) {
+    @return abs(wacg($color1)) < calc(wacg($color2) / 2);
+}
+
+.text-color {
+    @include text-color(var(--color));
+}
+
+.bg-color {
+    background-color: var(--background-color);
+}
+
+body {
+    color: var(--black);
+}
+
+@function computeAllVariants($config) {
+    // @debug $config;
+
+    $colors: map.get($config, 'colors');
+
+    @each $colorName, $color in $colors {
+
+        $variants: lightnesses($colorName, map.get($config, lightnesses));
+        $negative: 0;
+        $positive: 0;
+
+
+        @each $variation, $lightness in $variants {
+
+            $config: map.set($config, allColors, $colorName+$variation, []);
+
+            @if($lightness !=0) {
+                $config: map.set($config, 'colors', $colorName+$variation, color.scale($color, $lightness: $lightness));
+
+                @if($lightness<0) {
+                    $negative: $negative+1;
+                }
+
+                @else {
+                    $positive: $positive+1;
+                }
+            }
+
+        }
+
+        @if($negative>$positive) {
+            @warn "You have more dark variations than light variations for "+$colorName+". This can cause issues with the light color scheme";
+        }
+
+        @if($negative<$positive) {
+            @warn "You have more light variations than dark variations for "+$colorName+". This can cause issues with the dark color scheme";
+        }
+
+        @for $i from 1 through list.length($variants) {
+
+            $variation: list.nth(list.nth($variants, $i), 1);
+            $lightness: list.nth(list.nth($variants, $i), 2);
+            $colorNameVariant: $colorName+$variation;
+            $colorVariant: map.get($config, 'colors', $colorName+$variation);
+            $colorVariations: [];
+
+            @if(list.length($variants)>1) {
+
+                $colorVariations: (
+                    lighter: $i < list.length($variants) and $colorName+list.nth(list.nth($variants, $i + 1), 1),
+                    darker: $i>1 and $colorName+list.nth(list.nth($variants, $i - 1), 1),
+                    darkest: $colorName+list.nth(list.nth($variants, 1), 1),
+                    lightest: $colorName+list.nth(list.nth($variants, list.length($variants)), 1),
+                );
+
+
+            $contrastWithWhite: color.whiteness(map.get($config, 'colors', 'light')) - color.whiteness(map.get($config, 'colors', $colorNameVariant));
+            $contrastWithBlack: color.blackness(map.get($config, 'colors', 'dark')) - color.blackness(map.get($config, 'colors', $colorNameVariant));
+
+            @if($contrastWithBlack>$contrastWithWhite) {
+                @if(map.get($colorVariations, darker)) {
+
+                    $colorVariations: map.merge($colorVariations, (contrast:map.get($colorVariations, darker),
+                                max-contrast:map.get($colorVariations, darkest),
+                                complement: 'dark'
+                            ));
+                }
+
+                @else {
+                    @debug impossible dark $colorNameVariant;
+                }
+            }
+
+            @else {
+                @if(map.get($colorVariations, lighter)) {
+
+                    $colorVariations: map.merge($colorVariations, (contrast:map.get($colorVariations, lighter),
+                                max-contrast:map.get($colorVariations, lightest),
+                                complement: 'light'
+                            ));
+                }
+
+                @else {
+                    @debug impossible light $colorNameVariant;
+                }
+            }
+
+        }
+
+        @else {
+            @if($colorNameVariant=='black') {
+                $colorVariations: map.set($colorVariations, max-contrast, 'light')
+            }
+
+            @else if($colorNameVariant=='white') {
+                $colorVariations: map.set($colorVariations, max-contrast, 'dark')
+            }
+
+
+        }
+
+        $config: map.set($config, allColors, $colorNameVariant, $colorVariations);
+    }
+}
+
+
+@return $config;
+}
+
+@mixin colors($config) {
+    // @debug $config;
+
+    $white: map.get($config, 'colors', 'light');
+
+    @each $colorName, $color in map.get($config, 'colors') {
+
+        $variants: lightnesses($colorName, map.get($config, lightnesses));
+
+        $color-brightness: round((color.red($color) * 299) + (color.green($color) * 587) + (color.blue($color) * 114) / 1000);
+        $light-color: round((color.red(white) * 299) + (color.green(white) * 587) + (color.blue(white) * 114) / 1000);
+
+        :root {
+            @include colorPalette(#{$colorName}, $colorName, $config);
+            // --#{$colorName+$variation}: #{$color};
+        }
+
+        %text-#{$colorName} {
+            --color:var(--#{$colorName});
+        }
+
+        %bg-#{$colorName} {
+            @include colorPalette(background-color, $colorName, $config);
+
+
+            @if wacg-contrast-pass($color, $white) {
+                --text-color: var(--light);
+            }
+
+            @else {
+                --text-color: var(--dark);
+            }
+
+            .text-contrast,
+            &.text-contrast {
+                --text-color: var(--background-color-contrast);
+            }
+
+            .text-max-contrast,
+            &.text-max-contrast {
+                --text-color: var(--background-color-max-contrast);
+            }
+        }
+
+        #{selector.parse(".text-"+$colorName)} {
+            --color:var(--#{$colorName});
+            @extend .text-color;
+        }
+
+        #{selector.parse(".bg-"+$colorName)} {
+            @extend %bg-#{$colorName};
+            @extend .bg-color;
+            color: var(--text-color);
+        }
+    }
+}

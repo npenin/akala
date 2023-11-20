@@ -1,8 +1,8 @@
 {
     "plugins": [
-        "./packages/config/dist/esm/akala.mjs",
-        "./packages/commands/dist/esm/akala.mjs",
-        "./packages/pm/dist/esm/akala.mjs"
+        "@akala/config/akala",
+        "@akala/commands/akala",
+        "@akala/server/akala"
     ],
     "pm": {
         "containers": {
@@ -34,6 +34,18 @@
         "plugins": []
     },
     "commands": {
-        "meta": "./packages/commands/commands.json"
+        "meta": "./packages/commands/commands.json",
+        "domojs": "tcp://welcome.iot.dragon-angel.fr:31416",
+        "client": "packages/client-compiler/commands.json"
+    },
+    "compiler": {
+        "loaders": {
+            "protocol": [
+                "/home/neonp/akala/packages/client-compiler/dist/esm/loaders/protocol/https.js"
+            ],
+            "format": [
+                "/home/neonp/akala/packages/client-compiler/dist/esm/loaders/format/html-loader.js"
+            ]
+        }
     }
 }

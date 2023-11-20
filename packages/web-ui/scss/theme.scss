@@ -1,0 +1,158 @@
+@use 'sass:color';
+@use "sass:map";
+@use "variables.scss";
+@use "reset.scss";
+@use "colors.scss";
+@use "typescale.scss";
+@use 'hyperlinks.scss';
+@use "buttons.scss";
+@use "layout.scss";
+@forward "layout.scss";
+@use 'form/form.scss';
+@use 'menus.scss';
+@use 'dialogs.scss';
+@use 'chips.scss';
+@use 'cards.scss';
+@use 'flex-grid.scss';
+@use 'table.scss';
+
+@mixin init($config) {
+    @if(not map.has-key($config, 'breakpoints')) {
+        $config: map.set($config, 'breakpoints', (xs:576px, sm:576px, md:768px, lg:1024px, xl:1200px, xxl:1400px, kkkk:3840px, fullhd:1920px, hd:1280px, dvd:720px, mobileS:320px, mobileM:375px, mobileL:425px, tablet:768px, laptop:1024px, laptopL:1440px));
+    }
+
+    @each $name, $breakpoint in map.get($config, breakpoints) {
+        #{'%flex-' + $name} {
+            @extend %flex;
+
+            @include layout.media-maxWidth($name, $config) {
+
+                flex-direction: column;
+
+                >* {
+                    flex-basis: auto;
+                }
+            }
+        }
+    }
+
+    @if(not map.has-key($config, 'colors', 'grey')) {
+        $grey: color.mix(map.get($config, 'colors', 'dark'), map.get($config, 'colors', 'light'));
+        $config: map.set($config, 'colors', 'grey', $grey);
+    }
+
+    $config: map.set($config, lightnesses, 'light', ("": 0));
+    $config: map.set($config, lightnesses, 'dark', ("": 0));
+
+
+    $config: colors.computeAllVariants($config);
+
+    $config: map.set($config, allColors, light, ("": true, "max-contrast":dark));
+    $config: map.set($config, allColors, dark, ("": true, "max-contrast":light));
+
+    @include colors.colors($config);
+
+    @include flex-grid.grid($config, 12);
+
+    @content($config);
+}
+
+@mixin theme($config, $interactColor: 'accent', $colorScheme) {
+
+
+    :root,
+    ::backdrop {
+        --border-radius: 8px;
+        --gutter: 16px;
+
+
+        @if $colorScheme=='light' {
+            --shadow-color: #{color.change(map.get($config, 'colors', 'grey'), $alpha: 0.09)};
+            @include colors.colorPalette('disabled', 'grey-' + $colorScheme, $config);
+        }
+
+        @else {
+            --shadow-color:#{ color.change(map.get($config, 'colors', 'grey-dark'), $alpha: 0.39)};
+            @include colors.colorPalette('disabled', 'grey-extra-' + $colorScheme, $config);
+
+        }
+
+        --shadow: 0 0.188rem 0.75rem 0 var(--shadow-color);
+        @include colors.colorPalette('interact', $interactColor, $config);
+    }
+
+    .button,
+    button,
+    a.button {
+        @include buttons.buttons($interactColor, $config, false, $colorScheme) using ($config) {
+            @include colors.colorPalette('interact', $interactColor + '-' + $colorScheme, $config);
+
+            padding: calc(var(--gutter)/2) var(--gutter);
+
+            @include layout.media-maxWidth(md, $config) {
+
+                padding: var(--gutter);
+                height: 48px;
+            }
+        }
+
+
+        &.primary {
+            @include buttons.buttons($interactColor, $config, true, $colorScheme);
+            @include colors.colorPalette('interact', $interactColor + '-' + $colorScheme, $config);
+        }
+    }
+
+    @include form.form($config, $colorScheme) {
+        @include colors.colorPalette('interact', $interactColor, $config);
+        --placeholder: var(--grey);
+        padding: calc(var(--gutter)/2) var(--gutter);
+
+    }
+
+    @include menus.menu($colorScheme) {}
+
+    @include chips.chip() {
+        @include colors.colorPalette('border-color', 'grey', $config);
+    }
+
+    @include cards.card() {
+        @include colors.colorPalette('border-color', $interactColor + '-extra-' + $colorScheme, $config);
+    }
+
+    @include table.table($config, $colorScheme) using ($config) {
+        @include colors.colorPalette('background-color', $interactColor + '-extra-' + $colorScheme, $config);
+    }
+
+    @content($config, $colorScheme);
+}
+
+@mixin darkmode($config) {
+    $darknesses: map.get($config, darknesses);
+
+    @if($darknesses==null) {
+        $darknesses: map.get($config, lightnesses);
+
+        @each $name, $value in $darknesses {
+            $darknesses: map.set($name, -$value);
+        }
+
+        $config: map.set($config, darknesses, $darknesses);
+    }
+
+    @include darkmodesupport() {
+
+        @include colors.colorPalette(background-color, 'dark', $config);
+        background-color: var(--background-color);
+        color: var(--background-color-max-contrast);
+    }
+
+}
+
+@mixin darkmodesupport() {
+
+
+    @media screen and (prefers-color-scheme:dark) {
+        @content;
+    }
+}
