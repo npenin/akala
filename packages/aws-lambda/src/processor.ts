@@ -1,6 +1,6 @@
 import { CommandProcessor, Container, StructuredParameters } from '@akala/commands';
 import { Metadata } from '@akala/commands';
-import { MiddlewarePromise } from '@akala/core';
+import { ErrorWithStatus, MiddlewarePromise } from '@akala/core';
 import { LambdaClient, InvokeCommand, LambdaClientConfig } from '@aws-sdk/client-lambda';
 
 export class Processor extends CommandProcessor
@@ -44,7 +44,7 @@ export class Processor extends CommandProcessor
         })).then(r =>
         {
             if (r.FunctionError)
-                return Object.assign(new Error(), JSON.parse(new TextDecoder().decode(r.Payload)));
+                return Object.assign(new ErrorWithStatus(500, 'LambdaFailure'), { rejection: JSON.parse(new TextDecoder().decode(r.Payload)) });
             throw JSON.parse(new TextDecoder().decode(r.Payload));
         }, err => { error.cause = err; throw error; })
     }
