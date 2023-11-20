@@ -1,4 +1,4 @@
-#  (2023-11-08)
+#  (2023-11-20)
 
 
 ### Bug Fixes
@@ -278,6 +278,7 @@
 * proper error serialization support 54a819d
 * proper exit code on help ad8e0ad
 * proper exit code on help c13524e
+* proper lambda error handling df396e4
 * proper parameter binding for bump-dependents 7459c86
 * proper positional option 4b10b61
 * proper pubsub container 7978b92
