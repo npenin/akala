@@ -1,0 +1,21 @@
+@mixin chip() {
+
+    .chip {
+        border: 1px solid var(--border-color);
+        border-radius: calc(var(--border-radius)/2);
+        font-size: smaller;
+        padding: 0.5em;
+        @content;
+
+        &.hovered,
+        &:hover {
+            --border-color: var(--interact);
+        }
+
+        &.disabled,
+        &:disabled {
+            --border-color: var(--disabled-lighter);
+            color: var(--disabled-contrast);
+        }
+    }
+}

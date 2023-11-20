@@ -1,0 +1,33 @@
+dialog {
+    border: 1px solid var(--accent-lightest);
+    border-radius: calc(var(--border-radius)*2);
+    position: fixed;
+    box-shadow: var(--shadow);
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: var(--gutter);
+
+    [aria-label="close"],
+    input[type="submit"][aria-label="close"] {
+        float: right;
+        padding: calc(var(--gutter) / 2);
+        width: 2em;
+        height: 2em;
+    }
+
+    &.centered {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &::backdrop {
+        background-color: var(--shadow-color);
+        backdrop-filter: blur(var(--border-radius));
+    }
+}
+
+body:has(dialog[open]::backdrop) {
+    overflow: hidden;
+}

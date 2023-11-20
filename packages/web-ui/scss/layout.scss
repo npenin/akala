@@ -1,0 +1,72 @@
+@use 'sass:map';
+
+%flex {
+    display: flex;
+    flex-direction: row;
+    gap: var(--gutter);
+}
+
+body,
+section:has(>h1, >h2, >h3, >h4, >h5, >h6) {
+    @extend %flex;
+    @extend .vertical;
+    justify-content: flex-start;
+}
+
+.vertical {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gutter);
+}
+
+.horizontal {
+    display: flex;
+    flex-direction: row;
+    gap: var(--gutter);
+}
+
+@mixin media-maxWidth($name, $config, $mediaName: screen) {
+    @media #{$mediaName} and (max-width: map.get($config, breakpoints, $name)) {
+        @content;
+    }
+}
+
+
+@mixin media-minWidth($name, $config, $mediaName: screen) {
+    @media #{$mediaName} and (min-width: map.get($config, breakpoints, $name)) {
+        @content;
+    }
+}
+
+
+@mixin fixedMaxWidth($size) {
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        --max-body-width:#{$size};
+
+        >* {
+            margin: 0 auto;
+            width: 100%;
+            max-width: var(--max-body-width);
+            @content;
+
+            &.full-body-width,
+            &:has(.full-body-width) {
+                max-width: unset;
+            }
+        }
+    }
+}
+
+header,
+footer {
+    @extend %flex;
+    @extend .horizontal;
+    align-items: center;
+}
+
+body>footer {
+    margin-top: auto;
+}

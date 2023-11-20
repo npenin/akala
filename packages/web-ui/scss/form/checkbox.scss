@@ -1,0 +1,155 @@
+@use '../colors.scss';
+@use 'sass:map';
+
+@mixin checkbox($config, $colorScheme) {
+
+    input[type="checkbox"],
+    input[type="radio"] {
+        appearance: none;
+        border-radius: min(var(--border-radius), 6px);
+        padding: 0;
+        height: 1rem;
+        width: 1rem;
+        background-color: var(--background-color);
+        border-color: var(--border-color);
+        margin: 0;
+
+        @if($colorScheme==light) {
+            --background-color: var(--light);
+            --color: var(--grey);
+        }
+
+        @else {
+            --background-color: var(--dark);
+            --color: var(--grey-lighter);
+        }
+
+        --border-color: var(--color);
+        @include colors.colorPalette('hovered', 'accent', $config);
+
+
+        &:hover,
+        &.hovered {
+            --color: var(--hovered);
+
+            @if($colorScheme==light) {
+                --background-color: var(--white);
+            }
+
+            @else {
+                --background-color: var(--black);
+            }
+        }
+
+        &:active {
+            @if($colorScheme==light) {
+                --color: var(--hovered-lighter);
+            }
+
+            @else {
+                --color: var(--hovered-darker);
+            }
+        }
+
+        &:checked {
+            --background-color: var(--interact);
+
+            --color: #{"var(--" + $colorScheme + ")"};
+
+            // --border-color: var(--background-color);
+
+            &::after {
+                content: "🗸";
+                position: absolute;
+                display: block;
+                height: calc(1em - 2px);
+                width: calc(1em - 2px);
+                line-height: 1rem;
+                font-size: 1rem;
+                text-align: center;
+            }
+
+            &:hover:enabled,
+            &.hovered:enabled {
+
+                @if($colorScheme==light) {
+                    --background-color: var(--hovered-lighter);
+                }
+
+                @else {
+                    --background-color: var(--hovered-darker);
+                }
+
+                --color: var(--hovered);
+            }
+
+            &:active {
+                --border-color: var(--hovered);
+            }
+
+            &:disabled {
+
+                --background-color: var(--disabled-lighter);
+                --color: var(--disabled);
+                border-color: var(--color);
+            }
+        }
+
+        &:disabled {
+            --background-color: var(--disabled-lighter);
+            --color: var(--disabled);
+
+            --border-color: var(--disabled);
+
+        }
+    }
+
+    input[type="checkbox"]:checked {
+        --border-color: var(--background-color);
+    }
+
+    @include switch();
+}
+
+@mixin switch() {
+
+    input[type="checkbox"].switch,
+    .switch input[type="checkbox"] {
+        --size: 1.125rem;
+        --spacing: 1px;
+        font-size: var(--size);
+        height: 1em;
+        width: calc(2em - var(--spacing));
+        border-radius: calc(var(--size) * 2 / 3);
+        appearance: none;
+        margin-top: var(--spacing);
+        // background-color: var(--background-color);
+
+        &::after {
+            content: "";
+            border: none;
+            height: calc(var(--size) - var(--spacing) - var(--spacing) - 2px);
+            width: calc(var(--size) - var(--spacing) - var(--spacing) - 2px);
+            margin: var(--spacing);
+            margin-left: calc(var(--spacing) * 1.5);
+            border-radius: inherit;
+            display: block;
+            transition: all ease-in-out 0.1s;
+            background-color: var(--color);
+        }
+
+        &:checked {
+            &::after {
+                content: "";
+                margin-left: var(--size);
+                margin-top: calc(var(--spacing) + 0.25px);
+                border: none;
+                transition: all ease-in-out 0.1s;
+                transform: none;
+                height: calc(var(--size) - var(--spacing) - var(--spacing) - 2px);
+                width: calc(var(--size) - var(--spacing) - var(--spacing) - 2px);
+                border-color: var(--color);
+            }
+        }
+    }
+}

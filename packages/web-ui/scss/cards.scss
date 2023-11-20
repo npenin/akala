@@ -1,0 +1,20 @@
+@mixin card() {
+
+    .card {
+        border: 1px solid var(--border-color);
+        border-radius: calc(var(--border-radius)/2);
+        padding: 1em;
+        @content;
+
+        &.actionable.hovered:not(:disabled, .disabled),
+        &.actionable:hover:not(:disabled, .disabled) {
+            box-shadow: var(--shadow);
+        }
+
+        &.disabled,
+        &:disabled {
+            --border-color: var(--disabled-lighter);
+            color: var(--disabled-contrast);
+        }
+    }
+}

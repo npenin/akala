@@ -1,0 +1,25 @@
+@mixin radio($colorScheme) {
+
+    input[type="radio"] {
+        border-radius: 1em;
+
+        &:checked {
+            --background-color: var(--#{$colorScheme});
+            --color: var(--interact);
+        }
+
+        &::after,
+        &:checked::after {
+            content: "";
+        }
+
+        &::after {
+            transform: scale(0.6, 0.6);
+            transform-origin: 50% 50%;
+            border-radius: inherit;
+            height: 1em;
+            width: 1em;
+            background-color: var(--color);
+        }
+    }
+}

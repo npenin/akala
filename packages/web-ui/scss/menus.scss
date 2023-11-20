@@ -1,0 +1,46 @@
+@mixin menu($colorScheme) {
+
+    $interactExtra: #{"var(--interact-"+$colorScheme+"est)"};
+
+    menu {
+        margin: 0;
+        padding: 0;
+        border: 1px solid $interactExtra;
+        border-radius: var(--border-radius);
+        width: fit-content;
+        box-shadow: var(--shadow);
+
+        @content;
+
+        >li {
+            padding: 1em 2em;
+
+            &:first-child {
+                border-top-right-radius: inherit;
+                border-top-left-radius: inherit;
+            }
+
+            &:last-child {
+                border-bottom-right-radius: inherit;
+                border-bottom-left-radius: inherit;
+            }
+
+            &:not(:disabled, .disabled):hover {
+                background-color: $interactExtra;
+            }
+
+            >a:only-child {
+                text-decoration: none;
+                color: var(--black);
+            }
+
+            &.disabled,
+            &:disabled,
+            &.disabled>a,
+            &:disabled>a {
+                color: var(--disabled);
+                cursor: not-allowed;
+            }
+        }
+    }
+}

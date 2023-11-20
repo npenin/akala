@@ -1,0 +1,28 @@
+@mixin table($config, $colorScheme) {
+
+    table,
+    .table {
+        @content($config);
+
+        th {
+            font-weight: bold;
+            text-align: left;
+        }
+
+        th,
+        td {
+            padding: calc(var(--gutter)/2);
+        }
+
+        thead>tr,
+        tfoot>tr {
+            background: var(--background-color);
+        }
+
+        &.striped {
+            tbody>tr:nth-child(2n) {
+                --background-color: grey-extra-$colorScheme;
+            }
+        }
+    }
+}

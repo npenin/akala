@@ -1,0 +1,49 @@
+@use 'index.scss';
+@use '../scss/theme.scss';
+
+body {}
+
+body>main {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+footer.full-body-width {
+    padding-left: calc((100vw - var(--max-body-width)) / 2 + var(--gutter));
+    padding-right: calc((100vw - var(--max-body-width)) / 2 + var(--gutter));
+}
+
+header.full-body-width {
+    padding-left: calc((100vw - var(--max-body-width)) / 2 + var(--gutter));
+    padding-right: calc((100vw - var(--max-body-width)) / 2 + var(--gutter));
+}
+
+body>main {
+    height: 100%;
+}
+
+nav {
+    position: sticky;
+    max-height: calc(100vh - 50px);
+    background-color: var(--accent);
+    --negative-gutter: calc(0px - var(--gutter));
+    margin-top: var(--negative-gutter);
+    margin-bottom: var(--negative-gutter);
+
+    @include theme.darkmodesupport() {
+        background-color: var(--accent-dark);
+    }
+
+    >menu {
+        width: 100%;
+        border: none;
+        --border-radius: 0;
+        height: 100%;
+        box-shadow: none;
+    }
+}
+
+nav.full-body-width>menu>li {
+    padding-left: calc((100vw - var(--max-body-width)) / 2 + var(--gutter) + 2em);
+}
