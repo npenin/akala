@@ -1651,6 +1651,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mongodb-js/saslprep@npm:^1.1.0":
+  version: 1.1.1
+  resolution: "@mongodb-js/saslprep@npm:1.1.1"
+  dependencies:
+    sparse-bitfield: ^3.0.3
+  checksum: 0b263aef5e42a2b296c205a4afcc06c3e59817427dfdf4b5d6f49c4e5c000aa90f652006b95f726e0eac7e888031a82393a964e390d5689a2de61e945f8238d3
+  languageName: node
+  linkType: hard
+
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
   resolution: "@nodelib/fs.scandir@npm:2.1.5"
@@ -3644,10 +3653,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bson@npm:^5.4.0":
-  version: 5.4.0
-  resolution: "bson@npm:5.4.0"
-  checksum: 1c07e3d09f139d414bd226bf7f4e9aaa7a726e0c9718c55b53bb23ffa2805cac8b66e4fa46b424c73a35c6e292ed5f7432df5c76ea5d08052642b2ac9e0399e3
+"bson@npm:^5.5.0":
+  version: 5.5.1
+  resolution: "bson@npm:5.5.1"
+  checksum: f49730504e8362e2c8d1eb0c272e5e125392c41fb7196fc35ccbc39718ee62569a1d197bd2342c3334cd420073d3fd5dc7dea764a7f219dcd79e0ce473dd2772
   languageName: node
   linkType: hard
 
@@ -7389,21 +7398,21 @@ __metadata:
   linkType: hard
 
 "mongodb@npm:^5.7.0":
-  version: 5.7.0
-  resolution: "mongodb@npm:5.7.0"
+  version: 5.9.1
+  resolution: "mongodb@npm:5.9.1"
   dependencies:
-    bson: ^5.4.0
+    "@mongodb-js/saslprep": ^1.1.0
+    bson: ^5.5.0
     mongodb-connection-string-url: ^2.6.0
-    saslprep: ^1.0.3
     socks: ^2.7.1
   peerDependencies:
-    "@aws-sdk/credential-providers": ^3.201.0
-    "@mongodb-js/zstd": ^1.1.0
-    kerberos: ^2.0.1
+    "@aws-sdk/credential-providers": ^3.188.0
+    "@mongodb-js/zstd": ^1.0.0
+    kerberos: ^1.0.0 || ^2.0.0
     mongodb-client-encryption: ">=2.3.0 <3"
     snappy: ^7.2.2
   dependenciesMeta:
-    saslprep:
+    "@mongodb-js/saslprep":
       optional: true
   peerDependenciesMeta:
     "@aws-sdk/credential-providers":
@@ -7416,7 +7425,7 @@ __metadata:
       optional: true
     snappy:
       optional: true
-  checksum: 16357b6229abac165aecea15a6efa873ec8662a00411ecb9e49853f05a590be31aab63d404486125778eedaafe76d70e84eea682fa89b138decc247f4870d2ec
+  checksum: a827937120cd7eecafc0ad5657b40536774f0b09582a9363db0a192149ba20eae80a33fccf573f5ce69a20aca6759c40b4961d9d1d4de2a350c543030055e0f6
   languageName: node
   linkType: hard
 
@@ -8721,15 +8730,6 @@ __metadata:
   version: 2.1.2
   resolution: "safer-buffer@npm:2.1.2"
   checksum: cab8f25ae6f1434abee8d80023d7e72b598cf1327164ddab31003c51215526801e40b66c5e65d658a0af1e9d6478cadcb4c745f4bd6751f97d8644786c0978b0
-  languageName: node
-  linkType: hard
-
-"saslprep@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "saslprep@npm:1.0.3"
-  dependencies:
-    sparse-bitfield: ^3.0.3
-  checksum: 4fdc0b70fb5e523f977de405e12cca111f1f10dd68a0cfae0ca52c1a7919a94d1556598ba2d35f447655c3b32879846c77f9274c90806f6673248ae3cea6ee43
   languageName: node
   linkType: hard
 
