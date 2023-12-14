@@ -83,10 +83,14 @@ export default async function (this: State, container: RunningContainer & pmCont
         , disconnect: null
         , unref: null
         , ref: null
-        , killed: false
+        , killed: false,
+        [Symbol.dispose]()
+        {
+
+        }
     });
 
-    const configPath = context.options.configFile || join(homedir(), './.pm.config.json');
+    const configPath = context.options.configFile || './.pm.config.json';
     this.config = await Configuration.load<StateConfiguration>(configPath, true);
 
     if (this.config?.mapping?.pm)
