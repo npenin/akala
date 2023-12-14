@@ -18,7 +18,7 @@ type TlsConnectOpts = NetConnectOpts & SecureContextOptions & CommonConnectionOp
 
 export interface ServeMetadataWithSignal extends ServeMetadata
 {
-    signal: AbortSignal;
+    signal?: AbortSignal;
 }
 
 export type ServeMetadata = { [key in keyof ServeMetadataMap]?: ServeMetadataMap[key][] }
