@@ -1,33 +1,35 @@
 {
-    "name": "akala",
-    "private": true,
-    "workspaces": [
-        "packages/*",
-        "docker"
-    ],
-    "version": "252.0.0",
-    "funding": "https://github.com/npenin/akala?sponsor=1",
-    "devDependencies": {
-        "@typescript-eslint/eslint-plugin": "^5.62.0",
-        "@typescript-eslint/parser": "^5.62.0",
-        "commitizen": "^4.3.0",
-        "cz-conventional-changelog": "^3.3.0",
-        "eslint": "^8.44.0",
-        "typescript": "^5.1.6",
-        "why-is-node-still-running": "^1.0.0"
-    },
-    "scripts": {
-        "lint": "eslint . --ext .ts --cache",
-        "commit": "cz",
-        "generate": "yarn workspaces foreach -A run generate",
-        "generate-metadata": "yarn workspaces foreach -A run generate-metadata",
-        "build:esm": "tsc -b packages/tsconfig.esm.json",
-        "build:cjs": "tsc -b packages/tsconfig.cjs.json"
-    },
-    "config": {
-        "commitizen": {
-            "path": "./node_modules/cz-conventional-changelog"
-        }
-    },
-    "packageManager": "yarn@3.6.0"
+  "name": "akala",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "docker"
+  ],
+  "version": "252.0.0",
+  "funding": "https://github.com/npenin/akala?sponsor=1",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.13.2",
+    "@typescript-eslint/parser": "^6.13.2",
+    "bun-types": "^1.0.16",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.55.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.7",
+    "why-is-node-still-running": "^1.0.0"
+  },
+  "scripts": {
+    "lint": "eslint . --ext .ts --cache",
+    "commit": "cz",
+    "generate": "yarn workspaces foreach -A run generate",
+    "generate-metadata": "yarn workspaces foreach -A run generate-metadata",
+    "build:esm": "tsc -b packages/tsconfig.esm.json",
+    "build:cjs": "tsc -b packages/tsconfig.cjs.json"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "packageManager": "yarn@3.6.0"
 }
