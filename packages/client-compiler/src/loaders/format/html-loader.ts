@@ -2,9 +2,14 @@ import { Loader, Resolver } from "../../index.js";
 import path from 'node:path'
 import * as parse5 from 'parse5'
 import fs from 'node:fs/promises'
-import { dom } from '@akala/pages'
+import { dom, renderInner, renderOuter } from '@akala/pages'
 import { fileURLToPath } from 'node:url'
 import sourceMap from "source-map";
+import * as ts from './ts-loader.js'
+import { LogLevels, logger as coreLogger } from '@akala/core'
+
+const logger = coreLogger('hook:html')
+
 
 const tsExts = new Set([
     '.html',
@@ -15,7 +20,17 @@ const maps: Record<string, string> = {};
 
 export const resolve: Resolver = async function (specifier, context, nextResolve)
 {
-    const ext = path.extname(specifier);
+    let ext = path.extname(specifier);
+
+    let hash = '';
+
+    // console.log(specifier, ext, path.basename(specifier))
+    if (!ext && /^module(\d+)$/.test(path.basename(specifier)))
+    {
+        hash = path.basename(specifier);
+        ext = path.extname(path.dirname(specifier));
+        specifier = path.dirname(specifier);
+    }
 
     if (!tsExts.has(ext)) { return nextResolve(specifier); } // File is not ts, so step aside
 
@@ -23,6 +38,16 @@ export const resolve: Resolver = async function (specifier, context, nextResolve
         return nextResolve(specifier);
 
     const { url } = await nextResolve(specifier); // This can be deduplicated but isn't for simplicity
+
+    if (hash)
+    {
+        return {
+            ...context,
+            format: 'html.' + hash, // Provide a signal to `load`
+            shortCircuit: true,
+            url: url + '/' + hash,
+        };
+    }
 
     return {
         ...context,
@@ -74,7 +99,7 @@ function convertToDom(item: parse5.DefaultTreeAdapterMap['node']): ((dom.Tag<any
         {
             const children = item.childNodes.map(cn => convertToDom(cn)).flat().filter(x => x);
             const head = children.find(x => x.type === 'head') as dom.CompositeTag<'head', Attributes, (dom.Tag<string, Attributes> & Locatable)[]>;
-            const titleTag = head.content.find(x => x.type == 'title') as dom.CompositeTag<'title', Attributes, dom.TextTag<'', Attributes>[]>;
+            const titleTag = head.content?.find(x => x.type == 'title') as dom.CompositeTag<'title', Attributes, dom.TextTag<'', Attributes>[]>;
 
             return [{
                 type: item.tagName,
@@ -171,7 +196,7 @@ function stringifyWithSourceMap(context: { file: string, content: string, line: 
     }
 }
 
-export function getResources(doms: (dom.CompositeTag<string, Attributes, dom.Tag<string, Attributes>[]> | dom.TextTag<string, Attributes>)[]): { src: AttributeType }[]
+export function getResources(doms: (dom.CompositeTag<string | dom.CustomTagDefinition<string, unknown>, Attributes, dom.Tag<string | dom.CustomTagDefinition<string, unknown>, Attributes>[]> | dom.TextTag<string, Attributes>)[]): ({ type: 'style' | 'script' | 'img', src: AttributeType } & Locatable)[]
 {
     return doms.map(n =>
     {
@@ -180,11 +205,28 @@ export function getResources(doms: (dom.CompositeTag<string, Attributes, dom.Tag
             case 'script':
             case 'img':
             case 'style':
-                return [n.attributes as { src: AttributeType }];
+                if (n.attributes.src?.value)
+                    return { type: n.type, src: n.attributes.src, [location]: n[location] };
             default:
-                if ('content' in n)
-                    if (typeof (n.content) === 'object')
-                        return getResources(n.content);
+                if ('content' in n && typeof (n.content) === 'object')
+                    return getResources(n.content);
+                return [];
+        }
+    }).flat()
+}
+
+export function getModules(doms: (dom.Tag<string, Attributes> | dom.CompositeTag<string, Attributes> | dom.CustomTag<string, Attributes> | dom.TextTag<string, Attributes>)[]): string[]
+{
+    return doms.map(n =>
+    {
+        switch (n.type)
+        {
+            case 'script':
+                if (!n.attributes.src?.value && n.attributes.type?.value === 'module' && 'content' in n)
+                    return typeof n.content == 'string' ? [n.content] : [renderInner(n, '')];
+            default:
+                if ('content' in n && typeof (n.content) === 'object')
+                    return getModules(n.content);
                 return [];
         }
     }).flat()
@@ -192,56 +234,93 @@ export function getResources(doms: (dom.CompositeTag<string, Attributes, dom.Tag
 
 export const load: Loader = async function (url, context, nextLoad)
 {
-    if (context.format === 'html.map')
-        return {
-            format: 'json',
-            shortCircuit: true,
-            source: maps[url]
-        }
-
-    if (context.format === 'html')
+    switch (context.format)
     {
-        const fragment = parse5.parse(await fs.readFile(fileURLToPath(url), 'utf-8'), { sourceCodeLocationInfo: true });
-
-        const stringifyContext = { content: '', line: 1, column: 0, file: fileURLToPath(url) };
-        const sourcemap = new sourceMap.SourceMapGenerator()
-        const doms = convertToDom(fragment);
-        if (context.importAssertions?.type === 'json')
-        {
-            stringifyWithSourceMap(stringifyContext, doms, sourcemap);
-            maps[url] = sourcemap.toString();
+        case 'html.map':
 
             return {
                 format: 'json',
                 shortCircuit: true,
-                source: stringifyContext.content
+                source: maps[url]
             }
-        }
-        else
-        {
-            let resources: { src: AttributeType }[];
-            if (doms.length == 1 && doms[0].type == 'html')
+        default:
+            if (context.format?.startsWith('html.module'))
             {
-                const html = doms[0] as unknown as dom.Document<Attributes>;
-                resources = html.head.jsInit.map(js => js.attributes as unknown as { src: AttributeType }).concat(html.head.links.map(l => l as unknown as { src: AttributeType }));
-                resources = resources.concat(getResources(html.body));
-            }
-            else
-                resources = getResources(doms);
+                const cacheItem = await ts.parse({ specifier: url }, maps[url]);
+                const result = await ts.supportedFormats[context.importAttributes.type as string || 'module'](cacheItem);
+                logger.data(result.source);
+                return result
+            };
+            break;
+        case 'html':
+            {
+                const content = await fs.readFile(fileURLToPath(url), 'utf-8');
+                const fragment = parse5.parse(content, { sourceCodeLocationInfo: true, treeAdapter: parse5.defaultTreeAdapter });
 
-            return {
-                format: 'module',
-                shortCircuit: true,
-                source: resources.filter(r => r.src).map(r => `import '${r.src.value}'`).join('\n') + `
-                
-                export const dom = ${JSON.stringify(doms)};
-
-                export default function(renderer, prefix)
+                const stringifyContext = { content: '', line: 1, column: 0, file: fileURLToPath(url) };
+                const sourcemap = new sourceMap.SourceMapGenerator()
+                const doms = convertToDom(fragment);
+                if (context.importAttributes?.type === 'json')
                 {
-                    return dom.map(d=>renderer(d, prefix || ''))
-                }`
+                    stringifyWithSourceMap(stringifyContext, doms, sourcemap);
+                    maps[url] = sourcemap.toString();
+
+                    return {
+                        format: 'json',
+                        shortCircuit: true,
+                        source: stringifyContext.content
+                    }
+                }
+                else
+                {
+                    let resources: ({ type: 'style' | 'img' | 'script', src: AttributeType } & Locatable)[];
+                    let modules: string[];
+                    if (doms.length == 1 && doms[0].type == 'html')
+                    {
+                        const html = doms[0] as unknown as dom.Document<Attributes>;
+                        resources = html.head.jsInit.filter(r => r.attributes?.src?.value).map(s => ({ type: 'script', src: s.attributes.src, [location]: s[location] }));
+                        resources = resources.concat(html.head.links.map(l => ({ type: 'style', src: l.src, [location]: l.src[location] })));
+                        resources = resources.concat(getResources(html.body));
+
+                        modules = getModules(html.head.jsInit);
+                        modules = modules.concat(getModules(html.body));
+                    }
+                    else
+                    {
+                        resources = getResources(doms);
+                        modules = getModules(doms);
+                    }
+                    // console.log(modules);
+
+                    modules.map((m, i) =>
+                    {
+                        maps[url + '/module' + i] = m;
+                        ts.parse({ specifier: url + '/module' + i }, m, cacheItem =>
+                        {
+                            cacheItem.source = cacheItem.resources.reduce((source, r) => !path.isAbsolute(r) && !URL.canParse(r) ? (source as string).replace(r, '../' + r) : source, cacheItem.source as string)
+                            cacheItem.modules = cacheItem.modules.map(m => !path.isAbsolute(m) && !URL.canParse(m) ? '../' + m : m)
+                        });
+                    })
+
+                    const parsed = await ts.parse({ specifier: url }, resources.filter(r => r.src).map(r => `import '${r.src.value}'`).join('\n') + `
+                
+                    ${modules.map((_, i) => `import './${path.basename(url)}/module${i}')}`).join(',')}
+    
+                    export const dom = ${JSON.stringify(doms)};
+    
+                    export default function(renderer, prefix)
+                    {
+                        return dom.map(d=>renderer(d, prefix || ''))
+                    }`);
+
+                    logger.debug(context.importAttributes)
+
+                    if ((context.importAttributes?.type || 'module') == 'module')
+                        return { format: 'module', shortCircuit: true, source: parsed.content }
+
+                    return ts.supportedFormats[context.importAttributes?.type as string || 'module'](parsed);
+                }
             }
-        }
     }
 
     return nextLoad(url, context);
