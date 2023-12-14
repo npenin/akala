@@ -10,6 +10,7 @@ import { logger, Logger, MiddlewareComposite, module as coreModule } from '@akal
 import { program, buildCliContextFromProcess, ErrorMessage, NamespaceMiddleware } from '@akala/cli';
 import { Stats } from 'fs';
 import { registerCommands, SelfDefinedCommand, parseMetadata, StructuredParameters } from '@akala/commands';
+import { fileURLToPath } from 'url';
 
 var isPm = false;
 
@@ -50,6 +51,18 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
     }).
     preAction(async c => //If pure js file
     {
+        try
+        {
+            const url = new URL(c.options.program);
+            if (url.protocol == 'file:')
+                c.options.program = fileURLToPath(url);
+            else
+                throw new Error('remote commands are not yet supported');
+        }
+        catch (e)
+        {
+            console.log(e);
+        }
         folderOrFile = await lstat(c.options.program);
         if (folderOrFile.isFile() && path.extname(c.options.program) === '.js')
             return require(c.options.program);
@@ -158,6 +171,7 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
                     try
                     {
                         const serveArgs: ac.ServeMetadataWithSignal = await pm.dispatch('connect', c.options.name);
+                        // console.log(serveArgs)
                         serveArgs.signal = controller.signal;
                         await cliContainer.dispatch('$serve', serveArgs);
                     }
