@@ -1,7 +1,10 @@
 @use 'index.scss';
 @use '../scss/theme.scss';
 
-body {}
+body {
+    --border-radius: 8px;
+    --card-border-radius: var(--border-radius);
+}
 
 body>main {
     display: flex;
@@ -31,9 +34,9 @@ nav {
     margin-top: var(--negative-gutter);
     margin-bottom: var(--negative-gutter);
 
-    @include theme.darkmodesupport() {
-        background-color: var(--accent-dark);
-    }
+    // @include theme.darkmodesupport() {
+    //     background-color: var(--accent-dark);
+    // }
 
     >menu {
         width: 100%;
@@ -46,4 +49,13 @@ nav {
 
 nav.full-body-width>menu>li {
     padding-left: calc((100vw - var(--max-body-width)) / 2 + var(--gutter) + 2em);
+}
+
+.card:has(.kpi) {
+    flex-direction: column;
+
+    .kpi {
+        text-align: right;
+        font-size: x-large;
+    }
 }

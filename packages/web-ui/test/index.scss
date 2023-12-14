@@ -19,6 +19,8 @@
     .bg-grey-gradient {
         background: var(--grey-gradient);
     }
+
+
 }
 
 dialog {
@@ -37,14 +39,16 @@ table {
 
 header {
     padding: 0 var(--gutter);
+    box-shadow: var(--shadow);
 }
 
 footer {
     padding: var(--gutter);
+    background-color: var(--accent-extra-light);
 }
 
 $config: (
-    colors:(accent: #00acf5, secondAccent: #89fc00, success: #89fc00, error: #dc0073, warning: #f5b700, 'dark': #1F1E1C, 'light': #FFFFFD),
+    colors:(accent: #00acf5, secondAccent: #f5b700, success: #89fc00, error: #dc0073, warning: #f5b700, 'dark': #1F1E1C, 'light': #FFFFFD),
     lightnesses:(default:(extra-dark:-90%, dark:-70%, medium-dark:-30%, medium-light:30%, light:70%, extra-light:90%),
         grey:(dark: -80%, light:70%, extra-light:90%)),
     darknesses:(default:(dark: 80%, medium:-30%, light:-70%, extra-light:-90%),
@@ -64,7 +68,7 @@ $config: (
             --grey-gradient: linear-gradient(-5deg, var(--grey-light) 0%, var(--light) 100%);
 
             --body-background-color: #{color.scale(map.get($config, colors, light), $lightness: 20%)};
-            --body-color: black;
+            --body-color: var(--dark);
         }
 
         body {
@@ -73,24 +77,24 @@ $config: (
         }
     }
 
-    @include theme.darkmodesupport() {
+    // @include theme.darkmodesupport() {
 
-        @include theme.theme($config, $colorScheme: 'dark') using ($config, $colorScheme) {
-            :root {
+    //     @include theme.theme($config, $colorScheme: 'dark') using ($config, $colorScheme) {
+    //         :root {
 
-                $accentLightAlpha: map.get($config, colors, accent-dark);
-                $secondAccentLightAlpha: map.get($config, colors, secondAccent-dark);
+    //             $accentLightAlpha: color.change(map.get($config, colors, accent), $alpha: 0.31);
+    //             $secondAccentLightAlpha: color.change(map.get($config, colors, secondAccent), $alpha: 0.12);
 
-                --colored-gradient: linear-gradient(149deg, #{$accentLightAlpha} 0%, #{$secondAccentLightAlpha} 100%);
+    //             --colored-gradient: linear-gradient(149deg, #{$accentLightAlpha} 0%, #{$secondAccentLightAlpha} 100%);
 
-                --grey-gradient: linear-gradient(355deg, var(--dark) 0%, var(--grey-dark) 100%);
+    //             --grey-gradient: linear-gradient(355deg, var(--dark) 0%, var(--grey-dark) 100%);
 
-                --body-background-color: #{color.scale(map.get($config, colors, dark), $lightness: -20%)};
-                --body-color: var(--light);
+    //             --body-background-color: #{color.scale(map.get($config, colors, dark), $lightness: -20%)};
+    //             --body-color: var(--light);
 
-                background-color: var(--body-background-color);
-                color: var(--body-color);
-            }
-        }
-    }
+    //             background-color: var(--body-background-color);
+    //             color: var(--body-color);
+    //         }
+    //     }
+    // }
 }
