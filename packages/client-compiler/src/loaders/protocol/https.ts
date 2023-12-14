@@ -10,8 +10,8 @@ export const resolve: Resolver = async function (url, context, nextResolve)
     // return it.
     if (url.startsWith('https://'))
     {
-        await fs.promises.mkdir('.akala/cache', { recursive: true })
-        const filePath = path.resolve('.akala/cache/' + path.basename(url));
+        await fs.promises.mkdir('.akala/https-cache', { recursive: true })
+        const filePath = path.resolve('.akala/https-cache/' + url.replaceAll(/[\/:?#]/g, '-'));
         return new Promise<ResolverResult>((resolve, reject) =>
         {
             fs.promises.access(filePath).then(() => resolve(nextResolve(filePath, context)), e =>

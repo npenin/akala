@@ -2,7 +2,7 @@ export interface LoaderContext
 {
     conditions: string[];
     format?: string;
-    importAssertions: Record<string, unknown>
+    importAttributes: Record<string, unknown>
 }
 
 export interface LoaderResult
@@ -18,13 +18,13 @@ export interface ResolverContext
 {
     conditions: string[];
     parentURL?: string;
-    importAssertions: Record<string, unknown>
+    importAttributes: Record<string, unknown>
 }
 
 export interface ResolverResult
 {
     format?: string;
-    importAssertions?: Record<string, unknown>;
+    importAttributes?: Record<string, unknown>;
     shortCircuit?: boolean;
     url: string;
 }

@@ -3,8 +3,13 @@
 <head>
     <title>pwet</title>
     <meta name="og:product" content="totot" />
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.slim.min.js"></script>
-    <script type="text/javascript">$(document).append('pwetpwet')</script>
+    <script type="module">
+        import $ from 'https://code.jquery.com/jquery-3.7.0.slim.min.js';
+
+        import { add } from "../src/test/a.ts";
+
+        $(document).append(add(1, 2))
+    </script>
 </head>
 
 <body>
