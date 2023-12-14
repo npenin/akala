@@ -4,13 +4,14 @@ import { Processors, NetSocketAdapter, Metadata, Container, proxy, Triggers, Cli
 import { Socket } from 'net';
 import { TLSSocket } from 'tls';
 import { platform, homedir } from 'os';
-import start from './commands/start.js'
+import start from './cli-commands/start-self.js'
 import { Readable } from 'stream';
 
-import State from './state.js';
+import State, { StateConfiguration } from './state.js';
 import { program, buildCliContextFromProcess, ErrorMessage } from '@akala/cli';
 import { InteractError } from './index.js';
 import { Binding } from '@akala/core';
+import { open } from 'fs/promises';
 
 const tableChars = {
     'top': '─'
@@ -81,25 +82,24 @@ cli.preAction(async c =>
                 netsocket.connect('\\\\?\\pipe\\pm')
             else
             {
-                try
+                open('./.pm.config.json').then(d =>
                 {
-                    // eslint-disable-next-line @typescript-eslint/no-var-requires
-                    import(path.join(homedir(), './.pm.config.json'), { assert: { type: 'json' } }).then(config =>
-                        netsocket.connect(config.default.mapping.pm.connect.socket[0])
-                    );
-                }
-                catch (e)
+                    d.readFile({ encoding: 'utf-8' }).then(d => JSON.parse(d)).then((config: StateConfiguration) =>
+                    {
+                        netsocket.connect(config.mapping.pm.connect.socket[0]);
+                    }).finally(() => d.close());
+                }, e =>
                 {
-                    if (e.code != 'MODULE_NOT_FOUND')
-                        reject(e);
+                    if (e.code === 'ENOENT' && e.path === './.pm.config.json')
+                        socket.destroy(e);
                     else
                     {
-                        e.code = 'ENOENT';
-                        socket.destroy(e);
+                        reject(e);
+                        throw e;
                     }
-
-                }
+                });
             }
+
             if (c.options.tls)
             {
                 // socket.on('data', function (e) { console.log(e) });

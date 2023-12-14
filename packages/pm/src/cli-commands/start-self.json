@@ -1,0 +1,66 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
+    "": {
+        "inject": [
+            "$container",
+            "param.0",
+            "param.1"
+        ]
+    },
+    "cli": {
+        "options": {
+            "output": {
+                "aliases": [
+                    "o"
+                ],
+                "needsValue": true,
+                "doc": "output as `table` if array otherwise falls back to standard node output"
+            },
+            "verbose": {
+                "aliases": [
+                    "v"
+                ]
+            },
+            "tls": {
+                "doc": "enables tls connection to the `pmSock`"
+            },
+            "pmSock": {
+                "aliases": [
+                    "pm-sock"
+                ],
+                "needsValue": true,
+                "doc": "path to the unix socket or destination in the form host:port"
+            },
+            "help": {
+                "doc": "displays this help message"
+            },
+            "wait": {
+                "aliases": [
+                    "w"
+                ],
+                "needsValue": false,
+                "doc": "waits for the program to be started before returning, otherwise, returns after the start command is sent to the pm daemon"
+            },
+            "inspect": {
+                "needsValue": false,
+                "doc": "starts the process with --inspect-brk parameter to help debugging"
+            },
+            "new": {
+                "needsValue": false
+            },
+            "name": {
+                "doc": "name to assign to the process",
+                "needsValue": true
+            },
+            "program": {
+                "doc": "program to start"
+            }
+        },
+        "inject": [
+            "$container",
+            "options.program",
+            "context"
+        ],
+        "usage": "start pm"
+    }
+}
