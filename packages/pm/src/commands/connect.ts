@@ -14,13 +14,14 @@ export default async function connect(this: State, name: string, context?: Serve
         mapping = Configuration.new(null, this.processes[name] as SidecarConfiguration);
     // console.log(name);
     // console.log(mapping);
-    // console.log(options);
-    if (context && context.args.length > 0)
+    // console.log(mapping.connect);
+    // console.log(context);
+    if (context?.args?.length > 0)
     {
         if (!mapping)
-            this.config.mapping.set(`${name}.connect`, serveMetadata({ args: context.args, options: { ...context.options, socketName: context.options.socketName || name } }));
+            this.config.mapping.set(`${name}.connect`, serveMetadata({ args: context.args, options: { ...context.options, socketName: context.options?.socketName || name } }));
         else
-            mapping.set('connect', serveMetadata({ args: context.args, options: { ...context.options, socketName: context.options.socketName || name } }));
+            mapping.set('connect', serveMetadata({ args: context.args, options: { ...context.options, socketName: context.options?.socketName || name } }));
     }
     else
     {
