@@ -16,11 +16,12 @@ export interface Tag<T, TAttributes extends Record<string, { value: string }> = 
     type: T
     classes?: string[]
     attributes?: TAttributes
-    event?: { [key: string]: EventListenerOrEventListenerObject };
-    render?(n: Node, t: Tag<T, TAttributes>): void
-    render?(n: string, t: Tag<T, TAttributes>, prefix: string): string
-    renderWithChildren?(n: Node, t: Tag<T, TAttributes>): void
-    renderWithChildren?(n: string, t: Tag<T, TAttributes>, prefix: string): string
+    event?: { [key: string]: EventListenerOrEventListenerObject | string };
+    preRender?(): Tag<string> | Tag<string>[]
+    render?(n: Node): void
+    render?(n: string, prefix: string): string
+    renderWithChildren?(n: Node): void
+    renderWithChildren?(n: string, prefix: string): string
 }
 
 export interface TextTag<T, TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> extends Tag<T, TAttributes>
@@ -35,110 +36,278 @@ export interface CompositeTag<T, TAttributes extends Record<string, { value: str
     content?: TTags;
 }
 
+export type HTMLElements = { [k in keyof typeof globalThis]: typeof globalThis[k] extends HTMLElementTagNameMap[keyof HTMLElementTagNameMap] ? typeof globalThis[k] : never };
+export type THTMLElements = 'HTMLAnchorElement'
+    | 'HTMLElement'
+    | 'HTMLElement'
+    | 'HTMLAreaElement'
+    | 'HTMLElement'
+    | 'HTMLElement'
+    | 'HTMLAudioElement'
+    | 'HTMLElement'
+    | 'HTMLBaseElement'
+    | 'HTMLElement'
+    | 'HTMLElement'
+    | 'HTMLQuoteElement'
+    | 'HTMLBodyElement'
+    | 'HTMLBRElement'
+    | 'HTMLButtonElement'
+    | 'HTMLCanvasElement'
+    | 'HTMLTableCaptionElement'
+    | 'HTMLElement'
+    | 'HTMLElement'
+    | 'HTMLTableColElement'
+    | 'HTMLTableColElement'
+    | 'HTMLDataElement'
+    | 'HTMLDataListElement'
+    | 'HTMLElement'
+    | 'HTMLModElement'
+    | 'HTMLDetailsElement'
+    | 'HTMLElement'
+    | 'HTMLDialogElement'
+    | 'HTMLDivElement'
+    | 'HTMLDListElement'
+    | 'HTMLElement'
+    | 'HTMLElement'
+    | 'HTMLEmbedElement'
+    | 'HTMLFieldSetElement'
+    | 'HTMLElement'
+    | 'HTMLElement'
+    | 'HTMLElement'
+    | 'HTMLFormElement'
+    | 'HTMLHeadingElement'
+    | 'HTMLHeadingElement'
+    | 'HTMLHeadingElement'
+    | 'HTMLHeadingElement'
+    | 'HTMLHeadingElement'
+    | 'HTMLHeadingElement'
+    | 'HTMLHeadElement'
+    | 'HTMLElement'
+    | 'HTMLElement'
+    | 'HTMLHRElement'
+    | 'HTMLHtmlElement'
+    | 'HTMLElement'
+    | 'HTMLIFrameElement'
+    | 'HTMLImageElement'
+    | 'HTMLInputElement'
+    | 'HTMLModElement'
+    | 'HTMLElement'
+    | 'HTMLLabelElement'
+    | 'HTMLLegendElement'
+    | 'HTMLLIElement'
+    | 'HTMLLinkElement'
+    | 'HTMLElement'
+    | 'HTMLMapElement'
+    | 'HTMLElement'
+    | 'HTMLMenuElement'
+    | 'HTMLMetaElement'
+    | 'HTMLMeterElement'
+    | 'HTMLElement'
+    | 'HTMLElement'
+    | 'HTMLObjectElement'
+    | 'HTMLOListElement'
+    | 'HTMLOptGroupElement'
+    | 'HTMLOptionElement'
+    | 'HTMLOutputElement'
+    | 'HTMLParagraphElement'
+    | 'HTMLPictureElement'
+    | 'HTMLPreElement'
+    | 'HTMLProgressElement'
+    | 'HTMLQuoteElement'
+    | 'HTMLElement'
+    | 'HTMLElement'
+    | 'HTMLElement'
+    | 'HTMLElement'
+    | 'HTMLElement'
+    | 'HTMLScriptElement'
+    | 'HTMLElement'
+    | 'HTMLElement'
+    | 'HTMLSelectElement'
+    | 'HTMLSlotElement'
+    | 'HTMLElement'
+    | 'HTMLSourceElement'
+    | 'HTMLSpanElement'
+    | 'HTMLElement'
+    | 'HTMLStyleElement'
+    | 'HTMLElement'
+    | 'HTMLElement'
+    | 'HTMLElement'
+    | 'HTMLTableElement'
+    | 'HTMLTableSectionElement'
+    | 'HTMLTableCellElement'
+    | 'HTMLTemplateElement'
+    | 'HTMLTextAreaElement'
+    | 'HTMLTableSectionElement'
+    | 'HTMLTableCellElement'
+    | 'HTMLTableSectionElement'
+    | 'HTMLTimeElement'
+    | 'HTMLTitleElement'
+    | 'HTMLTableRowElement'
+    | 'HTMLTrackElement'
+    | 'HTMLElement'
+    | 'HTMLUListElement'
+    | 'HTMLElement'
+    | 'HTMLVideoElement'
+    | 'HTMLElement';
+
+export type THTMLElement<T extends THTMLElements> = HTMLElements[T] extends HTMLElement ? HTMLElements[T] : never;
+
+export const customElementRegistry: Record<string, { component: CustomTagDefinition<string, any>, options?: ElementDefinitionOptions, parent: THTMLElements, observedAttributes: (string | symbol | number)[] }> = {};
+
+export function customElement<T extends string, TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>>(tag: T, observedAttributes?: (keyof TAttributes)[], parent: THTMLElements = 'HTMLDivElement', options?: ElementDefinitionOptions): <U extends CustomTagDefinition<T, V>, V extends CustomTagInstance>(c: U) => U 
+{
+    return function (c)
+    {
+        if ('customElements' in globalThis && customElements.define)
+            customElements.define(tag, class extends (globalThis[parent] as typeof HTMLElement)
+            {
+                private component = new c();
+                static get observedAttributes()
+                {
+                    return observedAttributes || [];
+                }
+                constructor()
+                {
+                    super();
+
+                    return new Proxy(this, {
+                        get(target, prop)
+                        {
+                            if (Reflect.has(target.component, prop) && typeof target.component[prop] == 'function')
+                                return target.component[prop].bind(target.component);
+                            return target[prop];
+                        }
+                    });
+                }
+
+                // connectedCallback?: () => void;
+                // disconnectedCallback?: () => void;
+                // adoptedCallback?: () => void;
+                // attributeChangedCallback?: (...args: unknown[]) => void;
+
+            }, options);
+        else
+            customElementRegistry[tag] = { component: c, options, parent, observedAttributes };
+
+        return c;
+    }
+}
+
+export class InlineStyle
+{
+    public style: Record<string, string> = {};
+
+    public get value()
+    {
+        return Object.entries(this.style).reduce((previous, e) => previous + e[0] + ':' + e[1] + ';', '');
+    }
+}
+
 export type Anchor<TAttributes extends Record<string, { value: string }>> = CompositeTag<'a', { href: RecordValueType<TAttributes>; target?: { value: '_blank' } & RecordValueType<TAttributes> } & TAttributes>
 
-export type Paragraph<TAttributes extends Record<string, { value: string }>> = CompositeTag<'p', TAttributes>;
-export type Span<TAttributes extends Record<string, { value: string }>> = CompositeTag<'span', TAttributes>;
-export type Div<TAttributes extends Record<string, { value: string }>> = CompositeTag<'div', TAttributes>;
-export type Audio<TAttributes extends Record<string, { value: string }>> = CompositeTag<'audio', TAttributes>;
-export type Video<TAttributes extends Record<string, { value: string }>> = CompositeTag<'video', TAttributes>;
-export type Canvas<TAttributes extends Record<string, { value: string }>> = CompositeTag<'canvas', TAttributes>;
-export type Frame<TAttributes extends Record<string, { value: string }>> = Tag<'iframe', TAttributes>
-export type Iframe<TAttributes extends Record<string, { value: string }>> = Frame<TAttributes>;
-export type Address<TAttributes extends Record<string, { value: string }>> = CompositeTag<'address', TAttributes>;
-export type Article<TAttributes extends Record<string, { value: string }>> = CompositeTag<'article', TAttributes>;
-export type Aside<TAttributes extends Record<string, { value: string }>> = CompositeTag<'aside', TAttributes>;
-export type Footer<TAttributes extends Record<string, { value: string }>> = CompositeTag<'Footer', TAttributes>;
-export type Header<TAttributes extends Record<string, { value: string }>> = CompositeTag<'header', TAttributes>;
-export type Heading<X extends 1 | 2 | 3 | 4 | 5 | 6, TAttributes extends Record<string, { value: string }>> = CompositeTag<`h${X}`, TAttributes>;
-export type HeadingGroup<TAttributes extends Record<string, { value: string }>> = CompositeTag<'hgroup', TAttributes>;
-export type Main<TAttributes extends Record<string, { value: string }>> = CompositeTag<'main', TAttributes>;
-export type Navigation<TAttributes extends Record<string, { value: string }>> = CompositeTag<'nav', TAttributes>;
-export type Section<TAttributes extends Record<string, { value: string }>> = CompositeTag<'section', TAttributes>;
-export type BlockQuote<TAttributes extends Record<string, { value: string }>> = CompositeTag<'blockquote', TAttributes>;
-export type DescriptionDetails<TAttributes extends Record<string, { value: string }>> = CompositeTag<'dd', TAttributes>;
-export type DescriptionList<TAttributes extends Record<string, { value: string }>> = CompositeTag<'dl', TAttributes>;
-export type DescriptionTerm<TAttributes extends Record<string, { value: string }>> = CompositeTag<'dt', TAttributes>;
-export type FigureCaption<TAttributes extends Record<string, { value: string }>> = CompositeTag<'figcaption', TAttributes>;
-export type Figure<TAttributes extends Record<string, { value: string }>> = CompositeTag<'figure', TAttributes>;
-export type HorizontalRow<TAttributes extends Record<string, { value: string }>> = Tag<'hr', TAttributes>;
-export type ListItem<TAttributes extends Record<string, { value: string }>> = CompositeTag<'li', TAttributes>;
-export type Menu<TAttributes extends Record<string, { value: string }>> = CompositeTag<'menu', TAttributes>;
-export type OrderedList<TAttributes extends Record<string, { value: string }>> = CompositeTag<'ol', TAttributes, ListItem<TAttributes>[]>;
-export type PreformatedText<TAttributes extends Record<string, { value: string }>> = Tag<'pre', TAttributes>;
-export type UnorderedList<TAttributes extends Record<string, { value: string }>> = CompositeTag<'ul', TAttributes, ListItem<TAttributes>[]>;
-export type Abbreviation<TAttributes extends Record<string, { value: string }>> = CompositeTag<'abbr', TAttributes>;
-export type Bold<TAttributes extends Record<string, { value: string }>> = CompositeTag<'b', TAttributes>;
-export type BidirectionalIsolation<TAttributes extends Record<string, { value: string }>> = CompositeTag<'bdi', TAttributes>;
-export type DirectionSwitch<TAttributes extends Record<string, { value: string }>> = CompositeTag<'bdo', TAttributes>;
-export type LineBreak<TAttributes extends Record<string, { value: string }>> = Tag<'br', TAttributes>;
-export type Cite<TAttributes extends Record<string, { value: string }>> = CompositeTag<'cite', TAttributes>;
-export type Code<TAttributes extends Record<string, { value: string }>> = CompositeTag<'code', TAttributes>;
-export type Data<TAttributes extends Record<string, { value: string }>> = CompositeTag<'data', TAttributes>;
-export type Definition<TAttributes extends Record<string, { value: string }>> = CompositeTag<'dfn', TAttributes>;
-export type Emphasis<TAttributes extends Record<string, { value: string }>> = CompositeTag<'em', TAttributes>;
-export type Idiomatic<TAttributes extends Record<string, { value: string }>> = CompositeTag<'i', TAttributes>;
-export type TextUserInput<TAttributes extends Record<string, { value: string }>> = CompositeTag<'kbd', TAttributes>;
-export type Mark<TAttributes extends Record<string, { value: string }>> = CompositeTag<'mark', TAttributes>;
-export type ShortQuote<TAttributes extends Record<string, { value: string }>> = CompositeTag<'q', TAttributes>;
-export type RubyFallback<TAttributes extends Record<string, { value: string }>> = CompositeTag<'rp', TAttributes>;
-export type RubyText<TAttributes extends Record<string, { value: string }>> = CompositeTag<'rt', TAttributes>;
-export type Ruby<TAttributes extends Record<string, { value: string }>> = CompositeTag<'ruby', TAttributes>;
-export type Strikethough<TAttributes extends Record<string, { value: string }>> = CompositeTag<'s', TAttributes>;
-export type Sample<TAttributes extends Record<string, { value: string }>> = CompositeTag<'samp', TAttributes>;
-export type Small<TAttributes extends Record<string, { value: string }>> = CompositeTag<'small', TAttributes>;
-export type Strong<TAttributes extends Record<string, { value: string }>> = CompositeTag<'strong', TAttributes>;
-export type Subscript<TAttributes extends Record<string, { value: string }>> = CompositeTag<'sub', TAttributes>;
-export type Superscript<TAttributes extends Record<string, { value: string }>> = CompositeTag<'sup', TAttributes>;
-export type Time<TAttributes extends Record<string, { value: string }>> = CompositeTag<'time', TAttributes>;
-export type Underline<TAttributes extends Record<string, { value: string }>> = CompositeTag<'u', TAttributes>;
-export type Variable<TAttributes extends Record<string, { value: string }>> = CompositeTag<'var', TAttributes>;
-export type WordBreak<TAttributes extends Record<string, { value: string }>> = CompositeTag<'wbr', TAttributes>;
-export type Area<TAttributes extends Record<string, { value: string }>> = CompositeTag<'area', TAttributes>;
-export type Img<TAttributes extends Record<string, { value: string }>> = Tag<'img', { src: RecordValueType<TAttributes> } & TAttributes>;
-export type Map<TAttributes extends Record<string, { value: string }>> = CompositeTag<'map', TAttributes>;
-export type Track<TAttributes extends Record<string, { value: string }>> = CompositeTag<'track', TAttributes>;
-export type Svg<TAttributes extends Record<string, { value: string }>> = CompositeTag<'svg', TAttributes>;
-export type Math<TAttributes extends Record<string, { value: string }>> = CompositeTag<'math', TAttributes>;
-export type NoScript<TAttributes extends Record<string, { value: string }>> = TextTag<'noscript', TAttributes>;
-export type Script<TAttributes extends Record<string, { value: string }>> = TextTag<'script', { src: RecordValueType<TAttributes>, type: RecordValueType<TAttributes> } & TAttributes>;
-export type DeletedText<TAttributes extends Record<string, { value: string }>> = CompositeTag<'del', TAttributes>;
-export type InsertedText<TAttributes extends Record<string, { value: string }>> = CompositeTag<'ins', TAttributes>;
-export type Caption<TAttributes extends Record<string, { value: string }>> = CompositeTag<'caption', TAttributes>;
-export type Column<TAttributes extends Record<string, { value: string }>> = CompositeTag<'column', TAttributes>;
-export type ColumnGroup<TAttributes extends Record<string, { value: string }>> = CompositeTag<'columngroup', TAttributes>;
-export type Table<TAttributes extends Record<string, { value: string }>> = CompositeTag<'table', TAttributes, (TableHeader<TAttributes> | TableFooter<TAttributes> | TableBody<TAttributes> | TableRow<TAttributes>)[]>;
-export type TableBody<TAttributes extends Record<string, { value: string }>> = CompositeTag<'tbody', TAttributes, TableRow<TAttributes>[]>;
-export type TableData<TAttributes extends Record<string, { value: string }>> = CompositeTag<'td', TAttributes>;
-export type TableFooter<TAttributes extends Record<string, { value: string }>> = CompositeTag<'tfoot', TAttributes, TableRow<TAttributes>[]>;
-export type TableHeader<TAttributes extends Record<string, { value: string }>> = CompositeTag<'thead', TAttributes, TableRow<TAttributes>[]>;
-export type TableHeading<TAttributes extends Record<string, { value: string }>> = CompositeTag<'th', TAttributes>;
-export type TableRow<TAttributes extends Record<string, { value: string }>> = CompositeTag<'tr', TAttributes, (TableData<TAttributes> | TableHeading<TAttributes>)[]>;
-export type Button<TAttributes extends Record<string, { value: string }>> = TextTag<'button', TAttributes>;
-export type DataList<TAttributes extends Record<string, { value: string }>> = CompositeTag<'datalist', TAttributes, Option<TAttributes>[]>;
-export type FieldSet<TAttributes extends Record<string, { value: string }>> = CompositeTag<'fieldset', TAttributes>;
-export type Form<TAttributes extends Record<string, { value: string }>> = CompositeTag<'form', TAttributes>;
-export type Input<TAttributes extends Record<string, { value: string }>> = CompositeTag<'input', TAttributes>;
-export type Label<TAttributes extends Record<string, { value: string }>> = CompositeTag<'label', TAttributes>;
-export type Legend<TAttributes extends Record<string, { value: string }>> = CompositeTag<'legend', TAttributes>;
-export type Meter<TAttributes extends Record<string, { value: string }>> = CompositeTag<'meter', TAttributes>;
-export type OptionsGroup<TAttributes extends Record<string, { value: string }>> = CompositeTag<'optiongroup', TAttributes, Option<TAttributes>[]>;
-export type Option<TAttributes extends Record<string, { value: string }>> = TextTag<'option', TAttributes>;
-export type Output<TAttributes extends Record<string, { value: string }>> = CompositeTag<'output', TAttributes>;
-export type Progress<TAttributes extends Record<string, { value: string }>> = Tag<'progress', TAttributes>;
-export type Select<TAttributes extends Record<string, { value: string }>> = CompositeTag<'select', TAttributes, Option<TAttributes>[]>;
-export type TextArea<TAttributes extends Record<string, { value: string }>> = TextTag<'textarea', TAttributes>;
-export type Details<TAttributes extends Record<string, { value: string }>> = CompositeTag<'details', TAttributes>;
-export type Dialog<TAttributes extends Record<string, { value: string }>> = CompositeTag<'dialog', TAttributes>;
-export type Summary<TAttributes extends Record<string, { value: string }>> = CompositeTag<'summary', TAttributes>;
-export type Slot<TAttributes extends Record<string, { value: string }>> = CompositeTag<'slot', TAttributes>;
-export type Template<TAttributes extends Record<string, { value: string }>> = CompositeTag<'template', TAttributes>;
-export type Picture<TAttributes extends Record<string, { value: string }>> = Tag<'picture', TAttributes>;
-export type Portal<TAttributes extends Record<string, { value: string }>> = Tag<'portal', TAttributes>;
-export type Source<TAttributes extends Record<string, { value: string }>> = Tag<'source', TAttributes>;
-export type Object<TAttributes extends Record<string, { value: string }>> = Tag<'object', TAttributes>;
+export type Paragraph<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'p', TAttributes>;
+export type Span<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'span', TAttributes>;
+export type Div<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'div', TAttributes>;
+export type Audio<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'audio', TAttributes>;
+export type Video<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'video', TAttributes>;
+export type Canvas<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'canvas', TAttributes>;
+export type Frame<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = Tag<'iframe', TAttributes>
+export type Iframe<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = Frame<TAttributes>;
+export type Address<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'address', TAttributes>;
+export type Article<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'article', TAttributes>;
+export type Aside<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'aside', TAttributes>;
+export type Footer<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'Footer', TAttributes>;
+export type Header<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'header', TAttributes>;
+export type Heading<X extends 1 | 2 | 3 | 4 | 5 | 6, TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<`h${X}`, TAttributes>;
+export type HeadingGroup<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'hgroup', TAttributes>;
+export type Main<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'main', TAttributes>;
+export type Navigation<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'nav', TAttributes>;
+export type Section<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'section', TAttributes>;
+export type BlockQuote<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'blockquote', TAttributes>;
+export type DescriptionDetails<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'dd', TAttributes>;
+export type DescriptionList<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'dl', TAttributes>;
+export type DescriptionTerm<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'dt', TAttributes>;
+export type FigureCaption<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'figcaption', TAttributes>;
+export type Figure<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'figure', TAttributes>;
+export type HorizontalRow<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = Tag<'hr', TAttributes>;
+export type ListItem<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'li', TAttributes>;
+export type Menu<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'menu', TAttributes>;
+export type OrderedList<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'ol', TAttributes, ListItem<TAttributes>[]>;
+export type PreformatedText<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = Tag<'pre', TAttributes>;
+export type UnorderedList<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'ul', TAttributes, ListItem<TAttributes>[]>;
+export type Abbreviation<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'abbr', TAttributes>;
+export type Bold<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'b', TAttributes>;
+export type BidirectionalIsolation<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'bdi', TAttributes>;
+export type DirectionSwitch<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'bdo', TAttributes>;
+export type LineBreak<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = Tag<'br', TAttributes>;
+export type Cite<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'cite', TAttributes>;
+export type Code<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'code', TAttributes>;
+export type Data<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'data', TAttributes>;
+export type Definition<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'dfn', TAttributes>;
+export type Emphasis<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'em', TAttributes>;
+export type Idiomatic<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'i', TAttributes>;
+export type TextUserInput<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'kbd', TAttributes>;
+export type Mark<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'mark', TAttributes>;
+export type ShortQuote<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'q', TAttributes>;
+export type RubyFallback<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'rp', TAttributes>;
+export type RubyText<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'rt', TAttributes>;
+export type Ruby<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'ruby', TAttributes>;
+export type Strikethough<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'s', TAttributes>;
+export type Sample<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'samp', TAttributes>;
+export type Small<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'small', TAttributes>;
+export type Strong<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'strong', TAttributes>;
+export type Subscript<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'sub', TAttributes>;
+export type Superscript<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'sup', TAttributes>;
+export type Time<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'time', TAttributes>;
+export type Underline<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'u', TAttributes>;
+export type Variable<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'var', TAttributes>;
+export type WordBreak<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'wbr', TAttributes>;
+export type Area<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'area', TAttributes>;
+export type Img<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = Tag<'img', { src: RecordValueType<TAttributes> } & TAttributes>;
+export type Map<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'map', TAttributes>;
+export type Track<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'track', TAttributes>;
+export type Svg<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'svg', TAttributes>;
+export type Math<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'math', TAttributes>;
+export type NoScript<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = TextTag<'noscript', TAttributes>;
+export type Script<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = TextTag<'script', { src: RecordValueType<TAttributes>, type: RecordValueType<TAttributes> } & TAttributes>;
+export type Style<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = TextTag<'style', TAttributes>;
+export type DeletedText<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'del', TAttributes>;
+export type InsertedText<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'ins', TAttributes>;
+export type Caption<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'caption', TAttributes>;
+export type Column<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'column', TAttributes>;
+export type ColumnGroup<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'columngroup', TAttributes>;
+export type Table<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'table', TAttributes, (TableHeader<TAttributes> | TableFooter<TAttributes> | TableBody<TAttributes> | TableRow<TAttributes>)[]>;
+export type TableBody<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'tbody', TAttributes, TableRow<TAttributes>[]>;
+export type TableData<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'td', TAttributes>;
+export type TableFooter<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'tfoot', TAttributes, TableRow<TAttributes>[]>;
+export type TableHeader<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'thead', TAttributes, TableRow<TAttributes>[]>;
+export type TableHeading<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'th', TAttributes>;
+export type TableRow<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'tr', TAttributes, (TableData<TAttributes> | TableHeading<TAttributes>)[]>;
+export type Button<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = TextTag<'button', TAttributes>;
+export type DataList<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'datalist', TAttributes, Option<TAttributes>[]>;
+export type FieldSet<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'fieldset', TAttributes>;
+export type Form<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'form', TAttributes>;
+export type Input<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = Tag<'input', TAttributes>;
+export type Label<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'label', TAttributes>;
+export type Legend<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'legend', TAttributes>;
+export type Meter<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'meter', TAttributes>;
+export type OptionsGroup<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'optiongroup', TAttributes, Option<TAttributes>[]>;
+export type Option<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = TextTag<'option', TAttributes>;
+export type Output<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'output', TAttributes>;
+export type Progress<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = Tag<'progress', TAttributes>;
+export type Select<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'select', TAttributes, Option<TAttributes>[]>;
+export type TextArea<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = TextTag<'textarea', TAttributes>;
+export type Details<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'details', TAttributes>;
+export type Dialog<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'dialog', TAttributes>;
+export type Summary<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'summary', TAttributes>;
+export type Slot<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'slot', TAttributes>;
+export type Template<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = CompositeTag<'template', TAttributes>;
+export type Picture<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = Tag<'picture', TAttributes>;
+export type Portal<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = Tag<'portal', TAttributes>;
+export type Source<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = Tag<'source', TAttributes>;
+export type Object<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = Tag<'object', TAttributes>;
 
-export type MetadataTags<TAttributes extends Record<string, { value: string }>> = TextTag<'base', TAttributes> | Tag<'link', TAttributes> | Tag<'meta', TAttributes> | NoScript<TAttributes> | TextTag<'script', TAttributes> | TextTag<'style', TAttributes> | TextTag<'title', TAttributes>;
+export type MetadataTags<TAttributes extends Record<string, { value: string }>> = TextTag<'base', TAttributes> | Tag<'link', TAttributes> | Tag<'meta', TAttributes> | NoScript<TAttributes> | Script<TAttributes> | Style<TAttributes> | TextTag<'title', TAttributes>;
 
 export type FlowContentTags<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> =
     Anchor<TAttributes> |
@@ -221,7 +390,11 @@ export type FlowContentTags<TAttributes extends Record<string, { value: string }
     Variable<TAttributes> |
     Video<TAttributes> |
     WordBreak<TAttributes> |
-    RawText<TAttributes>;
+    RawText<TAttributes> |
+    Style<TAttributes> |
+    Script<TAttributes> |
+    CustomTag<string, TAttributes>
+    ;
 
 export type SectionningTags<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> =
     Address<TAttributes> | Article<TAttributes> | Aside<TAttributes> | Footer<TAttributes> | Header<TAttributes> | Heading<1, TAttributes> | Heading<2, TAttributes> | Heading<3, TAttributes> | Heading<4, TAttributes> | Heading<5, TAttributes> | Heading<6, TAttributes> |
@@ -271,3 +444,23 @@ export type InteractiveTags<TAttributes extends Record<string, { value: string }
 
 export type WebComponentTags<TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> =
     Slot<TAttributes> | Template<TAttributes>
+
+export type CustomTagDefinition<T extends string, U extends CustomTagInstance> = (new () => U) & { type: T, parentRender?(): Partial<Tag<string>>, preRender?: Tag<string>['preRender'] }
+export interface CustomTagInstance extends Omit<Tag<unknown>, 'type'> 
+{
+    connectedCallback?(): void;
+
+    disconnectedCallback?(): void;
+
+    adoptedCallback?(): void;
+
+    attributeChangedCallback?(name: string, oldValue, newValue): void;
+}
+
+
+
+export type TypedCustomTag<T extends string, U extends CustomTagInstance, TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> =
+    (Tag<CustomTagDefinition<T, U>, TAttributes> |
+        CompositeTag<CustomTagDefinition<T, U>, TAttributes>) & Partial<U>;
+
+export type CustomTag<T extends string, TAttributes extends Record<string, { value: string }> = Record<string, { value: string }>> = TypedCustomTag<T, unknown, TAttributes>;
