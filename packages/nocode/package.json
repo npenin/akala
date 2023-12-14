@@ -1,16 +1,21 @@
 {
-    "name": "nocode",
+    "name": "@akala/nocode",
     "version": "0.0.35",
     "main": "dist/cjs/index.js",
     "types": "dist/cjs/index.d.ts",
     "type": "module",
     "dependencies": {
         "@akala/client": "workspace:^",
-        "@akala/pages": "workspace:^"
+        "@akala/pages": "workspace:^",
+        "@floating-ui/core": "^1.5.2",
+        "@floating-ui/dom": "^1.5.3"
     },
     "private": true,
     "exports": {
         ".": {
+            "ts": {
+                "*": "./src/**/*.*"
+            },
             "import": {
                 "types": "./dist/esm/index.d.ts",
                 "default": "./dist/esm/index.js"
