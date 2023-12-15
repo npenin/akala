@@ -6,7 +6,7 @@ import { Commit } from './parse.js';
 
 export default async function (commits: Commit[]): Promise<ParserCommit[]>
 {
-    const parserOpts = (await changelog).parserOpts;
+    const parserOpts = (await changelog()).parserOpts;
     const regexParser = regex(parserOpts);
     const headerPattern: RegExp = typeof parserOpts.headerPattern == 'string' ? new RegExp(parserOpts.headerPattern) : parserOpts.headerPattern;
     const headerCorrespondence: string[] = typeof parserOpts.headerCorrespondence == 'string' ? [parserOpts.headerCorrespondence] : parserOpts.headerCorrespondence;
