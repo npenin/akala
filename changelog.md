@@ -1,4 +1,4 @@
-#  (2023-11-20)
+#  (2023-12-15)
 
 
 ### Bug Fixes
@@ -26,6 +26,7 @@
 * add processCommand as exported function 6f3e8d6
 * add recursive path creation 3f7ffa7
 * add remote type (for async ops) edd9b3b
+* add source map flag when running cli f1d4c85
 * add stdin to pm cli e07437a
 * add transaction on dbset 81305d5
 * add-script and yamlloader 7dd85c7
@@ -170,7 +171,9 @@
 * ignore commands without source dfce88b
 * implement own resolve to prevent resolving to main 07e3e69
 * imported event class from node d8bbc36
+* improve $serve input consistency 02c151c
 * improve browser usage 05dd7ea
+* improve compiler (giving up for now) f23e3f6
 * improve config get return type c40bcd5
 * improve error logging 1b4ae07
 * improve generate performance 88f6fee
@@ -309,6 +312,7 @@
 * remove _trigger when sending over jsonrpc 9fac492
 * remove assert dependency 2a90cb2
 * remove asset command depending on webpack 9c81e0a
+* remove compiler from config 5d3772f
 * remove confusing inject property on commands 9c45241
 * remove container.ts in sidecar cc48571
 * remove debugger statement 955f084
@@ -338,6 +342,7 @@
 * restore broken cli feature 6f563ef
 * revert last change 1332114
 * revert some changes to fix build 77b19cf
+* run 3f574ee
 * runnerMiddleware more type friendly 7bf1a25
 * set log level for any namespace e1b1025
 * shebang on akala CLI e893277
@@ -354,6 +359,7 @@
 * sort supports correct structure bf17f91
 * sort workspaces before publish 01b675e
 * sorted workspace is used as an output ab61117
+* split start and start-self 8ebb5f7
 * spread is not considering non enumerable properties 394438a
 * start command 4f924c6
 * start command args scope dd89375
@@ -381,6 +387,9 @@
 * trying to fix docker files 2b8ce52
 * typing 8851307
 * unparse options eed10c8
+* update after the breaking change in conventional changelog 12078eb
+* update after the breaking change in conventional changelog 76ebf7f
+* update after the breaking change in conventional changelog d6ed3d0
 * update all commands 8f54036
 * update CLI definitions 7281b40
 * update command definition 85c2891
@@ -483,6 +492,7 @@
 * add position information on positional parameters c8cb21b
 * add possibility for custom file format 0360c2f
 * add possibility to parse filename 335cc97
+* add preRender event c58ca99
 * add processing with lambda 650c4f5
 * add protocol handlers dc6c1b6
 * add protocol parser from domojs 9c50b37
@@ -501,12 +511,15 @@
 * add support for -- in CLI bf64441
 * add support for breaking change parsing 3ad998a
 * add support for dashes for command args 26955b9
+* add support for external document (like iframes) 0d39ae4
 * add support for jobs and schedules (as a SqlAgent) 11927b5
+* add support for many cases e545e2e
 * add support for mjs and cjs files discovery dc3c17a
 * add support for render functions 7d24d00
 * add support for shell script failure ignore 4b1dcc1
 * add support for untagged packages (yet) 6fbed9c
 * add tcp remote protocol handler 9d5dbfb
+* add the possibility to load programs with file urls dbbc1a6
 * add translation support on documentation 168cbbf
 * add typed variant fcdd604
 * add where signature for more flexibility a8d0f14
@@ -514,6 +527,7 @@
 * added winston as a logger system 065bae0
 * allow for relative path in cli bcccff1
 * cli now supports stream results 155e7ba
+* considered as v1.0 3ed2008
 * container can now act as middlewares 9484e39
 * continued daemonize impl 82694f1
 * cron complete implementation 40ad48b
@@ -527,6 +541,7 @@
 * export processor 528d2ad
 * export spanAsync 93a722d
 * first pubsub commit 78b31e1
+* first try with some somponents 293f0dd
 * fix sidecar f1705d6
 * handle cookies on redirect fb6e2ab
 * have both CJS and ESM at once cecd11a
@@ -554,6 +569,7 @@
 * return ProxyConfiguration correct type when strongly typed eeaeee0
 * sidecar now fallback to proxy on pm 4ebe153
 * start implementation of page builder 45f08c0
+* start testing nocode (giving up for now) d9cc762
 * started webdav module c663dba
 * support for commands through pm 3954c8a
 * support for config file path with needle 1243d91
@@ -572,6 +588,8 @@
 
 ### BREAKING CHANGES
 
+* first release
+* .pm.config.json is now read from CWD instead of HOMEDIR
 * ESM decorators are not compatible with legacy decorators
 * serveMetadata signature change
 * can only work with ESM now
