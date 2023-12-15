@@ -2,7 +2,6 @@ import { State } from '../state.js'
 import path from 'node:path'
 import { eachAsync } from '@akala/core';
 import { ProxyConfiguration } from '@akala/config';
-import { renderOuter } from '@akala/pages';
 import { register } from 'node:module'
 
 export default async function compile(config: ProxyConfiguration<State>, entryPoints: string[])
@@ -28,6 +27,9 @@ export default async function compile(config: ProxyConfiguration<State>, entryPo
     config.loaders.protocol.forEach(p => register(p));
     config.loaders.format.forEach(p => register(p));
 
+
+
+
     await eachAsync(entryPoints, async ep =>
     {
         // const x = await import(ep, { assert: { type: 'json' } });
@@ -35,7 +37,12 @@ export default async function compile(config: ProxyConfiguration<State>, entryPo
 
         if (path.extname(ep) == '.html')
         {
-            console.log(x.default);
+            console.log(JSON.stringify(x.default, null, 4));
         }
+
+        const y = await import(ep);
+        console.log(y);
     });
+
+
 }

@@ -21,6 +21,7 @@ export const resolve: Resolver = async function (specifier, context, nextResolve
     return protocols.reduceRight((previous, protocol) =>
         previous.then(async previous =>
         {
+            console.log(previous, protocol);
             const parseResult = protocolParser.exec(previous.url)
             if (!parseResult)
                 return nextResolve(protocol + ':' + previous.url, context);
