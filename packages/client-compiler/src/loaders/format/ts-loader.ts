@@ -12,11 +12,6 @@ inspectOpts.colors = true;
 
 const logger = coreLogger('hook:ts')
 
-const tsExts = new Set([
-    '.ts',
-    '.map',
-]);
-
 type CacheItem = {
     source: string,
     sourceFile: ts.SourceFile,
@@ -173,6 +168,8 @@ export async function parseWithoutCache(pathOrSpecifier: { path?: string, specif
     // maps[maps[url].emittedFile.toString()] = { program, emittedFile: maps[url].emittedFile };
 }
 
+type ArrayItemType<T> = T extends ArrayLike<infer X> ? X : never;
+
 export const supportedFormats: Record<string, (item: CacheItem) => LoaderResult | Promise<LoaderResult>> = {
     'module': (item: CacheItem) => ({
         format: 'module',
@@ -191,6 +188,52 @@ export const supportedFormats: Record<string, (item: CacheItem) => LoaderResult 
     }),
     'dependency-tree': async (item: CacheItem) =>
     {
+        function getImportFruits(importDeclaration: ArrayItemType<CacheItem['imports']>)
+        {
+            const result = {};
+            // console.log(importDeclaration)
+            const importClause = importDeclaration.importClause;
+            if (!importClause)
+                return result;
+
+            if (importClause.name)
+                result['default'] = importClause.name.text;
+
+            if (importClause.namedBindings)
+                if (ts.isNamespaceImport(importClause.namedBindings))
+                {
+                    result['*'] = importClause.namedBindings.name.text;
+                }
+                else
+                {
+                    importClause.namedBindings.elements.forEach(impspec =>
+                    {
+                        result[impspec.propertyName?.text || impspec.name.text] = impspec.name.text;
+                    })
+                }
+            return result;
+        }
+
+        function getExportFruits(exportDeclaration: ArrayItemType<CacheItem['exports']>)
+        {
+            const result = {};
+            switch (true)
+            {
+                case ts.isExportDeclaration(exportDeclaration):
+                    if (!exportDeclaration.exportClause)
+                        result['*'] = '*';
+                    if (ts.isNamespaceExport(exportDeclaration.exportClause))
+                        result['*'] = exportDeclaration.exportClause.name.text;
+                    else
+                        exportDeclaration.exportClause.elements.forEach(expspec =>
+                        {
+                            result[expspec.propertyName?.text || expspec.name.text] = expspec.name.text;
+                        })
+                    break;
+            }
+            return result;
+        }
+
         const source = item.modules.map((m, i) =>
         {
             try
@@ -205,7 +248,11 @@ export const supportedFormats: Record<string, (item: CacheItem) => LoaderResult 
             return `import deps${i} from ${JSON.stringify("dependency-tree:" + m)}`;
         }).join(';\n') + `
         
-        const deps = {${item.modules.map((m, i) => `${JSON.stringify(m)}:deps${i}`)}};
+        const deps = {${item.modules.map((m, i) =>
+            `${JSON.stringify(m)}:{
+                deps:deps${i}, 
+                fruits:${i < item.imports.length ? JSON.stringify(getImportFruits(item.imports[i])) : JSON.stringify(getExportFruits(item.exports[i - item.imports.length]))}
+            }`)}};
         export default deps;`
         logger.data(source);
         return ({
