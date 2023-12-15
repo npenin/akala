@@ -1,4 +1,4 @@
-#  (2023-11-20)
+#  (2023-12-15)
 
 
 ### Bug Fixes
@@ -17,7 +17,9 @@
 
 ### Features
 
+* add preRender event c58ca99
 * add sourmap optional support f6b0275
+* add support for external document (like iframes) 0d39ae4
 * add support for render functions 7d24d00
 * have both CJS and ESM at once cecd11a
 * start implementation of page builder 45f08c0
