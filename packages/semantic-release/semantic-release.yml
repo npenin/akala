@@ -17,7 +17,7 @@ jobs:
   build:
     steps:
       - name: tags
-        run: node node_modules/git-semver-tags/cli.js --lerna --package $(package.name) | head -n1
+        run: node node_modules/git-semver-tags/cli.mjs --lerna --package $(package.name) | head -n1
         with:
           result: stdout
           shell: true
