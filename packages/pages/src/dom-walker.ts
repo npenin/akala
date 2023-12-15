@@ -229,7 +229,7 @@ export function renderOuter(tag: Tag<string> | CompositeTag<string> | TextTag<st
     }
 }
 
-export function renderOuterWithDomAPI(tag: CompositeTag<Exclude<any, 'html'>> | Tag<Exclude<any, 'html'>> | TextTag<Exclude<any, 'html'>> | Document, prefix?: string): Node[]
+export function renderOuterWithDomAPI(tag: CompositeTag<Exclude<any, 'html'>> | Tag<Exclude<any, 'html'>> | TextTag<Exclude<any, 'html'>> | Document, document: globalThis.Document = window.document): Node[]
 {
     switch (tag.type)
     {
@@ -241,9 +241,9 @@ export function renderOuterWithDomAPI(tag: CompositeTag<Exclude<any, 'html'>> | 
                 {
                     const prerenderTags = tag.preRender();
                     if (Array.isArray(prerenderTags))
-                        results.push(...prerenderTags.flatMap(n => renderOuterWithDomAPI(n, prefix)));
+                        results.push(...prerenderTags.flatMap(n => renderOuterWithDomAPI(n, document)));
                     else if (prerenderTags)
-                        results.push(...renderOuter(prerenderTags, prefix));
+                        results.push(...renderOuterWithDomAPI(prerenderTags, document));
                 }
 
                 let result = document.createTextNode(tag.content);
@@ -253,23 +253,34 @@ export function renderOuterWithDomAPI(tag: CompositeTag<Exclude<any, 'html'>> | 
                 return results;
             }
         case 'html':
-            const doc = document.createElement('html');
             const html = tag as Document;
             if (html.head)
             {
-                const head = document.createElement('head');
-                doc.appendChild(head);
+                const head = document.head || document.createElement('head');
+                if (!head.parentNode)
+                    document.appendChild(head);
 
                 if (html.head.title)
-                    renderOuterWithDomAPI({ type: 'title', content: html.head.title }).forEach(c => head.appendChild(c));
+                {
+                    for (let meta of head.getElementsByTagName('title'))
+                        head.removeChild(meta);
+                    renderOuterWithDomAPI({ type: 'title', content: html.head.title }, document).forEach(c => head.appendChild(c));
+                }
                 if (html.head.meta)
+                {
+                    for (let meta of head.getElementsByTagName('meta'))
+                        head.removeChild(meta);
                     Object.entries(html.head.meta).map(meta => renderOuterWithDomAPI({ type: 'meta', attributes: { name: { value: meta[0] }, content: meta[1] } }).forEach(m => head.appendChild(m)))
+                }
                 if (html.head.links)
-                    html.head.links.map(link => renderOuterWithDomAPI({ type: 'link', attributes: { rel: link.rel, href: link.src } }, prefix).forEach(m => head.appendChild(m)))
+                    html.head.links.map(link => renderOuterWithDomAPI({ type: 'link', attributes: { rel: link.rel, href: link.src } }, document).forEach(m => head.appendChild(m)))
                 if (html.head.jsInit)
-                    html.head.jsInit.map(v => renderOuterWithDomAPI(v, prefix).forEach(n => head.appendChild(n)));
+                    html.head.jsInit.map(v => renderOuterWithDomAPI(v, document).forEach(n => head.appendChild(n)));
             }
-            return [doc];
+            html.body.forEach(t =>
+            {
+                document.body.replaceChildren(...renderOuterWithDomAPI(t, document));
+            })
 
         default:
             const result: Node[] = [];
@@ -277,9 +288,9 @@ export function renderOuterWithDomAPI(tag: CompositeTag<Exclude<any, 'html'>> | 
             {
                 const prerenderTags = tag.preRender();
                 if (Array.isArray(prerenderTags))
-                    result.push(...prerenderTags.flatMap(t => renderOuterWithDomAPI(t)));
+                    result.push(...prerenderTags.flatMap(t => renderOuterWithDomAPI(t, document)));
                 else
-                    result.push(...renderOuterWithDomAPI(prerenderTags));
+                    result.push(...renderOuterWithDomAPI(prerenderTags, document));
             }
             const self: HTMLElement = document.createElement(tag.type);
             result.push(self);
