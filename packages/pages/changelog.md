@@ -4,6 +4,7 @@
 ### Bug Fixes
 
 * add node as an export condition 4aa41a8
+* bump version 4a791be
 * compilation c760ee3
 * downgrade all packages to support both cjs and mjs 56f6136
 * downgrade all packages to support both cjs and mjs 5c64966
