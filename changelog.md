@@ -144,6 +144,7 @@
 * fix generate and tsconfig files b44bd4c
 * fix model registration and serialization 7236001
 * fix pm startup 9f53b54
+* fix skip typings fdb4e7d
 * fix the pubsub path 77cdd2f
 * fix use on router 64f54b9
 * fix wrong update on import 2bd50cc
