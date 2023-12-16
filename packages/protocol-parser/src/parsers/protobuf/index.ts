@@ -21,9 +21,9 @@ export type ProtobufMessageProperty<T, TKey extends keyof T> = ArrayItem<T[TKey]
 export type ProtobufMessage<T> = { [key in keyof T]?: ProtobufMessageProperty<T, key> };
 export type ProtobufMessage2<T> = T extends ProtobufMessage<T> ? T : ProtobufMessage<T>;
 
-export function packed<T extends ProtobufMessage<T>>(name: keyof T, parser: AnyParser<T[keyof T], Partial<T>>)
+export function packed<T extends ProtobufMessage<T>>(name: keyof T, parser: AnyParser<T[typeof name], Partial<T>>)
 {
-    return property<T, typeof name>(name, 'length-delimited', new Sub(varint, new FixedLengthArray(-1, parser) as any));
+    return property<T, typeof name>(name, 'length-delimited', new Sub<T[typeof name], Partial<T>>(varint, new FixedLengthArray(-1, parser) as any));
 }
 
 export function sub<T extends ProtobufMessage<T>>(parser: AnyParser<T, Partial<T>>)
