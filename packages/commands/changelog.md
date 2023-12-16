@@ -1,9 +1,9 @@
-#  (2023-12-15)
+#  (2023-12-16)
 
 
-### Bug Fixes
+### Features
 
-* improve $serve input consistency 02c151c
+* add possibility to serve all containers at once 2be5987
 
 
 
