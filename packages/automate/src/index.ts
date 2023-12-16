@@ -163,8 +163,15 @@ export const RunMiddleware = new MiddlewareRunner<JobStepRun>('run',
             step.with = {};
         const buffers: Buffer[] = [];
         const errBuffers: Buffer[] = [];
+
         if (typeof stdio == 'undefined')
-            stdio = 'ignore';
+            if (step.with.stdio)
+                if (typeof step.with.stdio == 'string')
+                    stdio = { stdin: step.with.stdio, stdout: step.with.stdio, stderr: step.with.stdio }
+                else
+                    stdio = { stdin: step.with.stdio[0], stdout: step.with.stdio[1], stderr: step.with.stdio[2] }
+            else
+                stdio = 'ignore';
         if (typeof (stdio) === 'string')
             stdio = { stdin: stdio, stderr: stdio, stdout: stdio };
         const initialStdIoSetting = stdio;
@@ -175,7 +182,9 @@ export const RunMiddleware = new MiddlewareRunner<JobStepRun>('run',
                 stdio[step.with.result] = 'pipe';
             }
         }
-
+        if (!step.with.stdio)
+            step.with.stdio = ['stdin', 'stdout', 'stderr'].map(v => stdio[v]);
+        context.logger.silly(step.with.stdio)
         return new Promise((resolve, reject) =>
         {
             var cmd: string[];
@@ -184,7 +193,7 @@ export const RunMiddleware = new MiddlewareRunner<JobStepRun>('run',
             else
                 cmd = step.run;
 
-            const cp = spawn(cmd[0], cmd.slice(1), Object.assign(step.with || {}, { stdio: ['stdin', 'stdout', 'stderr'].map(v => stdio[v]) }, { timeout: step.with.timeout || 3600000 })).on('close', function (code)
+            const cp = spawn(cmd[0], cmd.slice(1), Object.assign(step.with, { timeout: step.with.timeout || 3600000 })).on('close', function (code)
             {
                 if (code == 0)
                 {
