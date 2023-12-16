@@ -11,6 +11,8 @@ export default function (this: CliContext, workspaces: Workspace[], rules?: { [k
     this.logger.debug(translatedRules)
     this.logger.debug(translatedVersions)
     var loopCounts = workspaces.length;
+    if (loopCounts == 1)
+        loopCounts++;
 
     workspaces = sort(workspaces);
 
