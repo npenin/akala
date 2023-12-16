@@ -33,7 +33,7 @@ export const trigger = new Trigger('aws', (container, config: { [key: string]: s
 
                 return Promise.reject(new Error('AWS command mapping not found for command ' + cmd.name));
 
-            }, false)
+            }, true, false)
         }
         else
         {

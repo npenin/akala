@@ -107,7 +107,7 @@ export default async function app<T extends StoreDefinition>(context: CliContext
                 {
                     await engine.init(Object.assign({}, store.providerOptions, { path: context.currentWorkingDirectory }));
                     return { engine, models: Object.entries(store.models).map(e => ({ definition: new ModelDefinition(e[0], e[1].nameInStorage, e[1].namespace), model: e[1] })).map(x => x.definition.fromJson(x.model)) };
-                })());
+                })(), true);
                 var obj = {};
                 engines.forEach(config => Object.keys(config.models).forEach(model => obj[model] = config.engine));
                 sidecar.store = MultiStore.create(obj);
