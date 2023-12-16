@@ -1,4 +1,15 @@
-#  (2023-12-15)
+#  (2023-12-16)
+
+
+### Bug Fixes
+
+* handle unary operator in evaluator a9c10e3
+* overload selection e8bdeef
+
+
+### BREAKING CHANGES
+
+* now evaluator returns a Promise and not the ParsedFunction directly
 
 
 
