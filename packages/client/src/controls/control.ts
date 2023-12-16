@@ -179,7 +179,7 @@ export class GenericControlInstance<TParameter, TScope extends IScope<unknown> =
         this.init();
     }
 
-    init()
+    async init(): Promise<void>
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     {
     }

@@ -10,7 +10,7 @@ export class Text extends GenericControlInstance<string>
         super();
     }
 
-    public init()
+    public async init()
     {
         if (this.parameter instanceof Binding)
         {

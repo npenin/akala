@@ -14,7 +14,7 @@ export class Part extends GenericControlInstance<string | PartDefinition<IScope<
 
     @inject("akala-services.$part") private partService: PartService;
 
-    public init(): void
+    public async init(): Promise<void>
     {
         const partService = this.partService;
         if (typeof this.parameter != 'string')
@@ -33,17 +33,17 @@ export class Part extends GenericControlInstance<string | PartDefinition<IScope<
             {
                 const x = nonStringParameter as PossiblyBound<PartDefinition<IScope<unknown>>>;
                 if (x.template instanceof Binding)
-                    x.template.onChanged((ev) =>
+                    x.template.onChanged(async (ev) =>
                     {
                         if (x.controller instanceof Binding)
-                            partService.apply(() => this as unknown as PartInstance, { controller: x.controller.getValue(), template: ev.eventArgs.value }, {});
+                            partService.apply(() => this as unknown as PartInstance, { controller: await x.controller.getValue(), template: ev.eventArgs.value }, {});
                         else
                             partService.apply(() => this as unknown as PartInstance, { controller: x.controller, template: ev.eventArgs.value }, {});
                     });
                 else
                 {
                     if (x.controller instanceof Binding)
-                        partService.apply(() => this as unknown as PartInstance, { controller: x.controller.getValue(), template: x.template }, {});
+                        partService.apply(() => this as unknown as PartInstance, { controller: await x.controller.getValue(), template: x.template }, {});
                     else
                         partService.apply(() => this as unknown as PartInstance, x as PartDefinition<IScope<unknown>>, {});
                 }

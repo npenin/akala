@@ -21,7 +21,7 @@ export class Options extends GenericControlInstance<OptionsParameter>
     @akala.inject('controls')
     private controls: { value: ControlParameter<unknown> };
 
-    public init()
+    public async init()
     {
         // eslint-disable-next-line @typescript-eslint/no-this-alias
         const self = this;
@@ -107,12 +107,12 @@ export class Options extends GenericControlInstance<OptionsParameter>
                     self.clone(Template.buildElements('<option data-bind="{value: ' + (parameter.textvalue || parameter.value) + ', text:' + parameter.text + '}" />')[0] as HTMLElement, scope, true).then(el => element.appendChild(el));
                 })
 
-            this.element.addEventListener('change', () =>
+            this.element.addEventListener('change', async () =>
             {
                 const val = (element as HTMLSelectElement).value;
-                const model = akala.grep(array, (it, i) =>
+                const model = await akala.grepAsync(array, async (it, i) =>
                 {
-                    return val == new akala.parser.EvaluatorAsFunction().eval(new akala.Parser().parse((parameter.textvalue || parameter.value) as string))({ $item: it, $key: i });
+                    return val == (await new akala.parser.EvaluatorAsFunction().eval(new akala.Parser().parse((parameter.textvalue || parameter.value) as string)))({ $item: it, $key: i });
                 }, true);
                 if (model.length == 0)
                     value.setValue(val, value);
@@ -120,11 +120,11 @@ export class Options extends GenericControlInstance<OptionsParameter>
                     value.setValue(model[0], value);
             });
 
-            value.onChanged((ev) =>
+            value.onChanged(async (ev) =>
             {
                 if (value !== ev.eventArgs.source && typeof array != 'undefined')
                 {
-                    const val = new akala.parser.EvaluatorAsFunction().eval(new akala.Parser().parse((parameter.textvalue || parameter.value) as string))({ $item: ev.eventArgs.value, $key: array.indexOf(ev.eventArgs.value) });
+                    const val = (await new akala.parser.EvaluatorAsFunction().eval(new akala.Parser().parse((parameter.textvalue || parameter.value) as string)))({ $item: ev.eventArgs.value, $key: array.indexOf(ev.eventArgs.value) });
                     this.element.querySelectorAll('option').forEach((opt, i) =>
                     {
                         opt.selected = val == opt.value;

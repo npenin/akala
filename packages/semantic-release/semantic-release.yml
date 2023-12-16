@@ -33,7 +33,7 @@ jobs:
           result: stdout
           format: string
       - name: untagged commits
-        if: $(!build.commits)
+        if: "!build.commits"
         outputAs: commits
         run:
           - git

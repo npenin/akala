@@ -31,7 +31,7 @@ export class MiddlewareRunnerMiddleware<TSupportedJobSteps extends JobStepDef<st
             return Promise.resolve();
 
         if (!this.doNotInterpolate)
-            step[this.support] = interpolate.buildObject(step[this.support])(context);
+            step[this.support] = (await interpolate.buildObject(step[this.support]))(context);
 
         return this.handler(context, step, stdio);
     }
@@ -101,13 +101,14 @@ export const StdioMiddleware = new MiddlewareRunner('with', (...[context, step, 
 }, true);
 
 export const IfMiddleware: TMiddlewareRunner<JobStepIf> = new MiddlewareRunner<JobStepIf>('if',
-    (context, step) =>
+    async (context, step) =>
     {
+        debugger;
         if (!step.if)
             return Promise.resolve();
         try
         {
-            if (!new parser.EvaluatorAsFunction().eval(new Parser().parse(step.if))(context))
+            if (!(await new parser.EvaluatorAsFunction().eval(new Parser().parse(step.if)))(context))
             {
                 if (step.outputAs)
                     return Promise.reject(false);
@@ -359,15 +360,15 @@ export default function automate<TResult extends object, TSupportedJobSteps exte
 
     return new Promise<TResult>((resolve, reject) =>
     {
-        orchestrator.start('#main', (err) =>
+        orchestrator.start('#main', async (err) =>
         {
             if (err)
                 if (workflow.on && 'failure' in workflow.on)
-                    resolve(interpolate.buildObject(workflow.on.failure)(Object.assign({}, inputs, results)) as unknown as TResult);
+                    resolve((await interpolate.buildObject(workflow.on.failure))(Object.assign({}, inputs, results)) as unknown as TResult);
                 else
                     reject(err);
             else if (workflow.outputs)
-                resolve(interpolate.buildObject(workflow.outputs)(Object.assign({}, inputs, results)) as TResult);
+                resolve((await interpolate.buildObject(workflow.outputs))(Object.assign({}, inputs, results)) as TResult);
             else
                 resolve(results);
         });
