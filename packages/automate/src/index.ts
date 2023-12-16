@@ -103,7 +103,6 @@ export const StdioMiddleware = new MiddlewareRunner('with', (...[context, step, 
 export const IfMiddleware: TMiddlewareRunner<JobStepIf> = new MiddlewareRunner<JobStepIf>('if',
     async (context, step) =>
     {
-        debugger;
         if (!step.if)
             return Promise.resolve();
         try
