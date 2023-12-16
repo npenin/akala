@@ -21,19 +21,19 @@ export class Interpolate
     private escapedStartRegexp: RegExp;
     private escapedEndRegexp: RegExp;
 
-    public buildObject<T>(obj: T, mustHaveExpression?: boolean, trustedContext?: boolean, allOrNothing?: boolean): EvalFunction<T>
+    public async buildObject<T>(obj: T, mustHaveExpression?: boolean, trustedContext?: boolean, allOrNothing?: boolean): Promise<EvalFunction<T>>
     {
         switch (typeof obj)
         {
             case 'object':
                 if (Array.isArray(obj))
                 {
-                    const fns = obj.map((v => this.buildObject(v, mustHaveExpression, trustedContext, allOrNothing)));
+                    const fns = await Promise.all(obj.map((v => this.buildObject(v, mustHaveExpression, trustedContext, allOrNothing))));
                     return (value) => fns.map(fn => fn(value)) as unknown as T
                 }
                 else if (obj instanceof Object)
                 {
-                    const builder: [string, EvalFunction<unknown>][] = Object.entries(obj).map(kvp => [kvp[0], this.buildObject(kvp[1], mustHaveExpression, trustedContext, allOrNothing)]);
+                    const builder: [string, EvalFunction<unknown>][] = await Promise.all(Object.entries(obj).map(async kvp => [kvp[0], await this.buildObject(kvp[1], mustHaveExpression, trustedContext, allOrNothing)]));
                     return (value) => Object.fromEntries(builder.map(kvp => [kvp[0], kvp[1](value)])) as unknown as T;
                 }
                 return () => obj;
@@ -45,7 +45,7 @@ export class Interpolate
         }
     }
 
-    public build<T extends string>(text: T, mustHaveExpression?: boolean, trustedContext?: boolean, allOrNothing?: boolean): EvalFunction<T>
+    public async build<T extends string>(text: T, mustHaveExpression?: boolean, trustedContext?: boolean, allOrNothing?: boolean): Promise<EvalFunction<T>>
     {
         const startSymbolLength = this.startSymbol.length,
             endSymbolLength = this.endSymbol.length;
@@ -84,7 +84,7 @@ export class Interpolate
                 }
                 const exp = text.substring(startIndex + startSymbolLength, endIndex);
                 expressions.push(exp);
-                parseFns.push(new EvaluatorAsFunction().eval(new Parser().parse(exp)));
+                parseFns.push(await new EvaluatorAsFunction().eval(new Parser().parse(exp)));
                 index = endIndex + endSymbolLength;
                 expressionPositions.push(concat.length);
                 concat.push('');

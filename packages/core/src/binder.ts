@@ -6,6 +6,7 @@ import { map } from './each.js'
 import { ExtendableEvent } from './module.js'
 import { Arguments } from './type-helper.js';
 import { EvaluatorAsFunction, ParsedFunction } from './parser/evaluator-as-function.js';
+import { mapAsync } from './helpers.js';
 export interface IWatched extends Object
 {
     $$watchers?: { [key: string]: Binding<unknown> };
@@ -59,22 +60,22 @@ export class Binding<T>
     public static readonly ChangedFieldEventName = "fieldChanged";
     public static readonly ErrorEventName = "bindingError";
 
-    public static unbindify<T>(element: T): Partial<T>
+    public static unbindify<T>(element: T): Promise<Partial<T>>
     {
         if (element instanceof Binding)
             return element.getValue();
-        return map(element, function (value)
+        return mapAsync(element, async function (value)
         {
             if (typeof (value) == 'object')
             {
                 if (value instanceof Binding)
-                    return value.getValue();
+                    return await value.getValue();
                 else
                     return Binding.unbindify(value);
             }
             else
                 return value;
-        })
+        }, false)
     }
 
     constructor(protected _expression: string, private _target: IWatched, register = true)
@@ -100,7 +101,7 @@ export class Binding<T>
     public get target() { return this._target; }
     public set target(value) { this._target = value; this.register() }
 
-    private evaluator: ParsedFunction<T>;
+    private evaluator: Promise<ParsedFunction<T>>;
 
     public onChanging(handler: (ev: BindingExtendableEvent<T>) => void)
     {
@@ -112,10 +113,10 @@ export class Binding<T>
         const off = this.onChangedEvent.addHandler(handler);
         if (!doNotTriggerHandler)
         {
-            handler({
+            this.getValue().then(v => handler({
                 target: this.target,
-                eventArgs: { fieldName: this.expression, value: this.getValue(), source: null }
-            });
+                eventArgs: { fieldName: this.expression, value: v, source: null }
+            }));
         }
         return off;
     }
@@ -170,9 +171,9 @@ export class Binding<T>
     }
 
     //defined in constructor
-    public getValue(): T
+    public getValue(): Promise<T>
     {
-        return this.formatter(this.evaluator(this.target));
+        return this.evaluator.then(evaluator => this.formatter(evaluator(this.target)));
     }
 
     public register()
@@ -337,7 +338,7 @@ export class PromiseBinding<T> extends Binding<T>
         super(expression, null, false);
         const binding = new Binding<T>(expression, null);
         binding.pipe(this);
-        var callback = (value) =>
+        var callback = async (value) =>
         {
             if (isPromiseLike(value))
             {
@@ -349,7 +350,7 @@ export class PromiseBinding<T> extends Binding<T>
 
             this.onChangedEvent.trigger({
                 fieldName: this.expression,
-                value: this.getValue(),
+                value: await this.getValue(),
                 source: binding
             });
         };
@@ -515,9 +516,9 @@ export class WatchBinding<T> extends Binding<T>
 
     private lastValue: T;
 
-    private check()
+    private async check()
     {
-        const newValue = this.getValue();
+        const newValue = await this.getValue();
         if (this.lastValue !== newValue)
         {
             this.lastValue = newValue;

@@ -1,5 +1,5 @@
 import { lazy, noop } from "../helpers.js";
-import { BinaryExpression, Expressions, ExpressionVisitor, MemberExpression, NewExpression, TypedExpression } from "./expressions/index.js";
+import { BinaryExpression, Expressions, ExpressionVisitor, MemberExpression, NewExpression, TypedExpression, UnaryExpression, UnaryOperator } from "./expressions/index.js";
 import { BinaryOperator } from "./expressions/binary-operator.js";
 import { ExpressionsWithLength, ParsedArray, ParsedObject } from "./parser.js";
 
@@ -11,9 +11,9 @@ export class EvaluatorAsFunction extends ExpressionVisitor
     private requiresContext: boolean = false;
     private functionBody = '';
 
-    public eval<T = unknown>(expression: ExpressionsWithLength): ParsedFunction<T>
+    public async eval<T = unknown>(expression: ExpressionsWithLength): Promise<ParsedFunction<T>>
     {
-        this.visit(expression);
+        await this.visit(expression);
         const f = new Function('$$context', 'return ' + this.functionBody);
 
         if (this.requiresContext)
@@ -81,6 +81,21 @@ export class EvaluatorAsFunction extends ExpressionVisitor
                 throw new Error('not supported');
         }
 
+        return arg0;
+    }
+
+    async visitUnary(arg0: UnaryExpression): Promise<Expressions>
+    {
+        await this.visit(arg0.operand);
+        switch (arg0.operator)
+        {
+            case UnaryOperator.Not:
+                this.functionBody = '!' + this.functionBody;
+                break;
+            case UnaryOperator.NotNot:
+                this.functionBody = '!!' + this.functionBody;
+                break;
+        }
         return arg0;
     }
 
