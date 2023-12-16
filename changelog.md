@@ -28,6 +28,7 @@
 * add remote type (for async ops) edd9b3b
 * add source map flag when running cli f1d4c85
 * add stdin to pm cli e07437a
+* add support for more types (doc and style) 16c929d
 * add transaction on dbset 81305d5
 * add-script and yamlloader 7dd85c7
 * added missing yaml dependency fa66dd1
@@ -40,6 +41,7 @@
 * any on mongodb efa6f5d
 * aritificial bump ae0e129
 * artificial bump 60cc1c1
+* artificially bump protocol-parser eee3cb7
 * assign id after insert ce42919
 * async CLI init 484a0b4
 * automate fixed d357937
