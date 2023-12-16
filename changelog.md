@@ -30,6 +30,7 @@
 * add stdin to pm cli e07437a
 * add support for more types (doc and style) 16c929d
 * add transaction on dbset 81305d5
+* add xe settings to force logging 9ccf9fd
 * add-script and yamlloader 7dd85c7
 * added missing yaml dependency fa66dd1
 * added remote pm socket support 074d6cf
@@ -295,6 +296,7 @@
 * proper parameter binding for bump-dependents 7459c86
 * proper positional option 4b10b61
 * proper pubsub container 7978b92
+* proper stdio support 17464ae
 * proper typing on store create 83caee7
 * proper use of normalize for plugins 130102e
 * properly generate module from hierarchy dc28cb0
