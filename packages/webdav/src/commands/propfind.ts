@@ -4,6 +4,7 @@ import fs from 'fs/promises'
 import State from "../state.js";
 import path from 'path'
 import mime from 'mime-types'
+import { Dirent } from 'fs'
 
 export type entry =
     {
@@ -36,6 +37,6 @@ export default async function propfind(this: State, route: string, body: string,
                 getlastmodified: stats.mtime,
                 resourcetype: stats.isDirectory() ? 'collection' : undefined
             };
-        });
+        }, true, true);
     }
 }
