@@ -36,6 +36,7 @@ jobs:
         foreach: $(build.bumps)
         foreach-strategy: wait-for-previous
         run: |
+          set -xe
           yarn workspace $($.name) version $($.bump)
           git add $($.location)/package.json
           git add $($.location)/changelog.md
