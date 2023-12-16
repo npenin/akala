@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* add support for more types (doc and style) 16c929d
+* update to latest @akala/core 69118f6
 
 
 
