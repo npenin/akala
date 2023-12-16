@@ -63,6 +63,8 @@
 * bindings are less intrusive 3ef2783
 * broken command processor 22afbc0
 * browser exports 8888cc6
+* build issue after update to @akala/core fc8465c
+* build issue after update to @akala/core 1cd037a
 * bump dependent 5e89235
 * bump dependents proper references f734b61
 * bump lambda version 41d34c2
