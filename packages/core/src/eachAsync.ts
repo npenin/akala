@@ -146,16 +146,93 @@ export function each(it: unknown[] | ArrayLike<unknown> | Record<string, unknown
 }
 
 
-export async function map<T, U>(array: T[] | ArrayLike<T>, body: (element: T, i?: number) => PromiseLike<U>, waitForPrevious?: boolean): Promise<U[]>
-export async function map<T extends Record<string, unknown>, U>(o: T, body: (element: T[keyof T], i: keyof T) => PromiseLike<U>, waitForPrevious?: boolean): Promise<U[]>
-// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
-export async function map<U>(it: any, body: (element: any, i: any) => PromiseLike<U>, waitForPrevious?: boolean): Promise<U[]>
+export async function mapArray<T, U>(it: T[] | ArrayLike<T>, body: (element: T, i: number) => Promise<U>, waitForPrevious: boolean): Promise<U[]>
 {
-    const promises: PromiseLike<U>[] = [];
-    return each(it, async (el, i) =>
+    const result = [];
+    await array(it, async function (el, i)
     {
-        const promise = body(el, i);
-        promises.push(promise);
-        await promise;
-    }, waitForPrevious).then(() => Promise.all(promises))
+        result.push(await body(el, i));
+    }, null, waitForPrevious);
+    return result;
+}
+
+export function mapObject<TIn, TResultValue>(o: TIn, body: (element: TIn[keyof TIn], i: keyof TIn) => TResultValue, asArray: true, waitForPrevious: boolean): Promise<TResultValue[]>
+export function mapObject<TIn, TResultValue>(o: TIn, body: (element: TIn[keyof TIn], i: keyof TIn) => TResultValue, asArray: false, waitForPrevious: boolean): Promise<{ [P in keyof TIn]?: TResultValue }>
+export function mapObject<TIn, TResultValue>(o: TIn, body: (element: TIn[keyof TIn], i: keyof TIn) => TResultValue, asArray: boolean, waitForPrevious: boolean)
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export async function mapObject<TIn, TResultValue>(o: TIn, body: (element: TIn[keyof TIn], i: keyof TIn) => TResultValue, asArray: boolean, waitForPrevious: boolean)
+{
+    const result: Partial<Proxy<TIn, TResultValue>> = {};
+    const resultArray: TResultValue[] = [];
+    await object(o, async function (el, i)
+    {
+        if (asArray)
+            resultArray.push(await body(el, i));
+        else
+            result[i] = await body(el, i);
+    }, null, waitForPrevious);
+    if (asArray)
+        return resultArray;
+    return result;
+}
+
+export function map<T, U>(array: T[] | ArrayLike<T>, body: (element: T, i: number) => Promise<U>, waitForPrevious?: boolean): Promise<U[]>
+export function map<TIn, TKey extends keyof TIn, TResultValue>(o: TIn, body: (element: TIn[TKey], i: TKey) => Promise<TResultValue>, asArray?: false, waitForPrevious?: boolean): Promise<Proxy<TIn, TResultValue>>
+export function map<TIn, TKey extends keyof TIn, TResultValue>(o: TIn, body: (element: TIn[TKey], i: TKey) => Promise<TResultValue>, asArray: true, waitForPrevious?: boolean): Promise<TResultValue[]>
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
+export function map(it: any, body: (element: any, i: any) => any, asArray?: boolean, waitForPrevious?: boolean)
+{
+    if (isArrayLike(it))
+        return mapArray(it, body, waitForPrevious);
+    return mapObject(it, body, asArray, waitForPrevious);
+}
+
+
+
+
+export async function grepArray<T>(it: T[] | ArrayLike<T>, body: (element: T, i: number) => Promise<boolean>, complete: NextFunction, waitForPrevious: boolean): Promise<T[]>
+{
+    const result = [];
+    await array(it, async function (el, i)
+    {
+        if (await body(el, i))
+            result.push(el);
+    }, complete, waitForPrevious);
+    return result;
+}
+
+// export type Partial<T> = {[P in keyof T]?: T[P]}
+export type Proxy<T, U> = { [P in keyof T]: U }
+
+export function grepObject<T>(o: T, body: (element: T[keyof T], i: keyof T) => Promise<boolean>, asArray: true, complete: NextFunction, waitForPrevious: boolean): Promise<T[keyof T][]>
+export function grepObject<T>(o: T, body: (element: T[keyof T], i: keyof T) => Promise<boolean>, asArray: false, complete: NextFunction, waitForPrevious: boolean): Promise<Partial<T>>
+export function grepObject<T>(o: T, body: (element: T[keyof T], i: keyof T) => Promise<boolean>, asArray: boolean, complete: NextFunction, waitForPrevious: boolean): Promise<Partial<T> | T[keyof T][]>
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export async function grepObject<T>(o: T, body: (element: T[keyof T], i: keyof T) => Promise<boolean>, asArray: boolean, complete: NextFunction, waitForPrevious: boolean)
+{
+    const result: Partial<T> = {};
+    const resultArray: T[keyof T][] = [];
+    await object(o, async function (el, i)
+    {
+        if (await body(el, i))
+            if (asArray)
+                resultArray.push(el);
+            else
+                result[i] = el;
+
+    }, complete, waitForPrevious);
+    if (asArray)
+        return resultArray;
+    return result;
+}
+
+export function grep<T>(array: T[] | ArrayLike<T>, body: (element: T, i: number) => Promise<boolean>, complete?: NextFunction, waitForPrevious?: boolean): Promise<T[]>
+export function grep<T>(o: T, body: <U extends keyof T>(element: T[U], i: U) => Promise<boolean>, complete?: NextFunction, waitForPrevious?: boolean): Promise<Partial<T>>
+export function grep<T, U extends keyof T>(o: T, body: (element: T[U], i: U) => Promise<boolean>, asArray: true, complete?: NextFunction, waitForPrevious?: boolean): Promise<T[U][]>
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
+export function grep(it: any, body: (element: any, i: any) => Promise<boolean>, asArray?: boolean | NextFunction, complete?: NextFunction | boolean, waitForPrevious?: boolean)
+{
+    if (isArrayLike(it))
+        return grepArray(it, body, asArray as NextFunction, !!complete);
+    return grepObject(it, body, asArray as boolean, complete as NextFunction, !!waitForPrevious);
 }

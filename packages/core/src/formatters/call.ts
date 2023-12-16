@@ -12,11 +12,11 @@ export class CallFormatterFactory implements FormatterFactory<unknown, ParsedStr
     }
     public build(settings: ParsedString)
     {
-        function evaluate(x)
+        async function evaluate(x)
         {
             if (this.args && x && x[this.method])
             {
-                return x[this.method](...Binding.unbindify<unknown[]>(this.args));
+                return x[this.method](...await Binding.unbindify<unknown[]>(this.args));
             }
         }
 
