@@ -11,7 +11,7 @@ const serveDefinition: Configurations = await import('../' + '../src/commands/$s
 
 export default function (config, program: NamespaceMiddleware<{ configFile: string }>)
 {
-    let containers: Record<string, Container<unknown>>;
+    let containers: Container<unknown> = new Container('akala cli', undefined);
 
     root.state<{ commands?: Record<string, string> & { extract?: () => Record<string, string> } }>().preAction(async (context) =>
     {
@@ -21,7 +21,7 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
         if (commands && 'extract' in commands && typeof (commands.extract) == 'function')
             commands = commands.extract();
         if (commands)
-            containers = Object.fromEntries(await mapAsync(commands, async (path, name) =>
+            await mapAsync(commands, async (path, name) =>
             {
                 const cliContainer: commands.container & Container<void> = new Container<void>('cli', undefined, undefined, sharedInjector);
 
@@ -46,8 +46,8 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
                 const commands = await handler.getMetadata();
 
                 await new Cli(cliContainer, commands, handler.processor, program.command(name)).promise;
-                return [name, cliContainer]
-            }))
+                containers.register(name, cliContainer);
+            })
     });
 
     const commands = program.command('commands').state<{ commands: Record<string, string>, commit(): Promise<void> }>();
@@ -81,9 +81,11 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
         return Promise.resolve(context.state.commands)
     })
 
-    commands.command<{ container: string }>('serve <container>', serveDefinition.doc.description).options(serveDefinition.cli.options).action(context =>
+    commands.command<{ container: string }>('serve [container]', serveDefinition.doc.description).options(serveDefinition.cli.options).action(context =>
     {
         process.on('SIGINT', () => context.abort.abort())
-        return $serve(containers[context.options.container], { args: context.args as ServeOptions['args'], options: { ...context.options, socketName: context.options.container } }, context.abort.signal);
+        if (!context.options.container)
+            return $serve(containers, { args: context.args as ServeOptions['args'], options: { ...context.options, socketName: context.options.container } }, context.abort.signal);
+        return $serve(containers.resolve(context.options.container), { args: context.args as ServeOptions['args'], options: { ...context.options, socketName: context.options.container } }, context.abort.signal);
     })
 }
