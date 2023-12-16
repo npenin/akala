@@ -71,6 +71,7 @@
 * bump version 0457468
 * bump version b88263c
 * cannot read undefined config object 0cc01be
+* cjs build dcd7057
 * cjs build d3e9a4e
 * cleanup $disconnect registration on ready 4aaf9bd
 * cli args parsing 6db1a80
