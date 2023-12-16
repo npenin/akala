@@ -44,7 +44,7 @@ class DataBindComposer implements Composer<Record<string, unknown>>
     optionName = 'databind';
     async apply(item: HTMLElement, data: unknown, options?: Record<string, Control<unknown>>)
     {
-        const instances = await Control.apply(options || new akala.parser.EvaluatorAsFunction().eval(new akala.Parser().parse(item.dataset['bind']))() as Record<string, unknown>, item);
+        const instances = await Control.apply(options || (await new akala.parser.EvaluatorAsFunction().eval(new akala.Parser().parse(item.dataset['bind'])))() as Record<string, unknown>, item);
 
         await akala.eachAsync(item.querySelectorAll(this.selector), async (el: HTMLElement) =>
         {
@@ -133,14 +133,14 @@ export class Template
         return akala.map(root.children, function (el) { return el as HTMLElement });
     }
 
-    public build(markup: string): templateFunction
+    public async build(markup: string): Promise<templateFunction>
     {
-        let template = this.interpolator.build(markup)
+        let template = await this.interpolator.build(markup)
         var f: templateFunction = ((data, parent?: HTMLElement) =>
         {
-            f.hotReplace = (markup: string) =>
+            f.hotReplace = async (markup: string) =>
             {
-                template = this.interpolator.build(markup);
+                template = await this.interpolator.build(markup);
                 const newTemplateInstance = Template.buildElements(template(data));
                 if (parent)
                 {
@@ -179,9 +179,9 @@ export class Template
             }
             return Template.composeAll(templateInstance, data);
         }) as templateFunction;
-        f.hotReplace = (markup: string) =>
+        f.hotReplace = async (markup: string) =>
         {
-            template = this.interpolator.build(markup);
+            template = await this.interpolator.build(markup);
         }
 
         return f;

@@ -13,7 +13,7 @@ export class Spinner extends GenericControlInstance<Settings | string[] | string
         super();
     }
 
-    public init()
+    public async init()
     {
         let parent: Element = this.element;
         let wrapped: PromiseLike<unknown> = this.factory.wrap(this.element, this.scope, true);
@@ -57,6 +57,6 @@ export class Spinner extends GenericControlInstance<Settings | string[] | string
                 spinner.remove();
             })
         }
-        return wrapped;
+        await wrapped;
     }
 }

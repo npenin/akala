@@ -2,27 +2,27 @@ import * as akala from '@akala/core'
 import { control, GenericControlInstance, Control, ControlControlParameter } from './control.js'
 import { ObservableArray, ObservableArrayEventArgs, Binding, ParsedString, isPromiseLike } from '@akala/core'
 
-function removeClass(element: HTMLElement, item: ParsedString | Array<string> | string | { [key: string]: boolean })
+async function removeClass(element: HTMLElement, item: ParsedString | Array<string> | string | { [key: string]: boolean })
 {
 
     if (typeof (item) == 'undefined')
         return;
     if (typeof (item) == 'string')
         if (~item.indexOf(' '))
-            removeClass(element, item.split(' '));
+            await removeClass(element, item.split(' '));
         else
             element.classList.remove(item);
     else if (item instanceof ParsedString)
-        return removeClass(element, item.value);
+        return await removeClass(element, item.value);
     else if (item instanceof Binding)
     {
-        removeClass(element, item.getValue())
+        await removeClass(element, await item.getValue())
     }
 }
 
 type classParamType = Binding<string> | Binding<string[]> | ParsedString | string[] | string | { [key: string]: boolean };
 
-function addClass(element: HTMLElement, item: classParamType): void
+async function addClass(element: HTMLElement, item: classParamType)
 {
     if (typeof (item) == 'undefined')
         return;
@@ -37,42 +37,42 @@ function addClass(element: HTMLElement, item: classParamType): void
     else if (item instanceof Binding)
     {
         let oldValue = null;
-        item.onChanged(function (ev)
+        item.onChanged(async function (ev)
         {
             if (oldValue)
-                removeClass(element, oldValue);
+                await removeClass(element, oldValue);
             if (isPromiseLike(ev.eventArgs.value))
-                ev.eventArgs.value.then(function (value)
+                ev.eventArgs.value.then(async function (value)
                 {
                     oldValue = value;
-                    addClass(element, value);
+                    await addClass(element, value);
                 });
             else
             {
-                addClass(element, ev.eventArgs.value);
+                await addClass(element, ev.eventArgs.value);
                 oldValue = ev.eventArgs.value;
             }
         });
     }
     else
-        akala.each(item, function (toggle, key)
+        akala.eachAsync(item, async function (toggle, key)
         {
             if (typeof (toggle) == 'string' && !isNaN(Number(key)))
             {
-                addClass(element, toggle);
+                await addClass(element, toggle);
             }
             else if (toggle instanceof Binding)
-                toggle.onChanged(function (ev)
+                toggle.onChanged(async function (ev)
                 {
                     if (ev.eventArgs.value)
-                        addClass(element, key as string);
+                        await addClass(element, key as string);
                     else
-                        removeClass(element, key as string);
+                        await removeClass(element, key as string);
                 });
             else if (toggle)
-                addClass(element, key as string);
+                await addClass(element, key as string);
             else
-                removeClass(element, key as string);
+                await removeClass(element, key as string);
         })
 }
 

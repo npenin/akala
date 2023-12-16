@@ -8,7 +8,7 @@ export class Markdown extends Text
 {
     private markdown = new showdown.Converter();
 
-    public init()
+    public async init()
     {
         if (this.parameter instanceof Binding)
             this.parameter.formatter = this.markdown.makeHtml.bind(this.markdown);

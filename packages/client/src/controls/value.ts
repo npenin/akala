@@ -34,7 +34,7 @@ export class Value extends GenericControlInstance<string>
         }
     }
 
-    public init()
+    public async init()
     {
         if (typeof (this.parameter) == 'undefined')
             return;

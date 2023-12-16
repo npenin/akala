@@ -15,11 +15,11 @@ export class Events extends GenericControlInstance<Partial<HTMLElementEventHandl
         super();
     }
 
-    public init(@inject('$injector') injector?: Injector)
+    public async init(@inject('$injector') injector?: Injector)
     {
         let value: Partial<HTMLElementEventHandlerMap> | PromiseLike<Partial<HTMLElementEventHandlerMap>>;
         if (this.parameter instanceof Binding)
-            value = this.parameter.getValue();
+            value = await this.parameter.getValue();
         else
             value = this.parameter;
 
@@ -49,18 +49,14 @@ export class Event extends GenericControlInstance<(...args: unknown[]) => unknow
         super();
     }
 
-    public init()
+    public async init()
     {
         const handler = () =>
         {
             if (this.parameter instanceof Binding)
             {
                 const value = this.parameter.getValue();
-                if (isPromiseLike(value))
-                {
-                    value.then((value) => this.apply(value));
-                }
-                this.apply(value)
+                value.then((value) => this.apply(value));
             }
             else
                 this.apply(this.parameter)

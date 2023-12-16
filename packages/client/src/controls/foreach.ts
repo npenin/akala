@@ -3,7 +3,7 @@ import { control, GenericControlInstance } from './control.js'
 
 export interface ForeachParameter
 {
-    in: akala.parser.ParsedFunction<akala.Binding<unknown[]>> | akala.Binding<unknown[]>;
+    in: Promise<akala.parser.ParsedFunction<akala.Binding<unknown[]>>> | akala.Binding<unknown[]>;
     key: string;
     value: string;
 }
@@ -21,14 +21,14 @@ export class ForEach extends GenericControlInstance<ForeachParameter>
         super();
     }
 
-    public init()
+    public async init()
     {
         if (this.parameter instanceof akala.Binding)
             throw new Error('foreach parameter as a binging is not supported');
 
         let sourceBinding: akala.Binding<unknown>;
-        if (this.parameter.in instanceof Function)
-            sourceBinding = this.parameter.in(this.scope);
+        if (!(this.parameter.in instanceof akala.Binding))
+            sourceBinding = (await this.parameter.in)(this.scope);
         else
             sourceBinding = this.parameter.in;
 

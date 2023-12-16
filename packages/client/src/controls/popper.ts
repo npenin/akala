@@ -10,7 +10,7 @@ export class Popper extends GenericControlInstance<popper.Options & { popper: 's
         super();
     }
 
-    public init()
+    public async init()
     {
         let p: popper.Instance;
         if (this.parameter instanceof akala.Binding)
@@ -23,7 +23,7 @@ export class Popper extends GenericControlInstance<popper.Options & { popper: 's
             })
         }
         else
-            p = popper.createPopper(this.element, this.element.parentElement.querySelector(this.parameter['popper']), akala.Binding.unbindify(this.parameter))
+            p = popper.createPopper(this.element, this.element.parentElement.querySelector(this.parameter['popper']), await akala.Binding.unbindify(this.parameter))
 
         this.element.addEventListener('click', function ()
         {
