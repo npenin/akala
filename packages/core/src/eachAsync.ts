@@ -176,7 +176,8 @@ export async function mapObject<TIn, TResultValue>(o: TIn, body: (element: TIn[k
     return result;
 }
 
-export function map<T, U>(array: T[] | ArrayLike<T>, body: (element: T, i: number) => Promise<U>, waitForPrevious?: boolean): Promise<U[]>
+export function map<T, U>(array: T[] | ArrayLike<T>, body: (element: T, i: number) => Promise<U>, asArray: true, waitForPrevious?: boolean): Promise<U[]>
+export function map<T, U>(array: T[] | ArrayLike<T>, body: (element: T, i: number) => Promise<U>, asArray: boolean, waitForPrevious?: boolean): Promise<U[]>
 export function map<TIn, TKey extends keyof TIn, TResultValue>(o: TIn, body: (element: TIn[TKey], i: TKey) => Promise<TResultValue>, asArray?: false, waitForPrevious?: boolean): Promise<Proxy<TIn, TResultValue>>
 export function map<TIn, TKey extends keyof TIn, TResultValue>(o: TIn, body: (element: TIn[TKey], i: TKey) => Promise<TResultValue>, asArray: true, waitForPrevious?: boolean): Promise<TResultValue[]>
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-explicit-any
