@@ -1,7 +1,7 @@
 import { buffer } from 'stream/consumers';
 import { AnyParser, Cursor, Parser, ParserWithMessage, ParserWithMessageWithoutKnownLength, ParserWithoutKnownLength, parserWrite } from './_common.js';
 
-export default class Skip<TMessage> implements ParserWithMessage<unknown, TMessage>
+export default class Skip<TMessage> implements ParserWithMessage<never, TMessage>
 {
     constructor(public readonly length: number) { }
     read(buffer: Buffer, cursor: Cursor)
@@ -10,7 +10,7 @@ export default class Skip<TMessage> implements ParserWithMessage<unknown, TMessa
             cursor.offset += this.length;
         else
             cursor.offset += buffer.length
-        return null;
+        return null as never;
     }
 
     write(_buffer: Buffer, cursor: Cursor)
@@ -20,7 +20,7 @@ export default class Skip<TMessage> implements ParserWithMessage<unknown, TMessa
 }
 
 
-export class SkipParser<TMessage> implements ParserWithMessageWithoutKnownLength<unknown, TMessage>
+export class SkipParser<TMessage> implements ParserWithMessageWithoutKnownLength<never, TMessage>
 {
     public readonly length = -1;
 
@@ -28,7 +28,7 @@ export class SkipParser<TMessage> implements ParserWithMessageWithoutKnownLength
     read(buffer: Buffer, cursor: Cursor, message: TMessage)
     {
         cursor.offset += this.lengthParser.read(buffer, cursor, message);
-        return null;
+        return null as never;
     }
 
     write()

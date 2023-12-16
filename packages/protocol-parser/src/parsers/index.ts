@@ -134,7 +134,7 @@ export
     DoubleLE
 };
 
-export function skip<TMessage>(length: number | AnyParser<number, TMessage>): ParsersWithMessage<void, TMessage>
+export function skip<TMessage>(length: number | AnyParser<number, TMessage>): ParsersWithMessage<never, TMessage>
 {
     if (typeof length == 'number')
         return new Skip(length);
