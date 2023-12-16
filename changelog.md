@@ -163,6 +163,7 @@
 * handle non-specified pm socket option dfd5212
 * handle normalize on rest parameters 2a0b6a4
 * handle result properly 373a7a9
+* handle unary operator in evaluator a9c10e3
 * hasOwnKeys now returns correct keys 76a062e
 * health check reliability 98df0c9
 * help now works where no socket is available 92ecda4
@@ -254,6 +255,7 @@
 * optional parameter in connect 606b68b
 * output formatting f747eff
 * output name from inner semantic-releases script 52382c6
+* overload selection e8bdeef
 * package build dependencies 3f14f37
 * package name tagging cd9de24
 * package.json to reduce vulnerabilities 2a1cae1
@@ -412,6 +414,7 @@
 * update reference to field 471f538
 * update to commands  major version 180608a
 * update to commands major version 0631f6e
+* update to latest @akala/core 69118f6
 * update to latest pages types 48e1683
 * update to new commands major version 5e0bed5
 * update to ws 8.0 ce769f9
@@ -591,6 +594,7 @@
 
 ### BREAKING CHANGES
 
+* now evaluator returns a Promise and not the ParsedFunction directly
 * first release
 * .pm.config.json is now read from CWD instead of HOMEDIR
 * ESM decorators are not compatible with legacy decorators
