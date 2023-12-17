@@ -1,4 +1,4 @@
-#  (2023-12-16)
+#  (2023-12-17)
 
 
 ### Bug Fixes
@@ -469,6 +469,7 @@
 
 * add $container to fs inject e766ea3
 * add $init function for easier usage 3f4fa32
+* add $init-akala as an init command when running any command in a given container bdfbef5
 * add abort signal on CliContext 7e11e23
 * add autotmate as an akala plugin d8ebbdc
 * add base64 converter to be runtime agnostic 990891d
