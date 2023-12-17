@@ -1,9 +1,9 @@
-#  (2023-12-16)
+#  (2023-12-17)
 
 
-### Bug Fixes
+### Features
 
-* bump version 4a791be
+* add $init-akala as an init command when running any command in a given container bdfbef5
 
 
 
