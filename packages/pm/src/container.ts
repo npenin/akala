@@ -7,7 +7,6 @@ namespace commands
 {
 	export interface container 
 	{
-		dispatch (cmd:'add', ...args: [Argument0<typeof import('./commands/plugin/add.js').default>]): ReturnType<typeof import('./commands/plugin/add.js').default>
 		dispatch (cmd:'bridge', ...args: [Argument0<typeof import('./commands/bridge.js').default>, Argument1<typeof import('./commands/bridge.js').default>]): ReturnType<typeof import('./commands/bridge.js').default>
 		dispatch (cmd:'config', ...args: [Argument0<typeof import('./commands/config.js').default>, Argument1<typeof import('./commands/config.js').default>]): ReturnType<typeof import('./commands/config.js').default>
 		dispatch (cmd:'connect', ...args: [Argument0<typeof import('./commands/connect.js').default>, Argument1<typeof import('./commands/connect.js').default>]): ReturnType<typeof import('./commands/connect.js').default>
@@ -18,10 +17,11 @@ namespace commands
 		dispatch (cmd:'ls', ...args: []): ReturnType<typeof import('./commands/ls.js').default>
 		dispatch (cmd:'map', ...args: [Argument0<typeof import('./commands/map.js').default>, Argument1<typeof import('./commands/map.js').default>, Argument2<typeof import('./commands/map.js').default>, Argument3<typeof import('./commands/map.js').default>]): ReturnType<typeof import('./commands/map.js').default>
 		dispatch (cmd:'name', ...args: [Argument0<typeof import('./commands/name.js').default>]): ReturnType<typeof import('./commands/name.js').default>
+		dispatch (cmd:'plugin.add', ...args: [Argument0<typeof import('./commands/plugin/add.js').default>]): ReturnType<typeof import('./commands/plugin/add.js').default>
+		dispatch (cmd:'plugin.remove', ...args: [Argument0<typeof import('./commands/plugin/remove.js').default>]): ReturnType<typeof import('./commands/plugin/remove.js').default>
 		dispatch (cmd:'proxy', ...args: [Argument0<typeof import('./commands/proxy.js').default>, Argument1<typeof import('./commands/proxy.js').default>]): ReturnType<typeof import('./commands/proxy.js').default>
 		dispatch (cmd:'ready', ...args: []): ReturnType<typeof import('./commands/ready.js').default>
 		dispatch (cmd:'reload-metadata', ...args: [Argument0<typeof import('./commands/reload-metadata.js').default>]): ReturnType<typeof import('./commands/reload-metadata.js').default>
-		dispatch (cmd:'remove', ...args: [Argument0<typeof import('./commands/plugin/remove.js').default>]): ReturnType<typeof import('./commands/plugin/remove.js').default>
 		dispatch (cmd:'restart', ...args: [Argument1<typeof import('./commands/restart.js').default>, Argument2<typeof import('./commands/restart.js').default>]): ReturnType<typeof import('./commands/restart.js').default>
 		dispatch (cmd:'start', ...args: [Argument1<typeof import('./commands/start.js').default>, Argument2<typeof import('./commands/start.js').default>]): ReturnType<typeof import('./commands/start.js').default>
 		dispatch (cmd:'status', ...args: [Argument0<typeof import('./commands/status.js').default>]): ReturnType<typeof import('./commands/status.js').default>
@@ -31,7 +31,6 @@ namespace commands
 	}
 	export interface proxy 
 	{
-		'add'(...args: [Argument0<typeof import('./commands/plugin/add.js').default>]): ReturnType<typeof import('./commands/plugin/add.js').default>
 		'bridge'(...args: [Argument0<typeof import('./commands/bridge.js').default>, Argument1<typeof import('./commands/bridge.js').default>]): ReturnType<typeof import('./commands/bridge.js').default>
 		'config'(...args: [Argument0<typeof import('./commands/config.js').default>, Argument1<typeof import('./commands/config.js').default>]): ReturnType<typeof import('./commands/config.js').default>
 		'connect'(...args: [Argument0<typeof import('./commands/connect.js').default>, Argument1<typeof import('./commands/connect.js').default>]): ReturnType<typeof import('./commands/connect.js').default>
@@ -42,10 +41,11 @@ namespace commands
 		'ls'(...args: []): ReturnType<typeof import('./commands/ls.js').default>
 		'map'(...args: [Argument0<typeof import('./commands/map.js').default>, Argument1<typeof import('./commands/map.js').default>, Argument2<typeof import('./commands/map.js').default>, Argument3<typeof import('./commands/map.js').default>]): ReturnType<typeof import('./commands/map.js').default>
 		'name'(...args: [Argument0<typeof import('./commands/name.js').default>]): ReturnType<typeof import('./commands/name.js').default>
+		'plugin.add'(...args: [Argument0<typeof import('./commands/plugin/add.js').default>]): ReturnType<typeof import('./commands/plugin/add.js').default>
+		'plugin.remove'(...args: [Argument0<typeof import('./commands/plugin/remove.js').default>]): ReturnType<typeof import('./commands/plugin/remove.js').default>
 		'proxy'(...args: [Argument0<typeof import('./commands/proxy.js').default>, Argument1<typeof import('./commands/proxy.js').default>]): ReturnType<typeof import('./commands/proxy.js').default>
 		'ready'(...args: []): ReturnType<typeof import('./commands/ready.js').default>
 		'reload-metadata'(...args: [Argument0<typeof import('./commands/reload-metadata.js').default>]): ReturnType<typeof import('./commands/reload-metadata.js').default>
-		'remove'(...args: [Argument0<typeof import('./commands/plugin/remove.js').default>]): ReturnType<typeof import('./commands/plugin/remove.js').default>
 		'restart'(...args: [Argument1<typeof import('./commands/restart.js').default>, Argument2<typeof import('./commands/restart.js').default>]): ReturnType<typeof import('./commands/restart.js').default>
 		'start'(...args: [Argument1<typeof import('./commands/start.js').default>, Argument2<typeof import('./commands/start.js').default>]): ReturnType<typeof import('./commands/start.js').default>
 		'status'(...args: [Argument0<typeof import('./commands/status.js').default>]): ReturnType<typeof import('./commands/status.js').default>
