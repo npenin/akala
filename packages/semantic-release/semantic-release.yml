@@ -6,12 +6,12 @@ outputs:
   location: $(package.location)
   bump: $(build.recommendBump)
   workspaceDependencies: $(package.workspaceDependencies)
-on:
-  failure:
-    name: $(package.name)
-    location: $(package.location)
-    bump: failed
-    workspaceDependencies: $(package.workspaceDependencies)
+# on:
+#   failure:
+#     name: $(package.name)
+#     location: $(package.location)
+#     bump: failed
+#     workspaceDependencies: $(package.workspaceDependencies)
 
 jobs:
   build:
