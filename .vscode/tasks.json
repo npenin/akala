@@ -33,19 +33,6 @@
 			"label": "yarn eslint"
 		},
 		{
-			"command": "yarn",
-			"args": [
-				"tsc",
-				"-b",
-				"packages/tsconfig.json",
-			],
-			"problemMatcher": [
-				"$tsc"
-			],
-			"group": "build",
-			"label": "yarn tsc: packages/tsconfig.json"
-		},
-		{
 			"type": "typescript",
 			"tsconfig": "packages/tsconfig.esm.json",
 			"option": "watch",
@@ -54,6 +41,16 @@
 			],
 			"group": "build",
 			"label": "tsc: watch - packages/tsconfig.esm.json"
+		},
+		{
+			"type": "typescript",
+			"tsconfig": "packages/tsconfig.cjs.json",
+			"option": "watch",
+			"problemMatcher": [
+				"$tsc-watch"
+			],
+			"group": "build",
+			"label": "tsc: watch - packages/tsconfig.cjs.json"
 		}
 	]
 }
