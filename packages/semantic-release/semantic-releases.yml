@@ -33,9 +33,15 @@ jobs:
             minor: patch
             patch: patch
           changelog: changelog.md
+      - name: versions
+        dispatch: get-version
+        with:
+          path: $($)
+        outputAs: versions
+        foreach: $(build.bumps)
       - name: apply bumps
         dispatch: apply-bump
-        foreach: $(build.bumps)
+        foreach: $(build.versions)
         with:
           workspace: $($)
       - name: bump
@@ -43,7 +49,6 @@ jobs:
         foreach-strategy: wait-for-previous
         run: |
           set -xe
-          yarn workspace $($.name) version $($.bump)
           git add $($.location)/package.json
           git add $($.location)/changelog.md
           git commit -m "bumping $($.name)"

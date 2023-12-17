@@ -17,6 +17,6 @@ export default async function (this: CliContext, workspace: Workspace)
     const path = workspace.location;
     const pkg = JSON.parse(await readFile(resolve(path, './package.json'), 'utf-8'));
     pkg.version = version.format();
-    await writeFile(resolve(path, './package.json'), JSON.stringify(pkg), 'utf-8');
+    await writeFile(resolve(path, './package.json'), JSON.stringify(pkg, null, 4), 'utf-8');
 
 }
