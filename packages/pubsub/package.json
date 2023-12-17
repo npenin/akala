@@ -1,40 +1,40 @@
 {
-  "name": "@akala/pubsub",
-  "version": "1.2.79",
-  "main": "./dist/cjs/index.js",
-  "author": "npenin",
-  "license": "BSD-3-Clause",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/npenin/akala.git"
-  },
-  "homepage": "https://akala.js.org/pubsub",
-  "type": "module",
-  "source": "src/index.ts",
-  "scripts": {
-    "generate": "ac generate dist/esm/commands commands.json --name pubsub",
-    "generate-metadata": "ac generate-metadata commands.json src/container.ts"
-  },
-  "dependencies": {
-    "@akala/commands": "workspace:^",
-    "@akala/pm": "workspace:^"
-  },
-  "exports": {
-    ".": {
-      "import": {
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/index.d.ts",
-        "default": "./dist/cjs/index.js"
-      }
+    "name": "@akala/pubsub",
+    "version": "1.2.80",
+    "main": "./dist/cjs/index.js",
+    "author": "npenin",
+    "license": "BSD-3-Clause",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/npenin/akala.git"
     },
-    "./commands.json": {
-      "default": "./commands.json"
-    }
-  },
-  "module": "./dist/esm/index.js",
-  "types": "./dist/esm/index.d.ts",
-  "typings": "./dist/esm/index.d.ts"
+    "homepage": "https://akala.js.org/pubsub",
+    "type": "module",
+    "source": "src/index.ts",
+    "scripts": {
+        "generate": "ac generate dist/esm/commands commands.json --name pubsub",
+        "generate-metadata": "ac generate-metadata commands.json src/container.ts"
+    },
+    "dependencies": {
+        "@akala/commands": "workspace:^",
+        "@akala/pm": "workspace:^"
+    },
+    "exports": {
+        ".": {
+            "import": {
+                "types": "./dist/esm/index.d.ts",
+                "default": "./dist/esm/index.js"
+            },
+            "require": {
+                "types": "./dist/cjs/index.d.ts",
+                "default": "./dist/cjs/index.js"
+            }
+        },
+        "./commands.json": {
+            "default": "./commands.json"
+        }
+    },
+    "module": "./dist/esm/index.js",
+    "types": "./dist/esm/index.d.ts",
+    "typings": "./dist/esm/index.d.ts"
 }
