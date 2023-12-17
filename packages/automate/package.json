@@ -1,1 +1,68 @@
-{"name":"@akala/automate","version":"4.0.19","main":"./dist/cjs/index.js","commands":{"@akala/automate":"./commands.json","@akala/automate/workflow":"./workflow.json"},"bin":{"akala-automate-runner":"dist/esm/cli.js"},"type":"module","license":"BSD-3-Clause","funding":"https://github.com/npenin/akala?sponsor=1","repository":{"type":"git","url":"git+https://github.com/npenin/akala.git"},"homepage":"https://akala.js.org/automate","source":"src/index.ts","devDependencies":{"@types/assert":"^1.5.10","@types/mocha":"^10.0.6","assert":"^2.1.0","mocha":"^10.2.0","source-map-support":"^0.5.21","typescript":"^5.3.3"},"gitHead":"afe8c192d4975f51ed95b2921da95b767be3879c","dependencies":{"@akala/cli":"workspace:^","@akala/commands":"workspace:^","@akala/config":"workspace:^","@akala/core":"workspace:^","@akala/cron":"workspace:^","@akala/json-rpc-ws":"workspace:^","@akala/pm":"workspace:^","@akala/pubsub":"workspace:^","@akala/server":"workspace:^","orchestrator":"^0.3.8"},"scripts":{"generate":"yarn generate-automate && yarn generate-workflow","generate-metadata":"yarn generate-metadata-automate && yarn generate-metadata-workflow","generate-automate":"ac generate dist/esm/commands commands.json --name @akala/automate","generate-metadata-automate":"ac generate-metadata commands.json src/container.ts","generate-workflow":"ac generate dist/esm/workflow-commands workflow.json --name workflow","generate-metadata-workflow":"ac generate-metadata workflow.json src/workflow.ts --name workflow"},"exports":{".":{"import":{"types":"./dist/esm/index.d.ts","default":"./dist/esm/index.js"},"require":{"types":"./dist/cjs/index.d.ts","default":"./dist/cjs/index.js"}},"./loader.json":"./loader.json","./trigger.json":"./trigger.json","./workflow.json":"./workflow.json"},"module":"./dist/esm/index.js","types":"./dist/esm/index.d.ts","typings":"./dist/esm/index.d.ts"}
+{
+  "name": "@akala/automate",
+  "version": "4.0.20",
+  "main": "./dist/cjs/index.js",
+  "commands": {
+    "@akala/automate": "./commands.json",
+    "@akala/automate/workflow": "./workflow.json"
+  },
+  "bin": {
+    "akala-automate-runner": "dist/esm/cli.js"
+  },
+  "type": "module",
+  "license": "BSD-3-Clause",
+  "funding": "https://github.com/npenin/akala?sponsor=1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/npenin/akala.git"
+  },
+  "homepage": "https://akala.js.org/automate",
+  "source": "src/index.ts",
+  "devDependencies": {
+    "@types/assert": "^1.5.10",
+    "@types/mocha": "^10.0.6",
+    "assert": "^2.1.0",
+    "mocha": "^10.2.0",
+    "source-map-support": "^0.5.21",
+    "typescript": "^5.3.3"
+  },
+  "gitHead": "afe8c192d4975f51ed95b2921da95b767be3879c",
+  "dependencies": {
+    "@akala/cli": "workspace:^",
+    "@akala/commands": "workspace:^",
+    "@akala/config": "workspace:^",
+    "@akala/core": "workspace:^",
+    "@akala/cron": "workspace:^",
+    "@akala/json-rpc-ws": "workspace:^",
+    "@akala/pm": "workspace:^",
+    "@akala/pubsub": "workspace:^",
+    "@akala/server": "workspace:^",
+    "orchestrator": "^0.3.8"
+  },
+  "scripts": {
+    "generate": "yarn generate-automate && yarn generate-workflow",
+    "generate-metadata": "yarn generate-metadata-automate && yarn generate-metadata-workflow",
+    "generate-automate": "ac generate dist/esm/commands commands.json --name @akala/automate",
+    "generate-metadata-automate": "ac generate-metadata commands.json src/container.ts",
+    "generate-workflow": "ac generate dist/esm/workflow-commands workflow.json --name workflow",
+    "generate-metadata-workflow": "ac generate-metadata workflow.json src/workflow.ts --name workflow"
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    },
+    "./loader.json": "./loader.json",
+    "./trigger.json": "./trigger.json",
+    "./workflow.json": "./workflow.json"
+  },
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "typings": "./dist/esm/index.d.ts"
+}

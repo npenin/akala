@@ -1,1 +1,104 @@
-{"name":"@akala/commands","version":"6.5.3","main":"./dist/cjs/index.browser.js","repository":"https://github.com/npenin/akala","homepage":"https://akala.js.org/commands","author":"npenin","license":"BSD-3-Clause","type":"module","funding":"https://github.com/npenin/akala?sponsor=1","scripts":{"test":"mocha","prepack":"../../makeCjs.sh","build":"tsc -p tsconfig.esm.json","cli":"node dist/esm/cli.js","generate-cli":"ac generate dist/esm/cli commands.json --name cli","generate-metadata-cli":"ac generate-metadata commands.json src/commands.ts --name cli","generate":"yarn run generate-cli","generate-metadata":"yarn run generate-metadata-cli","akala-install":"akala plugins add dist/esm/akala.mjs && akala commands add meta commands.json"},"browser":{"./dist/cjs/cli/serve.js":false,"./dist/cjs/index.js":"./dist/cjs/index.browser.js","./dist/cjs/processors/event.js":false,"./dist/cjs/processors/fs.js":"./dist/cjs/processors/fs-browser.js","./dist/cjs/processors/jsonrpc.js":false,"./dist/cjs/serve-metadata.js":"./dist/cjs/serve-metadata.browser.js","./dist/esm/cli/serve.js":false,"./dist/esm/index.js":"./dist/esm/index.browser.js","./dist/esm/processors/fs.js":"./dist/esm/processors/fs-browser.js","./dist/esm/processors/jsonrpc.js":false,"./dist/esm/serve-metadata.js":"./dist/esm/serve-metadata.browser.js"},"bin":{"ac":"dist/esm/cli.mjs"},"mocha":{"require":["source-map-support/register"],"spec":["dist/test/*.js"],"timeout":0},"nyc":{"reporter":["text-summary"],"instrument":true},"source":"src/index.ts","dependencies":{"@akala/cli":"workspace:^","@akala/core":"workspace:^","@akala/json-rpc-ws":"workspace:^","debug":"^4.3.4","json-schema":"^0.4.0","path-to-regexp":"^6.2.1","reflect-metadata":"^0.1.14","ws":"^8.15.0"},"devDependencies":{"@types/debug":"^4.1.12","@types/json-schema":"^7.0.15","@types/mocha":"^10.0.6","@types/node":"^20.10.4","@types/split2":"^4.2.3","@types/uuid":"^9.0.7","@types/ws":"^8.5.10","mocha":"^10.2.0","nyc":"^15.1.0","source-map-support":"^0.5.21","typescript":"^5.3.3","typescript-json-schema":"^0.62.0"},"gitHead":"d92f6693ed8cca439c8e92d2045bb15c0a7dae43","exports":{".":{"node":{"import":{"types":"./dist/esm/index.d.ts","default":"./dist/esm/index.js"},"require":{"types":"./dist/cjs/index.d.ts","default":"./dist/cjs/index.js"}},"import":{"types":"./dist/esm/index.browser.d.ts","default":"./dist/esm/index.browser.js"},"require":{"types":"./dist/cjs/index.browser.d.ts","default":"./dist/cjs/index.browser.js"}},"./akala":"./dist/esm/akala.mjs"},"types":"./dist/esm/index.browser.d.ts","module":"./dist/esm/index.browser.js"}
+{
+  "name": "@akala/commands",
+  "version": "6.5.4",
+  "main": "./dist/cjs/index.browser.js",
+  "repository": "https://github.com/npenin/akala",
+  "homepage": "https://akala.js.org/commands",
+  "author": "npenin",
+  "license": "BSD-3-Clause",
+  "type": "module",
+  "funding": "https://github.com/npenin/akala?sponsor=1",
+  "scripts": {
+    "test": "mocha",
+    "prepack": "../../makeCjs.sh",
+    "build": "tsc -p tsconfig.esm.json",
+    "cli": "node dist/esm/cli.js",
+    "generate-cli": "ac generate dist/esm/cli commands.json --name cli",
+    "generate-metadata-cli": "ac generate-metadata commands.json src/commands.ts --name cli",
+    "generate": "yarn run generate-cli",
+    "generate-metadata": "yarn run generate-metadata-cli",
+    "akala-install": "akala plugins add dist/esm/akala.mjs && akala commands add meta commands.json"
+  },
+  "browser": {
+    "./dist/cjs/cli/serve.js": false,
+    "./dist/cjs/index.js": "./dist/cjs/index.browser.js",
+    "./dist/cjs/processors/event.js": false,
+    "./dist/cjs/processors/fs.js": "./dist/cjs/processors/fs-browser.js",
+    "./dist/cjs/processors/jsonrpc.js": false,
+    "./dist/cjs/serve-metadata.js": "./dist/cjs/serve-metadata.browser.js",
+    "./dist/esm/cli/serve.js": false,
+    "./dist/esm/index.js": "./dist/esm/index.browser.js",
+    "./dist/esm/processors/fs.js": "./dist/esm/processors/fs-browser.js",
+    "./dist/esm/processors/jsonrpc.js": false,
+    "./dist/esm/serve-metadata.js": "./dist/esm/serve-metadata.browser.js"
+  },
+  "bin": {
+    "ac": "dist/esm/cli.mjs"
+  },
+  "mocha": {
+    "require": [
+      "source-map-support/register"
+    ],
+    "spec": [
+      "dist/test/*.js"
+    ],
+    "timeout": 0
+  },
+  "nyc": {
+    "reporter": [
+      "text-summary"
+    ],
+    "instrument": true
+  },
+  "source": "src/index.ts",
+  "dependencies": {
+    "@akala/cli": "workspace:^",
+    "@akala/core": "workspace:^",
+    "@akala/json-rpc-ws": "workspace:^",
+    "debug": "^4.3.4",
+    "json-schema": "^0.4.0",
+    "path-to-regexp": "^6.2.1",
+    "reflect-metadata": "^0.1.14",
+    "ws": "^8.15.0"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.12",
+    "@types/json-schema": "^7.0.15",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.10.4",
+    "@types/split2": "^4.2.3",
+    "@types/uuid": "^9.0.7",
+    "@types/ws": "^8.5.10",
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0",
+    "source-map-support": "^0.5.21",
+    "typescript": "^5.3.3",
+    "typescript-json-schema": "^0.62.0"
+  },
+  "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
+  "exports": {
+    ".": {
+      "node": {
+        "import": {
+          "types": "./dist/esm/index.d.ts",
+          "default": "./dist/esm/index.js"
+        },
+        "require": {
+          "types": "./dist/cjs/index.d.ts",
+          "default": "./dist/cjs/index.js"
+        }
+      },
+      "import": {
+        "types": "./dist/esm/index.browser.d.ts",
+        "default": "./dist/esm/index.browser.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.browser.d.ts",
+        "default": "./dist/cjs/index.browser.js"
+      }
+    },
+    "./akala": "./dist/esm/akala.mjs"
+  },
+  "types": "./dist/esm/index.browser.d.ts",
+  "module": "./dist/esm/index.browser.js"
+}
