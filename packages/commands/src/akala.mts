@@ -7,6 +7,7 @@ import $serve from "./commands/$serve.js";
 import { Configurations } from "./metadata/configurations.js";
 import getHandler, { getHandlers } from "./protocol-handler.js";
 import { dirname, isAbsolute, resolve } from "node:path";
+import { Local } from "./processors/local.js";
 const serveDefinition: Configurations = await import('../' + '../src/commands/$serve.json', { assert: { type: 'json' } }).then(x => x.default)
 
 export default function (config, program: NamespaceMiddleware<{ configFile: string }>)
@@ -44,6 +45,9 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
                 cliContainer.processor.useMiddleware(51, handler.processor);
 
                 const commands = await handler.getMetadata();
+                const init = commands.find(c => c.name == '$init-akala');
+                if (init)
+                    cliContainer.processor.useMiddleware(1, { handle: (container, cmd, param) => handler.processor.handle(container, init, param) })
 
                 await new Cli(cliContainer, commands, handler.processor, program.command(name)).promise;
                 containers.register(name, cliContainer);
