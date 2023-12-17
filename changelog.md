@@ -72,6 +72,7 @@
 * bump version 4a791be
 * bump version 0457468
 * bump version b88263c
+* bump version because of previous workflow failures 5ce650e
 * cannot read undefined config object 0cc01be
 * cjs build dcd7057
 * cjs build d3e9a4e
@@ -415,6 +416,7 @@
 * update lock file f142c2b
 * update lock file 974b089
 * update lockfile 5eda712
+* update metadata 884c851
 * update package definitions 300a978
 * update package publication to public 6d71bdc
 * update ready command for remote containers 823810d
@@ -594,6 +596,7 @@
 * support node module when no ./ prefix ad871e3
 * support normalize require config af16029
 * support oneway messages by throwing undefined 6a18260
+* switch from yarn version to manual bump 56c3e0a
 * switch to ESM decorators 19762ba
 * switched from raw debug to logger from core efef2da
 * update command behavior 2fb6184
