@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* update to latest @akala/core 69118f6
+* add xe settings to force logging 9ccf9fd
 
 
 
