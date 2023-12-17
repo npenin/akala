@@ -1,32 +1,32 @@
 {
-  "name": "@akala/sidecar",
-  "packageManager": "yarn@3.5.1",
-  "main": "./dist/cjs/index.js",
-  "commands": "./commands.json",
-  "version": "3.0.22",
-  "type": "module",
-  "source": "src/index.ts",
-  "dependencies": {
-    "@akala/commands": "workspace:^",
-    "@akala/config": "workspace:^",
-    "@akala/pm": "workspace:^"
-  },
-  "scripts": {
-    "generate": "ac generate dist/esm/commands commands.json --name @akala/sidecar"
-  },
-  "exports": {
-    ".": {
-      "import": {
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/index.d.ts",
-        "default": "./dist/cjs/index.js"
-      }
-    }
-  },
-  "module": "./dist/esm/index.js",
-  "types": "./dist/esm/index.d.ts",
-  "typings": "./dist/esm/index.d.ts"
+    "name": "@akala/sidecar",
+    "packageManager": "yarn@3.5.1",
+    "main": "./dist/cjs/index.js",
+    "commands": "./commands.json",
+    "version": "3.0.23",
+    "type": "module",
+    "source": "src/index.ts",
+    "dependencies": {
+        "@akala/commands": "workspace:^",
+        "@akala/config": "workspace:^",
+        "@akala/pm": "workspace:^"
+    },
+    "scripts": {
+        "generate": "ac generate dist/esm/commands commands.json --name @akala/sidecar"
+    },
+    "exports": {
+        ".": {
+            "import": {
+                "types": "./dist/esm/index.d.ts",
+                "default": "./dist/esm/index.js"
+            },
+            "require": {
+                "types": "./dist/cjs/index.d.ts",
+                "default": "./dist/cjs/index.js"
+            }
+        }
+    },
+    "module": "./dist/esm/index.js",
+    "types": "./dist/esm/index.d.ts",
+    "typings": "./dist/esm/index.d.ts"
 }
