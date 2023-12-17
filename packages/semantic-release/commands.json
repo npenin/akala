@@ -24,6 +24,28 @@
             }
         },
         {
+            "name": "apply-bump",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0"
+                    ],
+                    "path": "dist/esm/commands/apply-bump.js",
+                    "source": "src/commands/apply-bump.ts"
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "automate": {
+                    "inject": [
+                        "workspace"
+                    ]
+                }
+            }
+        },
+        {
             "name": "bump-dependents",
             "config": {
                 "fs": {
