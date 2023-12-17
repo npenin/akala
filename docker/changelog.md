@@ -3,6 +3,7 @@
 
 ### Bug Fixes
 
+* artificial bump 59763e7
 * bump version 4a791be
 * commands default path 0bb1723
 * docker files to not have local pipe fba3777
