@@ -44,15 +44,15 @@ jobs:
         foreach: $(build.versions)
         with:
           workspace: $($)
-      # - name: bump
-      #   foreach: $(build.bumps)
-      #   foreach-strategy: wait-for-previous
-      #   run: |
-      #     set -xe
-      #     git add $($.location)/package.json
-      #     git add $($.location)/changelog.md
-      #     git commit -m "bumping $($.name)"
-      #   with:
-      #     shell: true
-      #     ignore-failure: true
-      #     stdio: inherit
+      - name: bump
+        foreach: $(build.bumps)
+        foreach-strategy: wait-for-previous
+        run: |
+          set -xe
+          git add $($.location)/package.json
+          git add $($.location)/changelog.md
+          git commit -m "bumping $($.name)"
+        with:
+          shell: true
+          ignore-failure: true
+          stdio: inherit
