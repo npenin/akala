@@ -47,7 +47,30 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
                 const commands = await handler.getMetadata();
                 const init = commands.find(c => c.name == '$init-akala');
                 if (init)
-                    cliContainer.processor.useMiddleware(1, { handle: (container, cmd, param) => handler.processor.handle(container, init, param) })
+                {
+                    if (init.config?.cli?.inject)
+                        commands.forEach(cmd =>
+                        {
+                            if (cmd.config?.cli?.inject)
+                                cmd.config.cli.inject.unshift(...init.config.cli.inject);
+                        });
+                    cliContainer.processor.useMiddleware(1, {
+                        handle: async (container, cmd, param) =>
+                        {
+                            if (cmd !== init && cmd.name !== '$metadata')
+                                try
+                                {
+                                    await container.dispatch(init, { ...param, param: param.param.slice(0, init.config.cli?.inject.length || 0) });
+                                    param.param.splice(0, init.config.cli?.inject.length || 0);
+                                }
+                                catch (e)
+                                {
+                                    return e;
+                                }
+                            return;
+                        }
+                    });
+                }
 
                 await new Cli(cliContainer, commands, handler.processor, program.command(name)).promise;
                 containers.register(name, cliContainer);
