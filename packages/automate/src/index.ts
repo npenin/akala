@@ -129,7 +129,7 @@ export function ForeachMiddleware(runner: MiddlewareCompositeWithPriority<Middle
         'foreach', (context, step, stdio) => mapAsync(step.foreach, (item, index: string | number) =>
         {
             return runner.process(Object.assign({}, context, { $: item, $index: index }), Object.assign({}, step, { foreach: null, name: step.name + '#' + index }), stdio);
-        }, step['foreach-strategy'] === 'wait-for-previous'));
+        }, true, step['foreach-strategy'] === 'wait-for-previous'));
 }
 
 export const LogMiddleware = new MiddlewareRunner<JobStepLog>('log', async (context, step) =>
