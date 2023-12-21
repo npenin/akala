@@ -60,8 +60,9 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
                             if (cmd !== init && cmd.name !== '$metadata')
                                 try
                                 {
-                                    await container.dispatch(init, { ...param, param: param.param.slice(0, init.config.cli?.inject.length || 0) });
-                                    param.param.splice(0, init.config.cli?.inject.length || 0);
+                                    await container.dispatch(init, param._trigger ? { ...param, param: param.param.slice(0, init.config.cli?.inject.length || 0) } : param);
+                                    if (param._trigger)
+                                        param.param.splice(0, init.config.cli?.inject.length || 0);
                                 }
                                 catch (e)
                                 {
