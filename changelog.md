@@ -1,4 +1,4 @@
-#  (2023-12-17)
+#  (2023-12-21)
 
 
 ### Bug Fixes
@@ -37,10 +37,19 @@
 * adding getOwnPropertyDescriptor to try to fix Object.assign d969335
 * additional exports to provide better typing on dependent projects 099279c
 * akala cli 36766df
+* akala cli initrr handling 0f028ce
 * allow for any property on errors a529558
 * any implementation fixed 3302fc0
 * any on mongodb efa6f5d
 * aritificial bump ae0e129
+* artificial bump a0d4ed3
+* artificial bump 41ca81d
+* artificial bump 701d7bf
+* artificial bump 11de458
+* artificial bump b1e6a5d
+* artificial bump ae7848d
+* artificial bump e5e8cf5
+* artificial bump 59763e7
 * artificial bump 60cc1c1
 * artificially bump protocol-parser eee3cb7
 * assign id after insert ce42919
@@ -117,6 +126,7 @@
 * define commands in sidecar c71d334
 * delete config property 3a15cc7
 * dependencies d61f681
+* direct invocation if init-akala 3f23bad
 * discover cli usage 697946b
 * discover implementation 3502bed
 * display for pmSocket config info c3b908b
@@ -146,6 +156,7 @@
 * fix generate and tsconfig files b44bd4c
 * fix model registration and serialization 7236001
 * fix pm startup 9f53b54
+* fix semantic releases workflow 290d342
 * fix skip typings fdb4e7d
 * fix the pubsub path 77cdd2f
 * fix use on router 64f54b9
@@ -383,6 +394,7 @@
 * stop generating loggers for numeric keys 75a1324
 * **storage:** add nameInStorage support 5b863d1
 * **storage:** any works properly 84f3b5e
+* storing bumps 2d271f7
 * support for async imports in cli plugins c5687da
 * support for multiple keys 7de775a
 * support for nested commands 564e4e7
@@ -434,6 +446,7 @@
 * variable leak adef56b
 * variable renaming f825597
 * workflow output 3fca50e
+* workflow parallelism 2d6a442
 * workflow runner 220953a
 * wrong container name on fork 61bc05a
 * wrong error handling in options cdf92b0
