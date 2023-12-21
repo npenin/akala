@@ -28,11 +28,9 @@ export function registerCommand<TState>(cmd: Metadata.Command, c: Container<TSta
         command.useMiddleware(null, {
             handle(context)
             {
-                return Processors.Local.execute(cmd, (...args) =>
-                {
-                    return c.handle(c, cmd, { param: args, _trigger: 'proxy' });
-                }, c, {
-                    context: context, options: context.options, param: context.args, _trigger: 'cli', get stdin()
+                return c.handle(c, cmd, {
+                    param: context.args,
+                    context: context, options: context.options, _trigger: 'cli', get stdin()
                     {
                         return stdin || (stdin =
                             new Promise<string>((resolve) =>
@@ -43,7 +41,7 @@ export function registerCommand<TState>(cmd: Metadata.Command, c: Container<TSta
                                 process.stdin.resume();
                             }));
                     }
-                }) as MiddlewarePromise;
+                });
             }
         });
     }
