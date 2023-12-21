@@ -152,6 +152,7 @@
 * expose jsonrpc client id fd0f873
 * fix automate runner ae9c216
 * fix distinct 2430a6c
+* fix for akala init 8678bf3
 * fix for commands ac new 166c9ee
 * fix generate and tsconfig files b44bd4c
 * fix model registration and serialization 7236001
@@ -194,6 +195,7 @@
 * imported event class from node d8bbc36
 * improve $serve input consistency 02c151c
 * improve browser usage 05dd7ea
+* improve cli trigger performances ad23d0d
 * improve compiler (giving up for now) f23e3f6
 * improve config get return type c40bcd5
 * improve error logging 1b4ae07
