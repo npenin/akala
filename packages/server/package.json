@@ -1,80 +1,80 @@
 {
-  "name": "@akala/server",
-  "version": "9.4.15",
-  "description": "",
-  "main": "./dist/cjs/index.js",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0",
-    "prepack": "../../makeCjs.sh",
-    "generate": "ac generate dist/esm/commands commands.json --name @akala/server",
-    "generate-metadata": "ac generate-metadata commands.json src/commands.ts"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/npenin/akala.git"
-  },
-  "homepage": "https://akala.js.org/server",
-  "funding": "https://github.com/npenin/akala?sponsor=1",
-  "files": [
-    "dist",
-    "src/package.d.ts",
-    "src",
-    "views",
-    "commands.json"
-  ],
-  "typings": "./dist/esm/index.d.ts",
-  "author": "",
-  "license": "BSD-3-Clause",
-  "source": "src/index.ts",
-  "devDependencies": {
-    "@types/accepts": "^1.3.7",
-    "@types/co-body": "^6.1.3",
-    "@types/cookie": "^0.6.0",
-    "@types/debug": "^4.1.12",
-    "@types/mime-types": "^2.1.4",
-    "@types/node": "^20.10.4",
-    "@types/on-finished": "^2.3.4",
-    "@types/request": "^2.48.12",
-    "@types/send": "^0.17.4",
-    "@types/ws": "^8.5.10",
-    "@types/xml2js": "^0.4.14",
-    "typescript": "^5.3.3"
-  },
-  "dependencies": {
-    "@akala/commands": "workspace:^",
-    "@akala/core": "workspace:^",
-    "@akala/json-rpc-ws": "workspace:^",
-    "@akala/pm": "workspace:^",
-    "accepts": "^1.3.8",
-    "chokidar": "^3.5.3",
-    "co-body": "^6.1.0",
-    "cookie": "^0.6.0",
-    "hasown": "^2.0.0",
-    "mime-types": "^2.1.35",
-    "on-finished": "^2.4.1",
-    "reflect-metadata": "^0.1.14",
-    "require-optional": "^0.4.0",
-    "send": "^0.18.0",
-    "source-map-support": "^0.5.21",
-    "xml2js": "^0.6.2"
-  },
-  "commands": "./commands.json",
-  "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
-  "exports": {
-    ".": {
-      "import": {
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/index.d.ts",
-        "default": "./dist/cjs/index.js"
-      }
+    "name": "@akala/server",
+    "version": "9.4.16",
+    "description": "",
+    "main": "./dist/cjs/index.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 0",
+        "prepack": "../../makeCjs.sh",
+        "generate": "ac generate dist/esm/commands commands.json --name @akala/server",
+        "generate-metadata": "ac generate-metadata commands.json src/commands.ts"
     },
-    "./akala": "./dist/esm/akala.mjs",
-    "./package.json": "./package.json"
-  },
-  "module": "./dist/esm/index.js",
-  "types": "./dist/esm/index.d.ts"
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/npenin/akala.git"
+    },
+    "homepage": "https://akala.js.org/server",
+    "funding": "https://github.com/npenin/akala?sponsor=1",
+    "files": [
+        "dist",
+        "src/package.d.ts",
+        "src",
+        "views",
+        "commands.json"
+    ],
+    "typings": "./dist/esm/index.d.ts",
+    "author": "",
+    "license": "BSD-3-Clause",
+    "source": "src/index.ts",
+    "devDependencies": {
+        "@types/accepts": "^1.3.7",
+        "@types/co-body": "^6.1.3",
+        "@types/cookie": "^0.6.0",
+        "@types/debug": "^4.1.12",
+        "@types/mime-types": "^2.1.4",
+        "@types/node": "^20.10.4",
+        "@types/on-finished": "^2.3.4",
+        "@types/request": "^2.48.12",
+        "@types/send": "^0.17.4",
+        "@types/ws": "^8.5.10",
+        "@types/xml2js": "^0.4.14",
+        "typescript": "^5.3.3"
+    },
+    "dependencies": {
+        "@akala/commands": "workspace:^",
+        "@akala/core": "workspace:^",
+        "@akala/json-rpc-ws": "workspace:^",
+        "@akala/pm": "workspace:^",
+        "accepts": "^1.3.8",
+        "chokidar": "^3.5.3",
+        "co-body": "^6.1.0",
+        "cookie": "^0.6.0",
+        "hasown": "^2.0.0",
+        "mime-types": "^2.1.35",
+        "on-finished": "^2.4.1",
+        "reflect-metadata": "^0.1.14",
+        "require-optional": "^0.4.0",
+        "send": "^0.18.0",
+        "source-map-support": "^0.5.21",
+        "xml2js": "^0.6.2"
+    },
+    "commands": "./commands.json",
+    "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
+    "exports": {
+        ".": {
+            "import": {
+                "types": "./dist/esm/index.d.ts",
+                "default": "./dist/esm/index.js"
+            },
+            "require": {
+                "types": "./dist/cjs/index.d.ts",
+                "default": "./dist/cjs/index.js"
+            }
+        },
+        "./akala": "./dist/esm/akala.mjs",
+        "./package.json": "./package.json"
+    },
+    "module": "./dist/esm/index.js",
+    "types": "./dist/esm/index.d.ts"
 }
