@@ -1,10 +1,9 @@
-#  (2023-12-17)
+#  (2023-12-21)
 
 
 ### Bug Fixes
 
-* akala cli initrr handling 0f028ce
-* artificial bump e5e8cf5
+* direct invocation if init-akala 3f23bad
 
 
 
