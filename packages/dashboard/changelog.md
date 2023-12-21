@@ -1,9 +1,10 @@
-#  (2023-12-17)
+#  (2023-12-21)
 
 
 ### Bug Fixes
 
 * add node as an export condition 4aa41a8
+* artificial bump 59763e7
 * bump version 4a791be
 * downgrade all packages to support both cjs and mjs 56f6136
 * downgrade all packages to support both cjs and mjs 5c64966
