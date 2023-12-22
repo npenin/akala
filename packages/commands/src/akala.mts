@@ -60,10 +60,7 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
                             if (cmd !== init && cmd.name !== '$metadata' && param._trigger === 'cli')
                                 try
                                 {
-                                    await container.dispatch(init, { ...param, param: param.param.slice(0, init.config.cli?.inject.length || 0) });
-
-                                    if (param._trigger)
-                                        param.param.splice(0, init.config.cli?.inject.length || 0);
+                                    await container.dispatch(init, param);
                                 }
                                 catch (e)
                                 {
