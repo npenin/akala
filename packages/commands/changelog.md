@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* akala init support 246f796
+* akala init support 528791e
 
 
 
