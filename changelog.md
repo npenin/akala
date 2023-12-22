@@ -38,6 +38,7 @@
 * additional exports to provide better typing on dependent projects 099279c
 * akala cli 36766df
 * akala cli initrr handling 0f028ce
+* akala init support 528791e
 * akala init support 246f796
 * allow for any property on errors a529558
 * any implementation fixed 3302fc0
