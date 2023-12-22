@@ -1,4 +1,4 @@
-#  (2023-12-21)
+#  (2023-12-22)
 
 
 ### Bug Fixes
@@ -38,6 +38,7 @@
 * additional exports to provide better typing on dependent projects 099279c
 * akala cli 36766df
 * akala cli initrr handling 0f028ce
+* akala init support 246f796
 * allow for any property on errors a529558
 * any implementation fixed 3302fc0
 * any on mongodb efa6f5d
