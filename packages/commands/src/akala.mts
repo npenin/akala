@@ -48,12 +48,6 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
                 const init = commands.find(c => c.name == '$init-akala');
                 if (init)
                 {
-                    if (init.config?.cli?.inject)
-                        commands.forEach(cmd =>
-                        {
-                            if (cmd.config?.cli?.inject)
-                                cmd.config.cli.inject.unshift(...init.config.cli.inject);
-                        });
                     cliContainer.processor.useMiddleware(1, {
                         handle: async (container, cmd, param) =>
                         {
