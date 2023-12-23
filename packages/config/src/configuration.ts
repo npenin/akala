@@ -3,7 +3,9 @@ import { Serializable, SerializableObject } from '@akala/core';
 import fs from 'fs/promises'
 import { inspect } from 'util'
 
-export type ProxyConfiguration<T extends object = SerializableObject> = Configuration<T> & { [key in keyof T]: T[key] extends object ? ProxyConfiguration<T[key]> : T[key] };
+export type ProxyConfiguration<T> = T extends object ? ProxyConfigurationObject<T> : Extract<Exclude<Serializable, SerializableObject | SerializableObject[]>, T>;
+export type ProxyConfigurationObject<T extends object> = T extends (infer X)[] ? X[] : ProxyConfigurationObjectNonArray<T>;
+export type ProxyConfigurationObjectNonArray<T extends object> = Configuration<T> & { [key in keyof T]: T[key] extends object ? ProxyConfiguration<T[key]> : T[key] };
 //type SerializableConfig<T, TKey extends keyof T> = T[TKey] extends SerializableObject ? Configuration<T[TKey]> : T[TKey]
 
 export default class Configuration<T extends object = SerializableObject>
@@ -22,7 +24,7 @@ export default class Configuration<T extends object = SerializableObject>
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public static new<T extends object = SerializableObject>(path: string, config?: T, rootConfig?: any): ProxyConfiguration<T>
+    public static new<T extends object = SerializableObject>(path: string, config?: T, rootConfig?: any): ProxyConfigurationObjectNonArray<T>
     {
         return new Proxy(new Configuration<T>(path, config, rootConfig), {
             has(target, key)
@@ -76,7 +78,9 @@ export default class Configuration<T extends object = SerializableObject>
                     case 'commit':
                         return target.commit.bind(target);
                     default:
-                        var result = target.get(key);
+                        if (typeof key == 'number' || typeof key == 'symbol')
+                            throw new Error(`Unsupported key type: ${typeof key}, value: ${key}`);
+                        var result = target.get(key as Exclude<keyof T, number | symbol>);
                         if (typeof result == 'undefined' && Reflect.has(target, key) && typeof key == 'string')
                             return Reflect.get(target, key, receiver);
                         return result;
@@ -101,7 +105,7 @@ export default class Configuration<T extends object = SerializableObject>
                 return Reflect.deleteProperty(target, p);
 
             },
-        }) as unknown as ProxyConfiguration<T>;
+        }) as ProxyConfigurationObjectNonArray<T>;
     }
 
     public extract()
@@ -135,23 +139,18 @@ export default class Configuration<T extends object = SerializableObject>
         const config = Configuration.new(file, JSON.parse(content));
         if (needle)
         {
-            const needleConfig = config.get<T>(needle);
+            const needleConfig = config.get<string, T>(needle);
             if (needleConfig)
                 return needleConfig;
             config.set(needle, {});
-            return config.get<T>(needle);
+            return config.get<string, T>(needle);
         }
         return config as ProxyConfiguration<T>;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public get<TResult = string>(key?: string): typeof key extends keyof T ?
-        TResult extends object ?
-        TResult extends (infer X)[] ?
-        X extends object ? X[] : Extract<Exclude<Serializable, SerializableObject>, TResult>
-        : ProxyConfiguration<TResult & T[typeof key]>
-        : Extract<Exclude<Serializable, SerializableObject>, TResult>
-        : never
+    public get<TResult = string>(key?: string): ProxyConfiguration<TResult>
+    public get<const TKey extends Exclude<keyof T, number | symbol>, TResult = T[TKey]>(key?: TKey): ProxyConfiguration<TResult>
+    public get<const TKey extends string = Exclude<keyof T, number | symbol>, TResult = TKey extends keyof T ? T[TKey] : string>(key?: TKey): ProxyConfiguration<TResult>
     {
         if (key)
         {
