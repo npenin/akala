@@ -11,6 +11,8 @@ type Workspace = { location: string, version: string, name: string, workspaceDep
 export default async function (this: CliContext, workspace: Workspace)
 {
     const version = semver.coerce(workspace.version);
+    if (!version)
+        console.error(workspace);
     if (workspace.bump != 'decline')
     {
         version[workspace.bump]++;
