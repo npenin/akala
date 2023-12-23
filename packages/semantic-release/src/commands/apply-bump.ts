@@ -12,8 +12,17 @@ export default async function (this: CliContext, workspace: Workspace)
 {
     const version = semver.coerce(workspace.version);
     if (workspace.bump != 'decline')
+    {
         version[workspace.bump]++;
-
+        switch (workspace.bump)
+        {
+            case 'major':
+                version.minor = 0;
+            case 'minor':
+                version.patch = 0;
+        }
+        version[workspace.bump]++;
+    }
     const path = workspace.location;
     const pkg = JSON.parse(await readFile(resolve(path, './package.json'), 'utf-8'));
     pkg.version = version.format();
