@@ -366,6 +366,7 @@
 * removed mock-require usage 448f5be
 * rename package 87b433b
 * require dependent packages broken 66a3877
+* reset minor and patch number depending on the bump 1a1a0da
 * resolve legacy config lookup 5dceab9
 * resolve path in new cc 58cb93c
 * restore broken cli feature 6f563ef
