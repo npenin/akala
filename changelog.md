@@ -1,4 +1,4 @@
-#  (2023-12-22)
+#  (2023-12-23)
 
 
 ### Bug Fixes
@@ -200,6 +200,7 @@
 * improve cli trigger performances ad23d0d
 * improve compiler (giving up for now) f23e3f6
 * improve config get return type c40bcd5
+* improve config typing d14ab8b
 * improve error logging 1b4ae07
 * improve generate performance 88f6fee
 * improve get-version 2f156a3
@@ -623,6 +624,7 @@
 
 ### BREAKING CHANGES
 
+* added signatures that may break dependent libraries
 * now evaluator returns a Promise and not the ParsedFunction directly
 * first release
 * .pm.config.json is now read from CWD instead of HOMEDIR
