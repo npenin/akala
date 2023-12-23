@@ -205,6 +205,7 @@
 * improve generate performance 88f6fee
 * improve get-version 2f156a3
 * improve http implementation 9e55419
+* improve logging when no version is found 84ce4b1
 * improve module resolution af07cf8
 * improve path normalization 928d77b
 * improve performance of metadata lookup 81cf56a
