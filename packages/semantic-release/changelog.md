@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* reset minor and patch number depending on the bump 1a1a0da
+* improve logging when no version is found 84ce4b1
 
 
 
