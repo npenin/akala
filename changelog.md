@@ -84,6 +84,7 @@
 * bump version 0457468
 * bump version b88263c
 * bump version because of previous workflow failures 5ce650e
+* bump version to fix version order 5ec7806
 * cannot read undefined config object 0cc01be
 * cjs build dcd7057
 * cjs build d3e9a4e
@@ -360,6 +361,7 @@
 * remove over proxyfying 5da8a29
 * remove require call 6f09130
 * remove stateless 2de9622
+* remove stdio logging 6600099
 * remove triggers from browser 85ce5a8
 * remove triple-beam dependency c44bd2e
 * remove webpack dependencies f51db45
