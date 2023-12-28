@@ -7,6 +7,7 @@ export type ProxyConfiguration<T> = T extends object ? ProxyConfigurationObject<
 export type ProxyConfigurationObject<T extends object> = T extends (infer X)[] ? X[] : ProxyConfigurationObjectNonArray<T>;
 export type ProxyConfigurationObjectNonArray<T extends object> = Configuration<T> & { [key in keyof T]: T[key] extends object ? ProxyConfiguration<T[key]> : T[key] };
 //type SerializableConfig<T, TKey extends keyof T> = T[TKey] extends SerializableObject ? Configuration<T[TKey]> : T[TKey]
+const unwrap = Symbol('unwrap configuration');
 
 const crypto = globalThis.crypto;
 const { subtle } = globalThis.crypto;
@@ -106,6 +107,8 @@ export default class Configuration<T extends object = SerializableObject>
                     {
                         case inspect.custom:
                             return () => target.config;
+                        case unwrap:
+                            return target;
                         case Symbol.toPrimitive:
                             return target[Symbol.toPrimitive];
                         case isProxy:
@@ -118,10 +121,6 @@ export default class Configuration<T extends object = SerializableObject>
                 {
                     case 'then':
                         return undefined;
-                    case 'toString':
-                        return target.toString.bind(target);
-                    case 'commit':
-                        return target.commit.bind(target);
                     default:
                         if (typeof key == 'number' || typeof key == 'symbol')
                             throw new Error(`Unsupported key type: ${typeof key}, value: ${key}`);
@@ -158,7 +157,12 @@ export default class Configuration<T extends object = SerializableObject>
         return this.config;
     }
 
-
+    public toString()
+    {
+        if (this == this[unwrap])
+            return { config: this.config, path: this.path }.toString();
+        return this[unwrap].toString();
+    }
 
     public static async load<T extends object = SerializableObject>(file: string, createIfEmpty?: boolean, needle?: string): Promise<ProxyConfiguration<T>>
     {
@@ -232,10 +236,14 @@ export default class Configuration<T extends object = SerializableObject>
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             return this as any;
     }
+
+    [unwrap] = this;
+
     public getSecret(key: string): Promise<string>
     {
-        const secret = this.get<{ iv: BufferSource, value: BufferSource }>(key).extract();
-        return aesDecrypt(secret.value, this.cryptKey, secret.iv);
+        const self = this[unwrap];
+        const secret = self.get<{ iv: BufferSource, value: BufferSource }>(key).extract();
+        return aesDecrypt(secret.value, self.cryptKey, secret.iv);
     }
 
     public has(key?: string): boolean
@@ -275,10 +283,11 @@ export default class Configuration<T extends object = SerializableObject>
 
     public async setSecret(key: string | Exclude<keyof T, symbol | number>, newConfig: string): Promise<void>
     {
-        const secret = await aesEncrypt(newConfig, this.cryptKey);
-        if (!this.cryptKey)
-            this.cryptKey = secret.key;
-        this.set(key, { iv: secret, value: (await secret).ciphertext });
+        const self = this[unwrap];
+        const secret = await aesEncrypt(newConfig, self.cryptKey);
+        if (!self.cryptKey)
+            self.cryptKey = secret.key;
+        self.set(key, { iv: secret, value: secret.ciphertext });
     }
 
     public delete(key: Exclude<keyof T, symbol | number>): void
@@ -303,11 +312,12 @@ export default class Configuration<T extends object = SerializableObject>
 
     public async commit(file?: string, formatted?: boolean): Promise<void>
     {
+        const self = this[unwrap];
         if (typeof formatted == 'undefined')
             formatted = process.env.NODE_ENV !== 'production';
-        await fs.writeFile(file || this.path, JSON.stringify(this.rootConfig, null, formatted && 4 || undefined), 'utf8');
-        if (this.cryptKey)
-            await fs.writeFile((file || this.path) + '.key', Buffer.from(await subtle.exportKey('raw', this.cryptKey)));
+        await fs.writeFile(file || self.path, JSON.stringify(self.rootConfig, null, formatted && 4 || undefined), 'utf8');
+        if (self.cryptKey)
+            await fs.writeFile((file || self.path) + '.key', Buffer.from(await subtle.exportKey('raw', self.cryptKey)));
 
     }
 }
