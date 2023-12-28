@@ -8,8 +8,53 @@ export type ProxyConfigurationObject<T extends object> = T extends (infer X)[] ?
 export type ProxyConfigurationObjectNonArray<T extends object> = Configuration<T> & { [key in keyof T]: T[key] extends object ? ProxyConfiguration<T[key]> : T[key] };
 //type SerializableConfig<T, TKey extends keyof T> = T[TKey] extends SerializableObject ? Configuration<T[TKey]> : T[TKey]
 
+const crypto = globalThis.crypto;
+const { subtle } = globalThis.crypto;
+
+async function generateAesKey(length = 256)
+{
+    const key = await subtle.generateKey({
+        name: 'AES-CBC',
+        length,
+    }, true, ['encrypt', 'decrypt']);
+
+    return key;
+}
+
+async function aesEncrypt(plaintext: string, key?: CryptoKey)
+{
+    const ec = new TextEncoder();
+    if (!key)
+        key = await generateAesKey();
+    const iv = crypto.getRandomValues(new Uint8Array(16));
+
+    const ciphertext = await subtle.encrypt({
+        name: 'AES-CBC',
+        iv,
+    }, key, ec.encode(plaintext));
+
+    return {
+        key,
+        iv,
+        ciphertext,
+    };
+}
+
+async function aesDecrypt(ciphertext: BufferSource, key: CryptoKey, iv: BufferSource)
+{
+    const dec = new TextDecoder();
+    const plaintext = await subtle.decrypt({
+        name: 'AES-CBC',
+        iv,
+    }, key, ciphertext);
+
+    return dec.decode(plaintext);
+}
+
 export default class Configuration<T extends object = SerializableObject>
 {
+    private cryptKey?: CryptoKey;
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private constructor(private readonly path: string, private readonly config?: T, private readonly rootConfig?: any)
     {
@@ -113,9 +158,12 @@ export default class Configuration<T extends object = SerializableObject>
         return this.config;
     }
 
+
+
     public static async load<T extends object = SerializableObject>(file: string, createIfEmpty?: boolean, needle?: string): Promise<ProxyConfiguration<T>>
     {
-        var content: string;
+        let content: string;
+        let cryptKey: CryptoKey;
         if (!needle)
         {
             const indexOfHash = file.indexOf('#');
@@ -128,6 +176,19 @@ export default class Configuration<T extends object = SerializableObject>
         try
         {
             content = await fs.readFile(file, 'utf8');
+            try
+            {
+                cryptKey = await subtle.importKey('pkcs8', await fs.readFile(file + '.key'), { name: 'AES-CBC' }, true, ['encrypt', 'decrypt']);
+
+            }
+            catch (e)
+            {
+                if (!createIfEmpty || e.code !== 'ENOENT')
+                    throw e;
+
+                await fs.writeFile(file, content = '{}');
+            }
+
         }
         catch (e)
         {
@@ -171,6 +232,11 @@ export default class Configuration<T extends object = SerializableObject>
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             return this as any;
     }
+    public getSecret(key: string): Promise<string>
+    {
+        const secret = this.get<{ iv: BufferSource, value: BufferSource }>(key).extract();
+        return aesDecrypt(secret.value, this.cryptKey, secret.iv);
+    }
 
     public has(key?: string): boolean
     {
@@ -207,6 +273,14 @@ export default class Configuration<T extends object = SerializableObject>
         }, this.config);
     }
 
+    public async setSecret(key: string | Exclude<keyof T, symbol | number>, newConfig: string): Promise<void>
+    {
+        const secret = await aesEncrypt(newConfig, this.cryptKey);
+        if (!this.cryptKey)
+            this.cryptKey = secret.key;
+        this.set(key, { iv: secret, value: (await secret).ciphertext });
+    }
+
     public delete(key: Exclude<keyof T, symbol | number>): void
     public delete(key: string): void
     public delete(key: string | Exclude<keyof T, symbol | number>): void
@@ -227,10 +301,13 @@ export default class Configuration<T extends object = SerializableObject>
         }, this.config);
     }
 
-    public commit(file?: string, formatted?: boolean): Promise<void>
+    public async commit(file?: string, formatted?: boolean): Promise<void>
     {
         if (typeof formatted == 'undefined')
             formatted = process.env.NODE_ENV !== 'production';
-        return fs.writeFile(file || this.path, JSON.stringify(this.rootConfig, null, formatted && 4 || undefined), 'utf8');
+        await fs.writeFile(file || this.path, JSON.stringify(this.rootConfig, null, formatted && 4 || undefined), 'utf8');
+        if (this.cryptKey)
+            await fs.writeFile((file || this.path) + '.key', Buffer.from(await subtle.exportKey('pkcs8', this.cryptKey)), 'utf8');
+
     }
 }
