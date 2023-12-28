@@ -178,7 +178,7 @@ export default class Configuration<T extends object = SerializableObject>
             content = await fs.readFile(file, 'utf8');
             try
             {
-                cryptKey = await subtle.importKey('pkcs8', await fs.readFile(file + '.key'), { name: 'AES-CBC' }, true, ['encrypt', 'decrypt']);
+                cryptKey = await subtle.importKey('raw', await fs.readFile(file + '.key'), { name: 'AES-CBC' }, true, ['encrypt', 'decrypt']);
 
             }
             catch (e)
@@ -307,7 +307,7 @@ export default class Configuration<T extends object = SerializableObject>
             formatted = process.env.NODE_ENV !== 'production';
         await fs.writeFile(file || this.path, JSON.stringify(this.rootConfig, null, formatted && 4 || undefined), 'utf8');
         if (this.cryptKey)
-            await fs.writeFile((file || this.path) + '.key', Buffer.from(await subtle.exportKey('pkcs8', this.cryptKey)), 'utf8');
+            await fs.writeFile((file || this.path) + '.key', Buffer.from(await subtle.exportKey('raw', this.cryptKey)));
 
     }
 }
