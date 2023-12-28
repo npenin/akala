@@ -38,7 +38,7 @@ export function distinctWithCompareFn<T>(array: T[], compare?: (a: T, b: T) => n
         {
             result.splice(i--, 1);
             if (keepOrder)
-                original.splice(original.lastIndexOf(result[i - 1]), 1)
+                original.splice(original.lastIndexOf(result[i]), 1)
         }
     }
     if (keepOrder)
