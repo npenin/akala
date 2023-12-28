@@ -242,8 +242,9 @@ export default class Configuration<T extends object = SerializableObject>
     public getSecret(key: string): Promise<string>
     {
         const self = this[unwrap];
-        const secret = self.get<{ iv: BufferSource, value: BufferSource }>(key).extract();
-        return aesDecrypt(secret.value, self.cryptKey, secret.iv);
+        const secret = self.get<{ iv: string, value: string }>(key).extract();
+        const enc = new TextEncoder();
+        return aesDecrypt(enc.encode(secret.value), self.cryptKey, enc.encode(secret.iv));
     }
 
     public has(key?: string): boolean
@@ -287,7 +288,8 @@ export default class Configuration<T extends object = SerializableObject>
         const secret = await aesEncrypt(newConfig, self.cryptKey);
         if (!self.cryptKey)
             self.cryptKey = secret.key;
-        self.set(key, { iv: secret, value: secret.ciphertext });
+        const enc = new TextDecoder()
+        self.set(key, { iv: enc.decode(secret.iv), value: enc.decode(secret.ciphertext) });
     }
 
     public delete(key: Exclude<keyof T, symbol | number>): void
