@@ -1,9 +1,9 @@
 #  (2023-12-28)
 
 
-### Features
+### Bug Fixes
 
-* add secret support in configuration 9a511f3
+* config key export 15d144d
 
 
 
