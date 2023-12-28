@@ -1,4 +1,4 @@
-#  (2023-12-23)
+#  (2023-12-28)
 
 
 ### Bug Fixes
@@ -563,6 +563,7 @@
 * add windows service install support 3b9af3a
 * added winston as a logger system 065bae0
 * allow for relative path in cli bcccff1
+* allow to keepOrder in distinct e6eb507
 * cli now supports stream results 155e7ba
 * considered as v1.0 3ed2008
 * container can now act as middlewares 9484e39
