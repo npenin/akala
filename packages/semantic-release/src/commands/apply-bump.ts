@@ -15,7 +15,6 @@ export default async function (this: CliContext, workspace: Workspace)
         console.error(workspace);
     if (workspace.bump != 'decline')
     {
-        version[workspace.bump]++;
         switch (workspace.bump)
         {
             case 'major':
