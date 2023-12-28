@@ -540,6 +540,7 @@
 * add rest args on cli e6966a9
 * add runnerMiddleware as export ff4c95a
 * add schema validation e1d2b41
+* add secret support in configuration 9a511f3
 * add serve cli dc82fc9
 * add sidecar models to configuration 8389089
 * add sidecars accessor c7792a7
