@@ -157,6 +157,7 @@
 * fix for akala init 8678bf3
 * fix for commands ac new 166c9ee
 * fix generate and tsconfig files b44bd4c
+* fix keepOrder on distinct 68b62b3
 * fix model registration and serialization 7236001
 * fix pm startup 9f53b54
 * fix semantic releases workflow 290d342
