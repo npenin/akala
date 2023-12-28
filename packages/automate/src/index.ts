@@ -184,7 +184,7 @@ export const RunMiddleware = new MiddlewareRunner<JobStepRun>('run',
         }
         if (!step.with.stdio)
             step.with.stdio = ['stdin', 'stdout', 'stderr'].map(v => stdio[v]);
-        context.logger.silly(step.with.stdio)
+        // context.logger.silly(step.with.stdio)
         return new Promise((resolve, reject) =>
         {
             var cmd: string[];
