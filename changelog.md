@@ -114,6 +114,7 @@
 * compilation issue 4735be5
 * config file option name 3068006
 * config file save fallback f1a3db7
+* config key export 15d144d
 * connect fails when connect on mapping is undefined 16bdd27
 * connect should failed if mapping is not found 4392197
 * connect when connecting to pm 7494ae0
