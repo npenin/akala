@@ -156,6 +156,7 @@
 * export AggregateErrors f4285e2
 * export parseMetadata 8870389
 * expose jsonrpc client id fd0f873
+* fix after config upgrade 90625ec
 * fix automate runner ae9c216
 * fix distinct 2430a6c
 * fix for akala init 8678bf3
@@ -590,6 +591,7 @@
 * export spanAsync 93a722d
 * first pubsub commit 78b31e1
 * first try with some somponents 293f0dd
+* fix config secret key load in akala cli 5f74332
 * fix sidecar f1705d6
 * handle cookies on redirect fb6e2ab
 * have both CJS and ESM at once cecd11a
@@ -637,6 +639,7 @@
 
 ### BREAKING CHANGES
 
+* new returns Promise to allow the key load when not provided
 * added signatures that may break dependent libraries
 * now evaluator returns a Promise and not the ParsedFunction directly
 * first release
