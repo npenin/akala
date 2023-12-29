@@ -254,6 +254,7 @@
 * ls lists existing containers 3548afe
 * made connect and fork more reliable and resilient 6c0c24f
 * made cron as non spreadable 34d3f69
+* make new as sync again and create newAsync 6afff9d
 * make peer dependency as mandatory fd097ef
 * make pm work with connect args ec5e1fc
 * mapAsync 64a258e
