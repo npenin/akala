@@ -382,6 +382,7 @@
 * revert some changes to fix build 77b19cf
 * run 3f574ee
 * runnerMiddleware more type friendly 7bf1a25
+* secret key transfer to nested config 77702ce
 * set log level for any namespace e1b1025
 * shebang on akala CLI e893277
 * sidecar builder 26673b1
