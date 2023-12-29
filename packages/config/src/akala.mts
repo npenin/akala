@@ -6,7 +6,7 @@ export default async function (_config, program: NamespaceMiddleware)
 {
     root.preAction(async (context) =>
     {
-        context.state = await Configuration.new(context.options['configFile'] as string, _config)
+        context.state = await Configuration.newAsync(context.options['configFile'] as string, _config)
 
     });
 
@@ -40,5 +40,5 @@ export default async function (_config, program: NamespaceMiddleware)
 
 export async function install(context: CliContext<{ configFile: string }, object>)
 {
-    context.state = Configuration.new(context.options.configFile || path.join(context.currentWorkingDirectory, './.akala.json'), context.state)
+    context.state = await Configuration.newAsync(context.options.configFile || path.join(context.currentWorkingDirectory, './.akala.json'), context.state)
 }

@@ -1,4 +1,4 @@
-import { isProxy } from '@akala/core';
+import { Proxy, isProxy } from '@akala/core';
 import { Serializable, SerializableObject } from '@akala/core';
 import fs from 'fs/promises'
 import { inspect } from 'util'
@@ -68,12 +68,17 @@ export default class Configuration<T extends object = SerializableObject>
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public static async new<T extends object = SerializableObject>(path: string, config?: T, rootConfig?: any, cryptKey?: CryptoKey): Promise<ProxyConfigurationObjectNonArray<T>>
+    public static async newAsync<T extends object = SerializableObject>(path: string, config?: T, rootConfig?: any, cryptKey?: CryptoKey): Promise<ProxyConfigurationObjectNonArray<T>>
     {
         if (typeof cryptKey == 'undefined')
         {
             cryptKey = await Configuration.loadKey(path)
         }
+        return Configuration.new(path, config, rootConfig, cryptKey);
+    }
+
+    public static new<T extends object = SerializableObject>(path: string, config?: T, rootConfig?: any, cryptKey?: CryptoKey): ProxyConfigurationObjectNonArray<T>
+    {
         return new Proxy(new Configuration<T>(path, config, rootConfig, cryptKey), {
             has(target, key)
             {
@@ -192,14 +197,15 @@ export default class Configuration<T extends object = SerializableObject>
 
             await fs.writeFile(file, content = '{}');
         }
-        const config = await Configuration.new(file, JSON.parse(content), undefined, cryptKey);
+        const config = Configuration.new(file, JSON.parse(content), undefined, cryptKey);
+        const unwrapped = config[unwrap] as Configuration<T>;
         if (needle)
         {
-            const needleConfig = config.get<string, T>(needle);
+            const needleConfig = unwrapped.get<T>(needle);
             if (needleConfig)
                 return needleConfig;
-            config.set(needle, {});
-            return config.get<string, T>(needle);
+            unwrapped.set(needle, {});
+            return unwrapped.get<T>(needle);
         }
         return config as ProxyConfiguration<T>;
     }
