@@ -1,9 +1,14 @@
 #  (2023-12-29)
 
 
-### Bug Fixes
+### Features
 
-* secret key transfer to nested config 77702ce
+* fix config secret key load in akala cli 5f74332
+
+
+### BREAKING CHANGES
+
+* new returns Promise to allow the key load when not provided
 
 
 
