@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* config secret read cfe4d5e
+* secret key transfer to nested config 77702ce
 
 
 
