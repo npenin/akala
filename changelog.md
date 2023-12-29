@@ -392,6 +392,7 @@
 * sidecar to remote containers f795c56
 * sidecar use pm when provided bf320f3
 * silent disconnect failures 81d65aa
+* smaller secret footprint b41b636
 * sort excludes non workspace dependencies 0f33d15
 * sort supports correct structure bf17f91
 * sort workspaces before publish 01b675e
