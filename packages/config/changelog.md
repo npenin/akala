@@ -1,9 +1,9 @@
-#  (2023-12-28)
+#  (2023-12-29)
 
 
 ### Bug Fixes
 
-* smaller secret footprint b41b636
+* config secret read cfe4d5e
 
 
 
