@@ -54,10 +54,8 @@ async function aesDecrypt(ciphertext: BufferSource, key: CryptoKey, iv: BufferSo
 
 export default class Configuration<T extends object = SerializableObject>
 {
-    private cryptKey?: CryptoKey;
-
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    private constructor(private readonly path: string, private readonly config?: T, private readonly rootConfig?: any)
+    private constructor(private readonly path: string, private readonly config?: T, private readonly rootConfig?: any, private cryptKey?: CryptoKey)
     {
         if (typeof config == 'undefined')
             config = {} as unknown as T;
@@ -70,9 +68,9 @@ export default class Configuration<T extends object = SerializableObject>
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public static new<T extends object = SerializableObject>(path: string, config?: T, rootConfig?: any): ProxyConfigurationObjectNonArray<T>
+    public static new<T extends object = SerializableObject>(path: string, config?: T, rootConfig?: any, cryptKey?: CryptoKey): ProxyConfigurationObjectNonArray<T>
     {
-        return new Proxy(new Configuration<T>(path, config, rootConfig), {
+        return new Proxy(new Configuration<T>(path, config, rootConfig, cryptKey), {
             has(target, key)
             {
                 if (typeof (key) == 'symbol')
@@ -201,8 +199,7 @@ export default class Configuration<T extends object = SerializableObject>
 
             await fs.writeFile(file, content = '{}');
         }
-        const config = Configuration.new(file, JSON.parse(content));
-        config.cryptKey = cryptKey;
+        const config = Configuration.new(file, JSON.parse(content), undefined, cryptKey);
         if (needle)
         {
             const needleConfig = config.get<string, T>(needle);
@@ -228,7 +225,7 @@ export default class Configuration<T extends object = SerializableObject>
             }, this.config);
             if (typeof value == 'object' && !Array.isArray(value))
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                return Configuration.new(this.path, value as SerializableObject, this.rootConfig) as any;
+                return Configuration.new(this.path, value as SerializableObject, this.rootConfig, this.cryptKey) as any;
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             return value as any
                 ;
