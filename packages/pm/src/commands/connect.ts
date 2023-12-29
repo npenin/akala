@@ -11,7 +11,7 @@ export default async function connect(this: State, name: string, context?: Serve
     if (!mapping)
         mapping = Object.values(this.config.mapping).find(m => m.container === name);
     if (!mapping)
-        mapping = await Configuration.new(null, this.processes[name] as SidecarConfiguration);
+        mapping = await Configuration.newAsync(null, this.processes[name] as SidecarConfiguration);
     // console.log(name);
     // console.log(mapping);
     // console.log(mapping.connect);

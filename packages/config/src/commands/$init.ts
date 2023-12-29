@@ -3,9 +3,9 @@ import revert from './revert.js';
 
 export default async function (configPath?: string)
 {
-    revert.call(this, configPath).catch((reason) =>
+    revert.call(this, configPath).catch(async (reason) =>
     {
         console.error(reason);
-        Object.setPrototypeOf(this, Configuration.new(configPath || './config.json'));
+        Object.setPrototypeOf(this, await Configuration.newAsync(configPath || './config.json'));
     });
 }
