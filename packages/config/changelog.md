@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* implement config unwrap 2998a9c
+* smaller secret footprint b41b636
 
 
 
