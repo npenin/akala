@@ -202,6 +202,7 @@ export default class Configuration<T extends object = SerializableObject>
             await fs.writeFile(file, content = '{}');
         }
         const config = Configuration.new(file, JSON.parse(content));
+        config.cryptKey = cryptKey;
         if (needle)
         {
             const needleConfig = config.get<string, T>(needle);
