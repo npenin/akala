@@ -6,7 +6,8 @@ export default async function (_config, program: NamespaceMiddleware)
 {
     root.preAction(async (context) =>
     {
-        context.state = Configuration.new(context.options['configFile'] as string, _config)
+        context.state = await Configuration.new(context.options['configFile'] as string, _config)
+
     });
 
     program.format(async r =>

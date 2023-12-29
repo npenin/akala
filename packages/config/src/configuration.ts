@@ -68,8 +68,12 @@ export default class Configuration<T extends object = SerializableObject>
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public static new<T extends object = SerializableObject>(path: string, config?: T, rootConfig?: any, cryptKey?: CryptoKey): ProxyConfigurationObjectNonArray<T>
+    public static async new<T extends object = SerializableObject>(path: string, config?: T, rootConfig?: any, cryptKey?: CryptoKey): Promise<ProxyConfigurationObjectNonArray<T>>
     {
+        if (typeof cryptKey == 'undefined')
+        {
+            cryptKey = await Configuration.loadKey(path)
+        }
         return new Proxy(new Configuration<T>(path, config, rootConfig, cryptKey), {
             has(target, key)
             {
@@ -178,18 +182,7 @@ export default class Configuration<T extends object = SerializableObject>
         try
         {
             content = await fs.readFile(file, 'utf8');
-            try
-            {
-                cryptKey = await subtle.importKey('raw', await fs.readFile(file + '.key'), { name: 'AES-CBC' }, true, ['encrypt', 'decrypt']);
-
-            }
-            catch (e)
-            {
-                if (!createIfEmpty || e.code !== 'ENOENT')
-                    throw e;
-
-                await fs.writeFile(file, content = '{}');
-            }
+            cryptKey = await Configuration.loadKey(file);
 
         }
         catch (e)
@@ -199,7 +192,7 @@ export default class Configuration<T extends object = SerializableObject>
 
             await fs.writeFile(file, content = '{}');
         }
-        const config = Configuration.new(file, JSON.parse(content), undefined, cryptKey);
+        const config = await Configuration.new(file, JSON.parse(content), undefined, cryptKey);
         if (needle)
         {
             const needleConfig = config.get<string, T>(needle);
@@ -209,6 +202,11 @@ export default class Configuration<T extends object = SerializableObject>
             return config.get<string, T>(needle);
         }
         return config as ProxyConfiguration<T>;
+    }
+
+    public static loadKey(path: string): Promise<CryptoKey | null>
+    {
+        return fs.readFile(path + '.key').then(keyContent => subtle.importKey('raw', keyContent, { name: 'AES-CBC' }, true, ['encrypt', 'decrypt']), () => null);
     }
 
     public get<TResult = string>(key?: string): ProxyConfiguration<TResult>
