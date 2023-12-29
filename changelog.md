@@ -1,4 +1,4 @@
-#  (2023-12-28)
+#  (2023-12-29)
 
 
 ### Bug Fixes
@@ -115,6 +115,7 @@
 * config file option name 3068006
 * config file save fallback f1a3db7
 * config key export 15d144d
+* config secret read cfe4d5e
 * connect fails when connect on mapping is undefined 16bdd27
 * connect should failed if mapping is not found 4392197
 * connect when connecting to pm 7494ae0
