@@ -13,7 +13,9 @@ export default class PrefixedBuffer implements ParserWithoutKnownLength<Buffer>
             throw new Error('Cross byte value are not supported');
 
         var length = this.prefix.read(buffer, cursor, null);
-        return buffer.subarray(cursor.offset, cursor.offset + length);
+        const result = buffer.subarray(cursor.offset, cursor.offset + length);
+        cursor.offset += length;
+        return result;
     }
 
     write(value: Buffer): Buffer[]
