@@ -12,7 +12,8 @@ export default class PreparsedLengthBuffer<T, TKey extends keyof T> implements P
         if (cursor.subByteOffset > 0)
             throw new Error('Cross byte value are not supported');
 
-        const result = buffer.subarray(cursor.offset, cursor.offset + Number(message[this.lengthProperty]));
+        const length = Number(message[this.lengthProperty]);
+        const result = buffer.subarray(cursor.offset, cursor.offset + length);
         cursor.offset += length;
         return result;
     }
