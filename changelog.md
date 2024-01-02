@@ -1,4 +1,4 @@
-#  (2023-12-29)
+#  (2024-01-02)
 
 
 ### Bug Fixes
@@ -540,6 +540,7 @@
 * add possibility for custom file format 0360c2f
 * add possibility to parse filename 335cc97
 * add possibility to serve all containers at once 2be5987
+* add preparsed buffer f585393
 * add preRender event c58ca99
 * add processing with lambda 650c4f5
 * add protocol handlers dc6c1b6
