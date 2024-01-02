@@ -56,6 +56,7 @@ import { Sub } from './sub.js'
 import { Conditional } from './conditional-parser.js'
 import * as types from '../core.js'
 import { Ignore } from './ignore-message.js'
+import PreparsedLengthBuffer from './buffer-preparsed.js'
 
 export { protobuf };
 
@@ -160,10 +161,12 @@ export function string<T, TString extends string = string>(length: Parsers<numbe
         return new PreparsedLengthString<T, typeof length, TString>(length, encoding);
     return new PrefixedString<TString>(length as Parsers<number>, encoding);
 }
-export function buffer(length: Parser<number> | ParserWithoutKnownLength<number> | number): Parsers<Buffer>
+export function buffer<T = unknown>(length: Parser<number> | ParserWithoutKnownLength<number> | number | keyof T): AnyParser<Buffer, T>
 {
     if (typeof length == 'number')
         return new BufferRaw(length);
+    if (typeof (length) === 'string' || typeof (length) === 'symbol')
+        return new PreparsedLengthBuffer<T, typeof length>(length);
     return new PrefixedBuffer(length);
 }
 export function array<T, TMessage>(length: Parser<number>, value: AnyParser<T, TMessage>): TMessage extends Cursor ? Parser<T[]> : ParserWithMessage<T[], TMessage>
