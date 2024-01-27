@@ -1,8 +1,80 @@
-import { LogLevels, Logger, logger as LoggerBuilder, grep, map, each } from '@akala/core';
-import program, { CliContext, OptionOptions, usageParser } from './router/index.js';
+import { LogLevels, Logger, logger as LoggerBuilder, grep, map, each, Binding } from '@akala/core';
+import program, { CliContext, NamespaceMiddleware, OptionOptions, usageParser } from './router/index.js';
 export * from './router/index.js'
 export default program;
 export { program };
+
+export class InteractError extends Error
+{
+    public readonly code = 'INTERACT';
+
+    constructor(message: string, public as?: string)
+    {
+        super(message);
+    }
+
+    public toJSON(): Record<string, unknown>
+    {
+        return { code: this.code, message: this.message, as: this.as };
+    }
+}
+
+export function supportInteract(cli: NamespaceMiddleware)
+{
+    return async (err: InteractError, context) =>
+    {
+
+        if (err.code === 'INTERACT')
+        {
+            console.log(err.message);
+            const value = await readLine();
+            if (typeof err.as == 'string')
+            {
+                const indexOfDot = err.as.indexOf('.');
+                if (indexOfDot > 0)
+                {
+                    Binding.getSetter(context.options, err.as)(value);
+                }
+                context.options[err.as] = value;
+            }
+            else
+                context.args.push(value);
+            return await program.process(context);
+        }
+        throw err;
+    }
+}
+
+export function readLine()
+{
+    let stdinBuffer = '';
+    process.stdin.pause();
+    return new Promise<string>((resolve) =>
+    {
+
+        process.stdin.on('data', function processChunk(chunk)
+        {
+            const indexOfNewLine = stdinBuffer.length + chunk.indexOf('\n');
+            stdinBuffer += chunk;
+            if (indexOfNewLine > -1)
+            {
+                process.stdin.pause();
+                process.stdin.removeListener('data', processChunk);
+                if (indexOfNewLine < stdinBuffer.length - 1)
+                {
+                    resolve(stdinBuffer.substr(0, indexOfNewLine));
+                    stdinBuffer = stdinBuffer.substr(indexOfNewLine + 1);
+                }
+                else
+                {
+                    resolve(stdinBuffer);
+                    stdinBuffer = '';
+                }
+            }
+        })
+        process.stdin.resume();
+    })
+}
 
 export function buildCliContext<T extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>>(logger: Logger, ...args: string[]): CliContext<T>
 {
