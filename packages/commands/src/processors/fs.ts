@@ -118,6 +118,7 @@ export class FileSystem extends CommandProcessor
 
     public static async discoverMetaCommands(root: string, options?: DiscoveryOptions): Promise<Metadata.Command[] & { name?: string, stateless?: boolean }>
     {
+        // console.trace(`discovering commands in ${root}`)
         const log = akala.logger('commands:fs:discovery');
 
         if (!options)
@@ -250,7 +251,11 @@ export class FileSystem extends CommandProcessor
                         if (e.code == 'ENOENT')
                             console.warn(`The file ${cmd.config.fs.source} does not exist (thus ignoring ${cmd.name}). It could be that you deleted the source file, but the transpiled file is still around.`)
                         else
+                        {
+                            // console.error(`reading ${f.name} resulted in error`)
+                            console.error('Error opening ', cmd.config.fs);
                             console.error(e);
+                        }
                         return;
                     }
                     const otherConfigsFile: string = path.join(path.dirname(source), path.basename(source, path.extname(source))) + '.json';

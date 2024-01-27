@@ -9,17 +9,25 @@ import { Key, pathToRegexp } from "path-to-regexp";
 export default async function generate(folder?: string, name?: string, outputFile?: string)
 {
     folder = folder || process.cwd();
+    const discoveryOptions: akala.Processors.DiscoveryOptions = { isDirectory: true };
+
     if (!name && fs.existsSync(path.join(folder, './package.json')))
         // eslint-disable-next-line @typescript-eslint/no-var-requires
         name = (await import(path.join(folder, './package.json'))).name;
     if (!name)
+    {
         name = path.basename(folder);
+        discoveryOptions.isDirectory = false;
+    }
 
     let output: Writable;
     let outputFolder: string;
     ({ output, outputFile, outputFolder } = await outputHelper(outputFile, 'commands.json', true));
+    discoveryOptions.relativeTo = outputFolder;
+    discoveryOptions.recursive = true;
+    discoveryOptions.ignoreFileWithNoDefaultExport = true;
 
-    var commands = await akala.Processors.FileSystem.discoverMetaCommands(path.resolve(folder), { relativeTo: outputFolder, isDirectory: true, recursive: true, ignoreFileWithNoDefaultExport: true });
+    var commands = await akala.Processors.FileSystem.discoverMetaCommands(path.resolve(folder), discoveryOptions);
 
     var result: jsonObject = { paths: {} };
     result.openapi = '3.1.0';
