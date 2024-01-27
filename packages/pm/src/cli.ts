@@ -8,7 +8,7 @@ import start from './cli-commands/start-self.js'
 import { Readable } from 'stream';
 
 import State, { StateConfiguration } from './state.js';
-import { program, buildCliContextFromProcess, ErrorMessage } from '@akala/cli';
+import { program, buildCliContextFromProcess, ErrorMessage, supportInteract } from '@akala/cli';
 import { InteractError } from './index.js';
 import { Binding } from '@akala/core';
 import { open } from 'fs/promises';
@@ -158,27 +158,7 @@ cli.preAction(async c =>
 }).
     // cli.
     //     useMiddleware(null, handle).
-    useError(async (err: InteractError, args) =>
-    {
-        if (err.code === 'INTERACT')
-        {
-            console.log(err.message);
-            const value = await readLine();
-            if (typeof err.as == 'string')
-            {
-                const indexOfDot = err.as.indexOf('.');
-                if (indexOfDot > 0)
-                {
-                    Binding.getSetter(args.options, err.as)(value);
-                }
-                args.options[err.as] = value;
-            }
-            else
-                args.args.push(value);
-            return await cli.process(args);
-        }
-        throw err;
-    })
+    useError(supportInteract(cli))
 
 // handle.action(async args =>
 // {
@@ -410,35 +390,4 @@ function formatResult(result: unknown, outputFormat: string)
             console.log(result);
             break;
     }
-}
-
-let stdinBuffer = '';
-function readLine()
-{
-    process.stdin.pause();
-    return new Promise<string>((resolve) =>
-    {
-
-        process.stdin.on('data', function processChunk(chunk)
-        {
-            const indexOfNewLine = stdinBuffer.length + chunk.indexOf('\n');
-            stdinBuffer += chunk;
-            if (indexOfNewLine > -1)
-            {
-                process.stdin.pause();
-                process.stdin.removeListener('data', processChunk);
-                if (indexOfNewLine < stdinBuffer.length - 1)
-                {
-                    resolve(stdinBuffer.substr(0, indexOfNewLine));
-                    stdinBuffer = stdinBuffer.substr(indexOfNewLine + 1);
-                }
-                else
-                {
-                    resolve(stdinBuffer);
-                    stdinBuffer = '';
-                }
-            }
-        })
-        process.stdin.resume();
-    })
 }
