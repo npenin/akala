@@ -154,12 +154,39 @@
                 },
                 "cli": {
                     "inject": [
-                        "options.name",
                         "options.commandPath",
+                        "options.name",
                         "options.output",
                         "options"
                     ],
                     "usage": "generate-openapi [commandPath] [output]",
+                    "options": {
+                        "name": {
+                            "needsValue": true
+                        }
+                    }
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "generate-schema",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/cli/generate-schema.js",
+                    "source": "src/cli/generate-schema.ts",
+                    "inject": []
+                },
+                "cli": {
+                    "inject": [
+                        "options.commandPath",
+                        "options.name",
+                        "options.output",
+                        "options"
+                    ],
+                    "usage": "generate-schema [commandPath] [output]",
                     "options": {
                         "name": {
                             "needsValue": true

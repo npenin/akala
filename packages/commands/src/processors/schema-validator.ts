@@ -2,18 +2,18 @@ import { MiddlewarePromise } from '@akala/core';
 import { Container, Metadata } from '../index.browser.js';
 import { Command } from '../metadata/command.js';
 import { CommandMetadataProcessorSignature, ICommandProcessor, StructuredParameters } from '../model/processor.js';
-import { JSONSchema7, JSONSchema7Definition, ValidationError, validate } from 'json-schema';
+import Ajv, { Schema, ErrorObject } from 'ajv';
 
 export interface SchemaConfiguration extends Metadata.Configuration
 {
-    schema: Record<string, JSONSchema7Definition>;
+    schema: Record<string, Schema>;
 }
 
 export class SchemaValidationError extends Error
 {
-    constructor(errors: ValidationError[])
+    constructor(errors: ErrorObject[])
     {
-        super(errors.map(err => err.property + ':' + err.message).join('\n'))
+        super(errors.map(err => err.propertyName + ':' + err.message).join('\n'))
     }
 }
 
@@ -24,19 +24,22 @@ export class SchemaValidator implements ICommandProcessor
     constructor(private options: Partial<{ runWhenNoSchema: boolean }> = { runWhenNoSchema: true })
     {
     }
-    handle(_origin: Container<unknown>, cmd: Command, param: StructuredParameters<unknown[]>): MiddlewarePromise
+    async handle(origin: Container<unknown>, cmd: Command, param: StructuredParameters<unknown[]>): MiddlewarePromise
     {
-        if (cmd?.config?.schema)
+        if (cmd?.config?.schema && cmd.config.fs)
         {
-            const schema: JSONSchema7 = {
+            const schema: Schema = {
                 $defs: cmd.config.schema.schema,
                 type: "array",
-                items: cmd.config.schema.inject.map(x => ({ $ref: x }))
+                prefixItems: cmd.config.schema.inject.map(x => ({ $ref: x })),
+                items: false
             }
-            const validationResult = validate(param.param, schema);
 
-            if (!validationResult.valid)
-                return Promise.resolve(new SchemaValidationError(validationResult.errors))
+            const ajv = new Ajv.default();
+            const validationResult = ajv.validate(schema, param.param)
+
+            if (!validationResult)
+                return Promise.resolve(new SchemaValidationError(ajv.errors))
             return Promise.reject();
         }
         if (!this.options.runWhenNoSchema)
