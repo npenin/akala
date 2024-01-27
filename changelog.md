@@ -1,4 +1,4 @@
-#  (2024-01-02)
+#  (2024-01-27)
 
 
 ### Bug Fixes
@@ -359,6 +359,7 @@
 * remove duplicate binary operator 4930340
 * remove duplicate foreach in publish 09d9fe5
 * remove duplicated code in pm start command 3a91342
+* remove extra ts declaration 0283564
 * remove failure masking 7c4ae85
 * remove hrtime dependency f85fb22
 * remove http imports to support treeshaking for browsers a0d87cb
@@ -520,8 +521,10 @@
 * add env to get command name b744175
 * add env to injectables 59915ab
 * add extends support df13246
+* add generate-schema d920d1b
 * add ignore failure support f9929cf
 * add init command 4ca928f
+* add interact error from pm 026bbbb
 * add jsdoc a43ab28
 * add keepAttached for pm start 2bef670
 * add lazy helper 5530746
