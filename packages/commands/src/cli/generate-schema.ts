@@ -143,10 +143,10 @@ declare module 'typescript'
         parent?: ts.Symbol;
     }
 
-    export interface Declaration
-    {
-        parameters?: ts.Node[];
-    }
+    // export interface Declaration
+    // {
+    //     parameters?: ts.Node[];
+    // }
 }
 
 function serializeType(checker: ts.TypeChecker, type: ts.Type | ts.TypeReference, defs: { local: Record<string, { id: string, promise: Promise<JsonSchema> }>, global: Record<string, { id: string, promise: Promise<JsonSchema> }> }, bypassDefs?: boolean): JsonSchema | { id: string, promise: Promise<JsonSchema> }
@@ -344,7 +344,7 @@ function serializeType(checker: ts.TypeChecker, type: ts.Type | ts.TypeReference
             }
             break;
     }
-    if (type.symbol?.valueDeclaration?.parameters)
+    if (ts.isCallSignatureDeclaration(type.symbol?.valueDeclaration))
     {
         return null;
     }
