@@ -233,6 +233,7 @@
 * initial pm setup 57f516a
 * inject usage after move to full meta cmd 2cbda96
 * injector inheritance fa3f724
+* interact errors happen on program and not root 363c943
 * json model definition parsing 0770dab
 * json schema internal references 409c98d
 * jsonrpc now breaks with standard jsonrpc error aa06e7c
