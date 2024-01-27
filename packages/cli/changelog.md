@@ -1,9 +1,9 @@
 #  (2024-01-27)
 
 
-### Features
+### Bug Fixes
 
-* add interact error from pm 026bbbb
+* interact errors happen on program and not root 363c943
 
 
 
