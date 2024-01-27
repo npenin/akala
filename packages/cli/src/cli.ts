@@ -33,7 +33,7 @@ process.emit = function (name, data, ...args)
 (async function ()
 {
     const mainProgram = program.command(null).option('help');
-    program.useError(supportInteract(program))
+    program.useError(supportInteract(mainProgram))
     const plugins = [new URL('./helpers/repl.js', import.meta.url).toString(), new URL('./plugins.js', import.meta.url).toString()];
     const config: { plugins: string[], commit?: () => Promise<void> } = { plugins: [] };
     let loadedConfig: { plugins: string[] };
