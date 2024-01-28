@@ -1,9 +1,9 @@
-#  (2024-01-27)
+#  (2024-01-28)
 
 
 ### Bug Fixes
 
-* interact errors happen on program and not root 363c943
+* interacterror support 8d37bc7
 
 
 
