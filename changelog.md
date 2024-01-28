@@ -234,6 +234,7 @@
 * initial pm setup 57f516a
 * inject usage after move to full meta cmd 2cbda96
 * injector inheritance fa3f724
+* interact error support 769abbe
 * interact errors happen on program and not root 363c943
 * interacterror support 8d37bc7
 * json model definition parsing 0770dab
@@ -436,6 +437,7 @@
 * trying to add promise to solve "handled" lambda 62bad72
 * trying to fix docker files 2b8ce52
 * typing 8851307
+* unliased interact errors a16496a
 * unparse options eed10c8
 * update after the breaking change in conventional changelog 12078eb
 * update after the breaking change in conventional changelog 76ebf7f
