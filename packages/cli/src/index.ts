@@ -45,29 +45,28 @@ export function supportInteract(cli: NamespaceMiddleware)
     }
 }
 
+let stdinBuffer = '';
 export function readLine()
 {
-    let stdinBuffer = '';
     process.stdin.pause();
     return new Promise<string>((resolve) =>
     {
-
         process.stdin.on('data', function processChunk(chunk)
         {
-            const indexOfNewLine = stdinBuffer.length + chunk.indexOf('\n');
             stdinBuffer += chunk;
+            const indexOfNewLine = chunk.indexOf('\n', stdinBuffer.length);
             if (indexOfNewLine > -1)
             {
                 process.stdin.pause();
                 process.stdin.removeListener('data', processChunk);
                 if (indexOfNewLine < stdinBuffer.length - 1)
                 {
-                    resolve(stdinBuffer.substr(0, indexOfNewLine));
-                    stdinBuffer = stdinBuffer.substr(indexOfNewLine + 1);
+                    resolve(stdinBuffer.substring(0, indexOfNewLine));
+                    stdinBuffer = stdinBuffer.substring(indexOfNewLine + 1);
                 }
                 else
                 {
-                    resolve(stdinBuffer);
+                    resolve(stdinBuffer.substring(0, stdinBuffer.length - 1));
                     stdinBuffer = '';
                 }
             }
