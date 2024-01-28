@@ -38,7 +38,7 @@ export function supportInteract(cli: NamespaceMiddleware)
                 context.options[err.as] = value;
             }
             else
-                context.args.push(value);
+                context.argv.push(value);
             return await cli.process(Object.assign(buildCliContextFromContext(context, ...context.argv.slice(2)), { options: context.options }));
         }
         throw err;
