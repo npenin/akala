@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* interacterror support 8d37bc7
+* multiple readline calls failure + removing line break f3ab1be
 
 
 
