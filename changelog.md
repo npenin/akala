@@ -136,6 +136,7 @@
 * discover implementation 3502bed
 * display for pmSocket config info c3b908b
 * distinct implementation fix 9381907
+* do not overwrite option when coming from usage 23d206e
 * docker build cfdaf4e
 * docker files to not have local pipe fba3777
 * double bump 04d40b6
