@@ -276,6 +276,7 @@
 * move socket name as part of socket options 97dd422
 * move to ESM 6ef0335
 * moved commands to internal event emitter bea79a2
+* multiple readline calls failure + removing line break f3ab1be
 * nested container processing 8997869
 * new cc does not require destination to be a folder 51d1efd
 * new considered as part of the folder name a37810f
