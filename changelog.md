@@ -336,6 +336,7 @@
 * publish new version f9f4db9
 * pubsub import assert b4584a8
 * push before tagging d980dd0
+* readline implementation ab16fa7
 * ready command in pm works in both forks and remote cfb974f
 * ready command works properly d9b10c2
 * record event on aws 4fd90b3
