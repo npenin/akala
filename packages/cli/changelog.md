@@ -3,7 +3,8 @@
 
 ### Bug Fixes
 
-* readline implementation ab16fa7
+* interact error support 769abbe
+* unliased interact errors a16496a
 
 
 
