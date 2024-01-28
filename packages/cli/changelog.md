@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* multiple readline calls failure + removing line break f3ab1be
+* do not overwrite option when coming from usage 23d206e
 
 
 
