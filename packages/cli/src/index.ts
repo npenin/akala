@@ -39,7 +39,7 @@ export function supportInteract(cli: NamespaceMiddleware)
             }
             else
                 context.args.push(value);
-            return await cli.process(context);
+            return await cli.process(buildCliContextFromProcess(context.logger, context.state));
         }
         throw err;
     }
