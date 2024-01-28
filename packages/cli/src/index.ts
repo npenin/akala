@@ -54,7 +54,7 @@ export function readLine()
         process.stdin.on('data', function processChunk(chunk)
         {
             stdinBuffer += chunk;
-            const indexOfNewLine = chunk.indexOf('\n', stdinBuffer.length);
+            const indexOfNewLine = chunk.indexOf('\n', stdinBuffer.length - chunk.length);
             if (indexOfNewLine > -1)
             {
                 process.stdin.pause();
