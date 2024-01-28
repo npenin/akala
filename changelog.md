@@ -291,6 +291,7 @@
 * normalize require properly imports packages ea8e772
 * normalize support for custom conditions 6d876fd
 * normalized modules to work in esm and cjs 88ffcca
+* normalizing on usage options a3dd875
 * omit client package for now 6f16b17
 * optional parameter in connect 606b68b
 * output formatting f747eff
