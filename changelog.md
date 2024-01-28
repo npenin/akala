@@ -1,4 +1,4 @@
-#  (2024-01-27)
+#  (2024-01-28)
 
 
 ### Bug Fixes
@@ -234,6 +234,7 @@
 * inject usage after move to full meta cmd 2cbda96
 * injector inheritance fa3f724
 * interact errors happen on program and not root 363c943
+* interacterror support 8d37bc7
 * json model definition parsing 0770dab
 * json schema internal references 409c98d
 * jsonrpc now breaks with standard jsonrpc error aa06e7c
