@@ -245,8 +245,7 @@ export default class Configuration<T extends object = SerializableObject>
     {
         const self = this[unwrap];
         const secret = self.get<{ iv: string, value: string }>(key).extract();
-        const enc = new TextEncoder();
-        return aesDecrypt(enc.encode(secret.value), self.cryptKey, enc.encode(secret.iv));
+        return aesDecrypt(Buffer.from(secret.value, 'base64'), self.cryptKey, Buffer.from(secret.iv, 'base64'));
     }
 
     public has(key?: string): boolean
@@ -291,7 +290,7 @@ export default class Configuration<T extends object = SerializableObject>
         if (!self.cryptKey)
             self.cryptKey = secret.key;
         const enc = new TextDecoder()
-        self.set(key, { iv: enc.decode(secret.iv), value: enc.decode(secret.ciphertext) });
+        self.set(key, { iv: Buffer.from(secret.iv).toString('base64'), value: Buffer.from(secret.ciphertext).toString('base64') });
     }
 
     public delete(key: Exclude<keyof T, symbol | number>): void
