@@ -148,6 +148,7 @@
 * embrace esm even more 3e7d10a
 * embrace esm even more b3b8e9d
 * enable jsonrpc on clients 0adf62b
+* encode secrets to base64 97c3145
 * ensure vanilla leverages generators 0aedf98
 * enumerate on configuration objects a61e720
 * error flow in composite middleware ec36174
