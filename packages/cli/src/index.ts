@@ -21,7 +21,7 @@ export class InteractError extends Error
 
 export function supportInteract(cli: NamespaceMiddleware)
 {
-    return async (err: InteractError, context) =>
+    return async (err: InteractError, context: CliContext) =>
     {
 
         if (err.code === 'INTERACT')
@@ -39,7 +39,7 @@ export function supportInteract(cli: NamespaceMiddleware)
             }
             else
                 context.args.push(value);
-            return await program.process(context);
+            return await cli.process(context);
         }
         throw err;
     }
