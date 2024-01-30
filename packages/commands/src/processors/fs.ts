@@ -10,12 +10,12 @@ import { ExtendedConfigurations, jsonObject } from '../metadata/index.js';
 import { MiddlewarePromise } from '@akala/core';
 import { eachAsync } from '@akala/core';
 import { createRequire } from 'module';
-import { addHandler, parseQueryString } from '../protocol-handler.js';
+import { HandlerResult, handlers, parseQueryString } from '../protocol-handler.js';
 import { stat } from 'fs/promises';
 import os from 'node:os'
 import { fileURLToPath, pathToFileURL } from 'url';
 
-async function protocolHandler(url: URL)
+async function protocolHandler(url: URL, handler: HandlerResult<FileSystem>)
 {
     let options: DiscoveryOptions = parseQueryString(url);
     if (url.searchParams.has('ignoreFileWithNoDefaultExport'))
@@ -40,11 +40,12 @@ async function protocolHandler(url: URL)
         else
             options.relativeTo = p;
 
-    return { processor: new FileSystem(options.relativeTo), getMetadata: () => FileSystem.discoverMetaCommands(p, options) }
+    handler.processor = new FileSystem(options.relativeTo);
+    handler.getMetadata = () => FileSystem.discoverMetaCommands(p, options);
 }
 
-addHandler('fs', protocolHandler);
-addHandler('file', protocolHandler);
+handlers.useProtocol('fs', protocolHandler);
+handlers.useProtocol('file', protocolHandler);
 
 
 export interface FileSystemConfiguration extends Metadata.Configuration

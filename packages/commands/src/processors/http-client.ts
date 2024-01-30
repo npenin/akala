@@ -3,26 +3,27 @@ import * as pathRegexp from 'path-to-regexp';
 import { CommandProcessor } from '../model/processor.js';
 import { Command, Configuration } from '../metadata/index.js';
 import { Container } from '../model/container.js';
-import { HandlerResult, addHandler } from '../protocol-handler.js';
+import { HandlerResult, handlers } from '../protocol-handler.js';
+import { handler } from './jsonrpc.js';
 
 export class HttpClient extends CommandProcessor
 {
 
-    public static handler(protocol: 'http' | 'https'): (url: URL) => Promise<HandlerResult<HttpClient>>
+    public static handler(protocol: 'http' | 'https'): (url: URL, handler: HandlerResult<HttpClient>) => Promise<void>
     {
         const injector = new Injector();
-        return function (url)
+        return async function (url, handler)
         {
             url = new URL(url);
             url.protocol = protocol;
             const resolveUrl = (s: string) => new URL(s, url).toString();
             injector.register('$resolveUrl', resolveUrl);
-            return Promise.resolve({
-                processor: new HttpClient(injector), getMetadata()
-                {
-                    return injector.injectWithName(['$http'], async (http: Http) => (await http.call(HttpClient.buildCall({ method: 'GET', route: '$metadata' }, resolveUrl))).json())(this)
-                }
-            })
+            handler.
+                processor = new HttpClient(injector);
+            handler.getMetadata = function ()
+            {
+                return injector.injectWithName(['$http'], async (http: Http) => (await http.call(HttpClient.buildCall({ method: 'GET', route: '$metadata' }, resolveUrl))).json())(this)
+            }
         }
     }
 
@@ -139,8 +140,8 @@ export class HttpClient extends CommandProcessor
     }
 }
 
-addHandler('http', HttpClient.handler('http'));
-addHandler('https', HttpClient.handler('https'));
+handlers.useProtocol('http', HttpClient.handler('http'));
+handlers.useProtocol('https', HttpClient.handler('https'));
 
 export interface HttpConfiguration extends Configuration
 {
