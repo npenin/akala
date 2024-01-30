@@ -1,4 +1,4 @@
-#  (2024-01-28)
+#  (2024-01-30)
 
 
 ### Bug Fixes
@@ -585,10 +585,12 @@
 * add the possibility to load programs with file urls dbbc1a6
 * add translation support on documentation 168cbbf
 * add typed variant fcdd604
+* add url handler 623cb3b
 * add where signature for more flexibility a8d0f14
 * add windows service install support 3b9af3a
 * added winston as a logger system 065bae0
 * allow for relative path in cli bcccff1
+* allow more string "errors" in router 1a9608f
 * allow to keepOrder in distinct e6eb507
 * cli now supports stream results 155e7ba
 * considered as v1.0 3ed2008
@@ -646,6 +648,7 @@
 * support oneway messages by throwing undefined 6a18260
 * switch from yarn version to manual bump 56c3e0a
 * switch to ESM decorators 19762ba
+* switch to URL handler for processor registration 341872b
 * switched from raw debug to logger from core efef2da
 * update command behavior 2fb6184
 * update configuration structure 8a395ff
