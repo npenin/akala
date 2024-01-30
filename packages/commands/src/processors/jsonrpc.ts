@@ -5,11 +5,11 @@ import { Container } from '../model/container.js';
 import { Local } from './local.js';
 import { Readable } from 'stream';
 import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam, SerializableObject, TypedSerializableObject } from '@akala/core';
-import { HandlerResult, addHandler } from '../protocol-handler.js';
+import { HandlerResult, handlers } from '../protocol-handler.js';
 
 type OnlyArray<T> = Extract<T, unknown[]>;
 
-export async function handler(url): Promise<HandlerResult<JsonRpc>>
+export async function handler(url: URL, handler: HandlerResult<JsonRpc>): Promise<void>
 {
     const socket = await new Promise<jsonrpcws.SocketAdapter>((resolve) =>
     {
@@ -21,15 +21,14 @@ export async function handler(url): Promise<HandlerResult<JsonRpc>>
     });
     const connection = JsonRpc.getConnection(socket);
 
-    return {
-        processor: new JsonRpc(connection, true), getMetadata: () => new Promise<Command[]>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
-            typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
-        ))
-    };
+    handler.processor = new JsonRpc(connection, true);
+    handler.getMetadata = () => new Promise<Command[]>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
+        typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
+    ))
 }
 
-addHandler('ws', handler);
-addHandler('wss', handler);
+handlers.useProtocol('ws', handler);
+handlers.useProtocol('wss', handler);
 
 export class JsonRpc extends CommandProcessor
 {

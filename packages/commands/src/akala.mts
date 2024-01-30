@@ -1,13 +1,13 @@
 import { program as root, ErrorMessage, NamespaceMiddleware } from "@akala/cli"
 import { Injector, mapAsync } from "@akala/core"
 import commands from "./commands.js";
-import { Cli, ServeOptions, registerCommands } from "./index.js";
+import { Cli, ICommandProcessor, ServeOptions, registerCommands } from "./index.js";
 import { Container } from "./model/container.js";
 import $serve from "./commands/$serve.js";
 import { Configurations } from "./metadata/configurations.js";
-import getHandler, { getHandlers } from "./protocol-handler.js";
 import { dirname, isAbsolute, resolve } from "node:path";
 import { Local } from "./processors/local.js";
+import { HandlerResult, handlers } from "./protocol-handler.js";
 const serveDefinition: Configurations = await import('../' + '../src/commands/$serve.json', { assert: { type: 'json' } }).then(x => x.default)
 
 export default function (config, program: NamespaceMiddleware<{ configFile: string }>)
@@ -40,7 +40,10 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
                         uri = new URL('file://' + path);
                     }
                 }
-                const handler = await getHandler(uri.protocol, uri)
+                let handler: HandlerResult<ICommandProcessor> = {
+                    processor: null, getMetadata() { return Promise.resolve(null) }
+                };
+                await handlers.process(uri, handler)
 
                 cliContainer.processor.useMiddleware(51, handler.processor);
 
@@ -80,10 +83,13 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
         try
         {
             const url = new URL(context.options.path);
-            getHandlers(url.protocol.substring(0, url.protocol.length - 1))
+            handlers.protocol.process(url, { processor: null, getMetadata: () => void 0 })
+            console.log('pwet');
         }
         catch (e)
         {
+            console.error('pwet');
+            console.error(e);
         }
         context.state.commands[context.options.name] = context.options.path;
         return context.state.commit();

@@ -1,45 +1,29 @@
-import { ErrorWithStatus, eachAsync } from "@akala/core";
+import { ErrorWithStatus, UrlHandler, eachAsync } from "@akala/core";
 import { CommandProcessor, ICommandProcessor, Metadata } from "./index.browser.js";
 
-export default function getHandler(protocol: string, url: URL)
-{
-    const processors = getHandlers(protocol.substring(0, protocol.length - 1));
-    return processors.reduce((previous, current) =>
-    {
-        return previous.then(p => current(url, p))
-    }, Promise.resolve<ReturnType<handler<ICommandProcessor>>>(null))
-}
+// export default function getHandler(protocol: string, url: URL)
+// {
+//     const processors = getHandlers(protocol.substring(0, protocol.length - 1));
+//     return processors.reduce((previous, current) =>
+//     {
+//         return previous.then(p => current(url, p))
+//     }, Promise.resolve<ReturnType<handler<ICommandProcessor>>>(null))
+// }
 
-export function getHandlers(protocol: string)
-{
-    const protocols = protocol.split('+');
-    const result = protocols.map(v => handlers[v]);
-    let x: number;
-    if ((x = result.findIndex(x => x === undefined)) !== -1)
-        throw new ErrorWithStatus(404, `No handler could be found for the protocol ${protocols[x]}`)
-    return result;
-}
+// export function getHandlers(protocol: string)
+// {
+//     const protocols = protocol.split('+');
+//     const result = protocols.map(v => handlers[v]);
+//     let x: number;
+//     if ((x = result.findIndex(x => x === undefined)) !== -1)
+//         throw new ErrorWithStatus(404, `No handler could be found for the protocol ${protocols[x]}`)
+//     return result;
+// }
 
 export type HandlerResult<T> = { processor: T, getMetadata(): Promise<Metadata.Command[]> };
-export type handler<T> = (arg1: URL, arg2: HandlerResult<ICommandProcessor>) => Promise<HandlerResult<T>>
+export type handler<T> = (arg1: URL, arg2: HandlerResult<T>) => Promise<void>
 
-const handlers: Record<string, handler<ICommandProcessor>> = {}
-
-export function addHandler<T extends ICommandProcessor>(protocol: string, handler: handler<T>)
-{
-    if (!handlers[protocol])
-        handlers[protocol] = handler;
-    else
-        throw new ErrorWithStatus(409, 'Another handler is already registered for the protocol ' + protocol)
-}
-
-export function removeHandler(protocol: string)
-{
-    if (handlers[protocol])
-        delete handlers[protocol]
-    else
-        throw new ErrorWithStatus(404, 'There is no handler registered for the protocol ' + protocol)
-}
+export const handlers = new UrlHandler<[URL, HandlerResult<ICommandProcessor>]>();
 
 export function parseQueryString(url: URL)
 {
