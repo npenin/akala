@@ -1,9 +1,11 @@
 import { Middleware, MiddlewareComposite, MiddlewarePromise, Routable, Router } from "./index.js";
 
-export class UrlHandler<T extends [URL, ...unknown[]]> implements Middleware<T>
+type MiddlewareError = 'break' | 'loop' | void;
+
+export class UrlHandler<T extends [URL, ...unknown[]], TResult = unknown> implements Middleware<T>
 {
-    protocol: MiddlewareComposite<unknown[]>;
-    host: MiddlewareComposite<unknown[]>;
+    protocol: MiddlewareComposite<T, MiddlewareError>;
+    host: MiddlewareComposite<T>;
     router: Router<[Routable, ...T]>;
     constructor()
     {
@@ -12,21 +14,38 @@ export class UrlHandler<T extends [URL, ...unknown[]]> implements Middleware<T>
         this.router = new Router('path');
     }
 
-    public process(...context: T)
+    public process(...context: T): Promise<TResult>
     {
         return this.handle(...context).then(v => { throw v }, e => e);
     }
 
+    public useProtocol(protocol: string, action: (...args: T) => Promise<TResult>)
+    {
+        const handler = new UrlHandler.Protocol(protocol);
+        this.protocol.useMiddleware(handler);
+        return handler.use(action);
+    }
+
+    public useHost(host: string, action: (...args: T) => Promise<TResult>)
+    {
+        const handler = new UrlHandler.Host(host);
+        this.host.useMiddleware(handler);
+        handler.use(action);
+        return handler;
+    }
+
     public async handle(...context: T): MiddlewarePromise
     {
-        let error = this.protocol.handle(context);
+        let error = await this.protocol.handle(...context);
+        while (error === 'loop')
+            error = await this.protocol.handle(...context);
         if (error)
             return error;
-        error = this.host.handle(context);
+        error = await this.host.handle(...context);
         if (error)
             return error;
         let params: Routable['params'];
-        error = this.router.handle({
+        error = await this.router.handle({
             path: context[0].pathname, get params()
             {
                 if (params)
@@ -49,34 +68,38 @@ export class UrlHandler<T extends [URL, ...unknown[]]> implements Middleware<T>
 
 export namespace UrlHandler
 {
-    export class Protocol<T extends [URL, ...unknown[]]> extends MiddlewareComposite<T>
+    export class Protocol<T extends [URL, ...unknown[]]> extends MiddlewareComposite<T, MiddlewareError>
     {
-        constructor(private protocol: string)
+        constructor(public readonly protocol: string)
         {
             super();
-            //safeguarding protocol
-            if (!protocol.endsWith(':'))
-                this.protocol = protocol + ':';
+            if (protocol.endsWith(':'))
+                this.protocol = protocol.substring(0, protocol.length - 1);
         }
 
-        handle(...context: T): MiddlewarePromise
+        async handle(...context: T): MiddlewarePromise<MiddlewareError>
         {
-            if (context[0].protocol === this.protocol)
+            if (context[0].protocol == this.protocol + ':')
             {
                 return super.handle(...context);
+            }
+            else if (context[0].protocol.startsWith(this.protocol + '+'))
+            {
+                context[0].protocol = context[0].protocol.substring(this.protocol.length + 2);
+                return Promise.resolve('loop');
             }
             return;
         }
 
     }
-    export class Host<T extends [URL, ...unknown[]]> extends MiddlewareComposite<T>
+    export class Host<T extends [URL, ...unknown[]]> extends MiddlewareComposite<T, MiddlewareError>
     {
         constructor(private host: string)
         {
             super();
         }
 
-        handle(...context: T): MiddlewarePromise
+        handle(...context: T): MiddlewarePromise<MiddlewareError>
         {
             if (context[0].host === this.host)
             {

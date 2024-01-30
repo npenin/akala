@@ -1,5 +1,5 @@
 import { eachAsync } from '../helpers.js';
-import { AnyMiddleware, ErrorMiddleware, Middleware, MiddlewareError, MiddlewarePromise, MiddlewareResult, MiddlewareSuccess, OptionsResponse } from './shared.js';
+import { AnyMiddleware, ErrorMiddleware, Middleware, MiddlewareError, MiddlewarePromise, MiddlewareResult, MiddlewareSuccess, OptionsResponse, SpecialNextParam } from './shared.js';
 
 
 export function convertToMiddleware<T extends unknown[]>(fn: (...args: T) => Promise<unknown>): Middleware<T>
@@ -36,14 +36,14 @@ export function convertToErrorMiddleware<T extends unknown[]>(fn: (error: Error 
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface, @typescript-eslint/no-unused-vars
-export interface ExtendableCompositeMiddleware<T extends unknown[]> { }
+export interface ExtendableCompositeMiddleware<T extends unknown[], TSpecialNextParam extends string | void = SpecialNextParam> { }
 
-export function isMiddlewareError(x: MiddlewareError<unknown> | MiddlewareSuccess<unknown>): x is MiddlewareError<unknown>
+export function isMiddlewareError<TSpecialNextParam extends SpecialNextParam = SpecialNextParam>(x: MiddlewareError<MiddlewareResult<TSpecialNextParam>> | MiddlewareSuccess<unknown>): x is MiddlewareError<MiddlewareResult<TSpecialNextParam>>
 {
     return typeof x['error'] != 'undefined';
 }
 
-export class MiddlewareComposite<T extends unknown[]> implements Middleware<T>, ExtendableCompositeMiddleware<T>
+export class MiddlewareComposite<T extends unknown[], TSpecialNextParam extends string | void = SpecialNextParam> implements Middleware<T, TSpecialNextParam>, ExtendableCompositeMiddleware<T, TSpecialNextParam>
 {
     public readonly name?: string
 
@@ -122,7 +122,7 @@ export class MiddlewareComposite<T extends unknown[]> implements Middleware<T>, 
         }
     }
 
-    public async handle(...req: T): MiddlewarePromise
+    public async handle(...req: T): MiddlewarePromise<TSpecialNextParam>
     {
         let error: Error | OptionsResponse = undefined;
         let failed: boolean = undefined;
