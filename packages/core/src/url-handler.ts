@@ -2,7 +2,7 @@ import { Middleware, MiddlewareComposite, MiddlewarePromise, Routable, Router } 
 
 type MiddlewareError = 'break' | 'loop' | void;
 
-export class UrlHandler<T extends [URL, ...unknown[]], TResult = unknown> implements Middleware<T>
+export class UrlHandler<T extends [URL, Partial<TResult>, ...unknown[]], TResult extends object = object> implements Middleware<T>
 {
     protocol: MiddlewareComposite<T, MiddlewareError>;
     host: MiddlewareComposite<T>;
@@ -14,24 +14,27 @@ export class UrlHandler<T extends [URL, ...unknown[]], TResult = unknown> implem
         this.router = new Router('path');
     }
 
+    /**
+     * warning ! the second parameter needs to be not null as we will assign properties to it. 
+     * @returns 
+     */
     public process(...context: T): Promise<TResult>
     {
-        return this.handle(...context).then(v => { throw v }, e => e);
+        return this.handle(...context).then(v => { throw v }, () => context[1] as TResult);
     }
 
     public useProtocol(protocol: string, action: (...args: T) => Promise<TResult>)
     {
-        const handler = new UrlHandler.Protocol(protocol);
+        const handler = new UrlHandler.Protocol<T>(protocol);
         this.protocol.useMiddleware(handler);
-        return handler.use(action);
+        return handler.use((...context) => action(...context).then(result => Object.assign(context[1], result)));
     }
 
     public useHost(host: string, action: (...args: T) => Promise<TResult>)
     {
-        const handler = new UrlHandler.Host(host);
+        const handler = new UrlHandler.Host<T>(host);
         this.host.useMiddleware(handler);
-        handler.use(action);
-        return handler;
+        return handler.use((...context) => action(...context).then(result => Object.assign(context[1], result)));
     }
 
     public async handle(...context: T): MiddlewarePromise

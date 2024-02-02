@@ -9,7 +9,7 @@ import { HandlerResult, handlers } from '../protocol-handler.js';
 
 type OnlyArray<T> = Extract<T, unknown[]>;
 
-export async function handler(url: URL, handler: HandlerResult<JsonRpc>): Promise<void>
+export async function handler(url: URL): Promise<HandlerResult<JsonRpc>>
 {
     const socket = await new Promise<jsonrpcws.SocketAdapter>((resolve) =>
     {
@@ -21,10 +21,12 @@ export async function handler(url: URL, handler: HandlerResult<JsonRpc>): Promis
     });
     const connection = JsonRpc.getConnection(socket);
 
-    handler.processor = new JsonRpc(connection, true);
-    handler.getMetadata = () => new Promise<Command[]>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
-        typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
-    ))
+    return {
+        processor: new JsonRpc(connection, true),
+        getMetadata: () => new Promise<Command[]>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
+            typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
+        ))
+    }
 }
 
 handlers.useProtocol('ws', handler);
