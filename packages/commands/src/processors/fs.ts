@@ -10,12 +10,12 @@ import { ExtendedConfigurations, jsonObject } from '../metadata/index.js';
 import { MiddlewarePromise } from '@akala/core';
 import { eachAsync } from '@akala/core';
 import { createRequire } from 'module';
-import { HandlerResult, handlers, parseQueryString } from '../protocol-handler.js';
+import { handlers, parseQueryString } from '../protocol-handler.js';
 import { stat } from 'fs/promises';
 import os from 'node:os'
 import { fileURLToPath, pathToFileURL } from 'url';
 
-async function protocolHandler(url: URL, handler: HandlerResult<FileSystem>)
+async function protocolHandler(url: URL)
 {
     let options: DiscoveryOptions = parseQueryString(url);
     if (url.searchParams.has('ignoreFileWithNoDefaultExport'))
@@ -40,8 +40,7 @@ async function protocolHandler(url: URL, handler: HandlerResult<FileSystem>)
         else
             options.relativeTo = p;
 
-    handler.processor = new FileSystem(options.relativeTo);
-    handler.getMetadata = () => FileSystem.discoverMetaCommands(p, options);
+    return { processor: new FileSystem(options.relativeTo), getMetadata: () => FileSystem.discoverMetaCommands(p, options) }
 }
 
 handlers.useProtocol('fs', protocolHandler);

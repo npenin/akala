@@ -18,8 +18,7 @@ export class LogProcessor extends EventProcessor
     }
 }
 
-handlers.useProtocol('log', async (_url, handler) =>
+handlers.useProtocol('log', (_url, inner) =>
 {
-    const inner = { ...handler };
-    handler.processor = new LogProcessor(inner.processor, (...args) => console.log(args), (...args) => console.log(args));
+    return Promise.resolve({ processor: new LogProcessor(inner.processor, (...args) => console.log(args), (...args) => console.log(args)), getMetadata: inner.getMetadata });
 })

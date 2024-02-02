@@ -4,26 +4,25 @@ import { CommandProcessor } from '../model/processor.js';
 import { Command, Configuration } from '../metadata/index.js';
 import { Container } from '../model/container.js';
 import { HandlerResult, handlers } from '../protocol-handler.js';
-import { handler } from './jsonrpc.js';
 
 export class HttpClient extends CommandProcessor
 {
 
-    public static handler(protocol: 'http' | 'https'): (url: URL, handler: HandlerResult<HttpClient>) => Promise<void>
+    public static handler(protocol: 'http' | 'https'): (url: URL) => Promise<HandlerResult<HttpClient>>
     {
         const injector = new Injector();
-        return async function (url, handler)
+        return function (url)
         {
             url = new URL(url);
             url.protocol = protocol;
             const resolveUrl = (s: string) => new URL(s, url).toString();
             injector.register('$resolveUrl', resolveUrl);
-            handler.
-                processor = new HttpClient(injector);
-            handler.getMetadata = function ()
-            {
-                return injector.injectWithName(['$http'], async (http: Http) => (await http.call(HttpClient.buildCall({ method: 'GET', route: '$metadata' }, resolveUrl))).json())(this)
-            }
+            return Promise.resolve({
+                processor: new HttpClient(injector), getMetadata()
+                {
+                    return injector.injectWithName(['$http'], async (http: Http) => (await http.call(HttpClient.buildCall({ method: 'GET', route: '$metadata' }, resolveUrl))).json())(this)
+                }
+            })
         }
     }
 
