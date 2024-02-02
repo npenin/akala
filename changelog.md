@@ -1,4 +1,4 @@
-#  (2024-01-30)
+#  (2024-02-02)
 
 
 ### Bug Fixes
@@ -406,6 +406,7 @@
 * sidecar to remote containers f795c56
 * sidecar use pm when provided bf320f3
 * silent disconnect failures 81d65aa
+* simplify url handler 09b9261
 * smaller secret footprint b41b636
 * sort excludes non workspace dependencies 0f33d15
 * sort supports correct structure bf17f91
