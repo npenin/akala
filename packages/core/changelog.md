@@ -1,10 +1,9 @@
-#  (2024-01-30)
+#  (2024-02-02)
 
 
-### Features
+### Bug Fixes
 
-* add url handler 623cb3b
-* allow more string "errors" in router 1a9608f
+* simplify url handler 09b9261
 
 
 
