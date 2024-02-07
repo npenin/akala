@@ -1,4 +1,4 @@
-#  (2024-02-02)
+#  (2024-02-07)
 
 
 ### Bug Fixes
@@ -156,6 +156,7 @@
 * error support in jsonrpc 82c2f34
 * exclude urls from normalization a4915c9
 * export AggregateErrors f4285e2
+* export Configurations type to allow augmentation e2851fc
 * export parseMetadata 8870389
 * expose jsonrpc client id fd0f873
 * fix after config upgrade 90625ec
@@ -177,6 +178,8 @@
 * force socket processor on pm forks 0874275
 * fork broken 8a998fc
 * fork knows about pm metadata ef4ebdc
+* form serialization 69c521c
+* form serialization d45c28a
 * fs discovery 0d34eea
 * fs middleware after discovery changes d97fcca
 * fs processor too catchy ccafa48
@@ -559,6 +562,7 @@
 * add processing with lambda 650c4f5
 * add protocol handlers dc6c1b6
 * add protocol parser from domojs 9c50b37
+* add pubsub trigger c98ffd1
 * add reload-metadata on pm 654247f
 * add rest args on cli e6966a9
 * add runnerMiddleware as export ff4c95a
