@@ -1,11 +1,10 @@
 import { Metadata, Trigger } from "@akala/commands";
 import commands from "./container.js";
 
+type jsonObject = Metadata.jsonObject;
+
 declare module '@akala/commands'
 {
-    type jsonObject = {
-        [key: string]: Metadata.jsonObject | Metadata.jsonPrimitive | Metadata.jsonPrimitive[] | Metadata.jsonObject[];
-    }
     export interface Configurations
     {
         pubsub?: jsonObject & PubSubConfiguration;
