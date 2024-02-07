@@ -1,9 +1,10 @@
-#  (2024-02-02)
+#  (2024-02-07)
 
 
 ### Bug Fixes
 
-* simplify url handler 09b9261
+* form serialization 69c521c
+* form serialization d45c28a
 
 
 
