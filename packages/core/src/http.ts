@@ -155,7 +155,7 @@ export class FetchHttp implements Http<Response>
     }
 
 
-    public static serialize(obj, prefix?: string)
+    public static serialize(obj, prefix?: string): string
     {
         return map(obj, function (value, key: string)
         {
@@ -177,7 +177,7 @@ export class FetchHttp implements Http<Response>
             {
                 return (prefix || '') + encodeURIComponent(key) + '=' + encodeURIComponent(value);
             }
-        }, true)
+        }, true).join('&')
     }
 
 }
