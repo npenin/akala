@@ -3,9 +3,12 @@ import commands from "./container.js";
 
 declare module '@akala/commands'
 {
+    type jsonObject = {
+        [key: string]: Metadata.jsonObject | Metadata.jsonPrimitive | Metadata.jsonPrimitive[] | Metadata.jsonObject[];
+    }
     export interface Configurations
     {
-        pubsub?: PubSubConfiguration;
+        pubsub?: jsonObject & PubSubConfiguration;
     }
 }
 
