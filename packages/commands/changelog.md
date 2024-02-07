@@ -1,9 +1,9 @@
-#  (2024-02-02)
+#  (2024-02-07)
 
 
 ### Bug Fixes
 
-* simplify url handler 09b9261
+* export Configurations type to allow augmentation e2851fc
 
 
 
