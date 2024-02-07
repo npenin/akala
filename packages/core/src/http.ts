@@ -132,7 +132,7 @@ export class FetchHttp implements Http<Response>
                     break;
                 case 'form':
                     init.headers['Content-Type'] = 'multipart/form-data';
-                    if (!(init.body instanceof FormData) && typeof init.body == 'undefined')
+                    if (!(init.body instanceof FormData) && typeof init.body !== 'undefined')
                         init.body = FetchHttp.serialize(init.body);
                     break;
             }
