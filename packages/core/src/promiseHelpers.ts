@@ -67,6 +67,14 @@ export class Deferred<T, TError = Error> implements PromiseLike<T>
     }
 }
 
+export function delay(delay: number)
+{
+    return new Promise((resolve) =>
+    {
+        setTimeout(resolve, delay);
+    })
+}
+
 export function whenOrTimeout<T>(promise: PromiseLike<T>, timeoutInMs: number): PromiseLike<T>
 {
     return new Promise<T>((resolve, reject) =>

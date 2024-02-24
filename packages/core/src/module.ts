@@ -39,7 +39,7 @@ export class ExtendableEvent<T = void>
         })
     }
 
-    private handlers: ((ev: this) => void | PromiseLike<T>)[] = [];
+    private handlers: ((ev: this) => void | Promise<T>)[] = [];
 
     public eventArgs: T;
 
@@ -49,13 +49,13 @@ export class ExtendableEvent<T = void>
         {
             this.eventArgs = value;
             this._triggered = true;
-            await eachAsync(this.handlers, (f, i, next) =>
+            await eachAsync(this.handlers, (f, i) =>
             {
                 const result = f(this);
-                if (result && isPromiseLike(result) && typeof result.then === 'function')
-                    result.then(() => next(), next);
+                if (result && isPromiseLike(result))
+                    return result as Promise<void>;
                 else
-                    next();
+                    return Promise.resolve();
             });
         }
         await this.complete();
@@ -63,13 +63,13 @@ export class ExtendableEvent<T = void>
             this.reset();
     }
 
-    public removeHandler(handler: (ev: this) => void | PromiseLike<T>)
+    public removeHandler(handler: (ev: this) => void | Promise<T>)
     {
         const indexOfHandler = this.handlers.indexOf(handler);
         return indexOfHandler > -1 && this.handlers.splice(indexOfHandler, 1);
     }
 
-    public addHandler(handler: (ev: this) => void | PromiseLike<T>): void | (() => void)
+    public addHandler(handler: (ev: this) => void | Promise<T>): void | (() => void)
     {
         if (this._done || this._triggered)
         {
