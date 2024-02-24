@@ -182,7 +182,7 @@ export class FileSystem extends CommandProcessor
                     await eachAsync(parentCommands, async c =>
                     {
                         if (commands.find(c2 => c.name == c2.name))
-                            return false;
+                            return;
                         if (c.config?.fs?.path)
                             c.config.fs.path = path.resolve(path.dirname(await resolveFolder(cmdRequire, subPath)), c.config.fs.path);
                         if (c.config?.fs?.source)
@@ -360,7 +360,7 @@ export class FileSystem extends CommandProcessor
             else
                 if (f.isDirectory() && options && options.recursive)
                     commands.push(...(await FileSystem.discoverMetaCommands(path.join(root, f.name), options)).map(c => ({ name: (options.flatten ? '' : (f.name + '.')) + c.name, config: c.config })));
-        }, null, false);
+        }, false);
 
         return commands.sort((a, b) =>
         {

@@ -53,23 +53,18 @@ common.$$injector.activate([], function ()
 
 export function load(...scripts: string[]): Promise<unknown>
 {
-    return new Promise((resolve) =>
+    const firstScriptTag = document.getElementsByTagName('script')[0]; // find the first script tag in the document
+    return core.eachAsync(scripts, function (script, i)
     {
-        const firstScriptTag = document.getElementsByTagName('script')[0]; // find the first script tag in the document
-        core.eachAsync(scripts, function (script, i, next)
+        const scriptTag = document.createElement('script'); // create a script tag
+        firstScriptTag.parentNode.insertBefore(scriptTag, firstScriptTag); // append the script to the DOM
+        const result = new Promise<void>(resolve => scriptTag.addEventListener('load', function ()
         {
-            const scriptTag = document.createElement('script'); // create a script tag
-            firstScriptTag.parentNode.insertBefore(scriptTag, firstScriptTag); // append the script to the DOM
-            scriptTag.addEventListener('load', function ()
-            {
-                next()
-            });
-            scriptTag.src = script; // set the source of the script to your script
-        }, function ()
-        {
-            resolve(null);
-        });
-    });
+            resolve();
+        }));
+        scriptTag.src = script; // set the source of the script to your script
+        return result;
+    })
 }
 
 common.serviceModule.ready(['$location'], function ($location: location.LocationService)
