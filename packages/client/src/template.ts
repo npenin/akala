@@ -190,9 +190,9 @@ export class Template
     static async composeAll(items: ArrayLike<HTMLElement>, data, root?: Element, options?: { [key: string]: unknown }): Promise<IControlInstance<unknown>[]>
     {
         const result: IControlInstance<unknown>[] = [];
-        return await akala.eachAsync(this.composers, (composer) =>
+        return await akala.eachAsync(this.composers, async (composer) =>
         {
-            return this.compose(composer, items, data, root, options && options[composer.optionName]).then(instances => result.push(...instances));
+            await this.compose(composer, items, data, root, options && options[composer.optionName]).then(instances => result.push(...instances));
         }, true).then(() => result);
     }
 
@@ -221,10 +221,10 @@ export class Template
         else
         {
             const promises: PromiseLike<void>[] = [];
-            akala.eachAsync(filter(items, composer.selector), function (item)
+            akala.each(filter(items, composer.selector), function (item)
             {
                 promises.push(composer.apply(item, data, options).then(c => { instances.push(...c) }));
-            }, false);
+            });
             if (promises.length)
                 return Promise.all(promises).then(() => instances);
             // return element;
