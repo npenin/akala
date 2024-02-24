@@ -1,9 +1,9 @@
-#  (2024-02-07)
+#  (2024-02-24)
 
 
 ### Bug Fixes
 
-* export Configurations type to allow augmentation e2851fc
+* update after core changes 576dc73
 
 
 
