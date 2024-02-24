@@ -7,7 +7,8 @@ import { Formatter, FormatterFactory } from './formatters/common.js';
 // import http from 'http';
 // import https from 'https';
 import { Injected } from './injector.js';
-import { Middleware, MiddlewareComposite, convertToMiddleware } from './index.js';
+import { MiddlewareComposite } from './router/composite.js';
+import type { Middleware } from './router/shared.js';
 
 
 export interface HttpOptions<T>
