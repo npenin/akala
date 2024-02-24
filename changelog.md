@@ -1,4 +1,4 @@
-#  (2024-02-07)
+#  (2024-02-24)
 
 
 ### Bug Fixes
@@ -26,6 +26,7 @@
 * add processCommand as exported function 6f3e8d6
 * add recursive path creation 3f7ffa7
 * add remote type (for async ops) edd9b3b
+* add salt on User model 51b2f11
 * add source map flag when running cli f1d4c85
 * add stdin to pm cli e07437a
 * add support for more types (doc and style) 16c929d
@@ -387,6 +388,7 @@
 * remove winston dependency 3dcad68
 * removed mock-require usage 99587ba
 * removed mock-require usage 448f5be
+* rename aws-sdk f4dfa32
 * rename package 87b433b
 * require dependent packages broken 66a3877
 * reset minor and patch number depending on the bump 1a1a0da
@@ -397,6 +399,7 @@
 * revert some changes to fix build 77b19cf
 * run 3f574ee
 * runnerMiddleware more type friendly 7bf1a25
+* runtime bug 53caad3
 * secret key transfer to nested config 77702ce
 * set log level for any namespace e1b1025
 * shebang on akala CLI e893277
@@ -445,6 +448,7 @@
 * typing 8851307
 * unliased interact errors a16496a
 * unparse options eed10c8
+* update after core changes 576dc73
 * update after the breaking change in conventional changelog 12078eb
 * update after the breaking change in conventional changelog 76ebf7f
 * update after the breaking change in conventional changelog d6ed3d0
@@ -510,6 +514,7 @@
 
 ### Code Refactoring
 
+* remove next in async each/map/grep aaec2ab
 * rename app to sidecar e304029
 
 
@@ -534,6 +539,7 @@
 * add env to get command name b744175
 * add env to injectables 59915ab
 * add extends support df13246
+* add form-urlencoded as a content type 6bcb79e
 * add generate-schema d920d1b
 * add ignore failure support f9929cf
 * add init command 4ca928f
@@ -632,6 +638,7 @@
 * move to serve with AbortSignal 53d811d
 * moved to middleware approach 69d4ba5
 * new aws-lambda module 97806aa
+* new aws-sdk package e7c6217
 * open api generator considers schema if available b7736d6
 * options usage now replaces parameters in backticks b4ab80b
 * re-enable client publish 87a0f62
@@ -662,6 +669,7 @@
 
 ### BREAKING CHANGES
 
+* implementations using NextFunction will not work any longer.
 * new returns Promise to allow the key load when not provided
 * added signatures that may break dependent libraries
 * now evaluator returns a Promise and not the ParsedFunction directly
