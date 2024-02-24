@@ -12,4 +12,6 @@ export class User
     displayName: string;
     @db.Field(db.Types.string(36))
     password: string;
+    @db.Field(db.Types.string(36))
+    salt: string;
 }
