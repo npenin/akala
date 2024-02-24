@@ -1,7 +1,6 @@
 import { eachAsync } from '../helpers.js';
 import { AnyMiddleware, ErrorMiddleware, Middleware, MiddlewareError, MiddlewarePromise, MiddlewareResult, MiddlewareSuccess, OptionsResponse, SpecialNextParam } from './shared.js';
 
-
 export function convertToMiddleware<T extends unknown[]>(fn: (...args: T) => Promise<unknown>): Middleware<T>
 {
     return {
