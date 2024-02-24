@@ -1,4 +1,4 @@
-import { injectWithName } from './global-injector.js';
+import { injectWithName, register, registerFactory } from './global-injector.js';
 import { ParsedAny, Parser } from './parser/parser.js';
 import { each, map } from './each.js';
 import { module, TypedSerializableObject } from './helpers.js';
@@ -7,6 +7,7 @@ import { Formatter, FormatterFactory } from './formatters/common.js';
 // import http from 'http';
 // import https from 'https';
 import { Injected } from './injector.js';
+import { Middleware, MiddlewareComposite, convertToMiddleware } from './index.js';
 
 
 export interface HttpOptions<T>
@@ -16,7 +17,7 @@ export interface HttpOptions<T>
     queryString?: string | URLSearchParams;
     body?: BodyInit | TypedSerializableObject<T>;
     headers?: { [key: string]: string | number | Date };
-    contentType?: 'json' | 'form';
+    contentType?: 'json' | 'form' | 'form-urlencoded';
     type?: 'json' | 'xml' | 'text' | 'raw';
     // agent?: http.Agent | https.Agent;
 }
@@ -31,9 +32,17 @@ export interface Http<TResponse = Response>
     call<T>(options: HttpOptions<T>): PromiseLike<TResponse>;
 }
 
-@service('$http')
+export type CallInterceptor = Middleware<[RequestInit, Response]>
+
+register('$http-interceptors', new MiddlewareComposite('$http-interceptors'))
+
+@service('$http', '$http-interceptors')
 export class FetchHttp implements Http<Response>
 {
+    constructor(private interceptor: CallInterceptor)
+    {
+    }
+
     public get(url: string, params?: URLSearchParams)
     {
         return this.call({ url: url, method: 'GET', queryString: params });
@@ -130,6 +139,11 @@ export class FetchHttp implements Http<Response>
                     if (typeof (init.body) !== 'string')
                         init.body = JSON.stringify(init.body);
                     break;
+                case 'form-urlencoded':
+                    init.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+                    if (!(init.body instanceof FormData) && typeof init.body !== 'undefined')
+                        init.body = FetchHttp.serialize(init.body);
+                    break;
                 case 'form':
                     init.headers['Content-Type'] = 'multipart/form-data';
                     if (!(init.body instanceof FormData) && typeof init.body !== 'undefined')
@@ -140,18 +154,54 @@ export class FetchHttp implements Http<Response>
 
         // if (options.agent)
         //     init['agent'] = options.agent;
+        return this.fetch(new Request(options.url, init));
 
-        return fetch(options.url.toString(), init).then(r =>
+    }
+
+    private async fetch(req: Request)
+    {
+        if (this.interceptor)
         {
-            if (r.status == 302 || r.status == 301)
+            const r = await this.interceptor.handle(req, null).then(err =>
             {
-                if (!init.headers)
-                    init.headers = {};
-                init.headers['cookie'] = r.headers.get('set-cookie');
-                return fetch(new URL(r.headers.get('Location'), url), init);
-            }
-            return r;
-        });
+                if (err)
+                    throw err;
+            }, r => r);
+            if (r)
+                return r;
+        }
+
+        const res = await fetch(req);
+
+        if (this.interceptor)
+        {
+            const r = await this.interceptor.handle(req, res).then(err =>
+            {
+                if (err)
+                    throw err;
+            }, r => r)
+            if (r)
+                return r;
+        }
+        if (res.status == 302 || res.status == 301)
+        {
+            req.headers.set('cookie', res.headers.get('set-cookie'));
+
+            return await this.fetch(new Request(new URL(res.headers.get('Location'), req.url), req));
+        }
+
+        if (this.interceptor)
+        {
+            const r = await this.interceptor.handle(req, res).then(err =>
+            {
+                if (err)
+                    throw err;
+            }, r => r)
+            if (r)
+                return r;
+        }
+
+        return res;
     }
 
 
