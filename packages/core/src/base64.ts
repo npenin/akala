@@ -18,7 +18,7 @@ function b64ToUint6(nChr: number): number
                         : 0;
 }
 
-export function base64DecToArr(sBase64: string, nBlocksSize: number): Uint8Array
+export function base64DecToArr(sBase64: string, nBlocksSize?: number): Uint8Array
 {
     const sB64Enc = sBase64.replace(/[^A-Za-z0-9+/]/g, "");
     const nInLen = sB64Enc.length;
@@ -67,7 +67,47 @@ function uint6ToB64(nUint6)
                         : 65;
 }
 
-export function base64EncArr(aBytes: ArrayBuffer): string
+export function base64UrlEncArr(aBytes: Uint8Array): string
+{
+    return base64EncArr(aBytes).replaceAll('+', '-').replaceAll('/', '_').replace(/=+$/, '');
+}
+export function base64UrlDecToArr(s: string): Uint8Array
+{
+    s = s.replaceAll('-', '+').replaceAll('_', '/');
+    switch (s.length % 3)
+    {
+        case 0:
+            break;
+        case 1:
+            s += '=';
+            break;
+        case 2:
+            s += '==';
+            break;
+    }
+    return base64DecToArr(s.replaceAll('-', '+').replaceAll('_', '/'));
+}
+
+export function extractPrivateKey(pem: string)
+{
+    const pemHeader = "-----BEGIN PRIVATE KEY-----";
+    const pemFooter = "-----END PRIVATE KEY-----";
+    return base64DecToArr(pem.substring(
+        pemHeader.length,
+        pem.length - pemFooter.length - 1,
+    ));
+}
+export function extractPublicKey(pem: string)
+{
+    const pemHeader = "-----BEGIN PUBLIC KEY-----";
+    const pemFooter = "-----END PUBLIC KEY-----";
+    return base64DecToArr(pem.substring(
+        pemHeader.length,
+        pem.length - pemFooter.length - 1,
+    ));
+}
+
+export function base64EncArr(aBytes: Uint8Array, nBlocksSize?: number): string
 {
     let nMod3 = 2;
     let sB64Enc = "";
@@ -77,7 +117,7 @@ export function base64EncArr(aBytes: ArrayBuffer): string
     for (let nIdx = 0; nIdx < nLen; nIdx++)
     {
         nMod3 = nIdx % 3;
-        if (nIdx > 0 && ((nIdx * 4) / 3) % 76 === 0)
+        if (typeof (nBlocksSize) !== 'undefined' && nIdx > 0 && ((nIdx * 4) / 3) % nBlocksSize === 0)
         {
             sB64Enc += "\r\n";
         }
