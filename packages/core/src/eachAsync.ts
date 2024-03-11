@@ -12,16 +12,17 @@ export class AggregateErrors extends Error
     }
 }
 
-export function array<T, U extends unknown[]>(array: T[] | ArrayLike<T>, body: (element: T, i: number) => Promise<void>, waitForPrevious: boolean): Promise<void>
+export async function array<T>(array: T[] | ArrayLike<T>, body: (element: T, i: number) => Promise<void>, waitForPrevious: boolean): Promise<void>
 {
     if (typeof waitForPrevious == 'undefined')
         waitForPrevious = true;
 
     if (waitForPrevious)
-        if (Array.isArray(array))
-            return array.reduce((previous: Promise<void>, item, i) => previous.then(() => body(item, i)), Promise.resolve());
-        else
-            return Array.prototype.reduce.call(array, (previous: Promise<void>, item, i) => previous.then(() => body(item, i)), Promise.resolve()) as Promise<void>;
+        for (let index = 0; index < array.length; index++)
+        {
+            const element = array[index];
+            await body(element, index);
+        }
     else
         if (Array.isArray(array))
             return Promise.all(array.map(body)).then(() => { });
@@ -33,7 +34,7 @@ export function object<T, U extends unknown[] = []>(o: T, body: (element: T[keyo
 {
     if (typeof waitForPrevious == 'undefined')
         waitForPrevious = true;
-    return array<keyof T, U>(Object.keys(o) as (keyof T)[], (key, i) => body(o[key], key), waitForPrevious);
+    return array<keyof T>(Object.keys(o) as (keyof T)[], (key, i) => body(o[key], key), waitForPrevious);
 }
 
 export function each<T, TError, U extends unknown[]>(array: T[] | ArrayLike<T>, body: (element: T, i?: number) => Promise<void>, waitForPrevious?: boolean): Promise<void>
@@ -46,7 +47,7 @@ export function each(it: unknown[] | ArrayLike<unknown> | Record<string, unknown
 
 
     if (Array.isArray(it) || isArrayLike(it))
-        return array<unknown, []>(it, body, waitForPrevious);
+        return array<unknown>(it, body, waitForPrevious);
     return object<Record<string, unknown>, []>(it, body, waitForPrevious);
 }
 
