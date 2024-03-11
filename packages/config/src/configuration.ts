@@ -1,4 +1,4 @@
-import { Proxy, isProxy } from '@akala/core';
+import { Proxy, isProxy, base64 } from '@akala/core';
 import { Serializable, SerializableObject } from '@akala/core';
 import fs from 'fs/promises'
 import { inspect } from 'util'
@@ -245,7 +245,7 @@ export default class Configuration<T extends object = SerializableObject>
     {
         const self = this[unwrap];
         const secret = self.get<{ iv: string, value: string }>(key).extract();
-        return aesDecrypt(Buffer.from(secret.value, 'base64'), self.cryptKey, Buffer.from(secret.iv, 'base64'));
+        return aesDecrypt(base64.base64DecToArr(secret.value), self.cryptKey, base64.base64DecToArr(secret.iv));
     }
 
     public has(key?: string): boolean
@@ -290,7 +290,7 @@ export default class Configuration<T extends object = SerializableObject>
         if (!self.cryptKey)
             self.cryptKey = secret.key;
         const enc = new TextDecoder()
-        self.set(key, { iv: Buffer.from(secret.iv).toString('base64'), value: Buffer.from(secret.ciphertext).toString('base64') });
+        self.set(key, { iv: base64.base64EncArr(secret.iv), value: base64.base64EncArr(secret.ciphertext) });
     }
 
     public delete(key: Exclude<keyof T, symbol | number>): void
