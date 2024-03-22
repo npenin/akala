@@ -24,6 +24,7 @@ export default async function authorize(this: OIDCClientState, provider: string,
 
     const result: X = { endpoint, state, query: { state, client_id: this.providers[provider].clientId, scope: scope.join('+'), redirect_uri, response_type } };
 
+    //PKCE
     if (oidc.code_challenge_methods_supported && oidc.code_challenge_methods_supported.length)
     {
         if (oidc.code_challenge_methods_supported.indexOf('S256') > -1)
@@ -31,7 +32,7 @@ export default async function authorize(this: OIDCClientState, provider: string,
             result.verifier = crypto.randomUUID();
             const encoder = new TextEncoder();
             const data = encoder.encode(result.verifier);
-            result.query.code_challenge = base64.base64EncArr(await crypto.subtle.digest('SHA-256', data)).replace(/-/g, '+').replace(/_/g, '/');
+            result.query.code_challenge = base64.base64EncArr(new Uint8Array(await crypto.subtle.digest('SHA-256', data))).replace(/-/g, '+').replace(/_/g, '/');
             result.query.code_challenge_method = 'S256';
         }
         else if (oidc.code_challenge_methods_supported.indexOf('plain') > -1)
