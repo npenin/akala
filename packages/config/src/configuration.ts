@@ -290,7 +290,7 @@ export default class Configuration<T extends object = SerializableObject>
         if (!self.cryptKey)
             self.cryptKey = secret.key;
         const enc = new TextDecoder()
-        self.set(key, { iv: base64.base64EncArr(secret.iv), value: base64.base64EncArr(secret.ciphertext) });
+        self.set(key, { iv: base64.base64EncArr(secret.iv), value: base64.base64EncArr(new Uint8Array(secret.ciphertext)) });
     }
 
     public delete(key: Exclude<keyof T, symbol | number>): void
