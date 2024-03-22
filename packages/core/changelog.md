@@ -1,24 +1,10 @@
-#  (2024-02-24)
+#  (2024-03-22)
 
 
 ### Bug Fixes
 
-* runtime bug 53caad3
-
-
-### Code Refactoring
-
-* remove next in async each/map/grep aaec2ab
-
-
-### Features
-
-* add form-urlencoded as a content type 6bcb79e
-
-
-### BREAKING CHANGES
-
-* implementations using NextFunction will not work any longer.
+* eachAsync when pushing new items in the process b6e9573
+* improve consistency of base64 helpers ca29f9d
 
 
 
