@@ -43,7 +43,7 @@ jobs:
         with:
           eslint: true
       - name: Ensure CJS
-        run: yarn workspaces foreach -Ap --no-private --exclude "@akala/aws-lambda|@akala/aws-sdk|@akala/cli|@akala/sidecar|@akala/protocol-parser" exec "echo '{"'"type":"commonjs"}'"' > dist/cjs/package.json"
+        run: yarn workspaces foreach -Ap --no-private --exclude "@akala/aws-lambda|@akala/aws-sdk|@akala/jwt|@akala/cli|@akala/sidecar|@akala/protocol-parser" exec "echo '{"'"type":"commonjs"}'"' > dist/cjs/package.json"
       - name: publish updates
         run: node packages/automate/dist/esm/cli.js --loader @akala/automate-yamlloader --file @akala/semantic-release/publish.yml --verbose=silly
         env:
