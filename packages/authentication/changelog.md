@@ -1,9 +1,9 @@
-#  (2024-03-22)
+#  (2024-03-23)
 
 
 ### Features
 
-* add JWT serialization/parsing 066668d
+* add JWT dependency 4155ac6
 
 
 
