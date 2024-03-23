@@ -1,4 +1,4 @@
-#  (2024-02-24)
+#  (2024-03-22)
 
 
 ### Bug Fixes
@@ -144,6 +144,7 @@
 * downgrade all packages to support both cjs and mjs 991c494
 * downgrade all packages to support both cjs and mjs 56f6136
 * downgrade all packages to support both cjs and mjs 5c64966
+* eachAsync when pushing new items in the process b6e9573
 * edge case cli implementation 9b91c43
 * edge case with distinct 6cfd43b
 * embrace esm even more 3e7d10a
@@ -214,6 +215,7 @@
 * improve compiler (giving up for now) f23e3f6
 * improve config get return type c40bcd5
 * improve config typing d14ab8b
+* improve consistency of base64 helpers ca29f9d
 * improve error logging 1b4ae07
 * improve generate performance 88f6fee
 * improve get-version 2f156a3
@@ -440,6 +442,7 @@
 * support when @akala/config is not loaded 511f427
 * swap build dependencies f7d45dd
 * switch processes state to object 5aa41a4
+* switch to own base64 to prevent buffer dependencies 67ea439
 * testing the backtick replacement 14bd2fb
 * tree shaking issue c239808
 * trigger signature 28e77a1
@@ -545,6 +548,7 @@
 * add init command 4ca928f
 * add interact error from pm 026bbbb
 * add jsdoc a43ab28
+* add JWT serialization/parsing 066668d
 * add keepAttached for pm start 2bef670
 * add lazy helper 5530746
 * add middleware with priority handling 461c1a4
