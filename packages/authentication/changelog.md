@@ -1,9 +1,9 @@
-#  (2024-02-24)
+#  (2024-03-22)
 
 
-### Bug Fixes
+### Features
 
-* add salt on User model 51b2f11
+* add JWT serialization/parsing 066668d
 
 
 
