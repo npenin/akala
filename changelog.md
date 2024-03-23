@@ -1,4 +1,4 @@
-#  (2024-03-22)
+#  (2024-03-23)
 
 
 ### Bug Fixes
@@ -276,6 +276,7 @@
 * metadata lookup on start da0c4d7
 * middleware copy/paste issue 69757ce
 * missing import assertion e29c18a
+* mocha test command 540a441
 * **mongodb:** exclude generated field from being updated 1785a29
 * move aws-sdk to optional peer dependency 6e177a5
 * move cli to esm 3f28f3a
@@ -441,6 +442,7 @@
 * support normalize files in modules 4a34d95
 * support when @akala/config is not loaded 511f427
 * swap build dependencies f7d45dd
+* switch from xml2js to fast-xml-parser 0abd31b
 * switch processes state to object 5aa41a4
 * switch to own base64 to prevent buffer dependencies 67ea439
 * testing the backtick replacement 14bd2fb
@@ -548,6 +550,8 @@
 * add init command 4ca928f
 * add interact error from pm 026bbbb
 * add jsdoc a43ab28
+* add JWT 6e5d4ce
+* add JWT dependency 4155ac6
 * add JWT serialization/parsing 066668d
 * add keepAttached for pm start 2bef670
 * add lazy helper 5530746
