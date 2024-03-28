@@ -1,8 +1,8 @@
-import { inspect } from "util";
-
 const oldProxy = Proxy;
 
+
 export const isProxy = Symbol.for('isProxy')
+export const customInspect = Symbol.for('nodejs.util.inspect.custom');
 
 global['Proxy'] = new oldProxy(oldProxy, {
     get: function (target, key)
@@ -28,7 +28,7 @@ export function chain<T extends (...args: unknown[]) => unknown>(target: T, keyH
             {
                 switch (key)
                 {
-                    case inspect.custom:
+                    case customInspect:
                         return () => target;
                     case Symbol.toPrimitive:
                         return target[Symbol.toPrimitive];
@@ -67,7 +67,7 @@ export function chain<T extends (...args: unknown[]) => unknown>(target: T, keyH
                                 {
                                     switch (subKey)
                                     {
-                                        case inspect.custom:
+                                        case customInspect:
                                             return () => target;
                                         case Symbol.toPrimitive:
                                             return target[Symbol.toPrimitive];
