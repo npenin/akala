@@ -1,4 +1,4 @@
-#  (2024-03-23)
+#  (2024-03-28)
 
 
 ### Bug Fixes
@@ -387,6 +387,7 @@
 * remove stdio logging 6600099
 * remove triggers from browser 85ce5a8
 * remove triple-beam dependency c44bd2e
+* remove util dependency 4c90028
 * remove webpack dependencies f51db45
 * remove winston dependency 3dcad68
 * removed mock-require usage 99587ba
