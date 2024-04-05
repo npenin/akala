@@ -550,6 +550,7 @@
 * add extends support df13246
 * add form-urlencoded as a content type 6bcb79e
 * add generate-schema d920d1b
+* add HttpStatusCodes 7fc22e5
 * add ignore failure support f9929cf
 * add init command 4ca928f
 * add interact error from pm 026bbbb
