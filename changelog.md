@@ -1,4 +1,4 @@
-#  (2024-03-28)
+#  (2024-04-05)
 
 
 ### Bug Fixes
@@ -381,6 +381,7 @@
 * remove http imports to support treeshaking for browsers a0d87cb
 * remove http routing f9f43de
 * remove import of removed dependency 8a11cef
+* remove jsonrpc from browser field b45e8cb
 * remove over proxyfying bc948b3
 * remove over proxyfying 5da8a29
 * remove require call 6f09130
@@ -612,6 +613,7 @@
 * added winston as a logger system 065bae0
 * allow for relative path in cli bcccff1
 * allow more string "errors" in router 1a9608f
+* allow options on json-rpc-ws (like protocols) 013046d
 * allow to keepOrder in distinct e6eb507
 * cli now supports stream results 155e7ba
 * considered as v1.0 3ed2008
