@@ -8,7 +8,7 @@ export class CallFormatterFactory implements FormatterFactory<unknown, ParsedStr
 {
     public parse(expression: string)
     {
-        return new ParsedString(expression.substring(0, new Parser().parseFunction(expression).$$length));
+        return new ParsedString(expression.substring(0, new Parser().parseFunction(expression, true).$$length));
     }
     public build(settings: ParsedString)
     {

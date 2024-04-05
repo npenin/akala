@@ -3,6 +3,11 @@ import { isPromiseLike } from './promiseHelpers.js';
 import { EventEmitter } from 'events';
 import "reflect-metadata";
 import { logger } from './logger.js';
+import { ExpressionVisitor } from './parser/expressions/expression-visitor.js';
+import { Expression, Expressions, TypedExpression } from './parser/expressions/expression.js';
+import { MemberExpression } from './parser/expressions/member-expression.js';
+import { ExpressionsWithLength, Parser } from './parser/parser.js';
+import { ConstantExpression } from './parser/expressions/constant-expression.js';
 
 const log = logger('akala:core:injector');
 
@@ -25,7 +30,57 @@ export function ctorToFunction<T extends unknown[], TResult>(ctor: new (...args:
     }
 }
 
-export class Injector
+class InjectorEvaluator extends ExpressionVisitor
+{
+    constructor(private parent: InjectorEvaluator, private injectables: Injector['injectables'])
+    {
+        super();
+    }
+
+    private result: unknown;
+
+    public eval<T>(expression: ExpressionsWithLength): T
+    {
+        this.result = this.injectables;
+        this.visit(expression);
+        return this.result as T;
+    }
+
+    visitConstant(arg0: ConstantExpression<unknown>): Expressions
+    {
+        this.result = arg0.value;
+        return arg0;
+    }
+
+    visitMember<T, TMember extends keyof T>(arg0: MemberExpression<T, TMember, T[TMember]>): TypedExpression<T[TMember]>
+    {
+        if (arg0.source)
+            this.visit(arg0.source);
+
+        let source = this.result;
+
+        this.visit(arg0.member);
+        const key = this.result as string;
+
+        if (source instanceof Injector)
+        {
+            this.result = source.resolve(key);
+            return arg0;
+        }
+        if (isPromiseLike(source))
+        { this.result = source.then((result) => { return result[key] }); return arg0; }
+        if (source === this.injectables && typeof (source[key]) == 'undefined' && this.parent)
+        {
+            this.result = this.parent.eval(arg0);
+            return arg0;
+        }
+        this.result = source && source[key];
+        return arg0;
+    }
+}
+
+
+export class Injector 
 {
     public static mergeArrays(resolvedArgs: InjectedParameter<unknown>[], ...otherArgs: unknown[])
     {
@@ -52,8 +107,17 @@ export class Injector
         if (typeof this.parent === 'undefined')
             this.parent = defaultInjector;
 
+        if (this.parent)
+            this.evaluator = new InjectorEvaluator(this.parent.evaluator, this.injectables);
+        else
+            this.evaluator = new InjectorEvaluator(null, this.injectables);
+
+
         this.register('$injector', this);
     }
+
+    private parser = new Parser();
+    private evaluator: InjectorEvaluator;
 
     private notifier = new EventEmitter();
 
@@ -162,48 +226,52 @@ export class Injector
         return this.inject<T>(ctorToFunction(ctor));
     }
 
-    public resolve<T = unknown>(param: string): T
+    public resolve<T = unknown>(param: string | ExpressionsWithLength): T
     {
         log.silly('resolving ' + param);
 
-        if (typeof (this.injectables[param]) != 'undefined')
-        {
-            if (log.verbose.enabled)
-            {
-                if (typeof this.injectables[param].name != 'undefined')
-                    log.verbose(`resolved ${param} to ${this.injectables[param]} with name ${this.injectables[param].name}`);
-                else
-                    log.verbose(`resolved ${param} to %O`, this.injectables[param]);
-            }
-            else
-                log.debug(`resolved ${param}`);
-            return this.injectables[param];
-        }
-        const indexOfDot = param.indexOf('.');
+        if (typeof param == 'string')
+            param = this.parser.parse(param);
+        return this.evaluator.eval<T>(param);
 
-        if (~indexOfDot)
-        {
-            const keys = param.split('.')
-            return keys.reduce((result, key) =>
-            {
-                if (result instanceof Injector)
-                    return result.resolve(key);
-                if (isPromiseLike(result))
-                    return result.then((result) => { return result[key] });
-                if (result === this.injectables && typeof (result[key]) == 'undefined' && this.parent)
-                {
-                    return this.parent.resolve(key);
-                }
-                return result && result[key];
-            }, this.injectables);
+        // if (typeof (this.injectables[param]) != 'undefined')
+        // {
+        //     if (log.verbose.enabled)
+        //     {
+        //         if (typeof this.injectables[param].name != 'undefined')
+        //             log.verbose(`resolved ${param} to ${this.injectables[param]} with name ${this.injectables[param].name}`);
+        //         else
+        //             log.verbose(`resolved ${param} to %O`, this.injectables[param]);
+        //     }
+        //     else
+        //         log.debug(`resolved ${param}`);
+        //     return this.injectables[param];
+        // }
+        // const indexOfDot = param.indexOf('.');
 
-        }
-        if (this.parent)
-        {
-            log.silly('trying parent injector');
-            return this.parent.resolve<T>(param);
-        }
-        return null;
+        // if (~indexOfDot)
+        // {
+        //     const keys = param.split('.')
+        //     return keys.reduce((result, key) =>
+        //     {
+        //         if (result instanceof Injector)
+        //             return result.resolve(key);
+        //         if (isPromiseLike(result))
+        //             return result.then((result) => { return result[key] });
+        //         if (result === this.injectables && typeof (result[key]) == 'undefined' && this.parent)
+        //         {
+        //             return this.parent.resolve(key);
+        //         }
+        //         return result && result[key];
+        //     }, this.injectables);
+
+        // }
+        // if (this.parent)
+        // {
+        //     log.silly('trying parent injector');
+        //     return this.parent.resolve<T>(param);
+        // }
+        // return null;
     }
 
     public resolveAsync<T = unknown>(name: string): T | PromiseLike<T>

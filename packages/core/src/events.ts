@@ -196,9 +196,9 @@ export class EventEmitter<TEventMap extends Record<string, unknown[]> = Record<s
     public once<TKey extends Exclude<keyof TEventMap, number | symbol>>(type: TKey, listener: F<TEventMap[TKey]>)
     {
         checkListener(listener);
-        function X(...args: unknown[])
+        const X = (...args: unknown[]) =>
         {
-            this.removeListener(type, X)
+            this.off(type, X)
             listener.apply(this, args);
         }
         this.on(type, X);

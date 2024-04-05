@@ -27,7 +27,6 @@ export { introspect };
 export * from './chain.js';
 export * from './polymorph.js';
 export * from './logger.js'
-import ErrorWithStatus from './errorWithStatus.js'
-export { ErrorWithStatus }
+export * from './errorWithStatus.js'
 
 export * from './url-handler.js'

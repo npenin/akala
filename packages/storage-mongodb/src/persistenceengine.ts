@@ -33,7 +33,7 @@ export class MongoDb extends PersistenceEngine<Db>
                 this.result = collection = db.collection(cte.value.nameInStorage);
 
                 this.model = cte.value;
-                return Promise.resolve(cte);
+                return cte;
             }
             return oldVisitContant.call(this, cte);
         }

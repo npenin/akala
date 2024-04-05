@@ -11,7 +11,7 @@ import { EvaluatorAsFunction } from '../parser/evaluator-as-function.js';
 
 const parser = new Parser();
 const evaluator = new EvaluatorAsFunction();
-const result = <ParsedBinary>parser.parseEval('b*c+d');
+const result = <ParsedBinary>parser.parseEval('b*c+d', false);
 
 console.log((await evaluator.eval(result))({ b: 1, c: 2, d: 3 }));
 const test = new ParsedBinary(BinaryOperator.Times, new ParsedString('b'), new ParsedBinary(BinaryOperator.Plus, new ParsedString('c'), new ParsedString('d')));

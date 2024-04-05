@@ -10,7 +10,7 @@ import { ApplySymbolExpression } from './apply-symbol-expression.js';
 import { NewExpression } from './new-expression.js';
 import { ExpressionVisitor } from './expression-visitor.js';
 
-export type UnknownExpression = { type: ExpressionType.Unknown, accept(visitor: ExpressionVisitor): Promise<Expressions> };
+export type UnknownExpression = { type: ExpressionType.Unknown, accept(visitor: ExpressionVisitor): Expressions };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type StrictTypedExpression<T> = ConstantExpression<T> | ParameterExpression<T> | MemberExpression<any, any, T> | ApplySymbolExpression<any, T> | NewExpression<T>;
@@ -29,7 +29,7 @@ export type IEnumerable<T> = Iterable<T>;
 export abstract class Expression
 {
     abstract get type(): ExpressionType;
-    abstract accept(visitor: ExpressionVisitor): Promise<Expressions>;
+    abstract accept(visitor: ExpressionVisitor): Expressions;
 
     /*public static lambda<T extends (...args: any[]) => any>(body: StrictExpressions, parameters: Parameter<T> & StrictExpressions[])
     {

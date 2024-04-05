@@ -34,7 +34,7 @@ export class Vanilla extends PersistenceEngine<any>
             {
                 this.result = store[cte.value.namespace] && store[cte.value.namespace][cte.value.nameInStorage] || [];
                 this.model = cte.value;
-                return Promise.resolve(cte);
+                return cte;
             }
             return oldVisitContant.call(this, cte);
         }

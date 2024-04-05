@@ -9,7 +9,7 @@ import { CommandProcessor } from '../commands/command-processor.js';
 import { CommandResult, Commands, Create } from '../commands/command.js';
 import { ModelDefinition } from '../shared.js';
 import { promisify } from "util";
-import { Generator } from '../common.js';
+import { Generator, Model } from '../common.js';
 import { v4 as uuid } from 'uuid'
 import { NotSupportedException } from '../exceptions.js';
 
@@ -52,47 +52,51 @@ export class File extends PersistenceEngine<FileOptions>
         const visitConstant = executor.visitConstant;
         const store = this.store;
         const fileEntryFactory = this.fileEntryFactory;
-        executor.visitConstant = async function <TCte>(this: ExpressionExecutor, cte: ConstantExpression<TCte>)
+        executor.visitConstant = function <TCte>(this: ExpressionExecutor, cte: ConstantExpression<TCte>)
         {
             if (cte.value instanceof ModelDefinition)
             {
-                var folder = await Promise.resolve<FileSystemEntries>(store);
-                folder = await store[cte.value.namespace || 'db']
-                if (!folder)
+                this.result = (async function ()
                 {
-                    folder = new Proxy(new FolderEntry(store[fspath], cte.value.namespace || 'db', null, fileEntryFactory), proxyHandler);
-                    folder[isNew] = true;
-                }
-                if (folder[isFile])
-                    throw new Error(`found file ${cte.value.namespace || 'db'} while expecting a folder in ${store[fspath]}`);
+                    const model = cte.value as ModelDefinition;
+                    var folder = await Promise.resolve<FileSystemEntries>(store);
+                    folder = await store[model.namespace || 'db']
+                    if (!folder)
+                    {
+                        folder = new Proxy(new FolderEntry(store[fspath], model.namespace || 'db', null, fileEntryFactory), proxyHandler);
+                        folder[isNew] = true;
+                    }
+                    if (folder[isFile])
+                        throw new Error(`found file ${model.namespace || 'db'} while expecting a folder in ${store[fspath]}`);
 
-                if (!folder[cte.value.nameInStorage])
-                {
-                    folder = new Proxy(new FolderEntry(folder[fspath], cte.value.nameInStorage, cte.value, fileEntryFactory), proxyHandler);
-                    folder[isNew] = true;
-                }
-                else
-                    folder = await folder[cte.value.nameInStorage];
-                if (folder[isFile])
-                    throw new Error(`found file ${cte.value.nameInStorage} while expecting a folder in ${store[fspath]}`);
+                    if (!folder[model.nameInStorage])
+                    {
+                        folder = new Proxy(new FolderEntry(folder[fspath], model.nameInStorage, model, fileEntryFactory), proxyHandler);
+                        folder[isNew] = true;
+                    }
+                    else
+                        folder = await folder[model.nameInStorage];
+                    if (folder[isFile])
+                        throw new Error(`found file ${model.nameInStorage} while expecting a folder in ${store[fspath]}`);
 
-                this.result = folder;
-                this.model = cte.value as unknown as ModelDefinition<unknown>;
+                    this.result = folder;
+                    this.model = model;
+                })();
+
             }
             else
                 return visitConstant.call(this, cte);
         }
-        return await executor.visit(expression).then(() =>
-        {
-            if (typeof executor.result == 'object' && executor.model)
-                if (Reflect.has(executor.result, Symbol.iterator) || Reflect.has(executor.result, Symbol.asyncIterator))
-                    return this.dynamicProxy(executor.result as Iterable<T>, executor.model) as unknown as T;
-                else
-                    return dynamicProxy<T>(executor.result as unknown as T, executor.model as ModelDefinition<T>);
-            else
-                return executor.result;
+        executor.visit(expression);
 
-        }) as T;
+        if (typeof executor.result == 'object' && executor.model)
+            if (Reflect.has(executor.result, Symbol.iterator) || Reflect.has(executor.result, Symbol.asyncIterator))
+                return this.dynamicProxy(executor.result as Iterable<T>, executor.model) as unknown as T;
+            else
+                return dynamicProxy<T>(executor.result as unknown as T, executor.model as ModelDefinition<T>);
+        else
+            return executor.result as T;
+
     }
 }
 

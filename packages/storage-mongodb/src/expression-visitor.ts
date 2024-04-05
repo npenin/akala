@@ -1,6 +1,7 @@
-import { expressions, isPromiseLike } from "@akala/core";
+import { isPromiseLike } from "@akala/core";
+import * as expressions from "@akala/core/expressions";
 import { ApplySymbolExpression, BinaryExpression, CallExpression, ConstantExpression, Expressions, ExpressionVisitor, LambdaExpression, MemberExpression, NewExpression, ParameterExpression, StrictExpressions, UnaryExpression, UnknownExpression } from "@akala/core/expressions";
-import { Exception, ModelDefinition, NotSupportedException, QuerySymbols, Relationship } from "@akala/storage";
+import { Exception, ExpressionExecutor, ModelDefinition, NotSupportedException, QuerySymbols, Relationship } from "@akala/storage";
 import { Db, Document } from "mongodb";
 
 export default class MongoDbTranslator extends ExpressionVisitor
@@ -24,13 +25,13 @@ export default class MongoDbTranslator extends ExpressionVisitor
         throw new Error("unsupported type");
     }
 
-    async visitNew<T>(expression: NewExpression<T>)
+    visitNew<T>(expression: NewExpression<T>)
     {
         const result = {};
 
         for (const m of expression.init)
         {
-            await this.visit(m.source);
+            this.visit(m.source);
             result[m.member] = this.result;
         }
 
@@ -38,16 +39,16 @@ export default class MongoDbTranslator extends ExpressionVisitor
         return expression;
     }
 
-    async visitApplySymbol<T, U>(arg0: ApplySymbolExpression<T, U>)
+    visitApplySymbol<T, U>(arg0: ApplySymbolExpression<T, U>)
     {
-        await this.visit(arg0.source);
+        this.visit(arg0.source);
         switch (arg0.symbol)
         {
             case QuerySymbols.any:
                 if (arg0.argument)
                 {
                     if (arg0.argument)
-                        await this.visitApplySymbol(new ApplySymbolExpression(null, QuerySymbols.where, arg0.argument));
+                        this.visitApplySymbol(new ApplySymbolExpression(null, QuerySymbols.where, arg0.argument));
                 }
 
                 this.pipelines.push({ $addFields: { result: true } },
@@ -58,7 +59,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 if (arg0.argument)
                 {
                     if (arg0.argument)
-                        await this.visitApplySymbol(new ApplySymbolExpression(null, QuerySymbols.where, arg0.argument));
+                        this.visitApplySymbol(new ApplySymbolExpression(null, QuerySymbols.where, arg0.argument));
                 }
 
                 this.pipelines.push({ $group: { result: { $sum: 1 }, _id: null } }, { $project: { _id: 0 } });
@@ -77,7 +78,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 if (arg0.argument)
                 {
                     if (arg0.argument)
-                        await this.visitApplySymbol(new ApplySymbolExpression(null, QuerySymbols.where, arg0.argument));
+                        this.visitApplySymbol(new ApplySymbolExpression(null, QuerySymbols.where, arg0.argument));
                 }
 
                 this.pipelines.push({ $group: { ...this.pipeline, _id: null } });
@@ -99,7 +100,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
             case QuerySymbols.where:
                 {
                     const oldResult = this.result;
-                    await this.visit(arg0.argument);
+                    this.visit(arg0.argument);
 
                     this.pipelines.push(this.pipeline);
                     this.result = oldResult;
@@ -165,26 +166,26 @@ export default class MongoDbTranslator extends ExpressionVisitor
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore TS2416
-    async visitCall<T, TMethod extends keyof T>(arg0: CallExpression<T, TMethod>)
+    visitCall<T, TMethod extends keyof T>(arg0: CallExpression<T, TMethod>): Expressions
     {
         throw new NotSupportedException();
-        const source = await this.visit(arg0.source);
-        // const src = this.result;
-        const args = await (this as ExpressionVisitor).visitArray(arg0.arguments) as StrictExpressions[];
-        if (source !== arg0.source || args !== arg0.arguments)
-        {
-            if (!this.isTypedExpression(source))
-                throw new Error('source is of type ' + source['type'] + ' and cannot be considered as a typed expression');
-            return new CallExpression<T, TMethod>(source, arg0.method, args);
-        }
-        return arg0;
+        // const source = await this.visit(arg0.source);
+        // // const src = this.result;
+        // const args = await (this as ExpressionVisitor).visitArray(arg0.arguments) as StrictExpressions[];
+        // if (source !== arg0.source || args !== arg0.arguments)
+        // {
+        //     if (!this.isTypedExpression(source))
+        //         throw new Error('source is of type ' + source['type'] + ' and cannot be considered as a typed expression');
+        //     return new CallExpression<T, TMethod>(source, arg0.method, args);
+        // }
+        // return arg0;
     }
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore TS2416
-    async visitMember<T, TMember extends keyof T>(arg0: MemberExpression<T, TMember, T[TMember]>)
+    visitMember<T, TMember extends keyof T>(arg0: MemberExpression<T, TMember, T[TMember]>)
     {
-        await this.visit(arg0.source);
+        this.visit(arg0.source);
         var member = arg0.member as string;
         if (this.model)
         {
@@ -196,69 +197,56 @@ export default class MongoDbTranslator extends ExpressionVisitor
             }
         }
 
-        if (isPromiseLike(this.evaluating))
-            this.evaluating = await this.evaluating.then(v => `${v}.${member}`);
-        else
-            this.evaluating = member;
+        // if (isPromiseLike(this.evaluating))
+        //     this.evaluating = this.evaluating.then(v => `${v}.${member}`);
+        // else
+        this.evaluating = member;
         this.result = null;
 
         return arg0;
     }
 
-    async visitConstant(arg0: ConstantExpression<unknown>)
+    visitConstant(arg0: ConstantExpression<unknown>)
     {
         this.result = arg0.value;
         return arg0;
     }
-    async visitParameter(arg0: ParameterExpression<unknown>)
+    visitParameter(arg0: ParameterExpression<unknown>)
     {
         if (typeof this.evaluating !== 'undefined')
             this.result = this.evaluating;
         return arg0;
     }
-    async visitUnary(arg0: UnaryExpression)
+    visitUnary(arg0: UnaryExpression)
     {
-        const operand = await (this as ExpressionVisitor).visit(arg0.operand);
+        const operand = (this as ExpressionVisitor).visit(arg0.operand);
         if (operand !== arg0.operand)
             return new UnaryExpression(operand, arg0.operator);
         return arg0;
     }
 
-    async visitBinary<T extends Expressions = StrictExpressions>(expression: BinaryExpression<T>)
+    visitBinary<T extends Expressions = StrictExpressions>(expression: BinaryExpression<T>)
     {
-        const left = await (this as ExpressionVisitor).visit(expression.left);
+        const left = (this as ExpressionVisitor).visit(expression.left);
 
         if (isPromiseLike(this.evaluating))
-            var leftEvaluating: { $getField: string } = { $getField: await this.evaluating };
+            var leftEvaluating: { $getField: string } = { $getField: this.evaluating };
 
         else
             var leftEvaluating = { $getField: this.evaluating };
 
-        if (isPromiseLike(this.result))
-            var leftResult = await this.result;
+        var leftResult = this.result;
 
-        else
-            var leftResult = this.result;
-
-        async function buildPipeline(operator: string)
+        function buildPipeline(operator: string)
         {
             if (this.result === null)
                 if (leftResult === null)
-                    if (isPromiseLike(this.evaluating))
-                        return { $match: { $expr: { [operator]: [leftEvaluating, { $getField: await this.evaluating }] } } };
-                    else
-                        return { $match: { $expr: { [operator]: [leftEvaluating, { $getField: this.evaluating }] } } };
+                    return { $match: { $expr: { [operator]: [leftEvaluating, { $getField: this.evaluating }] } } };
                 else
-                    if (isPromiseLike(this.evaluating))
-                        return { $match: { $expr: { [operator]: [leftResult, { $getField: await this.evaluating }] } } };
-                    else
-                        return { $match: { $expr: { [operator]: [leftResult, { $getField: this.evaluating }] } } };
+                    return { $match: { $expr: { [operator]: [leftResult, { $getField: this.evaluating }] } } };
             else
                 if (leftResult === null)
-                    if (isPromiseLike(this.evaluating))
-                        return { $match: { $expr: { [operator]: [leftEvaluating, await this.result] } } };
-                    else
-                        return { $match: { $expr: { [operator]: [leftEvaluating, this.result] } } };
+                    return { $match: { $expr: { [operator]: [leftEvaluating, this.result] } } };
                 else
                     return null;
         }
@@ -266,13 +254,17 @@ export default class MongoDbTranslator extends ExpressionVisitor
         switch (expression.operator)
         {
             case expressions.BinaryOperator.Equal:
-                var right = await (this as ExpressionVisitor).visit(expression.right);
-                pipeline = await buildPipeline.call(this, '$eq');
+                (this as ExpressionVisitor).visit(expression.right);
+                pipeline = buildPipeline.call(this, '$eq');
                 if (pipeline == null)
-                    if (isPromiseLike(this.result))
-                        this.result = leftResult === await this.result;
-                    else
-                        this.result = leftResult === this.result;
+                    this.result = ExpressionExecutor.applyBinary(leftResult as number, () =>
+                    {
+                        if (isPromiseLike(this.result))
+                            return this.result as PromiseLike<number>;
+                        return {
+                            then(x: (right: number) => unknown) { return x(this.result as number) }
+                        } as PromiseLike<number>
+                    }, expression.operator);
                 else
                 {
                     this.pipeline = pipeline;
@@ -281,14 +273,18 @@ export default class MongoDbTranslator extends ExpressionVisitor
 
                 break;
             case expressions.BinaryOperator.NotEqual:
-                var right = await (this as ExpressionVisitor).visit(expression.right);
+                (this as ExpressionVisitor).visit(expression.right);
 
-                pipeline = await buildPipeline.call(this, '$ne');
+                pipeline = buildPipeline.call(this, '$ne');
                 if (pipeline == null)
-                    if (isPromiseLike(this.result))
-                        this.result = leftResult !== await this.result;
-                    else
-                        this.result = leftResult !== this.result;
+                    this.result = ExpressionExecutor.applyBinary(leftResult as number, () =>
+                    {
+                        if (isPromiseLike(this.result))
+                            return this.result as PromiseLike<number>;
+                        return {
+                            then(x: (right: number) => unknown) { return x(this.result as number) }
+                        } as PromiseLike<number>
+                    }, expression.operator);
                 else
                 {
                     this.pipeline = pipeline;
@@ -296,14 +292,18 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 }
                 break;
             case expressions.BinaryOperator.LessThan:
-                var right = await (this as ExpressionVisitor).visit(expression.right);
+                var right = (this as ExpressionVisitor).visit(expression.right);
 
-                pipeline = await buildPipeline.call(this, '$lt');
+                pipeline = buildPipeline.call(this, '$lt');
                 if (pipeline == null)
-                    if (isPromiseLike(this.result))
-                        this.result = leftResult > await this.result;
-                    else
-                        this.result = leftResult > this.result;
+                    this.result = ExpressionExecutor.applyBinary(leftResult as number, () =>
+                    {
+                        if (isPromiseLike(this.result))
+                            return this.result as PromiseLike<number>;
+                        return {
+                            then(x: (right: number) => unknown) { return x(this.result as number) }
+                        } as PromiseLike<number>
+                    }, expression.operator);
                 else
                 {
                     this.pipeline = pipeline;
@@ -311,14 +311,18 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 }
                 break;
             case expressions.BinaryOperator.LessThanOrEqual:
-                var right = await (this as ExpressionVisitor).visit(expression.right);
+                var right = (this as ExpressionVisitor).visit(expression.right);
 
-                pipeline = await buildPipeline.call(this, '$lte');
+                pipeline = buildPipeline.call(this, '$lte');
                 if (pipeline == null)
-                    if (isPromiseLike(this.result))
-                        this.result = leftResult <= await this.result;
-                    else
-                        this.result = leftResult <= this.result;
+                    this.result = ExpressionExecutor.applyBinary(leftResult as number, () =>
+                    {
+                        if (isPromiseLike(this.result))
+                            return this.result as PromiseLike<number>;
+                        return {
+                            then(x: (right: number) => unknown) { return x(this.result as number) }
+                        } as PromiseLike<number>
+                    }, expression.operator);
                 else
                 {
                     this.pipeline = pipeline;
@@ -326,14 +330,17 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 }
                 break;
             case expressions.BinaryOperator.GreaterThan:
-                var right = await (this as ExpressionVisitor).visit(expression.right);
+                var right = (this as ExpressionVisitor).visit(expression.right);
 
-                pipeline = await buildPipeline.call(this, '$gt');
-                if (pipeline == null)
+                pipeline = buildPipeline.call(this, '$gt');
+                if (pipeline == null) this.result = ExpressionExecutor.applyBinary(leftResult as number, () =>
+                {
                     if (isPromiseLike(this.result))
-                        this.result = leftResult > await this.result;
-                    else
-                        this.result = leftResult > this.result;
+                        return this.result as PromiseLike<number>;
+                    return {
+                        then(x: (right: number) => unknown) { return x(this.result as number) }
+                    } as PromiseLike<number>
+                }, expression.operator);
                 else
                 {
                     this.pipeline = pipeline;
@@ -341,15 +348,19 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 }
                 break;
             case expressions.BinaryOperator.GreaterThanOrEqual:
-                var right = await (this as ExpressionVisitor).visit(expression.right);
+                var right = (this as ExpressionVisitor).visit(expression.right);
 
 
-                pipeline = await buildPipeline.call(this, '$gte');
+                pipeline = buildPipeline.call(this, '$gte');
                 if (pipeline == null)
-                    if (isPromiseLike(this.result))
-                        this.result = leftResult >= await this.result;
-                    else
-                        this.result = leftResult >= this.result;
+                    this.result = ExpressionExecutor.applyBinary(leftResult as number, () =>
+                    {
+                        if (isPromiseLike(this.result))
+                            return this.result as PromiseLike<number>;
+                        return {
+                            then(x: (right: number) => unknown) { return x(this.result as number) }
+                        } as PromiseLike<number>
+                    }, expression.operator);
                 else
                 {
                     this.pipeline = pipeline;
@@ -361,35 +372,46 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 {
                     pipeline = this.pipeline;
                     this.pipeline = null;
-                    await (this as ExpressionVisitor).visit(expression.right);
+                    (this as ExpressionVisitor).visit(expression.right);
                     if (this.pipeline)
                         this.pipeline = { $and: [this.pipeline.$match, pipeline.$match] }
                 }
-                else if (leftResult)
-                    await (this as ExpressionVisitor).visit(expression.right);
+                else
+                    this.result = ExpressionExecutor.applyBinary(leftResult as number, () =>
+                    {
+                        if (isPromiseLike(this.result))
+                            return this.result as PromiseLike<number>;
+                        return {
+                            then(x: (right: number) => unknown) { return x(this.result as number) }
+                        } as PromiseLike<number>
+                    }, expression.operator);
                 break;
             case expressions.BinaryOperator.Or:
                 if (leftResult === null)
                 {
                     pipeline = this.pipeline;
                     this.pipeline = null;
-                    await (this as ExpressionVisitor).visit(expression.right);
+                    (this as ExpressionVisitor).visit(expression.right);
                     if (this.pipeline)
                         this.pipeline = { $or: [this.pipeline.$match, pipeline.$match] }
                 }
                 else if (!leftResult)
-                    await (this as ExpressionVisitor).visit(expression.right);
+                    (this as ExpressionVisitor).visit(expression.right);
                 break;
             case expressions.BinaryOperator.Minus:
-                var right = await (this as ExpressionVisitor).visit(expression.right);
+                var right = (this as ExpressionVisitor).visit(expression.right);
 
-                pipeline = await buildPipeline.call(this, '$subtract');
+                pipeline = buildPipeline.call(this, '$subtract');
 
                 if (pipeline == null)
-                    if (isPromiseLike(this.result))
-                        this.result = leftResult as number - (await this.result as number);
-                    else
-                        this.result = leftResult as number - (this.result as number);
+                    this.result = ExpressionExecutor.applyBinary(leftResult as number, () =>
+                    {
+                        if (isPromiseLike(this.result))
+                            return this.result as PromiseLike<number>;
+                        return {
+                            then(x: (right: number) => unknown) { return x(this.result as number) }
+                        } as PromiseLike<number>
+                    }, expression.operator);
                 else
                 {
                     this.pipeline = pipeline;
@@ -397,14 +419,18 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 }
                 break;
             case expressions.BinaryOperator.Plus:
-                var right = await (this as ExpressionVisitor).visit(expression.right);
+                var right = (this as ExpressionVisitor).visit(expression.right);
 
-                pipeline = await buildPipeline.call(this, '$add');
+                pipeline = buildPipeline.call(this, '$add');
                 if (pipeline == null)
-                    if (isPromiseLike(this.result))
-                        this.result = leftResult as number - (await this.result as number);
-                    else
-                        this.result = leftResult as number - (this.result as number);
+                    this.result = ExpressionExecutor.applyBinary(leftResult as number, () =>
+                    {
+                        if (isPromiseLike(this.result))
+                            return this.result as PromiseLike<number>;
+                        return {
+                            then(x: (right: number) => unknown) { return x(this.result as number) }
+                        } as PromiseLike<number>
+                    }, expression.operator);
                 else
                 {
                     this.pipeline = pipeline;
@@ -412,14 +438,18 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 }
                 break;
             case expressions.BinaryOperator.Modulo:
-                var right = await (this as ExpressionVisitor).visit(expression.right);
+                var right = (this as ExpressionVisitor).visit(expression.right);
 
-                pipeline = await buildPipeline.call(this, '$modulo');
+                pipeline = buildPipeline.call(this, '$modulo');
                 if (pipeline == null)
-                    if (isPromiseLike(this.result))
-                        this.result = leftResult as number % (await this.result as number);
-                    else
-                        this.result = leftResult as number % (this.result as number);
+                    this.result = ExpressionExecutor.applyBinary(leftResult as number, () =>
+                    {
+                        if (isPromiseLike(this.result))
+                            return this.result as PromiseLike<number>;
+                        return {
+                            then(x: (right: number) => unknown) { return x(this.result as number) }
+                        } as PromiseLike<number>
+                    }, expression.operator);
                 else
                 {
                     this.pipeline = pipeline;
@@ -427,15 +457,19 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 }
                 break;
             case expressions.BinaryOperator.Div:
-                var right = await (this as ExpressionVisitor).visit(expression.right);
+                var right = (this as ExpressionVisitor).visit(expression.right);
 
-                pipeline = await buildPipeline.call(this, '$div');
+                pipeline = buildPipeline.call(this, '$div');
 
                 if (pipeline == null)
-                    if (isPromiseLike(this.result))
-                        this.result = leftResult as number / (await this.result as number);
-                    else
-                        this.result = leftResult as number / (this.result as number);
+                    this.result = ExpressionExecutor.applyBinary(leftResult as number, () =>
+                    {
+                        if (isPromiseLike(this.result))
+                            return this.result as PromiseLike<number>;
+                        return {
+                            then(x: (right: number) => unknown) { return x(this.result as number) }
+                        } as PromiseLike<number>
+                    }, expression.operator);
                 else
                 {
                     this.pipeline = pipeline;
@@ -443,15 +477,19 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 }
                 break;
             case expressions.BinaryOperator.Times:
-                var right = await (this as ExpressionVisitor).visit(expression.right);
+                var right = (this as ExpressionVisitor).visit(expression.right);
 
-                pipeline = await buildPipeline.call(this, '$multiply');
+                pipeline = buildPipeline.call(this, '$multiply');
 
                 if (pipeline == null)
-                    if (isPromiseLike(this.result))
-                        this.result = leftResult as number * (await this.result as number);
-                    else
-                        this.result = leftResult as number * (this.result as number);
+                    this.result = ExpressionExecutor.applyBinary(leftResult as number, () =>
+                    {
+                        if (isPromiseLike(this.result))
+                            return this.result as PromiseLike<number>;
+                        return {
+                            then(x: (right: number) => unknown) { return x(this.result as number) }
+                        } as PromiseLike<number>
+                    }, expression.operator);
                 else
                 {
                     this.pipeline = pipeline;
@@ -459,15 +497,19 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 }
                 break;
             case expressions.BinaryOperator.Pow:
-                var right = await (this as ExpressionVisitor).visit(expression.right);
+                var right = (this as ExpressionVisitor).visit(expression.right);
 
-                pipeline = await buildPipeline.call(this, '$pow');
+                pipeline = buildPipeline.call(this, '$pow');
 
                 if (pipeline == null)
-                    if (isPromiseLike(this.result))
-                        this.result = leftResult as number * (await this.result as number);
-                    else
-                        this.result = leftResult as number * (this.result as number);
+                    this.result = ExpressionExecutor.applyBinary(leftResult as number, () =>
+                    {
+                        if (isPromiseLike(this.result))
+                            return this.result as PromiseLike<number>;
+                        return {
+                            then(x: (right: number) => unknown) { return x(this.result as number) }
+                        } as PromiseLike<number>
+                    }, expression.operator);
                 else
                 {
                     this.pipeline = pipeline;

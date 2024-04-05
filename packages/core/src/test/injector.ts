@@ -123,4 +123,4 @@ assert.strictEqual(b.doOtherVendor('loves'), 'microsoft loves node', 'parameter 
 const i1 = new Injector();
 const i2 = i1.register('a', new Injector());
 i2.register('b.c', 'x');
-assert.strictEqual(i1.resolve('a.b.c'), 'x')
+assert.strictEqual(i1.resolve('a["b.c"]'), 'x')
