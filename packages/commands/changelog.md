@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* remove jsonrpc from browser field b45e8cb
+* remove stream dependency when used in browser d3313b5
 
 
 
