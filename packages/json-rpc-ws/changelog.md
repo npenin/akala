@@ -3,7 +3,7 @@
 
 ### Features
 
-* allow options on json-rpc-ws (like protocols) 013046d
+* allow options on json-rpc-ws (like protocols) 6682a53
 
 
 
