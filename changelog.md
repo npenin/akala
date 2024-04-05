@@ -614,6 +614,7 @@
 * added winston as a logger system 065bae0
 * allow for relative path in cli bcccff1
 * allow more string "errors" in router 1a9608f
+* allow options on json-rpc-ws (like protocols) 6682a53
 * allow options on json-rpc-ws (like protocols) 013046d
 * allow to keepOrder in distinct e6eb507
 * cli now supports stream results 155e7ba
