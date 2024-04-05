@@ -1,6 +1,5 @@
 import { Middleware, MiddlewarePromise, SpecialNextParam, base64 } from "@akala/core";
 import { CommandMetadataProcessorSignature, CommandProcessor, Container, ICommandProcessor, Metadata, StructuredParameters } from "@akala/commands";
-export * from './jwt.js'
 
 export class AuthMiddleware<T extends unknown[], TNextSpecialParam extends string | void = SpecialNextParam> implements Middleware<T, TNextSpecialParam>
 {

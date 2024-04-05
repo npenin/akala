@@ -1,3 +1,4 @@
+import { base64 } from "@akala/core";
 import { OIDCClientState, OIDCResponseType, providers, OICDAuthMethods } from "../../client/oidc-state.js";
 
 
@@ -50,7 +51,7 @@ export default function (this: OIDCClientState, provider: string, code: string, 
         switch (x)
         {
             case OICDAuthMethods.ClientSecretBasic:
-                result.headers.authorization = Buffer.from(providerConfig.clientId + ':' + providerConfig.clientSecret).toString('base64');
+                result.headers.authorization = base64.base64EncArr(base64.strToUTF8Arr(providerConfig.clientId + ':' + providerConfig.clientSecret));
                 return result;
             case OICDAuthMethods.ClientSecretPost:
                 result.body = result.query;

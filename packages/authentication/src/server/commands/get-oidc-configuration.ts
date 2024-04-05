@@ -1,5 +1,5 @@
 import { Request } from "@akala/server";
-import { ensureOptionals, JWAlgorithms, OICDAuthMethods, OIDCDescription, OIDCResponseType } from "../../../client/oidc-state.js";
+import { ensureOptionals, JWAlgorithms, OICDAuthMethods, OIDCDescription, OIDCResponseType } from "../../client/oidc-state.js";
 
 export default function (req: Request): OIDCDescription
 {
