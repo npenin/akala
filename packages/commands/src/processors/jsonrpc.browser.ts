@@ -1,4 +1,4 @@
-import * as jsonrpcws from '@akala/json-rpc-ws'
+import * as jsonrpcws from '@akala/json-rpc-ws/browser'
 import { CommandProcessor, StructuredParameters } from '../model/processor.js'
 import { Command, Container as MetaContainer } from '../metadata/index.js';
 import { Container } from '../model/container.js';
@@ -166,7 +166,7 @@ export class JsonRpc extends CommandProcessor
 
     public get connectionId() { return this.client.id }
 
-    constructor(private client: jsonrpcws.BaseConnection<import('stream').Readable | ReadableStream<Uint8Array>>, private passthrough?: boolean)
+    constructor(private client: jsonrpcws.BaseConnection<ReadableStream<Uint8Array>>, private passthrough?: boolean)
     {
         super('jsonrpc');
     }
