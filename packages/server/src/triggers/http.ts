@@ -36,13 +36,7 @@ export async function processCommand<T>(container: Container<T>, c: Metadata.Com
 {
     const req = injected.$request;
     let bodyParsing: Promise<{ parsed: unknown, raw: Buffer }>;
-    return Processors.Local.execute(c, async function (...args)
-    {
-        args = await mapAsync(args, async el => await el);
-        args = args.filter((a, i) => c.config[''].inject[i].startsWith('param.'))
-        log.debug(args);
-        return await container.dispatch(c.name, ...args);
-    }, container, {
+    container.handle(container, c, {
         param: [], route: req.params, query: req.query, _trigger: 'http', get rawBody()
         {
             if (!bodyParsing)
