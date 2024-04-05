@@ -10,4 +10,5 @@ export interface Configurations
     cli?: jsonObject & CliConfiguration;
     doc?: jsonObject & DocConfiguration;
     schema?: jsonObject & SchemaConfiguration
+    auth?: jsonObject & { [key in keyof Configurations]?: Configuration }
 }
