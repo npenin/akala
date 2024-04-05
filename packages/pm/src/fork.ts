@@ -23,10 +23,10 @@ const logMiddleware = new NamespaceMiddleware<{ program: string, name: string, t
 logMiddleware.preAction(async c =>
 {
     if (c.options.verbose)
-        processor = new ac.Processors.LogProcessor(processor, (cmd, params) =>
+        processor = new ac.Processors.LogProcessor((_c, cmd, params) =>
         {
             log.verbose({ cmd, params });
-            return Promise.resolve();
+            return undefined;
         });
 
     await ac.Processors.FileSystem.discoverCommands(c.options.program, cliContainer, { processor: processor, isDirectory: folderOrFile.isDirectory() });
