@@ -21,4 +21,6 @@ export class Token
     public scope: string[];
     @db.Field(db.Types.datetime)
     public expiresOn?: Date;
+    @db.Field(db.Types.datetime)
+    public createdOn?: Date;
 }

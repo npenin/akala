@@ -8,10 +8,10 @@ export class User
     id?: string;
     @db.Field(db.Types.string(50))
     name: string;
-    @db.Field(db.Types.string(20))
-    displayName: string;
     @db.Field(db.Types.string(36))
     password: string;
     @db.Field(db.Types.string(36))
     salt: string;
+    @db.Field(db.Types.string)
+    attributes: Record<string, { value: string | number | boolean, canBeValidated: boolean, validated: boolean }>;
 }

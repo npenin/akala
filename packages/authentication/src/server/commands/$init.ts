@@ -2,12 +2,13 @@ import { Container } from "@akala/commands";
 import { State } from '../state.js';
 import { AuthenticationStore } from '../authentication-store.js';
 import { PersistenceEngine, providers } from "@akala/storage";
-import { createHmac, randomUUID } from "crypto";
+import { randomUUID } from "crypto";
 import { sidecar } from "@akala/pm";
 import { ExchangeMiddleware, OAuthError } from "../master.js";
 import { BinaryOperator } from "@akala/core/expressions";
 import { Token } from "../../model/access-token.js";
 import { HttpRouter } from "@akala/server";
+import { base64 } from '@akala/core'
 
 export default async function (container: Container<State>, providerName: string, providerOptions: unknown, key: string)
 {
@@ -15,8 +16,9 @@ export default async function (container: Container<State>, providerName: string
     await provider.init(providerOptions);
 
     const store = container.state.store = await AuthenticationStore.create(provider);
-    const hmac = createHmac('sha256', key);
-    container.state.getHash = (value) => hmac.update(value).digest('base64');
+    const cryptoKey = await crypto.subtle.importKey('raw', base64.base64DecToArr(key), { name: 'HMAC', hash: 'SHA-256' }, false, ["sign", 'verify']);
+    container.state.getHash = async (value) => base64.base64EncArr(new Uint8Array(await crypto.subtle.sign('HMAC', cryptoKey, base64.strToUTF8Arr(value))));
+    container.state.session = { slidingExpiration: 300 };
 
     ExchangeMiddleware.register('code', async (code, clientId, req) =>
     {
@@ -68,6 +70,6 @@ export default async function (container: Container<State>, providerName: string
 
     const server = (await sidecar()['@akala/server']);
 
-    server.dispatch('remote-route', '/.well-known/openid-configuration', null, { pre: true, get: true });
+    // server.dispatch('remote-route', '/.well-known/openid-configuration', null, { pre: true, get: true });
     server.dispatch('remote-route', '/', container, { auth: true, use: true });
 }

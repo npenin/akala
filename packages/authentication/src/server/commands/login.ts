@@ -9,8 +9,8 @@ export default async function (this: State, username: string, password: string)
     if (!user)
         throw new ErrorWithStatus(401, 'Invalid Username (or password).');
 
-    if (user.password !== this.getHash(password))
+    if (user.password !== await this.getHash(password))
         throw new ErrorWithStatus(401, 'Invalid (Username or) password).');
 
-    return { id: user.id, displayName: user.displayName, username: user.name }
+    return { id: user.id, username: user.name }
 }

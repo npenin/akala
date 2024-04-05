@@ -11,5 +11,5 @@ export default async function (this: State, tokenId: string)
 
     const user = await this.store.User.where('id', BinaryOperator.Equal, token.userId).firstOrDefault();
 
-    return { id: user.id, displayName: user.displayName, username: user.name }
+    return { id: user.id, username: user.name }
 }
