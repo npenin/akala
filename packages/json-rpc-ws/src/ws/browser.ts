@@ -122,10 +122,10 @@ import debug from 'debug';
 const logger = debug('json-rpc-ws');
 export { SocketAdapter }
 
-export function createClient(): Client
+export function createClient(options?: { protocols?: string | string[] }): Client
 {
     logger('create ws client');
-    return new Client();
+    return new Client(options);
 }
 
 export const connect = Client.connect;
