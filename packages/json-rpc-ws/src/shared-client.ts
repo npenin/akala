@@ -4,9 +4,9 @@ const logger = debug('json-rpc-ws');
 import { SocketAdapter, PayloadDataType, Connection } from './shared-connection.js';
 import { Error as MyError } from './errors.js'
 
-export default abstract class Client<TStreamable> extends Base<TStreamable>
+export default abstract class Client<TStreamable, TConnectOptions> extends Base<TStreamable>
 {
-  constructor(private socketConstructor: (address: string) => SocketAdapter)
+  constructor(private socketConstructor: (address: string, options?: TConnectOptions) => SocketAdapter, private options?: TConnectOptions)
   {
     super('client');
     logger('new Client');
@@ -27,7 +27,7 @@ export default abstract class Client<TStreamable> extends Base<TStreamable>
     if (this.isConnected())
       throw new Error('Already connected');
     let opened = false;
-    const socket = this.socket = this.socketConstructor(address);
+    const socket = this.socket = this.socketConstructor(address, this.options);
 
     socket.once('open', () =>
     {

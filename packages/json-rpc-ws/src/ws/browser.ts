@@ -103,19 +103,19 @@ export class WebSocketAdapter implements SocketAdapter
     }
 }
 
-export default class Client extends ClientBase<ReadableStream>
+export default class Client extends ClientBase<ReadableStream, { protocols?: string | string[] }>
 {
     connection(socket: SocketAdapter): Connection
     {
         return new Connection(socket, this);
     }
 
-    constructor()
+    constructor(options?: { protocols?: string | string[] })
     {
-        super(Client.connect);
+        super(Client.connect, options);
     }
 
-    public static connect(address: string): SocketAdapter { return new WebSocketAdapter(new WebSocket(address.replace(/^http/, 'ws'))); }
+    public static connect(address: string, options: { protocols?: string | string[] }): SocketAdapter { return new WebSocketAdapter(new WebSocket(address.replace(/^http/, 'ws'), options?.protocols)); }
 }
 
 import debug from 'debug';
