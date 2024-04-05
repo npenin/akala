@@ -9,16 +9,16 @@ import WsSocketAdapter from './ws-socket-adapter.js';
 import { SocketAdapter } from '../shared-connection.js';
 
 
-export default class Client extends ClientBase<stream.Readable>
+export default class Client extends ClientBase<stream.Readable, ws.ClientOptions>
 {
     connection(socket: SocketAdapter): Connection
     {
         return new Connection(socket, this);
     }
-    constructor()
+    constructor(options?: ws.ClientOptions)
     {
-        super(Client.connect);
+        super(Client.connect, options);
     }
 
-    public static connect(address: string): SocketAdapter { return new WsSocketAdapter(new ws(address)); }
+    public static connect(address: string, options?: ws.ClientOptions): SocketAdapter { return new WsSocketAdapter(new ws(address, options)); }
 }
