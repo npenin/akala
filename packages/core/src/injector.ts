@@ -232,6 +232,7 @@ export class Injector
 
         if (typeof param == 'string')
             param = this.parser.parse(param);
+
         return this.evaluator.eval<T>(param);
 
         // if (typeof (this.injectables[param]) != 'undefined')
