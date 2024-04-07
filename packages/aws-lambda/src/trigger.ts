@@ -3,6 +3,18 @@ import { Injector, mapAsync } from '@akala/core';
 // import { HttpRouter, trigger as httpTrigger } from '@akala/server';
 import { APIGatewayEvent, Context } from 'aws-lambda'
 
+export interface AwsConfiguration extends Metadata.Configuration
+{
+}
+
+declare module '@akala/commands'
+{
+    export interface ConfigurationMap
+    {
+        aws: AwsConfiguration;
+    }
+}
+
 export const trigger = new Trigger('aws', (container, config: { [key: string]: string } | string) =>
 {
     return (event: { Records: { eventSource: string }[] } | APIGatewayEvent, context: Context, ...args: []) =>
@@ -19,7 +31,7 @@ export const trigger = new Trigger('aws', (container, config: { [key: string]: s
                 console.log(config);
                 console.log(cmdInjector.resolve(typeof config == 'string' ? config : config[record.eventSource]));
                 // container.inspect();
-                const cmd: Metadata.Command | void = cmdInjector.injectWithName([typeof config == 'string' ? config : config[record.eventSource]],
+                const cmd = cmdInjector.injectWithName([typeof config == 'string' ? config : config[record.eventSource]],
                     cmdName => container.resolve((cmdName as string).replace(/:/g, '.')))(this);
 
                 if (!cmd)
@@ -41,7 +53,7 @@ export const trigger = new Trigger('aws', (container, config: { [key: string]: s
             console.log(config);
             console.log(ctxInjector.resolve(typeof config == 'string' ? config : config.aws));
             container.inspect();
-            const cmd: Metadata.Command | void = ctxInjector.injectWithName([typeof config == 'string' ? config : config.aws],
+            const cmd = ctxInjector.injectWithName([typeof config == 'string' ? config : config.aws],
                 (cmdName) => container.resolve((cmdName as string).replace(/:/g, '.')))(this);
 
             if (!cmd)
