@@ -17,7 +17,7 @@ export class AuthHandler extends CommandProcessor
         if (param._trigger && cmd.config?.auth)
         {
             const authConfig = cmd.config.auth;
-            return Local.execute({ config: cmd.config.auth as Metadata.Configurations, name: cmd.name }, this.authValidator, origin, param)
+            return Local.execute({ config: cmd.config.auth as any, name: cmd.name }, this.authValidator, origin, param)
         }
         return undefined;
     }

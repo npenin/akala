@@ -13,6 +13,9 @@ export { Processors, Metadata }
 export { ServeMetadata, connectByPreference, connectWith, ConnectionPreference };
 import $metadata from './commands/$metadata.js'
 export { CommandProcessor };
+
+export { ConfigurationMap } from './metadata/configurations.js'
+
 export const Triggers = {};
 
 export class Cli
