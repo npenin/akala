@@ -87,6 +87,7 @@ export class CssClass extends GenericControlInstance<string[]>
             parameter = new ObservableArray(parameter);
         }
         if (parameter instanceof ObservableArray)
+        {
             parameter.on('collectionChanged', function (arg: ObservableArrayEventArgs<string>)
             {
                 if (arg.newItems)
@@ -99,7 +100,9 @@ export class CssClass extends GenericControlInstance<string[]>
                     {
                         removeClass(element, item);
                     })
-            }).init();
+            });
+            parameter.init();
+        }
         else
             addClass(element, parameter);
     }
