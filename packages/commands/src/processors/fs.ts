@@ -143,7 +143,7 @@ export class FileSystem extends CommandProcessor
                 if (e.code == 'ENOENT')
                 {
                     if (indexOfColon > 1)
-                        return this.discoverMetaCommands(import.meta.resolve(root) + ':' + name, options);
+                        return this.discoverMetaCommands(import.meta.resolve(root) + '#' + name, options);
                     return this.discoverMetaCommands(import.meta.resolve(root), options);
                 }
                 throw e;
