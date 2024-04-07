@@ -1,7 +1,7 @@
-import { jsonObject, ExtendedConfigurations, GenericConfiguration } from './metadata/command.js';
+import { ExtendedConfigurations, GenericConfiguration } from './metadata/configurations.js';
 import { SelfDefinedCommand as ModelCommand } from "./model/command.js";
 import { Injectable as baseInjectable } from "@akala/core";
-import { Configuration, Configurations } from './metadata/index.js';
+import { Configurations } from './metadata/configurations.js';
 
 type Injectable<T> = baseInjectable<T> & { '$inject'?: string[] };
 
@@ -14,7 +14,7 @@ export function inject(...toInject: string[])
     }
 }
 
-export interface extendF<TConfiguration extends { [key: string]: (jsonObject & Configuration) | undefined }>
+export interface extendF<TConfiguration extends Configurations>
 {
     (cmd: Injectable<unknown>, name?: string): ModelCommand & { config: TConfiguration }
     <T extends ModelCommand>(cmd: T): T & { config: TConfiguration }

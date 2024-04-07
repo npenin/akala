@@ -1,15 +1,16 @@
 import { InjectableWithTypedThis } from "@akala/core";
 import { ICommandProcessor } from './processor.js';
-import * as metadata from '../metadata/index.js'
+import { Command } from '../metadata/command.js'
+import { Configurations } from '../metadata/configurations.js'
 
 type Injectable<T, U> = InjectableWithTypedThis<T, U> & { '$inject'?: string[] }
 
-export interface CommandWithProcessorAffinity extends metadata.Command
+export interface CommandWithProcessorAffinity extends Command
 {
     processor: ICommandProcessor;
 }
 
-export class SelfDefinedCommand<T = unknown> implements metadata.Command
+export class SelfDefinedCommand<T = unknown> implements Command
 {
     constructor(public readonly handler: Injectable<unknown | PromiseLike<unknown>, T>, name?: string, inject?: string[])
     {
@@ -38,7 +39,7 @@ export class SelfDefinedCommand<T = unknown> implements metadata.Command
     }
 
     public readonly name: string;
-    public config: metadata.Configurations = { '': {} };
+    public config: Configurations = { '': {} };
 
 }
 

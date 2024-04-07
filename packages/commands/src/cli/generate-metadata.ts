@@ -135,7 +135,7 @@ import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argume
                 else
                     await write(output, `(...args: Arguments<typeof import('./${filePath}').default>): ReturnType<typeof import('./${filePath}').default>\n`);
             }
-            else if (cmd.config[""]?.inject && cmd.config[""]?.length)
+            else if (cmd.config[""]?.inject && cmd.config[""]?.inject.length)
             {
                 await write(output, cmd.config[""]?.inject.filter(p => p.startsWith('param.')).map(() => `any`).join(', '));
                 await write(output, `): unknown\n`);
