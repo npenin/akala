@@ -1,9 +1,14 @@
-#  (2024-04-05)
+#  (2024-04-07)
 
 
 ### Features
 
-* add HttpStatusCodes 7fc22e5
+* switch to custom event emitter b20b059
+
+
+### BREAKING CHANGES
+
+* module and orchestrator are now using this new implementation
 
 
 
