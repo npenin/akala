@@ -1,8 +1,17 @@
-import { EventEmitter } from 'events'
+import { Event, EventEmitter } from './event-emitter.js'
 import { eachAsync } from './helpers.js';
 import sequencify, { Task } from './sequencify.js'
 
-export default class Orchestrator extends EventEmitter
+interface EventMap
+{
+    start: Event<[string[]]>
+    task_start: Event<[{ message: string, task: Task }]>
+    task_stop: Event<[{ message: string }, Task]>
+    error: Event<[{ error: Error, task: Task }]>
+    stop: Event<[Error] | []>
+}
+
+export default class Orchestrator extends EventEmitter<EventMap>
 {
     public readonly tasks: Record<string, Task & { name: string, action?: () => void | Promise<void> }> = {};
 
