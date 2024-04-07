@@ -422,7 +422,7 @@ function prepareParam(cmd: Metadata.Command, args: CliContext, standalone?: bool
     if (!cmd)
         return false;
 
-    if (!cmd.config || !cmd.config.cli || (standalone && !cmd.config.cli.standalone))
+    if (!cmd.config || !cmd.config.cli || (standalone && !cmd.config.cli['standalone']))
         return false;
 
     delete args.options.pmSock;
