@@ -1,4 +1,4 @@
-#  (2024-04-05)
+#  (2024-04-07)
 
 
 ### Bug Fixes
@@ -77,6 +77,7 @@
 * bindings are less intrusive 3ef2783
 * broken command processor 22afbc0
 * browser exports 8888cc6
+* browser implementation (remove implicit reference to node) ef786d1
 * build issue after update to @akala/core fc8465c
 * build issue after update to @akala/core 1cd037a
 * bump dependent 5e89235
@@ -230,6 +231,8 @@
 * improve spanasync resilience 7c1b792
 * improve start/stop doc e4be495
 * improve support for extends f6622ee
+* improve typing after commands update f9d323b
+* improve typing after commands update 6ef2e78
 * improve typing for errorMiddlewares 2b7047f
 * improve usage in browser 8c69317
 * improve usage in browser be570f3
@@ -380,6 +383,8 @@
 * remove hrtime dependency f85fb22
 * remove http imports to support treeshaking for browsers a0d87cb
 * remove http routing f9f43de
+* remove implicit node dependency 603f890
+* remove implicit node dependency efb3674
 * remove import of removed dependency 8a11cef
 * remove jsonrpc from browser field b45e8cb
 * remove over proxyfying bc948b3
@@ -419,6 +424,7 @@
 * sidecar to remote containers f795c56
 * sidecar use pm when provided bf320f3
 * silent disconnect failures 81d65aa
+* simplify http trigger 2a65ce2
 * simplify url handler 09b9261
 * smaller secret footprint b41b636
 * sort excludes non workspace dependencies 0f33d15
@@ -457,6 +463,8 @@
 * typing 8851307
 * unliased interact errors a16496a
 * unparse options eed10c8
+* update after core breaking change d0849e5
+* update after core breaking change d7860ee
 * update after core changes 576dc73
 * update after the breaking change in conventional changelog 12078eb
 * update after the breaking change in conventional changelog 76ebf7f
@@ -533,6 +541,9 @@
 * add $init function for easier usage 3f4fa32
 * add $init-akala as an init command when running any command in a given container bdfbef5
 * add abort signal on CliContext 7e11e23
+* add auth trigger support f99de4c
+* add authentication support 0159173
+* add authentication support f7b37aa
 * add autotmate as an akala plugin d8ebbdc
 * add base64 converter to be runtime agnostic 990891d
 * add bin in webdav 563472b
@@ -560,6 +571,7 @@
 * add JWT serialization/parsing 066668d
 * add keepAttached for pm start 2bef670
 * add lazy helper 5530746
+* add LogProcessor 5216528
 * add middleware with priority handling 461c1a4
 * add MiddlewareRunnerMiddleware d0e9aff
 * add mongodb support b51751a
@@ -613,6 +625,7 @@
 * add where signature for more flexibility a8d0f14
 * add windows service install support 3b9af3a
 * added winston as a logger system 065bae0
+* allow disable/enabe user f843eb5
 * allow for relative path in cli bcccff1
 * allow more string "errors" in router 1a9608f
 * allow options on json-rpc-ws (like protocols) 6682a53
@@ -674,6 +687,7 @@
 * support normalize require config af16029
 * support oneway messages by throwing undefined 6a18260
 * switch from yarn version to manual bump 56c3e0a
+* switch to custom event emitter b20b059
 * switch to ESM decorators 19762ba
 * switch to URL handler for processor registration 341872b
 * switched from raw debug to logger from core efef2da
@@ -684,6 +698,11 @@
 
 ### BREAKING CHANGES
 
+* name is now separated by a # and not a : anymore.
+* name is now separated by a # and not a : anymore.
+* module and orchestrator are now using this new implementation
+* legacy LogProcessor has been renamed to LogEventProcessor
+* LogProcessor has been renamed to LogEventProcessor
 * implementations using NextFunction will not work any longer.
 * new returns Promise to allow the key load when not provided
 * added signatures that may break dependent libraries
