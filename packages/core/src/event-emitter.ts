@@ -1,4 +1,4 @@
-export class EventEmitter<T extends { [key in keyof T]: Event | undefined } = Record<string, Event>>
+export class EventEmitter<T extends { [key in keyof T]: Event<any[]> | undefined } = Record<string, Event>>
 {
     events: Partial<T> = {}
     constructor(public maxListeners = 11)
