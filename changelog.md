@@ -1,4 +1,4 @@
-#  (2024-04-07)
+#  (2024-04-08)
 
 
 ### Bug Fixes
@@ -80,6 +80,7 @@
 * browser implementation (remove implicit reference to node) ef786d1
 * build issue after update to @akala/core fc8465c
 * build issue after update to @akala/core 1cd037a
+* build with angular 17 9d3fcb6
 * bump dependent 5e89235
 * bump dependents proper references f734b61
 * bump lambda version 41d34c2
@@ -497,6 +498,7 @@
 * update workspace parameter binding 6b6b07b
 * updateCommands now removes all commands before re-registering 7bc2f3d
 * upgrade to latest commands 2801d27
+* use existing base64 encoder ebd748e
 * variable leak adef56b
 * variable renaming f825597
 * workflow output 3fca50e
