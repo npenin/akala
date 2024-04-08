@@ -80,6 +80,7 @@
 * browser implementation (remove implicit reference to node) ef786d1
 * build issue after update to @akala/core fc8465c
 * build issue after update to @akala/core 1cd037a
+* build with angular 17 be60411
 * build with angular 17 9d3fcb6
 * bump dependent 5e89235
 * bump dependents proper references f734b61
