@@ -6,7 +6,7 @@ export class EventEmitter<T extends { [key in keyof T]: Event | undefined } = Re
 
     }
 
-    public setAsync<const TEvent extends keyof T>(event: keyof T)
+    public setAsync<const TEvent extends keyof T>(event: TEvent)
     {
         if (!(event in this.events))
             this.events[event] = new AsyncEvent(this.maxListeners) as unknown as T[TEvent];
@@ -19,7 +19,7 @@ export class EventEmitter<T extends { [key in keyof T]: Event | undefined } = Re
         }
     }
 
-    public set<const TEvent extends keyof T>(eventName: keyof T, event: T[TEvent])
+    public set<const TEvent extends keyof T>(eventName: TEvent, event: T[TEvent])
     {
         if (!(eventName in this.events) || !this.events[eventName].hasListeners)
             this.events[eventName] = event;
@@ -27,7 +27,7 @@ export class EventEmitter<T extends { [key in keyof T]: Event | undefined } = Re
             throw new Error('This event (' + event.toString() + ') already has registered listeners, the type cannot be changed');
     }
 
-    public setMaxListeners<const TEvent extends keyof T>(maxListeners: number, event?: keyof T)
+    public setMaxListeners<const TEvent extends keyof T>(maxListeners: number, event?: TEvent)
     {
         if (!(event in this.events))
             this.events[event] = new Event(maxListeners) as T[TEvent];
@@ -68,7 +68,7 @@ export interface AttachEventOptions
 }
 
 export type Listener<T extends unknown[] = unknown[], TReturnType = void> = (...args: T) => TReturnType
-export type EventArgs<TEvent extends Event> = TEvent extends Event<infer X, unknown> ? X : never;
+export type EventArgs<TEvent> = TEvent extends Event<infer X, unknown> ? X : never;
 
 export class Event<T extends unknown[] = unknown[], TReturnType = void>
 {
