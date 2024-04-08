@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* build with angular 17 9d3fcb6
+* build with angular 17 be60411
 
 
 
