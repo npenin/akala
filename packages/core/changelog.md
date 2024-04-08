@@ -1,14 +1,9 @@
-#  (2024-04-07)
+#  (2024-04-08)
 
 
-### Features
+### Bug Fixes
 
-* switch to custom event emitter b20b059
-
-
-### BREAKING CHANGES
-
-* module and orchestrator are now using this new implementation
+* build with angular 17 9d3fcb6
 
 
 
