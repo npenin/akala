@@ -9,7 +9,7 @@ import { HandlerResult, handlers } from '../protocol-handler.js';
 
 type OnlyArray<T> = Extract<T, unknown[]>;
 
-export async function handler(url: URL): Promise<HandlerResult<JsonRpc>>
+async function handler(url: URL): Promise<HandlerResult<JsonRpc>>
 {
     const socket = await new Promise<jsonrpcws.SocketAdapter>((resolve) =>
     {
