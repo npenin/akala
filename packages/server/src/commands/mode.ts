@@ -6,6 +6,6 @@ export default function (this: State, mode?: 'development' | 'production'): void
 {
     if (typeof mode == 'undefined')
         return this.mode;
-    this.webpack.config.mode = this.mode = mode;
+    // this.webpack.config.mode = this.mode = mode;
     return this.mode;
 }
