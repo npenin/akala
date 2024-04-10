@@ -1,4 +1,4 @@
-#  (2024-04-08)
+#  (2024-04-10)
 
 
 ### Bug Fixes
@@ -399,6 +399,7 @@
 * remove triple-beam dependency c44bd2e
 * remove util dependency 4c90028
 * remove webpack dependencies f51db45
+* remove webpack dependency ab0e87c
 * remove winston dependency 3dcad68
 * removed mock-require usage 99587ba
 * removed mock-require usage 448f5be
@@ -628,6 +629,7 @@
 * add where signature for more flexibility a8d0f14
 * add windows service install support 3b9af3a
 * added winston as a logger system 065bae0
+* allow both jsonrpc and jsonrpcbrowser to co-exist bfde876
 * allow disable/enabe user f843eb5
 * allow for relative path in cli bcccff1
 * allow more string "errors" in router 1a9608f
