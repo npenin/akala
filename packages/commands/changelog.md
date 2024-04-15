@@ -1,9 +1,9 @@
-#  (2024-04-10)
+#  (2024-04-15)
 
 
-### Features
+### Bug Fixes
 
-* allow both jsonrpc and jsonrpcbrowser to co-exist bfde876
+* allow all registered containers to be served d12f617
 
 
 
