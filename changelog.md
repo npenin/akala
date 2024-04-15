@@ -1,4 +1,4 @@
-#  (2024-04-10)
+#  (2024-04-15)
 
 
 ### Bug Fixes
@@ -41,6 +41,7 @@
 * akala cli initrr handling 0f028ce
 * akala init support 528791e
 * akala init support 246f796
+* allow all registered containers to be served d12f617
 * allow for any property on errors a529558
 * any implementation fixed 3302fc0
 * any on mongodb efa6f5d
