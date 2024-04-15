@@ -1,7 +1,7 @@
 import { program as root, ErrorMessage, NamespaceMiddleware } from "@akala/cli"
 import { Injector, mapAsync } from "@akala/core"
 import commands from "./commands.js";
-import { Cli, ICommandProcessor, ServeOptions, registerCommands } from "./index.js";
+import { Cli, ICommandProcessor, ServeOptions } from "./index.js";
 import { Container } from "./model/container.js";
 import $serve from "./commands/$serve.js";
 import { Configurations } from "./metadata/configurations.js";
@@ -110,8 +110,9 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
     commands.command<{ container: string }>('serve [container]', serveDefinition.doc.description).options(serveDefinition.cli.options).action(context =>
     {
         process.on('SIGINT', () => context.abort.abort())
-        if (!context.options.container)
-            return $serve(containers, { args: context.args as ServeOptions['args'], options: { ...context.options, socketName: context.options.container } }, context.abort.signal);
-        return $serve(containers.resolve(context.options.container), { args: context.args as ServeOptions['args'], options: { ...context.options, socketName: context.options.container } }, context.abort.signal);
+        const container = containers.resolve<Container<unknown>>(context.options.container);
+        if (!container)
+            return $serve(containers, { args: [context.options.container].concat(context.args) as ServeOptions['args'], options: { ...context.options, socketName: context.options.container } }, context.abort.signal);
+        return $serve(container, { args: context.args as ServeOptions['args'], options: { ...context.options, socketName: context.options.container } }, context.abort.signal);
     })
 }
