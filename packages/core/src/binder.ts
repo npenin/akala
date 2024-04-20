@@ -1,5 +1,5 @@
 import { getSetter, Parser } from './parser/parser.js';
-import { EventEmitter } from './events.js';
+import { Event, EventEmitter } from './event-emitter.js';
 import { isPromiseLike } from './promiseHelpers.js';
 import * as formatters from './formatters/index.js';
 import { map } from './each.js'
@@ -12,7 +12,7 @@ export interface IWatched extends Object
     $$watchers?: { [key: string]: Binding<unknown> };
 }
 
-export interface EventArgs<T = unknown>
+export interface BinderEventArgs<T = unknown>
 {
     source: Binding<T>;
     error?: unknown;
@@ -20,7 +20,7 @@ export interface EventArgs<T = unknown>
     value: T;
 }
 
-export class BindingExtendableEvent<T> extends ExtendableEvent<EventArgs<T>>
+export class BindingExtendableEvent<T> extends ExtendableEvent<BinderEventArgs<T>>
 {
     constructor(public target: unknown)
     {
@@ -31,7 +31,7 @@ export class BindingExtendableEvent<T> extends ExtendableEvent<EventArgs<T>>
 interface BindingEventArgs<T = unknown>
 {
     target: IWatched;
-    eventArgs: EventArgs<T>
+    eventArgs: BinderEventArgs<T>
 }
 
 export type Bound<T> = { [key in keyof T]: Binding<T[key]> }
@@ -105,12 +105,12 @@ export class Binding<T>
 
     public onChanging(handler: (ev: BindingExtendableEvent<T>) => void)
     {
-        return this.onChangingEvent.addHandler(handler);
+        return this.onChangingEvent.addListener(handler);
     }
 
     public onChanged(handler: (args: BindingEventArgs<T>) => void, doNotTriggerHandler?: boolean)
     {
-        const off = this.onChangedEvent.addHandler(handler);
+        const off = this.onChangedEvent.addListener(handler);
         if (!doNotTriggerHandler)
         {
             this.getValue().then(v => handler({
@@ -123,7 +123,7 @@ export class Binding<T>
 
     public onError(handler: (ev: BindingExtendableEvent<T>) => void)
     {
-        return this.onErrorEvent.addHandler(handler);
+        return this.onErrorEvent.addListener(handler);
     }
 
     private registeredBindings: Binding<T>[] = [];
@@ -154,7 +154,7 @@ export class Binding<T>
 
             return binding.onErrorEvent.trigger(Object.assign({}, a.eventArgs, { value: binding.getValue() }));
         });
-        var offDispose = this.onDisposeEvent.addHandler(async function ()
+        var offDispose = this.onDisposeEvent.addListener(async function ()
         {
             await binding.onDisposeEvent.trigger();
             if (offChanged)
@@ -406,21 +406,11 @@ export type ObservableArrayInitEvent<T> =
 export type ObservableArrayEventMap<T> = ObservableArrayPopEvent<T> | ObservableArrayPushEvent<T> | ObservableArrayShiftEvent<T> | ObservableArrayUnshiftEvent<T> | ObservableArrayReplaceEvent<T> | ObservableArrayInitEvent<T>;
 
 
-export class ObservableArray<T> extends EventEmitter<{ collectionChanged: [ObservableArrayEventMap<T>] }>
+export class ObservableArray<T> extends EventEmitter<{ collectionChanged: Event<[ObservableArrayEventMap<T>]> }>
 {
     constructor(public readonly array: Array<T>)
     {
         super();
-    }
-
-    public on(event: 'collectionChanged', handler: (args: ObservableArrayEventMap<T>) => void)
-    {
-        return super.on(event, handler);
-    }
-
-    public emit(event: 'collectionChanged', data: ObservableArrayEventMap<T>)
-    {
-        return super.emit(event, data);
     }
 
     public get length() { return this.array.length; }

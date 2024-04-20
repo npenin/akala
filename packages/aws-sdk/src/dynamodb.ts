@@ -65,6 +65,11 @@ export class DynamoDb
     {
 
     }
+
+    public table<T, THashKey extends keyof T, TRangeKey extends keyof T | undefined = undefined>(name: string)
+    {
+        return new Table<T, THashKey, TRangeKey>(this.prefix + name, this.region, this.credentials);
+    }
 }
 
 export function marshall<T>(value: T, options?: { removeUndefinedValues: boolean }): Marshall<T>
@@ -162,9 +167,9 @@ export class Table<T, THashKey extends keyof T, TRangeKey extends keyof T | unde
 
     }
 
-    public get(key: THashKey)
+    public get(key: THashKey, range?: TRangeKey)
     {
-        return fetch('https://dynamodb.' + this.region + '.amazonaws.com', { headers: { 'content-type': 'application/json', 'x-amz-target': actions.DynamoDB_2012010.GetItem }, body: JSON.stringify(marshall(key)) })
+        return fetch('https://dynamodb.' + this.region + '.amazonaws.com', { headers: { 'content-type': 'application/json', 'x-amz-target': actions.DynamoDB_2012010.GetItem }, body: JSON.stringify(marshall({ key })) })
     }
 }
 

@@ -1,6 +1,6 @@
 {
     "name": "@akala/json-rpc-ws",
-    "version": "10.4.0",
+    "version": "10.4.4",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/npenin/akala.git"
@@ -57,7 +57,39 @@
     },
     "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
     "exports": {
-        "browser": {
+        ".": {
+            "browser": {
+                "require": {
+                    "types": "./dist/cjs/browser.d.ts",
+                    "default": "./dist/cjs/browser.js"
+                },
+                "import": {
+                    "types": "./dist/esm/browser.d.ts",
+                    "default": "./dist/esm/browser.js"
+                }
+            },
+            "node": {
+                "require": {
+                    "types": "./dist/cjs/index.d.ts",
+                    "default": "./dist/cjs/index.js"
+                },
+                "import": {
+                    "types": "./dist/esm/index.d.ts",
+                    "default": "./dist/esm/index.js"
+                }
+            },
+            "require": {
+                "types": "./dist/cjs/browser.d.ts",
+                "default": "./dist/cjs/browser.js"
+            },
+            "import": {
+                "types": "./dist/esm/browser.d.ts",
+                "default": "./dist/esm/browser.js"
+            },
+            "types": "./dist/cjs/browser.d.ts",
+            "default": "./dist/cjs/browser.js"
+        },
+        "./browser": {
             "require": {
                 "types": "./dist/cjs/browser.d.ts",
                 "default": "./dist/cjs/browser.js"
@@ -66,27 +98,7 @@
                 "types": "./dist/esm/browser.d.ts",
                 "default": "./dist/esm/browser.js"
             }
-        },
-        "node": {
-            "require": {
-                "types": "./dist/cjs/index.d.ts",
-                "default": "./dist/cjs/index.js"
-            },
-            "import": {
-                "types": "./dist/esm/index.d.ts",
-                "default": "./dist/esm/index.js"
-            }
-        },
-        "require": {
-            "types": "./dist/cjs/browser.d.ts",
-            "default": "./dist/cjs/browser.js"
-        },
-        "import": {
-            "types": "./dist/esm/browser.d.ts",
-            "default": "./dist/esm/browser.js"
-        },
-        "types": "./dist/cjs/browser.d.ts",
-        "default": "./dist/cjs/browser.js"
+        }
     },
     "module": "./dist/esm/browser.js",
     "types": "./dist/esm/browser.d.ts"

@@ -14,4 +14,7 @@ export class User
     salt: string;
     @db.Field(db.Types.string)
     attributes: Record<string, { value: string | number | boolean, canBeValidated: boolean, validated: boolean }>;
+
+    @db.Field(db.Types.boolean)
+    disabled: boolean;
 }

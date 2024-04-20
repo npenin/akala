@@ -1,10 +1,10 @@
-import { CommandMetadataProcessorSignature, ICommandProcessor } from '../model/processor.js';
+import { CommandMetadataProcessorSignature, CommandProcessor, ICommandProcessor } from '../model/processor.js';
 import { handlers } from '../protocol-handler.js';
 import { EventProcessor } from './event.js';
 
-export class LogProcessor extends EventProcessor
+export class LogEventProcessor extends EventProcessor
 {
-    public name = 'log';
+    public name = 'log-event';
 
     constructor(processor: ICommandProcessor,
         preExecute?: (...args: CommandMetadataProcessorSignature<unknown>) => void,
@@ -18,7 +18,15 @@ export class LogProcessor extends EventProcessor
     }
 }
 
+export class LogProcessor extends CommandProcessor
+{
+    constructor(public readonly handle: ICommandProcessor['handle'])
+    {
+        super('log');
+    }
+}
+
 handlers.useProtocol('log', (_url, inner) =>
 {
-    return Promise.resolve({ processor: new LogProcessor(inner.processor, (...args) => console.log(args), (...args) => console.log(args)), getMetadata: inner.getMetadata });
+    return Promise.resolve({ processor: new LogEventProcessor(inner.processor, (...args) => console.log(args), (...args) => console.log(args)), getMetadata: inner.getMetadata });
 })
