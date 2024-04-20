@@ -1,5 +1,5 @@
 import { lazy, noop } from "../helpers.js";
-import { BinaryExpression, Expressions, ExpressionVisitor, MemberExpression, NewExpression, TypedExpression, UnaryExpression, UnaryOperator } from "./expressions/index.js";
+import { BinaryExpression, ConstantExpression, Expressions, ExpressionVisitor, MemberExpression, NewExpression, TypedExpression, UnaryExpression, UnaryOperator } from "./expressions/index.js";
 import { BinaryOperator } from "./expressions/binary-operator.js";
 import { ExpressionsWithLength, ParsedArray, ParsedObject } from "./parser.js";
 
@@ -26,6 +26,12 @@ export class EvaluatorAsFunction extends ExpressionVisitor
         }
     }
 
+    async visitConstant(arg0: ConstantExpression<unknown>): Promise<Expressions>
+    {
+        this.functionBody += JSON.stringify(arg0.value);
+        return arg0;
+    }
+
     async visitNew<T>(expression: NewExpression<T>): Promise<Expressions>
     {
         if (expression instanceof ParsedObject)
@@ -35,6 +41,7 @@ export class EvaluatorAsFunction extends ExpressionVisitor
             {
                 // this.result = null;
                 const currentBody = this.functionBody;
+                this.functionBody = '';
                 await this.visit(m.source);
                 this.functionBody = currentBody + (i > 0 ? ',' : '') + '"' + m.member.replace('\\', '\\\\').replace('"', '\\"') + '":' + this.functionBody
                 return m;
