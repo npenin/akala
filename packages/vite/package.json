@@ -1,0 +1,28 @@
+{
+    "name": "@akala/vite",
+    "version": "0.0.0",
+    "private": true,
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "type": "module",
+    "exports": {
+        "./client": {
+            "types": "./dist/client.d.ts",
+            "default": "./dist/client.js"
+        },
+        ".": {
+            "types": "./dist/index.d.ts",
+            "default": "./dist/index.js"
+        }
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\"",
+        "build": "node dist/esbuild.mjs"
+    },
+    "devDependencies": {
+        "esbuild-sass-plugin": "^3.2.0",
+        "postcss": "^8.4.38",
+        "postcss-modules": "^6.0.0",
+        "vite": "^5.2.8"
+    }
+}
