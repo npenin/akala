@@ -9,6 +9,6 @@ export default async function (this: State, userName: string, password: string, 
     if (user.password != await this.getHash(user.salt + oldPassword))
         throw new ErrorWithStatus(500, 'Password do not match')
 
-    Object.assign(user, await hashPassword(password));
+    Object.assign(user, await hashPassword(this, password));
     return await this.store.User.updateSingle(user);
 }
