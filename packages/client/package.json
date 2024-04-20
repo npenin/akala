@@ -46,7 +46,7 @@
     },
     "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
     "dependencies": {
-        "reflect-metadata": "^0.2.0"
+        "reflect-metadata": "^0.2.2"
     },
     "exports": {
         ".": {
@@ -57,6 +57,16 @@
             "require": {
                 "types": "./dist/cjs/index.d.ts",
                 "default": "./dist/cjs/index.js"
+            }
+        },
+        "./sw/*": {
+            "import": {
+                "types": "./dist/esm/service-workers/*.d.ts",
+                "default": "./dist/esm/service-workers/*.js"
+            },
+            "require": {
+                "types": "./dist/cjs/service-workers/*.d.ts",
+                "default": "./dist/cjs/service-workers/*.js"
             }
         }
     },
