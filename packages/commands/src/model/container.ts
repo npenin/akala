@@ -67,7 +67,7 @@ export class Container<TState> extends akala.Injector implements Middleware<[ori
         container = container || this;
         if (typeof (param) == 'object' && param !== null && param.length === 1 && typeof (param[0]) == 'object' && param[0] !== null && param[0]['param'] && Array.isArray(param[0]['param']))
         {
-            // log(`dispatching ${command}(${JSON.stringify(param[0])})`)
+            // console.log(`dispatching ${command}(${JSON.stringify(param[0])})`)
             let cmd: Metadata.Command;
             if (typeof command == 'string')
             {
@@ -77,7 +77,7 @@ export class Container<TState> extends akala.Injector implements Middleware<[ori
                 if (cmd.name !== command)
                 {
                     const proc = this.resolve<Container<TState>>(command.substring(0, command.length - cmd.name.length - 1));
-                    return proc.handle(container, cmd, param[0] as StructuredParameters<unknown[]>);
+                    return proc.handle(proc, cmd, param[0] as StructuredParameters<unknown[]>);
                 }
             }
             else
