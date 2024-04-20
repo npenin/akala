@@ -118,7 +118,7 @@ export class FileSystem extends CommandProcessor
 
     public static async discoverMetaCommands(root: string, options?: DiscoveryOptions): Promise<Metadata.Command[] & { name?: string, stateless?: boolean }>
     {
-        // console.trace(`discovering commands in ${root}`)
+        console.trace(`discovering commands in ${root}`)
         const log = akala.logger('commands:fs:discovery');
 
         if (!options)
@@ -142,9 +142,11 @@ export class FileSystem extends CommandProcessor
             {
                 if (e.code == 'ENOENT')
                 {
+                    const resolved = import.meta.resolve(root);
                     if (indexOfColon > 1)
-                        return this.discoverMetaCommands(import.meta.resolve(root) + '#' + name, options);
-                    return this.discoverMetaCommands(import.meta.resolve(root), options);
+                        return this.discoverMetaCommands(resolved + '#' + name, options);
+                    else if (resolved !== root)
+                        return this.discoverMetaCommands(resolved, options);
                 }
                 throw e;
             }
