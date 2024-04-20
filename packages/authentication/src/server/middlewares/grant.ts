@@ -82,7 +82,7 @@ export class ExchangeMiddleware implements Middleware<[Request, Response]>
         this.basicAuthenticator = new BasicAuthenticateMiddleware(clientValidator);
     }
 
-    static grants: { [key: string]: MiddlewareComposite<[string, string, Request]> };
+    static grants: { [key: string]: MiddlewareComposite<[string, string, Request]> } = {};
     public static register(grantType: string, codeValidator: (code: string, clientId: string, req: Request) => Promise<void>, tokenBuilder: (code: string, clientId: string, req: Request) => Promise<AccessTokenResponse>): void
     {
         this.grants[grantType] = this.grants[grantType] || new MiddlewareComposite<[string, string, Request]>(grantType);

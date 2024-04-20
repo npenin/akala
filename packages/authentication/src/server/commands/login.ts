@@ -1,6 +1,7 @@
 import { ErrorWithStatus } from "@akala/core";
 import { BinaryOperator } from "@akala/core/expressions";
 import { State } from "../state.js";
+import addSession from "./session/add-session.js";
 
 export default async function (this: State, username: string, password: string)
 {
@@ -9,8 +10,12 @@ export default async function (this: State, username: string, password: string)
     if (!user)
         throw new ErrorWithStatus(401, 'Invalid Username (or password).');
 
-    if (user.password !== await this.getHash(password))
+    if (user.password !== await this.getHash(user.salt + password))
         throw new ErrorWithStatus(401, 'Invalid (Username or) password).');
 
-    return { id: user.id, username: user.name }
+    const session = await addSession.call(this, null, user.id);
+
+    session.userId = user.id;
+
+    return { id: user.id, sessionId: session.id, sessionSignature: this.getHash(user.salt + session.id), username: user.name }
 }

@@ -1,0 +1,304 @@
+{
+    "name": "auth",
+    "commands": [
+        {
+            "name": "$init",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/$init.js",
+                    "source": "src/server/commands/$init.ts",
+                    "inject": [
+                        "$container",
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "$container",
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "$container",
+                        "options.provider",
+                        "options.providerOptions",
+                        "options.key"
+                    ],
+                    "options": {
+                        "provider": {
+                            "needsValue": true
+                        },
+                        "providerOptions": {
+                            "needsValue": true
+                        },
+                        "key": {
+                            "needsValue": true
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "name": "$request",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/$request.js",
+                    "source": "src/server/commands/$request.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "authenticate",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/authenticate.js",
+                    "source": "src/server/commands/authenticate.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "login",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/esm/server/commands/login.js",
+                    "source": "src/server/commands/login.ts"
+                },
+                "http": {
+                    "inject": [],
+                    "route": "/login",
+                    "method": "post"
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "html": {
+                    "inject": [
+                        "form.username",
+                        "form.password"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "scope.add",
+            "config": {
+                "fs": {
+                    "inject": [],
+                    "path": "dist/esm/server/commands/scope/add.js",
+                    "source": "src/server/commands/scope/add.ts"
+                },
+                "": {
+                    "inject": []
+                },
+                "cli": {
+                    "usage": "scope add [...scope]",
+                    "options": {
+                        "scope": {
+                            "needsValue": true
+                        }
+                    },
+                    "inject": [
+                        "options.scope"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "scope.list",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/scope/list.js",
+                    "source": "src/server/commands/scope/list.ts",
+                    "inject": []
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "scope.remove",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/scope/remove.js",
+                    "source": "src/server/commands/scope/remove.ts",
+                    "inject": []
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
+            "name": "user.add-device",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/user/add-device.js",
+                    "source": "src/server/commands/user/add-device.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "user.add-user",
+            "config": {
+                "fs": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ],
+                    "path": "dist/esm/server/commands/user/add-user.js",
+                    "source": "src/server/commands/user/add-user.ts"
+                },
+                "http": {
+                    "inject": [],
+                    "route": "/signup",
+                    "method": "post"
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "html": {
+                    "inject": [
+                        "form.username",
+                        "form.password"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "user.change-password",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/user/change-password.js",
+                    "source": "src/server/commands/user/change-password.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "user.disable-user",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/user/disable-user.js",
+                    "source": "src/server/commands/user/disable-user.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "user.enable-user",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/user/enable-user.js",
+                    "source": "src/server/commands/user/enable-user.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "user.get-oidc-configuration",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/user/get-oidc-configuration.js",
+                    "source": "src/server/commands/user/get-oidc-configuration.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "user.remove-user",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/user/remove-user.js",
+                    "source": "src/server/commands/user/remove-user.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        }
+    ],
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json"
+}
