@@ -23,6 +23,8 @@ export interface DbSet<T> extends Query<T>
     createSingle(record: T): PromiseLike<CommandResult>;
 }
 
+export type DbSetType<T> = T extends DbSet<infer X> ? X : never;
+
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type StoreDefinition<T = any> =
     {
@@ -33,16 +35,25 @@ export type StoreDefinition<T = any> =
 export class Store<TStore extends StoreDefinition>
 {
     //eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public static create<TStore extends StoreDefinition>(engine: PersistenceEngine<any>, ...names: (keyof TStore)[]): Store<TStore> & StoreDefinition<TStore> & TStore
+    public static create<TStore extends StoreDefinition>(engine: PersistenceEngine<any>, ...names: ((Exclude<keyof TStore, number | symbol>) | (new () => DbSetType<TStore[keyof TStore]>))[]): Store<TStore> & StoreDefinition<TStore> & TStore
     {
         //eslint-disable-next-line @typescript-eslint/no-explicit-any
         return new Store<TStore>(engine, ...names) as any;
     }
 
-    private constructor(private engine: PersistenceEngine, ...names: (keyof TStore)[])
+    private constructor(private engine: PersistenceEngine, ...names: ((Exclude<keyof TStore, number | symbol>) | (new () => DbSetType<TStore[keyof TStore]>))[])
     {
         for (const name of names)
-            Object.defineProperty(this, name, { value: this.set(name as string) });
+        {
+            if (typeof name == 'string')
+                Object.defineProperty(this, name, { value: this.set(name as string) });
+            else
+            {
+                const model: ModelDefinition<unknown> = Reflect.getMetadata('db:model', name.prototype);
+                Object.defineProperty(this, model.name, { value: model.dbSet(this.engine) });
+            }
+
+        }
     }
 
     public set<T>(name: keyof TStore & string)

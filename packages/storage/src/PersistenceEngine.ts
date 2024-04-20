@@ -47,11 +47,16 @@ export abstract class PersistenceEngine<TOptions = string>
 
     private transaction: Transaction;
 
-    public dbSet<T = unknown>(name: string): DbSet<T>
+    public dbSet<T = unknown>(name: string | ModelDefinition<T>): DbSet<T>
     {
-        if (!ModelDefinition.definitions[name])
-            throw new Error('There is no model for name ' + name)
-        return ModelDefinition.definitions[name].dbSet(this);
+        if (typeof name == 'string')
+        {
+            if (!ModelDefinition.definitions[name])
+                throw new Error('There is no model for name ' + name)
+            return ModelDefinition.definitions[name].dbSet(this);
+        }
+        else
+            return name.dbSet(this);
     }
 
     public addCommand<T>(cmd: Commands<T>)
