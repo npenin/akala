@@ -1,19 +1,9 @@
-export function Promisify<T>(o: T | PromiseLike<T>): PromiseLike<T>
-{
-    return Promise.resolve(o);
-}
-
 export type ResolveHandler<T, TResult> = (value: T) => TResult | PromiseLike<TResult>
 export type RejectHandler<TResult> = (reason: unknown) => void | TResult | PromiseLike<TResult>;
 
 export function isPromiseLike<T>(o: T | PromiseLike<T>): o is PromiseLike<T>
 {
     return o && o['then'] && typeof (o['then']) == 'function';
-}
-
-export function when<T>(promises: PromiseLike<T>[]): PromiseLike<T[]>
-{
-    return Promise.all(promises);
 }
 
 export class Deferred<T, TError = Error> implements PromiseLike<T>
@@ -48,11 +38,11 @@ export class Deferred<T, TError = Error> implements PromiseLike<T>
         this._reject = _reject;
     }
 
-    public then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: Error) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>
+    public then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: TError) => TResult2 | PromiseLike<TResult2>) | undefined | null): Promise<TResult1 | TResult2>
     {
         return this.promise.then(onfulfilled, onrejected);
     }
-    public catch<TResult = never>(onrejected?: ((reason: Error) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>
+    public catch<TResult = never>(onrejected?: ((reason: TError) => TResult | PromiseLike<TResult>) | undefined | null): Promise<T | TResult>
     {
         return this.promise.catch(onrejected);
     }
