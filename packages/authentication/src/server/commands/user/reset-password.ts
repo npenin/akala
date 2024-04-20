@@ -19,6 +19,6 @@ export default async function (this: State, userName: string, code: string, pass
         throw new ErrorWithStatus(500, 'The token is expired')
     }
 
-    Object.assign(user, await hashPassword(password));
+    Object.assign(user, await hashPassword(this, password));
     return this.store.User.updateSingle(user);
 }

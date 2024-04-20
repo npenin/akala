@@ -1,4 +1,4 @@
-import { ErrorWithStatus } from "@akala/core";
+import { ErrorWithStatus, base64 } from "@akala/core";
 import { BinaryOperator } from "@akala/core/expressions";
 import { State } from "../state.js";
 import addSession from "./session/add-session.js";
@@ -10,7 +10,7 @@ export default async function (this: State, username: string, password: string)
     if (!user)
         throw new ErrorWithStatus(401, 'Invalid Username (or password).');
 
-    if (user.password !== await this.getHash(user.salt + password))
+    if (!await this.verifyHash(password, base64.base64DecToArr(user.password), base64.base64DecToArr(user.salt)))
         throw new ErrorWithStatus(401, 'Invalid (Username or) password).');
 
     const session = await addSession.call(this, null, user.id);
