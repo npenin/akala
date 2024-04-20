@@ -1,9 +1,10 @@
-import * as core from '@akala/core';
-import { ctorToFunction } from '@akala/core';
+import { ctorToFunction, Module, module, defaultInjector, EventEmitter, SpecialNextParam, MiddlewarePromise, Event, Injector } from '@akala/core';
 
-export var $$injector: core.Module = core.module('akala', 'akala-services', 'controls')
+export var bootstrapModule: Module = module('akala', 'akala-services', 'controls')
 
-export var serviceModule: core.Module = core.module('akala-services')
+bootstrapModule.activateEvent.maxListeners = 100;
+
+export var serviceModule: Module = module('akala-services')
 
 export function resolveUrl(namespace: string)
 {
@@ -11,7 +12,10 @@ export function resolveUrl(namespace: string)
     return new URL(namespace, root).toString();
 }
 
-core.defaultInjector.register('$resolveUrl', resolveUrl)
+import { IControlInstance } from './controls/control.js';
+export { IControlInstance }
+
+defaultInjector.register('$resolveUrl', resolveUrl)
 
 export function service(name, ...toInject: string[])
 {
@@ -25,11 +29,79 @@ export function service(name, ...toInject: string[])
             {
                 return instance || serviceModule.injectWithName(toInject, (...args: unknown[]) =>
                 {
-                    instance = ctorToFunction(target)(...args);
-                });
-            })();
+                    return instance = ctorToFunction(target)(...args);
+
+                })();
+            });
     };
 }
 
-import component from './component.js';
-export { component };
+import component, { webComponent } from './component.js';
+import { Container, ICommandProcessor, Metadata, StructuredParameters } from '@akala/commands';
+import { Composer } from './template.js';
+import { IScope } from './scope.js';
+export { component, webComponent };
+
+
+export class LocalAfterRemoteProcessor implements ICommandProcessor
+{
+    constructor(private inner: ICommandProcessor, public readonly eventEmitter: EventEmitter<Record<string, [any, StructuredParameters<unknown[]>, Metadata.Command]>> = new EventEmitter())
+    {
+    }
+
+    async handle(origin: Container<unknown>, cmd: Metadata.Command, param: StructuredParameters<unknown[]>): MiddlewarePromise<SpecialNextParam>
+    {
+        try
+        {
+            const error = await this.inner.handle(origin, cmd, param);
+            return error;
+        }
+        catch (e)
+        {
+            if (!this.eventEmitter.emit(cmd.name, e, param, cmd))
+                throw e;
+        }
+    }
+
+}
+
+
+export class FormInjector extends Injector
+{
+    constructor(public form: HTMLFormElement)
+    {
+        super();
+    }
+    resolve<T = unknown>(param: string): T
+    {
+        return this.form.elements[param].value;
+    }
+}
+
+export class FormComposer implements Composer<Container<void>>
+{
+    constructor(private container?: Container<void>)
+    {
+
+    }
+
+    readonly selector = 'form';
+    readonly optionName = 'container'
+    async apply(form: HTMLFormElement, scope: IScope<{ container?: Container<void> }>): Promise<IControlInstance<unknown>[]>
+    {
+        form.addEventListener('submit', async (ev) =>
+        {
+            ev.preventDefault();
+            try
+            {
+                await (scope['container'] || this.container).dispatch(form.action.substring(document.baseURI.length), { _trigger: 'html', param: [], form: new FormInjector(form), element: form, document: document });
+            }
+            catch (e)
+            {
+                console.error(e);
+            }
+        })
+        return Promise.resolve([])
+    }
+
+}
