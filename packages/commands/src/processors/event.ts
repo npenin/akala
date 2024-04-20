@@ -1,6 +1,6 @@
 import { StructuredParameters, ICommandProcessor, CommandMetadataProcessorSignature } from '../model/processor.js';
 // import { CommandProxy } from '../model/command';
-import { MiddlewarePromise, EventEmitter, Event, MiddlewareResult } from "@akala/core";
+import { MiddlewarePromise, EventEmitter, MiddlewareResult } from "@akala/core";
 import { Command } from '../metadata/index.js';
 import { Container } from '../model/container.js';
 import { handlers } from '../protocol-handler.js';
@@ -8,9 +8,9 @@ import { handlers } from '../protocol-handler.js';
 handlers.useProtocol('event', async (_url, inner) => ({ processor: new EventProcessor(inner.processor), getMetadata: inner.getMetadata }));
 
 export class EventProcessor extends EventEmitter<{
-    processing: Event<[...CommandMetadataProcessorSignature<unknown>]>,
-    'processing-failed': Event<[...CommandMetadataProcessorSignature<unknown>, MiddlewareResult]>,
-    processed: Event<[...CommandMetadataProcessorSignature<unknown>, unknown]>,
+    processing: CommandMetadataProcessorSignature<unknown>,
+    'processing-failed': [...CommandMetadataProcessorSignature<unknown>, MiddlewareResult],
+    processed: [...CommandMetadataProcessorSignature<unknown>, unknown],
 }> implements ICommandProcessor
 {
     public name = 'event';
