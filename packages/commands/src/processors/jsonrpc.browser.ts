@@ -8,7 +8,7 @@ import { HandlerResult, handlers } from '../protocol-handler.js';
 
 type OnlyArray<T> = Extract<T, unknown[]>;
 
-async function handler(url: URL): Promise<HandlerResult<JsonRpcBrowser>>
+export async function handler(url: URL): Promise<HandlerResult<JsonRpcBrowser>>
 {
     const socket = await new Promise<jsonrpcws.SocketAdapter>((resolve) =>
     {
@@ -131,22 +131,14 @@ export class JsonRpcBrowser extends CommandProcessor
         return connection;
     }
 
-    public handle(_container: Container<unknown>, command: Command, params: StructuredParameters<OnlyArray<jsonrpcws.PayloadDataType<void>>>): MiddlewarePromise
+    public handle(container: Container<unknown>, command: Command, params: StructuredParameters<OnlyArray<jsonrpcws.PayloadDataType<void>>>): MiddlewarePromise
     {
-        return new Promise<Error | SpecialNextParam | OptionsResponse>((resolve, reject) =>
+        return Local.execute(command, (...args: SerializableObject[]) => Promise.all(args).then(args =>
         {
-            if (!this.passthrough)
-            {
-                const inject = command.config?.['']?.inject;
-                if ((inject.length != 1 || inject[0] != '$param') && params._trigger)
-                {
-                    params.param = Local.extractParams(command.config?.jsonrpc?.inject || inject)(...params.param);
-                }
-            }
-            Promise.all(params.param).then((param) =>
+            return new Promise<Error | SpecialNextParam | OptionsResponse>((resolve, reject) =>
             {
                 if (this.client.socket.open)
-                    this.client.sendMethod(typeof command == 'string' ? command : command.name, Object.assign(params, { param, _trigger: undefined }) as SerializableObject, function (err, result)
+                    this.client.sendMethod(typeof command == 'string' ? command : command.name, args, function (err, result)
                     {
                         if (err)
                         {
@@ -160,8 +152,9 @@ export class JsonRpcBrowser extends CommandProcessor
                     })
                 else
                     resolve();
-            }, resolve);
-        })
+            });
+        }, err => err)
+            , container, params);
     }
 
     public get connectionId() { return this.client.id }
