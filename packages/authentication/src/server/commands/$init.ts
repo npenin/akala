@@ -10,15 +10,16 @@ import { Token } from "../../model/access-token.js";
 import { HttpRouter } from "@akala/server";
 import { base64 } from '@akala/core'
 
-export default async function (container: Container<State>, providerName: string, providerOptions: unknown, key: string)
+export default async function (this: State, container: Container<State>, providerName: string, providerOptions: unknown, key: string)
 {
     const provider = providers.resolve<PersistenceEngine<unknown>>(providerName)
     await provider.init(providerOptions);
 
     const store = container.state.store = await AuthenticationStore.create(provider);
     const cryptoKey = await crypto.subtle.importKey('raw', base64.base64DecToArr(key), { name: 'HMAC', hash: 'SHA-256' }, false, ["sign", 'verify']);
-    container.state.getHash = async (value) => base64.base64EncArr(new Uint8Array(await crypto.subtle.sign('HMAC', cryptoKey, base64.strToUTF8Arr(value))));
-    container.state.session = { slidingExpiration: 300 };
+    this.getHash = async (value: string, salt?: Uint8Array) => base64.base64EncArr(new Uint8Array(await crypto.subtle.sign('HMAC', cryptoKey, salt ? new Uint8Array([...salt, ...base64.strToUTF8Arr(value)]) : base64.strToUTF8Arr(value))));
+    this.verifyHash = async (value: string, signature: BufferSource, salt?: Uint8Array) => await crypto.subtle.verify('HMAC', cryptoKey, signature, salt ? new Uint8Array([...salt, ...base64.strToUTF8Arr(value)]) : base64.strToUTF8Arr(value));
+    this.session = { slidingExpiration: 300 };
 
     ExchangeMiddleware.register('code', async (code, clientId, req) =>
     {
