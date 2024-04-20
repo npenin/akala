@@ -6,7 +6,7 @@ export class RouterRequest
     constructor(loc: string)
     {
         this.path = loc || '/';
-        this.url = new URL(this.path);
+        this.url = new URL(this.path, new URL(window.location.href, document.baseURI));
         this.query = this.url.searchParams;
     }
 
@@ -15,17 +15,6 @@ export class RouterRequest
     public query: URLSearchParams;
     public params: Record<string, unknown>;
 }
-
-if (!window['setImmediate'])
-    window['setImmediate'] = function (fn, ...args: unknown[])
-    {
-        return setTimeout(function ()
-        {
-            fn.apply(this, args)
-        }, 0);
-    } as unknown as typeof setImmediate
-
-
 
 export class Router extends akala.Router<[RouterRequest & Routable]>
 {
