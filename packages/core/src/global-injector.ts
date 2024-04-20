@@ -2,8 +2,8 @@ import { Injector, Injectable, Injected, InjectableAsync, defaultInjector, Injec
 
 // declare let $$defaultInjector;
 
-if (!global['$$defaultInjector'])
-    global['$$defaultInjector'] = defaultInjector;
+if (!globalThis['$$defaultInjector'])
+    globalThis['$$defaultInjector'] = defaultInjector;
 
 
 export function resolve<T = unknown>(name: string): T
