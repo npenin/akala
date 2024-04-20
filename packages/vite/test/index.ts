@@ -19,7 +19,7 @@ import.meta.hot.on('template-reload', (data) =>
 });
 
 
-bootstrapModule.activate(['services.$router', 'services.$template', '$rootScope', 'services.$location'], async (router: Router, template: Template, root: IScope<{ $commandEvents: EventEmitter<Record<string, Event<[any, StructuredParameters<unknown[]>, Metadata.Command]>>> }>, location: LocationService) =>
+bootstrapModule.activate(['services.$router', 'services.$template', '$rootScope', 'services.$location'], async (router: Router, template: Template, root: IScope<{ $commandEvents: EventEmitter<Record<string, [any, StructuredParameters<unknown[]>, Metadata.Command]>> }>, location: LocationService) =>
 {
     Template.composers.push(new FormComposer())
 
