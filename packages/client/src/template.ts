@@ -31,29 +31,13 @@ export interface templateFunction
     hotReplace(markup: string): void;
 }
 
-interface Composer<TOptions = unknown>
+export interface Composer<TOptions = unknown>
 {
     selector: string;
     optionName: string;
     apply(items: HTMLElement, data, options?: TOptions): Promise<IControlInstance<unknown>[]>;
 }
 
-class DataBindComposer implements Composer<Record<string, unknown>>
-{
-    selector = '[data-bind]';
-    optionName = 'databind';
-    async apply(item: HTMLElement, data: unknown, options?: Record<string, Control<unknown>>)
-    {
-        const instances = await Control.apply(options || (await new akala.parser.EvaluatorAsFunction().eval(new akala.Parser().parse(item.dataset['bind'])))() as Record<string, unknown>, item);
-
-        await akala.eachAsync(item.querySelectorAll(this.selector), async (el: HTMLElement) =>
-        {
-            if (el.parentElement.closest(this.selector) == item)
-                instances.push(...await Template.compose(this, [el], data, item));
-        });
-        return instances;
-    }
-}
 
 export function composer(selector: string, optionName: string): ClassDecorator
 export function composer(selector: (new () => Composer))
@@ -77,10 +61,11 @@ export function composer(selector: string | Composer | (new () => Composer), opt
 }
 
 const cache = new akala.Injector();
+export { cache as templateCache };
 @service('$template', '$interpolate', '$http')
 export class Template
 {
-    public static composers: Composer[] = [new DataBindComposer()];
+    public static composers: Composer[] = [];
     constructor(private interpolator: akala.Interpolate, private http: akala.Http) { }
 
     public enableHotReplacement: boolean;
@@ -88,7 +73,7 @@ export class Template
     public async get(t: string | PromiseLike<string>, registerTemplate = true): Promise<templateFunction>
     {
         const http = this.http;
-        const text = await akala.Promisify(t);
+        const text = await Promise.resolve(t);
 
         if (!text)
             return null;
@@ -109,7 +94,7 @@ export class Template
                 const data = await response.text();
                 template = this.build(data);
                 if (registerTemplate)
-                    cache.register(text, template, true);
+                    cache.register(response.url, template, true);
                 if (navigator.serviceWorker)
                 {
                     //eslint-disable-next-line @typescript-eslint/no-unused-vars

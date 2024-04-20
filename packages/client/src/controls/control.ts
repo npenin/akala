@@ -1,9 +1,28 @@
 import * as akala from '@akala/core';
 import { IScope } from '../scope.js';
 import { Injector, inject, ObservableArray, ParsedObject } from '@akala/core';
-import { Template } from '../template.js';
+import { Template, Composer } from '../template.js';
 import { Binding } from '@akala/core'
 
+
+class DataBindComposer implements Composer<Record<string, unknown>>
+{
+    selector = '[data-bind]';
+    optionName = 'databind';
+    async apply(item: HTMLElement, data: unknown, options?: Record<string, Control<unknown>>)
+    {
+        const instances = await Control.apply(options || (await new akala.parser.EvaluatorAsFunction().eval(new akala.Parser().parse(item.dataset['bind'])))() as Record<string, unknown>, item);
+
+        await akala.eachAsync(item.querySelectorAll(this.selector), async (el: HTMLElement) =>
+        {
+            if (el.parentElement.closest(this.selector) == item)
+                instances.push(...await Template.compose(this, [el], data, item));
+        });
+        return instances;
+    }
+}
+
+Template.composers.push(new DataBindComposer());
 
 export function control<T = unknown>(name: string, priority?: number, options?: { scope?: boolean })
 {
@@ -30,7 +49,7 @@ export function control<T = unknown>(name: string, priority?: number, options?: 
                 }
             });
 
-        var result = akala.injectable(ctrl);
+        var result = akala.injectable(ctrl, Control.injector);
 
         return result;
     }
@@ -43,7 +62,7 @@ export function controlFactory(...toInject: string[])
 
 export abstract class Control<T> implements IControl<T>
 {
-    public static injector: akala.Module = akala.module('controls', 'akala-services');
+    public static injector: akala.Module = (function () { const module = akala.module('controls', 'akala-services'); module.activateEvent.maxListeners = 0; return module })();
 
     constructor(private $$name: string, public priority: number = 500)
     {
