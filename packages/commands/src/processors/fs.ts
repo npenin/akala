@@ -118,7 +118,7 @@ export class FileSystem extends CommandProcessor
 
     public static async discoverMetaCommands(root: string, options?: DiscoveryOptions): Promise<Metadata.Command[] & { name?: string, stateless?: boolean }>
     {
-        console.trace(`discovering commands in ${root}`)
+        // console.trace(`discovering commands in ${root}`)
         const log = akala.logger('commands:fs:discovery');
 
         if (!options)
@@ -135,6 +135,8 @@ export class FileSystem extends CommandProcessor
         {
             try
             {
+                if (URL.canParse(root))
+                    root = fileURLToPath(root);
                 const stats = await fs.stat(root);
                 options.isDirectory = stats.isDirectory();
             }
