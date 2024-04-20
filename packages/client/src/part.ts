@@ -1,6 +1,5 @@
 import * as akala from '@akala/core'
 import { Router, RouterRequest as Request } from './router.js'
-import { EventEmitter } from 'events'
 import './controls/part.js'
 import { Template } from './template.js'
 import { IScope } from './scope.js'
@@ -12,13 +11,12 @@ import { IControlInstance } from './controls/control.js'
 export type PartInstance = { scope: IScope<unknown>, element: HTMLElement, controlsInPart?: IControlInstance<unknown>[] };
 
 @service('$part', '$template', '$router', '$location')
-export class Part extends EventEmitter
+export class Part 
 {
     private routers: { [key: string]: Router } = {};
 
     constructor(private template: Template, router: Router, private location: Location)
     {
-        super();
         location.on('changing', () =>
         {
             const parts = this.parts;
@@ -67,7 +65,7 @@ export class Part extends EventEmitter
         {
             p.element.textContent = '';
             if (p.controlsInPart)
-                setImmediate(() => akala.each(p.controlsInPart, c => c.dispose()));
+                akala.each(p.controlsInPart, c => c.dispose());
             await tpl(p.scope, p.element).then(instances => p.controlsInPart = instances);
         }
         else
