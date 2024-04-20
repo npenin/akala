@@ -23,7 +23,7 @@ export class Events extends GenericControlInstance<Partial<HTMLElementEventHandl
         else
             value = this.parameter;
 
-        akala.Promisify(value).then((value) =>
+        Promise.resolve(value).then((value) =>
         {
             akala.each(value, (handler, event) =>
             {

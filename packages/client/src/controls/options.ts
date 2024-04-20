@@ -136,8 +136,8 @@ export class Options extends GenericControlInstance<OptionsParameter>
         }
 
         if (this.parameter.in instanceof akala.Binding)
-            this.parameter.in.onChanged(ev => akala.Promisify(ev.eventArgs.value).then(build));
+            this.parameter.in.onChanged(ev => Promise.resolve(ev.eventArgs.value).then(build));
         else
-            akala.Promisify(this.parameter.in).then(build);
+            Promise.resolve(this.parameter.in).then(build);
     }
 }
