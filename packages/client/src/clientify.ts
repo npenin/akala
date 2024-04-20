@@ -1,9 +1,9 @@
 import * as common from './common.js'
 import * as routing from './router.js'
-import * as location from './locationService.js'
+import { LocationService } from './locationService.js'
 import * as core from '@akala/core';
 export * from './template.js';
-import * as part from './part.js';
+import { Part, PartDefinition } from './part.js';
 import './part.js';
 import * as scope from './scope.js';
 import * as controls from './controls/controls.js';
@@ -11,12 +11,12 @@ export { Control, BaseControl, control } from './controls/controls.js';
 
 export const loadScript = load;
 
-export type IScope<T> = scope.IScope<T>;
-export type PartDefinition<T extends scope.IScope<T>> = part.PartDefinition<T>;
+export type IScope<T> = scope.IScope<T> & T;
 export type Http = core.Http;
-export type Part = part.Part;
+export { Part, PartDefinition };
 export const router = routing.router
-export type LocationService = location.LocationService;
+export { Router } from './router.js'
+export { LocationService };
 export type Injector = core.Injector;
 export const init = core.Module.prototype.activate;
 
@@ -25,11 +25,11 @@ export { controls };
 import HotKeyTrigger from './hotkeytrigger.js'
 export { HotKeyTrigger }
 
-common.$$injector['router'] = routing.router
-common.$$injector['BaseControl'] = controls.BaseControl
-common.$$injector['Control'] = controls.Control
-common.$$injector['control'] = controls.control
-common.$$injector['load'] = loadScript
+common.bootstrapModule['router'] = routing.router
+common.bootstrapModule['BaseControl'] = controls.BaseControl
+common.bootstrapModule['Control'] = controls.Control
+common.bootstrapModule['control'] = controls.control
+common.bootstrapModule['load'] = loadScript
 
 const mainRouter = routing.router('mainRouter');
 mainRouter.useMiddleware(common.serviceModule.register('$preRouter', routing.router('preRouter')));
@@ -39,15 +39,14 @@ mainRouter.useError(function (error)
     console.error(error);
     return Promise.reject(error);
 });
-common.serviceModule.register('$location', new location.LocationService());
-common.serviceModule.register('promisify', core.Promisify);
+common.serviceModule.register('$location', new LocationService());
 
 // export { Promisify, Deferred };
-export const run: typeof common.$$injector.ready = common.$$injector.ready.bind(common.$$injector);
+export const run: typeof common.bootstrapModule.ready = common.bootstrapModule.ready.bind(common.bootstrapModule);
 
-common.$$injector.activate([], function ()
+common.bootstrapModule.activate([], function ()
 {
-    common.$$injector.register('$rootScope', new scope.Scope());
+    common.bootstrapModule.register('$rootScope', new scope.Scope());
 
 });
 
@@ -67,7 +66,7 @@ export function load(...scripts: string[]): Promise<unknown>
     })
 }
 
-common.serviceModule.ready(['$location'], function ($location: location.LocationService)
+common.serviceModule.ready(['$location'], function ($location: LocationService)
 {
     $location.on('change', function (path: string)
     {
