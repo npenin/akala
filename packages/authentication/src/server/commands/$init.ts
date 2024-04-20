@@ -12,7 +12,7 @@ import { base64 } from '@akala/core'
 
 export default async function (container: Container<State>, providerName: string, providerOptions: unknown, key: string)
 {
-    const provider = new (providers.resolve<new () => PersistenceEngine<unknown>>(providerName));
+    const provider = providers.resolve<PersistenceEngine<unknown>>(providerName)
     await provider.init(providerOptions);
 
     const store = container.state.store = await AuthenticationStore.create(provider);
@@ -68,7 +68,10 @@ export default async function (container: Container<State>, providerName: string
 
     container.state.router = new HttpRouter();
 
-    const server = (await sidecar()['@akala/server']);
+    const containers = sidecar();
+    if (!containers)
+        return;
+    const server = (await containers['@akala/server']);
 
     // server.dispatch('remote-route', '/.well-known/openid-configuration', null, { pre: true, get: true });
     server.dispatch('remote-route', '/', container, { auth: true, use: true });
