@@ -1,6 +1,6 @@
 import { calculator } from './calculator/index.js'
 import * as assert from 'assert'
-import { LogProcessor, Pipe } from '../processors/index.js';
+import { LogEventProcessor, LogProcessor, Pipe } from '../processors/index.js';
 import { Container } from '../model/container.js';
 import { Command } from '../metadata/index.js';
 import { registerCommands } from '../generator.js';
@@ -9,7 +9,7 @@ describe('test log processing', function ()
 {
     it('should handle basics', async function ()
     {
-        const processor = new LogProcessor(new Pipe(calculator), function (_, cmd)
+        const processor = new LogEventProcessor(new Pipe(calculator), function (_, cmd)
         {
             processingCalled = cmd;
             return Promise.resolve();

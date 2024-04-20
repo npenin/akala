@@ -1,4 +1,4 @@
-import * as jsonrpcws from '@akala/json-rpc-ws'
+import * as jsonrpcws from '@akala/json-rpc-ws/browser'
 import { CommandProcessor, StructuredParameters } from '../model/processor.js'
 import { Command, Container as MetaContainer } from '../metadata/index.js';
 import { Container } from '../model/container.js';
@@ -8,7 +8,7 @@ import { HandlerResult, handlers } from '../protocol-handler.js';
 
 type OnlyArray<T> = Extract<T, unknown[]>;
 
-export async function handler(url: URL): Promise<HandlerResult<JsonRpc>>
+async function handler(url: URL): Promise<HandlerResult<JsonRpcBrowser>>
 {
     const socket = await new Promise<jsonrpcws.SocketAdapter>((resolve) =>
     {
@@ -18,10 +18,10 @@ export async function handler(url: URL): Promise<HandlerResult<JsonRpc>>
             resolve(socket);
         });
     });
-    const connection = JsonRpc.getConnection(socket);
+    const connection = JsonRpcBrowser.getConnection(socket);
 
     return {
-        processor: new JsonRpc(connection, true),
+        processor: new JsonRpcBrowser(connection, true),
         getMetadata: () => new Promise<Command[]>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
             typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
         ))
@@ -31,9 +31,9 @@ export async function handler(url: URL): Promise<HandlerResult<JsonRpc>>
 handlers.useProtocol('ws', handler);
 handlers.useProtocol('wss', handler);
 
-export class JsonRpc extends CommandProcessor
+export class JsonRpcBrowser extends CommandProcessor
 {
-    public static connect(address: string): Promise<JsonRpc>
+    public static connect(address: string): Promise<JsonRpcBrowser>
     {
         return new Promise<jsonrpcws.SocketAdapter>((resolve) =>
         {
@@ -44,7 +44,7 @@ export class JsonRpc extends CommandProcessor
             });
         }).then((socket) =>
         {
-            const provier = new JsonRpc(JsonRpc.getConnection(socket))
+            const provier = new JsonRpcBrowser(JsonRpcBrowser.getConnection(socket))
             provier.passthrough = true;
             return provier;
         });
@@ -120,7 +120,7 @@ export class JsonRpc extends CommandProcessor
                 }
             }
         });
-        const getProcessor = lazy(() => new JsonRpc(connection, true));
+        const getProcessor = lazy(() => new JsonRpcBrowser(connection, true));
         const getContainer = lazy(() =>
         {
             const c = Container.proxy(container?.name + '-client', getProcessor());
@@ -166,7 +166,7 @@ export class JsonRpc extends CommandProcessor
 
     public get connectionId() { return this.client.id }
 
-    constructor(private client: jsonrpcws.BaseConnection<import('stream').Readable | ReadableStream<Uint8Array>>, private passthrough?: boolean)
+    constructor(private client: jsonrpcws.BaseConnection<ReadableStream<Uint8Array>>, private passthrough?: boolean)
     {
         super('jsonrpc');
     }

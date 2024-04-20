@@ -1,6 +1,5 @@
+import { base64 } from "@akala/core";
 // import crypto from 'crypto'
-
-import { base64ArrayBuffer } from "./base64Encoder";
 
 const algo = { name: 'HMAC', hash: 'SHA-256' }
 export function sign(accessKey: string, region: string, service: string)
@@ -66,14 +65,14 @@ export function sign(accessKey: string, region: string, service: string)
         const canonical_headers = signed_headers.map(x => x + ':' + getHeader(x)).join('\n');
         // const signedHeaders = await crypto.subtle.sign(algo, key, encoder.encode(canonical_headers))
         const payloadHash = await crypto.subtle.digest('SHA256', typeof request.body == 'string' ? encoder.encode(request.body) : request.body instanceof Blob ? await request.body.arrayBuffer() : request.body instanceof URLSearchParams ? encoder.encode(request.body.toString()) : request.body)
-        const canonical_request = request.method + "\n" + url.pathname + "\n" + url.search + "\n" + canonical_headers + "\n" + signed_headers.join(';') + "\n" + base64ArrayBuffer(payloadHash);
+        const canonical_request = request.method + "\n" + url.pathname + "\n" + url.search + "\n" + canonical_headers + "\n" + signed_headers.join(';') + "\n" + base64.base64EncArr(new Uint8Array(payloadHash));
 
         const algorithm = 'AWS4-HMAC-SHA256';
         const credential_scope = date_stamp + "/" + region + "/" + service + "/" + "aws4_request";
         const string_to_sign = algorithm + "\n" + amz_date + "\n" + credential_scope + "\n" + await crypto.subtle.digest('sha256', encoder.encode(canonical_request))
 
         const signature = await crypto.subtle.sign(algo, key, encoder.encode(string_to_sign))
-        const authorization_header = algorithm + ' ' + 'Credential=' + accessKey + '/' + credential_scope + ', ' + 'SignedHeaders=' + signed_headers + ', ' + 'Signature=' + base64ArrayBuffer(signature)
+        const authorization_header = algorithm + ' ' + 'Credential=' + accessKey + '/' + credential_scope + ', ' + 'SignedHeaders=' + signed_headers + ', ' + 'Signature=' + base64.base64EncArr(new Uint8Array(signature))
 
         setHeader('authorization', authorization_header);
         // setHeader('signed_headers', date);

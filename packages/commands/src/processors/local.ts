@@ -4,6 +4,26 @@ import { CommandProcessor, StructuredParameters } from '../model/processor.js'
 import { Container } from '../model/container.js';
 import { CommandWithProcessorAffinity, SelfDefinedCommand } from '../model/command.js';
 
+
+export class AuthHandler extends CommandProcessor
+{
+    constructor(private authValidator: Injectable<MiddlewarePromise>)
+    {
+        super('AuthenticationHandler')
+    }
+
+    async handle(origin: Container<unknown>, cmd: Metadata.Command, param: StructuredParameters<unknown[]>): MiddlewarePromise
+    {
+        if (param._trigger && cmd.config?.auth)
+        {
+            const authConfig = cmd.config.auth;
+            return Local.execute({ config: cmd.config.auth as any, name: cmd.name }, this.authValidator, origin, param)
+        }
+        return undefined;
+    }
+
+}
+
 export class Local extends CommandProcessor
 {
     static fromObject<T extends object>(o: T): CommandProcessor

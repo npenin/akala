@@ -115,7 +115,7 @@ export default class Client extends ClientBase<ReadableStream, { protocols?: str
         super(Client.connect, options);
     }
 
-    public static connect(address: string, options: { protocols?: string | string[] }): SocketAdapter { return new WebSocketAdapter(new WebSocket(address.replace(/^http/, 'ws'), options?.protocols)); }
+    public static connect(address: string, options?: { protocols?: string | string[] }): SocketAdapter { return new WebSocketAdapter(new WebSocket(address.replace(/^http/, 'ws'), options?.protocols)); }
 }
 
 import debug from 'debug';

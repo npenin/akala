@@ -1,4 +1,4 @@
-import type { IpcNetConnectOpts, NetConnectOpts } from 'net';
+// import type { IpcNetConnectOpts, NetConnectOpts } from 'node:net';
 import { registerCommands } from './generator.js'
 import { CommandProcessor, ICommandProcessor } from './model/processor.js';
 import { HttpClient } from './processors/index.js';
@@ -63,6 +63,10 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
     return { container, processor };
 
 }
+
+export type NetConnectOpts = IpcNetConnectOpts | TcpNetConnectOpts;
+type IpcNetConnectOpts = { path: string };
+type TcpNetConnectOpts = { host?: string, port?: number }
 
 export async function connectWith<T>(options: NetConnectOpts, host: string, medium: keyof ServeMetadata, container?: Container<T>): Promise<CommandProcessor>
 {

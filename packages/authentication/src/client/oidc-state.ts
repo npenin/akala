@@ -3,7 +3,7 @@ export interface OIDCClientState
 {
     redirectUri: string | URL;
     providers: Record<string, OIDCConfiguration>;
-    pendingAuthentications: Record<string, { provider: string, timeout: NodeJS.Timeout }>;
+    pendingAuthentications: Record<string, { provider: string, timeout: ReturnType<typeof setTimeout> }>;
     authenticationTimeout: number;
     providerStates: Record<string, string>
 }

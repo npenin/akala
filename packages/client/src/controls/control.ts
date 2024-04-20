@@ -152,7 +152,7 @@ export type ControlParameter<TParameter> = Binding<TParameter> | (TParameter ext
 @akala.injectable
 export class GenericControlInstance<TParameter, TScope extends IScope<unknown> = IScope<unknown>> implements IControlInstance<TParameter>
 {
-    protected stopWatches: (() => (void | Promise<void>))[] = [];
+    protected stopWatches: (() => void)[] = [];
 
     protected async clone(element: HTMLElement, scope: TScope, newControls?: Record<string, unknown> | boolean)
     {

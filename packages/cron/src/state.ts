@@ -10,7 +10,7 @@ export interface State
 
 export interface WaitInfo
 {
-    timeout: NodeJS.Timeout,
+    timeout: ReturnType<typeof setTimeout>,
     request: DateRequest,
     promise: Promise<void>,
     nextExecution: Date;

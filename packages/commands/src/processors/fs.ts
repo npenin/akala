@@ -118,13 +118,13 @@ export class FileSystem extends CommandProcessor
 
     public static async discoverMetaCommands(root: string, options?: DiscoveryOptions): Promise<Metadata.Command[] & { name?: string, stateless?: boolean }>
     {
-        // console.trace(`discovering commands in ${root}`)
+        console.trace(`discovering commands in ${root}`)
         const log = akala.logger('commands:fs:discovery');
 
         if (!options)
             options = {};
 
-        const indexOfColon = root.indexOf(':');
+        const indexOfColon = root.indexOf('#');
         if (indexOfColon > 1)
         {
             var name = root.substring(indexOfColon + 1);
@@ -142,9 +142,11 @@ export class FileSystem extends CommandProcessor
             {
                 if (e.code == 'ENOENT')
                 {
+                    const resolved = import.meta.resolve(root);
                     if (indexOfColon > 1)
-                        return this.discoverMetaCommands(require.resolve(root) + ':' + name, options);
-                    return this.discoverMetaCommands(require.resolve(root), options);
+                        return this.discoverMetaCommands(resolved + '#' + name, options);
+                    else if (resolved !== root)
+                        return this.discoverMetaCommands(resolved, options);
                 }
                 throw e;
             }
@@ -232,7 +234,7 @@ export class FileSystem extends CommandProcessor
 
                     if (!options)
                         throw new Error('cannot happen');
-                    const cmd: Metadata.Command & { config: ExtendedConfigurations<FileSystemConfiguration & jsonObject, 'fs'> } = { name: path.basename(f.name, path.extname(f.name)), config: { fs: fsConfig } };
+                    const cmd: Metadata.Command = { name: path.basename(f.name, path.extname(f.name)), config: { fs: fsConfig } };
                     log.debug(cmd.name);
                     if (files.find(file => file.name == f.name + '.map'))
                     {
@@ -286,23 +288,23 @@ export class FileSystem extends CommandProcessor
                             cmd.config.fs.inject = params;
                         }
                     }
-                    if (!cmd.config.fs.inject)
-                    {
-                        log.debug(`looking for fs in any configuration`)
-                        params = [];
-                        akala.each(cmd.config, config =>
-                        {
-                            if (config && config.inject && config.inject.length && !cmd.config.fs.inject)
-                            {
-                                akala.each(config.inject, item =>
-                                {
-                                    if (item.startsWith('param.'))
-                                        params[Number(item.substring('param.'.length))] = item;
-                                });
-                                cmd.config.fs.inject = params;
-                            }
-                        });
-                    }
+                    // if (!cmd.config.fs.inject)
+                    // {
+                    //     log.debug(`looking for fs in any configuration`)
+                    //     params = [];
+                    //     akala.each(cmd.config, config =>
+                    //     {
+                    //         if (config && config.inject && config.inject.length && !cmd.config.fs.inject)
+                    //         {
+                    //             akala.each(config.inject, item =>
+                    //             {
+                    //                 if (item.startsWith('param.'))
+                    //                     params[Number(item.substring('param.'.length))] = item;
+                    //             });
+                    //             cmd.config.fs.inject = params;
+                    //         }
+                    //     });
+                    // }
 
                     if (!cmd.config.fs.inject)
                     {

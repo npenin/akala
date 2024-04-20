@@ -2,6 +2,7 @@ import { CommandProcessor, Container, StructuredParameters } from '@akala/comman
 import { Metadata } from '@akala/commands';
 import { ErrorWithStatus, MiddlewarePromise } from '@akala/core';
 import { LambdaClient, InvokeCommand, LambdaClientConfig } from '@aws-sdk/client-lambda';
+import { AwsConfiguration } from './trigger.js';
 
 export class Processor extends CommandProcessor
 {
@@ -12,7 +13,7 @@ export class Processor extends CommandProcessor
         this.client = new LambdaClient(config);
     }
 
-    public handle(origin: Container<unknown>, cmd: Metadata.Command, params: StructuredParameters<unknown[]>): MiddlewarePromise
+    public handle(origin: Container<unknown>, cmd: Metadata.Command & { config: Metadata.ExtendedConfigurations<AwsConfiguration, 'aws'> }, params: StructuredParameters<unknown[]>): MiddlewarePromise
     {
         let param = params.param && params.param[0];
         if (cmd.config.aws)

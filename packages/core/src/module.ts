@@ -4,17 +4,19 @@ import { Injector, InjectableWithTypedThis, InjectableAsyncWithTypedThis, Inject
 import { eachAsync } from './helpers.js';
 import { isPromiseLike } from './promiseHelpers.js';
 import { logger } from './logger.js';
+import { AsyncEvent, Event, Listener } from './event-emitter.js';
 
 const orchestratorLog = logger('akala:module:orchestrator');
 
 // process.hrtime = process.hrtime || require('browser-process-hrtime');
 
-export class ExtendableEvent<T = void>
+export class ExtendableEvent<T = void> extends AsyncEvent<[ExtendableEvent<T>]>
 {
     private markAsDone: (value?: T | PromiseLike<T>) => void;
     private _triggered: boolean;
     constructor(private once: boolean)
     {
+        super();
         this.reset();
     }
 
@@ -39,8 +41,6 @@ export class ExtendableEvent<T = void>
         })
     }
 
-    private handlers: ((ev: this) => void | Promise<T>)[] = [];
-
     public eventArgs: T;
 
     public async trigger(value: T)
@@ -49,27 +49,15 @@ export class ExtendableEvent<T = void>
         {
             this.eventArgs = value;
             this._triggered = true;
-            await eachAsync(this.handlers, (f, i) =>
-            {
-                const result = f(this);
-                if (result && isPromiseLike(result))
-                    return result as Promise<void>;
-                else
-                    return Promise.resolve();
-            });
+            await super.emit(this);
         }
         await this.complete();
         if (!this.once)
             this.reset();
     }
 
-    public removeHandler(handler: (ev: this) => void | Promise<T>)
-    {
-        const indexOfHandler = this.handlers.indexOf(handler);
-        return indexOfHandler > -1 && this.handlers.splice(indexOfHandler, 1);
-    }
 
-    public addHandler(handler: (ev: this) => void | Promise<T>): void | (() => void)
+    public addListener(handler: Listener<[this], void | Promise<void>>)
     {
         if (this._done || this._triggered)
         {
@@ -77,11 +65,7 @@ export class ExtendableEvent<T = void>
         }
         else
         {
-            const index = this.handlers.push(handler);
-            return () =>
-            {
-                this.handlers.splice(index, 1);
-            }
+            return super.addListener(handler);
         }
     }
 
@@ -178,7 +162,7 @@ export class Module extends Injector
     {
         if (!f)
             return (f: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent>) => this.ready(toInject, f);
-        this.readyEvent.addHandler(this.injectWithName(toInject, f));
+        this.readyEvent.addListener(this.injectWithName(toInject, f));
         return this;
     }
 
@@ -188,7 +172,7 @@ export class Module extends Injector
     {
         if (!f)
             return (f: InjectableAsyncWithTypedThis<void, ExtendableEvent>) => this.readyAsync(toInject, f);
-        this.readyEvent.addHandler(ev => this.injectWithNameAsync(toInject, f.bind(ev)));
+        this.readyEvent.addListener(ev => this.injectWithNameAsync(toInject, f.bind(ev)));
         return this;
     }
 
@@ -198,7 +182,7 @@ export class Module extends Injector
     {
         if (!f)
             return (f: InjectableWithTypedThis<void | Promise<void>, ExtendableEvent>) => this.activate(toInject, f);
-        this.activateEvent.addHandler(this.injectWithName(toInject, f));
+        this.activateEvent.addListener(this.injectWithName(toInject, f));
         return this;
     }
 
@@ -208,7 +192,7 @@ export class Module extends Injector
     {
         if (!f)
             return (f: InjectableAsyncWithTypedThis<void, ExtendableEvent>) => this.activateAsync(toInject, f);
-        this.activateEvent.addHandler(() => this.injectWithNameAsync(toInject, f.bind(this.activateEvent)));
+        this.activateEvent.addListener(() => this.injectWithNameAsync(toInject, f.bind(this.activateEvent)));
         return this;
     }
 

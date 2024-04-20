@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs';
 import { Writable } from "stream";
 import { outputHelper, write } from './new.js';
-import { jsonObject } from "../metadata/command.js";
+import { jsonObject } from "../metadata/configurations.js";
 import { Key, pathToRegexp } from "path-to-regexp";
 
 export default async function generate(folder?: string, name?: string, outputFile?: string)
