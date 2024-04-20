@@ -25,11 +25,11 @@ export interface HttpOptions<T>
 
 export interface Http<TResponse = Response>
 {
-    get(url: string, params?: string | URLSearchParams): PromiseLike<TResponse>;
-    post(url: string, body?: unknown): PromiseLike<FormData>;
-    postJSON<T = string>(url: string, body?: unknown): PromiseLike<T>;
-    getJSON<T>(url: string, params?: string | URLSearchParams): PromiseLike<T>;
-    invokeSOAP(namespace: string, action: string, url: string, params?: { [key: string]: string | number | boolean }): PromiseLike<TResponse>;
+    get(url: string | URL, params?: string | URLSearchParams): PromiseLike<TResponse>;
+    post(url: string | URL, body?: unknown): PromiseLike<FormData>;
+    postJSON<T = string>(url: string | URL, body?: unknown): PromiseLike<T>;
+    getJSON<T>(url: string | URL, params?: string | URLSearchParams): PromiseLike<T>;
+    invokeSOAP(namespace: string, action: string, url: string | URL, params?: { [key: string]: string | number | boolean }): PromiseLike<TResponse>;
     call<T>(options: HttpOptions<T>): PromiseLike<TResponse>;
 }
 
@@ -87,7 +87,7 @@ export class FetchHttp implements Http<Response>
         const init: RequestInit = { method: options.method || 'GET', body: options.body as unknown as BodyInit, redirect: 'manual' };
 
         if (typeof (options.url) == 'string')
-            options.url = new URL(options.url);
+            options.url = new URL(options.url, globalThis.document?.baseURI);
 
         const url = options.url;
         if (options.queryString)
