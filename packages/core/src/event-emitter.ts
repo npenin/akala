@@ -1,6 +1,6 @@
-export class EventEmitter<T extends { [key in keyof T]: Event<any[]> | undefined } = Record<string, Event>>
+export class EventEmitter<T extends { [key in keyof T]: any[] | undefined } = Record<string, unknown[]>>
 {
-    events: Partial<T> = {}
+    events: Partial<{ [key in keyof T]: Event<T[key]> }> = {}
     constructor(public maxListeners = 11)
     {
 
@@ -9,17 +9,17 @@ export class EventEmitter<T extends { [key in keyof T]: Event<any[]> | undefined
     public setAsync<const TEvent extends keyof T>(event: TEvent)
     {
         if (!(event in this.events))
-            this.events[event] = new AsyncEvent(this.maxListeners) as unknown as T[TEvent];
+            this.events[event] = new AsyncEvent(this.maxListeners);
         else
         {
             if (!this.events[event].hasListeners)
-                this.events[event] = new AsyncEvent(this.events[event].maxListeners) as unknown as T[TEvent];
+                this.events[event] = new AsyncEvent(this.events[event].maxListeners);
             else
                 throw new Error('This event (' + event.toString() + ') already has registered listeners, the type cannot be changed');
         }
     }
 
-    public set<const TEvent extends keyof T>(eventName: TEvent, event: T[TEvent])
+    public set<const TEvent extends keyof T>(eventName: TEvent, event: Event<T[TEvent], unknown>)
     {
         if (!(eventName in this.events) || !this.events[eventName].hasListeners)
             this.events[eventName] = event;
@@ -30,31 +30,31 @@ export class EventEmitter<T extends { [key in keyof T]: Event<any[]> | undefined
     public setMaxListeners<const TEvent extends keyof T>(maxListeners: number, event?: TEvent)
     {
         if (!(event in this.events))
-            this.events[event] = new Event(maxListeners) as T[TEvent];
+            this.events[event] = new Event(maxListeners);
         else
             this.events[event].maxListeners = maxListeners
     }
 
-    emit<const TEvent extends keyof T>(event: TEvent, ...args: EventArgs<T[TEvent]>)
+    emit<const TEvent extends keyof T>(event: TEvent, ...args: T[TEvent])
     {
         if (!(event in this.events))
             return false
         return this.events[event].emit(...args);
     }
 
-    on<const TEvent extends keyof T>(event: TEvent, handler: (...args: EventArgs<T[TEvent]>) => void, options?: AttachEventOptions)
+    on<const TEvent extends keyof T>(event: TEvent, handler: (...args: T[TEvent]) => void, options?: AttachEventOptions)
     {
         if (!(event in this.events))
-            this.events[event] = new Event(this.maxListeners) as T[TEvent];
+            this.events[event] = new Event(this.maxListeners);
         return this.events[event].addListener(handler, options);
     }
 
-    once<const TEvent extends keyof T>(event: TEvent, handler: (...args: EventArgs<T[TEvent]>) => void)
+    once<const TEvent extends keyof T>(event: TEvent, handler: (...args: T[TEvent]) => void)
     {
         return this.on(event, handler, { once: true })
     }
 
-    off<const TEvent extends keyof T>(event: TEvent, handler: (...args: EventArgs<T[TEvent]>) => void)
+    off<const TEvent extends keyof T>(event: TEvent, handler: (...args: T[TEvent]) => void)
     {
         if (!(event in this.events))
             return false
@@ -86,7 +86,7 @@ export class Event<T extends unknown[] = unknown[], TReturnType = void>
 
     addListener(listener: (...args: T) => TReturnType, options?: { once?: boolean })
     {
-        if (this.listeners.length > this.maxListeners)
+        if (this.maxListeners && this.listeners.length > this.maxListeners)
             throw new Error('Possible memory leak: too many listeners are registered');
         if (options?.once)
         {

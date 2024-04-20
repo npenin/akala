@@ -12,7 +12,7 @@ export interface IWatched extends Object
     $$watchers?: { [key: string]: Binding<unknown> };
 }
 
-export interface BinderEventArgs<T = unknown>
+export interface BindEventArgs<T = unknown>
 {
     source: Binding<T>;
     error?: unknown;
@@ -20,7 +20,7 @@ export interface BinderEventArgs<T = unknown>
     value: T;
 }
 
-export class BindingExtendableEvent<T> extends ExtendableEvent<BinderEventArgs<T>>
+export class BindingExtendableEvent<T> extends ExtendableEvent<BindEventArgs<T>>
 {
     constructor(public target: unknown)
     {
@@ -31,7 +31,7 @@ export class BindingExtendableEvent<T> extends ExtendableEvent<BinderEventArgs<T
 interface BindingEventArgs<T = unknown>
 {
     target: IWatched;
-    eventArgs: BinderEventArgs<T>
+    eventArgs: BindEventArgs<T>
 }
 
 export type Bound<T> = { [key in keyof T]: Binding<T[key]> }
@@ -406,7 +406,7 @@ export type ObservableArrayInitEvent<T> =
 export type ObservableArrayEventMap<T> = ObservableArrayPopEvent<T> | ObservableArrayPushEvent<T> | ObservableArrayShiftEvent<T> | ObservableArrayUnshiftEvent<T> | ObservableArrayReplaceEvent<T> | ObservableArrayInitEvent<T>;
 
 
-export class ObservableArray<T> extends EventEmitter<{ collectionChanged: Event<[ObservableArrayEventMap<T>]> }>
+export class ObservableArray<T> extends EventEmitter<{ collectionChanged: [ObservableArrayEventMap<T>] }>
 {
     constructor(public readonly array: Array<T>)
     {

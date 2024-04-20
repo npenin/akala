@@ -4,7 +4,7 @@ const oldProxy = Proxy;
 export const isProxy = Symbol.for('isProxy')
 export const customInspect = Symbol.for('nodejs.util.inspect.custom');
 
-global['Proxy'] = new oldProxy(oldProxy, {
+globalThis['Proxy'] = new oldProxy(oldProxy, {
     get: function (target, key)
     {
         if (typeof (key) == 'symbol' && key == Symbol.hasInstance)
