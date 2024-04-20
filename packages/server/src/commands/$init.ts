@@ -1,6 +1,6 @@
 import { Container } from "@akala/commands";
 import { router, HttpRouter } from '../router/index.js';
-import '../triggers/http'
+import '../triggers/http.js'
 import { State } from '../state.js';
 import { Injector, Binding, logger } from "@akala/core";
 import { join, resolve } from "path";
