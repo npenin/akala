@@ -29,25 +29,27 @@ export class ExpressionExecutor extends ExpressionVisitor
         throw new Error("unsupported type");
     }
 
-    async visitNew<T>(expression: NewExpression<T>)
+    visitNew<T>(expression: NewExpression<T>)
     {
 
         const result = {};
 
         for (const m of expression.init)
         {
-            await this.visit(m.source);
-            result[m.member] = this.result;
+            this.visit(m.source);
+            const value = this.result;
+            this.visit(m.member)
+            result[this.result as string] = value;
         }
 
         this.result = result;
         return expression;
     }
 
-    async visitApplySymbol<T, U>(arg0: ApplySymbolExpression<T, U>)
+    visitApplySymbol<T, U>(arg0: ApplySymbolExpression<T, U>)
     {
         let result: Iterable<unknown> | AsyncIterable<unknown>;
-        await this.visit(arg0.source);
+        this.visit(arg0.source);
         switch (arg0.symbol)
         {
             case QuerySymbols.any:
@@ -58,16 +60,16 @@ export class ExpressionExecutor extends ExpressionVisitor
                     result = [];
                     if (arg0.argument)
                     {
-                        result = Enumerable.whereAsync(this.result as Result, async (value) =>
+                        result = Enumerable.whereAsync(this.result as Result, (value) =>
                         {
                             this.result = value;
-                            await this.visit(arg0.argument);
-                            return this.result as boolean;
+                            this.visit(arg0.argument);
+                            return Promise.resolve(this.result as boolean);
                         });
                     }
                 }
 
-                this.result = await Enumerable.lengthAsync(result);
+                this.result = Enumerable.lengthAsync(result);
                 this.model = null;
                 break;
             case QuerySymbols.groupby:
@@ -75,11 +77,11 @@ export class ExpressionExecutor extends ExpressionVisitor
                 if (!arg0.argument)
                     throw new Exception('group by is missing the group criteria');
 
-                this.result = Enumerable.groupByAsync(this.result as AsyncIterable<unknown>, async (value) =>
+                this.result = Enumerable.groupByAsync(this.result as AsyncIterable<unknown>, (value) =>
                 {
                     this.result = value;
-                    await this.visit(arg0.argument);
-                    return this.result as string | number;
+                    this.visit(arg0.argument);
+                    return Promise.resolve(this.result as string | number);
                 });
                 this.model = null;
                 break;
@@ -87,11 +89,11 @@ export class ExpressionExecutor extends ExpressionVisitor
                 if (!arg0.argument)
                     throw new Exception('select is missing the select criteria');
 
-                this.result = Enumerable.selectAsync(this.result as Result, async (value) =>
+                this.result = Enumerable.selectAsync(this.result as Result, (value) =>
                 {
                     this.result = value;
-                    await this.visit(arg0.argument);
-                    return this.result;
+                    this.visit(arg0.argument);
+                    return Promise.resolve(this.result);
                 });
                 this.model = null;
                 break;
@@ -100,13 +102,21 @@ export class ExpressionExecutor extends ExpressionVisitor
                 if (!arg0.argument)
                     throw new Exception('select is missing the select criteria');
 
-                this.result = await Enumerable.whereAsync(this.result as Result, async (value) =>
+                this.result = Enumerable.whereAsync(this.result as Result, (value) =>
                 {
                     this.result = value;
                     if (isPromiseLike(value))
-                        this.result = await value;
-                    await this.visit(arg0.argument);
-                    return this.result as boolean;
+                        return this.result = value.then(v =>
+                        {
+                            const oldResult = this.result;
+                            this.result = v;
+                            this.visit(arg0.argument);
+                            const result = this.result;
+                            this.result = oldResult;
+                            return Promise.resolve(result as boolean);
+                        });
+                    this.visit(arg0.argument);
+                    return Promise.resolve(this.result as boolean);
                 });
 
                 break;
@@ -160,11 +170,11 @@ export class ExpressionExecutor extends ExpressionVisitor
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore TS2416
-    async visitCall<T, TMethod extends keyof T>(arg0: CallExpression<T, TMethod>)
+    visitCall<T, TMethod extends keyof T>(arg0: CallExpression<T, TMethod>)
     {
-        const source = await this.visit(arg0.source);
+        const source = this.visit(arg0.source);
         // const src = this.result;
-        const args = await (this as ExpressionVisitor).visitArray(arg0.arguments) as StrictExpressions[];
+        const args = (this as ExpressionVisitor).visitArray(arg0.arguments) as StrictExpressions[];
         if (source !== arg0.source || args !== arg0.arguments)
         {
             if (!this.isTypedExpression(source))
@@ -176,12 +186,12 @@ export class ExpressionExecutor extends ExpressionVisitor
 
 
 
-    async visitEnumerable<T>(map: IEnumerable<T>, addToNew: (item: T) => void, visitSingle: (item: T, index: number) => PromiseLike<T>, compare?: EqualityComparer<T>): Promise<void>
+    visitEnumerable<T>(map: IEnumerable<T>, addToNew: (item: T) => void, visitSingle: (item: T, index: number) => T, compare?: EqualityComparer<T>): void
     {
         const result = [];
-        await super.visitEnumerable(map, addToNew, async (t, i) =>
+        super.visitEnumerable(map, addToNew, (t, i) =>
         {
-            const x = await visitSingle.call(this, t, i);
+            const x = visitSingle.call(this, t, i);
             result.push(this.result);
             return x;
         }, compare);
@@ -189,13 +199,27 @@ export class ExpressionExecutor extends ExpressionVisitor
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore TS2416
-    async visitMember<T, TMember extends keyof T>(arg0: MemberExpression<T, TMember, T[TMember]>)
+    visitMember<T, TMember extends keyof T>(arg0: MemberExpression<T, TMember, T[TMember]>)
     {
-        await this.visit(arg0.source);
-        if (isPromiseLike(this.result))
-            this.result = await this.result.then(v => v[arg0.member]);
+        this.visit(arg0.source);
+        const result = this.result;
+        if (isPromiseLike(result))
+        {
+            this.result = result.then(v =>
+            {
+                const result = this.result;
+                this.visit(arg0.member);
+                const ret = v[this.result as string];
+                this.result = result;
+                return ret;
+            });
+        }
         else if (this.result !== null && this.result !== 'undefined')
-            this.result = this.result[arg0.member];
+        {
+            const result = this.result;
+            this.visit(arg0.member);
+            this.result = result[this.result as string];
+        }
         return arg0;
     }
     isTypedExpression<T>(source: Expressions): source is TypedExpression<T>
@@ -207,114 +231,106 @@ export class ExpressionExecutor extends ExpressionVisitor
             source.type == ExpressionType.ApplySymbolExpression ||
             source.type == ExpressionType.NewExpression);
     }
-    async visitLambda<T extends (...args: unknown[]) => unknown>(arg0: TypedLambdaExpression<T>)
+    visitLambda<T extends (...args: unknown[]) => unknown>(arg0: TypedLambdaExpression<T>)
     {
-        const parameters = await this.visitArray(arg0.parameters) as TypedLambdaExpression<T>['parameters'];
+        const parameters = this.visitArray(arg0.parameters) as TypedLambdaExpression<T>['parameters'];
         const wasEvaluating = this.evaluating;
         this.evaluating = this.result;
-        const body = await (this as ExpressionVisitor).visit(arg0.body);
+        const body = (this as ExpressionVisitor).visit(arg0.body);
         this.evaluating = wasEvaluating;
         if (body !== arg0.body || parameters !== arg0.parameters)
             return new TypedLambdaExpression<T>(body, arg0.parameters);
         return arg0;
     }
 
-    async visitConstant(arg0: ConstantExpression<unknown>)
+    visitConstant(arg0: ConstantExpression<unknown>)
     {
         this.result = arg0.value;
         return arg0;
     }
-    async visitParameter(arg0: ParameterExpression<unknown>)
+    visitParameter(arg0: ParameterExpression<unknown>)
     {
         if (typeof this.evaluating !== 'undefined')
             this.result = this.evaluating;
         return arg0;
     }
-    async visitUnary(arg0: UnaryExpression)
+    visitUnary(arg0: UnaryExpression)
     {
-        const operand = await (this as ExpressionVisitor).visit(arg0.operand);
+        const operand = (this as ExpressionVisitor).visit(arg0.operand);
         if (operand !== arg0.operand)
             return new UnaryExpression(operand, arg0.operator);
         return arg0;
     }
-    async visitBinary<T extends Expressions = StrictExpressions>(expression: BinaryExpression<T>)
+    visitBinary<T extends Expressions = StrictExpressions>(expression: BinaryExpression<T>)
     {
-        const left = await (this as ExpressionVisitor).visit(expression.left);
+        const left = (this as ExpressionVisitor).visit(expression.left);
         if (isPromiseLike(this.result))
-            var leftResult = await this.result as number;
+            this.result = this.result.then((leftResult: number) =>
+            {
+                this.result = ExpressionExecutor.applyBinary(leftResult, () =>
+                {
+                    (this as ExpressionVisitor).visit(expression.right);
+                    if (isPromiseLike(this.result))
+                        return this.result as PromiseLike<number>;
+                    return {
+                        then(x: (right: number) => unknown) { return x(this.result as number) }
+                    } as PromiseLike<number>
+                }, expression.operator)
+
+            });
 
         else
-            var leftResult = this.result as number;
+            this.result = ExpressionExecutor.applyBinary(this.result as number, () =>
+            {
+                (this as ExpressionVisitor).visit(expression.right);
+                if (isPromiseLike(this.result))
+                    return this.result as PromiseLike<number>;
+                return {
+                    then(x: (right: number) => unknown) { return x(this.result as number) }
+                } as PromiseLike<number>
+            }, expression.operator)
 
-        switch (expression.operator)
+        return expression;
+    }
+
+    public static applyBinary(leftResult: number, right: () => PromiseLike<number>, operator: expressions.BinaryOperator)
+    {
+        switch (operator)
         {
             case expressions.BinaryOperator.Equal:
-                var right = await (this as ExpressionVisitor).visit(expression.right);
-                if (isPromiseLike(this.result))
-                    this.result = leftResult === await this.result;
-
-                else
-                    this.result = leftResult === this.result;
-                break;
+                return right().then(right => leftResult === right);
             case expressions.BinaryOperator.NotEqual:
-                var right = await (this as ExpressionVisitor).visit(expression.right);
-                this.result = leftResult !== this.result;
-                break;
+                return right().then(right => leftResult !== right);
             case expressions.BinaryOperator.LessThan:
-                var right = await (this as ExpressionVisitor).visit(expression.right);
-                this.result = leftResult < (this.result as number);
-                break;
+                return right().then((right) => leftResult < right);
             case expressions.BinaryOperator.LessThanOrEqual:
-                var right = await (this as ExpressionVisitor).visit(expression.right);
-                this.result = leftResult <= (this.result as number);
-                break;
+                return right().then((right) => leftResult <= right);
             case expressions.BinaryOperator.GreaterThan:
-                var right = await (this as ExpressionVisitor).visit(expression.right);
-                this.result = leftResult > (this.result as number);
-                break;
+                return right().then((right) => leftResult > right);
             case expressions.BinaryOperator.GreaterThanOrEqual:
-                var right = await (this as ExpressionVisitor).visit(expression.right);
-                this.result = leftResult >= (this.result as number);
-                break;
+                return right().then((right) => leftResult >= right);
             case expressions.BinaryOperator.And:
                 if (leftResult)
-                    await (this as ExpressionVisitor).visit(expression.right);
-                break;
+                    return right();
+                return leftResult;
             case expressions.BinaryOperator.Or:
                 if (!leftResult)
-                    await (this as ExpressionVisitor).visit(expression.right);
-                break;
+                    return right();
+                return leftResult;
             case expressions.BinaryOperator.Minus:
-                var right = await (this as ExpressionVisitor).visit(expression.right);
-                this.result = leftResult - (this.result as number);
-                break;
+                return right().then((right) => leftResult - right);
             case expressions.BinaryOperator.Plus:
-                var right = await (this as ExpressionVisitor).visit(expression.right);
-                this.result = leftResult + (this.result as number);
-                break;
+                return right().then((right) => leftResult + right);
             case expressions.BinaryOperator.Modulo:
-                var right = await (this as ExpressionVisitor).visit(expression.right);
-                this.result = leftResult % (this.result as number);
-                break;
+                return right().then((right) => leftResult - right);
             case expressions.BinaryOperator.Div:
-                var right = await (this as ExpressionVisitor).visit(expression.right);
-                this.result = leftResult / (this.result as number);
-                break;
+                return right().then(right => leftResult / right);
             case expressions.BinaryOperator.Times:
-                var right = await (this as ExpressionVisitor).visit(expression.right);
-                this.result = leftResult * (this.result as number);
-                break;
+                return right().then(right => leftResult * right);
             case expressions.BinaryOperator.Pow:
-                var right = await (this as ExpressionVisitor).visit(expression.right);
-                this.result = Math.pow(leftResult, this.result as number);
-                break;
+                return right().then(right => Math.pow(leftResult, right));
             case expressions.BinaryOperator.Unknown:
-                throw new Error(`${expression.operator} is not supported`);
+                throw new Error(`${operator} is not supported`);
         }
-
-
-        if (left !== expression.left || right !== expression.right)
-            return new BinaryExpression<Expressions>(left, expression.operator, right);
-        return expression;
     }
 }
