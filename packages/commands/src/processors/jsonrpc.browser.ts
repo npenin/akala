@@ -95,6 +95,7 @@ export class JsonRpcBrowser extends CommandProcessor
                         if (typeof (params) != 'object' || !params['param'])
                             params = { param: [params] } as SerializableObject;
 
+                        Object.defineProperty(params, 'connectionId', { configurable: true, enumerable: false, value: this.id });
                         Object.defineProperty(params, 'connection', { configurable: true, enumerable: false, get: getProcessor });
                         Object.defineProperty(params, 'connectionAsContainer', { configurable: true, enumerable: false, get: getContainer });
                         Object.defineProperty(params, 'socket', { configurable: true, enumerable: false, value: socket });
