@@ -242,7 +242,7 @@ export class HttpCallFormatterFactory implements FormatterFactory<Injected<Promi
         const method = /^ *(\w+)/.exec(expression);
         if (method)
             return { method: <keyof Http>method[1], $$length: method[0].length };
-        return new Parser().parseAny(expression) as { method?: keyof Http } & ParsedAny;
+        return new Parser().parseAny(expression, true) as { method?: keyof Http } & ParsedAny;
     }
     public build(settings: { method: keyof Http }): Formatter<Injected<PromiseLike<unknown>>>
     {

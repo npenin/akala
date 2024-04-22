@@ -13,7 +13,7 @@ export class EvaluatorAsFunction extends ExpressionVisitor
 
     public async eval<T = unknown>(expression: ExpressionsWithLength): Promise<ParsedFunction<T>>
     {
-        await this.visit(expression);
+        this.visit(expression);
         const f = new Function('$$context', 'return ' + this.functionBody);
 
         if (this.requiresContext)
@@ -26,24 +26,27 @@ export class EvaluatorAsFunction extends ExpressionVisitor
         }
     }
 
-    async visitConstant(arg0: ConstantExpression<unknown>): Promise<Expressions>
+    visitConstant(arg0: ConstantExpression<unknown>): Expressions
     {
         this.functionBody += JSON.stringify(arg0.value);
         return arg0;
     }
 
-    async visitNew<T>(expression: NewExpression<T>): Promise<Expressions>
+    visitNew<T>(expression: NewExpression<T>): Expressions
     {
         if (expression instanceof ParsedObject)
         {
             this.functionBody += '{';
-            await this.visitEnumerable(expression.init, noop, async (m, i) =>
+            this.visitEnumerable(expression.init, noop, (m, i) =>
             {
                 // this.result = null;
                 const currentBody = this.functionBody;
                 this.functionBody = '';
-                await this.visit(m.source);
-                this.functionBody = currentBody + (i > 0 ? ',' : '') + '"' + m.member.replace('\\', '\\\\').replace('"', '\\"') + '":' + this.functionBody
+                this.visit(m.source);
+                const newBody = this.functionBody;
+                this.functionBody = '';
+                this.visit(m.member)
+                this.functionBody = currentBody + (i > 0 ? ',' : '') + '"' + this.functionBody.replace('\\', '\\\\').replace('"', '\\"') + '":' + newBody
                 return m;
             }, () => true)
             this.functionBody += '}'
@@ -52,12 +55,16 @@ export class EvaluatorAsFunction extends ExpressionVisitor
         {
             // const result = [];
             this.functionBody += '{';
-            await this.visitEnumerable(expression.init, noop, async (m, i) =>
+            this.visitEnumerable(expression.init, noop, (m, i) =>
             {
                 // this.result = null;
                 const currentBody = this.functionBody;
-                await this.visit(m.source);
-                this.functionBody = currentBody + (i > 0 ? ',' : '') + '"' + m.member.replace('\\', '\\\\').replace('"', '\\"') + '":' + this.functionBody
+                this.functionBody = '';
+                this.visit(m.source);
+                const newBody = this.functionBody;
+                this.functionBody = '';
+                this.visit(m.member)
+                this.functionBody = currentBody + (i > 0 ? ',' : '') + '"' + this.functionBody.replace('\\', '\\\\').replace('"', '\\"') + '":' + newBody
                 return m;
             }, () => true)
             this.functionBody += '}'
@@ -69,31 +76,25 @@ export class EvaluatorAsFunction extends ExpressionVisitor
         return expression;
     }
 
-    async visitMember<T, TMember extends keyof T>(arg0: MemberExpression<T, TMember, T[TMember]>): Promise<TypedExpression<T[TMember]>>
+    visitMember<T, TMember extends keyof T>(arg0: MemberExpression<T, TMember, T[TMember]>): TypedExpression<T[TMember]>
     {
         this.requiresContext = true;
         if (arg0.source === null)
             this.functionBody += '$$context';
         else
             this.visit(arg0.source);
-        switch (typeof arg0.member)
-        {
-            case 'string':
-                this.functionBody += '["' + arg0.member.replace('\\', '\\\\').replace('"', '\\"') + '"]';
-                break;
-            case 'number':
-                this.functionBody += '["' + arg0.member + '"]';
-                break;
-            case 'symbol':
-                throw new Error('not supported');
-        }
+
+        const currentBody = this.functionBody;
+        this.functionBody = '';
+        this.visit(arg0.member);
+        this.functionBody = currentBody + '[' + this.functionBody + ']';
 
         return arg0;
     }
 
-    async visitUnary(arg0: UnaryExpression): Promise<Expressions>
+    visitUnary(arg0: UnaryExpression): Expressions
     {
-        await this.visit(arg0.operand);
+        this.visit(arg0.operand);
         switch (arg0.operator)
         {
             case UnaryOperator.Not:
@@ -106,14 +107,14 @@ export class EvaluatorAsFunction extends ExpressionVisitor
         return arg0;
     }
 
-    async visitBinary(expression: BinaryExpression<ExpressionsWithLength>): Promise<typeof expression>
+    visitBinary(expression: BinaryExpression<ExpressionsWithLength>): typeof expression
     {
         // const currentBody = this.functionBody;
         this.functionBody = '';
-        await this.visit(expression.left);
+        this.visit(expression.left);
         const left = this.functionBody;
         this.functionBody = '';
-        await this.visit(expression.right);
+        this.visit(expression.right);
         const right = this.functionBody;
 
         switch (expression.operator)
