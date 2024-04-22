@@ -1,6 +1,7 @@
-import { Triggers } from '@akala/commands';
+import { CommandMetadataProcessorSignature, ICommandProcessor, Triggers } from '@akala/commands';
 import { Container, Processors } from '@akala/commands'
 import { SocketAdapter, SocketAdapterEventMap } from '@akala/json-rpc-ws';
+import { Middleware } from '@akala/core'
 import { readFile } from 'fs/promises';
 import { Plugin, ViteDevServer } from 'vite';
 import { fileURLToPath } from 'url'
@@ -50,7 +51,7 @@ export class ViteSocketAdapter implements SocketAdapter
     }
 }
 
-export function plugin(options: Record<string, { path: string, init?: unknown[] }>): Plugin
+export function plugin(options: Record<string, { path: string, init?: unknown[], processors?: (Middleware<CommandMetadataProcessorSignature<unknown>> | { processor: Middleware<CommandMetadataProcessorSignature<unknown>>, priority: number })[] }>, processors?: (Middleware<CommandMetadataProcessorSignature<unknown>> | { processor: Middleware<CommandMetadataProcessorSignature<unknown>>, priority: number })[]): Plugin
 {
     return {
         name: 'akala',
@@ -83,9 +84,15 @@ export function plugin(options: Record<string, { path: string, init?: unknown[] 
         configureServer(server)
         {
             const container = new Container('all', null);
-            const promise = Promise.all(Object.entries(options).map(async ([name, { path, init }]) =>
+            const promise = Promise.all(Object.entries(options).map(async ([name, { path, init, processors: containerProcessors }]) =>
             {
                 const subContainer = new Container(name, {})
+                // console.log(processors);
+                if (processors)
+                    processors.forEach(p => 'priority' in p ? subContainer.processor.useMiddleware(p.priority, p.processor) : subContainer.processor.useMiddleware(20, p));
+                // console.log(containerProcessors);
+                if (containerProcessors)
+                    containerProcessors.forEach(p => 'priority' in p ? subContainer.processor.useMiddleware(p.priority, p.processor) : subContainer.processor.useMiddleware(20, p));
                 // console.log('discovering commands in', path);
                 await Processors.FileSystem.discoverCommands(path, subContainer);
                 // console.log('registering commands in', subContainer.name);
