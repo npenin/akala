@@ -1,27 +1,44 @@
-import { Injector, Injectable, each, MiddlewarePromise, isPromiseLike } from '@akala/core';
+import { Injector, Injectable, each, MiddlewarePromise, isPromiseLike, Middleware, SpecialNextParam } from '@akala/core';
 import * as  Metadata from '../metadata/index.js';
-import { CommandProcessor, StructuredParameters } from '../model/processor.js'
+import { CommandMetadataProcessorSignature, CommandProcessor, ICommandProcessor, StructuredParameters } from '../model/processor.js'
 import { Container } from '../model/container.js';
 import { CommandWithProcessorAffinity, SelfDefinedCommand } from '../model/command.js';
 
 
-export class AuthHandler extends CommandProcessor
+export class AuthHandler implements Middleware<CommandMetadataProcessorSignature<unknown>>
 {
     constructor(private authValidator: Injectable<MiddlewarePromise>)
     {
-        super('AuthenticationHandler')
     }
 
     async handle(origin: Container<unknown>, cmd: Metadata.Command, param: StructuredParameters<unknown[]>): MiddlewarePromise
     {
         if (param._trigger && cmd.config?.auth)
         {
-            const authConfig = cmd.config.auth;
+            console.log('authenticating...');
+            if (!param.command)
+                param.command = cmd;
             return Local.execute({ config: cmd.config.auth as any, name: cmd.name }, this.authValidator, origin, param)
         }
         return undefined;
     }
+}
 
+export class AuthPreProcessor extends CommandProcessor
+{
+    constructor(private inner: ICommandProcessor)
+    {
+        super('auth');
+    }
+
+    public authState: any;
+
+    public handle(origin: Container<unknown>, cmd: Metadata.Command, param: StructuredParameters<unknown[]>): MiddlewarePromise<SpecialNextParam>
+    {
+        if (!param.auth)
+            param.auth = this.authState
+        return this.inner.handle(origin, cmd, param);
+    }
 }
 
 export class Local extends CommandProcessor
@@ -74,7 +91,8 @@ export class Local extends CommandProcessor
     {
         if (!container)
             throw new Error('container is undefined');
-        let inject = cmd.config && cmd.config['']?.inject;
+        let config = cmd.config && cmd.config[''];
+        let inject = config?.inject;
         const injector = new Injector(container);
         injector.register('$container', container);
         if (param.injector)
@@ -82,13 +100,20 @@ export class Local extends CommandProcessor
         // console.log(param);
         if (param._trigger === 'proxy')
             inject = undefined;
-        if (param._trigger && cmd.config && cmd.config[param._trigger] && cmd.config[param._trigger]?.inject)
-            inject = cmd.config[param._trigger]?.inject;
+        if (param._trigger && cmd.config && cmd.config[param._trigger])
+        {
+            config = cmd.config[param._trigger];
+            if (config?.inject)
+                inject = config.inject;
+        }
         each(Object.getOwnPropertyDescriptors(param), ((descriptor, key) => injector.registerDescriptor(key, descriptor)));
         injector.register('$param', param);
+        injector.register('$config', config);
+        injector.register('$command', cmd);
         if (!inject)
             inject = param.param.map((a, i) => 'param.' + i);
         // console.log(inject);
+        // injector.inspect();
         return injector.injectWithName(inject, handler)(container.state);
     }
 
