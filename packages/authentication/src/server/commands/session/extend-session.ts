@@ -1,5 +1,4 @@
 import { BinaryOperator } from "@akala/core/expressions";
-import { randomUUID } from "crypto";
 import { State } from "../../state.js";
 
 export default async function (this: State, sessionId: string, expiresOn?: Date | string)

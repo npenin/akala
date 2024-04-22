@@ -63,11 +63,59 @@
             }
         },
         {
-            "name": "authenticate",
+            "name": "add-token",
             "config": {
                 "fs": {
-                    "path": "dist/esm/server/commands/authenticate.js",
-                    "source": "src/server/commands/authenticate.ts",
+                    "path": "dist/esm/server/commands/add-token.js",
+                    "source": "src/server/commands/add-token.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "client.add",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/client/add.js",
+                    "source": "src/server/commands/client/add.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "client.delete",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/client/delete.js",
+                    "source": "src/server/commands/client/delete.ts",
                     "inject": [
                         "param.0"
                     ]
@@ -75,6 +123,130 @@
                 "": {
                     "inject": [
                         "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "client.renew-secret",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/client/renew-secret.js",
+                    "source": "src/server/commands/client/renew-secret.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "client.request-grant",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/client/request-grant.js",
+                    "source": "src/server/commands/client/request-grant.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "client.update",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/client/update.js",
+                    "source": "src/server/commands/client/update.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "extend-token",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/extend-token.js",
+                    "source": "src/server/commands/extend-token.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "get-oidc-configuration",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/get-oidc-configuration.js",
+                    "source": "src/server/commands/get-oidc-configuration.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "getJWT",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/getJWT.js",
+                    "source": "src/server/commands/getJWT.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "param.3",
+                        "param.4"
                     ]
                 }
             }
@@ -110,72 +282,77 @@
             }
         },
         {
-            "name": "scope.add",
+            "name": "remove-token",
             "config": {
                 "fs": {
-                    "inject": [],
-                    "path": "dist/esm/server/commands/scope/add.js",
-                    "source": "src/server/commands/scope/add.ts"
+                    "path": "dist/esm/server/commands/remove-token.js",
+                    "source": "src/server/commands/remove-token.ts",
+                    "inject": [
+                        "param.0"
+                    ]
                 },
                 "": {
-                    "inject": []
-                },
-                "cli": {
-                    "usage": "scope add [...scope]",
-                    "options": {
-                        "scope": {
-                            "needsValue": true
-                        }
-                    },
                     "inject": [
-                        "options.scope"
+                        "param.0"
                     ]
                 }
             }
         },
         {
-            "name": "scope.list",
+            "name": "session.add-session",
             "config": {
                 "fs": {
-                    "path": "dist/esm/server/commands/scope/list.js",
-                    "source": "src/server/commands/scope/list.ts",
-                    "inject": []
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
-            "name": "scope.remove",
-            "config": {
-                "fs": {
-                    "path": "dist/esm/server/commands/scope/remove.js",
-                    "source": "src/server/commands/scope/remove.ts",
-                    "inject": []
-                },
-                "": {
-                    "inject": []
-                }
-            }
-        },
-        {
-            "name": "user.add-device",
-            "config": {
-                "fs": {
-                    "path": "dist/esm/server/commands/user/add-device.js",
-                    "source": "src/server/commands/user/add-device.ts",
+                    "path": "dist/esm/server/commands/session/add-session.js",
+                    "source": "src/server/commands/session/add-session.ts",
                     "inject": [
                         "param.0",
                         "param.1",
-                        "param.2"
+                        "param.2",
+                        "param.3"
                     ]
                 },
                 "": {
                     "inject": [
                         "param.0",
                         "param.1",
-                        "param.2"
+                        "param.2",
+                        "param.3"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "session.extend-session",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/session/extend-session.js",
+                    "source": "src/server/commands/session/extend-session.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "session.remove-session",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/session/remove-session.js",
+                    "source": "src/server/commands/session/remove-session.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0"
                     ]
                 }
             }
@@ -266,23 +443,6 @@
             }
         },
         {
-            "name": "user.get-oidc-configuration",
-            "config": {
-                "fs": {
-                    "path": "dist/esm/server/commands/user/get-oidc-configuration.js",
-                    "source": "src/server/commands/user/get-oidc-configuration.ts",
-                    "inject": [
-                        "param.0"
-                    ]
-                },
-                "": {
-                    "inject": [
-                        "param.0"
-                    ]
-                }
-            }
-        },
-        {
             "name": "user.remove-user",
             "config": {
                 "fs": {
@@ -295,6 +455,72 @@
                 "": {
                     "inject": [
                         "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "user.request-reset-password",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/user/request-reset-password.js",
+                    "source": "src/server/commands/user/request-reset-password.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "user.reset-password",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/user/reset-password.js",
+                    "source": "src/server/commands/user/reset-password.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "whoami",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/whoami.js",
+                    "source": "src/server/commands/whoami.ts",
+                    "inject": [
+                        "ignore"
+                    ]
+                },
+                "auth": {
+                    "jsonrpc": {
+                        "inject": [
+                            "connectionId",
+                            "$config",
+                            "command",
+                            "$param"
+                        ]
+                    },
+                    "required": true
+                },
+                "": {
+                    "inject": [
+                        "auth.sessionId"
                     ]
                 }
             }

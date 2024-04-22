@@ -1,0 +1,19 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
+    "auth": {
+        "jsonrpc": {
+            "inject": [
+                "connectionId",
+                "$config",
+                "command",
+                "$param"
+            ]
+        },
+        "required": true
+    },
+    "": {
+        "inject": [
+            "auth.sessionId"
+        ]
+    }
+}
