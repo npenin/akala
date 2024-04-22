@@ -19,19 +19,22 @@ import.meta.hot.on('template-reload', (data) =>
 });
 
 
-bootstrapModule.activate(['services.$router', 'services.$template', '$rootScope', 'services.$location'], async (router: Router, template: Template, root: IScope<{ $commandEvents: EventEmitter<Record<string, [any, StructuredParameters<unknown[]>, Metadata.Command]>> }>, location: LocationService) =>
+bootstrapModule.activate(['services.$router', 'services.$template', '$rootScope', 'services.$location'], async (router: Router, template: Template, root: IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: EventEmitter<Record<string, [any, StructuredParameters<unknown[]>, Metadata.Command]>> }>, location: LocationService) =>
 {
     Template.composers.push(new FormComposer())
 
     router.use('/', async (req) =>
     {
-        if (!root['currentUser'])
+        if (!root.$authProcessor.authState)
             location.dispatch('/login');
         else
+        {
             document.getElementById('app').replaceChildren();
-        const templateFunction = await template.get('test/index.html');
-        // import.meta.hot.accept('/test/index.html', m => templateFunction.hotReplace(m.text))
-        templateFunction(root, document.getElementById('app'));
+            const templateFunction = await template.get('test/index.html');
+            // import.meta.hot.accept('/test/index.html', m => templateFunction.hotReplace(m.text))
+            templateFunction(root, document.getElementById('app'));
+            root.$set('currentUser', await root.container.dispatch('auth.whoami'))
+        }
     })
 
     const commandEvents = root.$commandEvents;
@@ -52,7 +55,7 @@ bootstrapModule.activate(['services.$router', 'services.$template', '$rootScope'
         (await template.get('test/login/login.html'))(root, document.getElementById('app'));
         commandEvents.once('auth.login', (result) =>
         {
-            root.$set('currentUser', result);
+            root.$set('$authProcessor.authState', result);
             location.dispatch('/');
         })
     })
