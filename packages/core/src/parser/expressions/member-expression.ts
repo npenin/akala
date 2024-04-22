@@ -4,15 +4,16 @@ import { ExpressionVisitor } from './expression-visitor.js';
 import { IVisitable } from './visitable.js';
 
 export class MemberExpression<T, TMember extends keyof T, U extends T[TMember]> extends Expression
-    implements IVisitable<ExpressionVisitor, Promise<TypedExpression<U>>>
+    implements IVisitable<ExpressionVisitor, TypedExpression<U>>
 {
     public get type(): ExpressionType.MemberExpression { return ExpressionType.MemberExpression; }
-    constructor(public readonly source: TypedExpression<T>, public readonly member: TMember)
+    public $$length: number;
+    constructor(public readonly source: TypedExpression<T>, public readonly member: TypedExpression<TMember>)
     {
         super();
     }
-    public accept(visitor: ExpressionVisitor): Promise<TypedExpression<U>>
+    public accept(visitor: ExpressionVisitor): TypedExpression<U>
     {
-        return visitor.visitMember(this) as Promise<TypedExpression<U>>;
+        return visitor.visitMember(this) as TypedExpression<U>;
     }
 }
