@@ -1,6 +1,7 @@
 import * as akala from '@akala/core';
 
 export * from './shared.js'
+export * from './expression-executor.js'
 export * from './commands/command-processor.js'
 export * from './commands/command.js'
 export * from './Query.js'
