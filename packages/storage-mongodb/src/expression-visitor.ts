@@ -31,8 +31,13 @@ export default class MongoDbTranslator extends ExpressionVisitor
 
         for (const m of expression.init)
         {
+            const result = this.result;
+            this.visit(m.member);
+            const member = this.result as string | number | symbol;
+            this.result = result;
             this.visit(m.source);
-            result[m.member] = this.result;
+
+            result[member] = this.result;
         }
 
         this.result = result;
@@ -185,8 +190,11 @@ export default class MongoDbTranslator extends ExpressionVisitor
     //@ts-ignore TS2416
     visitMember<T, TMember extends keyof T>(arg0: MemberExpression<T, TMember, T[TMember]>)
     {
+        const result = this.result;
+        this.visit(arg0.member);
+        let member = this.result as string;
+        this.result = result;
         this.visit(arg0.source);
-        var member = arg0.member as string;
         if (this.model)
         {
             member = this.model.members[member].nameInStorage;
