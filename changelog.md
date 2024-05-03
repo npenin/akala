@@ -245,6 +245,7 @@
 * improved ready command for remote containers ffd2a17
 * improves command detection ff43e85
 * infinite loop a5ae318
+* infinite loop when file does not exist a909c09
 * init leverage ESM 557af46
 * initial pm setup 57f516a
 * inject usage after move to full meta cmd 2cbda96
