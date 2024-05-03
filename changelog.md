@@ -1,4 +1,4 @@
-#  (2024-04-15)
+#  (2024-05-03)
 
 
 ### Bug Fixes
@@ -199,6 +199,7 @@
 * handle default init 5482bcb
 * handle direct invokes f4a524e
 * handle empty orders in connectByPreference d35a80b
+* handle non provided description in doc a3685e6
 * handle non-specified pm socket option dfd5212
 * handle normalize on rest parameters 2a0b6a4
 * handle result properly 373a7a9
@@ -244,6 +245,7 @@
 * improved ready command for remote containers ffd2a17
 * improves command detection ff43e85
 * infinite loop a5ae318
+* infinite loop when file does not exist a909c09
 * init leverage ESM 557af46
 * initial pm setup 57f516a
 * inject usage after move to full meta cmd 2cbda96
