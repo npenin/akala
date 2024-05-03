@@ -157,7 +157,7 @@ import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argume
 async function writeDoc(output: Writable, argName: string, doc: akala.Metadata.DocConfiguration)
 {
     await write(output, `\t\t/** 
-\t\t  * ${doc.description.split('\n').join('\n\t\t  * ')}`);
+\t\t  * ${doc.description?.split('\n').join('\n\t\t  * ')}`);
     if (doc.inject?.length)
     {
         for (const i in doc.inject)
