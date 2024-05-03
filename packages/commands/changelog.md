@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* handle non provided description in doc a3685e6
+* infinite loop when file does not exist a909c09
 
 
 
