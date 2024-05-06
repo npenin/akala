@@ -6,9 +6,9 @@ import { service } from './service.js';
 import { Formatter, FormatterFactory } from './formatters/common.js';
 // import http from 'http';
 // import https from 'https';
-import { Injected } from './injector.js';
-import { MiddlewareComposite } from './router/composite.js';
-import type { Middleware } from './router/shared.js';
+import { Injected } from './injectors/shared.js';
+import { MiddlewareComposite } from './middlewares/composite-sync.js';
+import type { Middleware, MiddlewareAsync } from './middlewares/shared.js';
 
 
 export interface HttpOptions<T>
@@ -33,7 +33,7 @@ export interface Http<TResponse = Response>
     call<T>(options: HttpOptions<T>): PromiseLike<TResponse>;
 }
 
-export type CallInterceptor = Middleware<[RequestInit, Response]>
+export type CallInterceptor = MiddlewareAsync<[RequestInit, Response]>
 
 register('$http-interceptors', new MiddlewareComposite('$http-interceptors'))
 

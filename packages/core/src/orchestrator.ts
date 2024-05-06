@@ -4,11 +4,11 @@ import sequencify, { Task } from './sequencify.js'
 
 interface EventMap
 {
-    start: [string[]]
-    task_start: [{ message: string, task: Task }]
-    task_stop: [{ message: string }, Task]
-    error: [{ error: Error, task: Task }]
-    stop: [Error] | []
+    start: Event<[string[]], void>
+    task_start: Event<[{ message: string, task: Task }], void>
+    task_stop: Event<[{ message: string }, Task], void>
+    error: Event<[{ error: Error, task: Task }], void>
+    stop: Event<[Error] | [], void>
 }
 
 export default class Orchestrator extends EventEmitter<EventMap>

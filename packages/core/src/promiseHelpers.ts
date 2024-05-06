@@ -1,9 +1,27 @@
+import { Event, IEventSink } from "./event-emitter.js";
+
 export type ResolveHandler<T, TResult> = (value: T) => TResult | PromiseLike<TResult>
 export type RejectHandler<TResult> = (reason: unknown) => void | TResult | PromiseLike<TResult>;
 
 export function isPromiseLike<T>(o: T | PromiseLike<T>): o is PromiseLike<T>
 {
     return o && o['then'] && typeof (o['then']) == 'function';
+}
+
+export function toEvent<T>(promise: PromiseLike<T>): IEventSink<[T], void, unknown>
+{
+    const result = new Event<[T]>(Event.maxListeners, () => { });
+
+    promise.then(v => { try { result.emit(v); } finally { result.dispose() } });
+
+    return result;
+}
+
+export function fromEvent<T>(event: IEventSink<[T], void, unknown>): PromiseLike<T>
+{
+    const result = new Deferred<T>();
+    event.addListener(value => result.resolve(value));
+    return result;
 }
 
 export class Deferred<T, TError = Error> implements PromiseLike<T>
