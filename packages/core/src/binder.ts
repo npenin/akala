@@ -101,7 +101,7 @@ export class Binding<T>
     public get target() { return this._target; }
     public set target(value) { this._target = value; this.register() }
 
-    private evaluator: Promise<ParsedFunction<T>>;
+    private evaluator: ParsedFunction<T>;
 
     public onChanging(handler: (ev: BindingExtendableEvent<T>) => void)
     {
@@ -113,10 +113,10 @@ export class Binding<T>
         const off = this.onChangedEvent.addListener(handler);
         if (!doNotTriggerHandler)
         {
-            this.getValue().then(v => handler({
+            handler({
                 target: this.target,
-                eventArgs: { fieldName: this.expression, value: v, source: null }
-            }));
+                eventArgs: { fieldName: this.expression, value: this.getValue(), source: null }
+            });
         }
         return off;
     }
@@ -171,9 +171,9 @@ export class Binding<T>
     }
 
     //defined in constructor
-    public getValue(): Promise<T>
+    public getValue(): T
     {
-        return this.evaluator.then(evaluator => this.formatter(evaluator(this.target)));
+        return this.formatter(this.evaluator(this.target));
     }
 
     public register()
@@ -406,7 +406,7 @@ export type ObservableArrayInitEvent<T> =
 export type ObservableArrayEventMap<T> = ObservableArrayPopEvent<T> | ObservableArrayPushEvent<T> | ObservableArrayShiftEvent<T> | ObservableArrayUnshiftEvent<T> | ObservableArrayReplaceEvent<T> | ObservableArrayInitEvent<T>;
 
 
-export class ObservableArray<T> extends EventEmitter<{ collectionChanged: [ObservableArrayEventMap<T>] }>
+export class ObservableArray<T> extends EventEmitter<{ collectionChanged: Event<[ObservableArrayEventMap<T>], void> }>
 {
     constructor(public readonly array: Array<T>)
     {
