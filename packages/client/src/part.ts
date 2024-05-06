@@ -1,11 +1,10 @@
-import * as akala from '@akala/core'
 import { Router, RouterRequest as Request } from './router.js'
 import './controls/part.js'
 import { Template } from './template.js'
 import { IScope } from './scope.js'
 import { service } from './common.js'
 import { LocationService as Location } from './locationService.js'
-import { Injector, map } from '@akala/core'
+import { SimpleInjector, each, map } from '@akala/core'
 import { IControlInstance } from './controls/control.js'
 
 export type PartInstance = { scope: IScope<unknown>, element: HTMLElement, controlsInPart?: IControlInstance<unknown>[] };
@@ -38,7 +37,7 @@ export class Part
         })
     }
 
-    private parts = new akala.Injector();
+    private parts = new SimpleInjector();
 
     public register(partName: string, control: PartInstance)
     {
@@ -65,7 +64,7 @@ export class Part
         {
             p.element.textContent = '';
             if (p.controlsInPart)
-                akala.each(p.controlsInPart, c => c.dispose());
+                each(p.controlsInPart, c => c.dispose());
             await tpl(p.scope, p.element).then(instances => p.controlsInPart = instances);
         }
         else
@@ -79,7 +78,7 @@ export class Part
         if (!part)
         {
             const partService = new Part(this.template, new Router(), this.location);
-            partService.parts = new Injector(this.parts);
+            partService.parts = new SimpleInjector(this.parts);
 
             return partService;
         }

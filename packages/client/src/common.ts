@@ -45,7 +45,7 @@ export { component, webComponent };
 
 export class LocalAfterRemoteProcessor implements ICommandProcessor
 {
-    constructor(private inner: ICommandProcessor, public readonly eventEmitter: EventEmitter<Record<string, [any, StructuredParameters<unknown[]>, Metadata.Command]>> = new EventEmitter())
+    constructor(private inner: ICommandProcessor, public readonly eventEmitter: EventEmitter<Record<string, Event<[any, StructuredParameters<unknown[]>, Metadata.Command]>>> = new EventEmitter())
     {
     }
 
@@ -68,10 +68,26 @@ export class LocalAfterRemoteProcessor implements ICommandProcessor
 
 export class FormInjector extends Injector
 {
+    onResolve<T = unknown>(name: string | symbol): PromiseLike<T>;
+    onResolve<T = unknown>(name: string | symbol, handler: (value: T) => void): void;
+    onResolve<T>(name: string | symbol, handler?: (value: T) => void): void | PromiseLike<T>
+    {
+        if (!handler)
+        {
+            this.onResolve(name).then(handler);
+        }
+        return Promise.resolve(this.form.elements[name].value)
+    }
     constructor(public form: HTMLFormElement)
     {
         super();
     }
+
+    public inspect()
+    {
+        console.log(this.form.elements);
+    }
+
     resolve<T = unknown>(param: string): T
     {
         return this.form.elements[param].value;

@@ -1,7 +1,7 @@
 import { CommandMetadataProcessorSignature, ICommandProcessor, Triggers } from '@akala/commands';
 import { Container, Processors } from '@akala/commands'
 import { SocketAdapter, SocketAdapterEventMap } from '@akala/json-rpc-ws';
-import { Middleware } from '@akala/core'
+import { MiddlewareAsync } from '@akala/core'
 import { readFile } from 'fs/promises';
 import { Plugin, ViteDevServer } from 'vite';
 import { fileURLToPath } from 'url'
@@ -51,7 +51,7 @@ export class ViteSocketAdapter implements SocketAdapter
     }
 }
 
-export function plugin(options: Record<string, { path: string, init?: unknown[], processors?: (Middleware<CommandMetadataProcessorSignature<unknown>> | { processor: Middleware<CommandMetadataProcessorSignature<unknown>>, priority: number })[] }>, processors?: (Middleware<CommandMetadataProcessorSignature<unknown>> | { processor: Middleware<CommandMetadataProcessorSignature<unknown>>, priority: number })[]): Plugin
+export function plugin(options: Record<string, { path: string, init?: unknown[], processors?: (MiddlewareAsync<CommandMetadataProcessorSignature<unknown>> | { processor: MiddlewareAsync<CommandMetadataProcessorSignature<unknown>>, priority: number })[] }>, processors?: (MiddlewareAsync<CommandMetadataProcessorSignature<unknown>> | { processor: MiddlewareAsync<CommandMetadataProcessorSignature<unknown>>, priority: number })[]): Plugin
 {
     return {
         name: 'akala',

@@ -1,9 +1,8 @@
 import * as http from 'http';
-import * as akala from '@akala/core';
 import * as jsonrpc from '@akala/json-rpc-ws'
 import { HttpRouter } from './router.js';
 import { requestHandler } from './shared.js';
-import { convertToMiddleware, Middleware, MiddlewareComposite } from '@akala/core';
+import { convertToMiddleware, MiddlewareAsync, MiddlewareCompositeAsync, NextFunction, RouterOptions } from '@akala/core';
 import { HttpRouteMiddleware } from './route.js';
 import { Request, Response } from './shared.js'
 
@@ -19,7 +18,7 @@ export interface Callback
     (status: number, data: unknown): void;
     (meta: CallbackResponse, data: unknown): void;
     redirect(url: string);
-    sendFile?(path: string, options?: unknown, callback?: akala.NextFunction)
+    sendFile?(path: string, options?: unknown, callback?: NextFunction)
 }
 
 export interface CallbackResponse
@@ -30,7 +29,7 @@ export interface CallbackResponse
     data?: jsonrpc.PayloadDataType<unknown> | string;
 }
 
-export function router(options?: akala.RouterOptions): HttpRouter
+export function router(options?: RouterOptions): HttpRouter
 {
     return new HttpRouter(options);
 }
@@ -40,12 +39,12 @@ http.METHODS.concat('all').forEach(function (method)
 {
     method = method.toLowerCase();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    MiddlewareComposite.prototype[method] = function (this: MiddlewareComposite<[Request, Response]>, path: string, ...rest: requestHandler[])
+    MiddlewareCompositeAsync.prototype[method] = function (this: MiddlewareCompositeAsync<[Request, Response]>, path: string, ...rest: requestHandler[])
     {
         return this[method + 'Middleware'](path, ...rest.map(convertToMiddleware));
     }
 
-    MiddlewareComposite.prototype[method + 'Middleware'] = function (this: MiddlewareComposite<[Request, Response]>, path: string, ...rest: Middleware<[Request, Response]>[])
+    MiddlewareCompositeAsync.prototype[method + 'Middleware'] = function (this: MiddlewareCompositeAsync<[Request, Response]>, path: string, ...rest: MiddlewareAsync<[Request, Response]>[])
     {
         const route = new HttpRouteMiddleware(method, path);
         route.useMiddleware(...rest);

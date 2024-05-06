@@ -1,6 +1,5 @@
-import * as akala from '@akala/core';
 import { IScope } from '../scope.js';
-import { Injector, inject, ObservableArray, ParsedObject } from '@akala/core';
+import { Injector, inject, ObservableArray, ParsedObject, parser, Parser, eachAsync, SimpleInjector, injectable, Module, module as klModule, afterInjectSymbol, InjectorEvaluator } from '@akala/core';
 import { Template, Composer } from '../template.js';
 import { Binding } from '@akala/core'
 
@@ -11,9 +10,9 @@ class DataBindComposer implements Composer<Record<string, unknown>>
     optionName = 'databind';
     async apply(item: HTMLElement, data: unknown, options?: Record<string, Control<unknown>>)
     {
-        const instances = await Control.apply(options || (await new akala.parser.EvaluatorAsFunction().eval(new akala.Parser().parse(item.dataset['bind'])))() as Record<string, unknown>, item);
+        const instances = await Control.apply(options || (await new parser.EvaluatorAsFunction().eval(new Parser().parse(item.dataset['bind'])))() as Record<string, unknown>, item);
 
-        await akala.eachAsync(item.querySelectorAll(this.selector), async (el: HTMLElement) =>
+        await eachAsync(item.querySelectorAll(this.selector), async (el: HTMLElement) =>
         {
             if (el.parentElement.closest(this.selector) == item)
                 instances.push(...await Template.compose(this, [el], data, item));
@@ -39,7 +38,7 @@ export function control<T = unknown>(name: string, priority?: number, options?: 
 
                 public instanciate(target: unknown, element: Element, parameter: ControlParameter<T>, otherControls: Record<string, unknown>)
                 {
-                    const i = new Injector(Control.injector)
+                    const i = new SimpleInjector(Control.injector)
                     i.register('factory', this);
                     i.register('scope', target);
                     i.register('element', element);
@@ -49,7 +48,7 @@ export function control<T = unknown>(name: string, priority?: number, options?: 
                 }
             });
 
-        var result = akala.injectable(ctrl, Control.injector);
+        var result = injectable(ctrl, Control.injector);
 
         return result;
     }
@@ -62,7 +61,7 @@ export function controlFactory(...toInject: string[])
 
 export abstract class Control<T> implements IControl<T>
 {
-    public static injector: akala.Module = (function () { const module = akala.module('controls', 'akala-services'); module.activateEvent.maxListeners = 0; return module })();
+    public static injector: Module = (function () { const module = klModule('controls', 'akala-services'); module.activateEvent.maxListeners = 0; return module })();
 
     constructor(private $$name: string, public priority: number = 500)
     {
@@ -113,13 +112,13 @@ export abstract class Control<T> implements IControl<T>
     {
         if (newControls)
         {
-            const controls = new akala.Parser().parse(element.dataset['bind']) as ParsedObject;
+            const controls = new Parser().parse(element.dataset['bind']) as ParsedObject;
 
             let applicableControls: Control<unknown>[] = [];
 
             controls.init.forEach(function (member)
             {
-                const control: Control<unknown> = Control.injector.resolve(member.member);
+                const control: Control<unknown> = new InjectorEvaluator(Control.injector).eval(member.member);
                 if (control)
                     applicableControls.push(control);
                 else
@@ -159,7 +158,7 @@ export abstract class BaseControl<T> extends Control<T>
 
     public async instanciate(scope: IScope<unknown>, element: Element, parameter: ControlParameter<T>)
     {
-        const injector = new Injector(this.injector);
+        const injector = new SimpleInjector(this.injector);
         injector.setInjectables({ scope, element, parameter, factory: this, $injector: injector });
         return injector.injectNew<GenericControlInstance<T>>(GenericControlInstance)();
     }
@@ -168,7 +167,7 @@ export abstract class BaseControl<T> extends Control<T>
 export type ControlControlParameter<T> = T extends GenericControlInstance<infer TParameter> ? ControlParameter<TParameter> : never;
 export type ControlParameter<TParameter> = Binding<TParameter> | (TParameter extends (infer X)[] ? ObservableArray<X> | TParameter : TParameter);
 
-@akala.injectable
+@injectable
 export class GenericControlInstance<TParameter, TScope extends IScope<unknown> = IScope<unknown>> implements IControlInstance<TParameter>
 {
     protected stopWatches: (() => void)[] = [];
@@ -188,12 +187,12 @@ export class GenericControlInstance<TParameter, TScope extends IScope<unknown> =
     @inject()
     protected readonly element: HTMLElement;
     @inject()
-    protected parameter: akala.Binding<TParameter> | TParameter
+    protected parameter: Binding<TParameter> | TParameter
 
     @inject('$injector')
     protected readonly injector: Injector;
 
-    public [akala.afterInjectSymbol]()
+    public [afterInjectSymbol]()
     {
         this.init();
     }

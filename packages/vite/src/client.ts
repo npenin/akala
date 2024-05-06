@@ -60,7 +60,7 @@ if (import.meta.hot)
                 f.hotReplace(data.content);
     });
 
-    const commandEvents = new EventEmitter<Record<string, [any, StructuredParameters<unknown[]>, Metadata.Command]>>();
+    const commandEvents = new EventEmitter<Record<string, Event<[any, StructuredParameters<unknown[]>, Metadata.Command]>>>();
     const processor = new Processors.JsonRpcBrowser(Processors.JsonRpcBrowser.getConnection(new ViteSocketAdapter(), container));
     const authProcessor = new Processors.AuthPreProcessor(processor)
     bootstrapModule.activate(['$rootScope'], (rootScope: IScope<unknown>) =>

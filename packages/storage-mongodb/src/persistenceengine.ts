@@ -38,7 +38,7 @@ export class MongoDb extends PersistenceEngine<Db>
             return oldVisitContant.call(this, cte);
         }
         executor.result = db;
-        await executor.visit(expression);
+        executor.visit(expression);
         const result = collection.aggregate(executor.pipelines)
         if (executor.model)
             return this.dynamicProxy(result, executor.model) as unknown as T;

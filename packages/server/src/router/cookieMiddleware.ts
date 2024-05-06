@@ -1,8 +1,8 @@
-import { Middleware, MiddlewarePromise } from '@akala/core'
+import { MiddlewareAsync, MiddlewarePromise } from '@akala/core'
 import { Request, Response } from './shared.js'
 import cookie from 'cookie'
 
-export class CookieMiddleware implements Middleware<[Request, Response, ...unknown[]]>
+export class CookieMiddleware implements MiddlewareAsync<[Request, Response, ...unknown[]]>
 {
     constructor(private options: cookie.CookieParseOptions)
     {

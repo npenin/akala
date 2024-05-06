@@ -1,6 +1,6 @@
-import * as akala from '@akala/core';
+import { Binding, IWatched, Injectable, Injector, SimpleInjector, each } from "@akala/core";
 
-export interface IScope<T> extends akala.IWatched
+export interface IScope<T> extends IWatched
 {
     $new<U>(): IScope<U>;
     $set<U extends Exclude<keyof T, number | symbol>>(expression: U, value: T[U]);
@@ -8,15 +8,15 @@ export interface IScope<T> extends akala.IWatched
     $set(expression: string, value: unknown);
     $watch(expression: string, handler: (value: unknown) => void);
     $inject(f: (...args: unknown[]) => unknown);
-    $bind(expression: string): akala.Binding<unknown>;
+    $bind(expression: string): Binding<unknown>;
 }
 
 export class Scope<T> implements IScope<T>
 {
     public get $root() { return this; }
 
-    private $$resolver: akala.Injector;
-    public $$watchers: Partial<{ [key in keyof T]: akala.Binding<T[key]> }> = {};
+    private $$resolver: SimpleInjector;
+    public $$watchers: Partial<{ [key in keyof T]: Binding<T[key]> }> = {};
 
     public $new<U>(): Scope<U>
     {
@@ -41,17 +41,17 @@ export class Scope<T> implements IScope<T>
         return new newScope();
     }
 
-    public $inject<T>(f: akala.Injectable<T>, params?: { [key: string]: unknown })
+    public $inject<T>(f: Injectable<T>, params?: { [key: string]: unknown })
     {
         if (!Object.getOwnPropertyDescriptor(this, '$$resolver'))
         {
-            this.$$resolver = new akala.Injector();
+            this.$$resolver = new SimpleInjector();
             this.$$resolver.setInjectables(this as unknown as { [key: string]: unknown });
         }
-        const inj = new akala.Injector(this.$$resolver);
+        const inj = new SimpleInjector(this.$$resolver);
         if (params)
         {
-            akala.each(params, (value, key) =>
+            each(params, (value, key) =>
                 inj.register(key as string, value)
             );
         }
@@ -61,15 +61,15 @@ export class Scope<T> implements IScope<T>
 
     public $set(expression: string, value: unknown)
     {
-        akala.Binding.getSetter(this, expression)(value);
+        Binding.getSetter(this, expression)(value);
     }
 
-    public $bind(expression: string): akala.Binding<unknown>
+    public $bind(expression: string): Binding<unknown>
     {
         let binding = this.$$watchers[expression];
         if (!binding)
         {
-            binding = new akala.Binding(expression, this);
+            binding = new Binding(expression, this);
             this.$$watchers[expression] = binding;
         }
         return binding;

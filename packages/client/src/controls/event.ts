@@ -1,6 +1,5 @@
-import * as akala from '@akala/core'
 import { control, GenericControlInstance, Control } from './control.js'
-import { Binding, isPromiseLike, inject, Injector } from '@akala/core'
+import { Binding, inject, Injector, useInjector, each, SimpleInjector } from '@akala/core'
 
 export type HTMLElementEventHandlerMap = { [P in keyof Partial<HTMLElementEventMap>]: (this: HTMLElement, ev: HTMLElementEventMap[P]) => void | boolean };
 
@@ -25,9 +24,9 @@ export class Events extends GenericControlInstance<Partial<HTMLElementEventHandl
 
         Promise.resolve(value).then((value) =>
         {
-            akala.each(value, (handler, event) =>
+            each(value, (handler, event) =>
             {
-                const i = new Injector(injector);
+                const i = new SimpleInjector(injector);
                 i.register('parameter', handler);
                 this.events.push(new Event(event));
             })
@@ -41,7 +40,7 @@ export class Events extends GenericControlInstance<Partial<HTMLElementEventHandl
     }
 }
 
-@akala.useInjector(Control.injector)
+@useInjector(Control.injector)
 export class Event extends GenericControlInstance<(...args: unknown[]) => unknown>
 {
     constructor(private eventName: string)
@@ -56,7 +55,7 @@ export class Event extends GenericControlInstance<(...args: unknown[]) => unknow
             if (this.parameter instanceof Binding)
             {
                 const value = this.parameter.getValue();
-                value.then((value) => this.apply(value));
+                this.apply(value);
             }
             else
                 this.apply(this.parameter)
