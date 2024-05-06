@@ -1,4 +1,4 @@
-import { Injected } from "../injector.js";
+import { Injected } from "../injectors/shared.js";
 import { ParsedOneOf } from "../parser/parser.js";
 
 export type Formatter<TResult> = Injected<TResult>;// (value: unknown) => TResult;
