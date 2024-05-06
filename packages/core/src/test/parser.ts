@@ -2,7 +2,7 @@
 require('source-map-support').install();
 
 import { Parser, ParsedBinary, ParsedString } from '../parser/parser.js';
-import { defaultInjector } from '../injector.js';
+import { defaultInjector } from '../injectors/simple-injector.js';
 import { BinaryOperator } from '../parser/expressions/binary-operator.js';
 import { EvaluatorAsFunction } from '../parser/evaluator-as-function.js';
 
