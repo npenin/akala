@@ -1,4 +1,4 @@
-import { Injector, HttpOptions, each, Http, defaultInjector, MiddlewarePromise, SerializableObject, base64 } from '@akala/core';
+import { Injector, HttpOptions, each, Http, defaultInjector, MiddlewarePromise, SerializableObject, base64, SimpleInjector } from '@akala/core';
 import * as pathRegexp from 'path-to-regexp';
 import { CommandProcessor, StructuredParameters } from '../model/processor.js';
 import { Command, Configuration } from '../metadata/index.js';
@@ -12,7 +12,7 @@ export class HttpClient extends CommandProcessor
 
     public static handler(protocol: 'http' | 'https'): (url: URL) => Promise<HandlerResult<HttpClient>>
     {
-        const injector = new Injector();
+        const injector = new SimpleInjector();
         return function (url)
         {
             url = new URL(url);
@@ -68,7 +68,21 @@ export class HttpClient extends CommandProcessor
             config.http.type = undefined;
         }
         const options: HttpOptions<unknown> = { method: config.http.method, url: '', type: config.http.type };
-
+        if (config.auth.http)
+        {
+            switch (config.auth.http.mode)
+            {
+                case 'basic':
+                case 'bearer':
+                    break;
+                default:
+                    switch (config.auth.http.mode.type)
+                    {
+                        case 'query':
+                        case 'header':
+                    }
+            }
+        }
         if (config.http.inject)
             each(config.http.inject, function (value, key)
             {

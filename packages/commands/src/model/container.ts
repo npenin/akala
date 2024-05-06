@@ -1,4 +1,3 @@
-import * as akala from '@akala/core'
 import { Trigger } from './trigger.js';
 import { StructuredParameters, CommandMetadataProcessorSignature, CommandProcessor } from './processor.js';
 import { CommandWithAffinityProcessor, Local, Self } from '../processors/index.js';
@@ -8,14 +7,14 @@ import $attach from '../commands/$attach.js'
 import $metadata from '../commands/$metadata.js'
 import { UnknownCommandError } from './error-unknowncommand.js';
 import * as Metadata from '../metadata/index.js'
-import { Middleware, MiddlewareCompositeWithPriority, MiddlewarePromise } from '@akala/core';
+import { ErrorWithStatus, Injector, MiddlewareAsync, MiddlewareCompositeWithPriorityAsync, MiddlewarePromise, SimpleInjector } from '@akala/core';
 
 export type AsDispatchArgs<T extends unknown[]> = T | [StructuredParameters<T>];
 export type AsDispatchArg<T extends unknown[]> = T[0] | StructuredParameters<T>;
 
 export const defaultCommands = new Local({ $attach, $serve });
 
-export class Container<TState> extends akala.Injector implements Middleware<[origin: Container<unknown>, cmd: Metadata.Command | string, params: AsDispatchArgs<unknown[]>]>
+export class Container<TState> extends SimpleInjector implements MiddlewareAsync<[origin: Container<unknown>, cmd: Metadata.Command | string, params: AsDispatchArgs<unknown[]>]>
 {
     attach<T extends Trigger<unknown[], unknown>>(trigger: T, ...server: T extends Trigger<infer A, unknown> ? A : never): T extends Trigger<unknown[], infer B> ? B : never
     attach<TResult>(trigger: string, ...server: unknown[]): TResult
@@ -29,15 +28,15 @@ export class Container<TState> extends akala.Injector implements Middleware<[ori
         return trigger.register(this, ...args);
     }
 
-    public readonly processor: MiddlewareCompositeWithPriority<CommandMetadataProcessorSignature<TState>>;
+    public readonly processor: MiddlewareCompositeWithPriorityAsync<CommandMetadataProcessorSignature<TState>>;
 
-    constructor(public name: string, public state: TState, processor?: Middleware<CommandMetadataProcessorSignature<TState>>, parent?: akala.Injector)
+    constructor(public name: string, public state: TState, processor?: MiddlewareAsync<CommandMetadataProcessorSignature<TState>>, parent?: Injector)
     {
         super(parent);
         if (typeof state !== 'undefined')
             this.register('$state', state);
         this.register('$container', this);
-        this.processor = new MiddlewareCompositeWithPriority(name);
+        this.processor = new MiddlewareCompositeWithPriorityAsync(name);
         if (processor)
             this.processor.useMiddleware(20, processor);
         this.processor.useMiddleware(19, new Self());
@@ -134,7 +133,7 @@ export class Container<TState> extends akala.Injector implements Middleware<[ori
                 cmd = cmd.name;
             }
             else
-                throw new akala.ErrorWithStatus(400, 'The provided item cannot be registered as it does not have a name property. Please provide a name as the first parameter or provide an object with a name property');
+                throw new ErrorWithStatus(400, 'The provided item cannot be registered as it does not have a name property. Please provide a name as the first parameter or provide an object with a name property');
         }
         if (cmd == '$injector' || cmd == '$container')
             return super.register(cmd, value, override) as unknown as T;
@@ -251,7 +250,7 @@ export async function serveController<T>(path: string, container: Container<T>, 
 
     var file = await fs.readFile(path, 'utf8')
     var commands = vm.runInContext(file, context, { filename: path, displayErrors: true });
-    akala.each(commands, function (f: Injectable<any> | Command<T>)
+    each(commands, function (f: Injectable<any> | Command<T>)
     {
         if (typeof f == 'function')
             f = new Command<T>(f);

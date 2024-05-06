@@ -16,9 +16,8 @@ const dirname: string = path.dirname(fileURLToPath(import.meta.url)) + '/';// = 
 
 (async function (dirname)
 {
-    debugger;
     const cli = await Cli.fromFileSystem(path.resolve(dirname, '../../commands.json'));
-    cli.program.useError(async (e, c) =>
+    cli.program.option('verbose', { aliases: ['v'], needsValue: false }).useError(async (e, c) =>
     {
         if (c.options.verbose)
             console.error(e);

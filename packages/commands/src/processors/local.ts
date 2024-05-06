@@ -1,11 +1,11 @@
-import { Injector, Injectable, each, MiddlewarePromise, isPromiseLike, Middleware, SpecialNextParam } from '@akala/core';
+import { Injector, Injectable, each, MiddlewarePromise, isPromiseLike, Middleware, SpecialNextParam, MiddlewareAsync, SimpleInjector } from '@akala/core';
 import * as  Metadata from '../metadata/index.js';
 import { CommandMetadataProcessorSignature, CommandProcessor, ICommandProcessor, StructuredParameters } from '../model/processor.js'
 import { Container } from '../model/container.js';
 import { CommandWithProcessorAffinity, SelfDefinedCommand } from '../model/command.js';
 
 
-export class AuthHandler implements Middleware<CommandMetadataProcessorSignature<unknown>>
+export class AuthHandler implements MiddlewareAsync<CommandMetadataProcessorSignature<unknown>>
 {
     constructor(private authValidator: Injectable<MiddlewarePromise>)
     {
@@ -93,10 +93,10 @@ export class Local extends CommandProcessor
             throw new Error('container is undefined');
         let config = cmd.config && cmd.config[''];
         let inject = config?.inject;
-        const injector = new Injector(container);
+        const injector = new SimpleInjector(container);
         injector.register('$container', container);
         if (param.injector)
-            injector.merge(param.injector as Injector);
+            injector.merge(param.injector as SimpleInjector);
         // console.log(param);
         if (param._trigger === 'proxy')
             inject = undefined;
@@ -106,7 +106,7 @@ export class Local extends CommandProcessor
             if (config?.inject)
                 inject = config.inject;
         }
-        each(Object.getOwnPropertyDescriptors(param), ((descriptor, key) => injector.registerDescriptor(key, descriptor)));
+        each(Object.getOwnPropertyDescriptors(param), ((descriptor, key) => injector.registerDescriptor(key as string | symbol, descriptor)));
         injector.register('$param', param);
         injector.register('$config', config);
         injector.register('$command', cmd);

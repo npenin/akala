@@ -2,7 +2,7 @@
 import { registerCommands } from './generator.js'
 import { CommandProcessor, ICommandProcessor } from './model/processor.js';
 import { HttpClient } from './processors/index.js';
-import { Injector } from '@akala/core';
+import { SimpleInjector } from '@akala/core';
 import * as Metadata from './metadata/index.js';
 import { Container } from './model/container.js';
 
@@ -80,7 +80,7 @@ export async function connectWith<T>(options: NetConnectOpts, host: string, medi
                     path = options.path;
                 else
                     path = medium + '://' + (host || options.host || 'localhost') + ':' + options.port;
-                const injector = new Injector(container);
+                const injector = new SimpleInjector(container);
                 injector.register('$resolveUrl', urlPath => new URL(urlPath, path).toString());
                 return new HttpClient(injector);
             }
