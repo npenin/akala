@@ -1,14 +1,14 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 import { Binding } from '../binder.js';
 import * as assert from 'assert';
-import 'source-map-support/register'
+// import 'source-map-support/register'
 
 const target = {
     foo: { bar: { a: 1, b: 'x', c: true } }
 };
 
 let changeEventCalled = false;
-const binding = new Binding('foo.bar.a', target);
+const binding = new Binding('foo?.bar?.a', target);
 binding.onChanged(ev =>
 {
     assert.strictEqual(ev.eventArgs.value, undefined);
