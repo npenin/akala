@@ -1,7 +1,7 @@
 import { lazy, noop } from "../helpers.js";
-import { BinaryExpression, ConstantExpression, Expressions, ExpressionVisitor, MemberExpression, NewExpression, TypedExpression, UnaryExpression, UnaryOperator } from "./expressions/index.js";
+import { BinaryExpression, ConstantExpression, Expressions, ExpressionType, ExpressionVisitor, MemberExpression, NewExpression, ParameterExpression, StrictExpressions, TypedExpression, TypedLambdaExpression, UnaryExpression, UnaryOperator } from "./expressions/index.js";
 import { BinaryOperator } from "./expressions/binary-operator.js";
-import { ExpressionsWithLength, ParsedArray, ParsedObject } from "./parser.js";
+import { ExpressionsWithLength, ParsedArray, ParsedObject, ParsedString } from "./parser.js";
 
 export type ParsedFunction<T> = (context?: unknown) => T;
 
@@ -11,11 +11,25 @@ export class EvaluatorAsFunction extends ExpressionVisitor
     private requiresContext: boolean = false;
     private functionBody = '';
 
-    public async eval<T = unknown>(expression: ExpressionsWithLength): Promise<ParsedFunction<T>>
-    {
-        this.visit(expression);
-        const f = new Function('$$context', 'return ' + this.functionBody);
+    public static singleParameterDefaultName = '$$context'
 
+    public eval<T extends (...args: unknown[]) => unknown>(expression: TypedLambdaExpression<T>): T
+    public eval<T = unknown>(expression: ExpressionsWithLength): ParsedFunction<T>
+    public eval<T = unknown>(expression: Expressions | TypedLambdaExpression<(...args: unknown[]) => T>): ParsedFunction<T> | T
+    {
+        let args: string[];
+        if (expression.type == ExpressionType.LambdaExpression)
+        {
+            if (expression.parameters.length > 1 && !expression.parameters.every(p => p.name))
+            {
+                throw new Error('Unnamed parameters are not supported');
+            }
+            args = expression.parameters.map(p => p.name || EvaluatorAsFunction.singleParameterDefaultName);
+        }
+        else
+            args = [EvaluatorAsFunction.singleParameterDefaultName];
+        this.visit(expression);
+        const f = new Function(...args, 'return ' + this.functionBody);
         if (this.requiresContext)
         {
             return f as (context: unknown) => T;
@@ -26,13 +40,13 @@ export class EvaluatorAsFunction extends ExpressionVisitor
         }
     }
 
-    visitConstant(arg0: ConstantExpression<unknown>): Expressions
+    visitConstant(arg0: ConstantExpression<unknown>): StrictExpressions
     {
         this.functionBody += JSON.stringify(arg0.value);
         return arg0;
     }
 
-    visitNew<T>(expression: NewExpression<T>): Expressions
+    visitNew<T>(expression: NewExpression<T>): StrictExpressions
     {
         if (expression instanceof ParsedObject)
         {
@@ -76,19 +90,51 @@ export class EvaluatorAsFunction extends ExpressionVisitor
         return expression;
     }
 
+    private static isSafe(value: string)
+    {
+        return /^[a-zA-Z0-9_$]+$/.test(value);
+    }
+
+    visitParameter(arg0: ParameterExpression<unknown>): StrictExpressions
+    {
+        this.functionBody += arg0.name || EvaluatorAsFunction.singleParameterDefaultName;
+        return arg0;
+    }
+
     visitMember<T, TMember extends keyof T>(arg0: MemberExpression<T, TMember, T[TMember]>): TypedExpression<T[TMember]>
     {
-        this.requiresContext = true;
-        if (arg0.source === null)
-            this.functionBody += '$$context';
+        const bodyBeginning = this.functionBody;
+        this.functionBody = '';
+        if (!arg0.source)
+        {
+            this.requiresContext = true;
+            this.functionBody = EvaluatorAsFunction.singleParameterDefaultName;
+        }
         else
             this.visit(arg0.source);
 
         const currentBody = this.functionBody;
         this.functionBody = '';
-        this.visit(arg0.member);
-        this.functionBody = currentBody + '[' + this.functionBody + ']';
+        let isSafeMember = false;
+        if (arg0.member instanceof ParsedString)
+        {
+            this.functionBody = arg0.member.value;
+            isSafeMember = EvaluatorAsFunction.isSafe(this.functionBody);
+        }
+        else
+            this.visit(arg0.member);
+        if (arg0.optional)
+            if (isSafeMember)
+                this.functionBody = currentBody + '?.' + this.functionBody;
+            else
+                this.functionBody = currentBody + ' && ' + currentBody + '[' + this.functionBody + ']';
+        else
+            if (isSafeMember)
+                this.functionBody = currentBody + '.' + this.functionBody;
+            else
+                this.functionBody = currentBody + '[' + this.functionBody + ']';
 
+        this.functionBody = bodyBeginning + this.functionBody;
         return arg0;
     }
 

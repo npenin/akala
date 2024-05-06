@@ -8,7 +8,8 @@ export class MemberExpression<T, TMember extends keyof T, U extends T[TMember]> 
 {
     public get type(): ExpressionType.MemberExpression { return ExpressionType.MemberExpression; }
     public $$length: number;
-    constructor(public readonly source: TypedExpression<T>, public readonly member: TypedExpression<TMember>)
+
+    constructor(public readonly source: TypedExpression<T>, public readonly member: TypedExpression<TMember>, public optional: boolean)
     {
         super();
     }
