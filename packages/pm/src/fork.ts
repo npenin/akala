@@ -6,7 +6,7 @@ import * as ac from '@akala/commands';
 import { lstat } from 'fs/promises';
 import pmDef from './container.js';
 import { IpcAdapter } from "./ipc-adapter.js";
-import { logger, Logger, MiddlewareComposite, module as coreModule } from '@akala/core';
+import { logger, Logger, module as coreModule, MiddlewareCompositeAsync } from '@akala/core';
 import { program, buildCliContextFromProcess, ErrorMessage, NamespaceMiddleware } from '@akala/cli';
 import { Stats } from 'fs';
 import { registerCommands, SelfDefinedCommand, parseMetadata, StructuredParameters } from '@akala/commands';
@@ -76,7 +76,7 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
         else
             processor = new ac.Processors.FileSystem(c.options.program);
     }).
-    useMiddleware(null, MiddlewareComposite.new(logMiddleware,
+    useMiddleware(null, MiddlewareCompositeAsync.new(logMiddleware,
         {
             handle: async c =>
             {
