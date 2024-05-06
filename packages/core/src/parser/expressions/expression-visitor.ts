@@ -11,6 +11,7 @@ import { ApplySymbolExpression } from './apply-symbol-expression.js';
 import { NewExpression } from './new-expression.js';
 import { IVisitable } from './visitable.js';
 import { FormatExpression } from '../parser.js';
+import { expressions } from '../../index.js';
 
 
 export type EqualityComparer<T> = (a: T, b: T) => boolean;
@@ -21,9 +22,9 @@ export class ExpressionVisitor
     public visit<T>(expression: TypedExpression<T>): TypedExpression<T>
     public visit(expression: StrictExpressions): StrictExpressions
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public visit(expression: IVisitable<this, any>): Expressions
+    public visit(expression: IVisitable<ExpressionVisitor, any>): Expressions
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    public visit(expression: IVisitable<this, any>): Expressions
+    public visit(expression: IVisitable<ExpressionVisitor, any>): Expressions
     {
         return expression.accept(this);
     }
@@ -36,7 +37,7 @@ export class ExpressionVisitor
     }
 
 
-    visitFormat(expression: FormatExpression)
+    visitFormat<TOutput>(expression: FormatExpression<TOutput>)
     {
         const source = this.visit(expression.lhs);
         if (expression.settings)
@@ -44,15 +45,15 @@ export class ExpressionVisitor
             const settings = this.visit(expression.settings)
             if (source !== expression.lhs || settings != expression.settings)
             {
-                return new FormatExpression(source, expression.formatter, expression.settings);
+                return new FormatExpression<TOutput>(source, expression.formatter, expression.settings);
             }
         }
         if (source !== expression.lhs)
-            return new FormatExpression(source, expression.formatter, null)
+            return new FormatExpression<TOutput>(source, expression.formatter, null)
         return expression;
     }
 
-    visitNew<T>(expression: NewExpression<T>): Expressions
+    visitNew<T>(expression: NewExpression<T>): StrictExpressions
     {
         //eslint-disable-next-line @typescript-eslint/no-explicit-any
         var members: MemberExpression<T, keyof T, T[keyof T]>[] = this.visitArray(expression.init as any) as any;
@@ -63,7 +64,7 @@ export class ExpressionVisitor
         return expression;
     }
 
-    visitApplySymbol<T, U>(arg0: ApplySymbolExpression<T, U>): Expressions
+    visitApplySymbol<T, U>(arg0: ApplySymbolExpression<T, U>): StrictExpressions
     {
         var source = this.visit(arg0.source);
         var arg = this.visit(arg0.argument);
@@ -75,10 +76,10 @@ export class ExpressionVisitor
         }
         return arg0;
     }
-    visitCall<T, TMethod extends keyof T>(arg0: CallExpression<T, TMethod>): Expressions
+    visitCall<T, TMethod extends keyof T>(arg0: CallExpression<T, TMethod>): StrictExpressions
     {
         var source = this.visit(arg0.source);
-        var args = (this.visitArray(arg0.arguments)) as StrictExpressions[];
+        var args = (this.visitArray(arg0.arguments as StrictExpressions[])) as StrictExpressions[];
         if (source !== arg0.source || args !== arg0.arguments)
         {
             if (!this.isTypedExpression(source))
@@ -87,7 +88,7 @@ export class ExpressionVisitor
         }
         return arg0;
     }
-    visitMember<T, TMember extends keyof T>(arg0: MemberExpression<T, TMember, T[TMember]>): TypedExpression<T[TMember]>
+    visitMember<T, TMember extends keyof T>(arg0: MemberExpression<T, TMember, T[TMember]>): StrictExpressions
     {
         if (arg0.source)
             var source = this.visit(arg0.source);
@@ -97,7 +98,7 @@ export class ExpressionVisitor
         {
             if (!this.isTypedExpression(source))
                 throw new Error('source is of type ' + source['type'] + ' and cannot be considered as a typed expression');
-            return new MemberExpression<T, TMember, T[TMember]>(source, arg0.member);
+            return new MemberExpression<T, TMember, T[TMember]>(source, arg0.member, arg0.optional);
 
         }
         return arg0;
@@ -111,12 +112,12 @@ export class ExpressionVisitor
             source.type == ExpressionType.ApplySymbolExpression ||
             source.type == ExpressionType.NewExpression);
     }
-    visitLambda<T extends (...args: unknown[]) => unknown>(arg0: TypedLambdaExpression<T>): Expressions
+    visitLambda<T extends (...args: unknown[]) => unknown>(arg0: TypedLambdaExpression<T>): StrictExpressions
     {
-        var parameters = this.visitArray(arg0.parameters) as unknown as Parameters<T>;
+        var parameters = this.visitArray(arg0.parameters as Expressions[]) as unknown as Parameters<T>;
         var body = this.visit(arg0.body);
         if (body !== arg0.body || parameters !== arg0.parameters)
-            return new TypedLambdaExpression<T>(body, arg0.parameters);
+            return new TypedLambdaExpression<T>(body, ...arg0.parameters);
         return arg0;
     }
 
@@ -125,7 +126,7 @@ export class ExpressionVisitor
         return a === b;
     }
 
-    visitEnumerable<T>(map: IEnumerable<T>, addToNew: (item: T) => void, visitSingle: (item: T, index: number) => T, compare?: EqualityComparer<T>): void
+    visitEnumerable<T, U extends T>(map: IEnumerable<T>, addToNew: (item: U) => void, visitSingle: (item: T, index: number) => U, compare?: EqualityComparer<T>): void
     {
         if (!compare)
             compare = ExpressionVisitor.defaultComparer;
@@ -142,22 +143,22 @@ export class ExpressionVisitor
         }
     }
 
-    visitArray<T extends IVisitable<ExpressionVisitor, U>, U extends T>(parameters: T[]): T[]
+    visitArray<T extends IVisitable<ExpressionVisitor, U>, U extends T>(parameters: T[]): U[]
     {
-        var result: T[] = null;
+        var result: U[] = null;
         this.visitEnumerable(parameters, function (set)
         {
             if (!result)
-                result = new Array<T>(parameters.length);
-            result.push(set as T);
+                result = new Array<U>(parameters.length);
+            result.push(set as unknown as U);
         }, this.visit);
-        return result || parameters;
+        return result || parameters as U[];
     }
-    visitConstant(arg0: ConstantExpression<unknown>): Expressions
+    visitConstant(arg0: ConstantExpression<unknown>): StrictExpressions
     {
         return arg0;
     }
-    visitParameter(arg0: ParameterExpression<unknown>): Expressions 
+    visitParameter(arg0: ParameterExpression<unknown>): StrictExpressions 
     {
         return arg0;
     }

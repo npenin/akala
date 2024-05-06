@@ -1,5 +1,3 @@
-// import { module } from '../helpers.js';
-// import { FormatterFactory } from '../formatters/common.js';
 import { BinaryOperator } from './expressions/binary-operator.js';
 import { BinaryExpression, ConstantExpression, Expression, Expressions, ExpressionType, ExpressionVisitor, MemberExpression, NewExpression, ParameterExpression, TypedExpression, UnaryExpression, UnaryOperator } from './expressions/index.js';
 import identity from '../formatters/identity.js';
@@ -56,6 +54,7 @@ function parseOperator(op: string): BinaryOperator
         case '*': return BinaryOperator.Times;
         case '^': return BinaryOperator.Pow;
         case '.': return BinaryOperator.Dot;
+        case '?.': return BinaryOperator.QuestionDot;
         default: return BinaryOperator.Unknown;
     }
 }
@@ -70,6 +69,7 @@ function operatorLength(operator: BinaryOperator)
         case BinaryOperator.GreaterThanOrEqual:
         case BinaryOperator.And:
         case BinaryOperator.Or:
+        case BinaryOperator.QuestionDot:
             return 2;
         case BinaryOperator.LessThan:
         case BinaryOperator.GreaterThan:
@@ -94,19 +94,19 @@ function operatorLength(operator: BinaryOperator)
     }
 }
 
-export class FormatExpression extends Expression implements ParsedAny
+export class FormatExpression<TOutput> extends Expression implements ParsedAny
 {
     constructor(public readonly lhs: ExpressionsWithLength | (TypedExpression<unknown> & ParsedAny), public readonly formatter: string, public readonly settings: ParsedObject)
     {
         super();
     }
 
-    get type(): ExpressionType.Unknown
+    get type(): ExpressionType.Format
     {
-        return ExpressionType.Unknown;
+        return ExpressionType.Format;
     }
 
-    accept(visitor: ExpressionVisitor): Expressions
+    accept(visitor: ExpressionVisitor): TypedExpression<TOutput>
     {
         visitor.visitFormat(this);
         return this;
@@ -144,9 +144,10 @@ export class ParsedBinary extends BinaryExpression<ExpressionsWithLength> implem
                     case BinaryOperator.Or:
                         var left = operation.left;
                         return new ParsedBinary(right.operator, new ParsedBinary(operation.operator, left, right.left), right.right);
+                    case BinaryOperator.QuestionDot:
                     case BinaryOperator.Dot:
                         var left = operation.left;
-                        return new MemberExpression(new MemberExpression(left as TypedExpression<unknown>, right.left), right.right);
+                        return new MemberExpression(new MemberExpression(left as TypedExpression<unknown>, right.left, operation.operator == BinaryOperator.QuestionDot), right.right, right.operator == BinaryOperator.QuestionDot);
                 }
             }
         }
@@ -326,11 +327,11 @@ export class Parser
             }
         }
 
-        const item = /^[\w0-9.$]*/.exec(expression)[0];
+        const item = /^[\w0-9\$_]*/.exec(expression)[0];
         length += item.length;
 
         //eslint-disable-next-line @typescript-eslint/no-explicit-any
-        let result: ExpressionsWithLength = item.split('.').reduce((previous, current) => !previous && this.parameters && this.parameters[current] || new MemberExpression(previous || this.parameters && this.parameters[current], new ParsedString(current)), null as TypedExpression<any>)
+        let result: ExpressionsWithLength = new MemberExpression(null as any, new ParsedString(item), false) as TypedExpression<any>
         result.$$length = length;
         if (typeof operator != 'undefined')
         {
@@ -361,7 +362,7 @@ export class Parser
 
     public tryParseOperator(expression: string, lhs: ExpressionsWithLength, parseFormatter: boolean)
     {
-        const operator = /^ *([<>=!+\-/*&|\.#\[]+) */.exec(expression);
+        const operator = /^ *([<>=!+\-/*&|\?\.#\[]+) */.exec(expression);
         if (operator)
         {
             let rhs: ExpressionsWithLength;
@@ -375,10 +376,37 @@ export class Parser
                 case '[':
                     expression = expression.substring(operator[0].length);
                     rhs = this.parseAny(expression, parseFormatter);
-                    const member = new MemberExpression(lhs as TypedExpression<any>, rhs as TypedExpression<any>);
+                    const member = new MemberExpression(lhs as TypedExpression<any>, rhs as TypedExpression<any>, false);
                     member.$$length = lhs.$$length + operator[0].length + rhs.$$length + operator[0].length;
                     return member;
+                case '?.':
                 case '.':
+                    expression = expression.substring(operator[0].length);
+                    rhs = this.parseAny(expression, parseFormatter);
+                    if (rhs.type == ExpressionType.MemberExpression)
+                    {
+                        let me: MemberExpression<any, any, any> = rhs;
+                        const reverseStack = [me]
+
+                        while (me.source?.type == ExpressionType.MemberExpression)
+                        {
+                            me = me.source;
+                            reverseStack.unshift(me);
+                        }
+                        // lhs = new MemberExpression(lhs as TypedExpression<any>, me.member as TypedExpression<any>, parseOperator(operator[1]) == BinaryOperator.QuestionDot)
+                        let lhsLength = lhs.$$length + operator[0].length + rhs.$$length;
+                        for (let i = 0; reverseStack.length; i++)
+                        {
+                            me = reverseStack.shift();
+
+                            lhs = new MemberExpression(lhs as TypedExpression<any>, me.member, i == 0 && operator[1] == '?.' || i > 0 && me.optional);
+                        }
+                        lhs.$$length = lhsLength;
+                        return lhs;
+                    }
+                    var binary = new ParsedBinary(parseOperator(operator[1]), lhs, rhs);
+                    binary.$$length = lhs.$$length + operator[0].length + rhs.$$length;
+                    return ParsedBinary.applyPrecedence(binary);
                 default:
                     expression = expression.substring(operator[0].length);
                     rhs = this.parseAny(expression, parseFormatter);
@@ -406,7 +434,7 @@ export class Parser
         }, ']');
 
         //eslint-disable-next-line @typescript-eslint/no-explicit-any
-        return new ParsedArray(length, ...results.map((v, i) => new MemberExpression<any, number, any>(v as TypedExpression<any>, new ParsedNumber(i.toString()))));
+        return new ParsedArray(length, ...results.map((v, i) => new MemberExpression<any, number, any>(v as TypedExpression<any>, new ParsedNumber(i.toString()), false)));
     }
 
     public parseString(expression: string, start: string, parseFormatter: boolean)
@@ -522,6 +550,6 @@ export class Parser
         }, '}');
 
         //eslint-disable-next-line @typescript-eslint/no-explicit-any
-        return this.tryParseOperator(expression.substring(result), new ParsedObject(result, ...parsedObject.map(v => new MemberExpression<any, string, any>(v.value as TypedExpression<any>, new ParsedString(v.key)))), parseFormatter)
+        return this.tryParseOperator(expression.substring(result), new ParsedObject(result, ...parsedObject.map(v => new MemberExpression<any, string, any>(v.value as TypedExpression<any>, new ParsedString(v.key), false))), parseFormatter)
     }
 }
