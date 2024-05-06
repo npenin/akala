@@ -201,6 +201,8 @@ export class FileSystem extends CommandProcessor
                         {
                             if (e.code == 'ENOENT')
                                 console.warn(`The file ${c.config.fs.source} does not exist (thus ignoring ${c.name}). It could be that you deleted the source file, but the transpiled file is still around.`)
+                            else
+                                throw e;
                         }
                     });
                 });
@@ -356,8 +358,16 @@ export class FileSystem extends CommandProcessor
                     if (!files.find(file => file.name == path.basename(f.name, '.json') + '.js' || file.name == path.basename(f.name, '.json') + '.mjs' || file.name == path.basename(f.name, '.json') + '.cjs'))
                     {
                         // eslint-disable-next-line @typescript-eslint/no-var-requires
-                        const cmd: FSCommand = await importJson(path.resolve(path.join(root, f.name)));
-                        commands.push(cmd);
+                        try
+                        {
+                            const cmd: FSCommand = await importJson(path.resolve(path.join(root, f.name)));
+                            commands.push(cmd);
+                        }
+                        catch (e)
+                        {
+                            console.error('Could not import ', path.join(root, f.name));
+                            throw e;
+                        }
                     }
                 }
             }
