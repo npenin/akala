@@ -1,4 +1,4 @@
-import { Middleware, MiddlewarePromise } from "@akala/core";
+import { MiddlewareAsync, MiddlewarePromise } from "@akala/core";
 import { Request, Response } from "@akala/server";
 
 export const AuthorizeErrorCode = 'ENOTAUTHORIZED';
@@ -13,7 +13,7 @@ export class AuthorizeError extends Error
     }
 }
 
-export class NonPublicMiddleware implements Middleware<[Request, ...unknown[]]>, Middleware<[Request, Response]>
+export class NonPublicMiddleware implements MiddlewareAsync<[Request, ...unknown[]]>, MiddlewareAsync<[Request, Response]>
 {
     handle(req: Request): MiddlewarePromise
     {

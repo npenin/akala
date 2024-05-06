@@ -1,4 +1,3 @@
-import * as akala from '@akala/core';
 
 export * from './shared.js'
 export * from './expression-executor.js'
@@ -10,8 +9,9 @@ export * from './string-builder.js'
 export * from './providers/file.js'
 export * from './providers/vanilla.js'
 import { ModelDefinition, ModelMode } from './common.js';
+import { module } from '@akala/core'
 
-akala.module('@akala/storage');
+module('@akala/storage');
 
 export { ModelDefinition, ModelMode };
 

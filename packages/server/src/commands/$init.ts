@@ -2,7 +2,7 @@ import { Container } from "@akala/commands";
 import { router, HttpRouter } from '../router/index.js';
 import '../triggers/http.js'
 import { State } from '../state.js';
-import { Injector, Binding, logger } from "@akala/core";
+import { Injector, Binding, logger, SimpleInjector } from "@akala/core";
 import { join, resolve } from "path";
 import { StaticFileMiddleware } from '../router/staticFileMiddleware.js';
 
@@ -13,7 +13,7 @@ export default async function $init(container: Container<State>, options: Record
     container.state.pm = pm;
     // pm.register('$metadata', new CommandProxy(pm.processor, '$metadata'));
 
-    container.state.assets = new Injector();
+    container.state.assets = new SimpleInjector();
     let init = true;
     Binding.defineProperty(container.state, 'mode', options.mode || process.env.NODE_ENV).onChanged(function ()
     {

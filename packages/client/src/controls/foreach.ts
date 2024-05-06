@@ -1,9 +1,9 @@
-import * as akala from '@akala/core'
+import { Binding, LocalInjector, ObservableArray, Parser, each, inject, parser } from '@akala/core';
 import { control, GenericControlInstance } from './control.js'
 
 export interface ForeachParameter
 {
-    in: Promise<akala.parser.ParsedFunction<akala.Binding<unknown[]>>> | akala.Binding<unknown[]>;
+    in: parser.ParsedFunction<Binding<unknown[]>> | Binding<unknown[]>;
     key: string;
     value: string;
 }
@@ -11,7 +11,7 @@ export interface ForeachParameter
 @control('each', 100, { scope: true })
 export class ForEach extends GenericControlInstance<ForeachParameter>
 {
-    constructor(@akala.inject('parameter') parameter: ForeachParameter | string, @akala.inject('$injector') injector: akala.Injector)
+    constructor(@inject('parameter') parameter: ForeachParameter | string, @inject('$injector') injector: LocalInjector)
     {
         if (typeof (parameter) == 'string')
         {
@@ -23,11 +23,11 @@ export class ForEach extends GenericControlInstance<ForeachParameter>
 
     public async init()
     {
-        if (this.parameter instanceof akala.Binding)
+        if (this.parameter instanceof Binding)
             throw new Error('foreach parameter as a binging is not supported');
 
-        let sourceBinding: akala.Binding<unknown>;
-        if (!(this.parameter.in instanceof akala.Binding))
+        let sourceBinding: Binding<unknown>;
+        if (!(this.parameter.in instanceof Binding))
             sourceBinding = (await this.parameter.in)(this.scope);
         else
             sourceBinding = this.parameter.in;
@@ -38,11 +38,11 @@ export class ForEach extends GenericControlInstance<ForeachParameter>
             this.element.parentNode.removeChild(this.element);
         const parsedParam = this.parameter as ForeachParameter;
         // var newControls;
-        const build = (source: akala.ObservableArray<unknown> | unknown[]) =>
+        const build = (source: ObservableArray<unknown> | unknown[]) =>
         {
             const result: ArrayLike<Element> = [];
 
-            if (source instanceof akala.ObservableArray)
+            if (source instanceof ObservableArray)
             {
                 source.on('collectionChanged', (args) =>
                 {
@@ -93,7 +93,7 @@ export class ForEach extends GenericControlInstance<ForeachParameter>
                 source = source.array;
             }
             if (source)
-                akala.each(source, function (value, key)
+                each(source, function (value, key)
                 {
                     const scope = this.scope.$new();
                     if (parsedParam.key)
@@ -118,6 +118,6 @@ export class ForEach extends GenericControlInstance<ForeachParameter>
     protected static parse(exp: string): ForeachParameter
     {
         const result = ForEach.expRegex.exec(exp);
-        return { in: new akala.parser.EvaluatorAsFunction().eval(new akala.Parser().parse(exp.substring(result[0].length))), key: result[2] && result[1], value: result[2] || result[1] }
+        return { in: new parser.EvaluatorAsFunction().eval<Binding<unknown[]>>(new Parser().parse(exp.substring(result[0].length))), key: result[2] && result[1], value: result[2] || result[1] }
     }
 }

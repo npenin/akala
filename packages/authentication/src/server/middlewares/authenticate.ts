@@ -1,8 +1,8 @@
-import { Middleware, MiddlewarePromise } from '@akala/core';
+import { MiddlewareAsync, MiddlewarePromise } from '@akala/core';
 import { Request, Response } from '@akala/server'
 import { User } from '../../model/user.js';
 
-export abstract class AuthenticateMiddleware<T> implements Middleware<[Request, Response]>
+export abstract class AuthenticateMiddleware<T> implements MiddlewareAsync<[Request, Response]>
 {
     public abstract validate(req: Request): Promise<T>;
 

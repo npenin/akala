@@ -1,5 +1,8 @@
-import * as akala from '@akala/core'
-import { Logger, map, Middleware } from '@akala/core';
+import
+    {
+        convertToMiddleware, each, introspect, isPromiseLike, Logger, map, MiddlewareAsync, MiddlewareCompositeAsync,
+        MiddlewareCompositeWithPriorityAsync, MiddlewareIndexedAsync, MiddlewarePromise
+    } from '@akala/core';
 import normalize from '../helpers/normalize.js';
 
 export interface CliContext<TOptions extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>, TState = unknown>
@@ -48,7 +51,7 @@ export interface OptionOptions
     position?: number;
 }
 
-class OptionMiddleware implements akala.Middleware<[context: CliContext]>
+class OptionMiddleware implements MiddlewareAsync<[context: CliContext]>
 {
     matchers: { isFull: boolean; pattern: RegExp; }[] = []
     constructor(private readonly name: string, private options?: OptionOptions, private parseOptions: OptionParseOption = defaultOptionParseOption)
@@ -59,17 +62,17 @@ class OptionMiddleware implements akala.Middleware<[context: CliContext]>
             if (n.length > 1)
                 this.matchers.push({
                     isFull: true,
-                    pattern: new RegExp('^' + parseOptions.fullOptionStart + akala.introspect.escapeRegExp(n) + '(?:' + parseOptions.valueAssign + '(.*))?$', options?.caseSensitive ? 'gi' : 'g')
+                    pattern: new RegExp('^' + parseOptions.fullOptionStart + introspect.escapeRegExp(n) + '(?:' + parseOptions.valueAssign + '(.*))?$', options?.caseSensitive ? 'gi' : 'g')
                 });
             else
                 this.matchers.push({
                     isFull: false,
-                    pattern: new RegExp('^' + parseOptions.flagStart + '([^-' + akala.introspect.escapeRegExp(n) + ']*)([' + akala.introspect.escapeRegExp(n) + ']+)', options?.caseSensitive ? 'gi' : 'g')
+                    pattern: new RegExp('^' + parseOptions.flagStart + '([^-' + introspect.escapeRegExp(n) + ']*)([' + introspect.escapeRegExp(n) + ']+)', options?.caseSensitive ? 'gi' : 'g')
                 });
         });
     }
 
-    handle(context: CliContext): akala.MiddlewarePromise
+    handle(context: CliContext): MiddlewarePromise
     {
         for (let index = 0; index < context.args.length; index++)
         {
@@ -187,7 +190,7 @@ function formatUsage(obj: Record<string, string>, indent?: number): string
         }).join('\n');
 }
 
-class OptionsMiddleware<TOptions extends Record<string, string | number | boolean | string[]>> implements akala.Middleware<[context: CliContext<TOptions>]>
+class OptionsMiddleware<TOptions extends Record<string, string | number | boolean | string[]>> implements MiddlewareAsync<[context: CliContext<TOptions>]>
 {
     usage(context: CliContext<TOptions>): UsageObject['options']
     {
@@ -207,12 +210,12 @@ class OptionsMiddleware<TOptions extends Record<string, string | number | boolea
             else if (option?.needsValue)
                 usage += ' value';
 
-            return [usage, Object.keys(this.config).reduce((previous, optionName) => previous?.replace(new RegExp('`' + akala.introspect.escapeRegExp(optionName) + '`', 'm'), `\`${context.options[optionName]}\``), option?.doc)];
+            return [usage, Object.keys(this.config).reduce((previous, optionName) => previous?.replace(new RegExp('`' + introspect.escapeRegExp(optionName) + '`', 'm'), `\`${context.options[optionName]}\``), option?.doc)];
         }, true));
     }
 
-    private options = new akala.MiddlewareComposite<[CliContext]>();
-    private positionalArgs = new akala.MiddlewareCompositeWithPriority<[CliContext]>();
+    private options = new MiddlewareCompositeAsync<[CliContext]>();
+    private positionalArgs = new MiddlewareCompositeWithPriorityAsync<[CliContext]>();
     public config: { [key in keyof TOptions]?: OptionOptions } = {};
 
 
@@ -243,7 +246,7 @@ class OptionsMiddleware<TOptions extends Record<string, string | number | boolea
         return this;
     }
 
-    handle(context: CliContext<TOptions>): akala.MiddlewarePromise
+    handle(context: CliContext<TOptions>): MiddlewarePromise
     {
         return this.options.handle(context).then(p => typeof p == 'undefined' ? this.positionalArgs.handle(context) : p);
     }
@@ -267,14 +270,14 @@ export interface UsageObject
 export const usageParser = /^((?:@?[/$_#\w-]+)(?: ([@$_#\w-]+))*)((?: (?:<[-\w]+(?:\|[-\w]+)?>))*(?: (?:\[[-\w]+(?:\|[-\w]+)?\]))*(?: \[(?:\.{3})[-\w]+(?:\|[-\w]+)?\])?)/;
 
 
-export class NamespaceMiddleware<TOptions extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>, TState = unknown> extends akala.MiddlewareIndexed<[CliContext<TOptions>], NamespaceMiddleware> implements akala.Middleware<[context: CliContext<TOptions, TState>]>
+export class NamespaceMiddleware<TOptions extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>, TState = unknown> extends MiddlewareIndexedAsync<[CliContext<TOptions>], NamespaceMiddleware> implements MiddlewareAsync<[context: CliContext<TOptions, TState>]>
 {
-    private readonly _preAction = new akala.MiddlewareComposite<[CliContext<TOptions, TState>]>();
-    private _action: akala.Middleware<[CliContext<TOptions, TState>]>;
+    private readonly _preAction = new MiddlewareCompositeAsync<[CliContext<TOptions, TState>]>();
+    private _action: MiddlewareAsync<[CliContext<TOptions, TState>]>;
     private readonly _option = new OptionsMiddleware<TOptions>();
-    private readonly _format = new akala.MiddlewareComposite<[result: unknown, context: CliContext<TOptions, TState>]>();
+    private readonly _format = new MiddlewareCompositeAsync<[result: unknown, context: CliContext<TOptions, TState>]>();
 
-    constructor(name: string, private _doc?: { usage?: string, description?: string }, private _cli?: akala.Middleware<[CliContext<TOptions, TState>]>)
+    constructor(name: string, private _doc?: { usage?: string, description?: string }, private _cli?: MiddlewareAsync<[CliContext<TOptions, TState>]>)
     {
         super((context) => context.args[0], name);
         if (name && ~name.indexOf(' '))
@@ -347,7 +350,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
             if (parameters.length == 0 && description == null && this.index[cli[1]])
                 return this.index[cli[1]] as NamespaceMiddleware<TOptions & TOptions2, TState>;
 
-            middleware = new NamespaceMiddleware(cli[1], { usage: name, description }, akala.convertToMiddleware(function (context)
+            middleware = new NamespaceMiddleware(cli[1], { usage: name, description }, convertToMiddleware(function (context)
             {
                 // if (!context.options.help)
                 {
@@ -407,24 +410,24 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
 
     public action(handler: (context: CliContext<TOptions, TState>) => Promise<unknown> | void)
     {
-        this.use(akala.convertToMiddleware((...args) =>
+        this.use(convertToMiddleware((...args) =>
         {
             var result = handler(...args);
-            if (result && akala.isPromiseLike(result))
+            if (result && isPromiseLike(result))
                 return result;
             return Promise.resolve(result);
 
         }));
     }
 
-    public use(handler: Middleware<[CliContext<TOptions, TState>]>)
+    public use(handler: MiddlewareAsync<[CliContext<TOptions, TState>]>)
     {
         this._action = handler
     }
 
     options<T extends { [key: string]: string | number | boolean | string[] }>(options: { [key in Exclude<keyof T, number | symbol>]: OptionOptions }): NamespaceMiddleware<TOptions & T, TState>
     {
-        akala.each(options, (o, key) =>
+        each(options, (o, key) =>
         {
             this.option<T[typeof key], typeof key>(key, o);
         });
@@ -443,7 +446,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
         this._format.use(handler);
     }
 
-    async handle(context: CliContext<TOptions, TState>): akala.MiddlewarePromise
+    async handle(context: CliContext<TOptions, TState>): MiddlewarePromise
     {
         var args = context.args.slice(0);
         if (this.name === null || context.args[0] == this.name)

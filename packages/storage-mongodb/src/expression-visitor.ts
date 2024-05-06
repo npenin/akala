@@ -171,7 +171,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore TS2416
-    visitCall<T, TMethod extends keyof T>(arg0: CallExpression<T, TMethod>): Expressions
+    visitCall<T, TMethod extends keyof T>(arg0: CallExpression<T, TMethod>): StrictExpressions
     {
         throw new NotSupportedException();
         // const source = await this.visit(arg0.source);
@@ -214,7 +214,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
         return arg0;
     }
 
-    visitConstant(arg0: ConstantExpression<unknown>)
+    visitConstant(arg0: ConstantExpression<unknown>): StrictExpressions
     {
         this.result = arg0.value;
         return arg0;

@@ -1,7 +1,6 @@
 import { plugin as akala } from '@akala/vite';
 import { GenericConfiguration, Configurations, Metadata, Processors, StructuredParameters } from '@akala/commands';
 import { Binding, ErrorWithStatus, eachAsync } from '@akala/core';
-import { comma } from 'postcss/lib/list';
 
 const connectionMap: Record<string, { sessionId: string, sessionSignature: string }> = {}
 

@@ -63,8 +63,8 @@ export class Query<T> implements AsyncIterable<T>
             var parser = new akala.Parser();
             var exp = parser.parse(fieldOrExpression);
             if (typeof value != 'undefined')
-                return this.where(new TypedLambdaExpression<Predicate<T>>(new BinaryExpression<StrictExpressions>(exp as StrictExpressions, operator, new ConstantExpression(value)), [parameter]));
-            return this.where(new TypedLambdaExpression<Predicate<T>>(exp, [parameter]));
+                return this.where(new TypedLambdaExpression<Predicate<T>>(new BinaryExpression<StrictExpressions>(exp as StrictExpressions, operator, new ConstantExpression(value)), parameter));
+            return this.where(new TypedLambdaExpression<Predicate<T>>(exp, parameter));
         }
         if (typeof fieldOrExpression == 'symbol' || typeof fieldOrExpression == 'number')
             throw new Error('Invalid type of field');
@@ -78,7 +78,7 @@ export class Query<T> implements AsyncIterable<T>
         if (typeof fieldOrExpression == 'string')
         {
             var parameter = new ParameterExpression<T>()
-            return this.orderBy(new TypedLambdaExpression<Project<T, X>>(new MemberExpression(parameter, new akala.ParsedString(fieldOrExpression) as unknown as TypedExpression<keyof T>), [parameter]));
+            return this.orderBy(new TypedLambdaExpression<Project<T, X>>(new MemberExpression(parameter, new akala.ParsedString(fieldOrExpression) as unknown as TypedExpression<keyof T>, true), parameter));
         }
         if (typeof fieldOrExpression == 'symbol' || typeof fieldOrExpression == 'number')
             throw new Error('Invalid type of field');
@@ -92,7 +92,7 @@ export class Query<T> implements AsyncIterable<T>
         if (typeof fieldOrExpression == 'string')
         {
             var parameter = new ParameterExpression<T>()
-            return this.orderByDescending(new TypedLambdaExpression<Project<T, X>>(new MemberExpression(parameter, new akala.ParsedString(fieldOrExpression) as unknown as TypedExpression<keyof T>), [parameter]));
+            return this.orderByDescending(new TypedLambdaExpression<Project<T, X>>(new MemberExpression(parameter, new akala.ParsedString(fieldOrExpression) as unknown as TypedExpression<keyof T>, true), parameter));
         }
         if (typeof fieldOrExpression == 'symbol' || typeof fieldOrExpression == 'number')
             throw new Error('Invalid type of field');
@@ -101,14 +101,14 @@ export class Query<T> implements AsyncIterable<T>
 
     public groupBy<F extends keyof T>(field: F): Query<{ key: T, value: Query<T> }>
     public groupBy<U>(expression: TypedLambdaExpression<Project<T, U>>): Query<{ key: unknown, value: Query<U> }>
-    public groupBy<X>(fieldOrExpression: (X extends keyof T ? X : never) | TypedLambdaExpression<Project<T, X>>)
+    public groupBy(fieldOrExpression: keyof T | TypedLambdaExpression<Project<T, unknown>>)
     {
         if (typeof fieldOrExpression == 'string' || typeof fieldOrExpression == 'symbol' || typeof fieldOrExpression == 'number')
         {
             var parameter = new ParameterExpression<T>()
-            return this.groupBy(LambdaExpression.typed<Project<T, X>, X>(new MemberExpression(parameter, (typeof (fieldOrExpression) == 'string' ? new akala.ParsedString(fieldOrExpression) : new akala.ParsedNumber(fieldOrExpression.toString())) as unknown as TypedExpression<keyof T>), [parameter]));
+            return this.groupBy(LambdaExpression.typed(new MemberExpression(parameter, (typeof (fieldOrExpression) == 'string' ? new akala.ParsedString(fieldOrExpression) : new akala.ParsedNumber(fieldOrExpression.toString())) as unknown as TypedExpression<keyof T>, true), [parameter]));
         }
-        return new Query(this.provider, new ApplySymbolExpression(this.expression, QuerySymbols.groupby, fieldOrExpression as TypedLambdaExpression<Project<T, X>>));
+        return new Query(this.provider, new ApplySymbolExpression(this.expression, QuerySymbols.groupby, fieldOrExpression as TypedLambdaExpression<Project<T, unknown>>));
     }
 
     public join<U, X>(other: Query<U>, fieldT: keyof T, fieldU: keyof U, selector: { first: keyof X, second: keyof X }): Query<X>
@@ -120,10 +120,10 @@ export class Query<T> implements AsyncIterable<T>
         var joinCondition = new TypedLambdaExpression<Project2<T, U, X>>(
             new BinaryExpression<Expressions>(
                 new NewExpression<X>(
-                    new MemberExpression<X, typeof selector.first, X[typeof selector.first]>(new MemberExpression(parameterT, (typeof fieldT == 'string' ? new akala.ParsedString(fieldT) : new akala.ParsedNumber(fieldT.toString())) as unknown as TypedExpression<keyof T>), (typeof selector.first == 'string' ? new akala.ParsedString(selector.first) : new akala.ParsedNumber(selector.first.toString())) as unknown as TypedExpression<typeof selector.first>),
-                    new MemberExpression<X, typeof selector.second, X[typeof selector.second]>(new MemberExpression(parameterU, (typeof fieldU == 'string' ? new akala.ParsedString(fieldU) : new akala.ParsedNumber(fieldU.toString())) as unknown as TypedExpression<keyof U>), (typeof selector.second == 'string' ? new akala.ParsedString(selector.second) : new akala.ParsedNumber(selector.second.toString())) as unknown as TypedExpression<typeof selector.second>)),
+                    new MemberExpression<X, typeof selector.first, X[typeof selector.first]>(new MemberExpression(parameterT, (typeof fieldT == 'string' ? new akala.ParsedString(fieldT) : new akala.ParsedNumber(fieldT.toString())) as unknown as TypedExpression<keyof T>, false) as TypedExpression<X>, (typeof selector.first == 'string' ? new akala.ParsedString(selector.first) : new akala.ParsedNumber(selector.first.toString())) as unknown as TypedExpression<typeof selector.first>, false),
+                    new MemberExpression<X, typeof selector.second, X[typeof selector.second]>(new MemberExpression(parameterU, (typeof fieldU == 'string' ? new akala.ParsedString(fieldU) : new akala.ParsedNumber(fieldU.toString())) as unknown as TypedExpression<keyof U>, false) as TypedExpression<X>, (typeof selector.second == 'string' ? new akala.ParsedString(selector.second) : new akala.ParsedNumber(selector.second.toString())) as unknown as TypedExpression<typeof selector.second>, false)),
                 akala.expressions.BinaryOperator.Unknown, other.expression),
-            [parameterT, parameterU]);
+            parameterT, parameterU);
         // }
         // if (typeof fieldOrExpression == 'symbol' || typeof fieldOrExpression == 'number')
         //     throw new Error('Invalid type of field');
@@ -138,7 +138,7 @@ export class Query<T> implements AsyncIterable<T>
         if (typeof fieldOrExpression == 'string')
         {
             const parameter = new ParameterExpression<T>()
-            return this.select(LambdaExpression.typed<Project<T, U>, U>(new MemberExpression(parameter, new akala.ParsedString(fieldOrExpression) as unknown as TypedExpression<keyof T>), [parameter]));
+            return this.select(LambdaExpression.typed<Project<T, U>, U>(new MemberExpression(parameter, new akala.ParsedString(fieldOrExpression) as unknown as TypedExpression<keyof T>, false) as TypedExpression<U>, [parameter]));
         }
         if (typeof fieldOrExpression == 'symbol' || typeof fieldOrExpression == 'number' || typeof fieldOrExpression == 'string')
             throw new Error('Invalid type of field');
@@ -152,7 +152,7 @@ export class Query<T> implements AsyncIterable<T>
             {
                 var source = parser.parse(keySource)
                 // var source = akala.Parser.parseBindable(keySource).reduce<TypedExpression<any>>((previous, current) => new MemberExpression<any, string, any>(previous, current as unknown as string), parameter);
-                return new MemberExpression<U, keyof U, U[keyof U]>(source as TypedExpression<U>, typeof keyTarget == 'string' ? new akala.ParsedString(keyTarget) : new akala.ParsedNumber(keyTarget.toString()) as any)
+                return new MemberExpression<U, keyof U, U[keyof U]>(source as TypedExpression<U>, typeof keyTarget == 'string' ? new akala.ParsedString(keyTarget) : new akala.ParsedNumber(keyTarget.toString()) as any, false)
             }, true)), [parameter]));
         }
         return new Query<U>(this.provider, new ApplySymbolExpression<T, U>(this.expression, QuerySymbols.select, fieldOrExpression as TypedLambdaExpression<Project<T, U>>));

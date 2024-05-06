@@ -12,6 +12,7 @@ import { base64 } from '@akala/core'
 
 export default async function (this: State, container: Container<State>, providerName: string, providerOptions: unknown, key: string)
 {
+    // console.log(arguments);
     const provider = providers.resolve<PersistenceEngine<unknown>>(providerName)
     await provider.init(providerOptions);
 

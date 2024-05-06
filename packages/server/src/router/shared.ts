@@ -1,7 +1,7 @@
 import * as http from 'http';
-import * as akala from '@akala/core';
 import accepts from 'accepts'
 import cobody from 'co-body'
+import { Injector, Routable } from '@akala/core';
 
 export type httpHandler = (req: Request, res: Response) => void;
 
@@ -52,12 +52,12 @@ export interface RequestBody
     parse<T>(options?: Arguments1<typeof cobody>): Promise<T>;
 }
 
-export interface Request extends http.IncomingMessage, akala.Routable
+export interface Request extends http.IncomingMessage, Routable
 {
     accepts: accepts.Accepts;
     ip: string;
     query: URLSearchParams;
-    injector?: akala.Injector;
+    injector?: Injector;
     body: RequestBody;
     cookies?: Record<string, string>;
     params: Record<string, unknown>

@@ -1,6 +1,6 @@
 // /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Expressions, StrictExpressions, TypedExpression, IEnumerable, UnknownExpression, ExpressionVisitor, NewExpression, ApplySymbolExpression, LambdaExpression, BinaryExpression, CallExpression, EqualityComparer, MemberExpression, TypedLambdaExpression, ExpressionType, ConstantExpression, ParameterExpression, UnaryExpression } from '@akala/core/expressions';
+import { Expressions, StrictExpressions, TypedExpression, IEnumerable, UnknownExpression, ExpressionVisitor, NewExpression, ApplySymbolExpression, LambdaExpression, BinaryExpression, CallExpression, EqualityComparer, MemberExpression, TypedLambdaExpression, ExpressionType, ConstantExpression, ParameterExpression, UnaryExpression, Parameters, IVisitable } from '@akala/core/expressions';
 import { QuerySymbols } from './Query.js';
 import { Exception } from './exceptions.js';
 import { ModelDefinition } from './shared.js';
@@ -174,7 +174,7 @@ export class ExpressionExecutor extends ExpressionVisitor
     {
         const source = this.visit(arg0.source);
         // const src = this.result;
-        const args = (this as ExpressionVisitor).visitArray(arg0.arguments) as StrictExpressions[];
+        const args = (this as ExpressionVisitor).visitArray(arg0.arguments as StrictExpressions[]);
         if (source !== arg0.source || args !== arg0.arguments)
         {
             if (!this.isTypedExpression(source))
@@ -186,10 +186,10 @@ export class ExpressionExecutor extends ExpressionVisitor
 
 
 
-    visitEnumerable<T>(map: IEnumerable<T>, addToNew: (item: T) => void, visitSingle: (item: T, index: number) => T, compare?: EqualityComparer<T>): void
+    visitEnumerable<T, U extends T>(map: IEnumerable<T>, addToNew: (item: U) => void, visitSingle: (item: T, index: number) => U, compare?: EqualityComparer<T>): void
     {
         const result = [];
-        super.visitEnumerable(map, addToNew, (t, i) =>
+        super.visitEnumerable<T, U>(map, addToNew, (t, i) =>
         {
             const x = visitSingle.call(this, t, i);
             result.push(this.result);
@@ -231,15 +231,15 @@ export class ExpressionExecutor extends ExpressionVisitor
             source.type == ExpressionType.ApplySymbolExpression ||
             source.type == ExpressionType.NewExpression);
     }
-    visitLambda<T extends (...args: unknown[]) => unknown>(arg0: TypedLambdaExpression<T>)
+    visitLambda<T extends (...args: unknown[]) => unknown>(arg0: TypedLambdaExpression<T>): StrictExpressions
     {
-        const parameters = this.visitArray(arg0.parameters) as TypedLambdaExpression<T>['parameters'];
+        const parameters = this.visitArray(arg0.parameters as IVisitable<ExpressionVisitor, StrictExpressions>[]);
         const wasEvaluating = this.evaluating;
         this.evaluating = this.result;
         const body = (this as ExpressionVisitor).visit(arg0.body);
         this.evaluating = wasEvaluating;
         if (body !== arg0.body || parameters !== arg0.parameters)
-            return new TypedLambdaExpression<T>(body, arg0.parameters);
+            return new TypedLambdaExpression<T>(body, ...parameters as Parameters<T>);
         return arg0;
     }
 

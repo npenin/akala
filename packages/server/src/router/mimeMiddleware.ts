@@ -1,8 +1,8 @@
-import { Middleware, MiddlewarePromise } from "@akala/core";
+import { Middleware, MiddlewareAsync, MiddlewarePromise } from "@akala/core";
 import accept from 'accepts'
 import { Response } from './shared.js';
 
-export class MimeMiddleware<T extends [{ accepts: accept.Accepts, isLocal: boolean }, Response, unknown]> implements Middleware<T>
+export class MimeMiddleware<T extends [{ accepts: accept.Accepts, isLocal: boolean }, Response, unknown]> implements MiddlewareAsync<T>
 {
     constructor(private type: string, private serialize: (content: T[2]) => string, private options?: { showErrorDetails?: true | false | 'local' })
     {

@@ -51,7 +51,7 @@ export interface StartOption
     hashbang?: boolean;
 }
 
-export class LocationService extends EventEmitter<{ changing: [path: string], change: [path: string, state?: any] }>
+export class LocationService extends EventEmitter<{ changing: Event<[path: string]>, change: Event<[path: string, state?: any]> }>
 {
     private loaded = false;
     private onpopstateBound = this.onpopstate.bind(this);

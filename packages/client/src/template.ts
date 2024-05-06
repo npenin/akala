@@ -1,7 +1,7 @@
-import * as akala from '@akala/core';
 import { Control, IControlInstance } from './controls/controls.js'
 import { Scope } from './scope.js'
 import { service } from './common.js'
+import { Http, Interpolate, SimpleInjector, each, eachAsync, grep, map } from '@akala/core';
 
 // eslint-disable-next-line no-constant-condition
 if (MutationObserver && false)
@@ -23,7 +23,7 @@ if (MutationObserver && false)
     //     })
 }
 
-service('$interpolate')(akala.Interpolate)
+service('$interpolate')(Interpolate)
 
 export interface templateFunction
 {
@@ -60,13 +60,13 @@ export function composer(selector: string | Composer | (new () => Composer), opt
     }
 }
 
-const cache = new akala.Injector();
+const cache = new SimpleInjector();
 export { cache as templateCache };
 @service('$template', '$interpolate', '$http')
 export class Template
 {
     public static composers: Composer[] = [];
-    constructor(private interpolator: akala.Interpolate, private http: akala.Http) { }
+    constructor(private interpolator: Interpolate, private http: Http) { }
 
     public enableHotReplacement: boolean;
 
@@ -115,7 +115,7 @@ export class Template
     {
         const root = document.createElement('div');
         root.innerHTML = string;
-        return akala.map(root.children, function (el) { return el as HTMLElement });
+        return map(root.children, function (el) { return el as HTMLElement });
     }
 
     public async build(markup: string): Promise<templateFunction>
@@ -130,7 +130,7 @@ export class Template
                 if (parent)
                 {
                     if (newTemplateInstance.length > templateInstance.length)
-                        akala.each(newTemplateInstance, function (inst, i)
+                        each(newTemplateInstance, function (inst, i)
                         {
                             if (i < templateInstance.length)
                                 parent.replaceChild(inst, templateInstance[i]);
@@ -138,7 +138,7 @@ export class Template
                                 parent.appendChild(inst);
                         })
                     else
-                        akala.each(templateInstance, function (inst, i)
+                        each(templateInstance, function (inst, i)
                         {
                             if (i < newTemplateInstance.length)
                                 parent.replaceChild(newTemplateInstance[i], inst);
@@ -157,7 +157,7 @@ export class Template
             var templateInstance = Template.buildElements(template(data));
             if (parent)
             {
-                akala.each(templateInstance, function (inst)
+                each(templateInstance, function (inst)
                 {
                     parent.appendChild(inst);
                 })
@@ -175,7 +175,7 @@ export class Template
     static async composeAll(items: ArrayLike<HTMLElement>, data, root?: Element, options?: { [key: string]: unknown }): Promise<IControlInstance<unknown>[]>
     {
         const result: IControlInstance<unknown>[] = [];
-        return await akala.eachAsync(this.composers, async (composer) =>
+        return await eachAsync(this.composers, async (composer) =>
         {
             await this.compose(composer, items, data, root, options && options[composer.optionName]).then(instances => result.push(...instances));
         }, true).then(() => result);
@@ -187,9 +187,9 @@ export class Template
         const instances: IControlInstance<unknown>[] = [];
         if (filter(items, composer.selector).length == 0)
         {
-            await akala.eachAsync(items, async function (el)
+            await eachAsync(items, async function (el)
             {
-                await akala.eachAsync(el.querySelectorAll(composer.selector), async function (el: HTMLElement)
+                await eachAsync(el.querySelectorAll(composer.selector), async function (el: HTMLElement)
                 {
                     const closest = el.parentElement && el.parentElement.closest(composer.selector);
                     let applyInnerTemplate = !!closest || !root;
@@ -206,7 +206,7 @@ export class Template
         else
         {
             const promises: PromiseLike<void>[] = [];
-            akala.each(filter(items, composer.selector), function (item)
+            each(filter(items, composer.selector), function (item)
             {
                 promises.push(composer.apply(item, data, options).then(c => { instances.push(...c) }));
             });
@@ -221,7 +221,7 @@ export class Template
 
 export function filter<T extends Element = Element>(items: ArrayLike<T>, filter: string)
 {
-    return akala.grep(items, function (element)
+    return grep(items, function (element)
     {
         return element.matches(filter);
     })
