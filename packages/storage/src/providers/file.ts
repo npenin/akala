@@ -12,6 +12,7 @@ import { promisify } from "util";
 import { Generator, Model } from '../common.js';
 import { v4 as uuid } from 'uuid'
 import { NotSupportedException } from '../exceptions.js';
+import { isPromiseLike } from '@akala/core';
 
 export class File extends PersistenceEngine<FileOptions>
 {
@@ -54,11 +55,13 @@ export class File extends PersistenceEngine<FileOptions>
         const fileEntryFactory = this.fileEntryFactory;
         executor.visitConstant = function <TCte>(this: ExpressionExecutor, cte: ConstantExpression<TCte>)
         {
+            // console.log(cte.value)
             if (cte.value instanceof ModelDefinition)
             {
-                this.result = (async function ()
+                const model = cte.value as ModelDefinition;
+                this.model = model;
+                this.result = (async () =>
                 {
-                    const model = cte.value as ModelDefinition;
                     var folder = await Promise.resolve<FileSystemEntries>(store);
                     folder = await store[model.namespace || 'db']
                     if (!folder)
@@ -79,8 +82,7 @@ export class File extends PersistenceEngine<FileOptions>
                     if (folder[isFile])
                         throw new Error(`found file ${model.nameInStorage} while expecting a folder in ${store[fspath]}`);
 
-                    this.result = folder;
-                    this.model = model;
+                    return folder;
                 })();
 
             }
@@ -89,13 +91,17 @@ export class File extends PersistenceEngine<FileOptions>
         }
         executor.visit(expression);
 
-        if (typeof executor.result == 'object' && executor.model)
-            if (Reflect.has(executor.result, Symbol.iterator) || Reflect.has(executor.result, Symbol.asyncIterator))
-                return this.dynamicProxy(executor.result as Iterable<T>, executor.model) as unknown as T;
+        let result = executor.result;
+        if (isPromiseLike(executor.result))
+            result = await executor.result;
+
+        if (typeof result == 'object' && executor.model)
+            if (Reflect.has(result, Symbol.iterator) || Reflect.has(result, Symbol.asyncIterator))
+                return this.dynamicProxy(result as Iterable<T>, executor.model) as unknown as T;
             else
-                return dynamicProxy<T>(executor.result as unknown as T, executor.model as ModelDefinition<T>);
+                return dynamicProxy<T>(result as unknown as T, executor.model as ModelDefinition<T>);
         else
-            return executor.result as T;
+            return result as T;
 
     }
 }
@@ -407,7 +413,7 @@ export class JsonFileEntry implements FileSystemFile
     }
     async [save](modifiedContent: any): Promise<void>
     {
-        await writeJson(this[fspath], JSON.stringify(modifiedContent), this[isNew], this[model], this[multipleKeySeparatorProperty]);
+        await writeJson(this[fspath], stringify(this[model], modifiedContent), this[isNew], this[model], this[multipleKeySeparatorProperty]);
         this[isNew] = false;
     }
     [load]()
@@ -552,6 +558,11 @@ function parse<T>(model: ModelDefinition<T>, json: string): T
 {
     var parsedData = JSON.parse(json);
     return Object.fromEntries(model.membersAsArray.map(f => [f['name'] || f.nameInStorage, parsedData[f.nameInStorage]]));
+}
+
+function stringify<T>(model: ModelDefinition<T>, json: T): string
+{
+    return JSON.stringify(Object.fromEntries(model.membersAsArray.map(f => [f.nameInStorage || f['name'], json[f['name']]])));
 }
 
 function parseFileName<T>(model: ModelDefinition<T>, fileName: string, multipleKeySeparator?: string): Partial<T>

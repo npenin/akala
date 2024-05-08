@@ -3,6 +3,8 @@ import { ModelTest1 } from './modelTest1.js';
 import assert from 'assert';
 import './modelTest1.js';
 import { expressions } from '@akala/core';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 
 interface TestStore extends StoreDefinition
 {
@@ -13,8 +15,7 @@ describe('where builder', function ()
 {
     it('generates', async function ()
     {
-
-        var fpe = await File.fromJson(__dirname);
+        var fpe = await File.fromJson(dirname(fileURLToPath(import.meta.url)));
         var store = Store.create<TestStore>(fpe, 'ModelTest1');
 
         var where = store.ModelTest1.where('s1=="test"');
