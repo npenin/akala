@@ -61,7 +61,7 @@ bootstrapModule.activate(['services.$router', 'services.$template', '$rootScope'
     })
 })
 
-bootstrapModule.ready(['services.$location', 'akala.$rootScope'], async function (location: LocationService, rootScope: IScope<any>)
+bootstrapModule.ready(['services.$location', '$rootScope'], async function (location: LocationService, rootScope: IScope<any>)
 {
     this.whenDone.then(async () =>
     {
