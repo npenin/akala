@@ -223,10 +223,13 @@ export class Parser
     constructor(...parameters: ParameterExpression<unknown>[])
     {
         if (parameters)
+        {
+            this.parameters = {}
             parameters.forEach(param =>
             {
                 this.parameters[param.name] = param
             });
+        }
     }
 
     public parse(expression: string, parseFormatter?: boolean): ExpressionsWithLength
@@ -331,7 +334,11 @@ export class Parser
         length += item.length;
 
         //eslint-disable-next-line @typescript-eslint/no-explicit-any
-        let result: ExpressionsWithLength = new MemberExpression(null as any, new ParsedString(item), false) as TypedExpression<any>
+        let result: ExpressionsWithLength;
+        if (this.parameters)
+            result = new MemberExpression(this.parameters[''] as TypedExpression<any>, new ParsedString(item), false) as TypedExpression<any>
+        else
+            result = new MemberExpression(null as any, new ParsedString(item), false) as TypedExpression<any>
         result.$$length = length;
         if (typeof operator != 'undefined')
         {
