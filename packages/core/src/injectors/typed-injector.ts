@@ -95,7 +95,7 @@ export class TypedInjector<TypeMap extends object = Record<string, unknown>> ext
             const keys = (param as string).split('.')
             return keys.reduce((result, key) =>
             {
-                if (result instanceof SimpleInjector)
+                if (result instanceof Injector)
                     return result.resolve(key);
                 if (isPromiseLike(result))
                     return result.then((result) => { return result[key] });
