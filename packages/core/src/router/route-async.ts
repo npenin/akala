@@ -37,7 +37,7 @@ export class MiddlewareRouteAsync<T extends [Routable, ...unknown[]]> extends Mi
             const oldPath = req.path;
             const c = oldPath[isMatch.path.length];
             if (c && c !== this.delimiter)
-                return;
+                return Promise.resolve();
             req.path = req.path.substring(isMatch.path.length) || this.delimiter;
 
             const oldParams = req.params;
@@ -53,7 +53,7 @@ export class MiddlewareRouteAsync<T extends [Routable, ...unknown[]]> extends Mi
                 req.path = oldPath;
             };
         }
-        return;
+        return Promise.resolve();
     }
 
     public useMiddleware(route: string | RegExp, ...middlewares: MiddlewareAsync<T>[]): this

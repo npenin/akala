@@ -9,6 +9,7 @@ import { Formatter, FormatterFactory } from './formatters/common.js';
 import { Injected } from './injectors/shared.js';
 import { MiddlewareComposite } from './middlewares/composite-sync.js';
 import type { Middleware, MiddlewareAsync } from './middlewares/shared.js';
+import { MiddlewareCompositeAsync } from './index.js';
 
 
 export interface HttpOptions<T>
@@ -35,7 +36,7 @@ export interface Http<TResponse = Response>
 
 export type CallInterceptor = MiddlewareAsync<[RequestInit, Response]>
 
-register('$http-interceptors', new MiddlewareComposite('$http-interceptors'))
+register('$http-interceptors', new MiddlewareCompositeAsync('$http-interceptors'))
 
 @service('$http', '$http-interceptors')
 export class FetchHttp implements Http<Response>
