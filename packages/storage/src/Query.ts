@@ -57,10 +57,11 @@ export class Query<T> implements AsyncIterable<T>
     public where(field: string, operator: akala.expressions.BinaryOperator, value: unknown): Query<T>
     public where<F extends keyof T>(fieldOrExpression: F | TypedLambdaExpression<Predicate<T>>, operator?: akala.expressions.BinaryOperator, value?: T[F]): Query<T>
     {
+        // console.log(fieldOrExpression);
         if (typeof fieldOrExpression == 'string')
         {
             var parameter = new ParameterExpression<T>();
-            var parser = new akala.Parser();
+            var parser = new akala.Parser(parameter);
             var exp = parser.parse(fieldOrExpression);
             if (typeof value != 'undefined')
                 return this.where(new TypedLambdaExpression<Predicate<T>>(new BinaryExpression<StrictExpressions>(exp as StrictExpressions, operator, new ConstantExpression(value)), parameter));

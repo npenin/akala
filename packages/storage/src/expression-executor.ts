@@ -282,11 +282,12 @@ export class ExpressionExecutor extends ExpressionVisitor
         else
             this.result = ExpressionExecutor.applyBinary(this.result as number, () =>
             {
+                let left = this.result as number;
                 (this as ExpressionVisitor).visit(expression.right);
                 if (isPromiseLike(this.result))
                     return this.result as PromiseLike<number>;
                 return {
-                    then(x: (right: number) => unknown) { return x(this.result as number) }
+                    then(x: (right: number) => unknown) { return x(left) }
                 } as PromiseLike<number>
             }, expression.operator)
 
