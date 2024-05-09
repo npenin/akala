@@ -20,7 +20,7 @@ export default async function (this: State, username: string, password: string, 
 
     session.userId = user.id;
 
-    return { id: user.id, sessionId: session.id, sessionSignature: this.getHash(session.id, base64.base64DecToArr(user.salt)) }
+    return { id: user.id, sessionId: session.id, sessionSignature: await this.getHash(session.id, base64.base64DecToArr(user.salt)) }
 }
 
 export async function validateSessionOwner(state: State, sessionId: string, sessionSignature: string): Promise<ErrorWithStatus | null>
