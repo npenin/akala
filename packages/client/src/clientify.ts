@@ -11,7 +11,7 @@ export { Control, BaseControl, control } from './controls/controls.js';
 
 export const loadScript = load;
 
-export type IScope<T> = scope.IScope<T> & T;
+export type IScope<T extends object> = scope.IScope<T> & T;
 export type Http = core.Http;
 export { Part, PartDefinition };
 export const router = routing.router

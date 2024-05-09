@@ -28,7 +28,7 @@ export class ForEach extends GenericControlInstance<ForeachParameter>
 
         let sourceBinding: Binding<unknown>;
         if (!(this.parameter.in instanceof Binding))
-            sourceBinding = (await this.parameter.in)(this.scope);
+            sourceBinding = this.parameter.in(this.scope);
         else
             sourceBinding = this.parameter.in;
 
@@ -44,7 +44,7 @@ export class ForEach extends GenericControlInstance<ForeachParameter>
 
             if (source instanceof ObservableArray)
             {
-                source.on('collectionChanged', (args) =>
+                source.addListener((args) =>
                 {
                     switch (args.action)
                     {
@@ -107,7 +107,7 @@ export class ForEach extends GenericControlInstance<ForeachParameter>
 
         const stopWatch = sourceBinding.onChanged(function (ev)
         {
-            Promise.resolve(ev.eventArgs.value).then(build);
+            Promise.resolve(ev.value).then(build);
         });
         if (stopWatch)
             this.stopWatches.push(stopWatch);

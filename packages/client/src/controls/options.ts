@@ -1,13 +1,14 @@
-import * as akala from '@akala/core'
 import { control, ControlParameter, GenericControlInstance } from './control.js'
 import { Template } from '../template.js';
+import { Binding, each, ExpressionsWithLength, grep, grepAsync, inject, ObservableArray, ObservableArrayEventArgs, Parser, parser } from '@akala/core';
+import { Expressions } from '@akala/core/expressions';
 
 export interface OptionsParameter
 {
-    in: akala.Binding<unknown[]> | akala.ObservableArray<unknown>;
-    text: akala.Binding<unknown> | string;
-    textvalue: akala.Binding<unknown> | string;
-    value: akala.Binding<unknown> | string;
+    in: Binding<unknown[]> | ObservableArray<unknown>;
+    text: Binding<unknown> | Expressions;
+    textvalue: Binding<unknown> | Expressions;
+    value: Binding<unknown> | Expressions;
 }
 
 @control('options', 350)
@@ -18,43 +19,43 @@ export class Options extends GenericControlInstance<OptionsParameter>
         super()
     }
 
-    @akala.inject('controls')
+    @inject('controls')
     private controls: { value: ControlParameter<unknown> };
 
     public async init()
     {
         // eslint-disable-next-line @typescript-eslint/no-this-alias
         const self = this;
-        let value = this.controls.value as akala.Binding<unknown>;
+        let value = this.controls.value as Binding<unknown>;
         if (typeof this.controls.value == 'function')
             value = this.controls.value(this.scope, true);
 
         delete this.controls.value;
-        if (this.parameter instanceof akala.Binding)
+        if (this.parameter instanceof Binding)
             throw new Error('Not Supported');
         const parameter = this.parameter;
         // var newControls;
-        const build = (source: unknown[] | akala.ObservableArray<unknown>) =>
+        const build = (source: unknown[] | ObservableArray<unknown>) =>
         {
             let array: unknown[];
             const element = this.element;
             const target = this.scope;
 
-            if (parameter.text instanceof akala.Binding)
+            if (parameter.text instanceof Binding)
                 parameter.text = parameter.text.expression;
-            if (parameter.textvalue instanceof akala.Binding)
+            if (parameter.textvalue instanceof Binding)
                 parameter.textvalue = parameter.textvalue.expression;
-            if (parameter.value instanceof akala.Binding)
+            if (parameter.value instanceof Binding)
                 parameter.value = parameter.value.expression;
-            if (parameter.text[0] != '$')
-                parameter.text = '$item.' + parameter.text;
-            if (parameter.value[0] != '$')
-                parameter.value = '$item.' + parameter.value;
-            if (source instanceof akala.ObservableArray)
+            // if (parameter.text[0] != '$')
+            //     parameter.text =  '$item.' + parameter.text;
+            // if (parameter.value[0] != '$')
+            //     parameter.value = '$item.' + parameter.value;
+            if (source instanceof ObservableArray)
             {
                 const offset = this.element.childElementCount;
 
-                source.on('collectionChanged', function (this: akala.ObservableArray<unknown>, args: akala.ObservableArrayEventArgs<unknown>) 
+                source.addListener(function (this: ObservableArray<unknown>, args: ObservableArrayEventArgs<unknown>) 
                 {
                     // const key = -1;
                     // const isAdded = false;
@@ -99,7 +100,7 @@ export class Options extends GenericControlInstance<OptionsParameter>
             else
                 array = source;
             if (typeof (array) !== 'undefined')
-                akala.each(array, (value, key) =>
+                each(array, (value, key) =>
                 {
                     const scope = target.$new();
                     scope['$key'] = key;
@@ -107,24 +108,25 @@ export class Options extends GenericControlInstance<OptionsParameter>
                     self.clone(Template.buildElements('<option data-bind="{value: ' + (parameter.textvalue || parameter.value) + ', text:' + parameter.text + '}" />')[0] as HTMLElement, scope, true).then(el => element.appendChild(el));
                 })
 
-            this.element.addEventListener('change', async () =>
+            this.element.addEventListener('change', () =>
             {
                 const val = (element as HTMLSelectElement).value;
-                const model = await akala.grepAsync(array, async (it, i) =>
+                const model = grep(array, (it, i) =>
                 {
-                    return val == (await new akala.parser.EvaluatorAsFunction().eval(new akala.Parser().parse((parameter.textvalue || parameter.value) as string)))({ $item: it, $key: i });
+                    return val == (new parser.EvaluatorAsFunction().eval((parameter.textvalue || parameter.value) as ExpressionsWithLength))({ $item: it, $key: i });
                 }, true);
                 if (model.length == 0)
-                    value.setValue(val, value);
+                    value.setValue(val)//, value);
                 else
-                    value.setValue(model[0], value);
+                    value.setValue(model[0])//, value);
             });
 
-            value.onChanged(async (ev) =>
+            value.onChanged(ev =>
             {
-                if (value !== ev.eventArgs.source && typeof array != 'undefined')
+                // if (value !== ev.eventArgs.source && typeof array != 'undefined')
+                if (typeof array != 'undefined')
                 {
-                    const val = (await new akala.parser.EvaluatorAsFunction().eval(new akala.Parser().parse((parameter.textvalue || parameter.value) as string)))({ $item: ev.eventArgs.value, $key: array.indexOf(ev.eventArgs.value) });
+                    const val = (new parser.EvaluatorAsFunction().eval((parameter.textvalue || parameter.value) as ExpressionsWithLength))({ $item: ev.value, $key: array.indexOf(ev.value) });
                     this.element.querySelectorAll('option').forEach((opt, i) =>
                     {
                         opt.selected = val == opt.value;
@@ -135,8 +137,8 @@ export class Options extends GenericControlInstance<OptionsParameter>
             });
         }
 
-        if (this.parameter.in instanceof akala.Binding)
-            this.parameter.in.onChanged(ev => Promise.resolve(ev.eventArgs.value).then(build));
+        if (this.parameter.in instanceof Binding)
+            this.parameter.in.onChanged(ev => Promise.resolve(ev.value).then(build));
         else
             Promise.resolve(this.parameter.in).then(build);
     }

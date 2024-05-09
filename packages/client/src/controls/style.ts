@@ -15,7 +15,7 @@ function setProperty(style, value)
             {
                 value.onChanged(function (ev)
                 {
-                    style[prop] = ev.eventArgs.value;
+                    style[prop] = ev.value;
                 });
             }
             else

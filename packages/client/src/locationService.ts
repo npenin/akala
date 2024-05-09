@@ -324,8 +324,7 @@ export class LocationService extends EventEmitter<{ changing: Event<[path: strin
     {
         if (running)
             this.emit('changing', path)
-        if (state)
-            history.pushState(state, '', path);
+        history.pushState(state || null, '', path);
         if (running)
             this.emit('change', path, state)
     }

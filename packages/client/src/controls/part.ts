@@ -4,7 +4,7 @@ import type { Part as PartService, PartDefinition, PartInstance } from '../part.
 import { IScope } from '../scope.js';
 
 @control('part', 110)
-export class Part extends GenericControlInstance<string | PartDefinition<IScope<unknown>>>
+export class Part extends GenericControlInstance<string | PartDefinition<IScope<object>>>
 {
     @inject("akala-services.$part") private partService: PartService;
 
@@ -18,28 +18,29 @@ export class Part extends GenericControlInstance<string | PartDefinition<IScope<
             {
                 nonStringParameter.onChanged(ev =>
                 {
-                    if ((ev.eventArgs.source !== null || ev.eventArgs.value) && typeof ev.eventArgs.value !== 'string')
-                        partService.apply(() => this as unknown as PartInstance, ev.eventArgs.value, {})
+                    // if ((ev.eventArgs.source !== null || ev.value) && typeof ev.value !== 'string')
+                    if ((ev.value) && typeof ev.value !== 'string')
+                        partService.apply(() => this as unknown as PartInstance, ev.value, {})
                 });
 
             }
             else
             {
-                const x = nonStringParameter as PossiblyBound<PartDefinition<IScope<unknown>>>;
+                const x = nonStringParameter as PossiblyBound<PartDefinition<IScope<object>>>;
                 if (x.template instanceof Binding)
                     x.template.onChanged(async (ev) =>
                     {
                         if (x.controller instanceof Binding)
-                            partService.apply(() => this as unknown as PartInstance, { controller: await x.controller.getValue(), template: ev.eventArgs.value }, {});
+                            partService.apply(() => this as unknown as PartInstance, { controller: await x.controller.getValue(), template: ev.value }, {});
                         else
-                            partService.apply(() => this as unknown as PartInstance, { controller: x.controller, template: ev.eventArgs.value }, {});
+                            partService.apply(() => this as unknown as PartInstance, { controller: x.controller as PartDefinition<IScope<object>>['controller'], template: ev.value }, {});
                     });
                 else
                 {
                     if (x.controller instanceof Binding)
-                        partService.apply(() => this as unknown as PartInstance, { controller: await x.controller.getValue(), template: x.template }, {});
+                        partService.apply(() => this as unknown as PartInstance, { controller: await x.controller.getValue(), template: x.template as string | Promise<string> }, {});
                     else
-                        partService.apply(() => this as unknown as PartInstance, x as PartDefinition<IScope<unknown>>, {});
+                        partService.apply(() => this as unknown as PartInstance, x as PartDefinition<IScope<object>>, {});
                 }
             }
         }

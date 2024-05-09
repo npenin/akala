@@ -1,8 +1,9 @@
-import { Binding, IWatched, Injectable, Injector, SimpleInjector, each } from "@akala/core";
+import { Binding, Injectable, ObservableObject, Parser, SimpleInjector, each, watcher } from "@akala/core";
 
-export interface IScope<T> extends IWatched
+export interface IScope<T extends object> 
 {
-    $new<U>(): IScope<U>;
+    [watcher]: ObservableObject<T>;
+    $new<U extends object>(): IScope<U>;
     $set<U extends Exclude<keyof T, number | symbol>>(expression: U, value: T[U]);
     $set(expression: string, value: unknown);
     $set(expression: string, value: unknown);
@@ -11,14 +12,15 @@ export interface IScope<T> extends IWatched
     $bind(expression: string): Binding<unknown>;
 }
 
-export class Scope<T> implements IScope<T>
+export class Scope<T extends object> implements IScope<T>
 {
     public get $root() { return this; }
 
     private $$resolver: SimpleInjector;
+    public readonly [watcher] = new ObservableObject<T>(this as unknown as T);
     public $$watchers: Partial<{ [key in keyof T]: Binding<T[key]> }> = {};
 
-    public $new<U>(): Scope<U>
+    public $new<U extends object>(): Scope<U>
     {
         const root = this['$root'] || this;
         var newScope = function ()
@@ -61,7 +63,7 @@ export class Scope<T> implements IScope<T>
 
     public $set(expression: string, value: unknown)
     {
-        Binding.getSetter(this, expression)(value);
+        ObservableObject.setValue(this, new Parser().parse(expression), value);
     }
 
     public $bind(expression: string): Binding<unknown>
@@ -69,7 +71,7 @@ export class Scope<T> implements IScope<T>
         let binding = this.$$watchers[expression];
         if (!binding)
         {
-            binding = new Binding(expression, this);
+            binding = new Binding(this, new Parser().parse(expression));
             this.$$watchers[expression] = binding;
         }
         return binding;
@@ -85,7 +87,7 @@ export class Scope<T> implements IScope<T>
         binding['handlers'].push(handler);
         binding.onChanged(function (ev)
         {
-            handler(ev.eventArgs.value);
+            handler(ev.value);
         });
     }
 }

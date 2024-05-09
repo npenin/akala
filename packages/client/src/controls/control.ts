@@ -68,7 +68,7 @@ export abstract class Control<T> implements IControl<T>
         Control.injector.register($$name, this);
     }
 
-    public static async apply(controls: Record<string, unknown>, element: Element, scope?: IScope<unknown>): Promise<IControlInstance<unknown>[]>
+    public static async apply(controls: Record<string, unknown>, element: Element, scope?: IScope<object>): Promise<IControlInstance<unknown>[]>
     {
         const applicableControls: Control<unknown>[] = [];
         let requiresNewScope = false;
@@ -108,13 +108,13 @@ export abstract class Control<T> implements IControl<T>
         return instances;
     }
 
-    public wrap(element: HTMLElement, scope: IScope<unknown>, newControls?: Record<string, unknown> | boolean)
+    public wrap(element: HTMLElement, scope: IScope<object>, newControls?: Record<string, unknown> | boolean)
     {
         if (newControls)
         {
             const controls = new Parser().parse(element.dataset['bind']) as ParsedObject;
 
-            let applicableControls: Control<unknown>[] = [];
+            let applicableControls: Control<any>[] = [];
 
             controls.init.forEach(function (member)
             {
@@ -156,7 +156,7 @@ export abstract class BaseControl<T> extends Control<T>
         super(name, priority);
     }
 
-    public async instanciate(scope: IScope<unknown>, element: Element, parameter: ControlParameter<T>)
+    public async instanciate(scope: IScope<object>, element: Element, parameter: ControlParameter<T>)
     {
         const injector = new SimpleInjector(this.injector);
         injector.setInjectables({ scope, element, parameter, factory: this, $injector: injector });
@@ -168,7 +168,7 @@ export type ControlControlParameter<T> = T extends GenericControlInstance<infer 
 export type ControlParameter<TParameter> = Binding<TParameter> | (TParameter extends (infer X)[] ? ObservableArray<X> | TParameter : TParameter);
 
 @injectable
-export class GenericControlInstance<TParameter, TScope extends IScope<unknown> = IScope<unknown>> implements IControlInstance<TParameter>
+export class GenericControlInstance<TParameter, TScope extends IScope<object> = IScope<object>> implements IControlInstance<TParameter>
 {
     protected stopWatches: (() => void)[] = [];
 
@@ -183,7 +183,7 @@ export class GenericControlInstance<TParameter, TScope extends IScope<unknown> =
     @inject()
     protected factory: Control<TParameter>;
     @inject()
-    protected readonly scope: IScope<TScope>;
+    protected readonly scope: TScope;
     @inject()
     protected readonly element: HTMLElement;
     @inject()
@@ -212,7 +212,7 @@ export interface IControl<T>
 {
     priority: number;
 
-    instanciate(scope: IScope<unknown>, element: Element, parameter: ControlParameter<T>): IControlInstance<T> | PromiseLike<IControlInstance<T>>; // void | Element | PromiseLike<Element | ArrayLike<Element>> | ArrayLike<Element>
+    instanciate(scope: IScope<object>, element: Element, parameter: ControlParameter<T>): IControlInstance<T> | PromiseLike<IControlInstance<T>>; // void | Element | PromiseLike<Element | ArrayLike<Element>> | ArrayLike<Element>
 
 }
 
