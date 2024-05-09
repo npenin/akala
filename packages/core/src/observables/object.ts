@@ -1,3 +1,4 @@
+import { map } from "../each.js";
 import EventEmitter, { AllEventKeys, Event, EventArgs, EventKeys, EventListener, IEvent, disposeEvent } from "../event-emitter.js";
 import { EvaluatorAsFunction } from "../parser/evaluator-as-function.js";
 import { BinaryExpression } from "../parser/expressions/binary-expression.js";
@@ -35,45 +36,28 @@ export class BuildSetter<T extends object> extends ExpressionVisitor
     target: ParameterExpression<T>;
     value: ParameterExpression<unknown>;
 
-    // private static getObservable<T extends object>(target: T & IWatchable<T>, member: keyof T)
-    // {
-    //     let obs: ObservableObject<any>;
-    //     if (!(target instanceof ObservableObject))
-    //         obs = new ObservableObject(target);
-    //     else
-    //         obs = target;
-
-    //     if (!(member in obs.$$watchers))
-    //     {
-    //         const value = target[member];
-    //         if (typeof value === 'object')
-    //         {
-    //             if (ObservableObject.isWatched(value))
-    //                 obs.$$watchers[member] = value.$$watcher
-    //             else
-    //                 obs.$$watchers[member] = (value as IWatchable<typeof value>).$$watcher = new ObservableObject(value)
-    //         }
-    //     }
-    // }
-
     public eval<TValue>(expression: Expressions): (target: T, value: TValue) => void
     {
         this.target = new ParameterExpression<T>('target');
         this.value = new ParameterExpression<TValue>('value');
         this.isFirstMember = true;
-        this.getter = (target) => new ObservableObject(target);
+        this.getter = (target) => target;
         this.visit(expression);
         const member = this.property;
         let getter = this.getter;
         return (target, value) =>
         {
-            getter(target).setValue(member(), value);
+            const x = getter(target);
+            if (ObservableObject.isWatched(x))
+                (x[watcher] as ObservableObject<any>).setValue(member(), value);
+            else
+                x[member()] = value;
         }
     }
 
     isFirstMember = false;
     private property: () => PropertyKey;
-    private getter: (target: object) => ObservableObject<any>;
+    private getter: (target: object) => object;
 
     public visitMember<T1, TMember extends keyof T1>(arg0: MemberExpression<T1, TMember, T1[TMember]>): StrictExpressions
     {
@@ -87,8 +71,8 @@ export class BuildSetter<T extends object> extends ExpressionVisitor
             return undefined;
         }
 
-        if (!arg0.source)
-            return new MemberExpression(this.target, arg0.member as TypedExpression<keyof T>, arg0.optional) as unknown as TypedExpression<T1[TMember]>;
+        // if (!arg0.source)
+        // return new MemberExpression(this.target, arg0.member as TypedExpression<keyof T>, arg0.optional) as unknown as TypedExpression<T1[TMember]>;
 
         const getter = this.getter;
 
@@ -104,14 +88,14 @@ export class BuildGetter<T extends object> extends ExpressionVisitor
     target: ParameterExpression<T>;
     value: ParameterExpression<unknown>;
 
-    public eval<TValue extends object = object>(expression: Expressions): (target: T) => ObservableObject<TValue>
+    public eval<TValue = object>(expression: Expressions): (target: T) => TValue extends object ? ObservableObject<TValue> : TValue
     {
         this.getter = (target) => new ObservableObject(target);
         this.visit(expression);
         return this.getter;
     }
 
-    private getter: (target: object) => ObservableObject<any>;
+    private getter: (target: object) => any;
 
     public visitMember<T1, TMember extends keyof T1>(arg0: MemberExpression<T1, TMember, T1[TMember]>): StrictExpressions
     {
@@ -119,17 +103,20 @@ export class BuildGetter<T extends object> extends ExpressionVisitor
 
         if (!arg0.source)
             return arg0;
+        this.visit(arg0.source);
 
         const getter = this.getter;
 
         if (arg0.optional)
-            this.getter = (target) => { const x = getter(target); return x && new ObservableObject<any>(x).get(member(target)) }
+            this.getter = (target) => { const x = getter(target); return x && new ObservableObject<any>(x).getValue(member(target)) }
         else
-            this.getter = (target) => new ObservableObject<any>(getter(target)).get(member())
+            this.getter = (target) => new ObservableObject<any>(getter(target)).getValue(member())
+
+        return arg0;
     }
 }
 
-type Watcher = EventEmitter<{ change: Event<[ObjectEvent<any>]> }>;
+type Watcher = EventEmitter<{ 'change': Event<[]> }>;
 
 export class BuildWatcher<T extends object> extends ExpressionVisitor
 {
@@ -146,10 +133,13 @@ export class BuildWatcher<T extends object> extends ExpressionVisitor
     {
         const member = new EvaluatorAsFunction().eval<PropertyKey>(this.visit(arg0.member));
 
-        if (!arg0.source)
-            return arg0;
+        if (arg0.source)
+            this.visit(arg0.source);
+
 
         const getter = this.getter;
+
+
 
 
         if (arg0.optional)
@@ -159,9 +149,9 @@ export class BuildWatcher<T extends object> extends ExpressionVisitor
                 if (!x)
                     return x;
                 const prop = member(target);
-                const result = new ObservableObject<any>(getter(target, watcher));
+                const result = new ObservableObject<any>(x);
                 result.watch(watcher, prop);
-                return result.get(prop);
+                return result.getValue(prop);
             }
         else
             this.getter = (target, watcher) =>
@@ -169,15 +159,83 @@ export class BuildWatcher<T extends object> extends ExpressionVisitor
                 const prop = member(target);
                 const result = new ObservableObject<any>(getter(target, watcher));
                 result.watch(watcher, prop);
-                return result.get(prop);
+                return result.getValue(prop);
             }
+
+        return arg0;
     }
 }
 
 type ObservableType<T extends object> = Record<keyof T, IEvent<[ObjectEvent<T>], void>>;
 
+export class Binding<T> extends EventEmitter<{
+    change: Event<[{ value: T, oldValue: T }]>
+}>
+{
+    constructor(public readonly target: object, public readonly expression: Expressions)
+    {
+        super();
+        const watcher = new EventEmitter<{ change: Event<[]> }>();
+        let value = this.getValue();
+        watcher.on('change', () =>
+        {
+            const oldValue = value;
+            value = this.getValue();
+            this.emit('change', { value: this.getValue(), oldValue: oldValue });
+        })
+        new BuildWatcher().eval(expression)(target, watcher);
+    }
+
+    public static unwrap<T>(element: T): Partial<T>
+    {
+        if (element instanceof Binding)
+            return element.getValue();
+        return map(element, function (value)
+        {
+            if (typeof (value) == 'object')
+            {
+                if (value instanceof Binding)
+                    return value.getValue();
+                else
+                    return Binding.unwrap(value);
+            }
+            else
+                return value;
+        })
+    }
+
+    private _getter?: (target: object) => T extends object ? ObservableObject<T> : T
+    private _setter?: (target: object, value: T) => void
+
+    public onChanged(handler: (ev: { value: T, oldValue: T }) => void)
+    {
+        return this.on('change', handler);
+    }
+
+    public setValue(value: T)
+    {
+        if (!this._setter)
+            this._setter = new BuildSetter().eval(this.expression);
+        this._setter(this.target, value);
+        // this.emit('change', { value, oldValue: this.getValue() });
+    }
+
+    public getValue(): T
+    {
+        if (!this._getter)
+            this._getter = new BuildGetter().eval<T>(this.expression);
+        return ObservableObject.unwrap(this._getter(this.target));
+    }
+}
+
 export class ObservableObject<T extends object> extends EventEmitter<ObservableType<T>>
 {
+    static unwrap<T>(arg0: T extends object ? ObservableObject<T> : T): T
+    {
+        if (arg0 instanceof ObservableObject)
+            return arg0.target;
+        return arg0 as T;
+    }
     // public static wrap<T extends object>(target: T): T & { [ObservableObject.wrappingObservable]: ObservableObject<T> } & IWatched<T>
     // {
     //     return new Proxy(new ObservableObject(target), {
@@ -194,9 +252,9 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
     //         }
     //     }) as any;
     // }
-    public readonly target: T & { $$watcher?: ObservableObject<T> };
+    public readonly target: T & { [watcher]?: ObservableObject<T> };
 
-    constructor(target: T & { $$watcher?: ObservableObject<T> } | ObservableObject<T>)
+    constructor(target: T & { [watcher]?: ObservableObject<T> } | ObservableObject<T>)
     {
         super();
         if (target instanceof ObservableObject)
@@ -204,23 +262,23 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
         if (ObservableObject.isWatched<T>(target))
             return target[watcher];
         this.target = target;
-        target.$$watcher = this;
+        Object.defineProperty(target, watcher, { value: this, enumerable: false, configurable: false })
     }
 
     public watch<const TKey extends EventKeys<ObservableType<T>>>(watcher: Watcher, property: TKey)
     {
         const sub = this.on(property, (ev =>
         {
-            watcher.emit('change', ev);
+            watcher.emit('change');
         }) as EventListener<ObservableObject<T>['events'][TKey]>);
-        // watcher.once(disposeEvent, sub);
+        watcher.once(disposeEvent, sub);
     }
 
     // private setters: { [key in keyof T]?: (target: T, value: T[key]) => void } = {};
 
     public static isWatched<T extends object>(x: T): x is IWatched<T> 
     {
-        return typeof x == 'object' && watcher in x && x[watcher] instanceof ObservableObject;
+        return typeof x == 'object' && x[watcher] instanceof ObservableObject;
     }
 
     public static setValue<T extends object>(target: T, expression: Expressions, value: any)
@@ -241,11 +299,18 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
         return true;
     }
 
-    public get(property: keyof T)
+    public getValue<const TKey extends keyof T>(property: TKey): T[TKey]
     {
         if (typeof this.target[property] == 'object')
-            return new ObservableObject(this.target[property] as object).target;
+            return new ObservableObject(this.target[property] as object).target as T[TKey];
         return this.target[property];
+    }
+
+    public get<const TKey extends keyof T>(property: TKey): T[TKey] extends object ? ObservableObject<T[TKey]> : null
+    {
+        if (typeof this.target[property] == 'object')
+            return new ObservableObject(this.target[property] as object) as T[TKey] extends object ? ObservableObject<T[TKey]> : null;
+        return null;
     }
 
     public static get<T>(target: T, property: keyof T)
