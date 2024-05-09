@@ -16,13 +16,18 @@ export * from './middlewares/indexed-sync.js';
 export * from './factory.js';
 export * from './http.js';
 export * from './service.js';
-export * from './binder.js';
+export { Bound, PossiblyBound } from './binder.js';
 export * from './event-emitter.js';
 export * from './parser/parser.js';
 export * from './type-helper.js'
 export * from './helpers.js'
 export * from './router/index.js'
 export * from './queue.js'
+
+export * from './observables/shared.js'
+export * from './observables/array.js'
+export * from './observables/object.js'
+
 import { Module, ExtendableEvent } from './module.js';
 export { Module, ExtendableEvent };
 import * as expressions from './parser/expressions/index.js';
