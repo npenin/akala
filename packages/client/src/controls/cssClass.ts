@@ -1,28 +1,27 @@
-import * as akala from '@akala/core'
 import { control, GenericControlInstance, Control, ControlControlParameter } from './control.js'
-import { ObservableArray, ObservableArrayEventArgs, Binding, ParsedString, isPromiseLike } from '@akala/core'
+import { ObservableArray, ObservableArrayEventArgs, Binding, ParsedString, isPromiseLike, each } from '@akala/core'
 
-async function removeClass(element: HTMLElement, item: ParsedString | Array<string> | string | { [key: string]: boolean })
+function removeClass(element: HTMLElement, item: ParsedString | Array<string> | string | { [key: string]: boolean })
 {
 
     if (typeof (item) == 'undefined')
         return;
     if (typeof (item) == 'string')
         if (~item.indexOf(' '))
-            await removeClass(element, item.split(' '));
+            removeClass(element, item.split(' '));
         else
             element.classList.remove(item);
     else if (item instanceof ParsedString)
-        return await removeClass(element, item.value);
+        return removeClass(element, item.value);
     else if (item instanceof Binding)
     {
-        await removeClass(element, await item.getValue())
+        removeClass(element, item.getValue())
     }
 }
 
 type classParamType = Binding<string> | Binding<string[]> | ParsedString | string[] | string | { [key: string]: boolean };
 
-async function addClass(element: HTMLElement, item: classParamType)
+function addClass(element: HTMLElement, item: classParamType)
 {
     if (typeof (item) == 'undefined')
         return;
@@ -40,39 +39,39 @@ async function addClass(element: HTMLElement, item: classParamType)
         item.onChanged(async function (ev)
         {
             if (oldValue)
-                await removeClass(element, oldValue);
+                removeClass(element, oldValue);
             if (isPromiseLike(ev.eventArgs.value))
-                ev.eventArgs.value.then(async function (value)
+                ev.eventArgs.value.then(function (value)
                 {
                     oldValue = value;
-                    await addClass(element, value);
+                    addClass(element, value);
                 });
             else
             {
-                await addClass(element, ev.eventArgs.value);
+                addClass(element, ev.eventArgs.value);
                 oldValue = ev.eventArgs.value;
             }
         });
     }
     else
-        akala.eachAsync(item, async function (toggle, key)
+        each(item, function (toggle, key)
         {
             if (typeof (toggle) == 'string' && !isNaN(Number(key)))
             {
-                await addClass(element, toggle);
+                addClass(element, toggle);
             }
             else if (toggle instanceof Binding)
-                toggle.onChanged(async function (ev)
+                toggle.onChanged(function (ev)
                 {
-                    if (ev.eventArgs.value)
-                        await addClass(element, key as string);
+                    if (ev.value)
+                        addClass(element, key as string);
                     else
-                        await removeClass(element, key as string);
+                        removeClass(element, key as string);
                 });
             else if (toggle)
-                await addClass(element, key as string);
+                addClass(element, key as string);
             else
-                await removeClass(element, key as string);
+                removeClass(element, key as string);
         })
 }
 
@@ -88,7 +87,7 @@ export class CssClass extends GenericControlInstance<string[]>
         }
         if (parameter instanceof ObservableArray)
         {
-            parameter.on('collectionChanged', function (arg: ObservableArrayEventArgs<string>)
+            parameter.addListener(function (arg: ObservableArrayEventArgs<string>)
             {
                 if (arg.newItems)
                     arg.newItems.forEach(function (item)

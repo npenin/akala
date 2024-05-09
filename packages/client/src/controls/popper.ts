@@ -19,11 +19,11 @@ export class Popper extends GenericControlInstance<popper.Options & { popper: 's
             {
                 if (p)
                     p.destroy();
-                p = popper.createPopper(this.element, this.element.parentElement.querySelector(ev.eventArgs.value.popper), ev.eventArgs.value)
+                p = popper.createPopper(this.element, this.element.parentElement.querySelector(ev.value.popper), ev.value)
             })
         }
         else
-            p = popper.createPopper(this.element, this.element.parentElement.querySelector(this.parameter['popper']), await Binding.unbindify(this.parameter))
+            p = popper.createPopper(this.element, this.element.parentElement.querySelector(this.parameter['popper']), Binding.unwrap(this.parameter))
 
         this.element.addEventListener('click', function ()
         {

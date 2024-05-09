@@ -7,7 +7,7 @@ import { LocationService as Location } from './locationService.js'
 import { SimpleInjector, each, map } from '@akala/core'
 import { IControlInstance } from './controls/control.js'
 
-export type PartInstance = { scope: IScope<unknown>, element: HTMLElement, controlsInPart?: IControlInstance<unknown>[] };
+export type PartInstance = { scope: IScope<object>, element: HTMLElement, controlsInPart?: IControlInstance<unknown>[] };
 
 @service('$part', '$template', '$router', '$location')
 export class Part 
@@ -48,7 +48,7 @@ export class Part
         this.location.refresh();
     }
 
-    public async apply<TScope extends IScope<unknown>>(partInstance: () => PartInstance, part: PartDefinition<TScope>, params: unknown): Promise<void>
+    public async apply<TScope extends IScope<object>>(partInstance: () => PartInstance, part: PartDefinition<TScope>, params: unknown): Promise<void>
     {
         const template = this.template;
         if (part && part.template)
@@ -72,8 +72,8 @@ export class Part
     }
 
     public use(url: string): Part
-    public use<TScope extends IScope<unknown>>(url: string, partName: string, part: PartDefinition<TScope>): void
-    public use<TScope extends IScope<unknown>>(url: string, partName = 'body', part?: PartDefinition<TScope>): Part | void
+    public use<TScope extends IScope<object>>(url: string, partName: string, part: PartDefinition<TScope>): void
+    public use<TScope extends IScope<object>>(url: string, partName = 'body', part?: PartDefinition<TScope>): Part | void
     {
         if (!part)
         {
@@ -93,7 +93,7 @@ export class Part
     }
 }
 
-export interface PartDefinition<TScope extends IScope<unknown>>
+export interface PartDefinition<TScope extends IScope<object>>
 {
     template?: string | Promise<string>;
     controller?(scope: TScope, element: Element, params: unknown): Promise<void>;

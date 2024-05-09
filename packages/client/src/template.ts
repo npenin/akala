@@ -1,7 +1,7 @@
 import { Control, IControlInstance } from './controls/controls.js'
 import { Scope } from './scope.js'
 import { service } from './common.js'
-import { Http, Interpolate, SimpleInjector, each, eachAsync, grep, map } from '@akala/core';
+import { Binding, Event, EventEmitter, Http, Interpolate, ObjectEvent, ObservableObject, Parser, SimpleInjector, each, eachAsync, grep, map } from '@akala/core';
 
 // eslint-disable-next-line no-constant-condition
 if (MutationObserver && false)
@@ -27,8 +27,9 @@ service('$interpolate')(Interpolate)
 
 export interface templateFunction
 {
-    (target: unknown, parent: HTMLElement): Promise<IControlInstance<unknown>[]>;
+    (target: object, parent: HTMLElement): Promise<IControlInstance<unknown>[]>;
     hotReplace(markup: string): void;
+    watch(target: object, handler: () => void, trigger?: boolean): void;
 }
 
 export interface Composer<TOptions = unknown>
@@ -118,14 +119,14 @@ export class Template
         return map(root.children, function (el) { return el as HTMLElement });
     }
 
-    public async build(markup: string): Promise<templateFunction>
+    public build(markup: string): templateFunction
     {
-        let template = await this.interpolator.build(markup)
+        let template = this.interpolator.build(markup)
         var f: templateFunction = ((data, parent?: HTMLElement) =>
         {
-            f.hotReplace = async (markup: string) =>
+            f.hotReplace = (markup: string) =>
             {
-                template = await this.interpolator.build(markup);
+                template = this.interpolator.build(markup);
                 const newTemplateInstance = Template.buildElements(template(data));
                 if (parent)
                 {
@@ -166,7 +167,16 @@ export class Template
         }) as templateFunction;
         f.hotReplace = async (markup: string) =>
         {
-            template = await this.interpolator.build(markup);
+            template = this.interpolator.build(markup);
+        }
+        f.watch = (data, handler, trigger) =>
+        {
+            const watcher = new EventEmitter<{
+                change: Event<[]>;
+            }>();
+            template.expressions.forEach(exp => new Binding(data, new Parser().parse(exp)).onChanged(() => watcher.emit('change')));
+            watcher.on('change', handler);
+            handler();
         }
 
         return f;
