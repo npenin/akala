@@ -3,6 +3,7 @@ import { Parser } from './parser/parser.js';
 import { escapeRegExp } from './reflect.js';
 
 type EvalFunction<T> = (value: unknown) => T;
+type InterpolateFn<T> = ((value: unknown) => T) & { expressions: string[] };
 
 export class Interpolate
 {
@@ -21,51 +22,56 @@ export class Interpolate
     private escapedStartRegexp: RegExp;
     private escapedEndRegexp: RegExp;
 
-    public async buildObject<T>(obj: T, mustHaveExpression?: boolean, trustedContext?: boolean, allOrNothing?: boolean): Promise<EvalFunction<T>>
+    public buildObject<T>(obj: T, mustHaveExpression?: boolean, evaluator?: (expression: string) => ((target: unknown) => any), allOrNothing?: boolean): InterpolateFn<T>
     {
         switch (typeof obj)
         {
             case 'object':
                 if (Array.isArray(obj))
                 {
-                    const fns = await Promise.all(obj.map((v => this.buildObject(v, mustHaveExpression, trustedContext, allOrNothing))));
-                    return (value) => fns.map(fn => fn(value)) as unknown as T
+                    const fns = obj.map((v => this.buildObject(v, mustHaveExpression, evaluator, allOrNothing)));
+                    return Object.assign((value) => fns.map(fn => fn(value)) as unknown as T, { expressions: fns.flatMap(fn => fn.expressions) })
                 }
                 else if (obj instanceof Object)
                 {
-                    const builder: [string, EvalFunction<unknown>][] = await Promise.all(Object.entries(obj).map(async kvp => [kvp[0], await this.buildObject(kvp[1], mustHaveExpression, trustedContext, allOrNothing)]));
-                    return (value) => Object.fromEntries(builder.map(kvp => [kvp[0], kvp[1](value)])) as unknown as T;
+                    const builder = Object.entries(obj).map(kvp => [kvp[0], this.buildObject(kvp[1], mustHaveExpression, evaluator, allOrNothing)] as const);
+                    return Object.assign((value) => Object.fromEntries(builder.map(kvp => [kvp[0], kvp[1](value)])) as unknown as T, { expressions: builder.flatMap(e => e[1].expressions) });
                 }
-                return () => obj;
+                return Object.assign(() => obj, { expressions: [] });
             case 'string':
-                return this.build(obj, mustHaveExpression, trustedContext, allOrNothing);
+                return this.build(obj, mustHaveExpression, evaluator, allOrNothing);
             default:
             case 'function':
-                return () => obj;
+                return Object.assign(() => obj, { expressions: [] });
         }
     }
 
-    public async build<T extends string>(text: T, mustHaveExpression?: boolean, trustedContext?: boolean, allOrNothing?: boolean): Promise<EvalFunction<T>>
+    public static Evaluator = (exp: string) => new EvaluatorAsFunction().eval(new Parser().parse(exp));
+
+    public build<T extends string>(text: T, mustHaveExpression?: boolean, evaluator?: (expression: string) => ((target: unknown) => any), allOrNothing?: boolean): InterpolateFn<T>
     {
         const startSymbolLength = this.startSymbol.length,
             endSymbolLength = this.endSymbol.length;
+
+        if (!evaluator)
+            evaluator = Interpolate.Evaluator
 
         if (!text.length || text.indexOf(this.startSymbol) === -1)
         {
             let constantInterp;
             if (!mustHaveExpression)
             {
-                return function ()
+                return Object.assign(function ()
                 {
                     return text;
-                }
+                }, { expressions: [] });
             }
             return constantInterp;
         }
 
         allOrNothing = !!allOrNothing;
-        let startIndex,
-            endIndex,
+        let startIndex: number,
+            endIndex: number,
             index = 0;
         const expressions = [],
             parseFns: ((target: unknown) => string)[] = [],
@@ -84,7 +90,7 @@ export class Interpolate
                 }
                 const exp = text.substring(startIndex + startSymbolLength, endIndex);
                 expressions.push(exp);
-                parseFns.push(await new EvaluatorAsFunction().eval(new Parser().parse(exp)));
+                parseFns.push(evaluator(exp));
                 index = endIndex + endSymbolLength;
                 expressionPositions.push(concat.length);
                 concat.push('');
@@ -99,7 +105,7 @@ export class Interpolate
             }
         }
 
-        return function interpolationFn(target)
+        function interpolationFn(target)
         {
             for (let i = 0, ii = expressions.length; i < ii; i++)
             {
@@ -113,6 +119,8 @@ export class Interpolate
             return concat.join('');
         }
 
+        interpolationFn.expressions = expressions;
+        return interpolationFn;
     }
 
 }
