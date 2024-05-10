@@ -29,7 +29,7 @@ export interface templateFunction
 {
     (target: object, parent: HTMLElement): Promise<IControlInstance<unknown>[]>;
     hotReplace(markup: string): void;
-    watch(target: object, handler: () => void, trigger?: boolean): void;
+    watch(target: object, handler: () => void, trigger?: boolean): Subscription;
 }
 
 export interface Composer<TOptions = unknown>
