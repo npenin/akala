@@ -29,10 +29,14 @@ bootstrapModule.activate(['services.$router', 'services.$template', '$rootScope'
             location.dispatch('/login');
         else
         {
-            document.getElementById('app').replaceChildren();
+
             const templateFunction = await template.get('test/index.html');
             // import.meta.hot.accept('/test/index.html', m => templateFunction.hotReplace(m.text))
-            templateFunction(root, document.getElementById('app'));
+            templateFunction.watch(root, () =>
+            {
+                document.getElementById('app').replaceChildren();
+                templateFunction(root, document.getElementById('app'))
+            }, true);
             root.$set('currentUser', await root.container.dispatch('auth.whoami'))
         }
     })
