@@ -1,7 +1,7 @@
 import { Control, IControlInstance } from './controls/controls.js'
 import { Scope } from './scope.js'
 import { service } from './common.js'
-import { Binding, Event, EventEmitter, Http, Interpolate, ObjectEvent, ObservableObject, Parser, SimpleInjector, each, eachAsync, grep, map } from '@akala/core';
+import { Binding, Event, EventEmitter, Http, Interpolate, ObjectEvent, ObservableObject, Parser, SimpleInjector, Subscription, each, eachAsync, grep, map } from '@akala/core';
 
 // eslint-disable-next-line no-constant-condition
 if (MutationObserver && false)
@@ -127,6 +127,11 @@ export class Template
             f.hotReplace = (markup: string) =>
             {
                 template = this.interpolator.build(markup);
+                if (bindings?.length)
+                {
+                    bindings.forEach(b => b());
+                    bindings = template.expressions.map(exp => new Binding(data, new Parser().parse(exp)).onChanged(() => watcher.emit('change')));
+                }
                 const newTemplateInstance = Template.buildElements(template(data));
                 if (parent)
                 {
@@ -169,14 +174,20 @@ export class Template
         {
             template = this.interpolator.build(markup);
         }
+
+        let bindings: Subscription[];
+
+        const watcher = new EventEmitter<{
+            change: Event<[]>;
+        }>();
+
         f.watch = (data, handler, trigger) =>
         {
-            const watcher = new EventEmitter<{
-                change: Event<[]>;
-            }>();
-            template.expressions.forEach(exp => new Binding(data, new Parser().parse(exp)).onChanged(() => watcher.emit('change')));
-            watcher.on('change', handler);
-            handler();
+            bindings = template.expressions.map(exp => new Binding(data, new Parser().parse(exp)).onChanged(() => watcher.emit('change')));
+            const sub = watcher.on('change', handler);
+            if (trigger)
+                handler();
+            return sub;
         }
 
         return f;
