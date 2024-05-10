@@ -1,12 +1,11 @@
 import * as db from '@akala/storage'
-import { v4 as uuid } from 'uuid';
 
 @db.Model
 export class Token
 {
     constructor()
     {
-        this.token = uuid();
+        this.token = crypto.randomUUID();
     }
 
     @db.Key(db.Types.string(36))

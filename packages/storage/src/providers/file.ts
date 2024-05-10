@@ -10,7 +10,6 @@ import { CommandResult, Commands, Create } from '../commands/command.js';
 import { ModelDefinition } from '../shared.js';
 import { promisify } from "util";
 import { Generator, Model } from '../common.js';
-import { v4 as uuid } from 'uuid'
 import { NotSupportedException } from '../exceptions.js';
 import { isPromiseLike } from '@akala/core';
 
@@ -138,7 +137,7 @@ class FileCommandProcessor extends CommandProcessor<FileOptions>
             if (fileName)
                 fileName += this.engineOptions.multipleKeySeparator || '-'
             if (model.members[key].generator)
-                record[key] = uuid();
+                record[key] = crypto.randomUUID();
             fileName += await record[key];
         }
         if (fileName == 'then')
@@ -572,7 +571,7 @@ function parseFileName<T>(model: ModelDefinition<T>, fileName: string, multipleK
     {
         if (model.members[key].generator == Generator.uuid || model.members[key].generator == Generator.native)
         {
-            const length = uuid().length;
+            const length = crypto.randomUUID().length;
             if (fileName.length > length)
                 record[key] = fileName.substring(0, length);
             else
