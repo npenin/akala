@@ -4,8 +4,8 @@ function noop() { }
 
 export const disposeEvent = Symbol.for('akala/dispose');
 
-type SpecialEvents = { [disposeEvent]: Event<[]> }
-type Subscription = () => boolean
+export type SpecialEvents = { [disposeEvent]: Event<[]> }
+export type Subscription = () => boolean
 export type EventKeys<T extends object> = { [key in keyof T]: T[key] extends IEvent<unknown[], unknown, unknown> ? key : never }[keyof T];
 
 type EventMap<T extends object> = { [key in EventKeys<T>]: AsEvent<T[key]> }

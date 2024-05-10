@@ -1,8 +1,10 @@
 import { map } from "../each.js";
 import EventEmitter, { AllEventKeys, Event, EventArgs, EventKeys, EventListener, IEvent, disposeEvent } from "../event-emitter.js";
+import { Parser } from "../index.js";
 import { EvaluatorAsFunction } from "../parser/evaluator-as-function.js";
 import { BinaryExpression } from "../parser/expressions/binary-expression.js";
 import { BinaryOperator } from "../parser/expressions/binary-operator.js";
+import { ConstantExpression } from "../parser/expressions/constant-expression.js";
 import { ExpressionType } from "../parser/expressions/expression-type.js";
 import { ExpressionVisitor } from "../parser/expressions/expression-visitor.js";
 import { Expressions, StrictExpressions, TypedExpression } from "../parser/expressions/expression.js";
@@ -48,10 +50,11 @@ export class BuildSetter<T extends object> extends ExpressionVisitor
         return (target, value) =>
         {
             const x = getter(target);
-            if (ObservableObject.isWatched(x))
-                (x[watcher] as ObservableObject<any>).setValue(member(), value);
-            else
-                x[member()] = value;
+            if (x)
+                if (ObservableObject.isWatched(x))
+                    (x[watcher] as ObservableObject<any>).setValue(member(), value);
+                else
+                    x[member()] = value;
         }
     }
 
@@ -77,9 +80,9 @@ export class BuildSetter<T extends object> extends ExpressionVisitor
         const getter = this.getter;
 
         if (arg0.optional)
-            this.getter = (target) => { const x = getter(target); return x && new ObservableObject<any>(x).get(member(target)) }
+            this.getter = (target) => { const x = getter(target); return x && x[member(target)] }
         else
-            this.getter = (target) => new ObservableObject<any>(getter(target)).get(member())
+            this.getter = (target) => ObservableObject.get(target as any, member())
     }
 }
 
@@ -172,6 +175,23 @@ export class Binding<T> extends EventEmitter<{
     change: Event<[{ value: T, oldValue: T }]>
 }>
 {
+    public static defineProperty(target: object, property: string | symbol, value?: unknown)
+    {
+        const binding = new Binding(target, typeof property == 'symbol' ? new MemberExpression(null, new ConstantExpression(property), false) : new Parser().parse(property));
+        Object.defineProperty(target, property, {
+            get()
+            {
+                return value;
+            }, set(newValue: unknown)
+            {
+                value = newValue;
+                binding.setValue(newValue)//, binding);
+            }
+        });
+
+        return binding;
+    }
+
     constructor(public readonly target: object, public readonly expression: Expressions)
     {
         super();
