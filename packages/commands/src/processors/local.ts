@@ -15,7 +15,7 @@ export class AuthHandler implements MiddlewareAsync<CommandMetadataProcessorSign
     {
         if (param._trigger && cmd.config?.auth)
         {
-            console.log('authenticating...');
+            // console.log('authenticating...');
             if (!param.command)
                 param.command = cmd;
             return Local.execute({ config: cmd.config.auth as any, name: cmd.name }, this.authValidator, origin, param)
