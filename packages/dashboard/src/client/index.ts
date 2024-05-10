@@ -60,7 +60,7 @@ export type TileDef = Tile | PromiseLike<Tile>;
         }
     }
 
-    module('bootstrap').ready(['$part'], function (part: client.Part)
+    module('bootstrap').ready(['$outlet'], function (part: client.Part)
     {
         part.use('/', 'body', {
             template: '/@akala-modules/pages/tiles.html', controller: async function (scope)

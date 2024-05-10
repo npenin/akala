@@ -1,12 +1,12 @@
 import { control, GenericControlInstance } from './control.js'
 import { Binding, inject, PossiblyBound } from '@akala/core'
-import type { Part as PartService, PartDefinition, PartInstance } from '../part.js'
+import type { OutletService, PartDefinition, PartInstance } from '../part.js'
 import { IScope } from '../scope.js';
 
-@control('part', 110)
-export class Part extends GenericControlInstance<string | PartDefinition<IScope<object>>>
+@control('outlet', 110)
+export class Outlet extends GenericControlInstance<string | PartDefinition<IScope<object>>>
 {
-    @inject("akala-services.$part") private partService: PartService;
+    @inject("akala-services.$outlet") private partService: OutletService;
 
     public async init(): Promise<void>
     {

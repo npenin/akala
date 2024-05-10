@@ -3,7 +3,7 @@ import * as routing from './router.js'
 import { LocationService } from './locationService.js'
 import * as core from '@akala/core';
 export * from './template.js';
-import { Part, PartDefinition } from './part.js';
+import { OutletService, PartDefinition } from './part.js';
 import './part.js';
 import * as scope from './scope.js';
 import * as controls from './controls/controls.js';
@@ -13,7 +13,7 @@ export const loadScript = load;
 
 export type IScope<T extends object> = scope.IScope<T> & T;
 export type Http = core.Http;
-export { Part, PartDefinition };
+export { OutletService as Part, PartDefinition };
 export const router = routing.router
 export { Router } from './router.js'
 export { LocationService };
