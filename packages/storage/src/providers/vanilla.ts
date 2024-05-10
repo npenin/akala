@@ -4,7 +4,6 @@ import { CommandProcessor } from '../commands/command-processor.js';
 import { Commands, CommandResult } from '../commands/command.js';
 import { ExpressionExecutor } from '../expression-executor.js';
 import { ModelDefinition, Generator } from '../shared.js';
-import { v4 as uuid } from 'uuid'
 
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class Vanilla extends PersistenceEngine<any>
@@ -121,7 +120,7 @@ export class VanillaCommandProcessor extends CommandProcessor<VanillaOptions>
             {
                 case Generator.native:
                 case Generator.uuid:
-                    cmd.record[k] = uuid();
+                    cmd.record[k] = crypto.randomUUID();
                     break;
             }
         })

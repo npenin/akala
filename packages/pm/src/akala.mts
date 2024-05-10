@@ -10,7 +10,7 @@ import { spawnAsync } from './cli-helper.js';
 import State, { StateConfiguration } from './state.js';
 import { CliContext, ErrorMessage, NamespaceMiddleware, unparse } from '@akala/cli';
 import { InteractError } from './index.js';
-import { Binding } from '@akala/core';
+import { Binding, ObservableObject, Parser } from '@akala/core';
 import module from 'module'
 
 const require = module.createRequire(import.meta.url);
@@ -178,7 +178,7 @@ export default function (_config, program: NamespaceMiddleware)
                     const indexOfDot = err.as.indexOf('.');
                     if (indexOfDot > 0)
                     {
-                        Binding.getSetter(args.options, err.as)(value);
+                        ObservableObject.setValue(args.options, new Parser().parse(err.as), value);
                     }
                     args.options[err.as] = value;
                 }
