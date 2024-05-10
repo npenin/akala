@@ -1,8 +1,7 @@
-import { Binding, Injectable, ObservableObject, Parser, SimpleInjector, each, watcher } from "@akala/core";
+import { Binding, IWatched, Injectable, ObservableObject, Parser, SimpleInjector, each, watcher } from "@akala/core";
 
-export interface IScope<T extends object> 
+export interface IScope<T extends object>
 {
-    [watcher]: ObservableObject<T>;
     $new<U extends object>(): IScope<U>;
     $set<U extends Exclude<keyof T, number | symbol>>(expression: U, value: T[U]);
     $set(expression: string, value: unknown);
@@ -17,7 +16,6 @@ export class Scope<T extends object> implements IScope<T>
     public get $root() { return this; }
 
     private $$resolver: SimpleInjector;
-    public readonly [watcher] = new ObservableObject<T>(this as unknown as T);
     public $$watchers: Partial<{ [key in keyof T]: Binding<T[key]> }> = {};
 
     public $new<U extends object>(): Scope<U>
@@ -40,7 +38,7 @@ export class Scope<T extends object> implements IScope<T>
             })
         };
         newScope.prototype = this;
-        return new newScope();
+        return new ObservableObject(new newScope()).target;
     }
 
     public $inject<T>(f: Injectable<T>, params?: { [key: string]: unknown })
