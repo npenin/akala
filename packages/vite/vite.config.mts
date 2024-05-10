@@ -1,6 +1,6 @@
 import { plugin as akala } from '@akala/vite';
 import { GenericConfiguration, Configurations, Metadata, Processors, StructuredParameters } from '@akala/commands';
-import { Binding, ErrorWithStatus, eachAsync } from '@akala/core';
+import { Binding, ErrorWithStatus, ObservableObject, Parser, each, eachAsync } from '@akala/core';
 
 const connectionMap: Record<string, { sessionId: string, sessionSignature: string }> = {}
 
@@ -28,7 +28,8 @@ export default {
                     trigger = '';
                 if (command.config[trigger] && command.config[trigger].inject)
                 {
-                    await eachAsync((command.config[trigger] as GenericConfiguration).inject, async (param, i) =>
+                    const parser = new Parser();
+                    each((command.config[trigger] as GenericConfiguration).inject, (param, i) =>
                     {
                         console.log(param, i);
                         if (param === 'auth')
@@ -38,7 +39,7 @@ export default {
                             if (!params.auth)
                                 params.auth = {}
                             console.log(params.param)
-                            await Binding.getSetter(params, param)(params.param[i]);
+                            ObservableObject.setValue(params, parser.parse(param), params.param[i]);
                         }
                     });
                 }
