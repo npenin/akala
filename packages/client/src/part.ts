@@ -9,8 +9,8 @@ import { IControlInstance } from './controls/control.js'
 
 export type PartInstance = { scope: IScope<object>, element: HTMLElement, controlsInPart?: IControlInstance<unknown>[] };
 
-@service('$part', '$template', '$router', '$location')
-export class Part 
+@service('$outlet', '$template', '$router', '$location')
+export class OutletService 
 {
     private routers: { [key: string]: Router } = {};
 
@@ -23,7 +23,7 @@ export class Part
             {
                 if (partName == '$injector')
                     return;
-                (<PartInstance>parts.resolve(partName)).element.textContent = '';
+                (<PartInstance>parts.resolve(partName)).element.replaceChildren();
             })
         })
 
@@ -74,13 +74,13 @@ export class Part
             return Promise.reject();
     }
 
-    public use(url: string): Part
+    public use(url: string): OutletService
     public use<TScope extends IScope<object>>(url: string, partName: string, part: PartDefinition<TScope>): void
-    public use<TScope extends IScope<object>>(url: string, partName = 'body', part?: PartDefinition<TScope>): Part | void
+    public use<TScope extends IScope<object>>(url: string, partName = 'body', part?: PartDefinition<TScope>): OutletService | void
     {
         if (!part)
         {
-            const partService = new Part(this.template, new Router(), this.location);
+            const partService = new OutletService(this.template, new Router(), this.location);
             partService.parts = new SimpleInjector(this.parts);
 
             return partService;
