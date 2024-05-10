@@ -62,10 +62,13 @@ export class Part
             await part.controller(p.scope as unknown as TScope, p.element, params);
         if (tpl)
         {
-            p.element.textContent = '';
-            if (p.controlsInPart)
-                each(p.controlsInPart, c => c.dispose());
-            await tpl(p.scope, p.element).then(instances => p.controlsInPart = instances);
+            tpl.watch(p.scope, async () =>
+            {
+                p.element.replaceChildren();
+                if (p.controlsInPart)
+                    each(p.controlsInPart, c => c.dispose());
+                p.controlsInPart = await tpl(p.scope, p.element);
+            }, true)
         }
         else
             return Promise.reject();
