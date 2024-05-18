@@ -1,14 +1,10 @@
 import { map } from "../each.js";
-import EventEmitter, { AllEventKeys, Event, EventArgs, EventKeys, EventListener, IEvent, Subscription, disposeEvent } from "../event-emitter.js";
+import EventEmitter, { Event, EventArgs, EventKeys, EventListener, IEvent, Subscription, disposeEvent } from "../event-emitter.js";
 import { Parser } from "../index.js";
 import { EvaluatorAsFunction } from "../parser/evaluator-as-function.js";
-import { BinaryExpression } from "../parser/expressions/binary-expression.js";
-import { BinaryOperator } from "../parser/expressions/binary-operator.js";
 import { ConstantExpression } from "../parser/expressions/constant-expression.js";
-import { ExpressionType } from "../parser/expressions/expression-type.js";
 import { ExpressionVisitor } from "../parser/expressions/expression-visitor.js";
-import { Expressions, StrictExpressions, TypedExpression } from "../parser/expressions/expression.js";
-import { LambdaExpression, TypedLambdaExpression } from "../parser/expressions/lambda-expression.js";
+import { Expressions, StrictExpressions } from "../parser/expressions/expression.js";
 import { MemberExpression } from "../parser/expressions/member-expression.js";
 import { ParameterExpression } from "../parser/expressions/parameter-expression.js";
 
@@ -93,7 +89,17 @@ export class BuildGetter<T extends object> extends ExpressionVisitor
 
     public eval<TValue = object>(expression: Expressions): (target: T) => TValue extends object ? ObservableObject<TValue> : TValue
     {
-        this.getter = (target) => target instanceof Binding ? new ObservableObject(target.getValue()) : new ObservableObject(target);
+        this.getter = (target) =>
+        {
+            if (target instanceof Binding)
+            {
+                const subTarget = target.getValue();
+                if (!subTarget)
+                    return null;
+                return new ObservableObject(subTarget)
+            }
+            return new ObservableObject(target);
+        }
         this.visit(expression);
         return this.getter;
     }
@@ -104,16 +110,15 @@ export class BuildGetter<T extends object> extends ExpressionVisitor
     {
         const member = new EvaluatorAsFunction().eval<PropertyKey>(this.visit(arg0.member));
 
-        if (!arg0.source)
-            return arg0;
-        this.visit(arg0.source);
+        if (arg0.source)
+            this.visit(arg0.source);
 
         const getter = this.getter;
 
-        if (arg0.optional)
-            this.getter = (target) => { const x = getter(target); return x && new ObservableObject<any>(x).getValue(member(target)) }
-        else
-            this.getter = (target) => new ObservableObject<any>(getter(target)).getValue(member())
+        // if (arg0.optional)
+        this.getter = (target) => { const x = getter(target); return x && new ObservableObject<any>(x).getValue(member(target)) }
+        // else
+        //     this.getter = (target) => new ObservableObject<any>(getter(target)).getValue(member())
 
         return arg0;
     }
@@ -125,7 +130,18 @@ export class BuildWatcher<T extends object> extends ExpressionVisitor
 {
     public eval(expression: Expressions): (target: T, watcher: Watcher) => void
     {
-        this.getter = (target, watcher) => { return new ObservableObject(target); }
+        this.getter = (target, watcher) =>
+        {
+            if (target instanceof Binding)
+            {
+                target.onChanged(ev => watcher.emit('change', ev.value));
+                const subTarget = target.getValue();
+                if (subTarget)
+                    return new ObservableObject(subTarget);
+                return null;
+            }
+            return new ObservableObject(target);
+        }
         this.visit(expression);
         return this.getter;
     }
@@ -153,7 +169,7 @@ export class BuildWatcher<T extends object> extends ExpressionVisitor
             if (!sub)//&& watcher)
                 change.pipe('change', watcher);
             let x = getter(target, myWatcher);
-            if (arg0.optional && !x)
+            if (!x)
             {
                 // if (sub)
                 // {
@@ -207,12 +223,12 @@ export class Binding<T> extends EventEmitter<{
 
     public pipe<U>(expression: Expressions): Binding<U>
     {
-        const sub = new Binding<U>(null, expression);
+        const sub = new Binding<U>(this, expression);
 
         this.onChanged(ev =>
         {
             if (ev.value !== ev.oldValue)
-                this.attachWatcher(ev.value as object, sub.watcher);
+                sub.attachWatcher(ev.value as object, sub.watcher);
         })
 
 
@@ -229,18 +245,21 @@ export class Binding<T> extends EventEmitter<{
     constructor(public readonly target: object, public readonly expression: Expressions)
     {
         super();
-        let value = this.getValue();
-        this.watcher.on('change', (x) =>
+        if (expression)
         {
-            if (x)
-                this.attachWatcher(target, this.watcher);
+            let value: T;
+            this.watcher.on('change', (x) =>
+            {
+                if (x)
+                    this.attachWatcher(target, this.watcher);
 
-            const oldValue = value;
-            value = this.getValue();
-            this.emit('change', { value: this.getValue(), oldValue: oldValue });
-        })
-        this.attachWatcher = new BuildWatcher().eval(expression);
-        this.attachWatcher(target, this.watcher);
+                const oldValue = value;
+                value = this.getValue();
+                this.emit('change', { value: this.getValue(), oldValue: oldValue });
+            })
+            this.attachWatcher = new BuildWatcher().eval(expression);
+            this.attachWatcher(target, this.watcher);
+        }
     }
 
     private readonly attachWatcher: ReturnType<BuildWatcher<object>['eval']>;
@@ -281,6 +300,8 @@ export class Binding<T> extends EventEmitter<{
 
     public getValue(): T
     {
+        if (!this.expression)
+            return this.target as T;
         if (!this._getter)
             this._getter = new BuildGetter().eval<T>(this.expression);
         return ObservableObject.unwrap(this._getter(this.target));
