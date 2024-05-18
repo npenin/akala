@@ -332,22 +332,27 @@ export class Parser
             }
         }
 
-        const item = /^[\w0-9\$_]*/.exec(expression)[0];
-        length += item.length;
+        let item = /^[\w0-9\$_]*\??/.exec(expression)[0];
+        const itemLength = item.length;
+        length += itemLength;
+
+        const optional = item.endsWith('?')
+        if (optional)
+            item = item.substring(0, itemLength - 1);
 
         //eslint-disable-next-line @typescript-eslint/no-explicit-any
         let result: ExpressionsWithLength;
         if (this.parameters)
-            result = new MemberExpression(this.parameters[''] as TypedExpression<any>, new ParsedString(item), false) as TypedExpression<any>
+            result = new MemberExpression(this.parameters[''] as TypedExpression<any>, new ParsedString(item), optional) as TypedExpression<any>
         else
-            result = new MemberExpression(null as any, new ParsedString(item), false) as TypedExpression<any>
+            result = new MemberExpression(null as any, new ParsedString(item), optional) as TypedExpression<any>
         result.$$length = length;
         if (typeof operator != 'undefined')
         {
             result = new UnaryExpression(result, operator);
             result.$$length = length;
         }
-        return this.tryParseOperator(expression.substring(item.length), result, parseFormatter);
+        return this.tryParseOperator(expression.substring(itemLength), result, parseFormatter);
     }
 
     public parseFormatter(expression: string, lhs: ExpressionsWithLength): ExpressionsWithLength

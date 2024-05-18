@@ -21,6 +21,14 @@ binding.onChanged(ev =>
     changeEventCalled++;
 });
 
+let subChangeEventCalled = 0;
+const fooBinding = new Binding<typeof target['foo']>(target, Parser.parameterLess.parse('foo?'));
+const pipedBinding = new Binding<number>(fooBinding, Parser.parameterLess.parse('bar?.a'));
+pipedBinding.onChanged(ev =>
+{
+    subChangeEventCalled++;
+})
+
 new ObservableObject(target).setValue('foo', { baz: { d: 2, e: 'y', f: false } })
 
 assert.strictEqual(changeEventCalled, 1);
@@ -40,3 +48,5 @@ new ObservableObject(target.foo.bar).setValue('a', 3)
 assert.strictEqual(changeEventCalled, 1);
 assert.strictEqual(target.foo.bar.a, 3);
 assert.strictEqual(target.foo['baz']['d'], 2);
+
+assert.strictEqual(subChangeEventCalled, 3);
