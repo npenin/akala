@@ -34,10 +34,10 @@ export class PipeEvent<T extends unknown[], U extends unknown[], TReturnType, TO
         return result;
     }
 
-    public pipe<V extends unknown[]>(map: (...args: U) => V,)
-    {
-        return new PipeEvent(this, map, this.combineReturnTypes);
-    }
+    // public pipe<V extends unknown[]>(map: (...args: U) => V,)
+    // {
+    //     return new PipeEvent(this, map, this.combineReturnTypes);
+    // }
 }
 
 export class ReplayEvent<T extends unknown[]> extends Event<T>
@@ -68,10 +68,10 @@ export class ReplayEvent<T extends unknown[]> extends Event<T>
         return super.addListener(listener, options);
     }
 
-    public pipe<U extends unknown[]>(map: (...args: T) => U)
-    {
-        return new PipeEvent(this, map, noop);
-    }
+    // public pipe<U extends unknown[]>(map: (...args: T) => U)
+    // {
+    //     return new PipeEvent(this, map, noop);
+    // }
 }
 
 export class ValuedEvent<T extends unknown[], TReturnType, TOptions extends { once?: boolean }> implements IEventSink<T, TReturnType, TOptions>

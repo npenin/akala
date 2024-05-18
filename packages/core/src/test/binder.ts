@@ -1,23 +1,42 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-import { Binding } from '../binder.js';
+import { Parser } from '../index.js';
+import { Binding, ObservableObject } from '../observables/object.js';
 import * as assert from 'assert';
 // import 'source-map-support/register'
 
-const target = {
+const target: {
+    foo: {
+        bar?: { a: number, b: string, c: boolean },
+        baz?: { d: number, e: string, f: boolean }
+    }
+} = {
     foo: { bar: { a: 1, b: 'x', c: true } }
 };
 
-let changeEventCalled = false;
-const binding = new Binding('foo?.bar?.a', target);
+let changeEventCalled = 0;
+const binding = new Binding<number>(target, Parser.parameterLess.parse('foo?.bar?.a'));
 binding.onChanged(ev =>
 {
-    assert.strictEqual(ev.eventArgs.value, undefined);
-    changeEventCalled = true;
-}, true);
-
-Binding.getSetter(target, 'foo', undefined)({ baz: { d: 2, e: 'y', f: false } }, undefined).then(() =>
-{
-    assert.ok(changeEventCalled, 'changeEventNotCalled');
-    assert.strictEqual(target.foo.bar, undefined);
-    assert.strictEqual(target.foo['baz']['d'], 2);
+    assert.ok(ev.value === undefined || ev.value > 1);
+    changeEventCalled++;
 });
+
+new ObservableObject(target).setValue('foo', { baz: { d: 2, e: 'y', f: false } })
+
+assert.strictEqual(changeEventCalled, 1);
+assert.strictEqual(target.foo.bar, undefined);
+assert.strictEqual(target.foo['baz']['d'], 2);
+
+changeEventCalled = 0;
+new ObservableObject(target.foo).setValue('bar', { a: 2, b: 'y', c: false })
+
+assert.strictEqual(changeEventCalled, 1);
+assert.strictEqual(target.foo.bar.a, 2);
+assert.strictEqual(target.foo['baz']['d'], 2);
+
+changeEventCalled = 0;
+new ObservableObject(target.foo.bar).setValue('a', 3)
+
+assert.strictEqual(changeEventCalled, 1);
+assert.strictEqual(target.foo.bar.a, 3);
+assert.strictEqual(target.foo['baz']['d'], 2);

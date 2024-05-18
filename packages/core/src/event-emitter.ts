@@ -33,9 +33,23 @@ export class EventEmitter<T extends object = Record<string, Event<any[]>>>
 
     // protected readonly specialEvents: Partial<SpecialEvents> = {}
     protected readonly events: AllEvents<T> = {} as any;
-    constructor(public maxListeners = 11)
-    {
+    public maxListeners = Event.maxListeners;
 
+    constructor(init?: number | T)
+    {
+        switch (typeof init)
+        {
+            case 'number':
+                this.maxListeners = init;
+                break;
+            case 'object':
+                this.events = init as AllEvents<T>;
+                break;
+            case 'undefined':
+                break;
+            default:
+                throw new Error('Unsupported usage')
+        }
     }
 
     protected eventFactory<const TEvent extends keyof AllEvents<T>>(name: TEvent): AllEvents<T>[TEvent]
@@ -137,6 +151,7 @@ export interface IEventSink<T extends readonly unknown[], TReturnType, TOptions 
 export type IEvent<T extends readonly unknown[], TReturnType, TOptions extends { once?: boolean } = { once?: boolean }> = IEventSink<T, TReturnType, TOptions> &
 {
     emit(...args: T): TReturnType;
+    pipe(event: IEvent<T, TReturnType, TOptions>): Subscription
 }
 
 export class Event<T extends readonly unknown[] = unknown[], TReturnType = void, TOptions extends { once?: boolean } = { once?: boolean }> implements IEvent<T, TReturnType, TOptions>
@@ -189,6 +204,28 @@ export class Event<T extends readonly unknown[] = unknown[], TReturnType = void,
         const results = this.listeners.map(listener => listener(...args));
         if (this.combineReturnTypes)
             return this.combineReturnTypes(results);
+    }
+
+    pipe<const U extends string | symbol, V extends { [key in U]: IEvent<T, TReturnType, TOptions> }>(event: U, emitter: EventEmitter<V>): Subscription
+    pipe(event: IEvent<T, TReturnType, TOptions>): Subscription
+    pipe<const U extends EventKeys<V>, V extends { [key in U]: IEvent<T, TReturnType, TOptions> }>(event: (U) | IEvent<T, TReturnType, TOptions>, emitter?: EventEmitter<V>): Subscription
+    {
+        switch (typeof event)
+        {
+            case 'object':
+                return this.addListener((...args) =>
+                {
+                    return event.emit(...args)
+                });
+            case 'string':
+            case 'symbol':
+                return this.addListener((...args) =>
+                {
+                    return (emitter.emit(event, ...args as any) || null) as TReturnType
+                });
+            default:
+                throw new Error('unsupported pipe type');
+        }
     }
 
     dispose(): void
