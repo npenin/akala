@@ -1,5 +1,5 @@
 import { map } from "../each.js";
-import EventEmitter, { AllEventKeys, Event, EventArgs, EventKeys, EventListener, IEvent, disposeEvent } from "../event-emitter.js";
+import EventEmitter, { AllEventKeys, Event, EventArgs, EventKeys, EventListener, IEvent, Subscription, disposeEvent } from "../event-emitter.js";
 import { Parser } from "../index.js";
 import { EvaluatorAsFunction } from "../parser/evaluator-as-function.js";
 import { BinaryExpression } from "../parser/expressions/binary-expression.js";
@@ -93,7 +93,7 @@ export class BuildGetter<T extends object> extends ExpressionVisitor
 
     public eval<TValue = object>(expression: Expressions): (target: T) => TValue extends object ? ObservableObject<TValue> : TValue
     {
-        this.getter = (target) => new ObservableObject(target);
+        this.getter = (target) => target instanceof Binding ? new ObservableObject(target.getValue()) : new ObservableObject(target);
         this.visit(expression);
         return this.getter;
     }
@@ -119,7 +119,7 @@ export class BuildGetter<T extends object> extends ExpressionVisitor
     }
 }
 
-type Watcher = EventEmitter<{ 'change': Event<[]> }>;
+type Watcher = EventEmitter<{ 'change': Event<[source?: object]> }>;
 
 export class BuildWatcher<T extends object> extends ExpressionVisitor
 {
@@ -143,27 +143,40 @@ export class BuildWatcher<T extends object> extends ExpressionVisitor
         const getter = this.getter;
 
 
+        let sub: Subscription;
+        let change = new Event<[]>();
+        let myWatcher: Watcher = new EventEmitter({ change });
+        let result: ObservableObject<any>
 
+        this.getter = (target, watcher) =>
+        {
+            if (!sub)//&& watcher)
+                change.pipe('change', watcher);
+            let x = getter(target, myWatcher);
+            if (arg0.optional && !x)
+            {
+                // if (sub)
+                // {
+                //     change.emit();
+                //     sub();
+                // }
 
-        if (arg0.optional)
-            this.getter = (target, watcher) =>
-            {
-                const x = getter(target, watcher);
-                if (!x)
-                    return x;
-                const prop = member(target);
-                const result = new ObservableObject<any>(x);
-                result.watch(watcher, prop);
-                return result.getValue(prop);
+                return x;
             }
-        else
-            this.getter = (target, watcher) =>
-            {
-                const prop = member(target);
-                const result = new ObservableObject<any>(getter(target, watcher));
-                result.watch(watcher, prop);
+            const prop = member(target);
+            let newResult = new ObservableObject<any>(x);
+            if (result && result === newResult)
                 return result.getValue(prop);
-            }
+            else
+                result = newResult;
+
+            sub = result.on(prop, ev =>
+            {
+                watcher.emit('change', x);
+            })
+            // result.watch(watcher, prop);
+            return result.getValue(prop);
+        }
 
         return arg0;
     }
@@ -192,19 +205,45 @@ export class Binding<T> extends EventEmitter<{
         return binding;
     }
 
+    public pipe<U>(expression: Expressions): Binding<U>
+    {
+        const sub = new Binding<U>(null, expression);
+
+        this.onChanged(ev =>
+        {
+            if (ev.value !== ev.oldValue)
+                this.attachWatcher(ev.value as object, sub.watcher);
+        })
+
+
+        // this.watcher.on('change', () =>
+        // {
+        //     sub.watcher.emit('change');
+        // })
+
+        return sub;
+    }
+
+    watcher: Watcher = new EventEmitter();
+
     constructor(public readonly target: object, public readonly expression: Expressions)
     {
         super();
-        const watcher = new EventEmitter<{ change: Event<[]> }>();
         let value = this.getValue();
-        watcher.on('change', () =>
+        this.watcher.on('change', (x) =>
         {
+            if (x)
+                this.attachWatcher(target, this.watcher);
+
             const oldValue = value;
             value = this.getValue();
             this.emit('change', { value: this.getValue(), oldValue: oldValue });
         })
-        new BuildWatcher().eval(expression)(target, watcher);
+        this.attachWatcher = new BuildWatcher().eval(expression);
+        this.attachWatcher(target, this.watcher);
     }
+
+    private readonly attachWatcher: ReturnType<BuildWatcher<object>['eval']>;
 
     public static unwrap<T>(element: T): Partial<T>
     {
@@ -292,6 +331,7 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
             watcher.emit('change');
         }) as EventListener<ObservableObject<T>['events'][TKey]>);
         watcher.once(disposeEvent, sub);
+        return sub;
     }
 
     // private setters: { [key in keyof T]?: (target: T, value: T[key]) => void } = {};

@@ -218,6 +218,8 @@ export class ParsedBoolean extends ConstantExpression<boolean> implements Parsed
 
 export class Parser
 {
+    public static parameterLess: Parser = new Parser();
+
     private parameters: Record<string, ParameterExpression<unknown>>;
 
     constructor(...parameters: ParameterExpression<unknown>[])
