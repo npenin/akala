@@ -2,6 +2,7 @@ import { createRequire } from 'module'
 import * as path from 'path/posix'
 import { pathToFileURL, fileURLToPath } from 'url'
 
+
 export default function normalize(mode: 'import' | 'require' | 'requireMeta' | boolean | { mode: 'path' | 'require' | 'requireMeta' | 'import', relativeTo?: string }, currentWorkingDirectory: string, value: string)
 {
     if (typeof (mode) == 'object')
