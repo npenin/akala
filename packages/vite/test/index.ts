@@ -1,10 +1,9 @@
 /// <reference types="vite/client" />
 import './index.scss'
-import { CommandProcessor, Container, ICommandProcessor, Metadata, StructuredParameters, registerCommands } from '@akala/commands'
-import { Deferred, Event, EventEmitter, Injectable, InjectableAsync, InjectableConstructor, Injected, InjectedParameter, Injector, MiddlewarePromise, MiddlewareResult, SpecialNextParam, isPromiseLike, module } from '@akala/core';
-import { IScope, LocationService, Template, serviceModule, Router, composer, Composer, IControlInstance, templateCache, templateFunction, LocalAfterRemoteProcessor, FormComposer, bootstrapModule } from '@akala/client'
+import { Container, Metadata, StructuredParameters } from '@akala/commands'
+import { EventEmitter, isPromiseLike } from '@akala/core';
+import { IScope, LocationService, Template, serviceModule, templateCache, templateFunction, FormComposer, bootstrapModule, DataContext, DataBind, OutletService, OutletDefinitionBuilder } from '@akala/client'
 import { Processors } from '@akala/commands';
-import { SocketAdapter, SocketAdapterEventMap } from '@akala/json-rpc-ws';
 
 bootstrapModule.register('services', serviceModule);
 
@@ -19,50 +18,38 @@ import.meta.hot.on('template-reload', (data) =>
 });
 
 
-bootstrapModule.activate(['services.$router', 'services.$template', '$rootScope', 'services.$location'], async (router: Router, template: Template, root: IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: EventEmitter<Record<string, [any, StructuredParameters<unknown[]>, Metadata.Command]>> }>, location: LocationService) =>
+bootstrapModule.activate(['$rootScope', 'services.$location', 'services.$outlet'], async (root: IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: EventEmitter<Record<string, [any, StructuredParameters<unknown[]>, Metadata.Command]>> }>, location: LocationService, outlet: OutletService) =>
 {
-    Template.composers.push(new FormComposer())
+    Template.composers.push(new FormComposer(root.container))
+    Template.composers.push(new DataContext(root));
+    Template.composers.push(new DataBind(root));
 
-    router.use('/', async (req) =>
-    {
-        if (!root.$authProcessor.authState)
-            location.dispatch('/login');
-        else
+    outlet.use('/', 'main', {
+        template: 'test/index.html',
+        controller()
         {
-
-            const templateFunction = await template.get('test/index.html');
-            // import.meta.hot.accept('/test/index.html', m => templateFunction.hotReplace(m.text))
-            templateFunction.watch(root, () =>
-            {
-                document.getElementById('app').replaceChildren();
-                templateFunction(root, document.getElementById('app'))
-            }, true);
-            root.$set('currentUser', await root.container.dispatch('auth.whoami'))
+            if (!root.$authProcessor.authState)
+                location.dispatch('/login');
+            else
+                root.$setAsync('currentUser', root.container.dispatch('auth.whoami'))
+            return {};
         }
     })
 
     const commandEvents = root.$commandEvents;
-    router.use('/signup', async (req) =>
-    {
-        document.getElementById('app').replaceChildren();
-        (await template.get('test/signup/signup.html'))(root, document.getElementById('app'));
-        commandEvents.once('auth.user.add-user', (result) =>
+    outlet.use('/signup', 'main',
+        new OutletDefinitionBuilder(commandEvents).useTemplate('test/signup/signup.html').useCommandResult('auth.user.add-user', (result: any) =>
         {
             if (result.recordsAffected == 1)
                 location.dispatch('/login');
-        })
-    })
+        }));
 
-    router.use('/login', async (req) =>
-    {
-        document.getElementById('app').replaceChildren();
-        (await template.get('test/login/login.html'))(root, document.getElementById('app'));
-        commandEvents.once('auth.login', (result) =>
+    outlet.use('/login', 'main',
+        new OutletDefinitionBuilder(commandEvents).useTemplate('test/login/login.html').useCommandResult('auth.login', (result: any) =>
         {
             root.$set('$authProcessor.authState', result);
             location.dispatch('/');
-        })
-    })
+        }));
 })
 
 bootstrapModule.ready(['services.$location', '$rootScope'], async function (location: LocationService, rootScope: IScope<any>)
