@@ -14,14 +14,10 @@ type EventMap<T extends object> = { [key in EventKeys<T>]: AsEvent<T[key]> }
 // type ToEvent<T extends EventMap<T>> = { [key in keyof T]: Event<T[key], any> };
 export type AllEventKeys<T extends object> = EventKeys<T> | keyof SpecialEvents;
 type AllEvents<T extends object> = EventMap<T> & SpecialEvents
-type AllEventListener<T extends EventMap<T>> = { [key in keyof T]: EventListener<AsEvent<T[key]>> }
-type AllEventArgs<T extends EventMap<T>> = { [key in keyof T]: EventArgs<T[key]> };
-type AllEventReturnType<T extends EventMap<T>> = { [key in keyof T]: EventReturnType<T[key]> };
-type AllEventOptions<T extends EventMap<T>> = { [key in keyof T]: EventOptions<T[key]> };
-type X<T extends object> = EventMap<T>
-type Y = X<{ a: Event<[string, number], void> }>
-type Z = Y[keyof Y]
-type ZZ = EventMap<SpecialEvents>
+// type AllEventListener<T extends EventMap<T>> = { [key in keyof T]: EventListener<AsEvent<T[key]>> }
+// type AllEventArgs<T extends EventMap<T>> = { [key in keyof T]: EventArgs<T[key]> };
+// type AllEventReturnType<T extends EventMap<T>> = { [key in keyof T]: EventReturnType<T[key]> };
+// type AllEventOptions<T extends EventMap<T>> = { [key in keyof T]: EventOptions<T[key]> };
 
 export class EventEmitter<T extends object = Record<string, Event<any[]>>>
 {
@@ -34,6 +30,8 @@ export class EventEmitter<T extends object = Record<string, Event<any[]>>>
     // protected readonly specialEvents: Partial<SpecialEvents> = {}
     protected readonly events: AllEvents<T> = {} as any;
     public maxListeners = Event.maxListeners;
+
+    public get definedEvents() { return Object.keys(this.events); }
 
     constructor(init?: number | T)
     {
