@@ -35,7 +35,7 @@ export interface Composer<TOptions = unknown>
 {
     selector: string | string[];
     optionName?: string;
-    apply(items: HTMLElement, options?: TOptions): Promise<void>;
+    apply(items: HTMLElement, options?: TOptions): Disposable;
 }
 
 
@@ -47,7 +47,7 @@ export function composer(selector: string | Composer | (new () => Composer), opt
     switch (typeof selector)
     {
         case 'string':
-            return function (composingFunction: (items: HTMLElement, data) => Promise<void>)
+            return function (composingFunction: (items: HTMLElement, data) => Disposable)
             {
                 Template.composers.push({ selector: selector, optionName: optionName, apply: composingFunction });
             }
@@ -229,15 +229,15 @@ export class Template
         }
         else
         {
-            const promises: PromiseLike<void>[] = [];
-            each(filter(items, composer.selector), function (item)
-            {
-                promises.push(composer.apply(item, options))//.then(c => { instances.push(...c) }));
-            });
-            if (promises.length)
-            {
-                await Promise.all(promises)//.then(() => instances);
-            }
+            // const promises: PromiseLike<void>[] = [];
+            // each(filter(items, composer.selector), function (item)
+            // {
+            //     promises.push(composer.apply(item, options))//.then(c => { instances.push(...c) }));
+            // });
+            // if (promises.length)
+            // {
+            //     await Promise.all(promises)//.then(() => instances);
+            // }
             // return element;
         }
 

@@ -2,22 +2,13 @@ import { map as mapAsync } from "./eachAsync.js";
 
 function noop() { }
 
-export const disposeEvent = Symbol.for('akala/dispose');
-
-export type SpecialEvents = { [disposeEvent]: Event<[]> }
+export type SpecialEvents = { [Symbol.dispose]: Event<[]> }
 export type Subscription = () => boolean
 export type EventKeys<T extends object> = { [key in keyof T]: T[key] extends IEvent<unknown[], unknown, unknown> ? key : never }[keyof T];
 
 type EventMap<T extends object> = { [key in EventKeys<T>]: AsEvent<T[key]> }
-// type EventMap<T extends EventMapConstraint<T>> = { [key in keyof T]: T[key] extends IEvent<readonly unknown[], unknown, any> ? T[key] : never }
-// type EventMapWithoutSpecialEvents<T> = Omit<EventMap<T>, keyof SpecialEvents>
-// type ToEvent<T extends EventMap<T>> = { [key in keyof T]: Event<T[key], any> };
 export type AllEventKeys<T extends object> = EventKeys<T> | keyof SpecialEvents;
 type AllEvents<T extends object> = EventMap<T> & SpecialEvents
-// type AllEventListener<T extends EventMap<T>> = { [key in keyof T]: EventListener<AsEvent<T[key]>> }
-// type AllEventArgs<T extends EventMap<T>> = { [key in keyof T]: EventArgs<T[key]> };
-// type AllEventReturnType<T extends EventMap<T>> = { [key in keyof T]: EventReturnType<T[key]> };
-// type AllEventOptions<T extends EventMap<T>> = { [key in keyof T]: EventOptions<T[key]> };
 
 export class EventEmitter<T extends object = Record<string, Event<any[]>>>
 {
@@ -113,14 +104,14 @@ export class EventEmitter<T extends object = Record<string, Event<any[]>>>
         return this.events[event].removeListener(handler as any);
     }
 
-    dispose()
+    [Symbol.dispose]()
     {
-        if (this.events[disposeEvent])
-            this.events[disposeEvent].emit();
+        if (this.events[Symbol.dispose])
+            this.events[Symbol.dispose].emit();
         for (var prop in this.events)
         {
-            if (this.events[prop].dispose)
-                this.events[prop].dispose();
+            if (this.events[prop][Symbol.dispose])
+                this.events[prop][Symbol.dispose]();
         }
     }
 }
@@ -143,7 +134,7 @@ export interface IEventSink<T extends readonly unknown[], TReturnType, TOptions 
     hasListeners: boolean;
     addListener(listener: EventListener<IEventSink<T, TReturnType, TOptions>>, options?: TOptions): Subscription;
     removeListener(listener: EventListener<IEventSink<T, TReturnType, TOptions>>): boolean;
-    dispose(): void;
+    [Symbol.dispose](): void;
 }
 
 export type IEvent<T extends readonly unknown[], TReturnType, TOptions extends { once?: boolean } = { once?: boolean }> = IEventSink<T, TReturnType, TOptions> &
@@ -226,7 +217,7 @@ export class Event<T extends readonly unknown[] = unknown[], TReturnType = void,
         }
     }
 
-    dispose(): void
+    [Symbol.dispose](): void
     {
         this.listeners.length = 0;
     }
