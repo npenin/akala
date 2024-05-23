@@ -1,6 +1,5 @@
 import { BinaryOperator } from "@akala/core/expressions";
 import { State } from "../../state.js";
-import { AuthorizationCode } from "../../../model/authorization-code.js";
 import { Token } from "../../../model/access-token.js";
 
 export default async function (this: State, userName: string)

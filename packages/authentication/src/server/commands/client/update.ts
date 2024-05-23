@@ -1,5 +1,4 @@
 import { State } from "../../state.js";
-import { base64 } from '@akala/core'
 import { BinaryOperator } from '@akala/core/expressions'
 import { Client } from "../../../model/client.js";
 

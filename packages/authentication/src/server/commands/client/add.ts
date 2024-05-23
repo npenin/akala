@@ -1,5 +1,4 @@
 import { State } from "../../state.js";
-import { base64 } from '@akala/core'
 import { generateSecret } from "./renew-secret.js";
 
 export default async function (this: State, name: string, isTrusted: boolean, redirectUri: string, scope: string, signSecret: true): Promise<string>

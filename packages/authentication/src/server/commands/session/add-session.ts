@@ -1,6 +1,6 @@
 import { BinaryOperator } from "@akala/core/expressions";
 import { State } from "../../state.js";
-import { AuthenticationMethodReference, Session } from "../../../model/session.js";
+import { AuthenticationMethodReference } from "../../../model/session.js";
 
 export default async function (this: State, deviceId: string, userId: string, expiresOn?: Date, authenticationMethod?: AuthenticationMethodReference)
 {
@@ -19,12 +19,6 @@ export default async function (this: State, deviceId: string, userId: string, ex
             createdOn: new Date(),
             expiresOn: expiresOn,
         }
-    // token.userId = user.id;
-    // token.scope = scope;
-    // token.token = randomUUID();
-    // token.createdOn = new Date();
-    // token.clientId = clientId;
-    // token.expiresOn = typeof expiresOn == 'string' ? new Date(expiresOn) : expiresOn;
 
     await this.store.Session.createSingle(session);
     return session;

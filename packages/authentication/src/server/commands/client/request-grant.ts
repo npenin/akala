@@ -14,11 +14,8 @@ export async function validateClient(client: Client, clientSecret: string)
         if (client.clientSecret != base64.base64EncArr(new Uint8Array(await crypto.subtle.digest('SHA-256', base64.base64DecToArr(clientSecret)))))
             throw new ErrorWithStatus(HttpStatusCode.Unauthorized, 'invalid_client')
     }
-    else
-    {
-        if (client.clientSecret != clientSecret)
-            throw new ErrorWithStatus(HttpStatusCode.Unauthorized, 'invalid_client')
-    }
+    else if (client.clientSecret != clientSecret)
+        throw new ErrorWithStatus(HttpStatusCode.Unauthorized, 'invalid_client')
 }
 
 
