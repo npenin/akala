@@ -40,8 +40,9 @@ export class FormComposer implements Composer<Container<void>>
 
     readonly selector = 'form';
     readonly optionName = 'container'
-    async apply(form: HTMLFormElement, container?: Container<void>)//: Promise<IControlInstance<unknown>[]>
+    apply(form: HTMLFormElement, container?: Container<void>): Disposable//: Promise<IControlInstance<unknown>[]>
     {
+        const abort = new AbortController()
         form.addEventListener('submit', async (ev) =>
         {
             ev.preventDefault();
@@ -53,8 +54,13 @@ export class FormComposer implements Composer<Container<void>>
             {
                 console.error(e);
             }
-        })
-        return Promise.resolve()
+        }, { signal: abort.signal })
+        return {
+            [Symbol.dispose]()
+            {
+                abort.abort();
+            }
+        }
     }
 
 }

@@ -10,7 +10,7 @@ export class DataContext implements Composer<Scope>
 
     readonly selector: string = '[data-context]';
     readonly optionName: string = '$rootScope';
-    async apply(item: HTMLElement, options?: Scope): Promise<void>
+    apply(item: HTMLElement, options?: Scope): Disposable
     {
         if (item.dataset['context'] == this.optionName || item.dataset['context'] === '')
             item['dataContext'] = new Binding(options || this.scope, null);
@@ -23,11 +23,13 @@ export class DataContext implements Composer<Scope>
             else
                 binding = new Binding(options || this.scope, Parser.parameterLess.parse(item.dataset.context));
 
-            binding.onChanged(() =>
+            const sub = binding.onChanged(() =>
             {
                 item.dispatchEvent(new Event('dataContextHolderChanged'));
             })
             item['dataContext'] = binding;
+
+            return { [Symbol.dispose]() { sub() } };
         }
 
     }
@@ -61,7 +63,7 @@ export class DataBind implements Composer<void>
 
     selector = '[data-bind]';
     optionName = 'databind';
-    async apply(item: HTMLElement)
+    apply(item: HTMLElement)
     {
         let bindings: Record<string, Binding<unknown>>;
 
@@ -83,5 +85,11 @@ export class DataBind implements Composer<void>
             return [p[0], binding]
         }));
 
+        return {
+            [Symbol.dispose]()
+            {
+                Object.values(bindings).forEach(binding => binding[Symbol.dispose]());
+            }
+        }
     }
 }

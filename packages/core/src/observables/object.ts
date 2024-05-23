@@ -1,5 +1,5 @@
 import { map } from "../each.js";
-import EventEmitter, { Event, EventArgs, EventKeys, EventListener, IEvent, Subscription, disposeEvent } from "../event-emitter.js";
+import EventEmitter, { Event, EventArgs, EventKeys, EventListener, IEvent, Subscription } from "../event-emitter.js";
 import { Parser } from "../index.js";
 import { EvaluatorAsFunction } from "../parser/evaluator-as-function.js";
 import { ConstantExpression } from "../parser/expressions/constant-expression.js";
@@ -351,7 +351,7 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
         {
             watcher.emit('change');
         }) as EventListener<ObservableObject<T>['events'][TKey]>);
-        watcher.once(disposeEvent, sub);
+        watcher.once(Symbol.dispose, sub);
         return sub;
     }
 

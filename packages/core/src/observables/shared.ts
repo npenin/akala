@@ -92,7 +92,7 @@ export class ValuedEvent<T extends unknown[], TReturnType, TOptions extends { on
     {
         return false;
     }
-    dispose(): void
+    [Symbol.dispose](): void
     {
         this.value = null;
     }

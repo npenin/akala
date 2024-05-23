@@ -12,7 +12,7 @@ export function toEvent<T>(promise: PromiseLike<T>): IEventSink<[T], void, unkno
 {
     const result = new Event<[T]>(Event.maxListeners, () => { });
 
-    promise.then(v => { try { result.emit(v); } finally { result.dispose() } });
+    promise.then(v => { try { result.emit(v); } finally { result[Symbol.dispose]() } });
 
     return result;
 }
