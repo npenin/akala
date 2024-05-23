@@ -9,15 +9,9 @@ export default function normalize(mode: 'import' | 'require' | 'requireMeta' | b
         const absolute = normalize(mode.mode == 'path' || mode.mode, mode.relativeTo && path.resolve(mode.relativeTo, currentWorkingDirectory) || currentWorkingDirectory, value);
         if (mode.relativeTo)
         {
-            try
-            {
-                new URL(absolute);
+            if (URL.canParse(absolute))
                 return pathToFileURL('./' + path.relative('.', fileURLToPath(absolute)));
-            }
-            catch (e)
-            {
-                return path.relative('.', absolute);
-            }
+            return path.posix.relative('.', absolute);
         }
         return absolute;
     }
@@ -26,15 +20,22 @@ export default function normalize(mode: 'import' | 'require' | 'requireMeta' | b
         case 'import':
             if (value.startsWith('.'))
                 return new URL(value, 'file://' + currentWorkingDirectory + '/').toString();
-            try
-            {
-                new URL(value)
+            if (URL.canParse(value))
                 return value;
-            }
-            catch (e)
-            {
-                return value;
-            }
+            if (import.meta.resolve)
+                import.meta.resolve(value);
+            // if (process.platform !== 'win32')
+            return value;
+
+        // debugger;
+        // {
+        //     let packageName = value;
+        //     if (packageName[0] == '@')
+        //     {
+        //         packageName = packageName.split('/').slice(0, 2).join('/');
+        //         import(packageName + '/package.json');
+        //     }
+        // }
         case 'require':
             // var values = value && value.split('/');
             // if (value && (value[0] == '@' && values.length > 2))
