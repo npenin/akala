@@ -3,7 +3,7 @@ import { AuthenticationMethodReference } from "../../model/session.js";
 import { State } from "../state.js";
 import { BinaryOperator } from '@akala/core/expressions'
 
-export interface OIDC_JWT extends Record<string, string | number | string[] | number[]>
+export interface OidcJwt extends Record<string, string | number | string[] | number[]>
 {
     iss: string,
     sub: string,
@@ -17,7 +17,7 @@ export interface OIDC_JWT extends Record<string, string | number | string[] | nu
     azp?: string
 }
 
-export default async function getJWT(this: State, issuer: string, clientId: string, tokenId: string, algorithm: JWT<any>['header']['alg'], nonce?: string,): Promise<JWT<OIDC_JWT>>
+export default async function getJWT(this: State, issuer: string, clientId: string, tokenId: string, algorithm: JWT<any>['header']['alg'], nonce?: string,): Promise<JWT<OidcJwt>>
 {
     const user = await this.store.Token.where('id', BinaryOperator.Equal, tokenId).where('clientId', BinaryOperator.Equal, clientId).firstOrDefault();
 

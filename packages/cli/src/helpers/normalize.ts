@@ -25,24 +25,9 @@ export default function normalize(mode: 'import' | 'require' | 'requireMeta' | b
                 return value;
             if (import.meta.resolve)
                 import.meta.resolve(value);
-            // if (process.platform !== 'win32')
             return value;
 
-        // debugger;
-        // {
-        //     let packageName = value;
-        //     if (packageName[0] == '@')
-        //     {
-        //         packageName = packageName.split('/').slice(0, 2).join('/');
-        //         import(packageName + '/package.json');
-        //     }
-        // }
         case 'require':
-            // var values = value && value.split('/');
-            // if (value && (value[0] == '@' && values.length > 2))
-            //     return createRequire(path.dirname(normalize('requireMeta', currentWorkingDirectory, values.slice(0, 2).join('/')))).resolve('./' + values.slice(2).join('/'))
-            // else if (value && (value[0] != '@' && values.length > 1))
-            //     return createRequire(path.dirname(normalize('requireMeta', currentWorkingDirectory, values.shift()))).resolve('./' + values.join('/'))
             return createRequire(path.resolve(currentWorkingDirectory) + '/').resolve(value);
         case 'requireMeta':
             return createRequire(path.resolve(currentWorkingDirectory) + '/').resolve(value + '/package.json');
