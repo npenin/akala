@@ -1,4 +1,4 @@
-#  (2024-05-03)
+#  (2024-05-22)
 
 
 ### Bug Fixes
@@ -241,6 +241,7 @@
 * improve usage in browser 8c69317
 * improve usage in browser be570f3
 * improve usage with objects 91d1f50
+* improve windows support f724070
 * improved logging support 8c81e18
 * improved ready command for remote containers ffd2a17
 * improves command detection ff43e85
@@ -383,6 +384,7 @@
 * remove duplicate binary operator 4930340
 * remove duplicate foreach in publish 09d9fe5
 * remove duplicated code in pm start command 3a91342
+* remove extra trace 552ccef
 * remove extra ts declaration 0283564
 * remove failure masking 7c4ae85
 * remove hrtime dependency f85fb22
