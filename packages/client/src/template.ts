@@ -1,4 +1,3 @@
-import { Control, IControlInstance } from './controls/controls.js'
 import { Scope } from './scope.js'
 import { service } from './common.js'
 import { Binding, Event, EventEmitter, Http, Interpolate, ObjectEvent, ObservableObject, Parser, SimpleInjector, Subscription, each, eachAsync, grep, map } from '@akala/core';
@@ -27,20 +26,20 @@ service('$interpolate')(Interpolate)
 
 export interface templateFunction
 {
-    (target: object, parent: HTMLElement): Promise<IControlInstance<unknown>[]>;
+    (target: object, parent: HTMLElement | ShadowRoot): Promise<void>;
     hotReplace(markup: string): void;
     watch(target: object, handler: () => void, trigger?: boolean): Subscription;
 }
 
 export interface Composer<TOptions = unknown>
 {
-    selector: string;
-    optionName: string;
-    apply(items: HTMLElement, data, options?: TOptions): Promise<IControlInstance<unknown>[]>;
+    selector: string | string[];
+    optionName?: string;
+    apply(items: HTMLElement, options?: TOptions): Promise<void>;
 }
 
 
-export function composer(selector: string, optionName: string): ClassDecorator
+export function composer(selector: string, optionName?: string): ClassDecorator
 export function composer(selector: (new () => Composer))
 export function composer(selector: Composer)
 export function composer(selector: string | Composer | (new () => Composer), optionName?: string)
@@ -48,7 +47,7 @@ export function composer(selector: string | Composer | (new () => Composer), opt
     switch (typeof selector)
     {
         case 'string':
-            return function (composingFunction: (items: HTMLElement, data) => Promise<IControlInstance<unknown>[]>)
+            return function (composingFunction: (items: HTMLElement, data) => Promise<void>)
             {
                 Template.composers.push({ selector: selector, optionName: optionName, apply: composingFunction });
             }
@@ -116,13 +115,13 @@ export class Template
     {
         const root = document.createElement('div');
         root.innerHTML = string;
-        return map(root.children, function (el) { return el as HTMLElement });
+        return map(root.children, (el) => el as HTMLElement);
     }
 
     public build(markup: string): templateFunction
     {
         let template = this.interpolator.build(markup)
-        var f: templateFunction = ((data, parent?: HTMLElement) =>
+        var f: templateFunction = ((data, parent?: HTMLElement | ShadowRoot) =>
         {
             f.hotReplace = (markup: string) =>
             {
@@ -157,7 +156,7 @@ export class Template
                     confirm('template has changed, please consider reloading to see updated change');
                 }
                 templateInstance = newTemplateInstance;
-                Template.composeAll(templateInstance, data, parent);
+                Template.composeAll(templateInstance, parent);
             }
 
             var templateInstance = Template.buildElements(template(data));
@@ -168,7 +167,7 @@ export class Template
                     parent.appendChild(inst);
                 })
             }
-            return Template.composeAll(templateInstance, data);
+            return Template.composeAll(templateInstance);
         }) as templateFunction;
         f.hotReplace = async (markup: string) =>
         {
@@ -193,57 +192,65 @@ export class Template
         return f;
     }
 
-    static async composeAll(items: ArrayLike<HTMLElement>, data, root?: Element, options?: { [key: string]: unknown }): Promise<IControlInstance<unknown>[]>
+    static async composeAll(items: ArrayLike<HTMLElement>, root?: Element | ShadowRoot, options?: { [key: string]: unknown }): Promise<void>
     {
-        const result: IControlInstance<unknown>[] = [];
+        // const result: IControlInstance<unknown>[] = [];
         return await eachAsync(this.composers, async (composer) =>
         {
-            await this.compose(composer, items, data, root, options && options[composer.optionName]).then(instances => result.push(...instances));
-        }, true).then(() => result);
+            await this.compose(composer, items, root, composer.optionName && options && options[composer.optionName])//.then(instances => result.push(...instances));
+        }, true)//.then(() => result);
     }
 
-    static async compose(composer: Composer, items: ArrayLike<HTMLElement>, data, root?: Element, options?: unknown): Promise<IControlInstance<unknown>[]>
+    static async compose(composer: Composer, items: ArrayLike<HTMLElement>, root?: Element | ShadowRoot, options?: unknown): Promise<void>
     {
-        data.$new = Scope.prototype.$new;
-        const instances: IControlInstance<unknown>[] = [];
+        // data.$new = Scope.prototype.$new;
+        // const instances: IControlInstance<unknown>[] = [];
+        const selector = typeof composer.selector == 'string' ? composer.selector : composer.selector.join(',');
         if (filter(items, composer.selector).length == 0)
         {
             await eachAsync(items, async function (el)
             {
-                await eachAsync(el.querySelectorAll(composer.selector), async function (el: HTMLElement)
+                await eachAsync(el.querySelectorAll(selector), async function (el: HTMLElement)
                 {
-                    const closest = el.parentElement && el.parentElement.closest(composer.selector);
+                    const closest = el.parentElement && el.parentElement.closest(selector);
                     let applyInnerTemplate = !!closest || !root;
                     if (!applyInnerTemplate && root)
                         applyInnerTemplate = applyInnerTemplate || root == closest;
                     if (applyInnerTemplate)
                     {
-                        instances.push(...await Template.compose(composer, [el], data, el, options && options[composer.optionName]));
+                        // instances.push(...
+                        await Template.compose(composer, [el], el, composer.optionName && options && options[composer.optionName])
+                        // );
                     }
                 }, false);
+
             }, false);
-            return instances;
+            // return instances;
         }
         else
         {
             const promises: PromiseLike<void>[] = [];
             each(filter(items, composer.selector), function (item)
             {
-                promises.push(composer.apply(item, data, options).then(c => { instances.push(...c) }));
+                promises.push(composer.apply(item, options))//.then(c => { instances.push(...c) }));
             });
             if (promises.length)
-                return Promise.all(promises).then(() => instances);
+            {
+                await Promise.all(promises)//.then(() => instances);
+            }
             // return element;
         }
 
-        return instances;
+        return;
     }
 }
 
-export function filter<T extends Element = Element>(items: ArrayLike<T>, filter: string)
+export function filter<T extends Element = Element>(items: ArrayLike<T>, filter: string | string[])
 {
     return grep(items, function (element)
     {
-        return element.matches(filter);
+        if (typeof filter == 'string')
+            return element.matches(filter);
+        return !!filter.find(filter => element.matches(filter));
     })
 }
