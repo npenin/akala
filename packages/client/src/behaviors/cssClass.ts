@@ -1,5 +1,5 @@
-import { control, GenericControlInstance, Control, ControlControlParameter } from './control.js'
 import { ObservableArray, ObservableArrayEventArgs, Binding, ParsedString, isPromiseLike, each } from '@akala/core'
+import { databind } from './shared.js';
 
 function removeClass(element: HTMLElement, item: ParsedString | Array<string> | string | { [key: string]: boolean })
 {
@@ -75,16 +75,15 @@ function addClass(element: HTMLElement, item: classParamType)
         })
 }
 
-@control('class', 400)
-export class CssClass extends GenericControlInstance<string[]>
+@databind('class')
+export class CssClass 
 {
-    constructor(factory: Control<unknown>, target: unknown, element: HTMLElement, parameter: ControlControlParameter<CssClass>)
+    constructor(element: HTMLElement, parameter: classParamType)
     {
-        super();
-        if (Array.isArray(parameter))
-        {
-            parameter = new ObservableArray(parameter);
-        }
+        // if (Array.isArray(parameter))
+        // {
+        //     parameter = new ObservableArray(parameter);
+        // }
         if (parameter instanceof ObservableArray)
         {
             parameter.addListener(function (arg: ObservableArrayEventArgs<string>)

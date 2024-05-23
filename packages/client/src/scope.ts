@@ -1,13 +1,13 @@
-import { Binding, IWatched, Injectable, ObservableObject, Parser, SimpleInjector, each, watcher } from "@akala/core";
+import { Binding, IWatched, Injectable, ObservableObject, Parser, SimpleInjector, Subscription, each, watcher } from "@akala/core";
 
 export interface IScope<T extends object>
 {
     $new<U extends object>(): IScope<U>;
-    $set<U extends Exclude<keyof T, number | symbol>>(expression: U, value: T[U]);
-    $set(expression: string, value: unknown);
-    $set(expression: string, value: unknown);
-    $watch(expression: string, handler: (value: unknown) => void);
-    $inject(f: (...args: unknown[]) => unknown);
+    $setAsync(expression: string, value: unknown): void;
+    $set<U extends Exclude<keyof T, number | symbol>>(expression: U, value: T[U]): void;
+    $set(expression: string, value: unknown): void;
+    $watch(expression: string, handler: (value: unknown) => void): Subscription;
+    $inject(f: (...args: unknown[]) => unknown): void;
     $bind(expression: string): Binding<unknown>;
 }
 
@@ -63,6 +63,10 @@ export class Scope<T extends object> implements IScope<T>
     {
         ObservableObject.setValue(this, new Parser().parse(expression), value);
     }
+    public $setAsync(expression: string, value: Promise<unknown>)
+    {
+        value.then(value => ObservableObject.setValue(this, new Parser().parse(expression), value));
+    }
 
     public $bind(expression: string): Binding<unknown>
     {
@@ -83,7 +87,7 @@ export class Scope<T extends object> implements IScope<T>
         if (binding['handlers'].indexOf(handler) > -1)
             return;
         binding['handlers'].push(handler);
-        binding.onChanged(function (ev)
+        return binding.onChanged(function (ev)
         {
             handler(ev.value);
         });

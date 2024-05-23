@@ -3,32 +3,33 @@ import * as routing from './router.js'
 import { LocationService } from './locationService.js'
 import * as core from '@akala/core';
 export * from './template.js';
-import { OutletService, PartDefinition } from './part.js';
-import './part.js';
+export * from './outlet.js';
+import './outlet.js';
 import * as scope from './scope.js';
-import * as controls from './controls/controls.js';
-export { Control, BaseControl, control } from './controls/controls.js';
+// import * as controls from './controls/controls.js';
+// export { Control, BaseControl, control } from './controls/controls.js';
 
 export const loadScript = load;
 
 export type IScope<T extends object> = scope.IScope<T> & T;
 export type Http = core.Http;
-export { OutletService as Part, PartDefinition };
 export const router = routing.router
 export { Router } from './router.js'
 export { LocationService };
 export type Injector = core.Injector;
 export const init = core.Module.prototype.activate;
 
-export { controls };
+// export { controls };
+
+import './controlsv2/outlet.js'
 
 import HotKeyTrigger from './hotkeytrigger.js'
 export { HotKeyTrigger }
 
 common.bootstrapModule['router'] = routing.router
-common.bootstrapModule['BaseControl'] = controls.BaseControl
-common.bootstrapModule['Control'] = controls.Control
-common.bootstrapModule['control'] = controls.control
+// common.bootstrapModule['BaseControl'] = controls.BaseControl
+// common.bootstrapModule['Control'] = controls.Control
+// common.bootstrapModule['control'] = controls.control
 common.bootstrapModule['load'] = loadScript
 
 const mainRouter = routing.router('mainRouter');
