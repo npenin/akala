@@ -1,4 +1,4 @@
-import { CommandMetadataProcessorSignature, ICommandProcessor, Triggers } from '@akala/commands';
+import { CommandMetadataProcessorSignature, Triggers } from '@akala/commands';
 import { Container, Processors } from '@akala/commands'
 import { SocketAdapter, SocketAdapterEventMap } from '@akala/json-rpc-ws';
 import { MiddlewareAsync } from '@akala/core'

@@ -1,6 +1,5 @@
-import { Scope } from './scope.js'
 import { service } from './common.js'
-import { Binding, Event, EventEmitter, Http, Interpolate, ObjectEvent, ObservableObject, Parser, SimpleInjector, Subscription, each, eachAsync, grep, map } from '@akala/core';
+import { Binding, Event, EventEmitter, Http, Interpolate, Parser, SimpleInjector, Subscription, each, eachAsync, grep, map } from '@akala/core';
 
 // eslint-disable-next-line no-constant-condition
 if (MutationObserver && false)

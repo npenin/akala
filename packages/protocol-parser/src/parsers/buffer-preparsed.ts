@@ -2,7 +2,7 @@ import { Cursor, ParserWithMessageWithoutKnownLength } from './_common.js';
 
 export default class PreparsedLengthBuffer<T, TKey extends keyof T> implements ParserWithMessageWithoutKnownLength<Buffer, T>
 {
-    constructor(private lengthProperty: TKey, private encoding: BufferEncoding = 'ascii')
+    constructor(private lengthProperty: TKey)//, private encoding: BufferEncoding = 'ascii')
     {
 
     }

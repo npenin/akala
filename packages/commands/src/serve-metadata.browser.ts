@@ -98,7 +98,7 @@ export async function connectWith<T>(options: NetConnectOpts, host: string, medi
         default:
             // eslint-disable-next-line no-case-declarations, @typescript-eslint/no-unused-vars
             const x: never = medium;
-            throw new Error('Invalid medium type ' + medium);
+            throw new Error('Invalid medium type ' + x);
     }
 
 }

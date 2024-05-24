@@ -1,7 +1,7 @@
 import { isPromiseLike } from '../promiseHelpers.js';
 import { ConstantExpression } from '../parser/expressions/constant-expression.js';
 import { ExpressionVisitor } from '../parser/expressions/expression-visitor.js';
-import { Expressions, StrictExpressions, TypedExpression } from '../parser/expressions/expression.js';
+import { StrictExpressions, TypedExpression } from '../parser/expressions/expression.js';
 import { MemberExpression } from '../parser/expressions/member-expression.js';
 import { ExpressionsWithLength } from '../parser/parser.js';
 import { Injector } from './shared.js';

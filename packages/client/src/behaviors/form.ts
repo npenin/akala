@@ -1,6 +1,5 @@
 import { Container } from "@akala/commands";
 import { Composer } from "../template.js";
-import { IScope } from "../scope.js";
 import { Injector } from "@akala/core";
 
 export class FormInjector extends Injector

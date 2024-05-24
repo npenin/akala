@@ -2,7 +2,7 @@ import * as http from 'http';
 import * as https from 'https';
 import * as http2 from 'http2';
 import { Socket } from 'net';
-import { Middleware, MiddlewareCompositeAsync, MiddlewarePromise, MiddlewareResult, Router, Router2Async, RouterAsync, RouterOptions } from '@akala/core';
+import { Middleware, MiddlewareCompositeAsync, MiddlewarePromise, MiddlewareResult, Router2Async, RouterAsync, RouterOptions } from '@akala/core';
 import { UpgradeMiddleware } from './upgradeMiddleware.js';
 import { Request, Response } from './shared.js';
 import accepts from 'accepts';

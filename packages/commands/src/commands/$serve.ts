@@ -1,5 +1,5 @@
 import serve from '../cli/serve.js';
-import serveMetadata, { ServeMetadata, ServeMetadataWithSignal } from '../serve-metadata.js';
+import serveMetadata, { ServeMetadataWithSignal } from '../serve-metadata.js';
 import { Container } from '../model/container.js';
 import { ServeOptions } from '../index.js';
 

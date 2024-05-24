@@ -1,6 +1,6 @@
 import { Key, ParseOptions, pathToRegexp, TokensToRegexpOptions, regexpToFunction, RegexpToFunctionOptions, MatchFunction } from "path-to-regexp";
 import { MiddlewareComposite } from '../middlewares/composite-sync.js';
-import { Middleware, MiddlewarePromise, MiddlewareResult } from '../middlewares/shared.js';
+import { Middleware, MiddlewareResult } from '../middlewares/shared.js';
 
 export interface Routable
 {

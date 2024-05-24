@@ -1,4 +1,4 @@
-import { Proxy, isProxy, base64 } from '@akala/core';
+import { isProxy, base64 } from '@akala/core';
 import { Serializable, SerializableObject } from '@akala/core';
 import fs from 'fs/promises'
 import { inspect } from 'util'
@@ -289,7 +289,6 @@ export default class Configuration<T extends object = SerializableObject>
         const secret = await aesEncrypt(newConfig, self.cryptKey);
         if (!self.cryptKey)
             self.cryptKey = secret.key;
-        const enc = new TextDecoder()
         self.set(key, { iv: base64.base64EncArr(secret.iv), value: base64.base64EncArr(new Uint8Array(secret.ciphertext)) });
     }
 

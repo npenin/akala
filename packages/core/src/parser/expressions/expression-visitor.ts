@@ -11,7 +11,6 @@ import { ApplySymbolExpression } from './apply-symbol-expression.js';
 import { NewExpression } from './new-expression.js';
 import { IVisitable } from './visitable.js';
 import { FormatExpression } from '../parser.js';
-import { expressions } from '../../index.js';
 
 
 export type EqualityComparer<T> = (a: T, b: T) => boolean;

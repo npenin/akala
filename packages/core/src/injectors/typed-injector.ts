@@ -1,8 +1,8 @@
 import { isPromiseLike } from '../promiseHelpers.js';
-import { Event, EventArgs, EventEmitter, EventListener, IEvent } from '../event-emitter.js';
+import { EventArgs, EventEmitter, IEvent } from '../event-emitter.js';
 import "reflect-metadata";
 import { Injector, LocalInjector, injectorLog } from './shared.js';
-import { SimpleInjector, defaultInjector } from './simple-injector.js';
+import { defaultInjector } from './simple-injector.js';
 
 export type NestedKeys<TypeMap extends object, TKey> = TKey extends keyof TypeMap ? Exclude<TKey, number> : TKey extends `${infer A}.${infer B}` ? A extends keyof TypeMap ? TypeMap[A] extends Record<string, unknown> ? NestedKeys<TypeMap[A], B> : never : never : never;
 export type NestedPath<TypeMap extends object, TKey> = TKey extends keyof TypeMap ? TypeMap[TKey] : TKey extends `${infer A}.${infer B}` ? A extends keyof TypeMap ? TypeMap[A] extends Record<string, unknown> ? NestedPath<TypeMap[A], B> : never : never : never;

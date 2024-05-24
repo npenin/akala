@@ -54,7 +54,7 @@ export function length<T>(source: { length: number; } | Iterable<T>): number
 
     let i = 0;
     //eslint-disable-next-line @typescript-eslint/no-unused-vars
-    for (const v of source as Iterable<T>)
+    for (const { } of source as Iterable<T>)
     {
         i++;
     }
@@ -70,7 +70,7 @@ export async function lengthAsync<T>(source: { length: number; } | Iterable<T> |
     if (isPromiseLike(source))
         source = await source;
     //eslint-disable-next-line @typescript-eslint/no-unused-vars
-    for await (const v of source as Iterable<T>)
+    for await (const { } of source as Iterable<T>)
     {
         i++;
     }
@@ -112,16 +112,16 @@ export function groupBy<T, U extends string | number>(source: Iterable<T>, crite
             {
                 const group = criteria(value);
                 // console.log({ value, group, result: this.result });
-                if (typeof this.result == 'object')
+                if (typeof group == 'object')
                 {
                     throw new NotSupportedException('Not yet implemented');
                 }
-                if (typeof groups[this.result as string] == 'undefined')
+                if (typeof groups[group] == 'undefined')
                 {
-                    groups[this.result as string] = [];
-                    result.push({ key: this.result, value: groups[this.result] });
+                    groups[group] = [];
+                    result.push({ key: group, value: groups[group] });
                 }
-                groups[this.result as string].push(value);
+                groups[group].push(value);
 
             }
             return result[Symbol.iterator]();
@@ -156,9 +156,9 @@ export function groupByAsync<T, U extends string | number>(source: AsyncIterable
                         {
                             throw new NotSupportedException('Not yet implemented');
                         }
-                        if (typeof groups[group as string] == 'undefined')
+                        if (typeof groups[group] == 'undefined')
                         {
-                            groups[group as string] = [];
+                            groups[group] = [];
                             result.push({ key: group, value: groups[group] });
                         }
                         groups[group].push(value);

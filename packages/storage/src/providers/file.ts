@@ -9,7 +9,7 @@ import { CommandProcessor } from '../commands/command-processor.js';
 import { CommandResult, Commands, Create } from '../commands/command.js';
 import { ModelDefinition } from '../shared.js';
 import { promisify } from "util";
-import { Generator, Model } from '../common.js';
+import { Generator } from '../common.js';
 import { NotSupportedException } from '../exceptions.js';
 import { isPromiseLike } from '@akala/core';
 

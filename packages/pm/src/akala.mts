@@ -10,7 +10,7 @@ import { spawnAsync } from './cli-helper.js';
 import State, { StateConfiguration } from './state.js';
 import { CliContext, ErrorMessage, NamespaceMiddleware, unparse } from '@akala/cli';
 import { InteractError } from './index.js';
-import { Binding, ObservableObject, Parser } from '@akala/core';
+import { ObservableObject, Parser } from '@akala/core';
 import module from 'module'
 
 const require = module.createRequire(import.meta.url);
@@ -59,7 +59,6 @@ export default function (_config, program: NamespaceMiddleware)
     let processor: Processors.JsonRpc;
     let metaContainer: Metadata.Container;
     let container: Container<unknown>;
-    const handle = new NamespaceMiddleware(null);
     cli.preAction(async c =>
     {
         process.stdin.pause();
@@ -476,7 +475,7 @@ async function tryRun(processor: ICommandProcessor, cmd: Metadata.Command, args:
 
 }
 
-async function tryLocalProcessing(args: CliContext)
+export async function tryLocalProcessing(args: CliContext)
 {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const config: StateConfiguration = require(path.join(homedir(), './.pm.config.json'));

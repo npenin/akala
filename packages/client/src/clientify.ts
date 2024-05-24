@@ -1,36 +1,24 @@
+import { Module, eachAsync } from '@akala/core';
 import * as common from './common.js'
 import * as routing from './router.js'
 import { LocationService } from './locationService.js'
-import * as core from '@akala/core';
 export * from './template.js';
 export * from './outlet.js';
 import './outlet.js';
 import * as scope from './scope.js';
-// import * as controls from './controls/controls.js';
-// export { Control, BaseControl, control } from './controls/controls.js';
 
 export const loadScript = load;
 
 export type IScope<T extends object> = scope.IScope<T> & T;
-export type Http = core.Http;
 export const router = routing.router
 export { Router } from './router.js'
 export { LocationService };
-export type Injector = core.Injector;
-export const init = core.Module.prototype.activate;
-
-// export { controls };
+export const init = Module.prototype.activate;
 
 import './controlsv2/outlet.js'
 
 import HotKeyTrigger from './hotkeytrigger.js'
 export { HotKeyTrigger }
-
-common.bootstrapModule['router'] = routing.router
-// common.bootstrapModule['BaseControl'] = controls.BaseControl
-// common.bootstrapModule['Control'] = controls.Control
-// common.bootstrapModule['control'] = controls.control
-common.bootstrapModule['load'] = loadScript
 
 const mainRouter = routing.router('mainRouter');
 mainRouter.useMiddleware(common.serviceModule.register('$preRouter', routing.router('preRouter')));
@@ -42,7 +30,6 @@ mainRouter.useError(function (error)
 });
 common.serviceModule.register('$location', new LocationService());
 
-// export { Promisify, Deferred };
 export const run: typeof common.bootstrapModule.ready = common.bootstrapModule.ready.bind(common.bootstrapModule);
 
 common.bootstrapModule.activate([], function ()
@@ -54,7 +41,7 @@ common.bootstrapModule.activate([], function ()
 export function load(...scripts: string[]): Promise<unknown>
 {
     const firstScriptTag = document.getElementsByTagName('script')[0]; // find the first script tag in the document
-    return core.eachAsync(scripts, function (script, i)
+    return eachAsync(scripts, function (script, i)
     {
         const scriptTag = document.createElement('script'); // create a script tag
         firstScriptTag.parentNode.insertBefore(scriptTag, firstScriptTag); // append the script to the DOM
@@ -79,11 +66,4 @@ common.serviceModule.ready(['$location'], function ($location: LocationService)
                 console.warn('deadend');
         });
     });
-
-    // $location.start({ hashbang: false, dispatch: false })
 });
-
-// window.addEventListener('load', function ()
-// {
-//     common.$$injector.start();
-// });

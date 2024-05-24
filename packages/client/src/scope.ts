@@ -1,4 +1,4 @@
-import { Binding, IWatched, Injectable, ObservableObject, Parser, SimpleInjector, Subscription, each, watcher } from "@akala/core";
+import { Binding, Injectable, ObservableObject, Parser, SimpleInjector, Subscription, each } from "@akala/core";
 
 export interface IScope<T extends object>
 {

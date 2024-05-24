@@ -63,7 +63,7 @@ export interface VanillaOptions
 export class VanillaCommandProcessor extends CommandProcessor<VanillaOptions>
 {
     private store: VanillaStore;
-    private engineOptions: VanillaOptions;
+    // private engineOptions: VanillaOptions;
 
     constructor()
     {
@@ -129,6 +129,6 @@ export class VanillaCommandProcessor extends CommandProcessor<VanillaOptions>
     init(options: VanillaOptions): void
     {
         this.store = options.store;
-        this.engineOptions = options;
+        // this.engineOptions = options;
     }
 }

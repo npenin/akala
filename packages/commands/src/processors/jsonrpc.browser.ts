@@ -1,6 +1,6 @@
 import * as jsonrpcws from '@akala/json-rpc-ws/browser'
 import { CommandProcessor, StructuredParameters } from '../model/processor.js'
-import { Command, Container as MetaContainer } from '../metadata/index.js';
+import { Command } from '../metadata/index.js';
 import { Container } from '../model/container.js';
 import { Local } from './local.js';
 import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam, SerializableObject, TypedSerializableObject } from '@akala/core';
@@ -21,7 +21,7 @@ export async function handler(url: URL): Promise<HandlerResult<JsonRpcBrowser>>
     const connection = JsonRpcBrowser.getConnection(socket);
 
     return {
-        processor: new JsonRpcBrowser(connection, true),
+        processor: new JsonRpcBrowser(connection),
         getMetadata: () => new Promise<Command[]>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
             typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
         ))
@@ -45,7 +45,6 @@ export class JsonRpcBrowser extends CommandProcessor
         }).then((socket) =>
         {
             const provier = new JsonRpcBrowser(JsonRpcBrowser.getConnection(socket))
-            provier.passthrough = true;
             return provier;
         });
     }
@@ -121,7 +120,7 @@ export class JsonRpcBrowser extends CommandProcessor
                 }
             }
         });
-        const getProcessor = lazy(() => new JsonRpcBrowser(connection, true));
+        const getProcessor = lazy(() => new JsonRpcBrowser(connection));
         const getContainer = lazy(() =>
         {
             const c = Container.proxy(container?.name + '-client', getProcessor());
@@ -160,7 +159,7 @@ export class JsonRpcBrowser extends CommandProcessor
 
     public get connectionId() { return this.client.id }
 
-    constructor(private client: jsonrpcws.BaseConnection<ReadableStream<Uint8Array>>, private passthrough?: boolean)
+    constructor(private client: jsonrpcws.BaseConnection<ReadableStream<Uint8Array>>)
     {
         super('jsonrpc');
     }

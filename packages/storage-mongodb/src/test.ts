@@ -34,7 +34,7 @@ describe('query', () =>
             await pe.dbSet<ModelType>(model.name).createSingle({ name: 'a', prop1: 1, prop2: true })
             await pe.dbSet<ModelType>(model.name).createSingle({ name: 'b', prop1: 2, prop2: true })
             await pe.dbSet<ModelType>(model.name).createSingle({ name: 'c', prop1: 3, prop2: false });
-            var translator = new MongoDbTranslator(db);
+            var translator = new MongoDbTranslator();
             await translator.visit(
                 new ApplySymbolExpression(pe.dbSet<ModelType>(model.name).where('prop2', BinaryOperator.Equal, true).expression, QuerySymbols.count)
             )

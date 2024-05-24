@@ -1,4 +1,4 @@
-import { Middleware, MiddlewareAsync, MiddlewarePromise } from "@akala/core";
+import { MiddlewareAsync, MiddlewarePromise } from "@akala/core";
 import { Request } from './shared.js'
 import { Socket } from "net";
 

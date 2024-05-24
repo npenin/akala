@@ -1,4 +1,4 @@
-import { injectWithName, register, registerFactory } from './global-injector.js';
+import { injectWithName, register } from './global-injector.js';
 import { ParsedAny, Parser } from './parser/parser.js';
 import { each, map } from './each.js';
 import { module, TypedSerializableObject } from './helpers.js';
@@ -7,8 +7,7 @@ import { Formatter, FormatterFactory } from './formatters/common.js';
 // import http from 'http';
 // import https from 'https';
 import { Injected } from './injectors/shared.js';
-import { MiddlewareComposite } from './middlewares/composite-sync.js';
-import type { Middleware, MiddlewareAsync } from './middlewares/shared.js';
+import type { MiddlewareAsync } from './middlewares/shared.js';
 import { MiddlewareCompositeAsync } from './index.js';
 
 

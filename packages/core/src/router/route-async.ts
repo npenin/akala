@@ -1,6 +1,5 @@
 import { Key, ParseOptions, pathToRegexp, TokensToRegexpOptions, regexpToFunction, RegexpToFunctionOptions, MatchFunction } from "path-to-regexp";
-import { MiddlewareComposite } from '../middlewares/composite-sync.js';
-import { Middleware, MiddlewarePromise, MiddlewareResult } from '../middlewares/shared.js';
+import { MiddlewarePromise } from '../middlewares/shared.js';
 import { MiddlewareCompositeAsync } from '../middlewares/composite-async.js';
 import { Routable, RouteBuilderArguments } from "./route.js";
 import { MiddlewareAsync } from "../middlewares/shared.js";
