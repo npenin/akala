@@ -2,7 +2,7 @@ import { EvaluatorAsFunction } from './parser/evaluator-as-function.js';
 import { Parser } from './parser/parser.js';
 import { escapeRegExp } from './reflect.js';
 
-type EvalFunction<T> = (value: unknown) => T;
+// type EvalFunction<T> = (value: unknown) => T;
 type InterpolateFn<T> = ((value: unknown) => T) & { expressions: string[] };
 
 export class Interpolate

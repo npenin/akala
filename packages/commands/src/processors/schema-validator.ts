@@ -1,7 +1,7 @@
 import { MiddlewarePromise } from '@akala/core';
 import { Container, Metadata } from '../index.browser.js';
 import { Command } from '../metadata/command.js';
-import { CommandMetadataProcessorSignature, ICommandProcessor, StructuredParameters } from '../model/processor.js';
+import { ICommandProcessor, StructuredParameters } from '../model/processor.js';
 import Ajv, { Schema, ErrorObject } from 'ajv';
 
 export interface SchemaConfiguration extends Metadata.Configuration

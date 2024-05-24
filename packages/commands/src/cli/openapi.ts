@@ -34,5 +34,7 @@ export default async function (pathToOpenApiFile: string | URL)
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const openApi = JSON.parse(content);
 
+    console.log(openApi);
+
 
 }

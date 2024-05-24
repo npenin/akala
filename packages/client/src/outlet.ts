@@ -4,7 +4,7 @@ import { Template } from './template.js'
 import { IScope } from './scope.js'
 import { service } from './common.js'
 import { LocationService as Location } from './locationService.js'
-import { Binding, Event, EventEmitter, EventOptions, SimpleInjector, Subscription, each, map } from '@akala/core'
+import { Binding, Event, EventEmitter, EventOptions, SimpleInjector, Subscription, map } from '@akala/core'
 
 export type PartInstance = { scope: Binding<IScope<object>>, element: HTMLElement | ShadowRoot };
 
@@ -47,28 +47,39 @@ export class OutletService
         this.location.refresh();
     }
 
-    public async apply<TScope extends IScope<object>>(partInstance: () => PartInstance, part: OutletDefinition<TScope>, params: unknown): Promise<void>
+    public async apply<TScope extends IScope<object>>(partInstance: () => PartInstance, part: OutletDefinition<TScope>, params: unknown): Promise<Disposable>
     {
         const template = this.template;
-        if (part && part.template)
+        if (part?.template)
             // eslint-disable-next-line no-var
             var tpl = await template.get(part.template);
 
         const p = partInstance();
         if (!p)
             return;
-        if (part && part.controller)
-            await part.controller(p.scope as unknown as TScope, p.element, params);
+        let controller: Partial<Disposable>;
+        if (part?.controller)
+            controller = part.controller(p.scope as unknown as TScope, p.element, params);
         if (tpl)
         {
-            tpl.watch(p.scope, async () =>
+            const sub = tpl.watch(p.scope, async () =>
             {
                 p.element.replaceChildren();
-                // if (p.controlsInPart)
-                //     each(p.controlsInPart, c => c.dispose());
-                // p.controlsInPart = 
                 await tpl(p.scope, p.element);
             }, true)
+
+            if (controller)
+            {
+                const oldController = controller;
+                return {
+                    [Symbol.dispose]()
+                    {
+                        if (oldController[Symbol.dispose])
+                            oldController[Symbol.dispose]();
+                        sub();
+                    }
+                }
+            }
         }
         else
             return Promise.reject();
@@ -98,7 +109,7 @@ export class OutletService
 export interface OutletDefinition<TScope extends IScope<object>>
 {
     template?: string | Promise<string>;
-    controller?(scope: TScope, element: HTMLElement | ShadowRoot, params: unknown): { dispose?(): void };
+    controller?(scope: TScope, element: HTMLElement | ShadowRoot, params: unknown): { [Symbol.dispose]?(): void };
 }
 
 export class OutletDefinitionBuilder<TScope extends IScope<object>> implements OutletDefinition<TScope>
@@ -108,7 +119,7 @@ export class OutletDefinitionBuilder<TScope extends IScope<object>> implements O
     }
 
     template?: string | Promise<string>;
-    controller?(scope: TScope, element: HTMLElement | ShadowRoot, params: unknown): { dispose?(): void };
+    controller?(scope: TScope, element: HTMLElement | ShadowRoot, params: unknown): { [Symbol.dispose]?(): void };
     private controllerCommands: EventEmitter<Record<string, Event<[unknown]>>>
 
     useTemplate(template?: string | Promise<string>)
@@ -118,7 +129,7 @@ export class OutletDefinitionBuilder<TScope extends IScope<object>> implements O
         return this;
     }
 
-    useController(controller: (scope: TScope, element: HTMLElement | ShadowRoot, params: unknown) => { dispose?(): void })
+    useController(controller: (scope: TScope, element: HTMLElement | ShadowRoot, params: unknown) => { [Symbol.dispose]?(): void })
     {
         if (this.controllerCommands)
             throw new Error('cannot use both controller and commandResult');
@@ -139,7 +150,7 @@ export class OutletDefinitionBuilder<TScope extends IScope<object>> implements O
                 )
 
                 return {
-                    dispose()
+                    [Symbol.dispose]()
                     {
                         subscriptions.forEach(s => s());
                     }

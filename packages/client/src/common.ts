@@ -1,19 +1,16 @@
-import { ctorToFunction, Module, module, defaultInjector, EventEmitter, SpecialNextParam, MiddlewarePromise, Event, Injector } from '@akala/core';
+import { ctorToFunction, Module, module, defaultInjector, EventEmitter, SpecialNextParam, MiddlewarePromise, Event } from '@akala/core';
 
-export var bootstrapModule: Module = module('akala', 'akala-services', 'controls')
+export const bootstrapModule: Module = module('akala', 'akala-services', 'controls')
 
 bootstrapModule.activateEvent.maxListeners = 100;
 
-export var serviceModule: Module = module('akala-services')
+export const serviceModule: Module = module('akala-services')
 
 export function resolveUrl(namespace: string)
 {
     const root = document.head.querySelector('base').href;
     return new URL(namespace, root).toString();
 }
-
-// import { IControlInstance } from './controls/control.js';
-// export { IControlInstance }
 
 defaultInjector.register('$resolveUrl', resolveUrl)
 
@@ -29,8 +26,8 @@ export function service(name, ...toInject: string[])
             {
                 return instance || serviceModule.injectWithName(toInject, (...args: unknown[]) =>
                 {
-                    return instance = ctorToFunction(target)(...args);
-
+                    instance = ctorToFunction(target)(...args);
+                    return instance;
                 })();
             });
     };

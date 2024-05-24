@@ -96,7 +96,7 @@ function operatorLength(operator: BinaryOperator)
 
 export class FormatExpression<TOutput> extends Expression implements ParsedAny
 {
-    constructor(public readonly lhs: ExpressionsWithLength | (TypedExpression<unknown> & ParsedAny), public readonly formatter: string, public readonly settings: ParsedObject)
+    constructor(public readonly lhs: ExpressionsWithLength | (TypedExpression<unknown> & ParsedAny), public readonly formatter: string, public readonly settings: Expressions)
     {
         super();
     }
@@ -362,10 +362,11 @@ export class Parser
         // const formatter: FormatterFactory<unknown, ParsedOneOf> = module('$formatters').resolve('#' + item[1]);
         // if (!formatter)
         //     throw new Error(`filter not found: ${item[1]}`)
-        let settings: ParsedObject;
+        let settings: ExpressionsWithLength;
         if (expression[0] == ':')
         {
-            var rhs = this.parseAny(expression.substring(1), false);
+            settings = this.parseAny(expression.substring(1), false);
+
             // settings = formatter.parse(expression.substring(1)) as ParsedObject;
         }
 

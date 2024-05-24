@@ -1,4 +1,4 @@
-import { Middleware, MiddlewareAsync, MiddlewarePromise } from "@akala/core";
+import { MiddlewareAsync, MiddlewarePromise } from "@akala/core";
 import { Request, Response } from './shared.js'
 import { resolve } from 'path'
 import send from 'send'

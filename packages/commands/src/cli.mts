@@ -1,7 +1,6 @@
 #!/usr/bin/env -S node
 import * as path from 'path'
 import { fileURLToPath } from 'url'
-import * as os from 'os'
 import { Cli } from './index.js';
 
 const dirname: string = path.dirname(fileURLToPath(import.meta.url)) + '/';// = path.dirname(import.meta.url).substring('file:'.length) + '/';

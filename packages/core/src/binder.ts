@@ -2,7 +2,6 @@ import { getSetter, Parser } from './parser/parser.js';
 import { Event, EventEmitter } from './event-emitter.js';
 import { isPromiseLike } from './promiseHelpers.js';
 import * as formatters from './formatters/index.js';
-import { map } from './each.js'
 import { ExtendableEvent } from './module.js'
 import { Arguments } from './type-helper.js';
 import { EvaluatorAsFunction, ParsedFunction } from './parser/evaluator-as-function.js';

@@ -2,7 +2,7 @@ import { isPromiseLike } from "@akala/core";
 import * as expressions from "@akala/core/expressions";
 import { ApplySymbolExpression, BinaryExpression, CallExpression, ConstantExpression, Expressions, ExpressionVisitor, LambdaExpression, MemberExpression, NewExpression, ParameterExpression, StrictExpressions, UnaryExpression, UnknownExpression } from "@akala/core/expressions";
 import { Exception, ExpressionExecutor, ModelDefinition, NotSupportedException, QuerySymbols, Relationship } from "@akala/storage";
-import { Db, Document } from "mongodb";
+import { Document } from "mongodb";
 
 export default class MongoDbTranslator extends ExpressionVisitor
 {
@@ -13,7 +13,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
     pipeline: Document;
     pipelines: Document[] = [];
 
-    constructor(private db: Db)
+    constructor()
     {
         super();
     }

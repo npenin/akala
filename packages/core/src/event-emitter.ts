@@ -14,7 +14,6 @@ export class EventEmitter<T extends object = Record<string, Event<any[]>>>
 {
     hasListener<const TKey extends EventKeys<T & SpecialEvents>>(name: TKey)
     {
-        const x = this.events[name];
         return this.events[name] && this.events[name].hasListeners
     }
 

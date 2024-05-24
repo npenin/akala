@@ -189,13 +189,15 @@ export function parseCronPart(value: string, steps: number): number[]
 type container = commands.container;
 export { container };
 
-// declare module '@akala/pm'
-// {
-//     export interface SidecarMap
-//     {
-//         '@akala/cron': container
-//     }
-// }
+declare module '@akala/pm'
+{
+    export interface SidecarMap
+    {
+        '@akala/cron': container
+    }
+}
+
+export { SidecarMap }
 
 export function getTargets(requests: DateRequest[], startDate?: Date)
 {

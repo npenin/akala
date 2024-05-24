@@ -34,7 +34,7 @@ export class FileSystem extends CommandProcessor
         return new Error('this is not supported in a browser')
     }
 
-    constructor(private root: string | null)
+    constructor(_root: string | null)
     {
         super('fs');
         throw new Error('this is not supported in a browser')

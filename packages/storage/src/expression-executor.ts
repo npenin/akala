@@ -263,7 +263,7 @@ export class ExpressionExecutor extends ExpressionVisitor
     }
     visitBinary<T extends Expressions = StrictExpressions>(expression: BinaryExpression<T>)
     {
-        const left = (this as ExpressionVisitor).visit(expression.left);
+        (this as ExpressionVisitor).visit(expression.left);
         if (isPromiseLike(this.result))
             this.result = this.result.then((leftResult: number) =>
             {

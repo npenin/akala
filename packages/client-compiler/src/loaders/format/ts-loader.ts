@@ -1,10 +1,9 @@
 import { Loader, LoaderResult, Resolver } from '../../index.js';
 import fs from 'node:fs'
-import { pathToFileURL, fileURLToPath } from 'url'
-import path from 'path'
+import { fileURLToPath } from 'url'
 import ts from 'typescript'
 import { protocolParser } from '../protocol/multi-protocol.js'
-import { LogLevels, logger as coreLogger } from '@akala/core'
+import { logger as coreLogger } from '@akala/core'
 import { inspectOpts } from 'debug'
 
 

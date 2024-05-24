@@ -6,7 +6,6 @@ import { Container } from "./model/container.js";
 import $serve from "./commands/$serve.js";
 import { Configurations } from "./metadata/configurations.js";
 import { dirname, isAbsolute, resolve } from "node:path";
-import { Local } from "./processors/local.js";
 import { HandlerResult, handlers } from "./protocol-handler.js";
 const serveDefinition: Configurations = await import('../' + '../src/commands/$serve.json', { with: { type: 'json' } }).then(x => x.default)
 

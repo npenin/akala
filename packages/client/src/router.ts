@@ -1,4 +1,4 @@
-import { Middleware, MiddlewarePromise, MiddlewareRoute, OptionsResponse, RouterAsync, Routable, RouteBuilderArguments, RouterOptions, MiddlewareResult } from '@akala/core';
+import { Middleware, MiddlewareRoute, OptionsResponse, RouterAsync, Routable, RouteBuilderArguments, RouterOptions, MiddlewareResult } from '@akala/core';
 
 export class RouterRequest 
 {

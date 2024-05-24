@@ -1,5 +1,4 @@
 import { Cursor, Parser } from './_common.js';
-import Uint8 from './uint8.js';
 import { double } from "../core.js";
 import Uint64 from './uint64.js';
 

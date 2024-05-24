@@ -33,22 +33,22 @@ export function webComponent(tagName: string)
 
             connectedCallback()
             {
-                this.control.connectedCallback && this.control.connectedCallback();
+                this.control.connectedCallback?.();
             }
 
             disconnectedCallback()
             {
-                this.control.disconnectedCallback && this.control.disconnectedCallback();
+                this.control.disconnectedCallback?.();
             }
 
             adoptedCallback()
             {
-                this.control.adoptedCallback && this.control.adoptedCallback();
+                this.control.adoptedCallback?.();
             }
 
             attributeChangedCallback(name: string, oldValue: string, newValue: string)
             {
-                this.control.adoptedCallback && this.control.attributeChangedCallback(name, oldValue, newValue);
+                this.control.attributeChangedCallback?.(name, oldValue, newValue);
             }
 
             observedAttributes = target.observedAttributes;

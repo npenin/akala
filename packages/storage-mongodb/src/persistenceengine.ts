@@ -22,7 +22,7 @@ export class MongoDb extends PersistenceEngine<Db>
     }
     async load<T>(expression: Expressions): Promise<T>
     {
-        const executor = new MongoDbTranslator(this.db);
+        const executor = new MongoDbTranslator();
         var oldVisitContant = executor.visitConstant;
         const db = this.db;
         var collection: Collection;

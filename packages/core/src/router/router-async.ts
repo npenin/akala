@@ -1,4 +1,4 @@
-import { Middleware, SpecialNextParam, convertToMiddleware } from '../middlewares/shared.js';
+import { SpecialNextParam, convertToMiddleware } from '../middlewares/shared.js';
 import { MiddlewareCompositeAsync } from '../middlewares/composite-async.js';
 import { MiddlewareRouteAsync } from './route-async.js';
 import { each } from '../each.js';

@@ -44,7 +44,7 @@ export class Container<TState> extends SimpleInjector implements MiddlewareAsync
         this.processor.useMiddleware(50, defaultCommands);
         this.register({ name: '$serve', config: { '': { inject: $serve.$inject } } })
         this.register({ name: '$attach', config: { '': { inject: $attach.$inject } } })
-        this.register($metadata);
+        this.register({ name: '$metadata', ...$metadata });
     }
 
     public pipe(container: Container<TState>, priority: number = 30): void
