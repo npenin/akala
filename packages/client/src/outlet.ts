@@ -145,8 +145,8 @@ export class OutletDefinitionBuilder<TScope extends IScope<object>> implements O
         {
             this.useController(() =>
             {
-                let subscriptions: Subscription[] = Object.entries(this.controllerCommands.definedEvents).map(e =>
-                    this.commandActions.on(e[0], (...args) => this.controllerCommands.emit(e[0], ...args))
+                let subscriptions: Subscription[] = Object.values(this.controllerCommands.definedEvents).map(e =>
+                    this.commandActions.on(e, (...args) => this.controllerCommands.emit(e, ...args))
                 )
 
                 return {
