@@ -25,7 +25,7 @@ service('$interpolate')(Interpolate)
 
 export interface templateFunction
 {
-    (target: object, parent: HTMLElement | ShadowRoot): Promise<void>;
+    (target: object, parent: HTMLElement | ShadowRoot): Promise<Disposable>;
     hotReplace(markup: string): void;
     watch(target: object, handler: () => void, trigger?: boolean): Subscription;
 }
@@ -39,8 +39,8 @@ export interface Composer<TOptions = unknown>
 
 
 export function composer(selector: string, optionName?: string): ClassDecorator
-export function composer(selector: (new () => Composer))
-export function composer(selector: Composer)
+export function composer(selector: (new () => Composer)): void
+export function composer(selector: Composer): void
 export function composer(selector: string | Composer | (new () => Composer), optionName?: string)
 {
     switch (typeof selector)
@@ -191,16 +191,16 @@ export class Template
         return f;
     }
 
-    static async composeAll(items: ArrayLike<HTMLElement>, root?: Element | ShadowRoot, options?: { [key: string]: unknown }): Promise<void>
+    static async composeAll(items: ArrayLike<HTMLElement>, root?: Element | ShadowRoot, options?: { [key: string]: unknown }): Promise<Disposable>
     {
-        // const result: IControlInstance<unknown>[] = [];
+        const result: Disposable[] = [];
         return await eachAsync(this.composers, async (composer) =>
         {
-            await this.compose(composer, items, root, composer.optionName && options && options[composer.optionName])//.then(instances => result.push(...instances));
-        }, true)//.then(() => result);
+            await this.compose(composer, items, root, composer.optionName && options && options[composer.optionName]).then(disposable => result.push(disposable));
+        }, true).then(() => new CompositeDisposable(result));
     }
 
-    static async compose(composer: Composer, items: ArrayLike<HTMLElement>, root?: Element | ShadowRoot, options?: unknown): Promise<void>
+    static async compose(composer: Composer, items: ArrayLike<HTMLElement>, root?: Element | ShadowRoot, options?: unknown): Promise<Disposable>
     {
         // data.$new = Scope.prototype.$new;
         // const instances: IControlInstance<unknown>[] = [];
@@ -229,10 +229,13 @@ export class Template
         else
         {
             // const promises: PromiseLike<void>[] = [];
-            // each(filter(items, composer.selector), function (item)
-            // {
-            //     promises.push(composer.apply(item, options))//.then(c => { instances.push(...c) }));
-            // });
+            const disposables: Disposable[] = [];
+            each(filter(items, composer.selector), function (item)
+            {
+                disposables.push(composer.apply(item, options))//.then(c => { instances.push(...c) }));
+            });
+
+            return new CompositeDisposable(disposables);
             // if (promises.length)
             // {
             //     await Promise.all(promises)//.then(() => instances);
@@ -241,6 +244,17 @@ export class Template
         }
 
         return;
+    }
+}
+
+export class CompositeDisposable implements Disposable
+{
+    constructor(private disposables: Disposable[])
+    { }
+
+    [Symbol.dispose]()
+    {
+        this.disposables.forEach(d => d[Symbol.dispose]());
     }
 }
 
