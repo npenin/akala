@@ -10,7 +10,7 @@ type EventMap<T extends object> = { [key in EventKeys<T>]: AsEvent<T[key]> }
 export type AllEventKeys<T extends object> = EventKeys<T> | keyof SpecialEvents;
 type AllEvents<T extends object> = EventMap<T> & SpecialEvents
 
-export class EventEmitter<T extends object = Record<string, Event<any[]>>>
+export class EventEmitter<T extends object = Record<string, Event<unknown[]>>>
 {
     hasListener<const TKey extends EventKeys<T & SpecialEvents>>(name: TKey)
     {
@@ -18,7 +18,7 @@ export class EventEmitter<T extends object = Record<string, Event<any[]>>>
     }
 
     // protected readonly specialEvents: Partial<SpecialEvents> = {}
-    protected readonly events: AllEvents<T> = {} as any;
+    protected readonly events: AllEvents<T> = {} as AllEvents<T>;
     public maxListeners = Event.maxListeners;
 
     public get definedEvents() { return Object.keys(this.events); }
@@ -40,7 +40,7 @@ export class EventEmitter<T extends object = Record<string, Event<any[]>>>
         }
     }
 
-    protected eventFactory<const TEvent extends keyof AllEvents<T>>(name: TEvent): AllEvents<T>[TEvent]
+    protected eventFactory<const TEvent extends keyof AllEvents<T>>(_name: TEvent): AllEvents<T>[TEvent]
     {
         return new Event(this.maxListeners, noop) as unknown as AllEvents<T>[TEvent];
     }
@@ -100,7 +100,7 @@ export class EventEmitter<T extends object = Record<string, Event<any[]>>>
     {
         if (!(event in this.events))
             return false
-        return this.events[event].removeListener(handler as any);
+        return this.events[event].removeListener(handler);
     }
 
     [Symbol.dispose]()
@@ -164,7 +164,7 @@ export class Event<T extends readonly unknown[] = unknown[], TReturnType = void,
             throw new Error('Possible memory leak: too many listeners are registered');
         if (options?.once)
         {
-            let stopListening = this.addListener((...args) =>
+            const stopListening = this.addListener((...args) =>
             {
                 try
                 {
@@ -175,6 +175,7 @@ export class Event<T extends readonly unknown[] = unknown[], TReturnType = void,
                     stopListening();
                 }
             })
+            return stopListening;
         }
         else
             this.listeners.push(listener);
@@ -209,7 +210,7 @@ export class Event<T extends readonly unknown[] = unknown[], TReturnType = void,
             case 'symbol':
                 return this.addListener((...args) =>
                 {
-                    return (emitter.emit(event, ...args as any) || null) as TReturnType
+                    return (emitter.emit(event, ...args as EventArgs<V[U]>) || null) as TReturnType
                 });
             default:
                 throw new Error('unsupported pipe type');
@@ -233,7 +234,7 @@ export class AsyncEvent<T extends unknown[] = unknown[], TReturnType = void> ext
     {
         if (options?.once)
         {
-            let stopListening = super.addListener(async (...args) =>
+            const stopListening = super.addListener(async (...args) =>
             {
                 try
                 {
@@ -244,6 +245,7 @@ export class AsyncEvent<T extends unknown[] = unknown[], TReturnType = void> ext
                     stopListening();
                 }
             })
+            return stopListening;
         }
         else
             return super.addListener(listener);
