@@ -1,5 +1,5 @@
 import { createRequire } from 'module'
-import * as path from 'path/posix'
+import * as path from 'path'
 import { pathToFileURL, fileURLToPath } from 'url'
 
 
@@ -24,7 +24,7 @@ export default function normalize(mode: 'import' | 'require' | 'requireMeta' | b
             if (URL.canParse(value))
                 return value;
             if (import.meta.resolve)
-                import.meta.resolve(value);
+                return import.meta.resolve(value);
             return value;
 
         case 'require':
