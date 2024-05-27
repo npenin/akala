@@ -1,4 +1,4 @@
-#  (2024-05-22)
+#  (2024-05-27)
 
 
 ### Bug Fixes
@@ -304,6 +304,7 @@
 * normalization and edge cases in cli 874a97f
 * normalize behavior with relativeTo 30021e6
 * normalize causes issue if not URL 4879fb0
+* normalize on windows e3b9cd1
 * normalize path 58c9fcd
 * normalize require properly imports packages ea8e772
 * normalize support for custom conditions 6d876fd
