@@ -53,11 +53,17 @@ export function length<T>(source: { length: number; } | Iterable<T>): number
         return source['length'];
 
     let i = 0;
-    //eslint-disable-next-line @typescript-eslint/no-unused-vars
-    for (const { } of source as Iterable<T>)
+    const iterator = (source as Iterable<T>)[Symbol.iterator]();
+    do
     {
+        const result = iterator.next();
+        if (result.done)
+            break;
         i++;
     }
+    //eslint-disable-next-line no-constant-condition
+    while (true);
+
     return i;
 }
 
@@ -69,11 +75,18 @@ export async function lengthAsync<T>(source: { length: number; } | Iterable<T> |
     let i = 0;
     if (isPromiseLike(source))
         source = await source;
-    //eslint-disable-next-line @typescript-eslint/no-unused-vars
-    for await (const { } of source as Iterable<T>)
+
+    const iterator = (source as Iterable<T>)[Symbol.iterator]();
+    do
     {
+        const result = iterator.next();
+        if (result.done)
+            break;
         i++;
     }
+    //eslint-disable-next-line no-constant-condition
+    while (true);
+
     return i;
 }
 
