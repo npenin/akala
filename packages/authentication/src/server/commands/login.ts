@@ -31,7 +31,7 @@ export async function validateSessionOwner(state: State, sessionId: string, sess
         return new ErrorWithStatus(401, 'Invalid session id.');
 
     const user = await state.store.User.where('id', BinaryOperator.Equal, session.userId).firstOrDefault();
-    if (!state.verifyHash(sessionId, base64.base64DecToArr(sessionSignature), base64.base64DecToArr(user.salt)))
+    if (!await state.verifyHash(sessionId, base64.base64DecToArr(sessionSignature), base64.base64DecToArr(user.salt)))
         return new ErrorWithStatus(401, 'Invalid session signature.');
 
     return null;

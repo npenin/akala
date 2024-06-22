@@ -1,17 +1,26 @@
-import { Request } from "@akala/server";
+import { Container } from "@akala/commands";
 import { ensureOptionals, JWAlgorithms, OICDAuthMethods, OIDCDescription, OIDCResponseType } from "../../client/oidc-state.js";
 
-export default function (req: Request): OIDCDescription
+export default async function (url: string | URL, container: Container<void>): Promise<OIDCDescription>
 {
-    const host = req.headers.host || req.socket.localAddress
-    const baseUrl = new URL('https://' + host)
+    const metadata = await container.dispatch('$metadata');
+
+    url = url.toString();
+
+    const authorize = metadata.commands.find(c => c.name == 'authorize');
+    const authenticate = metadata.commands.find(c => c.name == 'authenticate');
+    const discover = metadata.commands.find(c => c.name == 'discover');
+    const revoke = metadata.commands.find(c => c.name == 'remove-token');
+    const jwks = metadata.commands.find(c => c.name == 'get-keys');
+    const root = url.substring(0, url.length - discover.config.http.route.length);
+
     return ensureOptionals(
         {
-            issuer: baseUrl.toString(),
-            authorization_endpoint: new URL("/authorize", baseUrl).toString(),
-            token_endpoint: new URL("/token", baseUrl).toString(),
-            revocation_endpoint: new URL("/revoke", baseUrl).toString(),
-            jwks_uri: new URL("/keys", baseUrl).toString(),
+            issuer: url.toString(),
+            authorization_endpoint: new URL(authorize.config.http.route, root).toString(),
+            token_endpoint: new URL(authenticate.config.http.route, root).toString(),
+            revocation_endpoint: new URL(revoke.config.http.route, root).toString(),
+            jwks_uri: new URL(jwks.config.http.route, root).toString(),
             response_types_supported: [
                 OIDCResponseType.Code,
                 OIDCResponseType.Token,
