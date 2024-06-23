@@ -18,8 +18,8 @@ export default async function (this: State, container: Container<State>, provide
 
     const store = container.state.store = await AuthenticationStore.create(provider);
     const cryptoKey = await crypto.subtle.importKey('raw', base64.base64DecToArr(key), { name: 'HMAC', hash: 'SHA-256' }, false, ["sign", 'verify']);
-    this.getHash = async (value: string, salt?: Uint8Array) => base64.base64EncArr(new Uint8Array(await crypto.subtle.sign('HMAC', cryptoKey, salt ? new Uint8Array([...salt, ...base64.strToUTF8Arr(value)]) : base64.strToUTF8Arr(value))));
-    this.verifyHash = async (value: string, signature: BufferSource, salt?: Uint8Array) => await crypto.subtle.verify('HMAC', cryptoKey, signature, salt ? new Uint8Array([...salt, ...base64.strToUTF8Arr(value)]) : base64.strToUTF8Arr(value));
+    this.getHash = async (value: string, salt?: ArrayBuffer) => base64.base64EncArr(await crypto.subtle.sign('HMAC', cryptoKey, salt ? new Uint8Array([...new Uint8Array(salt), ...new Uint8Array(base64.strToUTF8Arr(value))]) : base64.strToUTF8Arr(value)));
+    this.verifyHash = async (value: string, signature: BufferSource, salt?: ArrayBuffer) => await crypto.subtle.verify('HMAC', cryptoKey, signature, salt ? new Uint8Array([...new Uint8Array(salt), ...new Uint8Array(base64.strToUTF8Arr(value))]) : base64.strToUTF8Arr(value));
     this.session = { slidingExpiration: 300 };
 
     ExchangeMiddleware.register('code', async (code, clientId, req) =>
