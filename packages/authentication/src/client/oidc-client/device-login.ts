@@ -9,8 +9,8 @@ type X = {
     "expires_in": number
 }
 
-export default async function login(this: OIDCClientState, providerName: string, http: Http, grantType: OIDCResponseType, scopes: string[]): Promise<X>
+export default async function login(this: OIDCClientState, providerName: string, http: Http, grantType: OIDCResponseType, scopes: string): Promise<X>
 {
     // const provider = this.providers[providerName];
-    return await http.getJSON<X>(providers[providerName].device_authorization_endpoint, new URLSearchParams({ response_type: grantType, scope: scopes.join(' ') }));
+    return await http.getJSON<X>(providers[providerName].device_authorization_endpoint, new URLSearchParams({ response_type: grantType, scope: scopes }));
 }
