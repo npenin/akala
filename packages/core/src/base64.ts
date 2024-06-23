@@ -18,14 +18,14 @@ function b64ToUint6(nChr: number): number
                         : 0;
 }
 
-export function base64DecToArr(sBase64: string, nBlocksSize?: number): Uint8Array
+export function base64DecToArr(sBase64: string, nBlocksSize?: number): ArrayBuffer
 {
     const sB64Enc = sBase64.replace(/[^A-Za-z0-9+/]/g, "");
     const nInLen = sB64Enc.length;
     const nOutLen = nBlocksSize
         ? Math.ceil(((nInLen * 3 + 1) >> 2) / nBlocksSize) * nBlocksSize
         : (nInLen * 3 + 1) >> 2;
-    const taBytes = new Uint8Array(nOutLen);
+    const taBytes = new ArrayBuffer(nOutLen);
 
     let nMod3;
     let nMod4;
@@ -67,11 +67,11 @@ function uint6ToB64(nUint6)
                         : 65;
 }
 
-export function base64UrlEncArr(aBytes: Uint8Array): string
+export function base64UrlEncArr(aBytes: ArrayBuffer | Uint8Array): string
 {
     return base64EncArr(aBytes).replaceAll('+', '-').replaceAll('/', '_').replace(/=+$/, '');
 }
-export function base64UrlDecToArr(s: string): Uint8Array
+export function base64UrlDecToArr(s: string): ArrayBuffer | Uint8Array
 {
     s = s.replaceAll('-', '+').replaceAll('_', '/');
     switch (s.length % 3)
@@ -107,7 +107,7 @@ export function extractPublicKey(pem: string)
     ));
 }
 
-export function base64EncArr(aBytes: Uint8Array, nBlocksSize?: number): string
+export function base64EncArr(aBytes: ArrayBuffer | Uint8Array, nBlocksSize?: number): string
 {
     let nMod3 = 2;
     let sB64Enc = "";
@@ -141,11 +141,11 @@ export function base64EncArr(aBytes: Uint8Array, nBlocksSize?: number): string
 }
 
 /* UTF-8 array to JS string and vice versa */
-export function UTF8ArrToStr(aBytes: Uint8Array): string
+export function UTF8ArrToStr(aBytes: ArrayBuffer | Uint8Array): string
 {
     let sView = "";
     let nPart;
-    const nLen = aBytes.length;
+    const nLen = aBytes instanceof ArrayBuffer ? aBytes.byteLength : aBytes.length;
     for (let nIdx = 0; nIdx < nLen; nIdx++)
     {
         nPart = aBytes[nIdx];
@@ -186,7 +186,7 @@ export function UTF8ArrToStr(aBytes: Uint8Array): string
     return sView;
 }
 
-export function strToUTF8Arr(sDOMStr: string): Uint8Array
+export function strToUTF8Arr(sDOMStr: string): ArrayBuffer 
 {
     let nChr;
     const nStrLen = sDOMStr.length;
