@@ -1,12 +1,18 @@
+import { base64 } from "@akala/core";
 import { User } from "../../../model/user.js";
 import { State } from "../../state.js";
+
+export async function hashPassword(state: State, password: string)
+{
+    const salt = new Uint8Array(128);
+    crypto.getRandomValues(salt);
+    return { salt: base64.base64EncArr(salt), password: await state.getHash(password, salt) };
+}
 
 export default async function (this: State, userName: string, password: string)
 {
     var user = new User();
     user.name = userName;
-    const salt = new Uint8Array(128);
-    user.salt = new TextDecoder().decode(crypto.getRandomValues(salt));
-    user.password = this.getHash(user.salt + password);
-    return this.store.User.createSingle(user);
+    Object.assign(user, await hashPassword(this, password));
+    return await this.store.User.createSingle(user);
 }

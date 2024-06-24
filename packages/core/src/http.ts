@@ -1,4 +1,4 @@
-import { injectWithName, register, registerFactory } from './global-injector.js';
+import { injectWithName, register } from './global-injector.js';
 import { ParsedAny, Parser } from './parser/parser.js';
 import { each, map } from './each.js';
 import { module, TypedSerializableObject } from './helpers.js';
@@ -6,9 +6,9 @@ import { service } from './service.js';
 import { Formatter, FormatterFactory } from './formatters/common.js';
 // import http from 'http';
 // import https from 'https';
-import { Injected } from './injector.js';
-import { MiddlewareComposite } from './router/composite.js';
-import type { Middleware } from './router/shared.js';
+import { Injected } from './injectors/shared.js';
+import type { MiddlewareAsync } from './middlewares/shared.js';
+import { MiddlewareCompositeAsync } from './index.js';
 
 
 export interface HttpOptions<T>
@@ -25,17 +25,17 @@ export interface HttpOptions<T>
 
 export interface Http<TResponse = Response>
 {
-    get(url: string, params?: string | URLSearchParams): PromiseLike<TResponse>;
-    post(url: string, body?: unknown): PromiseLike<FormData>;
-    postJSON<T = string>(url: string, body?: unknown): PromiseLike<T>;
-    getJSON<T>(url: string, params?: string | URLSearchParams): PromiseLike<T>;
-    invokeSOAP(namespace: string, action: string, url: string, params?: { [key: string]: string | number | boolean }): PromiseLike<TResponse>;
+    get(url: string | URL, params?: string | URLSearchParams): PromiseLike<TResponse>;
+    post(url: string | URL, body?: unknown): PromiseLike<FormData>;
+    postJSON<T = string>(url: string | URL, body?: unknown): PromiseLike<T>;
+    getJSON<T>(url: string | URL, params?: string | URLSearchParams): PromiseLike<T>;
+    invokeSOAP(namespace: string, action: string, url: string | URL, params?: { [key: string]: string | number | boolean }): PromiseLike<TResponse>;
     call<T>(options: HttpOptions<T>): PromiseLike<TResponse>;
 }
 
-export type CallInterceptor = Middleware<[RequestInit, Response]>
+export type CallInterceptor = MiddlewareAsync<[RequestInit, Response]>
 
-register('$http-interceptors', new MiddlewareComposite('$http-interceptors'))
+register('$http-interceptors', new MiddlewareCompositeAsync('$http-interceptors'))
 
 @service('$http', '$http-interceptors')
 export class FetchHttp implements Http<Response>
@@ -87,7 +87,7 @@ export class FetchHttp implements Http<Response>
         const init: RequestInit = { method: options.method || 'GET', body: options.body as unknown as BodyInit, redirect: 'manual' };
 
         if (typeof (options.url) == 'string')
-            options.url = new URL(options.url);
+            options.url = new URL(options.url, globalThis.document?.baseURI);
 
         const url = options.url;
         if (options.queryString)
@@ -242,7 +242,7 @@ export class HttpCallFormatterFactory implements FormatterFactory<Injected<Promi
         const method = /^ *(\w+)/.exec(expression);
         if (method)
             return { method: <keyof Http>method[1], $$length: method[0].length };
-        return new Parser().parseAny(expression) as { method?: keyof Http } & ParsedAny;
+        return new Parser().parseAny(expression, true) as { method?: keyof Http } & ParsedAny;
     }
     public build(settings: { method: keyof Http }): Formatter<Injected<PromiseLike<unknown>>>
     {

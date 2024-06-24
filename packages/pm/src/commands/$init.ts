@@ -1,7 +1,5 @@
 import State, { RunningContainer, StateConfiguration } from '../state.js'
-import { homedir } from 'os';
 import fs from 'fs/promises';
-import { join } from 'path';
 import pmContainer from '../container.js';
 import { Container, Metadata, ignoredCommands, configure, SelfDefinedCommand, serveMetadata, ServeOptions } from '@akala/commands';
 import { PassThrough } from 'stream';

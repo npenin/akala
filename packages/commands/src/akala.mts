@@ -1,14 +1,13 @@
 import { program as root, ErrorMessage, NamespaceMiddleware } from "@akala/cli"
-import { Injector, mapAsync } from "@akala/core"
+import { SimpleInjector, mapAsync } from "@akala/core"
 import commands from "./commands.js";
 import { Cli, ICommandProcessor, ServeOptions } from "./index.js";
 import { Container } from "./model/container.js";
 import $serve from "./commands/$serve.js";
 import { Configurations } from "./metadata/configurations.js";
 import { dirname, isAbsolute, resolve } from "node:path";
-import { Local } from "./processors/local.js";
 import { HandlerResult, handlers } from "./protocol-handler.js";
-const serveDefinition: Configurations = await import('../' + '../src/commands/$serve.json', { assert: { type: 'json' } }).then(x => x.default)
+const serveDefinition: Configurations = await import('../' + '../src/commands/$serve.json', { with: { type: 'json' } }).then(x => x.default)
 
 export default function (config, program: NamespaceMiddleware<{ configFile: string }>)
 {
@@ -16,7 +15,7 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
 
     root.state<{ commands?: Record<string, string> & { extract?: () => Record<string, string> } }>().preAction(async (context) =>
     {
-        const sharedInjector = new Injector();
+        const sharedInjector = new SimpleInjector();
         sharedInjector.register('env', process.env);
         let commands = context.state?.commands;
         if (commands && 'extract' in commands && typeof (commands.extract) == 'function')

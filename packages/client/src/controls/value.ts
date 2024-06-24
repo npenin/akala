@@ -1,4 +1,4 @@
-import * as di from '@akala/core'
+import { Binding } from '@akala/core';
 import { control, GenericControlInstance } from './control.js'
 
 @control('value', 400)
@@ -38,7 +38,7 @@ export class Value extends GenericControlInstance<string>
     {
         if (typeof (this.parameter) == 'undefined')
             return;
-        if (this.parameter instanceof di.Binding)
+        if (this.parameter instanceof Binding)
         {
             const parameter = this.parameter;
             this.element.addEventListener('change', () =>
@@ -46,17 +46,17 @@ export class Value extends GenericControlInstance<string>
                 switch (this.element.tagName)
                 {
                     case 'TEXTAREA':
-                        parameter.setValue(this.element.innerText, parameter);
+                        parameter.setValue(this.element.innerText)//, parameter);
                         break;
                     case 'INPUT':
                         switch ((this.element as HTMLInputElement).type)
                         {
                             case 'checkbox':
                             case 'radio':
-                                parameter.setValue((this.element as HTMLInputElement).checked as unknown as string, parameter);
+                                parameter.setValue((this.element as HTMLInputElement).checked as unknown as string)//, parameter);
                                 break;
                             default:
-                                parameter.setValue((this.element as HTMLInputElement).value, parameter);
+                                parameter.setValue((this.element as HTMLInputElement).value)//, parameter);
                                 break;
                         }
                         break;
@@ -64,10 +64,10 @@ export class Value extends GenericControlInstance<string>
             });
             parameter.onChanged((ev) =>
             {
-                if (parameter !== ev.eventArgs.source)
-                {
-                    this.apply(this.scope, this.element, ev.eventArgs.value);
-                }
+                // if (parameter !== ev.source)
+                // {
+                this.apply(this.scope, this.element, ev.value);
+                // }
             });
         }
         else

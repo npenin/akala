@@ -1,7 +1,5 @@
-import * as akala from '@akala/core';
-import { Control, IControlInstance } from './controls/controls.js'
-import { Scope } from './scope.js'
 import { service } from './common.js'
+import { Binding, Event, EventEmitter, Http, Interpolate, Parser, SimpleInjector, Subscription, each, eachAsync, grep, map } from '@akala/core';
 
 // eslint-disable-next-line no-constant-condition
 if (MutationObserver && false)
@@ -23,47 +21,32 @@ if (MutationObserver && false)
     //     })
 }
 
-service('$interpolate')(akala.Interpolate)
+service('$interpolate')(Interpolate)
 
 export interface templateFunction
 {
-    (target: unknown, parent: HTMLElement): Promise<IControlInstance<unknown>[]>;
+    (target: object, parent: HTMLElement | ShadowRoot): Promise<Disposable>;
     hotReplace(markup: string): void;
+    watch(target: object, handler: () => void, trigger?: boolean): Subscription;
 }
 
-interface Composer<TOptions = unknown>
+export interface Composer<TOptions = unknown>
 {
-    selector: string;
-    optionName: string;
-    apply(items: HTMLElement, data, options?: TOptions): Promise<IControlInstance<unknown>[]>;
+    selector: string | string[];
+    optionName?: string;
+    apply(items: HTMLElement, options?: TOptions): Disposable;
 }
 
-class DataBindComposer implements Composer<Record<string, unknown>>
-{
-    selector = '[data-bind]';
-    optionName = 'databind';
-    async apply(item: HTMLElement, data: unknown, options?: Record<string, Control<unknown>>)
-    {
-        const instances = await Control.apply(options || (await new akala.parser.EvaluatorAsFunction().eval(new akala.Parser().parse(item.dataset['bind'])))() as Record<string, unknown>, item);
 
-        await akala.eachAsync(item.querySelectorAll(this.selector), async (el: HTMLElement) =>
-        {
-            if (el.parentElement.closest(this.selector) == item)
-                instances.push(...await Template.compose(this, [el], data, item));
-        });
-        return instances;
-    }
-}
-
-export function composer(selector: string, optionName: string): ClassDecorator
-export function composer(selector: (new () => Composer))
-export function composer(selector: Composer)
+export function composer(selector: string, optionName?: string): ClassDecorator
+export function composer(selector: (new () => Composer)): void
+export function composer(selector: Composer): void
 export function composer(selector: string | Composer | (new () => Composer), optionName?: string)
 {
     switch (typeof selector)
     {
         case 'string':
-            return function (composingFunction: (items: HTMLElement, data) => Promise<IControlInstance<unknown>[]>)
+            return function (composingFunction: (items: HTMLElement, data) => Disposable)
             {
                 Template.composers.push({ selector: selector, optionName: optionName, apply: composingFunction });
             }
@@ -76,19 +59,20 @@ export function composer(selector: string | Composer | (new () => Composer), opt
     }
 }
 
-const cache = new akala.Injector();
+const cache = new SimpleInjector();
+export { cache as templateCache };
 @service('$template', '$interpolate', '$http')
 export class Template
 {
-    public static composers: Composer[] = [new DataBindComposer()];
-    constructor(private interpolator: akala.Interpolate, private http: akala.Http) { }
+    public static composers: Composer[] = [];
+    constructor(private interpolator: Interpolate, private http: Http) { }
 
     public enableHotReplacement: boolean;
 
     public async get(t: string | PromiseLike<string>, registerTemplate = true): Promise<templateFunction>
     {
         const http = this.http;
-        const text = await akala.Promisify(t);
+        const text = await Promise.resolve(t);
 
         if (!text)
             return null;
@@ -109,7 +93,7 @@ export class Template
                 const data = await response.text();
                 template = this.build(data);
                 if (registerTemplate)
-                    cache.register(text, template, true);
+                    cache.register(response.url, template, true);
                 if (navigator.serviceWorker)
                 {
                     //eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -130,22 +114,27 @@ export class Template
     {
         const root = document.createElement('div');
         root.innerHTML = string;
-        return akala.map(root.children, function (el) { return el as HTMLElement });
+        return map(root.children, (el) => el as HTMLElement);
     }
 
-    public async build(markup: string): Promise<templateFunction>
+    public build(markup: string): templateFunction
     {
-        let template = await this.interpolator.build(markup)
-        var f: templateFunction = ((data, parent?: HTMLElement) =>
+        let template = this.interpolator.build(markup)
+        var f: templateFunction = ((data, parent?: HTMLElement | ShadowRoot) =>
         {
-            f.hotReplace = async (markup: string) =>
+            f.hotReplace = (markup: string) =>
             {
-                template = await this.interpolator.build(markup);
+                template = this.interpolator.build(markup);
+                if (bindings?.length)
+                {
+                    bindings.forEach(b => b());
+                    bindings = template.expressions.map(exp => new Binding(data, new Parser().parse(exp)).onChanged(() => watcher.emit('change')));
+                }
                 const newTemplateInstance = Template.buildElements(template(data));
                 if (parent)
                 {
                     if (newTemplateInstance.length > templateInstance.length)
-                        akala.each(newTemplateInstance, function (inst, i)
+                        each(newTemplateInstance, function (inst, i)
                         {
                             if (i < templateInstance.length)
                                 parent.replaceChild(inst, templateInstance[i]);
@@ -153,7 +142,7 @@ export class Template
                                 parent.appendChild(inst);
                         })
                     else
-                        akala.each(templateInstance, function (inst, i)
+                        each(templateInstance, function (inst, i)
                         {
                             if (i < newTemplateInstance.length)
                                 parent.replaceChild(newTemplateInstance[i], inst);
@@ -166,78 +155,115 @@ export class Template
                     confirm('template has changed, please consider reloading to see updated change');
                 }
                 templateInstance = newTemplateInstance;
-                Template.composeAll(templateInstance, data, parent);
+                Template.composeAll(templateInstance, parent);
             }
 
             var templateInstance = Template.buildElements(template(data));
             if (parent)
             {
-                akala.each(templateInstance, function (inst)
+                each(templateInstance, function (inst)
                 {
                     parent.appendChild(inst);
                 })
             }
-            return Template.composeAll(templateInstance, data);
+            return Template.composeAll(templateInstance);
         }) as templateFunction;
         f.hotReplace = async (markup: string) =>
         {
-            template = await this.interpolator.build(markup);
+            template = this.interpolator.build(markup);
+        }
+
+        let bindings: Subscription[];
+
+        const watcher = new EventEmitter<{
+            change: Event<[]>;
+        }>();
+
+        f.watch = (data, handler, trigger) =>
+        {
+            bindings = template.expressions.map(exp => new Binding(data, new Parser().parse(exp)).onChanged(() => watcher.emit('change')));
+            const sub = watcher.on('change', handler);
+            if (trigger)
+                handler();
+            return sub;
         }
 
         return f;
     }
 
-    static async composeAll(items: ArrayLike<HTMLElement>, data, root?: Element, options?: { [key: string]: unknown }): Promise<IControlInstance<unknown>[]>
+    static async composeAll(items: ArrayLike<HTMLElement>, root?: Element | ShadowRoot, options?: { [key: string]: unknown }): Promise<Disposable>
     {
-        const result: IControlInstance<unknown>[] = [];
-        return await akala.eachAsync(this.composers, async (composer) =>
+        const result: Disposable[] = [];
+        return await eachAsync(this.composers, async (composer) =>
         {
-            await this.compose(composer, items, data, root, options && options[composer.optionName]).then(instances => result.push(...instances));
-        }, true).then(() => result);
+            await this.compose(composer, items, root, composer.optionName && options && options[composer.optionName]).then(disposable => result.push(disposable));
+        }, true).then(() => new CompositeDisposable(result));
     }
 
-    static async compose(composer: Composer, items: ArrayLike<HTMLElement>, data, root?: Element, options?: unknown): Promise<IControlInstance<unknown>[]>
+    static async compose(composer: Composer, items: ArrayLike<HTMLElement>, root?: Element | ShadowRoot, options?: unknown): Promise<Disposable>
     {
-        data.$new = Scope.prototype.$new;
-        const instances: IControlInstance<unknown>[] = [];
+        // data.$new = Scope.prototype.$new;
+        // const instances: IControlInstance<unknown>[] = [];
+        const selector = typeof composer.selector == 'string' ? composer.selector : composer.selector.join(',');
         if (filter(items, composer.selector).length == 0)
         {
-            await akala.eachAsync(items, async function (el)
+            await eachAsync(items, async function (el)
             {
-                await akala.eachAsync(el.querySelectorAll(composer.selector), async function (el: HTMLElement)
+                await eachAsync(el.querySelectorAll(selector), async function (el: HTMLElement)
                 {
-                    const closest = el.parentElement && el.parentElement.closest(composer.selector);
+                    const closest = el.parentElement && el.parentElement.closest(selector);
                     let applyInnerTemplate = !!closest || !root;
                     if (!applyInnerTemplate && root)
                         applyInnerTemplate = applyInnerTemplate || root == closest;
                     if (applyInnerTemplate)
                     {
-                        instances.push(...await Template.compose(composer, [el], data, el, options && options[composer.optionName]));
+                        // instances.push(...
+                        await Template.compose(composer, [el], el, composer.optionName && options && options[composer.optionName])
+                        // );
                     }
                 }, false);
+
             }, false);
-            return instances;
+            // return instances;
         }
         else
         {
-            const promises: PromiseLike<void>[] = [];
-            akala.each(filter(items, composer.selector), function (item)
+            // const promises: PromiseLike<void>[] = [];
+            const disposables: Disposable[] = [];
+            each(filter(items, composer.selector), function (item)
             {
-                promises.push(composer.apply(item, data, options).then(c => { instances.push(...c) }));
+                disposables.push(composer.apply(item, options))//.then(c => { instances.push(...c) }));
             });
-            if (promises.length)
-                return Promise.all(promises).then(() => instances);
+
+            return new CompositeDisposable(disposables);
+            // if (promises.length)
+            // {
+            //     await Promise.all(promises)//.then(() => instances);
+            // }
             // return element;
         }
 
-        return instances;
+        return;
     }
 }
 
-export function filter<T extends Element = Element>(items: ArrayLike<T>, filter: string)
+export class CompositeDisposable implements Disposable
 {
-    return akala.grep(items, function (element)
+    constructor(private disposables: Disposable[])
+    { }
+
+    [Symbol.dispose]()
     {
-        return element.matches(filter);
+        this.disposables.forEach(d => d[Symbol.dispose]());
+    }
+}
+
+export function filter<T extends Element = Element>(items: ArrayLike<T>, filter: string | string[])
+{
+    return grep(items, function (element)
+    {
+        if (typeof filter == 'string')
+            return element.matches(filter);
+        return !!filter.find(filter => element.matches(filter));
     })
 }

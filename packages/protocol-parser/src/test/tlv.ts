@@ -1,6 +1,6 @@
 import assert from "assert";
 import { parsers, tlv } from "../index.js"
-import { Cursor, parserWrite } from "../parsers/_common.js"
+import { Cursor } from "../parsers/_common.js"
 
 const tlv8 = tlv(parsers.uint8, 0xFF, 'utf8');
 

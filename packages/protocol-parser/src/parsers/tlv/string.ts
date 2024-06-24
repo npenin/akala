@@ -1,5 +1,5 @@
 import PrefixedString from "../string-prefixed.js";
-import { AnyParser, Cursor, Parsers } from "../_common.js";
+import { Cursor, Parsers } from "../_common.js";
 
 export class TLVString extends PrefixedString
 {

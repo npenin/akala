@@ -1,4 +1,4 @@
-import { LogLevels, Logger, logger as LoggerBuilder, grep, map, each, Binding } from '@akala/core';
+import { LogLevels, Logger, logger as LoggerBuilder, grep, map, each, getSetter } from '@akala/core';
 import program, { CliContext, NamespaceMiddleware, OptionOptions, usageParser } from './router/index.js';
 export * from './router/index.js'
 export default program;
@@ -33,7 +33,7 @@ export function supportInteract(cli: NamespaceMiddleware)
                 const indexOfDot = err.as.indexOf('.');
                 if (indexOfDot > 0)
                 {
-                    Binding.getSetter(context.options, err.as)(value);
+                    getSetter(err.as, context.options).set(value);
                 }
                 context.options[err.as] = value;
             }

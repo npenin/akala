@@ -1,12 +1,11 @@
-import * as akala from '@akala/core'
-import { Middleware, MiddlewarePromise, MiddlewareRoute, OptionsResponse, Routable, RouteBuilderArguments } from '@akala/core';
+import { Middleware, MiddlewareRoute, OptionsResponse, RouterAsync, Routable, RouteBuilderArguments, RouterOptions, MiddlewareResult } from '@akala/core';
 
 export class RouterRequest 
 {
     constructor(loc: string)
     {
         this.path = loc || '/';
-        this.url = new URL(this.path);
+        this.url = new URL(this.path, new URL(window.location.href, document.baseURI));
         this.query = this.url.searchParams;
     }
 
@@ -16,20 +15,9 @@ export class RouterRequest
     public params: Record<string, unknown>;
 }
 
-if (!window['setImmediate'])
-    window['setImmediate'] = function (fn, ...args: unknown[])
-    {
-        return setTimeout(function ()
-        {
-            fn.apply(this, args)
-        }, 0);
-    } as unknown as typeof setImmediate
-
-
-
-export class Router extends akala.Router<[RouterRequest & Routable]>
+export class Router extends RouterAsync<[RouterRequest & Routable]>
 {
-    constructor(options?: akala.RouterOptions)
+    constructor(options?: RouterOptions)
     {
         super(options)
     }
@@ -53,14 +41,14 @@ export class MethodMiddleware<T extends simpleRequest & Routable, U extends unkn
 
     public isApplicable = (req: simpleRequest): boolean => req.method == this.method;
 
-    public handle(req: simpleRequest | T, ...args: U): MiddlewarePromise
+    public handle(req: simpleRequest | T, ...args: U): MiddlewareResult
     {
         const routableRequest: T = req as T;
         if (!isRoutable(req))
             routableRequest.path = req.url
         return super.handle(routableRequest, ...args);
     }
-    public handleError(error: Error | OptionsResponse, req: simpleRequest | T, ...args: U): MiddlewarePromise
+    public handleError(error: Error | OptionsResponse, req: simpleRequest | T, ...args: U): MiddlewareResult
     {
         const routableRequest: T = req as T;
         if (!isRoutable(req))

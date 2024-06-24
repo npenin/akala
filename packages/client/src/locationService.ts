@@ -1,4 +1,4 @@
-import { EventEmitter } from 'events';
+import { Event, EventEmitter } from '@akala/core';
 
 
 /**
@@ -51,7 +51,7 @@ export interface StartOption
     hashbang?: boolean;
 }
 
-export class LocationService extends EventEmitter
+export class LocationService extends EventEmitter<{ changing: Event<[path: string]>, change: Event<[path: string, state?: any]> }>
 {
     private loaded = false;
     private onpopstateBound = this.onpopstate.bind(this);
@@ -73,10 +73,7 @@ export class LocationService extends EventEmitter
         {
             window.addEventListener('load', () =>
             {
-                setImmediate(() =>
-                {
-                    this.loaded = true;
-                });
+                this.loaded = true;
             });
         }
     }
@@ -323,13 +320,12 @@ export class LocationService extends EventEmitter
         }
     }
 
-    public dispatch(path: string, push?: boolean)
+    public dispatch(path: string, state?: any)
     {
         if (running)
             this.emit('changing', path)
-        if (push)
-            history.pushState(null, '', path);
+        history.pushState(state || null, '', path);
         if (running)
-            this.emit('change', path)
+            this.emit('change', path, state)
     }
 }

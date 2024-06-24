@@ -1,16 +1,19 @@
-import { Middleware, MiddlewareComposite, MiddlewarePromise, Routable, Router } from "./index.js";
+import { Router } from "./router/router.js";
+import { MiddlewareCompositeAsync } from "./middlewares/composite-async.js";
+import { MiddlewareAsync, MiddlewarePromise } from "./middlewares/shared.js";
+import { Routable } from "./router/route.js";
 
 type MiddlewareError = 'break' | 'loop' | void;
 
-export class UrlHandler<T extends [URL, Partial<TResult>, ...unknown[]], TResult extends object = object> implements Middleware<T>
+export class UrlHandler<T extends [URL, Partial<TResult>, ...unknown[]], TResult extends object = object> implements MiddlewareAsync<T>
 {
-    protocol: MiddlewareComposite<T, MiddlewareError>;
-    host: MiddlewareComposite<T>;
+    protocol: MiddlewareCompositeAsync<T, MiddlewareError>;
+    host: MiddlewareCompositeAsync<T>;
     router: Router<[Routable, ...T]>;
     constructor()
     {
-        this.protocol = new MiddlewareComposite('protocols');
-        this.host = new MiddlewareComposite('domains');
+        this.protocol = new MiddlewareCompositeAsync('protocols');
+        this.host = new MiddlewareCompositeAsync('domains');
         this.router = new Router('path');
     }
 
@@ -71,7 +74,7 @@ export class UrlHandler<T extends [URL, Partial<TResult>, ...unknown[]], TResult
 
 export namespace UrlHandler
 {
-    export class Protocol<T extends [URL, ...unknown[]]> extends MiddlewareComposite<T, MiddlewareError>
+    export class Protocol<T extends [URL, ...unknown[]]> extends MiddlewareCompositeAsync<T, MiddlewareError>
     {
         constructor(public readonly protocol: string)
         {
@@ -95,7 +98,7 @@ export namespace UrlHandler
         }
 
     }
-    export class Host<T extends [URL, ...unknown[]]> extends MiddlewareComposite<T, MiddlewareError>
+    export class Host<T extends [URL, ...unknown[]]> extends MiddlewareCompositeAsync<T, MiddlewareError>
     {
         constructor(private host: string)
         {

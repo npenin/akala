@@ -1,4 +1,3 @@
-import 'source-map-support/register'
 import * as r from '../router/index.js'
 import 'mocha'
 import assert from 'assert';
@@ -17,20 +16,20 @@ describe('router', () =>
     router.use('/api', function ()
     {
         console.log('api');
-        return Promise.reject();
+        throw undefined;
     });
 
     const ra = new Router();
 
     const rb = new Router();
 
-    ra.use('/:id?', async function (req)
+    ra.use('/:id?', function (req)
     {
         console.log('a' + req.path);
         return req.params.id;
     });
 
-    rb.use('/:id?', async function (req)
+    rb.use('/:id?', function (req)
     {
         console.log('b' + req.path);
         return req.params.id;
@@ -41,24 +40,45 @@ describe('router', () =>
 
     it('works with simple non matching path', () =>
     {
-        return router.process({ path: '/' }).catch((x) => typeof x === 'undefined' ? Promise.resolve() : Promise.reject(new Error('should not have matched anything')));
+        let isOk = false;
+        try
+        {
+            router.process({ path: '/' })
+        }
+        catch (x)
+        {
+            if (typeof x === 'undefined')
+                isOk = true;
+
+        }
+        if (!isOk)
+            throw new Error('should not have matched anything')
     });
-    it('does not catch non matching routes', async () =>
+    it('does not catch non matching routes', () =>
     {
-        await router.process({ path: '/a' }).catch((x) => typeof x === 'undefined' ? Promise.resolve() : Promise.reject(new Error('matched when it should not')));
-        await router.process({ path: '/api/pwic' }).catch((x) => typeof x === 'undefined' ? Promise.resolve() : Promise.reject(new Error('matched when it should not')));
+        try { router.process({ path: '/a' }) } catch (x) 
+        {
+            if (typeof x !== 'undefined')
+                throw new Error('matched when it should not')
+        }
+        try { router.process({ path: '/api/pwic' }) } catch (x) 
+        {
+            if (typeof x !== 'undefined')
+                throw new Error('matched when it should not')
+        }
     });
     it('catches obvious path', () =>
     {
-        return router.process({ path: '/api/a' }).catch(() =>
-            Promise.reject(new Error('should never reach that point'))
-        );
+        try { router.process({ path: '/api/a' }) } catch (x) 
+        {
+            if (typeof x !== 'undefined')
+                throw new Error('should never reach that point');
+        }
     });
-    it('catches path with id', async () =>
+    it('catches path with id', () =>
     {
-        assert.strictEqual('pwet', await router.process({ path: '/api/a/pwet' }).catch(() =>
-            Promise.reject(new Error('should never reach that point'))
-        ));
+        const result = router.process({ path: '/api/a/pwet' });
+        assert.strictEqual('pwet', result);
     });
     // router.handleRoute({ path: '/api/b' });
     // router.handleRoute({ path: '/api/b/pwic' });

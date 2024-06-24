@@ -1,6 +1,6 @@
 import * as jsonrpcws from '@akala/json-rpc-ws'
 import { CommandProcessor, StructuredParameters } from '../model/processor.js'
-import { Command, Container as MetaContainer } from '../metadata/index.js';
+import { Command } from '../metadata/index.js';
 import { Container } from '../model/container.js';
 import { Local } from './local.js';
 import { Readable } from 'stream';
@@ -96,6 +96,7 @@ export class JsonRpc extends CommandProcessor
                         if (typeof (params) != 'object' || params instanceof Readable || !params['param'])
                             params = { param: [params] } as SerializableObject;
 
+                        Object.defineProperty(params, 'connectionId', { configurable: true, enumerable: false, value: this.id });
                         Object.defineProperty(params, 'connection', { configurable: true, enumerable: false, get: getProcessor });
                         Object.defineProperty(params, 'connectionAsContainer', { configurable: true, enumerable: false, get: getContainer });
                         Object.defineProperty(params, 'socket', { configurable: true, enumerable: false, value: socket });

@@ -16,13 +16,13 @@ type X = {
     };
 }
 
-export default async function authorize(this: OIDCClientState, provider: string, response_type: OIDCResponseType, scope: string[], redirect_uri?: string): Promise<X>
+export default async function authorize(this: OIDCClientState, provider: string, response_type: OIDCResponseType, scope: string, redirect_uri?: string): Promise<X>
 {
     const state = crypto.randomUUID()
     const oidc = providers[provider];
     const endpoint = new URL(oidc.authorization_endpoint);
 
-    const result: X = { endpoint, state, query: { state, client_id: this.providers[provider].clientId, scope: scope.join('+'), redirect_uri, response_type } };
+    const result: X = { endpoint, state, query: { state, client_id: this.providers[provider].clientId, scope: scope, redirect_uri, response_type } };
 
     //PKCE
     if (oidc.code_challenge_methods_supported && oidc.code_challenge_methods_supported.length)

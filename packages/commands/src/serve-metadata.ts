@@ -8,7 +8,7 @@ import { CommandProcessor, ICommandProcessor } from './model/processor.js';
 import { HttpClient, JsonRpc } from './processors/index.js';
 import net from 'net'
 import ws from 'ws'
-import { Injector, ErrorWithStatus } from '@akala/core';
+import { ErrorWithStatus, SimpleInjector } from '@akala/core';
 import { Container } from './model/container.js';
 import { CommonConnectionOptions, connect as tlsconnect, SecureContextOptions, TLSSocket } from 'tls'
 import * as jsonrpc from '@akala/json-rpc-ws';
@@ -131,7 +131,7 @@ export async function connectWith<T>(options: NetConnectOpts, host: string, medi
                     path = options.path;
                 else
                     path = medium + '://' + (host || options.host || 'localhost') + ':' + options.port;
-                const injector = new Injector(container);
+                const injector = new SimpleInjector(container);
                 injector.register('$resolveUrl', urlPath => new URL(urlPath, path).toString());
                 return new HttpClient(injector);
             }
@@ -148,7 +148,7 @@ export async function connectWith<T>(options: NetConnectOpts, host: string, medi
         default:
             // eslint-disable-next-line no-case-declarations, @typescript-eslint/no-unused-vars
             const x: never = medium;
-            throw new Error('Invalid medium type ' + medium);
+            throw new Error('Invalid medium type ' + x);
     }
 
 }

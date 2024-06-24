@@ -1,9 +1,10 @@
-import * as core from '@akala/core';
-import { ctorToFunction } from '@akala/core';
+import { ctorToFunction, Module, module, defaultInjector, EventEmitter, SpecialNextParam, MiddlewarePromise, Event } from '@akala/core';
 
-export var $$injector: core.Module = core.module('akala', 'akala-services', 'controls')
+export const bootstrapModule: Module = module('akala', 'akala-services', 'controls')
 
-export var serviceModule: core.Module = core.module('akala-services')
+bootstrapModule.activateEvent.maxListeners = 100;
+
+export const serviceModule: Module = module('akala-services')
 
 export function resolveUrl(namespace: string)
 {
@@ -11,7 +12,7 @@ export function resolveUrl(namespace: string)
     return new URL(namespace, root).toString();
 }
 
-core.defaultInjector.register('$resolveUrl', resolveUrl)
+defaultInjector.register('$resolveUrl', resolveUrl)
 
 export function service(name, ...toInject: string[])
 {
@@ -26,10 +27,37 @@ export function service(name, ...toInject: string[])
                 return instance || serviceModule.injectWithName(toInject, (...args: unknown[]) =>
                 {
                     instance = ctorToFunction(target)(...args);
-                });
-            })();
+                    return instance;
+                })();
+            });
     };
 }
 
-import component from './component.js';
-export { component };
+import component, { webComponent } from './component.js';
+import { Container, ICommandProcessor, Metadata, StructuredParameters } from '@akala/commands';
+export { component, webComponent };
+
+export class LocalAfterRemoteProcessor implements ICommandProcessor
+{
+    constructor(private inner: ICommandProcessor, public readonly eventEmitter: EventEmitter<Record<string, Event<[any, StructuredParameters<unknown[]>, Metadata.Command]>>> = new EventEmitter())
+    {
+    }
+
+    async handle(origin: Container<unknown>, cmd: Metadata.Command, param: StructuredParameters<unknown[]>): MiddlewarePromise<SpecialNextParam>
+    {
+        try
+        {
+            const error = await this.inner.handle(origin, cmd, param);
+            return error;
+        }
+        catch (e)
+        {
+            if (!this.eventEmitter.emit(cmd.name, e, param, cmd))
+                throw e;
+        }
+    }
+
+}
+
+export { FormInjector, FormComposer } from './behaviors/form.js'
+export { DataBind, DataContext } from './behaviors/context.js'

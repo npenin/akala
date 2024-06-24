@@ -1,8 +1,8 @@
-import { Middleware, MiddlewarePromise } from "@akala/core";
+import { MiddlewareAsync, MiddlewarePromise } from "@akala/core";
 import { Request } from './shared.js'
 import { Socket } from "net";
 
-export class UpgradeMiddleware implements Middleware<[Request, Socket, Buffer]>
+export class UpgradeMiddleware implements MiddlewareAsync<[Request, Socket, Buffer]>
 {
     private handler: (args_0: Request, args_1: Socket, args_2: Buffer) => void;
     public readonly upgradeSupport: string;

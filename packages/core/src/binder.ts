@@ -2,7 +2,6 @@ import { getSetter, Parser } from './parser/parser.js';
 import { Event, EventEmitter } from './event-emitter.js';
 import { isPromiseLike } from './promiseHelpers.js';
 import * as formatters from './formatters/index.js';
-import { map } from './each.js'
 import { ExtendableEvent } from './module.js'
 import { Arguments } from './type-helper.js';
 import { EvaluatorAsFunction, ParsedFunction } from './parser/evaluator-as-function.js';
@@ -12,7 +11,7 @@ export interface IWatched extends Object
     $$watchers?: { [key: string]: Binding<unknown> };
 }
 
-export interface BinderEventArgs<T = unknown>
+export interface BindEventArgs<T = unknown>
 {
     source: Binding<T>;
     error?: unknown;
@@ -20,7 +19,7 @@ export interface BinderEventArgs<T = unknown>
     value: T;
 }
 
-export class BindingExtendableEvent<T> extends ExtendableEvent<BinderEventArgs<T>>
+export class BindingExtendableEvent<T> extends ExtendableEvent<BindEventArgs<T>>
 {
     constructor(public target: unknown)
     {
@@ -31,7 +30,7 @@ export class BindingExtendableEvent<T> extends ExtendableEvent<BinderEventArgs<T
 interface BindingEventArgs<T = unknown>
 {
     target: IWatched;
-    eventArgs: BinderEventArgs<T>
+    eventArgs: BindEventArgs<T>
 }
 
 export type Bound<T> = { [key in keyof T]: Binding<T[key]> }
@@ -101,7 +100,7 @@ export class Binding<T>
     public get target() { return this._target; }
     public set target(value) { this._target = value; this.register() }
 
-    private evaluator: Promise<ParsedFunction<T>>;
+    private evaluator: ParsedFunction<T>;
 
     public onChanging(handler: (ev: BindingExtendableEvent<T>) => void)
     {
@@ -113,10 +112,10 @@ export class Binding<T>
         const off = this.onChangedEvent.addListener(handler);
         if (!doNotTriggerHandler)
         {
-            this.getValue().then(v => handler({
+            handler({
                 target: this.target,
-                eventArgs: { fieldName: this.expression, value: v, source: null }
-            }));
+                eventArgs: { fieldName: this.expression, value: this.getValue(), source: null }
+            });
         }
         return off;
     }
@@ -171,9 +170,9 @@ export class Binding<T>
     }
 
     //defined in constructor
-    public getValue(): Promise<T>
+    public getValue(): T
     {
-        return this.evaluator.then(evaluator => this.formatter(evaluator(this.target)));
+        return this.formatter(this.evaluator(this.target));
     }
 
     public register()
@@ -406,7 +405,7 @@ export type ObservableArrayInitEvent<T> =
 export type ObservableArrayEventMap<T> = ObservableArrayPopEvent<T> | ObservableArrayPushEvent<T> | ObservableArrayShiftEvent<T> | ObservableArrayUnshiftEvent<T> | ObservableArrayReplaceEvent<T> | ObservableArrayInitEvent<T>;
 
 
-export class ObservableArray<T> extends EventEmitter<{ collectionChanged: Event<[ObservableArrayEventMap<T>]> }>
+export class ObservableArray<T> extends EventEmitter<{ collectionChanged: Event<[ObservableArrayEventMap<T>], void> }>
 {
     constructor(public readonly array: Array<T>)
     {

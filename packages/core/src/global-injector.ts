@@ -1,9 +1,10 @@
-import { Injector, Injectable, Injected, InjectableAsync, defaultInjector, InjectableConstructor } from './injector.js';
+import { Injectable, InjectableAsync, InjectableConstructor, Injected } from './injectors/shared.js';
+import { SimpleInjector, defaultInjector } from './injectors/simple-injector.js';
 
 // declare let $$defaultInjector;
 
-if (!global['$$defaultInjector'])
-    global['$$defaultInjector'] = defaultInjector;
+if (!globalThis['$$defaultInjector'])
+    globalThis['$$defaultInjector'] = defaultInjector;
 
 
 export function resolve<T = unknown>(name: string): T
@@ -16,7 +17,7 @@ export function unregister(name: string)
     return defaultInjector.unregister(name);
 }
 
-export function merge(i: Injector)
+export function merge(i: SimpleInjector)
 {
     return defaultInjector.merge(i);
 }

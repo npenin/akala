@@ -1,9 +1,9 @@
 import { Container } from "@akala/commands";
 import { router, HttpRouter } from '../router/index.js';
-import '../triggers/http'
+import '../triggers/http.js'
 import { State } from '../state.js';
-import { Injector, Binding, logger } from "@akala/core";
-import { join, resolve } from "path";
+import { logger, SimpleInjector } from "@akala/core";
+import { join } from "path";
 import { StaticFileMiddleware } from '../router/staticFileMiddleware.js';
 
 const log = logger('akala:server')
@@ -13,21 +13,21 @@ export default async function $init(container: Container<State>, options: Record
     container.state.pm = pm;
     // pm.register('$metadata', new CommandProxy(pm.processor, '$metadata'));
 
-    container.state.assets = new Injector();
-    let init = true;
-    Binding.defineProperty(container.state, 'mode', options.mode || process.env.NODE_ENV).onChanged(function ()
-    {
-        // if (!init)
-        //     container.dispatch('webpack', undefined, true);
-    });
+    container.state.assets = new SimpleInjector();
+    // let init = true;
+    // Binding.defineProperty(container.state, 'mode', options.mode || process.env.NODE_ENV).onChanged(function ()
+    // {
+    //     // if (!init)
+    //     //     container.dispatch('webpack', undefined, true);
+    // });
 
-    let indexHtmlPath: string;
-    if (typeof process.versions['pnp'] != 'undefined')
-        indexHtmlPath = require.resolve('../../views/index.html');
-    else
-        indexHtmlPath = resolve(__dirname, '../../views/index.html');
+    // let indexHtmlPath: string;
+    // if (typeof process.versions['pnp'] != 'undefined')
+    //     indexHtmlPath = require.resolve('../../views/index.html');
+    // else
+    //     indexHtmlPath = resolve(__dirname, '../../views/index.html');
 
-    init = false;
+    // init = false;
 
     container.onResolve('$masterRouter', function (masterRouter: HttpRouter)
     {

@@ -1,7 +1,7 @@
 #!/usr/bin/env -S node --enable-source-maps
 import program, { ErrorMessage } from './router/index.js';
 import fs from 'fs/promises'
-import { fileURLToPath, pathToFileURL } from 'url'
+// import { fileURLToPath, pathToFileURL } from 'url'
 import path from 'path'
 import * as akala from '@akala/core'
 import { buildCliContextFromProcess, supportInteract } from './index.js';

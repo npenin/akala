@@ -1,6 +1,6 @@
 import { calculator } from './calculator/index.js'
 import * as assert from 'assert'
-import { LogEventProcessor, LogProcessor, Pipe } from '../processors/index.js';
+import { LogEventProcessor, Pipe } from '../processors/index.js';
 import { Container } from '../model/container.js';
 import { Command } from '../metadata/index.js';
 import { registerCommands } from '../generator.js';

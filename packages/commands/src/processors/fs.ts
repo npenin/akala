@@ -1,12 +1,12 @@
 import * as path from 'path'
-import { promises as fs, existsSync, open } from 'fs'
+import { promises as fs, existsSync } from 'fs'
 import * as akala from '@akala/core'
 import * as  Metadata from '../metadata/index.js';
 import { CommandProcessor } from '../model/processor.js';
 import { Container } from '../model/container.js';
 import { registerCommands } from '../generator.js';
 import { Local } from './local.js';
-import { ExtendedConfigurations, jsonObject } from '../metadata/index.js';
+import { jsonObject } from '../metadata/index.js';
 import { MiddlewarePromise } from '@akala/core';
 import { eachAsync } from '@akala/core';
 import { createRequire } from 'module';
@@ -118,7 +118,7 @@ export class FileSystem extends CommandProcessor
 
     public static async discoverMetaCommands(root: string, options?: DiscoveryOptions): Promise<Metadata.Command[] & { name?: string, stateless?: boolean }>
     {
-        //console.trace(`discovering commands in ${root}`)
+        // console.trace(`discovering commands in ${root}`)
         const log = akala.logger('commands:fs:discovery');
 
         if (!options)
@@ -135,6 +135,8 @@ export class FileSystem extends CommandProcessor
         {
             try
             {
+                if (URL.canParse(root))
+                    root = fileURLToPath(root);
                 const stats = await fs.stat(root);
                 options.isDirectory = stats.isDirectory();
             }
@@ -199,6 +201,8 @@ export class FileSystem extends CommandProcessor
                         {
                             if (e.code == 'ENOENT')
                                 console.warn(`The file ${c.config.fs.source} does not exist (thus ignoring ${c.name}). It could be that you deleted the source file, but the transpiled file is still around.`)
+                            else
+                                throw e;
                         }
                     });
                 });
@@ -354,8 +358,16 @@ export class FileSystem extends CommandProcessor
                     if (!files.find(file => file.name == path.basename(f.name, '.json') + '.js' || file.name == path.basename(f.name, '.json') + '.mjs' || file.name == path.basename(f.name, '.json') + '.cjs'))
                     {
                         // eslint-disable-next-line @typescript-eslint/no-var-requires
-                        const cmd: FSCommand = await importJson(path.resolve(path.join(root, f.name)));
-                        commands.push(cmd);
+                        try
+                        {
+                            const cmd: FSCommand = await importJson(path.resolve(path.join(root, f.name)));
+                            commands.push(cmd);
+                        }
+                        catch (e)
+                        {
+                            console.error('Could not import ', path.join(root, f.name));
+                            throw e;
+                        }
                     }
                 }
             }

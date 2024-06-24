@@ -2,11 +2,11 @@ import { Loader, Resolver } from "../../index.js";
 import path from 'node:path'
 import * as parse5 from 'parse5'
 import fs from 'node:fs/promises'
-import { dom, renderInner, renderOuter } from '@akala/pages'
+import { dom, renderInner } from '@akala/pages'
 import { fileURLToPath } from 'node:url'
 import sourceMap from "source-map";
 import * as ts from './ts-loader.js'
-import { LogLevels, logger as coreLogger } from '@akala/core'
+import { logger as coreLogger } from '@akala/core'
 
 const logger = coreLogger('hook:html')
 

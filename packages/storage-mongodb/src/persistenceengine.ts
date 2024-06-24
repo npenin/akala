@@ -22,7 +22,7 @@ export class MongoDb extends PersistenceEngine<Db>
     }
     async load<T>(expression: Expressions): Promise<T>
     {
-        const executor = new MongoDbTranslator(this.db);
+        const executor = new MongoDbTranslator();
         var oldVisitContant = executor.visitConstant;
         const db = this.db;
         var collection: Collection;
@@ -33,12 +33,12 @@ export class MongoDb extends PersistenceEngine<Db>
                 this.result = collection = db.collection(cte.value.nameInStorage);
 
                 this.model = cte.value;
-                return Promise.resolve(cte);
+                return cte;
             }
             return oldVisitContant.call(this, cte);
         }
         executor.result = db;
-        await executor.visit(expression);
+        executor.visit(expression);
         const result = collection.aggregate(executor.pipelines)
         if (executor.model)
             return this.dynamicProxy(result, executor.model) as unknown as T;

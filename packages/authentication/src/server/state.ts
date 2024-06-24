@@ -3,6 +3,11 @@ import { AuthenticationStore } from './authentication-store.js';
 export interface State
 {
     router: import("@akala/server").HttpRouter;
-    getHash: (value: string) => string;
+    getHash: (value: string, salt?: ArrayBuffer) => Promise<string>;
+    verifyHash: (value: string, signature: BufferSource, salt?: ArrayBuffer) => Promise<boolean>;
     store: AuthenticationStore;
+    session: {
+        slidingExpiration?: number
+        timeout?: number;
+    }
 }

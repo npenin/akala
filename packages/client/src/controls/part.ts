@@ -1,18 +1,12 @@
 import { control, GenericControlInstance } from './control.js'
 import { Binding, inject, PossiblyBound } from '@akala/core'
-import { Part as PartService, PartDefinition, PartInstance } from '../part.js'
+import type { OutletService, PartDefinition, PartInstance } from '../part.js'
 import { IScope } from '../scope.js';
 
-@control('part', 110)
-export class Part extends GenericControlInstance<string | PartDefinition<IScope<unknown>>>
+@control('outlet', 110)
+export class Outlet extends GenericControlInstance<string | PartDefinition<IScope<object>>>
 {
-    constructor()
-    {
-        super();
-    }
-
-
-    @inject("akala-services.$part") private partService: PartService;
+    @inject("akala-services.$outlet") private partService: OutletService;
 
     public async init(): Promise<void>
     {
@@ -24,28 +18,29 @@ export class Part extends GenericControlInstance<string | PartDefinition<IScope<
             {
                 nonStringParameter.onChanged(ev =>
                 {
-                    if ((ev.eventArgs.source !== null || ev.eventArgs.value) && typeof ev.eventArgs.value !== 'string')
-                        partService.apply(() => this as unknown as PartInstance, ev.eventArgs.value, {})
+                    // if ((ev.eventArgs.source !== null || ev.value) && typeof ev.value !== 'string')
+                    if ((ev.value) && typeof ev.value !== 'string')
+                        partService.apply(() => this as unknown as PartInstance, ev.value, {})
                 });
 
             }
             else
             {
-                const x = nonStringParameter as PossiblyBound<PartDefinition<IScope<unknown>>>;
+                const x = nonStringParameter as PossiblyBound<PartDefinition<IScope<object>>>;
                 if (x.template instanceof Binding)
                     x.template.onChanged(async (ev) =>
                     {
                         if (x.controller instanceof Binding)
-                            partService.apply(() => this as unknown as PartInstance, { controller: await x.controller.getValue(), template: ev.eventArgs.value }, {});
+                            partService.apply(() => this as unknown as PartInstance, { controller: await x.controller.getValue(), template: ev.value }, {});
                         else
-                            partService.apply(() => this as unknown as PartInstance, { controller: x.controller, template: ev.eventArgs.value }, {});
+                            partService.apply(() => this as unknown as PartInstance, { controller: x.controller as PartDefinition<IScope<object>>['controller'], template: ev.value }, {});
                     });
                 else
                 {
                     if (x.controller instanceof Binding)
-                        partService.apply(() => this as unknown as PartInstance, { controller: await x.controller.getValue(), template: x.template }, {});
+                        partService.apply(() => this as unknown as PartInstance, { controller: await x.controller.getValue(), template: x.template as string | Promise<string> }, {});
                     else
-                        partService.apply(() => this as unknown as PartInstance, x as PartDefinition<IScope<unknown>>, {});
+                        partService.apply(() => this as unknown as PartInstance, x as PartDefinition<IScope<object>>, {});
                 }
             }
         }

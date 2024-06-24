@@ -6,39 +6,39 @@ import { router } from './router.js';
 
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-namespace
-namespace cache
+// namespace cache
+// {
+declare const self: ServiceWorkerGlobalScope;
+
+router.use(async function (req: Request, event: FetchEvent)
 {
-    declare const self: ServiceWorkerGlobalScope;
+    event.respondWith(
+        caches.open('akala').then(async function (cache)
+        {
+            const response = await cache.match(req);
+            // Cache hit - return response
 
-    router.use(async function (req: Request, event: FetchEvent)
-    {
-        event.respondWith(
-            caches.open('akala').then(async function (cache)
+            if (response)
             {
-                const response = await cache.match(req);
-                // Cache hit - return response
+                // req.headers.append('if-modified-since', response.headers.get('last-modified'))
+                // req.headers.append('if-match', response.headers.get('etag'))
 
-                if (response)
+                const res = await fetch(req);
+                if (res.status == 200)
                 {
-                    // req.headers.append('if-modified-since', response.headers.get('last-modified'))
-                    // req.headers.append('if-match', response.headers.get('etag'))
-
-                    const res = await fetch(req);
-                    if (res.status == 200)
-                    {
-                        cache.put(req, res.clone());
-                        if (event.clientId)
-                            self.clients.get(event.clientId).then(cl => cl.postMessage({ type: 'update' }))
-                    }
-
-                    return response;
+                    cache.put(req, res.clone());
+                    if (event.clientId)
+                        self.clients.get(event.clientId).then(cl => cl.postMessage({ type: 'update' }))
                 }
-                else
-                {
-                    const response = await fetch(req);
-                    await cache.put(req, response.clone())
-                    return response;
-                }
-            }));
-    })
-}
+
+                return response;
+            }
+            else
+            {
+                const response = await fetch(req);
+                await cache.put(req, response.clone())
+                return response;
+            }
+        }));
+})
+// }

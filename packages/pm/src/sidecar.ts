@@ -1,3 +1,4 @@
+import { module } from '@akala/core'
 import { connectByPreference, ConnectionPreference, Container, updateCommands } from "@akala/commands";
 import { SideCarConnectionPreference, Sidecar, defaultOrders, connect } from "./index.js";
 import * as ac from '@akala/commands'
@@ -12,6 +13,12 @@ export default function (options?: { pm?: pm.container & Container<void> } & (Om
 
 export function sidecar(options?: { pm?: pm.container & Container<void> } & (Omit<ConnectionPreference, 'metadata'> | SideCarConnectionPreference | Omit<ConnectionPreference, 'metadata'> & SideCarConnectionPreference), noCache?: boolean): Sidecar
 {
+    if (!options)
+        options = {};
+    if (!options.pm)
+        options.pm = module('@akala/pm').resolve('container');
+    if (!options.pm)
+        return null;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return new Proxy<Sidecar>({} as any, {
         get(target, property)

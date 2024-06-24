@@ -4,7 +4,6 @@ import fs from 'fs/promises'
 import State from "../state.js";
 import path from 'path'
 import mime from 'mime-types'
-import { Dirent } from 'fs'
 
 export type entry =
     {
@@ -22,6 +21,8 @@ export default async function propfind(this: State, route: string, body: string,
     const cwd = await fs.stat(path.join(this.root, route));
 
     const obj = new XMLParser({}).parse(body);
+
+    console.log(obj);
 
     if (cwd.isDirectory())
     {

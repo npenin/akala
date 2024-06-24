@@ -3,7 +3,7 @@ import * as assert from 'assert'
 import * as jsonrpc from '@akala/json-rpc-ws'
 import * as ws from 'ws'
 import { metadata, proxy, helper } from '../generator.js';
-import { JsonRpc, LogEventProcessor, LogProcessor } from '../processors/index.js';
+import { JsonRpc, LogEventProcessor } from '../processors/index.js';
 import { Container } from '../model/container.js';
 // import { Command } from '../model/command';
 import { configure } from '../decorators.js';

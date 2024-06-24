@@ -1,8 +1,8 @@
-import './translator';
+import './translator.js';
 export { router, Request, Response, HttpRouter, CallbackResponse } from './router/index.js';
 
-import './http'
-import './handlers'
+import './http.js'
+import './handlers.js'
 export * from './http.js'
 
 export * from './queue.js'

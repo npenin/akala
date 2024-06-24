@@ -1,4 +1,4 @@
-import * as di from '@akala/core'
+import { Binding } from '@akala/core';
 import { control, GenericControlInstance } from './control.js'
 
 function toggleBuilder(element)
@@ -25,12 +25,12 @@ export class Hide extends GenericControlInstance<void>
         super();
     }
 
-    public link(target: unknown, element: HTMLElement, parameter: di.Binding<boolean>)
+    public link(target: unknown, element: HTMLElement, parameter: Binding<boolean>)
     {
         const toggle = toggleBuilder(element);
         parameter.onChanged(function (ev)
         {
-            toggle(!ev.eventArgs.value);
+            toggle(!ev.value);
         });
     }
 
@@ -46,12 +46,12 @@ export class Show extends GenericControlInstance<boolean>
         super()
     }
 
-    public link(target: unknown, element: HTMLElement, parameter: di.Binding<boolean>)
+    public link(target: unknown, element: HTMLElement, parameter: Binding<boolean>)
     {
         const toggle = toggleBuilder(element);
         parameter.onChanged(function (ev)
         {
-            toggle(ev.eventArgs.value);
+            toggle(ev.value);
         });
     }
 

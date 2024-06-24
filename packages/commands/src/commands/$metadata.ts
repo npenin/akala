@@ -3,7 +3,13 @@ import { Container } from '../model/container.js';
 import * as meta from '../metadata/index.js';
 import { configure } from '../decorators.js';
 
-const $metadata = configure({
+export function $metadata(container: Container<unknown>, deep: boolean): meta.Container
+{
+    // console.log(container.name);
+    return metadata(container, deep);
+}
+
+const $metadataCmd = configure({
     "": {
         "inject": [
             "$container",
@@ -23,10 +29,6 @@ const $metadata = configure({
             }
         }
     }
-})(function $metadata(container: Container<unknown>, deep: boolean): meta.Container
-{
-    // console.log(container.name);
-    return metadata(container, deep);
-});
-export default $metadata;
+})($metadata);
+export default $metadataCmd;
 

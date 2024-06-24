@@ -1,6 +1,6 @@
 import * as popper from '@popperjs/core';
 import { control, GenericControlInstance } from './control.js';
-import * as akala from '@akala/core';
+import { Binding } from '@akala/core';
 
 @control('popper', 400)
 export class Popper extends GenericControlInstance<popper.Options & { popper: 'string' }>
@@ -13,17 +13,17 @@ export class Popper extends GenericControlInstance<popper.Options & { popper: 's
     public async init()
     {
         let p: popper.Instance;
-        if (this.parameter instanceof akala.Binding)
+        if (this.parameter instanceof Binding)
         {
             this.parameter.onChanged((ev) =>
             {
                 if (p)
                     p.destroy();
-                p = popper.createPopper(this.element, this.element.parentElement.querySelector(ev.eventArgs.value.popper), ev.eventArgs.value)
+                p = popper.createPopper(this.element, this.element.parentElement.querySelector(ev.value.popper), ev.value)
             })
         }
         else
-            p = popper.createPopper(this.element, this.element.parentElement.querySelector(this.parameter['popper']), await akala.Binding.unbindify(this.parameter))
+            p = popper.createPopper(this.element, this.element.parentElement.querySelector(this.parameter['popper']), Binding.unwrap(this.parameter))
 
         this.element.addEventListener('click', function ()
         {

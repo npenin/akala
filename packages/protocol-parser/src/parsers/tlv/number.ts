@@ -3,7 +3,7 @@ import { Cursor, Parser, Parsers, parserWrite } from "../_common.js";
 export class TLVNumber implements Parser<number>
 {
     private readonly _length: number;
-    constructor(private readonly lengthParser: Parsers<number>, private readonly maxLength: number)
+    constructor(private readonly lengthParser: Parsers<number>)//, private readonly maxLength: number)
     {
         this.length = lengthParser.length * 2;
         this._length = lengthParser.length;

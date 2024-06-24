@@ -1,7 +1,7 @@
 import { OIDCClientState, OIDCResponseType, providers, OICDAuthMethods } from "../oidc-state.js";
 import { base64 } from '@akala/core'
 
-type X = {
+export type X = {
     endpoint: URL;
     verifier?: string;
     query: {
@@ -13,7 +13,7 @@ type X = {
     };
 }
 
-type JWT = {
+export type JWT = {
     iss: string,
     sub: string,
     aud: string | URL,

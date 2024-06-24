@@ -18,6 +18,7 @@ export enum BinaryOperator
     Times,
     Pow,
     Dot,
+    QuestionDot,
     Format,
     Unknown
 }

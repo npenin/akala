@@ -28,7 +28,7 @@ export interface ConfigurationMap //extends Record<string, Configuration>
     doc: DocConfiguration;
     schema: SchemaConfiguration
     jsonrpc: Configuration
-    auth: { [key in Exclude<keyof ConfigurationMap, 'auth'>]?: ConfigurationMap[key] extends ConfigurationWithAuth<infer X> ? X : ConfigurationMap[key] }
+    auth: { required?: boolean } & { [key in Exclude<keyof ConfigurationMap, 'auth'>]?: ConfigurationMap[key] extends ConfigurationWithAuth<infer X> ? X : ConfigurationMap[key] }
 }
 
 export interface Configurations extends Partial<ConfigurationMap>

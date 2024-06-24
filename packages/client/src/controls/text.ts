@@ -1,6 +1,5 @@
-import * as di from '@akala/core'
 import { control, GenericControlInstance } from './control.js'
-import { Binding } from '@akala/core'
+import { Binding, isPromiseLike } from '@akala/core'
 
 @control('text', 400)
 export class Text extends GenericControlInstance<string>
@@ -16,13 +15,13 @@ export class Text extends GenericControlInstance<string>
         {
             const stopWatch = this.parameter.onChanged((ev) =>
             {
-                if (di.isPromiseLike(ev.eventArgs.value))
-                    ev.eventArgs.value.then(function (value)
+                if (isPromiseLike(ev.value))
+                    ev.value.then(function (value)
                     {
                         this.apply(value);
                     });
                 else
-                    this.apply(ev.eventArgs.value);
+                    this.apply(ev.value);
             });
             if (stopWatch)
                 this.stopWatches.push(stopWatch);

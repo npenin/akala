@@ -1,16 +1,13 @@
 #!/usr/bin/env node
-import * as path from 'path'
 import { Processors, NetSocketAdapter, Metadata, Container, proxy, Triggers, Cli } from '@akala/commands';
 import { Socket } from 'net';
 import { TLSSocket } from 'tls';
-import { platform, homedir } from 'os';
+import { platform } from 'os';
 import start from './cli-commands/start-self.js'
 import { Readable } from 'stream';
 
 import State, { StateConfiguration } from './state.js';
 import { program, buildCliContextFromProcess, ErrorMessage, supportInteract } from '@akala/cli';
-import { InteractError } from './index.js';
-import { Binding } from '@akala/core';
 import { open } from 'fs/promises';
 
 const tableChars = {

@@ -1,9 +1,9 @@
-import { ErrorMiddleware, MiddlewarePromise } from "@akala/core";
+import { ErrorMiddlewareAsync, MiddlewarePromise } from "@akala/core";
 import { Response } from "@akala/server";
 import { AuthorizeErrorCode } from './authorize.js';
 
 
-export class AuthorizeRedirectFormatter implements ErrorMiddleware<[unknown, Response]>
+export class AuthorizeRedirectFormatter implements ErrorMiddlewareAsync<[unknown, Response]>
 {
     redirectUrl: URL;
     redirectQueryParameter: string;

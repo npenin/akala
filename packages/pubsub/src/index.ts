@@ -1,6 +1,6 @@
 import commands from "./container.js";
 //eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { SidecarMap } from '@akala/pm'
+import type { SidecarMap } from '@akala/pm'
 import { State } from "./state.js";
 import { Container as BaseContainer, Processors, registerCommands } from "@akala/commands";
 import path from 'path';
@@ -13,7 +13,7 @@ declare module '@akala/pm'
         '@akala/pubsub': commands.container;
     }
 }
-
+export { SidecarMap };
 export type Container = commands.container;
 export type ContainerProxy = commands.proxy;
 

@@ -1,4 +1,3 @@
-import { v4 as uuid } from 'uuid';
 import debug from 'debug';
 import { default as Errors, Error as ConnectionError, ErrorTypes } from './errors.js';
 import { SerializableObject } from '@akala/core';
@@ -144,7 +143,7 @@ export abstract class Connection<TStreamable>
         this.socket.once(event, handler);
     }
 
-    public readonly id = uuid();
+    public readonly id = crypto.randomUUID();
     protected readonly responseHandlers: { [messageId: string]: ReplyCallback<unknown> } = {};
 
     /**
@@ -317,7 +316,7 @@ export abstract class Connection<TStreamable>
      */
     public sendMethod<TParamType extends PayloadDataType<TStreamable>, TReplyType extends PayloadDataType<TStreamable>>(method: string, params?: TParamType, callback?: ReplyCallback<TReplyType>): void
     {
-        const id = uuid();
+        const id = crypto.randomUUID();
         if (typeof method !== 'string' || !method.length)
             throw new Error('method must be a non-empty string');
         if (params !== null && params !== undefined && !(params instanceof Object))

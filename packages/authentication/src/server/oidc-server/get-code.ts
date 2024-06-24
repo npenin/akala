@@ -1,7 +1,7 @@
 import { OIDCResponseType } from "../../client/oidc-state.js";
 import { AuthenticationStore } from "../authentication-store.js";
 
-type X = {
+export type X = {
     endpoint: URL;
     state: string;
     verifier?: string;
