@@ -11,8 +11,11 @@ export interface IScope<T extends object>
     $bind(expression: string): Binding<unknown>;
 }
 
+const ScopeInjectionToken = Symbol('scope injection token');
+
 export class Scope<T extends object> implements IScope<T>
 {
+    public static readonly injectionToken = ScopeInjectionToken;
     public get $root() { return this; }
 
     private $$resolver: SimpleInjector;
