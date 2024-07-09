@@ -15,7 +15,12 @@ export class Outlet
     {
         serviceModule.ready(['$outlet'], (outletService: OutletService) => outletService.register(this.element.getAttribute('name'), {
             element: this.element,
-            scope: DataContext.find(this.element)
+            get scope() { return DataContext.find(this.element) }
         }));
+    }
+
+    disconnectedCallback()
+    {
+        serviceModule.injectWithName(['$outlet'], (outletService: OutletService) => outletService.unregister(this.element.getAttribute('name')))();
     }
 }
