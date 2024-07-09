@@ -1,27 +1,26 @@
 import { IScope } from '../scope.js';
-import { Injector, inject, ObservableArray, ParsedObject, parser, Parser, eachAsync, SimpleInjector, injectable, Module, module as klModule, afterInjectSymbol, InjectorEvaluator } from '@akala/core';
-import { Template, Composer } from '../template.js';
+import { Injector, inject, ObservableArray, ParsedObject, parser, Parser, SimpleInjector, injectable, Module, module as klModule, afterInjectSymbol, InjectorEvaluator, each } from '@akala/core';
+import { Template, Composer, CompositeDisposable } from '../template.js';
 import { Binding } from '@akala/core'
 
 
-class DataBindComposer implements Composer<Record<string, unknown>>
+export class DataBindComposer implements Composer<Record<string, unknown>>
 {
     selector = '[data-bind]';
     optionName = 'databind';
-    async apply(item: HTMLElement, data: unknown, options?: Record<string, Control<unknown>>)
+    apply(item: HTMLElement, data: unknown, options?: Record<string, Control<unknown>>)
     {
-        const instances = await Control.apply(options || (await new parser.EvaluatorAsFunction().eval(new Parser().parse(item.dataset['bind'])))() as Record<string, unknown>, item);
+        const instances: Disposable[] = Control.apply(options || (new parser.EvaluatorAsFunction().eval(new Parser().parse(item.dataset['bind'])))() as Record<string, unknown>, item);
 
-        await eachAsync(item.querySelectorAll(this.selector), async (el: HTMLElement) =>
+        each(item.querySelectorAll(this.selector), async (el: HTMLElement) =>
         {
             if (el.parentElement.closest(this.selector) == item)
-                instances.push(...await Template.compose(this, [el], data, item));
+                instances.push(await Template.compose(this, [el], item));
         });
-        return instances;
+
+        return new CompositeDisposable(instances);
     }
 }
-
-Template.composers.push(new DataBindComposer());
 
 export function control<T = unknown>(name: string, priority?: number, options?: { scope?: boolean })
 {
@@ -68,7 +67,7 @@ export abstract class Control<T> implements IControl<T>
         Control.injector.register($$name, this);
     }
 
-    public static async apply(controls: Record<string, unknown>, element: Element, scope?: IScope<object>): Promise<IControlInstance<unknown>[]>
+    public static apply(controls: Record<string, unknown>, element: Element, scope?: IScope<object>): IControlInstance<unknown>[]
     {
         const applicableControls: Control<unknown>[] = [];
         let requiresNewScope = false;
@@ -101,7 +100,7 @@ export abstract class Control<T> implements IControl<T>
             let controlSettings = controls[control.$$name];
             if (controlSettings instanceof Function)
                 controlSettings = controlSettings(scope, true);
-            const controlInstance = await control.instanciate(scope, element, controlSettings, controls, instances);
+            const controlInstance = control.instanciate(scope, element, controlSettings, controls, instances);
             instances.push(controlInstance);
         }
 
@@ -138,10 +137,10 @@ export abstract class Control<T> implements IControl<T>
 
         }
 
-        return Template.composeAll([element], scope, undefined, { databind: newControls });
+        return Template.composeAll([element], undefined, { databind: newControls });
     }
 
-    public abstract instanciate(target: unknown, element: Element, parameter: ControlParameter<T>, controls?: Record<string, unknown>, instances?: IControlInstance<unknown>[]): IControlInstance<T> | PromiseLike<IControlInstance<T>>;
+    public abstract instanciate(target: unknown, element: Element, parameter: ControlParameter<T>, controls?: Record<string, unknown>, instances?: IControlInstance<unknown>[]): IControlInstance<T>;
 
     public scope?: unknown | boolean;
 }
@@ -156,7 +155,7 @@ export abstract class BaseControl<T> extends Control<T>
         super(name, priority);
     }
 
-    public async instanciate(scope: IScope<object>, element: Element, parameter: ControlParameter<T>)
+    public instanciate(scope: IScope<object>, element: Element, parameter: ControlParameter<T>)
     {
         const injector = new SimpleInjector(this.injector);
         injector.setInjectables({ scope, element, parameter, factory: this, $injector: injector });
@@ -202,7 +201,7 @@ export class GenericControlInstance<TParameter, TScope extends IScope<object> = 
     {
     }
 
-    public dispose()
+    public [Symbol.dispose]()
     {
         this.stopWatches.forEach(f => f());
     }
@@ -217,9 +216,9 @@ export interface IControl<T>
 }
 
 //eslint-disable-next-line @typescript-eslint/no-unused-vars
-export interface IControlInstance<T>
+export interface IControlInstance<T> extends Disposable
 {
-    dispose(): void;
+    // dispose(): void;
 
     init?(): void;
 }
