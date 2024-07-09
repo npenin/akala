@@ -1,6 +1,5 @@
 export * from './click.js'
 export * from './control.js'
-export * from './cssClass.js'
 export * from './foreach.js'
 export * from './href.js'
 export * from './json.js'

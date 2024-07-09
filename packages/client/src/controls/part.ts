@@ -1,10 +1,10 @@
 import { control, GenericControlInstance } from './control.js'
 import { Binding, inject, PossiblyBound } from '@akala/core'
-import type { OutletService, PartDefinition, PartInstance } from '../part.js'
+import type { OutletService, OutletDefinition, PartInstance } from '../outlet.js'
 import { IScope } from '../scope.js';
 
 @control('outlet', 110)
-export class Outlet extends GenericControlInstance<string | PartDefinition<IScope<object>>>
+export class Outlet extends GenericControlInstance<string | OutletDefinition<IScope<object>>>
 {
     @inject("akala-services.$outlet") private partService: OutletService;
 
@@ -26,26 +26,26 @@ export class Outlet extends GenericControlInstance<string | PartDefinition<IScop
             }
             else
             {
-                const x = nonStringParameter as PossiblyBound<PartDefinition<IScope<object>>>;
+                const x = nonStringParameter as PossiblyBound<OutletDefinition<IScope<object>>>;
                 if (x.template instanceof Binding)
                     x.template.onChanged(async (ev) =>
                     {
                         if (x.controller instanceof Binding)
                             partService.apply(() => this as unknown as PartInstance, { controller: await x.controller.getValue(), template: ev.value }, {});
                         else
-                            partService.apply(() => this as unknown as PartInstance, { controller: x.controller as PartDefinition<IScope<object>>['controller'], template: ev.value }, {});
+                            partService.apply(() => this as unknown as PartInstance, { controller: x.controller as OutletDefinition<IScope<object>>['controller'], template: ev.value }, {});
                     });
                 else
                 {
                     if (x.controller instanceof Binding)
                         partService.apply(() => this as unknown as PartInstance, { controller: await x.controller.getValue(), template: x.template as string | Promise<string> }, {});
                     else
-                        partService.apply(() => this as unknown as PartInstance, x as PartDefinition<IScope<object>>, {});
+                        partService.apply(() => this as unknown as PartInstance, x as OutletDefinition<IScope<object>>, {});
                 }
             }
         }
         else
-            partService.register(this.parameter, { scope: this.scope, element: this.element });
+            partService.register(this.parameter, { scope: new Binding(this.scope, null), element: this.element });
     }
 
 }

@@ -33,10 +33,10 @@ export class Events extends GenericControlInstance<Partial<HTMLElementEventHandl
         })
     }
 
-    public dispose()
+    public [Symbol.dispose]()
     {
-        super.dispose();
-        this.events.forEach(e => e.dispose());
+        super[Symbol.dispose]();
+        this.events.forEach(e => e[Symbol.dispose]());
     }
 }
 

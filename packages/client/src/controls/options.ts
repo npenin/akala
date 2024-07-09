@@ -1,6 +1,6 @@
 import { control, ControlParameter, GenericControlInstance } from './control.js'
 import { Template } from '../template.js';
-import { Binding, each, ExpressionsWithLength, grep, grepAsync, inject, ObservableArray, ObservableArrayEventArgs, Parser, parser } from '@akala/core';
+import { Binding, each, ExpressionsWithLength, grep, inject, ObservableArray, ObservableArrayEventArgs, parser } from '@akala/core';
 import { Expressions } from '@akala/core/expressions';
 
 export interface OptionsParameter
