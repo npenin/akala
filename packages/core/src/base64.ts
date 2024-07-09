@@ -18,14 +18,14 @@ function b64ToUint6(nChr: number): number
                         : 0;
 }
 
-export function base64DecToArr(sBase64: string, nBlocksSize?: number): ArrayBuffer
+export function base64DecToArr(sBase64: string, nBlocksSize?: number): Uint8Array
 {
     const sB64Enc = sBase64.replace(/[^A-Za-z0-9+/]/g, "");
     const nInLen = sB64Enc.length;
     const nOutLen = nBlocksSize
         ? Math.ceil(((nInLen * 3 + 1) >> 2) / nBlocksSize) * nBlocksSize
         : (nInLen * 3 + 1) >> 2;
-    const taBytes = new ArrayBuffer(nOutLen);
+    const taBytes = new Uint8Array(nOutLen);
 
     let nMod3;
     let nMod4;
@@ -111,6 +111,9 @@ export function base64EncArr(aBytes: ArrayBuffer | Uint8Array, nBlocksSize?: num
 {
     let nMod3 = 2;
     let sB64Enc = "";
+
+    if (aBytes instanceof ArrayBuffer)
+        aBytes = new Uint8Array(aBytes);
 
     const nLen = aBytes.byteLength;
     let nUint24 = 0;
