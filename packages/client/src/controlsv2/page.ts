@@ -1,14 +1,46 @@
-import { serviceModule } from "../common.js"
-import { OutletDefinition, OutletService } from "../outlet.js"
-import { IScope } from "../scope.js"
+import { Resolvable, SimpleInjector, Subscription } from "@akala/core"
+import { OutletDefinition } from "../outlet.js"
+import { IScope, Scope } from "../scope.js"
 
-export function page(outletName: string, route: string, template: string | Promise<string>)
+export const RootElement = Symbol('root html template element');
+export const outletDefinition = Symbol()
+
+export function page<TScope extends IScope<object>>(options: { template: string | Promise<string>, inject?: Resolvable[] })
 {
-    return function <T extends Partial<Disposable>>(target: new (...args: Parameters<OutletDefinition<IScope<object>>['controller']>) => T)
+    return function <T extends Page>(target: new (...args: unknown[]) => T): typeof target & { [outletDefinition]: OutletDefinition<TScope> }
     {
-        serviceModule.activate(['$outlet'], (outlet: OutletService) => outlet.use(route, outletName, {
-            template: template,
-            controller: (...args) => new target(...args)
-        }))
+        target[outletDefinition] = {
+            template: options.template,
+            controller: (scope, element, param) =>
+            {
+                if (options.inject)
+                {
+                    const inj = new SimpleInjector();
+                    inj.register(Scope.injectionToken, scope);
+                    inj.register(RootElement, element);
+                    inj.register('param', param);
+                    return inj.injectNewWithName(options.inject || [], target)();
+                }
+                return new target();
+            }
+        } as OutletDefinition<TScope>;
+        return target as any;
+        // serviceModule.activate(['$outlet'], (outlet: OutletService) => outlet.use(route, outletName, ))
+    }
+}
+
+export class Page
+{
+    protected readonly subscriptions: Subscription[] = [];
+
+    [Symbol.dispose]()
+    {
+        this.subscriptions.forEach(s => s());
+        this.subscriptions.length = 0;
+    }
+
+    subscribe(sub: Subscription)
+    {
+        this.subscriptions.push(sub);
     }
 }
