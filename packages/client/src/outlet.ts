@@ -1,5 +1,5 @@
 import { Router, RouterRequest as Request } from './router.js'
-import './controls/outlet.js'
+import './controlsv2/outlet.js'
 import { Template } from './template.js'
 import { IScope } from './scope.js'
 import { service } from './common.js'
@@ -47,6 +47,12 @@ export class OutletService
         this.location.refresh();
     }
 
+    public unregister(partName: string)
+    {
+        this.parts.unregister(partName);
+        delete this.routers[partName];
+    }
+
     public async apply<TScope extends IScope<object>>(partInstance: () => PartInstance, part: OutletDefinition<TScope>, params: unknown): Promise<Disposable>
     {
         const template = this.template;
@@ -59,7 +65,7 @@ export class OutletService
             return;
         let controller: Partial<Disposable>;
         if (part?.controller)
-            controller = part.controller(p.scope as unknown as TScope, p.element, params);
+            controller = part.controller(p.scope?.getValue() as TScope, p.element, params);
         if (tpl)
         {
             const sub = tpl.watch(p.scope, async () =>
