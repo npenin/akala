@@ -1,9 +1,11 @@
 /// <reference types="vite/client" />
 import './index.scss'
-import { Container, Metadata, StructuredParameters } from '@akala/commands'
-import { EventEmitter, isPromiseLike } from '@akala/core';
-import { IScope, LocationService, Template, serviceModule, templateCache, templateFunction, FormComposer, bootstrapModule, DataContext, DataBind, OutletService, OutletDefinitionBuilder } from '@akala/client'
+import { Container } from '@akala/commands'
+import { Event, EventEmitter, isPromiseLike } from '@akala/core';
+import { IScope, LocationService, Template, serviceModule, templateCache, templateFunction, FormComposer, bootstrapModule, DataContext, DataBind, OutletService, outletDefinition } from '@akala/client'
 import { Processors } from '@akala/commands';
+import { Signup } from './signup/signup.js';
+import { Login } from './login/login.js';
 
 bootstrapModule.register('services', serviceModule);
 
@@ -17,12 +19,14 @@ import.meta.hot.on('template-reload', (data) =>
             f.hotReplace(data.content);
 });
 
+type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: EventEmitter<Record<string, Event<[unknown]>>> }>;
 
-bootstrapModule.activate(['$rootScope', 'services.$location', 'services.$outlet'], async (root: IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: EventEmitter<Record<string, [any, StructuredParameters<unknown[]>, Metadata.Command]>> }>, location: LocationService, outlet: OutletService) =>
+bootstrapModule.activate(['$rootScope', 'services.$location', 'services.$outlet'], async (root: Scope, location: LocationService, outlet: OutletService) =>
 {
     Template.composers.push(new FormComposer(root.container))
     Template.composers.push(new DataContext(root));
     Template.composers.push(new DataBind(root));
+
 
     outlet.use('/', 'main', {
         template: 'test/index.html',
@@ -36,27 +40,15 @@ bootstrapModule.activate(['$rootScope', 'services.$location', 'services.$outlet'
         }
     })
 
-    const commandEvents = root.$commandEvents;
-    outlet.use('/signup', 'main',
-        new OutletDefinitionBuilder(commandEvents).useTemplate('test/signup/signup.html').useCommandResult('auth.user.add-user', (result: any) =>
-        {
-            if (result.recordsAffected == 1)
-                location.dispatch('/login');
-        }));
-
-    outlet.use('/login', 'main',
-        new OutletDefinitionBuilder(commandEvents).useTemplate('test/login/login.html').useCommandResult('auth.login', (result: any) =>
-        {
-            root.$set('$authProcessor.authState', result);
-            location.dispatch('/');
-        }));
+    outlet.use('/signup', 'main', Signup[outletDefinition]);
+    outlet.use('/login', 'main', Login[outletDefinition]);
 })
 
 bootstrapModule.ready(['services.$location', '$rootScope'], async function (location: LocationService, rootScope: IScope<any>)
 {
     this.whenDone.then(async () =>
     {
-        await Template.composeAll([document.body], rootScope);
+        await Template.composeAll([document.getElementById('app')], document.body, { $rootScope: rootScope });
         location.start({ dispatch: true, hashbang: false })
     })
 });
