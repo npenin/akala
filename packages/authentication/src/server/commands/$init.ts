@@ -2,7 +2,7 @@ import { Container } from "@akala/commands";
 import { State } from '../state.js';
 import { AuthenticationStore } from '../authentication-store.js';
 import { PersistenceEngine, providers } from "@akala/storage";
-import { randomUUID } from "crypto";
+// import { webcrypto as crypto } from "crypto";
 import { sidecar } from "@akala/pm";
 import { ExchangeMiddleware, OAuthError } from "../master.js";
 import { BinaryOperator } from "@akala/core/expressions";
@@ -34,7 +34,7 @@ export default async function (this: State, container: Container<State>, provide
             throw new OAuthError("invalid_grant");
         const token = new Token();
         token.tokenType = 'access';
-        token.token = randomUUID();
+        token.token = crypto.randomUUID();
         token.clientId = clientId;
         token.scope = req.query.getAll('scope');
         token.userId = authCode.userId;
@@ -58,7 +58,7 @@ export default async function (this: State, container: Container<State>, provide
             throw new OAuthError("invalid_grant");
         const token = new Token();
         token.tokenType = 'refresh';
-        token.token = randomUUID();
+        token.token = crypto.randomUUID();
         token.clientId = clientId;
         token.scope = req.query.getAll('scope');
         token.userId = authCode.userId;
