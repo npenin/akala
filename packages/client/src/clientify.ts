@@ -10,6 +10,8 @@ import * as scope from './scope.js';
 export const loadScript = load;
 
 export type IScope<T extends object> = scope.IScope<T> & T;
+export const Scope = scope.Scope;
+
 export const router = routing.router
 export { Router } from './router.js'
 export { LocationService };
