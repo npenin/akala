@@ -1,7 +1,7 @@
 import { isPromiseLike } from '../promiseHelpers.js';
 import { Event, EventEmitter } from '../event-emitter.js';
 import "reflect-metadata";
-import { Injector, LocalInjector, injectorLog } from './shared.js';
+import { InjectMap, Injector, LocalInjector, Resolvable, injectorLog } from './shared.js';
 
 
 export class SimpleInjector extends LocalInjector
@@ -74,11 +74,18 @@ export class SimpleInjector extends LocalInjector
             this.parent.onResolve(name, handler);
     }
 
-    resolve<T>(param: string): T
+    resolve<T>(param: Resolvable): T
     // resolve<const TKey extends Exclude<string | number | symbol, keyof TypeMap>>(param: TKey): T
     // resolve<const TKey extends string | number | symbol = keyof TypeMap>(param: TKey): TKey extends keyof TypeMap ? TypeMap[TKey] : T
     {
         injectorLog.silly('resolving ' + param.toString);
+
+        if (typeof param == 'object')
+        {
+            const x = Injector.collectMap(param);
+
+            return Injector.applyCollectedMap(param as InjectMap<T>, Object.fromEntries(x.map(x => [x, this.resolve(x)])));
+        }
 
         if (param in this.injectables)
         {
