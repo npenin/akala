@@ -10,9 +10,9 @@ type EventMap<T extends object> = { [key in EventKeys<T>]: AsEvent<T[key]> }
 export type AllEventKeys<T extends object> = EventKeys<T> | keyof SpecialEvents;
 type AllEvents<T extends object> = EventMap<T> & SpecialEvents
 
-export class EventEmitter<T extends object = Record<string, Event<unknown[]>>>
+export class EventEmitter<T extends object = Record<string, Event<unknown[]>>> implements Disposable
 {
-    hasListener<const TKey extends EventKeys<T & SpecialEvents>>(name: TKey)
+    hasListener<const TKey extends AllEventKeys<T>>(name: TKey)
     {
         return this.events[name] && this.events[name].hasListeners
     }
@@ -113,6 +113,65 @@ export class EventEmitter<T extends object = Record<string, Event<unknown[]>>>
                 this.events[prop][Symbol.dispose]();
         }
     }
+}
+
+export class EventEmitterWrapper<T extends object = Record<string, Event<unknown[]>>> implements Disposable
+{
+    constructor(private emitter: EventEmitter<T>)
+    {
+
+    }
+
+    private subscriptions: Subscription[] = []
+
+    hasListener<const TKey extends AllEventKeys<T>>(name: TKey): boolean
+    {
+        return this.emitter.hasListener(name);
+    }
+    public get maxListeners(): number { return this.emitter.maxListeners };
+    public get definedEvents(): string[]
+    {
+        return this.emitter.definedEvents;
+    }
+
+    public setAsync<const TEvent extends typeof Symbol.dispose | EventKeys<T>>(event: TEvent): void
+    {
+        this.emitter.setAsync(event);
+    }
+    public set<const TEvent extends EventKeys<T>>(eventName: TEvent, event: AllEvents<T>[TEvent]): void
+    {
+        this.emitter.set(eventName, event);
+    }
+    public setMaxListeners<const TEvent extends AllEventKeys<T>>(maxListeners: number, event?: TEvent): void
+    {
+        this.emitter.setMaxListeners(maxListeners, event);
+    }
+    emit<const TEvent extends EventKeys<T>>(event: TEvent, ...args: EventArgs<T[TEvent]>): false | EventReturnType<T[TEvent]>
+    {
+        return this.emitter.emit(event, ...args);
+    }
+    on<const TEvent extends AllEventKeys<T>>(event: TEvent, handler: EventListener<AllEvents<T>[TEvent]>, options?: EventOptions<AllEvents<T>[TEvent]>): Subscription
+    {
+        const sub = this.emitter.on(event, handler, options);
+        this.subscriptions.push(sub);
+        return sub;
+    }
+    once<const TEvent extends AllEventKeys<T>>(event: TEvent, handler: EventListener<AllEvents<T>[TEvent]>, options?: Omit<EventOptions<AllEvents<T>[TEvent]>, "once">): Subscription
+    {
+        const sub = this.emitter.once(event, handler, options);
+        this.subscriptions.push(sub);
+        return sub;
+    }
+    off<const TEvent extends AllEventKeys<T>>(event: TEvent, handler: EventListener<AllEvents<T>[TEvent]>): boolean
+    {
+        return this.emitter.off(event, handler);
+    }
+
+    [Symbol.dispose](): void
+    {
+        this.subscriptions.forEach(s => s());
+    }
+
 }
 
 export interface AttachEventOptions
