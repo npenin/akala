@@ -77,11 +77,18 @@ export class DataBind implements Composer<void>
             const binding = dataContext.pipe(exps[p[0]]);
             binding.onChanged(ev =>
             {
-                item[p[0]] = ev.value;
+                if (p[0] === '')
+                    Object.assign(item, ev.value);
+                else
+                    item[p[0]] = ev.value;
             })
             if (dataContext.getValue())
-                item[p[0]] = binding.getValue();
-
+            {
+                if (p[0] === '')
+                    Object.assign(item, binding.getValue());
+                else
+                    item[p[0]] = binding.getValue();
+            }
             return [p[0], binding]
         }));
 
