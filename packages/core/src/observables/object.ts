@@ -6,6 +6,7 @@ import { ConstantExpression } from "../parser/expressions/constant-expression.js
 import { ExpressionVisitor } from "../parser/expressions/expression-visitor.js";
 import { Expressions, StrictExpressions } from "../parser/expressions/expression.js";
 import { MemberExpression } from "../parser/expressions/member-expression.js";
+import { NewExpression } from "../parser/expressions/new-expression.js";
 import { ParameterExpression } from "../parser/expressions/parameter-expression.js";
 
 export interface ObjectEvent<T>
@@ -106,7 +107,31 @@ export class BuildGetter<T extends object> extends ExpressionVisitor
 
     private getter: (target: object) => any;
 
-    public visitMember<T1, TMember extends keyof T1>(arg0: MemberExpression<T1, TMember, T1[TMember]>): StrictExpressions
+    public visitNew<T>(expression: NewExpression<T>): StrictExpressions
+    {
+        const source = this.getter;
+        const result: ((target) => [PropertyKey, any])[] = [];
+        const evaluator = new EvaluatorAsFunction();
+        this.visitEnumerable(expression.init, () => { }, (arg0) =>
+        {
+            const member = evaluator.eval<PropertyKey>(this.visit(arg0.member));
+            this.visit(arg0);
+            const getter = this.getter;
+            result.push((target) => [member(target), getter(target)])
+            this.getter = source;
+
+            return arg0;
+        });
+
+        this.getter = (target) =>
+        {
+            return Object.fromEntries(result.map(r => r(target)));
+        };
+
+        return expression;
+    }
+
+    public visitMember<T1, TMember extends keyof T1>(arg0: MemberExpression<T1, TMember, T1[TMember]>): MemberExpression<T1, TMember, T1[TMember]>
     {
         const member = new EvaluatorAsFunction().eval<PropertyKey>(this.visit(arg0.member));
 
@@ -116,7 +141,7 @@ export class BuildGetter<T extends object> extends ExpressionVisitor
         const getter = this.getter;
 
         // if (arg0.optional)
-        this.getter = (target) => { const x = getter(target); return x && new ObservableObject<any>(x).getValue(member(target)) }
+        this.getter = (target) => { const x = getter(target); return typeof x == 'object' ? x && new ObservableObject<any>(x).getValue(member(target)) : x }
         // else
         //     this.getter = (target) => new ObservableObject<any>(getter(target)).getValue(member())
 
@@ -169,7 +194,7 @@ export class BuildWatcher<T extends object> extends ExpressionVisitor
             if (!sub)//&& watcher)
                 change.pipe('change', watcher);
             let x = getter(target, myWatcher);
-            if (!x)
+            if (!x || typeof x != 'object')
             {
                 // if (sub)
                 // {
