@@ -4,7 +4,10 @@ import { EventEmitter, Event } from '@akala/core';
 
 type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: EventEmitter<Record<string, Event<[unknown]>>> }>;
 
-@page({ template: 'test/login/login.html', 'inject': [Scope.injectionToken, '$modules.akala-services.$location'] })
+@page({
+    template: 'test/login/login.html',
+    inject: [Scope.injectionToken, '$modules.akala-services.$location']
+})
 export class Login extends Page
 {
     constructor(scope: Scope, location: LocationService)
