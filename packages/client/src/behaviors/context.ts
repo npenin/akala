@@ -1,4 +1,4 @@
-import { Binding, Parser } from "@akala/core";
+import { Binding, Parser, each } from "@akala/core";
 import { IScope } from "../clientify.js";
 import { Composer } from "../template.js";
 
@@ -61,6 +61,17 @@ export class DataBind implements Composer<void>
             this.scope = new Binding(scope, null);
     }
 
+    private static extend<T extends object>(target: T, extension: Partial<T>)
+    {
+        each(extension, (value, key) =>
+        {
+            if (typeof value !== 'object' || !target[key])
+                target[key] = value!;
+            else
+                DataBind.extend(target[key] as any, value);
+        });
+    }
+
     selector = '[data-bind]';
     optionName = 'databind';
     apply(item: HTMLElement)
@@ -78,7 +89,7 @@ export class DataBind implements Composer<void>
             binding.onChanged(ev =>
             {
                 if (p[0] === '')
-                    Object.assign(item, ev.value);
+                    DataBind.extend(item, ev.value);
                 else
                     item[p[0]] = ev.value;
             })
