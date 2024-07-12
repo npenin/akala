@@ -7,7 +7,7 @@ export const outletDefinition = Symbol()
 
 export function page<TScope extends IScope<object>>(options: { template: string | Promise<string>, inject?: Resolvable[] })
 {
-    return function <T extends Page>(target: new (...args: unknown[]) => T): typeof target & { [outletDefinition]: OutletDefinition<TScope> }
+    return function <T>(target: T & (new (...args: unknown[]) => unknown)): T & { [outletDefinition]: OutletDefinition<TScope> }
     {
         target[outletDefinition] = {
             template: options.template,
