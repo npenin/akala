@@ -2,6 +2,8 @@ import { lazy, noop } from "../helpers.js";
 import { BinaryExpression, ConstantExpression, Expressions, ExpressionType, ExpressionVisitor, MemberExpression, NewExpression, ParameterExpression, StrictExpressions, TypedExpression, TypedLambdaExpression, UnaryExpression, UnaryOperator } from "./expressions/index.js";
 import { BinaryOperator } from "./expressions/binary-operator.js";
 import { ExpressionsWithLength, ParsedArray, ParsedObject, ParsedString } from "./parser.js";
+import { TernaryExpression } from "./expressions/ternary-expression.js";
+import { TernaryOperator } from "./expressions/ternary-operator.js";
 
 export type ParsedFunction<T> = (context?: unknown) => T;
 
@@ -30,6 +32,7 @@ export class EvaluatorAsFunction extends ExpressionVisitor
             args = [EvaluatorAsFunction.singleParameterDefaultName];
         this.visit(expression);
         const f = new Function(...args, 'return ' + this.functionBody);
+        this.functionBody = '';
         if (this.requiresContext)
         {
             return f as (context: unknown) => T;
@@ -38,6 +41,26 @@ export class EvaluatorAsFunction extends ExpressionVisitor
         {
             return lazy(f as () => T);
         }
+    }
+
+    visitTernary<T extends Expressions = StrictExpressions>(expression: TernaryExpression<T>): TernaryExpression<Expressions>
+    {
+        this.visit(expression.first);
+        switch (expression.operator)
+        {
+            case TernaryOperator.Question:
+                this.functionBody += '?';
+                this.visit(expression.second);
+                this.functionBody += ':';
+                this.visit(expression.third);
+                break;
+
+            case TernaryOperator.Unknown:
+            default:
+                throw new Error('invalid operator' + expression.operator);
+        }
+
+        return expression;
     }
 
     visitConstant(arg0: ConstantExpression<unknown>): StrictExpressions

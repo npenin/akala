@@ -11,6 +11,7 @@ import { ApplySymbolExpression } from './apply-symbol-expression.js';
 import { NewExpression } from './new-expression.js';
 import { IVisitable } from './visitable.js';
 import { FormatExpression } from '../parser.js';
+import { TernaryExpression } from './ternary-expression.js';
 
 
 export type EqualityComparer<T> = (a: T, b: T) => boolean;
@@ -175,6 +176,17 @@ export class ExpressionVisitor
 
         if (left !== expression.left || right !== expression.right)
             return new BinaryExpression<Expressions>(left, expression.operator, right);
+        return expression;
+    }
+
+    visitTernary<T extends Expressions = StrictExpressions>(expression: TernaryExpression<T>): TernaryExpression<Expressions>
+    {
+        const first = this.visit(expression.first);
+        const second = this.visit(expression.second);
+        const third = this.visit(expression.third);
+
+        if (first !== expression.first || second !== expression.second || third !== expression.third)
+            return new TernaryExpression<Expressions>(first, expression.operator, second, third);
         return expression;
     }
 

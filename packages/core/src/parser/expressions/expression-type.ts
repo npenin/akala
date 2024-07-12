@@ -1,6 +1,7 @@
 export enum ExpressionType
 {
     BinaryExpression = 'binary',
+    TernaryExpression = "ternary",
     IfStatement = 'if',
     ElseStatement = 'else',
     UnaryExpression = 'unary',
@@ -11,6 +12,6 @@ export enum ExpressionType
     CallExpression = 'call',
     ApplySymbolExpression = 'applySymbol',
     NewExpression = 'new',
-    Unknown = 'unknown',
     Format = 'format',
+    Unknown = 'unknown',
 }
