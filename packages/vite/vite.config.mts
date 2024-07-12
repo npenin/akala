@@ -31,19 +31,19 @@ export default {
                     const parser = new Parser();
                     each((command.config[trigger] as GenericConfiguration).inject, (param, i) =>
                     {
-                        console.log(param, i);
+                        // console.log(param, i);
                         if (param === 'auth')
                             params.auth = params.param[i];
                         if (param.startsWith('auth.'))
                         {
                             if (!params.auth)
                                 params.auth = {}
-                            console.log(params.param)
+                            // console.log(params.param)
                             ObservableObject.setValue(params, parser.parse(param), params.param[i]);
                         }
                     });
                 }
-                console.log(params);
+                // console.log(params);
             })
         }])
     ],
