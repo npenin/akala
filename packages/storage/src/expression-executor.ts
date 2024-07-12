@@ -298,11 +298,10 @@ export class ExpressionExecutor extends ExpressionVisitor
 
     public static applyBinary(leftResult: number, right: () => PromiseLike<number>, operator: expressions.BinaryOperator)
     {
-        console.log(leftResult);
         switch (operator)
         {
             case expressions.BinaryOperator.Equal:
-                return right().then(right => { console.log(right); return leftResult === right });
+                return right().then(right => leftResult === right);
             case expressions.BinaryOperator.NotEqual:
                 return right().then(right => leftResult !== right);
             case expressions.BinaryOperator.LessThan:
