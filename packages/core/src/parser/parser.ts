@@ -3,6 +3,8 @@ import { BinaryExpression, ConstantExpression, Expression, Expressions, Expressi
 import identity from '../formatters/identity.js';
 import negate from '../formatters/negate.js';
 import booleanize from '../formatters/booleanize.js';
+import { TernaryOperator } from './expressions/ternary-operator.js';
+import { TernaryExpression } from './expressions/ternary-expression.js';
 
 
 const jsonKeyRegex = /^ *(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([^: ]+)) *): */;
@@ -33,7 +35,7 @@ export function getSetter<T = unknown>(expression: string, root: T): { expressio
     return { expression: parts[0], target: target, set: function (value) { target[parts[0]] = value } };
 }
 
-function parseOperator(op: string): BinaryOperator
+function parseBinaryOperator(op: string): BinaryOperator
 {
     switch (op)
     {
@@ -58,7 +60,16 @@ function parseOperator(op: string): BinaryOperator
         default: return BinaryOperator.Unknown;
     }
 }
-function operatorLength(operator: BinaryOperator)
+
+function parseTernaryOperator(op: string): TernaryOperator
+{
+    switch (op)
+    {
+        case '?': return TernaryOperator.Question;
+        default: return TernaryOperator.Unknown;
+    }
+}
+function operatorLength(operator: BinaryOperator | TernaryOperator)
 {
     switch (operator)
     {
@@ -70,6 +81,7 @@ function operatorLength(operator: BinaryOperator)
         case BinaryOperator.And:
         case BinaryOperator.Or:
         case BinaryOperator.QuestionDot:
+        case TernaryOperator.Question:
             return 2;
         case BinaryOperator.LessThan:
         case BinaryOperator.GreaterThan:
@@ -86,6 +98,7 @@ function operatorLength(operator: BinaryOperator)
         case BinaryOperator.StrictNotEqual:
             return 3;
         case BinaryOperator.Unknown:
+        case TernaryOperator.Unknown:
             throw new Error('Unknown operator ');
 
         default:
@@ -150,6 +163,10 @@ export class ParsedBinary extends BinaryExpression<ExpressionsWithLength> implem
                         return new MemberExpression(new MemberExpression(left as TypedExpression<unknown>, right.left, operation.operator == BinaryOperator.QuestionDot), right.right, right.operator == BinaryOperator.QuestionDot);
                 }
             }
+            if (operation.right instanceof ParsedTernary)
+            {
+                return new ParsedTernary(operation.right.operator, new ParsedBinary(operation.operator, operation.left, operation.right.first), operation.right.second, operation.right.third)
+            }
         }
         return operation;
     }
@@ -157,6 +174,22 @@ export class ParsedBinary extends BinaryExpression<ExpressionsWithLength> implem
     public toString()
     {
         return '(' + this.left.toString() + this.operator + this.right.toString() + ')';
+    }
+}
+
+export class ParsedTernary extends TernaryExpression<ExpressionsWithLength> implements ParsedAny
+{
+    constructor(operator: TernaryOperator, first: ExpressionsWithLength, public second: ExpressionsWithLength, public third: ExpressionsWithLength)
+    {
+        super(first, operator, second, third);
+        this.$$length = this.first.$$length + operatorLength(this.operator) + this.second.$$length + this.third.$$length;
+    }
+
+    public $$length: number;
+
+    public toString()
+    {
+        return '(' + this.first.toString() + this.operator[0] + this.second.toString() + this.operator[1] + this.third.toString() + ')';
     }
 }
 
@@ -394,6 +427,7 @@ export class Parser
                     const member = new MemberExpression(lhs as TypedExpression<any>, rhs as TypedExpression<any>, false);
                     member.$$length = lhs.$$length + operator[0].length + rhs.$$length + operator[0].length;
                     return member;
+
                 case '?.':
                 case '.':
                     expression = expression.substring(operator[0].length);
@@ -419,13 +453,25 @@ export class Parser
                         lhs.$$length = lhsLength;
                         return lhs;
                     }
-                    var binary = new ParsedBinary(parseOperator(operator[1]), lhs, rhs);
+                    var binary = new ParsedBinary(parseBinaryOperator(operator[1]), lhs, rhs);
                     binary.$$length = lhs.$$length + operator[0].length + rhs.$$length;
                     return ParsedBinary.applyPrecedence(binary);
+                case '?':
+                    expression = expression.substring(operator[0].length);
+                    const tOperator = parseTernaryOperator(operator[1])
+                    const second = this.parseAny(expression, parseFormatter);
+                    expression = expression.substring(second.$$length);
+                    const operator2 = /^ *(:)/.exec(expression);
+                    if (!operator2)
+                        throw new Error('Invalid ternary operator');
+                    const third = this.parseAny(expression.substring(operator2[0].length), parseFormatter);
+                    var ternary = new ParsedTernary(tOperator, lhs, second, third)
+                    ternary.$$length = lhs.$$length + operator[0].length + second.$$length + operator2[0].length + third.$$length;
+                    return ternary;
                 default:
                     expression = expression.substring(operator[0].length);
                     rhs = this.parseAny(expression, parseFormatter);
-                    var binary = new ParsedBinary(parseOperator(operator[1]), lhs, rhs)
+                    var binary = new ParsedBinary(parseBinaryOperator(operator[1]), lhs, rhs)
                     binary.$$length = lhs.$$length + operator[0].length + rhs.$$length;
                     return ParsedBinary.applyPrecedence(binary);
             }
