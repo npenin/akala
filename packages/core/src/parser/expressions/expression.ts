@@ -11,6 +11,7 @@ import { NewExpression } from './new-expression.js';
 import { ExpressionVisitor } from './expression-visitor.js';
 import { IVisitable } from './visitable.js';
 import { FormatExpression } from '../parser.js';
+import { TernaryExpression } from './ternary-expression.js';
 
 export type UnknownExpression = { type: ExpressionType.Unknown, accept(visitor: ExpressionVisitor): Expressions };
 
@@ -114,6 +115,7 @@ export abstract class Expression
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type StrictExpressions = (ApplySymbolExpression<any, any> |
     BinaryExpression<any> |
+    TernaryExpression<any> |
     FormatExpression<any> |
     CallExpression<any, any> |
     ParameterExpression<any> |
@@ -124,4 +126,4 @@ export type StrictExpressions = (ApplySymbolExpression<any, any> |
     NewExpression<any>) & IVisitable<ExpressionVisitor, StrictExpressions>;
 /* eslint-enable @typescript-eslint/no-explicit-any */
 
-export type Expressions = StrictExpressions | UnknownExpression | UnaryExpression | BinaryExpression;
+export type Expressions = StrictExpressions | UnknownExpression | UnaryExpression | BinaryExpression | TernaryExpression;
