@@ -1,6 +1,6 @@
 
 export enum TernaryOperator
 {
-    Question = '?;',
+    Question = '?:',
     Unknown = 'xx'
 }
