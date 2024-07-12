@@ -10,11 +10,20 @@ type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Co
 })
 export class Login extends Page
 {
+    static loadState(scope: Scope)
+    {
+        const sAuthState = localStorage.getItem('akala.authState');
+        if (sAuthState)
+            scope.$set('$authProcessor.authState', JSON.parse(sAuthState));
+    }
+
     constructor(scope: Scope, location: LocationService)
     {
         super();
         this.subscribe(scope.$commandEvents.on('auth.login', (result: any) =>
         {
+            if ((document.getElementsByName('remember-me')[0] as HTMLInputElement).checked)
+                localStorage.setItem('akala.authState', JSON.stringify(result))
             scope.$set('$authProcessor.authState', result);
             location.dispatch('/');
         }));

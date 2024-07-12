@@ -32,6 +32,7 @@ bootstrapModule.activate(['$rootScope', 'services.$location', 'services.$outlet'
         template: 'test/index.html',
         controller()
         {
+            Login.loadState(root);
             if (!root.$authProcessor.authState)
                 location.dispatch('/login');
             else
