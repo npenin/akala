@@ -1,13 +1,17 @@
 import { map } from "../each.js";
 import EventEmitter, { Event, EventArgs, EventKeys, EventListener, IEvent, Subscription } from "../event-emitter.js";
-import { Parser } from "../index.js";
+import { ErrorWithStatus, HttpStatusCode, Parser } from "../index.js";
 import { EvaluatorAsFunction } from "../parser/evaluator-as-function.js";
+import { BinaryExpression } from "../parser/expressions/binary-expression.js";
+import { BinaryOperator } from "../parser/expressions/binary-operator.js";
 import { ConstantExpression } from "../parser/expressions/constant-expression.js";
 import { ExpressionVisitor } from "../parser/expressions/expression-visitor.js";
 import { Expressions, StrictExpressions } from "../parser/expressions/expression.js";
 import { MemberExpression } from "../parser/expressions/member-expression.js";
 import { NewExpression } from "../parser/expressions/new-expression.js";
 import { ParameterExpression } from "../parser/expressions/parameter-expression.js";
+import { TernaryExpression } from "../parser/expressions/ternary-expression.js";
+import { TernaryOperator } from "../parser/expressions/ternary-operator.js";
 
 export interface ObjectEvent<T>
 {
@@ -156,19 +160,101 @@ export class BuildGetter<T extends object> extends ExpressionVisitor
 
         return arg0;
     }
+
+    visitTernary<T extends Expressions = StrictExpressions>(expression: TernaryExpression<T>): TernaryExpression<Expressions>
+    {
+        const source = this.getter;
+        this.visit(expression.first);
+        switch (expression.operator)
+        {
+            case TernaryOperator.Question:
+                const condition = this.getter;
+                this.getter = source;
+                this.visit(expression.second);
+                const second = this.getter;
+                this.getter = source;
+                this.visit(expression.third);
+                const third = this.getter;
+                this.getter = source;
+                this.getter = (target) => condition(target) ? second(target) : third(target);
+                break;
+        }
+
+        return expression;
+    }
+
+    visitBinary<T extends Expressions = StrictExpressions>(expression: BinaryExpression<T>): BinaryExpression<Expressions>
+    {
+        const source = this.getter;
+        this.visit(expression.left);
+        const left = this.getter;
+        this.getter = source;
+        this.visit(expression.right);
+        const right = this.getter;
+        switch (expression.operator)
+        {
+            case BinaryOperator.Equal:
+                this.getter = (target) => left(target) == right(target); break;
+            case BinaryOperator.StrictEqual:
+                this.getter = (target) => left(target) === right(target); break;
+            case BinaryOperator.NotEqual:
+                this.getter = (target) => left(target) != right(target); break;
+            case BinaryOperator.StrictNotEqual:
+                this.getter = (target) => left(target) !== right(target); break;
+            case BinaryOperator.LessThan:
+                this.getter = (target) => left(target) < right(target); break;
+            case BinaryOperator.LessThanOrEqual:
+                this.getter = (target) => left(target) <= right(target); break;
+            case BinaryOperator.GreaterThan:
+                this.getter = (target) => left(target) > right(target); break;
+            case BinaryOperator.GreaterThanOrEqual:
+                this.getter = (target) => left(target) >= right(target); break;
+            case BinaryOperator.And:
+                this.getter = (target) => left(target) && right(target); break;
+            case BinaryOperator.Or:
+                this.getter = (target) => left(target) || right(target); break;
+            case BinaryOperator.Minus:
+                this.getter = (target) => left(target) - right(target); break;
+            case BinaryOperator.Plus:
+                this.getter = (target) => left(target) + right(target); break;
+            case BinaryOperator.Modulo:
+                this.getter = (target) => left(target) % right(target); break;
+            case BinaryOperator.Div:
+                this.getter = (target) => left(target) / right(target); break;
+            case BinaryOperator.Times:
+                this.getter = (target) => left(target) * right(target); break;
+            case BinaryOperator.Pow:
+                this.getter = (target) => Math.pow(left(target), right(target)); break;
+            case BinaryOperator.Dot:
+                this.getter = (target) => left(target)[right(target)]; break;
+            case BinaryOperator.QuestionDot:
+                this.getter = (target) => left(target)?.[right(target)]; break;
+            case BinaryOperator.Format:
+            case BinaryOperator.Unknown:
+                throw new ErrorWithStatus(HttpStatusCode.NotImplemented, 'Not implemented/supported');
+        }
+        return expression;
+    }
 }
 
 type Watcher = EventEmitter<{ 'change': Event<[source?: object]> }>;
 
 export class BuildWatcher<T extends object> extends ExpressionVisitor
 {
+    private boundObservables: unknown[];
+
     public eval(expression: Expressions): (target: T, watcher: Watcher) => void
     {
+        this.boundObservables = [];
         this.getter = (target, watcher) =>
         {
             if (target instanceof Binding)
             {
+                // if (!this.boundObservables.includes(target))
+                // {
                 target.onChanged(ev => watcher.emit('change', ev.value));
+                this.boundObservables.push(target);
+                // }
                 const subTarget = target.getValue();
                 if (subTarget)
                     return new ObservableObject(subTarget);
@@ -180,17 +266,24 @@ export class BuildWatcher<T extends object> extends ExpressionVisitor
         return this.getter;
     }
 
-    private getter: (target: object, watcher: Watcher) => ObservableObject<any>;
+    private getter: (target: object, watcher: Watcher) => ObservableObject<any> | boolean | string | number | symbol | bigint | Function | undefined | unknown;
+
+    visitConstant(arg0: ConstantExpression<unknown>): StrictExpressions
+    {
+        this.getter = () => typeof arg0.value == 'object' ? new ObservableObject(arg0.value) : arg0.value;
+        return arg0;
+    }
 
     public visitMember<T1, TMember extends keyof T1>(arg0: MemberExpression<T1, TMember, T1[TMember]>): StrictExpressions
     {
+        const getter = this.getter;
+
         const member = new EvaluatorAsFunction().eval<PropertyKey>(this.visit(arg0.member));
 
         if (arg0.source)
             this.visit(arg0.source);
 
 
-        const getter = this.getter;
 
 
         let sub: Subscription;
@@ -222,13 +315,70 @@ export class BuildWatcher<T extends object> extends ExpressionVisitor
 
             sub = result.on(prop, ev =>
             {
-                watcher.emit('change', x);
+                watcher.emit('change', x as object);
             })
             // result.watch(watcher, prop);
             return result.getValue(prop);
         }
 
         return arg0;
+    }
+
+    visitTernary<T extends Expressions = StrictExpressions>(expression: TernaryExpression<T>): TernaryExpression<Expressions>
+    {
+        const source = this.getter;
+        this.visit(expression.first);
+        switch (expression.operator)
+        {
+            case TernaryOperator.Question:
+                const condition = this.getter;
+                this.getter = source;
+                this.visit(expression.second);
+                const second = this.getter;
+                this.getter = source;
+                this.visit(expression.third);
+                const third = this.getter;
+                this.getter = source;
+                this.getter = (target, watcher) => condition(target, watcher) ? second(target, watcher) : third(target, watcher);
+                break;
+        }
+
+        return expression;
+    }
+
+    visitBinary<T extends Expressions = StrictExpressions>(expression: BinaryExpression<T>): BinaryExpression<Expressions>
+    {
+        const source = this.getter;
+        this.visit(expression.left);
+        const left = this.getter;
+        this.getter = source;
+        this.visit(expression.right);
+        const right = this.getter;
+        switch (expression.operator)
+        {
+            case BinaryOperator.Equal: this.getter = (target, watcher) => left(target, watcher) == right(target, watcher); break;
+            case BinaryOperator.StrictEqual: this.getter = (target, watcher) => left(target, watcher) === right(target, watcher); break;
+            case BinaryOperator.NotEqual: this.getter = (target, watcher) => left(target, watcher) != right(target, watcher); break;
+            case BinaryOperator.StrictNotEqual: this.getter = (target, watcher) => left(target, watcher) !== right(target, watcher); break;
+            case BinaryOperator.LessThan: this.getter = (target, watcher) => left(target, watcher) < right(target, watcher); break;
+            case BinaryOperator.LessThanOrEqual: this.getter = (target, watcher) => left(target, watcher) <= right(target, watcher); break;
+            case BinaryOperator.GreaterThan: this.getter = (target, watcher) => left(target, watcher) > right(target, watcher); break;
+            case BinaryOperator.GreaterThanOrEqual: this.getter = (target, watcher) => left(target, watcher) >= right(target, watcher); break;
+            case BinaryOperator.And: this.getter = (target, watcher) => left(target, watcher) && right(target, watcher); break;
+            case BinaryOperator.Or: this.getter = (target, watcher) => left(target, watcher) || right(target, watcher); break;
+            case BinaryOperator.Minus: this.getter = (target, watcher) => left(target, watcher) as number - (right(target, watcher) as number); break;
+            case BinaryOperator.Plus: this.getter = (target, watcher) => left(target, watcher) as number + (right(target, watcher) as number); break;
+            case BinaryOperator.Modulo: this.getter = (target, watcher) => left(target, watcher) as number % (right(target, watcher) as number); break;
+            case BinaryOperator.Div: this.getter = (target, watcher) => left(target, watcher) as number / (right(target, watcher) as number); break;
+            case BinaryOperator.Times: this.getter = (target, watcher) => left(target, watcher) as number * (right(target, watcher) as number); break;
+            case BinaryOperator.Pow: this.getter = (target, watcher) => Math.pow(left(target, watcher) as number, right(target, watcher) as number); break;
+            case BinaryOperator.Dot: this.getter = (target, watcher) => left(target, watcher)[right(target, watcher) as PropertyKey]; break;
+            case BinaryOperator.QuestionDot: this.getter = (target, watcher) => left(target, watcher)?.[right(target, watcher) as PropertyKey]; break;
+            case BinaryOperator.Format:
+            case BinaryOperator.Unknown:
+                throw new ErrorWithStatus(HttpStatusCode.NotImplemented, 'Not implemented/supported');
+        }
+        return expression;
     }
 }
 
