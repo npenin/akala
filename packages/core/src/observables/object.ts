@@ -107,6 +107,12 @@ export class BuildGetter<T extends object> extends ExpressionVisitor
 
     private getter: (target: object) => any;
 
+    public visitConstant(arg0: ConstantExpression<unknown>): StrictExpressions
+    {
+        this.getter = () => arg0.value;
+        return arg0;
+    }
+
     public visitNew<T>(expression: NewExpression<T>): StrictExpressions
     {
         const source = this.getter;
@@ -115,7 +121,8 @@ export class BuildGetter<T extends object> extends ExpressionVisitor
         this.visitEnumerable(expression.init, () => { }, (arg0) =>
         {
             const member = evaluator.eval<PropertyKey>(this.visit(arg0.member));
-            this.visit(arg0);
+            this.getter = source;
+            this.visit(arg0.source);
             const getter = this.getter;
             result.push((target) => [member(target), getter(target)])
             this.getter = source;
@@ -133,7 +140,9 @@ export class BuildGetter<T extends object> extends ExpressionVisitor
 
     public visitMember<T1, TMember extends keyof T1>(arg0: MemberExpression<T1, TMember, T1[TMember]>): MemberExpression<T1, TMember, T1[TMember]>
     {
+        const source = this.getter;
         const member = new EvaluatorAsFunction().eval<PropertyKey>(this.visit(arg0.member));
+        this.getter = source;
 
         if (arg0.source)
             this.visit(arg0.source);
