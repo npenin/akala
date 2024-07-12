@@ -7,7 +7,7 @@ import { ExpressionVisitor } from './expression-visitor.js';
 export class TernaryExpression<T extends Expressions = StrictExpressions> extends Expression
 {
     public get type(): ExpressionType.TernaryExpression { return ExpressionType.TernaryExpression; }
-    constructor(public readonly first: Expressions, public readonly operator: TernaryOperator, public readonly second: T, public readonly third: T)
+    constructor(public readonly first: T, public readonly operator: TernaryOperator, public readonly second: T, public readonly third: T)
     {
         super();
 
