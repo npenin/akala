@@ -16,7 +16,7 @@ export default async function (this: State, username: string, password: string, 
     if (user.disabled)
         throw new ErrorWithStatus(409, 'The user is disabled');
 
-    const session = await addSession.call(this, null, user.id);
+    const session = await addSession.call(this, deviceId, user.id);
 
     session.userId = user.id;
 
