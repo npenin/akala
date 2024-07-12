@@ -280,26 +280,29 @@ export class ExpressionExecutor extends ExpressionVisitor
             });
 
         else
-            this.result = ExpressionExecutor.applyBinary(this.result as number, () =>
+        {
+            const left = this.result as number;
+            this.result = ExpressionExecutor.applyBinary(left, () =>
             {
-                let left = this.result as number;
                 (this as ExpressionVisitor).visit(expression.right);
-                if (isPromiseLike(this.result))
-                    return this.result as PromiseLike<number>;
+                const right = this.result;
+                if (isPromiseLike(right))
+                    return right as PromiseLike<number>;
                 return {
-                    then(x: (right: number) => unknown) { return x(left) }
+                    then(x: (right: number) => unknown) { return x(right as number) }
                 } as PromiseLike<number>
             }, expression.operator)
-
+        }
         return expression;
     }
 
     public static applyBinary(leftResult: number, right: () => PromiseLike<number>, operator: expressions.BinaryOperator)
     {
+        console.log(leftResult);
         switch (operator)
         {
             case expressions.BinaryOperator.Equal:
-                return right().then(right => leftResult === right);
+                return right().then(right => { console.log(right); return leftResult === right });
             case expressions.BinaryOperator.NotEqual:
                 return right().then(right => leftResult !== right);
             case expressions.BinaryOperator.LessThan:
