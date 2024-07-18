@@ -15,6 +15,7 @@ export class TypedInjector<TypeMap extends object = Record<string, unknown>> ext
             parent = defaultInjector as any;
 
         super(parent);
+        this.register('$injector', this as any);
     }
 
     private notifier = new EventEmitter<{ [key in keyof TypeMap]: IEvent<[PropertyDescriptor], void, unknown> }>();
