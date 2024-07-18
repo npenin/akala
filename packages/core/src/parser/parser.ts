@@ -431,31 +431,36 @@ export class Parser
                 case '?.':
                 case '.':
                     expression = expression.substring(operator[0].length);
+
+                    const oldParameters = this.parameters;
+                    this.parameters = Object.assign({}, this.parameters, { '': lhs });
                     rhs = this.parseAny(expression, parseFormatter);
-                    if (rhs.type == ExpressionType.MemberExpression)
-                    {
-                        let me: MemberExpression<any, any, any> = rhs;
-                        const reverseStack = [me]
+                    this.parameters = oldParameters;
+                    // if (rhs.type == ExpressionType.MemberExpression)
+                    // {
+                    //     let me: MemberExpression<any, any, any> = rhs;
+                    //     const reverseStack = [me]
 
-                        while (me.source?.type == ExpressionType.MemberExpression)
-                        {
-                            me = me.source;
-                            reverseStack.unshift(me);
-                        }
-                        // lhs = new MemberExpression(lhs as TypedExpression<any>, me.member as TypedExpression<any>, parseOperator(operator[1]) == BinaryOperator.QuestionDot)
-                        let lhsLength = lhs.$$length + operator[0].length + rhs.$$length;
-                        for (let i = 0; reverseStack.length; i++)
-                        {
-                            me = reverseStack.shift();
+                    //     while (me.source?.type == ExpressionType.MemberExpression)
+                    //     {
+                    //         me = me.source;
+                    //         reverseStack.unshift(me);
+                    //     }
+                    //     // lhs = new MemberExpression(lhs as TypedExpression<any>, me.member as TypedExpression<any>, parseOperator(operator[1]) == BinaryOperator.QuestionDot)
+                    //     let lhsLength = lhs.$$length + operator[0].length + rhs.$$length;
+                    //     for (let i = 0; reverseStack.length; i++)
+                    //     {
+                    //         me = reverseStack.shift();
 
-                            lhs = new MemberExpression(lhs as TypedExpression<any>, me.member, i == 0 && operator[1] == '?.' || i > 0 && me.optional);
-                        }
-                        lhs.$$length = lhsLength;
-                        return lhs;
-                    }
-                    var binary = new ParsedBinary(parseBinaryOperator(operator[1]), lhs, rhs);
-                    binary.$$length = lhs.$$length + operator[0].length + rhs.$$length;
-                    return ParsedBinary.applyPrecedence(binary);
+                    //         lhs = new MemberExpression(lhs as TypedExpression<any>, me.member, i == 0 && operator[1] == '?.' || i > 0 && me.optional);
+                    //     }
+                    //     lhs.$$length = lhsLength;
+                    //     return lhs;
+                    // }
+                    // var binary = new ParsedBinary(parseBinaryOperator(operator[1]), lhs, rhs);
+                    // binary.$$length = lhs.$$length + operator[0].length + rhs.$$length;
+                    // return ParsedBinary.applyPrecedence(binary);
+                    return rhs;
                 case '?':
                     expression = expression.substring(operator[0].length);
                     const tOperator = parseTernaryOperator(operator[1])
