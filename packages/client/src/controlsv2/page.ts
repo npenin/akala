@@ -1,22 +1,23 @@
-import { Resolvable, SimpleInjector, Subscription } from "@akala/core"
-import { OutletDefinition } from "../outlet.js"
-import { IScope, Scope } from "../scope.js"
+import { Resolvable, SimpleInjector } from "@akala/core"
+import { OutletDefined, OutletDefinition, outletDefinition } from "../outlet.js"
+import { IScope, ScopeImpl } from "../scope.js"
 
 export const RootElement = Symbol('root html template element');
-export const outletDefinition = Symbol()
 
-export function page<TScope extends IScope<object>>(options: { template: string | Promise<string>, inject?: Resolvable[] })
+export type PageType<T extends (new (...args: unknown[]) => {}), TScope extends IScope<object>> = OutletDefined<TScope> & T;
+
+export function pageOutlet<TScope extends IScope<object>>(options: { template: string | Promise<string>, inject?: Resolvable[] })
 {
-    return function <T>(target: T & (new (...args: unknown[]) => unknown)): T & { [outletDefinition]: OutletDefinition<TScope> }
+    return function <T extends (new (...args: any[]) => {})>(target: T): OutletDefinition<TScope>
     {
-        target[outletDefinition] = {
+        return {
             template: options.template,
             controller: (scope, element, param) =>
             {
                 if (options.inject)
                 {
                     const inj = new SimpleInjector();
-                    inj.register(Scope.injectionToken, scope);
+                    inj.register(ScopeImpl.injectionToken, scope);
                     inj.register(RootElement, element);
                     inj.register('param', param);
                     return inj.injectNewWithName(options.inject || [], target)();
@@ -24,23 +25,23 @@ export function page<TScope extends IScope<object>>(options: { template: string 
                 return new target();
             }
         } as OutletDefinition<TScope>;
-        return target as any;
-        // serviceModule.activate(['$outlet'], (outlet: OutletService) => outlet.use(route, outletName, ))
     }
 }
 
-export class Page
+export function page<TScope extends IScope<object>>(options: { template: string | Promise<string>; inject?: Resolvable[] })
 {
-    protected readonly subscriptions: Subscription[] = [];
-
-    [Symbol.dispose]()
+    return function <T extends new (...args: any[]) => {}>(target: T): T & OutletDefined<TScope>
     {
-        this.subscriptions.forEach(s => s());
-        this.subscriptions.length = 0;
-    }
-
-    subscribe(sub: Subscription)
-    {
-        this.subscriptions.push(sub);
-    }
+        return withOutlet(target, pageOutlet(options)(target));
+    };
 }
+
+export function withOutlet<T extends new (...args: any[]) => {}, TScope extends IScope<object>>(target: T, def: OutletDefinition<TScope>): T & OutletDefined<TScope>
+{
+    return class extends target
+    {
+        static readonly [outletDefinition] = def;
+    } as T & OutletDefined<TScope>;
+}
+
+export { SubscriptionManager as Page } from '../common.js'
