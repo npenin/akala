@@ -210,8 +210,6 @@ export abstract class LocalInjector extends Injector
     constructor(protected parent?: Injector | null)
     {
         super();
-
-        this.register('$injector', this as any);
     }
 
     abstract unregister(name: string | symbol): void;

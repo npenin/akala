@@ -9,6 +9,7 @@ export class SimpleInjector extends LocalInjector
     constructor(parent?: Injector | null)
     {
         super(parent || defaultInjector);
+        this.register('$injector', this as any);
         this.notifier = new EventEmitter();
     }
 
@@ -87,7 +88,7 @@ export class SimpleInjector extends LocalInjector
             return Injector.applyCollectedMap(param as InjectMap<T>, Object.fromEntries(x.map(x => [x, this.resolve(x)])));
         }
 
-        if (param in this.injectables)
+        if (this.injectables && param in this.injectables)
         {
             if (injectorLog.verbose.enabled)
             {
@@ -112,7 +113,7 @@ export class SimpleInjector extends LocalInjector
                     return result.resolve(key);
                 if (isPromiseLike(result))
                     return result.then((result) => { return result[key] });
-                if (result === this.injectables && typeof (result[key]) == 'undefined' && this.parent)
+                if (result === this.injectables && (!result || typeof (result[key]) == 'undefined') && this.parent)
                 {
                     return this.parent.resolve(key);
                 }
@@ -152,7 +153,7 @@ export class SimpleInjector extends LocalInjector
         return undefined;
     }
 
-    protected injectables = {};
+    protected injectables: {};
 
     public unregister(name: string)
     {
