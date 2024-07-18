@@ -149,3 +149,15 @@ export function formatParser(format: string)
         }
     }
 }
+
+function date(a: Date, format: string): string
+{
+    return formatParser(format).format(a);
+}
+
+date['reverse'] = function <T>(s: string, format: string): Date
+{
+    return formatParser(format).parse(s);
+}
+
+export default date;
