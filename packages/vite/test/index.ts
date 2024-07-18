@@ -2,10 +2,11 @@
 import './index.scss'
 import { Container } from '@akala/commands'
 import { Event, EventEmitter, isPromiseLike } from '@akala/core';
-import { IScope, LocationService, Template, serviceModule, templateCache, templateFunction, FormComposer, bootstrapModule, DataContext, DataBind, OutletService, outletDefinition } from '@akala/client'
+import { Scope as IScope, LocationService, Template, serviceModule, templateCache, templateFunction, FormComposer, bootstrapModule, DataContext, DataBind, OutletService, outletDefinition, EventComposer, I18nComposer } from '@akala/client'
 import { Processors } from '@akala/commands';
 import { Signup } from './signup/signup.js';
 import { Login } from './login/login.js';
+import Home from './home.js';
 
 bootstrapModule.register('services', serviceModule);
 
@@ -21,25 +22,17 @@ import.meta.hot.on('template-reload', (data) =>
 
 type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: EventEmitter<Record<string, Event<[unknown]>>> }>;
 
-bootstrapModule.activate(['$rootScope', 'services.$location', 'services.$outlet'], async (root: Scope, location: LocationService, outlet: OutletService) =>
+bootstrapModule.activate(['$rootScope', '$rootScope', 'services.$outlet'], async (root: Scope, rootScope: IScope<any>, outlet: OutletService) =>
 {
     Template.composers.push(new FormComposer(root.container))
     Template.composers.push(new DataContext(root));
     Template.composers.push(new DataBind(root));
+    Template.composers.push(new EventComposer());
+    Template.composers.push(new I18nComposer());
+    serviceModule.register('templateOptions', { $rootScope: rootScope, i18n: { translate: (key: string) => '@@' + key } })
 
 
-    outlet.use('/', 'main', {
-        template: 'test/index.html',
-        controller()
-        {
-            Login.loadState(root);
-            if (!root.$authProcessor.authState)
-                location.dispatch('/login');
-            else
-                root.$setAsync('currentUser', root.container.dispatch('auth.whoami'))
-            return {};
-        }
-    })
+    outlet.use('/', 'main', Home);
 
     outlet.use('/signup', 'main', Signup[outletDefinition]);
     outlet.use('/login', 'main', Login[outletDefinition]);
@@ -49,7 +42,7 @@ bootstrapModule.ready(['services.$location', '$rootScope'], async function (loca
 {
     this.whenDone.then(async () =>
     {
-        await Template.composeAll([document.getElementById('app')], document.body, { $rootScope: rootScope });
+        Template.composeAll([document.getElementById('app')], document.body, { $rootScope: rootScope });
         location.start({ dispatch: true, hashbang: false })
     })
 });
