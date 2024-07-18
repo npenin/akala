@@ -4,13 +4,12 @@ import * as routing from './router.js'
 import { LocationService } from './locationService.js'
 export * from './template.js';
 export * from './outlet.js';
-import './outlet.js';
-import * as scope from './scope.js';
+// import './outlet.js';
+import { ScopeImpl } from './scope.js';
 
 export const loadScript = load;
 
-export type IScope<T extends object> = scope.IScope<T> & T;
-export const Scope = scope.Scope;
+export * from './scope.js'
 
 export const router = routing.router
 export { Router } from './router.js'
@@ -18,6 +17,7 @@ export { LocationService };
 export const init = Module.prototype.activate;
 
 import './controlsv2/outlet.js'
+export * from './controlsv2/page.js'
 
 import HotKeyTrigger from './hotkeytrigger.js'
 export { HotKeyTrigger }
@@ -36,7 +36,7 @@ export const run: typeof common.bootstrapModule.ready = common.bootstrapModule.r
 
 common.bootstrapModule.activate([], function ()
 {
-    common.bootstrapModule.register('$rootScope', new scope.Scope());
+    common.bootstrapModule.register('$rootScope', new ScopeImpl());
 
 });
 

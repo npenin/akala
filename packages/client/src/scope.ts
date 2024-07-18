@@ -11,9 +11,11 @@ export interface IScope<T extends object>
     $bind(expression: string): Binding<unknown>;
 }
 
+export type Scope<T extends object> = T & IScope<T>;
+
 const ScopeInjectionToken = Symbol('scope injection token');
 
-export class Scope<T extends object> implements IScope<T>
+export class ScopeImpl<T extends object> implements IScope<T>
 {
     public static readonly injectionToken = ScopeInjectionToken;
     public get $root() { return this; }
@@ -21,7 +23,7 @@ export class Scope<T extends object> implements IScope<T>
     private $$resolver: SimpleInjector;
     public $$watchers: Partial<{ [key in keyof T]: Binding<T[key]> }> = {};
 
-    public $new<U extends object>(): Scope<U>
+    public $new<U extends object>(): IScope<U>
     {
         const root = this['$root'] || this;
         var newScope = function ()

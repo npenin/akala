@@ -1,4 +1,4 @@
-import { ctorToFunction, Module, module, defaultInjector, EventEmitter, SpecialNextParam, MiddlewarePromise, Event } from '@akala/core';
+import { ctorToFunction, Module, module, defaultInjector, EventEmitter, SpecialNextParam, MiddlewarePromise, Event, Subscription } from '@akala/core';
 
 export const bootstrapModule: Module = module('akala', 'akala-services', 'controls')
 
@@ -33,7 +33,7 @@ export function service(name, ...toInject: string[])
     };
 }
 
-import component, { webComponent } from './component.js';
+import component, { webComponent } from './decorators/component.js';
 import { Container, ICommandProcessor, Metadata, StructuredParameters } from '@akala/commands';
 export { component, webComponent };
 
@@ -61,4 +61,22 @@ export class LocalAfterRemoteProcessor implements ICommandProcessor
 
 export { FormInjector, FormComposer } from './behaviors/form.js'
 export { DataBind, DataContext } from './behaviors/context.js'
-export * from './controlsv2/page.js'
+export { EventComposer } from './behaviors/events.js'
+export { I18nComposer } from './behaviors/i18n.js'
+
+
+export class SubscriptionManager
+{
+    protected readonly subscriptions: Subscription[] = [];
+
+    [Symbol.dispose]()
+    {
+        this.subscriptions.forEach(s => s());
+        this.subscriptions.length = 0;
+    }
+
+    subscribe(sub: Subscription)
+    {
+        this.subscriptions.push(sub);
+    }
+}

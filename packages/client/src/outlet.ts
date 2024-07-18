@@ -1,12 +1,12 @@
 import { Router, RouterRequest as Request } from './router.js'
-import './controlsv2/outlet.js'
 import { Template } from './template.js'
-import { IScope } from './scope.js'
+import { Scope } from './scope.js'
 import { service } from './common.js'
 import { LocationService as Location } from './locationService.js'
 import { Binding, Event, EventEmitter, EventOptions, SimpleInjector, Subscription, map } from '@akala/core'
 
-export type PartInstance = { scope: Binding<IScope<object>>, element: HTMLElement | ShadowRoot };
+export type PartInstance = { scope: Binding<Scope<object>>, element: HTMLElement | ShadowRoot };
+export const outletDefinition = Symbol()
 
 @service('$outlet', '$template', '$router', '$location')
 export class OutletService 
@@ -53,7 +53,7 @@ export class OutletService
         delete this.routers[partName];
     }
 
-    public async apply<TScope extends IScope<object>>(partInstance: () => PartInstance, part: OutletDefinition<TScope>, params: unknown): Promise<Disposable>
+    public async apply<TScope extends Scope<object>>(partInstance: () => PartInstance, part: OutletDefinition<TScope>, params: unknown): Promise<Disposable>
     {
         const template = this.template;
         if (part?.template)
@@ -64,14 +64,17 @@ export class OutletService
         if (!p)
             return;
         let controller: Partial<Disposable>;
+        let templateInstance: Partial<Disposable>;
         if (part?.controller)
             controller = part.controller(p.scope?.getValue() as TScope, p.element, params);
         if (tpl)
         {
             const sub = tpl.watch(p.scope, async () =>
             {
+                if (templateInstance)
+                    templateInstance[Symbol.dispose]?.();
                 p.element.replaceChildren();
-                await tpl(p.scope, p.element);
+                templateInstance = tpl(p.scope, p.element, controller);
             }, true)
 
             if (controller)
@@ -92,8 +95,8 @@ export class OutletService
     }
 
     public use(url: string): OutletService
-    public use<TScope extends IScope<object>>(url: string, partName: string, part: OutletDefinition<TScope>): void
-    public use<TScope extends IScope<object>>(url: string, partName = 'body', part?: OutletDefinition<TScope>): OutletService | void
+    public use<TScope extends Scope<object>>(url: string, partName: string, part: OutletDefined<TScope> | OutletDefinition<TScope>): void
+    public use<TScope extends Scope<object>>(url: string, partName = 'body', part?: OutletDefined<TScope> | OutletDefinition<TScope>): OutletService | void
     {
         if (!part)
         {
@@ -107,18 +110,23 @@ export class OutletService
         this.routers[partName].use(url, (req: Request) =>
         {
             console.log('apply part ' + partName + ' for url ' + url);
-            return this.apply(() => this.parts.resolve(partName), part, req.params);
+            return this.apply(() => this.parts.resolve(partName), part[outletDefinition] || part, req.params);
         });
     }
 }
 
-export interface OutletDefinition<TScope extends IScope<object>>
+export interface OutletDefined<TScope extends Scope<object>>
+{
+    [outletDefinition]: OutletDefinition<TScope>;
+}
+
+export interface OutletDefinition<TScope extends Scope<object>>
 {
     template?: string | Promise<string>;
     controller?(scope: TScope, element: HTMLElement | ShadowRoot, params: unknown): { [Symbol.dispose]?(): void };
 }
 
-export class OutletDefinitionBuilder<TScope extends IScope<object>> implements OutletDefinition<TScope>
+export class OutletDefinitionBuilder<TScope extends Scope<object>> implements OutletDefinition<TScope>
 {
     constructor(private commandActions?: EventEmitter<Record<string, Event<[unknown]>>>)
     {

@@ -1,5 +1,5 @@
 import { service } from './common.js'
-import { Binding, Event, EventEmitter, Http, Interpolate, Parser, SimpleInjector, Subscription, each, eachAsync, grep, map } from '@akala/core';
+import { Binding, Event, EventEmitter, Http, Injector, Interpolate, Parser, SimpleInjector, Subscription, each, grep, map } from '@akala/core';
 
 // eslint-disable-next-line no-constant-condition
 if (MutationObserver && false)
@@ -25,7 +25,7 @@ service('$interpolate')(Interpolate)
 
 export interface templateFunction
 {
-    (target: object, parent: HTMLElement | ShadowRoot): Promise<Disposable>;
+    <T extends Partial<Disposable>>(target: object, parent: HTMLElement | ShadowRoot, controller: T): Disposable;
     hotReplace(markup: string): void;
     watch(target: object, handler: () => void, trigger?: boolean): Subscription;
 }
@@ -34,7 +34,7 @@ export interface Composer<TOptions = unknown>
 {
     selector: string | string[];
     optionName?: string;
-    apply(items: HTMLElement, options?: TOptions): Disposable;
+    apply(items: HTMLElement, options?: TOptions, futureParent?: Element | ShadowRoot): Disposable;
 }
 
 
@@ -61,11 +61,11 @@ export function composer(selector: string | Composer | (new () => Composer), opt
 
 const cache = new SimpleInjector();
 export { cache as templateCache };
-@service('$template', '$interpolate', '$http')
+@service('$template', '$interpolate', '$http', '$injector')
 export class Template
 {
     public static composers: Composer[] = [];
-    constructor(private interpolator: Interpolate, private http: Http) { }
+    constructor(private interpolator: Interpolate, private http: Http, private templateInjector: Injector) { }
 
     public enableHotReplacement: boolean;
 
@@ -120,7 +120,8 @@ export class Template
     public build(markup: string): templateFunction
     {
         let template = this.interpolator.build(markup)
-        var f: templateFunction = ((data, parent?: HTMLElement | ShadowRoot) =>
+        let disposable: Disposable;
+        var f: templateFunction = (<T extends Partial<Disposable>>(data, parent?: HTMLElement | ShadowRoot, controller?: T) =>
         {
             f.hotReplace = (markup: string) =>
             {
@@ -155,7 +156,8 @@ export class Template
                     confirm('template has changed, please consider reloading to see updated change');
                 }
                 templateInstance = newTemplateInstance;
-                Template.composeAll(templateInstance, parent);
+                disposable[Symbol.dispose]();
+                disposable = Template.composeAll(templateInstance, null, { controller, ...this.templateInjector.resolve('templateOptions') });
             }
 
             var templateInstance = Template.buildElements(template(data));
@@ -166,7 +168,7 @@ export class Template
                     parent.appendChild(inst);
                 })
             }
-            return Template.composeAll(templateInstance);
+            return disposable = Template.composeAll(templateInstance, null, { controller, ...this.templateInjector.resolve('templateOptions') });
         }) as templateFunction;
         f.hotReplace = async (markup: string) =>
         {
@@ -191,25 +193,22 @@ export class Template
         return f;
     }
 
-    static async composeAll(items: ArrayLike<HTMLElement>, root?: Element | ShadowRoot, options?: { [key: string]: unknown }): Promise<Disposable>
+    static composeAll(items: ArrayLike<HTMLElement>, root?: Element | ShadowRoot, options?: { [key: string]: unknown }): Disposable
     {
-        const result: Disposable[] = [];
-        return await eachAsync(this.composers, async (composer) =>
-        {
-            await this.compose(composer, items, root, composer.optionName && options && options[composer.optionName]).then(disposable => result.push(disposable));
-        }, true).then(() => new CompositeDisposable(result));
+        return new CompositeDisposable(map(this.composers, (composer) => this.compose(composer, items, root, composer.optionName && options && options[composer.optionName])));
     }
 
-    static async compose(composer: Composer, items: ArrayLike<HTMLElement>, root?: Element | ShadowRoot, options?: unknown): Promise<Disposable>
+    static compose<TOptions>(composer: Composer<TOptions>, items: ArrayLike<HTMLElement>, root?: Element | ShadowRoot, options?: TOptions): Disposable
     {
         // data.$new = Scope.prototype.$new;
         // const instances: IControlInstance<unknown>[] = [];
         const selector = typeof composer.selector == 'string' ? composer.selector : composer.selector.join(',');
+        const disposables: Disposable[] = [];
         if (filter(items, composer.selector).length == 0)
         {
-            await eachAsync(items, async function (el)
+            each(items, async function (el)
             {
-                await eachAsync(el.querySelectorAll(selector), async function (el: HTMLElement)
+                each(el.querySelectorAll(selector), async function (el: HTMLElement)
                 {
                     const closest = el.parentElement && el.parentElement.closest(selector);
                     let applyInnerTemplate = !!closest || !root;
@@ -218,33 +217,26 @@ export class Template
                     if (applyInnerTemplate)
                     {
                         // instances.push(...
-                        await Template.compose(composer, [el], el, composer.optionName && options && options[composer.optionName])
+                        disposables.push(Template.compose(composer, [el], el, options));
                         // );
                     }
-                }, false);
+                });
 
-            }, false);
+            });
+
             // return instances;
         }
         else
         {
-            // const promises: PromiseLike<void>[] = [];
-            const disposables: Disposable[] = [];
             each(filter(items, composer.selector), function (item)
             {
-                disposables.push(composer.apply(item, options))//.then(c => { instances.push(...c) }));
+                disposables.push(composer.apply(item, options, root))
             });
-
-            return new CompositeDisposable(disposables);
-            // if (promises.length)
-            // {
-            //     await Promise.all(promises)//.then(() => instances);
-            // }
-            // return element;
         }
 
-        return;
+        return new CompositeDisposable(disposables);
     }
+
 }
 
 export class CompositeDisposable implements Disposable
@@ -254,7 +246,7 @@ export class CompositeDisposable implements Disposable
 
     [Symbol.dispose]()
     {
-        this.disposables.forEach(d => d[Symbol.dispose]());
+        this.disposables.forEach(d => d?.[Symbol.dispose]());
     }
 }
 
