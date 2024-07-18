@@ -1,4 +1,5 @@
-<main data-context="currentUser?">
-    <h1>Welcome <span data-bind data-bind-inner-text="name"></span> !</h1>
-    <span data-bind="{innerText:name, style:{color:name!=='aaa'?'red':'green'}}"></span>
+<main data-context="currentUser?" i18n-prefix="main">
+    <h1 i18n="@@test">Welcome <span data-bind data-bind-inner-text="name"></span> !</h1>
+    <span data-bind="{style:{color:name!=='aaa1'?'red':'green'}}" on-click="controller.test2"
+        on="{click:controller.test}" i18n i18n-inner-text="dataContext.name"></span>
 </main>
