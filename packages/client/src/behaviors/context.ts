@@ -1,5 +1,5 @@
 import { Binding, Parser, each } from "@akala/core";
-import { IScope } from "../clientify.js";
+import { IScope } from "../scope.js";
 import { Composer } from "../template.js";
 
 type Scope = IScope<object>;
@@ -10,43 +10,51 @@ export class DataContext implements Composer<Scope>
 
     readonly selector: string = '[data-context]';
     readonly optionName: string = '$rootScope';
-    apply(item: HTMLElement, options?: Scope): Disposable
+    apply(item: HTMLElement, options?: Scope, root?: HTMLElement | ShadowRoot): Disposable
     {
         if (item.dataset['context'] == this.optionName || item.dataset['context'] === '')
             item['dataContext'] = new Binding(options || this.scope, null);
         else
         {
             let binding: Binding<Scope>;
-            const closest = DataContext.find(item.parentElement);
+            const closest = DataContext.find(item.parentElement || root);
             if (closest)
                 binding = closest.pipe(Parser.parameterLess.parse(item.dataset.context))
             else
                 binding = new Binding(options || this.scope, Parser.parameterLess.parse(item.dataset.context));
 
-            const sub = binding.onChanged(() =>
+            binding.onChanged(() =>
             {
                 item.dispatchEvent(new Event('dataContextHolderChanged'));
             })
+
+            item['dataContext']?.[Symbol.dispose]();
+
             item['dataContext'] = binding;
 
-            return { [Symbol.dispose]() { sub() } };
+            return binding;
         }
 
     }
 
-    public static get(element: HTMLElement): Binding<Scope>
+    public static get(element: HTMLElement | ShadowRoot): Binding<Scope>
     {
         return element['dataContext'];
     }
 
-    public static find(element: HTMLElement): Binding<Scope>
+    public static find(element: HTMLElement | ShadowRoot): Binding<Scope>
     {
         let result = DataContext.get(element);
         if (result)
             return result;
-        const parent = element.closest<HTMLElement>('[data-context]');
-        if (parent)
-            return DataContext.get(parent);
+        if (element instanceof ShadowRoot)
+            return DataContext.find(element.parentElement);
+        else
+        {
+            const parent = element.closest<HTMLElement>('[data-context]');
+            if (parent)
+                return DataContext.get(parent);
+        }
         return null;
     }
 }
@@ -74,7 +82,7 @@ export class DataBind implements Composer<void>
 
     selector = '[data-bind]';
     optionName = 'databind';
-    apply(item: HTMLElement)
+    apply(item: HTMLElement, options: unknown, root: Element | ShadowRoot)
     {
         let bindings: Record<string, Binding<unknown>>;
 
@@ -88,18 +96,13 @@ export class DataBind implements Composer<void>
             const binding = dataContext.pipe(exps[p[0]]);
             binding.onChanged(ev =>
             {
+                if (!ev.value)
+                    return;
                 if (p[0] === '')
                     DataBind.extend(item, ev.value);
                 else
                     item[p[0]] = ev.value;
-            })
-            if (dataContext.getValue())
-            {
-                if (p[0] === '')
-                    Object.assign(item, binding.getValue());
-                else
-                    item[p[0]] = binding.getValue();
-            }
+            }, true)
             return [p[0], binding]
         }));
 
