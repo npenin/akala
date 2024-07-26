@@ -116,7 +116,7 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
                         const pmMeta = await import(new URL('../../commands.json', import.meta.url).toString());
                         if (process.connected)
                         {
-                            pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer), true)) as ac.Container<unknown> & pmDef.container;
+                            pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer))) as ac.Container<unknown> & pmDef.container;
                             registerCommands(pmMeta.commands, null, pm);
                         }
                         else
