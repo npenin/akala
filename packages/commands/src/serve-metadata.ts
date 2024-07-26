@@ -100,7 +100,7 @@ export async function connectWith<T>(options: NetConnectOpts, host: string, medi
                         resolve(socket)
                     }).on('error', reject);
                 });
-                return new JsonRpc(JsonRpc.getConnection(new NetSocketAdapter(socket), container), true);
+                return new JsonRpc(JsonRpc.getConnection(new NetSocketAdapter(socket), container));
             }
         case 'ssocket':
             {
@@ -121,7 +121,7 @@ export async function connectWith<T>(options: NetConnectOpts, host: string, medi
                         resolve(socket)
                     }).on('error', reject);
                 });
-                return new JsonRpc(JsonRpc.getConnection(new NetSocketAdapter(ssocket), container), true);
+                return new JsonRpc(JsonRpc.getConnection(new NetSocketAdapter(ssocket), container));
             }
         case 'http':
         case 'https':
@@ -143,7 +143,7 @@ export async function connectWith<T>(options: NetConnectOpts, host: string, medi
                     path = options.path;
                 else
                     path = medium + '://' + (host || options.host || 'localhost') + ':' + options.port;
-                return new JsonRpc(JsonRpc.getConnection(new jsonrpc.ws.SocketAdapter(new ws(path)), container), true);
+                return new JsonRpc(JsonRpc.getConnection(new jsonrpc.ws.SocketAdapter(new ws(path)), container));
             }
         default:
             // eslint-disable-next-line no-case-declarations, @typescript-eslint/no-unused-vars
