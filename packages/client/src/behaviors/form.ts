@@ -26,7 +26,7 @@ export class FormInjector extends Injector
 
     resolve<T = unknown>(param: string): T
     {
-        return this.form.elements[param].value;
+        return this.form.elements[param]?.value;
     }
 }
 
