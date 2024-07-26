@@ -7,7 +7,7 @@ import { CommandWithProcessorAffinity, SelfDefinedCommand } from '../model/comma
 
 export class AuthHandler implements MiddlewareAsync<CommandMetadataProcessorSignature<unknown>>
 {
-    constructor(private authValidator: Injectable<MiddlewarePromise>)
+    constructor(private authValidator: CommandProcessor['handle'])
     {
     }
 
@@ -15,10 +15,7 @@ export class AuthHandler implements MiddlewareAsync<CommandMetadataProcessorSign
     {
         if (param._trigger && cmd.config?.auth)
         {
-            // console.log('authenticating...');
-            if (!param.command)
-                param.command = cmd;
-            return Local.execute({ config: cmd.config.auth as any, name: cmd.name }, this.authValidator, origin, param)
+            return this.authValidator(origin, cmd, param);
         }
         return undefined;
     }
