@@ -133,8 +133,14 @@ export class JsonRpcBrowser extends CommandProcessor
 
     public handle(container: Container<unknown>, command: Command, params: StructuredParameters<OnlyArray<jsonrpcws.PayloadDataType<void>>>): MiddlewarePromise
     {
-        return Local.execute(command, (...args: SerializableObject[]) => Promise.all(args).then(args =>
+        return Local.execute(command, (...args: SerializableObject[]) => 
         {
+            const inject = command.config?.['']?.inject;
+            if ((inject.length != 1 || inject[0] != '$param') && !params._trigger)
+            {
+                args = Local.extractParams(command.config?.jsonrpc?.inject || inject)(...args);
+            }
+
             return new Promise<Error | SpecialNextParam | OptionsResponse>((resolve, reject) =>
             {
                 if (this.client.socket.open)
@@ -153,7 +159,7 @@ export class JsonRpcBrowser extends CommandProcessor
                 else
                     resolve();
             });
-        }, err => err)
+        }
             , container, params);
     }
 

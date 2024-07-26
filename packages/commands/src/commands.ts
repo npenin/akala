@@ -17,22 +17,23 @@ namespace cli
 		  */
 		dispatch (cmd:'add-script', ...args: [Argument0<typeof import('./cli/add-script.js').default>, Argument1<typeof import('./cli/add-script.js').default>, Argument2<typeof import('./cli/add-script.js').default>, Argument3<typeof import('./cli/add-script.js').default>]): ReturnType<typeof import('./cli/add-script.js').default>
 		dispatch (cmd:'generate', ...args: [Argument0<typeof import('./cli/generate.js').default>, Argument1<typeof import('./cli/generate.js').default>, Argument2<typeof import('./cli/generate.js').default>, Argument3<typeof import('./cli/generate.js').default>]): ReturnType<typeof import('./cli/generate.js').default>
-		dispatch (cmd:'generate-declaration', ...args: [Argument0<typeof import('./cli/generate-declaration.js').default>, Argument1<typeof import('./cli/generate-declaration.js').default>]): ReturnType<typeof import('./cli/generate-declaration.js').default>
-		dispatch (cmd:'generate-metadata', ...args: []): ReturnType<typeof import('./cli/generate-metadata.js').default>
-		dispatch (cmd:'generate-openapi', ...args: []): ReturnType<typeof import('./cli/generate-openapi.js').default>
+		dispatch (cmd:'generate-declaration', ...args: [Argument0<typeof import('./cli/generate-declaration.js').default>, Argument1<typeof import('./cli/generate-declaration.js').default>, Argument2<typeof import('./cli/generate-declaration.js').default>]): ReturnType<typeof import('./cli/generate-declaration.js').default>
+		dispatch (cmd:'generate-metadata', ...args: [Argument0<typeof import('./cli/generate-metadata.js').default>, Argument1<typeof import('./cli/generate-metadata.js').default>, Argument2<typeof import('./cli/generate-metadata.js').default>, Argument3<typeof import('./cli/generate-metadata.js').default>]): ReturnType<typeof import('./cli/generate-metadata.js').default>
+		dispatch (cmd:'generate-openapi', ...args: [Argument0<typeof import('./cli/generate-openapi.js').default>, Argument1<typeof import('./cli/generate-openapi.js').default>, Argument2<typeof import('./cli/generate-openapi.js').default>]): ReturnType<typeof import('./cli/generate-openapi.js').default>
+		dispatch (cmd:'generate-schema', ...args: [Argument0<typeof import('./cli/generate-schema.js').default>, Argument1<typeof import('./cli/generate-schema.js').default>, Argument2<typeof import('./cli/generate-schema.js').default>]): ReturnType<typeof import('./cli/generate-schema.js').default>
 		dispatch (cmd:'implement', ...args: [Argument0<typeof import('./cli/implement.js').default>, Argument1<typeof import('./cli/implement.js').default>]): ReturnType<typeof import('./cli/implement.js').default>
 		/** 
 		  * create a new command with the given name and destination (if present, cwd otherwise)
 		  */
-		dispatch (cmd:'new.command', ...args: []): ReturnType<typeof import('./cli/new/command.js').default>
+		dispatch (cmd:'new.command', ...args: [Argument0<typeof import('./cli/new/command.js').default>, Argument1<typeof import('./cli/new/command.js').default>, Argument2<typeof import('./cli/new/command.js').default>, Argument3<typeof import('./cli/new/command.js').default>]): ReturnType<typeof import('./cli/new/command.js').default>
 		/** 
 		  * create a new command configuration (json file) with the given name and destination (if present, cwd otherwise)
 		  */
-		dispatch (cmd:'new.command-config', ...args: []): ReturnType<typeof import('./cli/new/command-config.js').default>
+		dispatch (cmd:'new.command-config', ...args: [Argument0<typeof import('./cli/new/command-config.js').default>, Argument1<typeof import('./cli/new/command-config.js').default>, Argument2<typeof import('./cli/new/command-config.js').default>]): ReturnType<typeof import('./cli/new/command-config.js').default>
 		/** 
 		  * create a new module with the given name and destination (if present, cwd otherwise)
 		  */
-		dispatch (cmd:'new.module', ...args: []): ReturnType<typeof import('./cli/new/module.js').default>
+		dispatch (cmd:'new.module', ...args: [Argument0<typeof import('./cli/new/module.js').default>, Argument1<typeof import('./cli/new/module.js').default>, Argument2<typeof import('./cli/new/module.js').default>]): ReturnType<typeof import('./cli/new/module.js').default>
 		dispatch (cmd:'openapi', ...args: [Argument0<typeof import('./cli/openapi.js').default>]): ReturnType<typeof import('./cli/openapi.js').default>
 		dispatch (cmd:'register', ...args: [Argument0<typeof import('./cli/register.js').default>, Argument1<typeof import('./cli/register.js').default>, Argument2<typeof import('./cli/register.js').default>]): ReturnType<typeof import('./cli/register.js').default>
 		dispatch (cmd:'serve', ...args: [Argument0<typeof import('./cli/serve.js').default>, Argument1<typeof import('./cli/serve.js').default>]): ReturnType<typeof import('./cli/serve.js').default>
@@ -49,22 +50,23 @@ namespace cli
 		  */
 		'add-script'(...args: [Argument0<typeof import('./cli/add-script.js').default>, Argument1<typeof import('./cli/add-script.js').default>, Argument2<typeof import('./cli/add-script.js').default>, Argument3<typeof import('./cli/add-script.js').default>]): ReturnType<typeof import('./cli/add-script.js').default>
 		'generate'(...args: [Argument0<typeof import('./cli/generate.js').default>, Argument1<typeof import('./cli/generate.js').default>, Argument2<typeof import('./cli/generate.js').default>, Argument3<typeof import('./cli/generate.js').default>]): ReturnType<typeof import('./cli/generate.js').default>
-		'generate-declaration'(...args: [Argument0<typeof import('./cli/generate-declaration.js').default>, Argument1<typeof import('./cli/generate-declaration.js').default>]): ReturnType<typeof import('./cli/generate-declaration.js').default>
-		'generate-metadata'(...args: []): ReturnType<typeof import('./cli/generate-metadata.js').default>
-		'generate-openapi'(...args: []): ReturnType<typeof import('./cli/generate-openapi.js').default>
+		'generate-declaration'(...args: [Argument0<typeof import('./cli/generate-declaration.js').default>, Argument1<typeof import('./cli/generate-declaration.js').default>, Argument2<typeof import('./cli/generate-declaration.js').default>]): ReturnType<typeof import('./cli/generate-declaration.js').default>
+		'generate-metadata'(...args: [Argument0<typeof import('./cli/generate-metadata.js').default>, Argument1<typeof import('./cli/generate-metadata.js').default>, Argument2<typeof import('./cli/generate-metadata.js').default>, Argument3<typeof import('./cli/generate-metadata.js').default>]): ReturnType<typeof import('./cli/generate-metadata.js').default>
+		'generate-openapi'(...args: [Argument0<typeof import('./cli/generate-openapi.js').default>, Argument1<typeof import('./cli/generate-openapi.js').default>, Argument2<typeof import('./cli/generate-openapi.js').default>]): ReturnType<typeof import('./cli/generate-openapi.js').default>
+		'generate-schema'(...args: [Argument0<typeof import('./cli/generate-schema.js').default>, Argument1<typeof import('./cli/generate-schema.js').default>, Argument2<typeof import('./cli/generate-schema.js').default>]): ReturnType<typeof import('./cli/generate-schema.js').default>
 		'implement'(...args: [Argument0<typeof import('./cli/implement.js').default>, Argument1<typeof import('./cli/implement.js').default>]): ReturnType<typeof import('./cli/implement.js').default>
 		/** 
 		  * create a new command with the given name and destination (if present, cwd otherwise)
 		  */
-		'new.command'(...args: []): ReturnType<typeof import('./cli/new/command.js').default>
+		'new.command'(...args: [Argument0<typeof import('./cli/new/command.js').default>, Argument1<typeof import('./cli/new/command.js').default>, Argument2<typeof import('./cli/new/command.js').default>, Argument3<typeof import('./cli/new/command.js').default>]): ReturnType<typeof import('./cli/new/command.js').default>
 		/** 
 		  * create a new command configuration (json file) with the given name and destination (if present, cwd otherwise)
 		  */
-		'new.command-config'(...args: []): ReturnType<typeof import('./cli/new/command-config.js').default>
+		'new.command-config'(...args: [Argument0<typeof import('./cli/new/command-config.js').default>, Argument1<typeof import('./cli/new/command-config.js').default>, Argument2<typeof import('./cli/new/command-config.js').default>]): ReturnType<typeof import('./cli/new/command-config.js').default>
 		/** 
 		  * create a new module with the given name and destination (if present, cwd otherwise)
 		  */
-		'new.module'(...args: []): ReturnType<typeof import('./cli/new/module.js').default>
+		'new.module'(...args: [Argument0<typeof import('./cli/new/module.js').default>, Argument1<typeof import('./cli/new/module.js').default>, Argument2<typeof import('./cli/new/module.js').default>]): ReturnType<typeof import('./cli/new/module.js').default>
 		'openapi'(...args: [Argument0<typeof import('./cli/openapi.js').default>]): ReturnType<typeof import('./cli/openapi.js').default>
 		'register'(...args: [Argument0<typeof import('./cli/register.js').default>, Argument1<typeof import('./cli/register.js').default>, Argument2<typeof import('./cli/register.js').default>]): ReturnType<typeof import('./cli/register.js').default>
 		'serve'(...args: [Argument0<typeof import('./cli/serve.js').default>, Argument1<typeof import('./cli/serve.js').default>]): ReturnType<typeof import('./cli/serve.js').default>
