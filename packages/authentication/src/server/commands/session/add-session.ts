@@ -2,10 +2,10 @@ import { BinaryOperator } from "@akala/core/expressions";
 import { State } from "../../state.js";
 import { AuthenticationMethodReference } from "../../../model/session.js";
 
-export default async function (this: State, deviceId: string, userId: string, expiresOn?: Date, authenticationMethod?: AuthenticationMethodReference)
+export default async function (this: State, deviceId: string, userId: string, expiresOn?: Date, authenticationMethod?: AuthenticationMethodReference, connectionId?: string)
 {
     let session = await this.store.Session.where('userId', BinaryOperator.Equal, userId).where('deviceId', BinaryOperator.Equal, deviceId).firstOrDefault();
-    if (session && session.expiresOn > new Date())
+    if (session && session.expiresOn > new Date() && (!connectionId || session.id == connectionId))
     {
         //already valid existing session
         return session;
@@ -13,7 +13,7 @@ export default async function (this: State, deviceId: string, userId: string, ex
     else
         session = {
             authenticationMethod: authenticationMethod,
-            id: crypto.randomUUID(),
+            id: connectionId || crypto.randomUUID(),
             userId: userId,
             deviceId: deviceId,
             createdOn: new Date(),

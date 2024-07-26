@@ -2,6 +2,26 @@
     "name": "auth",
     "commands": [
         {
+            "name": "$disconnect",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/server/commands/$disconnect.js",
+                    "source": "src/server/commands/$disconnect.ts",
+                    "inject": [
+                        "param.0"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "connectionId"
+                    ]
+                },
+                "": {
+                    "inject": []
+                }
+            }
+        },
+        {
             "name": "$init",
             "config": {
                 "fs": {
@@ -213,11 +233,19 @@
             "name": "get-oidc-configuration",
             "config": {
                 "fs": {
-                    "path": "dist/esm/server/commands/get-oidc-configuration.js",
-                    "source": "src/server/commands/get-oidc-configuration.ts",
                     "inject": [
                         "param.0"
-                    ]
+                    ],
+                    "path": "dist/esm/server/commands/get-oidc-configuration.js",
+                    "source": "src/server/commands/get-oidc-configuration.ts"
+                },
+                "http": {
+                    "inject": [
+                        "headers.host"
+                    ],
+                    "method": "get",
+                    "route": "/.well-known/openid-configuration",
+                    "type": "json"
                 },
                 "": {
                     "inject": [
@@ -255,28 +283,43 @@
             "name": "login",
             "config": {
                 "fs": {
+                    "path": "dist/esm/server/commands/login.js",
+                    "source": "src/server/commands/login.ts",
                     "inject": [
                         "param.0",
-                        "param.1"
-                    ],
-                    "path": "dist/esm/server/commands/login.js",
-                    "source": "src/server/commands/login.ts"
+                        "param.1",
+                        "param.2"
+                    ]
                 },
                 "http": {
-                    "inject": [],
+                    "inject": [
+                        "body.username",
+                        "body.password",
+                        "body.deviceId"
+                    ],
                     "route": "/login",
                     "method": "post"
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2",
+                        "connectionId"
+                    ]
                 },
                 "": {
                     "inject": [
                         "param.0",
-                        "param.1"
+                        "param.1",
+                        "param.2"
                     ]
                 },
                 "html": {
                     "inject": [
                         "form.username",
-                        "form.password"
+                        "form.password",
+                        "form.deviceId"
                     ]
                 }
             }
@@ -308,7 +351,8 @@
                         "param.0",
                         "param.1",
                         "param.2",
-                        "param.3"
+                        "param.3",
+                        "param.4"
                     ]
                 },
                 "": {
@@ -316,7 +360,8 @@
                         "param.0",
                         "param.1",
                         "param.2",
-                        "param.3"
+                        "param.3",
+                        "param.4"
                     ]
                 }
             }
@@ -504,23 +549,29 @@
                     "path": "dist/esm/server/commands/whoami.js",
                     "source": "src/server/commands/whoami.ts",
                     "inject": [
+                        "ignore",
                         "ignore"
                     ]
                 },
                 "auth": {
-                    "jsonrpc": {
+                    "": {
                         "inject": [
-                            "connectionId",
-                            "$config",
-                            "command",
-                            "$param"
+                            "auth.sessionId",
+                            "auth.sessionSignature"
                         ]
                     },
                     "required": true
                 },
                 "": {
                     "inject": [
+                        "_trigger",
                         "auth.sessionId"
+                    ]
+                },
+                "jsonrpc": {
+                    "inject": [
+                        "_trigger",
+                        "connectionId"
                     ]
                 }
             }
