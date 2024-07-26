@@ -14,7 +14,7 @@ namespace commands
 		dispatch (cmd:'list-jobs', ...args: []): ReturnType<typeof import('./commands/list-jobs.js').default>
 		dispatch (cmd:'list-schedules', ...args: []): ReturnType<typeof import('./commands/list-schedules.js').default>
 		dispatch (cmd:'remove-job-schedule', ...args: [Argument0<typeof import('./commands/remove-job-schedule.js').default>, Argument1<typeof import('./commands/remove-job-schedule.js').default>]): ReturnType<typeof import('./commands/remove-job-schedule.js').default>
-		dispatch (cmd:'wait', ...args: []): ReturnType<typeof import('./commands/wait.js').default>
+		dispatch (cmd:'wait', ...args: [Argument0<typeof import('./commands/wait.js').default>]): ReturnType<typeof import('./commands/wait.js').default>
 	}
 	export interface proxy 
 	{
@@ -25,7 +25,7 @@ namespace commands
 		'list-jobs'(...args: []): ReturnType<typeof import('./commands/list-jobs.js').default>
 		'list-schedules'(...args: []): ReturnType<typeof import('./commands/list-schedules.js').default>
 		'remove-job-schedule'(...args: [Argument0<typeof import('./commands/remove-job-schedule.js').default>, Argument1<typeof import('./commands/remove-job-schedule.js').default>]): ReturnType<typeof import('./commands/remove-job-schedule.js').default>
-		'wait'(...args: []): ReturnType<typeof import('./commands/wait.js').default>
+		'wait'(...args: [Argument0<typeof import('./commands/wait.js').default>]): ReturnType<typeof import('./commands/wait.js').default>
 	}
 }
 

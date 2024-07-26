@@ -26,7 +26,7 @@ namespace commands
 		dispatch (cmd:'start', ...args: [Argument1<typeof import('./commands/start.js').default>, Argument2<typeof import('./commands/start.js').default>]): ReturnType<typeof import('./commands/start.js').default>
 		dispatch (cmd:'status', ...args: [Argument0<typeof import('./commands/status.js').default>]): ReturnType<typeof import('./commands/status.js').default>
 		dispatch (cmd:'stop', ...args: [Argument0<typeof import('./commands/stop.js').default>]): ReturnType<typeof import('./commands/stop.js').default>
-		dispatch (cmd:'update', ...args: [Argument0<typeof import('./commands/update.js').default>, Argument1<typeof import('./commands/update.js').default>]): ReturnType<typeof import('./commands/update.js').default>
+		dispatch (cmd:'update', ...args: [Argument0<typeof import('./commands/update.js').default>, Argument1<typeof import('./commands/update.js').default>, Argument2<typeof import('./commands/update.js').default>]): ReturnType<typeof import('./commands/update.js').default>
 		dispatch (cmd:'version', ...args: [Argument0<typeof import('./commands/version.js').default>, Argument1<typeof import('./commands/version.js').default>]): ReturnType<typeof import('./commands/version.js').default>
 	}
 	export interface proxy 
@@ -50,7 +50,7 @@ namespace commands
 		'start'(...args: [Argument1<typeof import('./commands/start.js').default>, Argument2<typeof import('./commands/start.js').default>]): ReturnType<typeof import('./commands/start.js').default>
 		'status'(...args: [Argument0<typeof import('./commands/status.js').default>]): ReturnType<typeof import('./commands/status.js').default>
 		'stop'(...args: [Argument0<typeof import('./commands/stop.js').default>]): ReturnType<typeof import('./commands/stop.js').default>
-		'update'(...args: [Argument0<typeof import('./commands/update.js').default>, Argument1<typeof import('./commands/update.js').default>]): ReturnType<typeof import('./commands/update.js').default>
+		'update'(...args: [Argument0<typeof import('./commands/update.js').default>, Argument1<typeof import('./commands/update.js').default>, Argument2<typeof import('./commands/update.js').default>]): ReturnType<typeof import('./commands/update.js').default>
 		'version'(...args: [Argument0<typeof import('./commands/version.js').default>, Argument1<typeof import('./commands/version.js').default>]): ReturnType<typeof import('./commands/version.js').default>
 	}
 }
