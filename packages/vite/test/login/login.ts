@@ -17,6 +17,12 @@ export class Login extends Page
             scope.$set('$authProcessor.authState', JSON.parse(sAuthState));
     }
 
+    static clearState(scope: Scope)
+    {
+        localStorage.removeItem('akala.authState');
+        scope.$set('$authProcessor.authState', undefined);
+    }
+
     constructor(scope: Scope, location: LocationService)
     {
         super();

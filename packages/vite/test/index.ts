@@ -29,7 +29,15 @@ bootstrapModule.activate(['$rootScope', '$rootScope', 'services.$outlet'], async
     Template.composers.push(new DataBind(root));
     Template.composers.push(new EventComposer());
     Template.composers.push(new I18nComposer());
-    serviceModule.register('templateOptions', { $rootScope: rootScope, i18n: { translate: (key: string) => '@@' + key } })
+    serviceModule.register('templateOptions', {
+        $rootScope: rootScope, i18n: {
+            translate: (key: string, currentValue: string) =>
+            {
+                console.log(currentValue);
+                return '@@' + key;
+            }
+        }
+    })
 
 
     outlet.use('/', 'main', Home);
