@@ -1,5 +1,6 @@
-import { ObservableArray, ObservableArrayEventArgs, Binding, ParsedString, isPromiseLike, each } from '@akala/core'
-import { databind } from './shared.js';
+import { ObservableArray, ObservableArrayEventArgs, Binding, ParsedString, isPromiseLike, each, Subscription } from '@akala/core'
+import { AttributeComposer, databind } from './shared.js';
+import { DataContext } from './context.js';
 
 function removeClass(element: HTMLElement, item: ParsedString | Array<string> | string | { [key: string]: boolean })
 {
@@ -73,6 +74,24 @@ function addClass(element: HTMLElement, item: classParamType)
             else
                 removeClass(element, key as string);
         })
+}
+
+export class CssClassComposer extends AttributeComposer<unknown>
+{
+    constructor()
+    {
+        super('klass');
+    }
+
+    getContext(item: HTMLElement, options?: unknown)
+    {
+        return DataContext.find(item);
+    }
+    applyInternal<const TKey extends PropertyKey>(item: HTMLElement, options: unknown, subItem: TKey, value: unknown): Subscription | void
+    {
+        item.classList.toggle(subItem as string, !!value);
+    }
+
 }
 
 @databind('class')
