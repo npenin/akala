@@ -3,7 +3,7 @@ import { AttributeComposer } from "./shared.js";
 import { DataContext } from "./context.js";
 import { ExpressionsWithLength, ParsedString, Parser } from "@akala/core";
 
-export class i18nParser extends Parser
+export class I18nParser extends Parser
 {
     parseAny(expression: string, parseFormatter: boolean): ExpressionsWithLength
     {
@@ -65,6 +65,6 @@ export class I18nComposer<T extends Partial<Disposable> & { translate(value: str
 
     constructor()
     {
-        super('i18n', new i18nParser());
+        super('i18n', new I18nParser());
     }
 }
