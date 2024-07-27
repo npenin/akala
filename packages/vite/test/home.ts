@@ -14,7 +14,7 @@ class HomePage extends Page
         if (!root.$authProcessor.authState)
             location.dispatch('/login');
         else
-            root.$setAsync('currentUser', root.container.dispatch('auth.whoami'))
+            root.$setAsync('currentUser', root.container.dispatch('auth.whoami').catch(e => { if (e.status == 401) Login.clearState(root); location.dispatch('/login') }))
     }
 
     public test()
