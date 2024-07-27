@@ -83,7 +83,7 @@ export class ValuedEvent<T extends unknown[], TReturnType, TOptions extends { on
     hasListeners: boolean = false;
 
     maxListeners: number = Number.POSITIVE_INFINITY;
-    addListener(listener: (...args: T) => void, options?: TOptions): () => boolean
+    addListener(listener: (...args: T) => void): () => boolean
     {
         listener(...this.value);
         return () => true;
