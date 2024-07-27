@@ -8,21 +8,26 @@ import { fileURLToPath } from 'url'
 
 export class ViteSocketAdapter implements SocketAdapter
 {
-    constructor(private server: ViteDevServer) { }
+    constructor(private server: ViteDevServer)
+    {
+    }
 
     open = true;
     close()
     {
-        throw new Error('Method not implemented.');
+        this.open = false;
+        return this.server.hot.close();
     }
-    send(data)
+    send(data: any)
     {
         this.server.hot.send('jsonrpc', data)
     }
-    on<K extends keyof SocketAdapterEventMap>(event: K, handler: (this: unknown, ev: SocketAdapterEventMap[K]) => void): void
+    on<const K extends keyof SocketAdapterEventMap>(event: K, handler: (this: unknown, ev: SocketAdapterEventMap[K]) => void): void
     {
         if (event == 'message')
             this.server.hot.on('jsonrpc', handler);
+        if (event == 'close')
+            this.server.hot.on('vite:ws:disconnect', () => { console.log('disconnect'); return handler(new CloseEvent('close', {}) as SocketAdapterEventMap[K]) });
     }
     once<K extends keyof SocketAdapterEventMap>(event: K, handler: (this: unknown, ev: SocketAdapterEventMap[K]) => void): void
     {
@@ -38,7 +43,7 @@ export class ViteSocketAdapter implements SocketAdapter
                 self.server.hot.off('jsonrpc', wrapper);
             }
         }
-        this.server.hot.on('jsonrpc', wrapper);
+        this.on(event, wrapper);
     }
     off<K extends keyof SocketAdapterEventMap>(event: K, handler?: (this: unknown, ev: SocketAdapterEventMap[K]) => void): void
     {
