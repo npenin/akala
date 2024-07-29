@@ -629,7 +629,7 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
         return result;
     }
 
-    public get<const TKey extends keyof T>(property: TKey): T[TKey] extends object ? ObservableObject<T[TKey]> : null
+    public getObservable<const TKey extends keyof T>(property: TKey): T[TKey] extends object ? ObservableObject<T[TKey]> : null
     {
         if (typeof this.target[property] == 'object')
             return new ObservableObject(this.target[property] as object) as T[TKey] extends object ? ObservableObject<T[TKey]> : null;
