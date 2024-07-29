@@ -232,9 +232,19 @@ export type ExchangeMap = {
             code_challenge_method: ArrayItemType<OIDCDescription['code_challenge_methods_supported']>
         }
     },
-    ClientCredentials: {},
-    DeviceCode: {},
-    RefreshToken: {},
-    ImplicitFlow: {},
-    PasswordGrant: {},
+    ClientCredentials: {
+        request: void
+    },
+    DeviceCode: {
+        request: void
+    },
+    RefreshToken: {
+        request: void
+    },
+    ImplicitFlow: {
+        request: void
+    },
+    PasswordGrant: {
+        request: void
+    },
 };

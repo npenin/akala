@@ -9,6 +9,14 @@ import { Metadata } from '../index.browser.js';
 
 export class HttpClient extends CommandProcessor
 {
+    public static fromUrl(url: string | URL)
+    {
+        const injector = new SimpleInjector();
+
+        const resolveUrl = (s: string) => new URL(s, url).toString();
+        injector.register('$resolveUrl', resolveUrl);
+        return new HttpClient(injector);
+    }
 
     public static handler(protocol: 'http' | 'https'): (url: URL) => Promise<HandlerResult<HttpClient>>
     {
@@ -170,10 +178,13 @@ export class HttpClient extends CommandProcessor
                             if (!options.headers.cookie)
                                 options.headers.cookie = '';
                             options.headers.cookie += encodeURIComponent(config.auth.http.mode.name) + '=' + encodeURIComponent(auth);
+                            break;
                         case 'query':
                             options.queryString[config.auth.http.mode.name] = auth;
+                            break;
                         case 'header':
                             options.headers[config.auth.http.mode.name] = auth;
+                            break;
                     }
             }
         }
