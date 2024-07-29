@@ -1,9 +1,9 @@
 {
     "name": "@akala/web-ui",
     "version": "0.0.1",
-    "private": true,
-    "main": "dist/cjs/index.js",
-    "types": "dist/cjs/index.d.ts",
+    "main": "dist/esm/index.js",
+    "types": "dist/esm/index.d.ts",
+    "type": "module",
     "exports": {
         ".": {
             "import": {
@@ -33,6 +33,7 @@
         }
     },
     "dependencies": {
-        "@akala/client": "workspace:^"
+        "@akala/client": "workspace:^",
+        "@akala/core": "workspace:^"
     }
 }
