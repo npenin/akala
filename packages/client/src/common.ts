@@ -65,7 +65,6 @@ export { DataBind, DataContext } from './behaviors/context.js'
 export { EventComposer } from './behaviors/events.js'
 export { I18nComposer } from './behaviors/i18n.js'
 
-
 export class SubscriptionManager
 {
     protected readonly subscriptions: Subscription[] = [];
