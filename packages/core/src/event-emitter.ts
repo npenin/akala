@@ -40,6 +40,7 @@ export class EventEmitter<T extends object = Record<string, Event<unknown[]>>> i
         }
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     protected eventFactory<const TEvent extends keyof AllEvents<T>>(_name: TEvent): AllEvents<T>[TEvent]
     {
         return new Event(this.maxListeners, noop) as unknown as AllEvents<T>[TEvent];
