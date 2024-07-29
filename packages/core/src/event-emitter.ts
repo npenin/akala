@@ -66,6 +66,11 @@ export class EventEmitter<T extends object = Record<string, Event<unknown[]>>> i
             throw new Error('This event (' + event.toString() + ') already has registered listeners, the type cannot be changed');
     }
 
+    public get<const TEvent extends EventKeys<T>>(eventName: TEvent): AllEvents<T>[TEvent]
+    {
+        return this.events[eventName];// = event //as EventMap<AllEvents<T>>[TEvent];
+    }
+
     public setMaxListeners<const TEvent extends AllEventKeys<T>>(maxListeners: number, event?: TEvent)
     {
         if (!(event in this.events))
@@ -206,6 +211,13 @@ export class Event<T extends readonly unknown[] = unknown[], TReturnType = void,
     constructor(public maxListeners = Event.maxListeners, protected readonly combineReturnTypes?: (args: TReturnType[]) => TReturnType)
     {
 
+    }
+
+    public clone()
+    {
+        const result = new Event<T, TReturnType, TOptions>(this.maxListeners, this.combineReturnTypes);
+        result.listeners.push(...this.listeners);
+        return result;
     }
 
     public static maxListeners = 10;
