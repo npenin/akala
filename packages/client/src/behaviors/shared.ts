@@ -52,14 +52,14 @@ export function webComponent(tagName: string)
                 this.control.attributeChangedCallback?.(name, oldValue, newValue);
             }
 
-            observedAttributes = target.observedAttributes;
+            static readonly observedAttributes = target.observedAttributes;
 
         });
     }
 }
-export function wcObserve()
+export function wcObserve(name: string)
 {
-    return function <T extends HTMLElement>(target: (new (element: HTMLElement, value: any) => T) & { observedAttributes?: string[] }, name: string)
+    return function <T>(target: (new (element: HTMLElement) => T) & { observedAttributes?: string[] })
     {
         if (!target.observedAttributes)
             target.observedAttributes = [name];
