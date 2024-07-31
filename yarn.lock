@@ -475,6 +475,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@akala/vite-test@workspace:packages/vite/test":
+  version: 0.0.0-use.local
+  resolution: "@akala/vite-test@workspace:packages/vite/test"
+  dependencies:
+    "@akala/client": "workspace:^"
+    "@akala/core": "workspace:^"
+    "@akala/web-ui": "workspace:^"
+    esbuild-sass-plugin: "npm:^3.2.0"
+    postcss: "npm:^8.4.38"
+    postcss-modules: "npm:^6.0.0"
+    vite: "npm:^5.2.8"
+  languageName: unknown
+  linkType: soft
+
 "@akala/vite@workspace:packages/vite":
   version: 0.0.0-use.local
   resolution: "@akala/vite@workspace:packages/vite"
@@ -486,11 +500,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@akala/web-ui@workspace:packages/web-ui":
+"@akala/web-ui@workspace:^, @akala/web-ui@workspace:packages/web-ui":
   version: 0.0.0-use.local
   resolution: "@akala/web-ui@workspace:packages/web-ui"
   dependencies:
     "@akala/client": "workspace:^"
+    "@akala/core": "workspace:^"
     sass: "npm:^1.77.8"
   peerDependencies:
     "@floating-ui/dom": ^1.6.8
@@ -8711,7 +8726,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.39, postcss@npm:^8.4.40":
+"postcss@npm:^8.4.38, postcss@npm:^8.4.39, postcss@npm:^8.4.40":
   version: 8.4.40
   resolution: "postcss@npm:8.4.40"
   dependencies:
@@ -10414,7 +10429,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^5.3.5":
+"vite@npm:^5.2.8, vite@npm:^5.3.5":
   version: 5.3.5
   resolution: "vite@npm:5.3.5"
   dependencies:
