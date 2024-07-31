@@ -44,4 +44,4 @@ export function withOutlet<T extends new (...args: any[]) => {}, TScope extends 
     } as T & OutletDefined<TScope>;
 }
 
-export { SubscriptionManager as Page } from '../common.js'
+export { TeardownManager as Page } from '../common.js'

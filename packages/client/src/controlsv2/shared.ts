@@ -1,7 +1,7 @@
 import { Binding, Event, Parser } from "@akala/core";
-import { DataContext, SubscriptionManager, WebComponent } from "../common.js";
+import { DataContext, TeardownManager, WebComponent } from "../common.js";
 
-export class Control<TBindings extends Record<string, unknown> = Record<string, unknown>> extends SubscriptionManager implements Partial<WebComponent>
+export class Control<TBindings extends Record<string, unknown> = Record<string, unknown>> extends TeardownManager implements Partial<WebComponent>
 {
     constructor(protected readonly element: HTMLElement)
     {
@@ -15,7 +15,7 @@ export class Control<TBindings extends Record<string, unknown> = Record<string, 
         if (this.bindings[name] && oldValue != newValue)
         {
             const oldBinding = this.bindings[name];
-            this.bindings[name] = new Binding(DataContext.find(this.element), Parser.parameterLess.parse(newValue));
+            this.bindings[name] = new Binding({ controller: this, get context() { return DataContext.find(this.element) } }, Parser.parameterLess.parse(newValue));
             this.bindings[name].set('change', (oldBinding.get('change') as Event<[{ oldValue: TBindings[TKey], value: TBindings[TKey] }]>).clone())
             this.bindings[name].emit('change', { value: this.bindings[name].getValue(), oldValue: oldBinding.getValue() })
             oldBinding[Symbol.dispose]();
@@ -29,8 +29,14 @@ export class Control<TBindings extends Record<string, unknown> = Record<string, 
 
     public bind<const TKey extends Extract<keyof TBindings, string>>(attributeName: TKey)
     {
+        if (!Reflect.has(this.element, 'controller'))
+        {
+            const controllerBinding = this.teardown(Binding.defineProperty(this.element, 'controller'));
+            return this.teardown(this.bindings[attributeName] = new Binding({ controller: controllerBinding, get context() { return DataContext.find(this.element) } }, Parser.parameterLess.parse(this.element.getAttribute(attributeName) || '')));
+
+        }
         if (!this.bindings[attributeName])
-            this.bindings[attributeName] = new Binding(DataContext.find(this.element), Parser.parameterLess.parse(this.element.getAttribute(attributeName) || ''));
+            return this.teardown(this.bindings[attributeName] = new Binding({ controller: this.element['controller'], get context() { return DataContext.find(this.element) } }, Parser.parameterLess.parse(this.element.getAttribute(attributeName) || '')));
         return this.bindings[attributeName];
     }
 }
