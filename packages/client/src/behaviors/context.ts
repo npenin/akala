@@ -1,11 +1,14 @@
-import { Binding, Parser, each } from "@akala/core";
+import { Binding, ObservableObject, Parser, Subscription, each } from "@akala/core";
 import { IScope } from "../scope.js";
 import { Composer } from "../template.js";
+import { AttributeComposer } from "./shared.js";
 
 type Scope = IScope<object>;
 
 export class DataContext implements Composer<Scope>
 {
+    private static readonly dataContextExpression = Parser.parameterLess.parse('dataContext');
+
     constructor(private scope: Scope) { }
 
     readonly selector: string = '[data-context]';
@@ -30,16 +33,19 @@ export class DataContext implements Composer<Scope>
 
             item['dataContext']?.[Symbol.dispose]();
 
-            item['dataContext'] = binding;
+            ObservableObject.setValue(item, DataContext.dataContextExpression, binding);
+            // item['dataContext'] = binding;
 
             return binding;
         }
 
     }
 
-    public static get(element: HTMLElement | ShadowRoot): Binding<Scope>
+    public static get(element: HTMLElement | ShadowRoot, alwaysDefined: true): Binding<Scope>
+    public static get(element: HTMLElement | ShadowRoot, alwaysDefined?: false): Binding<Scope> | undefined
+    public static get(element: HTMLElement | ShadowRoot, alwaysDefined?: boolean): Binding<Scope> | undefined
     {
-        return element['dataContext'];
+        return element['dataContext'] || alwaysDefined && new Binding(element, this.dataContextExpression);
     }
 
     public static find(element: HTMLElement | ShadowRoot): Binding<Scope>
@@ -53,20 +59,17 @@ export class DataContext implements Composer<Scope>
         {
             const parent = element.closest<HTMLElement>('[data-context]');
             if (parent)
-                return DataContext.get(parent);
+                return DataContext.get(parent, true);
         }
         return null;
     }
 }
 
-export class DataBind implements Composer<void>
+export class DataBind<T extends Partial<Disposable>> extends AttributeComposer<T> implements Composer<T>
 {
-    private scope: Binding<Scope>;
-
-    constructor(scope: Scope)
+    constructor()
     {
-        if (scope)
-            this.scope = new Binding(scope, null);
+        super('data-bind');
     }
 
     private static extend<T extends object>(target: T, extension: Partial<T>)
@@ -80,37 +83,26 @@ export class DataBind implements Composer<void>
         });
     }
 
-    selector = '[data-bind]';
-    optionName = 'databind';
-    apply(item: HTMLElement, options: unknown, root: Element | ShadowRoot)
+    getContext(item: HTMLElement, options?: T)
     {
-        let bindings: Record<string, Binding<unknown>>;
-
-        const properties = Object.entries(item.dataset).filter(e => e[0].startsWith('bind') && e[1]).map(e => [e[0].substring(4).replace(/^[A-Z]/, m => m.toLowerCase()), e[1]]);
-
-        const exps = Object.fromEntries(properties.map(p => [p[0], Parser.parameterLess.parse(p[1])]));
-        const dataContext = DataContext.find(item) || this.scope;
-
-        bindings = Object.fromEntries(properties.map(p =>
-        {
-            const binding = dataContext.pipe(exps[p[0]]);
-            binding.onChanged(ev =>
-            {
-                if (!ev.value)
-                    return;
-                if (p[0] === '')
-                    DataBind.extend(item, ev.value);
-                else
-                    item[p[0]] = ev.value;
-            }, true)
-            return [p[0], binding]
-        }));
-
         return {
-            [Symbol.dispose]()
-            {
-                Object.values(bindings).forEach(binding => binding[Symbol.dispose]());
-            }
-        }
+            controller: options, get context() { return DataContext.find(item) }
+        };
+    }
+
+    optionName = 'controller';
+
+    apply(item: HTMLElement, options: T, root: Element | ShadowRoot): { [Symbol.dispose](): void; }
+    {
+        item['controller'] = options;
+        return super.apply(item, options, root);
+    }
+
+    applyInternal<const TKey extends PropertyKey>(item: HTMLElement, options: T, subItem: TKey, value: unknown): Subscription | void
+    {
+        if (subItem === '')
+            DataBind.extend(item, value);
+        else
+            item[subItem as any] = value;
     }
 }
