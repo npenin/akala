@@ -1,5 +1,5 @@
 import { BinaryOperator } from './expressions/binary-operator.js';
-import { BinaryExpression, ConstantExpression, Expression, Expressions, ExpressionType, ExpressionVisitor, MemberExpression, NewExpression, ParameterExpression, TypedExpression, UnaryExpression, UnaryOperator } from './expressions/index.js';
+import { BinaryExpression, CallExpression, ConstantExpression, Expression, Expressions, ExpressionType, ExpressionVisitor, MemberExpression, NewExpression, ParameterExpression, StrictExpressions, TypedExpression, UnaryExpression, UnaryOperator } from './expressions/index.js';
 import identity from '../formatters/identity.js';
 import negate from '../formatters/negate.js';
 import booleanize from '../formatters/booleanize.js';
@@ -249,6 +249,19 @@ export class ParsedBoolean extends ConstantExpression<boolean> implements Parsed
     public $$length: number;
 }
 
+export class ParsedCall extends CallExpression<any, any> implements ParsedAny
+{
+    constructor(argsLength: number, source: TypedExpression<any> & ParsedAny, method: any, args: (StrictExpressions & ParsedAny)[])
+    {
+        super(source, method, args as StrictExpressions[]);
+        this.$$length = source.$$length + argsLength;
+        if (method)
+            this.$$length
+    }
+
+    public $$length: number;
+}
+
 export class Parser
 {
     public static parameterLess: Parser = new Parser();
@@ -267,13 +280,13 @@ export class Parser
         }
     }
 
-    public parse(expression: string, parseFormatter?: boolean): ExpressionsWithLength
+    public parse(expression: string, parseFormatter?: boolean, reset?: () => void): ExpressionsWithLength
     {
         expression = expression.trim();
-        return this.parseAny(expression, (typeof parseFormatter !== 'boolean') || parseFormatter);
+        return this.parseAny(expression, (typeof parseFormatter !== 'boolean') || parseFormatter, reset);
     }
 
-    public parseAny(expression: string, parseFormatter: boolean): ExpressionsWithLength
+    public parseAny(expression: string, parseFormatter: boolean, reset?: () => void): ExpressionsWithLength
     {
         switch (expression[0])
         {
@@ -297,7 +310,7 @@ export class Parser
             case '.':
                 return this.parseNumber(expression, parseFormatter);
             default:
-                return this.parseEval(expression, parseFormatter);
+                return this.parseEval(expression, parseFormatter, reset);
         }
     }
 
@@ -336,16 +349,16 @@ export class Parser
         return null;
     }
 
-    public parseEval(expression: string, parseFormatter: boolean)
+    public parseEval(expression: string, parseFormatter: boolean, reset?: () => void)
     {
         const b = this.parseBoolean(expression);
         if (b)
             return b;
 
-        return this.parseFunction(expression, parseFormatter);
+        return this.parseFunction(expression, parseFormatter, reset);
     }
 
-    public parseFunction(expression: string, parseFormatter: boolean): ParsedBinary
+    public parseFunction(expression: string, parseFormatter: boolean, reset?: () => void): ParsedBinary
     {
         let length = 0;
         let operator: UnaryOperator;
@@ -385,16 +398,17 @@ export class Parser
             result = new UnaryExpression(result, operator);
             result.$$length = length;
         }
-        return this.tryParseOperator(expression.substring(itemLength), result, parseFormatter);
+        return this.tryParseOperator(expression.substring(itemLength), result, parseFormatter, reset);
     }
 
-    public parseFormatter(expression: string, lhs: ExpressionsWithLength): ExpressionsWithLength
+    public parseFormatter(expression: string, lhs: ExpressionsWithLength, reset: () => void): ExpressionsWithLength
     {
         const item = /^ *# *([\w0-9.$]+) */.exec(expression);
         expression = expression.substring(item[0].length);
         // const formatter: FormatterFactory<unknown, ParsedOneOf> = module('$formatters').resolve('#' + item[1]);
         // if (!formatter)
         //     throw new Error(`filter not found: ${item[1]}`)
+        reset?.();
         let settings: ExpressionsWithLength;
         if (expression[0] == ':')
         {
@@ -408,22 +422,27 @@ export class Parser
         return result;
     }
 
-    public tryParseOperator(expression: string, lhs: ExpressionsWithLength, parseFormatter: boolean)
+    public tryParseOperator(expression: string, lhs: ExpressionsWithLength, parseFormatter: boolean, reset?: () => void)
     {
-        const operator = /^ *([<>=!+\-/*&|\?\.#\[]+) */.exec(expression);
+        const operator = /^ *([<>=!+\-/*&|\?\.#\[\(]+) */.exec(expression);
         if (operator)
         {
             let rhs: ExpressionsWithLength;
+            const oldParameters = this.parameters;
+
             switch (operator[1])
             {
                 case '#':
                     if (!parseFormatter)
                         return lhs;
 
-                    return this.parseFormatter(expression, lhs);
+                    return this.parseFormatter(expression, lhs, reset);
+                case '(':
+                    reset?.();
+                    return this.parseFunctionCall(expression.substring(operator[0].length - 1), lhs, parseFormatter)
                 case '[':
                     expression = expression.substring(operator[0].length);
-                    rhs = this.parseAny(expression, parseFormatter);
+                    rhs = this.parseAny(expression, parseFormatter, reset);
                     const member = new MemberExpression(lhs as TypedExpression<any>, rhs as TypedExpression<any>, false);
                     member.$$length = lhs.$$length + operator[0].length + rhs.$$length + operator[0].length;
                     return member;
@@ -432,9 +451,8 @@ export class Parser
                 case '.':
                     expression = expression.substring(operator[0].length);
 
-                    const oldParameters = this.parameters;
                     this.parameters = Object.assign({}, this.parameters, { '': lhs });
-                    rhs = this.parseAny(expression, parseFormatter);
+                    rhs = this.parseAny(expression, parseFormatter, reset || (() => { this.parameters = oldParameters }));
                     this.parameters = oldParameters;
                     // if (rhs.type == ExpressionType.MemberExpression)
                     // {
@@ -464,16 +482,17 @@ export class Parser
                 case '?':
                     expression = expression.substring(operator[0].length);
                     const tOperator = parseTernaryOperator(operator[1])
-                    const second = this.parseAny(expression, parseFormatter);
+                    const second = this.parseAny(expression, parseFormatter, reset);
                     expression = expression.substring(second.$$length);
                     const operator2 = /^ *(:)/.exec(expression);
                     if (!operator2)
                         throw new Error('Invalid ternary operator');
-                    const third = this.parseAny(expression.substring(operator2[0].length), parseFormatter);
+                    const third = this.parseAny(expression.substring(operator2[0].length), parseFormatter, reset);
                     var ternary = new ParsedTernary(tOperator, lhs, second, third)
                     ternary.$$length = lhs.$$length + operator[0].length + second.$$length + operator2[0].length + third.$$length;
                     return ternary;
                 default:
+                    reset?.();
                     expression = expression.substring(operator[0].length);
                     rhs = this.parseAny(expression, parseFormatter);
                     var binary = new ParsedBinary(parseBinaryOperator(operator[1]), lhs, rhs)
@@ -484,8 +503,23 @@ export class Parser
         else
             return lhs;
     }
+    parseFunctionCall(expression: string, lhs: ExpressionsWithLength, parseFormatter: boolean)
+    {
+        const results: (StrictExpressions & ParsedAny)[] = [];
+        const length = this.parseCSV(expression, (result) =>
+        {
+            let item = this.parseAny(result, parseFormatter);
+            // item = this.tryParseOperator(result.substring(item.$$length), item, parseFormatter);
+            results.push(item as StrictExpressions & ParsedAny);
+            return item;
+        }, ')');
 
-    public parseArray(expression: string, parseFormatter: boolean)
+        if (lhs?.type == ExpressionType.MemberExpression)
+            return new ParsedCall(length, lhs.source as ExpressionsWithLength & TypedExpression<any>, lhs.member, results);
+        return new ParsedCall(length, lhs as ExpressionsWithLength & TypedExpression<any>, null, results);
+    }
+
+    public parseArray(expression: string, parseFormatter: boolean, reset?: () => void)
     {
         const results: ExpressionsWithLength[] & ParsedAny = [];
         Object.defineProperty(results, '$$length', { value: 0, enumerable: false, configurable: true, writable: true });
@@ -493,9 +527,8 @@ export class Parser
         const length = this.parseCSV(expression, (result) =>
         {
             let item = this.parseAny(result, parseFormatter);
-            item = this.tryParseOperator(result.substring(item.$$length), item, parseFormatter);
+            // item = this.tryParseOperator(result.substring(item.$$length), item, parseFormatter);
             results.push(item);
-            results.$$length += item.$$length;
             return item;
         }, ']');
 
