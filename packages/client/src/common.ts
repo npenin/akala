@@ -1,4 +1,4 @@
-import { ctorToFunction, Module, module, defaultInjector, EventEmitter, SpecialNextParam, MiddlewarePromise, Event, Subscription } from '@akala/core';
+import { ctorToFunction, Module, module, defaultInjector, EventEmitter, SpecialNextParam, MiddlewarePromise, Event as klEvent, Subscription, IEventSink, IEvent } from '@akala/core';
 
 export const bootstrapModule: Module = module('akala', 'akala-services', 'controls')
 
@@ -40,7 +40,7 @@ export { AttributeComposer, WebComponent, webComponent, wcObserve, databind } fr
 
 export class LocalAfterRemoteProcessor implements ICommandProcessor
 {
-    constructor(private inner: ICommandProcessor, public readonly eventEmitter: EventEmitter<Record<string, Event<[any, StructuredParameters<unknown[]>, Metadata.Command]>>> = new EventEmitter())
+    constructor(private inner: ICommandProcessor, public readonly eventEmitter: EventEmitter<Record<string, klEvent<[any, StructuredParameters<unknown[]>, Metadata.Command]>>> = new EventEmitter())
     {
     }
 
@@ -65,7 +65,7 @@ export { DataBind, DataContext } from './behaviors/context.js'
 export { EventComposer } from './behaviors/events.js'
 export { I18nComposer } from './behaviors/i18n.js'
 
-export class SubscriptionManager
+export class TeardownManager
 {
     protected readonly subscriptions: Subscription[] = [];
 
@@ -75,8 +75,62 @@ export class SubscriptionManager
         this.subscriptions.length = 0;
     }
 
-    subscribe(sub: Subscription)
+    teardown<T extends Subscription | Disposable>(sub: T): T
     {
-        this.subscriptions.push(sub);
+        if (Symbol.dispose in sub)
+        {
+            this.subscriptions.push(() =>
+            {
+                sub[Symbol.dispose]();
+                return true;
+            });
+        }
+        else
+            this.subscriptions.push(sub);
+        return sub;
     }
 }
+
+export type IClientEventSink = IEventSink<[Event], void>
+export type IClientEvent = IEvent<[Event], void>
+export class ClientEvent extends klEvent<[Event], void> { }
+
+export function fromEvent(x: EventTarget, eventName: string): IClientEventSink
+{
+    const event = new ClientEvent();
+    const handler = event.emit.bind(event);
+    event[Symbol.dispose] = () =>
+    {
+        x.removeEventListener(eventName, handler);
+        klEvent.prototype[Symbol.dispose].call(event);
+    }
+    x.addEventListener(eventName, handler);
+    return event;
+}
+
+export function pipefromEvent(source: IEventSink<[boolean], void>, x: EventTarget, eventName: string): IClientEventSink
+{
+    const event = new ClientEvent();
+    let sub: Subscription;
+    let clientEvent: IClientEventSink;
+    source.addListener(ev =>
+    {
+        if (ev)
+        {
+            sub = (clientEvent || (clientEvent = fromEvent(x, eventName))).addListener((ev) =>
+            {
+                event.emit(ev);
+            })
+        }
+        else
+            sub?.();
+    });
+    event[Symbol.dispose] = () =>
+    {
+        sub?.();
+        clientEvent[Symbol.dispose]();
+        ClientEvent.prototype[Symbol.dispose].call(event);
+    }
+    return event;
+}
+
