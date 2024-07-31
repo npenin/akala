@@ -1,6 +1,6 @@
 import { Scope as IScope, Page, LocationService, ScopeImpl, page } from '@akala/client'
 import { Container, Processors } from '@akala/commands';
-import { EventEmitter, Event } from '@akala/core';
+import { EventEmitter, Event, ObservableObject, Parser } from '@akala/core';
 import { Login } from './login/login.js';
 
 type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: EventEmitter<Record<string, Event<[unknown]>>> }>;
@@ -15,6 +15,13 @@ class HomePage extends Page
             location.dispatch('/login');
         else
             root.$setAsync('currentUser', root.container.dispatch('auth.whoami').catch(e => { if (e.status == 401) Login.clearState(root); location.dispatch('/login') }))
+    }
+
+    public coco: boolean = true;
+
+    public toggleCoco()
+    {
+        ObservableObject.setValue(this, Parser.parameterLess.parse('coco'), !this.coco);
     }
 
     public test()

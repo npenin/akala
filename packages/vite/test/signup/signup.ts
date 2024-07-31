@@ -10,7 +10,7 @@ export class Signup extends Page
     constructor(scope: Scope, location: LocationService)
     {
         super();
-        this.subscribe(scope.$commandEvents.on('auth.user.add-user', (result: any) =>
+        this.teardown(scope.$commandEvents.on('auth.user.add-user', (result: any) =>
         {
             if (result.recordsAffected == 1)
                 location.dispatch('/login');
