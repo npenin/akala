@@ -5,6 +5,7 @@ import { ErrorWithStatus, FormatExpression, HttpStatusCode, Parser } from "../in
 import { EvaluatorAsFunction } from "../parser/evaluator-as-function.js";
 import { BinaryExpression } from "../parser/expressions/binary-expression.js";
 import { BinaryOperator } from "../parser/expressions/binary-operator.js";
+import { CallExpression } from "../parser/expressions/call-expression.js";
 import { ConstantExpression } from "../parser/expressions/constant-expression.js";
 import { ExpressionVisitor } from "../parser/expressions/expression-visitor.js";
 import { Expressions, StrictExpressions } from "../parser/expressions/expression.js";
@@ -128,6 +129,32 @@ export class BuildGetter<T extends object> extends ExpressionVisitor
             this.getter = target => formatter(source(target));
         }
         return expression;
+    }
+
+    visitCall<T, TMethod extends keyof T>(arg0: CallExpression<T, TMethod>): StrictExpressions
+    {
+        const getter = this.getter;
+        this.visit(arg0.source);
+        const sourceGetter = this.getter;
+
+        const argGetters = arg0.arguments.map(a => { this.getter = getter; this.visit(a); return this.getter; })
+        if (arg0.method)
+        {
+            this.getter = getter;
+            const member = new EvaluatorAsFunction().eval<PropertyKey>(this.visit(arg0.method));
+            this.getter = (target) =>
+            {
+                const f = sourceGetter(target) as Function;
+                return f[member(target)].apply(f, argGetters.map(g => g(target)));
+            };
+        }
+        else
+            this.getter = (target) =>
+            {
+                const f = sourceGetter(target) as Function;
+                return f(...argGetters.map(g => g(target)));
+            };
+        return arg0;
     }
 
     public visitNew<T>(expression: NewExpression<T>): StrictExpressions
@@ -382,6 +409,32 @@ export class BuildWatcher<T extends object> extends ExpressionVisitor
         return expression;
     }
 
+    visitCall<T, TMethod extends keyof T>(arg0: CallExpression<T, TMethod>): StrictExpressions
+    {
+        const getter = this.getter;
+        this.visit(arg0.source);
+        const sourceGetter = this.getter;
+
+        const argGetters = arg0.arguments.map(a => { this.getter = getter; this.visit(a); return this.getter; })
+        if (arg0.method)
+        {
+            this.getter = getter;
+            const member = new EvaluatorAsFunction().eval<PropertyKey>(this.visit(arg0.method));
+            this.getter = (target, watcher) =>
+            {
+                const f = sourceGetter(target, watcher) as Function;
+                return f[member(target)].apply(f, argGetters.map(g => g(target, watcher)));
+            };
+        }
+        else
+            this.getter = (target, watcher) =>
+            {
+                const f = sourceGetter(target, watcher) as Function;
+                return f(...argGetters.map(g => g(target, watcher)));
+            };
+        return arg0;
+    }
+
     visitBinary<T extends Expressions = StrictExpressions>(expression: BinaryExpression<T>): BinaryExpression<Expressions>
     {
         const source = this.getter;
@@ -420,21 +473,28 @@ export class BuildWatcher<T extends object> extends ExpressionVisitor
 
 type ObservableType<T extends object> = Record<keyof T, IEvent<[ObjectEvent<T>], void>>;
 
+export type BindingChangedEvent<T> = { value: T, oldValue: T };
+
 export class Binding<T> extends EventEmitter<{
-    change: Event<[{ value: T, oldValue: T }]>
+    change: Event<[BindingChangedEvent<T>]>
 }>
 {
     public static defineProperty(target: object, property: string | symbol, value?: unknown)
     {
         const binding = new Binding(target, typeof property == 'symbol' ? new MemberExpression(null, new ConstantExpression(property), false) : new Parser().parse(property));
+        let settingValue = false;
         Object.defineProperty(target, property, {
             get()
             {
                 return value;
             }, set(newValue: unknown)
             {
+                if (settingValue)
+                    return;
                 value = newValue;
+                settingValue = true;
                 binding.setValue(newValue)//, binding);
+                settingValue = false;
             }
         });
 
@@ -473,6 +533,7 @@ export class Binding<T> extends EventEmitter<{
     constructor(public readonly target: object, public readonly expression: Expressions)
     {
         super();
+        this.set('change', new Event());
         if (expression)
         {
             let value: T;
