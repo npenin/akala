@@ -1,32 +1,35 @@
-import { Control, wcObserve, webComponent } from '@akala/client';
-import { Subscription } from '@akala/core';
+import { Control, wcObserve, pipefromEvent } from '@akala/client';
+import { BindingChangedEvent, pipe, Subscription } from '@akala/core';
 import { computePosition, Middleware, Placement } from '@floating-ui/dom'
 
-@webComponent('kl-dropdown')
 @wcObserve('placement')
 @wcObserve('middlewares')
 @wcObserve('trigger')
-export class Popover extends Control<{ placement: Placement, trigger: string, middlewares: Middleware[] }>
+@wcObserve('closeonclickoutside')
+export class Popover extends Control<{ placement: Placement, trigger: string, middlewares?: Middleware[], closeonclickoutside?: boolean }>
 {
     private visible?: Subscription;
+
+    private async placementChanged(trigger: Element, ev: BindingChangedEvent<Placement>)
+    {
+        const result = await computePosition(trigger, this.element, { placement: ev.value, middleware: this.bind('middlewares').getValue() });
+        this.element.style.left = result.x + 'px';
+        this.element.style.top = result.y + 'px';
+        this.element.style.position = result.strategy;
+        this.element.style.margin = '0';
+    }
 
     constructor(element: HTMLElement)
     {
         super(element);
         element.popover = 'manual';
+
         element.showPopover = () =>
         {
             const trigger = document.querySelector(this.attrib('trigger'));
             console.log('show popover');
             HTMLElement.prototype.showPopover.call(this.element);
-            this.visible = this.bind('placement').onChanged(async (ev) =>
-            {
-                const result = await computePosition(trigger, this.element, { placement: ev.value, middleware: this.bind('middlewares').getValue() });
-                this.element.style.left = result.x + 'px';
-                this.element.style.top = result.y + 'px';
-                this.element.style.position = result.strategy;
-                this.element.style.margin = '0';
-            }, true);
+            this.visible = this.bind('placement').onChanged((ev) => this.placementChanged(trigger, ev), true);
         }
 
         element.hidePopover = () =>
@@ -41,12 +44,7 @@ export class Popover extends Control<{ placement: Placement, trigger: string, mi
             if (HTMLElement.prototype.togglePopover.call(this.element, force))
             {
                 const trigger = element.querySelector(this.bindings.trigger.getValue());
-                this.visible = this.bind('placement').onChanged(async (ev) =>
-                {
-                    const result = await computePosition(trigger, this.element, { placement: ev.value, middleware: this.bind('middlewares').getValue() });
-                    this.element.style.x = result.x + 'px';
-                    this.element.style.y = result.y + 'px';
-                }, true);
+                this.visible = this.bind('placement').onChanged((ev) => this.placementChanged(trigger, ev), true);
                 return true;
             }
 
@@ -56,5 +54,16 @@ export class Popover extends Control<{ placement: Placement, trigger: string, mi
 
     connectedCallback(): void
     {
+        const coco = this.bind('closeonclickoutside');
+        this.teardown(pipefromEvent(pipe(coco.get('change'), ev => [ev.value]), window, 'click').addListener((ev) =>
+        {
+            const target = ev.target as HTMLElement;
+            const trigger = document.querySelector(this.attrib('trigger'));
+
+            if (trigger.contains(target) || this.element.contains(target))
+                return;
+            this.element.hidePopover();
+        }));
+        coco.get('change').emit({ oldValue: undefined, value: coco.getValue() });
     }
 }
