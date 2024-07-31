@@ -2,4 +2,11 @@
     <h1 i18n="@@test">Welcome <span data-bind data-bind-inner-text="name"></span> !</h1>
     <span data-bind="{style:{color:name!=='aaa1'?'red':'green'}}" on-click="controller.test2"
         on="{click:controller.test}" i18n i18n-inner-text="dataContext.name"></span>
+
+    <kl-popover trigger="#dd" placement="'bottom-start'" id="kldd" data-bind closeOnClickOutside="controller.coco">pwet
+        pwet</kl-popover>
+    <input id="dd" onfocus="kldd.showPopover()" />
+
+    <button on on-click="controller.toggleCoco.bind(controller)">Toggle coco</button>
+    <span data-bind="{innerText:controller.coco#json}"></span>
 </main>

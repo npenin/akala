@@ -2,11 +2,12 @@
 import './index.scss'
 import { Container } from '@akala/commands'
 import { Event, EventEmitter, isPromiseLike } from '@akala/core';
-import { Scope as IScope, LocationService, Template, serviceModule, templateCache, templateFunction, FormComposer, bootstrapModule, DataContext, DataBind, OutletService, outletDefinition, EventComposer, I18nComposer } from '@akala/client'
+import { Scope as IScope, LocationService, Template, serviceModule, templateCache, templateFunction, FormComposer, bootstrapModule, DataContext, DataBind, OutletService, outletDefinition, EventComposer, I18nComposer, webComponent } from '@akala/client'
 import { Processors } from '@akala/commands';
 import { Signup } from './signup/signup.js';
 import { Login } from './login/login.js';
 import Home from './home.js';
+import { Popover } from '@akala/web-ui'
 
 bootstrapModule.register('services', serviceModule);
 
@@ -26,9 +27,11 @@ bootstrapModule.activate(['$rootScope', '$rootScope', 'services.$outlet'], async
 {
     Template.composers.push(new FormComposer(root.container))
     Template.composers.push(new DataContext(root));
-    Template.composers.push(new DataBind(root));
+    Template.composers.push(new DataBind());
     Template.composers.push(new EventComposer());
     Template.composers.push(new I18nComposer());
+    webComponent('kl-popover')(Popover);
+
     serviceModule.register('templateOptions', {
         $rootScope: rootScope, i18n: {
             translate: (key: string, currentValue: string) =>
