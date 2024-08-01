@@ -21,6 +21,20 @@ export default async function (url: string | URL): Promise<Metadata.Command[]>
             }
         });
     }
+    if (config.device_authorization_endpoint)
+    {
+        result.push({
+            name: 'authorize-device',
+            config: {
+                http: {
+                    route: config.device_authorization_endpoint, method: 'get',
+                    inject: [
+
+                    ]
+                }
+            }
+        });
+    }
     if (config.token_endpoint)
     {
         result.push({
