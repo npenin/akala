@@ -398,12 +398,30 @@
                     "path": "dist/esm/cli/openapi.js",
                     "source": "src/cli/openapi.ts",
                     "inject": [
-                        "param.0"
+                        "param.0",
+                        "param.1"
                     ]
+                },
+                "cli": {
+                    "inject": [
+                        "options.openAPIUri",
+                        "options.outputFile"
+                    ],
+                    "usage": "openapi <openAPIUri> [outputFile]",
+                    "options": {
+                        "openAPIUri": {
+                            "needsValue": true
+                        },
+                        "outputFile": {
+                            "needsValue": true,
+                            "normalize": true
+                        }
+                    }
                 },
                 "": {
                     "inject": [
-                        "param.0"
+                        "param.0",
+                        "param.1"
                     ]
                 }
             }
