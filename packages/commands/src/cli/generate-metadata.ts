@@ -34,6 +34,8 @@ import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argume
 `)
     }
 
+    await write(output, 'import {Metadata, ICommandProcessor, Container, registerCommands} from "@akala/commands";\n');
+
     if (outputFile.endsWith('.d.ts'))
         await write(output, 'declare namespace ' + name);
     else
@@ -154,15 +156,15 @@ import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argume
 
     if (!options || !options.noMetadata)
     {
-        await write(output, `export const meta=${JSON.stringify(meta)} as import('@akala/commands').Metadata.Container;\n\n`);
+        await write(output, `   export const meta=${JSON.stringify(meta)} as Metadata.Container;\n\n`);
 
         if (!options || !options.noStandalone)
         {
-            await write(output, `export async function connect(processor?:import('@akala/commands').ICommandProcessor){
-                const container=new (await import('@akala/commands')).Container<void>(${JSON.stringify(name || 'container')}, void 0);
-                (await import('@akala/commands')).registerCommands(meta.commands, processor, container);
-                return container as container;
-                }\n`);
+            await write(output, `   export function connect(processor?:ICommandProcessor) {
+        const container = new Container<void>(${JSON.stringify(name || 'container')}, void 0);
+        registerCommands(meta.commands, processor, container);
+        return container as container & Container<void>;
+    }\n`);
         }
     }
 
