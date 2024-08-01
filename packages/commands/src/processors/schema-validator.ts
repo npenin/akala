@@ -2,12 +2,12 @@ import { MiddlewarePromise } from '@akala/core';
 import { Container, Metadata } from '../index.browser.js';
 import { Command } from '../metadata/command.js';
 import { ICommandProcessor, StructuredParameters } from '../model/processor.js';
-import Ajv, { Schema, ErrorObject } from 'ajv';
+import Ajv, { ErrorObject, SchemaObject } from 'ajv';
 
 export interface SchemaConfiguration extends Metadata.Configuration
 {
-    $defs: Record<string, Schema>;
-    resultSchema?: Schema;
+    $defs: Record<string, SchemaObject>;
+    resultSchema?: SchemaObject;
 }
 
 export class SchemaValidationError extends Error
@@ -32,7 +32,7 @@ export class SchemaValidator implements ICommandProcessor
     {
         if (cmd?.config?.schema && cmd.config.fs)
         {
-            const schema: Schema = {
+            const schema: SchemaObject = {
                 $defs: cmd.config.schema.$defs,
                 type: "array",
                 prefixItems: cmd.config.schema.inject.map(x => SchemaValidator.notRefTypes.includes(x) ? x : ({ $ref: x })),
