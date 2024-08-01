@@ -254,6 +254,44 @@
             }
         },
         {
+            "name": "generate-ts-from-schema",
+            "config": {
+                "fs": {
+                    "path": "dist/esm/cli/generate-ts-from-schema.js",
+                    "source": "src/cli/generate-ts-from-schema.ts",
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                },
+                "cli": {
+                    "inject": [
+                        "options.schemaURI",
+                        "options.name",
+                        "options.output",
+                        "options"
+                    ],
+                    "usage": "generate-ts <schemaURI> <name> [output]",
+                    "options": {
+                        "schemaURI": {
+                            "needsValue": true
+                        },
+                        "name": {
+                            "needsValue": true
+                        }
+                    }
+                },
+                "": {
+                    "inject": [
+                        "param.0",
+                        "param.1",
+                        "param.2"
+                    ]
+                }
+            }
+        },
+        {
             "name": "implement",
             "config": {
                 "fs": {

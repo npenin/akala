@@ -6,6 +6,7 @@ import { jsonObject } from '../metadata/index.js';
 import { FileSystemConfiguration } from '../processors/fs.js';
 import { Writable } from "stream";
 import { outputHelper, write } from './new.js';
+import { resolveToTypeScript } from './generate-ts-from-schema.js';
 
 export default async function generate(name?: string, folder?: string, outputFile?: string, options?: { noContainer?: boolean, noProxy?: boolean, noStandalone?: boolean, noMetadata?: boolean })
 {
@@ -83,8 +84,8 @@ import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argume
             else if (cmd.config.schema?.inject && cmd.config.schema.inject.length)
             {
                 await write(output, ', ...args: [');
-                await write(output, cmd.config.schema.inject.map((p, i) => `arg${i}: ${resolveToTypeScript(p, cmd.config.schema.$defs)}`).join(', '));
-                await write(output, `]): Promise<${resolveToTypeScript(cmd.config.schema.resultSchema || 'unknown', cmd.config.schema.$defs)}>\n`);
+                await write(output, cmd.config.schema.inject.map((p, i) => `arg${i}: ${resolveToTypeScript(p, { '#': cmd.config.schema as any }, { type: '#' })}`).join(', '));
+                await write(output, `]): Promise<${await resolveToTypeScript(cmd.config.schema.resultSchema || 'unknown', { '#': cmd.config.schema as any }, { type: '#' })}>\n`);
             }
             else if (cmd.config[""]?.inject && cmd.config[""]?.inject.length)
             {
@@ -138,8 +139,8 @@ import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argume
             else if (cmd.config.schema?.inject && cmd.config.schema.inject.length)
             {
                 await write(output, `(`);
-                await write(output, cmd.config.schema.inject.map((p, i) => `arg${i}: ${resolveToTypeScript(p, cmd.config.schema.$defs)}`).join(', '));
-                await write(output, `): Promise<${resolveToTypeScript(cmd.config.schema.resultSchema || 'unknown', cmd.config.schema.$defs)}>\n`);
+                await write(output, cmd.config.schema.inject.map((p, i) => `arg${i}: ${resolveToTypeScript(p, { '#': cmd.config.schema as any }, { type: '#' })}`).join(', '));
+                await write(output, `): Promise<${await resolveToTypeScript(cmd.config.schema.resultSchema || 'unknown', { '#': cmd.config.schema as any }, { type: '#' })}>\n`);
             }
             else if (cmd.config[""]?.inject && cmd.config[""]?.inject.length)
             {
@@ -188,50 +189,3 @@ async function writeDoc(output: Writable, argName: string, doc: akala.Metadata.D
 
     await write(output, `\n\t\t  */\n`);
 }
-function resolveToTypeScript(p: string | object, definitions: Record<string, object>)
-{
-    switch (p)
-    {
-        case 'string':
-            return p;
-        case 'integer':
-        case 'number':
-            return 'number';
-        default:
-            if (typeof p == 'object')
-            {
-                if ('properties' in p)
-                    return `{ ${Object.entries(p.properties).map(e => JSON.stringify(e[0]) + ':' + resolveToTypeScript(e[1], definitions)).join(', ')} }`;
-                if ('$ref' in p)
-                {
-                    if (typeof p.$ref != 'string')
-                        throw new Error('invalid json schema');
-
-                    if (!p.$ref.startsWith('#/$defs/'))
-                        throw new Error('unsupported def reference');
-
-                    return resolveToTypeScript(definitions[p.$ref.substring('#/$defs/'.length)], definitions);
-                }
-                if ('type' in p)
-                {
-                    if (p.type === 'array')
-                    {
-                        let result = '[';
-                        let counter = 0;
-                        if ('prefixItems' in p)
-                        {
-                            result += (p.prefixItems as (object | string)[]).map((p) => resolveToTypeScript(p, definitions)).join(', ');
-                            counter += (p.prefixItems as unknown[]).length;
-                        } if ('items' in p && p.items)
-                        {
-                            result += '...' + resolveToTypeScript(p.items as object, definitions) + '[]';
-                        }
-                        return result + ']'
-                    }
-                    return resolveToTypeScript(p.type as string, definitions);
-                }
-            }
-            return 'unknown';
-    }
-}
-
