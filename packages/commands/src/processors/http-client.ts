@@ -1,4 +1,4 @@
-import { Injector, HttpOptions, each, Http, defaultInjector, MiddlewarePromise, SerializableObject, base64, SimpleInjector } from '@akala/core';
+import { Injector, HttpOptions, each, Http, defaultInjector, MiddlewarePromise, SerializableObject, base64, SimpleInjector, ErrorWithStatus } from '@akala/core';
 import * as pathRegexp from 'path-to-regexp';
 import { CommandProcessor, StructuredParameters } from '../model/processor.js';
 import { Command, Configuration } from '../metadata/index.js';
@@ -81,13 +81,50 @@ export class HttpClient extends CommandProcessor
             switch (config.auth.http.mode)
             {
                 case 'basic':
+                    switch (typeof (auth))
+                    {
+                        case 'object':
+                            if (!options.headers)
+                                options.headers = {};
+                            options.headers.authorization = 'Basic ' + base64.base64EncArr(base64.strToUTF8Arr(auth['username'] + ':' + auth['password']))
+                            break;
+                        case 'string':
+                            if (!options.headers)
+                                options.headers = {};
+                            options.headers.authorization = 'Basic ' + auth;
+                            break;
+                        case 'undefined':
+                            throw new ErrorWithStatus(401, 'no auth was provided');
+                        default:
+                            throw new ErrorWithStatus(400, 'invalid auth object');
+
+                    }
                 case 'bearer':
+                    if (!options.headers)
+                        options.headers = {};
+                    options.headers.authorization = 'Bearer ' + auth;
                     break;
                 default:
                     switch (config.auth.http.mode.type)
                     {
                         case 'query':
+                            if (typeof auth !== 'string')
+                                throw new ErrorWithStatus(400, 'invalid auth object');
+
+                            if (!options.queryString)
+                                options.queryString = new URLSearchParams({});
+                            (options.queryString as URLSearchParams).append(config.auth.http.mode.name, auth);
+                            break;
                         case 'header':
+                            if (typeof auth !== 'string')
+                                throw new ErrorWithStatus(400, 'invalid auth object');
+
+                            if (!options.headers)
+                                options.headers = {};
+                            options.headers[config.auth.http.mode.name] = auth;
+                            break;
+                        case 'cookie':
+                            throw new ErrorWithStatus(501, 'cookie auth not supported yet')
                     }
             }
         }
