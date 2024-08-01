@@ -1,8 +1,8 @@
-import {Metadata, ICommandProcessor, Container, registerCommands} from '@akala/commands';
 //eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore 6133
 //eslint-disable-next-line @typescript-eslint/no-unused-vars
 import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argument5, Argument6, Argument7, Argument8, Argument9, Argument10, Argument11, Argument12, Argument13, Argument14, Argument15, Argument16, Argument17 } from '@akala/core';
+import {Metadata, ICommandProcessor, Container, registerCommands} from "@akala/commands";
 // eslint-disable-next-line @typescript-eslint/no-namespace
 namespace commands
 {

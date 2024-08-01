@@ -119,6 +119,8 @@ export async function resolveToTypeScript(p: string | JsonSchema, anchors: Recor
                                     counter += (p.prefixItems as unknown[]).length;
                                 } if ('items' in p && p.items)
                                 {
+                                    if (counter == 0)
+                                        return '(' + await resolveToTypeScript(p.items as object, anchors, types) + ')[]';
                                     result += '...(' + await resolveToTypeScript(p.items as object, anchors, types) + ')[]';
                                 }
                                 return result + ']'
@@ -127,6 +129,10 @@ export async function resolveToTypeScript(p: string | JsonSchema, anchors: Recor
                             {
                                 if (p.additionalProperties)
                                     return resolveToTypeScript(p.additionalProperties, anchors, types);
+                                if (p.required)
+                                {
+                                    return '{' + p.required.map(p => JSON.stringify(p) + ': unknown') + '}';
+                                }
                             }
                             break;
                         default:
@@ -136,6 +142,13 @@ export async function resolveToTypeScript(p: string | JsonSchema, anchors: Recor
                             }
                     }
                 }
+                if ('if' in p)
+                {
+                    return await resolveToTypeScript(p.then, anchors, types) + '|' + await resolveToTypeScript(p.else, anchors, types)
+                }
+                if (!Object.keys(p).length)
+                    return '{}';
+
             }
             if (typeof p == 'string' && p in types)
                 return p;
@@ -143,7 +156,7 @@ export async function resolveToTypeScript(p: string | JsonSchema, anchors: Recor
     }
 }
 
-async function resolve(initRef: string, anchors: Record<string, object>, types: Record<string, string>): Promise<object | string>
+export async function resolve(initRef: string, anchors: Record<string, object>, types: Record<string, string>): Promise<object | string>
 {
     const fragments = initRef.split('/');
     if (fragments.length == 1)
