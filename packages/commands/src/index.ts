@@ -24,7 +24,9 @@ import { stat } from 'fs/promises'
 import { dirname } from 'path'
 import { Logger, logger as LoggerBuilder, LogLevels } from '@akala/core'
 export { default as serve, ServeOptions, serverHandlers, ServerHandler, getOrCreateServerAndListen, getOrCreateSecureServerAndListen } from './cli/serve.js'
+import { outputHelper, write } from './cli/new.js';
 
+export const FileGenerator = { outputHelper, write };
 
 export class Cli
 {
