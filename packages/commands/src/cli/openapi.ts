@@ -7,9 +7,10 @@ import { outputHelper, write } from './new.js';
 import { Writable } from 'stream';
 import { promisify } from 'util';
 import { redirectSchema, simplifySchema } from './generate-schema.js';
-import { OpenApi30 } from '../oas30.js';
-import { OpenApi31 } from '../oas31.js';
+import { OpenApi30, Operation, Parameter, PathItem, Reference, Response } from '../oas30.js';
+import { OpenApi31, operation, parameter, parameterOrReference, pathItem, response } from '../oas31.js';
 import { OpenApi20 } from '../oas20.js';
+import { resolve, resolveToTypeScript } from './generate-ts-from-schema.js';
 
 export default async function (pathToOpenApiFile: string | URL, outputFile?: string)
 {
@@ -48,19 +49,19 @@ export default async function (pathToOpenApiFile: string | URL, outputFile?: str
         // Object.values(openApi.components.requestBodies).forEach(s => Objects.content redirectSchema(, '#/components/', '#/$defs/'));
         openApi.components.responses && Object.values(openApi.components.responses).forEach(s => redirectSchema(s, '#/components/', '#/$defs/'));
         // const baseUri = new URL(openApi.schemes[0] + '://' + openApi.host + openApi.basePath);
-        const commands: Command[] = Object.entries(openApi.paths).flatMap(([path, requests]) =>
-            Object.entries(requests).map(([method, request]) =>
+        const commands: Command[] = (await Promise.all(Object.entries(openApi.paths).map(async ([path, requests]: [string, PathItem | pathItem]) =>
+            await Promise.all(Object.entries(requests).map(async ([method, request]: [string, Operation | operation]) =>
             {
-                const parameters = Object.fromEntries(request.parameters.map(p => [p.in + '.' + p.name, p]))
-                const needsSchema = !!request.parameters.find(p => p.in == 'body') || request.responses['200'].schema;
+                const parameters = Object.fromEntries(await Promise.all(request.parameters?.map(async (p: Parameter | Reference | parameterOrReference, i: number) => '$ref' in p ? ['param.' + i, await resolveToTypeScript(p.$ref, { '#': openApi as any }, {})] : [(p as parameter | Parameter).in + '.' + (p as parameter | Parameter).name, p]) || [])) as Record<string, parameter | Parameter>
+                const needsSchema = !!request.parameters?.find(p => p && ('$ref' in p || 'in' in p && p.in == 'body')) || request.responses['200'] && '$ref' in request.responses['200'] && resolve(request.responses['200'].$ref as string, { '#': openApi }, {}) || (request.responses['200'] as response | Response)?.content.schema;
 
                 return simplifySchema({
                     name: request.operationId,
                     config: {
                         schema: {
-                            $defs: needsSchema ? { ...openApi.components, ...Object.fromEntries(request.parameters.filter(p => p.in == 'body').map(p => ['body.' + p.name, p.schema])) } : undefined,
-                            inject: request.parameters.map(p => p.in == 'body' ? 'body.' + p.name : p.type),
-                            resultSchema: redirectSchema(request.responses['200'].schema, '#/components/', '#/$defs/')
+                            $defs: needsSchema ? { ...openApi.components, ...Object.fromEntries(request.parameters?.filter(p => 'in' in p && p.in == 'body').map((p: parameter | Parameter) => ['body.' + p.name, p.schema])) } : undefined,
+                            inject: request.parameters?.map(p => p.in == 'body' ? 'body.' + p.name : p.type),
+                            resultSchema: request.responses['200'] && redirectSchema('$ref' in request.responses['200'] && resolve(request.responses['200'].$ref as string, { '#': openApi }, {}) || (request.responses['200'] as response | Response).content.schema, '#/components/', '#/$defs/')
                         },
                         doc: {
                             inject: Object.keys(parameters),
@@ -74,12 +75,12 @@ export default async function (pathToOpenApiFile: string | URL, outputFile?: str
                             inject: Object.keys(parameters),
                         },
                         auth: {
-                            http: getAuth20(openApi, request)
+                            http: getAuth3(openApi, request)
                         }
                     }
                 } as Command)
             })
-        );
+            )))).flat();
         const result = { commands, name: openApi.info.title.replace(/\./g, '-') } as Container;
         if (outputFile)
         {
@@ -161,6 +162,35 @@ function getType20(openApi: any, request: any): "json" | "xml" | "text" | "raw"
         }
     }
     return 'json';
+}
+function getAuth3(openApi: OpenApi30 | OpenApi31, request: any): import("../index.js").Configuration & { mode: "basic" | "bearer" | { type: "query" | "header" | "cookie"; name: string; }; }
+{
+    if (request.security?.length)
+    {
+        const auth = Object.entries(request.security[0])[0];
+        console.log(openApi.components.securitySchemes[auth[0]])
+        switch (openApi.components.securitySchemes[auth[0]].type)
+        {
+            case 'apiKey':
+                return {
+                    mode: { name: openApi.components.securitySchemes[auth[0]].name, type: openApi.components.securitySchemes[auth[0]].in },
+                    inject: ['headers.' + openApi.components.securitySchemes[auth[0]].name]
+                };
+            case 'basic':
+                return {
+                    mode: 'basic',
+                    inject: ['headers.authorization']
+                };
+            case 'oauth2':
+                // return {
+                //     mode: 'bearer',
+
+                // }
+                throw new ErrorWithStatus(501, 'oauth2 flow not yet supported');
+            case 'openIdConnect':
+                throw new ErrorWithStatus(501, 'openIdConnect flow not yet supported');
+        }
+    }
 }
 function getAuth20(openApi: any, request: any): import("../index.js").Configuration & { mode: "basic" | "bearer" | { type: "query" | "header" | "cookie"; name: string; }; }
 {
