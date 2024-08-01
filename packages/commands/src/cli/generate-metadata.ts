@@ -7,7 +7,7 @@ import { FileSystemConfiguration } from '../processors/fs.js';
 import { Writable } from "stream";
 import { outputHelper, write } from './new.js';
 
-export default async function generate(name?: string, folder?: string, outputFile?: string, options?: { noContainer?: boolean, noProxy?: boolean })
+export default async function generate(name?: string, folder?: string, outputFile?: string, options?: { noContainer?: boolean, noProxy?: boolean, noStandalone?: boolean, noMetadata?: boolean })
 {
     folder = folder || process.cwd();
     if (!name)
@@ -23,15 +23,7 @@ export default async function generate(name?: string, folder?: string, outputFil
 
     const meta = akala.metadata(container);
 
-    let hasFs = false;
-    core.each(meta.commands, function (cmd)
-    {
-        if (cmd.config.fs)
-        {
-            hasFs = true;
-        }
-    });
-
+    let hasFs = !!meta.commands.find(cmd => !!cmd.config.fs);
 
     if (hasFs)
     {
@@ -86,6 +78,12 @@ import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argume
                 else
                     await write(output, `, ...args: Arguments<typeof import('./${filePath}').default>): ReturnType<typeof import('./${filePath}').default>\n`);
             }
+            else if (cmd.config.schema?.inject && cmd.config.schema.inject.length)
+            {
+                await write(output, ', ...args: [');
+                await write(output, cmd.config.schema.inject.map((p, i) => `arg${i}: ${resolveToTypeScript(p, cmd.config.schema.$defs)}`).join(', '));
+                await write(output, `]): Promise<${resolveToTypeScript(cmd.config.schema.resultSchema || 'unknown', cmd.config.schema.$defs)}>\n`);
+            }
             else if (cmd.config[""]?.inject && cmd.config[""]?.inject.length)
             {
                 await write(output, cmd.config[""]?.inject.filter(p => p.startsWith('param.')).map(() => `, unknown`).join(''));
@@ -135,9 +133,15 @@ import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argume
                 else
                     await write(output, `(...args: Arguments<typeof import('./${filePath}').default>): ReturnType<typeof import('./${filePath}').default>\n`);
             }
+            else if (cmd.config.schema?.inject && cmd.config.schema.inject.length)
+            {
+                await write(output, `(`);
+                await write(output, cmd.config.schema.inject.map((p, i) => `arg${i}: ${resolveToTypeScript(p, cmd.config.schema.$defs)}`).join(', '));
+                await write(output, `): Promise<${resolveToTypeScript(cmd.config.schema.resultSchema || 'unknown', cmd.config.schema.$defs)}>\n`);
+            }
             else if (cmd.config[""]?.inject && cmd.config[""]?.inject.length)
             {
-                await write(output, cmd.config[""]?.inject.filter(p => p.startsWith('param.')).map(() => `any`).join(', '));
+                await write(output, cmd.config[""]?.inject.filter(p => p.startsWith('param.')).map((p) => `arg${p.substring(6)}:any`).join(', '));
                 await write(output, `): unknown\n`);
             }
             else
@@ -146,6 +150,20 @@ import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argume
         });
 
         await write(output, '\t}\n');
+    }
+
+    if (!options || !options.noMetadata)
+    {
+        await write(output, `export const meta=${JSON.stringify(meta)} as import('@akala/commands').Metadata.Container;\n\n`);
+
+        if (!options || !options.noStandalone)
+        {
+            await write(output, `export async function connect(processor?:import('@akala/commands').ICommandProcessor){
+                const container=new (await import('@akala/commands')).Container<void>(${JSON.stringify(name || 'container')}, void 0);
+                (await import('@akala/commands')).registerCommands(meta.commands, processor, container);
+                return container as container;
+                }\n`);
+        }
     }
 
     await write(output, '}\n');
@@ -168,3 +186,50 @@ async function writeDoc(output: Writable, argName: string, doc: akala.Metadata.D
 
     await write(output, `\n\t\t  */\n`);
 }
+function resolveToTypeScript(p: string | object, definitions: Record<string, object>)
+{
+    switch (p)
+    {
+        case 'string':
+            return p;
+        case 'integer':
+        case 'number':
+            return 'number';
+        default:
+            if (typeof p == 'object')
+            {
+                if ('properties' in p)
+                    return `{ ${Object.entries(p.properties).map(e => JSON.stringify(e[0]) + ':' + resolveToTypeScript(e[1], definitions)).join(', ')} }`;
+                if ('$ref' in p)
+                {
+                    if (typeof p.$ref != 'string')
+                        throw new Error('invalid json schema');
+
+                    if (!p.$ref.startsWith('#/$defs/'))
+                        throw new Error('unsupported def reference');
+
+                    return resolveToTypeScript(definitions[p.$ref.substring('#/$defs/'.length)], definitions);
+                }
+                if ('type' in p)
+                {
+                    if (p.type === 'array')
+                    {
+                        let result = '[';
+                        let counter = 0;
+                        if ('prefixItems' in p)
+                        {
+                            result += (p.prefixItems as (object | string)[]).map((p) => resolveToTypeScript(p, definitions)).join(', ');
+                            counter += (p.prefixItems as unknown[]).length;
+                        } if ('items' in p && p.items)
+                        {
+                            result += '...' + resolveToTypeScript(p.items as object, definitions) + '[]';
+                        }
+                        return result + ']'
+                    }
+                    return resolveToTypeScript(p.type as string, definitions);
+                }
+            }
+            return 'unknown';
+    }
+}
+
