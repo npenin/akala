@@ -4,10 +4,81 @@ import * as fs from 'fs';
 import { Writable } from "stream";
 import { outputHelper, write } from './new.js';
 import ts from 'typescript'
-import type { Schema as BaseSchema } from "ajv";
+import type { Schema as BaseSchema, SchemaObject } from "ajv";
+import { Command } from "../metadata/command.js";
+import { SchemaConfiguration, SchemaValidator } from "../processors/schema-validator.js";
 
 type JsonSchema = Exclude<BaseSchema, boolean>
 
+const jsonSchemaArrays = ['allOf', 'anyOf', 'oneOf']
+
+export function simplifySchema(command: Command)
+{
+    if (!command.config?.schema?.$defs)
+        return command;
+
+    const usedRef = command.config.schema.inject?.filter(p => !SchemaValidator.notRefTypes.includes(p));
+    if (!usedRef?.length && !command.config.schema.resultSchema)
+        delete command.config.schema.$defs;
+    else
+    {
+        const result: Command = {
+            name: command.name, config: {
+                ...command.config, schema: {
+                    inject: command.config.schema.inject,
+                    resultSchema: command.config.schema.resultSchema,
+                    $defs: Object.fromEntries(usedRef.map(p => [p, command.config.schema.$defs[p]]))
+                }
+            }
+        };
+
+        const processed: string[] = [];
+
+        const init = result.config.schema.inject.slice(0);
+        const resultRef = crypto.randomUUID();
+        if (command.config.schema.resultSchema)
+        {
+            command.config.schema.$defs[resultRef] = command.config.schema.resultSchema;
+            init.push('#/$defs/' + resultRef);
+        }
+        for (const initRef of init)
+        {
+            if (processed.includes(initRef))
+                continue;
+
+            const refStack = [resolve(initRef, command.config.schema)];
+
+            function processItem(ref: SchemaObject)
+            {
+                walkSchema(ref, {
+                    walkRef: (ref =>
+                    {
+                        if (processed.includes(ref['$ref']))
+                            return;
+                        refStack.push(resolve(ref['$ref'], command.config.schema));
+                        processed.push(ref['$ref']);
+                    })
+                })
+            }
+
+            while (refStack.length)
+            {
+                const ref = refStack.shift();
+
+                processItem(ref);
+            }
+        }
+
+        result.config.schema.$defs = Object.fromEntries(processed.map(p => [p.substring('#/$defs/'.length), resolve(p, command.config.schema)]))
+
+
+
+        return result;
+    }
+
+
+    return command;
+}
 
 export default async function generate(folder?: string, name?: string, outputFile?: string)
 {
@@ -108,11 +179,14 @@ export default async function generate(folder?: string, name?: string, outputFil
         });
         await Promise.all(promises).then(results =>
         {
-            c.cmd.config.schema = { schema: Object.fromEntries(c.cmd.config[""].inject.map((p, i) => [p, p.startsWith('param.') ? results[p.substring('param.'.length)].$ref : { type: "null", description: p }])), inject: c.cmd.config[""].inject };
+            c.cmd.config.schema = {
+                $defs: Object.fromEntries(c.cmd.config[""].inject.map((p, i) => [p, p.startsWith('param.') ? results[p.substring('param.'.length)].$ref : { type: "null", description: p }])),
+                inject: c.cmd.config[""].inject,
+            };
         });
 
     }));
-    result['$defs'] = Object.fromEntries(await Promise.all(Object.entries(defs.global).map(e => e[1].promise.then(r => [e[0], r]))))
+    // result['$defs'] = Object.fromEntries(await Promise.all(Object.entries(defs.global).map(e => e[1].promise.then(r => [e[0], r]))))
 
     await write(output, JSON.stringify(result, null, 4));
     await new Promise(resolve => output.end(resolve));
@@ -350,3 +424,74 @@ function serializeType(checker: ts.TypeChecker, type: ts.Type | ts.TypeReference
     }
     debugger;
 }
+function resolve(initRef: string, schema: SchemaConfiguration): SchemaObject
+{
+    const fragments = initRef.split('/');
+    if (fragments.length == 1)
+        return { type: initRef };
+    if (fragments[0] !== '#')
+        throw new Error('unsupported relative references');
+    fragments.splice(0, 1);
+    for (const fragment of fragments)
+    {
+        if (typeof schema[fragment] == 'object')
+            schema = schema[fragment];
+        else
+            throw new Error('non object schema reached')
+    }
+
+    return schema;
+}
+
+
+export function redirectSchema(schema: SchemaObject, fromPath: string | RegExp, toPath: string)
+{
+    walkSchema(schema, {
+        walkRef: (ref: { $ref: string }) =>
+        {
+            ref.$ref = ref.$ref.replace(fromPath, toPath);
+        }
+    })
+    return schema;
+}
+
+function walkSchema(ref: SchemaObject, walkerOverride: { walkRef?: (ref: { $ref: string }) => void; })
+{
+    if (ref['$ref'])
+        if (walkerOverride.walkRef)
+            walkerOverride.walkRef(ref as any);
+
+
+
+    if (ref['properties'])
+    {
+        const walker = walkerOverride['walkProperties'];
+        if (walker)
+            walker(ref);
+        else
+            Object.values(ref['properties']).forEach(ref => walkSchema(ref, walkerOverride));
+    }
+
+    if (ref['type'] == 'array')
+    {
+        const walker = walkerOverride['walkItems'];
+        if (walker)
+            walker(ref);
+        else
+            walkSchema(ref['items'], walkerOverride);
+    }
+
+
+    jsonSchemaArrays.forEach(p =>
+    {
+        if (ref[p])
+        {
+            const walker = walkerOverride['walk' + p[0].toUpperCase() + p.substring(1)];
+            if (walker)
+                walker(ref);
+            else
+                ref[p].forEach(ref => walkSchema(ref, walkerOverride));
+        }
+    })
+}
+

@@ -6,7 +6,8 @@ import Ajv, { Schema, ErrorObject } from 'ajv';
 
 export interface SchemaConfiguration extends Metadata.Configuration
 {
-    schema: Record<string, Schema>;
+    $defs: Record<string, Schema>;
+    resultSchema?: Schema;
 }
 
 export class SchemaValidationError extends Error
@@ -24,14 +25,17 @@ export class SchemaValidator implements ICommandProcessor
     constructor(private options: Partial<{ runWhenNoSchema: boolean }> = { runWhenNoSchema: true })
     {
     }
+
+    static readonly notRefTypes = ["string", "number", "integer", "boolean", "array"]
+
     async handle(origin: Container<unknown>, cmd: Command, param: StructuredParameters<unknown[]>): MiddlewarePromise
     {
         if (cmd?.config?.schema && cmd.config.fs)
         {
             const schema: Schema = {
-                $defs: cmd.config.schema.schema,
+                $defs: cmd.config.schema.$defs,
                 type: "array",
-                prefixItems: cmd.config.schema.inject.map(x => ({ $ref: x })),
+                prefixItems: cmd.config.schema.inject.map(x => SchemaValidator.notRefTypes.includes(x) ? x : ({ $ref: x })),
                 items: false
             }
 
