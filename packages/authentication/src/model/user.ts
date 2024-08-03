@@ -8,8 +8,6 @@ export class User
     id?: string;
     @db.Field(db.Types.string(50))
     name: string;
-    @db.Field(db.Types.string(20))
-    displayName: string;
     @db.Field(db.Types.string(36))
     password: string;
     @db.Field(db.Types.string(36))

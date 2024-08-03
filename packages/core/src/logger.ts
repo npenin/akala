@@ -45,7 +45,10 @@ export function logger(rootNamespace: string, logLevel?: LogLevels): Logger
 {
     if (typeof logLevel !== 'undefined')
         setLevel(rootNamespace, logLevel);
+
     const logger = { get level() { return logLevel }, set level(l) { setLevel(rootNamespace, l) } };
+    if (debug.enabled(rootNamespace))
+        logger.level = LogLevels.silly;
     Object.keys(LogLevels).forEach(k =>
     {
         if (!isNaN(Number(k)))

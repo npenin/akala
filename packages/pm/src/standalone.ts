@@ -4,7 +4,7 @@ sms.install();
 import * as path from 'path'
 import * as ac from '@akala/commands';
 import { lstat } from 'fs/promises';
-import { logger, Logger, MiddlewareComposite } from '@akala/core';
+import { logger, Logger, MiddlewareCompositeAsync } from '@akala/core';
 import { program, buildCliContextFromProcess, ErrorMessage, NamespaceMiddleware } from '@akala/cli';
 import { Stats } from 'fs';
 
@@ -58,7 +58,7 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
         else
             processor = new ac.Processors.FileSystem(c.options.program);
     }).
-    useMiddleware(null, MiddlewareComposite.new(logMiddleware,
+    useMiddleware(null, MiddlewareCompositeAsync.new(logMiddleware,
         {
             handle: async c =>
             {

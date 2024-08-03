@@ -1,5 +1,5 @@
-import { Middleware } from './shared.js';
-import { convertToMiddleware, MiddlewareComposite } from './composite.js';
+import { Middleware, SpecialNextParam, convertToMiddleware } from '../middlewares/shared.js';
+import { MiddlewareComposite } from '../middlewares/composite-sync.js';
 import { MiddlewareRoute, Routable, RouteBuilder, RouteBuilderArguments } from './route.js';
 import { each } from '../each.js';
 
@@ -13,15 +13,15 @@ export interface RouterOptions
     name?: string;
 }
 
-export type Routes<T extends [Routable, ...unknown[]]> = { [key: string]: ((...args: T) => Promise<unknown>) | Routes<T> };
+export type Routes<T extends [Routable, ...unknown[]], TReturnType> = { [key: string]: ((...args: T) => TReturnType) | Routes<T, TReturnType> };
 
 export type ParamCallback<T> = (req, paramVal: unknown, name: string, ...rest) => Promise<T>;
 
-export function useRoutes<T extends [Routable, ...unknown[]]>(routes: Routes<T>, parent?: MiddlewareComposite<T> & { route: RouteBuilder<T> }): MiddlewareComposite<T>
+export function useRoutes<T extends [Routable, ...unknown[]], TReturnType>(routes: Routes<T, TReturnType>, parent?: MiddlewareComposite<T> & { route: RouteBuilder<T> }): MiddlewareComposite<T>
 {
     if (!parent)
         parent = Object.assign(new MiddlewareComposite<T>('byroutes'), { route(...args: RouteBuilderArguments) { return new MiddlewareRoute<T>(...args) } });
-    each(routes, (route: ((...args: T) => Promise<unknown>) | Routes<T>, match) =>
+    each(routes, (route: ((...args: T) => TReturnType) | Routes<T, TReturnType>, match) =>
     {
         if (typeof match == 'number')
             return;
@@ -31,7 +31,7 @@ export function useRoutes<T extends [Routable, ...unknown[]]>(routes: Routes<T>,
             useRoutes(route, routed);
         }
         else
-            routed.useMiddleware(convertToMiddleware<T>(route));
+            routed.useMiddleware(convertToMiddleware<T, SpecialNextParam>(route));
 
         parent.useMiddleware(routed);
     });
@@ -50,7 +50,7 @@ export class Router<T extends [{ path: string, params?: Record<string, unknown> 
         return new MiddlewareRoute<T>(...args);
     }
 
-    public useRoutes(routes: Routes<T>): this
+    public useRoutes(routes: Routes<T, unknown>): this
     {
         useRoutes(routes, this);
         return this;
@@ -72,9 +72,9 @@ export class Router<T extends [{ path: string, params?: Record<string, unknown> 
     }
 
 
-    public use(route: string | RegExp, ...middlewares: ((...args: T) => Promise<unknown>)[]): this
-    public use(...middlewares: ((...args: T) => Promise<unknown>)[]): this
-    public use(route: string | RegExp | ((...args: T) => Promise<unknown>), ...middlewares: ((...args: T) => Promise<unknown>)[]): this
+    public use(route: string | RegExp, ...middlewares: ((...args: T) => unknown)[]): this
+    public use(...middlewares: ((...args: T) => unknown)[]): this
+    public use(route: string | RegExp | ((...args: T) => unknown), ...middlewares: ((...args: T) => unknown)[]): this
     {
         if (typeof route === 'string' || route instanceof RegExp)
         {

@@ -1,0 +1,19 @@
+{
+    "$schema": "https://raw.githubusercontent.com/npenin/akala/master/packages/commands/command-schema.json",
+    "cli": {
+        "inject": [
+            "options.openAPIUri",
+            "options.outputFile"
+        ],
+        "usage": "openapi <openAPIUri> [outputFile]",
+        "options": {
+            "openAPIUri": {
+                "needsValue": true
+            },
+            "outputFile": {
+                "needsValue": true,
+                "normalize": true
+            }
+        }
+    }
+}

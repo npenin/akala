@@ -2,7 +2,7 @@ import { NetConnectOpts, Server } from 'node:net';
 import { Container } from '../model/container.js';
 import { unlink } from 'fs';
 import { NetSocketAdapter } from '../net-socket-adapter.js';
-import { eachAsync, Injector, noop } from '@akala/core';
+import { eachAsync, SimpleInjector, noop } from '@akala/core';
 import { trigger } from '../triggers/jsonrpc.js';
 import { SecureContextOptions, Server as tlsServer } from 'tls';
 import { ServeMetadataWithSignal } from '../serve-metadata.js';
@@ -19,7 +19,7 @@ export interface ServeOptions
     args: ('local' | 'http' | 'ws' | 'tcp')[];
 }
 
-export const serverHandlers = new Injector();
+export const serverHandlers = new SimpleInjector();
 
 export type ServerHandler<T = { signal: AbortSignal }> = (container: Container<unknown>, options: T) => Promise<void>
 

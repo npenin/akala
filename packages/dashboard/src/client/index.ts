@@ -1,6 +1,6 @@
 
-import * as akala from '@akala/core';
 import * as client from '@akala/client';
+import { Http, isPromiseLike, module, ObservableArray } from '@akala/core';
 import { IconName, IconPrefix } from '@fortawesome/fontawesome-common-types'
 
 export interface Tile
@@ -34,7 +34,7 @@ export type TileDef = Tile | PromiseLike<Tile>;
 
 (function ()
 {
-    const list: akala.ObservableArray<TileDef> = new akala.ObservableArray<TileDef>([]);
+    const list: ObservableArray<TileDef> = new ObservableArray<TileDef>([]);
     window['tiles'] = {
         add: function (tile: TileDef)
         {
@@ -60,17 +60,17 @@ export type TileDef = Tile | PromiseLike<Tile>;
         }
     }
 
-    akala.module('bootstrap').ready(['$part'], function (part: client.Part)
+    module('bootstrap').ready(['$outlet'], function (part: client.Part)
     {
         part.use('/', 'body', {
             template: '/@akala-modules/pages/tiles.html', controller: async function (scope)
             {
                 scope['list'] = list;
 
-                scope['tileClick'] = function (tile: Tile, $location: client.LocationService, $http: akala.Http)
+                scope['tileClick'] = function (tile: Tile, $location: client.LocationService, $http: Http)
                 {
                     if (tile.url)
-                        if (akala.isPromiseLike(tile.url))
+                        if (isPromiseLike(tile.url))
                             return tile.url.then(function (url) { $location.show(url) });
                         else
                             $location.show(tile.url);

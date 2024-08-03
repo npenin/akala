@@ -1,4 +1,4 @@
-import { ErrorMiddleware, Middleware, MiddlewareComposite, MiddlewarePromise } from '@akala/core';
+import { ErrorMiddlewareAsync, MiddlewareAsync, MiddlewareCompositeAsync, MiddlewarePromise } from '@akala/core';
 import { Request, Response } from '@akala/server'
 import { Client } from '../../model/client.js';
 import { AuthenticateMiddleware, BasicAuthenticateMiddleware } from './authenticate.js';
@@ -50,7 +50,7 @@ export interface CodeResponse
 
 }
 
-export class OAuthErrorFormatter implements ErrorMiddleware<[unknown, Response]>
+export class OAuthErrorFormatter implements ErrorMiddlewareAsync<[unknown, Response]>
 {
     handleError(error: Error & { code?: string; }, _req, response: Response): MiddlewarePromise
     {
@@ -73,7 +73,7 @@ export class OAuthErrorFormatter implements ErrorMiddleware<[unknown, Response]>
     }
 }
 
-export class ExchangeMiddleware implements Middleware<[Request, Response]>
+export class ExchangeMiddleware implements MiddlewareAsync<[Request, Response]>
 {
     basicAuthenticator: AuthenticateMiddleware<Client>;
 
@@ -82,10 +82,10 @@ export class ExchangeMiddleware implements Middleware<[Request, Response]>
         this.basicAuthenticator = new BasicAuthenticateMiddleware(clientValidator);
     }
 
-    static grants: { [key: string]: MiddlewareComposite<[string, string, Request]> };
+    static grants: { [key: string]: MiddlewareCompositeAsync<[string, string, Request]> } = {};
     public static register(grantType: string, codeValidator: (code: string, clientId: string, req: Request) => Promise<void>, tokenBuilder: (code: string, clientId: string, req: Request) => Promise<AccessTokenResponse>): void
     {
-        this.grants[grantType] = this.grants[grantType] || new MiddlewareComposite<[string, string, Request]>(grantType);
+        this.grants[grantType] = this.grants[grantType] || new MiddlewareCompositeAsync<[string, string, Request]>(grantType);
         this.grants[grantType].useMiddleware({
             handle: (code, clientId, req) =>
             {

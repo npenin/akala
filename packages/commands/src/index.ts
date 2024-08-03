@@ -4,7 +4,7 @@ import serveMetadata, { ServeMetadata, connectByPreference, connectWith } from '
 export { ServeMetadata, connectByPreference, connectWith, serveMetadata };
 import * as Triggers from './triggers/index.js'
 import * as Metadata from './metadata/index.js'
-import { Configurations } from './metadata/index.js'
+import { Configurations, Configuration, GenericConfiguration, ExtendedConfigurations } from './metadata/index.js'
 import { program, buildCliContext, buildCliContextFromProcess, NamespaceMiddleware } from '@akala/cli'
 import { Container } from './model/container.js'
 import { ICommandProcessor } from './model/processor.js'
@@ -14,7 +14,7 @@ import * as Processors from './processors/index.js'
 export { Processors }
 export { Triggers };
 
-export { Configurations }
+export { Configurations, Configuration, GenericConfiguration, ExtendedConfigurations }
 
 // import * as cli from './cli'
 export { NetSocketAdapter } from './net-socket-adapter.js'
@@ -24,7 +24,9 @@ import { stat } from 'fs/promises'
 import { dirname } from 'path'
 import { Logger, logger as LoggerBuilder, LogLevels } from '@akala/core'
 export { default as serve, ServeOptions, serverHandlers, ServerHandler, getOrCreateServerAndListen, getOrCreateSecureServerAndListen } from './cli/serve.js'
+import { outputHelper, write } from './cli/new.js';
 
+export const FileGenerator = { outputHelper, write };
 
 export class Cli
 {

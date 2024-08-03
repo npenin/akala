@@ -4,7 +4,6 @@ import { CommandProcessor } from '../commands/command-processor.js';
 import { Commands, CommandResult } from '../commands/command.js';
 import { ExpressionExecutor } from '../expression-executor.js';
 import { ModelDefinition, Generator } from '../shared.js';
-import { v4 as uuid } from 'uuid'
 
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class Vanilla extends PersistenceEngine<any>
@@ -34,7 +33,7 @@ export class Vanilla extends PersistenceEngine<any>
             {
                 this.result = store[cte.value.namespace] && store[cte.value.namespace][cte.value.nameInStorage] || [];
                 this.model = cte.value;
-                return Promise.resolve(cte);
+                return cte;
             }
             return oldVisitContant.call(this, cte);
         }
@@ -64,7 +63,7 @@ export interface VanillaOptions
 export class VanillaCommandProcessor extends CommandProcessor<VanillaOptions>
 {
     private store: VanillaStore;
-    private engineOptions: VanillaOptions;
+    // private engineOptions: VanillaOptions;
 
     constructor()
     {
@@ -121,7 +120,7 @@ export class VanillaCommandProcessor extends CommandProcessor<VanillaOptions>
             {
                 case Generator.native:
                 case Generator.uuid:
-                    cmd.record[k] = uuid();
+                    cmd.record[k] = crypto.randomUUID();
                     break;
             }
         })
@@ -130,6 +129,6 @@ export class VanillaCommandProcessor extends CommandProcessor<VanillaOptions>
     init(options: VanillaOptions): void
     {
         this.store = options.store;
-        this.engineOptions = options;
+        // this.engineOptions = options;
     }
 }

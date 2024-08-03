@@ -1,0 +1,28 @@
+{
+    "extends": "../../tsconfig.settings.esm.json",
+    "compileOnSave": true,
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "rootDir": ".",
+        "outDir": "dist",
+        "resolveJsonModule": true
+    },
+    "include": [
+        "**/*.ts",
+        "weather.json"
+    ],
+    "exclude": [
+        "dist",
+    ],
+    "references": [
+        {
+            "path": "../../commands/tsconfig.esm.json"
+        },
+        {
+            "path": "../../client/tsconfig.esm.json"
+        },
+        {
+            "path": "../../web-ui/tsconfig.esm.json"
+        }
+    ]
+}

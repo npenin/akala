@@ -1,8 +1,21 @@
-import { Module } from "@akala/core";
-import { Part } from '../part.js';
+import { Argument2, Module, injectable } from "@akala/core";
 
-
-export function Component<T>(module: Module): (ctor: new (part: Part) => T) => void
+export default function (module: Module)
 {
-    return module.activateNew('akala-services.$part');
+    return function <TInstance, TClass extends { new(...args: unknown[]): TInstance }>(ctor: TClass): TClass
+    {
+        const cl = injectable(ctor);
+        module.activateNew('$injector')(cl);
+        return cl;
+    }
+}
+
+export function webComponent(tag: string, options?: Argument2<CustomElementRegistry['define']>)
+{
+    return function <TInstance extends HTMLElement, TClass extends { new(...args: unknown[]): TInstance }>(ctor: TClass): TClass
+    {
+        const cl = injectable(ctor);
+        customElements.define(tag, cl, options);
+        return cl;
+    }
 }

@@ -1,8 +1,8 @@
 import { Expression } from './expression.js';
 import { ExpressionType } from './expression-type.js';
-import { ExpressionVisitor } from './expression-visitor.js';
+import type { ExpressionVisitor } from './visitors/expression-visitor.js';
 
-export class ConstantExpression<T> extends Expression
+export class ConstantExpression<const T> extends Expression
 {
     public get type(): ExpressionType.ConstantExpression { return ExpressionType.ConstantExpression; }
     constructor(public readonly value: T)

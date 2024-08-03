@@ -1,8 +1,7 @@
 import * as Metadata from '../metadata/index.js'
 import { Trigger } from '../model/trigger.js';
-import * as Processors from '../processors/index.js';
 import { NamespaceMiddleware } from '@akala/cli'
-import { each, MiddlewarePromise } from '@akala/core';
+import { each } from '@akala/core';
 import { Container } from '../model/container.js'
 
 export function registerCommand<TState>(cmd: Metadata.Command, c: Container<TState>, program: NamespaceMiddleware)

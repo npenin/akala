@@ -1,5 +1,5 @@
 /* eslint-disable */
-const lambda = import('../../handler.js');
+// const lambda = import('../../handler.js');
 
 export default async function (...args: any[]) 
 {

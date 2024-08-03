@@ -1,4 +1,4 @@
-import { Middleware, MiddlewarePromise } from "@akala/core";
+import { MiddlewareAsync, MiddlewarePromise } from "@akala/core";
 import { Request, Response } from './shared.js'
 import { resolve } from 'path'
 import send from 'send'
@@ -13,7 +13,7 @@ export interface Options extends send.SendOptions
     maxage?: string | number;
 }
 
-export class StaticFileMiddleware implements Middleware<[Request, Response]>
+export class StaticFileMiddleware implements MiddlewareAsync<[Request, Response]>
 {
     private options: Options;
     onDirectory: (res: Request) => void;

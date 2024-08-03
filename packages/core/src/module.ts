@@ -1,10 +1,10 @@
 import * as di from './global-injector.js'
 import orchestrator from './orchestrator.js'
-import { Injector, InjectableWithTypedThis, InjectableAsyncWithTypedThis, Injectable } from './injector.js';
-import { eachAsync } from './helpers.js';
-import { isPromiseLike } from './promiseHelpers.js';
+import { SimpleInjector } from './injectors/simple-injector.js';
 import { logger } from './logger.js';
 import { AsyncEvent, Event, Listener } from './event-emitter.js';
+import { noop } from './helpers.js';
+import { Injectable, InjectableAsyncWithTypedThis, InjectableWithTypedThis } from './injectors/shared.js';
 
 const orchestratorLog = logger('akala:module:orchestrator');
 
@@ -16,7 +16,7 @@ export class ExtendableEvent<T = void> extends AsyncEvent<[ExtendableEvent<T>]>
     private _triggered: boolean;
     constructor(private once: boolean)
     {
-        super();
+        super(Event.maxListeners, noop);
         this.reset();
     }
 
@@ -95,7 +95,7 @@ export class ExtendableEvent<T = void> extends AsyncEvent<[ExtendableEvent<T>]>
     private _done: boolean;
 }
 
-export class Module extends Injector
+export class Module extends SimpleInjector
 {
     constructor(public name: string, public dep?: Module[])
     {
@@ -256,10 +256,10 @@ Module['o'].on('task_start', ev => orchestratorLog.debug(ev.message))
 Module['o'].on('task_stop', ev => orchestratorLog.debug(ev.message))
 
 
-var moduleInjector = di.resolve<Injector>('$modules');
+var moduleInjector = di.resolve<SimpleInjector>('$modules');
 if (!moduleInjector)
 {
-    moduleInjector = new Injector();
+    moduleInjector = new SimpleInjector();
     di.register('$modules', moduleInjector);
 }
 
