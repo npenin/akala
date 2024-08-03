@@ -26,6 +26,7 @@
 * update after core breaking change d0849e5
 * update after core changes 66a1ca7
 * update after core changes 576dc73
+* update lock file 3576076
 * webcomponent implementation 2fe5b2e
 
 
