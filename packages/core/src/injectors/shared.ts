@@ -13,7 +13,7 @@ export type InjectedParameter<T> = { index: number, value: T };
 
 export type InjectMap<T = object> = T extends object ? { [key in keyof T]: Resolvable<T[key]> } : never;
 
-export type Resolvable<T = object> = string | symbol | InjectMap<T>;
+export type Resolvable<T = object> = string | symbol | InjectMap<T> | (string | symbol)[];
 
 export const injectorLog = logger('akala:core:injector');
 

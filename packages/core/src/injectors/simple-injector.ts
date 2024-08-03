@@ -83,6 +83,10 @@ export class SimpleInjector extends LocalInjector
 
         if (typeof param == 'object')
         {
+            if (Array.isArray(param))
+            {
+                return param.slice(1).reduce((previous, current) => previous && previous[current], this.resolve(param[0]))
+            }
             const x = Injector.collectMap(param);
 
             return Injector.applyCollectedMap(param as InjectMap<T>, Object.fromEntries(x.map(x => [x, this.resolve(x)])));
