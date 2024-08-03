@@ -169,6 +169,7 @@
 * eachAsync when pushing new items in the process b6e9573
 * edge case cli implementation 9b91c43
 * edge case with distinct 6cfd43b
+* eliminate the need for json import 5d5af48
 * embrace esm even more 3e7d10a
 * embrace esm even more b3b8e9d
 * enable jsonrpc on clients 0adf62b
@@ -577,6 +578,7 @@
 * update dependencies and regenerate metadata 0c83667
 * update jsdoc 49357c6
 * update lock and commands.json files eeae419
+* update lock file 3576076
 * update lock file f142c2b
 * update lock file 974b089
 * update lockfile 5eda712
