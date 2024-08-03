@@ -12,7 +12,7 @@ export class Popover extends Control<{ placement: Placement, trigger: string, mi
 
     private async placementChanged(trigger: Element, ev: BindingChangedEvent<Placement>)
     {
-        const result = await computePosition(trigger, this.element, { placement: ev.value, middleware: this.bind('middlewares').getValue() });
+        const result = await computePosition(trigger, this.element, { placement: ev.value, middleware: this.bind('middlewares')?.getValue() });
         this.element.style.left = result.x + 'px';
         this.element.style.top = result.y + 'px';
         this.element.style.position = result.strategy;
@@ -60,7 +60,7 @@ export class Popover extends Control<{ placement: Placement, trigger: string, mi
             const target = ev.target as HTMLElement;
             const trigger = document.querySelector(this.attrib('trigger'));
 
-            if (trigger.contains(target) || this.element.contains(target))
+            if (trigger?.contains(target) || this.element.contains(target))
                 return;
             this.element.hidePopover();
         }));
