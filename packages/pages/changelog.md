@@ -14,6 +14,7 @@
 * improve browser usage 05dd7ea
 * move to ESM 6ef0335
 * normalized modules to work in esm and cjs 88ffcca
+* update lock file 3576076
 * update package definitions 300a978
 
 
