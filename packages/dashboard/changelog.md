@@ -1,4 +1,4 @@
-#  (2024-06-27)
+#  (2024-08-03)
 
 
 ### Bug Fixes
@@ -14,14 +14,23 @@
 * move to ESM 6ef0335
 * normalized modules to work in esm and cjs 88ffcca
 * typing 8851307
+* update after core breaking change 4291683
 * update dependencies and regenerate metadata 0c83667
 * update package definitions 300a978
 
 
 ### Features
 
+* deprecate CJS implemtations for many packages bde4b1c
 * have both CJS and ESM at once cecd11a
+* rename part to outlet 51dc808
 * update to ESM 87800a0
+
+
+### BREAKING CHANGES
+
+* CJS is no more supported
+* rename part to outlet
 
 
 
