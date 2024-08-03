@@ -1,6 +1,6 @@
 // /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { Expressions, StrictExpressions, TypedExpression, IEnumerable, UnknownExpression, ExpressionVisitor, NewExpression, ApplySymbolExpression, LambdaExpression, BinaryExpression, CallExpression, EqualityComparer, MemberExpression, TypedLambdaExpression, ExpressionType, ConstantExpression, ParameterExpression, UnaryExpression, Parameters, IVisitable } from '@akala/core/expressions';
+import { Expressions, StrictExpressions, TypedExpression, UnknownExpression, ExpressionVisitor, NewExpression, ApplySymbolExpression, LambdaExpression, BinaryExpression, CallExpression, MemberExpression, TypedLambdaExpression, ExpressionType, ConstantExpression, ParameterExpression, UnaryExpression, Parameters, IVisitable } from '@akala/core/expressions';
 import { QuerySymbols } from './Query.js';
 import { Exception } from './exceptions.js';
 import { ModelDefinition } from './shared.js';
@@ -20,7 +20,6 @@ export class ExpressionExecutor extends ExpressionVisitor
     {
         super();
     }
-
 
     visitUnknown(expression: UnknownExpression)
     {
@@ -182,19 +181,6 @@ export class ExpressionExecutor extends ExpressionVisitor
             return new CallExpression<T, TMethod>(source, arg0.method, args);
         }
         return arg0;
-    }
-
-
-
-    visitEnumerable<T, U extends T>(map: IEnumerable<T>, addToNew: (item: U) => void, visitSingle: (item: T, index: number) => U, compare?: EqualityComparer<T>): void
-    {
-        const result = [];
-        super.visitEnumerable<T, U>(map, addToNew, (t, i) =>
-        {
-            const x = visitSingle.call(this, t, i);
-            result.push(this.result);
-            return x;
-        }, compare);
     }
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
