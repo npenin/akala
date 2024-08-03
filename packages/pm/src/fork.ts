@@ -11,6 +11,7 @@ import { program, buildCliContextFromProcess, ErrorMessage, NamespaceMiddleware 
 import { Stats } from 'fs';
 import { registerCommands, SelfDefinedCommand, parseMetadata, StructuredParameters } from '@akala/commands';
 import { fileURLToPath } from 'url';
+import commands from './container.js';
 
 var isPm = false;
 
@@ -113,7 +114,7 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
                     if (!isPm)
                     {
                         //eslint-disable-next-line @typescript-eslint/no-var-requires
-                        const pmMeta = await import(new URL('../../commands.json', import.meta.url).toString());
+                        const pmMeta = commands.meta;
                         if (process.connected)
                         {
                             pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer))) as ac.Container<unknown> & pmDef.container;
