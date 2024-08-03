@@ -46,6 +46,8 @@ import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argume
     }
     await write(output, '\n{\n');
 
+    const types: Record<string, string> = {};
+
     if (!options || !options.noContainer)
     {
         await write(output, `\texport interface container \n\t{\n`);
@@ -84,8 +86,8 @@ import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argume
             else if (cmd.config.schema?.inject && cmd.config.schema.inject.length)
             {
                 await write(output, ', ...args: [');
-                await write(output, cmd.config.schema.inject.map((p, i) => `arg${i}: ${resolveToTypeScript(p, { '#': cmd.config.schema as any }, { type: '#' })}`).join(', '));
-                await write(output, `]): Promise<${await resolveToTypeScript(cmd.config.schema.resultSchema || 'unknown', { '#': cmd.config.schema as any }, { type: '#' })}>\n`);
+                await write(output, (await Promise.all(cmd.config.schema.inject.map(async (p, i) => `arg${i}: ${await resolveToTypeScript(p, { '#': cmd.config.schema as any }, types)}`))).join(', '));
+                await write(output, `]): Promise<${await resolveToTypeScript(cmd.config.schema.resultSchema || 'unknown', { '#': cmd.config.schema as any }, types)}>\n`);
             }
             else if (cmd.config[""]?.inject && cmd.config[""]?.inject.length)
             {
@@ -139,8 +141,8 @@ import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argume
             else if (cmd.config.schema?.inject && cmd.config.schema.inject.length)
             {
                 await write(output, `(`);
-                await write(output, cmd.config.schema.inject.map((p, i) => `arg${i}: ${resolveToTypeScript(p, { '#': cmd.config.schema as any }, { type: '#' })}`).join(', '));
-                await write(output, `): Promise<${await resolveToTypeScript(cmd.config.schema.resultSchema || 'unknown', { '#': cmd.config.schema as any }, { type: '#' })}>\n`);
+                await write(output, (await Promise.all(cmd.config.schema.inject.map(async (p, i) => `arg${i}: ${await resolveToTypeScript(p, { '#': cmd.config.schema as any }, types)}`))).join(', '));
+                await write(output, `): Promise<${await resolveToTypeScript(cmd.config.schema.resultSchema || 'unknown', { '#': cmd.config.schema as any }, types)}>\n`);
             }
             else if (cmd.config[""]?.inject && cmd.config[""]?.inject.length)
             {
@@ -166,6 +168,14 @@ import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argume
         registerCommands(meta.commands, processor, container);
         return container as container & Container<void>;
     }\n`);
+        }
+    }
+
+    if (Object.keys(types).length)
+    {
+        for (const e of Object.entries(types))
+        {
+            await write(output, `export type ${e[0]}=${e[1]};\n`)
         }
     }
 

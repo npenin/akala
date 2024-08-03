@@ -64,7 +64,10 @@ export async function resolveToTypeScript(p: string | JsonSchema, anchors: Recor
             if (typeof p == 'object')
             {
                 if ('properties' in p)
-                    return `{ ${(await Promise.all(Object.entries(p.properties).map(async e => JSON.stringify(e[0]) + ((p as any).required?.includes(e[0]) ? '' : '?') + ':' + await resolveToTypeScript(e[1], anchors, types)))).join(', ')}, ${p.patternProperties && '[key:string]:' + (await Promise.all(Object.values(p.patternProperties).map(e => resolveToTypeScript(e, anchors, types)))).join(' | ')} }`;
+                    if (p.patternProperties)
+                        return `{ ${(await Promise.all(Object.entries(p.properties).map(async e => JSON.stringify(e[0]) + ((p as any).required?.includes(e[0]) ? '' : '?') + ':' + await resolveToTypeScript(e[1], anchors, types)))).join(', ')}, ${p.patternProperties && '[key:string]:' + (await Promise.all(Object.values(p.patternProperties).map(e => resolveToTypeScript(e, anchors, types)))).join(' | ')} }`;
+                    else
+                        return `{ ${(await Promise.all(Object.entries(p.properties).map(async e => JSON.stringify(e[0]) + ((p as any).required?.includes(e[0]) ? '' : '?') + ':' + await resolveToTypeScript(e[1], anchors, types)))).join(', ')} }`;
                 else if ('patternProperties' in p)
                     return `{ ${p.patternProperties && '[key:string]:' + (await Promise.all(Object.values(p.patternProperties).map(e => resolveToTypeScript(e, anchors, types)))).join(' | ')} }`;
 
