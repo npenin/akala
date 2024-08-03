@@ -3,10 +3,7 @@
 
 ### Bug Fixes
 
-* normalize on windows 2c31c9f
-* update after core breaking change 4291683
-* update after core changes cd2512a
-* windows resolution 57d6d98
+* update lock file 3576076
 
 
 
