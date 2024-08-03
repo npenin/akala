@@ -7,13 +7,14 @@ import { BinaryExpression } from "../parser/expressions/binary-expression.js";
 import { BinaryOperator } from "../parser/expressions/binary-operator.js";
 import { CallExpression } from "../parser/expressions/call-expression.js";
 import { ConstantExpression } from "../parser/expressions/constant-expression.js";
-import { ExpressionVisitor } from "../parser/expressions/expression-visitor.js";
+import { ExpressionVisitor } from "../parser/expressions/visitors/expression-visitor.js";
 import { Expressions, StrictExpressions } from "../parser/expressions/expression.js";
 import { MemberExpression } from "../parser/expressions/member-expression.js";
 import { NewExpression } from "../parser/expressions/new-expression.js";
 import { ParameterExpression } from "../parser/expressions/parameter-expression.js";
 import { TernaryExpression } from "../parser/expressions/ternary-expression.js";
 import { TernaryOperator } from "../parser/expressions/ternary-operator.js";
+import { ExpressionSimplifyer } from "../parser/expressions/visitors/expression-simplifyer.js";
 
 export interface ObjectEvent<T>
 {
@@ -145,14 +146,14 @@ export class BuildGetter<T extends object> extends ExpressionVisitor
             this.getter = (target) =>
             {
                 const f = sourceGetter(target) as Function;
-                return f[member(target)].apply(f, argGetters.map(g => g(target)));
+                return f && f[member(target)].apply(f, argGetters.map(g => g(target)));
             };
         }
         else
             this.getter = (target) =>
             {
                 const f = sourceGetter(target) as Function;
-                return f(...argGetters.map(g => g(target)));
+                return f && f(...argGetters.map(g => g(target)));
             };
         return arg0;
     }
@@ -423,17 +424,43 @@ export class BuildWatcher<T extends object> extends ExpressionVisitor
             this.getter = (target, watcher) =>
             {
                 const f = sourceGetter(target, watcher) as Function;
-                return f[member(target)].apply(f, argGetters.map(g => g(target, watcher)));
+                return f && f[member(target)].apply(f, argGetters.map(g => g(target, watcher)));
             };
         }
         else
             this.getter = (target, watcher) =>
             {
                 const f = sourceGetter(target, watcher) as Function;
-                return f(...argGetters.map(g => g(target, watcher)));
+                return f && f(...argGetters.map(g => g(target, watcher)));
             };
         return arg0;
     }
+
+    public visitNew<T>(expression: NewExpression<T>): StrictExpressions
+    {
+        const source = this.getter;
+        const result: ((target, watcher) => [PropertyKey, any])[] = [];
+        const evaluator = new EvaluatorAsFunction();
+        this.visitEnumerable(expression.init, () => { }, (arg0) =>
+        {
+            const member = evaluator.eval<PropertyKey>(this.visit(arg0.member));
+            this.getter = source;
+            this.visit(arg0.source);
+            const getter = this.getter;
+            result.push((target, watcher) => [member(target), getter(target, watcher)])
+            this.getter = source;
+
+            return arg0;
+        });
+
+        this.getter = (target, watcher) =>
+        {
+            return Object.fromEntries(result.map(r => r(target, watcher)));
+        };
+
+        return expression;
+    }
+
 
     visitBinary<T extends Expressions = StrictExpressions>(expression: BinaryExpression<T>): BinaryExpression<Expressions>
     {
@@ -479,15 +506,15 @@ export class Binding<T> extends EventEmitter<{
     change: Event<[BindingChangedEvent<T>]>
 }>
 {
-    public static defineProperty(target: object, property: string | symbol, value?: unknown)
+    public static defineProperty<T = unknown>(target: object, property: string | symbol, value?: T): Binding<T>
     {
-        const binding = new Binding(target, typeof property == 'symbol' ? new MemberExpression(null, new ConstantExpression(property), false) : new Parser().parse(property));
+        const binding = new Binding<T>(target, typeof property == 'symbol' ? new MemberExpression(null, new ConstantExpression(property), false) : new Parser().parse(property));
         let settingValue = false;
         Object.defineProperty(target, property, {
             get()
             {
                 return value;
-            }, set(newValue: unknown)
+            }, set(newValue: T)
             {
                 if (settingValue)
                     return;
@@ -533,7 +560,11 @@ export class Binding<T> extends EventEmitter<{
     constructor(public readonly target: object, public readonly expression: Expressions)
     {
         super();
-        this.set('change', new Event());
+        if (target instanceof Binding)
+            if (!expression)
+                return target;
+            else return Binding.simplify(target, expression)
+        this.set('change', new Event(Number.POSITIVE_INFINITY));
         if (expression)
         {
             let value: T;
@@ -544,11 +575,15 @@ export class Binding<T> extends EventEmitter<{
 
                 const oldValue = value;
                 value = this.getValue();
-                this.emit('change', { value: this.getValue(), oldValue: oldValue });
+                this.emit('change', { value, oldValue });
             })
             this.attachWatcher = new BuildWatcher().eval(expression);
             this.attachWatcher(target, this.watcher);
         }
+    }
+    static simplify<T>(target: Binding<any>, expression: Expressions): Binding<T> | null
+    {
+        return new Binding(target.target, target.expression === null ? expression : new ExpressionSimplifyer(target.expression).visit(expression))
     }
 
     private readonly attachWatcher: ReturnType<BuildWatcher<object>['eval']>;
@@ -628,7 +663,7 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
 
     constructor(target: T & { [watcher]?: ObservableObject<T> } | ObservableObject<T>)
     {
-        super();
+        super(Number.POSITIVE_INFINITY);
         if (target instanceof ObservableObject)
             return target;
         if (ObservableObject.isWatched<T>(target))

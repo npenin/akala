@@ -1,6 +1,6 @@
 import { Expression, TypedExpression } from './expression.js';
 import { ExpressionType } from './expression-type.js';
-import { ExpressionVisitor } from './expression-visitor.js';
+import type { ExpressionVisitor } from './visitors/expression-visitor.js';
 import { IVisitable } from './visitable.js';
 
 export class MemberExpression<T, TMember extends keyof T, U extends T[TMember]> extends Expression

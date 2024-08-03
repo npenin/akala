@@ -1,10 +1,11 @@
-import { BinaryOperator } from './expressions/binary-operator.js';
-import { BinaryExpression, CallExpression, ConstantExpression, Expression, Expressions, ExpressionType, ExpressionVisitor, MemberExpression, NewExpression, ParameterExpression, StrictExpressions, TypedExpression, UnaryExpression, UnaryOperator } from './expressions/index.js';
+import { BinaryOperator, BinaryExpression, CallExpression, ConstantExpression, Expression, Expressions, ExpressionType, MemberExpression, NewExpression, ParameterExpression, StrictExpressions, TypedExpression, UnaryExpression, UnaryOperator } from './expressions/index.js';
+
 import identity from '../formatters/identity.js';
 import negate from '../formatters/negate.js';
 import booleanize from '../formatters/booleanize.js';
 import { TernaryOperator } from './expressions/ternary-operator.js';
 import { TernaryExpression } from './expressions/ternary-expression.js';
+import type { ExpressionVisitor } from './expressions/visitors/expression-visitor.js';
 
 
 const jsonKeyRegex = /^ *(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([^: ]+)) *): */;
@@ -121,8 +122,7 @@ export class FormatExpression<TOutput> extends Expression implements ParsedAny
 
     accept(visitor: ExpressionVisitor): TypedExpression<TOutput>
     {
-        visitor.visitFormat(this);
-        return this;
+        return visitor.visitFormat(this);
     }
 
     public $$length: number;
@@ -389,9 +389,14 @@ export class Parser
         //eslint-disable-next-line @typescript-eslint/no-explicit-any
         let result: ExpressionsWithLength;
         if (this.parameters)
+        {
+            if (this.parameters[''] && '$$length' in this.parameters[''])
+                length += this.parameters[''].$$length as number;
             result = new MemberExpression(this.parameters[''] as TypedExpression<any>, new ParsedString(item), optional) as TypedExpression<any>
+        }
         else
             result = new MemberExpression(null as any, new ParsedString(item), optional) as TypedExpression<any>
+
         result.$$length = length;
         if (typeof operator != 'undefined')
         {
@@ -452,8 +457,10 @@ export class Parser
                     expression = expression.substring(operator[0].length);
 
                     this.parameters = Object.assign({}, this.parameters, { '': lhs });
-                    rhs = this.parseAny(expression, parseFormatter, reset || (() => { this.parameters = oldParameters }));
-                    this.parameters = oldParameters;
+                    const selfReset = (() => { this.parameters = oldParameters });
+                    rhs = this.parseAny(expression, parseFormatter, reset || selfReset);
+                    rhs.$$length += operator[0].length;
+                    selfReset();
                     // if (rhs.type == ExpressionType.MemberExpression)
                     // {
                     //     let me: MemberExpression<any, any, any> = rhs;
