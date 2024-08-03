@@ -1,4 +1,4 @@
-#  (2024-06-27)
+#  (2024-08-03)
 
 
 ### Bug Fixes
@@ -23,9 +23,15 @@
 * add sourmap optional support f6b0275
 * add support for external document (like iframes) 0d39ae4
 * add support for render functions 7d24d00
+* deprecate CJS implemtations for many packages bde4b1c
 * have both CJS and ESM at once cecd11a
 * start implementation of page builder 45f08c0
 * update to ESM 87800a0
+
+
+### BREAKING CHANGES
+
+* CJS is no more supported
 
 
 
