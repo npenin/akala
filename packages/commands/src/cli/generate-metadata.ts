@@ -6,8 +6,9 @@ import { jsonObject } from '../metadata/index.js';
 import { FileSystemConfiguration } from '../processors/fs.js';
 import { Writable } from "stream";
 import { outputHelper, write } from './new.js';
+import { resolveToTypeScript } from './generate-ts-from-schema.js';
 
-export default async function generate(name?: string, folder?: string, outputFile?: string, options?: { noContainer?: boolean, noProxy?: boolean })
+export default async function generate(name?: string, folder?: string, outputFile?: string, options?: { noContainer?: boolean, noProxy?: boolean, noStandalone?: boolean, noMetadata?: boolean })
 {
     folder = folder || process.cwd();
     if (!name)
@@ -23,15 +24,7 @@ export default async function generate(name?: string, folder?: string, outputFil
 
     const meta = akala.metadata(container);
 
-    let hasFs = false;
-    core.each(meta.commands, function (cmd)
-    {
-        if (cmd.config.fs)
-        {
-            hasFs = true;
-        }
-    });
-
+    let hasFs = !!meta.commands.find(cmd => !!cmd.config.fs);
 
     if (hasFs)
     {
@@ -42,6 +35,8 @@ import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argume
 `)
     }
 
+    await write(output, 'import {Metadata, ICommandProcessor, Container, registerCommands} from "@akala/commands";\n');
+
     if (outputFile.endsWith('.d.ts'))
         await write(output, 'declare namespace ' + name);
     else
@@ -50,6 +45,8 @@ import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argume
         await write(output, 'namespace ' + name);
     }
     await write(output, '\n{\n');
+
+    const types: Record<string, string> = {};
 
     if (!options || !options.noContainer)
     {
@@ -85,6 +82,12 @@ import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argume
                 }
                 else
                     await write(output, `, ...args: Arguments<typeof import('./${filePath}').default>): ReturnType<typeof import('./${filePath}').default>\n`);
+            }
+            else if (cmd.config.schema?.inject && cmd.config.schema.inject.length)
+            {
+                await write(output, ', ...args: [');
+                await write(output, (await Promise.all(cmd.config.schema.inject.map(async (p, i) => `arg${i}: ${await resolveToTypeScript(p, { '#': cmd.config.schema as any }, types)}`))).join(', '));
+                await write(output, `]): Promise<${await resolveToTypeScript(cmd.config.schema.resultSchema || 'unknown', { '#': cmd.config.schema as any }, types)}>\n`);
             }
             else if (cmd.config[""]?.inject && cmd.config[""]?.inject.length)
             {
@@ -135,9 +138,15 @@ import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argume
                 else
                     await write(output, `(...args: Arguments<typeof import('./${filePath}').default>): ReturnType<typeof import('./${filePath}').default>\n`);
             }
+            else if (cmd.config.schema?.inject && cmd.config.schema.inject.length)
+            {
+                await write(output, `(`);
+                await write(output, (await Promise.all(cmd.config.schema.inject.map(async (p, i) => `arg${i}: ${await resolveToTypeScript(p, { '#': cmd.config.schema as any }, types)}`))).join(', '));
+                await write(output, `): Promise<${await resolveToTypeScript(cmd.config.schema.resultSchema || 'unknown', { '#': cmd.config.schema as any }, types)}>\n`);
+            }
             else if (cmd.config[""]?.inject && cmd.config[""]?.inject.length)
             {
-                await write(output, cmd.config[""]?.inject.filter(p => p.startsWith('param.')).map(() => `any`).join(', '));
+                await write(output, cmd.config[""]?.inject.filter(p => p.startsWith('param.')).map((p) => `arg${p.substring(6)}:any`).join(', '));
                 await write(output, `): unknown\n`);
             }
             else
@@ -146,6 +155,28 @@ import {Arguments, Argument0, Argument1, Argument2, Argument3, Argument4, Argume
         });
 
         await write(output, '\t}\n');
+    }
+
+    if (!options || !options.noMetadata)
+    {
+        await write(output, `   export const meta=${JSON.stringify(meta)} as Metadata.Container;\n\n`);
+
+        if (!options || !options.noStandalone)
+        {
+            await write(output, `   export function connect(processor?:ICommandProcessor) {
+        const container = new Container<void>(${JSON.stringify(name || 'container')}, void 0);
+        registerCommands(meta.commands, processor, container);
+        return container as container & Container<void>;
+    }\n`);
+        }
+    }
+
+    if (Object.keys(types).length)
+    {
+        for (const e of Object.entries(types))
+        {
+            await write(output, `export type ${e[0]}=${e[1]};\n`)
+        }
     }
 
     await write(output, '}\n');

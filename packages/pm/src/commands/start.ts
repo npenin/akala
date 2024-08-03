@@ -128,7 +128,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
                 params.process = cp;
                 Object.defineProperty(params, 'connectionAsContainer', Object.assign({ value: container }));
             });
-            container.processor.useMiddleware(20, new Processors.JsonRpc(connection, true));
+            container.processor.useMiddleware(20, new Processors.JsonRpc(connection));
 
             connection.on('close', function disconnected()
             {

@@ -6,7 +6,7 @@ import * as ac from '@akala/commands';
 import { lstat } from 'fs/promises';
 import pmDef from './container.js';
 import { IpcAdapter } from "./ipc-adapter.js";
-import { logger, Logger, MiddlewareComposite, module as coreModule } from '@akala/core';
+import { logger, Logger, module as coreModule, MiddlewareCompositeAsync } from '@akala/core';
 import { program, buildCliContextFromProcess, ErrorMessage, NamespaceMiddleware } from '@akala/cli';
 import { Stats } from 'fs';
 import { registerCommands, SelfDefinedCommand, parseMetadata, StructuredParameters } from '@akala/commands';
@@ -76,7 +76,7 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
         else
             processor = new ac.Processors.FileSystem(c.options.program);
     }).
-    useMiddleware(null, MiddlewareComposite.new(logMiddleware,
+    useMiddleware(null, MiddlewareCompositeAsync.new(logMiddleware,
         {
             handle: async c =>
             {
@@ -116,7 +116,7 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
                         const pmMeta = await import(new URL('../../commands.json', import.meta.url).toString());
                         if (process.connected)
                         {
-                            pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer), true)) as ac.Container<unknown> & pmDef.container;
+                            pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer))) as ac.Container<unknown> & pmDef.container;
                             registerCommands(pmMeta.commands, null, pm);
                         }
                         else

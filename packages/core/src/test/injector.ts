@@ -1,8 +1,8 @@
 import 'source-map-support/register.js';
 
-import { Injector } from '../injector.js';
+import { SimpleInjector } from '../injectors/simple-injector.js';
 import assert from 'assert';
-import { useInjector, inject } from '../reflection-injector.js';
+import { useInjector, inject } from '../injectors/reflection-injector.js';
 
 /*var oldProxy = Proxy;
 
@@ -63,13 +63,13 @@ i1.injectWithName(['$updateConfig.pwet.a.b.c'], function (config)
     config({ x: 'y' }, 'd');
 })();*/
 
-const i = new Injector();
+const i = new SimpleInjector();
 i.register('os', 'linux')
 i.register('vendor', 'microsoft')
 i.register('action', 'loves')
 i.register('otherVendor', 'node')
 
-const subI = new Injector(i);
+const subI = new SimpleInjector(i);
 @useInjector(subI)
 class A
 {
@@ -120,7 +120,7 @@ assert.strictEqual(b.do('loves'), 'microsoft loves linux', 'parameter injection 
 assert.strictEqual(b.doOtherVendor('loves'), 'microsoft loves node', 'parameter injection does not work on inherited classes');
 
 // nested resolutions
-const i1 = new Injector();
-const i2 = i1.register('a', new Injector());
+const i1 = new SimpleInjector();
+const i2 = i1.register('a', new SimpleInjector());
 i2.register('b.c', 'x');
-assert.strictEqual(i1.resolve('a.b.c'), 'x')
+assert.strictEqual(i1.resolve('a["b.c"]'), 'x')

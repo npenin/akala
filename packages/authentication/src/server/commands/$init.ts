@@ -2,21 +2,25 @@ import { Container } from "@akala/commands";
 import { State } from '../state.js';
 import { AuthenticationStore } from '../authentication-store.js';
 import { PersistenceEngine, providers } from "@akala/storage";
-import { createHmac, randomUUID } from "crypto";
+// import { webcrypto as crypto } from "crypto";
 import { sidecar } from "@akala/pm";
 import { ExchangeMiddleware, OAuthError } from "../master.js";
 import { BinaryOperator } from "@akala/core/expressions";
 import { Token } from "../../model/access-token.js";
 import { HttpRouter } from "@akala/server";
+import { base64 } from '@akala/core'
 
-export default async function (container: Container<State>, providerName: string, providerOptions: unknown, key: string)
+export default async function (this: State, container: Container<State>, providerName: string, providerOptions: unknown, key: string)
 {
-    const provider = new (providers.resolve<new () => PersistenceEngine<unknown>>(providerName));
+    // console.log(arguments);
+    const provider = providers.resolve<PersistenceEngine<unknown>>(providerName)
     await provider.init(providerOptions);
 
     const store = container.state.store = await AuthenticationStore.create(provider);
-    const hmac = createHmac('sha256', key);
-    container.state.getHash = (value) => hmac.update(value).digest('base64');
+    const cryptoKey = await crypto.subtle.importKey('raw', base64.base64DecToArr(key), { name: 'HMAC', hash: 'SHA-256' }, false, ["sign", 'verify']);
+    this.getHash = async (value: string, salt?: ArrayBuffer) => base64.base64EncArr(await crypto.subtle.sign('HMAC', cryptoKey, salt ? new Uint8Array([...new Uint8Array(salt), ...new Uint8Array(base64.strToUTF8Arr(value))]) : base64.strToUTF8Arr(value)));
+    this.verifyHash = async (value: string, signature: BufferSource, salt?: ArrayBuffer) => await crypto.subtle.verify('HMAC', cryptoKey, signature, salt ? new Uint8Array([...new Uint8Array(salt), ...new Uint8Array(base64.strToUTF8Arr(value))]) : base64.strToUTF8Arr(value));
+    this.session = { slidingExpiration: 300 };
 
     ExchangeMiddleware.register('code', async (code, clientId, req) =>
     {
@@ -30,7 +34,7 @@ export default async function (container: Container<State>, providerName: string
             throw new OAuthError("invalid_grant");
         const token = new Token();
         token.tokenType = 'access';
-        token.token = randomUUID();
+        token.token = crypto.randomUUID();
         token.clientId = clientId;
         token.scope = req.query.getAll('scope');
         token.userId = authCode.userId;
@@ -54,7 +58,7 @@ export default async function (container: Container<State>, providerName: string
             throw new OAuthError("invalid_grant");
         const token = new Token();
         token.tokenType = 'refresh';
-        token.token = randomUUID();
+        token.token = crypto.randomUUID();
         token.clientId = clientId;
         token.scope = req.query.getAll('scope');
         token.userId = authCode.userId;
@@ -66,8 +70,11 @@ export default async function (container: Container<State>, providerName: string
 
     container.state.router = new HttpRouter();
 
-    const server = (await sidecar()['@akala/server']);
+    const containers = sidecar();
+    if (!containers)
+        return;
+    const server = (await containers['@akala/server']);
 
-    server.dispatch('remote-route', '/.well-known/openid-configuration', null, { pre: true, get: true });
+    // server.dispatch('remote-route', '/.well-known/openid-configuration', null, { pre: true, get: true });
     server.dispatch('remote-route', '/', container, { auth: true, use: true });
 }

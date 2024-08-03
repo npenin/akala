@@ -1,5 +1,6 @@
 import { Predicate, Project, PredicateAsync } from '@akala/core/expressions';
 import { NotSupportedException } from './exceptions.js';
+import { isPromiseLike } from '@akala/core';
 
 
 export function where<T>(source: Iterable<T>, predicate: Predicate<T>): Iterable<T>
@@ -14,11 +15,13 @@ export function where<T>(source: Iterable<T>, predicate: Predicate<T>): Iterable
     };
 }
 
-export function whereAsync<T>(source: Iterable<T> | AsyncIterable<T>, predicate: PredicateAsync<T>): AsyncIterable<T>
+export function whereAsync<T>(source: Iterable<T> | AsyncIterable<T> | Promise<Iterable<T> | AsyncIterable<T>>, predicate: PredicateAsync<T>): AsyncIterable<T>
 {
     return {
         async *[Symbol.asyncIterator]()
         {
+            if (isPromiseLike(source))
+                source = await source;
             for await (const v of source)
                 if (await predicate(v))
                     yield v;
@@ -34,8 +37,10 @@ export function any<T>(source: Iterable<T>, predicate: Predicate<T>): boolean
     return false;
 }
 
-export async function anyAsync<T>(source: Iterable<T>, predicate: PredicateAsync<T>): Promise<boolean>
+export async function anyAsync<T>(source: Iterable<T> | Promise<Iterable<T>>, predicate: PredicateAsync<T>): Promise<boolean>
 {
+    if (isPromiseLike(source))
+        source = await source;
     for (const v of source)
         if (await predicate(v))
             return true;
@@ -48,25 +53,40 @@ export function length<T>(source: { length: number; } | Iterable<T>): number
         return source['length'];
 
     let i = 0;
-    //eslint-disable-next-line @typescript-eslint/no-unused-vars
-    for (const v of source as Iterable<T>)
+    const iterator = (source as Iterable<T>)[Symbol.iterator]();
+    do
     {
+        const result = iterator.next();
+        if (result.done)
+            break;
         i++;
     }
+    //eslint-disable-next-line no-constant-condition
+    while (true);
+
     return i;
 }
 
-export async function lengthAsync<T>(source: { length: number; } | Iterable<T> | AsyncIterable<T>): Promise<number>
+export async function lengthAsync<T>(source: { length: number; } | Iterable<T> | AsyncIterable<T> | Promise<Iterable<T>>): Promise<number>
 {
     if (typeof source['length'] != 'undefined')
         return source['length'];
 
     let i = 0;
-    //eslint-disable-next-line @typescript-eslint/no-unused-vars
-    for await (const v of source as Iterable<T>)
+    if (isPromiseLike(source))
+        source = await source;
+
+    const iterator = (source as Iterable<T>)[Symbol.iterator]();
+    do
     {
+        const result = iterator.next();
+        if (result.done)
+            break;
         i++;
     }
+    //eslint-disable-next-line no-constant-condition
+    while (true);
+
     return i;
 }
 
@@ -81,11 +101,13 @@ export function select<T, U>(source: Iterable<T>, project: Project<T, U>): Itera
     };
 }
 
-export function selectAsync<T, U>(source: Iterable<T> | AsyncIterable<T>, project: Project<T, Promise<U>>): AsyncIterable<U>
+export function selectAsync<T, U>(source: Iterable<T> | AsyncIterable<T> | Promise<Iterable<T>>, project: Project<T, Promise<U>>): AsyncIterable<U>
 {
     return {
         async *[Symbol.asyncIterator]()
         {
+            if (isPromiseLike(source))
+                source = await source;
             for await (const value of source)
                 yield await project(value);
         }
@@ -102,17 +124,17 @@ export function groupBy<T, U extends string | number>(source: Iterable<T>, crite
             for (const value of source)
             {
                 const group = criteria(value);
-                console.log({ value, group, result: this.result });
-                if (typeof this.result == 'object')
+                // console.log({ value, group, result: this.result });
+                if (typeof group == 'object')
                 {
                     throw new NotSupportedException('Not yet implemented');
                 }
-                if (typeof groups[this.result as string] == 'undefined')
+                if (typeof groups[group] == 'undefined')
                 {
-                    groups[this.result as string] = [];
-                    result.push({ key: this.result, value: groups[this.result] });
+                    groups[group] = [];
+                    result.push({ key: group, value: groups[group] });
                 }
-                groups[this.result as string].push(value);
+                groups[group].push(value);
 
             }
             return result[Symbol.iterator]();
@@ -122,7 +144,7 @@ export function groupBy<T, U extends string | number>(source: Iterable<T>, crite
 
 
 
-export function groupByAsync<T, U extends string | number>(source: AsyncIterable<T>, criteria: Project<T, Promise<U>>): AsyncIterable<{ key: U; value: Iterable<T>; }>
+export function groupByAsync<T, U extends string | number>(source: AsyncIterable<T> | Promise<AsyncIterable<T>>, criteria: Project<T, Promise<U>>): AsyncIterable<{ key: U; value: Iterable<T>; }>
 {
     return {
         [Symbol.asyncIterator]()
@@ -132,6 +154,9 @@ export function groupByAsync<T, U extends string | number>(source: AsyncIterable
             return {
                 async next()
                 {
+                    if (isPromiseLike(source))
+                        source = await source;
+
                     if (typeof result !== 'undefined')
                         return { done: groupIndex >= result.length, value: result[groupIndex++] };
                     result = [];
@@ -139,14 +164,14 @@ export function groupByAsync<T, U extends string | number>(source: AsyncIterable
                     for await (const value of source)
                     {
                         const group = await criteria(value);
-                        console.log({ value, group, result: this.result });
+                        // console.log({ value, group, result: this.result });
                         if (typeof group == 'object')
                         {
                             throw new NotSupportedException('Not yet implemented');
                         }
-                        if (typeof groups[group as string] == 'undefined')
+                        if (typeof groups[group] == 'undefined')
                         {
-                            groups[group as string] = [];
+                            groups[group] = [];
                             result.push({ key: group, value: groups[group] });
                         }
                         groups[group].push(value);

@@ -9,6 +9,8 @@ import { File } from '../providers/file.js';
 import { ModelTest1 } from './modelTest1.js';
 import * as assert from 'assert'
 import 'mocha';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 interface TestStore extends db.StoreDefinition
 {
@@ -19,7 +21,7 @@ describe('simple query', function ()
 {
     it('works with simple commands', async function ()
     {
-        var fpe = await File.fromJson(__dirname);
+        var fpe = await File.fromJson(dirname(fileURLToPath(import.meta.url)));
         var store = db.Store.create<TestStore>(fpe, 'ModelTest1');
 
         var obj = await store.ModelTest1.where('s1', akala.expressions.BinaryOperator.Equal, 'pwic').firstOrDefault();
@@ -50,7 +52,7 @@ describe('simple query', function ()
 
     it('works with query on non key', async function ()
     {
-        var fpe = await File.fromJson(__dirname);
+        var fpe = await File.fromJson(dirname(fileURLToPath(import.meta.url)));
         var store = db.Store.create<TestStore>(fpe, 'ModelTest1');
 
         fpe.beginTransaction();
@@ -85,7 +87,7 @@ describe('simple query', function ()
 
     it('works with grouped query', async function ()
     {
-        var fpe = await File.fromJson(__dirname);
+        var fpe = await File.fromJson(dirname(fileURLToPath(import.meta.url)));
         var store = db.Store.create<TestStore>(fpe, 'ModelTest1');
 
         fpe.beginTransaction();
