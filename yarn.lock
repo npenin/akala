@@ -96,7 +96,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@akala/cli@workspace:^, @akala/cli@workspace:packages/cli":
+"@akala/cli@npm:^2.13.20, @akala/cli@workspace:^, @akala/cli@workspace:packages/cli":
   version: 0.0.0-use.local
   resolution: "@akala/cli@workspace:packages/cli"
   dependencies:
@@ -161,6 +161,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@akala/commands@npm:^7.1.6":
+  version: 7.1.6
+  resolution: "@akala/commands@npm:7.1.6"
+  dependencies:
+    "@akala/cli": "npm:^2.13.20"
+    "@akala/core": "npm:^14.0.2"
+    "@akala/json-rpc-ws": "npm:^10.4.4"
+    ajv: "npm:^8.12.0"
+    debug: "npm:^4.3.4"
+    path-to-regexp: "npm:^6.2.1"
+    reflect-metadata: "npm:^0.2.0"
+    ws: "npm:^8.15.0"
+  bin:
+    ac: dist/esm/cli.mjs
+  checksum: 10/9c195eb3a138b8db4b9cd82c237a0db28f1b27205603717d8ac950e27ef98306756feebb67279baf6c20f8baab8cd16d7a59a4a78078695ce0e894e66ac3f4f4
+  languageName: node
+  linkType: hard
+
 "@akala/commands@workspace:^, @akala/commands@workspace:packages/commands":
   version: 0.0.0-use.local
   resolution: "@akala/commands@workspace:packages/commands"
@@ -188,7 +206,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@akala/config@workspace:^, @akala/config@workspace:packages/config":
+"@akala/config@npm:^4.0.33, @akala/config@workspace:^, @akala/config@workspace:packages/config":
   version: 0.0.0-use.local
   resolution: "@akala/config@workspace:packages/config"
   dependencies:
@@ -205,6 +223,17 @@ __metadata:
     uci2: ./dist/cli.js
   languageName: unknown
   linkType: soft
+
+"@akala/core@npm:^14.0.2":
+  version: 14.0.2
+  resolution: "@akala/core@npm:14.0.2"
+  dependencies:
+    debug: "npm:^4.3.4"
+    path-to-regexp: "npm:^6.2.1"
+    reflect-metadata: "npm:^0.2.0"
+  checksum: 10/2a336420473ab97e8e741de69885c1a20a330bc77fe0737ef8b0956dd1e8dec703d096c8fd0681bb11ac46cb8a087b3c99c2a5b933606ce682389d98bd666c80
+  languageName: node
+  linkType: hard
 
 "@akala/core@workspace:^, @akala/core@workspace:packages/core":
   version: 0.0.0-use.local
@@ -275,7 +304,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@akala/json-rpc-ws@workspace:^, @akala/json-rpc-ws@workspace:packages/json-rpc-ws":
+"@akala/json-rpc-ws@npm:^10.4.4, @akala/json-rpc-ws@workspace:^, @akala/json-rpc-ws@workspace:packages/json-rpc-ws":
   version: 0.0.0-use.local
   resolution: "@akala/json-rpc-ws@workspace:packages/json-rpc-ws"
   dependencies:
@@ -325,7 +354,25 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@akala/pm@npm:^8.0.4, @akala/pm@workspace:^, @akala/pm@workspace:packages/pm":
+"@akala/pm@npm:^8.0.4":
+  version: 8.1.30
+  resolution: "@akala/pm@npm:8.1.30"
+  dependencies:
+    "@akala/cli": "npm:^2.13.20"
+    "@akala/commands": "npm:^7.1.6"
+    "@akala/config": "npm:^4.0.33"
+    "@akala/core": "npm:^14.0.2"
+    "@akala/json-rpc-ws": "npm:^10.4.4"
+    reflect-metadata: "npm:^0.2.0"
+    source-map-support: "npm:^0.5.21"
+  bin:
+    pm: dist/esm/cli.js
+    pm-fork: dist/esm/fork.js
+  checksum: 10/1d3e8262664ccf22d4772d78867b28c2b9b80a701ab4e73f93f7d0a755ed768263de3a5509cf0449835a63fd0aa3c45b0cc32c7f28a8b06951b055b6502c30cd
+  languageName: node
+  linkType: hard
+
+"@akala/pm@workspace:^, @akala/pm@workspace:packages/pm":
   version: 0.0.0-use.local
   resolution: "@akala/pm@workspace:packages/pm"
   dependencies:
@@ -3751,7 +3798,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ajv@npm:^8.17.1":
+"ajv@npm:^8.12.0, ajv@npm:^8.17.1":
   version: 8.17.1
   resolution: "ajv@npm:8.17.1"
   dependencies:
@@ -8589,7 +8636,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"path-to-regexp@npm:^6.2.2":
+"path-to-regexp@npm:^6.2.1, path-to-regexp@npm:^6.2.2":
   version: 6.2.2
   resolution: "path-to-regexp@npm:6.2.2"
   checksum: 10/f7d11c1a9e02576ce0294f4efdc523c11b73894947afdf7b23a0d0f7c6465d7a7772166e770ddf1495a8017cc0ee99e3e8a15ed7302b6b948b89a6dd4eea895e
@@ -8967,7 +9014,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"reflect-metadata@npm:^0.2.2":
+"reflect-metadata@npm:^0.2.0, reflect-metadata@npm:^0.2.2":
   version: 0.2.2
   resolution: "reflect-metadata@npm:0.2.2"
   checksum: 10/1c93f9ac790fea1c852fde80c91b2760420069f4862f28e6fae0c00c6937a56508716b0ed2419ab02869dd488d123c4ab92d062ae84e8739ea7417fae10c4745
@@ -10732,7 +10779,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ws@npm:^8.17.1, ws@npm:^8.18.0":
+"ws@npm:^8.15.0, ws@npm:^8.17.1, ws@npm:^8.18.0":
   version: 8.18.0
   resolution: "ws@npm:8.18.0"
   peerDependencies:
