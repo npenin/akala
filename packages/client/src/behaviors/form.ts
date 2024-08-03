@@ -38,7 +38,12 @@ export class FormComposer implements Composer<Container<void>>
     }
 
     readonly selector = 'form';
-    readonly optionName = 'container'
+
+    optionGetter(options: object): Container<void>
+    {
+        return options['container'];
+    }
+
     apply(form: HTMLFormElement, container?: Container<void>): Disposable//: Promise<IControlInstance<unknown>[]>
     {
         const abort = new AbortController()

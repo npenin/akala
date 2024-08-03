@@ -27,16 +27,19 @@ export class Control<TBindings extends Record<string, unknown> = Record<string, 
         return this.element.getAttribute(name);
     }
 
-    public bind<const TKey extends Extract<keyof TBindings, string>>(attributeName: TKey)
+    public bind<const TKey extends Extract<keyof TBindings, string>>(attributeName: TKey): Binding<TBindings[TKey]> | null
     {
+        const attributeValue = this.element.getAttribute(attributeName);
+        if (!attributeValue)
+            return null;
         if (!Reflect.has(this.element, 'controller'))
         {
-            const controllerBinding = this.teardown(Binding.defineProperty(this.element, 'controller'));
-            return this.teardown(this.bindings[attributeName] = new Binding({ controller: controllerBinding, get context() { return DataContext.find(this.element) } }, Parser.parameterLess.parse(this.element.getAttribute(attributeName) || '')));
+            // const controllerBinding = this.teardown(Binding.defineProperty(this.element, 'controller'));
+            return this.teardown(this.bindings[attributeName] = new Binding(DataContext.find(this.element), Parser.parameterLess.parse(attributeValue || '')));
 
         }
         if (!this.bindings[attributeName])
-            return this.teardown(this.bindings[attributeName] = new Binding({ controller: this.element['controller'], get context() { return DataContext.find(this.element) } }, Parser.parameterLess.parse(this.element.getAttribute(attributeName) || '')));
+            return this.teardown(this.bindings[attributeName] = new Binding({ controller: this.element['controller'], get context() { return DataContext.find(this.element) } }, Parser.parameterLess.parse(attributeValue || '')));
         return this.bindings[attributeName];
     }
 }

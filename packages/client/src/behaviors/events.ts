@@ -1,16 +1,19 @@
-import { Subscription } from "@akala/core";
+import { Binding, Subscription } from "@akala/core";
 import { Composer } from "../template.js";
 import { DataContext } from "./context.js";
 import { AttributeComposer } from "./shared.js";
+import { ConstantExpression, MemberExpression, NewExpression } from "@akala/core/expressions";
 
 export class EventComposer<T extends Partial<Disposable>> extends AttributeComposer<T> implements Composer<T>
 {
     getContext(item: HTMLElement, options?: T)
     {
-        return {
-            controller: options, get dataContext() { return DataContext.find(item) }
-        };
+        return new Binding(DataContext.find(item), new NewExpression<{ context: any, controller: T }>(
+            new MemberExpression(new MemberExpression(undefined, new ConstantExpression('context'), false), new ConstantExpression('context'), false),
+            new MemberExpression(new ConstantExpression(options) as any, new ConstantExpression('controller'), false),
+        ));
     }
+
     constructor()
     {
         super('on')

@@ -2,34 +2,46 @@ import { Binding, ObservableObject, Parser, Subscription, each } from "@akala/co
 import { IScope } from "../scope.js";
 import { Composer } from "../template.js";
 import { AttributeComposer } from "./shared.js";
+import { ConstantExpression, MemberExpression, NewExpression } from "@akala/core/expressions";
+// import { MemberExpression, NewExpression } from "@akala/core/expressions";
 
 type Scope = IScope<object>;
 
-export class DataContext implements Composer<Scope>
+export type IDataContext<TController extends Partial<Disposable> = Partial<Disposable>> = { context: Scope, controller: TController };
+
+export class DataContext implements Composer<IDataContext>
 {
     private static readonly dataContextExpression = Parser.parameterLess.parse('dataContext');
 
-    constructor(private scope: Scope) { }
+    constructor() { }
 
     readonly selector: string = '[data-context]';
-    readonly optionName: string = '$rootScope';
-    apply(item: HTMLElement, options?: Scope, root?: HTMLElement | ShadowRoot): Disposable
+
+    optionGetter(options: object): { context: Scope; controller: Partial<Disposable>; }
     {
-        if (item.dataset['context'] == this.optionName || item.dataset['context'] === '')
-            item['dataContext'] = new Binding(options || this.scope, null);
+        return { context: options['$rootScope'], controller: options['controller'] };
+    }
+
+    apply(item: HTMLElement, options?: { context: Scope, controller: Partial<Disposable> }, root?: HTMLElement | ShadowRoot): Disposable
+    {
+        if (item.dataset.context == '$rootScope' || item.dataset.context === '')
+            return item['dataContext'] = new Binding(options, null);
         else
         {
             let binding: Binding<Scope>;
             const closest = DataContext.find(item.parentElement || root);
             if (closest)
-                binding = closest.pipe(Parser.parameterLess.parse(item.dataset.context))
+                binding = closest.pipe(new NewExpression<{ context: any, controller: Partial<Disposable> }>(
+                    new MemberExpression(Parser.parameterLess.parse(item.dataset.context) as any, new ConstantExpression('context'), false),
+                    new MemberExpression(new ConstantExpression(options.controller) as any, new ConstantExpression('controller'), false),
+                ));
             else
-                binding = new Binding(options || this.scope, Parser.parameterLess.parse(item.dataset.context));
+                binding = new Binding(options, Parser.parameterLess.parse(item.dataset.context));
 
-            binding.onChanged(() =>
-            {
-                item.dispatchEvent(new Event('dataContextHolderChanged'));
-            })
+            // binding.onChanged(() =>
+            // {
+            //     item.dispatchEvent(new Event('dataContextHolderChanged'));
+            // })
 
             item['dataContext']?.[Symbol.dispose]();
 
@@ -41,14 +53,18 @@ export class DataContext implements Composer<Scope>
 
     }
 
-    public static get(element: HTMLElement | ShadowRoot, alwaysDefined: true): Binding<Scope>
-    public static get(element: HTMLElement | ShadowRoot, alwaysDefined?: false): Binding<Scope> | undefined
-    public static get(element: HTMLElement | ShadowRoot, alwaysDefined?: boolean): Binding<Scope> | undefined
+    public static get(element: HTMLElement | ShadowRoot, alwaysDefined: true): Binding<IDataContext>
+    public static get(element: HTMLElement | ShadowRoot, alwaysDefined?: false): Binding<IDataContext> | undefined
+    public static get(element: HTMLElement | ShadowRoot, alwaysDefined?: boolean): Binding<IDataContext> | undefined
     {
-        return element['dataContext'] || alwaysDefined && new Binding(element, this.dataContextExpression);
+        const selfContext = element['dataContext'];
+        if (selfContext)
+            return selfContext;
+        if (alwaysDefined)
+            return Binding.defineProperty<IDataContext>(element, 'dataContext')
     }
 
-    public static find(element: HTMLElement | ShadowRoot): Binding<Scope>
+    public static find(element: HTMLElement | ShadowRoot): Binding<IDataContext>
     {
         let result = DataContext.get(element);
         if (result)
@@ -85,9 +101,10 @@ export class DataBind<T extends Partial<Disposable>> extends AttributeComposer<T
 
     getContext(item: HTMLElement, options?: T)
     {
-        return {
-            controller: options, get context() { return DataContext.find(item) }
-        };
+        return new Binding(DataContext.find(item), new NewExpression<{ context: any, controller: T }>(
+            new MemberExpression(new MemberExpression(undefined, new ConstantExpression('context'), false), new ConstantExpression('context'), false),
+            new MemberExpression(new ConstantExpression(options) as any, new ConstantExpression('controller'), false),
+        ));
     }
 
     optionName = 'controller';
@@ -102,6 +119,8 @@ export class DataBind<T extends Partial<Disposable>> extends AttributeComposer<T
     {
         if (subItem === '')
             DataBind.extend(item, value);
+        else if (typeof item[subItem as any] == 'object' && typeof value == 'object')
+            DataBind.extend(item[subItem as any], value);
         else
             item[subItem as any] = value;
     }
