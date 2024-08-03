@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* reliability issue on sonarcloud 206d11a
+* update lock file 3576076
 
 
 
