@@ -1,12 +1,14 @@
-<main data-context="currentUser?" i18n-prefix="main">
-    <h1 i18n="@@test">Welcome <span data-bind data-bind-inner-text="name"></span> !</h1>
-    <span data-bind="{style:{color:name!=='aaa1'?'red':'green'}}" on-click="controller.test2"
-        on="{click:controller.test}" i18n i18n-inner-text="dataContext.name"></span>
+<main data-context="context.currentUser" i18n-prefix="main">
+    <h1>Welcome <span data-bind data-bind-inner-text="context.name"></span> !</h1>
+    <p id="debug2" data-bind data-bind-inner-text="context#json"></p>
+    <span data-bind="{style:{color:context.name!=='aaa1'?'red':'green'}}" on-click="controller.test2"
+        on="{click:controller.test}" i18n i18n-inner-text="context.name"></span>
 
-    <kl-popover trigger="#dd" placement="'bottom-start'" id="kldd" data-bind closeOnClickOutside="controller.coco">pwet
+    <kl-popover trigger="#dd" placement="'bottom-start'" id="kldd" closeOnClickOutside="controller.coco">pwet
         pwet</kl-popover>
     <input id="dd" onfocus="kldd.showPopover()" />
 
     <button on on-click="controller.toggleCoco.bind(controller)">Toggle coco</button>
-    <span data-bind="{innerText:controller.coco#json}"></span>
+    <span id="debug" data-bind="{innerText:controller.coco#json}"></span>
 </main>
+<img data-bind="{src: context.icon}" />
