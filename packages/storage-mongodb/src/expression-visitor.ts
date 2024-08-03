@@ -176,7 +176,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
         throw new NotSupportedException();
         // const source = await this.visit(arg0.source);
         // // const src = this.result;
-        // const args = await (this as ExpressionVisitor).visitArray(arg0.arguments) as StrictExpressions[];
+        // const args = await this.visitArray(arg0.arguments) as StrictExpressions[];
         // if (source !== arg0.source || args !== arg0.arguments)
         // {
         //     if (!this.isTypedExpression(source))
@@ -227,7 +227,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
     }
     visitUnary(arg0: UnaryExpression)
     {
-        const operand = (this as ExpressionVisitor).visit(arg0.operand);
+        const operand = this.visit(arg0.operand);
         if (operand !== arg0.operand)
             return new UnaryExpression(operand, arg0.operator);
         return arg0;
@@ -235,7 +235,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
 
     visitBinary<T extends Expressions = StrictExpressions>(expression: BinaryExpression<T>)
     {
-        const left = (this as ExpressionVisitor).visit(expression.left);
+        const left = this.visit(expression.left);
 
         if (isPromiseLike(this.evaluating))
             var leftEvaluating: { $getField: string } = { $getField: this.evaluating };
@@ -262,7 +262,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
         switch (expression.operator)
         {
             case expressions.BinaryOperator.Equal:
-                (this as ExpressionVisitor).visit(expression.right);
+                this.visit(expression.right);
                 pipeline = buildPipeline.call(this, '$eq');
                 if (pipeline == null)
                     this.result = ExpressionExecutor.applyBinary(leftResult as number, () =>
@@ -281,7 +281,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
 
                 break;
             case expressions.BinaryOperator.NotEqual:
-                (this as ExpressionVisitor).visit(expression.right);
+                this.visit(expression.right);
 
                 pipeline = buildPipeline.call(this, '$ne');
                 if (pipeline == null)
@@ -300,7 +300,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 }
                 break;
             case expressions.BinaryOperator.LessThan:
-                var right = (this as ExpressionVisitor).visit(expression.right);
+                var right = this.visit(expression.right);
 
                 pipeline = buildPipeline.call(this, '$lt');
                 if (pipeline == null)
@@ -319,7 +319,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 }
                 break;
             case expressions.BinaryOperator.LessThanOrEqual:
-                var right = (this as ExpressionVisitor).visit(expression.right);
+                var right = this.visit(expression.right);
 
                 pipeline = buildPipeline.call(this, '$lte');
                 if (pipeline == null)
@@ -338,7 +338,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 }
                 break;
             case expressions.BinaryOperator.GreaterThan:
-                var right = (this as ExpressionVisitor).visit(expression.right);
+                var right = this.visit(expression.right);
 
                 pipeline = buildPipeline.call(this, '$gt');
                 if (pipeline == null) this.result = ExpressionExecutor.applyBinary(leftResult as number, () =>
@@ -356,7 +356,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 }
                 break;
             case expressions.BinaryOperator.GreaterThanOrEqual:
-                var right = (this as ExpressionVisitor).visit(expression.right);
+                var right = this.visit(expression.right);
 
 
                 pipeline = buildPipeline.call(this, '$gte');
@@ -380,7 +380,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 {
                     pipeline = this.pipeline;
                     this.pipeline = null;
-                    (this as ExpressionVisitor).visit(expression.right);
+                    this.visit(expression.right);
                     if (this.pipeline)
                         this.pipeline = { $and: [this.pipeline.$match, pipeline.$match] }
                 }
@@ -399,15 +399,15 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 {
                     pipeline = this.pipeline;
                     this.pipeline = null;
-                    (this as ExpressionVisitor).visit(expression.right);
+                    this.visit(expression.right);
                     if (this.pipeline)
                         this.pipeline = { $or: [this.pipeline.$match, pipeline.$match] }
                 }
                 else if (!leftResult)
-                    (this as ExpressionVisitor).visit(expression.right);
+                    this.visit(expression.right);
                 break;
             case expressions.BinaryOperator.Minus:
-                var right = (this as ExpressionVisitor).visit(expression.right);
+                var right = this.visit(expression.right);
 
                 pipeline = buildPipeline.call(this, '$subtract');
 
@@ -427,7 +427,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 }
                 break;
             case expressions.BinaryOperator.Plus:
-                var right = (this as ExpressionVisitor).visit(expression.right);
+                var right = this.visit(expression.right);
 
                 pipeline = buildPipeline.call(this, '$add');
                 if (pipeline == null)
@@ -446,7 +446,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 }
                 break;
             case expressions.BinaryOperator.Modulo:
-                var right = (this as ExpressionVisitor).visit(expression.right);
+                var right = this.visit(expression.right);
 
                 pipeline = buildPipeline.call(this, '$modulo');
                 if (pipeline == null)
@@ -465,7 +465,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 }
                 break;
             case expressions.BinaryOperator.Div:
-                var right = (this as ExpressionVisitor).visit(expression.right);
+                var right = this.visit(expression.right);
 
                 pipeline = buildPipeline.call(this, '$div');
 
@@ -485,7 +485,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 }
                 break;
             case expressions.BinaryOperator.Times:
-                var right = (this as ExpressionVisitor).visit(expression.right);
+                var right = this.visit(expression.right);
 
                 pipeline = buildPipeline.call(this, '$multiply');
 
@@ -505,7 +505,7 @@ export default class MongoDbTranslator extends ExpressionVisitor
                 }
                 break;
             case expressions.BinaryOperator.Pow:
-                var right = (this as ExpressionVisitor).visit(expression.right);
+                var right = this.visit(expression.right);
 
                 pipeline = buildPipeline.call(this, '$pow');
 
