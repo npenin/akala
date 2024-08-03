@@ -83,9 +83,15 @@ export abstract class AttributeComposer<T extends Partial<Disposable>> implement
             this.parser = Parser.parameterLess;
         else
             this.parser = parser;
+
     }
 
-    abstract getContext(item: HTMLElement, options?: T);
+    optionGetter(options: object): T
+    {
+        return options[this.optionName];
+    }
+
+    abstract getContext(item: HTMLElement, options?: T): Binding<unknown>;
 
     readonly selector: string;
     readonly optionName: string;
@@ -108,9 +114,9 @@ export abstract class AttributeComposer<T extends Partial<Disposable>> implement
 
         const properties: ParsedAny | undefined = (item.getAttribute(this.attribute) || undefined) && this.parser.parse(item.getAttribute(this.attribute)) as ParsedObject;
 
-        const otherProperties = item.getAttributeNames().filter(att => att.startsWith(this.attribute + '-') && item.getAttribute(att)).map(att => [att.substring(this.attribute.length + 1), this.parser.parse(item.getAttribute(att))] as const);
+        const otherProperties = item.getAttributeNames().filter(att => att.startsWith(this.attribute + '-') && item.getAttribute(att)).map(att => [AttributeComposer.toCamelCase(att.substring(this.attribute.length + 1)), this.parser.parse(item.getAttribute(att))] as const);
 
-        const context = new Binding(this.getContext(item, options), null);
+        const context = this.getContext(item, options);
         switch (true)
         {
             case properties instanceof ParsedObject:

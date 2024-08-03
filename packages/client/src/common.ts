@@ -115,15 +115,18 @@ export function pipefromEvent(source: IEventSink<[boolean], void>, x: EventTarge
     let clientEvent: IClientEventSink;
     source.addListener(ev =>
     {
-        if (ev)
+        if (ev && !sub)
         {
             sub = (clientEvent || (clientEvent = fromEvent(x, eventName))).addListener((ev) =>
             {
                 event.emit(ev);
             })
         }
-        else
-            sub?.();
+        else if (sub && !ev)
+        {
+            sub();
+            sub = null;
+        }
     });
     event[Symbol.dispose] = () =>
     {

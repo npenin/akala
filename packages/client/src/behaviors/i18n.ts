@@ -1,7 +1,8 @@
 import { Composer } from "../template.js";
 import { AttributeComposer } from "./shared.js";
 import { DataContext } from "./context.js";
-import { ExpressionsWithLength, ParsedString, Parser } from "@akala/core";
+import { Binding, ExpressionsWithLength, ParsedString, Parser } from "@akala/core";
+import { ConstantExpression, MemberExpression, NewExpression } from "@akala/core/expressions";
 
 export class I18nParser extends Parser
 {
@@ -52,15 +53,20 @@ export class I18nComposer<T extends Partial<Disposable> & { translate(value: str
         }
         if (subItem === AttributeComposer.default)
             subItem = 'innerText';
-        const camelCased = AttributeComposer.toCamelCase(subItem.toString());
-        if (Reflect.has(Object.getPrototypeOf(item), camelCased))
-            item[camelCased] = options.translate(prefix + value, item[camelCased == 'innerText' ? 'innerHTML' : camelCased]);
+        // const camelCased = AttributeComposer.toCamelCase(subItem.toString());
+        if (Reflect.has(Object.getPrototypeOf(item), subItem))
+            item[subItem] = options.translate(prefix + value, item[subItem == 'innerText' ? 'innerHTML' : subItem]);
         else
             item.setAttribute(subItem.toString(), value ? options.translate(prefix + value, item.getAttribute(subItem.toString())) : options.translate(prefix + value, item.getAttribute(subItem.toString())));
     }
+
     getContext(item: HTMLElement, options?: T)
     {
-        return { translator: options, dataContext: DataContext.find(item) };
+        return new Binding(DataContext.find(item), new NewExpression<{ context: any, controller: any, translator: T }>(
+            new MemberExpression(new MemberExpression(undefined, new ConstantExpression('context'), false), new ConstantExpression('context'), false),
+            new MemberExpression(new MemberExpression(undefined, new ConstantExpression('controller'), false), new ConstantExpression('controller'), false),
+            new MemberExpression(new ConstantExpression(options) as any, new ConstantExpression('translator'), false),
+        ));
     }
 
     constructor()

@@ -3,9 +3,9 @@ import { Template } from './template.js'
 import { Scope } from './scope.js'
 import { service } from './common.js'
 import { LocationService as Location } from './locationService.js'
-import { Binding, Event, EventEmitter, EventOptions, SimpleInjector, Subscription, map } from '@akala/core'
+import { Event, EventEmitter, EventOptions, SimpleInjector, Subscription, map } from '@akala/core'
 
-export type PartInstance = { scope: Binding<Scope<object>>, element: HTMLElement | ShadowRoot };
+export type PartInstance = { scope: Scope<object>, element: HTMLElement | ShadowRoot };
 export const outletDefinition = Symbol()
 
 @service('$outlet', '$template', '$router', '$location')
@@ -66,7 +66,7 @@ export class OutletService
         let controller: Partial<Disposable>;
         let templateInstance: Partial<Disposable>;
         if (part?.controller)
-            controller = part.controller(p.scope?.getValue() as TScope, p.element, params);
+            controller = part.controller(p.scope as TScope, p.element, params);
         if (tpl)
         {
             const sub = tpl.watch(p.scope, async () =>

@@ -33,7 +33,7 @@ export interface templateFunction
 export interface Composer<TOptions = unknown>
 {
     selector: string | string[];
-    optionName?: string;
+    optionGetter(options: object): TOptions;
     apply(items: HTMLElement, options?: TOptions, futureParent?: Element | ShadowRoot): Disposable;
 }
 
@@ -48,7 +48,7 @@ export function composer(selector: string | Composer | (new () => Composer), opt
         case 'string':
             return function (composingFunction: (items: HTMLElement, data) => Disposable)
             {
-                Template.composers.push({ selector: selector, optionName: optionName, apply: composingFunction });
+                Template.composers.push({ selector: selector, optionGetter(options) { return options[optionName] }, apply: composingFunction });
             }
         case 'function':
             Template.composers.push(new selector());
@@ -195,7 +195,7 @@ export class Template
 
     static composeAll(items: ArrayLike<HTMLElement>, root?: Element | ShadowRoot, options?: { [key: string]: unknown }): Disposable
     {
-        return new CompositeDisposable(map(this.composers, (composer) => this.compose(composer, items, root, composer.optionName && options && options[composer.optionName])));
+        return new CompositeDisposable(map(this.composers, (composer) => this.compose(composer, items, root, options && composer.optionGetter && composer.optionGetter(options))));
     }
 
     static compose<TOptions>(composer: Composer<TOptions>, items: ArrayLike<HTMLElement>, root?: Element | ShadowRoot, options?: TOptions): Disposable
@@ -204,35 +204,33 @@ export class Template
         // const instances: IControlInstance<unknown>[] = [];
         const selector = typeof composer.selector == 'string' ? composer.selector : composer.selector.join(',');
         const disposables: Disposable[] = [];
-        if (filter(items, composer.selector).length == 0)
+        const directlyComposable = filter(items, composer.selector);
+
+        each(items, async function (el)
         {
-            each(items, async function (el)
+            if (directlyComposable.includes(el))
+                return;
+            each(el.querySelectorAll(selector), async function (el: HTMLElement)
             {
-                each(el.querySelectorAll(selector), async function (el: HTMLElement)
+                const closest = el.parentElement && el.parentElement.closest(selector);
+                let applyInnerTemplate = !!closest || !root;
+                if (!applyInnerTemplate && root)
+                    applyInnerTemplate = applyInnerTemplate || root == closest;
+                if (applyInnerTemplate)
                 {
-                    const closest = el.parentElement && el.parentElement.closest(selector);
-                    let applyInnerTemplate = !!closest || !root;
-                    if (!applyInnerTemplate && root)
-                        applyInnerTemplate = applyInnerTemplate || root == closest;
-                    if (applyInnerTemplate)
-                    {
-                        // instances.push(...
-                        disposables.push(Template.compose(composer, [el], el, options));
-                        // );
-                    }
-                });
-
+                    // instances.push(...
+                    disposables.push(Template.compose(composer, [el], el, options));
+                    // );
+                }
             });
 
-            // return instances;
-        }
-        else
+        });
+
+        // return instances;
+        each(directlyComposable, function (item)
         {
-            each(filter(items, composer.selector), function (item)
-            {
-                disposables.push(composer.apply(item, options, root))
-            });
-        }
+            disposables.push(composer.apply(item, options, root))
+        });
 
         return new CompositeDisposable(disposables);
     }
