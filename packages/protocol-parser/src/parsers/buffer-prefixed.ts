@@ -1,4 +1,4 @@
-import { AnyParser, Cursor, Parsers, ParserWithoutKnownLength, parserWrite } from './_common.js';
+import { AnyParser, Cursor, ParserWithoutKnownLength, parserWrite } from './_common.js';
 
 export default class PrefixedBuffer implements ParserWithoutKnownLength<Buffer>
 {

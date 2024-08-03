@@ -8,13 +8,22 @@ import { ParameterExpression } from './parameter-expression.js';
 import { CallExpression } from './call-expression.js';
 import { ApplySymbolExpression } from './apply-symbol-expression.js';
 import { NewExpression } from './new-expression.js';
-import { ExpressionVisitor } from './expression-visitor.js';
+import type { ExpressionVisitor } from './visitors/expression-visitor.js';
+import { IVisitable } from './visitable.js';
+import { FormatExpression } from '../parser.js';
+import { TernaryExpression } from './ternary-expression.js';
 
-export type UnknownExpression = { type: ExpressionType.Unknown, accept(visitor: ExpressionVisitor): Promise<Expressions> };
+export type UnknownExpression = { type: ExpressionType.Unknown, accept(visitor: ExpressionVisitor): Expressions };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type StrictTypedExpression<T> = ConstantExpression<T> | ParameterExpression<T> | MemberExpression<any, any, T> | ApplySymbolExpression<any, T> | NewExpression<T>;
-export type TypedExpression<T> = StrictTypedExpression<T> | UnknownExpression;
+export type StrictTypedExpression<T> =
+    ConstantExpression<T> |
+    ParameterExpression<T> |
+    FormatExpression<T> |
+    MemberExpression<any, any, T> |
+    ApplySymbolExpression<any, T> |
+    NewExpression<T>;
+export type TypedExpression<T> = StrictTypedExpression<T>;
 
 export type Predicate<T> = (a: T) => boolean;
 export type Project<T, U> = (a: T) => U;
@@ -29,7 +38,7 @@ export type IEnumerable<T> = Iterable<T>;
 export abstract class Expression
 {
     abstract get type(): ExpressionType;
-    abstract accept(visitor: ExpressionVisitor): Promise<Expressions>;
+    abstract accept(visitor: ExpressionVisitor): Expressions;
 
     /*public static lambda<T extends (...args: any[]) => any>(body: StrictExpressions, parameters: Parameter<T> & StrictExpressions[])
     {
@@ -104,15 +113,17 @@ export abstract class Expression
     }*/
 }
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export type StrictExpressions = ApplySymbolExpression<any, any> |
+export type StrictExpressions = (ApplySymbolExpression<any, any> |
     BinaryExpression<any> |
+    TernaryExpression<any> |
+    FormatExpression<any> |
     CallExpression<any, any> |
     ParameterExpression<any> |
-    TypedLambdaExpression<any> |
+    TypedLambdaExpression<(...args: unknown[]) => unknown> |
     MemberExpression<any, any, any> |
     UnaryExpression |
     ConstantExpression<any> |
-    NewExpression<any>;
+    NewExpression<any>) & IVisitable<ExpressionVisitor, StrictExpressions>;
 /* eslint-enable @typescript-eslint/no-explicit-any */
 
-export type Expressions = StrictExpressions | UnknownExpression;
+export type Expressions = StrictExpressions | UnknownExpression | UnaryExpression | BinaryExpression | TernaryExpression;

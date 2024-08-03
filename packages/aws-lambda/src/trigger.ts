@@ -1,5 +1,5 @@
 import { Metadata, Processors, Trigger } from '@akala/commands'
-import { Injector, mapAsync } from '@akala/core';
+import { SimpleInjector, mapAsync } from '@akala/core';
 // import { HttpRouter, trigger as httpTrigger } from '@akala/server';
 import { APIGatewayEvent, Context } from 'aws-lambda'
 
@@ -19,14 +19,14 @@ export const trigger = new Trigger('aws', (container, config: { [key: string]: s
 {
     return (event: { Records: { eventSource: string }[] } | APIGatewayEvent, context: Context, ...args: []) =>
     {
-        const ctxInjector = new Injector(null);
+        const ctxInjector = new SimpleInjector(null);
         ctxInjector.register('context', context);
         ctxInjector.register('env', process.env);
         if (typeof event == 'object' && 'Records' in event)
         {
             return mapAsync(event.Records, async (record) =>
             {
-                var cmdInjector = new Injector(ctxInjector);
+                var cmdInjector = new SimpleInjector(ctxInjector);
                 cmdInjector.register('event', record);
                 console.log(config);
                 console.log(cmdInjector.resolve(typeof config == 'string' ? config : config[record.eventSource]));

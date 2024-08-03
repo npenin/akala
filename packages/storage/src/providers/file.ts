@@ -10,8 +10,8 @@ import { CommandResult, Commands, Create } from '../commands/command.js';
 import { ModelDefinition } from '../shared.js';
 import { promisify } from "util";
 import { Generator } from '../common.js';
-import { v4 as uuid } from 'uuid'
 import { NotSupportedException } from '../exceptions.js';
+import { isPromiseLike } from '@akala/core';
 
 export class File extends PersistenceEngine<FileOptions>
 {
@@ -52,47 +52,56 @@ export class File extends PersistenceEngine<FileOptions>
         const visitConstant = executor.visitConstant;
         const store = this.store;
         const fileEntryFactory = this.fileEntryFactory;
-        executor.visitConstant = async function <TCte>(this: ExpressionExecutor, cte: ConstantExpression<TCte>)
+        executor.visitConstant = function <TCte>(this: ExpressionExecutor, cte: ConstantExpression<TCte>)
         {
+            // console.log(cte.value)
             if (cte.value instanceof ModelDefinition)
             {
-                var folder = await Promise.resolve<FileSystemEntries>(store);
-                folder = await store[cte.value.namespace || 'db']
-                if (!folder)
+                const model = cte.value as ModelDefinition;
+                this.model = model;
+                this.result = (async () =>
                 {
-                    folder = new Proxy(new FolderEntry(store[fspath], cte.value.namespace || 'db', null, fileEntryFactory), proxyHandler);
-                    folder[isNew] = true;
-                }
-                if (folder[isFile])
-                    throw new Error(`found file ${cte.value.namespace || 'db'} while expecting a folder in ${store[fspath]}`);
+                    var folder = await Promise.resolve<FileSystemEntries>(store);
+                    folder = await store[model.namespace || 'db']
+                    if (!folder)
+                    {
+                        folder = new Proxy(new FolderEntry(store[fspath], model.namespace || 'db', null, fileEntryFactory), proxyHandler);
+                        folder[isNew] = true;
+                    }
+                    if (folder[isFile])
+                        throw new Error(`found file ${model.namespace || 'db'} while expecting a folder in ${store[fspath]}`);
 
-                if (!folder[cte.value.nameInStorage])
-                {
-                    folder = new Proxy(new FolderEntry(folder[fspath], cte.value.nameInStorage, cte.value, fileEntryFactory), proxyHandler);
-                    folder[isNew] = true;
-                }
-                else
-                    folder = await folder[cte.value.nameInStorage];
-                if (folder[isFile])
-                    throw new Error(`found file ${cte.value.nameInStorage} while expecting a folder in ${store[fspath]}`);
+                    if (!folder[model.nameInStorage])
+                    {
+                        folder = new Proxy(new FolderEntry(folder[fspath], model.nameInStorage, model, fileEntryFactory), proxyHandler);
+                        folder[isNew] = true;
+                    }
+                    else
+                        folder = await folder[model.nameInStorage];
+                    if (folder[isFile])
+                        throw new Error(`found file ${model.nameInStorage} while expecting a folder in ${store[fspath]}`);
 
-                this.result = folder;
-                this.model = cte.value as unknown as ModelDefinition<unknown>;
+                    return folder;
+                })();
+
             }
             else
                 return visitConstant.call(this, cte);
         }
-        return await executor.visit(expression).then(() =>
-        {
-            if (typeof executor.result == 'object' && executor.model)
-                if (Reflect.has(executor.result, Symbol.iterator) || Reflect.has(executor.result, Symbol.asyncIterator))
-                    return this.dynamicProxy(executor.result as Iterable<T>, executor.model) as unknown as T;
-                else
-                    return dynamicProxy<T>(executor.result as unknown as T, executor.model as ModelDefinition<T>);
-            else
-                return executor.result;
+        executor.visit(expression);
 
-        }) as T;
+        let result = executor.result;
+        if (isPromiseLike(executor.result))
+            result = await executor.result;
+
+        if (typeof result == 'object' && executor.model)
+            if (Reflect.has(result, Symbol.iterator) || Reflect.has(result, Symbol.asyncIterator))
+                return this.dynamicProxy(result as Iterable<T>, executor.model) as unknown as T;
+            else
+                return dynamicProxy<T>(result as unknown as T, executor.model as ModelDefinition<T>);
+        else
+            return result as T;
+
     }
 }
 
@@ -128,7 +137,7 @@ class FileCommandProcessor extends CommandProcessor<FileOptions>
             if (fileName)
                 fileName += this.engineOptions.multipleKeySeparator || '-'
             if (model.members[key].generator)
-                record[key] = uuid();
+                record[key] = crypto.randomUUID();
             fileName += await record[key];
         }
         if (fileName == 'then')
@@ -403,7 +412,7 @@ export class JsonFileEntry implements FileSystemFile
     }
     async [save](modifiedContent: any): Promise<void>
     {
-        await writeJson(this[fspath], JSON.stringify(modifiedContent), this[isNew], this[model], this[multipleKeySeparatorProperty]);
+        await writeJson(this[fspath], stringify(this[model], modifiedContent), this[isNew], this[model], this[multipleKeySeparatorProperty]);
         this[isNew] = false;
     }
     [load]()
@@ -550,6 +559,11 @@ function parse<T>(model: ModelDefinition<T>, json: string): T
     return Object.fromEntries(model.membersAsArray.map(f => [f['name'] || f.nameInStorage, parsedData[f.nameInStorage]]));
 }
 
+function stringify<T>(model: ModelDefinition<T>, json: T): string
+{
+    return JSON.stringify(Object.fromEntries(model.membersAsArray.map(f => [f.nameInStorage || f['name'], json[f['name']]])));
+}
+
 function parseFileName<T>(model: ModelDefinition<T>, fileName: string, multipleKeySeparator?: string): Partial<T>
 {
     const record = {};
@@ -557,7 +571,7 @@ function parseFileName<T>(model: ModelDefinition<T>, fileName: string, multipleK
     {
         if (model.members[key].generator == Generator.uuid || model.members[key].generator == Generator.native)
         {
-            const length = uuid().length;
+            const length = crypto.randomUUID().length;
             if (fileName.length > length)
                 record[key] = fileName.substring(0, length);
             else

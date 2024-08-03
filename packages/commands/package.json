@@ -55,24 +55,23 @@
         "@akala/cli": "workspace:^",
         "@akala/core": "workspace:^",
         "@akala/json-rpc-ws": "workspace:^",
-        "ajv": "^8.12.0",
-        "debug": "^4.3.4",
-        "path-to-regexp": "^6.2.1",
-        "reflect-metadata": "^0.2.0",
-        "ws": "^8.15.0"
+        "ajv": "^8.17.1",
+        "debug": "^4.3.5",
+        "path-to-regexp": "^6.2.2",
+        "reflect-metadata": "^0.2.2",
+        "ws": "^8.18.0"
     },
     "devDependencies": {
         "@types/debug": "^4.1.12",
         "@types/mocha": "^10.0.6",
         "@types/node": "^20.10.4",
         "@types/split2": "^4.2.3",
-        "@types/uuid": "^9.0.7",
         "@types/ws": "^8.5.10",
-        "mocha": "^10.2.0",
-        "nyc": "^15.1.0",
+        "mocha": "^10.7.0",
+        "nyc": "^17.0.0",
         "source-map-support": "^0.5.21",
-        "typescript": "^5.3.3",
-        "typescript-json-schema": "^0.62.0"
+        "typescript": "^5.5.4",
+        "typescript-json-schema": "^0.64.0"
     },
     "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
     "exports": {
@@ -94,6 +93,26 @@
             "require": {
                 "types": "./dist/cjs/index.browser.d.ts",
                 "default": "./dist/cjs/index.browser.js"
+            }
+        },
+        "./browser": {
+            "import": {
+                "types": "./dist/esm/index.browser.d.ts",
+                "default": "./dist/esm/index.browser.js"
+            },
+            "require": {
+                "types": "./dist/cjs/index.browser.d.ts",
+                "default": "./dist/cjs/index.browser.js"
+            }
+        },
+        "./node": {
+            "import": {
+                "types": "./dist/esm/index.d.ts",
+                "default": "./dist/esm/index.js"
+            },
+            "require": {
+                "types": "./dist/cjs/index.d.ts",
+                "default": "./dist/cjs/index.js"
             }
         },
         "./akala": "./dist/esm/akala.mjs"

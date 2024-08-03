@@ -1,7 +1,7 @@
 import Orchestrator from 'orchestrator';
 import { spawn, StdioNull, StdioPipe, SpawnOptionsWithoutStdio } from 'child_process';
 import commands from './container.js';
-import { SerializableObject, Interpolate, mapAsync, Middleware, MiddlewareCompositeWithPriority, Parser, parser, AggregateErrors, MiddlewarePromise, logger, Logger, LogLevels, ILogger } from '@akala/core';
+import { SerializableObject, Interpolate, mapAsync, MiddlewareCompositeWithPriorityAsync, Parser, parser, AggregateErrors, MiddlewarePromise, logger, Logger, LogLevels, ILogger, MiddlewareAsync } from '@akala/core';
 import { Stream } from 'stream';
 import fs from 'fs'
 import { runnerMiddleware } from './workflow-commands/process.js';
@@ -16,7 +16,7 @@ export const interpolate = new Interpolate('$(', ')');
 export type MiddlewareSignature<TSupportedJobSteps extends JobStepDef<string, any, any>> = [context: object & { logger: Logger }, step: TSupportedJobSteps, stdio?: Exclude<StdioNull, Stream> | StdioPipe | { stdin: StdioNull | StdioPipe, stdout: StdioNull | StdioPipe, stderr: StdioNull | StdioPipe }];
 
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type TMiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any, any> = JobStepDef<string, unknown, unknown>> = Middleware<MiddlewareSignature<TSupportedJobSteps>>;
+export type TMiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any, any> = JobStepDef<string, unknown, unknown>> = MiddlewareAsync<MiddlewareSignature<TSupportedJobSteps>>;
 
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class MiddlewareRunnerMiddleware<TSupportedJobSteps extends JobStepDef<string, any, any>> implements TMiddlewareRunner<TSupportedJobSteps>
@@ -60,7 +60,7 @@ export class MiddlewareRunner<TSupportedJobSteps extends JobStepDef<string, any,
 export const WithInterpolater = new MiddlewareRunnerMiddleware('with', () => { return Promise.resolve(); });
 
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
-export class ContainerMiddleware implements Middleware<MiddlewareSignature<JobStepDef<string, any, any>>> {
+export class ContainerMiddleware implements MiddlewareAsync<MiddlewareSignature<JobStepDef<string, any, any>>> {
     constructor(private container: Container<unknown>) { }
 
     //eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -123,7 +123,7 @@ export const IfMiddleware: TMiddlewareRunner<JobStepIf> = new MiddlewareRunner<J
 
 
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function ForeachMiddleware(runner: MiddlewareCompositeWithPriority<MiddlewareSignature<JobStepDef<string, any, any>>>)
+export function ForeachMiddleware(runner: MiddlewareCompositeWithPriorityAsync<MiddlewareSignature<JobStepDef<string, any, any>>>)
 {
     return new MiddlewareRunner<JobStepForEach>(
         'foreach', (context, step, stdio) => mapAsync(step.foreach, (item, index: string | number) =>
@@ -142,7 +142,7 @@ export const LogMiddleware = new MiddlewareRunner<JobStepLog>('log', async (cont
 
 
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function RetryMiddleware(runner: MiddlewareCompositeWithPriority<MiddlewareSignature<JobStepDef<string, any, any>>>)
+export function RetryMiddleware(runner: MiddlewareCompositeWithPriorityAsync<MiddlewareSignature<JobStepDef<string, any, any>>>)
 {
     return new MiddlewareRunnerMiddleware<JobStepDef<'retries', number, void>>(
         'retries', async (context, step, stdio) =>
@@ -259,7 +259,7 @@ export const RunMiddleware = new MiddlewareRunner<JobStepRun>('run',
 export function simpleRunner(name: string)
 {
     //eslint-disable-next-line @typescript-eslint/no-explicit-any
-    var runner = new MiddlewareCompositeWithPriority<MiddlewareSignature<JobStepDef<string, any, any>>>(name);
+    var runner = new MiddlewareCompositeWithPriorityAsync<MiddlewareSignature<JobStepDef<string, any, any>>>(name);
     runner.useMiddleware(1, ForeachMiddleware(runner));
     runner.useMiddleware(2, IfMiddleware);
     runner.useMiddleware(3, WithInterpolater);

@@ -1,5 +1,4 @@
-import { buffer } from 'stream/consumers';
-import { AnyParser, Cursor, Parser, ParserWithMessage, ParserWithMessageWithoutKnownLength, ParserWithoutKnownLength, parserWrite } from './_common.js';
+import { AnyParser, Cursor, ParserWithMessage, ParserWithMessageWithoutKnownLength, parserWrite } from './_common.js';
 
 export default class Skip<TMessage> implements ParserWithMessage<never, TMessage>
 {

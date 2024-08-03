@@ -1,7 +1,6 @@
 import { get } from 'node:https';
-import { Loader, Resolver, ResolverResult } from '../../index.js';
+import { Resolver, ResolverResult } from '../../index.js';
 import fs from 'node:fs'
-import { pathToFileURL } from 'url'
 import path from 'path'
 
 export const resolve: Resolver = async function (url, context, nextResolve)

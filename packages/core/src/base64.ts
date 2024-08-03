@@ -67,11 +67,11 @@ function uint6ToB64(nUint6)
                         : 65;
 }
 
-export function base64UrlEncArr(aBytes: Uint8Array): string
+export function base64UrlEncArr(aBytes: ArrayBuffer | Uint8Array): string
 {
     return base64EncArr(aBytes).replaceAll('+', '-').replaceAll('/', '_').replace(/=+$/, '');
 }
-export function base64UrlDecToArr(s: string): Uint8Array
+export function base64UrlDecToArr(s: string): ArrayBuffer | Uint8Array
 {
     s = s.replaceAll('-', '+').replaceAll('_', '/');
     switch (s.length % 3)
@@ -107,10 +107,13 @@ export function extractPublicKey(pem: string)
     ));
 }
 
-export function base64EncArr(aBytes: Uint8Array, nBlocksSize?: number): string
+export function base64EncArr(aBytes: ArrayBuffer | Uint8Array, nBlocksSize?: number): string
 {
     let nMod3 = 2;
     let sB64Enc = "";
+
+    if (aBytes instanceof ArrayBuffer)
+        aBytes = new Uint8Array(aBytes);
 
     const nLen = aBytes.byteLength;
     let nUint24 = 0;
@@ -141,11 +144,11 @@ export function base64EncArr(aBytes: Uint8Array, nBlocksSize?: number): string
 }
 
 /* UTF-8 array to JS string and vice versa */
-export function UTF8ArrToStr(aBytes: Uint8Array): string
+export function UTF8ArrToStr(aBytes: ArrayBuffer | Uint8Array): string
 {
     let sView = "";
     let nPart;
-    const nLen = aBytes.length;
+    const nLen = aBytes instanceof ArrayBuffer ? aBytes.byteLength : aBytes.length;
     for (let nIdx = 0; nIdx < nLen; nIdx++)
     {
         nPart = aBytes[nIdx];
@@ -186,7 +189,7 @@ export function UTF8ArrToStr(aBytes: Uint8Array): string
     return sView;
 }
 
-export function strToUTF8Arr(sDOMStr: string): Uint8Array
+export function strToUTF8Arr(sDOMStr: string): ArrayBuffer 
 {
     let nChr;
     const nStrLen = sDOMStr.length;

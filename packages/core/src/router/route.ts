@@ -1,6 +1,6 @@
 import { Key, ParseOptions, pathToRegexp, TokensToRegexpOptions, regexpToFunction, RegexpToFunctionOptions, MatchFunction } from "path-to-regexp";
-import { MiddlewareComposite } from './composite.js';
-import { Middleware, MiddlewarePromise } from './shared.js';
+import { MiddlewareComposite } from '../middlewares/composite-sync.js';
+import { Middleware, MiddlewareResult } from '../middlewares/shared.js';
 
 export interface Routable
 {
@@ -34,7 +34,7 @@ export class MiddlewareRoute<T extends [Routable, ...unknown[]]> extends Middlew
 
     isApplicable?: (x: T[0]) => boolean;
 
-    handle(...context: T): MiddlewarePromise
+    handle(...context: T): MiddlewareResult
     {
         const req = context[0] as Routable;
         const isMatch = this.match(req.path);
@@ -44,19 +44,23 @@ export class MiddlewareRoute<T extends [Routable, ...unknown[]]> extends Middlew
             const oldPath = req.path;
             const c = oldPath[isMatch.path.length];
             if (c && c !== this.delimiter)
-                return Promise.resolve();
+                return;
             req.path = req.path.substring(isMatch.path.length) || this.delimiter;
 
             const oldParams = req.params;
             req.params = isMatch.params;
 
-            return super.handle(...(context as unknown as T)).finally(() =>
+            try
+            {
+                return super.handle(...(context as unknown as T))
+            }
+            finally
             {
                 req.params = oldParams;
                 req.path = oldPath;
-            });
+            };
         }
-        return Promise.resolve();
+        return;
     }
 
     public useMiddleware(route: string | RegExp, ...middlewares: Middleware<T>[]): this
@@ -74,9 +78,9 @@ export class MiddlewareRoute<T extends [Routable, ...unknown[]]> extends Middlew
         return this;
     }
 
-    public use(route: string | RegExp, ...middlewares: ((...args: T) => Promise<unknown>)[]): this
-    public use(...middlewares: ((...args: T) => Promise<unknown>)[]): this
-    public use(route: string | RegExp | ((...args: T) => Promise<unknown>), ...middlewares: ((...args: T) => Promise<unknown>)[]): this
+    public use(route: string | RegExp, ...middlewares: ((...args: T) => unknown)[]): this
+    public use(...middlewares: ((...args: T) => unknown)[]): this
+    public use(route: string | RegExp | ((...args: T) => unknown), ...middlewares: ((...args: T) => unknown)[]): this
     {
         if (typeof route === 'string' || route instanceof RegExp)
         {

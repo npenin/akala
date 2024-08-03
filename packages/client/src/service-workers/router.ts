@@ -91,27 +91,24 @@ export class Router extends akala.MiddlewareComposite<[Request, FetchEvent]>
 export const router = new Router();
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-namespace
-namespace routerInit
+declare const self: ServiceWorkerGlobalScope;
+self.addEventListener('fetch', function (ev)
 {
-    declare const self: ServiceWorkerGlobalScope;
-    self.addEventListener('fetch', function (ev)
-    {
-        ev.waitUntil(router.process(ev.request, ev));
-    }, { capture: true })
-    self.addEventListener('activate', function (ev)
-    {
-        router.processActivate(ev);
-    }, { capture: true })
-    self.addEventListener('install', function (ev)
-    {
-        ev.waitUntil(router.processInstall(ev));
-    }, { capture: true })
-    self.addEventListener('push', function (ev)
-    {
-        ev.waitUntil(router.processPush(ev));
-    }, { capture: true })
-    self.addEventListener('updatefound', function (ev)
-    {
-        router.procesUpdateFound(ev);
-    }, { capture: true })
-}
+    ev.waitUntil(router.process(ev.request, ev));
+}, { capture: true })
+self.addEventListener('activate', function (ev)
+{
+    router.processActivate(ev);
+}, { capture: true })
+self.addEventListener('install', function (ev)
+{
+    ev.waitUntil(router.processInstall(ev));
+}, { capture: true })
+self.addEventListener('push', function (ev)
+{
+    ev.waitUntil(router.processPush(ev));
+}, { capture: true })
+self.addEventListener('updatefound', function (ev)
+{
+    router.procesUpdateFound(ev);
+}, { capture: true })

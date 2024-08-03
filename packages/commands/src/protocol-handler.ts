@@ -1,5 +1,5 @@
-import { ErrorWithStatus, UrlHandler, eachAsync } from "@akala/core";
-import { CommandProcessor, ICommandProcessor, Metadata } from "./index.browser.js";
+import { UrlHandler } from "@akala/core";
+import { ICommandProcessor, Metadata } from "./index.browser.js";
 
 // export default function getHandler(protocol: string, url: URL)
 // {

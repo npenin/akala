@@ -1,6 +1,6 @@
-import { buildCliContext, buildCliContextFromProcess, CliContext, NamespaceMiddleware } from '@akala/cli'
+import { buildCliContext, CliContext, NamespaceMiddleware } from '@akala/cli'
 import { Container, SelfDefinedCommand } from '@akala/commands';
-import { logger as LoggerBuilder, LogLevels } from '@akala/core';
+import { LogLevels } from '@akala/core';
 import path from 'path';
 import { Workflow } from './index.js';
 import workflow from './workflow.js';
@@ -8,7 +8,7 @@ import use from './workflow-commands/use.js';
 
 export default function (config, cli: NamespaceMiddleware)
 {
-    const logger = LoggerBuilder('automate-cli', LogLevels.info)
+    // const logger = LoggerBuilder('automate-cli', LogLevels.info)
 
     const program = cli.command('do [file]').option<string>('loader', { needsValue: true, normalize: 'requireMeta' }).
         option<string>('runner', { needsValue: true, normalize: 'require' }).
