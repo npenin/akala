@@ -214,6 +214,7 @@
 * generate keeps all extra fields bcda761
 * generate now keeps existing additional meta information (extends and dependencies) 9445157
 * get hash has conterpart verify since the switch to sign 33c251e
+* get rid of last json import e4e402a
 * git push tags fc8e609
 * gives scope as a parameter and not the binding scope 964080f
 * handle bridges/proxy 69ae6f2
