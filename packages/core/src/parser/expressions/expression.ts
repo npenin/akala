@@ -8,7 +8,7 @@ import { ParameterExpression } from './parameter-expression.js';
 import { CallExpression } from './call-expression.js';
 import { ApplySymbolExpression } from './apply-symbol-expression.js';
 import { NewExpression } from './new-expression.js';
-import { ExpressionVisitor } from './expression-visitor.js';
+import type { ExpressionVisitor } from './visitors/expression-visitor.js';
 import { IVisitable } from './visitable.js';
 import { FormatExpression } from '../parser.js';
 import { TernaryExpression } from './ternary-expression.js';

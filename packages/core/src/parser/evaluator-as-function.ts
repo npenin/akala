@@ -1,9 +1,10 @@
 import { lazy, noop } from "../helpers.js";
-import { BinaryExpression, ConstantExpression, Expressions, ExpressionType, ExpressionVisitor, MemberExpression, NewExpression, ParameterExpression, StrictExpressions, TypedExpression, TypedLambdaExpression, UnaryExpression, UnaryOperator } from "./expressions/index.js";
+import { BinaryExpression, ConstantExpression, Expressions, ExpressionType, MemberExpression, NewExpression, ParameterExpression, StrictExpressions, TypedExpression, TypedLambdaExpression, UnaryExpression, UnaryOperator } from "./expressions/index.js";
 import { BinaryOperator } from "./expressions/binary-operator.js";
 import { ExpressionsWithLength, ParsedArray, ParsedObject, ParsedString } from "./parser.js";
 import { TernaryExpression } from "./expressions/ternary-expression.js";
 import { TernaryOperator } from "./expressions/ternary-operator.js";
+import { ExpressionVisitor } from "./expressions/visitors/expression-visitor.js";
 
 export type ParsedFunction<T> = (context?: unknown) => T;
 

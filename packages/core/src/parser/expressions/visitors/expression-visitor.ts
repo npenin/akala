@@ -1,17 +1,17 @@
-import { Expressions, TypedExpression, IEnumerable, StrictExpressions, StrictTypedExpression, UnknownExpression } from './expression.js';
-import { ExpressionType } from './expression-type.js';
-import { BinaryExpression } from './binary-expression.js';
-import { UnaryExpression } from './unary-expression.js';
-import { ParameterExpression } from './parameter-expression.js';
-import { ConstantExpression } from './constant-expression.js';
-import { TypedLambdaExpression, Parameters } from './lambda-expression.js';
-import { MemberExpression } from './member-expression.js';
-import { CallExpression } from './call-expression.js';
-import { ApplySymbolExpression } from './apply-symbol-expression.js';
-import { NewExpression } from './new-expression.js';
-import { IVisitable } from './visitable.js';
-import { FormatExpression } from '../parser.js';
-import { TernaryExpression } from './ternary-expression.js';
+import { Expressions, TypedExpression, IEnumerable, StrictExpressions, StrictTypedExpression, UnknownExpression } from '../expression.js';
+import { ExpressionType } from '../expression-type.js';
+import { BinaryExpression } from '../binary-expression.js';
+import { UnaryExpression } from '../unary-expression.js';
+import { ParameterExpression } from '../parameter-expression.js';
+import { ConstantExpression } from '../constant-expression.js';
+import { TypedLambdaExpression, Parameters } from '../lambda-expression.js';
+import { MemberExpression } from '../member-expression.js';
+import { CallExpression } from '../call-expression.js';
+import { ApplySymbolExpression } from '../apply-symbol-expression.js';
+import { NewExpression } from '../new-expression.js';
+import { IVisitable } from '../visitable.js';
+import { FormatExpression } from '../../parser.js';
+import { TernaryExpression } from '../ternary-expression.js';
 
 
 export type EqualityComparer<T> = (a: T, b: T) => boolean;
@@ -94,11 +94,14 @@ export class ExpressionVisitor
             var source = this.visit(arg0.source);
         else
             source = arg0.source;
-        if (source !== arg0.source)
+
+        const member = this.visit(arg0.member);
+
+        if (source !== arg0.source || arg0.member !== member)
         {
             if (!this.isTypedExpression(source))
                 throw new Error('source is of type ' + source['type'] + ' and cannot be considered as a typed expression');
-            return new MemberExpression<T, TMember, T[TMember]>(source, arg0.member, arg0.optional);
+            return new MemberExpression<T, TMember, T[TMember]>(source, member, arg0.optional);
 
         }
         return arg0;
@@ -110,7 +113,8 @@ export class ExpressionVisitor
             source.type == ExpressionType.ParameterExpression ||
             source.type == ExpressionType.MemberExpression ||
             source.type == ExpressionType.ApplySymbolExpression ||
-            source.type == ExpressionType.NewExpression);
+            source.type == ExpressionType.NewExpression ||
+            source.type == ExpressionType.TernaryExpression && this.isTypedExpression(source.second) && this.isTypedExpression(source.third));
     }
     visitLambda<T extends (...args: unknown[]) => unknown>(arg0: TypedLambdaExpression<T>): StrictExpressions
     {
@@ -126,7 +130,7 @@ export class ExpressionVisitor
         return a === b;
     }
 
-    visitEnumerable<T, U extends T>(map: IEnumerable<T>, addToNew: (item: U) => void, visitSingle: (item: T, index: number) => U, compare?: EqualityComparer<T>): void
+    visitEnumerable<T, U extends T>(map: IEnumerable<T>, addToNew: (item: U, i: number) => void, visitSingle: (item: T, index: number) => U, compare?: EqualityComparer<T>): void
     {
         if (!compare)
             compare = ExpressionVisitor.defaultComparer;
@@ -136,22 +140,34 @@ export class ExpressionVisitor
         {
             var newSet = visitSingle.call(this, set, i)
             if (!compare(newSet, set))
-                tmp.forEach(addToNew);
+            {
+                if (tmp)
+                {
+                    tmp.forEach(addToNew);
+                    tmp = null;
+                }
+            }
+            if (!tmp)
+                addToNew(newSet, i);
             else
                 tmp.push(set);
             i++;
         }
     }
 
-    visitArray<T extends IVisitable<ExpressionVisitor, U>, U extends T>(parameters: T[]): U[]
+    visitArray<T extends IVisitable<ExpressionVisitor, U>, U extends T>(parameters: T[], preVisit?: (expression: T, index: number) => void): U[]
     {
         var result: U[] = null;
-        this.visitEnumerable(parameters, function (set)
+        this.visitEnumerable<T, U>(parameters, function (set, i)
         {
             if (!result)
                 result = new Array<U>(parameters.length);
-            result.push(set as unknown as U);
-        }, this.visit);
+            result[i] = set;
+        }, preVisit ? (e, i) =>
+        {
+            preVisit(e, i);
+            return this.visit(e) as unknown as U;
+        } : e => this.visit(e) as unknown as U);
         return result || parameters as U[];
     }
     visitConstant(arg0: ConstantExpression<unknown>): StrictExpressions
