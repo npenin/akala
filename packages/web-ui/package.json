@@ -1,9 +1,9 @@
 {
     "name": "@akala/web-ui",
     "version": "0.0.1",
-    "private": true,
-    "main": "dist/cjs/index.js",
-    "types": "dist/cjs/index.d.ts",
+    "main": "dist/esm/index.js",
+    "types": "dist/esm/index.d.ts",
+    "type": "module",
     "exports": {
         ".": {
             "import": {
@@ -18,9 +18,22 @@
         "./scss/*.scss": "./scss/*.scss"
     },
     "scripts": {
-        "test": "echo \"Error: no test specified\""
+        "test": "echo \"Error: no test specified\"",
+        "sass": "sass scss:dist/css"
+    },
+    "devDependencies": {
+        "sass": "^1.77.8"
+    },
+    "peerDependencies": {
+        "@floating-ui/dom": "^1.6.8"
+    },
+    "peerDependenciesMeta": {
+        "@floating-ui/dom": {
+            "optional": true
+        }
     },
     "dependencies": {
-        "sass": "^1.69.5"
+        "@akala/client": "workspace:^",
+        "@akala/core": "workspace:^"
     }
 }

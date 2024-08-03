@@ -151,14 +151,33 @@ class Readable implements ReadableStream<Uint8Array>
 
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  values(): IterableIterator<any>
+  values(options?: ReadableStreamIteratorOptions): AsyncIterableIterator<Uint8Array>
   {
-    return this.buffer.values();
+    const iterator = this.buffer.values();
+    return {
+      next()
+      {
+        return Promise.resolve(iterator.next?.());
+      },
+      return(value)
+      {
+        return Promise.resolve(iterator.return?.(value));
+      },
+      throw(value)
+      {
+        return Promise.resolve(iterator.throw?.(value));
+      }
+    } as any
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [Symbol.iterator](): IterableIterator<any>
   {
     return this.buffer[Symbol.iterator]();
+  }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [Symbol.asyncIterator](): AsyncIterableIterator<any>
+  {
+    return this.values();
   }
   private buffer: (Uint8Array | null)[] = [];
   private _reader?: DefaultReader | ByobReader;

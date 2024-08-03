@@ -3,7 +3,7 @@ import * as assert from 'assert'
 import * as jsonrpc from '@akala/json-rpc-ws'
 import * as ws from 'ws'
 import { metadata, proxy, helper } from '../generator.js';
-import { JsonRpc, LogEventProcessor, LogProcessor } from '../processors/index.js';
+import { JsonRpc, LogEventProcessor } from '../processors/index.js';
 import { Container } from '../model/container.js';
 // import { Command } from '../model/command';
 import { configure } from '../decorators.js';
@@ -66,7 +66,7 @@ describe('test jsonrpcws processing', function ()
     it('should work with proxy commands', async function ()
     {
         const container = metadata(calculator);
-        const calculatorProxy = proxy(container, new LogEventProcessor(new JsonRpc(client.getConnection(), true), function (container, cmd, args)
+        const calculatorProxy = proxy(container, new LogEventProcessor(new JsonRpc(client.getConnection()), function (container, cmd, args)
         {
             console.log(args);
         }));
@@ -120,7 +120,7 @@ describe('test jsonrpcws processing', function ()
             {
                 socket.connect({ path: socketPath }, function ()
                 {
-                    resolve(proxy(metadata(c1), new JsonRpc(JsonRpc.getConnection(new NetSocketAdapter(socket), c2), true)));
+                    resolve(proxy(metadata(c1), new JsonRpc(JsonRpc.getConnection(new NetSocketAdapter(socket), c2))));
                 });
             })
 

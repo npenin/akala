@@ -61,7 +61,7 @@ export class Field implements Parser<{ fieldId: number; type: WireType; }>
                 break;
             default:
                 var x: never = value.type;
-                throw new Error('Not supported');
+                throw new Error('Unsupported type ' + x);
         }
         Uint5.prototype.write(buffer, cursor, value.fieldId);
     }

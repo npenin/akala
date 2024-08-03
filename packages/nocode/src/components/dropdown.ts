@@ -1,4 +1,4 @@
-import { Resolved, TagRef, TagRefInstance, dom, renderOuter, renderOuterWithDomAPI } from "@akala/pages";
+import { Resolved, dom } from "@akala/pages";
 import { computePosition } from "@floating-ui/dom";
 
 

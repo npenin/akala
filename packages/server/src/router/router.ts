@@ -1,9 +1,8 @@
 import * as http from 'http';
 import * as https from 'https';
 import * as http2 from 'http2';
-import * as akala from '@akala/core';
 import { Socket } from 'net';
-import { Middleware, MiddlewareComposite, MiddlewarePromise, MiddlewareResult, Router, Router2 } from '@akala/core';
+import { Middleware, MiddlewareCompositeAsync, MiddlewarePromise, MiddlewareResult, Router2Async, RouterAsync, RouterOptions } from '@akala/core';
 import { UpgradeMiddleware } from './upgradeMiddleware.js';
 import { Request, Response } from './shared.js';
 import accepts from 'accepts';
@@ -11,12 +10,12 @@ import cobody from 'co-body'
 import mime from 'mime-types'
 
 
-export class HttpRouter extends Router2<Request, Response>
+export class HttpRouter extends Router2Async<Request, Response>
 {
-    private upgradeRouter = new Router<[Request, Socket, Buffer]>();
-    public readonly formatters = new MiddlewareComposite<[Request, Response, unknown]>();
+    private upgradeRouter = new RouterAsync<[Request, Socket, Buffer]>();
+    public readonly formatters = new MiddlewareCompositeAsync<[Request, Response, unknown]>();
 
-    constructor(options?: akala.RouterOptions)
+    constructor(options?: RouterOptions)
     {
         super(options);
     }

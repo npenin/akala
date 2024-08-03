@@ -3,7 +3,7 @@
     "version": "14.0.2",
     "description": "",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 0",
+        "test": "mocha dist/esm/test",
         "prepack": "../../makeCjs.sh",
         "build": "tsc -p tsconfig.esm.json"
     },
@@ -51,15 +51,15 @@
     "devDependencies": {
         "@types/debug": "^4.1.12",
         "merge2": "^1.4.1",
-        "mocha": "^10.2.0",
+        "mocha": "^10.7.0",
         "source-map-support": "^0.5.21",
-        "typescript": "^5.3.3"
+        "typescript": "^5.5.4"
     },
     "types": "./dist/esm/index.d.ts",
     "dependencies": {
-        "debug": "^4.3.4",
-        "path-to-regexp": "^6.2.1",
-        "reflect-metadata": "^0.2.0"
+        "debug": "^4.3.5",
+        "path-to-regexp": "^6.2.2",
+        "reflect-metadata": "^0.2.2"
     },
     "gitHead": "d92f6693ed8cca439c8e92d2045bb15c0a7dae43",
     "typings": "./dist/esm/index.d.ts"

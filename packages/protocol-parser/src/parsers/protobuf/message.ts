@@ -151,7 +151,7 @@ export class UnknownMessage implements ParserWithMessageWithoutKnownLength<Recor
                     break;
                 default:
                     var x: never = parsedField.type;
-                    break;
+                    throw new Error('invalid type ' + x)
             }
             if (Array.isArray(message[parsedField.fieldId]))
                 (message[parsedField.fieldId] as unknown[]).push(value);

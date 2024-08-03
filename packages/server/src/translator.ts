@@ -1,12 +1,12 @@
-import * as akala from '@akala/core';
+import { Translator, defaultInjector } from '@akala/core';
 import * as path from 'path';
 
-akala.defaultInjector.registerFactory('$translator', function (): akala.Translator
+defaultInjector.registerFactory('$translator', function (): Translator
 {
-    const language = akala.defaultInjector.resolve('$language');
+    const language = defaultInjector.resolve('$language');
     let translations: { [key: string]: string };
     if (language)
-        translations = require(path.join(__dirname, 'i18n.' + akala.defaultInjector.resolve('$language') + '.json'));
+        translations = require(path.join(__dirname, 'i18n.' + defaultInjector.resolve('$language') + '.json'));
     else
         translations = {};
 

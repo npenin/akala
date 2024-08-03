@@ -37,7 +37,7 @@ export async function pm(socketPath?: string): Promise<Container<unknown>>
     if (socketPath)
     {
         const pmSocket = new Socket();
-        const pm = new Container('pm', null, new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(pmSocket)), true));
+        const pm = new Container('pm', null, new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(pmSocket))));
         pmSocket.connect(socketPath);
         const metaContainer: Metadata.Container = await pm.handle(pm, Cli.Metadata, { param: [] }).then(err => { throw err }, res => res);
         registerCommands(metaContainer.commands, null, pm);

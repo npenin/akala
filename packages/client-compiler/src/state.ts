@@ -1,4 +1,3 @@
-import { ProxyConfiguration } from "@akala/config";
 
 export interface State
 {

@@ -1,7 +1,7 @@
 import { Expression, Expressions } from './expression.js';
 import { ExpressionType } from './expression-type.js';
 import { UnaryOperator } from './unary-operator.js';
-import { ExpressionVisitor } from './expression-visitor.js';
+import type { ExpressionVisitor } from './visitors/expression-visitor.js';
 
 export class UnaryExpression extends Expression
 {

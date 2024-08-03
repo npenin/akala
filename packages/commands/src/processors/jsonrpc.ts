@@ -1,6 +1,6 @@
 import * as jsonrpcws from '@akala/json-rpc-ws'
 import { CommandProcessor, StructuredParameters } from '../model/processor.js'
-import { Command, Container as MetaContainer } from '../metadata/index.js';
+import { Command } from '../metadata/index.js';
 import { Container } from '../model/container.js';
 import { Local } from './local.js';
 import { Readable } from 'stream';
@@ -22,7 +22,7 @@ async function handler(url: URL): Promise<HandlerResult<JsonRpc>>
     const connection = JsonRpc.getConnection(socket);
 
     return {
-        processor: new JsonRpc(connection, true),
+        processor: new JsonRpc(connection),
         getMetadata: () => new Promise<Command[]>((resolve, reject) => connection.sendMethod<any, any>('$metadata', { param: true }, (err, metadata) =>
             typeof (err) == 'undefined' ? resolve(metadata) : reject(err)
         ))
@@ -45,9 +45,8 @@ export class JsonRpc extends CommandProcessor
             });
         }).then((socket) =>
         {
-            const provier = new JsonRpc(JsonRpc.getConnection(socket))
-            provier.passthrough = true;
-            return provier;
+            const provider = new JsonRpc(JsonRpc.getConnection(socket))
+            return provider;
         });
     }
 
@@ -96,6 +95,7 @@ export class JsonRpc extends CommandProcessor
                         if (typeof (params) != 'object' || params instanceof Readable || !params['param'])
                             params = { param: [params] } as SerializableObject;
 
+                        Object.defineProperty(params, 'connectionId', { configurable: true, enumerable: false, value: this.id });
                         Object.defineProperty(params, 'connection', { configurable: true, enumerable: false, get: getProcessor });
                         Object.defineProperty(params, 'connectionAsContainer', { configurable: true, enumerable: false, get: getContainer });
                         Object.defineProperty(params, 'socket', { configurable: true, enumerable: false, value: socket });
@@ -121,7 +121,7 @@ export class JsonRpc extends CommandProcessor
                 }
             }
         });
-        const getProcessor = lazy(() => new JsonRpc(connection, true));
+        const getProcessor = lazy(() => new JsonRpc(connection));
         const getContainer = lazy(() =>
         {
             const c = Container.proxy(container?.name + '-client', getProcessor());
@@ -132,22 +132,20 @@ export class JsonRpc extends CommandProcessor
         return connection;
     }
 
-    public handle(_container: Container<unknown>, command: Command, params: StructuredParameters<OnlyArray<jsonrpcws.PayloadDataType<void>>>): MiddlewarePromise
+    public handle(container: Container<unknown>, command: Command, params: StructuredParameters<OnlyArray<jsonrpcws.PayloadDataType<void>>>): MiddlewarePromise
     {
-        return new Promise<Error | SpecialNextParam | OptionsResponse>((resolve, reject) =>
+        return Local.execute(command, (...args: SerializableObject[]) => 
         {
-            if (!this.passthrough)
+            const inject = command.config?.['']?.inject;
+            if ((inject.length != 1 || inject[0] != '$param') && !params._trigger)
             {
-                const inject = command.config?.['']?.inject;
-                if ((inject.length != 1 || inject[0] != '$param') && params._trigger)
-                {
-                    params.param = Local.extractParams(command.config?.jsonrpc?.inject || inject)(...params.param);
-                }
+                args = Local.extractParams(command.config?.jsonrpc?.inject || inject)(...args);
             }
-            Promise.all(params.param).then((param) =>
+
+            return new Promise<Error | SpecialNextParam | OptionsResponse>((resolve, reject) =>
             {
                 if (this.client.socket.open)
-                    this.client.sendMethod(typeof command == 'string' ? command : command.name, Object.assign(params, { param, _trigger: undefined }) as SerializableObject, function (err, result)
+                    this.client.sendMethod(typeof command == 'string' ? command : command.name, args, function (err, result)
                     {
                         if (err)
                         {
@@ -161,13 +159,14 @@ export class JsonRpc extends CommandProcessor
                     })
                 else
                     resolve();
-            }, resolve);
-        })
+            });
+        }
+            , container, params);
     }
 
     public get connectionId() { return this.client.id }
 
-    constructor(private client: jsonrpcws.BaseConnection<Readable>, private passthrough?: boolean)
+    constructor(private client: jsonrpcws.BaseConnection<Readable>)
     {
         super('jsonrpc');
     }

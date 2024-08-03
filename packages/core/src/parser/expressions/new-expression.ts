@@ -3,7 +3,7 @@
 import { Expression } from './expression.js';
 import { ExpressionType } from './expression-type.js';
 import { MemberExpression } from './member-expression.js';
-import { ExpressionVisitor } from './expression-visitor.js';
+import type { ExpressionVisitor } from './visitors/expression-visitor.js';
 
 export class NewExpression<T> extends Expression
 {

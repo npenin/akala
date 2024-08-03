@@ -1,8 +1,4 @@
-import { get } from 'node:https';
-import { Loader, Resolver, ResolverResult } from '../../index.js';
-import fs from 'node:fs'
-import { pathToFileURL } from 'url'
-import path from 'path'
+import { Resolver } from '../../index.js';
 
 export const protocolParser = /^([a-z0-9-\+]+):(.+)$/;
 
