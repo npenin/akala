@@ -16,6 +16,7 @@
 * typing 8851307
 * update after core breaking change 4291683
 * update dependencies and regenerate metadata 0c83667
+* update lock file 3576076
 * update package definitions 300a978
 
 
