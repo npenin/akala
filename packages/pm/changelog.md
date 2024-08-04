@@ -1,10 +1,9 @@
-#  (2024-08-03)
+#  (2024-08-04)
 
 
 ### Bug Fixes
 
-* eliminate the need for json import 5d5af48
-* update lock file 3576076
+* add support for soft kill when remote connected 002abdb
 
 
 
