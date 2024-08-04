@@ -2,14 +2,13 @@
 import sms from 'source-map-support'
 sms.install();
 import * as path from 'path'
-import * as ac from '@akala/commands';
 import { lstat } from 'fs/promises';
 import pmDef from './container.js';
 import { IpcAdapter } from "./ipc-adapter.js";
 import { logger, Logger, module as coreModule, MiddlewareCompositeAsync } from '@akala/core';
 import { program, buildCliContextFromProcess, ErrorMessage, NamespaceMiddleware } from '@akala/cli';
 import { Stats } from 'fs';
-import { registerCommands, SelfDefinedCommand, parseMetadata, StructuredParameters } from '@akala/commands';
+import { Processors, Triggers, ServeMetadata, Cli, registerCommands, SelfDefinedCommand, parseMetadata, StructuredParameters, Container, CommandProcessor, serveMetadata, connectByPreference, Metadata, ServeMetadataWithSignal } from '@akala/commands';
 import { fileURLToPath } from 'url';
 import commands from './container.js';
 
@@ -17,20 +16,20 @@ var isPm = false;
 
 program.option('help')
 let folderOrFile: Stats;
-let cliContainer: ac.Container<unknown>;
-let processor: ac.CommandProcessor;
+let cliContainer: Container<unknown>;
+let processor: CommandProcessor;
 let log: Logger;
 const logMiddleware = new NamespaceMiddleware<{ program: string, name: string, tls: boolean }>(null).option<string, 'verbose'>('verbose', { aliases: ['v',] });
 logMiddleware.preAction(async c =>
 {
     if (c.options.verbose)
-        processor = new ac.Processors.LogProcessor((_c, cmd, params) =>
+        processor = new Processors.LogProcessor((_c, cmd, params) =>
         {
             log.verbose({ cmd, params });
             return undefined;
         });
 
-    await ac.Processors.FileSystem.discoverCommands(c.options.program, cliContainer, { processor: processor, isDirectory: folderOrFile.isDirectory() });
+    await Processors.FileSystem.discoverCommands(c.options.program, cliContainer, { processor: processor, isDirectory: folderOrFile.isDirectory() });
 });
 let initMiddleware = new NamespaceMiddleware<{ program: string, name: string, tls: boolean }>(null);
 const controller = new AbortController();
@@ -70,12 +69,12 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
 
         log = logger(c.options.name);
 
-        cliContainer = new ac.Container('cli', {});
+        cliContainer = new Container('cli', {});
 
         if (folderOrFile.isFile())
-            processor = new ac.Processors.FileSystem(path.dirname(c.options.program));
+            processor = new Processors.FileSystem(path.dirname(c.options.program));
         else
-            processor = new ac.Processors.FileSystem(c.options.program);
+            processor = new Processors.FileSystem(c.options.program);
     }).
     useMiddleware(null, MiddlewareCompositeAsync.new(logMiddleware,
         {
@@ -91,7 +90,7 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
                         initMiddleware = initMiddleware.command(init.config.cli.usage, init.config?.doc?.description)
                         c.args.unshift('$init');
                     }
-                    ac.Triggers.addCliOptions(init, initMiddleware);
+                    Triggers.addCliOptions(init, initMiddleware);
                 }
 
                 process.on('unhandledRejection', (x) =>
@@ -108,8 +107,8 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
 
                 initMiddleware.option<string, 'pmSocket'>('pmSocket', { aliases: ['pm-socket', 'pm-sock'], needsValue: true }).action(async c =>
                 {
-                    let pm: ac.Container<unknown> & pmDef.container;
-                    let pmConnectInfo: ac.ServeMetadata;
+                    let pm: Container<unknown> & pmDef.container;
+                    let pmConnectInfo: ServeMetadata;
 
                     if (!isPm)
                     {
@@ -117,7 +116,7 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
                         const pmMeta = commands.meta;
                         if (process.connected)
                         {
-                            pm = new ac.Container('pm', null, new ac.Processors.JsonRpc(ac.Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer))) as ac.Container<unknown> & pmDef.container;
+                            pm = new Container('pm', null, new Processors.JsonRpc(Processors.JsonRpc.getConnection(new IpcAdapter(process), cliContainer))) as Container<unknown> & pmDef.container;
                             registerCommands(pmMeta.commands, null, pm);
                         }
                         else
@@ -125,9 +124,10 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
                             if (c.options.pmSocket)
                                 pmConnectInfo = parseMetadata(c.options.pmSocket, c.options.tls);
                             else
-                                pmConnectInfo = ac.serveMetadata({ args: ['local'], options: { socketName: 'pm' } })
-                            const x = await ac.connectByPreference(pmConnectInfo, { metadata: pmMeta, container: cliContainer });
-                            pm = x.container as ac.Container<unknown> & pmDef.container;
+                                pmConnectInfo = serveMetadata({ args: ['local'], options: { socketName: 'pm' } })
+                            const x = await connectByPreference(pmConnectInfo, { metadata: pmMeta, container: cliContainer });
+                            controller.signal.addEventListener('abort', () => x.processor)
+                            pm = x.container as Container<unknown> & pmDef.container;
                             pm.processor.useMiddleware(20, x.processor);
                             const connect = pm.resolve('connect');
                             pm.unregister('connect');
@@ -142,11 +142,11 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
                             ]));
                         }
                         // eslint-disable-next-line @typescript-eslint/no-var-requires
-                        pm.unregister(ac.Cli.Metadata.name);
-                        pm.register(ac.Metadata.extractCommandMetadata(ac.Cli.Metadata));
+                        pm.unregister(Cli.Metadata.name);
+                        pm.register(Metadata.extractCommandMetadata(Cli.Metadata));
                     }
                     else
-                        pm = cliContainer as pmDef.container & ac.Container<unknown>;
+                        pm = cliContainer as pmDef.container & Container<unknown>;
 
                     coreModule('@akala/pm').register('container', pm);
 
@@ -154,11 +154,11 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
                     {
                         if (!pmConnectInfo)
                             pmConnectInfo = await pm.dispatch('connect', 'pm');
-                        var pm2 = await ac.connectByPreference(pmConnectInfo, { container: cliContainer, metadata: await cliContainer.dispatch('$metadata') });
+                        var pm2 = await connectByPreference(pmConnectInfo, { container: cliContainer, metadata: await cliContainer.dispatch('$metadata') });
                         pm2.container.processor.useMiddleware(20, pm2.processor);
-                        pm2.container.unregister(ac.Cli.Metadata.name);
-                        pm2.container.register(ac.Metadata.extractCommandMetadata(ac.Cli.Metadata));
-                        pm2.container.register(ac.Metadata.extractCommandMetadata(pm.resolve('bridge')));
+                        pm2.container.unregister(Cli.Metadata.name);
+                        pm2.container.register(Metadata.extractCommandMetadata(Cli.Metadata));
+                        pm2.container.register(Metadata.extractCommandMetadata(pm.resolve('bridge')));
                         if (await pm2.container.dispatch('bridge', connectionId))
                             throw undefined;
                     }, '$bridge'));
@@ -171,7 +171,7 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
 
                     try
                     {
-                        const serveArgs: ac.ServeMetadataWithSignal = await pm.dispatch('connect', c.options.name);
+                        const serveArgs: ServeMetadataWithSignal = await pm.dispatch('connect', c.options.name);
                         // console.log(serveArgs)
                         serveArgs.signal = controller.signal;
                         await cliContainer.dispatch('$serve', serveArgs);

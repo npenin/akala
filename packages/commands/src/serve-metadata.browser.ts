@@ -20,6 +20,7 @@ export interface ConnectionPreference
     host?: string;
     metadata: Metadata.Container;
     container?: Container<unknown>;
+    signal?: AbortSignal;
 }
 
 export async function connectByPreference<T = unknown>(options: ServeMetadata, settings: ConnectionPreference, ...orders: (keyof ServeMetadata)[]): Promise<{ container: Container<T>, processor: ICommandProcessor }>
