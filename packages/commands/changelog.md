@@ -1,9 +1,9 @@
-#  (2024-08-03)
+#  (2024-08-04)
 
 
 ### Bug Fixes
 
-* update lock file 3576076
+* add support for soft kill when remote connected 002abdb
 
 
 
