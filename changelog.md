@@ -1,4 +1,4 @@
-#  (2024-08-03)
+#  (2024-08-04)
 
 
 ### Bug Fixes
@@ -33,6 +33,7 @@
 * add support for device authorization 3aff229
 * add support for more types (doc and style) 16c929d
 * add support for ParsedObject 0480efd
+* add support for soft kill when remote connected 002abdb
 * add transaction on dbset 81305d5
 * add vite/test as a package 7eeaccc
 * add xe settings to force logging 9ccf9fd
