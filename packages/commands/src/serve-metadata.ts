@@ -61,7 +61,7 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
         {
             if (orders.length == 0)
                 throw new ErrorWithStatus(404, 'No valid connection option could be found')
-            processor = await connectWith(orderedOptions[preferredIndex][0], settings?.host, orders[preferredIndex], settings?.container)
+            processor = await connectWith(orderedOptions[preferredIndex][0], settings?.host, orders[preferredIndex], settings?.signal, settings?.container)
             break;
         }
         catch (e)
@@ -84,7 +84,7 @@ export async function connectByPreference<T = unknown>(options: ServeMetadata, s
 
 }
 
-export async function connectWith<T>(options: NetConnectOpts, host: string, medium: keyof ServeMetadata, container?: Container<T>): Promise<CommandProcessor>
+export async function connectWith<T>(options: NetConnectOpts, host: string, medium: keyof ServeMetadata, signal: AbortSignal, container?: Container<T>): Promise<CommandProcessor>
 {
     switch (medium)
     {
@@ -100,6 +100,7 @@ export async function connectWith<T>(options: NetConnectOpts, host: string, medi
                         resolve(socket)
                     }).on('error', reject);
                 });
+                signal?.addEventListener('abort', () => socket.end());
                 return new JsonRpc(JsonRpc.getConnection(new NetSocketAdapter(socket), container));
             }
         case 'ssocket':
@@ -121,6 +122,7 @@ export async function connectWith<T>(options: NetConnectOpts, host: string, medi
                         resolve(socket)
                     }).on('error', reject);
                 });
+                signal?.addEventListener('abort', () => ssocket.end());
                 return new JsonRpc(JsonRpc.getConnection(new NetSocketAdapter(ssocket), container));
             }
         case 'http':
@@ -143,7 +145,9 @@ export async function connectWith<T>(options: NetConnectOpts, host: string, medi
                     path = options.path;
                 else
                     path = medium + '://' + (host || options.host || 'localhost') + ':' + options.port;
-                return new JsonRpc(JsonRpc.getConnection(new jsonrpc.ws.SocketAdapter(new ws(path)), container));
+                const wsconnection = new ws(path);
+                signal?.addEventListener('abort', () => wsconnection.close());
+                return new JsonRpc(JsonRpc.getConnection(new jsonrpc.ws.SocketAdapter(wsconnection), container));
             }
         default:
             // eslint-disable-next-line no-case-declarations, @typescript-eslint/no-unused-vars
