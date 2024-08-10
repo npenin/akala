@@ -36,7 +36,7 @@ const tableChars = {
 const truncate = '…';
 
 type CliOptions = { output: string, verbose: boolean, pmSock: string | number, tls: boolean, help: boolean };
-export default function (_config, program: NamespaceMiddleware)
+export default function (_config, program: NamespaceMiddleware<{ configFile: string, verbose: boolean }>)
 {
     const cli = program.command('pm').state<{ pm?: StateConfiguration }>().options<CliOptions>({
         output: { aliases: ['o'], needsValue: true, doc: 'output as `table` if array otherwise falls back to standard node output' },
@@ -45,15 +45,13 @@ export default function (_config, program: NamespaceMiddleware)
         help: { doc: "displays this help message" }
     });
     cli.command('start pm')
-        .option('inspect', { doc: "starts the process with --inspect-brk parameter to help debugging" })
-        .option('keepAttached', { doc: "keeps the process attached" })
+        .option<boolean>()('inspect', { doc: "starts the process with --inspect-brk parameter to help debugging" })
+        .option<boolean>()('keepAttached', { doc: "keeps the process attached" })
         .action(c =>
         {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            c.options['name'] = 'pm'
-            c.options['program'] = require.resolve('../../commands.json');
-            c.options['configFile'] += '#pm';
-            return start.call({} as unknown as State, null, 'pm', c as any);
+            c.options.configFile += '#pm';
+            return start.call({} as unknown as State, null, 'pm', { name: 'pm', ...c.options }, c);
         });
 
     let socket: Socket;

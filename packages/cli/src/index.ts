@@ -1,5 +1,5 @@
 import { LogLevels, Logger, logger as LoggerBuilder, grep, map, each, getSetter } from '@akala/core';
-import program, { CliContext, NamespaceMiddleware, OptionOptions, usageParser } from './router/index.js';
+import program, { CliContext, NamespaceMiddleware, OptionOptions, OptionType, usageParser } from './router/index.js';
 export * from './router/index.js'
 export default program;
 export { program };
@@ -123,7 +123,7 @@ export function unparse(context: CliContext): string[]
     return [...context.args, ...unparseOptions(context.options)];
 }
 
-export function unparseWithMeta(definition: { usage?: string, options?: { [key: string]: OptionOptions } }, context: CliContext): string[]
+export function unparseWithMeta(definition: { usage?: string, options?: { [key: string]: OptionOptions<OptionType> } }, context: CliContext): string[]
 {
     var positionals = map(grep(definition.options, o => o.positional), (o, name) => ({ name, ...o }), true).sort((a, b) => a.position - b.position);
     var args = positionals.map(o => context.options[o.name]).filter(f => typeof f !== 'undefined') as string[];

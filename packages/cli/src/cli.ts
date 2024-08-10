@@ -37,7 +37,7 @@ process.emit = function (name, data, ...args)
     const plugins = [new URL('./helpers/repl.js', import.meta.url).toString(), new URL('./plugins.js', import.meta.url).toString()];
     const config: { plugins: string[], commit?: () => Promise<void> } = { plugins: [] };
     let loadedConfig: { plugins: string[] };
-    program.option<string>('configFile', { aliases: ['c', 'config-file'], needsValue: true }).preAction(async context =>
+    program.option('configFile', { aliases: ['c', 'config-file'], needsValue: true, default: '' as string }).preAction(async context =>
     {
         if (context.options.configFile)
         {

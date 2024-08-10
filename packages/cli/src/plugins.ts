@@ -1,12 +1,12 @@
 import { NamespaceMiddleware } from './index.js';
 import fs from 'fs/promises'
 
-export default function (config, program: NamespaceMiddleware)
+export default function (config, program: NamespaceMiddleware<{ configFile: string }>)
 {
     const plugins = program.command('plugins');
 
     plugins.command('add <path>')
-        .option<string>('path', {})
+        .option<string>()('path', {})
         .action(async function (context)
         {
             const indexOfPath = config.plugins.indexOf(context.options.path);
@@ -24,7 +24,7 @@ export default function (config, program: NamespaceMiddleware)
         })
 
     plugins.command('remove <path>')
-        .option<string>('path', { normalize: true })
+        .option<string>()('path', { normalize: true })
         .action(async function (context)
         {
             const indexOfPath = config.plugins.indexOf(context.options.path);

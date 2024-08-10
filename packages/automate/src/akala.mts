@@ -10,10 +10,10 @@ export default function (config, cli: NamespaceMiddleware)
 {
     // const logger = LoggerBuilder('automate-cli', LogLevels.info)
 
-    const program = cli.command('run [file]').option<string>('loader', { needsValue: true, normalize: 'requireMeta' }).
-        option<string>('runner', { needsValue: true, normalize: 'require' }).
-        option<string>('file', { needsValue: true, normalize: 'require' }).
-        option<string>('verbose', { aliases: ['v'] })
+    const program = cli.command('run [file]').option('loader', { needsValue: true, normalize: 'requireMeta' }).
+        option('runner', { needsValue: true, normalize: 'require' }).
+        option('file', { needsValue: true, normalize: 'require' }).
+        option('verbose', { aliases: ['v'], default: 'info' })
     program.action(async context =>
     {
         if (context.options.verbose)
@@ -34,7 +34,7 @@ export default function (config, cli: NamespaceMiddleware)
         var loader: Container<CliContext>;
 
         if (context.options.loader)
-            loader = await use.call(context, null, 'loader', context.options.loader);
+            loader = await use.call(context, null, 'loader', context.options.loader as string);
         else
         {
             loader = new Container('loader', context);
@@ -53,7 +53,7 @@ export default function (config, cli: NamespaceMiddleware)
             await workflowProgram.process(buildCliContext(context.logger, ...context.args));
         }
 
-        container.register(new SelfDefinedCommand((file: string) => loader.dispatch('load', path.join(path.dirname(context.options.file), file)), 'load'));
+        container.register(new SelfDefinedCommand((file: string) => loader.dispatch('load', path.join(path.dirname(context.options.file as string), file)), 'load'));
 
         return await container.dispatch('process', workflow);
     });

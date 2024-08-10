@@ -1,3 +1,4 @@
+import { OptionType } from '@akala/cli';
 import { FileSystemConfiguration, HttpConfiguration, SchemaConfiguration } from '../processors/index.js'
 
 export type jsonPrimitive = string | number | boolean | undefined;
@@ -39,7 +40,7 @@ export interface Configurations extends Partial<ConfigurationMap>
 export interface CliConfiguration extends Configuration
 {
     usage?: string;
-    options?: { [key: string]: import('@akala/cli').OptionOptions };
+    options?: { [key: string]: import('@akala/cli').OptionOptions<OptionType> };
 }
 
 export interface DocConfiguration extends Configuration, SimpleDocConfiguration
