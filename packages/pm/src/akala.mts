@@ -12,6 +12,7 @@ import { CliContext, ErrorMessage, NamespaceMiddleware, unparse } from '@akala/c
 import { InteractError } from './index.js';
 import { ObservableObject, Parser } from '@akala/core';
 import module from 'module'
+import commands from './container.js';
 
 const require = module.createRequire(import.meta.url);
 
@@ -152,7 +153,7 @@ export default function (_config, program: NamespaceMiddleware)
             if (!processor)
                 processor = new Processors.JsonRpc(Processors.JsonRpc.getConnection(new NetSocketAdapter(socket)));
             if (!metaContainer)
-                metaContainer = require('../../commands.json');
+                metaContainer = commands.meta;
             if (!container)
             {
                 container = proxy(metaContainer, processor);
