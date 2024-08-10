@@ -77,7 +77,7 @@ class OptionMiddleware<TValue extends OptionType> implements MiddlewareAsync<[co
 
     handle(context: CliContext): MiddlewarePromise
     {
-        if (this.options.default)
+        if (this.options?.default)
             context.options[this.name] = this.options.default;
         for (let index = 0; index < context.args.length; index++)
         {
