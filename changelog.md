@@ -117,6 +117,7 @@
 * cli args parsing 6db1a80
 * cli crashing when succeeding 4e7d4bb
 * Cli implementation a6c7103
+* cli options when no options is provided b3d131c
 * cli parsing 0736bf7
 * cli parsing a28c8fe
 * Cli wait fixed bac25a8
