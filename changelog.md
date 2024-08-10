@@ -71,6 +71,10 @@
 * async CLI init 484a0b4
 * async router 6bd9cf3
 * auth handlers behvior 523c6fa
+* automate after upgrade af5b0d5
+* automate after upgrade 02e0707
+* automate after upgrade a0f3b80
+* automate after upgrade 4235afe
 * automate fixed d357937
 * automate implementation f76a995
 * **automate:** stdio fc9a326
@@ -554,6 +558,7 @@
 * update after base64 update 3e2c264
 * update after base64 update d581037
 * update after base64 update 24bb306
+* update after cli option update 06e3cb5
 * update after core and storage upgrade 842e780
 * update after core breaking change 6fd28e8
 * update after core breaking change 4291683
@@ -674,6 +679,7 @@
 * add createIfEmpty flag on config load 2a47d59
 * add crud package 8d71ea4
 * add cssclasscomposer 7f581e4
+* add curry variant to improve typing 9dc4325
 * add custom inject in jsonrpc processor 4fc1720
 * add disabled option on fs 14bb609
 * add discover command for client 76f8cea
