@@ -3,12 +3,7 @@
 
 ### Bug Fixes
 
-* update after cli option update 06e3cb5
-
-
-### Features
-
-* add curry variant to improve typing 9dc4325
+* cli options when no options is provided b3d131c
 
 
 
