@@ -10,7 +10,7 @@ export default function (config, cli: NamespaceMiddleware)
 {
     // const logger = LoggerBuilder('automate-cli', LogLevels.info)
 
-    const program = cli.command('do [file]').option<string>('loader', { needsValue: true, normalize: 'requireMeta' }).
+    const program = cli.command('run [file]').option<string>('loader', { needsValue: true, normalize: 'requireMeta' }).
         option<string>('runner', { needsValue: true, normalize: 'require' }).
         option<string>('file', { needsValue: true, normalize: 'require' }).
         option<string>('verbose', { aliases: ['v'] })
