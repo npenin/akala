@@ -1,11 +1,13 @@
 import
-    {
-        convertToMiddleware, each, introspect, isPromiseLike, Logger, map, MiddlewareAsync, MiddlewareCompositeAsync,
-        MiddlewareCompositeWithPriorityAsync, MiddlewareIndexedAsync, MiddlewarePromise
-    } from '@akala/core';
+{
+    convertToMiddleware, each, introspect, isPromiseLike, Logger, map, MiddlewareAsync, MiddlewareCompositeAsync,
+    MiddlewareCompositeWithPriorityAsync, MiddlewareIndexedAsync, MiddlewarePromise
+} from '@akala/core';
 import normalize from '../helpers/normalize.js';
 
-export interface CliContext<TOptions extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>, TState = unknown>
+export type OptionType = string | boolean | string[] | number;
+
+export interface CliContext<TOptions extends Record<string, OptionType> = Record<string, OptionType>, TState = unknown>
 {
     args: string[];
     argv: string[];
@@ -39,7 +41,7 @@ export class ErrorMessage extends Error
 
 const defaultOptionParseOption: OptionParseOption = { flagStart: '-', fullOptionStart: '--', valueAssign: '=' };
 
-export interface OptionOptions
+export interface OptionOptions<TValue extends OptionType>
 {
     aliases?: string[],
     needsValue?: boolean,
@@ -49,12 +51,13 @@ export interface OptionOptions
     optional?: boolean;
     positional?: boolean;
     position?: number;
+    default?: TValue;
 }
 
-class OptionMiddleware implements MiddlewareAsync<[context: CliContext]>
+class OptionMiddleware<TValue extends OptionType> implements MiddlewareAsync<[context: CliContext]>
 {
     matchers: { isFull: boolean; pattern: RegExp; }[] = []
-    constructor(private readonly name: string, private options?: OptionOptions, private parseOptions: OptionParseOption = defaultOptionParseOption)
+    constructor(private readonly name: string, private options?: OptionOptions<TValue>, private parseOptions: OptionParseOption = defaultOptionParseOption)
     {
         const names = [name, ...options?.aliases || []];
         names.forEach(n =>
@@ -74,6 +77,8 @@ class OptionMiddleware implements MiddlewareAsync<[context: CliContext]>
 
     handle(context: CliContext): MiddlewarePromise
     {
+        if (this.options.default)
+            context.options[this.name] = this.options.default;
         for (let index = 0; index < context.args.length; index++)
         {
             let element = context.args[index];
@@ -190,7 +195,7 @@ function formatUsage(obj: Record<string, string>, indent?: number): string
         }).join('\n');
 }
 
-class OptionsMiddleware<TOptions extends Record<string, string | number | boolean | string[]>> implements MiddlewareAsync<[context: CliContext<TOptions>]>
+class OptionsMiddleware<TOptions extends Record<string, OptionType>> implements MiddlewareAsync<[context: CliContext<TOptions>]>
 {
     usage(context: CliContext<TOptions>): UsageObject['options']
     {
@@ -216,12 +221,12 @@ class OptionsMiddleware<TOptions extends Record<string, string | number | boolea
 
     private options = new MiddlewareCompositeAsync<[CliContext]>();
     private positionalArgs = new MiddlewareCompositeWithPriorityAsync<[CliContext]>();
-    public config: { [key in keyof TOptions]?: OptionOptions } = {};
+    public config: { [key in keyof TOptions]?: OptionOptions<TOptions[key]> } = {};
 
 
-    option<TValue extends string | number | boolean | string[], const TName extends string>(name: TName, option?: OptionOptions): OptionsMiddleware<TOptions & { [key in TName]: TValue }>
+    option<TValue extends OptionType, const TName extends string>(name: TName, option?: OptionOptions<TValue>): OptionsMiddleware<TOptions & { [key in TName]: TValue }>
     {
-        this.config[name] = option;
+        this.config[name] = option as any;
         if (option?.positional)
         {
             if (isNaN(Number(option.position)))
@@ -240,10 +245,10 @@ class OptionsMiddleware<TOptions extends Record<string, string | number | boolea
         return this.optionMiddleware(new OptionMiddleware(name, option));
     }
 
-    optionMiddleware<TValue extends string | number | boolean | string[] = string | number | boolean | string[], TName extends string = string>(middleware: OptionMiddleware): OptionsMiddleware<TOptions & Record<TName, TValue>>
+    optionMiddleware<TValue extends OptionType = OptionType, TName extends string = string>(middleware: OptionMiddleware<TValue>): OptionsMiddleware<TOptions & Record<TName, TValue>>
     {
         this.options.useMiddleware(middleware);
-        return this;
+        return this as any;
     }
 
     handle(context: CliContext<TOptions>): MiddlewarePromise
@@ -270,7 +275,7 @@ export interface UsageObject
 export const usageParser = /^((?:@?[/$_#\w-]+)(?: ([@$_#\w-]+))*)((?: (?:<[-\w]+(?:\|[-\w]+)?>))*(?: (?:\[[-\w]+(?:\|[-\w]+)?\]))*(?: \[(?:\.{3})[-\w]+(?:\|[-\w]+)?\])?)/;
 
 
-export class NamespaceMiddleware<TOptions extends Record<string, string | boolean | string[] | number> = Record<string, string | boolean | string[] | number>, TState = unknown> extends MiddlewareIndexedAsync<[CliContext<TOptions>], NamespaceMiddleware> implements MiddlewareAsync<[context: CliContext<TOptions, TState>]>
+export class NamespaceMiddleware<TOptions extends Record<string, OptionType> = Record<string, OptionType>, TState = unknown> extends MiddlewareIndexedAsync<[CliContext<TOptions>], NamespaceMiddleware> implements MiddlewareAsync<[context: CliContext<TOptions, TState>]>
 {
     private readonly _preAction = new MiddlewareCompositeAsync<[CliContext<TOptions, TState>]>();
     private _action: MiddlewareAsync<[CliContext<TOptions, TState>]>;
@@ -319,7 +324,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
         return usage;
     }
 
-    public command<TOptions2 extends Record<string, string | boolean | string[] | number> = TOptions>(name: string, description?: string): NamespaceMiddleware<TOptions2 & TOptions, TState>
+    public command<TOptions2 extends Record<string, OptionType> = TOptions>(name: string, description?: string): NamespaceMiddleware<TOptions2 & TOptions, TState>
     {
         let middleware: NamespaceMiddleware<TOptions & TOptions2, TState>;
         if (name !== null)
@@ -332,7 +337,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
                 return this.command(cli[1].substring(0, cli[1].length - cli[2].length - 1)).command<TOptions2>(cli[2] + cli[3], description);
 
             var args = cli[3];
-            var parameters: ({ name: keyof TOptions2 | keyof TOptions, rest?: boolean } & OptionOptions)[] = [];
+            var parameters: ({ name: keyof TOptions2 | keyof TOptions, rest?: boolean } & OptionOptions<TOptions[keyof TOptions] | TOptions2[keyof TOptions2]>)[] = [];
             var parameter: RegExpExecArray;
             const parameterParsing = / <([-\w]+)(?:\|[-\w]+)?>| \[([-\w]+)(?:\|[-\w]+)?\]| \[(?:\.{3})?([-\w]+)(?:\|[-\w]+)?\]/g;
             let position = 0;
@@ -425,7 +430,7 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
         this._action = handler
     }
 
-    options<T extends { [key: string]: string | number | boolean | string[] }>(options: { [key in Exclude<keyof T, number | symbol>]: OptionOptions }): NamespaceMiddleware<TOptions & T, TState>
+    options<T extends { [key: string]: OptionType }>(options: { [key in Exclude<keyof T, number | symbol>]: OptionOptions<T[key]> }): NamespaceMiddleware<TOptions & T, TState>
     {
         each(options, (o, key) =>
         {
@@ -434,9 +439,18 @@ export class NamespaceMiddleware<TOptions extends Record<string, string | boolea
         return this as unknown as NamespaceMiddleware<T & TOptions, TState>;
     }
 
-    option<TValue extends string | number | boolean | string[] = string | number | boolean | string[], const TName extends string = string>(name: TName, option?: OptionOptions)
+    option<TValue extends OptionType>(): <const TName extends string>(name: TName, options?: OptionOptions<TValue>) => NamespaceMiddleware<TOptions & { [key in TName]: TValue }>
+    option<TValue extends OptionType, const TName extends string>(name: TName, option?: OptionOptions<TValue>)
         : NamespaceMiddleware<TOptions & { [key in TName]: TValue }>
+    option<TValue extends OptionType, const TName extends string>(name?: TName, option?: OptionOptions<TValue>)
+        : NamespaceMiddleware<TOptions & { [key in TName]: TValue }> | (<const TName extends string>(name: TName, options?: OptionOptions<TValue>) => NamespaceMiddleware<TOptions & { [key in TName]: TValue }>)
     {
+        if (typeof name == 'undefined')
+            return <const TName extends string>(name: TName, option?: OptionOptions<TValue>) =>
+            // : NamespaceMiddleware<TOptions & { [key in TName]: TValue }>
+            {
+                return this.option<TValue, TName>(name, option);
+            }
         this._option.option<TValue, TName>(name, option);
         return this as unknown as NamespaceMiddleware<TOptions & { [key in TName]: TValue }, TState>;
     }
