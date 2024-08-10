@@ -25,6 +25,7 @@ import { dirname } from 'path'
 import { Logger, logger as LoggerBuilder, LogLevels } from '@akala/core'
 export { default as serve, ServeOptions, serverHandlers, ServerHandler, getOrCreateServerAndListen, getOrCreateSecureServerAndListen } from './cli/serve.js'
 import { outputHelper, write } from './cli/new.js';
+import { Readable } from 'stream';
 
 export const FileGenerator = { outputHelper, write };
 
@@ -36,6 +37,16 @@ export class Cli
     constructor(public readonly cliContainer: Container<void>, commands: Metadata.Command[], processor: ICommandProcessor, program: NamespaceMiddleware)
     {
         registerCommands(commands, processor, cliContainer);
+
+        program.format(async r =>
+        {
+            if (r instanceof Readable)
+            {
+                r.pipe(process.stdout);
+                return new Promise(resolve => r.addListener('close', resolve));
+            } else
+                return r;
+        });
         this.promise = cliContainer.attach(Triggers.cli, this.program = program);
     }
 
