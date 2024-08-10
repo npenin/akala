@@ -13,7 +13,7 @@ let folderOrFile: Stats;
 let cliContainer: ac.Container<unknown>;
 let processor: ac.CommandProcessor;
 let log: Logger;
-const logMiddleware = new NamespaceMiddleware<{ program: string, name: string, tls: boolean }>(null).option<string, 'verbose'>('verbose', { aliases: ['v',] });
+const logMiddleware = new NamespaceMiddleware<{ program: string, name: string, tls: boolean }>(null).option<string>()('verbose', { aliases: ['v',] });
 logMiddleware.preAction(async c =>
 {
     if (c.options.verbose)

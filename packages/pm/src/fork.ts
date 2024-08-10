@@ -19,7 +19,7 @@ let folderOrFile: Stats;
 let cliContainer: Container<unknown>;
 let processor: CommandProcessor;
 let log: Logger;
-const logMiddleware = new NamespaceMiddleware<{ program: string, name: string, tls: boolean }>(null).option<string, 'verbose'>('verbose', { aliases: ['v',] });
+const logMiddleware = new NamespaceMiddleware<{ program: string, name: string, tls: boolean }>(null).option<string>()('verbose', { aliases: ['v',] });
 logMiddleware.preAction(async c =>
 {
     if (c.options.verbose)
@@ -34,10 +34,10 @@ logMiddleware.preAction(async c =>
 let initMiddleware = new NamespaceMiddleware<{ program: string, name: string, tls: boolean }>(null);
 const controller = new AbortController();
 
-program.option<string, 'program'>('program', { needsValue: true, normalize: true, positional: true, position: 0 }).
-    option<string, 'name'>('name', { needsValue: true, positional: true, position: 1, optional: true }).
-    option<boolean, 'tls'>('tls', { needsValue: false }).
-    option<string, 'configFile'>('configFile', { needsValue: false }).
+program.option<string>()('program', { needsValue: true, normalize: true, positional: true, position: 0 }).
+    option<string>()('name', { needsValue: true, positional: true, position: 1, optional: true }).
+    option<boolean>()('tls', { needsValue: false }).
+    option<string>()('configFile', { needsValue: false }).
     options<{
         port?: number,
         tcpPort?: string,
@@ -105,7 +105,7 @@ program.option<string, 'program'>('program', { needsValue: true, normalize: true
                 });
                 process.on('SIGINT', () => controller.abort(null));
 
-                initMiddleware.option<string, 'pmSocket'>('pmSocket', { aliases: ['pm-socket', 'pm-sock'], needsValue: true }).action(async c =>
+                initMiddleware.option<string>()('pmSocket', { aliases: ['pm-socket', 'pm-sock'], needsValue: true }).action(async c =>
                 {
                     let pm: Container<unknown> & pmDef.container;
                     let pmConnectInfo: ServeMetadata;
