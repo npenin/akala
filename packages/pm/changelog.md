@@ -1,9 +1,9 @@
-#  (2024-08-04)
+#  (2024-08-10)
 
 
 ### Bug Fixes
 
-* add support for soft kill when remote connected 002abdb
+* pm start command c0e613c
 
 
 
