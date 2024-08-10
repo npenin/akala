@@ -11,7 +11,8 @@ export default async function use(this: CliContext, self: Container<CliContext>,
         var container = new Container(name, this);
     if (pathToCommands instanceof URL || pathToCommands.startsWith('./') || isAbsolute(pathToCommands))
     {
-        pathToCommands = fileURLToPath(pathToCommands);
+        if (pathToCommands instanceof URL || pathToCommands.startsWith('file://'))
+            pathToCommands = fileURLToPath(pathToCommands);
         if (basename(pathToCommands) == 'package.json')
             await Processors.FileSystem.discoverCommands(pathToCommands.substring(0, pathToCommands.length - 'package.json'.length), container);
         else
