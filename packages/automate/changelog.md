@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* pm start command c0e613c
+* allow akala plugin to be used 7d1b06b
 
 
 
