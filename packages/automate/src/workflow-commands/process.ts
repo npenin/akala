@@ -22,7 +22,7 @@ export function UsesMiddleware(container: Container<unknown>): MiddlewareRunner<
 {
     return new MiddlewareRunner('uses', (context: CliContext<{ file: string }>, step) =>
     {
-        return use.call(context, container, step.with?.name, path.join(path.dirname(context.options.file), step.uses));
+        return use.call(context, container as any, step.with?.name as string, path.join(path.dirname(context.options.file), step.uses));
     });
 }
 
