@@ -15,7 +15,7 @@ import akala from './akala.mjs'
     });
     try
     {
-        process.argv.unshift('run')
+        process.argv.splice(2, 0, 'run')
         await cli.process(buildCliContextFromProcess(logger));
     }
     catch (e)
