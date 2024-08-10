@@ -1,10 +1,9 @@
 #  (2024-08-10)
 
 
-### Features
+### Bug Fixes
 
-* handle readable streams f9ab4d8
-* handle readable streams cf632e3
+* update after cli option update 06e3cb5
 
 
 
