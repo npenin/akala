@@ -1,4 +1,4 @@
-#  (2024-08-05)
+#  (2024-08-10)
 
 
 ### Bug Fixes
@@ -387,6 +387,7 @@
 * pm connect when manual forking ed7357e
 * pm fork 52b9ba7
 * pm start a40a583
+* pm start command c0e613c
 * preferRemote now also allows less preferred connection 28e50f2
 * prevent breaks after disconnect 27df465
 * prevent commands override 019f44f
