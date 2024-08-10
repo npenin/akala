@@ -1,9 +1,10 @@
-#  (2024-08-04)
+#  (2024-08-10)
 
 
-### Bug Fixes
+### Features
 
-* add support for soft kill when remote connected 002abdb
+* handle readable streams f9ab4d8
+* handle readable streams cf632e3
 
 
 
