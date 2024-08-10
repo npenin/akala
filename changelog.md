@@ -46,6 +46,7 @@
 * akala cli initrr handling 0f028ce
 * akala init support 528791e
 * akala init support 246f796
+* allow akala plugin to be used 7d1b06b
 * allow all registered containers to be served d12f617
 * allow for any property on errors a529558
 * allow more general pages e3183ad
@@ -810,6 +811,8 @@
 * fix config secret key load in akala cli 5f74332
 * fix sidecar f1705d6
 * handle cookies on redirect fb6e2ab
+* handle readable streams f9ab4d8
+* handle readable streams cf632e3
 * have both CJS and ESM at once cecd11a
 * implement auth c98e0f9
 * implement serve in cli 1decbb4
