@@ -2,6 +2,7 @@
 import * as path from 'path'
 import { fileURLToPath } from 'url'
 import { Cli } from './index.js';
+import { Readable } from 'stream';
 
 const dirname: string = path.dirname(fileURLToPath(import.meta.url)) + '/';// = path.dirname(import.meta.url).substring('file:'.length) + '/';
 // switch (os.platform())
@@ -22,6 +23,15 @@ const dirname: string = path.dirname(fileURLToPath(import.meta.url)) + '/';// = 
             console.error(e);
         else
             console.error(e['message'] || e);
+    });
+    cli.program.format(async r =>
+    {
+        if (r instanceof Readable)
+        {
+            r.pipe(process.stdout);
+            return new Promise(resolve => r.addListener('close', resolve));
+        } else
+            return r;
     });
     await cli.start();
 })(dirname);
