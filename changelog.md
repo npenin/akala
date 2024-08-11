@@ -1,4 +1,4 @@
-#  (2024-08-10)
+#  (2024-08-11)
 
 
 ### Bug Fixes
@@ -51,6 +51,7 @@
 * allow for any property on errors a529558
 * allow more general pages e3183ad
 * allow non existent form elements f66a4f9
+* allow pm yto start d498d2b
 * allow style setting 05b1266
 * allow using jsonrpc trigger in browser 49a8733
 * any implementation fixed 3302fc0
