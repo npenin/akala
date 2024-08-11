@@ -58,7 +58,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
         if (name != 'pm')
             throw new ErrorWithStatus(40, 'this command needs to run through daemon process');
 
-        args = [...context?.args, ...unparseOptions({ ...options, inspect: undefined })];
+        args = [fileURLToPath(new URL('../../../commands.json', import.meta.url)), ...context?.args, ...unparseOptions({ ...options, inspect: undefined })];
     }
 
     if (!def?.type || def.type == 'nodejs')

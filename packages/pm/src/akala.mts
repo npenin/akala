@@ -49,7 +49,6 @@ export default function (_config, program: NamespaceMiddleware<{ configFile: str
         .option<boolean>()('keepAttached', { doc: "keeps the process attached" })
         .action(c =>
         {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             c.options.configFile += '#pm';
             return start.call({} as unknown as State, null, 'pm', { name: 'pm', ...c.options }, c);
         });
