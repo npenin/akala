@@ -1,10 +1,11 @@
-#  (2024-08-10)
+#  (2024-08-11)
 
 
 ### Bug Fixes
 
 * allow more general pages e3183ad
 * allow non existent form elements f66a4f9
+* allow pm yto start d498d2b
 * allow style setting 05b1266
 * artificial bump 59763e7
 * client outlet commands management 5533e79
