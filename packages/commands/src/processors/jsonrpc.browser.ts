@@ -135,11 +135,10 @@ export class JsonRpcBrowser extends CommandProcessor
     {
         return Local.execute(command, (...args: SerializableObject[]) => 
         {
-            const inject = command.config?.['']?.inject;
-            if ((inject.length != 1 || inject[0] != '$param') && !params._trigger)
-            {
-                args = Local.extractParams(command.config?.jsonrpc?.inject || inject)(...args);
-            }
+            // if ((inject.length != 1 || inject[0] != '$param') && !params._trigger)
+            // {
+            args = Local.extractParams(command.config?.jsonrpc?.inject || command.config?.['']?.inject)(...args);
+            // }
 
             return new Promise<Error | SpecialNextParam | OptionsResponse>((resolve, reject) =>
             {
