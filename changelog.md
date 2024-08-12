@@ -1,4 +1,4 @@
-#  (2024-08-11)
+#  (2024-08-12)
 
 
 ### Bug Fixes
@@ -302,6 +302,7 @@
 * interact errors happen on program and not root 363c943
 * interacterror support 8d37bc7
 * json model definition parsing 0770dab
+* json rpc handle always remaps args 246a2a2
 * json schema internal references 409c98d
 * jsonrpc now breaks with standard jsonrpc error aa06e7c
 * jsonrpc process on fork is passthrough e0482ec
