@@ -79,7 +79,7 @@ export class SimpleInjector extends LocalInjector
     // resolve<const TKey extends Exclude<string | number | symbol, keyof TypeMap>>(param: TKey): T
     // resolve<const TKey extends string | number | symbol = keyof TypeMap>(param: TKey): TKey extends keyof TypeMap ? TypeMap[TKey] : T
     {
-        injectorLog.silly('resolving ' + param.toString);
+        injectorLog.silly('resolving ' + param.toString());
 
         if (typeof param == 'object')
         {
