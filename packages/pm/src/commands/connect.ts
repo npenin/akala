@@ -1,7 +1,6 @@
 import { ErrorWithStatus } from "@akala/core";
 import { serveMetadata, ServeMetadata, ServeOptions } from "@akala/commands";
-import { Configuration } from "@akala/config";
-import State, { SidecarConfiguration } from '../state.js';
+import State from '../state.js';
 
 export default async function connect(this: State, name: string): Promise<ServeMetadata>
 export default async function connect(this: State, name: string, context?: ServeOptions): Promise<void>
@@ -10,9 +9,11 @@ export default async function connect(this: State, name: string, context?: Serve
     let mapping = this.config.mapping[name];
     if (!mapping)
         mapping = Object.values(this.config.mapping).find(m => m.container === name);
-    if (!mapping)
-        mapping = await Configuration.newAsync(null, this.processes[name] as SidecarConfiguration);
-    // console.log(name);
+    if (!mapping && this.processes[name]?.connect)
+    {
+        this.config.mapping.set(name, this.processes[name].connect);
+        mapping = this.config.mapping.get(name);
+    }    // console.log(name);
     // console.log(mapping);
     // console.log(mapping.connect);
     // console.log(context);
