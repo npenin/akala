@@ -304,6 +304,9 @@ export class NamespaceMiddleware<TOptions extends Record<string, OptionType> = R
         const keys = this.getKeys();
         if (keys.length)
             usage.commands = Object.fromEntries(keys.filter(k => k[0] != '$').map(k => [k, this.index[k]._doc?.description || (this.index[k].getKeys().length ? 'use `' + k + ' --help` to get more info on this' : '')]));
+        else
+            usage.commands = {};
+
         usage.options = this._option.usage(context);
 
         const delegate = this._delegate;
@@ -442,11 +445,11 @@ export class NamespaceMiddleware<TOptions extends Record<string, OptionType> = R
         return this as unknown as NamespaceMiddleware<T & TOptions, TState>;
     }
 
-    option<TValue extends OptionType>(): <const TName extends string>(name: TName, options?: OptionOptions<TValue>) => NamespaceMiddleware<TOptions & { [key in TName]: TValue }>
+    option<TValue extends OptionType>(): <const TName extends string>(name: TName, options?: OptionOptions<TValue>) => NamespaceMiddleware<TOptions & { [key in TName]: TValue }, TState>
     option<TValue extends OptionType, const TName extends string>(name: TName, option?: OptionOptions<TValue>)
-        : NamespaceMiddleware<TOptions & { [key in TName]: TValue }>
+        : NamespaceMiddleware<TOptions & { [key in TName]: TValue }, TState>
     option<TValue extends OptionType, const TName extends string>(name?: TName, option?: OptionOptions<TValue>)
-        : NamespaceMiddleware<TOptions & { [key in TName]: TValue }> | (<const TName extends string>(name: TName, options?: OptionOptions<TValue>) => NamespaceMiddleware<TOptions & { [key in TName]: TValue }>)
+        : NamespaceMiddleware<TOptions & { [key in TName]: TValue }, TState> | (<const TName extends string>(name: TName, options?: OptionOptions<TValue>) => NamespaceMiddleware<TOptions & { [key in TName]: TValue }, TState>)
     {
         if (typeof name == 'undefined')
             return <const TName extends string>(name: TName, option?: OptionOptions<TValue>) =>
