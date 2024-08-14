@@ -278,6 +278,7 @@
 * improve session management a162477
 * improve session management based on socket lifetime 545bbf2
 * improve spanasync resilience 7c1b792
+* improve start reliability 7e059a0
 * improve start/stop doc e4be495
 * improve support for extends f6622ee
 * improve type support in metadata generation 22c4a00
@@ -501,6 +502,7 @@
 * runtime bug 53caad3
 * schema typing cff3813
 * secret key transfer to nested config 77702ce
+* serve SHOULD return after the server is started 7e21fa4
 * set connect configuration 5b633a8
 * set log level for any namespace e1b1025
 * shebang on akala CLI e893277
