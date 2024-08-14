@@ -50,7 +50,7 @@ export default function (_config, program: NamespaceMiddleware<{ configFile: str
         .action(c =>
         {
             c.options.configFile += '#pm';
-            return start.call({} as unknown as State, null, 'pm', { name: 'pm', ...c.options }, c);
+            return start.call({ config: c.state.pm } as unknown as State, null, 'pm', { name: 'pm', ...c.options }, c);
         });
 
     let socket: Socket;
@@ -131,7 +131,7 @@ export default function (_config, program: NamespaceMiddleware<{ configFile: str
                         resolve();
                     else
                     {
-                        if (e.code === 'ENOENT')
+                        if (e.code === 'ENOENT' || e.code == 'ECONNREFUSED') 
                         {
                             // return tryLocalProcessing(c).catch(() =>
                             // {
