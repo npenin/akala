@@ -2,7 +2,7 @@ import { Container, Processors, Metadata, Cli, updateCommands } from "@akala/com
 import State, { RunningContainer, SidecarMetadata } from '../state.js';
 import { spawn, ChildProcess, StdioOptions } from "child_process";
 import pmContainer from '../container.js';
-import { Deferred, eachAsync } from "@akala/core";
+import { eachAsync, Event } from "@akala/core";
 import { NewLinePrefixer } from "../new-line-prefixer.js";
 import { CliContext, unparseOptions } from "@akala/cli";
 import { ErrorWithStatus } from "@akala/core";
@@ -144,13 +144,13 @@ export default async function start(this: State, pm: pmContainer.container & Con
         container.process = cp;
 
         Object.assign(container, def, instanceConfig);
-        container.ready = new Deferred();
+        container.ready = new Event();
         if (container.commandable)// && !container.stateless)
         {
             container.unregister(Cli.Metadata.name);
             container.register(Metadata.extractCommandMetadata(Cli.Metadata));
         }
-        container.ready.then(() =>
+        container.ready.addListener(() =>
         {
             return container.dispatch('$metadata').then((metaContainer: Metadata.Container) =>
             {
@@ -159,11 +159,12 @@ export default async function start(this: State, pm: pmContainer.container & Con
                 container.stateless = metaContainer.stateless;
                 pm.register(name, container, true);
             });
-        }, () =>
-        {
-            console.warn(`${options.name} has disconnected`);
-            container.running = false;
         });
+        // , () =>
+        // {
+        //     console.warn(`${options.name} has disconnected`);
+        //     container.running = false;
+        // });
 
         container.running = true;
         let buffer = [];
@@ -174,7 +175,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
             if (!container.stateless)
             {
                 pm.unregister(container.name);
-                container.ready.reject(new Error('program stopped: ' + buffer?.join('')));
+                console.log(new Error('program stopped: ' + buffer?.join('')));
             }
         });
         if (options.wait && container.commandable)
@@ -185,7 +186,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
                 buffer.push(chunk);
             }
             cp.stderr.on('data', gather);
-            await container.ready.finally(() =>
+            cp.on('exit', () =>
             {
                 buffer = null;
                 cp.stderr.off('data', gather);

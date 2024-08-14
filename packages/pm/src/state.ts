@@ -1,6 +1,6 @@
 import { Container } from "@akala/commands";
 import { ChildProcess } from "child_process";
-import { Deferred, SerializableObject } from "@akala/core";
+import { Event, SerializableObject } from "@akala/core";
 import { SocketAdapter } from "@akala/json-rpc-ws";
 import { ServeMetadata } from "@akala/commands";
 import { ProxyConfiguration } from "@akala/config";
@@ -44,5 +44,5 @@ export interface RunningContainer<T extends string | SerializableObject = any> e
     process: ChildProcess;
     running?: boolean;
     stateless: boolean;
-    ready?: Deferred<void>;
+    ready?: Event<[void]>;
 }

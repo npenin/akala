@@ -25,5 +25,5 @@ export default async function ready(this: State, pm: pm.container & Container<St
             pm.unregister(container.name);
         }, '$disconnect'));
     }
-    container?.ready?.resolve();
+    container?.ready?.emit();
 }
