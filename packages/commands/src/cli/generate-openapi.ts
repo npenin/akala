@@ -38,8 +38,7 @@ export default async function generate(folder?: string, name?: string, outputFil
         {
             result.paths[commands[i].config.http.route] = result.paths[commands[i].config.http.route] || {};
             var action: jsonObject = result.paths[commands[i].config.http.route][commands[i].config.http.method] = { parameters: [] };
-            var keys: Key[] = [];
-            pathToRegexp(commands[i].config.http.route, keys);
+            var keys: Key[] = [].concat(pathToRegexp(commands[i].config.http.route).keys);
             var hasBody = false;
             action.parameters = commands[i].config.http.inject.map(p =>
             {
