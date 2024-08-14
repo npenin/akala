@@ -1,4 +1,4 @@
-#  (2024-08-12)
+#  (2024-08-14)
 
 
 ### Bug Fixes
@@ -134,6 +134,7 @@
 * command configuration path resolution 5bf471e
 * command help with mandatory positional parameter f6002a8
 * commands default path 0bb1723
+* commands discovery when using delegate 938fad2
 * commands stay in order c3358c1
 * CommandWithAffinityProcessor better detection 9ff4857
 * compilation c760ee3
@@ -230,6 +231,7 @@
 * handle case when middleware failed but continues a623d8e
 * handle default init 5482bcb
 * handle direct invokes f4a524e
+* handle edge case on cli usage discovery 2f01e20
 * handle empty orders in connectByPreference d35a80b
 * handle non provided description in doc a3685e6
 * handle non-specified pm socket option dfd5212
@@ -297,6 +299,7 @@
 * initial pm setup 57f516a
 * inject usage after move to full meta cmd 2cbda96
 * injector inheritance fa3f724
+* injector logging cb345e7
 * injector self registration 5bf320a
 * interact error support 769abbe
 * interact errors happen on program and not root 363c943
@@ -498,6 +501,7 @@
 * runtime bug 53caad3
 * schema typing cff3813
 * secret key transfer to nested config 77702ce
+* set connect configuration 5b633a8
 * set log level for any namespace e1b1025
 * shebang on akala CLI e893277
 * sidecar builder 26673b1
@@ -614,6 +618,7 @@
 * update workspace parameter binding 6b6b07b
 * updateCommands now removes all commands before re-registering 7bc2f3d
 * upgrade to latest commands 2801d27
+* use config from akala when starting pm 51f3898
 * use existing base64 encoder ebd748e
 * use static import instead of dynamic import 0ba9fce
 * variable leak adef56b
@@ -886,6 +891,7 @@
 * switched from raw debug to logger from core efef2da
 * update command behavior 2fb6184
 * update configuration structure 8a395ff
+* update ready to event instead of promise 161b347
 * update to ESM 87800a0
 * update to outlets 0ead02c
 * upgrade to verifyHash and getHash 779d7ec
