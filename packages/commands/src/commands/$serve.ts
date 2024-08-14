@@ -13,7 +13,6 @@ export default async function $serve(container: Container<unknown>, options: Ser
 
     signal = options.signal;
     await serve(container, options);
-    return new Promise<void>((resolve, reject) => signal?.addEventListener('abort', e => signal.reason ? reject(signal.reason) : resolve()));
 }
 
 $serve.$inject = ['$container', 'param.0'];
