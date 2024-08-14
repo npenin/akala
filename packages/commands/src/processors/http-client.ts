@@ -185,7 +185,7 @@ export class HttpClient extends CommandProcessor
                 }
             })
         if (route)
-            options.url = resolveUrl(pathRegexp.compile(url)(route))
+            options.url = resolveUrl(pathRegexp.compile(url)(route as Record<string, string | string[]>))
         else
             options.url = resolveUrl(url);
 

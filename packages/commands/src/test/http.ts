@@ -30,8 +30,8 @@ describe('test http processing', function ()
                 if (cmd && cmd.config && cmd.config.http && cmd.config.http.inject)
                 {
                     const config = cmd.config.http;
-                    const keys: pathRegexp.Key[] = [];
-                    const regexp = pathRegexp.pathToRegexp(config.route, keys);
+                    const regexp = pathRegexp.pathToRegexp(config.route);
+                    const keys: pathRegexp.Key[] = regexp.keys;
                     const match = url.match(regexp)
                     if (match && config.inject)
                     {

@@ -1,4 +1,4 @@
-import { Key, ParseOptions, pathToRegexp, TokensToRegexpOptions, regexpToFunction, RegexpToFunctionOptions, MatchFunction } from "path-to-regexp";
+import { Key, PathToRegexpOptions, pathToRegexp, MatchFunction, match } from "path-to-regexp";
 import { MiddlewarePromise } from '../middlewares/shared.js';
 import { MiddlewareCompositeAsync } from '../middlewares/composite-async.js';
 import { Routable, RouteBuilderArguments } from "./route.js";
@@ -7,16 +7,19 @@ import { MiddlewareAsync } from "../middlewares/shared.js";
 export class MiddlewareRouteAsync<T extends [Routable, ...unknown[]]> extends MiddlewareCompositeAsync<T>
 {
     params: Key[];
-    match: MatchFunction<{ path: string, index: number, params: Record<string, string> }>;
+    match: MatchFunction<Record<string, string>>;
     delimiter: string;
-    constructor(route: string | RegExp, options?: TokensToRegexpOptions & ParseOptions & RegexpToFunctionOptions)
+    constructor(route: string | RegExp, options?: PathToRegexpOptions)
     {
         super(route.toString());
         this.params = [];
         this.delimiter = options && options.delimiter || '/';
 
-        const routePath = pathToRegexp(route, this.params, options);
-        this.match = regexpToFunction<{ path: string, index: number, params: Record<string, string> }>(routePath, this.params, options);
+        const routePath: RegExp & Partial<{ keys: Key[] }> = route instanceof RegExp ? route : pathToRegexp(route, options);
+        if ('keys' in routePath)
+            this.params = routePath.keys;
+
+        this.match = match(route.toString(), options)
     }
 
     route(...args: RouteBuilderArguments): MiddlewareRouteAsync<T>
