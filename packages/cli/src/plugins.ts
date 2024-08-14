@@ -21,7 +21,7 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
                 await context.state.commit();
             else
                 await fs.writeFile(context.options.configFile, JSON.stringify(context.state, null, 4));
-        })
+        });
 
     plugins.command('remove <path>')
         .option<string>()('path', { normalize: true })
@@ -35,12 +35,12 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
                 await context.state.commit();
             else
                 await fs.writeFile(context.options.configFile, JSON.stringify(context.state, null, 4));
-        })
+        });
 
     plugins.command('ls')
         .state<{ plugins: string[] }>()
         .action(async function (context)
         {
             return context.state.plugins;
-        })
+        });
 }

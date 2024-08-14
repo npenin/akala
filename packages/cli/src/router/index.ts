@@ -355,6 +355,9 @@ export class NamespaceMiddleware<TOptions extends Record<string, OptionType> = R
             if (parameters.length == 0 && description == null && this.index[cli[1]])
                 return this.index[cli[1]] as NamespaceMiddleware<TOptions & TOptions2, TState>;
 
+            if (parameters.length == 0 && description == null && this._delegate instanceof NamespaceMiddleware)
+                return this._delegate.command(name, description);
+
             middleware = new NamespaceMiddleware(cli[1], { usage: name, description }, convertToMiddleware(function (context)
             {
                 // if (!context.options.help)
