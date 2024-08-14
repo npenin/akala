@@ -29,7 +29,7 @@ export default async function start(this: State, pm: pmContainer.container & Con
     {
         var instanceConfig = this.config.mapping[options.name || name];
         var def: ProxyConfiguration<SidecarMetadata>;
-        if (typeof instanceConfig == 'undefined')
+        if (typeof instanceConfig == 'undefined' || !instanceConfig.container)
             def = this.config.containers[name];
         else
             def = this.config.containers[instanceConfig.container];
