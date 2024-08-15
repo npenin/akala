@@ -1,16 +1,16 @@
 import changelog from 'conventional-changelog-angular';
 import { Commit as ParserCommit } from 'conventional-commits-parser';
-import regex from 'conventional-commits-parser/lib/regex.js';
 import { Commit } from './parse.js';
 
+const noteKeywords = ['BREAKING CHANGE', 'BREAKING-CHANGE'];
+const noteKeywordsSelection = noteKeywords.join('|');
+const noteKeywordsPattern = new RegExp('^[\\s|*]*(' + noteKeywordsSelection + ')[:\\s]+(.*)')
 
 export default async function (commits: Commit[]): Promise<ParserCommit[]>
 {
     const parserOpts = (await changelog()).parserOpts;
-    const regexParser = regex(parserOpts);
     const headerPattern: RegExp = typeof parserOpts.headerPattern == 'string' ? new RegExp(parserOpts.headerPattern) : parserOpts.headerPattern;
     const headerCorrespondence: string[] = typeof parserOpts.headerCorrespondence == 'string' ? [parserOpts.headerCorrespondence] : parserOpts.headerCorrespondence;
-    const noteKeywords: RegExp = regexParser.notes;
 
     return commits.map(c =>
     {
@@ -32,7 +32,7 @@ export default async function (commits: Commit[]): Promise<ParserCommit[]>
                 return;
             }
 
-            const notesMatch = l.match(noteKeywords);
+            const notesMatch = l.match(noteKeywordsPattern);
             var isBody = true;
             if (notesMatch)
             {
