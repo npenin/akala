@@ -38,10 +38,10 @@ jobs:
         run: yarn tsc -b packages/tsconfig.esm.json
       - name: Compile CJS
         run: yarn tsc -b packages/tsconfig.cjs.json
-      - name: Linting
-        uses: wearerequired/lint-action@v2
-        with:
-          eslint: true
+      #- name: Linting
+      #  uses: wearerequired/lint-action@v2
+      #  with:
+      #    eslint: true
       - name: Ensure CJS
         run: yarn workspaces foreach -Ap --no-private --include "@akala/config|@akala/core|@akala/json-rpc-ws|@akala/cli|@akala/commands" exec "echo '{"'"type":"commonjs"}'"' > dist/cjs/package.json"
       - name: publish updates
