@@ -1,5 +1,3 @@
-import conventionalCommitsParser from "conventional-commits-parser";
-
 export interface Commit
 {
     author: { name: string, mail: string };
@@ -10,7 +8,6 @@ export interface Commit
 
 export default function (commitsString: string)
 {
-    conventionalCommitsParser()
     const commitIdRE = /^commit ([0-9a-f]{40})$/gm;
     const authorRE = /^Author:\s+([^<]+) <([^>]*)>$/gm;
     const mergeRE = /^Merge:\s+([0-9a-f]+)\s+([0-9a-f]+)\s*$/gm;

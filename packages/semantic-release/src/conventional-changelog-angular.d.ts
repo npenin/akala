@@ -1,8 +1,8 @@
-
 declare module 'conventional-changelog-angular'
 {
-    import { WriterOptions, ParserOptions } from 'conventional-changelog-core';
+    import { Options as WriterOptions } from 'conventional-changelog-writer';
+    import { Commit, ParserOptions } from 'conventional-commits-parser';
 
 
-    export default function createPreset(): Promise<{ parserOpts: ParserOptions, writerOpts: WriterOptions }>;
+    export default function createPreset(): Promise<{ parserOpts: ParserOptions, writerOpts: WriterOptions<Commit> }>;
 }
