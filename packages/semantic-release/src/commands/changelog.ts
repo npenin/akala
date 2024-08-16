@@ -5,5 +5,5 @@ import fs from 'fs/promises'
 
 export default async function changelog(commits: Commit[], changelogPath: string)
 {
-    await fs.writeFile(changelogPath, await writeChangelogString(commits, {}, (await angular()).writerOpts));
+    await fs.writeFile(changelogPath, await writeChangelogString(commits, {}, (await angular()).writer));
 }
