@@ -1,4 +1,7 @@
-#  (2024-08-14)
+#  (2024-08-16)
+
+
+* fix:base64 helpers generating empty data 0ed3fad
 
 
 ### Bug Fixes
@@ -55,6 +58,8 @@
 * allow pm yto start d498d2b
 * allow style setting 05b1266
 * allow using jsonrpc trigger in browser 49a8733
+* angular type def after dep upgrade b44e1b5
+* angular type def after dep upgrade fc4698f
 * any implementation fixed 3302fc0
 * any on mongodb efa6f5d
 * aritificial bump ae0e129
@@ -226,6 +231,7 @@
 * get hash has conterpart verify since the switch to sign 33c251e
 * get rid of last json import e4e402a
 * git push tags fc8e609
+* git-semver-tags after upgrade eca26a2
 * gives scope as a parameter and not the binding scope 964080f
 * handle bridges/proxy 69ae6f2
 * handle case when middleware failed but continues a623d8e
@@ -569,6 +575,7 @@
 * update after base64 update d581037
 * update after base64 update 24bb306
 * update after cli option update 06e3cb5
+* update after conventional breaking changes 06481aa
 * update after core and storage upgrade 842e780
 * update after core breaking change 6fd28e8
 * update after core breaking change 4291683
@@ -662,9 +669,6 @@
 
 * remove next in async each/map/grep aaec2ab
 * rename app to sidecar e304029
-
-
-* fix:base64 helpers generating empty data 0ed3fad
 
 
 ### Features
