@@ -4,5 +4,5 @@ declare module 'conventional-changelog-angular'
     import { Commit, ParserOptions } from 'conventional-commits-parser';
 
 
-    export default function createPreset(): Promise<{ parserOpts: ParserOptions, writerOpts: WriterOptions<Commit> }>;
+    export default function createPreset(): Promise<{ parser: ParserOptions, writer: WriterOptions<Commit> }>;
 }
