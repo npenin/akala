@@ -1,9 +1,9 @@
 #  (2024-08-18)
 
 
-### Bug Fixes
+### Features
 
-* commit parsing when empty commit message 6ac89b4
+* add tagging when publishing + add re-tag workflow ed762c5
 
 
 
