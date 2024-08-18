@@ -1,10 +1,10 @@
 
-describe('raw', function ()
+describe('raw', async function ()
 {
-    require('./raw');
+    await import('./raw.js');
 })
 
-describe('frame', function ()
+describe('frame', async function ()
 {
-    require('./frames');
+    await import('./frames.js');
 })

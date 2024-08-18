@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-import 'source-map-support/register'
+import 'source-map-support/register.js'
 import normalize from '../helpers/normalize.js';
 import path from 'path'
 // import { createRequire } from 'module';

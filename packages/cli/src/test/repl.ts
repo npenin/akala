@@ -1,6 +1,6 @@
 import { replEval } from '../helpers/repl.js'
 import * as assert from 'assert'
-import 'source-map-support/register'
+import 'source-map-support/register.js'
 
 function equals(input: string, output: string[], message?: string)
 {

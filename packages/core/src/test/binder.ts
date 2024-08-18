@@ -2,7 +2,7 @@
 import { Parser } from '../index.js';
 import { Binding, ObservableObject } from '../observables/object.js';
 import * as assert from 'assert';
-// import 'source-map-support/register'
+// import 'source-map-support/register.js'
 
 const target: {
     foo: {
