@@ -1,4 +1,4 @@
-#  (2024-08-16)
+#  (2024-08-18)
 
 
 * fix:base64 helpers generating empty data 0ed3fad
@@ -425,6 +425,7 @@
 * proper typing on store create 83caee7
 * proper use of normalize for plugins 130102e
 * properly generate module from hierarchy dc28cb0
+* propery switch parser 04da73e
 * provide proper variable to bumps dependents 82f8ddb
 * proxy handling of properties update 47f6102
 * publish new version f9f4db9
@@ -614,6 +615,7 @@
 * update ready command for remote containers 823810d
 * update ready comment definition ebb8c05
 * update reference to field 471f538
+* update source-map-support imports a8d5065
 * update test script f730fdf
 * update to commands  major version 180608a
 * update to commands major version 0631f6e
@@ -629,6 +631,7 @@
 * upgrade to latest commands 2801d27
 * use config from akala when starting pm 51f3898
 * use existing base64 encoder ebd748e
+* use signal to close pm connection 02bc3d5
 * use static import instead of dynamic import 0ba9fce
 * variable leak adef56b
 * variable renaming f825597
