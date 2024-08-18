@@ -1,0 +1,52 @@
+outputs: $(build.taggedCommit)
+
+jobs:
+  build:
+    steps:
+      - name: workspaces
+        run:
+          - yarn
+          - workspaces
+          - list
+          - --json
+          - --verbose
+          - --no-private
+        with:
+          result: stdout
+          format: jsonnd
+      - name: use self
+        uses: ./commands.json
+      - name: versions
+        dispatch: get-version
+        with:
+          path: $($)
+        outputAs: versions
+        foreach: $(build.workspaces)
+      - name: tagged-commit
+        run:
+          - git
+          - rev-list
+          - --no-walk
+          - $($.name)@$($.version)
+        with:
+          result: stdout
+          ignore-failure: true
+        foreach: $(build.versions)
+      - name: delete-tag
+        run:
+          - git
+          - tag
+          - -d
+          - $($.name)
+        with:
+          path: $($)
+        foreach: $(build.tagged-commit)
+      - name: re-tag
+        run:
+          - git
+          - tag
+          - $($.name)
+          - $(build.taggedCommit.versions[$index])
+        with:
+          path: $($)
+        foreach: $(build.tagged-commit)
