@@ -1,6 +1,6 @@
 ///<reference types="mocha" />
 import * as assert from 'assert'
-import 'source-map-support/register'
+import 'source-map-support/register.js'
 import { array, bit, string, uint16, uint16LE, uint2, uint3, uint32, uint32LE, uint4, uint5, uint6, uint64, uint7, uint8 } from '../parsers/index.js'
 import { Cursor, Parser, parserWrite } from '../parsers/_common.js'
 

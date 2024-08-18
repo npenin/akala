@@ -1,7 +1,7 @@
 ///<reference types="mocha" />
 import * as self from '../index.js'
 import * as assert from 'assert'
-import 'source-map-support/register'
+import 'source-map-support/register.js'
 import { object, uint16, uint8, string, buffer, bit, property, chooseProperty, emancipate } from '../parsers/index.js'
 import { Cursor, parserWrite } from '../parsers/_common.js'
 

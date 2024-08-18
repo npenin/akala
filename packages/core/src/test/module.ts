@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-import 'source-map-support/register'
+import 'source-map-support/register.js'
 
 import { module } from '../index.js';
 import * as assert from 'assert'
