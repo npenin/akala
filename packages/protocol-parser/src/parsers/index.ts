@@ -246,7 +246,7 @@ export function choose<T extends { [key in TKey]: number | string }, const TKey 
     return new Switch<T, TKey, TResult, T[TKey]>(name, parsers);
 }
 
-export function chooseProperty<T, const TKey extends keyof T = keyof T, const TKeyAssign extends keyof T = keyof T, TResult = T[TKeyAssign], TValue extends (T[TKey] extends string | number | symbol ? T[TKey] : never) = (T[TKey] extends string | number | symbol ? T[TKey] : never)>(name: TKey, assignProperty: TKeyAssign, parsers: { [key in TValue]: AnyParser<TResult, T[TKeyAssign]> })
+export function chooseProperty<T, const TKey extends keyof T = keyof T, const TKeyAssign extends keyof T = keyof T, TResult extends T[TKeyAssign] = T[TKeyAssign], TValue extends (T[TKey] extends string | number | symbol ? T[TKey] : never) = (T[TKey] extends string | number | symbol ? T[TKey] : never)>(name: TKey, assignProperty: TKeyAssign, parsers: { [key in TValue]: AnyParser<TResult, T[TKeyAssign]> })
 // : ParserWithMessageWithoutKnownLength<TResult, T>
 {
     return new SwitchProperty<T, TKey, TKeyAssign, TResult, TValue>(name, assignProperty, parsers);
