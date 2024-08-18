@@ -42,12 +42,15 @@ export default function (commitsString: string)
         const date = new Date(Date.parse(dateMatch[1]));
         var index = dateMatch.index + dateMatch[0].length + 2;
         if (emptyLineRE.test(commitsString) && emptyLineRE.lastIndex !== index)
-            throw new Error('invalid git format');
-
-        if (!emptyLineRE.test(commitsString))
-            throw new Error(`invalid git format: ${commitsString}`);
-
-        commits.push({ hash: commitId, author: { name: nickname, mail }, message: commitsString.substring(index, emptyLineRE.lastIndex).replace(/(\n|^)(?:\t| {4})/g, '$1').trimEnd(), date: date })
+            throw new Error(`invalid git format1: ${commitsString}`);
+        if (commitsString.substring(index, index + 6) == 'commit')
+            commits.push({ hash: commitId, author: { name: nickname, mail }, message: '', date: date });
+        else
+        {
+            if (!emptyLineRE.test(commitsString))
+                throw new Error(`invalid git format2: ${commitsString}`);
+            commits.push({ hash: commitId, author: { name: nickname, mail }, message: commitsString.substring(index, emptyLineRE.lastIndex).replace(/(\n|^)(?:\t| {4})/g, '$1').trimEnd(), date: date });
+        }
     }
     return commits;
 }
