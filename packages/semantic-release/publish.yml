@@ -44,7 +44,16 @@ jobs:
       - name: publish
         foreach: $(build.publicPackages)
         foreach-strategy: wait-for-previous
-        run: yarn workspace $($.name) npm publish --access public
+        run:
+          - yarn
+          - workspace
+          - $($.name)
+          - npm
+          - publish
+          - --access
+          - public
+          - --tag
+          - $($.name)@$($.version)
         retries: 3
         with:
           shell: true
