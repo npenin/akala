@@ -125,8 +125,8 @@ program.option<string>()('program', { needsValue: true, normalize: true, positio
                                 pmConnectInfo = parseMetadata(c.options.pmSocket, c.options.tls);
                             else
                                 pmConnectInfo = serveMetadata({ args: ['local'], options: { socketName: 'pm' } })
-                            const x = await connectByPreference(pmConnectInfo, { metadata: pmMeta, container: cliContainer });
-                            controller.signal.addEventListener('abort', () => x.processor)
+                            const x = await connectByPreference(pmConnectInfo, { metadata: pmMeta, container: cliContainer, signal: controller.signal });
+                            // controller.signal.addEventListener('abort', () => x.processor)
                             pm = x.container as Container<unknown> & pmDef.container;
                             pm.processor.useMiddleware(20, x.processor);
                             const connect = pm.resolve('connect');
