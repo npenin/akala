@@ -142,6 +142,7 @@
 * commands discovery when using delegate 938fad2
 * commands stay in order c3358c1
 * CommandWithAffinityProcessor better detection 9ff4857
+* commit parsing when empty commit message 6ac89b4
 * compilation c760ee3
 * compilation c7efdb0
 * compilation e63e92e
