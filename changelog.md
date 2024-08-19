@@ -782,6 +782,7 @@
 * add support for untagged packages (yet) 6fbed9c
 * add sync routers f22b631
 * add synchronous middleware 75141d3
+* add tagging when publishing + add re-tag workflow ed762c5
 * add tcp remote protocol handler 9d5dbfb
 * add ternary expression b7fab70
 * add the possibility to load programs with file urls dbbc1a6
