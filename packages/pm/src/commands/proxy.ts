@@ -10,7 +10,7 @@ export default async function (this: State, name: string, socket: SocketAdapter)
         throw new ErrorWithStatus(404, `There is no such process with name ${name}`);
     const connectionId = randomUUID();
     this.bridges[connectionId] = { left: socket };
-    cp.dispatch('$bridge', connectionId);
+    await cp.dispatch('$bridge', connectionId);
     return new Promise<void>((resolve) =>
     {
         const x = setInterval(() =>
