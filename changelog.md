@@ -1,4 +1,4 @@
-#  (2024-08-18)
+#  (2024-08-19)
 
 
 * fix:base64 helpers generating empty data 0ed3fad
@@ -100,6 +100,7 @@
 * binding constructor 8294d0f
 * Binding new implementation b287d4c
 * bindings are less intrusive 3ef2783
+* bridge and proxy commands 5a89ce5
 * broken command processor 22afbc0
 * browser exports 8888cc6
 * browser implementation (remove implicit reference to node) ef786d1
@@ -468,6 +469,7 @@
 * remove extra logging 44879ac
 * remove extra logging 7312458
 * remove extra logging fee977b
+* remove extra pm logging a2380a5
 * remove extra trace 552ccef
 * remove extra ts declaration 0283564
 * remove failure masking 7c4ae85
