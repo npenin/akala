@@ -43,12 +43,12 @@
             "name": "bridge",
             "config": {
                 "fs": {
+                    "path": "dist/esm/commands/bridge.js",
+                    "source": "src/commands/bridge.ts",
                     "inject": [
                         "param.0",
                         "param.1"
-                    ],
-                    "path": "dist/esm/commands/bridge.js",
-                    "source": "src/commands/bridge.ts"
+                    ]
                 },
                 "jsonrpc": {
                     "inject": [
@@ -57,7 +57,10 @@
                     ]
                 },
                 "": {
-                    "inject": []
+                    "inject": [
+                        "param.0",
+                        "param.1"
+                    ]
                 }
             }
         },
