@@ -51,7 +51,7 @@ program.option<string>()('program', { needsValue: true, normalize: true, positio
     }).
     preAction(async c => //If pure js file
     {
-        try
+        if (URL.canParse(c.options.program))
         {
             const url = new URL(c.options.program);
             if (url.protocol == 'file:')
@@ -59,10 +59,7 @@ program.option<string>()('program', { needsValue: true, normalize: true, positio
             else
                 throw new Error('remote commands are not yet supported');
         }
-        catch (e)
-        {
-            console.log(e);
-        }
+
         folderOrFile = await lstat(c.options.program);
         if (folderOrFile.isFile() && path.extname(c.options.program) === '.js')
             return require(c.options.program);
