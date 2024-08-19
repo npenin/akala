@@ -1,9 +1,10 @@
-#  (2024-08-18)
+#  (2024-08-19)
 
 
 ### Bug Fixes
 
-* use signal to close pm connection 02bc3d5
+* bridge and proxy commands 5a89ce5
+* remove extra pm logging a2380a5
 
 
 
