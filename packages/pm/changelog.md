@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* update pm metadata a96246c
+* $bridge implementation 70a9fc9
 
 
 
