@@ -8,6 +8,7 @@
 
 * #10 6e164e7
 * #988 3b5ade8
+* $bridge implementation 70a9fc9
 * ac new gracefully ends 6647f80
 * adapt to trigger new definition 8c2d136
 * add akala as export ff84fdc
