@@ -156,8 +156,8 @@ program.option<string>()('program', { needsValue: true, normalize: true, positio
                         pm2.container.unregister(Cli.Metadata.name);
                         pm2.container.register(Metadata.extractCommandMetadata(Cli.Metadata));
                         pm2.container.register(Metadata.extractCommandMetadata(pm.resolve('bridge')));
-                        if (await pm2.container.dispatch('bridge', connectionId))
-                            throw undefined;
+                        if (!await pm2.container.dispatch('bridge', connectionId))
+                            throw new Error('connection could not be established');
                     }, '$bridge', ['param.0']));
 
                     if (init)
