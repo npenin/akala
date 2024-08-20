@@ -1,10 +1,9 @@
-#  (2024-08-19)
+#  (2024-08-20)
 
 
 ### Bug Fixes
 
-* bridge and proxy commands 5a89ce5
-* remove extra pm logging a2380a5
+* update pm metadata a96246c
 
 
 
