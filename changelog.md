@@ -1,4 +1,4 @@
-#  (2024-08-19)
+#  (2024-08-20)
 
 
 * fix:base64 helpers generating empty data 0ed3fad
@@ -615,6 +615,7 @@
 * update metadata 884c851
 * update package definitions 300a978
 * update package publication to public 6d71bdc
+* update pm metadata a96246c
 * update ready command for remote containers 823810d
 * update ready comment definition ebb8c05
 * update reference to field 471f538
