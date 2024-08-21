@@ -1,9 +1,14 @@
-#  (2024-08-20)
+#  (2024-08-21)
 
 
 ### Bug Fixes
 
-* $bridge implementation 70a9fc9
+* pm log implementation a8fd354
+
+
+### Features
+
+* export meta definition ca821ab
 
 
 
