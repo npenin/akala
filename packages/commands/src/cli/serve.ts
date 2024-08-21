@@ -3,9 +3,9 @@ import { Container } from '../model/container.js';
 import { unlink } from 'fs';
 import { NetSocketAdapter } from '../net-socket-adapter.js';
 import { eachAsync, SimpleInjector, noop } from '@akala/core';
-import { trigger } from '../triggers/jsonrpc.js';
 import { SecureContextOptions, Server as tlsServer } from 'tls';
 import { ServeMetadataWithSignal } from '../serve-metadata.js';
+import { JsonRpc } from '../processors/jsonrpc.js';
 
 export interface ServeOptions
 {
@@ -96,7 +96,7 @@ serverHandlers.register<ServerHandler<NetConnectOpts>>('socket', async (containe
     server.addListener('connection', (socket) =>
     {
         socket.setDefaultEncoding('utf8');
-        container.attach(trigger, new NetSocketAdapter(socket));
+        container.attach(JsonRpc.trigger, new NetSocketAdapter(socket));
     });
 });
 
