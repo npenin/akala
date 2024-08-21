@@ -74,6 +74,7 @@
 * artificial bump e5e8cf5
 * artificial bump 59763e7
 * artificial bump 60cc1c1
+* artificial bump to force using latest tag on npm b3882a7
 * artificially bump protocol-parser eee3cb7
 * assign id after insert ce42919
 * async CLI init 484a0b4
@@ -347,6 +348,7 @@
 * make page and Scope available to the wild a613874
 * make peer dependency as mandatory fd097ef
 * make pm work with connect args ec5e1fc
+* make ui-shell private and update its name 401aa23
 * many fixes in auth c1631c9
 * mapAsync 64a258e
 * metadata declaration on fork 9856bd0
@@ -436,6 +438,7 @@
 * provide proper variable to bumps dependents 82f8ddb
 * proxy handling of properties update 47f6102
 * publish new version f9f4db9
+* publish reuses latest tag 373f775
 * publish workflow 63be9de
 * pubsub import assert b4584a8
 * push before tagging d980dd0
