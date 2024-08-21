@@ -6,6 +6,7 @@
 * add node as an export condition 4aa41a8
 * allow pm yto start d498d2b
 * artificial bump 59763e7
+* artificial bump to force using latest tag on npm b3882a7
 * bump version 4a791be
 * downgrade all packages to support both cjs and mjs 56f6136
 * downgrade all packages to support both cjs and mjs 5c64966
