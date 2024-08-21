@@ -8,6 +8,7 @@
 * allow pm yto start d498d2b
 * allow style setting 05b1266
 * artificial bump 59763e7
+* artificial bump to force using latest tag on npm b3882a7
 * client outlet commands management 5533e79
 * **client:** simplify inheritance chain 91573ab
 * composers are now returning disposables but are not async anymore 87dfcce
