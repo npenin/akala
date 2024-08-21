@@ -2,12 +2,12 @@ import { ServerHandler, serverHandlers, getOrCreateServerAndListen, getOrCreateS
 import { NetConnectOpts } from "net";
 import * as ws from 'ws'
 import * as jsonrpcws from '@akala/json-rpc-ws';
-import { Triggers } from '@akala/commands';
 
 import https from 'https';
 import http from 'http';
 import { trigger } from "./triggers/http.js";
 import { SecureContextOptions } from "tls";
+import { Processors } from "@akala/commands";
 
 serverHandlers.register<ServerHandler<NetConnectOpts>>('http', async (container, options) =>
 {
@@ -53,7 +53,7 @@ serverHandlers.register<ServerHandler<NetConnectOpts>>('ws', async (container, o
     container.register('$wsServer', wsServer);
     wsServer.on('connection', (socket: ws.WebSocket) =>
     {
-        container.attach(Triggers.jsonrpcws, new jsonrpcws.ws.SocketAdapter(socket));
+        container.attach(Processors.JsonRpc.trigger, new jsonrpcws.ws.SocketAdapter(socket));
     })
 
     return stop;
@@ -75,7 +75,7 @@ serverHandlers.register<ServerHandler<NetConnectOpts>>('wss', async (container, 
     container.register('$wssServer', wsServer);
     wsServer.on('connection', (socket: ws.WebSocket) =>
     {
-        container.attach(Triggers.jsonrpcws, new jsonrpcws.ws.SocketAdapter(socket));
+        container.attach(Processors.JsonRpc.trigger, new jsonrpcws.ws.SocketAdapter(socket));
     })
 
     return stop;
