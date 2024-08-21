@@ -162,10 +162,10 @@ function formatUsageObject(usage: UsageObject): string
     if (usage.text)
         result += usage.text + '\n';
 
-    if (usage.commands)
+    if (usage.commands && Object.keys(usage.commands).length)
         result += '\nList of commands:\n' + formatUsage(usage.commands, 4) + '\n';
 
-    if (usage.options)
+    if (usage.options && Object.keys(usage.options).length)
         result += '\nOptions:\n' + formatUsage(usage.options, 4);
 
     return result;
