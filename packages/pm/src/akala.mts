@@ -224,7 +224,7 @@ export default function (_config, program: NamespaceMiddleware<{ configFile: str
         if (result instanceof Readable)
         {
             result.pipe(process.stdout);
-            return;
+            return new Promise((resolve) => result.on('close', resolve));
         }
         if (socket)
             socket.end();
