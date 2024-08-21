@@ -1,4 +1,4 @@
-#  (2024-08-20)
+#  (2024-08-21)
 
 
 * fix:base64 helpers generating empty data 0ed3fad
@@ -129,6 +129,7 @@
 * cli options when no options is provided b3d131c
 * cli parsing 0736bf7
 * cli parsing a28c8fe
+* cli usage formatting b2d99b3
 * Cli wait fixed bac25a8
 * client compilation 4815fd5
 * client outlet commands management 5533e79
@@ -159,6 +160,7 @@
 * connect fails when connect on mapping is undefined 16bdd27
 * connect should failed if mapping is not found 4392197
 * connect when connecting to pm 7494ae0
+* connectByPreference honors preferRemote as preferrence 4e22dcd
 * connectByPreference not working with sockets bc8a5e1
 * consider pm container from options 56960e4
 * copy paste issue 45cc227
@@ -166,6 +168,7 @@
 * correct name assignment in fork 3deb98f
 * count and any pipelines d38a6c6
 * crash on parsing remote bcb17fe
+* create 1 trigger per jsonrpc provider f976663
 * CVE-2022-25881 #988 11a4e2a
 * data-bind with object 2f089e5
 * default version ignore to decline 01cb0f7
@@ -408,6 +411,7 @@
 * pm cli command usage a9ff0bf
 * pm connect when manual forking ed7357e
 * pm fork 52b9ba7
+* pm log implementation a8fd354
 * pm start a40a583
 * pm start command c0e613c
 * preferRemote now also allows less preferred connection 28e50f2
@@ -599,6 +603,8 @@
 * update after the breaking change in conventional changelog 12078eb
 * update after the breaking change in conventional changelog 76ebf7f
 * update after the breaking change in conventional changelog d6ed3d0
+* update after trigger removal cb4dbb6
+* update after trigger removal 209ee6d
 * update all commands 8f54036
 * update CLI definitions 7281b40
 * update command definition 85c2891
@@ -792,6 +798,7 @@
 * add the possibility to load programs with file urls dbbc1a6
 * add translation support on documentation 168cbbf
 * add typed variant fcdd604
+* add ui-shell module 0fdfc8e
 * add url handler 623cb3b
 * add vite module 1912fc7
 * add web component decorator 0083280
@@ -832,6 +839,7 @@
 * errors like are now true errors 954d0a8
 * export event emitter 750ac11
 * export generator helper functions ac613f5
+* export meta definition ca821ab
 * export processor 528d2ad
 * export spanAsync 93a722d
 * expose observables and removes legacy binding 4fdb791
@@ -869,6 +877,7 @@
 * moved to middleware approach 69d4ba5
 * new aws-lambda module 97806aa
 * new aws-sdk package e7c6217
+* new modules are ESM only 9bda0b3
 * open api generator considers schema if available b7736d6
 * options usage now replaces parameters in backticks b4ab80b
 * part watches for data changes 32cdc0b
