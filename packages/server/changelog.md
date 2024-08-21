@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* update after trigger removal 209ee6d
+* artificial bump to force using latest tag on npm b3882a7
 
 
 
