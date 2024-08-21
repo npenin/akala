@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* cli usage formatting b2d99b3
+* artificial bump to force using latest tag on npm b3882a7
 
 
 
