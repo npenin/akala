@@ -3,8 +3,9 @@ import { CommandProcessor, StructuredParameters } from '../model/processor.js'
 import { Command } from '../metadata/index.js';
 import { Container } from '../model/container.js';
 import { Local } from './local.js';
-import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam, SerializableObject, TypedSerializableObject } from '@akala/core';
+import { lazy, Logger, MiddlewarePromise, noop, OptionsResponse, SpecialNextParam, SerializableObject, TypedSerializableObject, logger } from '@akala/core';
 import { HandlerResult, handlers } from '../protocol-handler.js';
+import { Trigger } from '../model/trigger.js'
 
 type OnlyArray<T> = Extract<T, unknown[]>;
 
@@ -48,6 +49,13 @@ export class JsonRpcBrowser extends CommandProcessor
             return provier;
         });
     }
+
+    public static trigger = new Trigger('jsonrpc', function register<T>(container: Container<T>, media: jsonrpcws.SocketAdapter)
+    {
+        // assert.ok(media instanceof ws.SocketAdapter, 'to be attached, the media must be an instance of @akala/json-rpc-ws.Connection');
+        const log = logger('akala:commands:jsonrpc:' + container.name)
+        return JsonRpcBrowser.getConnection(media, container, null, log);
+    })
 
     public static getConnection(socket: jsonrpcws.SocketAdapter, container?: Container<unknown>, otherInject?: (params: StructuredParameters<TypedSerializableObject<unknown>[]>) => void, log?: Logger): jsonrpcws.Connection
     {

@@ -7,7 +7,6 @@ import { JsonRpc, LogEventProcessor } from '../processors/index.js';
 import { Container } from '../model/container.js';
 // import { Command } from '../model/command';
 import { configure } from '../decorators.js';
-import { jsonrpcws } from '../triggers/index.js';
 import { NetSocketAdapter } from "../net-socket-adapter.js";
 import * as net from 'net';
 import { unlink } from 'fs';
@@ -112,7 +111,7 @@ describe('test jsonrpcws processing', function ()
 
             const server = new net.Server().listen({ path: socketPath }).on('connection', (socket) =>
             {
-                c1.attach(jsonrpcws, new NetSocketAdapter(socket));
+                c1.attach(JsonRpc.trigger, new NetSocketAdapter(socket));
             });
 
             const socket = new net.Socket();
