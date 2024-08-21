@@ -7,7 +7,10 @@ export { spawnAsync } from './cli-helper.js'
 import definition from './container.js';
 
 type pmContainer = definition.container
-export { pmContainer as Container };
+
+export const meta = definition.meta;
+
+export { pmContainer as Container, };
 
 import State from './state.js'
 export { State }
