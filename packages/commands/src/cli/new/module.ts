@@ -65,27 +65,9 @@ test`},
                 "compileOnSave": true,
                 "compilerOptions": {
                     "rootDir": "src",
-                    "outDir": "dist"
-                },
-                "references": []
-            })
-        }, {
-            name: 'tsconfig.cjs.json', content: JSON.stringify({
-                "extends": "../tsconfig.settings.cjs.json",
-                "compileOnSave": true,
-                "compilerOptions": {
-                    "rootDir": "src",
-                    "outDir": "dist"
-                },
-                "references": []
-            })
-        }, {
-            name: 'tsconfig.esm.json', content: JSON.stringify({
-                "extends": "../tsconfig.settings.esm.json",
-                "compileOnSave": true,
-                "compilerOptions": {
-                    "rootDir": "src",
-                    "outDir": "dist"
+                    "outDir": "dist",
+                    "moduleResolution": "Node16",
+                    "module": "Node16",
                 },
                 "references": []
             })
