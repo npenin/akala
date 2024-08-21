@@ -3,12 +3,7 @@
 
 ### Bug Fixes
 
-* pm log implementation a8fd354
-
-
-### Features
-
-* export meta definition ca821ab
+* artificial bump to force using latest tag on npm b3882a7
 
 
 
