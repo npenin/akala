@@ -1,9 +1,10 @@
-#  (2024-08-21)
+#  (2024-08-24)
 
 
 ### Bug Fixes
 
-* artificial bump to force using latest tag on npm b3882a7
+* add provenance 8485880
+* use pm config when possible 9e9d2eb
 
 
 
