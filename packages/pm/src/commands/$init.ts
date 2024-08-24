@@ -1,7 +1,7 @@
 import State, { RunningContainer, StateConfiguration } from '../state.js'
 import fs from 'fs/promises';
 import pmContainer from '../container.js';
-import { Container, Metadata, ignoredCommands, configure, SelfDefinedCommand, serveMetadata, ServeOptions } from '@akala/commands';
+import { Container, Metadata, ignoredCommands, configure, SelfDefinedCommand } from '@akala/commands';
 import { PassThrough } from 'stream';
 import { EventEmitter } from 'events';
 import { CliContext } from '@akala/cli';
@@ -103,7 +103,7 @@ export default async function (this: State, container: RunningContainer & pmCont
         this.config.set('plugins', [])
     }
 
-    this.config.mapping['pm'].set('connect', serveMetadata({ options: { ...context.options, socketName: 'pm' }, args: context.options.args as ServeOptions['args'] }));
+    // this.config.mapping['pm'].set('connect', serveMetadata({ options: { ...context.options, socketName: 'pm' }, args: context.options.args as ServeOptions['args'] }));
 
     if (context && context.args.length)
         await container.dispatch('connect', 'pm', context);
