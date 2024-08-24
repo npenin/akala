@@ -553,6 +553,7 @@
 * stdin support 23979ba
 * stop assuming scope delimiter e86ae02
 * stop assuming scope delimiter c7f2e24
+* stop command e938905
 * stop generating loggers for numeric keys 75a1324
 * storage 611386c
 * **storage:** add nameInStorage support 5b863d1
