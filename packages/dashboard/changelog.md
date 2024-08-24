@@ -1,9 +1,10 @@
-#  (2024-08-21)
+#  (2024-08-24)
 
 
 ### Bug Fixes
 
 * add node as an export condition 4aa41a8
+* add provenance 8485880
 * allow pm yto start d498d2b
 * artificial bump 59763e7
 * artificial bump to force using latest tag on npm b3882a7
