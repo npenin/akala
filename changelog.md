@@ -1,4 +1,4 @@
-#  (2024-08-21)
+#  (2024-08-24)
 
 
 * fix:base64 helpers generating empty data 0ed3fad
@@ -28,6 +28,8 @@
 * add pm processor when proxying 3dbeb5e
 * add preAction before displaying usage 1316b59
 * add processCommand as exported function 6f3e8d6
+* add provenance 11fbe55
+* add provenance 8485880
 * add recursive path creation 3f7ffa7
 * add remote type (for async ops) edd9b3b
 * add salt on User model 51b2f11
@@ -643,8 +645,10 @@
 * update workspace parameter binding 6b6b07b
 * updateCommands now removes all commands before re-registering 7bc2f3d
 * upgrade to latest commands 2801d27
+* upgrade to lts node 00bdab1
 * use config from akala when starting pm 51f3898
 * use existing base64 encoder ebd748e
+* use pm config when possible 9e9d2eb
 * use signal to close pm connection 02bc3d5
 * use static import instead of dynamic import 0ba9fce
 * variable leak adef56b
