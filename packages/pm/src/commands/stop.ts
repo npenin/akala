@@ -32,7 +32,7 @@ export default async function stop(this: State, name: string, container: Contain
                     resolve(signal);
                 })
 
-                cp.process.kill('SIGINT');
+                cp.process.kill(2);
             }
             else
                 resolve(null)
