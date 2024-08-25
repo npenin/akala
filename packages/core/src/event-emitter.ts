@@ -238,14 +238,8 @@ export class Event<T extends readonly unknown[] = unknown[], TReturnType = void,
         {
             const stopListening = this.addListener((...args) =>
             {
-                try
-                {
-                    return listener(...args);
-                }
-                finally
-                {
-                    stopListening();
-                }
+                stopListening();
+                return listener(...args);
             })
             return stopListening;
         }
