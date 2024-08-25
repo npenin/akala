@@ -1,4 +1,4 @@
-#  (2024-08-24)
+#  (2024-08-25)
 
 
 * fix:base64 helpers generating empty data 0ed3fad
@@ -390,6 +390,7 @@
 * normalizing on usage options a3dd875
 * observable builders support Bindings ec41f39
 * omit client package for now 6f16b17
+* once support improved 719bdf0
 * optional parameter in connect 606b68b
 * output formatting f747eff
 * output name from inner semantic-releases script 52382c6
