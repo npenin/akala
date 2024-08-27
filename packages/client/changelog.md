@@ -48,6 +48,7 @@
 * deprecate CJS implemtations for many packages bde4b1c
 * implements new controls 9a16e1b
 * part watches for data changes 32cdc0b
+* re-enable client 27053f9
 * remove asynchronicity in controls 7ba4b4c
 * remove circular dependency between controls and template + export template cache to help having hot reload b71ba32
 * rename part to outlet 51dc808
