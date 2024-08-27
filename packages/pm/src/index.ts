@@ -30,6 +30,7 @@ export class InteractError extends Error
     }
 }
 
+
 export default function interact(message: string, as?: string): void
 {
     throw new InteractError(message, as);
@@ -82,5 +83,7 @@ export interface SidecarMap
 
 import getRandomName from './commands/name.js';
 import sidecarSingleton, { sidecar } from "./sidecar.js";
+import start from "./cli-commands/start-self.js";
 export { sidecar, sidecarSingleton };
 export { getRandomName };
+export { start };
