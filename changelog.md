@@ -1,4 +1,4 @@
-#  (2024-08-25)
+#  (2024-08-27)
 
 
 * fix:base64 helpers generating empty data 0ed3fad
@@ -852,6 +852,7 @@
 * export processor 528d2ad
 * export spanAsync 93a722d
 * expose observables and removes legacy binding 4fdb791
+* expose start command to self-host pm 1a6e822
 * first auth implementation in http client a36d32f
 * first pubsub commit 78b31e1
 * first try with some somponents 293f0dd
