@@ -843,6 +843,7 @@
 * embedded cron implementation in workflow 9c518f0
 * enable cli help/documentation c141969
 * enable env on cli containers 88cbdbe
+* enable vite package c8070c2
 * enforce logger on buildCliContext dd636e1
 * error message is retrieved if wait is specified e93f204
 * errors like are now true errors 954d0a8
@@ -892,6 +893,7 @@
 * options usage now replaces parameters in backticks b4ab80b
 * part watches for data changes 32cdc0b
 * provide real Date formatter afb969e
+* re-enable client 27053f9
 * re-enable client publish 87a0f62
 * re-implement Binding from scratch e84fa76
 * re-publish client 25bff4a
