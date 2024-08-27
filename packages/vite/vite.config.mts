@@ -1,7 +1,6 @@
 import { plugin as akala } from '@akala/vite';
-import { GenericConfiguration, Configurations, Metadata, Processors, StructuredParameters } from '@akala/commands';
-import { Binding, ErrorWithStatus, ObservableObject, Parser, each, eachAsync } from '@akala/core';
-import { validateSessionOwner } from '@akala/authentication'
+import { GenericConfiguration, Processors } from '@akala/commands';
+import { ObservableObject, Parser, each } from '@akala/core';
 
 const connectionMap: Record<string, { sessionId: string, sessionSignature: string }> = {}
 
