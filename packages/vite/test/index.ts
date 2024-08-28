@@ -26,9 +26,9 @@ import.meta.hot.on('template-reload', (data) =>
 
 type Scope = IScope<{ $authProcessor: Processors.AuthPreProcessor, container: Container<void>, $commandEvents: EventEmitter<Record<string, Event<[unknown]>>> }>;
 
-bootstrapModule.activate(['$rootScope', '$rootScope', 'services.$outlet'], async (root: Scope, rootScope: IScope<any>, outlet: OutletService) =>
+bootstrapModule.activate(['$rootScope', '$rootScope', 'services.$outlet'], async (rootScope: Scope, outlet: OutletService) =>
 {
-    Template.composers.push(new FormComposer(root.container))
+    Template.composers.push(new FormComposer(rootScope.container))
     Template.composers.push(new DataContext());
     Template.composers.push(new DataBind());
     Template.composers.push(new EventComposer());
