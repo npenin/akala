@@ -1,4 +1,4 @@
-#  (2024-08-27)
+#  (2024-08-28)
 
 
 * fix:base64 helpers generating empty data 0ed3fad
@@ -656,6 +656,7 @@
 * variable leak adef56b
 * variable renaming f825597
 * vite implementation 34cf2a9
+* web-ui dependency af64b8d
 * webcomponent implementation 2fe5b2e
 * windows resolution 57d6d98
 * workflow output 3fca50e
