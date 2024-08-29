@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* empty string parsing 7d6c9d8
+* resolution logging aecedc2
 
 
 
