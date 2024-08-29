@@ -1,4 +1,4 @@
-#  (2024-08-28)
+#  (2024-08-29)
 
 
 * fix:base64 helpers generating empty data 0ed3fad
@@ -196,6 +196,7 @@
 * eliminate the need for json import 5d5af48
 * embrace esm even more 3e7d10a
 * embrace esm even more b3b8e9d
+* empty string parsing 7d6c9d8
 * enable jsonrpc on clients 0adf62b
 * encode secrets to base64 97c3145
 * ensure vanilla leverages generators 0aedf98
