@@ -870,6 +870,7 @@
 * implement support typings 4c5d3e4
 * implements new controls 9a16e1b
 * improve event-emitter typing 7a72d14
+* improve hotkey trigger 1862b22
 * improve metadata generation with typing from schema 55f4242
 * improve middleware behaviour 89f0a24
 * improve open api support c99299c
