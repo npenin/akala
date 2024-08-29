@@ -545,7 +545,7 @@ export class Parser
 
     public parseString(expression: string, start: string, parseFormatter: boolean)
     {
-        const evaluatedRegex = new RegExp("^" + start + "((?:[^\\" + start + "]|\\.)+)" + start).exec(expression);
+        const evaluatedRegex = new RegExp("^" + start + "((?:[^\\" + start + "]|\\.)*)" + start).exec(expression);
         // console.log(arguments);
         const result = evaluatedRegex[1];
         const parsedString = new ParsedString(result);
