@@ -1,6 +1,6 @@
 import { Container, Trigger } from '@akala/commands'
 
-export default new Trigger<[], void>('keybinding', (container) =>
+export default new Trigger<[], void>('keybinding', (container, options?: { warnOnUnkownCommand?: boolean }) =>
 {
     let chord = container;
     document.addEventListener('keydown', (ev) =>
@@ -24,18 +24,20 @@ export default new Trigger<[], void>('keybinding', (container) =>
         const cmd = container.resolve(sequence);
         if (chord !== container && !cmd)
         {
-            console.error('no command matches ' + chord.name + ', ' + sequence);
+            if (options?.warnOnUnkownCommand)
+                console.error('no command matches ' + chord.name + ', ' + sequence);
             return;
         }
         if (!cmd)
         {
-            console.error('no command matches ' + sequence);
+            if (options?.warnOnUnkownCommand)
+                console.error('no command matches ' + sequence);
             return;
         }
         if (cmd instanceof Container)
         {
             chord = cmd;
         }
-        container.dispatch(cmd);
+        container.dispatch(cmd, ev);
     });
 })
