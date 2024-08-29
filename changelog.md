@@ -513,6 +513,7 @@
 * rename to TeardownManager deb360c
 * require dependent packages broken 66a3877
 * reset minor and patch number depending on the bump 1a1a0da
+* resolution logging aecedc2
 * resolve file URLs before trying to read stats 2538a4e
 * resolve legacy config lookup 5dceab9
 * resolve path in new cc 58cb93c
