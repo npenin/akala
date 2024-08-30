@@ -1,9 +1,9 @@
-#  (2024-08-29)
+#  (2024-08-30)
 
 
 ### Bug Fixes
 
-* resolution logging aecedc2
+* properly evaluate parsed array 81104a3
 
 
 
