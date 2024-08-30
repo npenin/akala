@@ -177,6 +177,8 @@ export class BuildGetter<T extends object> extends ExpressionVisitor
 
         this.getter = (target) =>
         {
+            if (expression.newType == '[')
+                return result.map(r => r(target)[1]);
             return Object.fromEntries(result.map(r => r(target)));
         };
 
