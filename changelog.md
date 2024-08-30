@@ -437,6 +437,7 @@
 * proper stdio support 17464ae
 * proper typing on store create 83caee7
 * proper use of normalize for plugins 130102e
+* properly evaluate parsed array 0b1860d
 * properly evaluate parsed array 81104a3
 * properly generate module from hierarchy dc28cb0
 * propery switch parser 04da73e
