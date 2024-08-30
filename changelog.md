@@ -1,4 +1,4 @@
-#  (2024-08-29)
+#  (2024-08-30)
 
 
 * fix:base64 helpers generating empty data 0ed3fad
@@ -437,6 +437,7 @@
 * proper stdio support 17464ae
 * proper typing on store create 83caee7
 * proper use of normalize for plugins 130102e
+* properly evaluate parsed array 81104a3
 * properly generate module from hierarchy dc28cb0
 * propery switch parser 04da73e
 * provide proper variable to bumps dependents 82f8ddb
