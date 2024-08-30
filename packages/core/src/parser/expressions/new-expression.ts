@@ -9,6 +9,8 @@ export class NewExpression<T> extends Expression
 {
     public get type(): ExpressionType.NewExpression { return ExpressionType.NewExpression; }
     public readonly init: MemberExpression<T, any, any>[];
+    public newType: '{' | '[' = '{';
+
     constructor(...init: MemberExpression<T, any, any>[])
     {
         super();

@@ -207,6 +207,7 @@ export class ParsedArray extends NewExpression<unknown[]> implements ParsedAny
     constructor(public $$length: number, ...init: MemberExpression<unknown[], number, unknown>[])
     {
         super(...init);
+        this.newType = '['
     }
 }
 
