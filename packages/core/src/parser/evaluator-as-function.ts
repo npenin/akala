@@ -92,7 +92,7 @@ export class EvaluatorAsFunction extends ExpressionVisitor
         else if (expression instanceof ParsedArray)
         {
             // const result = [];
-            this.functionBody += '{';
+            this.functionBody += '[';
             this.visitEnumerable(expression.init, noop, (m, i) =>
             {
                 // this.result = null;
@@ -105,7 +105,7 @@ export class EvaluatorAsFunction extends ExpressionVisitor
                 this.functionBody = currentBody + (i > 0 ? ',' : '') + '"' + this.functionBody.replace('\\', '\\\\').replace('"', '\\"') + '":' + newBody
                 return m;
             }, () => true)
-            this.functionBody += '}'
+            this.functionBody += ']'
         }
         else
         {
