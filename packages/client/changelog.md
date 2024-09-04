@@ -1,9 +1,9 @@
 #  (2024-09-04)
 
 
-### Features
+### Bug Fixes
 
-* add first each implementation 106df1b
+* export "each" control e5b6186
 
 
 
