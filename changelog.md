@@ -250,6 +250,7 @@
 * handle direct invokes f4a524e
 * handle edge case on cli usage discovery 2f01e20
 * handle empty orders in connectByPreference d35a80b
+* handle module error on start 5be7640
 * handle non provided description in doc a3685e6
 * handle non-specified pm socket option dfd5212
 * handle normalize on rest parameters 2a0b6a4
