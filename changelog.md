@@ -206,6 +206,7 @@
 * error support in jsonrpc 82c2f34
 * evaluator as function with constants 4822874
 * exclude urls from normalization a4915c9
+* export "each" control e5b6186
 * export AggregateErrors f4285e2
 * export Configurations type to allow augmentation e2851fc
 * export parseMetadata 8870389
