@@ -3,12 +3,7 @@
 
 ### Bug Fixes
 
-* update replace on ObservableArray 4ec3935
-
-
-### BREAKING CHANGES
-
-* replace provides index
+* handle module error on start 5be7640
 
 
 
