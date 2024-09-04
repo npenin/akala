@@ -242,11 +242,12 @@ export class Module extends SimpleInjector
 
     public start(toInject?: string[], f?: Injectable<unknown>)
     {
-        return new Promise<void>((resolve) =>
+        return new Promise<void>((resolve, reject) =>
         {
             if (arguments.length > 0)
                 Module.o.on('stop', this.injectWithName(toInject, f));
             Module.o.on('stop', () => resolve());
+            Module.o.on('error', err => reject(err.error));
             Module.o.start(this.name);
         })
     }
