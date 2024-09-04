@@ -1,4 +1,4 @@
-#  (2024-08-30)
+#  (2024-09-04)
 
 
 * fix:base64 helpers generating empty data 0ed3fad
@@ -637,6 +637,7 @@
 * update ready command for remote containers 823810d
 * update ready comment definition ebb8c05
 * update reference to field 471f538
+* update replace on ObservableArray 4ec3935
 * update source-map-support imports a8d5065
 * update test script f730fdf
 * update to commands  major version 180608a
@@ -731,6 +732,7 @@
 * add env to injectables 59915ab
 * add event and i18n composers 2b98ed5
 * add extends support df13246
+* add first each implementation 106df1b
 * add form-urlencoded as a content type 6bcb79e
 * add FormComposer and other helpers to simplify rampup 95887d2
 * add generate ts from schema command 9cefb0c
@@ -943,6 +945,7 @@
 
 ### BREAKING CHANGES
 
+* replace provides index
 * CJS is no more supported
 * CJS is no more supported
 * Schema configuration uses the standard $defs to define definitions
