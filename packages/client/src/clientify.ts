@@ -19,6 +19,7 @@ export const init = Module.prototype.activate;
 import './controlsv2/outlet.js'
 export * from './controlsv2/page.js'
 export * from './controlsv2/shared.js'
+export * from './controlsv2/each.js'
 
 import HotKeyTrigger from './hotkeytrigger.js'
 export { HotKeyTrigger }
