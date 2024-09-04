@@ -2,7 +2,7 @@ import { Binding, ObservableObject, Parser, Subscription, each } from "@akala/co
 import { IScope } from "../scope.js";
 import { Composer } from "../template.js";
 import { AttributeComposer } from "./shared.js";
-import { ConstantExpression, MemberExpression, NewExpression } from "@akala/core/expressions";
+import { CallExpression, ConstantExpression, MemberExpression, NewExpression } from "@akala/core/expressions";
 // import { MemberExpression, NewExpression } from "@akala/core/expressions";
 
 type Scope = IScope<object>;
@@ -11,6 +11,22 @@ export type IDataContext<TController extends Partial<Disposable> = Partial<Dispo
 
 export class DataContext implements Composer<IDataContext>
 {
+    static define(item: HTMLElement, context: Record<string, unknown>): void
+    {
+        item.setAttribute('data-context', '');
+        if (item['dataContext'])
+            item['dataContext'] = DataContext.extend(DataContext.find(item), context)
+
+    }
+    static extend(sourceContext: Binding<IDataContext>, options: Record<string, unknown>, newContextPath?: string): Binding<IDataContext>
+    {
+        return sourceContext.pipe(new CallExpression(new ConstantExpression(Object), new ConstantExpression('assign'), [new NewExpression<{ context: any, controller: Partial<Disposable> }>(
+            ...Object.entries(options).filter(e => e[0] !== 'context').map(e =>
+                new MemberExpression<any, any, any>(new ConstantExpression(e[1]), new ConstantExpression(e[0]), false)),
+            new MemberExpression(Parser.parameterLess.parse(newContextPath || 'context') as any, new ConstantExpression('context'), false),
+        ), new MemberExpression(null, null, false)]));
+    }
+
     private static readonly dataContextExpression = Parser.parameterLess.parse('dataContext');
 
     constructor() { }
@@ -28,13 +44,10 @@ export class DataContext implements Composer<IDataContext>
             return item['dataContext'] = new Binding(options, null);
         else
         {
-            let binding: Binding<Scope>;
+            let binding: Binding<{ context: Scope }>;
             const closest = DataContext.find(item.parentElement || root);
             if (closest)
-                binding = closest.pipe(new NewExpression<{ context: any, controller: Partial<Disposable> }>(
-                    new MemberExpression(Parser.parameterLess.parse(item.dataset.context) as any, new ConstantExpression('context'), false),
-                    new MemberExpression(new ConstantExpression(options.controller) as any, new ConstantExpression('controller'), false),
-                ));
+                binding = DataContext.extend(closest, options, item.dataset.context);
             else
                 binding = new Binding(options, Parser.parameterLess.parse(item.dataset.context));
 
