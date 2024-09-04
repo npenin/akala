@@ -26,8 +26,8 @@ export type ObservableArrayUnshiftEvent<T> =
 export type ObservableArrayReplaceEvent<T> =
     {
         action: 'replace'
-        oldItems: T[]
-        newItems: T[]
+        replacedItems: { index: number, oldItem: T, newItem: T }[];
+
     };
 
 export type ObservableArrayInitEvent<T> =
@@ -103,8 +103,7 @@ export class ObservableArray<T> extends Event<[ObservableArrayEventMap<T>], void
         this.array['replace'](index, item);
         this.emit({
             action: 'replace',
-            newItems: [item],
-            oldItems: [oldItem]
+            replacedItems: [{ index: index, oldItem: oldItem, newItem: item }],
         });
     }
 
