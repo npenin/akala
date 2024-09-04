@@ -1,9 +1,14 @@
-#  (2024-08-30)
+#  (2024-09-04)
 
 
 ### Bug Fixes
 
-* properly evaluate parsed array 0b1860d
+* update replace on ObservableArray 4ec3935
+
+
+### BREAKING CHANGES
+
+* replace provides index
 
 
 
