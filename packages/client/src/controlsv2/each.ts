@@ -7,11 +7,6 @@ export class Each extends Control
 {
     each: Binding<unknown>;
     template: Element;
-    constructor(element: HTMLElement)
-    {
-        super(element);
-        this.each = this.bind('each');
-    }
 
     get indexPropertyName()
     {
@@ -27,6 +22,7 @@ export class Each extends Control
 
     connectedCallback()
     {
+        this.each = this.bind('each');
         if (this.element.childElementCount > 1)
             throw new Error('Each control can only have one child element');
         this.template = this.element.firstElementChild;
