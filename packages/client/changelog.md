@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* bind relies on existing datacontext helper methods 911c7fb
+* bind was called to early d270f79
 
 
 
