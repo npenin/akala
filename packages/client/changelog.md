@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* do not declare each by default 8926598
+* bind relies on existing datacontext helper methods 911c7fb
 
 
 
