@@ -15,7 +15,7 @@ export class Control<TBindings extends Record<string, unknown> = Record<string, 
         if (this.bindings[name] && oldValue != newValue)
         {
             const oldBinding = this.bindings[name];
-            this.bindings[name] = new Binding({ controller: this, get context() { return DataContext.find(this.element) } }, Parser.parameterLess.parse(newValue));
+            this.bindings[name] = DataContext.find(this.element).pipe(Parser.parameterLess.parse(newValue));
             this.bindings[name].set('change', (oldBinding.get('change') as Event<[{ oldValue: TBindings[TKey], value: TBindings[TKey] }]>).clone())
             this.bindings[name].emit('change', { value: this.bindings[name].getValue(), oldValue: oldBinding.getValue() })
             oldBinding[Symbol.dispose]();
@@ -35,11 +35,11 @@ export class Control<TBindings extends Record<string, unknown> = Record<string, 
         if (!Reflect.has(this.element, 'controller'))
         {
             // const controllerBinding = this.teardown(Binding.defineProperty(this.element, 'controller'));
-            return this.teardown(this.bindings[attributeName] = new Binding(DataContext.find(this.element), Parser.parameterLess.parse(attributeValue || '')));
+            return this.teardown(this.bindings[attributeName] = DataContext.find(this.element).pipe(Parser.parameterLess.parse(attributeValue || '')));
 
         }
         if (!this.bindings[attributeName])
-            return this.teardown(this.bindings[attributeName] = new Binding({ controller: this.element['controller'], get context() { return DataContext.find(this.element) } }, Parser.parameterLess.parse(attributeValue || '')));
+            return this.teardown(this.bindings[attributeName] = DataContext.extend(DataContext.find(this.element), { controller: this.element['controller'] }).pipe(Parser.parameterLess.parse(attributeValue || '')));
         return this.bindings[attributeName];
     }
 }
