@@ -1,10 +1,8 @@
 import { Binding, ObservableArray, Subscription } from "@akala/core";
-import { webComponent } from "../behaviors/shared.js";
 import { Control } from "./shared.js";
 import { Template } from "../template.js";
 import { DataContext } from "../common.js";
 
-@webComponent('kl-each')
 export class Each extends Control
 {
     each: Binding<unknown>;
