@@ -1,4 +1,4 @@
-#  (2024-09-04)
+#  (2024-09-05)
 
 
 * fix:base64 helpers generating empty data 0ed3fad
@@ -183,6 +183,7 @@
 * discover implementation 3502bed
 * display for pmSocket config info c3b908b
 * distinct implementation fix 9381907
+* do not declare each by default 8926598
 * do not overwrite option when coming from usage 23d206e
 * docker build cfdaf4e
 * docker files to not have local pipe fba3777
