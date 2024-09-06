@@ -236,6 +236,7 @@
 * fork knows about pm metadata ef4ebdc
 * form serialization 69c521c
 * form serialization d45c28a
+* formatter resolution 5a2631a
 * fs discovery 0d34eea
 * fs middleware after discovery changes d97fcca
 * fs processor too catchy ccafa48
@@ -594,6 +595,7 @@
 * trying to fix docker files 2b8ce52
 * trying to make Page as PageWithOutlet b642699
 * typing 8851307
+* typo 9be9026
 * unliased interact errors a16496a
 * unparse options eed10c8
 * update after base64 update 3e2c264
