@@ -38,19 +38,20 @@ export class AsyncFormatter extends WatcherFormatter
     format(value: unknown)
     {
         if (!isPromiseLike(value))
-            throw new Error("Cannot wait for a non-promise value");
-
-        if (this.promise !== value)
+            this.value = value;
+        else
         {
-            this.promise = value;
-            this.value = null;
+            if (this.promise !== value)
+            {
+                this.promise = value;
+                this.value = null;
+            }
+            value.then(v =>
+            {
+                this.value = v;
+                this.watcher.emit('change');
+            }, err => console.debug('a watched promise failed with err %O', err));
         }
-        value.then(v =>
-        {
-            this.value = v;
-            this.watcher.emit('change');
-        }, err => console.debug('a watched promise failed with err %O', err));
-
         return this.value;
     }
 
