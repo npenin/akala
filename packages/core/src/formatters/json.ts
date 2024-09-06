@@ -1,11 +1,14 @@
-function json<T>(a: T): string
-{
-    return JSON.stringify(a);
-}
+import { Formatter, ReversibleFormatter } from "./common.js";
 
-json['reverse'] = function <T>(s: string)
+export default class Json implements Formatter<string>, ReversibleFormatter<string, unknown>
 {
-    return JSON.parse(s);
-}
+    format(value: unknown): string
+    {
+        return JSON.stringify(value);
+    }
+    unformat<T>(value: string): T
+    {
+        return JSON.parse(value);
+    }
 
-export default json;
+};

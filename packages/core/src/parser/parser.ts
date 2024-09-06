@@ -6,6 +6,7 @@ import booleanize from '../formatters/booleanize.js';
 import { TernaryOperator } from './expressions/ternary-operator.js';
 import { TernaryExpression } from './expressions/ternary-expression.js';
 import type { ExpressionVisitor } from './expressions/visitors/expression-visitor.js';
+import { Formatter } from '../formatters/common.js';
 
 
 const jsonKeyRegex = /^ *(?:(?:"([^"]+)")|(?:'([^']+)')|(?:([^: ]+)) *): */;
@@ -324,24 +325,24 @@ export class Parser
 
     public parseBoolean(expression): ParsedBoolean
     {
-        let formatter: (o: unknown) => unknown = identity;
+        let formatter: Formatter<unknown> = identity.instance;
         if (expression[0] == '!')
         {
-            formatter = negate;
+            formatter = negate.instance;
             expression = expression.substring(1);
         }
         if (expression[0] == '!')
         {
-            formatter = booleanize;
+            formatter = booleanize.instance;
             expression = expression.substring(1);
         }
 
         if (/^true|false|undefined/.exec(expression))
         {
             const result = new ParsedBoolean(/^true|false|undefined/.exec(expression)[0]);
-            if (formatter !== identity)
+            if (formatter !== identity.instance)
             {
-                const newResult = new ParsedBoolean(formatter(result.value) as boolean);
+                const newResult = new ParsedBoolean(formatter.format(result.value) as boolean);
                 newResult.$$length = result.$$length;
                 return newResult;
             }
