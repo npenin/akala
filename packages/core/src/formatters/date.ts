@@ -2,6 +2,8 @@
 // import { Formatter, FormatterFactory } from './common.js';
 // import { module } from '../helpers.js';
 
+import { Formatter, ReversibleFormatter } from "./common.js";
+
 export interface DateFormatterSettings
 {
     format: string;
@@ -160,4 +162,24 @@ date['reverse'] = function <T>(s: string, format: string): Date
     return formatParser(format).parse(s);
 }
 
-export default date;
+export default class DateFormatter implements Formatter<string>, ReversibleFormatter<string, Date>
+{
+    dateFormat: ReturnType<typeof formatParser>;
+
+    constructor(dateFormat: string)
+    {
+        this.dateFormat = formatParser(dateFormat);
+    }
+
+    unformat(value: string): Date
+    {
+        return this.dateFormat.parse(value);
+    }
+
+    format(value: Date): string
+    {
+        return this.dateFormat.format(value);
+    }
+
+
+}

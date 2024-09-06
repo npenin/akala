@@ -1,4 +1,12 @@
-export default function negate(a: unknown)
+import { Formatter } from "./common.js";
+
+export default class Negate implements Formatter<boolean>
 {
-    return !a;
-}
+    static readonly instance = new Negate();
+
+    format<T>(value: T): boolean
+    {
+        return !value;
+    }
+
+};

@@ -1,4 +1,11 @@
-export default function booleanize(a: unknown)
+import { Formatter } from "./common.js";
+
+export default class Booleanize implements Formatter<boolean>
 {
-    return !!a;
+    static readonly instance = new Booleanize();
+
+    format(a: unknown)
+    {
+        return !!a;
+    }
 }

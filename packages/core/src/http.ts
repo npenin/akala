@@ -1,12 +1,8 @@
 import { injectWithName, register } from './global-injector.js';
-import { ParsedAny, Parser } from './parser/parser.js';
 import { each, map } from './each.js';
 import { module, TypedSerializableObject } from './helpers.js';
 import { service } from './service.js';
-import { Formatter, FormatterFactory } from './formatters/common.js';
-// import http from 'http';
-// import https from 'https';
-import { Injected } from './injectors/shared.js';
+import { Formatter } from './formatters/common.js';
 import type { MiddlewareAsync } from './middlewares/shared.js';
 import { MiddlewareCompositeAsync } from './index.js';
 
@@ -233,65 +229,87 @@ export class FetchHttp implements Http<Response>
 
 }
 
+type SettingsType = { method?: keyof Http } & Omit<HttpOptions<undefined>, 'url'>;
 
+// export class HttpCallFormatterFactory implements FormatterFactory<Injected<PromiseLike<unknown>>, SettingsType>
+// {
+//     public parse(expression: string): SettingsType
+//     {
+//         const method = /^ *(\w+)/.exec(expression);
+//         if (method)
+//             return () => ({ method: <keyof Http>method[1], $$length: method[0].length });
+//         return new EvaluatorAsFunction().eval(new Parser().parseAny(expression, true));
+//     }
+//     public build(settings: SettingsType): Formatter<Injected<PromiseLike<unknown>>>
+//     {
+//         if (!settings)
+//             settings = () => ({ method: 'getJSON' });
 
-export class HttpCallFormatterFactory implements FormatterFactory<Injected<PromiseLike<unknown>>, { method?: keyof Http }>
+//         return function (scope)
+//         {
+//             let settingsValue = settings(scope);
+
+//             return injectWithName(['$http'], function (http: Http)
+//             {
+//                 const formattedValue = scope;
+//                 if (typeof (formattedValue) == 'string')
+//                     return (http[settingsValue.method || 'getJSON'] as typeof http.getJSON)(formattedValue, settingsValue.queryString);
+
+//                 if (Array.isArray(formattedValue))
+//                 {
+//                     return (http[settingsValue.method || 'getJSON'] as typeof http.getJSON).apply(http, formattedValue);
+//                 }
+
+//                 return (http[settingsValue.method || 'getJSON'] as typeof http.call)(formattedValue as HttpOptions<void>);
+//             });
+//         }
+//     }
+// }
+
+// export class HttpFormatterFactory implements FormatterFactory<PromiseLike<unknown>, HttpOptions<void> & { method?: keyof Http }>
+// {
+//     callFactory: HttpCallFormatterFactory;
+
+//     constructor()
+//     {
+//         this.callFactory = module('$formatters').resolve<HttpCallFormatterFactory>('#httpCall');
+//     }
+
+//     parse(expression: string): HttpOptions<void> & { method?: keyof Http }
+//     {
+//         return this.callFactory.parse(expression);
+//     }
+
+//     public build(settings: HttpOptions<void> & { method?: keyof Http })
+//     {
+//         return new HttpCallFormatter(settings);
+//     }
+// }
+
+export class HttpCallFormatter implements Formatter<PromiseLike<Response>>
 {
-    public parse(expression: string): { method?: keyof Http } & ParsedAny
-    {
-        const method = /^ *(\w+)/.exec(expression);
-        if (method)
-            return { method: <keyof Http>method[1], $$length: method[0].length };
-        return new Parser().parseAny(expression, true) as { method?: keyof Http } & ParsedAny;
-    }
-    public build(settings: { method: keyof Http }): Formatter<Injected<PromiseLike<unknown>>>
-    {
-        if (!settings)
-            settings = { method: 'getJSON' };
 
-        return function (scope)
+
+    constructor(private settings: SettingsType)
+    {
+    }
+
+    public format(scope: unknown)
+    {
+        const settings = this.settings;
+
+        return injectWithName(['$http'], function (http: Http)
         {
-            let settingsValue = settings as HttpOptions<void> & { method?: keyof Http };
-            if (settings instanceof Function)
-                settingsValue = settings(scope);
+            const formattedValue = scope;
+            if (typeof (formattedValue) == 'string' || formattedValue instanceof URL)
+                if (settings)
+                    return http.call({ ...settings, url: formattedValue })
+                else
+                    return http.call({ method: 'GET', type: 'json', url: formattedValue });
+            // return (http[settingsValue.method || 'getJSON'] as typeof http.call)(formattedValue, settingsValue.queryString);
 
-            return injectWithName(['$http'], function (http: Http)
-            {
-                const formattedValue = scope;
-                if (typeof (formattedValue) == 'string')
-                    return (http[settingsValue.method || 'getJSON'] as typeof http.getJSON)(formattedValue, settingsValue.queryString);
-
-                if (Array.isArray(formattedValue))
-                {
-                    return (http[settingsValue.method || 'getJSON'] as typeof http.getJSON).apply(http, formattedValue);
-                }
-
-                return (http[settingsValue.method || 'getJSON'] as typeof http.call)(formattedValue as HttpOptions<void>);
-            });
-        }
-    }
-}
-
-export class HttpFormatterFactory implements FormatterFactory<PromiseLike<unknown>, { method?: keyof Http }>
-{
-    callFactory: HttpCallFormatterFactory;
-
-    constructor()
-    {
-        this.callFactory = module('$formatters').resolve<HttpCallFormatterFactory>('#httpCall');
-    }
-
-    parse(expression: string): { method?: keyof Http; }
-    {
-        return this.callFactory.parse(expression);
-    }
-
-    public build(settings: { method: keyof Http })
-    {
-        return (value: unknown) =>
-        {
-            return this.callFactory.build(settings)(value)();
-        };
+            return http.call(formattedValue as HttpOptions<unknown>);
+        })();
     }
 }
 
@@ -365,5 +383,5 @@ export enum HttpStatusCode
     NetworkAuthenticationRequired = 511
 }
 
-module('$formatters').register('#http', new HttpFormatterFactory());
-module('$formatters').register('#httpCall', new HttpCallFormatterFactory());
+module('$formatters').register('#http', HttpCallFormatter);
+// module('$formatters').register('#httpCall', new HttpCallFormatterFactory());

@@ -16,7 +16,7 @@ export * from './middlewares/indexed-sync.js';
 export * from './factory.js';
 export * from './http.js';
 export * from './service.js';
-export { Bound, PossiblyBound } from './binder.js';
+// export { Bound, PossiblyBound } from './binder.js';
 export * from './event-emitter.js';
 export * from './parser/parser.js';
 export * from './type-helper.js'

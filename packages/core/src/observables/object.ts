@@ -1,7 +1,7 @@
 import { map } from "../each.js";
 import EventEmitter, { Event, EventArgs, EventKeys, EventListener, IEvent, Subscription } from "../event-emitter.js";
 import { Formatter, formatters } from "../formatters/index.js";
-import { ErrorWithStatus, FormatExpression, HttpStatusCode, Parser } from "../index.js";
+import { ErrorWithStatus, FormatExpression, HttpStatusCode, isPromiseLike, Parser } from "../index.js";
 import { EvaluatorAsFunction } from "../parser/evaluator-as-function.js";
 import { BinaryExpression } from "../parser/expressions/binary-expression.js";
 import { BinaryOperator } from "../parser/expressions/binary-operator.js";
@@ -22,6 +22,81 @@ export interface ObjectEvent<T>
     readonly value: T[keyof T];
     readonly oldValue: T[keyof T];
 }
+
+export abstract class WatcherFormatter implements Formatter<void>
+{
+    constructor(protected readonly watcher: Watcher) { }
+
+    abstract format(value: unknown): void;
+}
+
+export class AsyncFormatter extends WatcherFormatter
+{
+    private promise: PromiseLike<unknown>;
+    private value: unknown;
+
+    format(value: unknown)
+    {
+        if (!isPromiseLike(value))
+            throw new Error("Cannot wait for a non-promise value");
+
+        if (this.promise !== value)
+        {
+            this.promise = value;
+            this.value = null;
+        }
+        value.then(v =>
+        {
+            this.value = v;
+            this.watcher.emit('change');
+        }, err => console.debug('a watched promise failed with err %O', err));
+
+        return this.value;
+    }
+
+    constructor(watcher: Watcher)
+    {
+        super(watcher);
+    }
+}
+
+formatters.register('#async', AsyncFormatter);
+
+
+export class EventFormatter extends WatcherFormatter
+{
+    private event: Event;
+    private value: unknown[];
+
+    format(value: unknown)
+    {
+        if (!(value instanceof Event))
+            throw new Error("Cannot wathc a non-event");
+
+        if (this.event !== value)
+        {
+            this.event = value;
+            this.value = null;
+        }
+
+        this.watcher.on(Symbol.dispose, value.addListener((...v) =>
+        {
+            this.value = v;
+            this.watcher.emit('change');
+        }));
+
+
+        return this.value;
+    }
+
+    constructor(watcher: Watcher)
+    {
+        super(watcher);
+    }
+}
+
+formatters.register('#event', EventFormatter);
+
 // export interface IWatched<T>
 // {
 //     $$watchers?: { [key in keyof T]?: T[key] & ObservableObject<T[key]> };
@@ -127,7 +202,7 @@ export class BuildGetter<T extends object> extends ExpressionVisitor
         {
             const formatter = formatters.resolve<Formatter<unknown>>('#' + expression.formatter);
             const source = this.getter;
-            this.getter = target => formatter(source(target));
+            this.getter = target => formatter.format(source(target));
         }
         return expression;
     }
@@ -328,12 +403,26 @@ export class BuildWatcher<T extends object> extends ExpressionVisitor
 
     visitFormat<TOutput>(expression: FormatExpression<TOutput>): FormatExpression<TOutput>
     {
+        const getter = this.getter;
         this.visit(expression.lhs);
+        const source = this.getter;
         if (expression.formatter)
         {
-            const formatter = formatters.resolve<Formatter<unknown>>('#' + expression.formatter);
-            const source = this.getter;
-            this.getter = (target, watcher) => formatter(source(target, watcher));
+            let settingsGetter: typeof this.getter;
+            if (expression.settings)
+            {
+                this.getter = getter;
+                this.visit(expression.settings);
+                settingsGetter = this.getter;
+            }
+            const formatter = formatters.resolve<(new (...args: unknown[]) => Formatter<T>)>(`#{expression.formatter}`);
+            if (typeof formatter === 'function' && formatter.prototype instanceof WatcherFormatter)
+                if (settingsGetter)
+                    this.getter = (target, watcher) => new formatter(settingsGetter(target, watcher), watcher).format(source(target, watcher));
+                else
+                    this.getter = (target, watcher) => new formatter(watcher).format(source(target, watcher));
+            else
+                this.getter = (target, watcher) => new formatter(settingsGetter?.(target, watcher)).format(source(target, watcher));
         }
         return expression;
     }
@@ -577,7 +666,10 @@ export class Binding<T> extends EventEmitter<{
 
                 const oldValue = value;
                 value = this.getValue();
-                this.emit('change', { value, oldValue });
+                if (isPromiseLike(value))
+                    value.then(v => this.emit('change', { value: v, oldValue }))
+                else
+                    this.emit('change', { value, oldValue });
             })
             this.attachWatcher = new BuildWatcher().eval(expression);
             this.attachWatcher(target, this.watcher);
