@@ -415,7 +415,7 @@ export class BuildWatcher<T extends object> extends ExpressionVisitor
                 this.visit(expression.settings);
                 settingsGetter = this.getter;
             }
-            const formatter = formatters.resolve<(new (...args: unknown[]) => Formatter<T>)>(`#{expression.formatter}`);
+            const formatter = formatters.resolve<(new (...args: unknown[]) => Formatter<T>)>(`#${expression.formatter}`);
             if (typeof formatter === 'function' && formatter.prototype instanceof WatcherFormatter)
                 if (settingsGetter)
                     this.getter = (target, watcher) => new formatter(settingsGetter(target, watcher), watcher).format(source(target, watcher));
