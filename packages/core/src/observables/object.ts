@@ -71,7 +71,7 @@ export class EventFormatter extends WatcherFormatter
     format(value: unknown)
     {
         if (!(value instanceof Event))
-            throw new Error("Cannot wathc a non-event");
+            throw new Error("Cannot watch a non-event");
 
         if (this.event !== value)
         {
