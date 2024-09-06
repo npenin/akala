@@ -1,4 +1,4 @@
-#  (2024-09-05)
+#  (2024-09-06)
 
 
 * fix:base64 helpers generating empty data 0ed3fad
@@ -876,6 +876,7 @@
 * handle readable streams cf632e3
 * have both CJS and ESM at once cecd11a
 * implement auth c98e0f9
+* implement real formatter class 96a4f29
 * implement serve in cli 1decbb4
 * implement support typings 4c5d3e4
 * implements new controls 9a16e1b
@@ -950,6 +951,7 @@
 
 ### BREAKING CHANGES
 
+* formatters are not simple functions anymore
 * replace provides index
 * CJS is no more supported
 * CJS is no more supported
