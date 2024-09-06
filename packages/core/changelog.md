@@ -1,9 +1,14 @@
-#  (2024-09-04)
+#  (2024-09-06)
 
 
-### Bug Fixes
+### Features
 
-* handle module error on start 5be7640
+* implement real formatter class 96a4f29
+
+
+### BREAKING CHANGES
+
+* formatters are not simple functions anymore
 
 
 
