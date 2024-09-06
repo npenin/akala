@@ -102,6 +102,7 @@
 * better support for non-mapped sidecars ec502f8
 * better support for processor eb55667
 * bind relies on existing datacontext helper methods 911c7fb
+* bind was called to early d270f79
 * binding constructor 8294d0f
 * Binding new implementation b287d4c
 * bindings are less intrusive 3ef2783
