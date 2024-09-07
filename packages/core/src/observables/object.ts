@@ -1,6 +1,6 @@
 import { map } from "../each.js";
 import EventEmitter, { Event, EventArgs, EventKeys, EventListener, IEvent, Subscription } from "../event-emitter.js";
-import { Formatter, formatters } from "../formatters/index.js";
+import { Formatter, formatters, isReversible } from "../formatters/index.js";
 import { ErrorWithStatus, FormatExpression, HttpStatusCode, isPromiseLike, Parser } from "../index.js";
 import { EvaluatorAsFunction } from "../parser/evaluator-as-function.js";
 import { BinaryExpression } from "../parser/expressions/binary-expression.js";
@@ -109,62 +109,58 @@ export type IWatched<T extends object> = T &
     [watcher]: ObservableObject<T>;
 };
 
+export type Getter<TSource, TResult> = (target: TSource) => TResult;
+export type Setter<TSource, TValue> = (target: TSource, value: TValue) => void;
+
 export type IWatchable<T extends object> = {
     [watcher]?: ObservableObject<T>;
 };
 
-export class BuildSetter<T extends object> extends ExpressionVisitor
+export class BuildSetter<T extends object> 
 {
     target: ParameterExpression<T>;
     value: ParameterExpression<unknown>;
 
-    public eval<TValue>(expression: Expressions): (target: T, value: TValue) => void
+    public eval<TValue>(expression: Expressions): Setter<T, TValue>
     {
         this.target = new ParameterExpression<T>('target');
         this.value = new ParameterExpression<TValue>('value');
-        this.isFirstMember = true;
-        this.getter = (target) => target;
-        this.visit(expression);
-        const member = this.property;
-        let getter = this.getter;
-        return (target, value) =>
+        let getter: Getter<T, unknown> = (target) => typeof target == 'object' ? new ObservableObject(target) : target;
+        const getterBuilder = new BuildGetter<T>();
+        switch (expression.type)
         {
-            const x = getter(target);
-            if (x)
-                if (ObservableObject.isWatched(x))
-                    (x[watcher] as ObservableObject<any>).setValue(member(), value);
-                else
-                    x[member()] = value;
+            case 'member':
+                const member = getterBuilder.eval<PropertyKey>(expression.member);
+                if (expression.source)
+                    getter = getterBuilder.eval(expression.source);
+
+                return (target, value) =>
+                {
+                    const x = getter(target);
+                    if (x)
+                        if (ObservableObject.isWatched(x))
+                            (x[watcher] as ObservableObject<any>).setValue(member(target), value);
+                        else
+                            x[member(target)] = value;
+                }
+                break;
+            case 'format':
+                const formatter = formatters.resolve<new (...args) => Formatter<unknown>>('#' + expression.formatter);
+                if (isReversible(formatter))
+                {
+                    const setter = this.eval(expression.lhs);
+                    let settingsGetter;
+                    if (expression.settings)
+                        settingsGetter = new BuildGetter().eval(expression.settings)
+                    return (target, value) => setter(target, new formatter(settingsGetter?.(target)).unformat(value));
+                }
+            default:
+                throw new Error(`This expression (type=${expression.type}) cannot be set`);
         }
-    }
-
-    isFirstMember = false;
-    private property: () => PropertyKey;
-    private getter: (target: object) => object;
-
-    public visitMember<T1, TMember extends keyof T1>(arg0: MemberExpression<T1, TMember, T1[TMember]>): StrictExpressions
-    {
-        const member = new EvaluatorAsFunction().eval<PropertyKey>(this.visit(arg0.member));
-        if (this.isFirstMember)
-        {
-            this.isFirstMember = false;
-            this.property = member;
-            if (arg0.source)
-                return this.visit(arg0.source);
-            return undefined;
-        }
-
-        // if (!arg0.source)
-        // return new MemberExpression(this.target, arg0.member as TypedExpression<keyof T>, arg0.optional) as unknown as TypedExpression<T1[TMember]>;
-
-        const getter = this.getter;
-
-        if (arg0.optional)
-            this.getter = (target) => { const x = getter(target); return x && x[member(target)] }
-        else
-            this.getter = (target) => ObservableObject.get(target as any, member())
     }
 }
+
+
 
 export class BuildGetter<T extends object> extends ExpressionVisitor
 {
@@ -201,9 +197,9 @@ export class BuildGetter<T extends object> extends ExpressionVisitor
         this.visit(expression.lhs);
         if (expression.formatter)
         {
-            const formatter = formatters.resolve<Formatter<unknown>>('#' + expression.formatter);
+            const formatter = formatters.resolve<new (...args) => Formatter<unknown>>('#' + expression.formatter);
             const source = this.getter;
-            this.getter = target => formatter.format(source(target));
+            this.getter = target => new formatter().format(source(target));
         }
         return expression;
     }
@@ -779,7 +775,7 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
 
     // private setters: { [key in keyof T]?: (target: T, value: T[key]) => void } = {};
 
-    public static isWatched<T extends object>(x: T): x is IWatched<T> 
+    public static isWatched<T>(x: T): x is IWatched<T & object> 
     {
         return typeof x == 'object' && x[watcher] instanceof ObservableObject;
     }
