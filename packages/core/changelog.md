@@ -1,9 +1,9 @@
-#  (2024-09-06)
+#  (2024-09-07)
 
 
 ### Bug Fixes
 
-* handle non promise values cde7bbb
+* add buildsetter formatter support 2a2036c
 
 
 
