@@ -116,6 +116,7 @@
 * build issue after update to @akala/core 1cd037a
 * build with angular 17 be60411
 * build with angular 17 9d3fcb6
+* buildsetter 201ad04
 * buildsetter e6b5c6e
 * bump dependent 5e89235
 * bump dependents proper references f734b61
