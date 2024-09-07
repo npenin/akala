@@ -110,6 +110,7 @@ export type IWatched<T extends object> = T &
 };
 
 export type Getter<TSource, TResult> = (target: TSource) => TResult;
+export type WatchGetter<TSource, TResult> = (target: TSource, watcher: Watcher) => TResult;
 export type Setter<TSource, TValue> = (target: TSource, value: TValue) => void;
 
 export type IWatchable<T extends object> = {
@@ -162,203 +163,14 @@ export class BuildSetter<T extends object>
 
 
 
-export class BuildGetter<T extends object> extends ExpressionVisitor
+export class BuildGetter<T extends object>
 {
-    target: ParameterExpression<T>;
-    value: ParameterExpression<unknown>;
-
     public eval<TValue = object>(expression: Expressions): (target: T) => TValue extends object ? ObservableObject<TValue> : TValue
     {
-        this.getter = (target) =>
-        {
-            if (target instanceof Binding)
-            {
-                const subTarget = target.getValue();
-                if (!subTarget)
-                    return null;
-                return new ObservableObject(subTarget)
-            }
-            return new ObservableObject(target);
-        }
-        this.visit(expression);
-        return this.getter;
+        const watcher = new BuildWatcher<T>().eval<TValue extends object ? ObservableObject<TValue> : TValue>(expression);
+        return (target) => watcher(target, null);
     }
 
-    private getter: (target: object) => any;
-
-    public visitConstant(arg0: ConstantExpression<unknown>): StrictExpressions
-    {
-        this.getter = () => arg0.value;
-        return arg0;
-    }
-
-    visitFormat<TOutput>(expression: FormatExpression<TOutput>): FormatExpression<TOutput>
-    {
-        this.visit(expression.lhs);
-        if (expression.formatter)
-        {
-            const formatter = formatters.resolve<new (...args) => Formatter<unknown>>('#' + expression.formatter);
-            const source = this.getter;
-            this.getter = target => new formatter().format(source(target));
-        }
-        return expression;
-    }
-
-    visitCall<T, TMethod extends keyof T>(arg0: CallExpression<T, TMethod>): StrictExpressions
-    {
-        const getter = this.getter;
-        this.visit(arg0.source);
-        const sourceGetter = this.getter;
-
-        const argGetters = arg0.arguments.map(a => { this.getter = getter; this.visit(a); return this.getter; })
-        if (arg0.method)
-        {
-            this.getter = getter;
-            const member = new EvaluatorAsFunction().eval<PropertyKey>(this.visit(arg0.method));
-            this.getter = (target) =>
-            {
-                const f = sourceGetter(target) as Function;
-                return f && f[member(target)].apply(f, argGetters.map(g => g(target)));
-            };
-        }
-        else
-            this.getter = (target) =>
-            {
-                const f = sourceGetter(target) as Function;
-                return f && f(...argGetters.map(g => g(target)));
-            };
-        return arg0;
-    }
-
-    public visitNew<T>(expression: NewExpression<T>): StrictExpressions
-    {
-        const source = this.getter;
-        const result: ((target) => [PropertyKey, any])[] = [];
-        const evaluator = new EvaluatorAsFunction();
-        this.visitEnumerable(expression.init, () => { }, (arg0) =>
-        {
-            const member = evaluator.eval<PropertyKey>(this.visit(arg0.member));
-            this.getter = source;
-            this.visit(arg0.source);
-            const getter = this.getter;
-            result.push((target) => [member(target), getter(target)])
-            this.getter = source;
-
-            return arg0;
-        });
-
-        this.getter = (target) =>
-        {
-            if (expression.newType == '[')
-                return result.map(r => r(target)[1]);
-            return Object.fromEntries(result.map(r => r(target)));
-        };
-
-        return expression;
-    }
-
-    public visitMember<T1, TMember extends keyof T1>(arg0: MemberExpression<T1, TMember, T1[TMember]>): MemberExpression<T1, TMember, T1[TMember]>
-    {
-        const source = this.getter;
-        const member = new EvaluatorAsFunction().eval<PropertyKey>(this.visit(arg0.member));
-        this.getter = source;
-
-        if (arg0.source)
-            this.visit(arg0.source);
-
-        const getter = this.getter;
-
-        // if (arg0.optional)
-        this.getter = (target) =>
-        {
-            const x = getter(target);
-            if (typeof x == 'object')
-            {
-                if (x)
-                    return new ObservableObject<any>(x).getValue(member(target));
-            }
-            return x
-        }
-        // else
-        //     this.getter = (target) => new ObservableObject<any>(getter(target)).getValue(member())
-
-        return arg0;
-    }
-
-    visitTernary<T extends Expressions = StrictExpressions>(expression: TernaryExpression<T>): TernaryExpression<Expressions>
-    {
-        const source = this.getter;
-        this.visit(expression.first);
-        switch (expression.operator)
-        {
-            case TernaryOperator.Question:
-                const condition = this.getter;
-                this.getter = source;
-                this.visit(expression.second);
-                const second = this.getter;
-                this.getter = source;
-                this.visit(expression.third);
-                const third = this.getter;
-                this.getter = source;
-                this.getter = (target) => condition(target) ? second(target) : third(target);
-                break;
-        }
-
-        return expression;
-    }
-
-    visitBinary<T extends Expressions = StrictExpressions>(expression: BinaryExpression<T>): BinaryExpression<Expressions>
-    {
-        const source = this.getter;
-        this.visit(expression.left);
-        const left = this.getter;
-        this.getter = source;
-        this.visit(expression.right);
-        const right = this.getter;
-        switch (expression.operator)
-        {
-            case BinaryOperator.Equal:
-                this.getter = (target) => left(target) == right(target); break;
-            case BinaryOperator.StrictEqual:
-                this.getter = (target) => left(target) === right(target); break;
-            case BinaryOperator.NotEqual:
-                this.getter = (target) => left(target) != right(target); break;
-            case BinaryOperator.StrictNotEqual:
-                this.getter = (target) => left(target) !== right(target); break;
-            case BinaryOperator.LessThan:
-                this.getter = (target) => left(target) < right(target); break;
-            case BinaryOperator.LessThanOrEqual:
-                this.getter = (target) => left(target) <= right(target); break;
-            case BinaryOperator.GreaterThan:
-                this.getter = (target) => left(target) > right(target); break;
-            case BinaryOperator.GreaterThanOrEqual:
-                this.getter = (target) => left(target) >= right(target); break;
-            case BinaryOperator.And:
-                this.getter = (target) => left(target) && right(target); break;
-            case BinaryOperator.Or:
-                this.getter = (target) => left(target) || right(target); break;
-            case BinaryOperator.Minus:
-                this.getter = (target) => left(target) - right(target); break;
-            case BinaryOperator.Plus:
-                this.getter = (target) => left(target) + right(target); break;
-            case BinaryOperator.Modulo:
-                this.getter = (target) => left(target) % right(target); break;
-            case BinaryOperator.Div:
-                this.getter = (target) => left(target) / right(target); break;
-            case BinaryOperator.Times:
-                this.getter = (target) => left(target) * right(target); break;
-            case BinaryOperator.Pow:
-                this.getter = (target) => Math.pow(left(target), right(target)); break;
-            case BinaryOperator.Dot:
-                this.getter = (target) => left(target)[right(target)]; break;
-            case BinaryOperator.QuestionDot:
-                this.getter = (target) => left(target)?.[right(target)]; break;
-            case BinaryOperator.Format:
-            case BinaryOperator.Unknown:
-                throw new ErrorWithStatus(HttpStatusCode.NotImplemented, 'Not implemented/supported');
-        }
-        return expression;
-    }
 }
 
 type Watcher = EventEmitter<{ 'change': Event<[source?: object]> }>;
@@ -367,18 +179,19 @@ export class BuildWatcher<T extends object> extends ExpressionVisitor
 {
     private boundObservables: unknown[];
 
-    public eval(expression: Expressions): (target: T, watcher: Watcher) => void
+    public eval<TValue = object>(expression: Expressions): WatchGetter<T, TValue>
     {
         this.boundObservables = [];
         this.getter = (target, watcher) =>
         {
             if (target instanceof Binding)
             {
-                if (!this.boundObservables.includes(target))
-                {
-                    watcher.on(Symbol.dispose, target.onChanged(ev => watcher.emit('change', ev.value)))
-                    this.boundObservables.push(target);
-                }
+                if (watcher)
+                    if (!this.boundObservables.includes(target))
+                    {
+                        watcher.on(Symbol.dispose, target.onChanged(ev => watcher.emit('change', ev.value)))
+                        this.boundObservables.push(target);
+                    }
                 const subTarget = target.getValue();
                 if (subTarget)
                     return new ObservableObject(subTarget);
@@ -387,10 +200,10 @@ export class BuildWatcher<T extends object> extends ExpressionVisitor
             return new ObservableObject(target);
         }
         this.visit(expression);
-        return this.getter;
+        return this.getter as WatchGetter<T, TValue>;
     }
 
-    private getter: (target: object, watcher: Watcher) => ObservableObject<any> | boolean | string | number | symbol | bigint | Function | undefined | unknown;
+    private getter: WatchGetter<object, ObservableObject<any> | boolean | string | number | symbol | bigint | Function | undefined | unknown>;
 
     visitConstant(arg0: ConstantExpression<unknown>): StrictExpressions
     {
@@ -433,9 +246,6 @@ export class BuildWatcher<T extends object> extends ExpressionVisitor
 
         const member = new EvaluatorAsFunction().eval<PropertyKey>(this.visit(arg0.member));
 
-
-
-
         let sub: Subscription;
         let change = new Event<[]>();
         // let myWatcher: Watcher = new EventEmitter({ change });
@@ -443,12 +253,13 @@ export class BuildWatcher<T extends object> extends ExpressionVisitor
 
         this.getter = (target, watcher) =>
         {
-            if (!sub)//&& watcher)
+            if (!sub && watcher)
                 change.pipe('change', watcher);
             let x = getter(target, watcher);
             if (x instanceof Binding)
             {
-                x.onChanged(ev => watcher.emit('change', ev.value));
+                if (watcher)
+                    x.onChanged(ev => watcher.emit('change', ev.value));
                 x = x.getValue();
             }
             if (!x || typeof x != 'object')
@@ -468,7 +279,8 @@ export class BuildWatcher<T extends object> extends ExpressionVisitor
             else
                 result = newResult;
 
-            watcher.on(Symbol.dispose, sub = result.on(prop, () => watcher.emit('change', x as object)));
+            if (watcher)
+                watcher.on(Symbol.dispose, sub = result.on(prop, () => watcher.emit('change', x as object)));
             // result.watch(watcher, prop);
             return result.getValue(prop);
         }
@@ -527,7 +339,7 @@ export class BuildWatcher<T extends object> extends ExpressionVisitor
     public visitNew<T>(expression: NewExpression<T>): StrictExpressions
     {
         const source = this.getter;
-        const result: ((target, watcher) => [PropertyKey, any])[] = [];
+        const result: WatchGetter<object, [PropertyKey, any]>[] = [];
         const evaluator = new EvaluatorAsFunction();
         this.visitEnumerable(expression.init, () => { }, (arg0) =>
         {
