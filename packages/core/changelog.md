@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* add buildsetter formatter support 2a2036c
+* buildsetter 201ad04
 
 
 
