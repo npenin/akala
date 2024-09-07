@@ -139,7 +139,9 @@ export class BuildSetter<T extends object>
                 {
                     const x = getter(target);
                     if (x)
-                        if (ObservableObject.isWatched(x))
+                        if (x instanceof ObservableObject)
+                            x.setValue(member(target), value);
+                        else if (ObservableObject.isWatched(x))
                             (x[watcher] as ObservableObject<any>).setValue(member(target), value);
                         else
                             x[member(target)] = value;
