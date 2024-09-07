@@ -3,8 +3,7 @@
 
 ### Bug Fixes
 
-* formatter resolution 5a2631a
-* typo 9be9026
+* handle non promise values cde7bbb
 
 
 
