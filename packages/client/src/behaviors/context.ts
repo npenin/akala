@@ -11,6 +11,8 @@ export type IDataContext<TController extends Partial<Disposable> = Partial<Dispo
 
 export class DataContext implements Composer<IDataContext>
 {
+    static propagateProperties: string[] = ['controller'];
+
     static define(item: HTMLElement, context: Record<string, unknown>): void
     {
         item.setAttribute('data-context', '');
@@ -23,6 +25,8 @@ export class DataContext implements Composer<IDataContext>
         return sourceContext.pipe(new CallExpression(new ConstantExpression(Object), new ConstantExpression('assign'), [new NewExpression<{ context: any, controller: Partial<Disposable> }>(
             ...Object.entries(options).filter(e => e[0] !== 'context').map(e =>
                 new MemberExpression<any, any, any>(new ConstantExpression(e[1]), new ConstantExpression(e[0]), false)),
+            ...DataContext.propagateProperties.map(e =>
+                new MemberExpression<any, any, any>(new MemberExpression(null, new ConstantExpression(e), false), new ConstantExpression(e), false)),
             new MemberExpression(Parser.parameterLess.parse(newContextPath || 'context') as any, new ConstantExpression('context'), false),
         ), new MemberExpression(null, null, false)]));
     }
