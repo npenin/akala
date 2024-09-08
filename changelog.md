@@ -1,4 +1,4 @@
-#  (2024-09-07)
+#  (2024-09-08)
 
 
 * fix:base64 helpers generating empty data 0ed3fad
@@ -14,6 +14,7 @@
 * add akala as export ff84fdc
 * add browser export condition 6113968
 * add buildsetter formatter support 2a2036c
+* add controller (and other properties) to datacontext extension a1d9b88
 * add exports to mongo 9c6d18a
 * add extends adn dependencies on the container interface 4eedb66
 * add generate script 5fd0dff
