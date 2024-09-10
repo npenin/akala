@@ -1,4 +1,4 @@
-#  (2024-09-08)
+#  (2024-09-10)
 
 
 * fix:base64 helpers generating empty data 0ed3fad
@@ -105,6 +105,7 @@
 * better support for processor eb55667
 * bind relies on existing datacontext helper methods 911c7fb
 * bind was called to early d270f79
+* binding and refactor builders 2b5e54b
 * binding constructor 8294d0f
 * Binding new implementation b287d4c
 * bindings are less intrusive 3ef2783
@@ -179,6 +180,7 @@
 * create 1 trigger per jsonrpc provider f976663
 * CVE-2022-25881 #988 11a4e2a
 * data-bind with object 2f089e5
+* datacontext propagation f037550
 * default version ignore to decline 01cb0f7
 * define commands in sidecar c71d334
 * delete config property 3a15cc7
@@ -541,6 +543,7 @@
 * set connect configuration 5b633a8
 * set log level for any namespace e1b1025
 * shebang on akala CLI e893277
+* showcase promise example in vite/test 4140105
 * sidecar builder 26673b1
 * sidecar command definition 69f9b21
 * sidecar init with single store config 5551424
