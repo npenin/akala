@@ -20,7 +20,9 @@ export function pageOutlet<TScope extends IScope<object>>(options: { template: s
                     inj.register(ScopeImpl.injectionToken, scope);
                     inj.register(RootElement, element);
                     inj.register('param', param);
-                    return inj.injectNewWithName(options.inject || [], target)();
+                    const result = inj.injectNewWithName(options.inject || [], target)();
+                    element['controller'] = result;
+                    return result;
                 }
                 const result = new target();
                 element['controller'] = result;
