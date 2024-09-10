@@ -9,6 +9,12 @@
     <input id="dd" onfocus="kldd.showPopover()" />
 
     <button on on-click="controller.toggleCoco.bind(controller)">Toggle coco</button>
-    <span id="debug" data-bind="{innerText:controller.coco#json}"></span>
+    <span id="debug" data-bind="{innerText:controller#json}"></span>
+    <span id="debug3" data-bind="{innerText:controller.commands#async#json}"></span>
+
+    <ul is="ul-each" each="controller.commands" item-property-name="command">
+        <template>
+            <li data-bind data-bind-inner-text="command.name"></li>
+        </template>
+    </ul>
 </main>
-<img data-bind="{src: context.icon}" />
