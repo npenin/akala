@@ -1,7 +1,7 @@
 import { map } from "../each.js";
 import EventEmitter, { Event, EventArgs, EventKeys, EventListener, IEvent, Subscription } from "../event-emitter.js";
 import { Formatter, formatters, isReversible } from "../formatters/index.js";
-import { ErrorWithStatus, FormatExpression, HttpStatusCode, isPromiseLike, Parser } from "../index.js";
+import { ErrorWithStatus, FormatExpression, HttpStatusCode, isPromiseLike } from "../index.js";
 import { EvaluatorAsFunction } from "../parser/evaluator-as-function.js";
 import { BinaryExpression } from "../parser/expressions/binary-expression.js";
 import { BinaryOperator } from "../parser/expressions/binary-operator.js";
@@ -25,7 +25,7 @@ export interface ObjectEvent<T>
 
 export abstract class WatcherFormatter implements Formatter<void>
 {
-    constructor(protected readonly watcher: Watcher) { }
+    constructor(protected readonly watcher?: Watcher) { }
 
     abstract format(value: unknown): void;
 }
@@ -49,13 +49,13 @@ export class AsyncFormatter extends WatcherFormatter
             value.then(v =>
             {
                 this.value = v;
-                this.watcher.emit('change');
+                this.watcher?.emit('change');
             }, err => console.debug('a watched promise failed with err %O', err));
         }
         return this.value;
     }
 
-    constructor(watcher: Watcher)
+    constructor(watcher?: Watcher)
     {
         super(watcher);
     }
@@ -83,7 +83,7 @@ export class EventFormatter extends WatcherFormatter
         this.watcher.on(Symbol.dispose, value.addListener((...v) =>
         {
             this.value = v;
-            this.watcher.emit('change');
+            this.watcher?.emit('change');
         }));
 
 
@@ -196,10 +196,12 @@ export class BuildWatcher<T extends object> extends ExpressionVisitor
                     }
                 const subTarget = target.getValue();
                 if (subTarget)
-                    return new ObservableObject(subTarget);
+                    return new ObservableObject(subTarget).target;
                 return null;
             }
-            return new ObservableObject(target);
+            if (target)
+                return new ObservableObject(target).target;
+            return target;
         }
         this.visit(expression);
         return this.getter as WatchGetter<T, TValue>;
@@ -209,7 +211,7 @@ export class BuildWatcher<T extends object> extends ExpressionVisitor
 
     visitConstant(arg0: ConstantExpression<unknown>): StrictExpressions
     {
-        this.getter = () => typeof arg0.value == 'object' ? new ObservableObject(arg0.value) : arg0.value;
+        this.getter = () => arg0.value;
         return arg0;
     }
 
@@ -230,11 +232,11 @@ export class BuildWatcher<T extends object> extends ExpressionVisitor
             const formatter = formatters.resolve<(new (...args: unknown[]) => Formatter<T>)>(`#${expression.formatter}`);
             if (typeof formatter === 'function' && formatter.prototype instanceof WatcherFormatter)
                 if (settingsGetter)
-                    this.getter = (target, watcher) => new formatter(settingsGetter(target, watcher), watcher).format(source(target, watcher));
+                    this.getter = (target, watcher) => { const value = source(target, watcher); return new formatter(settingsGetter(target, watcher), watcher).format(value instanceof ObservableObject ? value.target : value) };
                 else
-                    this.getter = (target, watcher) => new formatter(watcher).format(source(target, watcher));
+                    this.getter = (target, watcher) => { const value = source(target, watcher); return new formatter(watcher).format(value instanceof ObservableObject ? value.target : value) };
             else
-                this.getter = (target, watcher) => new formatter(settingsGetter?.(target, watcher)).format(source(target, watcher));
+                this.getter = (target, watcher) => { const value = source(target, watcher); return new formatter(settingsGetter?.(target, watcher)).format(value instanceof ObservableObject ? value.target : value) };
         }
         return expression;
     }
@@ -245,6 +247,9 @@ export class BuildWatcher<T extends object> extends ExpressionVisitor
             this.visit(arg0.source);
 
         const getter = this.getter;
+
+        if (typeof arg0.member == 'undefined' || arg0.member === null)
+            return arg0;
 
         const member = new EvaluatorAsFunction().eval<PropertyKey>(this.visit(arg0.member));
 
@@ -404,14 +409,33 @@ type ObservableType<T extends object> = Record<keyof T, IEvent<[ObjectEvent<T>],
 
 export type BindingChangedEvent<T> = { value: T, oldValue: T };
 
+export const BindingsProperty = Symbol('BindingsProperty');
+
 export class Binding<T> extends EventEmitter<{
     change: Event<[BindingChangedEvent<T>]>
 }>
 {
+    static hasBoundProperty<T extends {}>(target: T, property: string | number | symbol)
+    {
+        if (typeof target !== 'object')
+            return false;
+        if (!(BindingsProperty in target))
+            return false;
+        return !!target[BindingsProperty][property];
+    }
+
     public static defineProperty<T = unknown>(target: object, property: string | symbol, value?: T): Binding<T>
     {
-        const binding = new Binding<T>(target, typeof property == 'symbol' ? new MemberExpression(null, new ConstantExpression(property), false) : new Parser().parse(property));
+        if (!(BindingsProperty in target))
+            target[BindingsProperty] = {};
+        if (target[BindingsProperty][property])
+            return target[BindingsProperty][property];
+
+        // const binding = new Binding<T>(target, typeof property == 'symbol' ? new MemberExpression(null, new ConstantExpression(property), false) : new Parser().parse(property));
+        const binding = new Binding<T>(null, new CallExpression(new ConstantExpression(() => value), null, []));
         let settingValue = false;
+        target[BindingsProperty][property] = binding;
+
         Object.defineProperty(target, property, {
             get()
             {
@@ -420,15 +444,19 @@ export class Binding<T> extends EventEmitter<{
             {
                 if (settingValue)
                     return;
+                const oldValue = value;
                 value = newValue;
                 settingValue = true;
-                binding.setValue(newValue)//, binding);
+                // binding.setValue(newValue)//, binding);
+                binding.emit('change', { value: newValue, oldValue });
                 settingValue = false;
             }
         });
 
         return binding;
     }
+
+
 
     public pipe<U>(expression: Expressions): Binding<U>
     {
@@ -451,7 +479,7 @@ export class Binding<T> extends EventEmitter<{
         return binding;
     }
 
-    watcher: Watcher = new EventEmitter();
+    watcher: Watcher = new EventEmitter<{ change: Event<[source?: object]> }>(Number.POSITIVE_INFINITY);
 
     [Symbol.dispose]()
     {
@@ -473,8 +501,11 @@ export class Binding<T> extends EventEmitter<{
             this.watcher.on('change', (x) =>
             {
                 if (x)
+                {
+                    // this.watcher[Symbol.dispose]();
+                    // this.watcher = new EventEmitter();
                     this.attachWatcher(target, this.watcher);
-
+                }
                 const oldValue = value;
                 value = this.getValue();
                 if (isPromiseLike(value))
@@ -622,6 +653,8 @@ export class ObservableObject<T extends object> extends EventEmitter<ObservableT
         let result: T[TKey];
         if (target instanceof Binding)
             result = target.getValue()?.[property];
+        else if (Binding.hasBoundProperty(target, property))
+            result = target[BindingsProperty][property].getValue();
         else
             result = target[property];
 

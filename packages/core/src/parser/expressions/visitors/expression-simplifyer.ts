@@ -30,6 +30,8 @@ export class ExpressionSimplifyer extends ExpressionVisitor
                 const sub = this.contexttualSource.init.find(e => ExpressionComparer.equals(e.member, arg0.member));
                 return sub.source;
             }
+
+            return new MemberExpression(this.contexttualSource as TypedExpression<any>, arg0.member, arg0.optional);
         }
         return super.visitMember(arg0);
     }
