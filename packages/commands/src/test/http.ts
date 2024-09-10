@@ -32,7 +32,7 @@ describe('test http processing', function ()
                     const config = cmd.config.http;
                     const regexp = pathRegexp.pathToRegexp(config.route);
                     const keys: pathRegexp.Key[] = regexp.keys;
-                    const match = url.match(regexp)
+                    const match = url.match(regexp.regexp)
                     if (match && config.inject)
                     {
                         match.forEach(function (value, i)

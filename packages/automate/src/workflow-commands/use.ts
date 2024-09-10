@@ -19,7 +19,7 @@ export default async function use(this: CliContext, self: Container<CliContext>,
             await Processors.FileSystem.discoverCommands(pathToCommands, container);
     }
     else
-        await Processors.FileSystem.discoverCommands(fileURLToPath(new URL(pathToCommands, pathToFileURL(process.cwd()))), container);
+        await Processors.FileSystem.discoverCommands(fileURLToPath(new URL(pathToCommands, pathToFileURL(process.cwd()).toString())), container);
     if (self && name)
         self.register(container);
     else
