@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* datacontext propagation f037550
+* enable controller on page root element 06e8014
 
 
 
