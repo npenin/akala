@@ -205,6 +205,7 @@
 * embrace esm even more 3e7d10a
 * embrace esm even more b3b8e9d
 * empty string parsing 7d6c9d8
+* enable controller on page root element 671c910
 * enable controller on page root element 06e8014
 * enable jsonrpc on clients 0adf62b
 * encode secrets to base64 97c3145

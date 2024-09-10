@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* enable controller on page root element 06e8014
+* enable controller on page root element 671c910
 
 
 
