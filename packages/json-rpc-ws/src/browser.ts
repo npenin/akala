@@ -8,7 +8,7 @@ import debug from 'debug';
 const logger = debug('json-rpc-ws');
 
 import * as ws from './ws/browser.js';
-import { ReadableStreamDefaultReadResult } from 'stream/web';
+import { ReadableStreamReadResult } from 'stream/web';
 export { ws };
 export { Client, SocketAdapter, Errors, BaseConnection, SerializableObject, PayloadDataType, SerializedBuffer, Payload, ErrorPayload, SocketAdapterEventMap };
 
@@ -39,7 +39,7 @@ class ByobReader implements ReadableStreamBYOBReader
     this.reader.push(...chunks);
   }
 
-  read<T extends ArrayBufferView>(view: T): Promise<ReadableStreamDefaultReadResult<T>>
+  read<T extends ArrayBufferView>(view: T): Promise<ReadableStreamReadResult<T>>
   {
     return this.reader.read().then(v =>
     {
@@ -62,7 +62,7 @@ class ByobReader implements ReadableStreamBYOBReader
 
 class DefaultReader implements ReadableStreamDefaultReader<Uint8Array>
 {
-  private next?: Deferred<ReadableStreamDefaultReadResult<Uint8Array>>;
+  private next?: Deferred<ReadableStreamReadResult<Uint8Array>>;
   constructor(private stream: Readable)
   {
   }
@@ -83,7 +83,7 @@ class DefaultReader implements ReadableStreamDefaultReader<Uint8Array>
     if (totalLength === 0)
     {
       if (!this.next)
-        this.next = new Deferred<ReadableStreamDefaultReadResult<Uint8Array>>();
+        this.next = new Deferred<ReadableStreamReadResult<Uint8Array>>();
       return this.next.resolve({ done: true });
     }
     const buffer = new Uint8Array(totalLength);
@@ -100,12 +100,12 @@ class DefaultReader implements ReadableStreamDefaultReader<Uint8Array>
     }
 
     if (!this.next)
-      this.next = new Deferred<ReadableStreamDefaultReadResult<Uint8Array>>();
+      this.next = new Deferred<ReadableStreamReadResult<Uint8Array>>();
     this.next.resolve({ value: buffer, done: false });
 
     if (chunk === null)
     {
-      this.next = new Deferred<ReadableStreamDefaultReadResult<Uint8Array>>();
+      this.next = new Deferred<ReadableStreamReadResult<Uint8Array>>();
       this.next.resolve({ done: true });
       this.closed.resolve();
     }
@@ -119,10 +119,10 @@ class DefaultReader implements ReadableStreamDefaultReader<Uint8Array>
     else
       return Promise.reject(reason);
   }
-  read(): Promise<ReadableStreamDefaultReadResult<Uint8Array>>
+  read(): Promise<ReadableStreamReadResult<Uint8Array>>
   {
     if (!this.next)
-      this.next = new Deferred<ReadableStreamDefaultReadResult<Uint8Array>>();
+      this.next = new Deferred<ReadableStreamReadResult<Uint8Array>>();
     this.next.finally(() => this.next = undefined);
     return this.next;
   }
@@ -151,7 +151,7 @@ class Readable implements ReadableStream<Uint8Array>
 
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  values(options?: ReadableStreamIteratorOptions): AsyncIterableIterator<Uint8Array>
+  values(options?: ReadableStreamIteratorOptions): ReadableStreamAsyncIterator<Uint8Array>
   {
     const iterator = this.buffer.values();
     return {
@@ -175,7 +175,7 @@ class Readable implements ReadableStream<Uint8Array>
     return this.buffer[Symbol.iterator]();
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [Symbol.asyncIterator](): AsyncIterableIterator<any>
+  [Symbol.asyncIterator](): ReadableStreamAsyncIterator<any>
   {
     return this.values();
   }

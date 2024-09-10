@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import { Writable } from "stream";
 import { outputHelper, write } from './new.js';
 import { jsonObject } from "../metadata/configurations.js";
-import { Key, pathToRegexp } from "path-to-regexp";
+// import { Key, pathToRegexp } from "path-to-regexp";
 
 export default async function generate(folder?: string, name?: string, outputFile?: string)
 {
@@ -38,7 +38,7 @@ export default async function generate(folder?: string, name?: string, outputFil
         {
             result.paths[commands[i].config.http.route] = result.paths[commands[i].config.http.route] || {};
             var action: jsonObject = result.paths[commands[i].config.http.route][commands[i].config.http.method] = { parameters: [] };
-            var keys: Key[] = [].concat(pathToRegexp(commands[i].config.http.route).keys);
+            // var keys: Key[] = [].concat(pathToRegexp(commands[i].config.http.route).keys);
             var hasBody = false;
             action.parameters = commands[i].config.http.inject.map(p =>
             {
@@ -46,19 +46,19 @@ export default async function generate(folder?: string, name?: string, outputFil
                     return {
                         name: p.substring('route.'.length),
                         in: 'path',
-                        required: keys.find(k => k.name == p.substring('route.'.length)).modifier == '?'
+                        // required: keys.find(k => k.name == p.substring('route.'.length)).modifier == '?'
                     }
                 if (p.startsWith('query.'))
                     return {
                         name: p.substring('query.'.length),
                         in: 'query',
-                        required: keys.find(k => k.name == p.substring('query.'.length)).modifier == '?'
+                        // required: keys.find(k => k.name == p.substring('query.'.length)).modifier == '?'
                     }
                 if (p.startsWith('header.'))
                     return {
                         name: p.substring('header.'.length),
                         in: 'header',
-                        required: keys.find(k => k.name == p.substring('header.'.length)).modifier == '?'
+                        // required: keys.find(k => k.name == p.substring('header.'.length)).modifier == '?'
                     }
                 if (p.startsWith('body.'))
                     hasBody = true;
