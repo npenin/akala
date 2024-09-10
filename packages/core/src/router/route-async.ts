@@ -15,7 +15,7 @@ export class MiddlewareRouteAsync<T extends [Routable, ...unknown[]]> extends Mi
         this.params = [];
         this.delimiter = options && options.delimiter || '/';
 
-        const routePath: RegExp & Partial<{ keys: Key[] }> = route instanceof RegExp ? route : pathToRegexp(route, options);
+        const routePath = route instanceof RegExp ? route : pathToRegexp(route, options);
         if ('keys' in routePath)
             this.params = routePath.keys;
 
