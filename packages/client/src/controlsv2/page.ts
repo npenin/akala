@@ -1,6 +1,7 @@
-import { Resolvable, SimpleInjector } from "@akala/core"
+import { ObservableObject, Parser, Resolvable, SimpleInjector } from "@akala/core"
 import { OutletDefined, OutletDefinition, outletDefinition } from "../outlet.js"
 import { IScope, ScopeImpl } from "../scope.js"
+// import { DataContext } from "../common.js";
 
 export const RootElement = Symbol('root html template element');
 
@@ -21,6 +22,9 @@ export function pageOutlet<TScope extends IScope<object>>(options: { template: s
                     inj.register(RootElement, element);
                     inj.register('param', param);
                     const result = inj.injectNewWithName(options.inject || [], target)();
+                    if ('dataContext' in element && typeof element.dataContext == 'object')
+                        ObservableObject.setValue(element.dataContext, Parser.parameterLess.parse('controller'), result);
+                    // DataContext.define(element, { controller: result });
                     element['controller'] = result;
                     return result;
                 }
