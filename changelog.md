@@ -603,6 +603,7 @@
 * trying to add promise to solve "handled" lambda 62bad72
 * trying to fix docker files 2b8ce52
 * trying to make Page as PageWithOutlet b642699
+* trying to properly propagate the controller in the data context 1dd28e0
 * typing 8851307
 * typo 9be9026
 * unliased interact errors a16496a
@@ -708,6 +709,11 @@
 * yarn reshuffle deps 8a982e5
 * yarn runs in shell mode e77591a
 * **yarn:** have to use an rc version of the plugin version 107768d
+
+
+### chore
+
+* update dependencies db1925d
 
 
 ### Code Refactoring
@@ -962,6 +968,7 @@
 
 ### BREAKING CHANGES
 
+* updated to path-to-regexp@8, thus route paths have to follow the new syntax
 * formatters are not simple functions anymore
 * replace provides index
 * CJS is no more supported
