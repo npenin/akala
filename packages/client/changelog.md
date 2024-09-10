@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* enable controller on page root element 671c910
+* trying to properly propagate the controller in the data context 1dd28e0
 
 
 
