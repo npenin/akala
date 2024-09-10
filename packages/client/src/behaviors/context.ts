@@ -13,12 +13,12 @@ export class DataContext implements Composer<IDataContext>
 {
     static readonly propagateProperties: string[] = ['controller'];
 
-    static define(item: HTMLElement, context: Record<string, unknown>): void
+    static define(item: HTMLElement | ShadowRoot, context: Record<string, unknown>): void
     {
         if (!item['dataContext'])
-            item['dataContext'] = DataContext.extend(DataContext.find(item), context)
-        item.setAttribute('data-context', '');
-
+            item['dataContext'] = DataContext.extend(DataContext.find(item), context);
+        if (item instanceof HTMLElement)
+            item.setAttribute('data-context', '');
     }
     static extend(sourceContext: Binding<IDataContext>, options: Record<string, unknown>, newContextPath?: string): Binding<IDataContext>
     {
