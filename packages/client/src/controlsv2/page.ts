@@ -22,7 +22,9 @@ export function pageOutlet<TScope extends IScope<object>>(options: { template: s
                     inj.register('param', param);
                     return inj.injectNewWithName(options.inject || [], target)();
                 }
-                return new target();
+                const result = new target();
+                element['controller'] = result;
+                return result;
             }
         } as OutletDefinition<TScope>;
     }
