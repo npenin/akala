@@ -2,7 +2,7 @@ import { Binding, ObservableObject, Parser, Subscription, each } from "@akala/co
 import { IScope } from "../scope.js";
 import { Composer } from "../template.js";
 import { AttributeComposer } from "./shared.js";
-import { CallExpression, ConstantExpression, MemberExpression, NewExpression } from "@akala/core/expressions";
+import { ConstantExpression, MemberExpression, NewExpression } from "@akala/core/expressions";
 // import { MemberExpression, NewExpression } from "@akala/core/expressions";
 
 type Scope = IScope<object>;
@@ -11,24 +11,24 @@ export type IDataContext<TController extends Partial<Disposable> = Partial<Dispo
 
 export class DataContext implements Composer<IDataContext>
 {
-    static propagateProperties: string[] = ['controller'];
+    static readonly propagateProperties: string[] = ['controller'];
 
     static define(item: HTMLElement, context: Record<string, unknown>): void
     {
-        item.setAttribute('data-context', '');
-        if (item['dataContext'])
+        if (!item['dataContext'])
             item['dataContext'] = DataContext.extend(DataContext.find(item), context)
+        item.setAttribute('data-context', '');
 
     }
     static extend(sourceContext: Binding<IDataContext>, options: Record<string, unknown>, newContextPath?: string): Binding<IDataContext>
     {
-        return sourceContext.pipe(new CallExpression(new ConstantExpression(Object), new ConstantExpression('assign'), [new NewExpression<{ context: any, controller: Partial<Disposable> }>(
+        return sourceContext.pipe(new NewExpression<{ context: any, controller: Partial<Disposable> }>(
             ...Object.entries(options).filter(e => e[0] !== 'context').map(e =>
                 new MemberExpression<any, any, any>(new ConstantExpression(e[1]), new ConstantExpression(e[0]), false)),
-            ...DataContext.propagateProperties.map(e =>
+            ...DataContext.propagateProperties.filter(p => !(p in options)).map(e =>
                 new MemberExpression<any, any, any>(new MemberExpression(null, new ConstantExpression(e), false), new ConstantExpression(e), false)),
             new MemberExpression(Parser.parameterLess.parse(newContextPath || 'context') as any, new ConstantExpression('context'), false),
-        ), new MemberExpression(null, null, false)]));
+        ));
     }
 
     private static readonly dataContextExpression = Parser.parameterLess.parse('dataContext');
@@ -39,7 +39,7 @@ export class DataContext implements Composer<IDataContext>
 
     optionGetter(options: object): { context: Scope; controller: Partial<Disposable>; }
     {
-        return { context: options['$rootScope'], controller: options['controller'] };
+        return { context: options['$rootScope'], controller: options['controller'], ...options };
     }
 
     apply(item: HTMLElement, options?: { context: Scope, controller: Partial<Disposable> }, root?: HTMLElement | ShadowRoot): Disposable
@@ -118,10 +118,7 @@ export class DataBind<T extends Partial<Disposable>> extends AttributeComposer<T
 
     getContext(item: HTMLElement, options?: T)
     {
-        return new Binding(DataContext.find(item), new NewExpression<{ context: any, controller: T }>(
-            new MemberExpression(new MemberExpression(undefined, new ConstantExpression('context'), false), new ConstantExpression('context'), false),
-            new MemberExpression(new ConstantExpression(options) as any, new ConstantExpression('controller'), false),
-        ));
+        return DataContext.find(item);
     }
 
     optionName = 'controller';
