@@ -19,11 +19,17 @@ export interface WebComponent
     attributeChangedCallback(name: string, oldValue: string, newValue: string): void;
 }
 
-export function webComponent(tagName: string)
+
+
+export function webComponent(tagName: string, options?: ElementDefinitionOptions)
 {
     return function <T extends Partial<WebComponent>>(target: (new (element: HTMLElement) => T) & { observedAttributes?: string[] })
     {
-        customElements.define(tagName, class extends HTMLElement
+        let parent = HTMLElement;
+        if (options?.extends)
+            parent = window[Object.getPrototypeOf(document.createElement(options.extends)).constructor.name] as any;
+
+        customElements.define(tagName, class extends parent
         {
             control: T;
             constructor()
@@ -54,7 +60,7 @@ export function webComponent(tagName: string)
 
             static readonly observedAttributes = target.observedAttributes;
 
-        });
+        }, options);
     }
 }
 export function wcObserve(name: string)

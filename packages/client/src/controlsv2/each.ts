@@ -6,7 +6,7 @@ import { DataContext } from "../common.js";
 export class Each extends Control
 {
     each: Binding<unknown>;
-    template: Element;
+    template: Node;
 
     get indexPropertyName()
     {
@@ -15,7 +15,7 @@ export class Each extends Control
 
     get valuePropertyName()
     {
-        return this.element.getAttribute('value-property-name') || 'item';
+        return this.element.getAttribute('item-property-name') || 'item';
     }
 
     private options: {}[] = []
@@ -26,12 +26,19 @@ export class Each extends Control
         if (this.element.childElementCount > 1)
             throw new Error('Each control can only have one child element');
         this.template = this.element.firstElementChild;
-        this.template.setAttribute('data-context', '');
-        this.element.removeChild(this.template);
+        if (this.template instanceof HTMLTemplateElement)
+        {
+            this.template = this.template.content;
+            if (Array.from(this.template.childNodes).filter(c => c instanceof HTMLElement).length > 1)
+                throw new Error('Each control can only have one child element');
+        }
+        this.element.removeChild(this.element.firstElementChild);
         let observableArraySubscription: Subscription;
 
         this.each.onChanged(ev =>
         {
+            if (ev.value === ev.oldValue)
+                return;
             observableArraySubscription?.();
             const observableArray = Array.isArray(ev.value) ? new ObservableArray(ev.value) : ev.value;
             if (observableArray instanceof ObservableArray)
@@ -83,9 +90,23 @@ export class Each extends Control
                                 // const options = { [this.indexPropertyName]: observableArray.length, [this.valuePropertyName]: arg.replacedItems[i] }
                                 this.options[arg.replacedItems[i].index][this.valuePropertyName] = arg.replacedItems[i].newItem;
                             }
+                            break;
                         case "init":
+                            for (let i = 0; i < arg.newItems.length; i++)
+                            {
+                                const item = (this.template.cloneNode(true) as HTMLElement).firstElementChild as HTMLElement;
+                                const options = {};
+                                Binding.defineProperty(options, this.indexPropertyName, i);
+                                Binding.defineProperty(options, this.valuePropertyName, arg.newItems[i]);
+                                this.options.push(options);
+                                this.element.appendChild(item);
+                                DataContext.define(item, options);
+                                this.teardown(Template.composeAll([item], this.element, options));
+                            }
+                            break;
                     }
-                }))
+                }));
+                observableArray.init();
             }
         }, true)
     }
