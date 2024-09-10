@@ -1,5 +1,5 @@
 import { Scope as IScope, Page, LocationService, ScopeImpl, page } from '@akala/client'
-import { Container, Processors } from '@akala/commands';
+import { Container, Metadata, Processors } from '@akala/commands';
 import { EventEmitter, Event, ObservableObject, Parser } from '@akala/core';
 import { Login } from './login/login.js';
 
@@ -15,7 +15,10 @@ class HomePage extends Page
             location.dispatch('/login');
         else
             root.$setAsync('currentUser', root.container.dispatch('auth.whoami').catch(e => { if (e.status == 401) Login.clearState(root); location.dispatch('/login') }))
+        this.commands = root.container.dispatch('$metadata', true).then(c => c.commands);
     }
+
+    public readonly commands: Promise<Metadata.Command[]>;
 
     public coco: boolean = true;
 
