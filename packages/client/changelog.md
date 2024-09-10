@@ -1,9 +1,9 @@
-#  (2024-09-08)
+#  (2024-09-10)
 
 
 ### Bug Fixes
 
-* add controller (and other properties) to datacontext extension a1d9b88
+* datacontext propagation f037550
 
 
 
