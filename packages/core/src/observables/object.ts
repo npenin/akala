@@ -126,7 +126,7 @@ export class BuildSetter<T extends object>
     {
         this.target = new ParameterExpression<T>('target');
         this.value = new ParameterExpression<TValue>('value');
-        let getter: Getter<T, unknown> = (target) => typeof target == 'object' ? new ObservableObject(target) : target;
+        let getter: Getter<T, unknown> = (target) => target;
         const getterBuilder = new BuildGetter<T>();
         switch (expression.type)
         {
@@ -141,10 +141,8 @@ export class BuildSetter<T extends object>
                     if (x)
                         if (x instanceof Binding)
                             x.setValue(value);
-                        else if (x instanceof ObservableObject)
-                            x.setValue(member(target), value);
-                        else if (ObservableObject.isWatched(x))
-                            (x[watcher] as ObservableObject<any>).setValue(member(target), value);
+                        else if (typeof x == 'object')
+                            new ObservableObject<any>(x).setValue(member(target), value);
                         else
                             x[member(target)] = value;
                 }
