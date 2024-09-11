@@ -1,14 +1,9 @@
-#  (2024-09-10)
+#  (2024-09-11)
 
 
-### chore
+### Bug Fixes
 
-* update dependencies db1925d
-
-
-### BREAKING CHANGES
-
-* updated to path-to-regexp@8, thus route paths have to follow the new syntax
+* handle setter on binding 2dd0a5a
 
 
 
