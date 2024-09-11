@@ -120,6 +120,7 @@
 * build with angular 17 9d3fcb6
 * buildsetter 201ad04
 * buildsetter e6b5c6e
+* buildsetter consistency 2bb6779
 * bump dependent 5e89235
 * bump dependents proper references f734b61
 * bump lambda version 41d34c2

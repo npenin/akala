@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* handle setter on binding 2dd0a5a
+* buildsetter consistency 2bb6779
 
 
 
