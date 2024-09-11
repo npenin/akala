@@ -1,4 +1,4 @@
-#  (2024-09-10)
+#  (2024-09-11)
 
 
 * fix:base64 helpers generating empty data 0ed3fad
@@ -267,6 +267,7 @@
 * handle non-specified pm socket option dfd5212
 * handle normalize on rest parameters 2a0b6a4
 * handle result properly 373a7a9
+* handle setter on binding 2dd0a5a
 * handle unary operator in evaluator a9c10e3
 * hasListener signature 896a1b9
 * hasOwnKeys now returns correct keys 76a062e
