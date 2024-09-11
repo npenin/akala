@@ -3,7 +3,7 @@
 
 ### Bug Fixes
 
-* buildsetter consistency 2bb6779
+* buildsetter binding case 7d9a808
 
 
 
