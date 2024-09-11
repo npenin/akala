@@ -139,7 +139,9 @@ export class BuildSetter<T extends object>
                 {
                     const x = getter(target);
                     if (x)
-                        if (x instanceof ObservableObject)
+                        if (x instanceof Binding)
+                            x.setValue(value);
+                        else if (x instanceof ObservableObject)
                             x.setValue(member(target), value);
                         else if (ObservableObject.isWatched(x))
                             (x[watcher] as ObservableObject<any>).setValue(member(target), value);
@@ -436,20 +438,25 @@ export class Binding<T> extends EventEmitter<{
         let settingValue = false;
         target[BindingsProperty][property] = binding;
 
+        binding.setValue = function (newValue: T)
+        {
+            if (settingValue)
+                return;
+            const oldValue = value;
+            value = newValue;
+            settingValue = true;
+            // binding.setValue(newValue)//, binding);
+            binding.emit('change', { value: newValue, oldValue });
+            settingValue = false;
+        }
+
         Object.defineProperty(target, property, {
             get()
             {
                 return value;
             }, set(newValue: T)
             {
-                if (settingValue)
-                    return;
-                const oldValue = value;
-                value = newValue;
-                settingValue = true;
-                // binding.setValue(newValue)//, binding);
-                binding.emit('change', { value: newValue, oldValue });
-                settingValue = false;
+                binding.setValue(newValue);
             }
         });
 
