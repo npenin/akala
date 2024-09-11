@@ -137,14 +137,16 @@ export class BuildSetter<T extends object>
 
                 return (target, value) =>
                 {
-                    const x = getter(target);
+                    let x = getter(target);
                     if (x)
+                    {
                         if (x instanceof Binding)
-                            x.setValue(value);
-                        else if (typeof x == 'object')
+                            x = x.getValue();
+                        if (typeof x == 'object')
                             new ObservableObject<any>(x).setValue(member(target), value);
                         else
                             x[member(target)] = value;
+                    }
                 }
                 break;
             case 'format':
