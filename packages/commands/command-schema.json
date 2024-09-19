@@ -203,20 +203,13 @@
                     "type": "object",
                     "title": "The schema Schema",
                     "properties": {
-                        "schema": {
-                            "$id": "#/schema/properties/schema",
+                        "$defs": {
+                            "$id": "#/schema/properties/schema/defs",
                             "type": "object",
-                            "title": "The schema Schema",
-                            "properties": {
-                                "$defs": {
-                                    "$id": "#/schema/properties/schema/defs",
-                                    "type": "object",
-                                    "title": "The schema definitions",
-                                    "patternProperties": {
-                                        "^.+$": {
-                                            "$ref": "http://json-schema.org/draft-07/schema#"
-                                        }
-                                    }
+                            "title": "The schema definitions",
+                            "patternProperties": {
+                                "^.+$": {
+                                    "$ref": "http://json-schema.org/draft-07/schema#"
                                 }
                             }
                         }

@@ -494,17 +494,15 @@
                         "param.0",
                         "param.1"
                     ],
-                    "schema": {
-                        "$defs": {
-                            "param.0": {
-                                "type": "string"
-                            },
-                            "param.1": {
-                                "type": "object",
-                                "properties": {
-                                    "wait": {
-                                        "type": "boolean"
-                                    }
+                    "$defs": {
+                        "param.0": {
+                            "type": "string"
+                        },
+                        "param.1": {
+                            "type": "object",
+                            "properties": {
+                                "wait": {
+                                    "type": "boolean"
                                 }
                             }
                         }
@@ -587,39 +585,37 @@
                         "param.1",
                         "param.2"
                     ],
-                    "schema": {
-                        "$defs": {
-                            "param.0": {
-                                "type": "string"
-                            },
-                            "param.1": {
-                                "type": "object",
-                                "properties": {
-                                    "wait": {
-                                        "type": "boolean"
-                                    },
-                                    "inspect": {
-                                        "type": "boolean"
-                                    },
-                                    "new": {
-                                        "type": "boolean"
-                                    },
-                                    "name": {
-                                        "type": "string"
-                                    },
-                                    "program": {
-                                        "type": "string"
-                                    }
+                    "$defs": {
+                        "param.0": {
+                            "type": "string"
+                        },
+                        "param.1": {
+                            "type": "object",
+                            "properties": {
+                                "wait": {
+                                    "type": "boolean"
+                                },
+                                "inspect": {
+                                    "type": "boolean"
+                                },
+                                "new": {
+                                    "type": "boolean"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "program": {
+                                    "type": "string"
                                 }
-                            },
-                            "param.2": {
-                                "type": "object",
-                                "properties": {
-                                    "args": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
+                            }
+                        },
+                        "param.2": {
+                            "type": "object",
+                            "properties": {
+                                "args": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
                                     }
                                 }
                             }
@@ -657,12 +653,10 @@
                     "inject": [
                         "param.0"
                     ],
-                    "schema": {
-                        "$defs": {
-                            "param.0": {
-                                "type": "string",
-                                "description": "The name of the container to get the status of"
-                            }
+                    "$defs": {
+                        "param.0": {
+                            "type": "string",
+                            "description": "The name of the container to get the status of"
                         }
                     }
                 }
@@ -696,6 +690,23 @@
                         }
                     },
                     "usage": "stop [process]"
+                },
+                "html-form": {
+                    "inject": [
+                        "param.0",
+                        "$container"
+                    ]
+                },
+                "schema": {
+                    "inject": [
+                        "param.0",
+                        "$container"
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "string"
+                        }
+                    }
                 }
             }
         },
@@ -746,9 +757,24 @@
                 },
                 "cli": {
                     "inject": [
+                        "options.packageName",
+                        "options.folder"
+                    ],
+                    "usage": "version <packageName> [folder]"
+                },
+                "schema": {
+                    "inject": [
                         "param.0",
                         "param.1"
-                    ]
+                    ],
+                    "$defs": {
+                        "param.0": {
+                            "type": "string"
+                        },
+                        "param.1": {
+                            "type": "string"
+                        }
+                    }
                 }
             }
         }
