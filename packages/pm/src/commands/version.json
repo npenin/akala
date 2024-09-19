@@ -8,8 +8,25 @@
     },
     "cli": {
         "inject": [
+            "options.packageName",
+            "options.folder"
+        ],
+        "usage": "version <packageName> [folder]"
+    },
+    "schema": {
+        "inject": [
             "param.0",
             "param.1"
-        ]
+        ],
+        "schema": {
+            "$defs": {
+                "param.0": {
+                    "type": "string"
+                },
+                "param.1": {
+                    "type": "string"
+                }
+            }
+        }
     }
 }
