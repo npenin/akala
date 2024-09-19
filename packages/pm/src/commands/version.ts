@@ -15,5 +15,3 @@ export default async function version(this: State, packageName: string, folder: 
     }
     return packageConfig.version;
 }
-
-exports.default.$inject = ['param.0', 'param.1']
