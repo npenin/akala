@@ -165,44 +165,6 @@
                 }
             ]
         },
-        "fs": {
-            "allOf": [
-                {
-                    "$ref": "#/definitions/inject"
-                },
-                {
-                    "$id": "#/fs",
-                    "type": "object",
-                    "title": "The fs Schema",
-                    "properties": {
-                        "disabled": {
-                            "$id": "#/fs/properties/disabled",
-                            "type": "boolean",
-                            "title": "The disabled Schema",
-                            "default": false
-                        },
-                        "path": {
-                            "$id": "#/fs/properties/path",
-                            "type": "string",
-                            "title": "The Path Schema",
-                            "default": "",
-                            "examples": [
-                                "dist\\cli\\generate-metadata.js"
-                            ]
-                        },
-                        "source": {
-                            "$id": "#/fs/properties/path",
-                            "type": "string",
-                            "title": "The Path Schema",
-                            "default": "",
-                            "examples": [
-                                "src\\cli\\generate-metadata.ts"
-                            ]
-                        }
-                    }
-                }
-            ]
-        },
         "": {
             "$ref": "#/definitions/inject"
         },
@@ -245,9 +207,16 @@
                             "$id": "#/schema/properties/schema",
                             "type": "object",
                             "title": "The schema Schema",
-                            "patternProperties": {
-                                "^.+$": {
-                                    "$ref": "http://json-schema.org/draft-07/schema#"
+                            "properties": {
+                                "$defs": {
+                                    "$id": "#/schema/properties/schema/defs",
+                                    "type": "object",
+                                    "title": "The schema definitions",
+                                    "patternProperties": {
+                                        "^.+$": {
+                                            "$ref": "http://json-schema.org/draft-07/schema#"
+                                        }
+                                    }
                                 }
                             }
                         }
