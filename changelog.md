@@ -1,4 +1,4 @@
-#  (2024-09-11)
+#  (2024-09-19)
 
 
 * fix:base64 helpers generating empty data 0ed3fad
@@ -113,6 +113,7 @@
 * broken command processor 22afbc0
 * browser exports 8888cc6
 * browser implementation (remove implicit reference to node) ef786d1
+* build + schema dab8278
 * build fix after jsonrpc breaking change b807513
 * build issue after update to @akala/core fc8465c
 * build issue after update to @akala/core 1cd037a
@@ -149,6 +150,7 @@
 * **client:** simplify inheritance chain 91573ab
 * close outputs after generate 1d87b9d
 * code clean up 11726cb
+* comand schema config schema 8b5ea92
 * command config resolution 4df15f2
 * command configuration path resolution 5bf471e
 * command help with mandatory positional parameter f6002a8
