@@ -12,17 +12,31 @@
             "wait": {
                 "aliases": [
                     "w"
-                ]
+                ],
+                "needsValue": false,
+                "doc": "waits for the program to be started before returning, otherwise, returns after the start command is sent to the pm daemon"
             },
-            "inspect": {},
-            "new": {},
-            "name": {}
+            "inspect": {
+                "needsValue": false,
+                "doc": "starts the process with --inspect-brk parameter to help debugging"
+            },
+            "new": {
+                "needsValue": false
+            },
+            "name": {
+                "doc": "name to assign to the process",
+                "needsValue": true
+            },
+            "program": {
+                "doc": "program to start"
+            }
         },
         "inject": [
             "$container",
             "param.0",
             "context"
-        ]
+        ],
+        "usage": "restart <program>"
     },
     "schema": {
         "inject": [
