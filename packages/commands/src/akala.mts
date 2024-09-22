@@ -7,6 +7,7 @@ import $serve from "./commands/$serve.js";
 import { Configurations } from "./metadata/configurations.js";
 import { dirname, isAbsolute, resolve } from "node:path";
 import { HandlerResult, handlers } from "./protocol-handler.js";
+import { pathToFileURL } from "node:url";
 const serveDefinition: Configurations = await import('../' + '../src/commands/$serve.json', { with: { type: 'json' } }).then(x => x.default)
 
 export default function (config, program: NamespaceMiddleware<{ configFile: string }>)
@@ -72,32 +73,32 @@ export default function (config, program: NamespaceMiddleware<{ configFile: stri
             })
     });
 
-    const commands = program.command('commands').state<{ commands: Record<string, string>, commit(): Promise<void> }>();
-    commands.command<{ name: string, path: string }>('add <name> <path|uri>').action(context =>
+    const commands = program.command('commands').state<{ commands: Record<string, string>, commit(_: void, formatted?: boolean): Promise<void> }>();
+    commands.command<{ name: string, path: string }>('add <name> <path|uri>').action(async context =>
     {
         if (!context.options.name)
             throw new ErrorMessage('the mandatory name was not provided. Please try again with a non-empty name.')
         if (!context.state.commands)
             context.state.commands = {};
-        try
+        if (URL.canParse(context.options.path))
         {
             const url = new URL(context.options.path);
-            handlers.protocol.process(url, { processor: null, getMetadata: () => void 0 })
-            console.log('pwet');
+            await handlers.protocol.process(url, { processor: null, getMetadata: () => void 0 })
         }
-        catch (e)
+        else
         {
-            console.error('pwet');
-            console.error(e);
+            const path = new URL(import.meta.resolve(context.options.path));
+            const configFilePath = pathToFileURL(context.options.configFile).pathname.split('/');
+            context.options.path = path.pathname.split('/').map((f, i) => f == configFilePath[i] ? '' : f).filter(x => x).join('/');
         }
         context.state.commands[context.options.name] = context.options.path;
-        return context.state.commit();
+        return context.state.commit(undefined, true);
     })
 
     commands.command('remove <name>').options<{ name: string }>({ name: {} }).action(context =>
     {
         delete context.state.commands[context.options.name];
-        return context.state.commit();
+        return context.state.commit(undefined, true);
     })
 
 
