@@ -123,7 +123,7 @@ export default async function generate(folder?: string, name?: string, outputFil
     // while (configPath);
     var commands = await akala.Processors.FileSystem.discoverMetaCommands(path.resolve(folder), discoveryOptions);
     const result = { name: commands.name, commands, $schema: 'https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json' };
-    const defs: { local: Record<string, { id: string, promise: Promise<JsonSchema> }>, global: Record<string, { id: string, promise: Promise<JsonSchema> }> } = {
+    const defs: { local: Record<string, { id: string, isDynamic: boolean, promise: Promise<JsonSchema> }>, global: Record<string, { id: string, promise: Promise<JsonSchema> }> } = {
         local: {}, global: {
             SharedArrayBuffer: { id: 'SharedArrayBuffer', promise: Promise.resolve({ type: "array", $id: 'SharedArrayBuffer', items: { type: 'number' } }) }
         }
@@ -192,7 +192,7 @@ export default async function generate(folder?: string, name?: string, outputFil
     await new Promise(resolve => output.end(resolve));
 }
 
-function serializeSymbol(checker: ts.TypeChecker, typeNode: ts.TypeNode, defs: { local: Record<string, { id: string, promise: Promise<JsonSchema> }>, global: Record<string, { id: string, promise: Promise<JsonSchema> }> }): JsonSchema | { id: string, promise: Promise<JsonSchema> }
+function serializeSymbol(checker: ts.TypeChecker, typeNode: ts.TypeNode, defs: { local: Record<string, { id: string, isDynamic: boolean, promise: Promise<JsonSchema> }>, global: Record<string, { id: string, promise: Promise<JsonSchema> }> }): JsonSchema | { id: string, promise: Promise<JsonSchema> }
 {
     let type: ts.Type;
     if (ts.isTypeReferenceNode(typeNode))
@@ -205,7 +205,6 @@ function serializeSymbol(checker: ts.TypeChecker, typeNode: ts.TypeNode, defs: {
             if (!('intrinsicName' in type && typeof type.intrinsicName == 'string' && type.intrinsicName == 'error'))
                 return serializeType(checker, type, defs)
         }
-        return serializeType(checker, checker.getTypeAtLocation(typeNode.typeName), defs)
     }
     return serializeType(checker, checker.getTypeFromTypeNode(typeNode), defs)
 }
@@ -223,8 +222,10 @@ declare module 'typescript'
     // }
 }
 
-function serializeType(checker: ts.TypeChecker, type: ts.Type | ts.TypeReference, defs: { local: Record<string, { id: string, promise: Promise<JsonSchema> }>, global: Record<string, { id: string, promise: Promise<JsonSchema> }> }, bypassDefs?: boolean): JsonSchema | { id: string, promise: Promise<JsonSchema> }
+function serializeType(checker: ts.TypeChecker, type: ts.Type | ts.TypeReference, defs: { local: Record<string, { id: string, $dynamicAnchor?: string, promise: Promise<JsonSchema> }>, global: Record<string, { id: string, promise: Promise<JsonSchema> }> }, bypassDefs?: boolean): JsonSchema | { id: string, $dynamicAnchor?: string, promise: Promise<JsonSchema> }
 {
+    if (!type)
+        return { type: false };
     if ('intrinsicName' in type && typeof type.intrinsicName == 'string')
         switch (type.intrinsicName)
         {
@@ -257,8 +258,11 @@ function serializeType(checker: ts.TypeChecker, type: ts.Type | ts.TypeReference
     {
         const fullTypeName = friendlyId;
         if (fullTypeName in defs.local)
+        {
+            if (defs.local[fullTypeName].$dynamicAnchor)
+                return { $dynamicRef: "#" + defs.local[fullTypeName].id };
             return { $ref: "#/$defs/" + defs.local[fullTypeName].id };
-        if (fullTypeName in defs.global)
+        } if (fullTypeName in defs.global)
             return { $ref: "#/$defs/" + defs.global[fullTypeName].id };
 
         if (/^"[^"/]+"\./.test(fullTypeName) || fullTypeName[0] != '"' && /^([^\.]+)\.?/.exec(fullTypeName)[1] == 'internal')
@@ -293,11 +297,10 @@ function serializeType(checker: ts.TypeChecker, type: ts.Type | ts.TypeReference
                         throw e;
                 }
             }
-
             defs.global[fullTypeName] = {
                 id: friendlyId, promise: (async function ()
                 {
-                    const result = serializeType(checker, type, defs, true);
+                    const result = serializeType(checker, 'target' in type ? type.target : type, defs, true);
                     if ('promise' in result)
                         return await result.promise.then(t =>
                         {
@@ -312,9 +315,29 @@ function serializeType(checker: ts.TypeChecker, type: ts.Type | ts.TypeReference
         }
         if (fullTypeName in defs.global)
         {
-            const type = defs.global[fullTypeName];
+            const resolvedType = defs.global[fullTypeName];
             if (type)
-                return { $ref: "#/$defs/" + type.id };
+            {
+                const dynamics = defs.local && Object.entries(defs.local).filter(e => e[0].startsWith(fullTypeName));
+                if (dynamics?.length > 0 && dynamics[0][0] !== fullTypeName)
+                {
+                    const serializedTypes = dynamics.map((d, i) => ({ name: d[0].substring(fullTypeName.length + 1), type: serializeType(checker, checker.getTypeArguments((type as ts.TypeReference))[i], defs) }));
+                    if (serializedTypes.find(x => 'promise' in x.type))
+                    {
+                        return {
+                            promise: Promise.all(serializedTypes.map<Promise<SchemaObject>>(x => 'promise' in x.type ? x.type.promise : Promise.resolve(x.type))).then(types => ({
+                                $ref: "#/$defs/" + resolvedType.id, $defs: Object.fromEntries(types.map((serializedType, i) => [serializedTypes[i].name,
+                                { type: 'object', $dynamicAnchor: resolvedType.id + '.' + (type as ts.TypeReference).target.typeArguments[i].symbol.escapedName, ...serializedType, $id: undefined }]))
+                            }))
+                        };
+                    }
+                    return {
+                        $ref: "#/$defs/" + resolvedType.id, $defs: Object.fromEntries(serializedTypes.map((serializedType, i) => [serializedType.name,
+                        { type: 'object', $dynamicAnchor: resolvedType.id + '.' + (type as ts.TypeReference).target.typeArguments[i].symbol.escapedName, ...serializedType.type, $id: undefined }]))
+                    };
+                }
+                return { $ref: "#/$defs/" + resolvedType.id };
+            }
             return { type: 'null' }
         }
     }
@@ -373,6 +396,11 @@ function serializeType(checker: ts.TypeChecker, type: ts.Type | ts.TypeReference
                         const typeI = serializeType(checker, type.typeArguments[i], defs);
                         if ('promise' in typeI)
                             return [name, typeI];
+                        if (typeI.$ref)
+                        {
+                            const anchorName = typeI.$ref.substring('#/$defs/'.length);
+                            return [name, { id: anchorName, $dynamicAnchor: anchorName }];
+                        }
                         return [name, { id: name, promise: Promise.resolve(typeI) }]
                     }
                     debugger;
@@ -384,7 +412,7 @@ function serializeType(checker: ts.TypeChecker, type: ts.Type | ts.TypeReference
                     {
                         return {
                             "$id": friendlyId,
-                            "$defs": Object.fromEntries(await Promise.all(Object.entries(defs.local).map(e => 'promise' in e[1] ? e[1].promise.then(v => [e[0], v]) : Promise.resolve([e[0], e[1]])))),
+                            "$defs": Object.fromEntries(await Promise.all(Object.entries(defs.local).filter(x => x[0].startsWith(friendlyId)).map(e => 'promise' in e[1] ? e[1].promise.then(v => [e[0], v]) : Promise.resolve([e[0], e[1]])))),
                             "type": "object",
                             "properties": Object.fromEntries((await Promise.all(type.getProperties().filter(p => !checker.getTypeOfSymbol(p).getCallSignatures().length).map(p => ({ prop: p, type: serializeType(checker, checker.getTypeOfSymbol(p), defs) })).map(x => 'promise' in x.type ? x.type.promise.then(r => [x.prop.escapedName, r]) : Promise.resolve([x.prop.escapedName, x.type])))).filter(e => e[1])),
                             // "items": { "$dynamicRef": "#T" }
