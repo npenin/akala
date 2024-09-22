@@ -14,6 +14,7 @@ import { handlers, parseQueryString } from '../protocol-handler.js';
 import { stat } from 'fs/promises';
 import os from 'node:os'
 import { fileURLToPath, pathToFileURL } from 'url';
+import { SchemaObject } from 'ajv';
 
 async function protocolHandler(url: URL)
 {
@@ -116,7 +117,7 @@ export class FileSystem extends CommandProcessor
             container.name = commands.name;
     }
 
-    public static async discoverMetaCommands(root: string, options?: DiscoveryOptions): Promise<Metadata.Command[] & { name?: string, stateless?: boolean }>
+    public static async discoverMetaCommands(root: string, options?: DiscoveryOptions): Promise<Metadata.Command[] & { name?: string, stateless?: boolean, $defs?: Record<string, SchemaObject> }>
     {
         // console.trace(`discovering commands in ${root}`)
         const log = akala.logger('commands:fs:discovery');
@@ -167,6 +168,7 @@ export class FileSystem extends CommandProcessor
             // eslint-disable-next-line @typescript-eslint/no-var-requires
             const metacontainer: Metadata.Container & { extends?: string[] } = await importJson(path.resolve(root));
             const commands = metacontainer.commands.filter(cmd => !(cmd.name == '$serve' || cmd.name == '$attach' || cmd.name == '$metadata'));
+            let globalDefs = metacontainer.$defs;
             if (metacontainer.extends && metacontainer.extends.length)
             {
                 await eachAsync(metacontainer.extends, async subPath =>
@@ -191,11 +193,16 @@ export class FileSystem extends CommandProcessor
                             c.config.fs.path = path.resolve(path.dirname(await resolveFolder(cmdRequire, subPath)), c.config.fs.path);
                         if (c.config?.fs?.source)
                             c.config.fs.source = path.resolve(path.dirname(await resolveFolder(cmdRequire, subPath)), c.config.fs.source);
+
+                        if (c.config.schema?.$defs)
+                            if (globalDefs)
+                                Object.assign(c.config.schema.$defs, globalDefs);
+
                         try
                         {
                             const f = await fs.open(c.config.fs.source);
+                            await f.close();
                             commands.push(c);
-                            await f.close()
                         }
                         catch (e)
                         {
@@ -207,6 +214,8 @@ export class FileSystem extends CommandProcessor
                     });
                 });
             }
+            // if ('$defs' in metacontainer && typeof metacontainer.$defs == 'object')
+            //     Object.defineProperty(commands, '$defs', { enumerable: false, value: globalDefs });
             Object.defineProperty(commands, 'name', { enumerable: false, value: metacontainer.name });
             return commands;
         }

@@ -122,7 +122,7 @@ export default async function generate(folder?: string, name?: string, outputFil
     // }
     // while (configPath);
     var commands = await akala.Processors.FileSystem.discoverMetaCommands(path.resolve(folder), discoveryOptions);
-    const result = { name: commands.name, commands };
+    const result = { name: commands.name, commands, $schema: 'https://raw.githubusercontent.com/npenin/akala/master/packages/commands/container-schema.json' };
     const defs: { local: Record<string, { id: string, promise: Promise<JsonSchema> }>, global: Record<string, { id: string, promise: Promise<JsonSchema> }> } = {
         local: {}, global: {
             SharedArrayBuffer: { id: 'SharedArrayBuffer', promise: Promise.resolve({ type: "array", $id: 'SharedArrayBuffer', items: { type: 'number' } }) }
@@ -180,13 +180,13 @@ export default async function generate(folder?: string, name?: string, outputFil
         await Promise.all(promises).then(results =>
         {
             c.cmd.config.schema = {
-                $defs: Object.fromEntries(c.cmd.config[""].inject.map((p, i) => [p, p.startsWith('param.') ? results[p.substring('param.'.length)].$ref : { type: "null", description: p }])),
+                $defs: Object.fromEntries(c.cmd.config[""].inject.map((p, i) => [p, p.startsWith('param.') ? results[i] : { type: "null", description: p }])),
                 inject: c.cmd.config[""].inject,
             };
         });
 
     }));
-    // result['$defs'] = Object.fromEntries(await Promise.all(Object.entries(defs.global).map(e => e[1].promise.then(r => [e[0], r]))))
+    result['$defs'] = Object.fromEntries(await Promise.all(Object.entries(defs.global).map(e => e[1].promise.then(r => [e[0], r]))))
 
     await write(output, JSON.stringify(result, null, 4));
     await new Promise(resolve => output.end(resolve));
