@@ -1,3 +1,4 @@
+import { SchemaObject } from 'ajv';
 import { Command } from './command.js';
 
 export interface Container
@@ -7,4 +8,5 @@ export interface Container
     extends?: string[];
     dependencies?: string[];
     commands: Command[];
+    $defs?: Record<string, SchemaObject>
 }
