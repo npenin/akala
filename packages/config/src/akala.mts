@@ -30,12 +30,6 @@ export default async function (_config, program: NamespaceMiddleware)
         {
             return Promise.resolve(context.state.get(context.options['key'] as string));
         });
-
-    root.command('plugins add').state<Configuration>().format(async (result, context) =>
-    {
-        await context.state.commit();
-        return result;
-    })
 }
 
 export async function install(context: CliContext<{ configFile: string }, object>)
