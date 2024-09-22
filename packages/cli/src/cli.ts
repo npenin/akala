@@ -121,7 +121,7 @@ process.emit = function (name, data, ...args)
             else
                 context.logger.info(`no plugin to load ? odd...`);
             if (!('commit' in context.state && typeof context.state.commit === 'function'))
-                context.state.commit = () => fs.writeFile(context.options.configFile, JSON.stringify(context.state));
+                context.state.commit = () => fs.writeFile(context.options.configFile, JSON.stringify(context.state, null, 4));
         })
 
 
