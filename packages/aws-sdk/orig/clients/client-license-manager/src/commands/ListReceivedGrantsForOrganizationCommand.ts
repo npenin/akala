@@ -1,0 +1,151 @@
+// smithy-typescript generated code
+import { getEndpointPlugin } from "@smithy/middleware-endpoint";
+import { getSerdePlugin } from "@smithy/middleware-serde";
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+
+import { commonParams } from "../endpoint/EndpointParameters";
+import { LicenseManagerClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from "../LicenseManagerClient";
+import {
+  ListReceivedGrantsForOrganizationRequest,
+  ListReceivedGrantsForOrganizationResponse,
+} from "../models/models_0";
+import {
+  de_ListReceivedGrantsForOrganizationCommand,
+  se_ListReceivedGrantsForOrganizationCommand,
+} from "../protocols/Aws_json1_1";
+
+/**
+ * @public
+ */
+export type { __MetadataBearer };
+export { $Command };
+/**
+ * @public
+ *
+ * The input for {@link ListReceivedGrantsForOrganizationCommand}.
+ */
+export interface ListReceivedGrantsForOrganizationCommandInput extends ListReceivedGrantsForOrganizationRequest {}
+/**
+ * @public
+ *
+ * The output of {@link ListReceivedGrantsForOrganizationCommand}.
+ */
+export interface ListReceivedGrantsForOrganizationCommandOutput
+  extends ListReceivedGrantsForOrganizationResponse,
+    __MetadataBearer {}
+
+/**
+ * <p>Lists the grants received for all accounts in the organization.</p>
+ * @example
+ * Use a bare-bones client and the command you need to make an API call.
+ * ```javascript
+ * import { LicenseManagerClient, ListReceivedGrantsForOrganizationCommand } from "@aws-sdk/client-license-manager"; // ES Modules import
+ * // const { LicenseManagerClient, ListReceivedGrantsForOrganizationCommand } = require("@aws-sdk/client-license-manager"); // CommonJS import
+ * const client = new LicenseManagerClient(config);
+ * const input = { // ListReceivedGrantsForOrganizationRequest
+ *   LicenseArn: "STRING_VALUE", // required
+ *   Filters: [ // FilterList
+ *     { // Filter
+ *       Name: "STRING_VALUE",
+ *       Values: [ // FilterValues
+ *         "STRING_VALUE",
+ *       ],
+ *     },
+ *   ],
+ *   NextToken: "STRING_VALUE",
+ *   MaxResults: Number("int"),
+ * };
+ * const command = new ListReceivedGrantsForOrganizationCommand(input);
+ * const response = await client.send(command);
+ * // { // ListReceivedGrantsForOrganizationResponse
+ * //   Grants: [ // GrantList
+ * //     { // Grant
+ * //       GrantArn: "STRING_VALUE", // required
+ * //       GrantName: "STRING_VALUE", // required
+ * //       ParentArn: "STRING_VALUE", // required
+ * //       LicenseArn: "STRING_VALUE", // required
+ * //       GranteePrincipalArn: "STRING_VALUE", // required
+ * //       HomeRegion: "STRING_VALUE", // required
+ * //       GrantStatus: "PENDING_WORKFLOW" || "PENDING_ACCEPT" || "REJECTED" || "ACTIVE" || "FAILED_WORKFLOW" || "DELETED" || "PENDING_DELETE" || "DISABLED" || "WORKFLOW_COMPLETED", // required
+ * //       StatusReason: "STRING_VALUE",
+ * //       Version: "STRING_VALUE", // required
+ * //       GrantedOperations: [ // AllowedOperationList // required
+ * //         "CreateGrant" || "CheckoutLicense" || "CheckoutBorrowLicense" || "CheckInLicense" || "ExtendConsumptionLicense" || "ListPurchasedLicenses" || "CreateToken",
+ * //       ],
+ * //       Options: { // Options
+ * //         ActivationOverrideBehavior: "DISTRIBUTED_GRANTS_ONLY" || "ALL_GRANTS_PERMITTED_BY_ISSUER",
+ * //       },
+ * //     },
+ * //   ],
+ * //   NextToken: "STRING_VALUE",
+ * // };
+ *
+ * ```
+ *
+ * @param ListReceivedGrantsForOrganizationCommandInput - {@link ListReceivedGrantsForOrganizationCommandInput}
+ * @returns {@link ListReceivedGrantsForOrganizationCommandOutput}
+ * @see {@link ListReceivedGrantsForOrganizationCommandInput} for command's `input` shape.
+ * @see {@link ListReceivedGrantsForOrganizationCommandOutput} for command's `response` shape.
+ * @see {@link LicenseManagerClientResolvedConfig | config} for LicenseManagerClient's `config` shape.
+ *
+ * @throws {@link AccessDeniedException} (client fault)
+ *  <p>Access to resource denied.</p>
+ *
+ * @throws {@link AuthorizationException} (client fault)
+ *  <p>The Amazon Web Services user account does not have permission to perform the action. Check the IAM
+ *          policy associated with this account.</p>
+ *
+ * @throws {@link InvalidParameterValueException} (client fault)
+ *  <p>One or more parameter values are not valid.</p>
+ *
+ * @throws {@link RateLimitExceededException} (client fault)
+ *  <p>Too many requests have been submitted. Try again after a brief wait.</p>
+ *
+ * @throws {@link ResourceLimitExceededException} (client fault)
+ *  <p>Your resource limits have been exceeded.</p>
+ *
+ * @throws {@link ServerInternalException} (server fault)
+ *  <p>The server experienced an internal error. Try again.</p>
+ *
+ * @throws {@link ValidationException} (client fault)
+ *  <p>The provided input is not valid. Try your request again.</p>
+ *
+ * @throws {@link LicenseManagerServiceException}
+ * <p>Base exception class for all service exceptions from LicenseManager service.</p>
+ *
+ * @public
+ */
+export class ListReceivedGrantsForOrganizationCommand extends $Command
+  .classBuilder<
+    ListReceivedGrantsForOrganizationCommandInput,
+    ListReceivedGrantsForOrganizationCommandOutput,
+    LicenseManagerClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >()
+  .ep(commonParams)
+  .m(function (this: any, Command: any, cs: any, config: LicenseManagerClientResolvedConfig, o: any) {
+    return [
+      getSerdePlugin(config, this.serialize, this.deserialize),
+      getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
+    ];
+  })
+  .s("AWSLicenseManager", "ListReceivedGrantsForOrganization", {})
+  .n("LicenseManagerClient", "ListReceivedGrantsForOrganizationCommand")
+  .f(void 0, void 0)
+  .ser(se_ListReceivedGrantsForOrganizationCommand)
+  .de(de_ListReceivedGrantsForOrganizationCommand)
+  .build() {
+  /** @internal type navigation helper, not in runtime. */
+  protected declare static __types: {
+    api: {
+      input: ListReceivedGrantsForOrganizationRequest;
+      output: ListReceivedGrantsForOrganizationResponse;
+    };
+    sdk: {
+      input: ListReceivedGrantsForOrganizationCommandInput;
+      output: ListReceivedGrantsForOrganizationCommandOutput;
+    };
+  };
+}

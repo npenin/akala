@@ -1,0 +1,115 @@
+// smithy-typescript generated code
+import { getEndpointPlugin } from "@smithy/middleware-endpoint";
+import { getSerdePlugin } from "@smithy/middleware-serde";
+import { Command as $Command } from "@smithy/smithy-client";
+import { MetadataBearer as __MetadataBearer } from "@smithy/types";
+
+import { commonParams } from "../endpoint/EndpointParameters";
+import { LambdaClientResolvedConfig, ServiceInputTypes, ServiceOutputTypes } from "../LambdaClient";
+import { DeleteAliasRequest } from "../models/models_0";
+import { de_DeleteAliasCommand, se_DeleteAliasCommand } from "../protocols/Aws_restJson1";
+
+/**
+ * @public
+ */
+export type { __MetadataBearer };
+export { $Command };
+/**
+ * @public
+ *
+ * The input for {@link DeleteAliasCommand}.
+ */
+export interface DeleteAliasCommandInput extends DeleteAliasRequest {}
+/**
+ * @public
+ *
+ * The output of {@link DeleteAliasCommand}.
+ */
+export interface DeleteAliasCommandOutput extends __MetadataBearer {}
+
+/**
+ * <p>Deletes a Lambda function <a href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html">alias</a>.</p>
+ * @example
+ * Use a bare-bones client and the command you need to make an API call.
+ * ```javascript
+ * import { LambdaClient, DeleteAliasCommand } from "@aws-sdk/client-lambda"; // ES Modules import
+ * // const { LambdaClient, DeleteAliasCommand } = require("@aws-sdk/client-lambda"); // CommonJS import
+ * const client = new LambdaClient(config);
+ * const input = { // DeleteAliasRequest
+ *   FunctionName: "STRING_VALUE", // required
+ *   Name: "STRING_VALUE", // required
+ * };
+ * const command = new DeleteAliasCommand(input);
+ * const response = await client.send(command);
+ * // {};
+ *
+ * ```
+ *
+ * @param DeleteAliasCommandInput - {@link DeleteAliasCommandInput}
+ * @returns {@link DeleteAliasCommandOutput}
+ * @see {@link DeleteAliasCommandInput} for command's `input` shape.
+ * @see {@link DeleteAliasCommandOutput} for command's `response` shape.
+ * @see {@link LambdaClientResolvedConfig | config} for LambdaClient's `config` shape.
+ *
+ * @throws {@link InvalidParameterValueException} (client fault)
+ *  <p>One of the parameters in the request is not valid.</p>
+ *
+ * @throws {@link ResourceConflictException} (client fault)
+ *  <p>The resource already exists, or another operation is in progress.</p>
+ *
+ * @throws {@link ServiceException} (server fault)
+ *  <p>The Lambda service encountered an internal error.</p>
+ *
+ * @throws {@link TooManyRequestsException} (client fault)
+ *  <p>The request throughput limit was exceeded. For more information, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html#api-requests">Lambda quotas</a>.</p>
+ *
+ * @throws {@link LambdaServiceException}
+ * <p>Base exception class for all service exceptions from Lambda service.</p>
+ *
+ * @public
+ * @example To delete a Lambda function alias
+ * ```javascript
+ * // The following example deletes an alias named BLUE from a function named my-function
+ * const input = {
+ *   "FunctionName": "my-function",
+ *   "Name": "BLUE"
+ * };
+ * const command = new DeleteAliasCommand(input);
+ * await client.send(command);
+ * // example id: to-delete-a-lambda-function-alias-1481660370804
+ * ```
+ *
+ */
+export class DeleteAliasCommand extends $Command
+  .classBuilder<
+    DeleteAliasCommandInput,
+    DeleteAliasCommandOutput,
+    LambdaClientResolvedConfig,
+    ServiceInputTypes,
+    ServiceOutputTypes
+  >()
+  .ep(commonParams)
+  .m(function (this: any, Command: any, cs: any, config: LambdaClientResolvedConfig, o: any) {
+    return [
+      getSerdePlugin(config, this.serialize, this.deserialize),
+      getEndpointPlugin(config, Command.getEndpointParameterInstructions()),
+    ];
+  })
+  .s("AWSGirApiService", "DeleteAlias", {})
+  .n("LambdaClient", "DeleteAliasCommand")
+  .f(void 0, void 0)
+  .ser(se_DeleteAliasCommand)
+  .de(de_DeleteAliasCommand)
+  .build() {
+  /** @internal type navigation helper, not in runtime. */
+  protected declare static __types: {
+    api: {
+      input: DeleteAliasRequest;
+      output: {};
+    };
+    sdk: {
+      input: DeleteAliasCommandInput;
+      output: DeleteAliasCommandOutput;
+    };
+  };
+}
