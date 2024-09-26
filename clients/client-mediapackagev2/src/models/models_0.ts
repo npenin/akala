@@ -1,0 +1,2985 @@
+// smithy-typescript generated code
+import { ExceptionOptionType as __ExceptionOptionType } from "@smithy/smithy-client";
+
+import { MediaPackageV2ServiceException as __BaseException } from "./MediaPackageV2ServiceException";
+
+/**
+ * <p>You don't have permissions to perform the requested operation. The user or role that is making the request must have at least one IAM permissions policy attached that grants the required permissions. For more information, see Access Management in the IAM User Guide.</p>
+ * @public
+ */
+export class AccessDeniedException extends __BaseException {
+  readonly name: "AccessDeniedException" = "AccessDeniedException";
+  readonly $fault: "client" = "client";
+  Message?: string;
+  /**
+   * @internal
+   */
+  constructor(opts: __ExceptionOptionType<AccessDeniedException, __BaseException>) {
+    super({
+      name: "AccessDeniedException",
+      $fault: "client",
+      ...opts,
+    });
+    Object.setPrototypeOf(this, AccessDeniedException.prototype);
+    this.Message = opts.Message;
+  }
+}
+
+/**
+ * @public
+ * @enum
+ */
+export const AdMarkerDash = {
+  BINARY: "BINARY",
+  XML: "XML",
+} as const;
+
+/**
+ * @public
+ */
+export type AdMarkerDash = (typeof AdMarkerDash)[keyof typeof AdMarkerDash];
+
+/**
+ * @public
+ * @enum
+ */
+export const AdMarkerHls = {
+  DATERANGE: "DATERANGE",
+} as const;
+
+/**
+ * @public
+ */
+export type AdMarkerHls = (typeof AdMarkerHls)[keyof typeof AdMarkerHls];
+
+/**
+ * <p>The configuration of the channel group.</p>
+ * @public
+ */
+export interface ChannelGroupListConfiguration {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The Amazon Resource Name (ARN) associated with the resource.</p>
+   * @public
+   */
+  Arn: string | undefined;
+
+  /**
+   * <p>The date and time the channel group was created.</p>
+   * @public
+   */
+  CreatedAt: Date | undefined;
+
+  /**
+   * <p>The date and time the channel group was modified.</p>
+   * @public
+   */
+  ModifiedAt: Date | undefined;
+
+  /**
+   * <p>Any descriptive information that you want to add to the channel group for future identification purposes.</p>
+   * @public
+   */
+  Description?: string;
+}
+
+/**
+ * @public
+ * @enum
+ */
+export const ConflictExceptionType = {
+  CONFLICTING_OPERATION: "CONFLICTING_OPERATION",
+  IDEMPOTENT_PARAMETER_MISMATCH: "IDEMPOTENT_PARAMETER_MISMATCH",
+  RESOURCE_ALREADY_EXISTS: "RESOURCE_ALREADY_EXISTS",
+  RESOURCE_IN_USE: "RESOURCE_IN_USE",
+} as const;
+
+/**
+ * @public
+ */
+export type ConflictExceptionType = (typeof ConflictExceptionType)[keyof typeof ConflictExceptionType];
+
+/**
+ * <p>Updating or deleting this resource can cause an inconsistent state.</p>
+ * @public
+ */
+export class ConflictException extends __BaseException {
+  readonly name: "ConflictException" = "ConflictException";
+  readonly $fault: "client" = "client";
+  Message?: string;
+  /**
+   * <p>The type of ConflictException.</p>
+   * @public
+   */
+  ConflictExceptionType?: ConflictExceptionType;
+  /**
+   * @internal
+   */
+  constructor(opts: __ExceptionOptionType<ConflictException, __BaseException>) {
+    super({
+      name: "ConflictException",
+      $fault: "client",
+      ...opts,
+    });
+    Object.setPrototypeOf(this, ConflictException.prototype);
+    this.Message = opts.Message;
+    this.ConflictExceptionType = opts.ConflictExceptionType;
+  }
+}
+
+/**
+ * @public
+ */
+export interface DeleteChannelPolicyRequest {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group.</p>
+   * @public
+   */
+  ChannelName: string | undefined;
+}
+
+/**
+ * @public
+ */
+export interface DeleteChannelPolicyResponse {}
+
+/**
+ * <p>Indicates that an error from the service occurred while trying to process a request.</p>
+ * @public
+ */
+export class InternalServerException extends __BaseException {
+  readonly name: "InternalServerException" = "InternalServerException";
+  readonly $fault: "server" = "server";
+  Message?: string;
+  /**
+   * @internal
+   */
+  constructor(opts: __ExceptionOptionType<InternalServerException, __BaseException>) {
+    super({
+      name: "InternalServerException",
+      $fault: "server",
+      ...opts,
+    });
+    Object.setPrototypeOf(this, InternalServerException.prototype);
+    this.Message = opts.Message;
+  }
+}
+
+/**
+ * <p>The request throughput limit was exceeded.</p>
+ * @public
+ */
+export class ThrottlingException extends __BaseException {
+  readonly name: "ThrottlingException" = "ThrottlingException";
+  readonly $fault: "client" = "client";
+  Message?: string;
+  /**
+   * @internal
+   */
+  constructor(opts: __ExceptionOptionType<ThrottlingException, __BaseException>) {
+    super({
+      name: "ThrottlingException",
+      $fault: "client",
+      ...opts,
+    });
+    Object.setPrototypeOf(this, ThrottlingException.prototype);
+    this.Message = opts.Message;
+  }
+}
+
+/**
+ * @public
+ * @enum
+ */
+export const ValidationExceptionType = {
+  CENC_IV_INCOMPATIBLE: "CENC_IV_INCOMPATIBLE",
+  CONTAINER_TYPE_IMMUTABLE: "CONTAINER_TYPE_IMMUTABLE",
+  DIRECT_MODE_WITH_TIMING_SOURCE: "DIRECT_MODE_WITH_TIMING_SOURCE",
+  DRM_SIGNALING_MISMATCH_SEGMENT_ENCRYPTION_STATUS: "DRM_SIGNALING_MISMATCH_SEGMENT_ENCRYPTION_STATUS",
+  DRM_SYSTEMS_ENCRYPTION_METHOD_INCOMPATIBLE: "DRM_SYSTEMS_ENCRYPTION_METHOD_INCOMPATIBLE",
+  ENCRYPTION_CONTRACT_SHARED: "ENCRYPTION_CONTRACT_SHARED",
+  ENCRYPTION_CONTRACT_UNENCRYPTED: "ENCRYPTION_CONTRACT_UNENCRYPTED",
+  ENCRYPTION_CONTRACT_WITHOUT_AUDIO_RENDITION_INCOMPATIBLE: "ENCRYPTION_CONTRACT_WITHOUT_AUDIO_RENDITION_INCOMPATIBLE",
+  ENCRYPTION_METHOD_CONTAINER_TYPE_MISMATCH: "ENCRYPTION_METHOD_CONTAINER_TYPE_MISMATCH",
+  END_TIME_EARLIER_THAN_START_TIME: "END_TIME_EARLIER_THAN_START_TIME",
+  INVALID_MANIFEST_FILTER: "INVALID_MANIFEST_FILTER",
+  INVALID_PAGINATION_MAX_RESULTS: "INVALID_PAGINATION_MAX_RESULTS",
+  INVALID_PAGINATION_TOKEN: "INVALID_PAGINATION_TOKEN",
+  INVALID_POLICY: "INVALID_POLICY",
+  INVALID_ROLE_ARN: "INVALID_ROLE_ARN",
+  INVALID_TIME_DELAY_SECONDS: "INVALID_TIME_DELAY_SECONDS",
+  MANIFEST_DRM_SYSTEMS_INCOMPATIBLE: "MANIFEST_DRM_SYSTEMS_INCOMPATIBLE",
+  MANIFEST_NAME_COLLISION: "MANIFEST_NAME_COLLISION",
+  MEMBER_DOES_NOT_MATCH_PATTERN: "MEMBER_DOES_NOT_MATCH_PATTERN",
+  MEMBER_INVALID: "MEMBER_INVALID",
+  MEMBER_INVALID_ENUM_VALUE: "MEMBER_INVALID_ENUM_VALUE",
+  MEMBER_MAX_LENGTH: "MEMBER_MAX_LENGTH",
+  MEMBER_MAX_VALUE: "MEMBER_MAX_VALUE",
+  MEMBER_MIN_LENGTH: "MEMBER_MIN_LENGTH",
+  MEMBER_MIN_VALUE: "MEMBER_MIN_VALUE",
+  MEMBER_MISSING: "MEMBER_MISSING",
+  NONE_MODE_WITH_TIMING_SOURCE: "NONE_MODE_WITH_TIMING_SOURCE",
+  NUM_MANIFESTS_HIGH: "NUM_MANIFESTS_HIGH",
+  NUM_MANIFESTS_LOW: "NUM_MANIFESTS_LOW",
+  ONLY_CMAF_INPUT_TYPE_ALLOW_FORCE_ENDPOINT_ERROR_CONFIGURATION:
+    "ONLY_CMAF_INPUT_TYPE_ALLOW_FORCE_ENDPOINT_ERROR_CONFIGURATION",
+  PERIOD_TRIGGERS_NONE_SPECIFIED_WITH_ADDITIONAL_VALUES: "PERIOD_TRIGGERS_NONE_SPECIFIED_WITH_ADDITIONAL_VALUES",
+  ROLE_ARN_INVALID_FORMAT: "ROLE_ARN_INVALID_FORMAT",
+  ROLE_ARN_LENGTH_OUT_OF_RANGE: "ROLE_ARN_LENGTH_OUT_OF_RANGE",
+  ROLE_ARN_NOT_ASSUMABLE: "ROLE_ARN_NOT_ASSUMABLE",
+  SOURCE_DISRUPTIONS_ENABLED_INCORRECTLY: "SOURCE_DISRUPTIONS_ENABLED_INCORRECTLY",
+  TIMING_SOURCE_MISSING: "TIMING_SOURCE_MISSING",
+  TS_CONTAINER_TYPE_WITH_DASH_MANIFEST: "TS_CONTAINER_TYPE_WITH_DASH_MANIFEST",
+  UPDATE_PERIOD_SMALLER_THAN_SEGMENT_DURATION: "UPDATE_PERIOD_SMALLER_THAN_SEGMENT_DURATION",
+  URL_INVALID: "URL_INVALID",
+  URL_LINK_LOCAL_ADDRESS: "URL_LINK_LOCAL_ADDRESS",
+  URL_LOCAL_ADDRESS: "URL_LOCAL_ADDRESS",
+  URL_LOOPBACK_ADDRESS: "URL_LOOPBACK_ADDRESS",
+  URL_MULTICAST_ADDRESS: "URL_MULTICAST_ADDRESS",
+  URL_PORT: "URL_PORT",
+  URL_SCHEME: "URL_SCHEME",
+  URL_UNKNOWN_HOST: "URL_UNKNOWN_HOST",
+  URL_USER_INFO: "URL_USER_INFO",
+} as const;
+
+/**
+ * @public
+ */
+export type ValidationExceptionType = (typeof ValidationExceptionType)[keyof typeof ValidationExceptionType];
+
+/**
+ * <p>The input failed to meet the constraints specified by the AWS service.</p>
+ * @public
+ */
+export class ValidationException extends __BaseException {
+  readonly name: "ValidationException" = "ValidationException";
+  readonly $fault: "client" = "client";
+  Message?: string;
+  /**
+   * <p>The type of ValidationException.</p>
+   * @public
+   */
+  ValidationExceptionType?: ValidationExceptionType;
+  /**
+   * @internal
+   */
+  constructor(opts: __ExceptionOptionType<ValidationException, __BaseException>) {
+    super({
+      name: "ValidationException",
+      $fault: "client",
+      ...opts,
+    });
+    Object.setPrototypeOf(this, ValidationException.prototype);
+    this.Message = opts.Message;
+    this.ValidationExceptionType = opts.ValidationExceptionType;
+  }
+}
+
+/**
+ * @public
+ */
+export interface GetChannelPolicyRequest {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group. </p>
+   * @public
+   */
+  ChannelName: string | undefined;
+}
+
+/**
+ * @public
+ */
+export interface GetChannelPolicyResponse {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group.</p>
+   * @public
+   */
+  ChannelName: string | undefined;
+
+  /**
+   * <p>The policy assigned to the channel.</p>
+   * @public
+   */
+  Policy: string | undefined;
+}
+
+/**
+ * @public
+ * @enum
+ */
+export const ResourceTypeNotFound = {
+  CHANNEL: "CHANNEL",
+  CHANNEL_GROUP: "CHANNEL_GROUP",
+  ORIGIN_ENDPOINT: "ORIGIN_ENDPOINT",
+} as const;
+
+/**
+ * @public
+ */
+export type ResourceTypeNotFound = (typeof ResourceTypeNotFound)[keyof typeof ResourceTypeNotFound];
+
+/**
+ * <p>The specified resource doesn't exist.</p>
+ * @public
+ */
+export class ResourceNotFoundException extends __BaseException {
+  readonly name: "ResourceNotFoundException" = "ResourceNotFoundException";
+  readonly $fault: "client" = "client";
+  Message?: string;
+  /**
+   * <p>The specified resource type wasn't found.</p>
+   * @public
+   */
+  ResourceTypeNotFound?: ResourceTypeNotFound;
+  /**
+   * @internal
+   */
+  constructor(opts: __ExceptionOptionType<ResourceNotFoundException, __BaseException>) {
+    super({
+      name: "ResourceNotFoundException",
+      $fault: "client",
+      ...opts,
+    });
+    Object.setPrototypeOf(this, ResourceNotFoundException.prototype);
+    this.Message = opts.Message;
+    this.ResourceTypeNotFound = opts.ResourceTypeNotFound;
+  }
+}
+
+/**
+ * @public
+ */
+export interface PutChannelPolicyRequest {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group. </p>
+   * @public
+   */
+  ChannelName: string | undefined;
+
+  /**
+   * <p>The policy to attach to the specified channel.</p>
+   * @public
+   */
+  Policy: string | undefined;
+}
+
+/**
+ * @public
+ */
+export interface PutChannelPolicyResponse {}
+
+/**
+ * @public
+ * @enum
+ */
+export const InputType = {
+  CMAF: "CMAF",
+  HLS: "HLS",
+} as const;
+
+/**
+ * @public
+ */
+export type InputType = (typeof InputType)[keyof typeof InputType];
+
+/**
+ * @public
+ */
+export interface CreateChannelRequest {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group. You can't change the name after you create the channel.</p>
+   * @public
+   */
+  ChannelName: string | undefined;
+
+  /**
+   * <p>A unique, case-sensitive token that you provide to ensure the idempotency of the request.</p>
+   * @public
+   */
+  ClientToken?: string;
+
+  /**
+   * <p>The input type will be an immutable field which will be used to define whether the channel will allow CMAF ingest or HLS ingest. If unprovided, it will default to HLS to preserve current behavior.</p>
+   *          <p>The allowed values are:</p>
+   *          <ul>
+   *             <li>
+   *                <p>
+   *                   <code>HLS</code> - The HLS streaming specification (which defines M3U8 manifests and TS segments).</p>
+   *             </li>
+   *             <li>
+   *                <p>
+   *                   <code>CMAF</code> - The DASH-IF CMAF Ingest specification (which defines CMAF segments with optional DASH manifests).</p>
+   *             </li>
+   *          </ul>
+   * @public
+   */
+  InputType?: InputType;
+
+  /**
+   * <p>Enter any descriptive text that helps you to identify the channel.</p>
+   * @public
+   */
+  Description?: string;
+
+  /**
+   * <p>A comma-separated list of tag key:value pairs that you define. For example:</p>
+   *          <p>
+   *             <code>"Key1": "Value1",</code>
+   *          </p>
+   *          <p>
+   *             <code>"Key2": "Value2"</code>
+   *          </p>
+   * @public
+   */
+  Tags?: Record<string, string>;
+}
+
+/**
+ * <p>The ingest domain URL where the source stream should be sent.</p>
+ * @public
+ */
+export interface IngestEndpoint {
+  /**
+   * <p>The system-generated unique identifier for the IngestEndpoint.</p>
+   * @public
+   */
+  Id?: string;
+
+  /**
+   * <p>The ingest domain URL where the source stream should be sent.</p>
+   * @public
+   */
+  Url?: string;
+}
+
+/**
+ * @public
+ */
+export interface CreateChannelResponse {
+  /**
+   * <p>The Amazon Resource Name (ARN) associated with the resource.</p>
+   * @public
+   */
+  Arn: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group.</p>
+   * @public
+   */
+  ChannelName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The date and time the channel was created.</p>
+   * @public
+   */
+  CreatedAt: Date | undefined;
+
+  /**
+   * <p>The date and time the channel was modified.</p>
+   * @public
+   */
+  ModifiedAt: Date | undefined;
+
+  /**
+   * <p>The description for your channel.</p>
+   * @public
+   */
+  Description?: string;
+
+  /**
+   * <p>The list of ingest endpoints.</p>
+   * @public
+   */
+  IngestEndpoints?: IngestEndpoint[];
+
+  /**
+   * <p>The input type will be an immutable field which will be used to define whether the channel will allow CMAF ingest or HLS ingest. If unprovided, it will default to HLS to preserve current behavior.</p>
+   *          <p>The allowed values are:</p>
+   *          <ul>
+   *             <li>
+   *                <p>
+   *                   <code>HLS</code> - The HLS streaming specification (which defines M3U8 manifests and TS segments).</p>
+   *             </li>
+   *             <li>
+   *                <p>
+   *                   <code>CMAF</code> - The DASH-IF CMAF Ingest specification (which defines CMAF segments with optional DASH manifests).</p>
+   *             </li>
+   *          </ul>
+   * @public
+   */
+  InputType?: InputType;
+
+  /**
+   * <p>The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.</p>
+   * @public
+   */
+  ETag?: string;
+
+  /**
+   * <p>The comma-separated list of tag key:value pairs assigned to the channel.</p>
+   * @public
+   */
+  Tags?: Record<string, string>;
+}
+
+/**
+ * <p>The request would cause a service quota to be exceeded.</p>
+ * @public
+ */
+export class ServiceQuotaExceededException extends __BaseException {
+  readonly name: "ServiceQuotaExceededException" = "ServiceQuotaExceededException";
+  readonly $fault: "client" = "client";
+  Message?: string;
+  /**
+   * @internal
+   */
+  constructor(opts: __ExceptionOptionType<ServiceQuotaExceededException, __BaseException>) {
+    super({
+      name: "ServiceQuotaExceededException",
+      $fault: "client",
+      ...opts,
+    });
+    Object.setPrototypeOf(this, ServiceQuotaExceededException.prototype);
+    this.Message = opts.Message;
+  }
+}
+
+/**
+ * @public
+ */
+export interface DeleteChannelRequest {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group.</p>
+   * @public
+   */
+  ChannelName: string | undefined;
+}
+
+/**
+ * @public
+ */
+export interface DeleteChannelResponse {}
+
+/**
+ * @public
+ */
+export interface GetChannelRequest {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group. </p>
+   * @public
+   */
+  ChannelName: string | undefined;
+}
+
+/**
+ * @public
+ */
+export interface GetChannelResponse {
+  /**
+   * <p>The Amazon Resource Name (ARN) associated with the resource.</p>
+   * @public
+   */
+  Arn: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group.</p>
+   * @public
+   */
+  ChannelName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The date and time the channel was created.</p>
+   * @public
+   */
+  CreatedAt: Date | undefined;
+
+  /**
+   * <p>The date and time the channel was modified.</p>
+   * @public
+   */
+  ModifiedAt: Date | undefined;
+
+  /**
+   * <p>The description for your channel.</p>
+   * @public
+   */
+  Description?: string;
+
+  /**
+   * <p>The list of ingest endpoints.</p>
+   * @public
+   */
+  IngestEndpoints?: IngestEndpoint[];
+
+  /**
+   * <p>The input type will be an immutable field which will be used to define whether the channel will allow CMAF ingest or HLS ingest. If unprovided, it will default to HLS to preserve current behavior.</p>
+   *          <p>The allowed values are:</p>
+   *          <ul>
+   *             <li>
+   *                <p>
+   *                   <code>HLS</code> - The HLS streaming specification (which defines M3U8 manifests and TS segments).</p>
+   *             </li>
+   *             <li>
+   *                <p>
+   *                   <code>CMAF</code> - The DASH-IF CMAF Ingest specification (which defines CMAF segments with optional DASH manifests).</p>
+   *             </li>
+   *          </ul>
+   * @public
+   */
+  InputType?: InputType;
+
+  /**
+   * <p>The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.</p>
+   * @public
+   */
+  ETag?: string;
+
+  /**
+   * <p>The comma-separated list of tag key:value pairs assigned to the channel.</p>
+   * @public
+   */
+  Tags?: Record<string, string>;
+}
+
+/**
+ * @public
+ */
+export interface ListChannelsRequest {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The maximum number of results to return in the response.</p>
+   * @public
+   */
+  MaxResults?: number;
+
+  /**
+   * <p>The pagination token from the GET list request. Use the token to fetch the next page of results.</p>
+   * @public
+   */
+  NextToken?: string;
+}
+
+/**
+ * <p>The configuration of the channel.</p>
+ * @public
+ */
+export interface ChannelListConfiguration {
+  /**
+   * <p>The Amazon Resource Name (ARN) associated with the resource.</p>
+   * @public
+   */
+  Arn: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group. </p>
+   * @public
+   */
+  ChannelName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The date and time the channel was created.</p>
+   * @public
+   */
+  CreatedAt: Date | undefined;
+
+  /**
+   * <p>The date and time the channel was modified.</p>
+   * @public
+   */
+  ModifiedAt: Date | undefined;
+
+  /**
+   * <p>Any descriptive information that you want to add to the channel for future identification purposes.</p>
+   * @public
+   */
+  Description?: string;
+
+  /**
+   * <p>The input type will be an immutable field which will be used to define whether the channel will allow CMAF ingest or HLS ingest. If unprovided, it will default to HLS to preserve current behavior.</p>
+   *          <p>The allowed values are:</p>
+   *          <ul>
+   *             <li>
+   *                <p>
+   *                   <code>HLS</code> - The HLS streaming specification (which defines M3U8 manifests and TS segments).</p>
+   *             </li>
+   *             <li>
+   *                <p>
+   *                   <code>CMAF</code> - The DASH-IF CMAF Ingest specification (which defines CMAF segments with optional DASH manifests).</p>
+   *             </li>
+   *          </ul>
+   * @public
+   */
+  InputType?: InputType;
+}
+
+/**
+ * @public
+ */
+export interface ListChannelsResponse {
+  /**
+   * <p>The objects being returned.</p>
+   * @public
+   */
+  Items?: ChannelListConfiguration[];
+
+  /**
+   * <p>The pagination token from the GET list request.</p>
+   * @public
+   */
+  NextToken?: string;
+}
+
+/**
+ * @public
+ * @enum
+ */
+export const ContainerType = {
+  CMAF: "CMAF",
+  TS: "TS",
+} as const;
+
+/**
+ * @public
+ */
+export type ContainerType = (typeof ContainerType)[keyof typeof ContainerType];
+
+/**
+ * @public
+ * @enum
+ */
+export const DashDrmSignaling = {
+  INDIVIDUAL: "INDIVIDUAL",
+  REFERENCED: "REFERENCED",
+} as const;
+
+/**
+ * @public
+ */
+export type DashDrmSignaling = (typeof DashDrmSignaling)[keyof typeof DashDrmSignaling];
+
+/**
+ * <p>Filter configuration includes settings for manifest filtering, start and end times, and time delay that apply to all of your egress requests for this manifest. </p>
+ * @public
+ */
+export interface FilterConfiguration {
+  /**
+   * <p>Optionally specify one or more manifest filters for all of your manifest egress requests. When you include a manifest filter, note that you cannot use an identical manifest filter query parameter for this manifest's endpoint URL.</p>
+   * @public
+   */
+  ManifestFilter?: string;
+
+  /**
+   * <p>Optionally specify the start time for all of your manifest egress requests. When you include start time, note that you cannot use start time query parameters for this manifest's endpoint URL.</p>
+   * @public
+   */
+  Start?: Date;
+
+  /**
+   * <p>Optionally specify the end time for all of your manifest egress requests. When you include end time, note that you cannot use end time query parameters for this manifest's endpoint URL.</p>
+   * @public
+   */
+  End?: Date;
+
+  /**
+   * <p>Optionally specify the time delay for all of your manifest egress requests. Enter a value that is smaller than your endpoint's startover window. When you include time delay, note that you cannot use time delay query parameters for this manifest's endpoint URL.</p>
+   * @public
+   */
+  TimeDelaySeconds?: number;
+}
+
+/**
+ * @public
+ * @enum
+ */
+export const DashPeriodTrigger = {
+  AVAILS: "AVAILS",
+  DRM_KEY_ROTATION: "DRM_KEY_ROTATION",
+  NONE: "NONE",
+  SOURCE_CHANGES: "SOURCE_CHANGES",
+  SOURCE_DISRUPTIONS: "SOURCE_DISRUPTIONS",
+} as const;
+
+/**
+ * @public
+ */
+export type DashPeriodTrigger = (typeof DashPeriodTrigger)[keyof typeof DashPeriodTrigger];
+
+/**
+ * <p>The SCTE configuration.</p>
+ * @public
+ */
+export interface ScteDash {
+  /**
+   * <p>Choose how ad markers are included in the packaged content. If you include ad markers in the content stream in your upstream encoders, then you need to inform MediaPackage what to do with the ad markers in the output.</p>
+   *          <p>Value description:</p>
+   *          <ul>
+   *             <li>
+   *                <p>
+   *                   <code>Binary</code> - The SCTE-35 marker is expressed as a hex-string (Base64 string) rather than full XML.</p>
+   *             </li>
+   *             <li>
+   *                <p>
+   *                   <code>XML</code> - The SCTE marker is expressed fully in XML.</p>
+   *             </li>
+   *          </ul>
+   * @public
+   */
+  AdMarkerDash?: AdMarkerDash;
+}
+
+/**
+ * @public
+ * @enum
+ */
+export const DashSegmentTemplateFormat = {
+  NUMBER_WITH_TIMELINE: "NUMBER_WITH_TIMELINE",
+} as const;
+
+/**
+ * @public
+ */
+export type DashSegmentTemplateFormat = (typeof DashSegmentTemplateFormat)[keyof typeof DashSegmentTemplateFormat];
+
+/**
+ * @public
+ * @enum
+ */
+export const DashUtcTimingMode = {
+  HTTP_HEAD: "HTTP_HEAD",
+  HTTP_ISO: "HTTP_ISO",
+  HTTP_XSDATE: "HTTP_XSDATE",
+  UTC_DIRECT: "UTC_DIRECT",
+} as const;
+
+/**
+ * @public
+ */
+export type DashUtcTimingMode = (typeof DashUtcTimingMode)[keyof typeof DashUtcTimingMode];
+
+/**
+ * <p>Determines the type of UTC timing included in the DASH Media Presentation Description (MPD).</p>
+ * @public
+ */
+export interface DashUtcTiming {
+  /**
+   * <p>The UTC timing mode.</p>
+   * @public
+   */
+  TimingMode?: DashUtcTimingMode;
+
+  /**
+   * <p>The the method that the player uses to synchronize to coordinated universal time (UTC) wall clock time.</p>
+   * @public
+   */
+  TimingSource?: string;
+}
+
+/**
+ * <p>Create a DASH manifest configuration.</p>
+ * @public
+ */
+export interface CreateDashManifestConfiguration {
+  /**
+   * <p>A short string that's appended to the endpoint URL. The child manifest name creates a unique path to this endpoint.</p>
+   * @public
+   */
+  ManifestName: string | undefined;
+
+  /**
+   * <p>The total duration (in seconds) of the manifest's content.</p>
+   * @public
+   */
+  ManifestWindowSeconds?: number;
+
+  /**
+   * <p>Filter configuration includes settings for manifest filtering, start and end times, and time delay that apply to all of your egress requests for this manifest. </p>
+   * @public
+   */
+  FilterConfiguration?: FilterConfiguration;
+
+  /**
+   * <p>Minimum amount of time (in seconds) that the player should wait before requesting updates to the manifest.</p>
+   * @public
+   */
+  MinUpdatePeriodSeconds?: number;
+
+  /**
+   * <p>Minimum amount of content (in seconds) that a player must keep available in the buffer.</p>
+   * @public
+   */
+  MinBufferTimeSeconds?: number;
+
+  /**
+   * <p>The amount of time (in seconds) that the player should be from the end of the manifest.</p>
+   * @public
+   */
+  SuggestedPresentationDelaySeconds?: number;
+
+  /**
+   * <p>Determines the type of variable used in the <code>media</code> URL of the <code>SegmentTemplate</code> tag in the manifest. Also specifies if segment timeline information is included in <code>SegmentTimeline</code> or <code>SegmentTemplate</code>.</p>
+   *          <p>Value description:</p>
+   *          <ul>
+   *             <li>
+   *                <p>
+   *                   <code>NUMBER_WITH_TIMELINE</code> - The <code>$Number$</code> variable is used in the <code>media</code> URL. The value of this variable is the sequential number of the segment. A full <code>SegmentTimeline</code> object is presented in each <code>SegmentTemplate</code>.</p>
+   *             </li>
+   *          </ul>
+   * @public
+   */
+  SegmentTemplateFormat?: DashSegmentTemplateFormat;
+
+  /**
+   * <p>A list of triggers that controls when AWS Elemental MediaPackage separates the MPEG-DASH manifest into multiple periods. Type <code>ADS</code> to indicate that AWS Elemental MediaPackage must create periods in the output manifest that correspond to SCTE-35 ad markers in the input source. Leave this value empty to indicate that the manifest is contained all in one period.
+   *          For more information about periods in the DASH manifest, see <a href="https://docs.aws.amazon.com/mediapackage/latest/userguide/multi-period.html">Multi-period DASH in AWS Elemental MediaPackage</a>.</p>
+   * @public
+   */
+  PeriodTriggers?: DashPeriodTrigger[];
+
+  /**
+   * <p>The SCTE configuration.</p>
+   * @public
+   */
+  ScteDash?: ScteDash;
+
+  /**
+   * <p>Determines how the DASH manifest signals the DRM content.</p>
+   * @public
+   */
+  DrmSignaling?: DashDrmSignaling;
+
+  /**
+   * <p>Determines the type of UTC timing included in the DASH Media Presentation Description (MPD).</p>
+   * @public
+   */
+  UtcTiming?: DashUtcTiming;
+}
+
+/**
+ * @public
+ * @enum
+ */
+export const EndpointErrorCondition = {
+  INCOMPLETE_MANIFEST: "INCOMPLETE_MANIFEST",
+  MISSING_DRM_KEY: "MISSING_DRM_KEY",
+  SLATE_INPUT: "SLATE_INPUT",
+  STALE_MANIFEST: "STALE_MANIFEST",
+} as const;
+
+/**
+ * @public
+ */
+export type EndpointErrorCondition = (typeof EndpointErrorCondition)[keyof typeof EndpointErrorCondition];
+
+/**
+ * <p>The failover settings for the endpoint.</p>
+ * @public
+ */
+export interface ForceEndpointErrorConfiguration {
+  /**
+   * <p>The failover conditions for the endpoint. The options are:</p>
+   *          <ul>
+   *             <li>
+   *                <p>
+   *                   <code>STALE_MANIFEST</code> - The manifest stalled and there are no new segments or parts.</p>
+   *             </li>
+   *             <li>
+   *                <p>
+   *                   <code>INCOMPLETE_MANIFEST</code> - There is a gap in the manifest.</p>
+   *             </li>
+   *             <li>
+   *                <p>
+   *                   <code>MISSING_DRM_KEY</code> - Key rotation is enabled but we're unable to fetch the key for the current key period.</p>
+   *             </li>
+   *             <li>
+   *                <p>
+   *                   <code>SLATE_INPUT</code> - The segments which contain slate content are considered to be missing content.</p>
+   *             </li>
+   *          </ul>
+   * @public
+   */
+  EndpointErrorConditions?: EndpointErrorCondition[];
+}
+
+/**
+ * <p>The SCTE configuration.</p>
+ * @public
+ */
+export interface ScteHls {
+  /**
+   * <p>Ad markers indicate when ads should be inserted during playback. If you include ad markers in the content stream in your upstream encoders, then you need to inform MediaPackage what to do with the ad markers in the output. Choose what you want MediaPackage to do with the ad markers.</p>
+   *          <p>Value description: </p>
+   *          <ul>
+   *             <li>
+   *                <p>DATERANGE - Insert EXT-X-DATERANGE tags to signal ad and program transition events in TS and CMAF manifests. If you use DATERANGE, you must set a programDateTimeIntervalSeconds value of 1 or higher. To learn more about DATERANGE, see <a href="http://docs.aws.amazon.com/mediapackage/latest/ug/scte-35-ad-marker-ext-x-daterange.html">SCTE-35 Ad Marker EXT-X-DATERANGE</a>.</p>
+   *             </li>
+   *          </ul>
+   * @public
+   */
+  AdMarkerHls?: AdMarkerHls;
+}
+
+/**
+ * <p>Create an HTTP live streaming (HLS) manifest configuration.</p>
+ * @public
+ */
+export interface CreateHlsManifestConfiguration {
+  /**
+   * <p>A short short string that's appended to the endpoint URL. The manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default manifest name, index. MediaPackage automatically inserts the format extension, such as .m3u8. You can't use the same manifest name if you use HLS manifest and low-latency HLS manifest. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>
+   * @public
+   */
+  ManifestName: string | undefined;
+
+  /**
+   * <p>A short string that's appended to the endpoint URL. The child manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default manifest name, index, with an added suffix to distinguish it from the manifest name. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>
+   * @public
+   */
+  ChildManifestName?: string;
+
+  /**
+   * <p>The SCTE configuration.</p>
+   * @public
+   */
+  ScteHls?: ScteHls;
+
+  /**
+   * <p>The total duration (in seconds) of the manifest's content.</p>
+   * @public
+   */
+  ManifestWindowSeconds?: number;
+
+  /**
+   * <p>Inserts EXT-X-PROGRAM-DATE-TIME tags in the output manifest at the interval that you specify. If you don't enter an interval,
+   *          EXT-X-PROGRAM-DATE-TIME tags aren't included in the manifest.
+   *          The tags sync the stream to the wall clock so that viewers can seek to a specific time in the playback timeline on the player.
+   *          ID3Timed metadata messages generate every 5 seconds whenever the content is ingested.</p>
+   *          <p>Irrespective of this parameter, if any ID3Timed metadata is in the HLS input, it is passed through to the HLS output.</p>
+   * @public
+   */
+  ProgramDateTimeIntervalSeconds?: number;
+
+  /**
+   * <p>Filter configuration includes settings for manifest filtering, start and end times, and time delay that apply to all of your egress requests for this manifest. </p>
+   * @public
+   */
+  FilterConfiguration?: FilterConfiguration;
+}
+
+/**
+ * <p>Create a low-latency HTTP live streaming (HLS) manifest configuration.</p>
+ * @public
+ */
+export interface CreateLowLatencyHlsManifestConfiguration {
+  /**
+   * <p>A short short string that's appended to the endpoint URL. The manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default manifest name, index. MediaPackage automatically inserts the format extension, such as .m3u8. You can't use the same manifest name if you use HLS manifest and low-latency HLS manifest. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>
+   * @public
+   */
+  ManifestName: string | undefined;
+
+  /**
+   * <p>A short string that's appended to the endpoint URL. The child manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default manifest name, index, with an added suffix to distinguish it from the manifest name. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>
+   * @public
+   */
+  ChildManifestName?: string;
+
+  /**
+   * <p>The SCTE configuration.</p>
+   * @public
+   */
+  ScteHls?: ScteHls;
+
+  /**
+   * <p>The total duration (in seconds) of the manifest's content.</p>
+   * @public
+   */
+  ManifestWindowSeconds?: number;
+
+  /**
+   * <p>Inserts EXT-X-PROGRAM-DATE-TIME tags in the output manifest at the interval that you specify. If you don't enter an interval,
+   *          EXT-X-PROGRAM-DATE-TIME tags aren't included in the manifest.
+   *          The tags sync the stream to the wall clock so that viewers can seek to a specific time in the playback timeline on the player.
+   *          ID3Timed metadata messages generate every 5 seconds whenever the content is ingested.</p>
+   *          <p>Irrespective of this parameter, if any ID3Timed metadata is in the HLS input, it is passed through to the HLS output.</p>
+   * @public
+   */
+  ProgramDateTimeIntervalSeconds?: number;
+
+  /**
+   * <p>Filter configuration includes settings for manifest filtering, start and end times, and time delay that apply to all of your egress requests for this manifest. </p>
+   * @public
+   */
+  FilterConfiguration?: FilterConfiguration;
+}
+
+/**
+ * @public
+ * @enum
+ */
+export const CmafEncryptionMethod = {
+  CBCS: "CBCS",
+  CENC: "CENC",
+} as const;
+
+/**
+ * @public
+ */
+export type CmafEncryptionMethod = (typeof CmafEncryptionMethod)[keyof typeof CmafEncryptionMethod];
+
+/**
+ * @public
+ * @enum
+ */
+export const TsEncryptionMethod = {
+  AES_128: "AES_128",
+  SAMPLE_AES: "SAMPLE_AES",
+} as const;
+
+/**
+ * @public
+ */
+export type TsEncryptionMethod = (typeof TsEncryptionMethod)[keyof typeof TsEncryptionMethod];
+
+/**
+ * <p>The encryption type.</p>
+ * @public
+ */
+export interface EncryptionMethod {
+  /**
+   * <p>The encryption method to use.</p>
+   * @public
+   */
+  TsEncryptionMethod?: TsEncryptionMethod;
+
+  /**
+   * <p>The encryption method to use.</p>
+   * @public
+   */
+  CmafEncryptionMethod?: CmafEncryptionMethod;
+}
+
+/**
+ * @public
+ * @enum
+ */
+export const DrmSystem = {
+  CLEAR_KEY_AES_128: "CLEAR_KEY_AES_128",
+  FAIRPLAY: "FAIRPLAY",
+  IRDETO: "IRDETO",
+  PLAYREADY: "PLAYREADY",
+  WIDEVINE: "WIDEVINE",
+} as const;
+
+/**
+ * @public
+ */
+export type DrmSystem = (typeof DrmSystem)[keyof typeof DrmSystem];
+
+/**
+ * @public
+ * @enum
+ */
+export const PresetSpeke20Audio = {
+  PRESET_AUDIO_1: "PRESET_AUDIO_1",
+  PRESET_AUDIO_2: "PRESET_AUDIO_2",
+  PRESET_AUDIO_3: "PRESET_AUDIO_3",
+  SHARED: "SHARED",
+  UNENCRYPTED: "UNENCRYPTED",
+} as const;
+
+/**
+ * @public
+ */
+export type PresetSpeke20Audio = (typeof PresetSpeke20Audio)[keyof typeof PresetSpeke20Audio];
+
+/**
+ * @public
+ * @enum
+ */
+export const PresetSpeke20Video = {
+  PRESET_VIDEO_1: "PRESET_VIDEO_1",
+  PRESET_VIDEO_2: "PRESET_VIDEO_2",
+  PRESET_VIDEO_3: "PRESET_VIDEO_3",
+  PRESET_VIDEO_4: "PRESET_VIDEO_4",
+  PRESET_VIDEO_5: "PRESET_VIDEO_5",
+  PRESET_VIDEO_6: "PRESET_VIDEO_6",
+  PRESET_VIDEO_7: "PRESET_VIDEO_7",
+  PRESET_VIDEO_8: "PRESET_VIDEO_8",
+  SHARED: "SHARED",
+  UNENCRYPTED: "UNENCRYPTED",
+} as const;
+
+/**
+ * @public
+ */
+export type PresetSpeke20Video = (typeof PresetSpeke20Video)[keyof typeof PresetSpeke20Video];
+
+/**
+ * <p>Configure one or more content encryption keys for your endpoints that use SPEKE Version 2.0. The encryption contract defines which content keys are used to encrypt the audio and video tracks in your stream. To configure the encryption contract, specify which audio and video encryption presets to use.</p>
+ * @public
+ */
+export interface EncryptionContractConfiguration {
+  /**
+   * <p>A collection of audio encryption presets.</p>
+   *          <p>Value description: </p>
+   *          <ul>
+   *             <li>
+   *                <p>PRESET-AUDIO-1 - Use one content key to encrypt all of the
+   *                audio tracks in your stream.</p>
+   *             </li>
+   *             <li>
+   *                <p>PRESET-AUDIO-2 - Use one content key to encrypt all of the
+   *                stereo audio tracks and one content key to encrypt all of the multichannel
+   *                audio tracks.</p>
+   *             </li>
+   *             <li>
+   *                <p>PRESET-AUDIO-3 - Use one content key to encrypt all of the
+   *                stereo audio tracks, one content key to encrypt all of the multichannel audio
+   *                tracks with 3 to 6 channels, and one content key to encrypt all of the
+   *                multichannel audio tracks with more than 6 channels.</p>
+   *             </li>
+   *             <li>
+   *                <p>SHARED - Use the same content key for all of the audio and
+   *                video tracks in your stream.</p>
+   *             </li>
+   *             <li>
+   *                <p>UNENCRYPTED - Don't encrypt any of the audio tracks in your
+   *                stream.</p>
+   *             </li>
+   *          </ul>
+   * @public
+   */
+  PresetSpeke20Audio: PresetSpeke20Audio | undefined;
+
+  /**
+   * <p>A collection of video encryption presets.</p>
+   *          <p>Value description: </p>
+   *          <ul>
+   *             <li>
+   *                <p>PRESET-VIDEO-1 - Use one content key to encrypt all of the video
+   *                tracks in your stream.</p>
+   *             </li>
+   *             <li>
+   *                <p>PRESET-VIDEO-2 - Use one content key to encrypt all of the SD
+   *                video tracks and one content key for all HD and higher resolutions video
+   *                tracks.</p>
+   *             </li>
+   *             <li>
+   *                <p>PRESET-VIDEO-3 - Use one content key to encrypt all of the SD
+   *                video tracks, one content key for HD video tracks and one content key for all
+   *                UHD video tracks.</p>
+   *             </li>
+   *             <li>
+   *                <p>PRESET-VIDEO-4 - Use one content key to encrypt all of the SD
+   *                video tracks, one content key for HD video tracks, one content key for all UHD1
+   *                video tracks and one content key for all UHD2 video tracks.</p>
+   *             </li>
+   *             <li>
+   *                <p>PRESET-VIDEO-5 - Use one content key to encrypt all of the SD
+   *                video tracks, one content key for HD1 video tracks, one content key for HD2
+   *                video tracks, one content key for all UHD1 video tracks and one content key for
+   *                all UHD2 video tracks.</p>
+   *             </li>
+   *             <li>
+   *                <p>PRESET-VIDEO-6 - Use one content key to encrypt all of the SD
+   *                video tracks, one content key for HD1 video tracks, one content key for HD2
+   *                video tracks and one content key for all UHD video tracks.</p>
+   *             </li>
+   *             <li>
+   *                <p>PRESET-VIDEO-7 - Use one content key to encrypt all of the SD+HD1
+   *                video tracks, one content key for HD2 video tracks and one content key for all
+   *                UHD video tracks.</p>
+   *             </li>
+   *             <li>
+   *                <p>PRESET-VIDEO-8 - Use one content key to encrypt all of the SD+HD1
+   *                video tracks, one content key for HD2 video tracks, one content key for all
+   *                UHD1 video tracks and one content key for all UHD2 video tracks.</p>
+   *             </li>
+   *             <li>
+   *                <p>SHARED - Use the same content key for all of the video and audio
+   *                tracks in your stream.</p>
+   *             </li>
+   *             <li>
+   *                <p>UNENCRYPTED - Don't encrypt any of the video tracks in your stream.</p>
+   *             </li>
+   *          </ul>
+   * @public
+   */
+  PresetSpeke20Video: PresetSpeke20Video | undefined;
+}
+
+/**
+ * <p>The parameters for the SPEKE key provider.</p>
+ * @public
+ */
+export interface SpekeKeyProvider {
+  /**
+   * <p>Configure one or more content encryption keys for your endpoints that use SPEKE Version 2.0. The encryption contract defines which content keys are used to encrypt the audio and video tracks in your stream. To configure the encryption contract, specify which audio and video encryption presets to use.</p>
+   * @public
+   */
+  EncryptionContractConfiguration: EncryptionContractConfiguration | undefined;
+
+  /**
+   * <p>The unique identifier for the content. The service sends this to the key server to identify the current endpoint. How unique you make this depends on how fine-grained you want access controls to be. The service does not permit you to use the same ID for two simultaneous encryption processes. The resource ID is also known as the content ID.</p>
+   *          <p>The following example shows a resource ID: <code>MovieNight20171126093045</code>
+   *          </p>
+   * @public
+   */
+  ResourceId: string | undefined;
+
+  /**
+   * <p>The DRM solution provider you're using to protect your content during distribution.</p>
+   * @public
+   */
+  DrmSystems: DrmSystem[] | undefined;
+
+  /**
+   * <p>The ARN for the IAM role granted by the key provider that provides access to the key provider API. This role must have a trust policy that allows MediaPackage to assume the role, and it must have a sufficient permissions policy to allow access to the specific key retrieval URL. Get this from your DRM solution provider.</p>
+   *          <p>Valid format: <code>arn:aws:iam::\{accountID\}:role/\{name\}</code>. The following example shows a role ARN: <code>arn:aws:iam::444455556666:role/SpekeAccess</code>
+   *          </p>
+   * @public
+   */
+  RoleArn: string | undefined;
+
+  /**
+   * <p>The URL of the API Gateway proxy that you set up to talk to your key server. The API Gateway proxy must reside in the same AWS Region as MediaPackage and must start with https://.</p>
+   *          <p>The following example shows a URL: <code>https://1wm2dx1f33.execute-api.us-west-2.amazonaws.com/SpekeSample/copyProtection</code>
+   *          </p>
+   * @public
+   */
+  Url: string | undefined;
+}
+
+/**
+ * <p>The parameters for encrypting content.</p>
+ * @public
+ */
+export interface Encryption {
+  /**
+   * <p>A 128-bit, 16-byte hex value represented by a 32-character string, used in conjunction with the key for encrypting content. If you don't specify a value, then MediaPackage creates the constant initialization vector (IV).</p>
+   * @public
+   */
+  ConstantInitializationVector?: string;
+
+  /**
+   * <p>The encryption method to use.</p>
+   * @public
+   */
+  EncryptionMethod: EncryptionMethod | undefined;
+
+  /**
+   * <p>The frequency (in seconds) of key changes for live workflows, in which content is streamed real time. The service retrieves content keys before the live content begins streaming, and then retrieves them as needed over the lifetime of the workflow. By default, key rotation is set to 300 seconds (5 minutes), the minimum rotation interval, which is equivalent to setting it to 300. If you don't enter an interval, content keys aren't rotated.</p>
+   *          <p>The following example setting causes the service to rotate keys every thirty minutes: <code>1800</code>
+   *          </p>
+   * @public
+   */
+  KeyRotationIntervalSeconds?: number;
+
+  /**
+   * <p>The parameters for the SPEKE key provider.</p>
+   * @public
+   */
+  SpekeKeyProvider: SpekeKeyProvider | undefined;
+}
+
+/**
+ * @public
+ * @enum
+ */
+export const ScteFilter = {
+  BREAK: "BREAK",
+  DISTRIBUTOR_ADVERTISEMENT: "DISTRIBUTOR_ADVERTISEMENT",
+  DISTRIBUTOR_OVERLAY_PLACEMENT_OPPORTUNITY: "DISTRIBUTOR_OVERLAY_PLACEMENT_OPPORTUNITY",
+  DISTRIBUTOR_PLACEMENT_OPPORTUNITY: "DISTRIBUTOR_PLACEMENT_OPPORTUNITY",
+  PROGRAM: "PROGRAM",
+  PROVIDER_ADVERTISEMENT: "PROVIDER_ADVERTISEMENT",
+  PROVIDER_OVERLAY_PLACEMENT_OPPORTUNITY: "PROVIDER_OVERLAY_PLACEMENT_OPPORTUNITY",
+  PROVIDER_PLACEMENT_OPPORTUNITY: "PROVIDER_PLACEMENT_OPPORTUNITY",
+  SPLICE_INSERT: "SPLICE_INSERT",
+} as const;
+
+/**
+ * @public
+ */
+export type ScteFilter = (typeof ScteFilter)[keyof typeof ScteFilter];
+
+/**
+ * <p>The SCTE configuration.</p>
+ * @public
+ */
+export interface Scte {
+  /**
+   * <p>The SCTE-35 message types that you want to be treated as ad markers in the output.</p>
+   * @public
+   */
+  ScteFilter?: ScteFilter[];
+}
+
+/**
+ * <p>The segment configuration, including the segment name, duration, and other configuration values.</p>
+ * @public
+ */
+export interface Segment {
+  /**
+   * <p>The duration (in seconds) of each segment. Enter a value equal to, or a multiple of, the input segment duration. If the value that you enter is different from the input segment duration, MediaPackage rounds segments to the nearest multiple of the input segment duration.</p>
+   * @public
+   */
+  SegmentDurationSeconds?: number;
+
+  /**
+   * <p>The name that describes the segment. The name is the base name of the segment used in all content manifests inside of the endpoint. You can't use spaces in the name.</p>
+   * @public
+   */
+  SegmentName?: string;
+
+  /**
+   * <p>When selected, MediaPackage bundles all audio tracks in a rendition group. All other tracks in the stream can be used with any audio rendition from the group.</p>
+   * @public
+   */
+  TsUseAudioRenditionGroup?: boolean;
+
+  /**
+   * <p>When selected, the stream set includes an additional I-frame only stream, along with the other tracks. If false, this extra stream is not included. MediaPackage generates an I-frame only stream from the first rendition in the manifest. The service inserts EXT-I-FRAMES-ONLY tags in the output manifest, and then generates and includes an I-frames only playlist in the stream. This playlist permits player functionality like fast forward and rewind.</p>
+   * @public
+   */
+  IncludeIframeOnlyStreams?: boolean;
+
+  /**
+   * <p>By default, MediaPackage excludes all digital video broadcasting (DVB) subtitles from the output. When selected, MediaPackage passes through DVB subtitles into the output.</p>
+   * @public
+   */
+  TsIncludeDvbSubtitles?: boolean;
+
+  /**
+   * <p>The SCTE configuration options in the segment settings.</p>
+   * @public
+   */
+  Scte?: Scte;
+
+  /**
+   * <p>The parameters for encrypting content.</p>
+   * @public
+   */
+  Encryption?: Encryption;
+}
+
+/**
+ * @public
+ */
+export interface CreateOriginEndpointRequest {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group. </p>
+   * @public
+   */
+  ChannelName: string | undefined;
+
+  /**
+   * <p>The name that describes the origin endpoint. The name is the primary identifier for the origin endpoint, and must be unique for your account in the AWS Region and channel. You can't use spaces in the name. You can't change the name after you create the endpoint.</p>
+   * @public
+   */
+  OriginEndpointName: string | undefined;
+
+  /**
+   * <p>The type of container to attach to this origin endpoint. A container type is a file format that encapsulates one or more media streams, such as audio and video, into a single file. You can't change the container type after you create the endpoint.</p>
+   * @public
+   */
+  ContainerType: ContainerType | undefined;
+
+  /**
+   * <p>The segment configuration, including the segment name, duration, and other configuration values.</p>
+   * @public
+   */
+  Segment?: Segment;
+
+  /**
+   * <p>A unique, case-sensitive token that you provide to ensure the idempotency of the request.</p>
+   * @public
+   */
+  ClientToken?: string;
+
+  /**
+   * <p>Enter any descriptive text that helps you to identify the origin endpoint.</p>
+   * @public
+   */
+  Description?: string;
+
+  /**
+   * <p>The size of the window (in seconds) to create a window of the live stream that's available for on-demand viewing. Viewers can start-over or catch-up on content that falls within the window. The maximum startover window is 1,209,600 seconds (14 days).</p>
+   * @public
+   */
+  StartoverWindowSeconds?: number;
+
+  /**
+   * <p>An HTTP live streaming (HLS) manifest configuration.</p>
+   * @public
+   */
+  HlsManifests?: CreateHlsManifestConfiguration[];
+
+  /**
+   * <p>A low-latency HLS manifest configuration.</p>
+   * @public
+   */
+  LowLatencyHlsManifests?: CreateLowLatencyHlsManifestConfiguration[];
+
+  /**
+   * <p>A DASH manifest configuration.</p>
+   * @public
+   */
+  DashManifests?: CreateDashManifestConfiguration[];
+
+  /**
+   * <p>The failover settings for the endpoint.</p>
+   * @public
+   */
+  ForceEndpointErrorConfiguration?: ForceEndpointErrorConfiguration;
+
+  /**
+   * <p>A comma-separated list of tag key:value pairs that you define. For example:</p>
+   *          <p>
+   *             <code>"Key1": "Value1",</code>
+   *          </p>
+   *          <p>
+   *             <code>"Key2": "Value2"</code>
+   *          </p>
+   * @public
+   */
+  Tags?: Record<string, string>;
+}
+
+/**
+ * <p>Retrieve the DASH manifest configuration.</p>
+ * @public
+ */
+export interface GetDashManifestConfiguration {
+  /**
+   * <p>A short string that's appended to the endpoint URL. The manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default manifest name, index. </p>
+   * @public
+   */
+  ManifestName: string | undefined;
+
+  /**
+   * <p>The egress domain URL for stream delivery from MediaPackage.</p>
+   * @public
+   */
+  Url: string | undefined;
+
+  /**
+   * <p>The total duration (in seconds) of the manifest's content.</p>
+   * @public
+   */
+  ManifestWindowSeconds?: number;
+
+  /**
+   * <p>Filter configuration includes settings for manifest filtering, start and end times, and time delay that apply to all of your egress requests for this manifest. </p>
+   * @public
+   */
+  FilterConfiguration?: FilterConfiguration;
+
+  /**
+   * <p>Minimum amount of time (in seconds) that the player should wait before requesting updates to the manifest.</p>
+   * @public
+   */
+  MinUpdatePeriodSeconds?: number;
+
+  /**
+   * <p>Minimum amount of content (in seconds) that a player must keep available in the buffer.</p>
+   * @public
+   */
+  MinBufferTimeSeconds?: number;
+
+  /**
+   * <p>The amount of time (in seconds) that the player should be from the end of the manifest.</p>
+   * @public
+   */
+  SuggestedPresentationDelaySeconds?: number;
+
+  /**
+   * <p>Determines the type of variable used in the <code>media</code> URL of the <code>SegmentTemplate</code> tag in the manifest. Also specifies if segment timeline information is included in <code>SegmentTimeline</code> or <code>SegmentTemplate</code>.</p>
+   *          <p>Value description:</p>
+   *          <ul>
+   *             <li>
+   *                <p>
+   *                   <code>NUMBER_WITH_TIMELINE</code> - The <code>$Number$</code> variable is used in the <code>media</code> URL. The value of this variable is the sequential number of the segment. A full <code>SegmentTimeline</code> object is presented in each <code>SegmentTemplate</code>.</p>
+   *             </li>
+   *          </ul>
+   * @public
+   */
+  SegmentTemplateFormat?: DashSegmentTemplateFormat;
+
+  /**
+   * <p>A list of triggers that controls when AWS Elemental MediaPackage separates the MPEG-DASH manifest into multiple periods. Leave this value empty to indicate that the manifest is contained all in one period.
+   *          For more information about periods in the DASH manifest, see <a href="https://docs.aws.amazon.com/mediapackage/latest/userguide/multi-period.html">Multi-period DASH in AWS Elemental MediaPackage</a>.</p>
+   * @public
+   */
+  PeriodTriggers?: DashPeriodTrigger[];
+
+  /**
+   * <p>The SCTE configuration.</p>
+   * @public
+   */
+  ScteDash?: ScteDash;
+
+  /**
+   * <p>Determines how the DASH manifest signals the DRM content.</p>
+   * @public
+   */
+  DrmSignaling?: DashDrmSignaling;
+
+  /**
+   * <p>Determines the type of UTC timing included in the DASH Media Presentation Description (MPD).</p>
+   * @public
+   */
+  UtcTiming?: DashUtcTiming;
+}
+
+/**
+ * <p>Retrieve the HTTP live streaming (HLS) manifest configuration.</p>
+ * @public
+ */
+export interface GetHlsManifestConfiguration {
+  /**
+   * <p>A short short string that's appended to the endpoint URL. The manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default manifest name, index. MediaPackage automatically inserts the format extension, such as .m3u8. You can't use the same manifest name if you use HLS manifest and low-latency HLS manifest. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>
+   * @public
+   */
+  ManifestName: string | undefined;
+
+  /**
+   * <p>The egress domain URL for stream delivery from MediaPackage.</p>
+   * @public
+   */
+  Url: string | undefined;
+
+  /**
+   * <p>A short string that's appended to the endpoint URL. The child manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default child manifest name, index_1. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>
+   * @public
+   */
+  ChildManifestName?: string;
+
+  /**
+   * <p>The total duration (in seconds) of the manifest's content.</p>
+   * @public
+   */
+  ManifestWindowSeconds?: number;
+
+  /**
+   * <p>Inserts EXT-X-PROGRAM-DATE-TIME tags in the output manifest at the interval that you specify. If you don't enter an interval,
+   *          EXT-X-PROGRAM-DATE-TIME tags aren't included in the manifest.
+   *          The tags sync the stream to the wall clock so that viewers can seek to a specific time in the playback timeline on the player.
+   *          ID3Timed metadata messages generate every 5 seconds whenever the content is ingested.</p>
+   *          <p>Irrespective of this parameter, if any ID3Timed metadata is in the HLS input, it is passed through to the HLS output.</p>
+   * @public
+   */
+  ProgramDateTimeIntervalSeconds?: number;
+
+  /**
+   * <p>The SCTE configuration.</p>
+   * @public
+   */
+  ScteHls?: ScteHls;
+
+  /**
+   * <p>Filter configuration includes settings for manifest filtering, start and end times, and time delay that apply to all of your egress requests for this manifest. </p>
+   * @public
+   */
+  FilterConfiguration?: FilterConfiguration;
+}
+
+/**
+ * <p>Retrieve the low-latency HTTP live streaming (HLS) manifest configuration.</p>
+ * @public
+ */
+export interface GetLowLatencyHlsManifestConfiguration {
+  /**
+   * <p>A short short string that's appended to the endpoint URL. The manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default manifest name, index. MediaPackage automatically inserts the format extension, such as .m3u8. You can't use the same manifest name if you use HLS manifest and low-latency HLS manifest. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>
+   * @public
+   */
+  ManifestName: string | undefined;
+
+  /**
+   * <p>The egress domain URL for stream delivery from MediaPackage.</p>
+   * @public
+   */
+  Url: string | undefined;
+
+  /**
+   * <p>A short string that's appended to the endpoint URL. The child manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default child manifest name, index_1. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>
+   * @public
+   */
+  ChildManifestName?: string;
+
+  /**
+   * <p>The total duration (in seconds) of the manifest's content.</p>
+   * @public
+   */
+  ManifestWindowSeconds?: number;
+
+  /**
+   * <p>Inserts EXT-X-PROGRAM-DATE-TIME tags in the output manifest at the interval that you specify. If you don't enter an interval,
+   *          EXT-X-PROGRAM-DATE-TIME tags aren't included in the manifest.
+   *          The tags sync the stream to the wall clock so that viewers can seek to a specific time in the playback timeline on the player.
+   *          ID3Timed metadata messages generate every 5 seconds whenever the content is ingested.</p>
+   *          <p>Irrespective of this parameter, if any ID3Timed metadata is in the HLS input, it is passed through to the HLS output.</p>
+   * @public
+   */
+  ProgramDateTimeIntervalSeconds?: number;
+
+  /**
+   * <p>The SCTE configuration.</p>
+   * @public
+   */
+  ScteHls?: ScteHls;
+
+  /**
+   * <p>Filter configuration includes settings for manifest filtering, start and end times, and time delay that apply to all of your egress requests for this manifest. </p>
+   * @public
+   */
+  FilterConfiguration?: FilterConfiguration;
+}
+
+/**
+ * @public
+ */
+export interface CreateOriginEndpointResponse {
+  /**
+   * <p>The Amazon Resource Name (ARN) associated with the resource.</p>
+   * @public
+   */
+  Arn: string | undefined;
+
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group.</p>
+   * @public
+   */
+  ChannelName: string | undefined;
+
+  /**
+   * <p>The name that describes the origin endpoint. The name is the primary identifier for the origin endpoint, and and must be unique for your account in the AWS Region and channel.</p>
+   * @public
+   */
+  OriginEndpointName: string | undefined;
+
+  /**
+   * <p>The type of container attached to this origin endpoint.</p>
+   * @public
+   */
+  ContainerType: ContainerType | undefined;
+
+  /**
+   * <p>The segment configuration, including the segment name, duration, and other configuration values.</p>
+   * @public
+   */
+  Segment: Segment | undefined;
+
+  /**
+   * <p>The date and time the origin endpoint was created.</p>
+   * @public
+   */
+  CreatedAt: Date | undefined;
+
+  /**
+   * <p>The date and time the origin endpoint was modified.</p>
+   * @public
+   */
+  ModifiedAt: Date | undefined;
+
+  /**
+   * <p>The description for your origin endpoint.</p>
+   * @public
+   */
+  Description?: string;
+
+  /**
+   * <p>The size of the window (in seconds) to create a window of the live stream that's available for on-demand viewing. Viewers can start-over or catch-up on content that falls within the window.</p>
+   * @public
+   */
+  StartoverWindowSeconds?: number;
+
+  /**
+   * <p>An HTTP live streaming (HLS) manifest configuration.</p>
+   * @public
+   */
+  HlsManifests?: GetHlsManifestConfiguration[];
+
+  /**
+   * <p>A low-latency HLS manifest configuration.</p>
+   * @public
+   */
+  LowLatencyHlsManifests?: GetLowLatencyHlsManifestConfiguration[];
+
+  /**
+   * <p>A DASH manifest configuration.</p>
+   * @public
+   */
+  DashManifests?: GetDashManifestConfiguration[];
+
+  /**
+   * <p>The failover settings for the endpoint.</p>
+   * @public
+   */
+  ForceEndpointErrorConfiguration?: ForceEndpointErrorConfiguration;
+
+  /**
+   * <p>The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.</p>
+   * @public
+   */
+  ETag?: string;
+
+  /**
+   * <p>The comma-separated list of tag key:value pairs assigned to the origin endpoint.</p>
+   * @public
+   */
+  Tags?: Record<string, string>;
+}
+
+/**
+ * @public
+ */
+export interface DeleteOriginEndpointRequest {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group. </p>
+   * @public
+   */
+  ChannelName: string | undefined;
+
+  /**
+   * <p>The name that describes the origin endpoint. The name is the primary identifier for the origin endpoint, and and must be unique for your account in the AWS Region and channel. </p>
+   * @public
+   */
+  OriginEndpointName: string | undefined;
+}
+
+/**
+ * @public
+ */
+export interface DeleteOriginEndpointResponse {}
+
+/**
+ * @public
+ */
+export interface GetOriginEndpointRequest {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group. </p>
+   * @public
+   */
+  ChannelName: string | undefined;
+
+  /**
+   * <p>The name that describes the origin endpoint. The name is the primary identifier for the origin endpoint, and and must be unique for your account in the AWS Region and channel. </p>
+   * @public
+   */
+  OriginEndpointName: string | undefined;
+}
+
+/**
+ * @public
+ */
+export interface GetOriginEndpointResponse {
+  /**
+   * <p>The Amazon Resource Name (ARN) associated with the resource.</p>
+   * @public
+   */
+  Arn: string | undefined;
+
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group.</p>
+   * @public
+   */
+  ChannelName: string | undefined;
+
+  /**
+   * <p>The name that describes the origin endpoint. The name is the primary identifier for the origin endpoint, and and must be unique for your account in the AWS Region and channel.</p>
+   * @public
+   */
+  OriginEndpointName: string | undefined;
+
+  /**
+   * <p>The type of container attached to this origin endpoint.</p>
+   * @public
+   */
+  ContainerType: ContainerType | undefined;
+
+  /**
+   * <p>The segment configuration, including the segment name, duration, and other configuration values.</p>
+   * @public
+   */
+  Segment: Segment | undefined;
+
+  /**
+   * <p>The date and time the origin endpoint was created.</p>
+   * @public
+   */
+  CreatedAt: Date | undefined;
+
+  /**
+   * <p>The date and time the origin endpoint was modified.</p>
+   * @public
+   */
+  ModifiedAt: Date | undefined;
+
+  /**
+   * <p>The description for your origin endpoint.</p>
+   * @public
+   */
+  Description?: string;
+
+  /**
+   * <p>The size of the window (in seconds) to create a window of the live stream that's available for on-demand viewing. Viewers can start-over or catch-up on content that falls within the window.</p>
+   * @public
+   */
+  StartoverWindowSeconds?: number;
+
+  /**
+   * <p>An HTTP live streaming (HLS) manifest configuration.</p>
+   * @public
+   */
+  HlsManifests?: GetHlsManifestConfiguration[];
+
+  /**
+   * <p>A low-latency HLS manifest configuration.</p>
+   * @public
+   */
+  LowLatencyHlsManifests?: GetLowLatencyHlsManifestConfiguration[];
+
+  /**
+   * <p>A DASH manifest configuration.</p>
+   * @public
+   */
+  DashManifests?: GetDashManifestConfiguration[];
+
+  /**
+   * <p>The failover settings for the endpoint.</p>
+   * @public
+   */
+  ForceEndpointErrorConfiguration?: ForceEndpointErrorConfiguration;
+
+  /**
+   * <p>The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.</p>
+   * @public
+   */
+  ETag?: string;
+
+  /**
+   * <p>The comma-separated list of tag key:value pairs assigned to the origin endpoint.</p>
+   * @public
+   */
+  Tags?: Record<string, string>;
+}
+
+/**
+ * @public
+ */
+export interface ListOriginEndpointsRequest {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group. </p>
+   * @public
+   */
+  ChannelName: string | undefined;
+
+  /**
+   * <p>The maximum number of results to return in the response.</p>
+   * @public
+   */
+  MaxResults?: number;
+
+  /**
+   * <p>The pagination token from the GET list request. Use the token to fetch the next page of results.</p>
+   * @public
+   */
+  NextToken?: string;
+}
+
+/**
+ * <p>List the DASH manifest configuration.</p>
+ * @public
+ */
+export interface ListDashManifestConfiguration {
+  /**
+   * <p>A short string that's appended to the endpoint URL. The manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default manifest name, index. </p>
+   * @public
+   */
+  ManifestName: string | undefined;
+
+  /**
+   * <p>The egress domain URL for stream delivery from MediaPackage.</p>
+   * @public
+   */
+  Url?: string;
+}
+
+/**
+ * <p>List the HTTP live streaming (HLS) manifest configuration.</p>
+ * @public
+ */
+export interface ListHlsManifestConfiguration {
+  /**
+   * <p>A short short string that's appended to the endpoint URL. The manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default manifest name, index. MediaPackage automatically inserts the format extension, such as .m3u8. You can't use the same manifest name if you use HLS manifest and low-latency HLS manifest. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>
+   * @public
+   */
+  ManifestName: string | undefined;
+
+  /**
+   * <p>A short string that's appended to the endpoint URL. The child manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default child manifest name, index_1. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>
+   * @public
+   */
+  ChildManifestName?: string;
+
+  /**
+   * <p>The egress domain URL for stream delivery from MediaPackage.</p>
+   * @public
+   */
+  Url?: string;
+}
+
+/**
+ * <p>List the low-latency HTTP live streaming (HLS) manifest configuration.</p>
+ * @public
+ */
+export interface ListLowLatencyHlsManifestConfiguration {
+  /**
+   * <p>A short short string that's appended to the endpoint URL. The manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default manifest name, index. MediaPackage automatically inserts the format extension, such as .m3u8. You can't use the same manifest name if you use HLS manifest and low-latency HLS manifest. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>
+   * @public
+   */
+  ManifestName: string | undefined;
+
+  /**
+   * <p>A short string that's appended to the endpoint URL. The child manifest name creates a unique path to this endpoint. If you don't enter a value, MediaPackage uses the default child manifest name, index_1. The manifestName on the HLSManifest object overrides the manifestName you provided on the originEndpoint object.</p>
+   * @public
+   */
+  ChildManifestName?: string;
+
+  /**
+   * <p>The egress domain URL for stream delivery from MediaPackage.</p>
+   * @public
+   */
+  Url?: string;
+}
+
+/**
+ * <p>The configuration of the origin endpoint.</p>
+ * @public
+ */
+export interface OriginEndpointListConfiguration {
+  /**
+   * <p>The Amazon Resource Name (ARN) associated with the resource.</p>
+   * @public
+   */
+  Arn: string | undefined;
+
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group. </p>
+   * @public
+   */
+  ChannelName: string | undefined;
+
+  /**
+   * <p>The name that describes the origin endpoint. The name is the primary identifier for the origin endpoint, and and must be unique for your account in the AWS Region and channel. </p>
+   * @public
+   */
+  OriginEndpointName: string | undefined;
+
+  /**
+   * <p>The type of container attached to this origin endpoint. A container type is a file format that encapsulates one or more media streams, such as audio and video, into a single file. </p>
+   * @public
+   */
+  ContainerType: ContainerType | undefined;
+
+  /**
+   * <p>Any descriptive information that you want to add to the origin endpoint for future identification purposes.</p>
+   * @public
+   */
+  Description?: string;
+
+  /**
+   * <p>The date and time the origin endpoint was created.</p>
+   * @public
+   */
+  CreatedAt?: Date;
+
+  /**
+   * <p>The date and time the origin endpoint was modified.</p>
+   * @public
+   */
+  ModifiedAt?: Date;
+
+  /**
+   * <p>An HTTP live streaming (HLS) manifest configuration.</p>
+   * @public
+   */
+  HlsManifests?: ListHlsManifestConfiguration[];
+
+  /**
+   * <p>A low-latency HLS manifest configuration.</p>
+   * @public
+   */
+  LowLatencyHlsManifests?: ListLowLatencyHlsManifestConfiguration[];
+
+  /**
+   * <p>A DASH manifest configuration.</p>
+   * @public
+   */
+  DashManifests?: ListDashManifestConfiguration[];
+
+  /**
+   * <p>The failover settings for the endpoint.</p>
+   * @public
+   */
+  ForceEndpointErrorConfiguration?: ForceEndpointErrorConfiguration;
+}
+
+/**
+ * @public
+ */
+export interface ListOriginEndpointsResponse {
+  /**
+   * <p>The objects being returned.</p>
+   * @public
+   */
+  Items?: OriginEndpointListConfiguration[];
+
+  /**
+   * <p>The pagination token from the GET list request. Use the token to fetch the next page of results.</p>
+   * @public
+   */
+  NextToken?: string;
+}
+
+/**
+ * @public
+ */
+export interface DeleteOriginEndpointPolicyRequest {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group. </p>
+   * @public
+   */
+  ChannelName: string | undefined;
+
+  /**
+   * <p>The name that describes the origin endpoint. The name is the primary identifier for the origin endpoint, and and must be unique for your account in the AWS Region and channel. </p>
+   * @public
+   */
+  OriginEndpointName: string | undefined;
+}
+
+/**
+ * @public
+ */
+export interface DeleteOriginEndpointPolicyResponse {}
+
+/**
+ * @public
+ */
+export interface GetOriginEndpointPolicyRequest {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group. </p>
+   * @public
+   */
+  ChannelName: string | undefined;
+
+  /**
+   * <p>The name that describes the origin endpoint. The name is the primary identifier for the origin endpoint, and and must be unique for your account in the AWS Region and channel. </p>
+   * @public
+   */
+  OriginEndpointName: string | undefined;
+}
+
+/**
+ * @public
+ */
+export interface GetOriginEndpointPolicyResponse {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group.</p>
+   * @public
+   */
+  ChannelName: string | undefined;
+
+  /**
+   * <p>The name that describes the origin endpoint. The name is the primary identifier for the origin endpoint, and and must be unique for your account in the AWS Region and channel.</p>
+   * @public
+   */
+  OriginEndpointName: string | undefined;
+
+  /**
+   * <p>The policy assigned to the origin endpoint.</p>
+   * @public
+   */
+  Policy: string | undefined;
+}
+
+/**
+ * @public
+ */
+export interface PutOriginEndpointPolicyRequest {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group. </p>
+   * @public
+   */
+  ChannelName: string | undefined;
+
+  /**
+   * <p>The name that describes the origin endpoint. The name is the primary identifier for the origin endpoint, and and must be unique for your account in the AWS Region and channel. </p>
+   * @public
+   */
+  OriginEndpointName: string | undefined;
+
+  /**
+   * <p>The policy to attach to the specified origin endpoint.</p>
+   * @public
+   */
+  Policy: string | undefined;
+}
+
+/**
+ * @public
+ */
+export interface PutOriginEndpointPolicyResponse {}
+
+/**
+ * @public
+ */
+export interface UpdateOriginEndpointRequest {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group. </p>
+   * @public
+   */
+  ChannelName: string | undefined;
+
+  /**
+   * <p>The name that describes the origin endpoint. The name is the primary identifier for the origin endpoint, and and must be unique for your account in the AWS Region and channel. </p>
+   * @public
+   */
+  OriginEndpointName: string | undefined;
+
+  /**
+   * <p>The type of container attached to this origin endpoint. A container type is a file format that encapsulates one or more media streams, such as audio and video, into a single file. </p>
+   * @public
+   */
+  ContainerType: ContainerType | undefined;
+
+  /**
+   * <p>The segment configuration, including the segment name, duration, and other configuration values.</p>
+   * @public
+   */
+  Segment?: Segment;
+
+  /**
+   * <p>Any descriptive information that you want to add to the origin endpoint for future identification purposes.</p>
+   * @public
+   */
+  Description?: string;
+
+  /**
+   * <p>The size of the window (in seconds) to create a window of the live stream that's available for on-demand viewing. Viewers can start-over or catch-up on content that falls within the window. The maximum startover window is 1,209,600 seconds (14 days).</p>
+   * @public
+   */
+  StartoverWindowSeconds?: number;
+
+  /**
+   * <p>An HTTP live streaming (HLS) manifest configuration.</p>
+   * @public
+   */
+  HlsManifests?: CreateHlsManifestConfiguration[];
+
+  /**
+   * <p>A low-latency HLS manifest configuration.</p>
+   * @public
+   */
+  LowLatencyHlsManifests?: CreateLowLatencyHlsManifestConfiguration[];
+
+  /**
+   * <p>A DASH manifest configuration.</p>
+   * @public
+   */
+  DashManifests?: CreateDashManifestConfiguration[];
+
+  /**
+   * <p>The failover settings for the endpoint.</p>
+   * @public
+   */
+  ForceEndpointErrorConfiguration?: ForceEndpointErrorConfiguration;
+
+  /**
+   * <p>The expected current Entity Tag (ETag) for the resource. If the specified ETag does not match the resource's current entity tag, the update request will be rejected.</p>
+   * @public
+   */
+  ETag?: string;
+}
+
+/**
+ * @public
+ */
+export interface UpdateOriginEndpointResponse {
+  /**
+   * <p>The ARN associated with the resource.</p>
+   * @public
+   */
+  Arn: string | undefined;
+
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group.</p>
+   * @public
+   */
+  ChannelName: string | undefined;
+
+  /**
+   * <p>The name that describes the origin endpoint. The name is the primary identifier for the origin endpoint, and and must be unique for your account in the AWS Region and channel.</p>
+   * @public
+   */
+  OriginEndpointName: string | undefined;
+
+  /**
+   * <p>The type of container attached to this origin endpoint.</p>
+   * @public
+   */
+  ContainerType: ContainerType | undefined;
+
+  /**
+   * <p>The segment configuration, including the segment name, duration, and other configuration values.</p>
+   * @public
+   */
+  Segment: Segment | undefined;
+
+  /**
+   * <p>The date and time the origin endpoint was created.</p>
+   * @public
+   */
+  CreatedAt: Date | undefined;
+
+  /**
+   * <p>The date and time the origin endpoint was modified.</p>
+   * @public
+   */
+  ModifiedAt: Date | undefined;
+
+  /**
+   * <p>The description of the origin endpoint.</p>
+   * @public
+   */
+  Description?: string;
+
+  /**
+   * <p>The size of the window (in seconds) to create a window of the live stream that's available for on-demand viewing. Viewers can start-over or catch-up on content that falls within the window.</p>
+   * @public
+   */
+  StartoverWindowSeconds?: number;
+
+  /**
+   * <p>An HTTP live streaming (HLS) manifest configuration.</p>
+   * @public
+   */
+  HlsManifests?: GetHlsManifestConfiguration[];
+
+  /**
+   * <p>A low-latency HLS manifest configuration.</p>
+   * @public
+   */
+  LowLatencyHlsManifests?: GetLowLatencyHlsManifestConfiguration[];
+
+  /**
+   * <p>The failover settings for the endpoint.</p>
+   * @public
+   */
+  ForceEndpointErrorConfiguration?: ForceEndpointErrorConfiguration;
+
+  /**
+   * <p>The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.</p>
+   * @public
+   */
+  ETag?: string;
+
+  /**
+   * <p>The comma-separated list of tag key:value pairs assigned to the origin endpoint.</p>
+   * @public
+   */
+  Tags?: Record<string, string>;
+
+  /**
+   * <p>A DASH manifest configuration.</p>
+   * @public
+   */
+  DashManifests?: GetDashManifestConfiguration[];
+}
+
+/**
+ * @public
+ */
+export interface UpdateChannelRequest {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group. </p>
+   * @public
+   */
+  ChannelName: string | undefined;
+
+  /**
+   * <p>The expected current Entity Tag (ETag) for the resource. If the specified ETag does not match the resource's current entity tag, the update request will be rejected.</p>
+   * @public
+   */
+  ETag?: string;
+
+  /**
+   * <p>Any descriptive information that you want to add to the channel for future identification purposes.</p>
+   * @public
+   */
+  Description?: string;
+}
+
+/**
+ * @public
+ */
+export interface UpdateChannelResponse {
+  /**
+   * <p>The Amazon Resource Name (ARN) associated with the resource.</p>
+   * @public
+   */
+  Arn: string | undefined;
+
+  /**
+   * <p>The name that describes the channel. The name is the primary identifier for the channel, and must be unique for your account in the AWS Region and channel group.</p>
+   * @public
+   */
+  ChannelName: string | undefined;
+
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The date and time the channel was created.</p>
+   * @public
+   */
+  CreatedAt: Date | undefined;
+
+  /**
+   * <p>The date and time the channel was modified.</p>
+   * @public
+   */
+  ModifiedAt: Date | undefined;
+
+  /**
+   * <p>The description for your channel.</p>
+   * @public
+   */
+  Description?: string;
+
+  /**
+   * <p>The list of ingest endpoints.</p>
+   * @public
+   */
+  IngestEndpoints?: IngestEndpoint[];
+
+  /**
+   * <p>The input type will be an immutable field which will be used to define whether the channel will allow CMAF ingest or HLS ingest. If unprovided, it will default to HLS to preserve current behavior.</p>
+   *          <p>The allowed values are:</p>
+   *          <ul>
+   *             <li>
+   *                <p>
+   *                   <code>HLS</code> - The HLS streaming specification (which defines M3U8 manifests and TS segments).</p>
+   *             </li>
+   *             <li>
+   *                <p>
+   *                   <code>CMAF</code> - The DASH-IF CMAF Ingest specification (which defines CMAF segments with optional DASH manifests).</p>
+   *             </li>
+   *          </ul>
+   * @public
+   */
+  InputType?: InputType;
+
+  /**
+   * <p>The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.</p>
+   * @public
+   */
+  ETag?: string;
+
+  /**
+   * <p>The comma-separated list of tag key:value pairs assigned to the channel.</p>
+   * @public
+   */
+  Tags?: Record<string, string>;
+}
+
+/**
+ * @public
+ */
+export interface CreateChannelGroupRequest {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region. You can't use spaces in the name. You can't change the name after you create the channel group.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>A unique, case-sensitive token that you provide to ensure the idempotency of the request.</p>
+   * @public
+   */
+  ClientToken?: string;
+
+  /**
+   * <p>Enter any descriptive text that helps you to identify the channel group.</p>
+   * @public
+   */
+  Description?: string;
+
+  /**
+   * <p>A comma-separated list of tag key:value pairs that you define. For example:</p>
+   *          <p>
+   *             <code>"Key1": "Value1",</code>
+   *          </p>
+   *          <p>
+   *             <code>"Key2": "Value2"</code>
+   *          </p>
+   * @public
+   */
+  Tags?: Record<string, string>;
+}
+
+/**
+ * @public
+ */
+export interface CreateChannelGroupResponse {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The Amazon Resource Name (ARN) associated with the resource.</p>
+   * @public
+   */
+  Arn: string | undefined;
+
+  /**
+   * <p>The output domain where the source stream should be sent. Integrate the egress domain with a downstream CDN (such as Amazon CloudFront) or playback device.</p>
+   * @public
+   */
+  EgressDomain: string | undefined;
+
+  /**
+   * <p>The date and time the channel group was created.</p>
+   * @public
+   */
+  CreatedAt: Date | undefined;
+
+  /**
+   * <p>The date and time the channel group was modified.</p>
+   * @public
+   */
+  ModifiedAt: Date | undefined;
+
+  /**
+   * <p>The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.</p>
+   * @public
+   */
+  ETag?: string;
+
+  /**
+   * <p>The description for your channel group.</p>
+   * @public
+   */
+  Description?: string;
+
+  /**
+   * <p>The comma-separated list of tag key:value pairs assigned to the channel group.</p>
+   * @public
+   */
+  Tags?: Record<string, string>;
+}
+
+/**
+ * @public
+ */
+export interface DeleteChannelGroupRequest {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+}
+
+/**
+ * @public
+ */
+export interface DeleteChannelGroupResponse {}
+
+/**
+ * @public
+ */
+export interface GetChannelGroupRequest {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+}
+
+/**
+ * @public
+ */
+export interface GetChannelGroupResponse {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The Amazon Resource Name (ARN) associated with the resource.</p>
+   * @public
+   */
+  Arn: string | undefined;
+
+  /**
+   * <p>The output domain where the source stream should be sent. Integrate the domain with a downstream CDN (such as Amazon CloudFront) or playback device.</p>
+   * @public
+   */
+  EgressDomain: string | undefined;
+
+  /**
+   * <p>The date and time the channel group was created.</p>
+   * @public
+   */
+  CreatedAt: Date | undefined;
+
+  /**
+   * <p>The date and time the channel group was modified.</p>
+   * @public
+   */
+  ModifiedAt: Date | undefined;
+
+  /**
+   * <p>The description for your channel group.</p>
+   * @public
+   */
+  Description?: string;
+
+  /**
+   * <p>The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.</p>
+   * @public
+   */
+  ETag?: string;
+
+  /**
+   * <p>The comma-separated list of tag key:value pairs assigned to the channel group.</p>
+   * @public
+   */
+  Tags?: Record<string, string>;
+}
+
+/**
+ * @public
+ */
+export interface ListChannelGroupsRequest {
+  /**
+   * <p>The maximum number of results to return in the response.</p>
+   * @public
+   */
+  MaxResults?: number;
+
+  /**
+   * <p>The pagination token from the GET list request. Use the token to fetch the next page of results.</p>
+   * @public
+   */
+  NextToken?: string;
+}
+
+/**
+ * @public
+ */
+export interface ListChannelGroupsResponse {
+  /**
+   * <p>The objects being returned.</p>
+   * @public
+   */
+  Items?: ChannelGroupListConfiguration[];
+
+  /**
+   * <p>The pagination token from the GET list request. Use the token to fetch the next page of results.</p>
+   * @public
+   */
+  NextToken?: string;
+}
+
+/**
+ * @public
+ */
+export interface UpdateChannelGroupRequest {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The expected current Entity Tag (ETag) for the resource. If the specified ETag does not match the resource's current entity tag, the update request will be rejected.</p>
+   * @public
+   */
+  ETag?: string;
+
+  /**
+   * <p>Any descriptive information that you want to add to the channel group for future identification purposes.</p>
+   * @public
+   */
+  Description?: string;
+}
+
+/**
+ * @public
+ */
+export interface UpdateChannelGroupResponse {
+  /**
+   * <p>The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.</p>
+   * @public
+   */
+  ChannelGroupName: string | undefined;
+
+  /**
+   * <p>The Amazon Resource Name (ARN) associated with the resource.</p>
+   * @public
+   */
+  Arn: string | undefined;
+
+  /**
+   * <p>The output domain where the source stream is sent. Integrate the domain with a downstream CDN (such as Amazon CloudFront) or playback device.</p>
+   * @public
+   */
+  EgressDomain: string | undefined;
+
+  /**
+   * <p>The date and time the channel group was created.</p>
+   * @public
+   */
+  CreatedAt: Date | undefined;
+
+  /**
+   * <p>The date and time the channel group was modified.</p>
+   * @public
+   */
+  ModifiedAt: Date | undefined;
+
+  /**
+   * <p>The description for your channel group.</p>
+   * @public
+   */
+  Description?: string;
+
+  /**
+   * <p>The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.</p>
+   * @public
+   */
+  ETag?: string;
+
+  /**
+   * <p>The comma-separated list of tag key:value pairs assigned to the channel group.</p>
+   * @public
+   */
+  Tags?: Record<string, string>;
+}
+
+/**
+ * @public
+ */
+export interface ListTagsForResourceRequest {
+  /**
+   * <p>The ARN of the CloudWatch resource that you want to view tags for.</p>
+   * @public
+   */
+  ResourceArn: string | undefined;
+}
+
+/**
+ * @public
+ */
+export interface ListTagsForResourceResponse {
+  /**
+   * <p>Contains a map of the key-value pairs for the resource tag or tags assigned to the resource.</p>
+   * @public
+   */
+  Tags?: Record<string, string>;
+}
+
+/**
+ * @public
+ */
+export interface TagResourceRequest {
+  /**
+   * <p>The ARN of the MediaPackage resource that you're adding tags to.</p>
+   * @public
+   */
+  ResourceArn: string | undefined;
+
+  /**
+   * <p>Contains a map of the key-value pairs for the resource tag or tags assigned to the resource.</p>
+   * @public
+   */
+  Tags: Record<string, string> | undefined;
+}
+
+/**
+ * @public
+ */
+export interface UntagResourceRequest {
+  /**
+   * <p>The ARN of the MediaPackage resource that you're removing tags from.</p>
+   * @public
+   */
+  ResourceArn: string | undefined;
+
+  /**
+   * <p>The list of tag keys to remove from the resource.</p>
+   * @public
+   */
+  TagKeys: string[] | undefined;
+}

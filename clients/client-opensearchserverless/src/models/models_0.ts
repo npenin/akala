@@ -1,0 +1,2900 @@
+// smithy-typescript generated code
+import { ExceptionOptionType as __ExceptionOptionType } from "@smithy/smithy-client";
+
+import { DocumentType as __DocumentType } from "@smithy/types";
+
+import { OpenSearchServerlessServiceException as __BaseException } from "./OpenSearchServerlessServiceException";
+
+/**
+ * @public
+ * @enum
+ */
+export const AccessPolicyType = {
+  /**
+   * data policy type
+   */
+  data: "data",
+} as const;
+
+/**
+ * @public
+ */
+export type AccessPolicyType = (typeof AccessPolicyType)[keyof typeof AccessPolicyType];
+
+/**
+ * <p>When creating a resource, thrown when a resource with the same name already exists
+ *             or is being created. When deleting a resource, thrown when the resource is not in
+ *             the ACTIVE or FAILED state.</p>
+ * @public
+ */
+export class ConflictException extends __BaseException {
+  readonly name: "ConflictException" = "ConflictException";
+  readonly $fault: "client" = "client";
+  /**
+   * @internal
+   */
+  constructor(opts: __ExceptionOptionType<ConflictException, __BaseException>) {
+    super({
+      name: "ConflictException",
+      $fault: "client",
+      ...opts,
+    });
+    Object.setPrototypeOf(this, ConflictException.prototype);
+  }
+}
+
+/**
+ * @public
+ */
+export interface CreateAccessPolicyRequest {
+  /**
+   * <p>The type of policy.</p>
+   * @public
+   */
+  type: AccessPolicyType | undefined;
+
+  /**
+   * <p>The name of the policy.</p>
+   * @public
+   */
+  name: string | undefined;
+
+  /**
+   * <p>A description of the policy. Typically used to store information about the permissions
+   *             defined in the policy.</p>
+   * @public
+   */
+  description?: string;
+
+  /**
+   * <p>The JSON policy document to use as the content for the policy.</p>
+   * @public
+   */
+  policy: string | undefined;
+
+  /**
+   * <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+   * @public
+   */
+  clientToken?: string;
+}
+
+/**
+ * <p>Details about an OpenSearch Serverless access policy.</p>
+ * @public
+ */
+export interface AccessPolicyDetail {
+  /**
+   * <p>The type of access policy.</p>
+   * @public
+   */
+  type?: AccessPolicyType;
+
+  /**
+   * <p>The name of the policy.</p>
+   * @public
+   */
+  name?: string;
+
+  /**
+   * <p>The version of the policy.</p>
+   * @public
+   */
+  policyVersion?: string;
+
+  /**
+   * <p>The description of the policy.</p>
+   * @public
+   */
+  description?: string;
+
+  /**
+   * <p>The JSON policy document without any whitespaces.</p>
+   * @public
+   */
+  policy?: __DocumentType;
+
+  /**
+   * <p>The date the policy was created.</p>
+   * @public
+   */
+  createdDate?: number;
+
+  /**
+   * <p>The timestamp of when the policy was last modified.</p>
+   * @public
+   */
+  lastModifiedDate?: number;
+}
+
+/**
+ * @public
+ */
+export interface CreateAccessPolicyResponse {
+  /**
+   * <p>Details about the created access policy.</p>
+   * @public
+   */
+  accessPolicyDetail?: AccessPolicyDetail;
+}
+
+/**
+ * <p>Thrown when an error internal to the service occurs while processing a request.</p>
+ * @public
+ */
+export class InternalServerException extends __BaseException {
+  readonly name: "InternalServerException" = "InternalServerException";
+  readonly $fault: "server" = "server";
+  /**
+   * @internal
+   */
+  constructor(opts: __ExceptionOptionType<InternalServerException, __BaseException>) {
+    super({
+      name: "InternalServerException",
+      $fault: "server",
+      ...opts,
+    });
+    Object.setPrototypeOf(this, InternalServerException.prototype);
+  }
+}
+
+/**
+ * <p>Thrown when you attempt to create more resources than the service allows based on service quotas.</p>
+ * @public
+ */
+export class ServiceQuotaExceededException extends __BaseException {
+  readonly name: "ServiceQuotaExceededException" = "ServiceQuotaExceededException";
+  readonly $fault: "client" = "client";
+  /**
+   * Identifier of the resource affected.
+   * @public
+   */
+  resourceId?: string;
+
+  /**
+   * Type of the resource affected.
+   * @public
+   */
+  resourceType?: string;
+
+  /**
+   * Service Quotas requirement to identify originating service.
+   * @public
+   */
+  serviceCode: string | undefined;
+
+  /**
+   * Service Quotas requirement to identify originating quota.
+   * @public
+   */
+  quotaCode?: string;
+
+  /**
+   * @internal
+   */
+  constructor(opts: __ExceptionOptionType<ServiceQuotaExceededException, __BaseException>) {
+    super({
+      name: "ServiceQuotaExceededException",
+      $fault: "client",
+      ...opts,
+    });
+    Object.setPrototypeOf(this, ServiceQuotaExceededException.prototype);
+    this.resourceId = opts.resourceId;
+    this.resourceType = opts.resourceType;
+    this.serviceCode = opts.serviceCode;
+    this.quotaCode = opts.quotaCode;
+  }
+}
+
+/**
+ * <p>Thrown when the HTTP request contains invalid input or is missing required
+ *             input.</p>
+ * @public
+ */
+export class ValidationException extends __BaseException {
+  readonly name: "ValidationException" = "ValidationException";
+  readonly $fault: "client" = "client";
+  /**
+   * @internal
+   */
+  constructor(opts: __ExceptionOptionType<ValidationException, __BaseException>) {
+    super({
+      name: "ValidationException",
+      $fault: "client",
+      ...opts,
+    });
+    Object.setPrototypeOf(this, ValidationException.prototype);
+  }
+}
+
+/**
+ * @public
+ */
+export interface DeleteAccessPolicyRequest {
+  /**
+   * <p>The type of policy.</p>
+   * @public
+   */
+  type: AccessPolicyType | undefined;
+
+  /**
+   * <p>The name of the policy to delete.</p>
+   * @public
+   */
+  name: string | undefined;
+
+  /**
+   * <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+   * @public
+   */
+  clientToken?: string;
+}
+
+/**
+ * @public
+ */
+export interface DeleteAccessPolicyResponse {}
+
+/**
+ * <p>Thrown when accessing or deleting a resource that does not exist.</p>
+ * @public
+ */
+export class ResourceNotFoundException extends __BaseException {
+  readonly name: "ResourceNotFoundException" = "ResourceNotFoundException";
+  readonly $fault: "client" = "client";
+  /**
+   * @internal
+   */
+  constructor(opts: __ExceptionOptionType<ResourceNotFoundException, __BaseException>) {
+    super({
+      name: "ResourceNotFoundException",
+      $fault: "client",
+      ...opts,
+    });
+    Object.setPrototypeOf(this, ResourceNotFoundException.prototype);
+  }
+}
+
+/**
+ * @public
+ */
+export interface GetAccessPolicyRequest {
+  /**
+   * <p>Tye type of policy. Currently, the only supported value is <code>data</code>.</p>
+   * @public
+   */
+  type: AccessPolicyType | undefined;
+
+  /**
+   * <p>The name of the access policy.</p>
+   * @public
+   */
+  name: string | undefined;
+}
+
+/**
+ * @public
+ */
+export interface GetAccessPolicyResponse {
+  /**
+   * <p>Details about the requested access policy.</p>
+   * @public
+   */
+  accessPolicyDetail?: AccessPolicyDetail;
+}
+
+/**
+ * @public
+ */
+export interface ListAccessPoliciesRequest {
+  /**
+   * <p>The type of access policy.</p>
+   * @public
+   */
+  type: AccessPolicyType | undefined;
+
+  /**
+   * <p>Resource filters (can be collections or indexes) that policies can apply to.</p>
+   * @public
+   */
+  resource?: string[];
+
+  /**
+   * <p>If your initial <code>ListAccessPolicies</code> operation returns a
+   *                 <code>nextToken</code>, you can include the returned <code>nextToken</code> in
+   *             subsequent <code>ListAccessPolicies</code> operations, which returns results in the next
+   *             page. </p>
+   * @public
+   */
+  nextToken?: string;
+
+  /**
+   * <p>An optional parameter that specifies the maximum number of results to return. You can
+   *             use <code>nextToken</code> to get the next page of results. The default is 20.</p>
+   * @public
+   */
+  maxResults?: number;
+}
+
+/**
+ * <p>A summary of the data access policy.</p>
+ * @public
+ */
+export interface AccessPolicySummary {
+  /**
+   * <p>The type of access policy. Currently, the only available type is <code>data</code>.</p>
+   * @public
+   */
+  type?: AccessPolicyType;
+
+  /**
+   * <p>The name of the access policy.</p>
+   * @public
+   */
+  name?: string;
+
+  /**
+   * <p>The version of the policy.</p>
+   * @public
+   */
+  policyVersion?: string;
+
+  /**
+   * <p>The description of the access policy.</p>
+   * @public
+   */
+  description?: string;
+
+  /**
+   * <p>The Epoch time when the access policy was created.</p>
+   * @public
+   */
+  createdDate?: number;
+
+  /**
+   * <p>The date and time when the collection was last modified.</p>
+   * @public
+   */
+  lastModifiedDate?: number;
+}
+
+/**
+ * @public
+ */
+export interface ListAccessPoliciesResponse {
+  /**
+   * <p>Details about the requested access policies.</p>
+   * @public
+   */
+  accessPolicySummaries?: AccessPolicySummary[];
+
+  /**
+   * <p>When <code>nextToken</code> is returned, there are more results available. The value
+   *             of <code>nextToken</code> is a unique pagination token for each page. Make the call
+   *             again using the returned token to retrieve the next page.</p>
+   * @public
+   */
+  nextToken?: string;
+}
+
+/**
+ * @public
+ */
+export interface UpdateAccessPolicyRequest {
+  /**
+   * <p>The type of policy.</p>
+   * @public
+   */
+  type: AccessPolicyType | undefined;
+
+  /**
+   * <p>The name of the policy.</p>
+   * @public
+   */
+  name: string | undefined;
+
+  /**
+   * <p>The version of the policy being updated.</p>
+   * @public
+   */
+  policyVersion: string | undefined;
+
+  /**
+   * <p>A description of the policy. Typically used to store information about the permissions
+   *             defined in the policy.</p>
+   * @public
+   */
+  description?: string;
+
+  /**
+   * <p>The JSON policy document to use as the content for the policy.</p>
+   * @public
+   */
+  policy?: string;
+
+  /**
+   * <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+   * @public
+   */
+  clientToken?: string;
+}
+
+/**
+ * @public
+ */
+export interface UpdateAccessPolicyResponse {
+  /**
+   * <p>Details about the updated access policy.</p>
+   * @public
+   */
+  accessPolicyDetail?: AccessPolicyDetail;
+}
+
+/**
+ * <p>Statistics for an OpenSearch Serverless access policy.</p>
+ * @public
+ */
+export interface AccessPolicyStats {
+  /**
+   * <p>The number of data access policies in the current account.</p>
+   * @public
+   */
+  DataPolicyCount?: number;
+}
+
+/**
+ * <p>The maximum capacity limits for all OpenSearch Serverless collections, in OpenSearch Compute Units
+ *             (OCUs). These limits are used to scale your collections based on the current workload.
+ *             For more information, see <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-scaling.html">Managing
+ *                 capacity limits for Amazon OpenSearch Serverless</a>.</p>
+ * @public
+ */
+export interface CapacityLimits {
+  /**
+   * <p>The maximum indexing capacity for collections.</p>
+   * @public
+   */
+  maxIndexingCapacityInOCU?: number;
+
+  /**
+   * <p>The maximum search capacity for collections.</p>
+   * @public
+   */
+  maxSearchCapacityInOCU?: number;
+}
+
+/**
+ * <p>OpenSearch Serverless-related information for the current account.</p>
+ * @public
+ */
+export interface AccountSettingsDetail {
+  /**
+   * <p>The maximum capacity limits for all OpenSearch Serverless collections, in OpenSearch Compute Units
+   *             (OCUs). These limits are used to scale your collections based on the current workload.
+   *             For more information, see <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-scaling.html">Managing
+   *                 capacity limits for Amazon OpenSearch Serverless</a>.</p>
+   * @public
+   */
+  capacityLimits?: CapacityLimits;
+}
+
+/**
+ * @public
+ */
+export interface BatchGetCollectionRequest {
+  /**
+   * <p>A list of collection IDs. You can't provide names and IDs in the same request. The ID
+   *             is part of the collection endpoint. You can also retrieve it using the <a href="https://docs.aws.amazon.com/opensearch-service/latest/ServerlessAPIReference/API_ListCollections.html">ListCollections</a> API.</p>
+   * @public
+   */
+  ids?: string[];
+
+  /**
+   * <p>A list of collection names. You can't provide names and IDs in the same request.</p>
+   * @public
+   */
+  names?: string[];
+}
+
+/**
+ * @public
+ * @enum
+ */
+export const StandbyReplicas = {
+  /**
+   * Standby replicas disabled
+   */
+  DISABLED: "DISABLED",
+  /**
+   * Standby replicas enabled
+   */
+  ENABLED: "ENABLED",
+} as const;
+
+/**
+ * @public
+ */
+export type StandbyReplicas = (typeof StandbyReplicas)[keyof typeof StandbyReplicas];
+
+/**
+ * @public
+ * @enum
+ */
+export const CollectionStatus = {
+  /**
+   * Collection resource is ready to use
+   */
+  ACTIVE: "ACTIVE",
+  /**
+   * Creating collection resource
+   */
+  CREATING: "CREATING",
+  /**
+   * Deleting collection resource
+   */
+  DELETING: "DELETING",
+  /**
+   * Collection resource create or delete failed
+   */
+  FAILED: "FAILED",
+} as const;
+
+/**
+ * @public
+ */
+export type CollectionStatus = (typeof CollectionStatus)[keyof typeof CollectionStatus];
+
+/**
+ * @public
+ * @enum
+ */
+export const CollectionType = {
+  /**
+   * Search collection type
+   */
+  SEARCH: "SEARCH",
+  /**
+   * Timeseries collection type
+   */
+  TIMESERIES: "TIMESERIES",
+  /**
+   * Vectorsearch collection type
+   */
+  VECTORSEARCH: "VECTORSEARCH",
+} as const;
+
+/**
+ * @public
+ */
+export type CollectionType = (typeof CollectionType)[keyof typeof CollectionType];
+
+/**
+ * <p>Details about each OpenSearch Serverless collection, including the collection endpoint and the
+ *             OpenSearch Dashboards endpoint.</p>
+ * @public
+ */
+export interface CollectionDetail {
+  /**
+   * <p>A unique identifier for the collection.</p>
+   * @public
+   */
+  id?: string;
+
+  /**
+   * <p>The name of the collection.</p>
+   * @public
+   */
+  name?: string;
+
+  /**
+   * <p>The current status of the collection.</p>
+   * @public
+   */
+  status?: CollectionStatus;
+
+  /**
+   * <p>The type of collection.</p>
+   * @public
+   */
+  type?: CollectionType;
+
+  /**
+   * <p>A description of the collection.</p>
+   * @public
+   */
+  description?: string;
+
+  /**
+   * <p>The Amazon Resource Name (ARN) of the collection.</p>
+   * @public
+   */
+  arn?: string;
+
+  /**
+   * <p>The ARN of the Amazon Web Services KMS key used to encrypt the collection.</p>
+   * @public
+   */
+  kmsKeyArn?: string;
+
+  /**
+   * <p>Details about an OpenSearch Serverless collection.</p>
+   * @public
+   */
+  standbyReplicas?: StandbyReplicas;
+
+  /**
+   * <p>The Epoch time when the collection was created.</p>
+   * @public
+   */
+  createdDate?: number;
+
+  /**
+   * <p>The date and time when the collection was last modified.</p>
+   * @public
+   */
+  lastModifiedDate?: number;
+
+  /**
+   * <p>Collection-specific endpoint used to submit index, search, and data upload requests to
+   *             an OpenSearch Serverless collection.</p>
+   * @public
+   */
+  collectionEndpoint?: string;
+
+  /**
+   * <p>Collection-specific endpoint used to access OpenSearch Dashboards.</p>
+   * @public
+   */
+  dashboardEndpoint?: string;
+
+  /**
+   * <p>A failure code associated with the request.</p>
+   * @public
+   */
+  failureCode?: string;
+
+  /**
+   * <p>A message associated with the failure code.</p>
+   * @public
+   */
+  failureMessage?: string;
+}
+
+/**
+ * <p>Error information for an OpenSearch Serverless request.</p>
+ * @public
+ */
+export interface CollectionErrorDetail {
+  /**
+   * <p>If the request contains collection IDs, the response includes the IDs provided in the
+   *             request.</p>
+   * @public
+   */
+  id?: string;
+
+  /**
+   * <p>If the request contains collection names, the response includes the names provided in
+   *             the request.</p>
+   * @public
+   */
+  name?: string;
+
+  /**
+   * <p>A description of the error. For example, <code>The specified Collection is not
+   *                 found.</code>
+   *          </p>
+   * @public
+   */
+  errorMessage?: string;
+
+  /**
+   * <p>The error code for the request. For example, <code>NOT_FOUND</code>.</p>
+   * @public
+   */
+  errorCode?: string;
+}
+
+/**
+ * @public
+ */
+export interface BatchGetCollectionResponse {
+  /**
+   * <p>Details about each collection.</p>
+   * @public
+   */
+  collectionDetails?: CollectionDetail[];
+
+  /**
+   * <p>Error information for the request.</p>
+   * @public
+   */
+  collectionErrorDetails?: CollectionErrorDetail[];
+}
+
+/**
+ * @public
+ * @enum
+ */
+export const LifecyclePolicyType = {
+  /**
+   * retention policy type
+   */
+  retention: "retention",
+} as const;
+
+/**
+ * @public
+ */
+export type LifecyclePolicyType = (typeof LifecyclePolicyType)[keyof typeof LifecyclePolicyType];
+
+/**
+ * <p>The unique identifiers of policy types and resource names.</p>
+ * @public
+ */
+export interface LifecyclePolicyResourceIdentifier {
+  /**
+   * <p>The type of lifecycle policy.</p>
+   * @public
+   */
+  type: LifecyclePolicyType | undefined;
+
+  /**
+   * <p>The name of the OpenSearch Serverless ilndex resource.</p>
+   * @public
+   */
+  resource: string | undefined;
+}
+
+/**
+ * @public
+ */
+export interface BatchGetEffectiveLifecyclePolicyRequest {
+  /**
+   * <p>The unique identifiers of policy types and resource names.</p>
+   * @public
+   */
+  resourceIdentifiers: LifecyclePolicyResourceIdentifier[] | undefined;
+}
+
+/**
+ * @public
+ * @enum
+ */
+export const ResourceType = {
+  /**
+   * index resource type
+   */
+  index: "index",
+} as const;
+
+/**
+ * @public
+ */
+export type ResourceType = (typeof ResourceType)[keyof typeof ResourceType];
+
+/**
+ * <p>Error information for an OpenSearch Serverless request.</p>
+ * @public
+ */
+export interface EffectiveLifecyclePolicyDetail {
+  /**
+   * <p>The type of lifecycle policy.</p>
+   * @public
+   */
+  type?: LifecyclePolicyType;
+
+  /**
+   * <p>The name of the OpenSearch Serverless index resource.</p>
+   * @public
+   */
+  resource?: string;
+
+  /**
+   * <p>The name of the lifecycle policy.</p>
+   * @public
+   */
+  policyName?: string;
+
+  /**
+   * <p>The type of OpenSearch Serverless resource. Currently, the only supported resource is <code>index</code>.</p>
+   * @public
+   */
+  resourceType?: ResourceType;
+
+  /**
+   * <p>The minimum number of index retention in days or hours. This is an optional parameter that will return only if it’s set.</p>
+   * @public
+   */
+  retentionPeriod?: string;
+
+  /**
+   * <p>The minimum number of index retention days set. That is an optional param that will return as <code>true</code> if the minimum number of days or
+   *             hours is not set to a index resource.</p>
+   * @public
+   */
+  noMinRetentionPeriod?: boolean;
+}
+
+/**
+ * <p>Error information for an OpenSearch Serverless request.</p>
+ * @public
+ */
+export interface EffectiveLifecyclePolicyErrorDetail {
+  /**
+   * <p>The type of lifecycle policy.</p>
+   * @public
+   */
+  type?: LifecyclePolicyType;
+
+  /**
+   * <p>The name of OpenSearch Serverless index resource.</p>
+   * @public
+   */
+  resource?: string;
+
+  /**
+   * <p>A description of the error. For example, <code>The specified Index resource is not found</code>.</p>
+   * @public
+   */
+  errorMessage?: string;
+
+  /**
+   * <p>The error code for the request.</p>
+   * @public
+   */
+  errorCode?: string;
+}
+
+/**
+ * @public
+ */
+export interface BatchGetEffectiveLifecyclePolicyResponse {
+  /**
+   * <p>A list of lifecycle policies applied to the OpenSearch Serverless indexes.</p>
+   * @public
+   */
+  effectiveLifecyclePolicyDetails?: EffectiveLifecyclePolicyDetail[];
+
+  /**
+   * <p>A list of resources for which retrieval failed.</p>
+   * @public
+   */
+  effectiveLifecyclePolicyErrorDetails?: EffectiveLifecyclePolicyErrorDetail[];
+}
+
+/**
+ * <p>The unique identifiers of policy types and policy names.</p>
+ * @public
+ */
+export interface LifecyclePolicyIdentifier {
+  /**
+   * <p>The type of lifecycle policy.</p>
+   * @public
+   */
+  type: LifecyclePolicyType | undefined;
+
+  /**
+   * <p>The name of the lifecycle policy.</p>
+   * @public
+   */
+  name: string | undefined;
+}
+
+/**
+ * @public
+ */
+export interface BatchGetLifecyclePolicyRequest {
+  /**
+   * <p>The unique identifiers of policy types and policy names.</p>
+   * @public
+   */
+  identifiers: LifecyclePolicyIdentifier[] | undefined;
+}
+
+/**
+ * <p>Details about an OpenSearch Serverless lifecycle policy.</p>
+ * @public
+ */
+export interface LifecyclePolicyDetail {
+  /**
+   * <p>The type of lifecycle policy.</p>
+   * @public
+   */
+  type?: LifecyclePolicyType;
+
+  /**
+   * <p>The name of the lifecycle policy.</p>
+   * @public
+   */
+  name?: string;
+
+  /**
+   * <p>The version of the lifecycle policy.</p>
+   * @public
+   */
+  policyVersion?: string;
+
+  /**
+   * <p>The description of the lifecycle policy.</p>
+   * @public
+   */
+  description?: string;
+
+  /**
+   * <p>The JSON policy document without any whitespaces.</p>
+   * @public
+   */
+  policy?: __DocumentType;
+
+  /**
+   * <p>The date the lifecycle policy was created.</p>
+   * @public
+   */
+  createdDate?: number;
+
+  /**
+   * <p>The timestamp of when the lifecycle policy was last modified.</p>
+   * @public
+   */
+  lastModifiedDate?: number;
+}
+
+/**
+ * <p>Error information for an OpenSearch Serverless request.</p>
+ * @public
+ */
+export interface LifecyclePolicyErrorDetail {
+  /**
+   * <p>The type of lifecycle policy.</p>
+   * @public
+   */
+  type?: LifecyclePolicyType;
+
+  /**
+   * <p>The name of the lifecycle policy.</p>
+   * @public
+   */
+  name?: string;
+
+  /**
+   * <p>A description of the error. For example, <code>The specified Lifecycle Policy is not found</code>.</p>
+   * @public
+   */
+  errorMessage?: string;
+
+  /**
+   * <p>The error code for the request. For example, <code>NOT_FOUND</code>.</p>
+   * @public
+   */
+  errorCode?: string;
+}
+
+/**
+ * @public
+ */
+export interface BatchGetLifecyclePolicyResponse {
+  /**
+   * <p>A list of lifecycle policies matched to the input policy name and policy type.</p>
+   * @public
+   */
+  lifecyclePolicyDetails?: LifecyclePolicyDetail[];
+
+  /**
+   * <p>A list of lifecycle policy names and policy types for which retrieval failed.</p>
+   * @public
+   */
+  lifecyclePolicyErrorDetails?: LifecyclePolicyErrorDetail[];
+}
+
+/**
+ * @public
+ */
+export interface BatchGetVpcEndpointRequest {
+  /**
+   * <p>A list of VPC endpoint identifiers.</p>
+   * @public
+   */
+  ids: string[] | undefined;
+}
+
+/**
+ * @public
+ * @enum
+ */
+export const VpcEndpointStatus = {
+  /**
+   * VPCEndpoint resource is ready to use
+   */
+  ACTIVE: "ACTIVE",
+  /**
+   * Deleting VPCEndpoint resource
+   */
+  DELETING: "DELETING",
+  /**
+   * VPCEndpoint resource create or delete failed
+   */
+  FAILED: "FAILED",
+  /**
+   * Pending VPCEndpoint resource
+   */
+  PENDING: "PENDING",
+} as const;
+
+/**
+ * @public
+ */
+export type VpcEndpointStatus = (typeof VpcEndpointStatus)[keyof typeof VpcEndpointStatus];
+
+/**
+ * <p>Details about an OpenSearch Serverless-managed interface endpoint.</p>
+ * @public
+ */
+export interface VpcEndpointDetail {
+  /**
+   * <p>The unique identifier of the endpoint.</p>
+   * @public
+   */
+  id?: string;
+
+  /**
+   * <p>The name of the endpoint.</p>
+   * @public
+   */
+  name?: string;
+
+  /**
+   * <p>The ID of the VPC from which you access OpenSearch Serverless.</p>
+   * @public
+   */
+  vpcId?: string;
+
+  /**
+   * <p>The ID of the subnets from which you access OpenSearch Serverless.</p>
+   * @public
+   */
+  subnetIds?: string[];
+
+  /**
+   * <p>The unique identifiers of the security groups that define the ports, protocols, and
+   *             sources for inbound traffic that you are authorizing into your endpoint.</p>
+   * @public
+   */
+  securityGroupIds?: string[];
+
+  /**
+   * <p>The current status of the endpoint.</p>
+   * @public
+   */
+  status?: VpcEndpointStatus;
+
+  /**
+   * <p>The date the endpoint was created.</p>
+   * @public
+   */
+  createdDate?: number;
+
+  /**
+   * <p>A failure code associated with the request.</p>
+   * @public
+   */
+  failureCode?: string;
+
+  /**
+   * <p>A message associated with the failure code.</p>
+   * @public
+   */
+  failureMessage?: string;
+}
+
+/**
+ * <p>Error information for a failed <code>BatchGetVpcEndpoint</code> request.</p>
+ * @public
+ */
+export interface VpcEndpointErrorDetail {
+  /**
+   * <p>The unique identifier of the VPC endpoint.</p>
+   * @public
+   */
+  id?: string;
+
+  /**
+   * <p>An error message describing the reason for the failure.</p>
+   * @public
+   */
+  errorMessage?: string;
+
+  /**
+   * <p>The error code for the failed request.</p>
+   * @public
+   */
+  errorCode?: string;
+}
+
+/**
+ * @public
+ */
+export interface BatchGetVpcEndpointResponse {
+  /**
+   * <p>Details about the specified VPC endpoint.</p>
+   * @public
+   */
+  vpcEndpointDetails?: VpcEndpointDetail[];
+
+  /**
+   * <p>Error information for a failed request.</p>
+   * @public
+   */
+  vpcEndpointErrorDetails?: VpcEndpointErrorDetail[];
+}
+
+/**
+ * <p>A map of key-value pairs associated to an OpenSearch Serverless resource.</p>
+ * @public
+ */
+export interface Tag {
+  /**
+   * <p>The key to use in the tag.</p>
+   * @public
+   */
+  key: string | undefined;
+
+  /**
+   * <p>The value of the tag.</p>
+   * @public
+   */
+  value: string | undefined;
+}
+
+/**
+ * @public
+ */
+export interface CreateCollectionRequest {
+  /**
+   * <p>Name of the collection.</p>
+   * @public
+   */
+  name: string | undefined;
+
+  /**
+   * <p>The type of collection.</p>
+   * @public
+   */
+  type?: CollectionType;
+
+  /**
+   * <p>Description of the collection.</p>
+   * @public
+   */
+  description?: string;
+
+  /**
+   * <p>An arbitrary set of tags (key–value pairs) to associate with the OpenSearch Serverless collection.</p>
+   * @public
+   */
+  tags?: Tag[];
+
+  /**
+   * <p>Indicates whether standby replicas should be used for a collection.</p>
+   * @public
+   */
+  standbyReplicas?: StandbyReplicas;
+
+  /**
+   * <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+   * @public
+   */
+  clientToken?: string;
+}
+
+/**
+ * <p>Details about the created OpenSearch Serverless collection.</p>
+ * @public
+ */
+export interface CreateCollectionDetail {
+  /**
+   * <p>The unique identifier of the collection.</p>
+   * @public
+   */
+  id?: string;
+
+  /**
+   * <p>The name of the collection.</p>
+   * @public
+   */
+  name?: string;
+
+  /**
+   * <p>The current status of the collection.</p>
+   * @public
+   */
+  status?: CollectionStatus;
+
+  /**
+   * <p>The type of collection.</p>
+   * @public
+   */
+  type?: CollectionType;
+
+  /**
+   * <p>A description of the collection.</p>
+   * @public
+   */
+  description?: string;
+
+  /**
+   * <p>The Amazon Resource Name (ARN) of the collection.</p>
+   * @public
+   */
+  arn?: string;
+
+  /**
+   * <p>The Amazon Resource Name (ARN) of the KMS key with which to encrypt the collection.</p>
+   * @public
+   */
+  kmsKeyArn?: string;
+
+  /**
+   * <p>Creates details about an OpenSearch Serverless collection.</p>
+   * @public
+   */
+  standbyReplicas?: StandbyReplicas;
+
+  /**
+   * <p>The Epoch time when the collection was created.</p>
+   * @public
+   */
+  createdDate?: number;
+
+  /**
+   * <p>The date and time when the collection was last modified.</p>
+   * @public
+   */
+  lastModifiedDate?: number;
+}
+
+/**
+ * @public
+ */
+export interface CreateCollectionResponse {
+  /**
+   * <p>Details about the collection.</p>
+   * @public
+   */
+  createCollectionDetail?: CreateCollectionDetail;
+}
+
+/**
+ * <p>Thrown when the collection you're attempting to create results in a number of search or indexing OCUs that exceeds the account limit. </p>
+ * @public
+ */
+export class OcuLimitExceededException extends __BaseException {
+  readonly name: "OcuLimitExceededException" = "OcuLimitExceededException";
+  readonly $fault: "client" = "client";
+  /**
+   * @internal
+   */
+  constructor(opts: __ExceptionOptionType<OcuLimitExceededException, __BaseException>) {
+    super({
+      name: "OcuLimitExceededException",
+      $fault: "client",
+      ...opts,
+    });
+    Object.setPrototypeOf(this, OcuLimitExceededException.prototype);
+  }
+}
+
+/**
+ * @public
+ */
+export interface DeleteCollectionRequest {
+  /**
+   * <p>The unique identifier of the collection. For example, <code>1iu5usc406kd</code>. The
+   *             ID is part of the collection endpoint. You can also retrieve it using the <a href="https://docs.aws.amazon.com/opensearch-service/latest/ServerlessAPIReference/API_ListCollections.html">ListCollections</a> API.</p>
+   * @public
+   */
+  id: string | undefined;
+
+  /**
+   * <p>A unique, case-sensitive identifier to ensure idempotency of the request.</p>
+   * @public
+   */
+  clientToken?: string;
+}
+
+/**
+ * <p>Details about a deleted OpenSearch Serverless collection.</p>
+ * @public
+ */
+export interface DeleteCollectionDetail {
+  /**
+   * <p>The unique identifier of the collection.</p>
+   * @public
+   */
+  id?: string;
+
+  /**
+   * <p>The name of the collection.</p>
+   * @public
+   */
+  name?: string;
+
+  /**
+   * <p>The current status of the collection.</p>
+   * @public
+   */
+  status?: CollectionStatus;
+}
+
+/**
+ * @public
+ */
+export interface DeleteCollectionResponse {
+  /**
+   * <p>Details of the deleted collection.</p>
+   * @public
+   */
+  deleteCollectionDetail?: DeleteCollectionDetail;
+}
+
+/**
+ * <p>A list of filter keys that you can use for LIST, UPDATE, and DELETE requests to OpenSearch Serverless
+ *             collections.</p>
+ * @public
+ */
+export interface CollectionFilters {
+  /**
+   * <p>The name of the collection.</p>
+   * @public
+   */
+  name?: string;
+
+  /**
+   * <p>The current status of the collection.</p>
+   * @public
+   */
+  status?: CollectionStatus;
+}
+
+/**
+ * @public
+ */
+export interface ListCollectionsRequest {
+  /**
+   * <p> A list of filter names and values that you can use for requests.</p>
+   * @public
+   */
+  collectionFilters?: CollectionFilters;
+
+  /**
+   * <p>If your initial <code>ListCollections</code> operation returns a <code>nextToken</code>,
+   *             you can include the returned <code>nextToken</code> in subsequent <code>ListCollections</code> operations,
+   *             which returns results in the next page.</p>
+   * @public
+   */
+  nextToken?: string;
+
+  /**
+   * <p>The maximum number of results to return. Default is 20. You can use
+   *                 <code>nextToken</code> to get the next page of results.</p>
+   * @public
+   */
+  maxResults?: number;
+}
+
+/**
+ * <p>Details about each OpenSearch Serverless collection.</p>
+ * @public
+ */
+export interface CollectionSummary {
+  /**
+   * <p>The unique identifier of the collection.</p>
+   * @public
+   */
+  id?: string;
+
+  /**
+   * <p>The name of the collection.</p>
+   * @public
+   */
+  name?: string;
+
+  /**
+   * <p>The current status of the collection.</p>
+   * @public
+   */
+  status?: CollectionStatus;
+
+  /**
+   * <p>The Amazon Resource Name (ARN) of the collection.</p>
+   * @public
+   */
+  arn?: string;
+}
+
+/**
+ * @public
+ */
+export interface ListCollectionsResponse {
+  /**
+   * <p>Details about each collection.</p>
+   * @public
+   */
+  collectionSummaries?: CollectionSummary[];
+
+  /**
+   * <p>When <code>nextToken</code> is returned, there are more results available.
+   *             The value of <code>nextToken</code> is a unique pagination token for each page.
+   *             Make the call again using the returned token to retrieve the next page.</p>
+   * @public
+   */
+  nextToken?: string;
+}
+
+/**
+ * @public
+ */
+export interface UpdateCollectionRequest {
+  /**
+   * <p>The unique identifier of the collection.</p>
+   * @public
+   */
+  id: string | undefined;
+
+  /**
+   * <p>A description of the collection.</p>
+   * @public
+   */
+  description?: string;
+
+  /**
+   * <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+   * @public
+   */
+  clientToken?: string;
+}
+
+/**
+ * <p>Details about an updated OpenSearch Serverless collection.</p>
+ * @public
+ */
+export interface UpdateCollectionDetail {
+  /**
+   * <p>The unique identifier of the collection.</p>
+   * @public
+   */
+  id?: string;
+
+  /**
+   * <p>The name of the collection.</p>
+   * @public
+   */
+  name?: string;
+
+  /**
+   * <p>The current status of the collection.</p>
+   * @public
+   */
+  status?: CollectionStatus;
+
+  /**
+   * <p>The collection type.</p>
+   * @public
+   */
+  type?: CollectionType;
+
+  /**
+   * <p>The description of the collection.</p>
+   * @public
+   */
+  description?: string;
+
+  /**
+   * <p>The Amazon Resource Name (ARN) of the collection.</p>
+   * @public
+   */
+  arn?: string;
+
+  /**
+   * <p>The date and time when the collection was created.</p>
+   * @public
+   */
+  createdDate?: number;
+
+  /**
+   * <p>The date and time when the collection was last modified.</p>
+   * @public
+   */
+  lastModifiedDate?: number;
+}
+
+/**
+ * @public
+ */
+export interface UpdateCollectionResponse {
+  /**
+   * <p>Details about the updated collection.</p>
+   * @public
+   */
+  updateCollectionDetail?: UpdateCollectionDetail;
+}
+
+/**
+ * @public
+ */
+export interface CreateLifecyclePolicyRequest {
+  /**
+   * <p>The type of lifecycle policy.</p>
+   * @public
+   */
+  type: LifecyclePolicyType | undefined;
+
+  /**
+   * <p>The name of the lifecycle policy.</p>
+   * @public
+   */
+  name: string | undefined;
+
+  /**
+   * <p>A description of the lifecycle policy.</p>
+   * @public
+   */
+  description?: string;
+
+  /**
+   * <p>The JSON policy document to use as the content for the lifecycle policy.</p>
+   * @public
+   */
+  policy: string | undefined;
+
+  /**
+   * <p>A unique, case-sensitive identifier to ensure idempotency of the request.</p>
+   * @public
+   */
+  clientToken?: string;
+}
+
+/**
+ * @public
+ */
+export interface CreateLifecyclePolicyResponse {
+  /**
+   * <p>Details about the created lifecycle policy.</p>
+   * @public
+   */
+  lifecyclePolicyDetail?: LifecyclePolicyDetail;
+}
+
+/**
+ * <p>Describes SAML options for an OpenSearch Serverless security configuration in the form of a key-value
+ *             map.</p>
+ * @public
+ */
+export interface SamlConfigOptions {
+  /**
+   * <p>The XML IdP metadata file generated from your identity provider.</p>
+   * @public
+   */
+  metadata: string | undefined;
+
+  /**
+   * <p>A user attribute for this SAML integration.</p>
+   * @public
+   */
+  userAttribute?: string;
+
+  /**
+   * <p>The group attribute for this SAML integration.</p>
+   * @public
+   */
+  groupAttribute?: string;
+
+  /**
+   * <p>The session timeout, in minutes. Default is 60 minutes (12 hours).</p>
+   * @public
+   */
+  sessionTimeout?: number;
+}
+
+/**
+ * @public
+ * @enum
+ */
+export const SecurityConfigType = {
+  /**
+   * saml provider
+   */
+  saml: "saml",
+} as const;
+
+/**
+ * @public
+ */
+export type SecurityConfigType = (typeof SecurityConfigType)[keyof typeof SecurityConfigType];
+
+/**
+ * @public
+ */
+export interface CreateSecurityConfigRequest {
+  /**
+   * <p>The type of security configuration.</p>
+   * @public
+   */
+  type: SecurityConfigType | undefined;
+
+  /**
+   * <p>The name of the security configuration.</p>
+   * @public
+   */
+  name: string | undefined;
+
+  /**
+   * <p>A description of the security configuration.</p>
+   * @public
+   */
+  description?: string;
+
+  /**
+   * <p>Describes SAML options in in the form of a key-value map. This field is required if
+   *             you specify <code>saml</code> for the <code>type</code> parameter.</p>
+   * @public
+   */
+  samlOptions?: SamlConfigOptions;
+
+  /**
+   * <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+   * @public
+   */
+  clientToken?: string;
+}
+
+/**
+ * <p>Details about a security configuration for OpenSearch Serverless. </p>
+ * @public
+ */
+export interface SecurityConfigDetail {
+  /**
+   * <p>The unique identifier of the security configuration.</p>
+   * @public
+   */
+  id?: string;
+
+  /**
+   * <p>The type of security configuration.</p>
+   * @public
+   */
+  type?: SecurityConfigType;
+
+  /**
+   * <p>The version of the security configuration.</p>
+   * @public
+   */
+  configVersion?: string;
+
+  /**
+   * <p>The description of the security configuration.</p>
+   * @public
+   */
+  description?: string;
+
+  /**
+   * <p>SAML options for the security configuration in the form of a key-value map.</p>
+   * @public
+   */
+  samlOptions?: SamlConfigOptions;
+
+  /**
+   * <p>The date the configuration was created.</p>
+   * @public
+   */
+  createdDate?: number;
+
+  /**
+   * <p>The timestamp of when the configuration was last modified.</p>
+   * @public
+   */
+  lastModifiedDate?: number;
+}
+
+/**
+ * @public
+ */
+export interface CreateSecurityConfigResponse {
+  /**
+   * <p>Details about the created security configuration. </p>
+   * @public
+   */
+  securityConfigDetail?: SecurityConfigDetail;
+}
+
+/**
+ * @public
+ * @enum
+ */
+export const SecurityPolicyType = {
+  /**
+   * encryption policy type
+   */
+  encryption: "encryption",
+  /**
+   * network policy type
+   */
+  network: "network",
+} as const;
+
+/**
+ * @public
+ */
+export type SecurityPolicyType = (typeof SecurityPolicyType)[keyof typeof SecurityPolicyType];
+
+/**
+ * @public
+ */
+export interface CreateSecurityPolicyRequest {
+  /**
+   * <p>The type of security policy.</p>
+   * @public
+   */
+  type: SecurityPolicyType | undefined;
+
+  /**
+   * <p>The name of the policy.</p>
+   * @public
+   */
+  name: string | undefined;
+
+  /**
+   * <p>A description of the policy. Typically used to store information about the permissions
+   *             defined in the policy.</p>
+   * @public
+   */
+  description?: string;
+
+  /**
+   * <p>The JSON policy document to use as the content for the new policy.</p>
+   * @public
+   */
+  policy: string | undefined;
+
+  /**
+   * <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+   * @public
+   */
+  clientToken?: string;
+}
+
+/**
+ * <p>Details about an OpenSearch Serverless security policy.</p>
+ * @public
+ */
+export interface SecurityPolicyDetail {
+  /**
+   * <p>The type of security policy.</p>
+   * @public
+   */
+  type?: SecurityPolicyType;
+
+  /**
+   * <p>The name of the policy.</p>
+   * @public
+   */
+  name?: string;
+
+  /**
+   * <p>The version of the policy.</p>
+   * @public
+   */
+  policyVersion?: string;
+
+  /**
+   * <p>The description of the security policy.</p>
+   * @public
+   */
+  description?: string;
+
+  /**
+   * <p>The JSON policy document without any whitespaces.</p>
+   * @public
+   */
+  policy?: __DocumentType;
+
+  /**
+   * <p>The date the policy was created.</p>
+   * @public
+   */
+  createdDate?: number;
+
+  /**
+   * <p>The timestamp of when the policy was last modified.</p>
+   * @public
+   */
+  lastModifiedDate?: number;
+}
+
+/**
+ * @public
+ */
+export interface CreateSecurityPolicyResponse {
+  /**
+   * <p>Details about the created security policy.</p>
+   * @public
+   */
+  securityPolicyDetail?: SecurityPolicyDetail;
+}
+
+/**
+ * @public
+ */
+export interface CreateVpcEndpointRequest {
+  /**
+   * <p>The name of the interface endpoint.</p>
+   * @public
+   */
+  name: string | undefined;
+
+  /**
+   * <p>The ID of the VPC from which you'll access OpenSearch Serverless.</p>
+   * @public
+   */
+  vpcId: string | undefined;
+
+  /**
+   * <p>The ID of one or more subnets from which you'll access OpenSearch Serverless.</p>
+   * @public
+   */
+  subnetIds: string[] | undefined;
+
+  /**
+   * <p>The unique identifiers of the security groups that define the ports, protocols, and
+   *             sources for inbound traffic that you are authorizing into your endpoint.</p>
+   * @public
+   */
+  securityGroupIds?: string[];
+
+  /**
+   * <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+   * @public
+   */
+  clientToken?: string;
+}
+
+/**
+ * <p>Creation details for an OpenSearch Serverless-managed interface endpoint. For more information, see
+ *             <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-vpc.html">Access Amazon OpenSearch Serverless using an interface endpoint</a>.</p>
+ * @public
+ */
+export interface CreateVpcEndpointDetail {
+  /**
+   * <p>The unique identifier of the endpoint.</p>
+   * @public
+   */
+  id?: string;
+
+  /**
+   * <p>The name of the endpoint.</p>
+   * @public
+   */
+  name?: string;
+
+  /**
+   * <p>The current status in the endpoint creation process.</p>
+   * @public
+   */
+  status?: VpcEndpointStatus;
+}
+
+/**
+ * @public
+ */
+export interface CreateVpcEndpointResponse {
+  /**
+   * <p>Details about the created interface VPC endpoint.</p>
+   * @public
+   */
+  createVpcEndpointDetail?: CreateVpcEndpointDetail;
+}
+
+/**
+ * @public
+ */
+export interface DeleteLifecyclePolicyRequest {
+  /**
+   * <p>The type of lifecycle policy.</p>
+   * @public
+   */
+  type: LifecyclePolicyType | undefined;
+
+  /**
+   * <p>The name of the policy to delete.</p>
+   * @public
+   */
+  name: string | undefined;
+
+  /**
+   * <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+   * @public
+   */
+  clientToken?: string;
+}
+
+/**
+ * @public
+ */
+export interface DeleteLifecyclePolicyResponse {}
+
+/**
+ * @public
+ */
+export interface DeleteSecurityConfigRequest {
+  /**
+   * <p>The security configuration identifier. For SAML the ID will be
+   *                 <code>saml/&lt;accountId&gt;/&lt;idpProviderName&gt;</code>. For example,
+   *                 <code>saml/123456789123/OKTADev</code>.</p>
+   * @public
+   */
+  id: string | undefined;
+
+  /**
+   * <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+   * @public
+   */
+  clientToken?: string;
+}
+
+/**
+ * @public
+ */
+export interface DeleteSecurityConfigResponse {}
+
+/**
+ * @public
+ */
+export interface DeleteSecurityPolicyRequest {
+  /**
+   * <p>The type of policy.</p>
+   * @public
+   */
+  type: SecurityPolicyType | undefined;
+
+  /**
+   * <p>The name of the policy to delete.</p>
+   * @public
+   */
+  name: string | undefined;
+
+  /**
+   * <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+   * @public
+   */
+  clientToken?: string;
+}
+
+/**
+ * @public
+ */
+export interface DeleteSecurityPolicyResponse {}
+
+/**
+ * @public
+ */
+export interface DeleteVpcEndpointRequest {
+  /**
+   * <p>The VPC endpoint identifier.</p>
+   * @public
+   */
+  id: string | undefined;
+
+  /**
+   * <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+   * @public
+   */
+  clientToken?: string;
+}
+
+/**
+ * <p>Deletion details for an OpenSearch Serverless-managed interface endpoint.</p>
+ * @public
+ */
+export interface DeleteVpcEndpointDetail {
+  /**
+   * <p>The unique identifier of the endpoint.</p>
+   * @public
+   */
+  id?: string;
+
+  /**
+   * <p>The name of the endpoint.</p>
+   * @public
+   */
+  name?: string;
+
+  /**
+   * <p>The current status of the endpoint deletion process.</p>
+   * @public
+   */
+  status?: VpcEndpointStatus;
+}
+
+/**
+ * @public
+ */
+export interface DeleteVpcEndpointResponse {
+  /**
+   * <p>Details about the deleted endpoint.</p>
+   * @public
+   */
+  deleteVpcEndpointDetail?: DeleteVpcEndpointDetail;
+}
+
+/**
+ * @public
+ */
+export interface GetAccountSettingsRequest {}
+
+/**
+ * @public
+ */
+export interface GetAccountSettingsResponse {
+  /**
+   * <p>OpenSearch Serverless-related details for the current account.</p>
+   * @public
+   */
+  accountSettingsDetail?: AccountSettingsDetail;
+}
+
+/**
+ * @public
+ */
+export interface GetPoliciesStatsRequest {}
+
+/**
+ * <p>Statistics for an OpenSearch Serverless lifecycle policy.</p>
+ * @public
+ */
+export interface LifecyclePolicyStats {
+  /**
+   * <p>The number of retention lifecycle policies in the current account.</p>
+   * @public
+   */
+  RetentionPolicyCount?: number;
+}
+
+/**
+ * <p>Statistics for an OpenSearch Serverless security configuration.</p>
+ * @public
+ */
+export interface SecurityConfigStats {
+  /**
+   * <p>The number of security configurations in the current account.</p>
+   * @public
+   */
+  SamlConfigCount?: number;
+}
+
+/**
+ * <p>Statistics for an OpenSearch Serverless security policy.</p>
+ * @public
+ */
+export interface SecurityPolicyStats {
+  /**
+   * <p>The number of encryption policies in the current account.</p>
+   * @public
+   */
+  EncryptionPolicyCount?: number;
+
+  /**
+   * <p>The number of network policies in the current account.</p>
+   * @public
+   */
+  NetworkPolicyCount?: number;
+}
+
+/**
+ * @public
+ */
+export interface GetPoliciesStatsResponse {
+  /**
+   * <p>Information about the data access policies in your account.</p>
+   * @public
+   */
+  AccessPolicyStats?: AccessPolicyStats;
+
+  /**
+   * <p>Information about the security policies in your account.</p>
+   * @public
+   */
+  SecurityPolicyStats?: SecurityPolicyStats;
+
+  /**
+   * <p>Information about the security configurations in your account.</p>
+   * @public
+   */
+  SecurityConfigStats?: SecurityConfigStats;
+
+  /**
+   * <p>Information about the lifecycle policies in your account.</p>
+   * @public
+   */
+  LifecyclePolicyStats?: LifecyclePolicyStats;
+
+  /**
+   * <p>The total number of OpenSearch Serverless security policies and configurations in your
+   *             account.</p>
+   * @public
+   */
+  TotalPolicyCount?: number;
+}
+
+/**
+ * @public
+ */
+export interface GetSecurityConfigRequest {
+  /**
+   * <p>The unique identifier of the security configuration.</p>
+   * @public
+   */
+  id: string | undefined;
+}
+
+/**
+ * @public
+ */
+export interface GetSecurityConfigResponse {
+  /**
+   * <p>Details of the requested security configuration.</p>
+   * @public
+   */
+  securityConfigDetail?: SecurityConfigDetail;
+}
+
+/**
+ * @public
+ */
+export interface GetSecurityPolicyRequest {
+  /**
+   * <p>The type of security policy.</p>
+   * @public
+   */
+  type: SecurityPolicyType | undefined;
+
+  /**
+   * <p>The name of the security policy.</p>
+   * @public
+   */
+  name: string | undefined;
+}
+
+/**
+ * @public
+ */
+export interface GetSecurityPolicyResponse {
+  /**
+   * <p>Details about the requested security policy.</p>
+   * @public
+   */
+  securityPolicyDetail?: SecurityPolicyDetail;
+}
+
+/**
+ * @public
+ */
+export interface ListLifecyclePoliciesRequest {
+  /**
+   * <p>The type of lifecycle policy.</p>
+   * @public
+   */
+  type: LifecyclePolicyType | undefined;
+
+  /**
+   * <p>Resource filters that policies can apply to. Currently, the only supported resource type is <code>index</code>.</p>
+   * @public
+   */
+  resources?: string[];
+
+  /**
+   * <p>If your initial <code>ListLifecyclePolicies</code> operation returns a <code>nextToken</code>, you can include the returned <code>nextToken</code> in subsequent <code>ListLifecyclePolicies</code> operations, which returns results in the next page.</p>
+   * @public
+   */
+  nextToken?: string;
+
+  /**
+   * <p>An optional parameter that specifies the maximum number of results to return. You can use use <code>nextToken</code> to get the next page of results. The default is 10.</p>
+   * @public
+   */
+  maxResults?: number;
+}
+
+/**
+ * <p>A summary of the lifecycle policy.</p>
+ * @public
+ */
+export interface LifecyclePolicySummary {
+  /**
+   * <p>The type of lifecycle policy.</p>
+   * @public
+   */
+  type?: LifecyclePolicyType;
+
+  /**
+   * <p>The name of the lifecycle policy.</p>
+   * @public
+   */
+  name?: string;
+
+  /**
+   * <p>The version of the lifecycle policy.</p>
+   * @public
+   */
+  policyVersion?: string;
+
+  /**
+   * <p>The description of the lifecycle policy.</p>
+   * @public
+   */
+  description?: string;
+
+  /**
+   * <p>The Epoch time when the lifecycle policy was created.</p>
+   * @public
+   */
+  createdDate?: number;
+
+  /**
+   * <p>The date and time when the lifecycle policy was last modified.</p>
+   * @public
+   */
+  lastModifiedDate?: number;
+}
+
+/**
+ * @public
+ */
+export interface ListLifecyclePoliciesResponse {
+  /**
+   * <p>Details about the requested lifecycle policies.</p>
+   * @public
+   */
+  lifecyclePolicySummaries?: LifecyclePolicySummary[];
+
+  /**
+   * <p>When <code>nextToken</code> is returned, there are more results available. The value of <code>nextToken</code> is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.</p>
+   * @public
+   */
+  nextToken?: string;
+}
+
+/**
+ * @public
+ */
+export interface UpdateLifecyclePolicyRequest {
+  /**
+   * <p> The type of lifecycle policy.</p>
+   * @public
+   */
+  type: LifecyclePolicyType | undefined;
+
+  /**
+   * <p>The name of the policy.</p>
+   * @public
+   */
+  name: string | undefined;
+
+  /**
+   * <p>The version of the policy being updated.</p>
+   * @public
+   */
+  policyVersion: string | undefined;
+
+  /**
+   * <p>A description of the lifecycle policy.</p>
+   * @public
+   */
+  description?: string;
+
+  /**
+   * <p>The JSON policy document to use as the content for the lifecycle policy.</p>
+   * @public
+   */
+  policy?: string;
+
+  /**
+   * <p>A unique, case-sensitive identifier to ensure idempotency of the request.</p>
+   * @public
+   */
+  clientToken?: string;
+}
+
+/**
+ * @public
+ */
+export interface UpdateLifecyclePolicyResponse {
+  /**
+   * <p>Details about the updated lifecycle policy.</p>
+   * @public
+   */
+  lifecyclePolicyDetail?: LifecyclePolicyDetail;
+}
+
+/**
+ * @public
+ */
+export interface ListSecurityConfigsRequest {
+  /**
+   * <p>The type of security configuration.</p>
+   * @public
+   */
+  type: SecurityConfigType | undefined;
+
+  /**
+   * <p>If your initial <code>ListSecurityConfigs</code> operation returns a
+   *                 <code>nextToken</code>, you can include the returned <code>nextToken</code> in
+   *             subsequent <code>ListSecurityConfigs</code> operations, which returns results in the
+   *             next page. </p>
+   * @public
+   */
+  nextToken?: string;
+
+  /**
+   * <p>An optional parameter that specifies the maximum number of results to return. You can
+   *             use <code>nextToken</code> to get the next page of results. The default is 20.</p>
+   * @public
+   */
+  maxResults?: number;
+}
+
+/**
+ * <p>A summary of a security configuration for OpenSearch Serverless.</p>
+ * @public
+ */
+export interface SecurityConfigSummary {
+  /**
+   * <p>The unique identifier of the security configuration.</p>
+   * @public
+   */
+  id?: string;
+
+  /**
+   * <p>The type of security configuration.</p>
+   * @public
+   */
+  type?: SecurityConfigType;
+
+  /**
+   * <p>The version of the security configuration.</p>
+   * @public
+   */
+  configVersion?: string;
+
+  /**
+   * <p>The description of the security configuration.</p>
+   * @public
+   */
+  description?: string;
+
+  /**
+   * <p>The Epoch time when the security configuration was created.</p>
+   * @public
+   */
+  createdDate?: number;
+
+  /**
+   * <p>The timestamp of when the configuration was last modified.</p>
+   * @public
+   */
+  lastModifiedDate?: number;
+}
+
+/**
+ * @public
+ */
+export interface ListSecurityConfigsResponse {
+  /**
+   * <p>Details about the security configurations in your account.</p>
+   * @public
+   */
+  securityConfigSummaries?: SecurityConfigSummary[];
+
+  /**
+   * <p>When <code>nextToken</code> is returned, there are more results available. The value
+   *             of <code>nextToken</code> is a unique pagination token for each page. Make the call
+   *             again using the returned token to retrieve the next page.</p>
+   * @public
+   */
+  nextToken?: string;
+}
+
+/**
+ * @public
+ */
+export interface ListSecurityPoliciesRequest {
+  /**
+   * <p>The type of policy.</p>
+   * @public
+   */
+  type: SecurityPolicyType | undefined;
+
+  /**
+   * <p>Resource filters (can be collection or indexes) that policies can apply to. </p>
+   * @public
+   */
+  resource?: string[];
+
+  /**
+   * <p>If your initial <code>ListSecurityPolicies</code> operation returns a
+   *                 <code>nextToken</code>, you can include the returned <code>nextToken</code> in
+   *             subsequent <code>ListSecurityPolicies</code> operations, which returns results in the
+   *             next page. </p>
+   * @public
+   */
+  nextToken?: string;
+
+  /**
+   * <p>An optional parameter that specifies the maximum number of results to return. You can
+   *             use <code>nextToken</code> to get the next page of results. The default is 20.</p>
+   * @public
+   */
+  maxResults?: number;
+}
+
+/**
+ * <p>A summary of a security policy for OpenSearch Serverless.</p>
+ * @public
+ */
+export interface SecurityPolicySummary {
+  /**
+   * <p>The type of security policy.</p>
+   * @public
+   */
+  type?: SecurityPolicyType;
+
+  /**
+   * <p>The name of the policy.</p>
+   * @public
+   */
+  name?: string;
+
+  /**
+   * <p>The version of the policy.</p>
+   * @public
+   */
+  policyVersion?: string;
+
+  /**
+   * <p>The description of the security policy.</p>
+   * @public
+   */
+  description?: string;
+
+  /**
+   * <p>The date the policy was created.</p>
+   * @public
+   */
+  createdDate?: number;
+
+  /**
+   * <p>The timestamp of when the policy was last modified.</p>
+   * @public
+   */
+  lastModifiedDate?: number;
+}
+
+/**
+ * @public
+ */
+export interface ListSecurityPoliciesResponse {
+  /**
+   * <p>Details about the security policies in your account.</p>
+   * @public
+   */
+  securityPolicySummaries?: SecurityPolicySummary[];
+
+  /**
+   * <p>When <code>nextToken</code> is returned, there are more results available. The value
+   *             of <code>nextToken</code> is a unique pagination token for each page. Make the call
+   *             again using the returned token to retrieve the next page.</p>
+   * @public
+   */
+  nextToken?: string;
+}
+
+/**
+ * @public
+ */
+export interface ListTagsForResourceRequest {
+  /**
+   * <p>The Amazon Resource Name (ARN) of the resource. The resource must be active (not in
+   *             the <code>DELETING</code> state), and must be owned by the account ID included in the
+   *             request.</p>
+   * @public
+   */
+  resourceArn: string | undefined;
+}
+
+/**
+ * @public
+ */
+export interface ListTagsForResourceResponse {
+  /**
+   * <p>The tags associated with the resource.</p>
+   * @public
+   */
+  tags?: Tag[];
+}
+
+/**
+ * <p>Filter the results of a <code>ListVpcEndpoints</code> request.</p>
+ * @public
+ */
+export interface VpcEndpointFilters {
+  /**
+   * <p>The current status of the endpoint.</p>
+   * @public
+   */
+  status?: VpcEndpointStatus;
+}
+
+/**
+ * @public
+ */
+export interface ListVpcEndpointsRequest {
+  /**
+   * <p>Filter the results according to the current status of the VPC endpoint. Possible
+   *             statuses are <code>CREATING</code>, <code>DELETING</code>, <code>UPDATING</code>,
+   *                 <code>ACTIVE</code>, and <code>FAILED</code>.</p>
+   * @public
+   */
+  vpcEndpointFilters?: VpcEndpointFilters;
+
+  /**
+   * <p>If your initial <code>ListVpcEndpoints</code> operation returns a
+   *                 <code>nextToken</code>, you can include the returned <code>nextToken</code> in
+   *             subsequent <code>ListVpcEndpoints</code> operations, which returns results in the next
+   *             page. </p>
+   * @public
+   */
+  nextToken?: string;
+
+  /**
+   * <p>An optional parameter that specifies the maximum number of results to return. You can
+   *             use <code>nextToken</code> to get the next page of results. The default is 20.</p>
+   * @public
+   */
+  maxResults?: number;
+}
+
+/**
+ * <p>The VPC endpoint object.</p>
+ * @public
+ */
+export interface VpcEndpointSummary {
+  /**
+   * <p>The unique identifier of the endpoint.</p>
+   * @public
+   */
+  id?: string;
+
+  /**
+   * <p>The name of the endpoint.</p>
+   * @public
+   */
+  name?: string;
+
+  /**
+   * <p>The current status of the endpoint.</p>
+   * @public
+   */
+  status?: VpcEndpointStatus;
+}
+
+/**
+ * @public
+ */
+export interface ListVpcEndpointsResponse {
+  /**
+   * <p>Details about each VPC endpoint, including the name and current status.</p>
+   * @public
+   */
+  vpcEndpointSummaries?: VpcEndpointSummary[];
+
+  /**
+   * <p>When <code>nextToken</code> is returned, there are more results available. The value
+   *             of <code>nextToken</code> is a unique pagination token for each page. Make the call
+   *             again using the returned token to retrieve the next page.</p>
+   * @public
+   */
+  nextToken?: string;
+}
+
+/**
+ * @public
+ */
+export interface UpdateSecurityConfigRequest {
+  /**
+   * <p>The security configuration identifier. For SAML the ID will be
+   *                 <code>saml/&lt;accountId&gt;/&lt;idpProviderName&gt;</code>. For example,
+   *                 <code>saml/123456789123/OKTADev</code>.</p>
+   * @public
+   */
+  id: string | undefined;
+
+  /**
+   * <p>The version of the security configuration to be updated. You can find the most recent
+   *             version of a security configuration using the <code>GetSecurityPolicy</code>
+   *             command.</p>
+   * @public
+   */
+  configVersion: string | undefined;
+
+  /**
+   * <p>A description of the security configuration.</p>
+   * @public
+   */
+  description?: string;
+
+  /**
+   * <p>SAML options in in the form of a key-value map.</p>
+   * @public
+   */
+  samlOptions?: SamlConfigOptions;
+
+  /**
+   * <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+   * @public
+   */
+  clientToken?: string;
+}
+
+/**
+ * @public
+ */
+export interface UpdateSecurityConfigResponse {
+  /**
+   * <p>Details about the updated security configuration. </p>
+   * @public
+   */
+  securityConfigDetail?: SecurityConfigDetail;
+}
+
+/**
+ * @public
+ */
+export interface UpdateSecurityPolicyRequest {
+  /**
+   * <p>The type of access policy.</p>
+   * @public
+   */
+  type: SecurityPolicyType | undefined;
+
+  /**
+   * <p>The name of the policy.</p>
+   * @public
+   */
+  name: string | undefined;
+
+  /**
+   * <p>The version of the policy being updated.</p>
+   * @public
+   */
+  policyVersion: string | undefined;
+
+  /**
+   * <p>A description of the policy. Typically used to store information about the permissions
+   *             defined in the policy.</p>
+   * @public
+   */
+  description?: string;
+
+  /**
+   * <p>The JSON policy document to use as the content for the new policy.</p>
+   * @public
+   */
+  policy?: string;
+
+  /**
+   * <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+   * @public
+   */
+  clientToken?: string;
+}
+
+/**
+ * @public
+ */
+export interface UpdateSecurityPolicyResponse {
+  /**
+   * <p>Details about the updated security policy.</p>
+   * @public
+   */
+  securityPolicyDetail?: SecurityPolicyDetail;
+}
+
+/**
+ * @public
+ */
+export interface TagResourceRequest {
+  /**
+   * <p>The Amazon Resource Name (ARN) of the resource. The resource must be active (not in
+   *             the <code>DELETING</code> state), and must be owned by the account ID included in the
+   *             request.</p>
+   * @public
+   */
+  resourceArn: string | undefined;
+
+  /**
+   * <p>A list of tags (key-value pairs) to add to the resource. All tag keys in the request
+   *             must be unique.</p>
+   * @public
+   */
+  tags: Tag[] | undefined;
+}
+
+/**
+ * @public
+ */
+export interface TagResourceResponse {}
+
+/**
+ * @public
+ */
+export interface UntagResourceRequest {
+  /**
+   * <p>The Amazon Resource Name (ARN) of the resource to remove tags from. The resource must
+   *             be active (not in the <code>DELETING</code> state), and must be owned by the account ID
+   *             included in the request.</p>
+   * @public
+   */
+  resourceArn: string | undefined;
+
+  /**
+   * <p>The tag or set of tags to remove from the resource. All tag keys in the request must
+   *             be unique.</p>
+   * @public
+   */
+  tagKeys: string[] | undefined;
+}
+
+/**
+ * @public
+ */
+export interface UntagResourceResponse {}
+
+/**
+ * @public
+ */
+export interface UpdateAccountSettingsRequest {
+  /**
+   * <p>The maximum capacity limits for all OpenSearch Serverless collections, in OpenSearch Compute Units
+   *             (OCUs). These limits are used to scale your collections based on the current workload.
+   *             For more information, see <a href="https://docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless-scaling.html">Managing
+   *                 capacity limits for Amazon OpenSearch Serverless</a>.</p>
+   * @public
+   */
+  capacityLimits?: CapacityLimits;
+}
+
+/**
+ * @public
+ */
+export interface UpdateAccountSettingsResponse {
+  /**
+   * <p>OpenSearch Serverless-related settings for the current Amazon Web Services account. </p>
+   * @public
+   */
+  accountSettingsDetail?: AccountSettingsDetail;
+}
+
+/**
+ * @public
+ */
+export interface UpdateVpcEndpointRequest {
+  /**
+   * <p>The unique identifier of the interface endpoint to update.</p>
+   * @public
+   */
+  id: string | undefined;
+
+  /**
+   * <p>The ID of one or more subnets to add to the endpoint.</p>
+   * @public
+   */
+  addSubnetIds?: string[];
+
+  /**
+   * <p>The unique identifiers of the subnets to remove from the endpoint.</p>
+   * @public
+   */
+  removeSubnetIds?: string[];
+
+  /**
+   * <p>The unique identifiers of the security groups to add to the endpoint. Security groups
+   *             define the ports, protocols, and sources for inbound traffic that you are authorizing
+   *             into your endpoint.</p>
+   * @public
+   */
+  addSecurityGroupIds?: string[];
+
+  /**
+   * <p>The unique identifiers of the security groups to remove from the endpoint.</p>
+   * @public
+   */
+  removeSecurityGroupIds?: string[];
+
+  /**
+   * <p>Unique, case-sensitive identifier to ensure idempotency of the request.</p>
+   * @public
+   */
+  clientToken?: string;
+}
+
+/**
+ * <p>Update details for an OpenSearch Serverless-managed interface endpoint.</p>
+ * @public
+ */
+export interface UpdateVpcEndpointDetail {
+  /**
+   * <p>The unique identifier of the endpoint.</p>
+   * @public
+   */
+  id?: string;
+
+  /**
+   * <p>The name of the endpoint.</p>
+   * @public
+   */
+  name?: string;
+
+  /**
+   * <p>The current status of the endpoint update process.</p>
+   * @public
+   */
+  status?: VpcEndpointStatus;
+
+  /**
+   * <p>The ID of the subnets from which you access OpenSearch Serverless.</p>
+   * @public
+   */
+  subnetIds?: string[];
+
+  /**
+   * <p>The unique identifiers of the security groups that define the ports, protocols, and
+   *             sources for inbound traffic that you are authorizing into your endpoint.</p>
+   * @public
+   */
+  securityGroupIds?: string[];
+
+  /**
+   * <p>The timestamp of when the endpoint was last modified.</p>
+   * @public
+   */
+  lastModifiedDate?: number;
+}
+
+/**
+ * @public
+ */
+export interface UpdateVpcEndpointResponse {
+  /**
+   * <p>Details about the updated VPC endpoint.</p>
+   * @public
+   */
+  UpdateVpcEndpointDetail?: UpdateVpcEndpointDetail;
+}
